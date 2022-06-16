@@ -1,0 +1,1706 @@
+<section [ngClass]="'inner-cntnt-wrapper'">
+<section [ngClass]="'buy-sell-form-sec slide-left-bar'" style="background-image: url('assets/images/home-bg.svg')">
+    <div [ngClass]="'container_1280px'">
+    <div [ngClass]="'blue-heading text-center'">
+      <h2>Buy, Rent, Sell & Valuate Your Property</h2>
+    </div>
+    <div class="buy-sell-wrapepr-forms">
+        <div class="form_tabs">
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" data-bs-toggle="tab" href="#rent">Rent</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="tab" href="#buy">Buy</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="tab" href="#land">Land</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="tab" href="#commertial">Commercial</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="tab" href="#find-agents">Find Agents</a>
+            </li>
+          </ul>
+          <!-- Tab panes -->
+          <div class="tab-content">
+            <div id="rent" class="tab-pane active">
+                <div class="tab-form-sec rent-form">
+                  <form>
+                      <div class="flex-row">
+                        <div class="flex-column flex-column-1">
+                          <div class="form-grouph input-design floating-label position-relative">
+                            <label>Search by</label>
+                            <input type="text" placeholder="Location, Project Name">
+                          </div>
+                        </div>
+                        <div class="flex-column flex-column-2">
+                            <div class="budget-button">
+                            <div class="dropdown">
+                              <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown">
+                                Budget
+                              </button>
+                              <div class="dropdown-menu" id="budget-dropdown">
+                                  <div class="price-range_sec">
+                                    <h5 class="h5-heading">Price Range</h5>
+                                    <div class="price-range-wrap">
+                                      
+                                    </div>                                            
+                                    </div>
+                                  <div class="price-type_tabs">
+                                    <h5 class="h5-heading">Rental Type</h5>
+                                    <ul class="nav nav-tabs" role="tablist">
+                                      <li class="nav-item">
+                                        <a class="nav-link active" data-bs-toggle="tab" href="#Monthly">Monthly</a>
+                                      </li>
+                                      <li class="nav-item">
+                                        <a class="nav-link" data-bs-toggle="tab" href="#Yearly">Yearly</a>
+                                      </li>
+                                    </ul>
+                                  </div>
+                              </div>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="flex-column flex-column-3">
+                          <div class="property-type-button">
+                            <div class="dropdown">
+                              <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown">
+                              Property Type
+                              </button>
+                              <div class="dropdown-menu" id="property-type-sec">
+                              <h5 class="h5-heading">Property Type</h5>
+                                <div class="property-types-heading">
+                                  <ul class="nav nav-tabs" role="tablist">
+                                    <li class="nav-item">
+                                      <a class="nav-link active" data-bs-toggle="tab" href="#Residentials"><span class="circle-celection"></span> Residential</a>
+                                    </li>
+                                    <li class="nav-item">
+                                      <a class="nav-link" data-bs-toggle="tab" href="#Commercial"><span class="circle-celection"></span> Commercial</a>
+                                    </li>
+                                  </ul>
+                                </div>
+                                <div class="property-types-cntnts">
+                                  <div class="tab-content">
+                                  <div id="Residentials" class="tab-pane active"> 
+                                    <h5 class="h5-heading">Residential Unit Type</h5>
+                                  <ul class="list-unstyled residentails-unit-list">
+                                    <li class="d-flex">
+                                      <div class="position-relative">
+                                      <input type="checkbox" name="Studio">
+                                      <span class="property_sel"></span>
+                                      </div>
+                                      <div class="proprty_name">
+                                        <p>Studio</p>
+                                      </div>
+                                    </li>
+                                    <li class="d-flex">
+                                      <div class="position-relative">
+                                      <input type="checkbox" name="Apartment">
+                                      <span class="property_sel"></span>
+                                      </div>
+                                      <div class="proprty_name">
+                                        <p>Apartment</p>
+                                      </div>
+                                    </li>
+                                    <li class="d-flex">
+                                      <div class="position-relative">
+                                      <input type="checkbox" name="Villa">
+                                      <span class="property_sel"></span>
+                                      </div>
+                                      <div class="proprty_name">
+                                        <p>Villa</p>
+                                      </div>
+                                    </li>
+                                    <li class="d-flex">
+                                      <div class="position-relative">
+                                      <input type="checkbox" name="Town House">
+                                      <span class="property_sel"></span>
+                                      </div>
+                                      <div class="proprty_name">
+                                        <p>Town House</p>
+                                      </div>
+                                    </li>
+                                    <li class="d-flex">
+                                      <div class="position-relative">
+                                      <input type="checkbox" name="Penthouse">
+                                      <span class="property_sel"></span>
+                                      </div>
+                                      <div class="proprty_name">
+                                        <p>Penthouse</p>
+                                      </div>
+                                    </li>
+                                    <li class="d-flex">
+                                      <div class="position-relative">
+                                      <input type="checkbox" name="Compound">
+                                      <span class="property_sel"></span>
+                                      </div>
+                                      <div class="proprty_name">
+                                        <p>Compound</p>
+                                      </div>
+                                    </li>
+                                      <li class="d-flex">
+                                      <div class="position-relative">
+                                      <input type="checkbox" name="Duplex">
+                                      <span class="property_sel"></span>
+                                      </div>
+                                      <div class="proprty_name">
+                                        <p>Duplex</p>
+                                      </div>
+                                    </li>
+                                    <li class="d-flex">
+                                      <div class="position-relative">
+                                      <input type="checkbox" name="Full Floor">
+                                      <span class="property_sel"></span>
+                                      </div>
+                                      <div class="proprty_name">
+                                        <p>Full Floor</p>
+                                      </div>
+                                    </li>
+                                    <li class="d-flex">
+                                      <div class="position-relative">
+                                      <input type="checkbox" name="Whole Building">
+                                      <span class="property_sel"></span>
+                                      </div>
+                                      <div class="proprty_name">
+                                        <p>Whole Building</p>
+                                      </div>
+                                    </li>
+                                    <li class="d-flex">
+                                      <div class="position-relative">
+                                      <input type="checkbox" name="Bulk Rent Unit">
+                                      <span class="property_sel"></span>
+                                      </div>
+                                      <div class="proprty_name">
+                                        <p>Bulk Rent Unit</p>
+                                      </div>
+                                    </li>
+                                    <li class="d-flex">
+                                      <div class="position-relative">
+                                      <input type="checkbox" name="Bungalow">
+                                      <span class="property_sel"></span>
+                                      </div>
+                                      <div class="proprty_name">
+                                        <p>Bungalow</p>
+                                      </div>
+                                    </li>
+                                    <li class="d-flex">
+                                      <div class="position-relative">
+                                      <input type="checkbox" name="Hotel & Hotel Apartment">
+                                      <span class="property_sel"></span>
+                                      </div>
+                                      <div class="proprty_name">
+                                        <p>Hotel & Hotel Apartment</p>
+                                      </div>
+                                    </li>
+                                  </ul>
+                                  </div>
+                                  <div id="Commercial" class="tab-pane fade"> 
+                                    <h5 class="h5-heading">Commercial Unit Type</h5>
+                                    <ul class="list-unstyled residentails-unit-list">
+                                      <li class="d-flex">
+                                        <div class="position-relative">
+                                        <input type="checkbox" name="Office Space">
+                                        <span class="property_sel"></span>
+                                        </div>
+                                        <div class="proprty_name">
+                                          <p>Office Space</p>
+                                        </div>
+                                      </li>
+                                      <li class="d-flex">
+                                        <div class="position-relative">
+                                        <input type="checkbox" name="Shop">
+                                        <span class="property_sel"></span>
+                                        </div>
+                                        <div class="proprty_name">
+                                          <p>Shop</p>
+                                        </div>
+                                      </li>
+                                      <li class="d-flex">
+                                        <div class="position-relative">
+                                        <input type="checkbox" name="Retail">
+                                        <span class="property_sel"></span>
+                                        </div>
+                                        <div class="proprty_name">
+                                          <p>Retail</p>
+                                        </div>
+                                      </li>
+                                      <li class="d-flex">
+                                        <div class="position-relative">
+                                        <input type="checkbox" name="Land">
+                                        <span class="property_sel"></span>
+                                        </div>
+                                        <div class="proprty_name">
+                                          <p>Land</p>
+                                        </div>
+                                      </li>
+                                      <li class="d-flex">
+                                        <div class="position-relative">
+                                        <input type="checkbox" name="Industrial Land">
+                                        <span class="property_sel"></span>
+                                        </div>
+                                        <div class="proprty_name">
+                                          <p>Industrial Land</p>
+                                        </div>
+                                      </li>
+                                      <li class="d-flex">
+                                        <div class="position-relative">
+                                        <input type="checkbox" name="Agricultural Land">
+                                        <span class="property_sel"></span>
+                                        </div>
+                                        <div class="proprty_name">
+                                          <p>Agricultural Land</p>
+                                        </div>
+                                      </li>
+                                        <li class="d-flex">
+                                        <div class="position-relative">
+                                        <input type="checkbox" name="Duplex">
+                                        <span class="property_sel"></span>
+                                        </div>
+                                        <div class="proprty_name">
+                                          <p>Duplex</p>
+                                        </div>
+                                      </li>
+                                      <li class="d-flex">
+                                        <div class="position-relative">
+                                        <input type="checkbox" name="Showroom">
+                                        <span class="property_sel"></span>
+                                        </div>
+                                        <div class="proprty_name">
+                                          <p>Showroom</p>
+                                        </div>
+                                      </li>
+                                      <li class="d-flex">
+                                        <div class="position-relative">
+                                        <input type="checkbox" name="Factory">
+                                        <span class="property_sel"></span>
+                                        </div>
+                                        <div class="proprty_name">
+                                          <p>Factory</p>
+                                        </div>
+                                      </li>
+                                      <li class="d-flex">
+                                        <div class="position-relative">
+                                        <input type="checkbox" name="Whole Building">
+                                        <span class="property_sel"></span>
+                                        </div>
+                                        <div class="proprty_name">
+                                          <p>Whole Building</p>
+                                        </div>
+                                      </li>
+                                      <li class="d-flex">
+                                        <div class="position-relative">
+                                        <input type="checkbox" name="Co-Working Space">
+                                        <span class="property_sel"></span>
+                                        </div>
+                                        <div class="proprty_name">
+                                          <p>Co-Working Space</p>
+                                        </div>
+                                      </li>
+                                      <li class="d-flex">
+                                        <div class="position-relative">
+                                        <input type="checkbox" name="Business Centre">
+                                        <span class="property_sel"></span>
+                                        </div>
+                                        <div class="proprty_name">
+                                          <p>Business Centre</p>
+                                        </div>
+                                      </li>
+                                      <li class="d-flex">
+                                        <div class="position-relative">
+                                        <input type="checkbox" name="Warehouse">
+                                        <span class="property_sel"></span>
+                                        </div>
+                                        <div class="proprty_name">
+                                          <p>Warehouse</p>
+                                        </div>
+                                      </li>
+                                      <li class="d-flex">
+                                        <div class="position-relative">
+                                        <input type="checkbox" name="Labor Camp">
+                                        <span class="property_sel"></span>
+                                        </div>
+                                        <div class="proprty_name">
+                                          <p>Labor Camp</p>
+                                        </div>
+                                      </li>
+                                        <li class="d-flex">
+                                        <div class="position-relative">
+                                        <input type="checkbox" name="Staff Accomodation">
+                                        <span class="property_sel"></span>
+                                        </div>
+                                        <div class="proprty_name">
+                                          <p>Staff Accomodation</p>
+                                        </div>
+                                      </li>
+                                    </ul>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="flex-column flex-column-4">
+                        <button type="submit" class="search-btn"><img src="assets/images/search.svg"></button> 
+                        </div>
+                      </div>
+                  </form>
+                </div>
+            </div>
+            <div id="buy" class="tab-pane fade">
+              <div class="tab-form-sec rent-form">
+                  <form>
+                    <div class="flex-row">
+                        <div class="flex-column flex-column-1">
+                          <div class="form-grouph input-design floating-label position-relative">
+                            <label>Search by</label>
+                            <input type="text" placeholder="Location, Project Name">
+                          </div>
+                        </div>
+                        <div class="flex-column flex-column-2">
+                          <div class="budget-button">
+                            <div class="dropdown">
+                              <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown">
+                                Budget
+                              </button>
+                              <div class="dropdown-menu" id="budget-dropdown">
+                                  <div class="price-range_sec">
+                                    <h5 class="h5-heading">Price Range</h5>
+                                    <div class="price-range-wrap">
+                                      <div class="wrapper">
+                                        <div class="extra-controls form-inline">
+                                          <div class="form-group">
+                                            <input type="text" class="js-input-from form-control" value="0" />
+                                            <input type="text" class="js-input-to form-control" value="0" />
+                                        </div>
+                                          </div>
+                                        <div class="range-slider">
+                                            <input type="text" class="js-range-slider" value="" />
+                                        </div>
+                                        </div>
+                                        </div>                                            
+                                    </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="flex-column flex-column-3">
+                          <div class="property-type-button">
+                          <div class="dropdown">
+                            <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown">
+                              Property Type
+                            </button>
+                            <div class="dropdown-menu" id="property-type-sec">
+                              <h5 class="h5-heading">Property Type</h5>
+                                <div class="property-types-heading">
+                                  <ul class="nav nav-tabs" role="tablist">
+                                    <li class="nav-item">
+                                      <a class="nav-link active" data-bs-toggle="tab" href="#Residentials"><span class="circle-celection"></span> Residential</a>
+                                    </li>
+                                    <li class="nav-item">
+                                      <a class="nav-link" data-bs-toggle="tab" href="#Commercial"><span class="circle-celection"></span> Commercial</a>
+                                    </li>
+                                  </ul>
+                                </div>
+                                <div class="property-types-cntnts">
+                                  <div class="tab-content">
+                                  <div id="Residentials" class="tab-pane active"> 
+                                    <h5 class="h5-heading">Residential Unit Type</h5>
+                                  <ul class="list-unstyled residentails-unit-list">
+                                    <li class="d-flex">
+                                      <div class="position-relative">
+                                      <input type="checkbox" name="Studio">
+                                      <span class="property_sel"></span>
+                                      </div>
+                                      <div class="proprty_name">
+                                        <p>Studio</p>
+                                      </div>
+                                    </li>
+                                    <li class="d-flex">
+                                      <div class="position-relative">
+                                      <input type="checkbox" name="Apartment">
+                                      <span class="property_sel"></span>
+                                      </div>
+                                      <div class="proprty_name">
+                                        <p>Apartment</p>
+                                      </div>
+                                    </li>
+                                    <li class="d-flex">
+                                      <div class="position-relative">
+                                      <input type="checkbox" name="Villa">
+                                      <span class="property_sel"></span>
+                                      </div>
+                                      <div class="proprty_name">
+                                        <p>Villa</p>
+                                      </div>
+                                    </li>
+                                    <li class="d-flex">
+                                      <div class="position-relative">
+                                      <input type="checkbox" name="Town House">
+                                      <span class="property_sel"></span>
+                                      </div>
+                                      <div class="proprty_name">
+                                        <p>Town House</p>
+                                      </div>
+                                    </li>
+                                    <li class="d-flex">
+                                      <div class="position-relative">
+                                      <input type="checkbox" name="Penthouse">
+                                      <span class="property_sel"></span>
+                                      </div>
+                                      <div class="proprty_name">
+                                        <p>Penthouse</p>
+                                      </div>
+                                    </li>
+                                    <li class="d-flex">
+                                      <div class="position-relative">
+                                      <input type="checkbox" name="Compound">
+                                      <span class="property_sel"></span>
+                                      </div>
+                                      <div class="proprty_name">
+                                        <p>Compound</p>
+                                      </div>
+                                    </li>
+                                    <li class="d-flex">
+                                      <div class="position-relative">
+                                      <input type="checkbox" name="Duplex">
+                                      <span class="property_sel"></span>
+                                      </div>
+                                      <div class="proprty_name">
+                                        <p>Duplex</p>
+                                      </div>
+                                    </li>
+                                    <li class="d-flex">
+                                      <div class="position-relative">
+                                      <input type="checkbox" name="Full Floor">
+                                      <span class="property_sel"></span>
+                                      </div>
+                                      <div class="proprty_name">
+                                        <p>Full Floor</p>
+                                      </div>
+                                    </li>
+                                    <li class="d-flex">
+                                      <div class="position-relative">
+                                      <input type="checkbox" name="Whole Building">
+                                      <span class="property_sel"></span>
+                                      </div>
+                                      <div class="proprty_name">
+                                        <p>Whole Building</p>
+                                      </div>
+                                    </li>
+                                    <li class="d-flex">
+                                      <div class="position-relative">
+                                      <input type="checkbox" name="Bulk Rent Unit">
+                                      <span class="property_sel"></span>
+                                      </div>
+                                      <div class="proprty_name">
+                                        <p>Bulk Rent Unit</p>
+                                      </div>
+                                    </li>
+                                    <li class="d-flex">
+                                      <div class="position-relative">
+                                      <input type="checkbox" name="Bungalow">
+                                      <span class="property_sel"></span>
+                                      </div>
+                                      <div class="proprty_name">
+                                        <p>Bungalow</p>
+                                      </div>
+                                    </li>
+                                    <li class="d-flex">
+                                      <div class="position-relative">
+                                      <input type="checkbox" name="Hotel & Hotel Apartment">
+                                      <span class="property_sel"></span>
+                                      </div>
+                                      <div class="proprty_name">
+                                        <p>Hotel & Hotel Apartment</p>
+                                      </div>
+                                    </li>
+                                  </ul>
+                                  </div>
+                                  <div id="Commercial" class="tab-pane fade"> 
+                                    <h5 class="h5-heading">Commercial Unit Type</h5>
+                                    <ul class="list-unstyled residentails-unit-list">
+                                      <li class="d-flex">
+                                        <div class="position-relative">
+                                        <input type="checkbox" name="Office Space">
+                                        <span class="property_sel"></span>
+                                        </div>
+                                        <div class="proprty_name">
+                                          <p>Office Space</p>
+                                        </div>
+                                      </li>
+                                      <li class="d-flex">
+                                        <div class="position-relative">
+                                        <input type="checkbox" name="Shop">
+                                        <span class="property_sel"></span>
+                                        </div>
+                                        <div class="proprty_name">
+                                          <p>Shop</p>
+                                        </div>
+                                      </li>
+                                      <li class="d-flex">
+                                        <div class="position-relative">
+                                        <input type="checkbox" name="Retail">
+                                        <span class="property_sel"></span>
+                                        </div>
+                                        <div class="proprty_name">
+                                          <p>Retail</p>
+                                        </div>
+                                      </li>
+                                      <li class="d-flex">
+                                        <div class="position-relative">
+                                        <input type="checkbox" name="Land">
+                                        <span class="property_sel"></span>
+                                        </div>
+                                        <div class="proprty_name">
+                                          <p>Land</p>
+                                        </div>
+                                      </li>
+                                      <li class="d-flex">
+                                        <div class="position-relative">
+                                        <input type="checkbox" name="Industrial Land">
+                                        <span class="property_sel"></span>
+                                        </div>
+                                        <div class="proprty_name">
+                                          <p>Industrial Land</p>
+                                        </div>
+                                      </li>
+                                      <li class="d-flex">
+                                        <div class="position-relative">
+                                        <input type="checkbox" name="Agricultural Land">
+                                        <span class="property_sel"></span>
+                                        </div>
+                                        <div class="proprty_name">
+                                          <p>Agricultural Land</p>
+                                        </div>
+                                      </li>
+                                      <li class="d-flex">
+                                        <div class="position-relative">
+                                        <input type="checkbox" name="Duplex">
+                                        <span class="property_sel"></span>
+                                        </div>
+                                        <div class="proprty_name">
+                                          <p>Duplex</p>
+                                        </div>
+                                      </li>
+                                      <li class="d-flex">
+                                        <div class="position-relative">
+                                        <input type="checkbox" name="Showroom">
+                                        <span class="property_sel"></span>
+                                        </div>
+                                        <div class="proprty_name">
+                                          <p>Showroom</p>
+                                        </div>
+                                      </li>
+                                      <li class="d-flex">
+                                        <div class="position-relative">
+                                        <input type="checkbox" name="Factory">
+                                        <span class="property_sel"></span>
+                                        </div>
+                                        <div class="proprty_name">
+                                          <p>Factory</p>
+                                        </div>
+                                      </li>
+                                      <li class="d-flex">
+                                        <div class="position-relative">
+                                        <input type="checkbox" name="Whole Building">
+                                        <span class="property_sel"></span>
+                                        </div>
+                                        <div class="proprty_name">
+                                          <p>Whole Building</p>
+                                        </div>
+                                      </li>
+                                      <li class="d-flex">
+                                        <div class="position-relative">
+                                        <input type="checkbox" name="Co-Working Space">
+                                        <span class="property_sel"></span>
+                                        </div>
+                                        <div class="proprty_name">
+                                          <p>Co-Working Space</p>
+                                        </div>
+                                      </li>
+                                      <li class="d-flex">
+                                        <div class="position-relative">
+                                        <input type="checkbox" name="Business Centre">
+                                        <span class="property_sel"></span>
+                                        </div>
+                                        <div class="proprty_name">
+                                          <p>Business Centre</p>
+                                        </div>
+                                      </li>
+                                      <li class="d-flex">
+                                        <div class="position-relative">
+                                        <input type="checkbox" name="Warehouse">
+                                        <span class="property_sel"></span>
+                                        </div>
+                                        <div class="proprty_name">
+                                          <p>Warehouse</p>
+                                        </div>
+                                      </li>
+                                      <li class="d-flex">
+                                        <div class="position-relative">
+                                        <input type="checkbox" name="Labor Camp">
+                                        <span class="property_sel"></span>
+                                        </div>
+                                        <div class="proprty_name">
+                                          <p>Labor Camp</p>
+                                        </div>
+                                      </li>
+                                      <li class="d-flex">
+                                        <div class="position-relative">
+                                        <input type="checkbox" name="Staff Accomodation">
+                                        <span class="property_sel"></span>
+                                        </div>
+                                        <div class="proprty_name">
+                                          <p>Staff Accomodation</p>
+                                        </div>
+                                      </li>
+                                    </ul>
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+                          </div>
+                          </div>
+                      </div>
+                      <div class="flex-column flex-column-4">
+                        <button type="submit" class="search-btn"><img src="assets/images/search.svg"></button> 
+                        </div>
+                    </div>
+                  </form>
+              </div>
+            </div>
+            <div id="land" class="tab-pane fade">
+            <div class="tab-form-sec rent-form">
+                <form>
+                  <div class="flex-row">
+                      <div class="flex-column flex-column-1">
+                        <div class="form-grouph input-design floating-label position-relative">
+                          <label>Search by</label>
+                          <input type="text" placeholder="Location, Project Name">
+                        </div>
+                      </div>
+                      <div class="flex-column flex-column-2">
+                        <div class="budget-button">
+                          <div class="dropdown">
+                            <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown">
+                              Budget
+                            </button>
+                            <div class="dropdown-menu" id="budget-dropdown">
+                                <div class="price-range_sec">
+                                  <h5 class="h5-heading">Price Range</h5>
+                                  <div class="price-range-wrap">
+                                    <div class="wrapper">
+                                      <div class="extra-controls form-inline">
+                                        <div class="form-group">
+                                          <input type="text" class="js-input-from form-control" value="0" />
+                                          <input type="text" class="js-input-to form-control" value="0" />
+                                      </div>
+                                        </div>
+                                      <div class="range-slider">
+                                          <input type="text" class="js-range-slider" value="" />
+                                      </div>
+                                      </div>
+                                      </div>                                            
+                                  </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    <div class="flex-column flex-column-3">
+                      <button type="submit" class="search-btn"><img src="assets/images/search.svg"></button> 
+                      </div>
+                  </div>
+                </form>
+            </div>
+          </div>
+          <div id="commertial" class="tab-pane fade">
+          <div class="tab-form-sec rent-form">
+              <form>
+                <div class="flex-row">
+                    <div class="flex-column flex-column-1">
+                      <div class="form-grouph input-design floating-label position-relative">
+                        <label>Search by</label>
+                        <input type="text" placeholder="Location, Project Name">
+                      </div>
+                    </div>
+                    <div class="flex-column flex-column-2">
+                    <div class="property-type-button">
+                      <div class="dropdown">
+                        <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown">
+                        Looking For
+                        </button>
+                        <div class="dropdown-menu" id="property-type-sec">
+                        <h5 class="h5-heading">Looking for</h5>
+                          <div class="property-types-heading">
+                            <ul class="nav nav-tabs" role="tablist">
+                              <li class="nav-item">
+                                <a class="nav-link active" data-bs-toggle="tab" href="#buy-looking"><span class="circle-celection"></span> Buy</a>
+                              </li>
+                              <li class="nav-item">
+                                <a class="nav-link" data-bs-toggle="tab" href="#rent-lease"><span class="circle-celection"></span> Rent/Lease</a>
+                              </li>
+                            </ul>
+                          </div>
+                          <div class="property-types-cntnts">
+                            <div class="tab-content">
+                            <div id="buy-looking" class="tab-pane active"> 
+                              <h5 class="h5-heading">Commercial Unit Type</h5>
+                            <ul class="list-unstyled residentails-unit-list">
+                              <li class="d-flex">
+                                <div class="position-relative">
+                                <input type="checkbox" name="Office Space">
+                                <span class="property_sel"></span>
+                                </div>
+                                <div class="proprty_name">
+                                  <p>Office Space</p>
+                                </div>
+                              </li>
+                              <li class="d-flex">
+                                <div class="position-relative">
+                                <input type="checkbox" name="Shop">
+                                <span class="property_sel"></span>
+                                </div>
+                                <div class="proprty_name">
+                                  <p>Shop</p>
+                                </div>
+                              </li>
+                              <li class="d-flex">
+                                <div class="position-relative">
+                                <input type="checkbox" name="Retail">
+                                <span class="property_sel"></span>
+                                </div>
+                                <div class="proprty_name">
+                                  <p>Retail</p>
+                                </div>
+                              </li>
+                              <li class="d-flex">
+                                <div class="position-relative">
+                                <input type="checkbox" name="Land">
+                                <span class="property_sel"></span>
+                                </div>
+                                <div class="proprty_name">
+                                  <p>Land</p>
+                                </div>
+                              </li>
+                              <li class="d-flex">
+                                <div class="position-relative">
+                                <input type="checkbox" name="Industrial Land">
+                                <span class="property_sel"></span>
+                                </div>
+                                <div class="proprty_name">
+                                  <p>Industrial Land</p>
+                                </div>
+                              </li>
+                              <li class="d-flex">
+                                <div class="position-relative">
+                                <input type="checkbox" name="Agricultural Land">
+                                <span class="property_sel"></span>
+                                </div>
+                                <div class="proprty_name">
+                                  <p>Agricultural Land</p>
+                                </div>
+                              </li>
+                                <li class="d-flex">
+                                <div class="position-relative">
+                                <input type="checkbox" name="Showroom">
+                                <span class="property_sel"></span>
+                                </div>
+                                <div class="proprty_name">
+                                  <p>Showroom</p>
+                                </div>
+                              </li>
+                              <li class="d-flex">
+                                <div class="position-relative">
+                                <input type="checkbox" name="Factory">
+                                <span class="property_sel"></span>
+                                </div>
+                                <div class="proprty_name">
+                                  <p>Factory</p>
+                                </div>
+                              </li>
+                              <li class="d-flex">
+                                <div class="position-relative">
+                                <input type="checkbox" name="Whole Building">
+                                <span class="property_sel"></span>
+                                </div>
+                                <div class="proprty_name">
+                                  <p>Whole Building</p>
+                                </div>
+                              </li>
+                              <li class="d-flex">
+                                <div class="position-relative">
+                                <input type="checkbox" name="Warehouse">
+                                <span class="property_sel"></span>
+                                </div>
+                                <div class="proprty_name">
+                                  <p>Warehouse</p>
+                                </div>
+                              </li>
+                            </ul>
+                            </div>
+                            <div id="rent-lease" class="tab-pane fade"> 
+                              <h5 class="h5-heading">Commercial Unit Type</h5>
+                              <ul class="list-unstyled residentails-unit-list">
+                                <li class="d-flex">
+                                  <div class="position-relative">
+                                  <input type="checkbox" name="Office Space">
+                                  <span class="property_sel"></span>
+                                  </div>
+                                  <div class="proprty_name">
+                                    <p>Office Space</p>
+                                  </div>
+                                </li>
+                                <li class="d-flex">
+                                  <div class="position-relative">
+                                  <input type="checkbox" name="Shop">
+                                  <span class="property_sel"></span>
+                                  </div>
+                                  <div class="proprty_name">
+                                    <p>Shop</p>
+                                  </div>
+                                </li>
+                                <li class="d-flex">
+                                  <div class="position-relative">
+                                  <input type="checkbox" name="Retail">
+                                  <span class="property_sel"></span>
+                                  </div>
+                                  <div class="proprty_name">
+                                    <p>Retail</p>
+                                  </div>
+                                </li>
+                                <li class="d-flex">
+                                  <div class="position-relative">
+                                  <input type="checkbox" name="Land">
+                                  <span class="property_sel"></span>
+                                  </div>
+                                  <div class="proprty_name">
+                                    <p>Land</p>
+                                  </div>
+                                </li>
+                                <li class="d-flex">
+                                  <div class="position-relative">
+                                  <input type="checkbox" name="Industrial Land">
+                                  <span class="property_sel"></span>
+                                  </div>
+                                  <div class="proprty_name">
+                                    <p>Industrial Land</p>
+                                  </div>
+                                </li>
+                                <li class="d-flex">
+                                  <div class="position-relative">
+                                  <input type="checkbox" name="Agricultural Land">
+                                  <span class="property_sel"></span>
+                                  </div>
+                                  <div class="proprty_name">
+                                    <p>Agricultural Land</p>
+                                  </div>
+                                </li>
+                                <li class="d-flex">
+                                  <div class="position-relative">
+                                  <input type="checkbox" name="Showroom">
+                                  <span class="property_sel"></span>
+                                  </div>
+                                  <div class="proprty_name">
+                                    <p>Showroom</p>
+                                  </div>
+                                </li>
+                                <li class="d-flex">
+                                  <div class="position-relative">
+                                  <input type="checkbox" name="Factory">
+                                  <span class="property_sel"></span>
+                                  </div>
+                                  <div class="proprty_name">
+                                    <p>Factory</p>
+                                  </div>
+                                </li>
+                                <li class="d-flex">
+                                  <div class="position-relative">
+                                  <input type="checkbox" name="Whole Building">
+                                  <span class="property_sel"></span>
+                                  </div>
+                                  <div class="proprty_name">
+                                    <p>Whole Building</p>
+                                  </div>
+                                </li>
+                                <li class="d-flex">
+                                  <div class="position-relative">
+                                  <input type="checkbox" name="Co-Working Space">
+                                  <span class="property_sel"></span>
+                                  </div>
+                                  <div class="proprty_name">
+                                    <p>Co-Working Space</p>
+                                  </div>
+                                </li>
+                                <li class="d-flex">
+                                  <div class="position-relative">
+                                  <input type="checkbox" name="Business Centre">
+                                  <span class="property_sel"></span>
+                                  </div>
+                                  <div class="proprty_name">
+                                    <p>Business Centre</p>
+                                  </div>
+                                </li>
+                                <li class="d-flex">
+                                  <div class="position-relative">
+                                  <input type="checkbox" name="Warehouse">
+                                  <span class="property_sel"></span>
+                                  </div>
+                                  <div class="proprty_name">
+                                    <p>Warehouse</p>
+                                  </div>
+                                </li>
+                                <li class="d-flex">
+                                  <div class="position-relative">
+                                  <input type="checkbox" name="Labor Camp">
+                                  <span class="property_sel"></span>
+                                  </div>
+                                  <div class="proprty_name">
+                                    <p>Labor Camp</p>
+                                  </div>
+                                </li>
+                                  <li class="d-flex">
+                                  <div class="position-relative">
+                                  <input type="checkbox" name="Staff Accomodation">
+                                  <span class="property_sel"></span>
+                                  </div>
+                                  <div class="proprty_name">
+                                    <p>Staff Accomodation</p>
+                                  </div>
+                                </li>
+                              </ul>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                    <div class="flex-column flex-column-3">
+                      <div class="budget-button">
+                        <div class="dropdown">
+                          <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown">
+                            Budget
+                          </button>
+                          <div class="dropdown-menu" id="budget-dropdown">
+                              <div class="price-range_sec">
+                                <h5 class="h5-heading">Price Range</h5>
+                                <div class="price-range-wrap">
+                                  <div class="wrapper">
+                                    <div class="extra-controls form-inline">
+                                      <div class="form-group">
+                                        <input type="text" class="js-input-from form-control" value="0" />
+                                        <input type="text" class="js-input-to form-control" value="0" />
+                                    </div>
+                                      </div>
+                                    <div class="range-slider">
+                                        <input type="text" class="js-range-slider" value="" />
+                                    </div>
+                                    </div>
+                                    </div>                                            
+                                </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  <div class="flex-column flex-column-4">
+                    <button type="submit" class="search-btn"><img src="assets/images/search.svg"></button> 
+                    </div>
+                </div>
+              </form>
+          </div>
+        </div>
+        <div id="find-agents" class="tab-pane fade">
+        <div class="tab-form-sec rent-form">
+            <form>
+              <div class="flex-row">
+                  <div class="flex-column flex-column-1">
+                    <div class="form-grouph input-design floating-label position-relative">
+                      <label>Search by</label>
+                      <input type="text" placeholder="Location / Company Name">
+                    </div>
+                  </div>
+                  <div class="flex-column flex-column-2">
+                  <div class="form-grouph input-design floating-label position-relative">
+                    <label>Search by</label>
+                    <input type="text" placeholder="Agent Name">
+                  </div>
+                </div>
+                  <div class="flex-column flex-column-3">
+                  <div class="property-type-button">
+                    <div class="dropdown">
+                      <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown">
+                      Specialties
+                      </button>
+                      <div class="dropdown-menu" id="property-type-sec">
+                      <h5 class="h5-heading">Specialties</h5>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                  <div class="flex-column flex-column-4">
+                    <div class="budget-button">
+                      <div class="dropdown">
+                        <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown">
+                        Languages
+                        </button>
+                        <div class="dropdown-menu" id="budget-dropdown">
+                              <h5 class="h5-heading">Agent Type</h5>   
+                              <ul class="list-unstyled residentails-unit-list">
+                              <li class="d-flex">
+                                <div class="position-relative">
+                                <input type="radio" name="Residential for sale">
+                                <span class="property_sel"></span>
+                                </div>
+                                <div class="proprty_name">
+                                  <p>Residential for sale</p>
+                                </div>
+                              </li>
+                              <li class="d-flex">
+                                <div class="position-relative">
+                                <input type="radio" name="Residential for rent">
+                                <span class="property_sel"></span>
+                                </div>
+                                <div class="proprty_name">
+                                  <p>Residential for rent</p>
+                                </div>
+                              </li>
+                              <li class="d-flex">
+                                <div class="position-relative">
+                                <input type="radio" name="Commercial for sale">
+                                <span class="property_sel"></span>
+                                </div>
+                                <div class="proprty_name">
+                                  <p>Commercial for sale</p>
+                                </div>
+                              </li>
+                              <li class="d-flex">
+                                <div class="position-relative">
+                                <input type="radio" name="Commercial for Rent/Lease">
+                                <span class="property_sel"></span>
+                                </div>
+                                <div class="proprty_name">
+                                  <p>Commercial for Rent/Lease</p>
+                                </div>
+                              </li>
+                              </ul>                                       
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <div class="flex-column flex-column-5">
+                  <button type="submit" class="search-btn"><img src="assets/images/search.svg"></button> 
+                  </div>
+              </div>
+            </form>
+        </div>
+      </div>
+          </div>
+        </div>
+    </div>
+    <div class="property-valuation-sec">
+      <div class="row">
+        <div class="col-xl-5 col-lg-5 col-sm-5 col-sm-12">
+          <div class="property-valuation-cntnt">
+            <img src="assets/images/propety-valuation.png">
+            <div class="pro-evaluation-cntnt-wrap">
+              <h2>Property Valuation Platform</h2>
+              <p>With A Cutting-Edge Tech & An Innovative Platform, We Provide An Accurate Valuation Of Your Property.</p>
+              <a [routerLink]="['#']">Start Valuation</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-7 col-lg-7 col-sm-7 col-sm-12">
+            <div class="row">
+            <div class="col-xl-6 col-lg-6 col-sm-6 col-sm-12">
+                <div class="pro-evaluations-blocks-div">
+                  <img src="assets/images/residentials-icon.svg">
+                  <h4>Residential </h4>
+                  <p>We offer our customer property protection of liability coverage and insurance for their better life.</p>
+                </div>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-sm-6 col-sm-12">
+              <div class="pro-evaluations-blocks-div">
+                <img src="assets/images/commertials.svg">
+                <h4>Commercial </h4>
+                <p>Not sure what  you should be charging for your property? No need to worry, let us do the numbers for you.</p>
+              </div>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-sm-6 col-sm-12">
+              <div class="pro-evaluations-blocks-div">
+                <img src="assets/images/industrial-icon.svg">
+                <h4>Industrial </h4>
+                <p>You no longer have to negotiate commissions and haggle with other agents it only cost 2%!</p>
+              </div>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-sm-6 col-sm-12">
+              <div class="pro-evaluations-blocks-div">
+                <img src="assets/images/agriculture-icon.svg">
+                <h4>Agricutural</h4>
+                <p>Get a virtual tour, and schedule visits before you rent or buy any properties. You get overall control.</p>
+              </div>
+            </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    </section>
+    <section class="position-relative wrapper-section properties-slider residentials-property-rent-1">
+        <div class="container_1220px">
+            <div class="section-title">
+                <div class="section-title-left">
+                    <h4>Residential Properties for Rent in Dubai</h4>
+                    <p>Some of our picked properties near you location.</p>
+                </div>
+                <div class="section-title-right">
+                  <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item">
+                      <a class="nav-link active" data-bs-toggle="tab" href="#resedential-rent">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M16.4912 12.4406C14.7746 14.149 12.3162 14.674 10.1579 13.999L6.23289 17.9156C5.94955 18.2073 5.39122 18.3823 4.99122 18.324L3.17455 18.074C2.57455 17.9906 2.01622 17.424 1.92455 16.824L1.67455 15.0073C1.61622 14.6073 1.80789 14.049 2.08289 13.7656L5.99955 9.84896C5.33289 7.68229 5.84955 5.22396 7.56622 3.51563C10.0246 1.05729 14.0162 1.05729 16.4829 3.51563C18.9496 5.97396 18.9496 9.98229 16.4912 12.4406Z" stroke="#0B26AD" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                          <path d="M5.74121 14.5742L7.65788 16.4909" stroke="#0B26AD" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                          <path d="M12.083 9.16797C12.7734 9.16797 13.333 8.60833 13.333 7.91797C13.333 7.22761 12.7734 6.66797 12.083 6.66797C11.3927 6.66797 10.833 7.22761 10.833 7.91797C10.833 8.60833 11.3927 9.16797 12.083 9.16797Z" stroke="#0B26AD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>                          
+                        Rent</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" data-bs-toggle="tab" href="#resedential-buy">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M14.167 17.0846H5.83366C3.33366 17.0846 1.66699 15.8346 1.66699 12.918V7.08464C1.66699 4.16797 3.33366 2.91797 5.83366 2.91797H14.167C16.667 2.91797 18.3337 4.16797 18.3337 7.08464V12.918C18.3337 15.8346 16.667 17.0846 14.167 17.0846Z" stroke="#100A55" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                          <path d="M10 12.5C11.3807 12.5 12.5 11.3807 12.5 10C12.5 8.61929 11.3807 7.5 10 7.5C8.61929 7.5 7.5 8.61929 7.5 10C7.5 11.3807 8.61929 12.5 10 12.5Z" stroke="#100A55" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                          <path d="M4.58301 7.91797V12.0846" stroke="#100A55" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                          <path d="M15.417 7.91797V12.0846" stroke="#100A55" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>                          
+                        Buy</a>
+                    </li>
+                  </ul> 
+                </div>
+            </div>
+            <div class="tab-content">
+                <div id="resedential-rent" class="tab-pane active">
+                  <owl-carousel-o [options]="customOptions" class="slider-shadow ">
+                    <ng-container *ngFor="let slide of dynamicSlides">
+                      <ng-template carouselSlide [id]="slide.id">
+                        <div class="property-item">
+                        <img [src]="slide.src" [alt]="slide.alt" [title]="slide.title">
+                        <span [ngClass]="'popular-tag'"><img src="assets/images/tag/popular.png"></span>
+                        <div class="brand-logo">
+                          <img src="{{brandimg}}" alt="">
+                      </div>
+                      <button class="property-whistlist">
+                          <svg width="22" height="23" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M4.39376 6.23844C4.02517 6.63167 3.73279 7.0985 3.53331 7.61228C3.33383 8.12605 3.23116 8.67672 3.23116 9.23283C3.23116 9.78894 3.33383 10.3396 3.53331 10.8534C3.73279 11.3672 4.02517 11.834 4.39376 12.2272L11.1699 19.4563L17.946 12.2272C18.6904 11.433 19.1086 10.3559 19.1086 9.23283C19.1086 8.10972 18.6904 7.0326 17.946 6.23844C17.2016 5.44429 16.1919 4.99813 15.1392 4.99813C14.0865 4.99813 13.0768 5.44429 12.3324 6.23844L11.1699 7.47873L10.0073 6.23844C9.63871 5.84521 9.20113 5.53329 8.71954 5.32047C8.23796 5.10766 7.72179 4.99812 7.20053 4.99812C6.67926 4.99812 6.1631 5.10766 5.68152 5.32047C5.19993 5.53329 4.76235 5.84521 4.39376 6.23844V6.23844Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>
+                      </button>
+                      <div class="property-info">
+                          <a [routerLink]="['#']" class="property-pricing"><span>350,000 AED</span>/yearly</a>
+                          <a [routerLink]="['#']" class="property-name">Blue Wave Tower</a>
+                          <p class="property-location"><img src="{{homelocationsvg}}" width="14" alt="">Etihad Tower 4, Etihad Towers,  </p>
+                          <div class="property-details">
+                              <span class="bed">
+                                  <img src="{{bedsvg}}" alt="">3 Beds
+                              </span>
+                              <span class="bath">
+                                  <img src="{{bathsvg}}" alt="">2Bath
+                              </span>
+                              <span class="area">
+                                  <img src="{{squaremetersvg}}" alt="">800sqft
+                              </span>
+                          </div>
+                      </div>
+                      </div>
+                      </ng-template>
+                    </ng-container>
+                  </owl-carousel-o>
+                </div>
+                <div id="resedential-buy" class="tab-pane fade">
+                  <owl-carousel-o [options]="customOptions" class="slider-shadow ">
+                    <ng-container *ngFor="let slide of dynamicSlides">
+                      <ng-template carouselSlide [id]="slide.id">
+                        <div class="property-item">
+                        <img [src]="slide.src" [alt]="slide.alt" [title]="slide.title">
+                        <span [ngClass]="'popular-tag'"><img src="assets/images/tag/popular.png"></span>
+                        <div class="brand-logo">
+                          <img src="{{brandimg}}" alt="">
+                      </div>
+                      <button class="property-whistlist">
+                          <svg width="22" height="23" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M4.39376 6.23844C4.02517 6.63167 3.73279 7.0985 3.53331 7.61228C3.33383 8.12605 3.23116 8.67672 3.23116 9.23283C3.23116 9.78894 3.33383 10.3396 3.53331 10.8534C3.73279 11.3672 4.02517 11.834 4.39376 12.2272L11.1699 19.4563L17.946 12.2272C18.6904 11.433 19.1086 10.3559 19.1086 9.23283C19.1086 8.10972 18.6904 7.0326 17.946 6.23844C17.2016 5.44429 16.1919 4.99813 15.1392 4.99813C14.0865 4.99813 13.0768 5.44429 12.3324 6.23844L11.1699 7.47873L10.0073 6.23844C9.63871 5.84521 9.20113 5.53329 8.71954 5.32047C8.23796 5.10766 7.72179 4.99812 7.20053 4.99812C6.67926 4.99812 6.1631 5.10766 5.68152 5.32047C5.19993 5.53329 4.76235 5.84521 4.39376 6.23844V6.23844Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>
+                      </button>
+                      <div class="property-info">
+                          <a [routerLink]="['#']" class="property-pricing"><span>350,000 AED</span>/yearly</a>
+                          <a [routerLink]="['#']" class="property-name">Blue Wave Tower</a>
+                          <p class="property-location"><img src="{{homelocationsvg}}" width="14" alt="">Etihad Tower 4, Etihad Towers,  </p>
+                          <div class="property-details">
+                              <span class="bed">
+                                  <img src="{{bedsvg}}" alt="">3 Beds
+                              </span>
+                              <span class="bath">
+                                  <img src="{{bathsvg}}" alt="">2Bath
+                              </span>
+                              <span class="area">
+                                  <img src="{{squaremetersvg}}" alt="">800sqft
+                              </span>
+                          </div>
+                      </div>
+                      </div>
+                      </ng-template>
+                    </ng-container>
+                  </owl-carousel-o>
+                </div>
+              </div>
+        </div>
+    </section>
+    <section class="position-relative wrapper-section properties-slider residentials-property-rent-2">
+      <div class="container_1220px">
+          <div class="section-title">
+              <div class="section-title-left">
+                  <h4 [ngClass]="'dark'">Residential Properties for Rent in Dubai</h4>
+                  <p>Some of our picked properties near you location.</p>
+              </div>
+              <div class="section-title-right">
+                <ul class="nav nav-tabs" role="tablist">
+                  <li class="nav-item">
+                    <a class="nav-link active" data-bs-toggle="tab" href="#commertial-rent">
+                      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16.4912 12.4406C14.7746 14.149 12.3162 14.674 10.1579 13.999L6.23289 17.9156C5.94955 18.2073 5.39122 18.3823 4.99122 18.324L3.17455 18.074C2.57455 17.9906 2.01622 17.424 1.92455 16.824L1.67455 15.0073C1.61622 14.6073 1.80789 14.049 2.08289 13.7656L5.99955 9.84896C5.33289 7.68229 5.84955 5.22396 7.56622 3.51563C10.0246 1.05729 14.0162 1.05729 16.4829 3.51563C18.9496 5.97396 18.9496 9.98229 16.4912 12.4406Z" stroke="#0B26AD" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M5.74121 14.5742L7.65788 16.4909" stroke="#0B26AD" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12.083 9.16797C12.7734 9.16797 13.333 8.60833 13.333 7.91797C13.333 7.22761 12.7734 6.66797 12.083 6.66797C11.3927 6.66797 10.833 7.22761 10.833 7.91797C10.833 8.60833 11.3927 9.16797 12.083 9.16797Z" stroke="#0B26AD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>                          
+                      Rent</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="tab" href="#commertial-buy">
+                      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M14.167 17.0846H5.83366C3.33366 17.0846 1.66699 15.8346 1.66699 12.918V7.08464C1.66699 4.16797 3.33366 2.91797 5.83366 2.91797H14.167C16.667 2.91797 18.3337 4.16797 18.3337 7.08464V12.918C18.3337 15.8346 16.667 17.0846 14.167 17.0846Z" stroke="#100A55" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M10 12.5C11.3807 12.5 12.5 11.3807 12.5 10C12.5 8.61929 11.3807 7.5 10 7.5C8.61929 7.5 7.5 8.61929 7.5 10C7.5 11.3807 8.61929 12.5 10 12.5Z" stroke="#100A55" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M4.58301 7.91797V12.0846" stroke="#100A55" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M15.417 7.91797V12.0846" stroke="#100A55" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>                          
+                      Buy</a>
+                  </li>
+                </ul> 
+              </div>
+          </div>
+          <div class="tab-content">
+              <div id="commertial-rent" class="tab-pane active">
+                <owl-carousel-o [options]="customOptions" class="slider-shadow ">
+                  <ng-container *ngFor="let slide of dynamicSlides">
+                    <ng-template carouselSlide [id]="slide.id">
+                      <div class="property-item">
+                      <img [src]="slide.src" [alt]="slide.alt" [title]="slide.title">
+                      <span [ngClass]="'popular-tag'"><img src="assets/images/tag/popular.png"></span>
+                      <div class="brand-logo">
+                        <img src="{{brandimg}}" alt="">
+                    </div>
+                    <button class="property-whistlist">
+                        <svg width="22" height="23" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4.39376 6.23844C4.02517 6.63167 3.73279 7.0985 3.53331 7.61228C3.33383 8.12605 3.23116 8.67672 3.23116 9.23283C3.23116 9.78894 3.33383 10.3396 3.53331 10.8534C3.73279 11.3672 4.02517 11.834 4.39376 12.2272L11.1699 19.4563L17.946 12.2272C18.6904 11.433 19.1086 10.3559 19.1086 9.23283C19.1086 8.10972 18.6904 7.0326 17.946 6.23844C17.2016 5.44429 16.1919 4.99813 15.1392 4.99813C14.0865 4.99813 13.0768 5.44429 12.3324 6.23844L11.1699 7.47873L10.0073 6.23844C9.63871 5.84521 9.20113 5.53329 8.71954 5.32047C8.23796 5.10766 7.72179 4.99812 7.20053 4.99812C6.67926 4.99812 6.1631 5.10766 5.68152 5.32047C5.19993 5.53329 4.76235 5.84521 4.39376 6.23844V6.23844Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <div class="property-info">
+                        <a [routerLink]="['#']" class="property-pricing"><span>350,000 AED</span>/yearly</a>
+                        <a [routerLink]="['#']" class="property-name">Blue Wave Tower</a>
+                        <p class="property-location"><img src="{{homelocationsvg}}" width="14" alt="">Etihad Tower 4, Etihad Towers,  </p>
+                        <div class="property-details">
+                            <span class="bed">
+                                <img src="{{bedsvg}}" alt="">3 Beds
+                            </span>
+                            <span class="bath">
+                                <img src="{{bathsvg}}" alt="">2Bath
+                            </span>
+                            <span class="area">
+                                <img src="{{squaremetersvg}}" alt="">800sqft
+                            </span>
+                        </div>
+                    </div>
+                    </div>
+                    </ng-template>
+                  </ng-container>
+                </owl-carousel-o>
+              </div>
+              <div id="commertial-buy" class="tab-pane fade">
+                <owl-carousel-o [options]="customOptions" class="slider-shadow ">
+                  <ng-container *ngFor="let slide of dynamicSlides">
+                    <ng-template carouselSlide [id]="slide.id">
+                      <div class="property-item">
+                      <img [src]="slide.src" [alt]="slide.alt" [title]="slide.title">
+                      <span [ngClass]="'popular-tag'"><img src="assets/images/tag/popular.png"></span>
+                      <div class="brand-logo">
+                        <img src="{{brandimg}}" alt="">
+                    </div>
+                    <button class="property-whistlist">
+                        <svg width="22" height="23" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4.39376 6.23844C4.02517 6.63167 3.73279 7.0985 3.53331 7.61228C3.33383 8.12605 3.23116 8.67672 3.23116 9.23283C3.23116 9.78894 3.33383 10.3396 3.53331 10.8534C3.73279 11.3672 4.02517 11.834 4.39376 12.2272L11.1699 19.4563L17.946 12.2272C18.6904 11.433 19.1086 10.3559 19.1086 9.23283C19.1086 8.10972 18.6904 7.0326 17.946 6.23844C17.2016 5.44429 16.1919 4.99813 15.1392 4.99813C14.0865 4.99813 13.0768 5.44429 12.3324 6.23844L11.1699 7.47873L10.0073 6.23844C9.63871 5.84521 9.20113 5.53329 8.71954 5.32047C8.23796 5.10766 7.72179 4.99812 7.20053 4.99812C6.67926 4.99812 6.1631 5.10766 5.68152 5.32047C5.19993 5.53329 4.76235 5.84521 4.39376 6.23844V6.23844Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <div class="property-info">
+                        <a [routerLink]="['#']" class="property-pricing"><span>350,000 AED</span>/yearly</a>
+                        <a [routerLink]="['#']" class="property-name">Blue Wave Tower</a>
+                        <p class="property-location"><img src="{{homelocationsvg}}" width="14" alt="">Etihad Tower 4, Etihad Towers,  </p>
+                        <div class="property-details">
+                            <span class="bed">
+                                <img src="{{bedsvg}}" alt="">3 Beds
+                            </span>
+                            <span class="bath">
+                                <img src="{{bathsvg}}" alt="">2Bath
+                            </span>
+                            <span class="area">
+                                <img src="{{squaremetersvg}}" alt="">800sqft
+                            </span>
+                        </div>
+                    </div>
+                    </div>
+                    </ng-template>
+                  </ng-container>
+                </owl-carousel-o>
+              </div>
+            </div>
+      </div>
+  </section>
+    <section class="position-relative wrapper-section sell-rent-home-directly">
+        <div class="container_1220px">
+          <div [ngClass]="'listing-slider-area'">
+          <owl-carousel-o [options]="sellrentproperty">
+            <ng-container>
+              <ng-template carouselSlide>
+                <div class="row">
+                  <div class="col-md-6 property-listing-slider-left">
+                      <h2>Sell or Rent Your <br/>Home Directly</h2>
+                      <ul>
+                          <li>List Property on Ovaluate Directly</li>
+                          <li>Shortlist Clients from the Limited Responses</li>
+                          <li>Connect, Manage &amp; Showcase property yourself.</li>
+                          <li>Negotiate directly without any mediator.</li>
+                      </ul>
+                      <div class="listing-btn">
+                          <a [routerLink]="['#']" class="custom-btn-primary">List Your Property</a>
+                      </div>
+                  </div>
+                  <div class="col-md-6 property-listing-slider-right">
+                      <img src="{{listingsliderimg}}" class="img-fluid lisitng-right-img" alt="">
+                  </div>
+              </div>
+              </ng-template>
+              <ng-template carouselSlide>
+                <div class="row">
+                  <div class="col-md-6 property-listing-slider-left">
+                      <h2>Sell or Rent Your Home Directly</h2>
+                      <ul>
+                          <li>List Property on Ovaluate Directly</li>
+                          <li>Shortlist Clients from the Limited Responses</li>
+                          <li>Connect, Manage &amp; Showcase property yourself.</li>
+                          <li>Negotiate directly without any mediator.</li>
+                      </ul>
+                      <div class="listing-btn">
+                          <a [routerLink]="['#']" class="custom-btn-primary">List Your Property</a>
+                      </div>
+                  </div>
+                  <div class="col-md-6 property-listing-slider-right">
+                      <img src="{{listingsliderimg}}" class="img-fluid lisitng-right-img" alt="">
+                  </div>
+              </div>
+              </ng-template>
+              <ng-template carouselSlide>
+                <div class="row">
+                  <div class="col-md-6 property-listing-slider-left">
+                      <h2>Sell or Rent Your Home Directly</h2>
+                      <ul>
+                          <li>List Property on Ovaluate Directly</li>
+                          <li>Shortlist Clients from the Limited Responses</li>
+                          <li>Connect, Manage &amp; Showcase property yourself.</li>
+                          <li>Negotiate directly without any mediator.</li>
+                      </ul>
+                      <div class="listing-btn">
+                          <a [routerLink]="['#']" class="custom-btn-primary">List Your Property</a>
+                      </div>
+                  </div>
+                  <div class="col-md-6 property-listing-slider-right">
+                      <img src="{{listingsliderimg}}" class="img-fluid lisitng-right-img" alt="">
+                  </div>
+              </div>
+              </ng-template>
+            </ng-container>
+          </owl-carousel-o>
+          </div>
+        </div>
+    </section>
+    <section class="position-relative wrapper-section explore-place-sec">
+        <div class="container_1220px">
+            <div class="section-title">
+                <div class="section-custom-title-left">
+                    <h4>Explore Places</h4>
+                    <p>Some of our picked properties near you location.</p>
+                </div>
+                <div class="section-custom-title-right">
+                    <a [routerLink]="['#']">Read all</a>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 explore-places-col" *ngFor="let explore of Exploreplaces">
+                    <a [routerLink]="['#']">
+                        <img [src]="explore.src" class="img-fluid" alt="">
+                    <div class="explore-place-content">
+                        <h5>{{explore.heading}}</h5>
+                        <p>{{explore.paragraph}}</p>
+                    </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="position-relative wrapper-section blogs_sec">
+        <div class="container_1220px">
+            <div class="section-title">
+                <div class="section-custom-title-left">
+                    <h4>Blogs</h4>
+                    <p>Some of our picked properties near you location.</p>
+                </div>
+                <div class="section-custom-title-right">
+                    <a [routerLink]="['#']">Read all</a>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-4 col-md-6 blog-places-col" *ngFor="let blogs of Blogsec">
+                    <a [routerLink]="['#']">
+                        <img [src]="blogs.src" class="img-fluid blog-image-homepage" alt="">
+                        <span class="blog-tag">
+                            <img [src]="blogs.src2" class="img-fluid" alt="">
+                        </span>
+                        <div class="blog-title-content">
+                            <h5>{{blogs.heading}}</h5>
+                            <span>{{blogs.date}}</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="position-relative wrapper-section bg-primary-color easy-tenants-landlords-sec">
+        <div class="container_1220px">
+            <div class="section-title responsive-section-title tenanats-landlord_Sec">
+                <div class="section-title-left">
+                    <h2>We make it easy for <br> <span>tenants</span> and <span>landlords</span>.</h2>
+                </div>
+                <div class="section-custom-title-right wd-30">
+                    <p>Whether it’s selling your current home, getting financing, or buying a new home, we make it easy  and efficient. The best part? you’ll save a bunch of money and time with our services.</p>
+                </div>
+            </div>
+          </div>
+          <div class="container_1220px">
+            <div class="tenants-sec-wrapper"> 
+              <owl-carousel-o [options]="customOptions">
+                <ng-container *ngFor="let slide of tenantsslide">
+                  <ng-template carouselSlide [id]="slide.id">
+                    <div class={{slide.class}}>
+                      <img [src]="slide.src" class="img-fluid" alt="">
+                      <div class="virtual-tour-content">
+                          <h5>{{slide.heading}}</h5>
+                          <p>{{slide.desc}}</p>
+                      </div>
+                  </div>
+                  </ng-template>
+                </ng-container>
+              </owl-carousel-o>
+            </div>
+            </div>
+            <div class="line"></div>
+
+            <div class="container_1220px">
+                <div class="recent-data-realestate text-center">
+                    <h2>Recent Real Estate Transactions of UAE</h2>
+                    <p>A snapshot of recent property transactions in dubai, as captured by the DLD.</p>
+                </div>
+                
+            </div>
+
+            <div class="w-75 m-auto">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="total-transaction">
+                            <p class="text-right">AED</p>
+                            <h2 class="text-right">840.26M</h2>
+                            <p class="text-right">Total Transaction of Dubai</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="total-transaction">
+                            <p class="text-right">AED</p>
+                            <h2 class="text-right">176.52M</h2>
+                            <p class="text-right">Total Sales of Dubai</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="total-transaction">
+                            <p class="text-right">AED</p>
+                            <h2 class="text-right">302.49M</h2>
+                            <p class="text-right">Total Mortgage of Dubai</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-tree">
+                <img src="assets/images/background/tree.png" alt="">
+            </div>
+    </section>
+    <section class="position-relative wrapper-section real-hub-sec" style="background: url('assets/images/background/bg-1.png');">
+        <div class="container_1220px">
+          <div [ngClass]="'mockup-conatiner position-relative'">
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <div class="mockup-left">
+                        <h1>Real Hub</h1>
+                        <h4>on your hand</h4>
+                        <ul>
+                            <li>AI-Driven Property Valuation in Few Seconds</li>
+                            <li>Buy, Sell & Rent Residential & Commercial Properties</li>
+                            <li>Find Verified Properties near you</li>
+                            <li>Look for Verified Real Estate Agents</li>
+                        </ul>
+                        <div class="download-btns">
+                            <a [routerLink]="['#']">
+                                <img src="assets/images/icons/google-play.svg" alt="Google Play">
+                            </a>
+                            <a [routerLink]="['#']">
+                                <img src="assets/images/icons/app-store.svg" alt="Apple Store">
+                            </a>
+                        </div>
+                        <img src="assets/images/barcode.png" class="img-fluid barcode-mockup-img" alt="">
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="mockup-right">
+                        <img src="assets/images/mockup/mobile-1.png" class="img-fluid" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+        <div class="container_1220px">
+            <div class="customers-say-sec">
+              <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <div class="testimonial-title">
+                        <h2>What customer say <br> about <span>Ovaluate</span></h2>
+                        <p>Whether it’s selling your current home, getting financing, or buying a new home, we make it easy  and efficient. </p>
+                        <p>The best part? you’ll save a bunch of money and time with our services.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                  <div [ngClass]="'testimonial-section'">
+                    <img src="assets/images/testimonial/quote.svg" class="img-fluid testimonial-icon" alt="">
+                    <owl-carousel-o [options]="testimonialslider">
+                      <ng-container *ngFor="let slide of clientslide">
+                        <ng-template carouselSlide [id]="slide.id">
+                          <div class="testimonial-content">
+                            <p>{{slide.desc}}</p>
+                            <div class="testimonial-info d-flex align-items-center">
+                                <div class="client_img"><img [src]="slide.src" class="img-fluid client-img" alt=""></div>
+                                <div class="client-info">
+                                    <h5>{{slide.heading}}</h5>
+                                    <p>{{slide.location}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        </ng-template>
+                      </ng-container>
+                    </owl-carousel-o>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+    <section class="position-relative custom-wrapper-section">
+
+      <div class="container_1220px">
+        <div class="row">
+          <div class="col-lg-3 col-md-6 search-col-homepage">
+            <div class="homepage-search-section">
+              <select name="" id="" class="custom-select">
+                <option>Popular Searches</option>
+                <option value="">Properties for rent in UAE</option>
+                <option value="">Properties for sale in UAE</option>
+                <option value="">Apartments for rent in UAE</option>
+                <option value="">Apartments for rent in Dubai</option>
+                <option value="">Properties for sale in Dubai</option>
+                <option value="">Villas for sale in Dubai</option>
+                <option value="">Dubai Real Estate</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 search-col-homepage">
+            <div class="homepage-search-section">
+              <select name="" id="" class="custom-select">
+                <option>Popular Areas</option>
+                <option value="">Apartments for rent in Dubai</option>
+                <option value="">Apartments for rent Abu Dhabi</option>
+                <option value="">Villas for rent in Dubai</option>
+                <option value="">House for rent Abu Dhabi</option>
+                <option value="">Apartments for sale in Dubai</option>
+                <option value="">Apartments for sale in Abu Dhabi</option>
+                <option value="">Flat for rent Sharjah</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 search-col-homepage">
+            <div class="homepage-search-section">
+              <select name="" id="" class="custom-select">
+                <option>Top Real Estate Agents</option>
+                <option value="">Everose Properties</option>
+                <option value="">Edifice Brokrage</option>
+                <option value="">Prime Capital Real Estate Services</option>
+                <option value="">Everose Properties</option>
+                <option value="">Edifice Brokrage</option>
+                <option value="">Prime Capital Real Estate Services</option>
+                <option value="">Everose Properties</option>
+                <option value="">Edifice Brokrage</option>
+                <option value="">Prime Capital Real Estate Services</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 search-col-homepage">
+            <div class="homepage-search-section">
+              <select name="" id="" class="custom-select">
+                <option>Trending Searches</option>
+                <option value="">Villa for rent in Abu Dhabi</option>
+                <option value="">Shop for rent in Dubai</option>
+                <option value="">Villas for sale in Ajman</option>
+                <option value="">Studio for rent in Sharjah</option>
+                <option value="">1 Bedroom Apartment for rent in Dubai</option>
+                <option value="">Property for rent in Abu Dhabi</option>
+                <option value="">Commercial properties for sale</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+    <section class="position-relative wrapper-section bg-primary-color span-promises-sec">
+
+      <div class="container_1220px">
+
+        <div class="newsletter-section text-center">
+          <h5>No Spam Promise</h5>
+          <h1>Are you a landlord or real estate proffessional?</h1>
+          <h6>Discover ways to increase your home's value and  get listed. No Spam.</h6>
+          <form action="" class="news-letter-form position-relative">
+            <input type="email" placeholder="Enter your email address">
+            <input type="submit" value="Submit">
+          </form>
+          <p>Join <span>10,000+</span> other landlords in our estatery community.</p>
+        </div>
+      
+      </div>
+
+
+    </section>
+</section>
