@@ -1151,11 +1151,11 @@ body {
 	position: relative;
 	&::after {
 		content: '';
-		height: 50%;
+		height: 72%;
 		width: 1px;
 		position: absolute;
 		right: 0;
-		top: 17px;
+		top: 5px;
 		background-color: var(--primary-color-light);
 	}
 	&:last-child {
@@ -1233,5 +1233,179 @@ body {
 			padding-left: 16px;
 			padding-right: 16px;
 		}
+	}
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+	.flex-row>div {
+		width: 49% !important;
+		margin-bottom: 10px;
+	}
+	.flex-row>div.flex-column-5 {
+		width: 100% !important;
+	}
+}
+@media (max-width: 767px){
+	.flex-row>div {
+		width: 100% !important;
+		margin-bottom: 10px;
+	}
+	.buy-sell-wrapepr-forms>.form_tabs>.nav.nav-tabs .nav-item>a {
+		background-color: #f4f4f4;
+		margin-bottom: 10px;
+		border-radius: 8px;
+	}
+	.buy-sell-wrapepr-forms>.form_tabs>.nav.nav-tabs .nav-item .nav-link::after{
+		display: none !important;
+	}
+	.buy-sell-wrapepr-forms>.form_tabs>.nav.nav-tabs .nav-item .nav-link.active {
+		background: #1c1c71 !important;
+		color: #fff !important;
+	}
+	.buy-sell-wrapepr-forms .form_tabs .tab-content {
+		margin-top: 20px;
+	}
+	.property-valuation-cntnt {
+		max-width: 100% !important;
+	}
+	.property-valuation-sec .property-valuation-cntnt>img {
+		display: none !important;
+	}
+	.property-valuation-cntnt .pro-evaluation-cntnt-wrap {
+		position: initial !important;
+		background: var(--body-color);
+		border: 2px solid var(--stroke-color);
+		border-radius: var(--border-radius);
+		margin-bottom: 30px;
+	}
+	.pro-evaluations-blocks-div {
+		margin-bottom: 20px !important;
+	}
+	.property-valuation-sec{
+		padding-top: 45px !important;
+		padding-bottom: 0px !important;
+	}
+	.property-valuation-cntnt .pro-evaluation-cntnt-wrap h2 {
+		font-size: 21px !important;
+	}
+	.residentials-property-rent-1 {
+		padding-top: 20px !important;
+		padding-bottom: 40px !important;
+	}
+	.residentials-property-rent-2 {
+		padding-bottom: 30px !important;
+	}
+	.explore-place-sec {
+		padding-top: 40px !important;
+		padding-bottom: 0px !important;
+	}
+	.section-custom-title-right a {
+		white-space: nowrap;
+	}
+	.explore-place-content {
+		width: 100% !important;
+	}
+	.blogs_sec {
+		padding-bottom: 10px !important;
+	}
+	.tenanats-landlord_Sec {
+		flex-wrap: wrap;
+	}
+	.easy-tenants-landlords-sec {
+		padding-top: 40px !important;
+	}
+	.recent-data-realestate {
+		margin-top: 30px !important;
+	}
+	.mockup-right {
+		display: none !important;
+	}
+	.real-hub-sec .mockup-left h1 {
+		font-size: 32px !important;
+	}
+	.real-hub-sec .mockup-left h4 {
+		font-size: 16px !important;
+	}
+	.real-hub-sec {
+		padding-top: 45px !important;
+	}
+}
+@media (max-width: 991px){
+	.search-btn {
+		padding: 10px;
+		height: auto;
+	}
+	.flex-row {
+		flex-wrap: wrap;
+	}
+	#budget-dropdown {
+		width: 100% !important;
+		position: initial;
+	}
+	#property-type-sec {
+		width: 100% !important;
+		position: initial;
+	}
+	.properties-slider .property-item {
+		margin-right: 10px;
+		margin-left: 10px;
+	}
+	.properties-slider .section-title>.section-title-left {
+		width: 100%;
+		margin-bottom: 20px;
+	}
+	.properties-slider .section-title>.section-title-right {
+		width: 100%;
+	}
+	.properties-slider .section-title>.section-title-right .nav-item {
+		width: 50%;
+	}
+	.properties-slider .section-title>.section-title-right .nav.nav-tabs {
+		flex-wrap: nowrap;
+		justify-content: space-between;
+		text-align: center;
+	}
+	.properties-slider .section-title>.section-title-right .nav-item svg {
+		margin-right: 0px !important;
+	}
+	.properties-slider .section-title>.section-title-right .nav-item>a {
+		padding: 5px !important;
+		font-size: 13px;
+	}
+	.properties-slider .section-title>.section-title-right .nav-item svg {
+		margin: 0px auto !important;
+	}
+	.properties-slider .section-title {
+		flex-wrap: wrap;
+	}
+	.barcode-mockup-img {
+		position: initial !important;
+	}
+	.mockup-conatiner {
+		padding: 35px 30px 35px 30px !important;
+	}
+	.download-btns a {
+		margin-bottom: 10px !important;
+	}
+	.customers-say-sec {
+		padding-top: 50px !important;
+	}
+	.search-col-homepage::after{
+		display: none !important;
+	}
+	.bottom-selectionboxes .search-col-homepage {
+		margin-bottom: 10px;
+	}
+	.newsletter-section h1 {
+		font-size: 24px !important;
+	}
+	.news-letter-form input:first-child {
+		width: 100% !important;
+		font-size: 13px !important;
+	}
+}
+@media (max-width: 991px) and (min-width: 768px){
+	.real-hub-sec .mockup-right {
+		right: -200px !important;
 	}
 }

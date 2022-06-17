@@ -205,4 +205,5 @@ export class HomeComponent implements OnInit {
       });
   });
   }
+  selected = 'option1';
 }

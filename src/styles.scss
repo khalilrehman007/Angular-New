@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */ 
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
 :root {
   --body-color: #fff;
   --sidebar-color: #fff;
@@ -225,7 +226,13 @@ body a {
   right: 0;
   bottom: -11px;
 }
-
+.sidebar-active #sidebar {
+  z-index: 999 !important;
+}
+button:focus, input:focus,select:focus,textarea:focus{
+  outline: none !important;
+  box-shadow: none !important;
+}
 @media (min-widthh: 1200px){
   .tenants-sec-wrapper .owl-stage-outer.ng-star-inserted {
     overflow: visible;
@@ -245,19 +252,18 @@ body a {
 }
 
 
-@media(max-width:991.98px){
+@media(max-width:991px){
   .mockup-conatiner .p-40-100{
       padding: 60px 40px !important;
   }
-  .mockup-right img{
-      width: 200% !important;
-      max-width: 250% !important;
-      margin-left: -150px;
-  }
+  .tenants-sec-wrapper .owl-item {
+		padding-right: 10px !important;
+		padding-left: 10px !important;
+	}
 }
 
 
-@media(max-width:767.98px){
+@media(max-width:767px){
   .explore-places-col{
       margin-bottom: 20px;
   }
@@ -268,12 +274,8 @@ body a {
   .explore-place-content{
       width: calc(100% - 20px);
   }
-  .section-title-right ul.nav{
-      display: block;
-  }
   .section-custom-title-right{
       width: auto !important;
-      margin: 0px 20px;
   }
   .mockup-right{
       position: relative;
@@ -300,12 +302,6 @@ body a {
   }
   .total-transaction p, .total-transaction h2{
       text-align: center !important;
-  }
-  .responsive-section-title{
-      display: block;
-  }
-  .responsive-section-title .section-custom-title-right{
-      margin: 10px 0px !important;
   }
   .blog-places-col .blog-image-homepage{
       width: 100%;
@@ -335,12 +331,6 @@ body a {
   }
   .mockup-conatiner .p-40-100 {
       padding: 60px 10px !important;
-    }
-    .mockup-right img{
-      max-width: 150% !important;
-      width: 150%;
-      margin-left: -20px;
-      margin-top: -150px;
     }
     .barcode-mockup-img{
       width: 110px;
@@ -399,8 +389,49 @@ body a {
   .barcode-mockup-img{
       display: none;
     }
-  .mockup-right img{
-      display: none;
-  }
 }
 
+.homepage-search-section .mat-form-field .mat-form-field-wrapper {
+  padding-bottom: 0px;
+  background: transparent;
+}
+.homepage-search-section .mat-form-field {
+  display: block;
+  position: relative;
+  text-align: left;
+  background-color: transparent;
+}
+.homepage-search-section .mat-form-field .mat-form-field-wrapper .mat-form-field-flex {
+  border: none !important;
+  background: transparent;
+  padding: 0px;
+}
+.homepage-search-section .mat-form-field .mat-form-field-infix {
+  padding: 0px;
+  border: none;
+}
+.homepage-search-section .mat-form-field-underline {
+  display: none;
+}
+.homepage-search-section .mat-select-value-text {
+  color: #192024;
+  font-size: 14px;
+  font-weight: 500;
+}
+.homepage-search-section .mat-select-arrow {
+  border: none;
+  background: url('./assets/images/dropdown.svg');
+  width: 17px;
+  height: 17px;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+  top: 8px;
+}
+.footer-sec {
+  padding-top: 71px;
+}
+.footer-sec a:hover {
+  color: #1c1c71 !important;
+  cursor: pointer;
+}

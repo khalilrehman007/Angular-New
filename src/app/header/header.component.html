@@ -6,7 +6,7 @@
             </button>
         </li>
         <li class={{side.class}} *ngFor="let side of sidebar">
-          <a [routerLink]="['{{side.link}}']">
+          <a [routerLink]="side.link">
             <img src={{side.src}} class="icon" alt="">
             <span class="side-nav-text">{{side.text}}</span>
         </a>
@@ -15,7 +15,7 @@
 </div>
 <div id="main-header" class="slide-left-bar">
     <div class="header-section">
-        <nav class="navbar navbar-expand-sm">
+        <nav class="navbar navbar-expand-xl">
           <div class="container-fluid">
             <a class="navbar-brand" [routerLink]="['#']"><img src="assets/images/logo.svg"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">

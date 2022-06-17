@@ -1618,66 +1618,61 @@
         </div>
         </div>
     </section>
-    <section class="position-relative custom-wrapper-section">
-
+    <section class="position-relative custom-wrapper-section bottom-selectionboxes">
       <div class="container_1220px">
         <div class="row">
           <div class="col-lg-3 col-md-6 search-col-homepage">
             <div class="homepage-search-section">
-              <select name="" id="" class="custom-select">
-                <option>Popular Searches</option>
-                <option value="">Properties for rent in UAE</option>
-                <option value="">Properties for sale in UAE</option>
-                <option value="">Apartments for rent in UAE</option>
-                <option value="">Apartments for rent in Dubai</option>
-                <option value="">Properties for sale in Dubai</option>
-                <option value="">Villas for sale in Dubai</option>
-                <option value="">Dubai Real Estate</option>
-              </select>
+              <mat-form-field appearance="fill">
+                <mat-select [(value)]="selected">
+                  <mat-option>Popular Searches</mat-option>
+                  <mat-option value="option1">Apartments for rent in Dubai</mat-option>
+                  <mat-option value="option2">Villas for rent in Dubai</mat-option>
+                  <mat-option value="option3">Apartments for sale in Dubai</mat-option>
+                </mat-select>
+              </mat-form-field>
             </div>
           </div>
           <div class="col-lg-3 col-md-6 search-col-homepage">
             <div class="homepage-search-section">
-              <select name="" id="" class="custom-select">
-                <option>Popular Areas</option>
-                <option value="">Apartments for rent in Dubai</option>
-                <option value="">Apartments for rent Abu Dhabi</option>
-                <option value="">Villas for rent in Dubai</option>
-                <option value="">House for rent Abu Dhabi</option>
-                <option value="">Apartments for sale in Dubai</option>
-                <option value="">Apartments for sale in Abu Dhabi</option>
-                <option value="">Flat for rent Sharjah</option>
-              </select>
+              <mat-form-field appearance="fill">
+                <mat-select [(value)]="selected">
+                  <mat-option>Popular Areas</mat-option>
+                  <mat-option value="option1">Popular Areas</mat-option>
+                  <mat-option value="option2">Popular Areas</mat-option>
+                  <mat-option value="option3">Popular Areas</mat-option>
+                </mat-select>
+              </mat-form-field>
             </div>
           </div>
           <div class="col-lg-3 col-md-6 search-col-homepage">
             <div class="homepage-search-section">
-              <select name="" id="" class="custom-select">
-                <option>Top Real Estate Agents</option>
-                <option value="">Everose Properties</option>
-                <option value="">Edifice Brokrage</option>
-                <option value="">Prime Capital Real Estate Services</option>
-                <option value="">Everose Properties</option>
-                <option value="">Edifice Brokrage</option>
-                <option value="">Prime Capital Real Estate Services</option>
-                <option value="">Everose Properties</option>
-                <option value="">Edifice Brokrage</option>
-                <option value="">Prime Capital Real Estate Services</option>
-              </select>
+              <mat-form-field appearance="fill">
+                <mat-select [(value)]="selected">
+                  <mat-option>Top Real Estate Agents</mat-option>
+                  <mat-option value="option1">Everose Properties</mat-option>
+                  <mat-option value="option2">Edifice Brokrage</mat-option>
+                  <mat-option value="option3">Prime Capital Real Estate Services</mat-option>
+                  <mat-option value="option1">Everose Properties</mat-option>
+                  <mat-option value="option2">Edifice Brokrage</mat-option>
+                  <mat-option value="option3">Prime Capital Real Estate Services</mat-option>
+                  <mat-option value="option1">Everose Properties</mat-option>
+                  <mat-option value="option2">Edifice Brokrage</mat-option>
+                  <mat-option value="option3">Prime Capital Real Estate Services</mat-option>
+                </mat-select>
+              </mat-form-field>
             </div>
           </div>
           <div class="col-lg-3 col-md-6 search-col-homepage">
             <div class="homepage-search-section">
-              <select name="" id="" class="custom-select">
-                <option>Trending Searches</option>
-                <option value="">Villa for rent in Abu Dhabi</option>
-                <option value="">Shop for rent in Dubai</option>
-                <option value="">Villas for sale in Ajman</option>
-                <option value="">Studio for rent in Sharjah</option>
-                <option value="">1 Bedroom Apartment for rent in Dubai</option>
-                <option value="">Property for rent in Abu Dhabi</option>
-                <option value="">Commercial properties for sale</option>
-              </select>
+              <mat-form-field appearance="fill">
+                <mat-select [(value)]="selected">
+                  <mat-option>Trending Searches</mat-option>
+                  <mat-option value="option1">Villa for rent in Abu Dhabi</mat-option>
+                  <mat-option value="option2">Villa for rent in Abu Dhabi</mat-option>
+                  <mat-option value="option3">Villa for rent in Abu Dhabi</mat-option>
+                </mat-select>
+              </mat-form-field>
             </div>
           </div>
         </div>

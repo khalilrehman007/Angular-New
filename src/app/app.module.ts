@@ -11,13 +11,24 @@ import {InputTextModule} from 'primeng/inputtext';
 import {FormsModule} from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {NgbNavModule} from '@ng-bootstrap/ng-bootstrap';
+// import { HashLocationStrategy, LocationStrategy  } from '@angular/common';
+import { SellrentpropertyComponent } from './pages/sellrentproperty/sellrentproperty.component';
+import { MatSliderModule } from '@angular/material/slider';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
+import { FooterComponent } from './footer/footer.component';
+import {MatIconModule} from '@angular/material/icon';
+
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    HomeComponent
+    HomeComponent,
+    SellrentpropertyComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -28,9 +39,14 @@ import {NgbNavModule} from '@ng-bootstrap/ng-bootstrap';
     InputTextModule,
     FormsModule,
     NgbModule,
-    NgbNavModule
+    NgbNavModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatIconModule
   ],
-  providers: [],
+  providers: [
+    // {provide : LocationStrategy , useClass: HashLocationStrategy}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
