@@ -17,7 +17,7 @@
     <div ngClass="header-section">
         <nav ngClass="navbar navbar-expand-xl">
           <div ngClass="container-fluid">
-            <a ngClass="navbar-brand" [routerLink]="['#']"><img src="assets/images/logo.svg"></a>
+            <a ngClass="navbar-brand" [routerLink]="['']"><img src="{{logo}}"></a>
             <button ngClass="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
               <span ngClass="navbar-linebars"></span>
               <span ngClass="navbar-linebars"></span>
@@ -32,11 +32,11 @@
                 </li>
                 <li ngClass="nav-item">
                   <a ngClass="nav-link blue-bordered-btn" [routerLink]="['#']">
-                    <span ngClass="ai-tag">AI</span> Data Intelligence  <span ngClass="icon-di"><img src="assets/images/Charts-nav.svg"></span>
+                    <span ngClass="ai-tag">AI</span> Data Intelligence  <span ngClass="icon-di"><img src="{{chartsvg}}"></span>
                   </a>
                 </li>
                 <li ngClass="nav-item">
-                  <a ngClass="nav-link blue-bordered-btn" [routerLink]="['#']">
+                  <a ngClass="nav-link blue-bordered-btn" [routerLink]="['/sellrent']">
                     Sell or Rent Property <span ngClass="ai-tag">FREE</span>
                   </a>
                 </li> 
@@ -53,10 +53,10 @@
                   </a>
                </li> 
                <li ngClass="nav-item signin-li">
-                <a ngClass="nav-link" [routerLink]="['#']"><img src="assets/images/user.svg"> Sign in</a>
+                <a ngClass="nav-link" [routerLink]="['#']"><img src="{{signinsvg}}"> Sign in</a>
              </li>    
              <li ngClass="nav-item aed-li">
-              <a ngClass="nav-link aed-sq" [routerLink]="['#']"><img src="assets/images/aed-fg.svg"> AED | Sqft</a>
+              <a ngClass="nav-link aed-sq" [routerLink]="['#']"><img src="{{flagsvg}}"> AED | Sqft</a>
              </li>
               </ul>
             </div>

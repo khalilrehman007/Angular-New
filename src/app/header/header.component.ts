@@ -8,12 +8,16 @@ import * as $ from 'jquery';
 })
 export class HeaderComponent implements OnInit {
   togglesvg = '../../assets/images/icons/toggle.svg'
+  logo = '../../assets/images/logo.svg'
+  chartsvg = '../../assets/images/Charts-nav.svg'
+  signinsvg = '../../assets/images/user.svg'
+  flagsvg = '../../assets/images/aed-fg.svg'
   sidebar = [
     {
       src: '../../assets/images/icons/login.svg',
       class: 'nav-items sign-in',
       text: 'Sign in',
-      link: '/sellrent',
+      link: '',
     },
     {
       src: '../../assets/images/icons/ioi.svg',

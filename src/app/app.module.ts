@@ -18,9 +18,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import { FooterComponent } from './footer/footer.component';
 import {MatIconModule} from '@angular/material/icon';
-
-
-
+import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -28,7 +27,8 @@ import {MatIconModule} from '@angular/material/icon';
     HeaderComponent,
     HomeComponent,
     SellrentpropertyComponent,
-    FooterComponent
+    FooterComponent,
+    BreadcrumbComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +42,8 @@ import {MatIconModule} from '@angular/material/icon';
     NgbNavModule,
     MatFormFieldModule,
     MatSelectModule,
-    MatIconModule
+    MatIconModule,
+    MatExpansionModule
   ],
   providers: [
     // {provide : LocationStrategy , useClass: HashLocationStrategy}

@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */ 
 @import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import 'https://fonts.googleapis.com/icon?family=Material+Icons';
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 :root {
   --body-color: #fff;
@@ -167,33 +168,6 @@ a {
 .nice-select.custom-select {
 	width: 100%;
 	border: 0;
-}
-.nice-select {
-	.list {
-		width: 100%;
-		max-height: 250px;
-		overflow: auto !important;
-	}
-}
-.custom-breadcrumb {
-	position: absolute;
-	top: 20px;
-	left: 10%;
-	p {
-		color: $color_2;
-		font-size: 13px;
-		margin: 0px 5px;
-		a {
-			color: $color_2;
-			font-size: 13px;
-			margin: 0px 5px;
-		}
-		span {
-			color: $color_2;
-			font-size: 13px;
-			margin: 0px 5px;
-		}
-	}
 }
 .dropdown-menu.active {
 	display: block !important;
@@ -543,3 +517,39 @@ textarea {
 		}
 	}
 }
+
+
+.disabled{
+	pointer-events: none;
+}
+.slide-left-bar {
+	width: 100%;
+	max-width: calc(100% - 64px);
+	margin-left: auto;
+}
+.green-btn {
+    padding: 13px 32px;
+    color: var(--body-color);
+    background: var(--light-green);
+    font-size: 14px;
+    border-radius: 8px;
+    display: inline-block;
+}
+.green-btn:hover {
+    background: #1c1c71 !important;
+    color: #fff !important;
+}
+.mat-expansion-panel-header .mat-expansion-indicator::after {
+	content: "+";
+    border: 0;
+    transform: none;
+    font-size: 30px;
+    color: rgba(0,0,0,0.2);
+  }
+  
+  .mat-expansion-panel-header.mat-expanded .mat-expansion-indicator::after {
+	content: "-";
+	border: 0;
+    font-size: 30px;
+    color: rgba(0,0,0,0.2);
+  }
