@@ -4,6 +4,8 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 import {SliderModule} from 'primeng/slider';
 import * as $ from 'jquery';
 import {NgbNav} from '@ng-bootstrap/ng-bootstrap';
+import { HeaderComponent } from '../../header/header.component';
+import { FooterComponent } from '../../footer/footer.component';
 
 @Component({
   selector: 'app-home',

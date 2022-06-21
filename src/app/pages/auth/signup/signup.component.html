@@ -1,1 +1,185 @@
-<p>signup works!</p>
+<header>
+    <app-second-header></app-second-header>
+</header>
+<section ngClass="auth-wrapper">
+<div ngClass="form-design signup-page">
+  <form class="auth-form">
+    <div ngClass="wecome-message">
+      <h2>Welcome to Ovaluate</h2>
+      <p>Welcome back! Please enter your details.</p>
+    </div>
+    <mat-form-field class="full-width input-design" appearance="fill">
+        <mat-label>Full Name</mat-label>
+        <input matInput type="text" placeholder="First Last">
+      </mat-form-field>
+    <mat-form-field class="full-width input-design" appearance="fill">
+      <mat-label>Email</mat-label>
+      <input matInput type="email">
+    </mat-form-field>
+    <mat-form-field class="full-width input-design" appearance="fill">
+        <mat-label>Phone</mat-label>
+        <input matInput type="number">
+      </mat-form-field>
+    <mat-form-field class="full-width input-design padd-b-0" appearance="fill">
+      <mat-label>Password</mat-label>
+      <input matInput [type]="showPassword ? 'text' : 'password'" name="password">
+      <mat-icon matSuffix (click)="togglePasswordVisibility()">
+        {{showPassword?'visibility_off':'visibility'}}
+    </mat-icon>
+    </mat-form-field>
+    <div ngClass="hint-text">
+        <p>At least 8 characters</p>
+        <p>Mix of letters and numbers</p>
+        <p>At least 1 special character</p>
+        <p>At least 1 lowercase letter and 1 uppercase letter</p>
+    </div>
+    <div ngClass="landlord-checkbox-sec checkbox-design">
+        <mat-checkbox class="example-margin">I am a landlord or industry professional</mat-checkbox>
+        <div ngClass="dropdown hide">
+            <button type="button" ngClass="btn dropdown-toggle" data-bs-toggle="dropdown">
+              Property Type
+            </button>
+            <div ngClass="dropdown-menu" id="property-type-sec">
+              <h5 ngClass="h5-heading">Property Type</h5>
+                <div ngClass="property-types-heading">
+                  <ul ngClass="nav nav-tabs" role="tablist">
+                    <li ngClass="nav-item">
+                      <a ngClass="nav-link active" data-bs-toggle="tab" href="#landowner"><span ngClass="circle-celection"></span> Landlord / Property Owner</a>
+                    </li>
+                    <li ngClass="nav-item">
+                      <a ngClass="nav-link" data-bs-toggle="tab" href="#agencybroker"><span ngClass="circle-celection"></span> Agency/Brokerage Firm</a>
+                    </li>
+                    <li ngClass="nav-item">
+                        <a ngClass="nav-link" data-bs-toggle="tab" href="#agentbroker"><span ngClass="circle-celection"></span> Agent/Broker</a>
+                      </li>
+                      <li ngClass="nav-item">
+                        <a ngClass="nav-link" data-bs-toggle="tab" href="#propertymanager"><span ngClass="circle-celection"></span> Property Manager</a>
+                      </li>
+                  </ul>
+                </div>
+                <div ngClass="property-types-cntnts">
+                  <div ngClass="tab-content">
+                  <div id="landowner" ngClass="tab-pane active"> 
+                    <h5 ngClass="h5-heading"> Landlord / Property Owner</h5>
+                    <div ngClass="form-tab-wrapper">
+                        <mat-form-field class="full-width input-design" appearance="fill">
+                            <mat-label>Company Legal Name*</mat-label>
+                            <input matInput type="text" placeholder="ABC Company LLC">
+                        </mat-form-field>
+                        <div ngClass="info-icons-block">
+                        <mat-form-field class="full-width input-design" appearance="fill">
+                            <mat-label>#ORN No.</mat-label>
+                            <input matInput type="number" placeholder="99999">
+                        </mat-form-field>
+                        <span ngClass="info-toogle"><img src="{{info}}"></span>
+                        </div>
+                        <p ngClass="info-text hide">Office Registration Number given to each RERA-registered real estate company in Dubai</p>
+                        <div ngClass="info-icons-block">
+                        <mat-form-field class="full-width input-design" appearance="fill">
+                            <mat-label>#BRN No.</mat-label>
+                            <input matInput type="number" placeholder="99999">
+                        </mat-form-field>
+                        <span ngClass="info-toogle"><img src="{{info}}"></span>
+                        </div>
+                        <p ngClass="info-text hide">Broker Registration Number issued to agents working for RERA-registered brokerages in Dubai</p>
+                    </div>
+                  </div>
+                  <div id="agencybroker" ngClass="tab-pane fade"> 
+                    <h5 ngClass="h5-heading"> Landlord / Property Owner</h5>
+                    <div ngClass="form-tab-wrapper">
+                        <mat-form-field class="full-width input-design" appearance="fill">
+                            <mat-label>Company Legal Name*</mat-label>
+                            <input matInput type="text" placeholder="ABC Company LLC">
+                        </mat-form-field>
+                        <div ngClass="info-icons-block">
+                        <mat-form-field class="full-width input-design" appearance="fill">
+                            <mat-label>#ORN No.</mat-label>
+                            <input matInput type="number" placeholder="99999">
+                        </mat-form-field>
+                        <span ngClass="info-toogle"><img src="{{info}}"></span>
+                        </div>
+                        <p ngClass="info-text hide">Office Registration Number given to each RERA-registered real estate company in Dubai</p>
+                        <div ngClass="info-icons-block">
+                        <mat-form-field class="full-width input-design" appearance="fill">
+                            <mat-label>#BRN No.</mat-label>
+                            <input matInput type="number" placeholder="99999">
+                        </mat-form-field>
+                        <span ngClass="info-toogle"><img src="{{info}}"></span>
+                        </div>
+                        <p ngClass="info-text hide">Broker Registration Number issued to agents working for RERA-registered brokerages in Dubai</p>
+                    </div>
+                  </div>
+                  <div id="agentbroker" ngClass="tab-pane fade"> 
+                    <h5 ngClass="h5-heading"> Landlord / Property Owner</h5>
+                    <div ngClass="form-tab-wrapper">
+                        <mat-form-field class="full-width input-design" appearance="fill">
+                            <mat-label>Company Legal Name*</mat-label>
+                            <input matInput type="text" placeholder="ABC Company LLC">
+                        </mat-form-field>
+                        <div ngClass="info-icons-block">
+                        <mat-form-field class="full-width input-design" appearance="fill">
+                            <mat-label>#ORN No.</mat-label>
+                            <input matInput type="number" placeholder="99999">
+                        </mat-form-field>
+                        <span ngClass="info-toogle"><img src="{{info}}"></span>
+                        </div>
+                        <p ngClass="info-text hide">Office Registration Number given to each RERA-registered real estate company in Dubai</p>
+                        <div ngClass="info-icons-block">
+                        <mat-form-field class="full-width input-design" appearance="fill">
+                            <mat-label>#BRN No.</mat-label>
+                            <input matInput type="number" placeholder="99999">
+                        </mat-form-field>
+                        <span ngClass="info-toogle"><img src="{{info}}"></span>
+                        </div>
+                        <p ngClass="info-text hide">Broker Registration Number issued to agents working for RERA-registered brokerages in Dubai</p>
+                    </div>
+                  </div>
+                  <div id="propertymanager" ngClass="tab-pane fade"> 
+                    <h5 ngClass="h5-heading"> Landlord / Property Owner</h5>
+                    <div ngClass="form-tab-wrapper">
+                        <mat-form-field class="full-width input-design" appearance="fill">
+                            <mat-label>Company Legal Name*</mat-label>
+                            <input matInput type="text" placeholder="ABC Company LLC">
+                        </mat-form-field>
+                        <div ngClass="info-icons-block">
+                        <mat-form-field class="full-width input-design" appearance="fill">
+                            <mat-label>#ORN No.</mat-label>
+                            <input matInput type="number" placeholder="99999">
+                        </mat-form-field>
+                        <span ngClass="info-toogle"><img src="{{info}}"></span>
+                        </div>
+                        <p ngClass="info-text hide">Office Registration Number given to each RERA-registered real estate company in Dubai</p>
+                        <div ngClass="info-icons-block">
+                        <mat-form-field class="full-width input-design" appearance="fill">
+                            <mat-label>#BRN No.</mat-label>
+                            <input matInput type="number" placeholder="99999">
+                        </mat-form-field>
+                        <span ngClass="info-toogle"><img src="{{info}}"></span>
+                        </div>
+                        <p ngClass="info-text hide">Broker Registration Number issued to agents working for RERA-registered brokerages in Dubai</p>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+            </div>
+          </div>
+    </div>
+    <mat-card-actions>
+        <button mat-raised-button type="submit" ngClass="submit-btn">Login</button>
+     </mat-card-actions>
+    <div ngClass="terms-text">
+      <p>By submitting, I accept Ovaluate’s <a routerLink="">terms & conditions</a></p>
+    </div>
+    <div ngClass="or-connect">
+      <p>Or connect with</p>
+    </div>
+    <div class="continue-btns">
+      <button ngClass="google-btn"><img src="{{goggle}}"> Continue with Google</button>
+      <button ngClass="apple-btn"><img src="{{apple}}"> Continue with Google</button>
+    </div>
+    <div ngClass="dont-have-account text-center">
+      <p>Already have an account? <a routerLink="/login">Signin here</a></p>
+    </div>
+  </form>
+</div>
+</section>

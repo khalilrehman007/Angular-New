@@ -20,6 +20,25 @@ import { FooterComponent } from './footer/footer.component';
 import {MatIconModule} from '@angular/material/icon';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { SecondHeaderComponent } from './second-header/second-header.component';
+import { LoginComponent } from './pages/auth/login/login.component';
+import { SignupComponent } from './pages/auth/signup/signup.component';
+import { OtpComponent } from './pages/auth/otp/otp.component';
+import { ThankyouComponent } from './pages/auth/thankyou/thankyou.component';
+import {ReactiveFormsModule} from '@angular/forms';
+import {MatInputModule} from '@angular/material/input';
+import {MatCardModule} from '@angular/material/card';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { ForgotComponent } from './pages/auth/forgot/forgot.component';
+import { PropertyinfoComponent } from './pages/listproperties/propertyinfo/propertyinfo.component';
+import {MatListModule} from '@angular/material/list';
+import { ListpropertyinfoComponent } from './pages/listproperties/listpropertyinfo/listpropertyinfo.component';
+import { ListpropertymediaComponent } from './pages/listproperties/listpropertymedia/listpropertymedia.component';
+import { ListpropertyverifyComponent } from './pages/listproperties/listpropertyverify/listpropertyverify.component';
+import { ListpropertypublishComponent } from './pages/listproperties/listpropertypublish/listpropertypublish.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+
 
 @NgModule({
   declarations: [
@@ -28,7 +47,18 @@ import {MatExpansionModule} from '@angular/material/expansion';
     HomeComponent,
     SellrentpropertyComponent,
     FooterComponent,
-    BreadcrumbComponent
+    BreadcrumbComponent,
+    SecondHeaderComponent,
+    LoginComponent,
+    SignupComponent,
+    OtpComponent,
+    ThankyouComponent,
+    ForgotComponent,
+    PropertyinfoComponent,
+    ListpropertyinfoComponent,
+    ListpropertymediaComponent,
+    ListpropertyverifyComponent,
+    ListpropertypublishComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +73,14 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatFormFieldModule,
     MatSelectModule,
     MatIconModule,
-    MatExpansionModule
+    MatExpansionModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatCardModule,
+    MatCheckboxModule,
+    MatListModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [
     // {provide : LocationStrategy , useClass: HashLocationStrategy}

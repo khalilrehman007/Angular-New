@@ -1,13 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { SecondHeaderComponent } from '../../../second-header/second-header.component';
 import {FormControl, Validators} from '@angular/forms';
+import * as $ from 'jquery';
 
 @Component({
-  selector: 'app-propertyinfo',
-  templateUrl: './propertyinfo.component.html',
-  styleUrls: ['./propertyinfo.component.scss']
+  selector: 'app-listpropertyinfo',
+  templateUrl: './listpropertyinfo.component.html',
+  styleUrls: ['./listpropertyinfo.component.scss']
 })
-export class PropertyinfoComponent implements OnInit {
+export class ListpropertyinfoComponent implements OnInit {
+  plus= '../../../../assets/images/plus.svg'
   country = [
     {viewValue: 'India',value: 'india'},
     {viewValue: 'UAE',value: 'UAE'},
@@ -19,7 +21,12 @@ export class PropertyinfoComponent implements OnInit {
     {viewValue: 'America',value: 'America'},
   ];
   constructor() { }
-  ngOnInit(): void {
+  ngOnInit() {
+    $(document).ready(function(){
+      $('.dropdown-toggle').click(function(){
+      $(this).next().toggleClass('active');
+      });
+  });
   }
 
 }

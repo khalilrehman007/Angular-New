@@ -1,1 +1,44 @@
-<p>otp works!</p>
+<header>
+    <app-second-header></app-second-header>
+</header>
+<section ngClass="auth-wrapper">
+<div ngClass="form-design otp-page">
+  <form class="auth-form">
+    <div ngClass="wecome-message">
+      <h2>Welcome to Ovaluate</h2>
+      <p>Welcome back! Please enter your details.</p>
+    </div>
+    <div ngClass="otp-info-sec text-center">
+        <p ngClass="otp-Txt">Enter OTP Sent to you at</p>
+        <h6 ngClass="otp-number">+971 50 000 0000</h6>
+    </div>
+    <div ngClass="d-flex justify-content-spacebw otp-form-sec">
+    <mat-form-field class="full-width input-design" appearance="fill">
+      <input matInput type="number" placeholder="8">
+    </mat-form-field>
+    <mat-form-field class="full-width input-design" appearance="fill">
+        <input matInput type="number" placeholder="8">
+      </mat-form-field>
+      <mat-form-field class="full-width input-design" appearance="fill">
+        <input matInput type="number" placeholder="8">
+      </mat-form-field>
+      <mat-form-field class="full-width input-design" appearance="fill">
+        <input matInput type="number" placeholder="8">
+      </mat-form-field>
+      <mat-form-field class="full-width input-design" appearance="fill">
+        <input matInput type="number" placeholder="8">
+      </mat-form-field>
+      <mat-form-field class="full-width input-design" appearance="fill">
+        <input matInput type="number" placeholder="8">
+      </mat-form-field>
+    </div>
+    <div ngClass="d-flex justify-content-spacebw otp-form-time">
+        <p ngClass="time">1m 30s</p>
+        <button ngClass="resend-code">Resend Code</button>
+    </div>
+    <mat-card-actions>
+        <button mat-raised-button type="submit" ngClass="submit-btn">Verify</button>
+     </mat-card-actions>
+  </form>
+</div>
+</section>
