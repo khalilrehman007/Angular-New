@@ -20,6 +20,17 @@ import { FooterComponent } from './footer/footer.component';
 import {MatIconModule} from '@angular/material/icon';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+
+import { CustomerComponent } from './customer/customer.component';
+import { ListingComponent } from './listing/listing.component';
+import { AddnewComponent } from './addnew/addnew.component';
+import {ReactiveFormsModule} from '@angular/forms';
+import {CookieService} from 'ngx-cookie-service';
+import { LoginComponent } from './login/login.component'
+import { TokenInterceptorService } from './service/token-interceptor.service';
+import { BlogsComponent } from './pages/blogs/blogs.component';
+import { BlogViewComponent } from './pages/blog-view/blog-view.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +39,13 @@ import {MatExpansionModule} from '@angular/material/expansion';
     HomeComponent,
     SellrentpropertyComponent,
     FooterComponent,
-    BreadcrumbComponent
+    BreadcrumbComponent,
+    CustomerComponent,
+    ListingComponent,
+    AddnewComponent,
+    LoginComponent,
+    BlogsComponent,
+    BlogViewComponent
   ],
   imports: [
     BrowserModule,
@@ -43,9 +60,13 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatFormFieldModule,
     MatSelectModule,
     MatIconModule,
-    MatExpansionModule
+    MatExpansionModule,
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,AppRoutingModule,HttpClientModule,ReactiveFormsModule
   ],
   providers: [
+    // CookieService,{provide:HTTP_INTERCEPTORS,useClass:TokenInterceptorService,multi:true}
     // {provide : LocationStrategy , useClass: HashLocationStrategy}
   ],
   bootstrap: [AppComponent]
