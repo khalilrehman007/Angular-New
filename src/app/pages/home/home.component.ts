@@ -4,10 +4,10 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 import {SliderModule} from 'primeng/slider';
 import * as $ from 'jquery';
 import {NgbNav} from '@ng-bootstrap/ng-bootstrap';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import { CustomerService } from 'src/app/service/customer.service';
-import { AppService } from 'src/app/service/app.service';
-// import { Observable } from 'rxjs';
+
+import { HeaderComponent } from '../../header/header.component';
+import { FooterComponent } from '../../footer/footer.component';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',

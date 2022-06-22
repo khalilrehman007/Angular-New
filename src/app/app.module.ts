@@ -20,6 +20,7 @@ import { FooterComponent } from './footer/footer.component';
 import {MatIconModule} from '@angular/material/icon';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import {MatExpansionModule} from '@angular/material/expansion';
+
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { CustomerComponent } from './customer/customer.component';
@@ -31,6 +32,26 @@ import { LoginComponent } from './login/login.component'
 import { TokenInterceptorService } from './service/token-interceptor.service';
 import { BlogsComponent } from './pages/blogs/blogs.component';
 import { BlogViewComponent } from './pages/blog-view/blog-view.component';
+
+import { SecondHeaderComponent } from './second-header/second-header.component';
+import { LoginComponent } from './pages/auth/login/login.component';
+import { SignupComponent } from './pages/auth/signup/signup.component';
+import { OtpComponent } from './pages/auth/otp/otp.component';
+import { ThankyouComponent } from './pages/auth/thankyou/thankyou.component';
+import {ReactiveFormsModule} from '@angular/forms';
+import {MatInputModule} from '@angular/material/input';
+import {MatCardModule} from '@angular/material/card';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { ForgotComponent } from './pages/auth/forgot/forgot.component';
+import { PropertyinfoComponent } from './pages/listproperties/propertyinfo/propertyinfo.component';
+import {MatListModule} from '@angular/material/list';
+import { ListpropertyinfoComponent } from './pages/listproperties/listpropertyinfo/listpropertyinfo.component';
+import { ListpropertymediaComponent } from './pages/listproperties/listpropertymedia/listpropertymedia.component';
+import { ListpropertyverifyComponent } from './pages/listproperties/listpropertyverify/listpropertyverify.component';
+import { ListpropertypublishComponent } from './pages/listproperties/listpropertypublish/listpropertypublish.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+
 
 @NgModule({
   declarations: [
@@ -45,7 +66,18 @@ import { BlogViewComponent } from './pages/blog-view/blog-view.component';
     AddnewComponent,
     LoginComponent,
     BlogsComponent,
-    BlogViewComponent
+    BlogViewComponent,
+    SecondHeaderComponent,
+    LoginComponent,
+    SignupComponent,
+    OtpComponent,
+    ThankyouComponent,
+    ForgotComponent,
+    PropertyinfoComponent,
+    ListpropertyinfoComponent,
+    ListpropertymediaComponent,
+    ListpropertyverifyComponent,
+    ListpropertypublishComponent 
   ],
   imports: [
     BrowserModule,
@@ -61,9 +93,19 @@ import { BlogViewComponent } from './pages/blog-view/blog-view.component';
     MatSelectModule,
     MatIconModule,
     MatExpansionModule,
+<<<<<<< HEAD
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,AppRoutingModule,HttpClientModule,ReactiveFormsModule
+=======
+    ReactiveFormsModule,
+    MatInputModule,
+    MatCardModule,
+    MatCheckboxModule,
+    MatListModule,
+    MatDatepickerModule,
+    MatNativeDateModule
+>>>>>>> upstream/uidevelopment
   ],
   providers: [
     // CookieService,{provide:HTTP_INTERCEPTORS,useClass:TokenInterceptorService,multi:true}

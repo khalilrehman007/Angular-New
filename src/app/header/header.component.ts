@@ -17,7 +17,7 @@ export class HeaderComponent implements OnInit {
       src: '../../assets/images/icons/login.svg',
       class: 'nav-items sign-in',
       text: 'Sign in',
-      link: '',
+      link: 'login',
     },
     {
       src: '../../assets/images/icons/ioi.svg',

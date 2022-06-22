@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SecondHeaderComponent } from '../../../second-header/second-header.component';
 
 @Component({
   selector: 'app-thankyou',
