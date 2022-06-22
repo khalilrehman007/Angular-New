@@ -1,7 +1,17 @@
+
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AddnewComponent } from './addnew/addnew.component';
+import { CustomerComponent } from './customer/customer.component';
 import { HomeComponent } from './pages/home/home.component';
+import { ListingComponent } from './listing/listing.component';
+import { AuthGuard } from './shared/auth.guard';
+import { RoleGuard } from './shared/role.guard';
 import { SellrentpropertyComponent } from './pages/sellrentproperty/sellrentproperty.component';
+
+
+
+
 import { LoginComponent } from './pages/auth/login/login.component';
 import { SignupComponent } from './pages/auth/signup/signup.component';
 import { OtpComponent } from './pages/auth/otp/otp.component';
@@ -12,6 +22,8 @@ import { ListpropertyinfoComponent } from './pages/listproperties/listpropertyin
 import { ListpropertymediaComponent } from './pages/listproperties/listpropertymedia/listpropertymedia.component';
 import { ListpropertyverifyComponent } from './pages/listproperties/listpropertyverify/listpropertyverify.component';
 import { ListpropertypublishComponent } from './pages/listproperties/listpropertypublish/listpropertypublish.component';
+import { BlogsComponent } from './pages/blogs/blogs.component';
+import { BlogViewComponent } from './pages/blog-view/blog-view.component';
 
 const routes: Routes = [
   { path:  '', component:  HomeComponent},
@@ -25,7 +37,9 @@ const routes: Routes = [
   { path:  'listpropertyinfo', component:  ListpropertyinfoComponent},
   { path:  'listpropertymedia', component:  ListpropertymediaComponent},
   { path:  'listpropertyverify', component:  ListpropertyverifyComponent},
-  { path:  'listpropertypublish', component:  ListpropertypublishComponent}
+  { path:  'listpropertypublish', component:  ListpropertypublishComponent},
+  { path: "blogs", component: BlogsComponent },
+  { path: "blogs/:id", component: BlogViewComponent },
 ];
 
 @NgModule({

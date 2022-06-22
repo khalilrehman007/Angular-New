@@ -4,8 +4,10 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 import {SliderModule} from 'primeng/slider';
 import * as $ from 'jquery';
 import {NgbNav} from '@ng-bootstrap/ng-bootstrap';
+
 import { HeaderComponent } from '../../header/header.component';
 import { FooterComponent } from '../../footer/footer.component';
+import { AppService } from 'src/app/service/app.service';
 
 @Component({
   selector: 'app-home',
@@ -19,6 +21,7 @@ export class HomeComponent implements OnInit {
   squaremetersvg = 'assets/images/icons/Square Meters.svg'
   brandimg = 'assets/images/better-home.svg'
   listingsliderimg = 'assets/images/property-listing-slider-img.png'
+  blogs: any;
   dynamicSlides = [
     {
       id: 'slide1',
@@ -221,14 +224,29 @@ export class HomeComponent implements OnInit {
     },
     nav: false
   }
-  constructor() { }
-
-  ngOnInit() {
+  
+  constructor(private service:AppService) { 
+    this.LoadBlogs();
+  }
+  ngOnInit():void {
+    
     $(document).ready(function(){
       $('.dropdown-toggle').click(function(){
       $(this).next().toggleClass('active');
       });
   });
   }
+  LoadBlogs(){
+    this.service.LoadBlogs().subscribe(data=>{
+      this.blogs=data;
+      this.blogs=this.blogs.data;
+      // array.forEach(element => {
+        
+      // });
+    console.log(this.blogs);
+
+    });
+  }
+ 
   selected = 'option1';
 }

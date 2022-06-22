@@ -1465,20 +1465,22 @@
                     <p>Some of our picked properties near you location.</p>
                 </div>
                 <div ngClass="section-custom-title-right">
-                    <a [routerLink]="['#']">Read all</a>
+                    <a [routerLink]="['blogs']">Read all</a>
                 </div>
             </div>
 
             <div ngClass="row">
-                <div ngClass="col-lg-4 col-md-6 blog-places-col" *ngFor="let blogs of Blogsec">
-                    <a [routerLink]="['#']">
-                        <img [src]="blogs.src" ngClass="img-fluid blog-image-homepage" alt="">
+              <!-- let blogs of Blogsec -->
+                <div ngClass="col-lg-4 col-md-6 blog-places-col" *ngFor=" let blog of blogs">
+                    <a [routerLink]="['blogs/'+blog.id]">
+                      <!-- blog.blogDocument.fileUrl -->
+                        <img [src]="'https://www.ovaluate.com/'+blog.blogDocument.fileUrl" ngClass="img-fluid blog-image-homepage" alt="">
                         <span ngClass="blog-tag">
-                            <img [src]="blogs.src2" ngClass="img-fluid" alt="">
+                            <img [src]="blog.src2" ngClass="img-fluid" alt="">
                         </span>
                         <div ngClass="blog-title-content">
-                            <h5>{{blogs.heading}}</h5>
-                            <span>{{blogs.date}}</span>
+                            <h5>{{blog.blogTitle}}</h5>
+                            <span>{{blog.blogDate}}</span>
                         </div>
                     </a>
                 </div>

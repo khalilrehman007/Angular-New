@@ -20,12 +20,23 @@ import { FooterComponent } from './footer/footer.component';
 import {MatIconModule} from '@angular/material/icon';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import {MatExpansionModule} from '@angular/material/expansion';
+
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+
+import { CustomerComponent } from './customer/customer.component';
+import { ListingComponent } from './listing/listing.component';
+import { AddnewComponent } from './addnew/addnew.component';
+import {ReactiveFormsModule} from '@angular/forms';
+import {CookieService} from 'ngx-cookie-service';
+import { TokenInterceptorService } from './service/token-interceptor.service';
+import { BlogsComponent } from './pages/blogs/blogs.component';
+import { BlogViewComponent } from './pages/blog-view/blog-view.component';
+
 import { SecondHeaderComponent } from './second-header/second-header.component';
 import { LoginComponent } from './pages/auth/login/login.component';
 import { SignupComponent } from './pages/auth/signup/signup.component';
 import { OtpComponent } from './pages/auth/otp/otp.component';
 import { ThankyouComponent } from './pages/auth/thankyou/thankyou.component';
-import {ReactiveFormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
 import {MatCheckboxModule} from '@angular/material/checkbox';
@@ -48,6 +59,12 @@ import { MatNativeDateModule } from '@angular/material/core';
     SellrentpropertyComponent,
     FooterComponent,
     BreadcrumbComponent,
+    CustomerComponent,
+    ListingComponent,
+    AddnewComponent,
+    LoginComponent,
+    BlogsComponent,
+    BlogViewComponent,
     SecondHeaderComponent,
     LoginComponent,
     SignupComponent,
@@ -58,7 +75,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     ListpropertyinfoComponent,
     ListpropertymediaComponent,
     ListpropertyverifyComponent,
-    ListpropertypublishComponent
+    ListpropertypublishComponent 
   ],
   imports: [
     BrowserModule,
@@ -74,7 +91,9 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatSelectModule,
     MatIconModule,
     MatExpansionModule,
-    ReactiveFormsModule,
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,AppRoutingModule,HttpClientModule,ReactiveFormsModule,
     MatInputModule,
     MatCardModule,
     MatCheckboxModule,
@@ -83,6 +102,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatNativeDateModule
   ],
   providers: [
+    // CookieService,{provide:HTTP_INTERCEPTORS,useClass:TokenInterceptorService,multi:true}
     // {provide : LocationStrategy , useClass: HashLocationStrategy}
   ],
   bootstrap: [AppComponent]
