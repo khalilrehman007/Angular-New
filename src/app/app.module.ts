@@ -28,7 +28,6 @@ import { ListingComponent } from './listing/listing.component';
 import { AddnewComponent } from './addnew/addnew.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {CookieService} from 'ngx-cookie-service';
-import { LoginComponent } from './login/login.component'
 import { TokenInterceptorService } from './service/token-interceptor.service';
 import { BlogsComponent } from './pages/blogs/blogs.component';
 import { BlogViewComponent } from './pages/blog-view/blog-view.component';
@@ -38,7 +37,6 @@ import { LoginComponent } from './pages/auth/login/login.component';
 import { SignupComponent } from './pages/auth/signup/signup.component';
 import { OtpComponent } from './pages/auth/otp/otp.component';
 import { ThankyouComponent } from './pages/auth/thankyou/thankyou.component';
-import {ReactiveFormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
 import {MatCheckboxModule} from '@angular/material/checkbox';
@@ -93,19 +91,15 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatSelectModule,
     MatIconModule,
     MatExpansionModule,
-<<<<<<< HEAD
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,AppRoutingModule,HttpClientModule,ReactiveFormsModule
-=======
-    ReactiveFormsModule,
+    HttpClientModule,AppRoutingModule,HttpClientModule,ReactiveFormsModule,
     MatInputModule,
     MatCardModule,
     MatCheckboxModule,
     MatListModule,
     MatDatepickerModule,
     MatNativeDateModule
->>>>>>> upstream/uidevelopment
   ],
   providers: [
     // CookieService,{provide:HTTP_INTERCEPTORS,useClass:TokenInterceptorService,multi:true}
