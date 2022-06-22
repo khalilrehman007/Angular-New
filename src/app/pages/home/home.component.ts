@@ -7,6 +7,7 @@ import {NgbNav} from '@ng-bootstrap/ng-bootstrap';
 
 import { HeaderComponent } from '../../header/header.component';
 import { FooterComponent } from '../../footer/footer.component';
+import { AppService } from 'src/app/service/app.service';
 
 @Component({
   selector: 'app-home',
