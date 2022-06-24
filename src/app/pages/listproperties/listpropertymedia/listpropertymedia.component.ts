@@ -18,6 +18,8 @@ export class ListpropertymediaComponent implements OnInit {
   message: string[] = [];
   previews: string[] = [];
   imageInfos?: Observable<any>;
+  url;
+  format;
   constructor(private uploadService: FileUploadService) { }
   ngOnInit() {
     $(document).ready(function(){
@@ -81,4 +83,20 @@ export class ListpropertymediaComponent implements OnInit {
       }
     }
   }
+  onSelectFile(event) {
+    const file = event.target.files && event.target.files[0];
+    if (file) {
+      var reader = new FileReader();
+      reader.readAsDataURL(file);
+      if(file.type.indexOf('image')> -1){
+        this.format = 'image';
+      } else if(file.type.indexOf('video')> -1){
+        this.format = 'video';
+      }
+      reader.onload = (event) => {
+        this.url = (<FileReader>event.target).result;
+      }
+    }
+  }
 }
+

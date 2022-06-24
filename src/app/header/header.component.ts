@@ -29,7 +29,7 @@ export class HeaderComponent implements OnInit {
       src: '../../assets/images/icons/sell.svg',
       class: 'nav-items sell',
       text: 'Sell',
-      link: '',
+      link: 'listingproperty',
     },
     {
       src: '../../assets/images/icons/building.svg',

@@ -54,32 +54,43 @@
                         <div ngClass="propery-pictures-sec">
                             <h5 ngClass="h5-heading">Property Pictures</h5>
                             <div ngClass="inneR-border-wrap">
-                                <label class="btn btn-default p-0">
+                                <div ngClass="div_thumb-wrapper img_upload">
+                                <label class="btn btn-default p-0 upload-label position-relative">
                                     <input type="file" accept="image/*" multiple (change)="selectFiles($event)" />
+                                    <button ngClass="black-upload-btn"><span ngClass="plus_icon-div">+</span> Upload Pictures</button>
                                   </label>
-                                  <div>
+                                  <div ngClass="upload-preview-images">
                                     <img *ngFor='let preview of previews' [src]="preview" class="preview">
+                                    <img ngClass="img-thumb-icon" src="../../../../assets/images/image-gallery-thumbnail.png">
                                   </div>
-                                  
-                                  <div *ngIf="message.length" class="alert alert-secondary my-3" role="alert">
-                                    <ul *ngFor="let msg of message; let i = index">
-                                      <li>{{ msg }}</li>
-                                    </ul>
+                                  <div ngClass="image-thumb-cntnt">
+                                    <p>Property Listings with more than 5 images get 3x more views. <br/> More Images = Higher chances of Leads.</p>
+                                    <p>Accepted formats are .jpg, .gif, .bmp & .png and Maximum size allowed 10 MB</p>
                                   </div>
-                                  
-                                  <div class="card mt-3">
-                                    <div class="card-header">List of Images</div>
-                                    <ul
-                                      class="list-group list-group-flush"
-                                      *ngFor="let image of imageInfos | async"
-                                    >
-                                      <li class="list-group-item">
-                                        <p><a href="{{ image.url }}">{{ image.name }}</a></p>
-                                        <img src="{{ image.url }}" alt="{{ image.name }}" height="80px" />
-                                      </li>
-                                    </ul>
-                                  </div>
+                                </div>
                             </div>
+                        </div>
+                        <div ngClass="propery-videos-sec">
+                            <h5 ngClass="h5-heading">Property Videos</h5>
+                            <div ngClass="inneR-border-wrap">
+                                <div ngClass="div_thumb-wrapper img_upload">
+                                <label class="btn btn-default p-0 upload-label position-relative">
+                                    <input type='file' (change)="onSelectFile($event)" />
+                                    <button ngClass="black-upload-btn"><span ngClass="plus_icon-div">+</span> Upload Videos</button>
+                                  </label>
+                                  <div ngClass="upload-preview-images">
+                                    <video [src]="url" *ngIf="format==='video' && url"></video>
+                                    <img ngClass="img-thumb-icon" src="../../../../assets/images/image-gallery-thumbnail.png">
+                                  </div>
+                                  <div ngClass="image-thumb-cntnt">
+                                    <p>Property Listings with Video get 3x more views. <br/> Video = Higher chances of Leads.</p>
+                                    <p>Accepted formats are .MPEG, FLV, MOV & SWF and Maximum size allowed 30 MB</p>
+                                  </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div ngClass="or-divider-div text-center">
+                            <p>Or</p>
                         </div>
                         <div ngClass="property-offers">
                             <div ngClass="row">
