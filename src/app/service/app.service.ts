@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class AppService {
   apiurl='https://www.ovaluate.com/api/';
+  id=0;
 
   constructor(private http:HttpClient) {
     
@@ -14,7 +15,6 @@ export class AppService {
     return this.http.get(this.apiurl+'blogs');
   }
   LoadBlogById(){
-    // console.log(this.blog)
-    return this.http.get(this.apiurl+'blog/14');
+    return this.http.get(this.apiurl+'blog/'+this.id);
   }
 }
