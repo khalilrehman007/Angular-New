@@ -1472,7 +1472,7 @@
             <div ngClass="row">
               <!-- let blogs of Blogsec -->
                 <div ngClass="col-lg-4 col-md-6 blog-places-col" *ngFor=" let blog of blogs">
-                    <a [routerLink]="['blogs/'+blog.id]">
+                    <a [routerLink]="['/blogs/'+blog.id]" [queryParams] = "{title: blog.blogTitle}">
                       <!-- blog.blogDocument.fileUrl -->
                         <img [src]="'https://www.ovaluate.com/'+blog.blogDocument.fileUrl" ngClass="img-fluid blog-image-homepage" alt="">
                         <span ngClass="blog-tag">
@@ -1487,6 +1487,7 @@
             </div>
         </div>
     </section>
+    <!-- <app-blogs></app-blogs> -->
     <section ngClass="position-relative wrapper-section bg-primary-color easy-tenants-landlords-sec">
         <div ngClass="container_1220px">
             <div ngClass="section-title responsive-section-title tenanats-landlord_Sec">

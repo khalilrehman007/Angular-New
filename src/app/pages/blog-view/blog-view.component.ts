@@ -15,6 +15,7 @@ export class BlogViewComponent implements OnInit {
     
     this.route.params.subscribe(params=>{
       this.id = params['id'];
+      this.service.id = params['id'];
     })
     this.LoadBlogById();
   }

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -6,11 +6,15 @@ import { Injectable } from '@angular/core';
 })
 export class AuthService {
   apiurl='https://www.ovaluate.com/api/Userlogin';
+  
   constructor(private http:HttpClient) {
 
    }
    ProceedLogin(UserCred:any){
-     return this.http.post(this.apiurl,UserCred);
+    console.log(UserCred);
+    let header = new HttpHeaders();
+    header.set('Access-Control-Allow-Origin', '*');
+     return this.http.post(this.apiurl,UserCred,{headers: header});
    }
    IsLoggedIn(){
      return localStorage.getItem('token')!=null;
