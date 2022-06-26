@@ -3,6 +3,7 @@ import { SecondHeaderComponent } from '../../../second-header/second-header.comp
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import { AuthService } from 'src/app/service/auth.service';
 import { Router } from '@angular/router';
+import { NotificationService } from 'src/app/service/notification.service';
 
 
 @Component({
@@ -19,9 +20,10 @@ export class LoginComponent implements OnInit {
   message = ''
   Customerid: any;
   editdata: any;
+  submitted = false;
   responsedata: any;
 
-  constructor(private service: AuthService,private route:Router) {
+  constructor(private service: AuthService,private route:Router,private notifyService : NotificationService) {
     localStorage.clear();
   }
   Login = new FormGroup({
@@ -39,14 +41,22 @@ export class LoginComponent implements OnInit {
     this.showPassword = !this.showPassword;
   }
   ProceedLogin() {
+    this.submitted = true;
+    if (this.Login.invalid) {
+      return;
+    }
     if (this.Login.valid) {
       this.service.ProceedLogin(this.Login.value).subscribe(result => {
-        if(result!=null){
+        if(result!=null ){
           this.responsedata=result;
-          localStorage.setItem('token',this.responsedata.jwtToken)
-          this.route.navigate([''])
+          this.responsedata.data =this.responsedata.data;
+          localStorage.setItem('token',this.responsedata.data.refreshToken)
+          localStorage.setItem('user',JSON.stringify(this.responsedata.data))
+          this.notifyService.showSuccess(this.responsedata.message, "");
+        }else{
+          this.notifyService.showError("Unable to login", ""); 
         }
-
+        this.route.navigate([''])
       });
     }
   }
