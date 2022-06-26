@@ -18,6 +18,7 @@ customerdata:any;
   LoadCustomer(){
     this.service.LoadCustomer().subscribe(data=>{
       this.customerdata=data;
+      this.customerdata=this.customerdata.data;
     });
   }
 

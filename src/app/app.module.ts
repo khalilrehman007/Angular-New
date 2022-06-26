@@ -49,6 +49,7 @@ import { ListpropertyverifyComponent } from './pages/listproperties/listproperty
 import { ListpropertypublishComponent } from './pages/listproperties/listpropertypublish/listpropertypublish.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -75,7 +76,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     ListpropertyinfoComponent,
     ListpropertymediaComponent,
     ListpropertyverifyComponent,
-    ListpropertypublishComponent 
+    ListpropertypublishComponent    
   ],
   imports: [
     BrowserModule,
@@ -99,7 +100,9 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatCheckboxModule,
     MatListModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   providers: [
     // CookieService,{provide:HTTP_INTERCEPTORS,useClass:TokenInterceptorService,multi:true}

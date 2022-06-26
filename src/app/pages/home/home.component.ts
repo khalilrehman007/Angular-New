@@ -22,6 +22,7 @@ export class HomeComponent implements OnInit {
   brandimg = 'assets/images/better-home.svg'
   listingsliderimg = 'assets/images/property-listing-slider-img.png'
   blogs: any;
+  user: any;
   dynamicSlides = [
     {
       id: 'slide1',
@@ -231,21 +232,23 @@ export class HomeComponent implements OnInit {
   ngOnInit():void {
     
     $(document).ready(function(){
-      $('.dropdown-toggle').click(function(){
-      $(this).next().toggleClass('active');
-      });
-  });
+        $('.dropdown-toggle').click(function(){
+        $(this).next().toggleClass('active');
+        });
+    });
   }
   LoadBlogs(){
     this.service.LoadBlogs().subscribe(data=>{
       this.blogs=data;
       this.blogs=this.blogs.data;
-      // array.forEach(element => {
-        
-      // });
-    console.log(this.blogs);
-
     });
+  }
+  getUser(){
+    this.user = localStorage.getItem('user');
+    if(this.user != ''){
+      this.user = JSON.parse(this.user);
+    }
+    return this.user;
   }
  
   selected = 'option1';

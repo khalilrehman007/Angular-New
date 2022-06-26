@@ -17,4 +17,5 @@ export class AppService {
   LoadBlogById(){
     return this.http.get(this.apiurl+'blog/'+this.id);
   }
+  
 }

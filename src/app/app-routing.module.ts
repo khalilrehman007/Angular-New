@@ -40,6 +40,7 @@ const routes: Routes = [
   { path:  'listpropertypublish', component:  ListpropertypublishComponent},
   { path: "blogs", component: BlogsComponent },
   { path: "blogs/:id", component: BlogViewComponent },
+  
 ];
 
 @NgModule({

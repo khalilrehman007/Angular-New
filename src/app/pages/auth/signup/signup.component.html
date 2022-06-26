@@ -3,30 +3,52 @@
 </header>
 <section ngClass="auth-wrapper">
 <div ngClass="form-design signup-page">
-  <form class="auth-form">
+  <form class="auth-form" [formGroup]="signup" (ngSubmit)="ProceedSignUp()">
     <div ngClass="wecome-message">
       <h2>Welcome to Ovaluate</h2>
       <p>Welcome back! Please enter your details.</p>
     </div>
     <mat-form-field class="full-width input-design" appearance="fill">
-        <mat-label>Full Name</mat-label>
-        <input matInput type="text" placeholder="First Last">
+        <mat-label>First Name</mat-label>
+        <input matInput type="text" formControlName="FirstName" placeholder="First Last" required ngModel>
       </mat-form-field>
+    <div *ngIf="submitted && validate['FirstName'].errors" class="alert alert-danger">
+      <div *ngIf="validate['FirstName'].errors['required']">FirstName is required</div>
+    </div>
+      <mat-form-field class="full-width input-design" appearance="fill">
+        <mat-label>Last Name</mat-label>
+        <input matInput type="text" formControlName="LastName" placeholder="Last Name" required ngModel>
+      </mat-form-field>
+      <div *ngIf="submitted && validate['LastName'].errors" class="alert alert-danger">
+        <div *ngIf="validate['LastName'].errors['required']">Last Name is required</div>
+      </div>
     <mat-form-field class="full-width input-design" appearance="fill">
       <mat-label>Email</mat-label>
-      <input matInput type="email">
+      <input matInput type="email" formControlName="Email" required ngModel>
     </mat-form-field>
+  <div *ngIf="submitted && validate['Email'].errors" class="alert alert-danger">
+    <div *ngIf="validate['Email'].errors['required']">Email is required</div>
+  </div>
     <mat-form-field class="full-width input-design" appearance="fill">
         <mat-label>Phone</mat-label>
-        <input matInput type="number">
-      </mat-form-field>
+        <input matInput type="text" formControlName="PhoneNumber" required ngModel>
+    </mat-form-field>
+  <div *ngIf="submitted && validate['PhoneNumber'].errors" class="alert alert-danger">
+    <div *ngIf="validate['PhoneNumber'].errors['required']">Phone Number is required</div>
+  </div>
+  
     <mat-form-field class="full-width input-design padd-b-0" appearance="fill">
       <mat-label>Password</mat-label>
-      <input matInput [type]="showPassword ? 'text' : 'password'" name="password">
+      <input matInput [type]="showPassword ? 'text' : 'password'" formControlName="Password" required ngModel>
+      
       <mat-icon matSuffix (click)="togglePasswordVisibility()">
         {{showPassword?'visibility_off':'visibility'}}
     </mat-icon>
     </mat-form-field>
+    
+  <div *ngIf="submitted && validate['Password'].errors" class="alert alert-danger">
+    <div *ngIf="validate['Password'].errors['required']">Password is required</div>
+  </div>
     <div ngClass="hint-text">
         <p>At least 8 characters</p>
         <p>Mix of letters and numbers</p>

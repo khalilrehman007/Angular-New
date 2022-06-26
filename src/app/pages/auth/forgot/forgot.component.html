@@ -3,15 +3,19 @@
 </header>
 <section ngClass="auth-wrapper">
 <div ngClass="form-design login-page">
-  <form class="auth-form">
+  <form class="auth-form" [formGroup]="forgot" (ngSubmit)="ProceedForgot()">
     <div ngClass="wecome-message">
       <h2>Welcome to Ovaluate</h2>
       <p>Welcome back! Please enter your details.</p>
     </div>
     <mat-form-field class="full-width input-design" appearance="fill">
       <mat-label>Email</mat-label>
-      <input matInput type="email" placeholder="Email">
+      <input matInput type="email" formControlName="Email" placeholder="Email">
     </mat-form-field>
+    
+  <div *ngIf="submitted && validate['Email'].errors" class="alert alert-danger">
+    <div *ngIf="validate['Email'].errors['required']">Email is required</div>
+  </div>
     <mat-card-actions>
       <button mat-raised-button type="submit" ngClass="submit-btn">Send</button>
    </mat-card-actions>

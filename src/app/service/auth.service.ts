@@ -5,17 +5,20 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AuthService {
-  apiurl='https://www.ovaluate.com/api/Userlogin';
+  apiurl='https://www.ovaluate.com/api/';
   
   constructor(private http:HttpClient) {
 
    }
-   ProceedLogin(UserCred:any){
-    console.log(UserCred);
-    let header = new HttpHeaders();
-    header.set('Access-Control-Allow-Origin', '*');
-     return this.http.post(this.apiurl,UserCred,{headers: header});
+   ProceedLogin(data:any){
+     return this.http.post(this.apiurl+'Userlogin',data);
    }
+   ProceedSignUp(data:any){
+    return this.http.post(this.apiurl+'UserRegister',data);
+  }
+  ProceedForgot(data:any){
+    return this.http.post(this.apiurl+'ForgotPassword',data);
+  }
    IsLoggedIn(){
      return localStorage.getItem('token')!=null;
    }
