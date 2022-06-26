@@ -60,6 +60,7 @@ export class HeaderComponent implements OnInit {
   user: any;
   constructor(private route:Router) { 
     this.getUser();
+    console.log(this.user)
   }
 
   ngOnInit() {
@@ -78,7 +79,7 @@ export class HeaderComponent implements OnInit {
   }
   logout(){
     localStorage.clear();
-    this.route.navigate(['/'])
+    this.route.navigate([''])
   }
 
 }
