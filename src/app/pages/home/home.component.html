@@ -53,13 +53,13 @@
                                     </div>
                                   <div ngClass="price-type_tabs">
                                     <h5 ngClass="h5-heading">Rental Type</h5>
-                                    <ul ngClass="nav nav-tabs" role="tablist">
+                                    <ul ngClass="nav nav-tabs" role="tablist" *ngFor=" let category of categories">
                                       <li ngClass="nav-item">
-                                        <a ngClass="nav-link active" data-bs-toggle="tab" href="#Monthly">Monthly</a>
+                                        <a ngClass="nav-link active" data-bs-toggle="tab" href="#Monthly">{{category.categoryName}}</a>
                                       </li>
-                                      <li ngClass="nav-item">
+                                      <!-- <li ngClass="nav-item">
                                         <a ngClass="nav-link" data-bs-toggle="tab" href="#Yearly">Yearly</a>
-                                      </li>
+                                      </li> -->
                                     </ul>
                                   </div>
                               </div>
@@ -75,7 +75,7 @@
                               <div ngClass="dropdown-menu" id="property-type-sec">
                               <h5 ngClass="h5-heading">Property Type</h5>
                                 <div ngClass="property-types-heading">
-                                  <ul ngClass="nav nav-tabs" role="tablist">
+                                  <ul ngClass="nav nav-tabs" role="tablist" >
                                     <li ngClass="nav-item">
                                       <a ngClass="nav-link active" data-bs-toggle="tab" href="#Residentials"><span ngClass="circle-celection"></span> Residential</a>
                                     </li>
@@ -86,7 +86,7 @@
                                 </div>
                                 <div ngClass="property-types-cntnts">
                                   <div ngClass="tab-content">
-                                  <div id="Residentials" ngClass="tab-pane active"> 
+                                  <div id="Residentials" ngClass="tab-pane active" > 
                                     <h5 ngClass="h5-heading">Residential Unit Type</h5>
                                   <ul ngClass="list-unstyled residentails-unit-list">
                                     <li ngClass="d-flex">
