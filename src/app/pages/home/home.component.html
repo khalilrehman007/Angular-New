@@ -53,13 +53,13 @@
                                     </div>
                                   <div ngClass="price-type_tabs">
                                     <h5 ngClass="h5-heading">Rental Type</h5>
-                                    <ul ngClass="nav nav-tabs" role="tablist" *ngFor=" let category of categories">
+                                    <ul ngClass="nav nav-tabs" role="tablist">
                                       <li ngClass="nav-item">
-                                        <a ngClass="nav-link active" data-bs-toggle="tab" href="#Monthly">{{category.categoryName}}</a>
+                                        <a ngClass="nav-link active" data-bs-toggle="tab" href="#Monthly">Monthly</a>
                                       </li>
-                                      <!-- <li ngClass="nav-item">
+                                      <li ngClass="nav-item">
                                         <a ngClass="nav-link" data-bs-toggle="tab" href="#Yearly">Yearly</a>
-                                      </li> -->
+                                      </li>
                                     </ul>
                                   </div>
                               </div>
@@ -75,27 +75,28 @@
                               <div ngClass="dropdown-menu" id="property-type-sec">
                               <h5 ngClass="h5-heading">Property Type</h5>
                                 <div ngClass="property-types-heading">
-                                  <ul ngClass="nav nav-tabs" role="tablist" >
+                                  <ul ngClass="nav nav-tabs" role="tablist" *ngFor=" let category of categories" >
                                     <li ngClass="nav-item">
-                                      <a ngClass="nav-link active" data-bs-toggle="tab" href="#Residentials"><span ngClass="circle-celection"></span> Residential</a>
+                                      <a ngClass="nav-link {{category.checked}}"    data-bs-toggle="tab" href="#{{category.id + '_' + category.categoryName}}" ><span ngClass="circle-celection"></span> {{category.categoryName}}</a>
                                     </li>
-                                    <li ngClass="nav-item">
+                                    <!-- <li ngClass="nav-item">
                                       <a ngClass="nav-link" data-bs-toggle="tab" href="#Commercial"><span ngClass="circle-celection"></span> Commercial</a>
-                                    </li>
+                                    </li> -->
                                   </ul>
                                 </div>
                                 <div ngClass="property-types-cntnts">
-                                  <div ngClass="tab-content">
-                                  <div id="Residentials" ngClass="tab-pane active" > 
+                                  <div ngClass="tab-content" *ngFor=" let category of categories">
+                                  <div ngClass="tab-content" >
+                                  <div id="{{category.id + '_' + category.categoryName}}" ngClass="tab-pane {{category.checked}}" > 
                                     <h5 ngClass="h5-heading">Residential Unit Type</h5>
-                                  <ul ngClass="list-unstyled residentails-unit-list">
+                                  <ul ngClass="list-unstyled residentails-unit-list" *ngFor=" let type of category.propertyTypes">
                                     <li ngClass="d-flex">
                                       <div ngClass="position-relative">
-                                      <input type="checkbox" name="Studio">
+                                      <input type="checkbox" name="{{type.typeDescription}}">
                                       <span ngClass="property_sel"></span>
                                       </div>
                                       <div ngClass="proprty_name">
-                                        <p>Studio</p>
+                                        <p>{{type.typeDescription}}</p>
                                       </div>
                                     </li>
                                     <li ngClass="d-flex">
@@ -107,7 +108,7 @@
                                         <p>Apartment</p>
                                       </div>
                                     </li>
-                                    <li ngClass="d-flex">
+                                    <!-- <li ngClass="d-flex">
                                       <div ngClass="position-relative">
                                       <input type="checkbox" name="Villa">
                                       <span ngClass="property_sel"></span>
@@ -196,10 +197,10 @@
                                       <div ngClass="proprty_name">
                                         <p>Hotel & Hotel Apartment</p>
                                       </div>
-                                    </li>
+                                    </li> -->
                                   </ul>
                                   </div>
-                                  <div id="Commercial" ngClass="tab-pane fade"> 
+                                  <!-- <div id="Commercial" ngClass="tab-pane fade"> 
                                     <h5 ngClass="h5-heading">Commercial Unit Type</h5>
                                     <ul ngClass="list-unstyled residentails-unit-list">
                                       <li ngClass="d-flex">
@@ -338,8 +339,9 @@
                                         </div>
                                       </li>
                                     </ul>
-                                    </div>
+                                    </div> -->
                                   </div>
+                                </div>
                                 </div>
                               </div>
                             </div>
