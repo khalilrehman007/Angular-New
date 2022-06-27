@@ -13,12 +13,14 @@ export class HeaderComponent implements OnInit {
   chartsvg = '../../assets/images/Charts-nav.svg'
   signinsvg = '../../assets/images/user.svg'
   flagsvg = '../../assets/images/aed-fg.svg'
+  loggedInUser = localStorage.getItem('user')
+  user : any
   sidebar = [
     {
       src: '../../assets/images/icons/login.svg',
       class: 'nav-items sign-in',
-      text: 'Sign in',
-      link: 'login',
+      text: this.loggedInUser == null ? 'Sign in' : JSON.parse(this.loggedInUser).fullName,
+      link: this.loggedInUser == null ? 'login' : 'profile',
     },
     {
       src: '../../assets/images/icons/ioi.svg',
@@ -57,7 +59,6 @@ export class HeaderComponent implements OnInit {
       link: '',
     }
   ]
-  user: any;
   constructor(private route:Router) { 
     this.getUser();
     console.log(this.user)
@@ -79,7 +80,7 @@ export class HeaderComponent implements OnInit {
   }
   logout(){
     localStorage.clear();
-    this.route.navigate([''])
+    this.route.navigate(['login'])
   }
 
 }

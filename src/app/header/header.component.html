@@ -53,10 +53,10 @@
                   </a>
                </li> 
                <li ngClass="nav-item signin-li">
-                <div #noListItemTmpl *ng-if="user.fullName === null">
+                <div #noListItemTmpl *ngIf="user == null">
                   <a ngClass="nav-link"  [routerLink]="['/login']"><img src="{{signinsvg}}"> Sign in </a>
                 </div>
-                <div #noListItemTmpl *ng-if="user.fullName !== null">
+                <div #noListItemTmpl *ngIf="user !== null">
                   <a ngClass="nav-link" [routerLink]="['/profile']">{{user.fullName}} </a>
                   <a ngClass="nav-link"  (click)="logout()"> Logout </a>
                 </div>
