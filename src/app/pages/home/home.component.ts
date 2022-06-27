@@ -252,7 +252,6 @@ export class HomeComponent implements OnInit {
         }
         return category;
       })
-      console.log(this.categories)
       
     });
   }
