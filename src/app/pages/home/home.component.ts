@@ -224,8 +224,11 @@ export class HomeComponent implements OnInit {
     },
     nav: false
   }
+  categories: any;
+  types: any;
   
-  constructor(private service:AppService) { 
+  constructor(private service:AppService) {
+    this.LoadPropertyCategories() 
     this.LoadBlogs();
   }
   ngOnInit():void {
@@ -236,10 +239,37 @@ export class HomeComponent implements OnInit {
         });
     });
   }
+
+  LoadPropertyCategories(){
+    this.service.LoadPropertyCategories().subscribe(data=>{
+      this.categories=data;
+      // this.categories = this.categories.data
+      // 
+      this.categories = this.categories.data.filter((category:any, key:any, array:any)=>{
+        category.checked = '';
+        if(key == 0){
+          category.checked = 'avtive'
+        }
+        return category;
+      })
+      console.log(this.categories)
+      
+    });
+  }
+  LoadPropertyTypes(){
+    this.service.LoadPropertyTypes().subscribe(data=>{
+      this.types=data;
+      this.types = this.types.data
+    });
+  }
   LoadBlogs(){
     this.service.LoadBlogs().subscribe(data=>{
       this.blogs=data;
-      this.blogs=this.blogs.data;
+      this.blogs = this.blogs.data.filter((blog:any, key:any, array:any)=>{
+        if(key < 3){
+          return blog;
+        }
+      })
     });
   }
  
