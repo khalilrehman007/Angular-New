@@ -250,6 +250,17 @@ export class HomeComponent implements OnInit {
         if(key == 0){
           category.checked = 'avtive'
         }
+        // category.propertyTypes = [{
+        //   "id": 1,
+        //   "propertyCategoryId": 1,
+        //   "typeDescription": "Apartment",
+        // },
+        // {
+        //   "id": 1,
+        //   "propertyCategoryId": 1,
+        //   "typeDescription": "Apartment",
+        // }]
+       
         return category;
       })
       
