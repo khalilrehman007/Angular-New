@@ -50,6 +50,7 @@ import { ListpropertypublishComponent } from './pages/listproperties/listpropert
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { ToastrModule } from 'ngx-toastr';
+import { FiltersoftypeComponent } from './pages/home/filtersoftype/filtersoftype.component';
 
 
 @NgModule({
@@ -76,7 +77,8 @@ import { ToastrModule } from 'ngx-toastr';
     ListpropertyinfoComponent,
     ListpropertymediaComponent,
     ListpropertyverifyComponent,
-    ListpropertypublishComponent    
+    ListpropertypublishComponent,
+    FiltersoftypeComponent    
   ],
   imports: [
     BrowserModule,

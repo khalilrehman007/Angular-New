@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AuthService {
-  apiurl='https://www.ovaluate.com/api/';
+  apiurl='https://beta.ovaluate.com/api/';
   
   constructor(private http:HttpClient) {
 
