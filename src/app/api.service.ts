@@ -8,7 +8,7 @@ export class AppService {
 
   constructor(private http: HttpClient) { }
 
-  rootURL = 'https://www.ovaluate.com/api';
+  rootURL = 'https://beta.ovaluate.com/api';
 
   getBlogs() {
     return this.http.get(this.rootURL + '/blogs');

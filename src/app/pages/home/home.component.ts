@@ -248,19 +248,8 @@ export class HomeComponent implements OnInit {
       this.categories = this.categories.data.filter((category:any, key:any, array:any)=>{
         category.checked = '';
         if(key == 0){
-          category.checked = 'avtive'
+          category.checked = 'active'
         }
-        // category.propertyTypes = [{
-        //   "id": 1,
-        //   "propertyCategoryId": 1,
-        //   "typeDescription": "Apartment",
-        // },
-        // {
-        //   "id": 1,
-        //   "propertyCategoryId": 1,
-        //   "typeDescription": "Apartment",
-        // }]
-       
         return category;
       })
       
