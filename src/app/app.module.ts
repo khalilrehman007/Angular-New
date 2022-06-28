@@ -50,6 +50,18 @@ import { ListpropertypublishComponent } from './pages/listproperties/listpropert
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { ToastrModule } from 'ngx-toastr';
+import {MatTabsModule} from '@angular/material/tabs';
+import { RentCommertialComponent } from './pages/listproperties/components/rent-commertial/rent-commertial.component';
+import { SellCommertialComponent } from './pages/listproperties/components/sell-commertial/sell-commertial.component';
+import { SellResidentialComponent } from './pages/listproperties/components/sell-residential/sell-residential.component';
+import { PropertyDetailsComponent } from './pages/PropertyValuation/property-details/property-details.component';
+import { PropertyTypesComponent } from './pages/PropertyValuation/property-types/property-types.component';
+import { PropertyDocumentsComponent } from './pages/PropertyValuation/property-documents/property-documents.component';
+import { PropertyReviewComponent } from './pages/PropertyValuation/property-review/property-review.component';
+import { PropertySelectReportComponent } from './pages/PropertyValuation/property-select-report/property-select-report.component';
+import { PropertyPaymentComponent } from './pages/PropertyValuation/property-payment/property-payment.component';
+import { PropertyDownloadReportComponent } from './pages/PropertyValuation/property-download-report/property-download-report.component';
+
 
 
 @NgModule({
@@ -76,7 +88,17 @@ import { ToastrModule } from 'ngx-toastr';
     ListpropertyinfoComponent,
     ListpropertymediaComponent,
     ListpropertyverifyComponent,
-    ListpropertypublishComponent    
+    ListpropertypublishComponent,
+    RentCommertialComponent,
+    SellCommertialComponent,
+    SellResidentialComponent,
+    PropertyDetailsComponent,
+    PropertyTypesComponent,
+    PropertyDocumentsComponent,
+    PropertyReviewComponent,
+    PropertySelectReportComponent,
+    PropertyPaymentComponent,
+    PropertyDownloadReportComponent  
   ],
   imports: [
     BrowserModule,
@@ -102,6 +124,7 @@ import { ToastrModule } from 'ngx-toastr';
     MatDatepickerModule,
     MatNativeDateModule,
     BrowserAnimationsModule,
+    MatTabsModule,
     ToastrModule.forRoot()
   ],
   providers: [

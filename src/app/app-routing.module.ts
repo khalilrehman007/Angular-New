@@ -24,6 +24,16 @@ import { ListpropertyverifyComponent } from './pages/listproperties/listproperty
 import { ListpropertypublishComponent } from './pages/listproperties/listpropertypublish/listpropertypublish.component';
 import { BlogsComponent } from './pages/blogs/blogs.component';
 import { BlogViewComponent } from './pages/blog-view/blog-view.component';
+import { RentCommertialComponent } from './pages/listproperties/components/rent-commertial/rent-commertial.component';
+import { SellCommertialComponent } from './pages/listproperties/components/sell-commertial/sell-commertial.component';
+import { SellResidentialComponent } from './pages/listproperties/components/sell-residential/sell-residential.component';
+import { PropertyDetailsComponent } from './pages/PropertyValuation/property-details/property-details.component';
+import { PropertyTypesComponent } from './pages/PropertyValuation/property-types/property-types.component';
+import { PropertyDocumentsComponent } from './pages/PropertyValuation/property-documents/property-documents.component';
+import { PropertyReviewComponent } from './pages/PropertyValuation/property-review/property-review.component';
+import { PropertySelectReportComponent } from './pages/PropertyValuation/property-select-report/property-select-report.component';
+import { PropertyPaymentComponent } from './pages/PropertyValuation/property-payment/property-payment.component';
+import { PropertyDownloadReportComponent } from './pages/PropertyValuation/property-download-report/property-download-report.component';
 
 const routes: Routes = [
   { path:  '', component:  HomeComponent},
@@ -38,6 +48,16 @@ const routes: Routes = [
   { path:  'listpropertymedia', component:  ListpropertymediaComponent},
   { path:  'listpropertyverify', component:  ListpropertyverifyComponent},
   { path:  'listpropertypublish', component:  ListpropertypublishComponent},
+  { path:  'RentCommertial', component:  RentCommertialComponent},
+  { path:  'SellCommertial', component:  SellCommertialComponent},
+  { path:  'SellResidential', component:  SellResidentialComponent},
+  { path:  'PropertyDetail', component:  PropertyDetailsComponent},
+  { path:  'PropertyType', component:  PropertyTypesComponent},
+  { path:  'PropertyDocument', component:  PropertyDocumentsComponent},
+  { path:  'PropertyReview', component:  PropertyReviewComponent},
+  { path:  'PropertySelectReport', component:  PropertySelectReportComponent},
+  { path:  'PropertyPayment', component:  PropertyPaymentComponent},
+  { path:  'PropertyDownloadReport', component:  PropertyDownloadReportComponent},
   { path: "blogs", component: BlogsComponent },
   { path: "blogs/:id", component: BlogViewComponent },
   
