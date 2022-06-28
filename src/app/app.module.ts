@@ -61,7 +61,7 @@ import { PropertyReviewComponent } from './pages/PropertyValuation/property-revi
 import { PropertySelectReportComponent } from './pages/PropertyValuation/property-select-report/property-select-report.component';
 import { PropertyPaymentComponent } from './pages/PropertyValuation/property-payment/property-payment.component';
 import { PropertyDownloadReportComponent } from './pages/PropertyValuation/property-download-report/property-download-report.component';
-
+import { FiltersoftypeComponent } from './pages/home/filtersoftype/filtersoftype.component';
 
 
 @NgModule({
@@ -98,7 +98,8 @@ import { PropertyDownloadReportComponent } from './pages/PropertyValuation/prope
     PropertyReviewComponent,
     PropertySelectReportComponent,
     PropertyPaymentComponent,
-    PropertyDownloadReportComponent  
+    PropertyDownloadReportComponent,  
+    FiltersoftypeComponent    
   ],
   imports: [
     BrowserModule,

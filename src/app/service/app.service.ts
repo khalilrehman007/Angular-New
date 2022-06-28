@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AppService {
-  apiurl='https://www.ovaluate.com/api/';
+  apiurl='https://beta.ovaluate.com/api/';
   id=0;
   headers: HttpHeaders = new HttpHeaders ({
     'Content-Type': 'application/json',
@@ -15,9 +15,12 @@ export class AppService {
     
   }
   LoadPropertyCategories(){
-    
     return this.http.get(this.apiurl+'PropertyCategories',{headers:this.headers});
   }
+  ProceedSearch(data:any){
+    return this.http.get(this.apiurl+'PropertyCategories',{headers:this.headers});
+  }
+  
   LoadPropertyTypes(){
     return this.http.get(this.apiurl+'PropertyType/');
   }
