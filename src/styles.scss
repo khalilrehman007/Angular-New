@@ -1803,3 +1803,36 @@ display: none;
     margin-top: 2px;
     text-align: right;
 }
+.checkbox-flex-box.flex-start {
+    justify-content: flex-start;
+}
+.checkbox-flex-box.flex-start>.checkbox-design {
+    margin-right: 12px;
+}
+.input-overlay-layer {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    color: rgba(0, 0, 0, 0.2);
+    border-left: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 0px 10px;
+    background: #fff;
+    border: 1px solid #D3DBFF;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    margin-bottom: 0px;
+    width: 68px;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 500;
+}
+.grey-input-bg .mat-form-field-flex {
+    background: #F8F8F8;
+}
+.grey-input-bg .input-overlay-layer {
+    background: #f8f8f8;
+}
