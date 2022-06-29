@@ -59,14 +59,19 @@ export class SignupComponent implements OnInit {
       this.service.ProceedSignUp(this.signup.value).subscribe(result => {
         if(result!=null ){
           this.responsedata = result;
-          this.responsedata.data =this.responsedata.data;
-          localStorage.setItem('token',JSON.stringify(this.responsedata.data.refreshToken))
-          localStorage.setItem('user',JSON.stringify(this.responsedata.data))
-          this.notifyService.showSuccess(this.responsedata.message, "");
+          if(this.responsedata.data !== undefined){
+            // this.responsedata.data = this.responsedata.data;
+            localStorage.setItem('token',JSON.stringify(this.responsedata.data.refreshToken))
+            localStorage.setItem('user',JSON.stringify(this.responsedata.data))
+            this.notifyService.showSuccess(this.responsedata.message, "");
+            this.route.navigate([''])
+          }else{
+            this.notifyService.showError(this.responsedata.error.value, "");
+          }
         }else{
           this.notifyService.showError("Unable to signup", "");
         }
-        this.route.navigate([''])
+        // this.route.navigate([''])
       });
     }
   }

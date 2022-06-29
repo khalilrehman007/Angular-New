@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   goggle = '../../../../assets/images/btns/google-1.svg'
   apple = '../../../../assets/images/btns/apple-1.svg'
   emailFormControl = new FormControl('', [Validators.required, Validators.email]);
-  
+
   messageclass = ''
   message = ''
   Customerid: any;
@@ -48,15 +48,23 @@ export class LoginComponent implements OnInit {
     if (this.Login.valid) {
       this.service.ProceedLogin(this.Login.value).subscribe(result => {
         if(result!=null ){
-          this.responsedata=result;
-          this.responsedata.data =this.responsedata.data;
-          localStorage.setItem('token',this.responsedata.data.refreshToken)
-          localStorage.setItem('user',JSON.stringify(this.responsedata.data))
-          this.notifyService.showSuccess(this.responsedata.message, "");
+          this.responsedata = result
+          if(this.responsedata.data !== null){
+            // this.responsedata.data = this.responsedata.data;
+            localStorage.setItem('token',JSON.stringify(this.responsedata.data.refreshToken))
+            localStorage.setItem('user',JSON.stringify(this.responsedata.data))
+            this.notifyService.showSuccess(this.responsedata.message, "");
+            this.route.navigate([''])
+          }else{
+            if(this.responsedata.error.length > 0){
+              this.notifyService.showError(this.responsedata.error[0], "");
+            }
+            this.notifyService.showError(this.responsedata.message, "");
+          }
         }else{
-          this.notifyService.showError("Unable to login", ""); 
+          this.notifyService.showError("Unable to signup", "");
         }
-        this.route.navigate([''])
+        // this.route.navigate([''])
       });
     }
   }
