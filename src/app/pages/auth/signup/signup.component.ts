@@ -51,7 +51,6 @@ export class SignupComponent implements OnInit {
   }
 
   ProceedSignUp() {
-    console.log(this.signup.valid);
     this.submitted = true;
     if (this.signup.invalid) {
       return;
@@ -59,13 +58,13 @@ export class SignupComponent implements OnInit {
     if (this.signup.valid) {
       this.service.ProceedSignUp(this.signup.value).subscribe(result => {
         if(result!=null ){
-          this.responsedata=result;
+          this.responsedata = result;
           this.responsedata.data =this.responsedata.data;
-          localStorage.setItem('token',this.responsedata.data.refreshToken)
-          localStorage.setItem('user',this.responsedata.data)
+          localStorage.setItem('token',JSON.stringify(this.responsedata.data.refreshToken))
+          localStorage.setItem('user',JSON.stringify(this.responsedata.data))
           this.notifyService.showSuccess(this.responsedata.message, "");
         }else{
-          this.notifyService.showError("Unable to signup", ""); 
+          this.notifyService.showError("Unable to signup", "");
         }
         this.route.navigate([''])
       });

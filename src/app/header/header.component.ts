@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import * as $ from 'jquery';
+import {NotificationService} from "../service/notification.service";
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -59,7 +60,7 @@ export class HeaderComponent implements OnInit {
       link: '',
     }
   ]
-  constructor(private route:Router) { 
+  constructor(private route:Router,private notifyService : NotificationService) {
     this.getUser();
     console.log(this.user)
   }
@@ -79,6 +80,7 @@ export class HeaderComponent implements OnInit {
     return this.user;
   }
   logout(){
+    this.notifyService.showSuccess('Logout Successfully', "");
     localStorage.clear();
     this.route.navigate(['login'])
   }

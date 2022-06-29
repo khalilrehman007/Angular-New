@@ -98,8 +98,8 @@ import { FiltersoftypeComponent } from './pages/home/filtersoftype/filtersoftype
     PropertyReviewComponent,
     PropertySelectReportComponent,
     PropertyPaymentComponent,
-    PropertyDownloadReportComponent,  
-    FiltersoftypeComponent    
+    PropertyDownloadReportComponent,
+    FiltersoftypeComponent
   ],
   imports: [
     BrowserModule,
@@ -126,7 +126,10 @@ import { FiltersoftypeComponent } from './pages/home/filtersoftype/filtersoftype
     MatNativeDateModule,
     BrowserAnimationsModule,
     MatTabsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot({
+      timeOut: 2000,
+      positionClass: 'toast-top-right'
+    })
   ],
   providers: [
     // CookieService,{provide:HTTP_INTERCEPTORS,useClass:TokenInterceptorService,multi:true}
