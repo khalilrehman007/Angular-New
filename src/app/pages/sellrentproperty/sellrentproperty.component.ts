@@ -33,7 +33,7 @@ export class SellrentpropertyComponent implements OnInit {
       id: '028',
       heading:'Landlords/Owners',
       buttontext:'Explore Packages',
-      link:'',
+      link:'https://dx.co.ae/ovaluate/1/listing-packages.html',
       src: 'assets/images/sellrentpage/premium-property-listing-packages.svg',
       desc: 'Landlords already listing'
     },
@@ -41,7 +41,7 @@ export class SellrentpropertyComponent implements OnInit {
       id: '028',
       heading:'Agency/ Brokrage Firms',
       buttontext:'Explore Packages',
-      link:'',
+      link:'https://dx.co.ae/ovaluate/1/listing-packages.html',
       src: 'assets/images/sellrentpage/premium-property-listing-packages.svg',
       desc: 'Agency already listing'
     },
@@ -49,7 +49,7 @@ export class SellrentpropertyComponent implements OnInit {
       id: '028',
       heading:'Agents/Brokers',
       buttontext:'Explore Packages',
-      link:'',
+      link:'https://dx.co.ae/ovaluate/1/listing-packages.html',
       src: 'assets/images/sellrentpage/premium-property-listing-packages.svg',
       desc: 'Landlords already listing'
     },
@@ -57,7 +57,7 @@ export class SellrentpropertyComponent implements OnInit {
       id: '028',
       heading:'Property Managers',
       buttontext:'Explore Packages',
-      link:'',
+      link:'https://dx.co.ae/ovaluate/1/listing-packages.html',
       src: 'assets/images/sellrentpage/premium-property-listing-packages.svg',
       desc: 'Landlords already listing'
     }

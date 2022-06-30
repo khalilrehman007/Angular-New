@@ -19,7 +19,7 @@
               <li>Negotiate directly without any mediator.</li>
             </ul>
             <div ngClass="custom-2btn">
-              <a routerLink="">List Your Property Now!</a>
+              <a routerLink="/listingproperty">List Your Property Now!</a>
             </div>
           </div>
         </div>
@@ -52,7 +52,7 @@
       </div>
       </div>
       <div ngClass="green-btn-design text-center">
-        <a routerLink="" ngClass="green-btn">List Your Property Now!</a>
+        <a routerLink="/listingproperty" ngClass="green-btn">List Your Property Now!</a>
       </div>
     </div>
    </section>
@@ -72,7 +72,7 @@
                 <h1>{{property.id}}</h1>
                 <p>{{property.desc}}</p>
                 <div ngClass="btn-custom">
-                  <a routerLink="{{property.link}}">{{property.buttontext}}</a>
+                  <a href="{{property.link}}">{{property.buttontext}}</a>
                 </div>
               </div>
               <div ngClass="listing-premium-img">

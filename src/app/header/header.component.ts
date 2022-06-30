@@ -30,10 +30,22 @@ export class HeaderComponent implements OnInit {
       link: '',
     },
     {
+      src: '../../assets/images/icons/rent-icon.svg',
+      class: 'nav-items buy',
+      text: 'Rent',
+      link: '',
+    },
+    {
       src: '../../assets/images/icons/sell.svg',
       class: 'nav-items sell',
       text: 'Sell',
-      link: 'listingproperty',
+      link: 'sellrent',
+    },
+    {
+      src: '../../assets/images/icons/land.svg',
+      class: 'nav-items sell',
+      text: 'Land',
+      link: '',
     },
     {
       src: '../../assets/images/icons/building.svg',
@@ -57,7 +69,7 @@ export class HeaderComponent implements OnInit {
       src: '../../assets/images/icons/book.svg',
       class: 'nav-items blog',
       text: 'Blog',
-      link: '',
+      link: 'blogs',
     }
   ]
   constructor(private route:Router,private notifyService : NotificationService) {
