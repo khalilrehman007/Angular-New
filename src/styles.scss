@@ -1836,3 +1836,128 @@ display: none;
 .grey-input-bg .input-overlay-layer {
     background: #f8f8f8;
 }
+body .alert-danger {
+    color: #842029;
+    background-color: transparent;
+    border: none;
+    padding: 0px !important;
+    font-size: 12px;
+    margin-top: 2px;
+}
+.outpup-filename:empty+.action-btns {
+    display: none;
+}
+.blue-upload-bordered-btn {
+    border: 1.5px solid #E0DEF7;
+    border-radius: 8px;
+    padding: 20px 15px 15px 15px;
+    position: relative;
+}
+.blue-heading {
+    color: #1B1571;
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+.greybordered-btn button {
+    border: 1px dashed #BCC0D4;
+    width: 100%;
+    background: transparent;
+    border-radius: 6px;
+    font-size: 11px;
+    color: #5E6870;
+    text-align: left;
+    padding: 9px 15px;
+    position: relative;
+    line-height: normal;
+}
+.greybordered-btn button img {
+    position: absolute;
+    right: 15px;
+}
+.greybordered-btn button:hover {
+    background: rgba(188,192,212,0.3);
+}
+.accepted-file-text {
+    margin-bottom: 0px;
+    color: #AFAFAF;
+    font-size: 11px;
+    font-weight: 400;
+    padding-top: 8px;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+.drag-drop-text {
+    margin-bottom: 0px;
+    color: #4A565F;
+    font-size: 11px;
+    font-weight: 400;
+    display: none;
+    padding: 8px 0px;
+}
+.succesfull-uploaded {
+    position: absolute;
+    top: -12px;
+    background: #2DB57D;
+    border-radius: 4px;
+    border: none;
+    font-size: 9px;
+    color: #fff;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    left: 15px;
+}
+.succesfull-uploaded img {
+    margin-right: 3px;
+    vertical-align: sub;
+}
+.uploded-output {
+    padding-top: 15px;
+}
+.outpup-filename:empty~.drag-drop-text {
+    display: block !important;
+}
+.outpup-filename:empty~.succesfull-uploaded {
+    display: none;
+}
+.outpup-filename {
+    color: #AFAFAF;
+    font-size: 12px;
+    font-weight: 400;
+    display: inline-block;
+    width: 75%;
+        white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: relative;
+    top: 6px;
+}
+.outpup-filename:empty {
+    display: initial;
+}
+.outpup-filename+.action-btns {
+    display: inline-block;
+    width: 25%;
+    text-align: right;
+}
+.outpup-filename+.action-btns button {
+    border: none;
+    background: transparent;
+    padding: 2px;
+}
+.blue-upload-box {
+    height: 100%;
+}
+.blue-upload-bordered-btn {
+    height: 85%;
+}
+.greybordered-btn .btn-txt {
+    display: none;
+}
+.other-document-upload .outpup-filename {
+    top: 0px;
+    font-size: 11px;
+}
+.outpup-filename:empty~.btn-txt {
+    display: block;
+}

@@ -1,1 +1,213 @@
-<p>property-documents works!</p>
+<header>
+    <app-second-header></app-second-header>
+</header>
+<section ngClass="property-valuation-sec">
+   <div ngClass="listing-container full-width">
+    <div ngClass="heading-title-sec text-center">
+        <h2>Property Valuation</h2>
+        <p>Make sure you filled in all the necessary fields and have uploaded all the required files.</p>
+    </div>
+    <div ngClass="listing-property-form-sec">
+        <div ngClass="listing-property-ul">
+            <mat-list>
+                <mat-list-item ngClass="active"> <a routerLink=""><span ngClass="">1</span> Details</a> </mat-list-item>
+                <mat-list-item ngClass="active"><a routerLink=""><span ngClass="">2</span> Type</a></mat-list-item>
+                <mat-list-item ngClass="active"> <a routerLink=""><span ngClass="">3</span> Documents</a> </mat-list-item>
+                <mat-list-item ngClass="disabled"> <a routerLink=""><span ngClass="">4</span> Review</a> </mat-list-item>
+                <mat-list-item ngClass="disabled"> <a routerLink=""><span ngClass="">5</span> Select Report</a> </mat-list-item>
+                <mat-list-item ngClass="disabled"> <a routerLink=""><span ngClass="">6</span> Payment</a> </mat-list-item>
+                <mat-list-item ngClass="disabled"> <a routerLink=""><span ngClass="">7</span> Download Report</a> </mat-list-item>
+            </mat-list>
+        </div>
+        <div ngClass="list-property-content">
+            <div ngClass="list-property-body">
+                <form>
+                <div ngClass="form-border-wrapper">
+                    <div ngClass="list-property-header">
+                        <h5 ngClass="h5-heading">Documents</h5>
+                        <p>Please provide your propety type for the valuation</p>
+                    </div>
+                    <div ngClass="madatory-document-upload">
+                        <h6 ngClass="h6-design mb-3">Mandatory Documents to upload*</h6>
+                        <div ngClass="row">
+                        <div ngClass="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                        <div ngClass="blue-upload-box">
+                            <div ngClass="blue-upload-bordered-btn">
+                            <h6 ngClass="blue-heading">Property Tittle Deed</h6>
+                            <div ngClass="upload-files-design">
+                                <div ngClass="greybordered-btn">
+                                <input type="file" hidden  #fileInput   (change)='handleChange($any($event.target).files)' >
+                                <button mat-button (click)="fileInput.click()"><img src="{{upload}}"> Upload Files</button>
+                                </div>
+                                <div ngClass="uploded-output">
+                                <span ngClass="outpup-filename">{{ file }}</span>
+                                <div ngClass="action-btns">
+                                    <button ngClass="trash"><img src="{{trash}}"></button>
+                                    <button ngClass="edit"><img src="{{edit}}"></button>
+                                </div>
+                                <p ngClass="drag-drop-text">Drag & drop file here or Browse</p>
+                                <button ngClass="succesfull-uploaded"><img src="{{checkmark}}"> Uploaded</button>
+                                </div>
+                            </div>
+                            </div>
+                            <p ngClass="accepted-file-text">Accepted File Type: .doc, .pdf, .jpg, .jpeg, .png</p>
+                        </div>
+                        </div>
+                        <div ngClass="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                            <div ngClass="blue-upload-box">
+                                <div ngClass="blue-upload-bordered-btn">
+                                <h6 ngClass="blue-heading">Affection Plan</h6>
+                                <div ngClass="upload-files-design">
+                                    <div ngClass="greybordered-btn">
+                                    <input type="file" hidden  #affectioninput   (change)='affection($any($event.target).files)' >
+                                    <button mat-button (click)="affectioninput.click()"><img src="{{upload}}"> Upload Files</button>
+                                    </div>
+                                    <div ngClass="uploded-output">
+                                    <span ngClass="outpup-filename">{{ affecton }}</span>
+                                    <div ngClass="action-btns">
+                                        <button ngClass="trash"><img src="{{trash}}"></button>
+                                        <button ngClass="edit"><img src="{{edit}}"></button>
+                                    </div>
+                                    <p ngClass="drag-drop-text">Drag & drop file here or Browse</p>
+                                    <button ngClass="succesfull-uploaded"><img src="{{checkmark}}"> Uploaded</button>
+                                    </div>
+                                </div>
+                                </div>
+                                <p ngClass="accepted-file-text">Accepted File Type: .doc, .pdf, .jpg, .jpeg, .png</p>
+                            </div>
+                            </div>
+                            <div ngClass="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                                <div ngClass="blue-upload-box">
+                                    <div ngClass="blue-upload-bordered-btn">
+                                    <h6 ngClass="blue-heading">Property Picture</h6>
+                                    <div ngClass="upload-files-design">
+                                        <div ngClass="greybordered-btn">
+                                        <input type="file" hidden  #propertyInput   (change)='property($any($event.target).files)' >
+                                        <button mat-button (click)="propertyInput.click()"><img src="{{upload}}"> Upload Files</button>
+                                        </div>
+                                        <div ngClass="uploded-output">
+                                        <span ngClass="outpup-filename">{{ propertys }}</span>
+                                        <div ngClass="action-btns">
+                                            <button ngClass="trash"><img src="{{trash}}"></button>
+                                            <button ngClass="edit"><img src="{{edit}}"></button>
+                                        </div>
+                                        <p ngClass="drag-drop-text">Drag & drop file here or Browse</p>
+                                        <button ngClass="succesfull-uploaded"><img src="{{checkmark}}"> Uploaded</button>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <p ngClass="accepted-file-text">Accepted File Type: .doc, .pdf, .jpg, .jpeg, .png</p>
+                                </div>
+                                </div>
+                        </div>
+                    </div>
+                    <div ngClass="other-document-upload">
+                        <h6 ngClass="h6-design mb-3">Other Documents Upload (optional)</h6>
+                        <div ngClass="row">
+                        <div ngClass="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                        <div ngClass="blue-upload-box">
+                            <div ngClass="upload-files-design">
+                                <div ngClass="greybordered-btn">
+                                <input type="file" hidden  #emirateInput   (change)='emiratesfun($any($event.target).files)' >
+                                <button mat-button (click)="emirateInput.click()"><span ngClass="outpup-filename">{{ emirate }}</span> <img src="{{upload}}"> <span ngClass="btn-txt">Picture: Emirates ID (Fornt View)</span></button>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        <div ngClass="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                            <div ngClass="blue-upload-box">
+                                <div ngClass="upload-files-design">
+                                    <div ngClass="greybordered-btn">
+                                    <input type="file" hidden  #emirateInput   (change)='emiratesfun($any($event.target).files)' >
+                                    <button mat-button (click)="emirateInput.click()"><span ngClass="outpup-filename">{{ emirate }}</span> <img src="{{upload}}"> <span ngClass="btn-txt">Picture: Emirates ID (Fornt View)</span></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div ngClass="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                            <div ngClass="blue-upload-box">
+                                <div ngClass="upload-files-design">
+                                    <div ngClass="greybordered-btn">
+                                    <input type="file" hidden  #emirateInput   (change)='emiratesfun($any($event.target).files)' >
+                                    <button mat-button (click)="emirateInput.click()"><span ngClass="outpup-filename">{{ emirate }}</span> <img src="{{upload}}"> <span ngClass="btn-txt">Picture: Emirates ID (Fornt View)</span></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div ngClass="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                            <div ngClass="blue-upload-box">
+                                <div ngClass="upload-files-design">
+                                    <div ngClass="greybordered-btn">
+                                    <input type="file" hidden  #emirateInput   (change)='emiratesfun($any($event.target).files)' >
+                                    <button mat-button (click)="emirateInput.click()"><span ngClass="outpup-filename">{{ emirate }}</span> <img src="{{upload}}"> <span ngClass="btn-txt">Picture: Emirates ID (Back View)</span></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div ngClass="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                            <div ngClass="blue-upload-box">
+                                <div ngClass="upload-files-design">
+                                    <div ngClass="greybordered-btn">
+                                    <input type="file" hidden  #emirateInput   (change)='emiratesfun($any($event.target).files)' >
+                                    <button mat-button (click)="emirateInput.click()"><span ngClass="outpup-filename">{{ emirate }}</span> <img src="{{upload}}"> <span ngClass="btn-txt">Picture: Emirates ID (Back View)</span></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div ngClass="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                            <div ngClass="blue-upload-box">
+                                <div ngClass="upload-files-design">
+                                    <div ngClass="greybordered-btn">
+                                    <input type="file" hidden  #emirateInput   (change)='emiratesfun($any($event.target).files)' >
+                                    <button mat-button (click)="emirateInput.click()"><span ngClass="outpup-filename">{{ emirate }}</span> <img src="{{upload}}"> <span ngClass="btn-txt">Picture: BRN Document</span></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div ngClass="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                            <div ngClass="blue-upload-box">
+                                <div ngClass="upload-files-design">
+                                    <div ngClass="greybordered-btn">
+                                    <input type="file" hidden  #emirateInput   (change)='emiratesfun($any($event.target).files)' >
+                                    <button mat-button (click)="emirateInput.click()"><span ngClass="outpup-filename">{{ emirate }}</span> <img src="{{upload}}"> <span ngClass="btn-txt">Picture: BRN Document</span></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div ngClass="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                            <div ngClass="blue-upload-box">
+                                <div ngClass="upload-files-design">
+                                    <div ngClass="greybordered-btn">
+                                    <input type="file" hidden  #emirateInput   (change)='emiratesfun($any($event.target).files)' >
+                                    <button mat-button (click)="emirateInput.click()"><span ngClass="outpup-filename">{{ emirate }}</span> <img src="{{upload}}"> <span ngClass="btn-txt">Picture: BRN Document</span></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div ngClass="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                            <div ngClass="blue-upload-box">
+                                <div ngClass="upload-files-design">
+                                    <div ngClass="greybordered-btn">
+                                    <input type="file" hidden  #emirateInput   (change)='emiratesfun($any($event.target).files)' >
+                                    <button mat-button (click)="emirateInput.click()"><span ngClass="outpup-filename">{{ emirate }}</span> <img src="{{upload}}"> <span ngClass="btn-txt">Picture: BRN Document</span></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-right save-continue-sec">
+                    <mat-card-actions>
+                            <a routerLink="/PropertyType" class="back-btn">Back</a>
+                     </mat-card-actions>
+                    <mat-card-actions>
+                        <a routerLink="/PropertyReview" class="save-continue-btn">Save & Continue</a>
+                     </mat-card-actions>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+   </div>
+</section>
