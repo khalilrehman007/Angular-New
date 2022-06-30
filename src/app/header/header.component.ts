@@ -26,7 +26,7 @@ export class HeaderComponent implements OnInit {
     {
       src: '../../assets/images/icons/ioi.svg',
       class: 'nav-items buy',
-      text: 'buy',
+      text: 'Buy',
       link: '',
     },
     {
