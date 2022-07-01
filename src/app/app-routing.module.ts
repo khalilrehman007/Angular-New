@@ -34,14 +34,18 @@ import { PropertyReviewComponent } from './pages/PropertyValuation/property-revi
 import { PropertySelectReportComponent } from './pages/PropertyValuation/property-select-report/property-select-report.component';
 import { PropertyPaymentComponent } from './pages/PropertyValuation/property-payment/property-payment.component';
 import { PropertyDownloadReportComponent } from './pages/PropertyValuation/property-download-report/property-download-report.component';
+import {DashboardComponent} from "./profile/dashboard/dashboard.component";
+// import {RoleGuardService} from "./role-guard-service.service";
 
 const routes: Routes = [
 
   //first only check login => AuthGuard
   // { path:  '', component:  HomeComponent, canActivate: [AuthGuard]},
   //second check roles & login => RoleGuard
-  // { path:  '', component:  HomeComponent, canActivate: [RoleGuard], data: {expectedRole: 'admin'}},
+  // { path:  '', component:  HomeComponent, canActivate: [RoleGuard]},
 
+  // { path:  'profile', component:  DashboardComponent,canActivate: [RoleGuard]},
+  { path:  'profile', component:  DashboardComponent,canActivate: [AuthGuard]},
   { path:  '', component:  HomeComponent},
   { path:  'sellrent', component:  SellrentpropertyComponent},
   { path:  'login', component:  LoginComponent},

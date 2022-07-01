@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './pages/home/home.component';
+import { DashboardComponent } from "./profile/dashboard/dashboard.component";
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import {SliderModule} from 'primeng/slider';
 import {InputTextModule} from 'primeng/inputtext';
@@ -68,6 +69,7 @@ import {RentSearchComponent} from "./pages/home/rentSearch/rentSearch.component"
 @NgModule({
   declarations: [
     AppComponent,
+    DashboardComponent,
     HeaderComponent,
     HomeComponent,
     SellrentpropertyComponent,
