@@ -36,6 +36,12 @@ import { PropertyPaymentComponent } from './pages/PropertyValuation/property-pay
 import { PropertyDownloadReportComponent } from './pages/PropertyValuation/property-download-report/property-download-report.component';
 
 const routes: Routes = [
+
+  //first only check login => AuthGuard
+  // { path:  '', component:  HomeComponent, canActivate: [AuthGuard]},
+  //second check roles & login => RoleGuard
+  // { path:  '', component:  HomeComponent, canActivate: [RoleGuard], data: {expectedRole: 'admin'}},
+
   { path:  '', component:  HomeComponent},
   { path:  'sellrent', component:  SellrentpropertyComponent},
   { path:  'login', component:  LoginComponent},
@@ -60,7 +66,7 @@ const routes: Routes = [
   { path:  'PropertyDownloadReport', component:  PropertyDownloadReportComponent},
   { path: "blogs", component: BlogsComponent },
   { path: "blogs/:id", component: BlogViewComponent },
-  
+
 ];
 
 @NgModule({

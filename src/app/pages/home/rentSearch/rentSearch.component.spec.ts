@@ -1,0 +1,22 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {RentSearchComponent} from './rentSearch.component';
+
+describe('RentSearchComponent', () => {
+  let component: RentSearchComponent;
+  let fixture: ComponentFixture<RentSearchComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [ RentSearchComponent ]
+    })
+    .compileComponents();
+
+    fixture = TestBed.createComponent(RentSearchComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

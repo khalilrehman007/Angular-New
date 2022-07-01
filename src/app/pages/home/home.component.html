@@ -29,7 +29,7 @@
           <!-- Tab panes -->
           <div ngClass="tab-content">
             <div id="rent" ngClass="tab-pane active">
-              <app-filtersoftype></app-filtersoftype>
+              <rent-search></rent-search>
             </div>
             <div id="buy" ngClass="tab-pane fade">
               <app-filtersoftype></app-filtersoftype>
@@ -67,7 +67,7 @@
                           </div>
                           <div ngClass="property-types-cntnts">
                             <div ngClass="tab-content">
-                            <div id="buy-looking" ngClass="tab-pane active"> 
+                            <div id="buy-looking" ngClass="tab-pane active">
                               <h5 ngClass="h5-heading">Commercial Unit Type</h5>
                             <ul ngClass="list-unstyled residentails-unit-list">
                               <li ngClass="d-flex">
@@ -162,7 +162,7 @@
                               </li>
                             </ul>
                             </div>
-                            <div id="rent-lease" ngClass="tab-pane fade"> 
+                            <div id="rent-lease" ngClass="tab-pane fade">
                               <h5 ngClass="h5-heading">Commercial Unit Type</h5>
                               <ul ngClass="list-unstyled residentails-unit-list">
                                 <li ngClass="d-flex">
@@ -320,14 +320,14 @@
                                         <input type="text" ngClass="js-range-slider" value="" />
                                     </div>
                                     </div>
-                                    </div>                                            
+                                    </div>
                                 </div>
                           </div>
                         </div>
                       </div>
                     </div>
                   <div ngClass="flex-column flex-column-4">
-                    <button type="submit" ngClass="search-btn"><img src="assets/images/search.svg"></button> 
+                    <button type="submit" ngClass="search-btn"><img src="assets/images/search.svg"></button>
                     </div>
                 </div>
               </form>
@@ -368,7 +368,7 @@
                         Languages
                         </button>
                         <div ngClass="dropdown-menu" id="budget-dropdown">
-                              <h5 ngClass="h5-heading">Agent Type</h5>   
+                              <h5 ngClass="h5-heading">Agent Type</h5>
                               <ul ngClass="list-unstyled residentails-unit-list">
                               <li ngClass="d-flex">
                                 <div ngClass="position-relative">
@@ -406,13 +406,13 @@
                                   <p>Commercial for Rent/Lease</p>
                                 </div>
                               </li>
-                              </ul>                                       
+                              </ul>
                         </div>
                       </div>
                     </div>
                   </div>
                 <div ngClass="flex-column flex-column-5">
-                  <button type="submit" ngClass="search-btn"><img src="assets/images/search.svg"></button> 
+                  <button type="submit" ngClass="search-btn"><img src="assets/images/search.svg"></button>
                   </div>
               </div>
             </form>
@@ -484,7 +484,7 @@
                           <path d="M16.4912 12.4406C14.7746 14.149 12.3162 14.674 10.1579 13.999L6.23289 17.9156C5.94955 18.2073 5.39122 18.3823 4.99122 18.324L3.17455 18.074C2.57455 17.9906 2.01622 17.424 1.92455 16.824L1.67455 15.0073C1.61622 14.6073 1.80789 14.049 2.08289 13.7656L5.99955 9.84896C5.33289 7.68229 5.84955 5.22396 7.56622 3.51563C10.0246 1.05729 14.0162 1.05729 16.4829 3.51563C18.9496 5.97396 18.9496 9.98229 16.4912 12.4406Z" stroke="#0B26AD" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                           <path d="M5.74121 14.5742L7.65788 16.4909" stroke="#0B26AD" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                           <path d="M12.083 9.16797C12.7734 9.16797 13.333 8.60833 13.333 7.91797C13.333 7.22761 12.7734 6.66797 12.083 6.66797C11.3927 6.66797 10.833 7.22761 10.833 7.91797C10.833 8.60833 11.3927 9.16797 12.083 9.16797Z" stroke="#0B26AD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                          </svg>                          
+                          </svg>
                         Rent</a>
                     </li>
                     <li ngClass="nav-item">
@@ -494,10 +494,10 @@
                           <path d="M10 12.5C11.3807 12.5 12.5 11.3807 12.5 10C12.5 8.61929 11.3807 7.5 10 7.5C8.61929 7.5 7.5 8.61929 7.5 10C7.5 11.3807 8.61929 12.5 10 12.5Z" stroke="#100A55" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                           <path d="M4.58301 7.91797V12.0846" stroke="#100A55" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                           <path d="M15.417 7.91797V12.0846" stroke="#100A55" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                          </svg>                          
+                          </svg>
                         Buy</a>
                     </li>
-                  </ul> 
+                  </ul>
                 </div>
             </div>
             <div ngClass="tab-content">
@@ -591,7 +591,7 @@
                         <path d="M16.4912 12.4406C14.7746 14.149 12.3162 14.674 10.1579 13.999L6.23289 17.9156C5.94955 18.2073 5.39122 18.3823 4.99122 18.324L3.17455 18.074C2.57455 17.9906 2.01622 17.424 1.92455 16.824L1.67455 15.0073C1.61622 14.6073 1.80789 14.049 2.08289 13.7656L5.99955 9.84896C5.33289 7.68229 5.84955 5.22396 7.56622 3.51563C10.0246 1.05729 14.0162 1.05729 16.4829 3.51563C18.9496 5.97396 18.9496 9.98229 16.4912 12.4406Z" stroke="#0B26AD" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M5.74121 14.5742L7.65788 16.4909" stroke="#0B26AD" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M12.083 9.16797C12.7734 9.16797 13.333 8.60833 13.333 7.91797C13.333 7.22761 12.7734 6.66797 12.083 6.66797C11.3927 6.66797 10.833 7.22761 10.833 7.91797C10.833 8.60833 11.3927 9.16797 12.083 9.16797Z" stroke="#0B26AD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>                          
+                        </svg>
                       Rent</a>
                   </li>
                   <li ngClass="nav-item">
@@ -601,10 +601,10 @@
                         <path d="M10 12.5C11.3807 12.5 12.5 11.3807 12.5 10C12.5 8.61929 11.3807 7.5 10 7.5C8.61929 7.5 7.5 8.61929 7.5 10C7.5 11.3807 8.61929 12.5 10 12.5Z" stroke="#100A55" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M4.58301 7.91797V12.0846" stroke="#100A55" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M15.417 7.91797V12.0846" stroke="#100A55" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>                          
+                        </svg>
                       Buy</a>
                   </li>
-                </ul> 
+                </ul>
               </div>
           </div>
           <div ngClass="tab-content">
@@ -818,7 +818,7 @@
             </div>
           </div>
           <div ngClass="container_1220px tenants-bar-left">
-            <div ngClass="tenants-sec-wrapper"> 
+            <div ngClass="tenants-sec-wrapper">
               <owl-carousel-o [options]="easyslider">
                 <ng-container *ngFor="let slide of tenantsslide">
                   <ng-template carouselSlide [id]="slide.id">
@@ -841,7 +841,7 @@
                     <h2>Recent Real Estate Transactions of UAE</h2>
                     <p>A snapshot of recent property transactions in dubai, as captured by the DLD.</p>
                 </div>
-                
+
             </div>
 
             <div ngClass="w-75 m-auto">
@@ -1017,7 +1017,7 @@
           </form>
           <p>Join <span>10,000+</span> other landlords in our estatery community.</p>
         </div>
-      
+
       </div>
 
 

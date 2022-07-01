@@ -8,7 +8,6 @@ import { AuthService } from '../service/auth.service';
 })
 export class AuthGuard implements CanActivate {
   constructor(private service:AuthService,private route:Router){
-
   }
   canActivate(){
     if(this.service.IsLoggedIn()){
@@ -18,5 +17,5 @@ export class AuthGuard implements CanActivate {
       return false;
     }
   }
-  
+
 }
