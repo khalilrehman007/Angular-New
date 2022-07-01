@@ -62,6 +62,7 @@ import { PropertySelectReportComponent } from './pages/PropertyValuation/propert
 import { PropertyPaymentComponent } from './pages/PropertyValuation/property-payment/property-payment.component';
 import { PropertyDownloadReportComponent } from './pages/PropertyValuation/property-download-report/property-download-report.component';
 import { FiltersoftypeComponent } from './pages/home/filtersoftype/filtersoftype.component';
+import {RentSearchComponent} from "./pages/home/rentSearch/rentSearch.component";
 
 
 @NgModule({
@@ -99,7 +100,8 @@ import { FiltersoftypeComponent } from './pages/home/filtersoftype/filtersoftype
     PropertySelectReportComponent,
     PropertyPaymentComponent,
     PropertyDownloadReportComponent,
-    FiltersoftypeComponent
+    FiltersoftypeComponent,
+    RentSearchComponent
   ],
   imports: [
     BrowserModule,
