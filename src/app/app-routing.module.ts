@@ -35,6 +35,7 @@ import { PropertySelectReportComponent } from './pages/PropertyValuation/propert
 import { PropertyPaymentComponent } from './pages/PropertyValuation/property-payment/property-payment.component';
 import { PropertyDownloadReportComponent } from './pages/PropertyValuation/property-download-report/property-download-report.component';
 import {DashboardComponent} from "./profile/dashboard/dashboard.component";
+import { AgentDetailsComponent } from './pages/agent-details/agent-details.component';
 // import {RoleGuardService} from "./role-guard-service.service";
 
 const routes: Routes = [
@@ -70,6 +71,7 @@ const routes: Routes = [
   { path:  'PropertyDownloadReport', component:  PropertyDownloadReportComponent},
   { path: "blogs", component: BlogsComponent },
   { path: "blogs/:id", component: BlogViewComponent },
+  { path: "agent-details/:id", component: AgentDetailsComponent },
 
 ];
 
