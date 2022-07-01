@@ -36,6 +36,13 @@ export class PropertyDocumentsComponent implements OnInit {
       this.emirate = files[0].name;
     }
   }
+  documentlist = [
+    {imgsrc: '../../../../assets/images/doc-thumbnail.svg',filetitle: 'property-deed-yu.jpg',doctitile: 'Property Tittle Deed',viewLink: '#', deleteLink: '#'},
+    {imgsrc: '../../../../assets/images/doc-thumbnail.svg',filetitle: 'property-deed-yu.jpg',doctitile: 'Property Tittle Deed',viewLink: '#', deleteLink: '#'},
+    {imgsrc: '../../../../assets/images/doc-thumbnail.svg',filetitle: 'property-deed-yu.jpg',doctitile: 'Property Tittle Deed',viewLink: '#', deleteLink: '#'},
+    {imgsrc: '../../../../assets/images/doc-thumbnail.svg',filetitle: 'property-deed-yu.jpg',doctitile: 'Property Tittle Deed',viewLink: '#', deleteLink: '#'},
+    {imgsrc: '../../../../assets/images/doc-thumbnail.svg',filetitle: 'property-deed-yu.jpg',doctitile: 'Property Tittle Deed',viewLink: '#', deleteLink: '#'},
+  ];
   constructor() { }
 
   ngOnInit(): void {

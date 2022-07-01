@@ -27,7 +27,7 @@
                         <h5 ngClass="h5-heading">Documents</h5>
                         <p>Please provide your propety type for the valuation</p>
                     </div>
-                    <div ngClass="madatory-document-upload">
+                    <div ngClass="madatory-document-upload mb-4">
                         <h6 ngClass="h6-design mb-3">Mandatory Documents to upload*</h6>
                         <div ngClass="row">
                         <div ngClass="col-xl-4 col-lg-4 col-md-4 col-sm-12">
@@ -101,7 +101,7 @@
                                 </div>
                         </div>
                     </div>
-                    <div ngClass="other-document-upload">
+                    <div ngClass="other-document-upload mb-4">
                         <h6 ngClass="h6-design mb-3">Other Documents Upload (optional)</h6>
                         <div ngClass="row">
                         <div ngClass="col-xl-4 col-lg-4 col-md-4 col-sm-12">
@@ -194,6 +194,40 @@
                                 </div>
                             </div>
                         </div>
+                        </div>
+                    </div>
+                    <div ngClass="upload_documents-div frame-border-inner">
+                        <div ngClass="small-blue-black-heading">
+                            <h6>Uploaded Documents</h6>
+                            <p>List of the documents uploaded</p>
+                        </div>
+                        <div ngClass="upload-documents-list">
+                            <div ngClass="doc-list-div d-flex justify-content-spacebq align-items-center" *ngFor="let doclist of documentlist">
+                            <div ngClass="d-flex doc-list-name align-items-center">
+                                <div ngClass="document_img">
+                                    <img src="{{doclist.imgsrc}}">
+                                </div>
+                                <div ngClass="doc-text-details">
+                                <h6>Document Name</h6>
+                                    <p>{{doclist.doctitile}}</p>
+                                </div>
+                            </div>
+                            <div ngClass="doc-list-file">
+                                <div ngClass="doc-text-details">
+                                    <h6>File Name</h6>
+                                    <p>{{doclist.filetitle}}</p>
+                                </div>
+                            </div>
+                            <div ngClass="doc-list-action">
+                                <div ngClass="doc-text-actions">
+                                    <h6>Action</h6>
+                                    <div ngClass="action-text-btns">
+                                        <a routerLink="{{doclist.viewLink}}">View</a>
+                                        <a routerLink="{{doclist.deleteLink}}">Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
                         </div>
                     </div>
                 </div>
