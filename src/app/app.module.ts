@@ -59,10 +59,10 @@ import { PropertyDetailsComponent } from './pages/PropertyValuation/property-det
 import { PropertyTypesComponent } from './pages/PropertyValuation/property-types/property-types.component';
 import { PropertyDocumentsComponent } from './pages/PropertyValuation/property-documents/property-documents.component';
 import { PropertyReviewComponent } from './pages/PropertyValuation/property-review/property-review.component';
-import { PropertySelectReportComponent } from './pages/PropertyValuation/property-select-report/property-select-report.component';
 import { PropertyPaymentComponent } from './pages/PropertyValuation/property-payment/property-payment.component';
 import { PropertyDownloadReportComponent } from './pages/PropertyValuation/property-download-report/property-download-report.component';
 import { FiltersoftypeComponent } from './pages/home/filtersoftype/filtersoftype.component';
+import { PropertyInnerComponent } from './pages/property-inner/property-inner.component';
 import {RentSearchComponent} from "./pages/home/rentSearch/rentSearch.component";
 import { AgentDetailsComponent } from './pages/agent-details/agent-details.component';
 
@@ -100,12 +100,13 @@ import { AgentDetailsComponent } from './pages/agent-details/agent-details.compo
     PropertyTypesComponent,
     PropertyDocumentsComponent,
     PropertyReviewComponent,
-    PropertySelectReportComponent,
     PropertyPaymentComponent,
     PropertyDownloadReportComponent,
     FiltersoftypeComponent,
     RentSearchComponent,
     AgentDetailsComponent
+    PropertyInnerComponent,
+    RentSearchComponent
   ],
   imports: [
     BrowserModule,

@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./property-payment.component.scss']
 })
 export class PropertyPaymentComponent implements OnInit {
-
+  stripe='../../../../assets/images/stripe.svg'
   constructor() { }
 
   ngOnInit(): void {

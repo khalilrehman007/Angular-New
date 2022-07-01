@@ -31,11 +31,11 @@ import { PropertyDetailsComponent } from './pages/PropertyValuation/property-det
 import { PropertyTypesComponent } from './pages/PropertyValuation/property-types/property-types.component';
 import { PropertyDocumentsComponent } from './pages/PropertyValuation/property-documents/property-documents.component';
 import { PropertyReviewComponent } from './pages/PropertyValuation/property-review/property-review.component';
-import { PropertySelectReportComponent } from './pages/PropertyValuation/property-select-report/property-select-report.component';
 import { PropertyPaymentComponent } from './pages/PropertyValuation/property-payment/property-payment.component';
 import { PropertyDownloadReportComponent } from './pages/PropertyValuation/property-download-report/property-download-report.component';
 import {DashboardComponent} from "./profile/dashboard/dashboard.component";
 import { AgentDetailsComponent } from './pages/agent-details/agent-details.component';
+import { PropertyInnerComponent } from './pages/property-inner/property-inner.component';
 // import {RoleGuardService} from "./role-guard-service.service";
 
 const routes: Routes = [
@@ -66,9 +66,9 @@ const routes: Routes = [
   { path:  'PropertyType', component:  PropertyTypesComponent},
   { path:  'PropertyDocument', component:  PropertyDocumentsComponent},
   { path:  'PropertyReview', component:  PropertyReviewComponent},
-  { path:  'PropertySelectReport', component:  PropertySelectReportComponent},
   { path:  'PropertyPayment', component:  PropertyPaymentComponent},
   { path:  'PropertyDownloadReport', component:  PropertyDownloadReportComponent},
+  { path:  'PropertDetailsPage', component:  PropertyInnerComponent},
   { path: "blogs", component: BlogsComponent },
   { path: "blogs/:id", component: BlogViewComponent },
   { path: "agent-details/:id", component: AgentDetailsComponent },
