@@ -63,15 +63,23 @@ import { PropertySelectReportComponent } from './pages/PropertyValuation/propert
 import { PropertyPaymentComponent } from './pages/PropertyValuation/property-payment/property-payment.component';
 import { PropertyDownloadReportComponent } from './pages/PropertyValuation/property-download-report/property-download-report.component';
 import { FiltersoftypeComponent } from './pages/home/filtersoftype/filtersoftype.component';
-import {RentSearchComponent} from "./pages/home/rentSearch/rentSearch.component";
-
+import { RentSearchComponent } from "./pages/home/rentSearch/rentSearch.component";
+import { BuySearchComponent } from "./pages/home/buySearch/buySearch.component";
+import { LandSearchComponent } from "./pages/home/landSearch/landSearch.component";
+import { ComercialSearchComponent } from "./pages/home/comercialSearch/comercialSearch.component";
+import {FindAgentSearchComponent} from "./pages/home/findagentSearch/findAgentSearch.component";
 
 @NgModule({
   declarations: [
     AppComponent,
+    BuySearchComponent,
+    FindAgentSearchComponent,
+    ComercialSearchComponent,
+    LandSearchComponent,
     DashboardComponent,
     HeaderComponent,
     HomeComponent,
+    RentSearchComponent,
     SellrentpropertyComponent,
     FooterComponent,
     BreadcrumbComponent,

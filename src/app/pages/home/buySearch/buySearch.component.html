@@ -1,5 +1,4 @@
-<!--<div id="rent" ngClass="tab-pane active">-->
-<div id="rentform"  ngClass="tab-form-sec rent-form">
+<div ngClass="tab-form-sec rent-form">
   <form>
     <div ngClass="flex-row">
       <div ngClass="flex-column flex-column-1">
@@ -18,19 +17,18 @@
               <div ngClass="price-range_sec">
                 <h5 ngClass="h5-heading">Price Range</h5>
                 <div ngClass="price-range-wrap">
-
+                  <div ngClass="wrapper">
+                    <div ngClass="extra-controls form-inline">
+                      <div ngClass="form-group">
+                        <input type="text" ngClass="js-input-from form-control" value="0" />
+                        <input type="text" ngClass="js-input-to form-control" value="0" />
+                      </div>
+                    </div>
+                    <div ngClass="range-slider">
+                      <input type="text" ngClass="js-range-slider" value="" />
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div ngClass="price-type_tabs">
-                <h5 ngClass="h5-heading">Rental Type</h5>
-                <ul ngClass="nav nav-tabs" role="tablist">
-                  <li ngClass="nav-item">
-                    <a ngClass="nav-link active" data-bs-toggle="tab" href="#Monthly">Monthly</a>
-                  </li>
-                  <li ngClass="nav-item">
-                    <a ngClass="nav-link" data-bs-toggle="tab" href="#Yearly">Yearly</a>
-                  </li>
-                </ul>
               </div>
             </div>
           </div>
@@ -56,7 +54,7 @@
               </div>
               <div ngClass="property-types-cntnts">
                 <div ngClass="tab-content">
-                  <div id="Residentials" ngClass="tab-pane active" >
+                  <div id="Residentials" ngClass="tab-pane active">
                     <h5 ngClass="h5-heading">Residential Unit Type</h5>
                     <ul ngClass="list-unstyled residentails-unit-list">
                       <li ngClass="d-flex">
@@ -316,9 +314,8 @@
         </div>
       </div>
       <div ngClass="flex-column flex-column-4">
-        <button type="submit" ngClass="search-btn"><img src="assets/images/search.svg"></button>
+        <a href="https://dx1.in/ovaluate/master-map-view-1.html" ngClass="search-btn"><img src="assets/images/search.svg"></a>
       </div>
     </div>
   </form>
 </div>
-<!--</div>-->
