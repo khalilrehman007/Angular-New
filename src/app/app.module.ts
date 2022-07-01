@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './pages/home/home.component';
+import { DashboardComponent } from "./profile/dashboard/dashboard.component";
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import {SliderModule} from 'primeng/slider';
 import {InputTextModule} from 'primeng/inputtext';
@@ -62,11 +63,13 @@ import { PropertyPaymentComponent } from './pages/PropertyValuation/property-pay
 import { PropertyDownloadReportComponent } from './pages/PropertyValuation/property-download-report/property-download-report.component';
 import { FiltersoftypeComponent } from './pages/home/filtersoftype/filtersoftype.component';
 import { PropertyInnerComponent } from './pages/property-inner/property-inner.component';
+import {RentSearchComponent} from "./pages/home/rentSearch/rentSearch.component";
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    DashboardComponent,
     HeaderComponent,
     HomeComponent,
     SellrentpropertyComponent,
@@ -99,7 +102,8 @@ import { PropertyInnerComponent } from './pages/property-inner/property-inner.co
     PropertyPaymentComponent,
     PropertyDownloadReportComponent,
     FiltersoftypeComponent,
-    PropertyInnerComponent
+    PropertyInnerComponent,
+    RentSearchComponent
   ],
   imports: [
     BrowserModule,
