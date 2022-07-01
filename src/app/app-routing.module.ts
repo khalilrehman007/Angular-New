@@ -34,7 +34,7 @@ import { PropertyReviewComponent } from './pages/PropertyValuation/property-revi
 import { PropertySelectReportComponent } from './pages/PropertyValuation/property-select-report/property-select-report.component';
 import { PropertyPaymentComponent } from './pages/PropertyValuation/property-payment/property-payment.component';
 import { PropertyDownloadReportComponent } from './pages/PropertyValuation/property-download-report/property-download-report.component';
-import {DashboardComponent} from "./profile/dashboard/dashboard.component";
+import { DashboardComponent } from "./profile/dashboard/dashboard.component";
 // import {RoleGuardService} from "./role-guard-service.service";
 
 const routes: Routes = [
