@@ -36,6 +36,7 @@ import { PropertyDownloadReportComponent } from './pages/PropertyValuation/prope
 import {DashboardComponent} from "./profile/dashboard/dashboard.component";
 import { AgentDetailsComponent } from './pages/agent-details/agent-details.component';
 import { PropertyInnerComponent } from './pages/property-inner/property-inner.component';
+import { AgentLandingComponent } from './pages/agent-landing/agent-landing.component';
 // import {RoleGuardService} from "./role-guard-service.service";
 
 const routes: Routes = [
@@ -72,6 +73,7 @@ const routes: Routes = [
   { path: "blogs", component: BlogsComponent },
   { path: "blogs/:id", component: BlogViewComponent },
   { path: "agent-details/:id", component: AgentDetailsComponent },
+  { path: "find-agent", component: AgentLandingComponent },
 
 ];
 

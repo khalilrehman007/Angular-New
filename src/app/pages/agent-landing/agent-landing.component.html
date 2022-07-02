@@ -1,0 +1,301 @@
+<header>
+    <app-header></app-header>
+</header>
+<section class="agent-landing">
+    <div class="agent-landing__banner-wrapper">
+        <img src="assets/images/find-agent-banner.jpg" alt="" class="img-fluid agent-landing__banner">
+        <h1 class="agent-landing__banner-heading">Great Agents Find Great Properties</h1>
+        <div class="agent-landing__tabs-wrapper">
+            <ul class="nav nav-pills mb-3" id="pills-tab">
+                <li class="nav-item">
+                    <a class="nav-link active" id="pills-agents-tab" data-bs-toggle="pill"
+                        data-bs-target="#pills-agents" (click)="agentData()">Find Agents</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="pills-companies-tab" data-bs-toggle="pill" data-bs-target="#pills-companies"
+                        (click)="companyData()">Find Companies</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="pills-agents">
+                    <div class="agent-landing__tab-content">
+                        <form class="agent-landing__tab-content-form">
+                            <fieldset class="agent-landing__tab-content-form-fieldset">
+                                <label for="agent-landing__tab-content-form-search"
+                                    class="agent-landing__tab-content-form-label">Search by</label>
+                                <input id="agent-landing__tab-content-form-search" type="text"
+                                    placeholder="Location / Agent Name" class="agent-landing__tab-content-form-input">
+                            </fieldset>
+                            <button type="submit" class="agent-landing__tab-content-form-submit">
+                                <img src="assets/images/icons/search.svg" alt="">
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="pills-companies">
+                    <div class="agent-landing__tab-content">
+                        <form class="agent-landing__tab-content-form">
+                            <fieldset class="agent-landing__tab-content-form-fieldset">
+                                <label for="agent-landing__tab-content-form-search"
+                                    class="agent-landing__tab-content-form-label">Search by</label>
+                                <input id="agent-landing__tab-content-form-search" type="text"
+                                    placeholder="Location / Company Name" class="agent-landing__tab-content-form-input">
+                            </fieldset>
+                            <button type="submit" class="agent-landing__tab-content-form-submit">
+                                <img src="assets/images/icons/search.svg" alt="">
+                            </button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="agent-landing-featured">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb-dark">
+                    <app-breadcrumb></app-breadcrumb>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <h4 class="agent-landing-featured__heading">{{featuredAgentData.heading}}</h4>
+                <p class="agent-landing-featured__text">{{featuredAgentData.desc}}</p>
+            </div>
+        </div>
+        <div class="row" *ngIf="!companies">
+            <div class="col-lg-4" *ngFor="let item of featuredAgentData.list">
+                <div class="agent-landing-featured__agent">
+                    <div class="agent-landing-featured__property-wrapper">
+                        <img src={{item.tag}} alt="" class="agent-landing-featured__property-tag">
+                        <div class="row">
+                            <div class="col-5 d-flex align-items-center">
+                                <img src={{item.img}} alt="" class="img-fluid agent-landing-featured__property-img">
+                                <img src={{item.company}} alt=""
+                                    class="img-fluid agent-landing-featured__agent-company">
+                            </div>
+                            <div class="col-7">
+                                <div class="agent-landing-featured__agent-right-panel">
+                                    <h6 class="agent-landing-featured__property-heading" routerLink="/agent-details/1">{{item.heading}}</h6>
+                                    <p class="agent-landing-featured__property-text">{{item.text}}</p>
+                                    <a class="agent-landing-featured__property-link"
+                                        routerLink={{item.link.url}}>{{item.link.text}}</a>
+                                    <p class="agent-landing-featured__property-text">{{item.rera}}</p>
+                                    <p class="agent-landing-featured__property-text">{{item.permit}}</p>
+                                    <ul class="agent-landing-featured__property-details-list">
+                                        <li class="agent-landing-featured__property-details-list-item"
+                                            *ngFor="let detail of item.details">
+                                            <p class="agent-landing-featured__property-details-list-text">
+                                                {{detail.count}}<br>{{detail.name}}</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" *ngIf="companies">
+            <div class="col-lg-4" *ngFor="let item of featuredCompaniesData.list">
+                <div class="agent-landing-featured__property">
+                    <div class="agent-landing-featured__property-wrapper">
+                        <img src={{item.tag}} alt="" class="agent-landing-featured__property-tag">
+                        <div class="row">
+                            <div class="col-5 d-flex align-items-center">
+                                <img src={{item.img}} alt="" class="img-fluid agent-landing-featured__property-img">
+                            </div>
+                            <div class="col-7">
+                                <h6 class="agent-landing-featured__property-heading">{{item.heading}}</h6>
+                                <p class="agent-landing-featured__property-text">{{item.text}}</p>
+                                <a class="agent-landing-featured__property-link"
+                                    routerLink={{item.link.url}}>{{item.link.text}}</a>
+                                <p class="agent-landing-featured__property-text">{{item.rera}}</p>
+                                <p class="agent-landing-featured__property-text">{{item.permit}}</p>
+                            </div>
+                        </div>
+                        <ul class="agent-landing-featured__property-details-list">
+                            <li class="agent-landing-featured__property-details-list-item"
+                                *ngFor="let detail of item.details">
+                                <p class="agent-landing-featured__property-details-list-text">
+                                    {{detail.count}}<br>{{detail.name}}</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="agent-landing-list" *ngIf="!companies">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h4 class="agent-landing-list__heading">{{agentList.heading}}</h4>
+                <p class="agent-landing-list__text">{{agentList.desc}}</p>
+            </div>
+            <div class="col-12">
+                <div class="table-responsive">
+                    <table class="agent-landing-list__table agent-landing-list__table-agents">
+                        <thead class="agent-landing-list__table-head">
+                            <tr class="agent-landing-list__table-row">
+                                <th class="agent-landing-list__table-heading"
+                                    *ngFor="let heading of agentList.tableHeadings">{{heading}}</th>
+                            </tr>
+                        </thead>
+                        <tbody class="agent-landing-list__table-body">
+                            <tr class="agent-landing-list__table-row"
+                                *ngFor="let data of agentList.tableData | paginate: { itemsPerPage: 10, currentPage: page, totalItems:totalLength }">
+                                <td class="agent-landing-list__table-data">
+                                    <div class="agent-landing-featured__agent-wrapper">
+                                        <div class="agent-landing-featured__agent-img-outer-wrapper">
+                                            <div class="agent-landing-featured__agent-img-inner-wrapper">
+                                                <img src={{data.img}} alt=""
+                                                    class="img-fluid agent-landing-featured__agent-img">
+                                            </div>
+                                        </div>
+                                        <div class="agent-landing-featured__agent-text-wrapper">
+                                            <h6 class="agent-landing-featured__property-heading">{{data.name}}</h6>
+                                            <p class="agent-landing-featured__property-text">{{data.position}}</p>
+                                            <a class="agent-landing-featured__property-link m-0"
+                                                routerLink={{data.link.url}}>{{data.link.text}}</a>
+                                            <p class="agent-landing-featured__property-text mb-3">{{data.location}}</p>
+                                            <p class="agent-landing-featured__property-text">{{data.language}}</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="agent-landing-list__table-data">
+                                    <h6 class="agent-landing-featured__property-heading">{{data.heading}}</h6>
+                                    <p class="agent-landing-featured__property-text">{{data.text}}</p>
+                                    <a class="agent-landing-featured__property-link"
+                                        routerLink={{data.link.url}}>{{data.link.text}}</a>
+                                    <p class="agent-landing-featured__property-text">{{data.permit}}</p>
+                                </td>
+                                <td class="agent-landing-list__table-data">
+                                    <div class="agent-landing-list__specialities">
+                                        <ul>
+                                            <li *ngFor="let item of data.specialities">{{item}}</li>
+                                        </ul>
+                                    </div>
+                                </td>
+                                <td class="agent-landing-list__table-data">
+                                    <a class="agent-landing-list__table-btn" routerLink="/agent-details/1">
+                                        <img src={{data.btn.img}} alt="">{{data.btn.text}}</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="agent-landing-list" *ngIf="companies">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h4 class="agent-landing-list__heading">{{companiesList.heading}}</h4>
+                <p class="agent-landing-list__text">{{companiesList.desc}}</p>
+            </div>
+            <div class="col-12">
+                <div class="table-responsive">
+                    <table class="agent-landing-list__table">
+                        <thead class="agent-landing-list__table-head">
+                            <tr class="agent-landing-list__table-row">
+                                <th class="agent-landing-list__table-heading"
+                                    *ngFor="let heading of companiesList.tableHeadings">{{heading}}</th>
+                            </tr>
+                        </thead>
+                        <tbody class="agent-landing-list__table-body">
+                            <tr class="agent-landing-list__table-row"
+                                *ngFor="let data of companiesList.tableData | paginate: { itemsPerPage: 10, currentPage: page, totalItems:totalLength }">
+                                <td class="agent-landing-list__table-data">
+                                    <div class="agent-landing-featured__property-wrapper">
+                                        <div class="row">
+                                            <div class="col-5 d-flex align-items-center">
+                                                <img src={{data.img}} alt=""
+                                                    class="img-fluid agent-landing-featured__property-img">
+                                            </div>
+                                            <div class="col-7">
+                                                <h6 class="agent-landing-featured__property-heading">{{data.heading}}
+                                                </h6>
+                                                <p class="agent-landing-featured__property-text">{{data.text}}</p>
+                                                <a class="agent-landing-featured__property-link"
+                                                    routerLink={{data.link.url}}>{{data.link.text}}</a>
+                                                <p class="agent-landing-featured__property-text">{{data.permit}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="agent-landing-list__table-data">
+                                    <div class="agent-landing-list__specialities">
+                                        <ul>
+                                            <li *ngFor="let item of data.specialities">{{item}}</li>
+                                        </ul>
+                                    </div>
+                                </td>
+                                <td class="agent-landing-list__table-data">
+                                    <p>{{data.agents}}<br>Agents</p>
+                                </td>
+                                <td class="agent-landing-list__table-data">
+                                    <a class="agent-landing-list__table-btn" routerLink="/agent-details/1">
+                                        <img src={{data.btn.img}} alt="">{{data.btn.text}}</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="agent-pagination-wrapper">
+    <pagination-controls (pageChange)="pageChanged($event)" class="text-center my-pagination"></pagination-controls>
+</section>
+<section class="agent-landing-text-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h4 class="agent-landing-featured__heading">Top Real Estate Agents in Dubai</h4>
+                <p class="agent-landing-featured__text">Whether you are looking to rent, buy or sell your home, Zillow's
+                    directory of local real estate agents and brokers in Daytona Beach FL connects you with
+                    professionals who can help meet your needs. Because the Daytona Beach FL real estate market is
+                    unique, it's important to choose a real estate agent or broker with local expertise to guide you
+                    through the process of renting, buying or selling your next home. Our directory helps you find real
+                    estate professionals who specialize in buying, selling, foreclosures, or relocation - among many
+                    other options. Alternatively, you could work with a local agent or real estate broker who provides
+                    an entire suite of buying and selling services.</p>
+
+                <p>No matter what type of real estate needs you have, finding the local real estate professional you
+                    want to work with is the first step. The Daytona Beach FL real estate directory lets you view and
+                    compare real estate agents, read reviews, see an agent's current listings and past sales, and
+                    contact agents directly from their profile pages on Zillow.</p>
+
+                <p>Zillow is the leading real estate and rental marketplace dedicated to empowering consumers with data,
+                    inspiration and knowledge around the place they call home, and connecting them with the best local
+                    professionals who can help.</p>
+            </div>
+        </div>
+    </div>
+</section>
+<section ngClass="position-relative wrapper-section bg-primary-color span-promises-sec">
+    <div ngClass="container_1220px">
+        <div ngClass="newsletter-section text-center">
+            <h5>No Spam Promise</h5>
+            <h1>Are you a landlord or real estate proffessional?</h1>
+            <h6>Discover ways to increase your home's value and get listed. No Spam.</h6>
+            <form action="" ngClass="news-letter-form position-relative">
+                <input type="email" placeholder="Enter your email address">
+                <input type="submit" value="Submit">
+            </form>
+            <p>Join <span>10,000+</span> other landlords in our estatery community.</p>
+        </div>
+    </div>
+</section>
+<footer ngClass="footer-sec">
+    <app-footer></app-footer>
+</footer>
