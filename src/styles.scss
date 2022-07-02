@@ -2410,6 +2410,41 @@ input[type=number] {
     display: block;
     padding: 5px 0px;
 }
+.black-text-breadcrumb .custom-breadcrumb ul li a {
+    color: #192024 !important;
+}
+.black-text-breadcrumb .custom-breadcrumb ul li .mat-icon {
+    color: #192024 !important;
+}
+.property-details-header .custom-breadcrumb ul {
+    margin-bottom: 0px;
+}
+.property-details-header .back-to-text {
+    color: #4A565F;
+    font-size: 16px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+}
+.property-details-header .back-to-text .mat-icon {
+    width: auto !important;
+    height: auto !important;
+    font-size: 24px;
+    position: relative;
+    bottom: 1px;
+    margin-right: 3px;
+}
+.last-updated-details p {
+    color: #192024;
+    font-size: 11px;
+    margin-bottom: 0px;
+}
+.last-updated-details {
+    padding-top: 15px;
+}
+
+
+
 
 @media (min-width: 992px){
     .payment-left-form-sec {
@@ -3119,8 +3154,8 @@ body {
   position: relative;
   border: 1px solid var(--stroke-color);
   text-decoration: none;
-  margin-left: 5px;
-  margin-right: 37px;
+  margin-left: 0px;
+  margin-right: 0px;
   >img {
     overflow: hidden;
     position: relative;
@@ -3913,7 +3948,145 @@ body {
   }
 }
 
-
+.agent-details__select-wrapper {
+	display: inline-block;
+	.mat-form-field-wrapper {
+		padding: 0 !important;
+	}
+	.mat-form-field-flex {
+		background-color: #fff;
+		border-radius: 12px !important;
+	}
+}
+.breadcrumb-dark {
+    .custom-breadcrumb {
+        ul {
+            li {
+                a {
+                    color: #192024 !important;
+                }
+				.mat-icon {
+					color: rgba($color: #000000, $alpha: .2);
+				}
+            }
+        }
+    }
+}
+img{
+	max-width: 100%;
+}
+.property-price_detals h4 {
+    font-size: 24px;
+    color: #1B1571;
+    font-weight: 700;
+    margin-bottom: 0px;
+}
+.property-details-header {
+    padding-bottom: 15px;
+}
+.tags-bg-grey {
+    color: #4A565F;
+    font-size: 9px;
+    border-radius: 4px;
+    padding: 3px 8px;
+    background: #F0F3F5;
+    text-transform: uppercase;
+    margin-right: 4px;
+}
+.property-price_detals .property-tags {
+    margin-top: 4px;
+}
+.property-name_detals h4 {
+    color: #000000;
+    font-size: 24px;
+    margin-bottom: 0px;
+}
+.property-addresss p {
+    font-size: 14px;
+    color: #4A565F;
+    font-weight: 500;
+    margin-bottom: 0px;
+}
+.property-addresss p img {
+    position: relative;
+    bottom: 2px;
+    margin-right: 6px;
+}
+.property-addresss p a {
+    color: #1B1571;
+    font-size: 14px;
+    text-decoration: underline;
+    padding-left: 10px;
+}
+.grey-bordered-btn {
+    border: 0.5px solid #4A565F;
+    border-radius: 6px;
+    background: transparent;
+    padding: 7px 15px;
+    color: #4A565F;
+    font-size: 14px;
+}
+.property-action_detals>button {
+    margin-right: 5px;
+}
+.property-gallery-div-sec {
+    padding-top: 15px;
+}
+.property-gallery-sec .carousel-inner img {
+    width: 100%;
+    height: 100%;
+}
+.slider-thumb-img.bordered {
+    border: 2px solid #0021B2;
+    border-radius: 10px;
+    padding: 6px;
+}
+.slider-thumb-img .view-all-photos img {
+    margin-right: 5px;
+    position: relative;
+    bottom: 1px;
+}
+.slider-thumb-img .view-all-photos {
+    position: absolute;
+    right: 15px;
+    bottom: 20px;
+    border: 2px solid #0021B2;
+    border-radius: 8px;
+    background: #fff;
+    font-size: 14px;
+    font-weight: 400;
+    color: #000929;
+    padding: 12px 31px;
+}
+.slider-thumb-img .view-all-photos:hover {
+    background: #f4f4f4;
+}
+.property_details-tabs .mat-tab-label .mat-tab-label-content {
+    font-size: 16px;
+    color: #4A565F;
+    font-weight: 500;
+}
+.property_details-tabs .mat-tab-label {
+    padding-left: 15px;
+    padding-right: 15px;
+    min-width: 112px;
+}
+.property_details-tabs .mat-tab-labels {
+    justify-content: space-between;
+}
+.property_details-tabs .mat-tab-label.mat-tab-label-active>.mat-tab-label-content {
+    color: #6C30A6;
+}
+.property_details-tabs .mat-ink-bar {
+    background: #0B26AD !important;
+    height: 4px;
+}
+.property_details-tabs {
+    padding-top: 20px;
+}
+.property_details-tabs .mat-tab-body-wrapper {
+    padding-top: 20px;
+}
 
 
 

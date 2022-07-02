@@ -65,7 +65,6 @@ import { PropertyDownloadReportComponent } from './pages/PropertyValuation/prope
 import { FiltersoftypeComponent } from './pages/home/filtersoftype/filtersoftype.component';
 import { PropertyInnerComponent } from './pages/property-inner/property-inner.component';
 import { AgentDetailsComponent } from './pages/agent-details/agent-details.component';
-
 import { RentSearchComponent } from "./pages/home/rentSearch/rentSearch.component";
 import { BuySearchComponent } from "./pages/home/buySearch/buySearch.component";
 import { LandSearchComponent } from "./pages/home/landSearch/landSearch.component";
@@ -109,7 +108,6 @@ import {FindAgentSearchComponent} from "./pages/home/findagentSearch/findAgentSe
     PropertyTypesComponent,
     PropertyDocumentsComponent,
     PropertyReviewComponent,
-    // PropertySelectReportComponent,
     PropertyPaymentComponent,
     PropertyDownloadReportComponent,
     FiltersoftypeComponent,

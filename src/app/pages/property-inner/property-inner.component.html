@@ -2,16 +2,202 @@
     <app-header></app-header>
 </header>
 <section [ngClass]="'inner-cntnt-wrapper'">
-    <section [ngClass]="'property-listing-img slide-left-bar'">
+    <section [ngClass]="'property-listing-inner-wrapper slide-left-bar'">
         <div [ngClass]="'container_1280px'">
-            <div ngClass="pro-demo-img">
-                <img src="{{prodetails}}">
+            <div ngClass="property-details-header">
+                <div ngClass="d-flex justify-content-spacebw">
+                <div ngClass="black-text-breadcrumb">
+                <app-breadcrumb></app-breadcrumb>
+                <a routerLink="" ngClass="back-to-text"><mat-icon>keyboard_arrow_left</mat-icon> Back to Search</a>
+                </div>
+                <div ngClass="last-updated-details">
+                    <p>Last Updated: <span ngClass="update-date">April 19, 2022</span></p>
+                    <p>Listing ID <span ngClass="update-id">#OV-4003021</span></p>
+                </div>
+                </div>
+            </div>
+            <div ngClass="property-price-buttons-sec">
+                <div ngClass="row">
+                    <div ngClass="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+                        <div ngClass="property-price_detals">
+                            <h4>85,000 AED <small>/yearly</small></h4>
+                            <div ngClass="property-tags d-flex flex-wrap">
+                                <span ngClass="tags-bg-grey">Brokrage: 500 AED</span>
+                                <span ngClass="tags-bg-grey">Security deposit: 1000 AED</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                        <div ngClass="property-name_detals">
+                            <h4>Blue Wave Tower</h4>
+                            <div ngClass="property-addresss">
+                                <p><img src="{{homelocationsvg}}"> Etihad Tower 4, Etihad Towers, Corniche Road, Abu Dhabi <a routerLink="">District Name</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div ngClass="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+                        <div ngClass="property-action_detals text-right">
+                            <button ngClass="grey-bordered-btn"><img src="{{dots}}"></button>
+                            <button ngClass="grey-bordered-btn"><img src="{{blueheart}}"></button>
+                            <button ngClass="grey-bordered-btn text-btn">Browse Near by Lisitng</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div ngClass="property-gallery-div-sec">
+            <div ngClass="row">
+             <div ngClass="col-xl-8 col-lg-8 col-md-12 col-sm-12">
+            <div ngClass="property-gallery-sec">
+                <ngb-carousel [showNavigationArrows]="false">
+                    <ng-template ngbSlide *ngFor="let event of eventlist">
+                      <img [src]="event.img" alt="Random slide">
+                    </ng-template>
+                  </ngb-carousel>
+            </div>
+            </div>
+            <div ngClass="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+                <div ngClass="slider-thumb-img bordered mb-4">
+                    <img src="{{thumb1}}">
+                </div>
+                <div ngClass="slider-thumb-img position-relative">
+                    <img src="{{thumb1}}">
+                    <button class="view-all-photos" (click)="openVerticallyCentered(content)"><img src="{{gallery}}"> View all photos</button>
+                </div>
+            </div>
+            </div>
+            </div>
+            <div ngClass="property-tabs-content">
+                <div ngClass="row">
+                    <div ngClass="col-xl-8 col-lg-8 col-md-12 col-sm-12">
+                        <div ngClass="property_details-tabs">
+                            <mat-tab-group>
+                                <mat-tab label="Key Highlights">
+                                    <div ngClass="tabs-heading-div">
+                                        <h5>Key Highlights</h5>
+                                    </div>
+                                    <div ngClass="topkey-highlights">
+                                        <h6>Hotel & Hotel Apartment</h6>
+                                        <div ngClass="property-details">
+                                            <span ngClass="bed">
+                                                <img src="{{bedsvg}}" alt="">3 Beds
+                                            </span>
+                                            <span ngClass="bath">
+                                                <img src="{{bathsvg}}" alt="">2Bath
+                                            </span>
+                                            <span ngClass="area">
+                                                <img src="{{squaremetersvg}}" alt="">8000sqft
+                                            </span>
+                                            <span ngClass="furnishing">
+                                                <img src="{{furnishing}}" alt="">Furnished
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div ngClass="key-tags">
+                                        <span>Exclusive</span>
+                                        <span>Golf & Canal Views</span>
+                                        <span>Affordable</span>
+                                        <span>Vastu complaint</span>
+                                        <span>Prime location</span>
+                                    </div>
+                                    <div ngClass="key-info">
+                                        <p> 15 days of rent off. Only Pay 15 days of brokerage now! Free rental agreement.</p>
+                                    </div>
+                                    <div ngClass="description-block-design">
+                                        <h4>Property Description</h4>
+                                        <p>Brought to you by Driven Properties, this 3 Bedroom Apartment is located in The Address Sky View Tower 2, Downtown Dubai.Downtown Dubai is the city’s busy tourism hub. A home to the towering Burj Khalifa skyscraper, with its observation deck, and the dancing Dubai Fountain where crowds gather to watch music and light shows</p>
+                                        <a routerLink="" ngClass="read-more-link">Read more</a>
+                                    </div>
+                                </mat-tab>
+                                <mat-tab label="Property Info">
+                                    <div ngClass="d-flex justify-content-spacebw align-items-center">
+                                        <div ngClass="tabs-heading-light-blue">
+                                            <h5>Property Info</h5>
+                                        </div>
+                                        <div ngClass="ov-verified">
+                                            <img src="{{ovverified}}">
+                                        </div>
+                                    </div>
+                                    <div ngClass="property_infor-div-sec">
+                                        <div ngClass="property_info-row">
+                                            <div ngClass="row">
+                                                <div ngClass="col-xl-3 col-lg-3 col-md-12 col-sm-12" *ngFor="let pro of propertyinfo">
+                                                    <div ngClass="property_info-text">
+                                                        <p>{{pro.label}}</p>
+                                                        <h6>{{pro.value}}</h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </mat-tab>
+                                <mat-tab label="Amenities">
+                                    <div ngClass="tabs-heading-light-blue">
+                                        <h5>Amenities</h5>
+                                    </div>
+                                    <div ngClass="amenties_infor-div-sec">
+                                        <div ngClass="amenties_info-row">
+                                            <div ngClass="row">
+                                                <div ngClass="col-xl-3 col-lg-3 col-md-12 col-sm-12" *ngFor="let amenities of amentiesinfo">
+                                                    <div ngClass="amenties_info-text">
+                                                        <img src="{{amenities.img}}">
+                                                        <p>{{amenities.value}}</p>
+                                                        <button ngClass="see-more-amenties">{{amenities.btnvalue}}</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </mat-tab>
+                                <mat-tab label="Price Trends">
+                                    <div ngClass="tabs-heading-div">
+                                        <h5>Rental Price Trends</h5>
+                                    </div>
+                                </mat-tab>
+                                <mat-tab label="Location">
+                                    <div ngClass="tabs-heading-div">
+                                        <h5>Location</h5>
+                                    </div>
+                                    <div ngClass="row">
+                                    <div ngClass="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+                                    <div ngClass="location-divs-sec">
+                                        <div ngClass="location-address">
+                                            <h4>OV 3456 890 987</h4>
+                                            <h5>Blue Wave Tower</h5>
+                                            <address>Etihad Tower 4, Etihad Towers, 
+                                                Corniche Road, Abu Dhabi    
+                                                <a routerLink="">District Name</a>
+                                            </address>
+                                        </div>
+                                        <div ngClass="scan-buttons">
+                                            <button ngClass="scan-btn-border"><img src="{{qrscan}}"> QR SCAN - Property Info</button>
+                                            <button ngClass="scan-btn-border"><img src="{{qrscan}}"> Commute by Metro</button>
+                                            <button ngClass="scan-btn-border"><img src="{{qrscan}}"> Commute by Vehicle</button>
+                                            <button ngClass="scan-btn-border"><img src="{{qrscan}}"> Commute by Walk</button>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <div ngClass="col-xl-9 col-lg-9 col-md-12 col-sm-12">
+                                        <div ngClass="location-map-sec">
+                                            <div style="width: 100%"><iframe width="100%" height="311" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=dubai+(My%20Business%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"><a href="https://www.gps.ie/wearable-gps/">Kids wearables</a></iframe></div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </mat-tab>
+                                <mat-tab label="Explore Nearby">
+
+                                </mat-tab>
+                              </mat-tab-group>
+                        </div>
+                    </div>
+                    <div ngClass="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+
+                    </div>
             </div>
         </div>
+        </div>
     </section>
-</section>
 <section ngClass="similer-properties-sec">
-    <div [ngClass]="'container_1280px'">
+    <div [ngClass]="'container_1220px'">
         <div ngClass="section-custom-title-left">
             <h4>Similar properties in the same area</h4>
         </div>
@@ -49,6 +235,17 @@
         </div>
     </div>
 </section>
+</section>
+<ng-template #content let-modal>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    <div class="modal-body">
+        <ngb-carousel [showNavigationIndicators]="false">
+            <ng-template ngbSlide *ngFor="let event of thumbslider">
+              <img [src]="event.img" alt="Random slide">
+            </ng-template>
+          </ngb-carousel>
+    </div>
+  </ng-template>
 <footer ngClass="footer-sec">
     <app-footer></app-footer>
   </footer>
