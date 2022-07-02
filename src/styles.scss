@@ -3912,12 +3912,27 @@ body {
     }
   }
 }
-
-
-
-
-
-
-
-
-
+.agent-details__select-wrapper {
+	display: inline-block;
+	.mat-form-field-wrapper {
+		padding: 0 !important;
+	}
+	.mat-form-field-flex {
+		background-color: #fff;
+		border-radius: 12px !important;
+	}
+}
+.breadcrumb-dark {
+    .custom-breadcrumb {
+        ul {
+            li {
+                a {
+                    color: #192024 !important;
+                }
+				.mat-icon {
+					color: rgba($color: #000000, $alpha: .2);
+				}
+            }
+        }
+    }
+}

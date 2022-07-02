@@ -71,6 +71,7 @@ import { BuySearchComponent } from "./pages/home/buySearch/buySearch.component";
 import { LandSearchComponent } from "./pages/home/landSearch/landSearch.component";
 import { ComercialSearchComponent } from "./pages/home/comercialSearch/comercialSearch.component";
 import {FindAgentSearchComponent} from "./pages/home/findagentSearch/findAgentSearch.component";
+import { AgentLandingComponent } from './pages/agent-landing/agent-landing.component';
 
 @NgModule({
   declarations: [
@@ -115,7 +116,8 @@ import {FindAgentSearchComponent} from "./pages/home/findagentSearch/findAgentSe
     FiltersoftypeComponent,
     AgentDetailsComponent,
     PropertyInnerComponent,
-    RentSearchComponent
+    RentSearchComponent,
+    AgentLandingComponent
   ],
   imports: [
     BrowserModule,

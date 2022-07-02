@@ -1,5 +1,4 @@
 .agent-details {
-    margin-top: 56px;
     width: 100%;
     max-width: calc(100% - 64px);
     margin-left: auto;
@@ -81,6 +80,10 @@
     }
 
     &__form {
+        &-img {
+            border-radius: 8px;
+        }
+
         &-fieldset {
             background-color: #fff;
             padding: 10px;
@@ -228,9 +231,11 @@
             margin: 0;
             padding: 0;
             list-style: none;
+
             &-item {
                 display: inline-block;
                 margin-right: 32px;
+
                 img {
                     margin-right: 10px;
                 }
