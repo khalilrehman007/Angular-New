@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AgentLandingComponent implements OnInit {
 
+  totalLength: number = 0;
+  page: number = 1;
   companies:boolean = false;
   constructor() {
     this.agentData();
@@ -16,6 +18,7 @@ export class AgentLandingComponent implements OnInit {
   featuredCompaniesData:any;
   companiesList:any;
   agentData() {
+    this.page = 1;
     this.companies = false;
     this.featuredAgentData = {
       heading:"Featured Real Estate Companies",
@@ -334,10 +337,33 @@ export class AgentLandingComponent implements OnInit {
             text:"View Detail"
           }
         },
+        {
+          img:"assets/images/testimonial/user.png",
+          heading:"Better Homes Properties",
+          name:"Olga Pikina",
+          position:"Sales Director",
+          link:{
+            text:"+971 50 456 3423",
+            url:""
+          },
+          location:"Dubai, UAE",
+          language:"Language: English, Hindi, Arabic, Urdu, Danish",
+          specialities:[
+            "Residential for sale",
+            "Residential for sale",
+            "Commercial for sale",
+            "Commercial for Rent/Lease",
+          ],
+          btn:{
+            img:"assets/images/icons/eye.svg",
+            text:"View Detail"
+          }
+        },
       ]
     };
   }
   companyData() {
+    this.page = 1;
     this.companies = true;
     this.featuredCompaniesData = {
       heading:"Featured Real Estate Companies",
@@ -655,9 +681,33 @@ export class AgentLandingComponent implements OnInit {
             text:"View Detail"
           }
         },
+        {
+          img:"assets/images/brand/betterhomes.png",
+          heading:"Better Homes Properties",
+          text:"P.O. Box 14781, Ground Floor, Golf Building No. GB, Al Hamra Village, Ras Al Khaimah",
+          link:{
+            text:"View Map",
+            url:""
+          },
+          permit:"RERA# 11899 | Permit# 7187842740",
+          specialities:[
+            "Residential for sale",
+            "Residential for sale",
+            "Commercial for sale",
+            "Commercial for Rent/Lease",
+          ],
+          agents:"345",
+          btn:{
+            img:"assets/images/icons/eye.svg",
+            text:"View Detail"
+          }
+        },
       ]
     };
 
+  }
+  pageChanged(value: any) {
+    this.page = value;
   }
   ngOnInit(): void {
   }

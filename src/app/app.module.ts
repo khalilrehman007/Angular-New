@@ -12,6 +12,7 @@ import {InputTextModule} from 'primeng/inputtext';
 import {FormsModule} from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {NgbNavModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgxPaginationModule } from 'ngx-pagination';
 // import { HashLocationStrategy, LocationStrategy  } from '@angular/common';
 import { SellrentpropertyComponent } from './pages/sellrentproperty/sellrentproperty.component';
 import { MatSliderModule } from '@angular/material/slider';
@@ -144,6 +145,7 @@ import { AgentLandingComponent } from './pages/agent-landing/agent-landing.compo
     MatNativeDateModule,
     BrowserAnimationsModule,
     MatTabsModule,
+    NgxPaginationModule,
     ToastrModule.forRoot({
       timeOut: 2000,
       positionClass: 'toast-top-right'
