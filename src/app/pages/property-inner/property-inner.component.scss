@@ -1,0 +1,199 @@
+$color_1: #000929;
+$color_2: #1c1c71;
+$color_3: rgba(0, 22, 25, 0.7);
+$color_4: #0B26AD;
+$color_5: #1B1571;
+$color_6: #100A55;
+$color_7: #fff;
+$color_8: #4D5461;
+$color_9: rgba(255, 255, 255, 0.7);
+$color_10: var(--black);
+$color_11: var(--light-ov-blue);
+$color_12: var(--body-color);
+$color_13: #9EA3AE;
+$color_14: var(--primary-color);
+$color_15: var(--primary-color-light);
+$color_16: #D3DBFF;
+$color_17: rgba(11, 38, 173, 0.7);
+$color_18: #000;
+$color_19: rgba(0, 9, 41, 0.7);
+$color_20: rgba(0, 0, 0, 0.2);
+$color_21: rgba(74, 86, 95, 0.7);
+$background-color_1: #fff;
+$background-color_2: #F0F3F5;
+$background-color_3: #D3DBFF;
+$background-color_4: transparent;
+$background-color_5: #0B26AD;
+$background-color_6: var(--body-color);
+$background-color_7: var(--light-blue);
+$background-color_8: var(--primary-color-light);
+$background-color_9: #f4f4f4;
+$border-color_1: #0B26AD;
+$outline-color_1: #0B26AD;
+
+.pro-demo-img img {
+    width: 100%;
+    height: auto;
+}
+.pro-demo-img {
+    padding-top: 20px;
+}
+
+.property-item {
+	border-radius: 10px;
+	position: relative;
+	border: 1px solid var(--stroke-color);
+	text-decoration: none;
+	margin-left: 5px;
+	margin-right: 37px;
+	>img {
+		overflow: hidden;
+		position: relative;
+		border-top-left-radius: 8px;
+		border-top-right-radius: 8px;
+		width: 100%;
+		padding: 0;
+		margin: 0;
+		height: auto;
+	}
+	.popular-tag {
+		position: absolute;
+		left: -2%;
+		display: block;
+		top: 5%;
+	}
+	.new-launch-tag {
+		position: absolute;
+		left: -2%;
+		display: block;
+		top: 5%;
+	}
+	.brand-logo {
+		position: absolute;
+		left: 11px;
+		right: 0;
+		width: 100%;
+		max-width: 66px;
+		margin-top: -19px;
+		background-color: $background-color_1;
+		border-radius: 5px;
+		box-shadow: 1px 2px 33px -19px #1c1c71;
+		img {
+			width: 80px;
+		}
+	}
+	.property-whistlist {
+		position: absolute;
+		right: 10px;
+		margin-top: 9px;
+		border: 1px solid #E8E6F9;
+		border-radius: 100%;
+		width: 35px;
+		height: 35px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 7px;
+		cursor: pointer;
+		background: transparent;
+		svg {
+			stroke: var(--primary-color);
+			width: auto !important;
+			height: auto !important;
+		}
+		&:hover {
+			svg {
+				fill: var(--primary-color) !important;
+			}
+		}
+	}
+	.property-whistlist.active {
+		svg {
+			fill: var(--primary-color) !important;
+		}
+	}
+	.property-info {
+		padding: 26px 15px 0px 15px;
+		.property-pricing {
+			color: $color_15;
+			font-size: 13px;
+			margin-bottom: 10px;
+			text-decoration: none;
+			font-weight: 400;
+			span {
+				font-size: 20px;
+				color: $color_14;
+				font-weight: bold;
+			}
+		}
+		.property-name {
+			color: $color_18;
+			margin-bottom: 10px;
+			text-decoration: none;
+			display: block;
+			font-size: 14px;
+			font-weight: 600;
+			margin-top: 0px;
+		}
+	}
+	.property-location {
+		color: $color_15;
+		overflow: hidden;
+		display: flex !important;
+		align-items: center !important;
+		font-size: 13px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		display: -webkit-box;
+		-webkit-line-clamp: 1;
+		line-clamp: 1;
+		-webkit-box-orient: vertical;
+		margin-bottom: 10px;
+		img {
+			margin-right: 7px;
+			width: 14px !important;
+			bottom: 0px;
+		}
+	}
+	.property-details {
+		padding: 10px 0px;
+		border-top: 1px solid var(--stroke-color);
+		text-align: center;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+}
+.property-details {
+    padding: 10px 0px;
+		border-top: 1px solid var(--stroke-color);
+		text-align: center;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	span {
+		margin: 0px;
+		display: flex;
+		align-items: center;
+		font-size: 12px;
+		flex-wrap: nowrap;
+		font-weight: 500;
+		color: $color_19;
+		img {
+			margin-right: 5px;
+			width: 16px !important;
+			height: 16px !important;
+		}
+	}
+}
+.similer-properties-sec {
+    background-color: #F4F6FF;
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+.similer-properties-sec h4 {
+    color: #000;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 30px;
+}

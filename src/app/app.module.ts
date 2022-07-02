@@ -59,10 +59,13 @@ import { PropertyDetailsComponent } from './pages/PropertyValuation/property-det
 import { PropertyTypesComponent } from './pages/PropertyValuation/property-types/property-types.component';
 import { PropertyDocumentsComponent } from './pages/PropertyValuation/property-documents/property-documents.component';
 import { PropertyReviewComponent } from './pages/PropertyValuation/property-review/property-review.component';
-import { PropertySelectReportComponent } from './pages/PropertyValuation/property-select-report/property-select-report.component';
+// import { PropertySelectReportComponent } from './pages/PropertyValuation/property-select-report/property-select-report.component';
 import { PropertyPaymentComponent } from './pages/PropertyValuation/property-payment/property-payment.component';
 import { PropertyDownloadReportComponent } from './pages/PropertyValuation/property-download-report/property-download-report.component';
 import { FiltersoftypeComponent } from './pages/home/filtersoftype/filtersoftype.component';
+import { PropertyInnerComponent } from './pages/property-inner/property-inner.component';
+import { AgentDetailsComponent } from './pages/agent-details/agent-details.component';
+
 import { RentSearchComponent } from "./pages/home/rentSearch/rentSearch.component";
 import { BuySearchComponent } from "./pages/home/buySearch/buySearch.component";
 import { LandSearchComponent } from "./pages/home/landSearch/landSearch.component";
@@ -79,7 +82,6 @@ import {FindAgentSearchComponent} from "./pages/home/findagentSearch/findAgentSe
     DashboardComponent,
     HeaderComponent,
     HomeComponent,
-    RentSearchComponent,
     SellrentpropertyComponent,
     FooterComponent,
     BreadcrumbComponent,
@@ -107,10 +109,12 @@ import {FindAgentSearchComponent} from "./pages/home/findagentSearch/findAgentSe
     PropertyTypesComponent,
     PropertyDocumentsComponent,
     PropertyReviewComponent,
-    PropertySelectReportComponent,
+    // PropertySelectReportComponent,
     PropertyPaymentComponent,
     PropertyDownloadReportComponent,
     FiltersoftypeComponent,
+    AgentDetailsComponent,
+    PropertyInnerComponent,
     RentSearchComponent
   ],
   imports: [

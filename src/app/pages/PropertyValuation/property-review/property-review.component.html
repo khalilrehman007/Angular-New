@@ -1,1 +1,132 @@
-<p>property-review works!</p>
+<header>
+    <app-second-header></app-second-header>
+</header>
+<section ngClass="property-valuation-sec">
+   <div ngClass="listing-container full-width">
+    <div ngClass="heading-title-sec text-center">
+        <h2>Property Valuation</h2>
+        <p>Make sure you filled in all the necessary fields and have uploaded all the required files.</p>
+    </div>
+    <div ngClass="listing-property-form-sec">
+        <div ngClass="listing-property-ul">
+            <mat-list>
+                <mat-list-item ngClass="active"> <a routerLink=""><span ngClass="">1</span> Details</a> </mat-list-item>
+                <mat-list-item ngClass="active"><a routerLink=""><span ngClass="">2</span> Type</a></mat-list-item>
+                <mat-list-item ngClass="active"> <a routerLink=""><span ngClass="">3</span> Documents</a> </mat-list-item>
+                <mat-list-item ngClass="active"> <a routerLink=""><span ngClass="">4</span> Review</a> </mat-list-item>
+                <mat-list-item ngClass="disabled"> <a routerLink=""><span ngClass="">5</span> Payment</a> </mat-list-item>
+                <mat-list-item ngClass="disabled"> <a routerLink=""><span ngClass="">6</span> Download Report</a> </mat-list-item>
+            </mat-list>
+        </div>
+        <div ngClass="list-property-content">
+            <div ngClass="list-property-body">
+                <form>
+                <div ngClass="form-border-wrapper">
+                    <div ngClass="list-property-header">
+                        <h5 ngClass="h5-heading">Review</h5>
+                        <p>Please provide your propety type for the valuation</p>
+                    </div>
+                    <div ngClass="pro-details-sec mb-4">
+                        <div ngClass="row">
+                            <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                                <div ngClass="pro-details-left-column">
+                                    <h5 ngClass="h5-borderd-heading">Property Details</h5>
+                                    <div ngClass="row">
+                                        <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12" *ngFor="let prolist of prodetailslist">
+                                            <div ngClass="pro-details-info-blocks">
+                                                <h6>{{prolist.titlename}}</h6>
+                                                <p>{{prolist.titlevalue}}</p>
+                                                <p>{{prolist.titlevalue2}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                                <div ngClass="pro-details-right-column">
+                                    <h5 ngClass="h5-borderd-heading">Property Locations</h5>
+                                    <div ngClass="row">
+                                        <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12" *ngFor="let prolocation of prolocationlist">
+                                            <div ngClass="pro-details-info-blocks">
+                                                <h6>{{prolocation.titlename}}</h6>
+                                                <p>{{prolocation.titlevalue}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div ngClass="building-unit-details-div">
+                                        <h6>Building Unit Details</h6>
+                                        <div ngClass="building-unit_div">
+                                        <p ngClass="building-unit-no">1</p>
+                                        <div ngClass="row">
+                                            <div ngClass="col-xl-3 col-lg-3 col-md-6 col-sm-12" *ngFor="let building of buildinglist">
+                                                <div ngClass="pro-details-info-blocks">
+                                                    <h6>{{building.titlename}}</h6>
+                                                    <p>{{building.titlevalue}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        </div>
+                                        <div ngClass="building-unit_div">
+                                            <p ngClass="building-unit-no">1</p>
+                                            <div ngClass="row">
+                                                <div ngClass="col-xl-3 col-lg-3 col-md-6 col-sm-12" *ngFor="let building of buildinglist">
+                                                    <div ngClass="pro-details-info-blocks">
+                                                        <h6>{{building.titlename}}</h6>
+                                                        <p>{{building.titlevalue}}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div ngClass="upload_documents-div frame-border-inner">
+                        <div ngClass="upload-documents-list">
+                            <div ngClass="small-blue-black-heading">
+                                <h6>Uploaded Documents</h6>
+                                <p>List of the documents uploaded</p>
+                            </div>
+                            <div ngClass="doc-list-div d-flex justify-content-spacebq align-items-center" *ngFor="let doclist of documentlist">
+                            <div ngClass="d-flex doc-list-name align-items-center">
+                                <div ngClass="document_img">
+                                    <img src="{{doclist.imgsrc}}">
+                                </div>
+                                <div ngClass="doc-text-details">
+                                <h6>Document Name</h6>
+                                    <p>{{doclist.doctitile}}</p>
+                                </div>
+                            </div>
+                            <div ngClass="doc-list-file">
+                                <div ngClass="doc-text-details">
+                                    <h6>File Name</h6>
+                                    <p>{{doclist.filetitle}}</p>
+                                </div>
+                            </div>
+                            <div ngClass="doc-list-action">
+                                <div ngClass="doc-text-actions">
+                                    <h6>Action</h6>
+                                    <div ngClass="action-text-btns no-sperator">
+                                        <a routerLink="{{doclist.viewLink}}">View</a>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-right save-continue-sec">
+                    <mat-card-actions>
+                            <a routerLink="/PropertyDocument" class="back-btn">Back</a>
+                     </mat-card-actions>
+                    <mat-card-actions>
+                        <a routerLink="/PropertyPayment" class="save-continue-btn">Save & Continue</a>
+                     </mat-card-actions>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+   </div>
+</section>

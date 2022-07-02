@@ -1,17 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { BuySearchComponent } from "./buySearch.component";
 
-describe('BuySearchComponent', () => {
-  let component: BuySearchComponent;
-  let fixture: ComponentFixture<BuySearchComponent>;
+import { PropertyInnerComponent } from './property-inner.component';
+
+describe('PropertyInnerComponent', () => {
+  let component: PropertyInnerComponent;
+  let fixture: ComponentFixture<PropertyInnerComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BuySearchComponent ]
+      declarations: [ PropertyInnerComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(BuySearchComponent);
+    fixture = TestBed.createComponent(PropertyInnerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
