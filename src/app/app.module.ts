@@ -72,6 +72,7 @@ import { LandSearchComponent } from "./pages/home/landSearch/landSearch.componen
 import { ComercialSearchComponent } from "./pages/home/comercialSearch/comercialSearch.component";
 import {FindAgentSearchComponent} from "./pages/home/findagentSearch/findAgentSearch.component";
 import { AgentLandingComponent } from './pages/agent-landing/agent-landing.component';
+import { CompanyDetailsComponent } from './pages/company-details/company-details.component';
 
 @NgModule({
   declarations: [
@@ -116,7 +117,8 @@ import { AgentLandingComponent } from './pages/agent-landing/agent-landing.compo
     AgentDetailsComponent,
     PropertyInnerComponent,
     RentSearchComponent,
-    AgentLandingComponent
+    AgentLandingComponent,
+    CompanyDetailsComponent
   ],
   imports: [
     BrowserModule,
