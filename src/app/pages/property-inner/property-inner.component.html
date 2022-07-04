@@ -77,7 +77,7 @@
                                     </div>
                                     <div ngClass="topkey-highlights">
                                         <h6>Hotel & Hotel Apartment</h6>
-                                        <div ngClass="property-details">
+                                        <div ngClass="property-details-highlights">
                                             <span ngClass="bed">
                                                 <img src="{{bedsvg}}" alt="">3 Beds
                                             </span>
@@ -105,16 +105,18 @@
                                     <div ngClass="description-block-design">
                                         <h4>Property Description</h4>
                                         <p>Brought to you by Driven Properties, this 3 Bedroom Apartment is located in The Address Sky View Tower 2, Downtown Dubai.Downtown Dubai is the city’s busy tourism hub. A home to the towering Burj Khalifa skyscraper, with its observation deck, and the dancing Dubai Fountain where crowds gather to watch music and light shows</p>
+                                        <div ngClass="read-more-div text-right">
                                         <a routerLink="" ngClass="read-more-link">Read more</a>
+                                        </div>
                                     </div>
                                 </mat-tab>
                                 <mat-tab label="Property Info">
-                                    <div ngClass="d-flex justify-content-spacebw align-items-center">
+                                    <div ngClass="d-flex justify-content-spacebw align-items-center mb-3">
                                         <div ngClass="tabs-heading-light-blue">
                                             <h5>Property Info</h5>
                                         </div>
                                         <div ngClass="ov-verified">
-                                            <img src="{{ovverified}}">
+                                            <p><img src="{{ovverified}}"> OV-Verified</p>
                                         </div>
                                     </div>
                                     <div ngClass="property_infor-div-sec">
@@ -152,6 +154,9 @@
                                     <div ngClass="tabs-heading-div">
                                         <h5>Rental Price Trends</h5>
                                     </div>
+                                    <div ngClass="chart-demo-img">
+                                        <img src="{{pricedemo}}">
+                                    </div>
                                 </mat-tab>
                                 <mat-tab label="Location">
                                     <div ngClass="tabs-heading-div">
@@ -184,16 +189,102 @@
                                     </div>
                                 </mat-tab>
                                 <mat-tab label="Explore Nearby">
-
+                                    <div ngClass="tabs-heading-div">
+                                        <h5>Explore Nearby</h5>
+                                    </div>
+                                    <div ngClass="explore-near-by-buttons">
+                                        <button ngClass="explore-btn-design">All</button>
+                                        <button ngClass="explore-btn-design active"><img src="{{restaurant}}"> Restaurants</button>
+                                        <button ngClass="explore-btn-design"><img src="{{restaurant}}"> Groceries</button>
+                                        <button ngClass="explore-btn-design"><img src="{{restaurant}}"> Cafes</button>
+                                        <button ngClass="explore-btn-design"><img src="{{restaurant}}"> Shopping</button>
+                                        <button ngClass="explore-btn-design"><img src="{{restaurant}}"> Schools</button>
+                                    </div>
+                                    <div ngClass="explore-near-dmeo-img">
+                                        <img src="{{exploredemo}}">
+                                    </div>
                                 </mat-tab>
                               </mat-tab-group>
                         </div>
                     </div>
                     <div ngClass="col-xl-4 col-lg-4 col-md-12 col-sm-12">
-
+                        <div ngClass="property-owner-details">
+                            <div ngClass="property-listed-by">
+                                <h4>Property Listed by</h4>
+                                <img src="{{propertylistedbrand}}">
+                            </div>
+                            <div ngClass="property-listed-by-details d-flex">
+                                <div ngClass="property-listedby-img position-relative">
+                                    <div ngClass="white-circle-outline">
+                                    <img src="{{propertylisteby}}">
+                                    </div>
+                                    <button ngClass="agent-or-owner-btn">Agent</button>
+                                </div>
+                                <div ngClass="property-listedby-cntnt">
+                                    <h5 ngClass="propertier-name">Olga Pikina</h5>
+                                    <p ngClass="propertier-type">Sales Director</p>
+                                    <p ngClass="properties-name">
+                                        Better Homes Properties
+                                    </p>
+                                    <p ngClass="rera"> RERA# 11899</p> 
+                                    <p ngClass="permit">Permit# 7187842740</p>
+                                    <a routerLink="" ngClass="properties-listed-no">47 - Active Properties Listed</a>
+                                </div>
+                            </div>
+                            <div ngClass="contact-propertier-form">
+                                <form>
+                                    <div ngClass="form-grouph input-design white-input-design">
+                                        <mat-form-field class="example-full-width" appearance="fill">
+                                            <mat-label>Name*</mat-label>
+                                            <input type="text" matInput placeholder="Location, Project Name">
+                                        </mat-form-field>
+                                    </div>
+                                    <div ngClass="form-grouph input-design white-input-design">
+                                        <mat-form-field class="example-full-width" appearance="fill">
+                                            <mat-label>Email*</mat-label>
+                                            <input type="email" matInput placeholder="Location, Project Name">
+                                        </mat-form-field>
+                                    </div>
+                                    <div ngClass="form-grouph input-design white-input-design">
+                                        <mat-form-field class="example-full-width" appearance="fill">
+                                            <mat-label>Phone No.*</mat-label>
+                                            <input type="email" matInput placeholder="Location, Project Name">
+                                        </mat-form-field>
+                                    </div>
+                                    <div ngClass="form-grouph textarea-design white-input-design">
+                                        <mat-form-field class="example-full-width" appearance="fill">
+                                            <mat-label>Message</mat-label>
+                                            <textarea matInput placeholder="I would like to inquire about the property OV - R8986. Please contact me at your earliest convenience."></textarea>
+                                          </mat-form-field>
+                                    </div>
+                                    <div ngClass="form-grouph submit-design submit-design-email-send">
+                                       <button type="submit" ngClass="btn-design-3">Send Email</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div ngClass="contact-list-details">
+                                <div ngClass="row">
+                                    <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                        <button ngClass=""><img src="{{call}}"> Call Landloard</button>
+                                    </div>
+                                    <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                        <button ngClass=""><img src="{{whatsapp}}"> Whats APP</button>
+                                    </div>
+                                    <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                        <button ngClass=""><img src="{{chat}}"> Chat with Landloard</button>
+                                    </div>
+                                    <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                        <button ngClass=""><img src="{{videocall}}"> Video Call</button>
+                                    </div>
+                                    <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                        <button ngClass=""><img src="{{virtual}}"> Virtual Tour</button>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
             </div>
-        </div>
         </div>
     </section>
 <section ngClass="similer-properties-sec">
@@ -236,9 +327,36 @@
     </div>
 </section>
 </section>
+<div ngClass="gallery-modal-design">
 <ng-template #content let-modal>
     <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
-    <div class="modal-body">
+    <div class="modal-body gallery-design">
+        <div ngClass="property-price-buttons-sec">
+            <div ngClass="row">
+                <div ngClass="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+                    <div ngClass="property-price_detals">
+                        <h4>85,000 AED <small>/yearly</small></h4>
+                        <div ngClass="property-tags d-flex flex-wrap">
+                            <span ngClass="tags-bg-grey">Brokrage: 500 AED</span>
+                            <span ngClass="tags-bg-grey">Security deposit: 1000 AED</span>
+                        </div>
+                    </div>
+                </div>
+                <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                    <div ngClass="property-name_detals">
+                        <h4>Blue Wave Tower</h4>
+                        <div ngClass="property-addresss">
+                            <p><img src="{{homeaddress}}"> Etihad Tower 4, Etihad Towers, Corniche Road, Abu Dhabi <a routerLink="">District Name</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div ngClass="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+                    <div ngClass="property-action_detals text-right">
+                        <button ngClass="contact-seller-btn">Contact Seller</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <ngb-carousel [showNavigationIndicators]="false">
             <ng-template ngbSlide *ngFor="let event of thumbslider">
               <img [src]="event.img" alt="Random slide">
@@ -246,6 +364,7 @@
           </ngb-carousel>
     </div>
   </ng-template>
+  </div>
 <footer ngClass="footer-sec">
     <app-footer></app-footer>
   </footer>

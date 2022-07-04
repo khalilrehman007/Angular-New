@@ -25,6 +25,18 @@ export class PropertyInnerComponent implements OnInit {
   ovverified = 'assets/images/icons/ov-verified.svg'
   qrscan = 'assets/images/icons/qr-code-scan.svg'
   gallery = 'assets/images/icons/gallery-img.svg'
+  pricedemo = 'assets/images/rental-price-trends.png'
+  restaurant = 'assets/images/icons/restaurant.svg'
+  exploredemo = 'assets/images/explore-demo.png'
+  propertylistedbrand = 'assets/images/better-home.svg'
+  propertylisteby = 'assets/images/listed-by.svg'
+  call = 'assets/images/icons/call.svg'
+  whatsapp = 'assets/images/icons/whatsapp.svg'
+  chat = 'assets/images/icons/chat.svg'
+  videocall = 'assets/images/icons/video-call.svg'
+  virtual = 'assets/images/icons/virtual-tour.svg'
+  homeaddress = 'assets/images/icons/home-location-white.svg'
+
   eventlist = [
     {
       img: 'assets/images/slider.png',
@@ -41,16 +53,16 @@ export class PropertyInnerComponent implements OnInit {
   ]
   thumbslider = [
     {
-      img: 'assets/images/slider-thumb-1.png',
+      img: 'assets/images/slider.png',
     },
     {
-      img: 'assets/images/slider-thumb-2.png',
+      img: 'assets/images/slider.png',
     },
     {
-      img: 'assets/images/slider-thumb-1.png',
+      img: 'assets/images/slider.png',
     },
     {
-      img: 'assets/images/slider-thumb-2.png',
+      img: 'assets/images/slider.png',
     },
   ]
   amentiesinfo = [
