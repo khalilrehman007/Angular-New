@@ -147,3 +147,86 @@ $color_10: #000000;
         max-width: 50%;
     }
 }
+.section-title{
+    h4{
+        font-size: 24px;
+    }
+}
+.tab-nav-main{
+    .mat-tab-group.mat-primary{
+        .mat-ink-bar{
+            background: $color_4;
+        }
+    }
+    .mat-tab-label{
+        opacity: 1;
+        .mat-tab-label-content{
+            color: $color_1;
+            font-weight: 500;
+        }
+    }
+    .mat-tab-label.mat-tab-label-active{
+        opacity: 1;
+        .mat-tab-label-content{
+            color: $color_4;
+        }
+    } 
+}
+.lead-summ-table{
+    .table-row{
+        background: #F6F6F6;
+        display: flex;
+        align-items: flex-start;
+        border-radius: 6px;
+        padding: 16px;
+        margin-bottom: 20px;
+        .col{
+            flex: 1 0 auto;
+            .name{
+                font-size: 16px;
+                font-weight: 600;
+                color: $color_1;
+            }
+            p{
+                margin-bottom: 0;
+            }
+            span{
+                color: $color_3;
+                opacity: 0.4;
+            }
+        }
+        .photo-col{
+            img{
+                width: 78px;
+                height: 78px;
+                margin: 0 auto;
+                object-fit: cover;
+                border-radius: 100%;
+                overflow: hidden;
+            }
+        }
+        .base-info-col{
+            flex: 1 0 auto;
+        }
+        .contact-col{
+            flex: 1 0 auto;
+            div{
+                display: flex;
+                justify-content: space-between;
+            }
+        }
+        .view-more{
+            height: 100%;
+            display: inline-flex;
+            padding: 15px;
+            margin-top: 20px;
+            margin-top: 10px;
+            img{
+
+            }
+        }
+    }
+}
+.card{
+    border-radius: 8px;
+}
