@@ -4600,6 +4600,116 @@ img{
     right: -40px;
     opacity: 1;
 }
+#left-area ul.products .et_overlay::after {
+    margin: initial !important;
+    bottom: 20px !important;
+}
+.listing-packages-tabs>.mat-tab-group>.mat-tab-header .mat-tab-label-content {
+    color: #4A565F;
+    font-size: 16px;
+    font-weight: 600;
+}
+.listing-packages-tabs > .mat-tab-group > .mat-tab-header .mat-tab-label {
+    padding-left: 10px;
+    padding-right: 10px;
+    min-width: auto;
+    margin-right: 8px;
+}
+.listing-packages-tabs > .mat-tab-group > .mat-tab-header .mat-tab-label.mat-tab-label-active>.mat-tab-label-content {
+    color: #1B1571;
+}
+.listing-packages-tabs > .mat-tab-group > .mat-tab-header .mat-ink-bar {
+    height: 4px;
+}
+.listing-packages-tabs {
+    padding-top: 5px;
+}
+.listing-packages-tabs > .mat-tab-group > .mat-tab-header {
+    border: none;
+}
+.listinpackages-wrapper {
+    position: relative;
+	z-index: 0;
+}
+.listinpackages-wrapper::before {
+    content: '';
+    width: 100%;
+    height: 1.5px;
+    background: #F0EFFB;
+    left: 0;
+    right: 0;
+    z-index: -1;
+    top: 50px;
+    position: absolute;
+}
+.pricing-container-sec .mat-tab-labels {
+    justify-content: center;
+}
+.mat-tab-body-wrapper {
+    overflow: initial !important;
+}
+.mat-tab-body {
+    overflow: initial !important;
+}
+.mat-tab-body-content {
+    overflow: initial !important;
+}
+.listing-packages-tabs {
+    max-width: 100vw;
+    overflow: hidden;
+}
+.pricing-container-sec .mat-tab-header {
+    border: none;
+}
+.pricing-container-sec .mat-ink-bar {
+    display: none;
+}
+.pricing-container-sec .mat-tab-header {
+    margin-bottom: 70px;
+}
+.pricing-container-sec .mat-tab-header .mat-tab-label {
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #000000;
+    position: relative;
+    padding: 10px 15px 10px 50px;
+    width: 177px;
+    height: 67px;
+}
+.pricing-container-sec .mat-tab-header .mat-tab-label::before {
+    content: "";
+    background-size: 30px !important;
+    position: absolute;
+    left: 21px;
+    width: 40px;
+    height: 40px;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+}
+.pricing-container-sec .mat-tab-header .mat-tab-label:last-child:before{
+	background: url('assets/images/icons/rent-tab.svg');
+}
+.pricing-container-sec .mat-tab-header .mat-tab-label:first-child:before{
+	background: url('assets/images/icons/sell-property-tab.svg');
+}
+.pricing-container-sec .mat-tab-header .mat-tab-label.mat-tab-label-active:last-child:before{
+	background: url('assets/images/icons/rent-active.svg');
+}
+.pricing-container-sec .mat-tab-header .mat-tab-label.mat-tab-label-active:first-child:before{
+	background: url('assets/images/icons/sell-tab-active.svg');
+}
+.pricing-container-sec .mat-tab-header .mat-tab-label:first-child{
+	margin-right: 25px;
+}
+.pricing-container-sec .mat-tab-header .mat-tab-label.mat-tab-label-active {
+    border-color: #D3DBFF !important;
+    background-color: #F5F7FF !important;
+}
+
+
+
+
 
 @media (min-width: 992px){
 	.location-map-sec {
