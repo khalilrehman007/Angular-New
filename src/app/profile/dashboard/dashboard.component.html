@@ -299,7 +299,74 @@
   </section>
 
     </mat-tab>
-    <mat-tab class="tab-item" label="My Activities"> Content 2 </mat-tab>
+    <mat-tab class="tab-item" label="My Activities"> 
+      <div class="recent-activity">
+        <h4 class="sub-title">Recent Activities</h4>
+        <div class="sub-tab-nav">
+        <mat-tab-group>
+          <mat-tab label="Searches (02)">
+            
+        <div ngClass="list-property-content">
+          <div ngClass="list-property-body">
+              <form>
+                
+              <div class="type-activity-status">
+                        <div ngClass="block-wrapper mb-4">
+                        <div class="checkbox-flex-box-auto button-same-select">
+                        <div class="checkbox-design position-relative">
+                            <input type="radio" id="Furnished" name="property-types" value="All" checked>
+                            <button class="checkbox-btn">All (03)</button>
+                        </div>
+                        <div class="checkbox-design position-relative">
+                            <input type="radio" id="Semi-Furnished" name="property-types" value="Buy">
+                            <button class="checkbox-btn">Buy (01)</button>
+                        </div>
+                        <div class="checkbox-design position-relative">
+                            <input type="radio" id="Unfurnished" name="property-types" value="Rent">
+                            <button class="checkbox-btn">Rent (02)</button>
+                        </div>
+                        <div class="checkbox-design position-relative">
+                            <input type="radio" id="Unfurnished" name="property-types" value="Agents">
+                            <button class="checkbox-btn">Agents (02)</button>
+                        </div>
+                        </div>
+                        </div>
+            </div>
+            
+            <div class="recent-search-item">
+            <div class="lable">05 May, 2022</div>
+            <div ngClass="row">
+              <div ngClass="col-xl-4 col-lg-4 col-sm-12">
+                <a href="#" class="link">Bur Dubai, Dubai <img src="{{MoreIcon}}" alt=""></a>
+              </div>
+              <div ngClass="col-xl-4 col-lg-4 col-sm-12">
+                <a href="#" class="link">Bur Dubai, Dubai <img src="{{MoreIcon}}" alt=""></a>
+              </div>
+              <div ngClass="col-xl-4 col-lg-4 col-sm-12">
+                <a href="#" class="link">Bur Dubai, Dubai <img src="{{MoreIcon}}" alt=""></a>
+              </div>
+            </div>
+          </div>
+          
+          <div class="recent-search-item">
+            <div class="lable">05 May, 2022</div>
+            <div ngClass="row">
+              <div ngClass="col-xl-4 col-lg-4 col-sm-12">
+                <a href="#" class="link">Bur Dubai, Dubai <img src="{{MoreIcon}}" alt=""></a>
+              </div>
+            </div>
+          </div>
+          </form>
+          </div>
+        </div>  
+          </mat-tab>
+          <mat-tab label="Views (02)"> Content 2 </mat-tab>
+          <mat-tab label="Shortlisted (02)"> Content 3 </mat-tab>
+          <mat-tab label="Enquired (0)"> Enquired </mat-tab>
+        </mat-tab-group>
+      </div>
+      </div>
+    </mat-tab>
     <mat-tab class="tab-item" label="My Leads"> Content 3 </mat-tab>
     <mat-tab class="tab-item" label="My Listings"> My Listings </mat-tab>
     <mat-tab class="tab-item" label="My Valuations"> My Valuations </mat-tab>

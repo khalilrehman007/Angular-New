@@ -28,6 +28,29 @@ export class DashboardComponent implements OnInit {
   MoreIcon = '../../assets/images/profile/right-arrow.png'
   loggedInUser = localStorage.getItem('user')
   user : any
+
+  
+  plus= '../../../../assets/images/plus.svg'
+  country = [
+    {viewValue: 'India',value: 'india'},
+    {viewValue: 'UAE',value: 'UAE'},
+    {viewValue: 'America',value: 'America'},
+  ];
+  city = [
+    {viewValue: 'India',value: 'india'},
+    {viewValue: 'UAE',value: 'UAE'},
+    {viewValue: 'America',value: 'America'},
+  ];
+  bedrooms = [
+    {viewValue: '01',value: 'bedroom'},
+    {viewValue: '02',value: 'bedroom'},
+    {viewValue: '03',value: 'bedroom'},
+  ];
+  bathroom = [
+    {viewValue: '01',value: 'bedroom'},
+    {viewValue: '02',value: 'bedroom'},
+    {viewValue: '03',value: 'bedroom'},
+  ];
   
   constructor(private service:AppService,private route:Router,private notifyService : NotificationService) {
     this.getUser();
