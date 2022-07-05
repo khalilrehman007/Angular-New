@@ -39,5 +39,11 @@ export class AppComponent implements DoCheck {
       this.displaymenu = true
     }
   }
-
+  onActivate() {
+    window.scroll({ 
+            top: 0, 
+            left: 0, 
+            behavior: 'smooth' 
+     });
+ }
 }

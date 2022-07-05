@@ -110,7 +110,7 @@
                                 <img src={{item.img}} alt="" class="img-fluid agent-landing-featured__property-img">
                             </div>
                             <div class="col-7">
-                                <h6 class="agent-landing-featured__property-heading">{{item.heading}}</h6>
+                                <h6 class="agent-landing-featured__property-heading" routerLink="/company-details/1">{{item.heading}}</h6>
                                 <p class="agent-landing-featured__property-text">{{item.text}}</p>
                                 <a class="agent-landing-featured__property-link"
                                     routerLink={{item.link.url}}>{{item.link.text}}</a>
@@ -242,7 +242,7 @@
                                     <p>{{data.agents}}<br>Agents</p>
                                 </td>
                                 <td class="agent-landing-list__table-data">
-                                    <a class="agent-landing-list__table-btn" routerLink="/agent-details/1">
+                                    <a class="agent-landing-list__table-btn" routerLink="/company-details/1">
                                         <img src={{data.btn.img}} alt="">{{data.btn.text}}</a>
                                 </td>
                             </tr>

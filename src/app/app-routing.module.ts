@@ -39,6 +39,7 @@ import { PropertyInnerComponent } from './pages/property-inner/property-inner.co
 import { AgentLandingComponent } from './pages/agent-landing/agent-landing.component';
 import { ListingpackagesComponent } from './pages/listingpackages/listingpackages.component';
 import { RentpropertiesComponent } from './pages/rentproperties/rentproperties.component';
+import { CompanyDetailsComponent } from './pages/company-details/company-details.component';
 // import {RoleGuardService} from "./role-guard-service.service";
 
 const routes: Routes = [
@@ -75,6 +76,7 @@ const routes: Routes = [
   { path: "blogs", component: BlogsComponent },
   { path: "blogs/:id", component: BlogViewComponent },
   { path: "agent-details/:id", component: AgentDetailsComponent },
+  { path: "company-details/:id", component: CompanyDetailsComponent },
   { path: "find-agent", component: AgentLandingComponent },
   { path: "listing-packages", component: ListingpackagesComponent },
   { path: "rent-properties", component: RentpropertiesComponent },
