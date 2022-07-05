@@ -11,6 +11,13 @@ import {NotificationService} from "../../service/notification.service";
 })
 export class DashboardComponent implements OnInit {
 
+  proFrame = '../../assets/images/profile/pro-img-frame.png'
+  proAvatar = '../../assets/images/profile/Profile-Pic.png'
+  proClose = '../../assets/images/profile/close.png'
+  proImgEdit = '../../assets/images/profile/edit.png'
+  proEdit = '../../assets/images/profile/create.png'
+  ValuationVect = '../../assets/images/profile/valution-vector.png'
+  ListingVect = '../../assets/images/profile/listing-vector.png'
   loggedInUser = localStorage.getItem('user')
   user : any
   constructor(private route:Router,private notifyService : NotificationService) {
