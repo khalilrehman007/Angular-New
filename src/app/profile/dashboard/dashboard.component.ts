@@ -28,6 +28,7 @@ export class DashboardComponent implements OnInit {
   MoreIcon = '../../assets/images/profile/right-arrow.png'
   loggedInUser = localStorage.getItem('user')
   user : any
+  
 
   
   plus= '../../../../assets/images/plus.svg'
