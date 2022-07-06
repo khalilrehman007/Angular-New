@@ -8,6 +8,7 @@ import {FormControl, Validators} from '@angular/forms';
   styleUrls: ['./propertyinfo.component.scss']
 })
 export class PropertyinfoComponent implements OnInit {
+  Locate = '../../../../assets/images/icons/locate.svg'
   country = [
     {viewValue: 'India',value: 'india'},
     {viewValue: 'UAE',value: 'UAE'},

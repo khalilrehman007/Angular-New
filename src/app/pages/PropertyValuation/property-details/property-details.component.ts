@@ -9,7 +9,7 @@ import { AppService } from 'src/app/service/app.service';
   styleUrls: ['./property-details.component.scss']
 })
 export class PropertyDetailsComponent implements OnInit {
-
+  Locate = '../../../../assets/images/icons/locate.svg'
   country: any = [];
   city: any = [];
   district: any = [];
