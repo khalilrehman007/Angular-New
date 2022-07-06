@@ -12,6 +12,7 @@ $color_10: #000000;
 .user-info-sec {
     position: relative;
     padding: 100px 0px;
+    padding-bottom: 50px;
 	.welcm {
         font-size: 24px;
         font-weight: 500;
@@ -27,9 +28,23 @@ $color_10: #000000;
         margin-top: 50px;
         display: flex;
         align-items: flex-end;
+        .row{
+            flex: 1;
+        }
         .edit{
             padding: 8px 15px;
             display: inline-block;
+        }
+        .base-info-text{
+            color: $color_3;
+            font-weight: 700;
+            font-size: 14px;
+            img{
+                margin-right: 8px;
+            }
+        }
+        label{
+            font-size: 12px;
         }
     }
     .user-image{
@@ -46,7 +61,7 @@ $color_10: #000000;
     .edit-pro-img{
         position: absolute;
         right: 100px;
-        bottom: 120px;
+        bottom: 65px;
         cursor: pointer;
         input{
             opacity: 0;
@@ -153,6 +168,44 @@ $color_10: #000000;
     }
 }
 .tab-nav-main{
+    .tab-wrap{
+        border-bottom: 1px solid #F0EFFB;
+    }
+    .nav-pills{
+        .nav-link{
+            color: $color_1;
+            font-weight: 500;
+            position: relative;
+        }
+        .nav-link.active{
+            background: $color_9;
+            color: $color_4;
+            &::after {
+                content: "";
+                width: 100%;
+                height: 3px;
+                position: absolute;
+                left: 0;
+                bottom: -5px;
+                background: $color_4;
+            }
+        }
+        .action-btn{
+            background: none;
+            border: none;
+            padding: 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            &::after {
+                border: none;
+                padding: 5px 10px;
+                background-image: url(/assets/images/profile/drop-arrow.svg);
+                background-size: 14px;
+                background-repeat: no-repeat;
+                background-position: 90% center;
+            }
+        }
+    }
     .mat-tab-group.mat-primary{
         .mat-ink-bar{
             background: $color_4;
@@ -171,10 +224,9 @@ $color_10: #000000;
             color: $color_4;
         }
     } 
-    .container_1220px{
-        display: flex;
-    }
-    :not(.sub-tab-nav){
+    // .container_1220px{
+    //     display: flex;
+    // }
         .mat-tab-header{
             overflow: visible;
             z-index: 2;
@@ -192,7 +244,7 @@ $color_10: #000000;
                 border: none;
             }
         }
-    }   
+    
     .dropdown{
         .dropdown-menu {
             border: none;
@@ -311,6 +363,15 @@ $color_10: #000000;
                     color: $color_1;
                 }
             } 
+                .mat-tab-label-container{
+                    overflow: hidden;
+                    .mat-tab-label{
+                        &:last-child{
+                            height: 48;
+                            overflow: hidden;
+                        }
+                    }
+                }
         }
     }
     .type-activity-status{
@@ -755,6 +816,16 @@ $color_10: #000000;
         align-items: center;
         justify-content: center;
         flex-direction: column;
+        label{
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .property_sel{
+            margin-bottom: 10px;
+        }
     }
     .mat-checkbox-layout{
         white-space: unset;
@@ -828,4 +899,87 @@ $color_10: #000000;
             display: none;
         }
      }
+}
+.profile-tab-wrap{
+    .list-new-proerty-cntnt{
+        padding-top: 30px;
+    }
+    .mat-form-field-type-mat-native-select{
+        .mat-form-field-infix{
+            &::after{
+                border: none;
+                padding: 12px 10px;
+                background-image: url(/assets/images/profile/drop-arrow.svg);
+                background-size: 14px;
+                background-repeat: no-repeat;
+                background-position: 90% center;
+            }
+        }
+    }
+    .mat-select-arrow{
+        border: none;
+        padding: 12px 10px;
+        background-image: url(/assets/images/profile/drop-arrow.svg);
+        background-size: 14px;
+        background-repeat: no-repeat;
+        background-position: 90% center;
+    }
+    .mat-form-field-appearance-fill{
+        .mat-select-arrow-wrapper {
+            transform: translateY(0);
+        }
+        .mat-form-field-label {
+            margin-top: 0;
+        }
+    }
+    .mat-form-field-can-float.mat-form-field-should-float{
+        .mat-form-field-label{
+            display: none;
+        }
+    }
+    .input-design-2.select-form{
+        .mat-form-field-flex {
+            border: none;
+            background: #F0F3F5;
+        }
+    }
+    .save-continue-sec{
+        .save-continue-btn{
+            margin-right: auto;
+            margin-left: 0;
+        }
+    }
+    .account-settings{
+        .h6-design{
+            font-size: 14px;
+            font-weight: 400;
+        }
+        .mat-form-field{
+            width: auto;
+        }
+        .btn-delete-act{
+            padding: 10px 16px;
+            // height: 40px;
+            border: 2px solid #FCE3E3;
+            border-radius: 8px;
+            color: #DB4840;
+        }
+    }
+    .form-check-input:checked {
+        background-color: #7065F0;
+        border-color: #7065F0;
+        width: 2.5em;
+        height: 1.5em;
+    }
+}
+
+.hint-text {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+.hint-text p {
+    color: #A8A8A8;
+    font-size: 14px;
+    font-weight: 300;
+    margin-bottom: 0px;
 }

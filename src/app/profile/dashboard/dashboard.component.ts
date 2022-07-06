@@ -31,6 +31,12 @@ export class DashboardComponent implements OnInit {
   shareicon = '../../assets/images/profile/comments.png'
   deleteIcon = '../../assets/images/profile/whatsapp.png'
   editIcon = '../../assets/images/profile/play-alt.png'
+  approvedEmo = '../../assets/images/profile/approved.svg'
+  penfingEmo = '../../assets/images/profile/pending.svg'
+  logoutIcon = '../../assets/images/profile/logout-icon.svg'
+  uaeFlag = '../../assets/images/profile/uae.svg'
+  upload ='../../../../assets/images/icons/upload-1.svg'
+ 
   loggedInUser = localStorage.getItem('user')
   user : any
   
