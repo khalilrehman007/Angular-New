@@ -75,6 +75,7 @@ import { AgentLandingComponent } from './pages/agent-landing/agent-landing.compo
 import { ListingpackagesComponent } from './pages/listingpackages/listingpackages.component';
 import { RentpropertiesComponent } from './pages/rentproperties/rentproperties.component';
 import { CompanyDetailsComponent } from './pages/company-details/company-details.component';
+import { PropertyfilterComponent } from './propertyfilter/propertyfilter.component';
 
 @NgModule({
   declarations: [
@@ -122,7 +123,8 @@ import { CompanyDetailsComponent } from './pages/company-details/company-details
     AgentLandingComponent,
     ListingpackagesComponent,
     RentpropertiesComponent,
-    CompanyDetailsComponent
+    CompanyDetailsComponent,
+    PropertyfilterComponent
   ],
   imports: [
     BrowserModule,
