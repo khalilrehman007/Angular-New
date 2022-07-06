@@ -32,6 +32,15 @@ export class AppService {
   LoadBlogById(){
     return this.http.get(this.apiurl+'blog/'+this.id);
   }
+  LoadCountries() {
+    return this.http.get(this.apiurl + 'Countries');
+  }
+  LoadCities(id:number) {
+    return this.http.get(this.apiurl + 'Cities/' + id);
+  }
+  LoadDistrict(id:number) {
+    return this.http.get(this.apiurl + 'Districts/' + id);
+  }
 
   
   
