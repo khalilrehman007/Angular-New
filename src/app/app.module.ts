@@ -76,6 +76,8 @@ import { ListingpackagesComponent } from './pages/listingpackages/listingpackage
 import { RentpropertiesComponent } from './pages/rentproperties/rentproperties.component';
 import { CompanyDetailsComponent } from './pages/company-details/company-details.component';
 import { PropertyfilterComponent } from './propertyfilter/propertyfilter.component';
+import { MapviewComponent } from './pages/mapview/mapview.component';
+import { PropertyCompareComponent } from './pages/property-compare/property-compare.component';
 
 @NgModule({
   declarations: [
@@ -124,7 +126,9 @@ import { PropertyfilterComponent } from './propertyfilter/propertyfilter.compone
     ListingpackagesComponent,
     RentpropertiesComponent,
     CompanyDetailsComponent,
-    PropertyfilterComponent
+    PropertyfilterComponent,
+    MapviewComponent,
+    PropertyCompareComponent
   ],
   imports: [
     BrowserModule,

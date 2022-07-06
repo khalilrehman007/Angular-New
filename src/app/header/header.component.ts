@@ -14,6 +14,7 @@ export class HeaderComponent implements OnInit {
   chartsvg = '../../assets/images/Charts-nav.svg'
   signinsvg = '../../assets/images/user.svg'
   flagsvg = '../../assets/images/aed-fg.svg'
+  close = '../../assets/images/icons/close.svg'
   loggedInUser = localStorage.getItem('user')
   user : any
   sidebar = [
@@ -96,5 +97,8 @@ export class HeaderComponent implements OnInit {
     localStorage.clear();
     this.route.navigate(['login'])
   }
-
+  status: boolean = false;
+  clickEvent(){
+      this.status = !this.status;       
+  }
 }

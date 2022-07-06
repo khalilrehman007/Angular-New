@@ -18,7 +18,7 @@
             </div>
             <div ngClass="property-price-buttons-sec">
                 <div ngClass="row">
-                    <div ngClass="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+                    <div ngClass="col-xl-4 col-lg-4 col-md-12 col-sm-12">
                         <div ngClass="property-price_detals">
                             <h4>85,000 AED <small>/yearly</small></h4>
                             <div ngClass="property-tags d-flex flex-wrap">
@@ -27,7 +27,7 @@
                             </div>
                         </div>
                     </div>
-                    <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                    <div ngClass="col-xl-5 col-lg-5 col-md-12 col-sm-12">
                         <div ngClass="property-name_detals">
                             <h4>Blue Wave Tower</h4>
                             <div ngClass="property-addresss">
@@ -306,8 +306,8 @@
                       </svg>
                   </button>
                   <div ngClass="property-info">
-                      <a [routerLink]="['/PropertDetails']" ngClass="property-pricing"><span>{{slide.price}}</span>/yearly</a>
-                      <a [routerLink]="['/PropertDetails']" ngClass="property-name">Blue Wave Tower</a>
+                      <a routerLink="/{{slide.link}}" ngClass="property-pricing"><span>{{slide.price}}</span>/yearly</a>
+                      <a routerLink="/{{slide.link}}" ngClass="property-name">Blue Wave Tower</a>
                       <p ngClass="property-location"><img src="{{homelocationsvg}}" width="14" alt="">Etihad Tower 4, Etihad Towers,  </p>
                       <div ngClass="property-details">
                           <span ngClass="bed">
@@ -333,7 +333,7 @@
     <div class="modal-body gallery-design">
         <div ngClass="property-price-buttons-sec">
             <div ngClass="row">
-                <div ngClass="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+                <div ngClass="col-xl-4 col-lg-4 col-md-12 col-sm-12">
                     <div ngClass="property-price_detals">
                         <h4>85,000 AED <small>/yearly</small></h4>
                         <div ngClass="property-tags d-flex flex-wrap">
@@ -350,7 +350,7 @@
                         </div>
                     </div>
                 </div>
-                <div ngClass="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+                <div ngClass="col-xl-2 col-lg-2 col-md-12 col-sm-12">
                     <div ngClass="property-action_detals text-right">
                         <button ngClass="contact-seller-btn">Contact Seller</button>
                     </div>
