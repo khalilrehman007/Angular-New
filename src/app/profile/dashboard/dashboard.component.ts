@@ -26,6 +26,11 @@ export class DashboardComponent implements OnInit {
   ViewIcon = '../../assets/images/profile/view.png'
   CopyIcon = '../../assets/images/profile/copy.png'
   MoreIcon = '../../assets/images/profile/right-arrow.png'
+  menuDots = '../../assets/images/profile/menu-dots.png'
+  viewLeads = '../../assets/images/profile/phone-call.png'
+  shareicon = '../../assets/images/profile/comments.png'
+  deleteIcon = '../../assets/images/profile/whatsapp.png'
+  editIcon = '../../assets/images/profile/play-alt.png'
   loggedInUser = localStorage.getItem('user')
   user : any
   

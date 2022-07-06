@@ -171,6 +171,58 @@ $color_10: #000000;
             color: $color_4;
         }
     } 
+    .container_1220px{
+        display: flex;
+    }
+    :not(.sub-tab-nav){
+        .mat-tab-header{
+            overflow: visible;
+            z-index: 2;
+            .mat-tab-label-container{
+                overflow: visible;
+                .mat-tab-label{
+                    &:last-child{
+                        height: auto;
+                        overflow: visible;
+                    }
+                }
+            }
+            .action-btn{
+                background: none;
+                border: none;
+            }
+        }
+    }   
+    .dropdown{
+        .dropdown-menu {
+            border: none;
+            box-shadow: 8px 10px 33px -29px #000929;
+        }
+        .dropdown-item {
+            border-bottom: 1px solid #E5E7EB;
+            margin-bottom: 5px;
+            padding-bottom: 10px;
+            a {
+                display: block;
+                color: #4A565F;
+                font-size: 14px;
+                font-weight: 500;
+                img{
+                    margin-right: 8px;
+                }
+            }
+            .logout-link{
+                color: #DB4840;
+            }
+            &:last-child{
+                border-bottom: none;
+                margin-bottom: 0;
+            }
+        }
+        .dropdown-toggle::after{
+            // display: none;
+        }
+     }
 }
 .lead-summ-table{
     .table-row{
@@ -729,4 +781,51 @@ $color_10: #000000;
 }
 .my-lead-listing-wrap{
     padding: 0;
+}
+.agent-details__property-list-item{
+    .action-btn{
+        border: 0.5px solid #4A565F;
+        width: 52px;
+        height: 40px;
+        background: $color_9;
+        border-radius: 8px;
+        margin: 0 auto;
+        margin-right: 0;
+        img{
+            margin-right: 8px;
+        }
+    }
+    .badge-img{
+        display: inline-block;
+        transform: translateY(-15px);
+        -ms-transform: translateY(-15px);
+        -webkit-transform: translateY(-15px);
+    }
+     .dropdown{
+        .dropdown-menu {
+            border: none;
+            box-shadow: 8px 10px 33px -29px #000929;
+        }
+        .dropdown-item {
+            border-bottom: 1px solid #E5E7EB;
+            margin-bottom: 5px;
+            padding-bottom: 10px;
+            a {
+                display: block;
+                color: #4A565F;
+                font-size: 14px;
+                font-weight: 500;
+                img{
+                    margin-right: 8px;
+                }
+            }
+            &:last-child{
+                border-bottom: none;
+                margin-bottom: 0;
+            }
+        }
+        .dropdown-toggle::after{
+            display: none;
+        }
+     }
 }
