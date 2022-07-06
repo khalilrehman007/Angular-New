@@ -691,3 +691,39 @@ $color_10: #000000;
         }
     }
 }
+.compare-action-pro-list{
+    display: flex;
+    .compare-action{
+        border: 1.5px solid #E5E7EB;
+        border-radius: 8px;
+        margin-left: 30px;
+        padding: 10px;
+        margin-bottom: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+    .mat-checkbox-layout{
+        white-space: unset;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        .mat-checkbox-inner-container{
+            margin: 0 auto;
+            margin-bottom: 10px;
+        }
+    }
+    .compare-btn{
+        background: #F5F7FF;
+        border: 1.5px solid #D3DBFF;
+        border-radius: 8px;
+        color: $color_4;
+        margin-top: 15px;
+        min-width: 130px;
+    }
+}
+.sub-bold-text{
+    font-size: 14px;
+    font-weight: 600;
+}
