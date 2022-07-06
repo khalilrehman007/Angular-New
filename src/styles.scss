@@ -382,7 +382,7 @@ textarea {
 	align-items: center;
 	position: relative;
 	background: #FFFFFF;
-	box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.09);
+	box-shadow: 1px 2px 33px -20px rgb(0 9 41 / 50%);
 	padding: 20px 75px;
 	justify-content: center;
 	.back-tag {
@@ -3168,7 +3168,8 @@ body {
     width: 100%;
     padding: 0;
     margin: 0;
-    height: auto;
+    height: 202px;
+    object-fit: cover;
   }
   .popular-tag {
     position: absolute;
@@ -4554,10 +4555,14 @@ img{
     color: #fff;
 }
 .gallery-design p {
-    color: #fff;
+    color: #fff !important;
 }
 .gallery-design .property-addresss p a {
     color: #fff;
+}
+.property_details-tabs {
+  max-width: 100%;
+  overflow: hidden;
 }
 .contact-seller-btn {
     background-color: #2DB57D;
@@ -5118,6 +5123,7 @@ margin-right: 0px !important;
 }
 .see-listing-btn:hover {
     background-color: #1c1c71;
+    color: #fff;
 }
 .popular-searches {
     padding-top: 40px;
@@ -5191,6 +5197,31 @@ margin-right: 0px !important;
 .confirm-location-sec {
   padding-top: 5px;
 }
+.height-100{
+  height: 100%;
+}
+.map-view_sec .back-to-search .back-to-text {
+  color: #000929;
+  font-size: 16px;
+  background: #F0F3F5;
+  border-radius: 8px;
+  padding: 10px 18px;
+}
+.map-view_sec .back-to-search .back-to-text .mat-icon {
+  color: rgba(0,0,0,0.2);
+  position: relative;
+  top: 7px;
+  left: -6px;
+}
+.map-view_sec .back-to-search {
+  position: absolute;
+  top: 20px;
+  left: 25px;
+}
+.map-view_sec .back-to-search .back-to-text:hover {
+  background: #f4f6fe;
+}
+
 
 @media (min-width: 992px){
 	.location-map-sec {

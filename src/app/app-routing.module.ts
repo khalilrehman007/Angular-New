@@ -40,6 +40,8 @@ import { AgentLandingComponent } from './pages/agent-landing/agent-landing.compo
 import { ListingpackagesComponent } from './pages/listingpackages/listingpackages.component';
 import { RentpropertiesComponent } from './pages/rentproperties/rentproperties.component';
 import { CompanyDetailsComponent } from './pages/company-details/company-details.component';
+import { MapviewComponent } from './pages/mapview/mapview.component';
+import { PropertyCompareComponent } from './pages/property-compare/property-compare.component';
 // import {RoleGuardService} from "./role-guard-service.service";
 
 const routes: Routes = [
@@ -80,6 +82,8 @@ const routes: Routes = [
   { path: "find-agent", component: AgentLandingComponent },
   { path: "listing-packages", component: ListingpackagesComponent },
   { path: "rent-properties", component: RentpropertiesComponent },
+  { path: "mapview", component: MapviewComponent },
+  { path: "PropertyCompare", component: PropertyCompareComponent },
 
 ];
 
