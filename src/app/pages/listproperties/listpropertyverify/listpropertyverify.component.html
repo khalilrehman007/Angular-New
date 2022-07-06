@@ -25,7 +25,7 @@
                             <div ngClass="new-proprty-details">
                                 <h5 ngClass="propertyid">OV 3456 890 987</h5>
                                 <h5 ngClass="proname">Blue Wave Tower</h5>
-                                <address>Etihad Tower 4, Etihad Towers,<br/> 
+                                <address>Etihad Tower 4, Etihad Towers,<br/>
                                     Corniche Road, Abu Dhabi  </address>
                             </div>
                         </div>
@@ -44,7 +44,7 @@
                         </div>
                     </div>
                 </div>
-                <form action="">
+              <form [formGroup]="SubmitForm" (ngSubmit)="onSubmit()">
                 <div ngClass="form-border-wrapper">
                     <div ngClass="list-property-header">
                         <h5 ngClass="h5-heading">Verify Property</h5>
@@ -95,7 +95,7 @@
                                 <div ngClass="textarea-design position-relative">
                                     <mat-form-field class="full-width input-design" appearance="fill">
                                         <mat-label>Paste Youtube/Vemio or any video link below</mat-label>
-                                        <input matInput type="text" placeholder="https://seller.ovaluate.com/my-listings/verify-listing?profile_uuid=5e68801">
+                                        <input matInput type="text" formControlName="videoLink" placeholder="https://seller.ovaluate.com/my-listings/verify-listing?profile_uuid=5e68801">
                                       </mat-form-field>
                                       <button ngClass="verify-now-btn">Verify Now</button>
                                 </div>
@@ -111,8 +111,10 @@
                         <a routerLink="/listpropertymedia" ngClass="back-btn">Back</a>
                  </mat-card-actions>
                 <mat-card-actions>
-                    <a routerLink="/listpropertypublish" ngClass="save-continue-btn">Publish My Listing</a>
-                 </mat-card-actions>
+<!--                    <a routerLink="/listpropertypublish" ngClass="save-continue-btn">Publish My Listing</a>-->
+                  <button mat-raised-button type="submit" ngClass="submit-btn">Publish My Listing</button>
+
+                </mat-card-actions>
                 </div>
                 </form>
             </div>

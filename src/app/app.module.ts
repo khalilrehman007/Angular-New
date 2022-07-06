@@ -168,3 +168,5 @@ import { PropertyCompareComponent } from './pages/property-compare/property-comp
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+

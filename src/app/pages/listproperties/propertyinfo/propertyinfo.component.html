@@ -23,20 +23,23 @@
             <p>Search for your location and confirm the exact location to track</p>
             </div>
             <div ngClass="list-property-body">
-                <form>
-                <div ngClass="form-border-wrapper">
+                  <form [formGroup]="SubmitForm" (ngSubmit)="onSubmit()">
+                  <div ngClass="form-border-wrapper">
                 <div ngClass="row">
                     <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                         <div ngClass="select-design">
                         <label>Country</label>
-                        <mat-form-field appearance="fill">
+                          <mat-form-field appearance="fill">
                             <mat-label>Select Country</mat-label>
-                            <mat-select>
+                            <mat-select formControlName="CountryId">
                               <mat-option *ngFor="let list of country" [value]="list.value">
                                 {{list.viewValue}}
                               </mat-option>
                             </mat-select>
                           </mat-form-field>
+                        </div>
+                        <div *ngIf="submitted && validate['CountryId'].errors" class="alert alert-danger">
+                            <div *ngIf="validate['CountryId'].errors['required']">Country is required</div>
                         </div>
                     </div>
                     <div ngClass="col-xl-6 col-lg-6 col-sm-12">
@@ -44,12 +47,15 @@
                         <label>City</label>
                         <mat-form-field appearance="fill">
                             <mat-label>Select City</mat-label>
-                            <mat-select>
+                            <mat-select formControlName="CityId">
                               <mat-option *ngFor="let listcity of city" [value]="listcity.value">
                                 {{listcity.viewValue}}
                               </mat-option>
                             </mat-select>
                           </mat-form-field>
+                        </div>
+                        <div *ngIf="submitted && validate['CityId'].errors" class="alert alert-danger">
+                          <div *ngIf="validate['CityId'].errors['required']">City is required</div>
                         </div>
                     </div>
                     <div ngClass="address-sec position-relative">
@@ -93,31 +99,31 @@
                                 <div ngClass="col-xl-4 col-lg-4 col-sm-12">
                                     <mat-form-field class="full-width input-design" appearance="fill">
                                         <mat-label>Property Age</mat-label>
-                                        <input matInput type="text" placeholder="Please mention the Yrs.">
+                                        <input matInput formControlName="PropertyAge" type="text" placeholder="Please mention the Yrs.">
                                       </mat-form-field>
                                 </div>
                                 <div ngClass="col-xl-4 col-lg-4 col-sm-12">
                                     <mat-form-field class="full-width input-design" appearance="fill">
                                         <mat-label>Building Name / Project Name</mat-label>
-                                        <input matInput type="text" placeholder="Please mention the name">
+                                        <input matInput formControlName="BuildingName" type="text" placeholder="Please mention the name">
                                       </mat-form-field>
                                 </div>
                                 <div ngClass="col-xl-4 col-lg-4 col-sm-12">
                                     <mat-form-field class="full-width input-design" appearance="fill">
                                         <mat-label>Unit No.</mat-label>
-                                        <input matInput type="text" placeholder="Optional">
+                                        <input matInput formControlName="UnitNo" type="text" placeholder="Optional">
                                       </mat-form-field>
                                 </div>
                                 <div ngClass="col-xl-4 col-lg-4 col-sm-12">
                                     <mat-form-field class="full-width input-design" appearance="fill">
                                         <mat-label>Total Floor in Building</mat-label>
-                                        <input matInput type="text" placeholder="Please mention the No.">
+                                        <input matInput formControlName="TotalFloor" type="text" placeholder="Please mention the No.">
                                       </mat-form-field>
                                 </div>
                                 <div ngClass="col-xl-4 col-lg-4 col-sm-12">
                                     <mat-form-field class="full-width input-design" appearance="fill">
                                         <mat-label>Floor No.</mat-label>
-                                        <input matInput type="text" placeholder="Optional">
+                                        <input matInput formControlName="FloorNo" type="text" placeholder="Optional">
                                       </mat-form-field>
                                 </div>
                             </div>
@@ -127,8 +133,10 @@
                 </div>
                 <div ngClass="text-right save-continue-sec justify-content-end">
                 <mat-card-actions>
-                    <a routerLink="/listpropertyinfo" ngClass="save-continue-btn">Save & Continue</a>
-                 </mat-card-actions>
+<!--                    <a routerLink="/listpropertyinfo" type="submit" ngClass="save-continue-btn">Save & Continue</a>-->
+                  <button mat-raised-button type="submit" ngClass="submit-btn">Save & Continue</button>
+
+                </mat-card-actions>
                 </div>
                 </form>
             </div>
