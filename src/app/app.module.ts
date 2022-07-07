@@ -78,6 +78,9 @@ import { CompanyDetailsComponent } from './pages/company-details/company-details
 import { PropertyfilterComponent } from './propertyfilter/propertyfilter.component';
 import { MapviewComponent } from './pages/mapview/mapview.component';
 import { PropertyCompareComponent } from './pages/property-compare/property-compare.component';
+import { ExploreComponent } from './pages/explore/explore/explore.component';
+import { ExploreCityComponent } from './pages/explore/explore-city/explore-city.component';
+import { ExploreDetailsComponent } from './pages/explore/explore-details/explore-details.component';
 
 @NgModule({
   declarations: [
@@ -128,7 +131,10 @@ import { PropertyCompareComponent } from './pages/property-compare/property-comp
     CompanyDetailsComponent,
     PropertyfilterComponent,
     MapviewComponent,
-    PropertyCompareComponent
+    PropertyCompareComponent,
+    ExploreComponent,
+    ExploreCityComponent,
+    ExploreDetailsComponent
   ],
   imports: [
     BrowserModule,

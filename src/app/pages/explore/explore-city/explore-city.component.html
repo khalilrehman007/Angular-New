@@ -1,0 +1,66 @@
+<header>
+    <app-header></app-header>
+    </header>
+  <section [ngClass]="'inner-cntnt-wrapper slide-left-bar'">
+      <section ngClass="explore-citites-main-sec">
+        <div [ngClass]="'container_1280px'">
+            <div ngClass="citites-breadcrumb-wrapper black-text-breadcrumb">
+                <app-breadcrumb></app-breadcrumb>
+            </div>
+            <div ngClass="hp-design mb-4">
+                <h4>Dubai Area Guide</h4>
+            </div>
+            <div ngClass="search_destinations-block">
+                <form>
+                    <div ngClass="row">
+                        <div ngClass="col-xl-11 col-lg-11 col-md-11 col-sm-12">
+                            <div ngClass="block-wrapper">
+                                <div ngClass="position-relative">
+                                    <mat-form-field class="example-full-width input-design" appearance="fill">
+                                        <mat-label>Search by</mat-label>
+                                        <input matInput placeholder="Location Name">
+                                      </mat-form-field>
+                                  </div>
+                            </div>
+                        </div>
+                        <div ngClass="col-xl-1 col-lg-1 col-md-1 col-sm-12">
+                            <div ngClass="search-btn-block">
+                                <button ngClass="search-btn" type="submit"><img src="{{search}}"></button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div ngClass="citites-guide-block-design">
+                <div ngClass="citites-guide-block-div"  *ngFor="let city of citylocations">
+                    <div ngClass="row align-items-center">
+                        <div ngClass="col-xl-2 col-lg-2 col-md-3 col-sm-12">
+                            <div ngClass="city_img">
+                                <img src="{{city.src}}">
+                            </div>
+                        </div>
+                        <div ngClass="col-xl-10 col-lg-10 col-md-9 col-sm-12">
+                            <div ngClass="city_cntnt">
+                                <h4>{{city.cityname}}</h4>
+                                <p>{{city.desc}}</p>
+                                <a routerLink="/{{city.link}}">Explore <mat-icon>keyboard_arrow_right</mat-icon></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div ngClass="explore-description_sec mt-4">
+                <div ngClass="hp-design hp-explore-spacing">
+                    <h4>Explore Dubai</h4>
+                    <p>Whether you are looking to rent, buy or sell your home, Zillow's directory of local real estate agents and brokers in Daytona Beach FL connects you with professionals who can help meet your needs. Because the Daytona Beach FL real estate market is unique, it's important to choose a real estate agent or broker with local expertise to guide you through the process of renting, buying or selling your next home. Our directory helps you find real estate professionals who specialize in buying, selling, foreclosures, or relocation - among many other options. Alternatively, you could work with a local agent or real estate broker who provides an entire suite of buying and selling services.</p>
+                    <p>No matter what type of real estate needs you have, finding the local real estate professional you want to work with is the first step. The Daytona Beach FL real estate directory lets you view and compare real estate agents, read reviews, see an agent's current listings and past sales, and contact agents directly from their profile pages on Zillow.</p>
+                    <p>Zillow is the leading real estate and rental marketplace dedicated to empowering consumers with data, inspiration and knowledge around the place they call home, and connecting them with the best local professionals who can help.</p>
+                </div>
+            </div>
+        </div>
+      </section>
+  </section>
+  <footer ngClass="footer-sec">
+    <app-footer></app-footer>
+  </footer>
+  

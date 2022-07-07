@@ -51,20 +51,6 @@ export class PropertyInnerComponent implements OnInit {
       img: 'assets/images/slider.png',
     },
   ]
-  thumbslider = [
-    {
-      img: 'assets/images/slider.png',
-    },
-    {
-      img: 'assets/images/slider.png',
-    },
-    {
-      img: 'assets/images/slider.png',
-    },
-    {
-      img: 'assets/images/slider.png',
-    },
-  ]
   amentiesinfo = [
     {
       img: 'assets/images/icons/swimming.svg',

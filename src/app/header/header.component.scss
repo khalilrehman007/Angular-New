@@ -860,7 +860,7 @@ textarea {
     width: 412px;
     top: 47px;
 }
-.fav-li button {
+.fav-li>button {
     background: transparent;
     border: none;
 }
@@ -868,5 +868,141 @@ textarea {
     display: none;
 }
 .shortlisted-header h4 {
+    color: #000000;
     font-size: 14px;
+    font-weight: 700;
+	margin-bottom: 0px;
+}
+.shortlisted-header {
+    padding: 12px 15px;
+    border-bottom: 1.5px solid #F0EFFB;
+    align-items: center;
+}
+.shortlisted-white-box {
+    border: 1.5px solid #F0EFFB;
+    border-radius: 8px;
+    box-shadow: 0px 4px 20px rgba(14, 8, 84, 0.08);
+    padding: 12px;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    max-width: 90%;
+    margin-left: auto;
+}
+.shortlisted-white-box>.short-img {
+    min-width: 86px;
+}
+.shortlisted-white-box>.short-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 6px;
+}
+.short-cntnt h2 {
+    font-size: 16px;
+    color: #000929;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+.short-cntnt h4 {
+    color: #000929;
+    font-size: 14px;
+    font-weight: 700;
+	margin-bottom: 2px;
+}
+.short-cntnt {
+    padding-left: 15px;
+}
+.short-cntnt p {
+    color: #4A565F;
+    font-size: 14px;
+    opacity: 0.5;
+    font-weight: 400;
+    margin-bottom: 0px;
+}
+.short-cntnt address {
+    color: #4A565F;
+    font-size: 14px;
+    opacity: 0.5;
+    font-weight: 400;
+    margin-bottom: 0px;
+}
+  .selection-checkbox-selector .cstm-selection-btn {
+	width: 12px;
+	height: 12px;
+	border-radius: 2px;
+	display: block;
+	outline: 1px solid #0B26AD !important;
+	outline-offset: 4px;
+	background-color: transparent;
+	border: none;
+  }
+  .selection-checkbox-selector input {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	width: 16px;
+	height: 16px;
+	z-index: 9;
+	opacity: 0;
+	cursor: pointer;
+  }
+  .selection-checkbox-selector input:checked+.cstm-selection-btn {
+    background-color: #0B26AD !important;
+}
+.selection-checkbox-selector {
+	position: absolute;
+    bottom: 0;
+    left: 5px;
+    top: 50%;
+}
+.shortlisted-project-cntnt {
+    margin-bottom: 15px;
+}
+.shortlisted-inner-details {
+    padding-top: 15px;
+}
+.compare-btn {
+    border-radius: 8px;
+    background: #2DB57D;
+    color: #fff;
+    width: 100%;
+    display: block;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 11px 15px;
+}
+.compare-btn:hover {
+    background-color: #1c1c71;
+    color: #fff;
+}
+.compare-btn-design {
+    margin-top: 45px;
+}
+.shortlisted-header button {
+    border: none;
+    background: transparent;
+}
+.fav-list-dropdown {
+    overflow: hidden;
+}
+.delete-btn {
+    border: none;
+    background: transparent;
+}
+.delete-property-div {
+    position: absolute;
+    top: 4px;
+    right: 10px;
+}
+
+
+
+@media (min-width: 1200px){
+	.shortlisted-inner-details {
+		padding-right: 25px;
+	}
 }

@@ -15,6 +15,8 @@ export class HeaderComponent implements OnInit {
   signinsvg = '../../assets/images/user.svg'
   flagsvg = '../../assets/images/aed-fg.svg'
   close = '../../assets/images/icons/close.svg'
+  property = '../../assets/images/shortlisted-img.png'
+  trash = '../../assets/images/icons/Trash-dotted.svg'
   loggedInUser = localStorage.getItem('user')
   user : any
   sidebar = [
@@ -64,7 +66,7 @@ export class HeaderComponent implements OnInit {
       src: '../../assets/images/icons/world.svg',
       class: 'nav-items guide',
       text: 'Guide',
-      link: '',
+      link: 'explore',
     },
     {
       src: '../../assets/images/icons/book.svg',
@@ -73,17 +75,48 @@ export class HeaderComponent implements OnInit {
       link: 'blogs',
     }
   ]
+  availableClasses: string[] = ["sidebar-active", "nosidebar"];
+  currentClassIdx: number = 0;
+
+  bodyClass: string;
   constructor(private route:Router,private notifyService : NotificationService) {
     this.getUser();
-    console.log(this.user)
+    console.log(this.user);
+    this.bodyClass = this.availableClasses[this.currentClassIdx];
+    this.changeBodyClass();
+  }
+  changeBodyClass() {
+    // get html body element
+    const bodyElement = document.body;
+
+    if (bodyElement) {
+
+
+      this.currentClassIdx = this.getNextClassIdx();
+      const nextClass = this.availableClasses[this.currentClassIdx];
+      const activeClass = this.availableClasses[this.getPrevClassIdx()];
+
+      // remove existing class (needed if theme is being changed)
+      bodyElement.classList.remove(activeClass);
+      // add next theme class
+      bodyElement.classList.add(nextClass);
+
+      this.bodyClass = nextClass;
+    }
   }
 
+  getPrevClassIdx(): number {
+    return this.currentClassIdx === 0
+      ? this.availableClasses.length - 1
+      : this.currentClassIdx - 1;
+  }
+
+  getNextClassIdx(): number {
+    return this.currentClassIdx === this.availableClasses.length - 1
+      ? 0
+      : this.currentClassIdx + 1;
+  }
   ngOnInit() {
-    $(document).ready(function(){
-        $('.sidebar-toggle').click(function(){
-        $('body').toggleClass('sidebar-active');
-        });
-    });
   }
   getUser(){
     this.user = localStorage.getItem('user');

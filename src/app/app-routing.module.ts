@@ -42,6 +42,9 @@ import { RentpropertiesComponent } from './pages/rentproperties/rentproperties.c
 import { CompanyDetailsComponent } from './pages/company-details/company-details.component';
 import { MapviewComponent } from './pages/mapview/mapview.component';
 import { PropertyCompareComponent } from './pages/property-compare/property-compare.component';
+import { ExploreComponent } from './pages/explore/explore/explore.component';
+import { ExploreCityComponent } from './pages/explore/explore-city/explore-city.component';
+import { ExploreDetailsComponent } from './pages/explore/explore-details/explore-details.component';
 // import {RoleGuardService} from "./role-guard-service.service";
 
 const routes: Routes = [
@@ -84,6 +87,9 @@ const routes: Routes = [
   { path: "rent-properties", component: RentpropertiesComponent },
   { path: "mapview", component: MapviewComponent },
   { path: "PropertyCompare", component: PropertyCompareComponent },
+  { path: "explore", component: ExploreComponent },
+  { path: "explore-city", component: ExploreCityComponent },
+  { path: "explore-details", component: ExploreDetailsComponent },
 
 ];
 
