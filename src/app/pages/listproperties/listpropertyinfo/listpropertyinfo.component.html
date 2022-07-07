@@ -2,828 +2,833 @@
   <app-second-header></app-second-header>
 </header>
 <section class="list-properties-sec">
- <div class="listing-container">
-  <div class="heading-title-sec text-center">
+  <div class="listing-container">
+    <div class="heading-title-sec text-center">
       <h2>List New Property</h2>
       <p>Make sure you filled in all the necessary fields and have uploaded all the required files.</p>
-  </div>
-  <div ngClass="listing-property-form-sec">
-    <div ngClass="listing-property-ul">
-        <mat-list>
-            <mat-list-item ngClass="active"> <a routerLink="/listingproperty"><span ngClass="">1</span> Property Info</a> </mat-list-item>
-            <mat-list-item ngClass="active"><a routerLink=""><span ngClass="">2</span> Listing Info</a></mat-list-item>
-            <mat-list-item ngClass="disabled"> <a routerLink=""><span ngClass="">3</span> Media</a> </mat-list-item>
-            <mat-list-item ngClass="disabled"> <a routerLink=""><span ngClass="">4</span> Verify</a> </mat-list-item>
-            <mat-list-item ngClass="disabled"> <a routerLink=""><span ngClass="">5</span> Publish</a> </mat-list-item>
-        </mat-list>
     </div>
+    <div ngClass="listing-property-form-sec">
+      <div ngClass="listing-property-ul">
+        <mat-list>
+          <mat-list-item ngClass="active"><a routerLink="/listingproperty"><span ngClass="">1</span> Property Info</a>
+          </mat-list-item>
+          <mat-list-item ngClass="active"><a routerLink=""><span ngClass="">2</span> Listing Info</a></mat-list-item>
+          <mat-list-item ngClass="disabled"><a routerLink=""><span ngClass="">3</span> Media</a></mat-list-item>
+          <mat-list-item ngClass="disabled"><a routerLink=""><span ngClass="">4</span> Verify</a></mat-list-item>
+          <mat-list-item ngClass="disabled"><a routerLink=""><span ngClass="">5</span> Publish</a></mat-list-item>
+        </mat-list>
+      </div>
       <div class="list-property-content">
-          <div class="list-property-body">
-              <div class="new-listd-property-info">
+        <div class="list-property-body">
+          <div class="new-listd-property-info">
+            <div class="row">
+              <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12">
+                <div class="new-proprty-details">
+                  <h5 class="propertyid">OV 3456 890 987</h5>
+                  <h5 class="proname">Blue Wave Tower</h5>
+                  <address>Etihad Tower 4, Etihad Towers,<br/>
+                    Corniche Road, Abu Dhabi
+                  </address>
+                </div>
+              </div>
+              <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                <div class="proprty-units">
+                  <p>This building also listing in ovaluate</p>
                   <div class="row">
-                      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12">
-                          <div class="new-proprty-details">
-                              <h5 class="propertyid">OV 3456 890 987</h5>
-                              <h5 class="proname">Blue Wave Tower</h5>
-                              <address>Etihad Tower 4, Etihad Towers,<br/> 
-                                  Corniche Road, Abu Dhabi  </address>
-                          </div>
-                      </div>
-                      <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-                        <div class="proprty-units">
-                          <p>This building also listing in ovaluate</p>
-                          <div class="row">
-                              <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-                                  <p class="no-units-p"><span class="unit-no">04</span> Units on sale</p>
-                              </div>
-                              <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-                                  <p class="no-units-p"><span class="unit-no">28</span> Units on rent</p>
-                              </div>
+                    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                      <p class="no-units-p"><span class="unit-no">04</span> Units on sale</p>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                      <p class="no-units-p"><span class="unit-no">28</span> Units on rent</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <form [formGroup]="SubmitForm" (ngSubmit)="onSubmit()">
+            <div class="form-border-wrapper">
+              <div class="list-property-header">
+                <h5 class="h5-heading">Property Listing Information</h5>
+                <p>Kindly confirm some facts about the property</p>
+              </div>
+              <div class="list-new-proerty-cntnt">
+                <div class="want-to-list-for">
+                  <h6 class="h6-design">Want to List for</h6>
+                  <div ngClass="listing-links">
+                    <a ngClass="listing-btns active" routerLink="/listpropertyinfo">Rent</a>
+                    <a ngClass="listing-btns" routerLink="/SellResidential">Sell</a>
+                  </div>
+                </div>
+                <div class="building-type">
+                  <h6 class="h6-design">Building Type</h6>
+                  <div ngClass="listing-links">
+                    <a ngClass="listing-btns active" routerLink="/listpropertyinfo">Residential</a>
+                    <a ngClass="listing-btns" routerLink="/RentCommertial">Commercial</a>
+                  </div>
+                </div>
+                <div class="property-dropdowns-list">
+                  <div class="row">
+                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                      <h6 class="h6-design">Type of Property</h6>
+                      <div class="dropdown">
+                        <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown">
+                          Select type of property
+                        </button>
+                        <div class="dropdown-menu" id="property-type-sec">
+                          <h5 class="h5-heading">Property Type</h5>
+                          <div class="property-types-cntnts">
+                            <ul class="list-unstyled residentails-unit-list">
+                              <li class="d-flex">
+                                <div class="position-relative">
+                                  <input type="checkbox" >
+                                  <span class="property_sel"></span>
+                                </div>
+                                <div class="proprty_name">
+                                  <p>studio</p>
+                                </div>
+                              </li>
+                              <li class="d-flex">
+                                <div class="position-relative">
+                                  <input type="checkbox" formControlName="property_apartment">
+                                  <span class="property_sel"></span>
+                                </div>
+                                <div class="proprty_name">
+                                  <p>Apartment</p>
+                                </div>
+                              </li>
+                              <li class="d-flex">
+                                <div class="position-relative">
+                                  <input type="checkbox" formControlName="property_villa">
+                                  <span class="property_sel"></span>
+                                </div>
+                                <div class="proprty_name">
+                                  <p>Villa</p>
+                                </div>
+                              </li>
+                              <li class="d-flex">
+                                <div class="position-relative">
+                                  <input type="checkbox" formControlName="property_townHouse">
+                                  <span class="property_sel"></span>
+                                </div>
+                                <div class="proprty_name">
+                                  <p>Town House</p>
+                                </div>
+                              </li>
+                              <li class="d-flex">
+                                <div class="position-relative">
+                                  <input type="checkbox" formControlName="property_penthouse">
+                                  <span class="property_sel"></span>
+                                </div>
+                                <div class="proprty_name">
+                                  <p>Penthouse</p>
+                                </div>
+                              </li>
+                              <li class="d-flex">
+                                <div class="position-relative">
+                                  <input type="checkbox" formControlName="property_compound">
+                                  <span class="property_sel"></span>
+                                </div>
+                                <div class="proprty_name">
+                                  <p>Compound</p>
+                                </div>
+                              </li>
+                              <li class="d-flex">
+                                <div class="position-relative">
+                                  <input type="checkbox" formControlName="property_duplex">
+                                  <span class="property_sel"></span>
+                                </div>
+                                <div class="proprty_name">
+                                  <p>Duplex</p>
+                                </div>
+                              </li>
+                              <li class="d-flex">
+                                <div class="position-relative">
+                                  <input type="checkbox" formControlName="property_fullFloor">
+                                  <span class="property_sel"></span>
+                                </div>
+                                <div class="proprty_name">
+                                  <p>Full Floor</p>
+                                </div>
+                              </li>
+                              <li class="d-flex">
+                                <div class="position-relative">
+                                  <input type="checkbox" formControlName="property_wholeBuilding">
+                                  <span class="property_sel"></span>
+                                </div>
+                                <div class="proprty_name">
+                                  <p>Whole Building</p>
+                                </div>
+                              </li>
+                              <li class="d-flex">
+                                <div class="position-relative">
+                                  <input type="checkbox" formControlName="property_bulkRentUnit">
+                                  <span class="property_sel"></span>
+                                </div>
+                                <div class="proprty_name">
+                                  <p>Bulk Rent Unit</p>
+                                </div>
+                              </li>
+                              <li class="d-flex">
+                                <div class="position-relative">
+                                  <input type="checkbox" formControlName="property_bungalow">
+                                  <span class="property_sel"></span>
+                                </div>
+                                <div class="proprty_name">
+                                  <p>Bungalow</p>
+                                </div>
+                              </li>
+                              <li class="d-flex">
+                                <div class="position-relative">
+                                  <input type="checkbox" formControlName="property_hotelApartment">
+                                  <span class="property_sel"></span>
+                                </div>
+                                <div class="proprty_name">
+                                  <p>Hotel & Hotel Apartment</p>
+                                </div>
+                              </li>
+                            </ul>
                           </div>
                         </div>
                       </div>
-                  </div>
-              </div>
-              <form action="">
-              <div class="form-border-wrapper">
-                  <div class="list-property-header">
-                      <h5 class="h5-heading">Property Listing Information</h5>
-                      <p>Kindly confirm some facts about the property</p>
-                  </div>
-                  <div class="list-new-proerty-cntnt">
-                      <div class="want-to-list-for">
-                          <h6 class="h6-design">Want to List for</h6>
-                          <div ngClass="listing-links">
-                            <a ngClass="listing-btns active" routerLink="/listpropertyinfo">Rent</a>
-                            <a ngClass="listing-btns" routerLink="/SellResidential">Sell</a>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                      <h6 class="h6-design">Bedroom</h6>
+                      <div class="dropdown">
+                        <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown">
+                          Select type of property
+                        </button>
+                        <div class="dropdown-menu" id="property-type-sec">
+                          <h5 class="h5-heading">Bedroom</h5>
+                          <div class="property-types-cntnts">
+                            <ul class="list-unstyled residentails-unit-list">
+                              <li class="d-flex">
+                                <div class="position-relative">
+                                  <input type="checkbox">
+                                  <span class="property_sel"></span>
+                                </div>
+                                <div class="proprty_name">
+                                  <p>studio</p>
+                                </div>
+                              </li>
+                              <li class="d-flex">
+                                <div class="position-relative">
+                                  <input type="checkbox" formControlName="bedroom_BHK_1">
+                                  <span class="property_sel"></span>
+                                </div>
+                                <div class="proprty_name">
+                                  <p>1 BHK</p>
+                                </div>
+                              </li>
+                              <li class="d-flex">
+                                <div class="position-relative">
+                                  <input type="checkbox" formControlName="bedroom_BHK_2">
+                                  <span class="property_sel"></span>
+                                </div>
+                                <div class="proprty_name">
+                                  <p>2 BHK</p>
+                                </div>
+                              </li>
+                              <li class="d-flex">
+                                <div class="position-relative">
+                                  <input type="checkbox" formControlName="bedroom_BHK_3">
+                                  <span class="property_sel"></span>
+                                </div>
+                                <div class="proprty_name">
+                                  <p>3 BHK</p>
+                                </div>
+                              </li>
+                              <li class="d-flex">
+                                <div class="position-relative">
+                                  <input type="checkbox" formControlName="bedroom_BHK_4">
+                                  <span class="property_sel"></span>
+                                </div>
+                                <div class="proprty_name">
+                                  <p>4 BHK</p>
+                                </div>
+                              </li>
+                              <li class="d-flex">
+                                <div class="position-relative">
+                                  <input type="checkbox" formControlName="bedroom_BHK_5">
+                                  <span class="property_sel"></span>
+                                </div>
+                                <div class="proprty_name">
+                                  <p>5 BHK</p>
+                                </div>
+                              </li>
+                              <li class="d-flex">
+                                <div class="position-relative">
+                                  <input type="checkbox" formControlName="bedroom_BHK_6">
+                                  <span class="property_sel"></span>
+                                </div>
+                                <div class="proprty_name">
+                                  <p>6 BHK</p>
+                                </div>
+                              </li>
+                              <li class="d-flex">
+                                <div class="position-relative">
+                                  <input type="checkbox" formControlName="bedroom_BHK_7">
+                                  <span class="property_sel"></span>
+                                </div>
+                                <div class="proprty_name">
+                                  <p>7 BHK</p>
+                                </div>
+                              </li>
+                              <li class="d-flex">
+                                <div class="position-relative">
+                                  <input type="checkbox" formControlName="bedroom_BHK_8">
+                                  <span class="property_sel"></span>
+                                </div>
+                                <div class="proprty_name">
+                                  <p>7+ BHK</p>
+                                </div>
+                              </li>
+                            </ul>
                           </div>
+                        </div>
                       </div>
-                            <div class="building-type">
-                                <h6 class="h6-design">Building Type</h6>
-                                <div ngClass="listing-links">
-                                  <a ngClass="listing-btns active" routerLink="/listpropertyinfo">Residential</a>
-                                  <a ngClass="listing-btns" routerLink="/RentCommertial">Commercial</a>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                      <h6 class="h6-design">Bathroom</h6>
+                      <div class="dropdown square-selection">
+                        <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown">
+                          Select type of property
+                        </button>
+                        <div class="dropdown-menu" id="property-type-sec">
+                          <h5 class="h5-heading">Room Type</h5>
+                          <div class="property-types-cntnts">
+                            <ul class="list-unstyled residentails-unit-list">
+                              <li class="d-flex">
+                                <div class="position-relative">
+                                  <input type="radio" formControlName="room_privateBathroom">
+                                  <span class="property_sel"></span>
                                 </div>
-                            </div>
-                            <div class="property-dropdowns-list">
-                                <div class="row">
-                                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-                                        <h6 class="h6-design">Type of Property</h6>
-                                        <div class="dropdown">
-                                            <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown">
-                                                Select type of property
-                                            </button>
-                                            <div class="dropdown-menu" id="property-type-sec">
-                                              <h5 class="h5-heading">Property Type</h5>
-                                                <div class="property-types-cntnts">
-                                                  <ul class="list-unstyled residentails-unit-list">
-                                                    <li class="d-flex">
-                                                      <div class="position-relative">
-                                                      <input type="checkbox" name="Studio">
-                                                      <span class="property_sel"></span>
-                                                      </div>
-                                                      <div class="proprty_name">
-                                                        <p>Studio</p>
-                                                      </div>
-                                                    </li>
-                                                    <li class="d-flex">
-                                                      <div class="position-relative">
-                                                      <input type="checkbox" name="Apartment">
-                                                      <span class="property_sel"></span>
-                                                      </div>
-                                                      <div class="proprty_name">
-                                                        <p>Apartment</p>
-                                                      </div>
-                                                    </li>
-                                                    <li class="d-flex">
-                                                      <div class="position-relative">
-                                                      <input type="checkbox" name="Villa">
-                                                      <span class="property_sel"></span>
-                                                      </div>
-                                                      <div class="proprty_name">
-                                                        <p>Villa</p>
-                                                      </div>
-                                                    </li>
-                                                    <li class="d-flex">
-                                                      <div class="position-relative">
-                                                      <input type="checkbox" name="Town House">
-                                                      <span class="property_sel"></span>
-                                                      </div>
-                                                      <div class="proprty_name">
-                                                        <p>Town House</p>
-                                                      </div>
-                                                    </li>
-                                                    <li class="d-flex">
-                                                      <div class="position-relative">
-                                                      <input type="checkbox" name="Penthouse">
-                                                      <span class="property_sel"></span>
-                                                      </div>
-                                                      <div class="proprty_name">
-                                                        <p>Penthouse</p>
-                                                      </div>
-                                                    </li>
-                                                    <li class="d-flex">
-                                                      <div class="position-relative">
-                                                      <input type="checkbox" name="Compound">
-                                                      <span class="property_sel"></span>
-                                                      </div>
-                                                      <div class="proprty_name">
-                                                        <p>Compound</p>
-                                                      </div>
-                                                    </li>
-                                                    <li class="d-flex">
-                                                      <div class="position-relative">
-                                                      <input type="checkbox" name="Duplex">
-                                                      <span class="property_sel"></span>
-                                                      </div>
-                                                      <div class="proprty_name">
-                                                        <p>Duplex</p>
-                                                      </div>
-                                                    </li>
-                                                    <li class="d-flex">
-                                                      <div class="position-relative">
-                                                      <input type="checkbox" name="Full Floor">
-                                                      <span class="property_sel"></span>
-                                                      </div>
-                                                      <div class="proprty_name">
-                                                        <p>Full Floor</p>
-                                                      </div>
-                                                    </li>
-                                                    <li class="d-flex">
-                                                      <div class="position-relative">
-                                                      <input type="checkbox" name="Whole Building">
-                                                      <span class="property_sel"></span>
-                                                      </div>
-                                                      <div class="proprty_name">
-                                                        <p>Whole Building</p>
-                                                      </div>
-                                                    </li>
-                                                    <li class="d-flex">
-                                                      <div class="position-relative">
-                                                      <input type="checkbox" name="Bulk Rent Unit">
-                                                      <span class="property_sel"></span>
-                                                      </div>
-                                                      <div class="proprty_name">
-                                                        <p>Bulk Rent Unit</p>
-                                                      </div>
-                                                    </li>
-                                                    <li class="d-flex">
-                                                      <div class="position-relative">
-                                                      <input type="checkbox" name="Bungalow">
-                                                      <span class="property_sel"></span>
-                                                      </div>
-                                                      <div class="proprty_name">
-                                                        <p>Bungalow</p>
-                                                      </div>
-                                                    </li>
-                                                    <li class="d-flex">
-                                                      <div class="position-relative">
-                                                      <input type="checkbox" name="Hotel & Hotel Apartment">
-                                                      <span class="property_sel"></span>
-                                                      </div>
-                                                      <div class="proprty_name">
-                                                        <p>Hotel & Hotel Apartment</p>
-                                                      </div>
-                                                    </li>
-                                                  </ul>
-                                                  </div>
-                                            </div>
-                                          </div>
-                                    </div>
-                                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-                                        <h6 class="h6-design">Bedroom</h6>
-                                        <div class="dropdown">
-                                            <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown">
-                                                Select type of property
-                                            </button>
-                                            <div class="dropdown-menu" id="property-type-sec">
-                                              <h5 class="h5-heading">Bedroom</h5>
-                                                <div class="property-types-cntnts">
-                                                  <ul class="list-unstyled residentails-unit-list">
-                                                    <li class="d-flex">
-                                                      <div class="position-relative">
-                                                      <input type="checkbox" name="Studio">
-                                                      <span class="property_sel"></span>
-                                                      </div>
-                                                      <div class="proprty_name">
-                                                        <p>Studio</p>
-                                                      </div>
-                                                    </li>
-                                                    <li class="d-flex">
-                                                      <div class="position-relative">
-                                                      <input type="checkbox" name="1 BHK">
-                                                      <span class="property_sel"></span>
-                                                      </div>
-                                                      <div class="proprty_name">
-                                                        <p>1 BHK</p>
-                                                      </div>
-                                                    </li>
-                                                    <li class="d-flex">
-                                                      <div class="position-relative">
-                                                      <input type="checkbox" name="2 BHK">
-                                                      <span class="property_sel"></span>
-                                                      </div>
-                                                      <div class="proprty_name">
-                                                        <p>2 BHK</p>
-                                                      </div>
-                                                    </li>
-                                                    <li class="d-flex">
-                                                      <div class="position-relative">
-                                                      <input type="checkbox" name="3 BHK">
-                                                      <span class="property_sel"></span>
-                                                      </div>
-                                                      <div class="proprty_name">
-                                                        <p>3 BHK</p>
-                                                      </div>
-                                                    </li>
-                                                    <li class="d-flex">
-                                                      <div class="position-relative">
-                                                      <input type="checkbox" name="4 BHK">
-                                                      <span class="property_sel"></span>
-                                                      </div>
-                                                      <div class="proprty_name">
-                                                        <p>4 BHK</p>
-                                                      </div>
-                                                    </li>
-                                                    <li class="d-flex">
-                                                      <div class="position-relative">
-                                                      <input type="checkbox" name="5 BHK">
-                                                      <span class="property_sel"></span>
-                                                      </div>
-                                                      <div class="proprty_name">
-                                                        <p>5 BHK</p>
-                                                      </div>
-                                                    </li>
-                                                    <li class="d-flex">
-                                                      <div class="position-relative">
-                                                      <input type="checkbox" name="6 BHK">
-                                                      <span class="property_sel"></span>
-                                                      </div>
-                                                      <div class="proprty_name">
-                                                        <p>6 BHK</p>
-                                                      </div>
-                                                    </li>
-                                                    <li class="d-flex">
-                                                      <div class="position-relative">
-                                                      <input type="checkbox" name="7 BHK">
-                                                      <span class="property_sel"></span>
-                                                      </div>
-                                                      <div class="proprty_name">
-                                                        <p>7 BHK</p>
-                                                      </div>
-                                                    </li>
-                                                    <li class="d-flex">
-                                                      <div class="position-relative">
-                                                      <input type="checkbox" name="7+ BHK">
-                                                      <span class="property_sel"></span>
-                                                      </div>
-                                                      <div class="proprty_name">
-                                                        <p>7+ BHK</p>
-                                                      </div>
-                                                    </li>
-                                                  </ul>
-                                                  </div>
-                                            </div>
-                                          </div>
-                                    </div>
-                                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-                                        <h6 class="h6-design">Bathroom</h6>
-                                        <div class="dropdown square-selection">
-                                            <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown">
-                                                Select type of property
-                                            </button>
-                                            <div class="dropdown-menu" id="property-type-sec">
-                                              <h5 class="h5-heading">Room Type</h5>
-                                                <div class="property-types-cntnts">
-                                                  <ul class="list-unstyled residentails-unit-list">
-                                                    <li class="d-flex">
-                                                      <div class="position-relative">
-                                                      <input type="radio" name="Bathroom">
-                                                      <span class="property_sel"></span>
-                                                      </div>
-                                                      <div class="proprty_name">
-                                                        <p>Private Bathroom</p>
-                                                      </div>
-                                                    </li>
-                                                    <li class="d-flex">
-                                                      <div class="position-relative">
-                                                      <input type="radio" name="Bathroom">
-                                                      <span class="property_sel"></span>
-                                                      </div>
-                                                      <div class="proprty_name">
-                                                        <p>Attached Bathroom</p>
-                                                      </div>
-                                                    </li>
-                                                    <li class="d-flex">
-                                                      <div class="position-relative">
-                                                      <input type="radio" name="Bathroom">
-                                                      <span class="property_sel"></span>
-                                                      </div>
-                                                      <div class="proprty_name">
-                                                        <p>Shared Bathroom</p>
-                                                      </div>
-                                                    </li>
-                                                  </ul>
-                                                  </div>
-                                            </div>
-                                          </div>
-                                    </div>
+                                <div class="proprty_name">
+                                  <p>Private Bathroom</p>
                                 </div>
-                            </div>
-                            <div class="furnishing-status">
-                                <div class="row">
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                                        <h6 class="h6-design">Furnishing Type</h6>
-                                        <div class="checkbox-flex-box three-column button-same-select">
-                                        <div class="checkbox-design position-relative">
-                                            <input type="radio" id="Furnished" name="property-types" value="Furnished" checked>
-                                            <button class="checkbox-btn">Furnished</button>
-                                        </div>
-                                        <div class="checkbox-design position-relative">
-                                            <input type="radio" id="Semi-Furnished" name="property-types" value="Semi Furnished">
-                                            <button class="checkbox-btn">Semi Furnished</button>
-                                        </div>
-                                        <div class="checkbox-design position-relative">
-                                            <input type="radio" id="Unfurnished" name="property-types" value="Unfurnished">
-                                            <button class="checkbox-btn">Unfurnished</button>
-                                        </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                                        <h6 class="h6-design">Fitting Type</h6>
-                                        <div class="checkbox-flex-box two-column button-same-select max-240">
-                                        <div class="checkbox-design position-relative">
-                                            <input type="radio" id="None" name="fitting-details" value="None" checked>
-                                            <button class="checkbox-btn">None</button>
-                                        </div>
-                                        <div class="checkbox-design position-relative">
-                                            <input type="radio" id="Fitted" name="fitting-details" value="Fitted">
-                                            <button class="checkbox-btn">Fitted</button>
-                                        </div>
-                                        </div>
-                                    </div>
+                              </li>
+                              <li class="d-flex">
+                                <div class="position-relative">
+                                  <input type="radio" formControlName="room_attachedBathroom">
+                                  <span class="property_sel"></span>
                                 </div>
-                            </div>
-                            <div class="Tenant-types">
-                                <div class="row">
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                                        <h6 class="h6-design">Preferred Tenant Type</h6>
-                                        <div class="checkbox-flex-box three-column button-same-select">
-                                        <div class="checkbox-design position-relative">
-                                            <input type="radio" id="Family" name="tenant-types" value="Family" checked>
-                                            <button class="checkbox-btn">Family</button>
-                                        </div>
-                                        <div class="checkbox-design position-relative">
-                                            <input type="radio" id="Bachelors" name="tenant-types" value="Bachelors">
-                                            <button class="checkbox-btn">Bachelors</button>
-                                        </div>
-                                        <div class="checkbox-design position-relative">
-                                            <input type="radio" id="Company" name="tenant-types" value="Company">
-                                            <button class="checkbox-btn">Company</button>
-                                        </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                                        <h6 class="h6-design">Preferred Gender Type</h6>
-                                        <div class="checkbox-flex-box three-column button-same-select">
-                                        <div class="checkbox-design position-relative">
-                                            <input type="radio" id="Male" name="gender" value="Male" checked>
-                                            <button class="checkbox-btn">Male</button>
-                                        </div>
-                                        <div class="checkbox-design position-relative">
-                                            <input type="radio" id="Female" name="gender" value="Female">
-                                            <button class="checkbox-btn">Female</button>
-                                        </div>
-                                        <div class="checkbox-design position-relative">
-                                            <input type="radio" id="Any" name="gender" value="Any">
-                                            <button class="checkbox-btn">Any</button>
-                                        </div>
-                                        </div>
-                                    </div>
+                                <div class="proprty_name">
+                                  <p>Attached Bathroom</p>
                                 </div>
-                            </div>
-                            <div class="property_manage-by">
-                                <div class="row">
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                                        <h6 class="h6-design">Property Managed by </h6>
-                                        <div class="checkbox-flex-box three-column button-same-select">
-                                        <div class="checkbox-design position-relative">
-                                            <input type="radio" id="Landlord" name="property-management" value="Landlord" checked>
-                                            <button class="checkbox-btn">Landlord</button>
-                                        </div>
-                                        <div class="checkbox-design position-relative">
-                                            <input type="radio" id="Caretaker" name="property-management" value="Caretaker">
-                                            <button class="checkbox-btn">Caretaker</button>
-                                        </div>
-                                        <div class="checkbox-design position-relative">
-                                            <input type="radio" id="Professional" name="property-management" value="Professional">
-                                            <button class="checkbox-btn">Professional</button>
-                                        </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                                        <h6 class="h6-design">Occupancy Status</h6>
-                                        <div class="checkbox-flex-box two-column button-same-select max-240">
-                                        <div class="checkbox-design position-relative">
-                                            <input type="radio" id="Vaccant" name="occupancy" value="Vaccant" checked>
-                                            <button class="checkbox-btn">Vaccant</button>
-                                        </div>
-                                        <div class="checkbox-design position-relative">
-                                            <input type="radio" id="Occupied" name="occupancy" value="Occupied">
-                                            <button class="checkbox-btn">Occupied</button>
-                                        </div>
-                                        </div>
-                                    </div>
+                              </li>
+                              <li class="d-flex">
+                                <div class="position-relative">
+                                  <input type="radio" formControlName="room_sharedBathroom">
+                                  <span class="property_sel"></span>
                                 </div>
-                            </div>
-                            <div class="parking-details-sec property-dropdowns-list">
-                                <div class="row">
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                                        <h6 class="h6-design">Available Parking </h6>
-                                        <div class="checkbox-flex-box six-column button-same-select">
-                                        <div class="checkbox-design position-relative">
-                                            <input type="radio" id="parking" name="parking-space" value="parking" checked>
-                                            <button class="checkbox-btn">0</button>
-                                        </div>
-                                        <div class="checkbox-design position-relative">
-                                            <input type="radio" id="parking" name="parking-space" value="parking">
-                                            <button class="checkbox-btn">1</button>
-                                        </div>
-                                        <div class="checkbox-design position-relative">
-                                            <input type="radio" id="parking" name="parking-space" value="parking">
-                                            <button class="checkbox-btn">2</button>
-                                        </div>
-                                        <div class="checkbox-design position-relative">
-                                            <input type="radio" id="parking" name="parking-space" value="parking">
-                                            <button class="checkbox-btn">3</button>
-                                        </div>
-                                        <div class="checkbox-design position-relative">
-                                            <input type="radio" id="parking" name="parking-space" value="parking">
-                                            <button class="checkbox-btn">4</button>
-                                        </div>
-                                        <div class="checkbox-design position-relative">
-                                            <input type="radio" id="parking" name="parking-space" value="parking">
-                                            <button class="checkbox-btn">4+</button>
-                                        </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                                         <h6 class="h6-design">Pet Policy</h6>
-                                        <div class="dropdown square-selection">
-                                            <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown">
-                                                Select the pet policy
-                                            </button>
-                                            <div class="dropdown-menu" id="property-type-sec">
-                                              <h5 class="h5-heading">Pet Policy</h5>
-                                                <div class="property-types-cntnts">
-                                                  <ul class="list-unstyled residentails-unit-list">
-                                                    <li class="d-flex">
-                                                      <div class="position-relative">
-                                                      <input type="radio" name="pets">
-                                                      <span class="property_sel"></span>
-                                                      </div>
-                                                      <div class="proprty_name">
-                                                        <p>No pets allowed</p>
-                                                      </div>
-                                                    </li>
-                                                    <li class="d-flex">
-                                                      <div class="position-relative">
-                                                      <input type="radio" name="pets">
-                                                      <span class="property_sel"></span>
-                                                      </div>
-                                                      <div class="proprty_name">
-                                                        <p>Cats allowed</p>
-                                                      </div>
-                                                    </li>
-                                                    <li class="d-flex">
-                                                      <div class="position-relative">
-                                                      <input type="radio" name="pets">
-                                                      <span class="property_sel"></span>
-                                                      </div>
-                                                      <div class="proprty_name">
-                                                        <p>Small dogs allowed</p>
-                                                      </div>
-                                                    </li>
-                                                    <li class="d-flex">
-                                                        <div class="position-relative">
-                                                        <input type="radio" name="pets">
-                                                        <span class="property_sel"></span>
-                                                        </div>
-                                                        <div class="proprty_name">
-                                                          <p>Big dogs allowed</p>
-                                                        </div>
-                                                      </li>
-                                                  </ul>
-                                                  </div>
-                                            </div>
-                                          </div>
-                                    </div>
+                                <div class="proprty_name">
+                                  <p>Shared Bathroom</p>
                                 </div>
-                            </div>
-                            <div class="area-list">
-                                <div class="row">
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                                        <h6 class="h6-design">Carpet Area </h6>
-                                        <div class="input-flaoted-right-text">
-                                        <div class="position-relative">
-                                        <mat-form-field class="full-width input-design" appearance="fill">
-                                            <input matInput type="number">
-                                        </mat-form-field>
-                                        <span class="area-sq">Sq. Ft.</span>
-                                        </div>
-                                        <p class="text-right">345 Sq Yd.</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                                        <h6 class="h6-design">Buildup Area</h6>
-                                        <div class="input-flaoted-right-text">
-                                            <div class="position-relative">
-                                            <mat-form-field class="full-width input-design" appearance="fill">
-                                                <input matInput type="number">
-                                            </mat-form-field>
-                                            <span class="area-sq">Sq. Ft.</span>
-                                            </div>
-                                            <p class="text-right">345 Sq Yd.</p>
-                                            </div>
-                                    </div>
-                                </div>
-                            </div>
-                                <div class="price-rent-type">
-                                <div class="row">
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                                        <h6 class="h6-design">Price </h6>
-                                        <div class="input-flaoted-left-text">
-                                        <div class="position-relative">
-                                            <mat-form-field class="full-width input-design" appearance="fill">
-                                                <input matInput type="number">
-                                            </mat-form-field>
-                                        <span class="area-sq">AED</span>
-                                        </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                                        <h6 class="h6-design">Rent Type</h6>
-                                        <div class="checkbox-flex-box three-column button-same-select">
-                                            <div class="checkbox-design position-relative">
-                                                <input type="radio" id="Monthly" name="building-type" value="Monthly" checked>
-                                                <button class="checkbox-btn">Monthly</button>
-                                            </div>
-                                            <div class="checkbox-design position-relative">
-                                                <input type="radio" id="Quaterly" name="building-type" value="Quaterly">
-                                                <button class="checkbox-btn">Quaterly</button>
-                                            </div>
-                                            <div class="checkbox-design position-relative">
-                                                <input type="radio" id="Yearly" name="building-type" value="Yearly">
-                                                <button class="checkbox-btn">Yearly</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="security-deposit-sec">
-                                <div class="row">
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                                        <h6 class="h6-design">Do you take Security deposit?</h6>
-                                        <div class="checkbox-flex-box two-column button-same-select">
-                                        <div class="checkbox-design position-relative">
-                                            <input type="radio" id="Yes" name="securoty-deposit" value="Yes" checked>
-                                            <button class="checkbox-btn">Yes</button>
-                                            <div class="deposit-yes hide">
-                                                <div class="input-flaoted-left-text">
-                                                    <div class="position-relative">
-                                                    <mat-form-field class="full-width input-design" appearance="fill">
-                                                        <input matInput type="number">
-                                                    </mat-form-field>
-                                                    <span class="area-sq">AED</span>
-                                                    </div>
-                                                  </div>
-                                                  <ul class="lsit-unstyled">
-                                                    <li class="d-flex">
-                                                        <div class="position-relative">
-                                                        <input type="radio" name="Security Negotiable">
-                                                        <span class="property_sel"></span>
-                                                        </div>
-                                                        <div class="proprty_name">
-                                                          <p>Is it Negotiable</p>
-                                                        </div>
-                                                      </li>
-                                                    </ul>
-                                            </div>
-                                        </div>
-                                        <div class="checkbox-design position-relative">
-                                            <input type="radio" id="No" name="securoty-deposit" value="No">
-                                            <button class="checkbox-btn">No</button>
-                                        </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                                        <h6 class="h6-design">Do you charge brokerage?</h6>
-                                        <div class="checkbox-flex-box two-column button-same-select">
-                                            <div class="checkbox-design position-relative">
-                                                <input type="radio" id="Yes" name="brokerage-value" value="Yes" checked>
-                                                <button class="checkbox-btn">Yes</button>
-                                                <div class="deposit-yes hide">
-                                                    <div class="input-flaoted-left-text">
-                                                        <div class="position-relative">
-                                                        <mat-form-field class="full-width input-design" appearance="fill">
-                                                            <input matInput type="number">
-                                                        </mat-form-field>
-                                                        <span class="area-sq">AED</span>
-                                                        </div>
-                                                      </div>
-                                                      <ul class="lsit-unstyled">
-                                                        <li class="d-flex">
-                                                            <div class="position-relative">
-                                                            <input type="radio" name="Brokerage Negotiable">
-                                                            <span class="property_sel"></span>
-                                                            </div>
-                                                            <div class="proprty_name">
-                                                              <p>Is it Negotiable</p>
-                                                            </div>
-                                                          </li>
-                                                        </ul>
-                                                </div>
-                                            </div>
-                                            <div class="checkbox-design position-relative">
-                                                <input type="radio" id="No" name="brokerage-value" value="No">
-                                                <button class="checkbox-btn">No</button>
-                                            </div>
-                                            </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="availabilty-sec">
-                                <div class="row">
-                                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-                                        <h6 class="h6-design">Available from</h6>
-                                        <div class="input-date-picker input-design">
-                                            <mat-form-field appearance="fill">
-                                                <input matInput [matDatepicker]="picker">
-                                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                                                <mat-datepicker #picker></mat-datepicker>
-                                              </mat-form-field>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-                                        <h6 class="h6-design">Notice Period</h6>
-                                        <div class="input-flaoted-right-text">
-                                            <div class="position-relative">
-                                            <mat-form-field class="full-width input-design" appearance="fill">
-                                                <input matInput type="number">
-                                            </mat-form-field>
-                                            <span class="area-sq">Days</span>
-                                            </div>
-                                            </div>
-                                    </div>
-                                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-                                        <h6 class="h6-design">Locking Period</h6>
-                                        <div class="input-flaoted-right-text">
-                                            <div class="position-relative">
-                                            <mat-form-field class="full-width input-design" appearance="fill">
-                                                <input matInput type="number">
-                                            </mat-form-field>
-                                            <span class="area-sq">Days</span>
-                                            </div>
-                                            </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="property-description">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <h6 class="h6-design">Property Description</h6>
-                                        <div class="textarea-design">
-                                            <mat-form-field class="example-full-width" appearance="fill">
-                                                <mat-label>Property Description</mat-label>
-                                                <textarea matInput placeholder="Eg. 30"></textarea>
-                                              </mat-form-field>
-                                            <p class="textraea-hint text-right">320 words left</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="property-offers">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <h6 class="h6-design">Property Offers (if any)</h6>
-                                        <div class="textarea-design">
-                                            <mat-form-field class="full-width input-design" appearance="fill">
-                                                <mat-label>Offers - Increase leads on your property upto 50%!</mat-label>
-                                                <input matInput type="text" placeholder="Example - 15 days of rent off. Only Pay 15 days of brokerage now! Free rental agreement.">
-                                              </mat-form-field>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="highlight-sec">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <h6 class="h6-design">Highlights</h6>
-                                        <div class="inneR-border-wrap">
-                                            <div class="checkbox-flex-box autoflex-layout">
-                                                <div class="checkbox-design position-relative">
-                                                    <input type="checkbox" id="Exclusive" name="Exclusive" value="Exclusive" checked>
-                                                    <button class="checkbox-btn">Exclusive</button>
-                                                </div>
-                                                <div class="checkbox-design position-relative">
-                                                    <input type="checkbox" id="Golf-View" name="Golf-View" value="Golf View">
-                                                    <button class="checkbox-btn">Golf View</button>
-                                                </div>
-                                                <div class="checkbox-design position-relative">
-                                                    <input type="checkbox" id="Canal-View" name="Canal-View" value="Canal View" checked>
-                                                    <button class="checkbox-btn">Canal View</button>
-                                                </div>
-                                                <div class="checkbox-design position-relative">
-                                                    <input type="checkbox" id="Affordable" name="Affordable" value="Affordable" checked>
-                                                    <button class="checkbox-btn">Affordable</button>
-                                                </div>
-                                                <div class="checkbox-design position-relative">
-                                                    <input type="checkbox" id="Vastu-Complaint" name="Vastu-Complaint" value="Vastu Complaint">
-                                                    <button class="checkbox-btn">Vastu Complaint</button>
-                                                </div>
-                                                <div class="checkbox-design position-relative">
-                                                    <input type="checkbox" id="Prime Location" name="Prime-Location" value="Prime Location">
-                                                    <button class="checkbox-btn">Prime Location</button>
-                                                </div>
-                                                <div class="checkbox-design position-relative">
-                                                    <input type="checkbox" id="Metro" name="Metro" value="Metro" checked>
-                                                    <button class="checkbox-btn">2m from Metro</button>
-                                                </div>
-                                                </div>
-                                                <div class="add-more">
-                                                    <button class="add-higlights"><img src="{{plus}}"> Add Hightlights</button>
-                                                </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="select-amenitites">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <h6 class="h6-design">Select Amenitites</h6>
-                                        <div class="inneR-border-wrap">
-                                            <div class="checkbox-flex-box autoflex-layout">
-                                                <div class="checkbox-design position-relative">
-                                                    <input type="checkbox" id="ac" name="ac" value="AC" checked>
-                                                    <button class="checkbox-btn">A/C</button>
-                                                </div>
-                                                <div class="checkbox-design position-relative">
-                                                    <input type="checkbox" id="Deck" name="Deck-space" value="Deck">
-                                                    <button class="checkbox-btn">Deck</button>
-                                                </div>
-                                                <div class="checkbox-design position-relative">
-                                                    <input type="checkbox" id="Pet-Friendly" name="Pet Friendly" value="Pet Friendly" checked>
-                                                    <button class="checkbox-btn">Pet Friendly</button>
-                                                </div>
-                                                <div class="checkbox-design position-relative">
-                                                    <input type="checkbox" id="Free-Parking-Spots" name="parking-space" value="Free Parking Spots" checked>
-                                                    <button class="checkbox-btn">Free Parking Spots</button>
-                                                </div>
-                                                <div class="checkbox-design position-relative">
-                                                    <input type="checkbox" id="Pool" name="Pool-space" value="Pool">
-                                                    <button class="checkbox-btn">Pool</button>
-                                                </div>
-                                                <div class="checkbox-design position-relative">
-                                                    <input type="checkbox" id="Yard" name="Yard-space" value="Yard">
-                                                    <button class="checkbox-btn">Yard</button>
-                                                </div>
-                                                <div class="checkbox-design position-relative">
-                                                    <input type="checkbox" id="Free-Wi-Fi" name="Free-Wi-Fi" value="Free Wi-Fi">
-                                                    <button class="checkbox-btn">Free Wi-Fi</button>
-                                                </div>
-                                                <div class="checkbox-design position-relative">
-                                                    <input type="checkbox" id="Gym" name="Gym-space" value="Gym" checked>
-                                                    <button class="checkbox-btn">Gym</button>
-                                                </div>
-                                                <div class="checkbox-design position-relative">
-                                                    <input type="checkbox" id="Hardwood-Floor" name="Hardwood-Floor-space" value="Hardwood Floor">
-                                                    <button class="checkbox-btn">Hardwood Floor</button>
-                                                </div>
-                                                <div class="checkbox-design position-relative">
-                                                    <input type="checkbox" id="Jacuzzi" name="Jacuzzi" value="Jacuzzi">
-                                                    <button class="checkbox-btn">Jacuzzi</button>
-                                                </div>
-                                                </div>
-                                                <div class="add-more">
-                                                    <button class="add-higlights"><img src="{{plus}}"> Add Amenity</button>
-                                                </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
+                </div>
+                <div class="furnishing-status">
+                  <div class="row">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                      <h6 class="h6-design">Furnishing Type</h6>
+                      <div class="checkbox-flex-box three-column button-same-select">
+                        <div class="checkbox-design position-relative">
+                          <input type="radio" id="Furnished" formControlName="property_types" value="Furnished" checked>
+                          <button class="checkbox-btn">Furnished</button>
+                        </div>
+                        <div class="checkbox-design position-relative">
+                          <input type="radio" id="Semi-Furnished" formControlName="property_types" value="Semi Furnished">
+                          <button class="checkbox-btn">Semi Furnished</button>
+                        </div>
+                        <div class="checkbox-design position-relative">
+                          <input type="radio" id="Unfurnished" formControlName="property_types" value="Unfurnished">
+                          <button class="checkbox-btn">Unfurnished</button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                      <h6 class="h6-design">Fitting Type</h6>
+                      <div class="checkbox-flex-box two-column button-same-select max-240">
+                        <div class="checkbox-design position-relative">
+                          <input type="radio" id="None" formControlName="fitting_details" value="None" checked>
+                          <button class="checkbox-btn">None</button>
+                        </div>
+                        <div class="checkbox-design position-relative">
+                          <input type="radio" id="Fitted" formControlName="fitting_details" value="Fitted">
+                          <button class="checkbox-btn">Fitted</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="Tenant-types">
+                  <div class="row">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                      <h6 class="h6-design">Preferred Tenant Type</h6>
+                      <div class="checkbox-flex-box three-column button-same-select">
+                        <div class="checkbox-design position-relative">
+                          <input type="radio" id="Family" formControlName="tenant_types" value="Family" checked>
+                          <button class="checkbox-btn">Family</button>
+                        </div>
+                        <div class="checkbox-design position-relative">
+                          <input type="radio" id="Bachelors" formControlName="tenant_types" value="Bachelors">
+                          <button class="checkbox-btn">Bachelors</button>
+                        </div>
+                        <div class="checkbox-design position-relative">
+                          <input type="radio" id="Company" formControlName="tenant_types" value="Company">
+                          <button class="checkbox-btn">Company</button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                      <h6 class="h6-design">Preferred Gender Type</h6>
+                      <div class="checkbox-flex-box three-column button-same-select">
+                        <div class="checkbox-design position-relative">
+                          <input type="radio" id="Male" formControlName="gender" value="Male" checked>
+                          <button class="checkbox-btn">Male</button>
+                        </div>
+                        <div class="checkbox-design position-relative">
+                          <input type="radio" id="Female" formControlName="gender" value="Female">
+                          <button class="checkbox-btn">Female</button>
+                        </div>
+                        <div class="checkbox-design position-relative">
+                          <input type="radio" id="Any" formControlName="gender" value="Any">
+                          <button class="checkbox-btn">Any</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="property_manage-by">
+                  <div class="row">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                      <h6 class="h6-design">Property Managed by </h6>
+                      <div class="checkbox-flex-box three-column button-same-select">
+                        <div class="checkbox-design position-relative">
+                          <input type="radio" id="Landlord" formControlName="property_management" value="Landlord" checked>
+                          <button class="checkbox-btn">Landlord</button>
+                        </div>
+                        <div class="checkbox-design position-relative">
+                          <input type="radio" id="Caretaker" formControlName="property_management" value="Caretaker">
+                          <button class="checkbox-btn">Caretaker</button>
+                        </div>
+                        <div class="checkbox-design position-relative">
+                          <input type="radio" id="Professional" formControlName="property_management" value="Professional">
+                          <button class="checkbox-btn">Professional</button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                      <h6 class="h6-design">Occupancy Status</h6>
+                      <div class="checkbox-flex-box two-column button-same-select max-240">
+                        <div class="checkbox-design position-relative">
+                          <input type="radio" id="Vaccant" formControlName="occupancy" value="Vaccant" checked>
+                          <button class="checkbox-btn">Vaccant</button>
+                        </div>
+                        <div class="checkbox-design position-relative">
+                          <input type="radio" id="Occupied" formControlName="occupancy" value="Occupied">
+                          <button class="checkbox-btn">Occupied</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="parking-details-sec property-dropdowns-list">
+                  <div class="row">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                      <h6 class="h6-design">Available Parking </h6>
+                      <div class="checkbox-flex-box six-column button-same-select">
+                        <div class="checkbox-design position-relative">
+                          <input type="radio" id="parking" formControlName="parking_space" value="parking" checked>
+                          <button class="checkbox-btn">0</button>
+                        </div>
+                        <div class="checkbox-design position-relative">
+                          <input type="radio" id="parking" formControlName="parking_space" value="parking">
+                          <button class="checkbox-btn">1</button>
+                        </div>
+                        <div class="checkbox-design position-relative">
+                          <input type="radio" id="parking" formControlName="parking_space" value="parking">
+                          <button class="checkbox-btn">2</button>
+                        </div>
+                        <div class="checkbox-design position-relative">
+                          <input type="radio" id="parking" formControlName="parking_space" value="parking">
+                          <button class="checkbox-btn">3</button>
+                        </div>
+                        <div class="checkbox-design position-relative">
+                          <input type="radio" id="parking" formControlName="parking_space" value="parking">
+                          <button class="checkbox-btn">4</button>
+                        </div>
+                        <div class="checkbox-design position-relative">
+                          <input type="radio" id="parking" formControlName="parking_space" value="parking">
+                          <button class="checkbox-btn">4+</button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                      <h6 class="h6-design">Pet Policy</h6>
+                      <div class="dropdown square-selection">
+                        <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown">
+                          Select the pet policy
+                        </button>
+                        <div class="dropdown-menu" id="property-type-sec">
+                          <h5 class="h5-heading">Pet Policy</h5>
+                          <div class="property-types-cntnts">
+                            <ul class="list-unstyled residentails-unit-list">
+                              <li class="d-flex">
+                                <div class="position-relative">
+                                  <input type="radio" formControlName="pets">
+                                  <span class="property_sel"></span>
+                                </div>
+                                <div class="proprty_name">
+                                  <p>No pets allowed</p>
+                                </div>
+                              </li>
+                              <li class="d-flex">
+                                <div class="position-relative">
+                                  <input type="radio" formControlName="pet_cats_allowed">
+                                  <span class="property_sel"></span>
+                                </div>
+                                <div class="proprty_name">
+                                  <p>Cats allowed</p>
+                                </div>
+                              </li>
+                              <li class="d-flex">
+                                <div class="position-relative">
+                                  <input type="radio" formControlName="pet_small_dogs_allowed">
+                                  <span class="property_sel"></span>
+                                </div>
+                                <div class="proprty_name">
+                                  <p>Small dogs allowed</p>
+                                </div>
+                              </li>
+                              <li class="d-flex">
+                                <div class="position-relative">
+                                  <input type="radio" formControlName="pet_big_dogs_allowed">
+                                  <span class="property_sel"></span>
+                                </div>
+                                <div class="proprty_name">
+                                  <p>Big dogs allowed</p>
+                                </div>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="area-list">
+                  <div class="row">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                      <h6 class="h6-design">Carpet Area </h6>
+                      <div class="input-flaoted-right-text">
+                        <div class="position-relative">
+                          <mat-form-field class="full-width input-design" appearance="fill">
+                            <input matInput type="number" formControlName="carpetArea">
+                          </mat-form-field>
+                          <span class="area-sq">Sq. Ft.</span>
+                        </div>
+                        <p class="text-right">345 Sq Yd.</p>
+                      </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                      <h6 class="h6-design">Buildup Area</h6>
+                      <div class="input-flaoted-right-text">
+                        <div class="position-relative">
+                          <mat-form-field class="full-width input-design" appearance="fill">
+                            <input matInput type="number" formControlName="buildupArea">
+                          </mat-form-field>
+                          <span class="area-sq">Sq. Ft.</span>
+                        </div>
+                        <p class="text-right">345 Sq Yd.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="price-rent-type">
+                  <div class="row">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                      <h6 class="h6-design">Price </h6>
+                      <div class="input-flaoted-left-text">
+                        <div class="position-relative">
+                          <mat-form-field class="full-width input-design" appearance="fill">
+                            <input matInput type="number" formControlName="price">
+                          </mat-form-field>
+                          <span class="area-sq">AED</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                      <h6 class="h6-design">Rent Type</h6>
+                      <div class="checkbox-flex-box three-column button-same-select">
+                        <div class="checkbox-design position-relative">
+                          <input type="radio" id="Monthly" formControlName="building_type_monthly" value="Monthly" checked>
+                          <button class="checkbox-btn">Monthly</button>
+                        </div>
+                        <div class="checkbox-design position-relative">
+                          <input type="radio" id="Quaterly" formControlName="building_type_quaterly" value="Quaterly">
+                          <button class="checkbox-btn">Quaterly</button>
+                        </div>
+                        <div class="checkbox-design position-relative">
+                          <input type="radio" id="Yearly" formControlName="building_type_yearly" value="Yearly">
+                          <button class="checkbox-btn">Yearly</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="security-deposit-sec">
+                  <div class="row">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                      <h6 class="h6-design">Do you take Security deposit?</h6>
+                      <div class="checkbox-flex-box two-column button-same-select">
+                        <div class="checkbox-design position-relative">
+                          <input type="radio" id="Yes" formControlName="securoty_deposit" value="Yes" checked>
+                          <button class="checkbox-btn">Yes</button>
+                          <div class="deposit-yes hide">
+                            <div class="input-flaoted-left-text">
+                              <div class="position-relative">
+                                <mat-form-field class="full-width input-design" appearance="fill">
+                                  <input matInput type="number" formControlName="AED">
+                                </mat-form-field>
+                                <span class="area-sq">AED</span>
+                              </div>
+                            </div>
+                            <ul class="lsit-unstyled">
+                              <li class="d-flex">
+                                <div class="position-relative">
+                                  <input type="radio" formControlName="securityNegotiable">
+                                  <span class="property_sel"></span>
+                                </div>
+                                <div class="proprty_name">
+                                  <p>Is it Negotiable</p>
+                                </div>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                        <div class="checkbox-design position-relative">
+                          <input type="radio" id="No" formControlName="securoty_deposit" value="No">
+                          <button class="checkbox-btn">No</button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                      <h6 class="h6-design">Do you charge brokerage?</h6>
+                      <div class="checkbox-flex-box two-column button-same-select">
+                        <div class="checkbox-design position-relative">
+                          <input type="radio" id="Yes" formControlName="brokerage_value" value="Yes" checked>
+                          <button class="checkbox-btn">Yes</button>
+                          <div class="deposit-yes hide">
+                            <div class="input-flaoted-left-text">
+                              <div class="position-relative">
+                                <mat-form-field class="full-width input-design" appearance="fill">
+                                  <input matInput type="number" formControlName="brokerageAed">
+                                </mat-form-field>
+                                <span class="area-sq">AED</span>
+                              </div>
+                            </div>
+                            <ul class="lsit-unstyled">
+                              <li class="d-flex">
+                                <div class="position-relative">
+                                  <input type="radio" formControlName="brokerageNegotiable">
+                                  <span class="property_sel"></span>
+                                </div>
+                                <div class="proprty_name">
+                                  <p>Is it Negotiable</p>
+                                </div>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                        <div class="checkbox-design position-relative">
+                          <input type="radio" id="No" formControlName="brokerage_value" value="No">
+                          <button class="checkbox-btn">No</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="availabilty-sec">
+                  <div class="row">
+                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                      <h6 class="h6-design">Available from</h6>
+                      <div class="input-date-picker input-design">
+                        <mat-form-field appearance="fill">
+                          <input matInput [matDatepicker]="picker" formControlName="availablefrom">
+                          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                          <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                      </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                      <h6 class="h6-design">Notice Period</h6>
+                      <div class="input-flaoted-right-text">
+                        <div class="position-relative">
+                          <mat-form-field class="full-width input-design" appearance="fill">
+                            <input matInput type="number" formControlName="noticePeriod">
+                          </mat-form-field>
+                          <span class="area-sq">Days</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                      <h6 class="h6-design">Locking Period</h6>
+                      <div class="input-flaoted-right-text">
+                        <div class="position-relative">
+                          <mat-form-field class="full-width input-design" appearance="fill">
+                            <input matInput type="number" formControlName="lockingPeriod">
+                          </mat-form-field>
+                          <span class="area-sq">Days</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="property-description">
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <h6 class="h6-design">Property Description</h6>
+                      <div class="textarea-design">
+                        <mat-form-field class="example-full-width" appearance="fill">
+                          <mat-label>Property Description</mat-label>
+                          <textarea formControlName="propertyDescription" matInput placeholder="Eg. 30"></textarea>
+                        </mat-form-field>
+                        <p class="textraea-hint text-right">320 words left</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="property-offers">
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <h6 class="h6-design">Property Offers (if any)</h6>
+                      <div class="textarea-design">
+                        <mat-form-field class="full-width input-design" appearance="fill">
+                          <mat-label>Offers - Increase leads on your property upto 50%!</mat-label>
+                          <input matInput formControlName="propertyOffers" type="text"
+                                 placeholder="Example - 15 days of rent off. Only Pay 15 days of brokerage now! Free rental agreement.">
+                        </mat-form-field>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="highlight-sec">
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <h6 class="h6-design">Highlights</h6>
+                      <div class="inneR-border-wrap">
+                        <div class="checkbox-flex-box autoflex-layout">
+                          <div class="checkbox-design position-relative">
+                            <input type="checkbox" id="Exclusive" formControlName="highlights_exclusive" value="Exclusive" checked>
+                            <button class="checkbox-btn">Exclusive</button>
+                          </div>
+                          <div class="checkbox-design position-relative">
+                            <input type="checkbox" id="Golf-View" formControlName="highlights_golfView" value="Golf View">
+                            <button class="checkbox-btn">Golf View</button>
+                          </div>
+                          <div class="checkbox-design position-relative">
+                            <input type="checkbox" id="Canal-View" formControlName="highlights_canalView" value="Canal View" checked>
+                            <button class="checkbox-btn">Canal View</button>
+                          </div>
+                          <div class="checkbox-design position-relative">
+                            <input type="checkbox" id="Affordable" formControlName="highlights_affordable" value="Affordable" checked>
+                            <button class="checkbox-btn">Affordable</button>
+                          </div>
+                          <div class="checkbox-design position-relative">
+                            <input type="checkbox" id="Vastu-Complaint" formControlName="highlights_vastuComplaint" value="Vastu Complaint">
+                            <button class="checkbox-btn">Vastu Complaint</button>
+                          </div>
+                          <div class="checkbox-design position-relative">
+                            <input type="checkbox" id="Prime Location" formControlName="highlights_primeLocation" value="Prime Location">
+                            <button class="checkbox-btn">Prime Location</button>
+                          </div>
+                          <div class="checkbox-design position-relative">
+                            <input type="checkbox" id="Metro" formControlName="highlights_metro" value="Metro" checked>
+                            <button class="checkbox-btn">2m from Metro</button>
+                          </div>
+                        </div>
+                        <div class="add-more">
+                          <button class="add-higlights"><img src="{{plus}}"> Add Hightlights</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="select-amenitites">
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <h6 class="h6-design">Select Amenitites</h6>
+                      <div class="inneR-border-wrap">
+                        <div class="checkbox-flex-box autoflex-layout">
+                          <div class="checkbox-design position-relative">
+                            <input type="checkbox" id="ac" formControlName="amenitites_ac" value="AC" checked>
+                            <button class="checkbox-btn">A/C</button>
+                          </div>
+                          <div class="checkbox-design position-relative">
+                            <input type="checkbox" id="Deck" formControlName="amenitites_deckspace" value="Deck">
+                            <button class="checkbox-btn">Deck</button>
+                          </div>
+                          <div class="checkbox-design position-relative">
+                            <input type="checkbox" id="Pet-Friendly" formControlName="amenitites_petFriendly" value="Pet Friendly" checked>
+                            <button class="checkbox-btn">Pet Friendly</button>
+                          </div>
+                          <div class="checkbox-design position-relative">
+                            <input type="checkbox" id="Free-Parking-Spots" formControlName="amenitites_parkingspace"
+                                   value="Free Parking Spots" checked>
+                            <button class="checkbox-btn">Free Parking Spots</button>
+                          </div>
+                          <div class="checkbox-design position-relative">
+                            <input type="checkbox" id="Pool" formControlName="amenitites_poolspace" value="Pool">
+                            <button class="checkbox-btn">Pool</button>
+                          </div>
+                          <div class="checkbox-design position-relative">
+                            <input type="checkbox" id="Yard" formControlName="amenitites_yardspace" value="Yard">
+                            <button class="checkbox-btn">Yard</button>
+                          </div>
+                          <div class="checkbox-design position-relative">
+                            <input type="checkbox" id="Free-Wi-Fi" formControlName="amenitites_freeWiFi" value="Free Wi-Fi">
+                            <button class="checkbox-btn">Free Wi-Fi</button>
+                          </div>
+                          <div class="checkbox-design position-relative">
+                            <input type="checkbox" id="Gym" formControlName="amenitites_gymspace" value="Gym" checked>
+                            <button class="checkbox-btn">Gym</button>
+                          </div>
+                          <div class="checkbox-design position-relative">
+                            <input type="checkbox" id="Hardwood-Floor" formControlName="amenitites_hardwoodFloorspace" value="Hardwood Floor">
+                            <button class="checkbox-btn">Hardwood Floor</button>
+                          </div>
+                          <div class="checkbox-design position-relative">
+                            <input type="checkbox" id="Jacuzzi" formControlName="amenitites_jacuzzi" value="Jacuzzi">
+                            <button class="checkbox-btn">Jacuzzi</button>
+                          </div>
+                        </div>
+                        <div class="add-more">
+                          <button class="add-higlights"><img src="{{plus}}"> Add Amenity</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="text-right save-continue-sec">
+            </div>
+            <div class="text-right save-continue-sec">
               <mat-card-actions>
-                      <a routerLink="/listingproperty" class="back-btn">Back</a>
-               </mat-card-actions>
+                <a routerLink="/listingproperty" class="back-btn">Back</a>
+              </mat-card-actions>
               <mat-card-actions>
-                  <a routerLink="/listpropertymedia" class="save-continue-btn">Save & Continue</a>
-               </mat-card-actions>
-              </div>
-              </form>
-          </div>
+                <!--                  <a routerLink="/listpropertymedia" class="save-continue-btn">Save & Continue</a>-->
+                <button mat-raised-button type="submit" ngClass="submit-btn">Save & Continue</button>
+              </mat-card-actions>
+            </div>
+          </form>
+        </div>
       </div>
-      </div>
- </div>
+    </div>
+  </div>
 </section>

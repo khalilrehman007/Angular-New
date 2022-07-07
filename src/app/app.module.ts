@@ -174,3 +174,5 @@ import { ExploreDetailsComponent } from './pages/explore/explore-details/explore
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+

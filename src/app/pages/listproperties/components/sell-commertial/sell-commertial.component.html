@@ -25,7 +25,7 @@
                             <div class="new-proprty-details">
                                 <h5 class="propertyid">OV 3456 890 987</h5>
                                 <h5 class="proname">Blue Wave Tower</h5>
-                                <address>Etihad Tower 4, Etihad Towers,<br/> 
+                                <address>Etihad Tower 4, Etihad Towers,<br/>
                                     Corniche Road, Abu Dhabi  </address>
                             </div>
                         </div>
@@ -44,7 +44,7 @@
                         </div>
                     </div>
                 </div>
-                <form action="">
+              <form [formGroup]="SubmitForm" (ngSubmit)="onSubmit()">
                 <div class="form-border-wrapper">
                     <div class="list-property-header">
                         <h5 class="h5-heading">Property Listing Information</h5>
@@ -79,7 +79,7 @@
                                                     <ul class="list-unstyled residentails-unit-list">
                                                       <li class="d-flex">
                                                         <div class="position-relative">
-                                                        <input type="checkbox" name="Studio">
+                                                        <input type="checkbox" formControlName="property_studio">
                                                         <span class="property_sel"></span>
                                                         </div>
                                                         <div class="proprty_name">
@@ -88,7 +88,7 @@
                                                       </li>
                                                       <li class="d-flex">
                                                         <div class="position-relative">
-                                                        <input type="checkbox" name="Apartment">
+                                                        <input type="checkbox" formControlName="property_apartment">
                                                         <span class="property_sel"></span>
                                                         </div>
                                                         <div class="proprty_name">
@@ -97,7 +97,7 @@
                                                       </li>
                                                       <li class="d-flex">
                                                         <div class="position-relative">
-                                                        <input type="checkbox" name="Villa">
+                                                        <input type="checkbox" formControlName="property_villa">
                                                         <span class="property_sel"></span>
                                                         </div>
                                                         <div class="proprty_name">
@@ -106,7 +106,7 @@
                                                       </li>
                                                       <li class="d-flex">
                                                         <div class="position-relative">
-                                                        <input type="checkbox" name="Town House">
+                                                        <input type="checkbox" formControlName="property_townHouse">
                                                         <span class="property_sel"></span>
                                                         </div>
                                                         <div class="proprty_name">
@@ -115,7 +115,7 @@
                                                       </li>
                                                       <li class="d-flex">
                                                         <div class="position-relative">
-                                                        <input type="checkbox" name="Penthouse">
+                                                        <input type="checkbox" formControlName="property_penthouse">
                                                         <span class="property_sel"></span>
                                                         </div>
                                                         <div class="proprty_name">
@@ -124,7 +124,7 @@
                                                       </li>
                                                       <li class="d-flex">
                                                         <div class="position-relative">
-                                                        <input type="checkbox" name="Compound">
+                                                        <input type="checkbox" formControlName="property_compound">
                                                         <span class="property_sel"></span>
                                                         </div>
                                                         <div class="proprty_name">
@@ -133,7 +133,7 @@
                                                       </li>
                                                       <li class="d-flex">
                                                         <div class="position-relative">
-                                                        <input type="checkbox" name="Duplex">
+                                                        <input type="checkbox" formControlName="property_duplex">
                                                         <span class="property_sel"></span>
                                                         </div>
                                                         <div class="proprty_name">
@@ -142,7 +142,7 @@
                                                       </li>
                                                       <li class="d-flex">
                                                         <div class="position-relative">
-                                                        <input type="checkbox" name="Full Floor">
+                                                        <input type="checkbox" formControlName="property_fullFloor">
                                                         <span class="property_sel"></span>
                                                         </div>
                                                         <div class="proprty_name">
@@ -151,7 +151,7 @@
                                                       </li>
                                                       <li class="d-flex">
                                                         <div class="position-relative">
-                                                        <input type="checkbox" name="Whole Building">
+                                                        <input type="checkbox" formControlName="property_wholeBuilding">
                                                         <span class="property_sel"></span>
                                                         </div>
                                                         <div class="proprty_name">
@@ -160,7 +160,7 @@
                                                       </li>
                                                       <li class="d-flex">
                                                         <div class="position-relative">
-                                                        <input type="checkbox" name="Bulk Rent Unit">
+                                                        <input type="checkbox" formControlName="property_bulkRentUnit">
                                                         <span class="property_sel"></span>
                                                         </div>
                                                         <div class="proprty_name">
@@ -169,7 +169,7 @@
                                                       </li>
                                                       <li class="d-flex">
                                                         <div class="position-relative">
-                                                        <input type="checkbox" name="Bungalow">
+                                                        <input type="checkbox" formControlName="property_bungalow">
                                                         <span class="property_sel"></span>
                                                         </div>
                                                         <div class="proprty_name">
@@ -178,7 +178,7 @@
                                                       </li>
                                                       <li class="d-flex">
                                                         <div class="position-relative">
-                                                        <input type="checkbox" name="Hotel & Hotel Apartment">
+                                                        <input type="checkbox" formControlName="property_hotelApartment">
                                                         <span class="property_sel"></span>
                                                         </div>
                                                         <div class="proprty_name">
@@ -202,7 +202,7 @@
                                                     <ul class="list-unstyled residentails-unit-list">
                                                       <li class="d-flex">
                                                         <div class="position-relative">
-                                                        <input type="radio" name="Bedroom">
+                                                        <input type="radio" formControlName="suitable_1">
                                                         <span class="property_sel"></span>
                                                         </div>
                                                         <div class="proprty_name">
@@ -211,7 +211,7 @@
                                                       </li>
                                                       <li class="d-flex">
                                                         <div class="position-relative">
-                                                        <input type="radio" name="Bedroom">
+                                                        <input type="radio" formControlName="suitable_2">
                                                         <span class="property_sel"></span>
                                                         </div>
                                                         <div class="proprty_name">
@@ -220,7 +220,7 @@
                                                       </li>
                                                       <li class="d-flex">
                                                         <div class="position-relative">
-                                                        <input type="radio" name="Bedroom">
+                                                        <input type="radio" formControlName="suitable_3">
                                                         <span class="property_sel"></span>
                                                         </div>
                                                         <div class="proprty_name">
@@ -244,7 +244,7 @@
                                                     <ul class="list-unstyled residentails-unit-list">
                                                       <li class="d-flex">
                                                         <div class="position-relative">
-                                                        <input type="radio" name="Bathroom">
+                                                        <input type="radio" formControlName="location_1">
                                                         <span class="property_sel"></span>
                                                         </div>
                                                         <div class="proprty_name">
@@ -253,7 +253,7 @@
                                                       </li>
                                                       <li class="d-flex">
                                                         <div class="position-relative">
-                                                        <input type="radio" name="Bathroom">
+                                                        <input type="radio" formControlName="location_2">
                                                         <span class="property_sel"></span>
                                                         </div>
                                                         <div class="proprty_name">
@@ -262,7 +262,7 @@
                                                       </li>
                                                       <li class="d-flex">
                                                         <div class="position-relative">
-                                                        <input type="radio" name="Bathroom">
+                                                        <input type="radio" formControlName="location_3">
                                                         <span class="property_sel"></span>
                                                         </div>
                                                         <div class="proprty_name">
@@ -282,15 +282,15 @@
                                           <h6 class="h6-design">Located Near</h6>
                                           <div class="checkbox-flex-box three-column button-same-select">
                                           <div class="checkbox-design position-relative">
-                                              <input type="radio" id="Metro" name="located-near" value="Metro" checked>
+                                              <input type="radio" id="Metro" formControlName="locatedNear" value="Metro" checked>
                                               <button class="checkbox-btn">Metro</button>
                                           </div>
                                           <div class="checkbox-design position-relative">
-                                              <input type="radio" id="Elevator" name="located-near" value="Elevator">
+                                              <input type="radio" id="Elevator" formControlName="locatedNear" value="Elevator">
                                               <button class="checkbox-btn">Elevator</button>
                                           </div>
                                           <div class="checkbox-design position-relative">
-                                              <input type="radio" id="Stairs" name="located-near" value="Stairs">
+                                              <input type="radio" id="Stairs" formControlName="locatedNear" value="Stairs">
                                               <button class="checkbox-btn">Stairs</button>
                                           </div>
                                           </div>
@@ -299,11 +299,11 @@
                                           <h6 class="h6-design">Ownership Type</h6>
                                           <div class="checkbox-flex-box two-column button-same-select max-240">
                                           <div class="checkbox-design position-relative">
-                                              <input type="radio" id="Freehold" name="ownership-type" value="Freehold" checked>
+                                              <input type="radio" id="Freehold" formControlName="ownershipType" value="Freehold" checked>
                                               <button class="checkbox-btn">Freehold</button>
                                           </div>
                                           <div class="checkbox-design position-relative">
-                                              <input type="radio" id="Leasehold" name="ownership-type" value="Leasehold">
+                                              <input type="radio" id="Leasehold" formControlName="ownershipType" value="Leasehold">
                                               <button class="checkbox-btn">Leasehold</button>
                                           </div>
                                           </div>
@@ -317,7 +317,7 @@
                                           <div class="input-flaoted-right-text">
                                           <div class="position-relative">
                                           <mat-form-field class="full-width input-design" appearance="fill">
-                                              <input matInput type="number">
+                                              <input matInput type="number" formControlName="carpetArea">
                                           </mat-form-field>
                                           <span class="area-sq">Sq. Ft.</span>
                                           </div>
@@ -329,7 +329,7 @@
                                           <div class="input-flaoted-right-text">
                                               <div class="position-relative">
                                               <mat-form-field class="full-width input-design" appearance="fill">
-                                                  <input matInput type="number">
+                                                  <input matInput type="number" formControlName="buildupArea">
                                               </mat-form-field>
                                               <span class="area-sq">Sq. Ft.</span>
                                               </div>
@@ -344,11 +344,11 @@
                                         <h6 class="h6-design">Transaction Type</h6>
                                         <div class="checkbox-flex-box two-column button-same-select max-240">
                                         <div class="checkbox-design position-relative">
-                                            <input type="radio" id="new-booking" name="transaction-types" value="New Booking" checked>
+                                            <input type="radio" id="new-booking" formControlName="transactionType" value="New Booking" checked>
                                             <button class="checkbox-btn">New Booking</button>
                                         </div>
                                         <div class="checkbox-design position-relative">
-                                            <input type="radio" id="resale" name="transaction-types" value="Re-sale">
+                                            <input type="radio" id="resale" formControlName="transactionType" value="Re-sale">
                                             <button class="checkbox-btn">Re-sale</button>
                                         </div>
                                         </div>
@@ -357,11 +357,11 @@
                                         <h6 class="h6-design">Completion Status</h6>
                                         <div class="checkbox-flex-box two-column button-same-select max-240">
                                         <div class="checkbox-design position-relative">
-                                            <input type="radio" id="Ready" name="completion-details" value="Ready" checked>
+                                            <input type="radio" id="Ready" formControlName="completionStatus" value="Ready" checked>
                                             <button class="checkbox-btn">Ready</button>
                                         </div>
                                         <div class="checkbox-design position-relative">
-                                            <input type="radio" id="Off-Plan" name="completion-details" value="Off Plan">
+                                            <input type="radio" id="Off-Plan" formControlName="completionStatus" value="Off Plan">
                                             <button class="checkbox-btn">Off Plan</button>
                                         </div>
                                         </div>
@@ -375,7 +375,7 @@
                                           <div class="input-flaoted-left-text">
                                           <div class="position-relative">
                                               <mat-form-field class="full-width input-design" appearance="fill">
-                                                  <input matInput type="number">
+                                                  <input matInput type="number" formControlName="price">
                                               </mat-form-field>
                                           <span class="area-sq">AED</span>
                                           </div>
@@ -386,7 +386,7 @@
                                           <div class="input-flaoted-left-text">
                                             <div class="position-relative">
                                                 <mat-form-field class="full-width input-design" appearance="fill">
-                                                    <input matInput type="number">
+                                                    <input matInput type="number" formControlName="maintenanceCharge">
                                                 </mat-form-field>
                                             <span class="area-sq">AED</span>
                                             </div>
@@ -401,13 +401,13 @@
                                           <h6 class="h6-design">Do you charge brokerage?</h6>
                                           <div class="checkbox-flex-box two-column button-same-select">
                                               <div class="checkbox-design position-relative">
-                                                  <input type="radio" id="Yes" name="brokerage-value" value="Yes" checked>
+                                                  <input type="radio" id="Yes" formControlName="brokerage" value="Yes" checked>
                                                   <button class="checkbox-btn">Yes</button>
                                                   <div class="deposit-yes hide">
                                                       <div class="input-flaoted-left-text">
                                                           <div class="position-relative">
                                                           <mat-form-field class="full-width input-design" appearance="fill">
-                                                              <input matInput type="number">
+                                                              <input matInput type="number" formControlName="brokerageAed">
                                                           </mat-form-field>
                                                           <span class="area-sq">AED</span>
                                                           </div>
@@ -415,7 +415,7 @@
                                                         <ul class="lsit-unstyled">
                                                           <li class="d-flex">
                                                               <div class="position-relative">
-                                                              <input type="radio" name="Brokerage Negotiable">
+                                                              <input type="radio" formControlName="brokerageNegotiable">
                                                               <span class="property_sel"></span>
                                                               </div>
                                                               <div class="proprty_name">
@@ -426,7 +426,7 @@
                                                   </div>
                                               </div>
                                               <div class="checkbox-design position-relative">
-                                                  <input type="radio" id="No" name="brokerage-value" value="No">
+                                                  <input type="radio" id="No" formControlName="brokerage" value="No">
                                                   <button class="checkbox-btn">No</button>
                                               </div>
                                               </div>
@@ -435,7 +435,7 @@
                                         <h6 class="h6-design">Handover On</h6>
                                           <div class="input-date-picker input-design max-240">
                                               <mat-form-field appearance="fill">
-                                                  <input matInput [matDatepicker]="picker">
+                                                  <input matInput [matDatepicker]="picker" formControlName="handover">
                                                   <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                                   <mat-datepicker #picker></mat-datepicker>
                                                 </mat-form-field>
@@ -450,7 +450,7 @@
                                           <div class="textarea-design">
                                               <mat-form-field class="example-full-width" appearance="fill">
                                                   <mat-label>Property Description</mat-label>
-                                                  <textarea matInput placeholder="Eg. 30"></textarea>
+                                                  <textarea  formControlName="propertyDescription" matInput placeholder="Eg. 30"></textarea>
                                                 </mat-form-field>
                                               <p class="textraea-hint text-right">320 words left</p>
                                           </div>
@@ -464,7 +464,7 @@
                                           <div class="textarea-design">
                                               <mat-form-field class="full-width input-design" appearance="fill">
                                                   <mat-label>Offers - Increase leads on your property upto 50%!</mat-label>
-                                                  <input matInput type="text" placeholder="Example - 15 days of rent off. Only Pay 15 days of brokerage now! Free rental agreement.">
+                                                  <input formControlName="propertyOffers" matInput type="text" placeholder="Example - 15 days of rent off. Only Pay 15 days of brokerage now! Free rental agreement.">
                                                 </mat-form-field>
                                           </div>
                                       </div>
@@ -477,31 +477,31 @@
                                           <div class="inneR-border-wrap">
                                               <div class="checkbox-flex-box autoflex-layout">
                                                   <div class="checkbox-design position-relative">
-                                                      <input type="checkbox" id="Exclusive" name="Exclusive" value="Exclusive" checked>
+                                                      <input type="checkbox" id="Exclusive" formControlName="highlights_exclusive" value="Exclusive" checked>
                                                       <button class="checkbox-btn">Exclusive</button>
                                                   </div>
                                                   <div class="checkbox-design position-relative">
-                                                      <input type="checkbox" id="Golf-View" name="Golf-View" value="Golf View">
+                                                      <input type="checkbox" id="Golf-View" formControlName="highlights_golfView" value="Golf View">
                                                       <button class="checkbox-btn">Golf View</button>
                                                   </div>
                                                   <div class="checkbox-design position-relative">
-                                                      <input type="checkbox" id="Canal-View" name="Canal-View" value="Canal View" checked>
+                                                      <input type="checkbox" id="Canal-View" formControlName="highlights_canalView" value="Canal View" checked>
                                                       <button class="checkbox-btn">Canal View</button>
                                                   </div>
                                                   <div class="checkbox-design position-relative">
-                                                      <input type="checkbox" id="Affordable" name="Affordable" value="Affordable" checked>
+                                                      <input type="checkbox" id="Affordable" formControlName="highlights_affordable" value="Affordable" checked>
                                                       <button class="checkbox-btn">Affordable</button>
                                                   </div>
                                                   <div class="checkbox-design position-relative">
-                                                      <input type="checkbox" id="Vastu-Complaint" name="Vastu-Complaint" value="Vastu Complaint">
+                                                      <input type="checkbox" id="Vastu-Complaint" formControlName="highlights_vastuComplaint" value="Vastu Complaint">
                                                       <button class="checkbox-btn">Vastu Complaint</button>
                                                   </div>
                                                   <div class="checkbox-design position-relative">
-                                                      <input type="checkbox" id="Prime Location" name="Prime-Location" value="Prime Location">
+                                                      <input type="checkbox" id="Prime Location" formControlName="highlights_primeLocation" value="Prime Location">
                                                       <button class="checkbox-btn">Prime Location</button>
                                                   </div>
                                                   <div class="checkbox-design position-relative">
-                                                      <input type="checkbox" id="Metro" name="Metro" value="Metro" checked>
+                                                      <input type="checkbox" id="Metro" formControlName="highlights_metro" value="Metro" checked>
                                                       <button class="checkbox-btn">2m from Metro</button>
                                                   </div>
                                                   </div>
@@ -519,43 +519,43 @@
                                           <div class="inneR-border-wrap">
                                               <div class="checkbox-flex-box autoflex-layout">
                                                   <div class="checkbox-design position-relative">
-                                                      <input type="checkbox" id="ac" name="ac" value="AC" checked>
+                                                      <input type="checkbox" id="ac" formControlName="amenitites_ac" value="AC" checked>
                                                       <button class="checkbox-btn">A/C</button>
                                                   </div>
                                                   <div class="checkbox-design position-relative">
-                                                      <input type="checkbox" id="Deck" name="Deck-space" value="Deck">
+                                                      <input type="checkbox" id="Deck" formControlName="amenitites_deckspace" value="Deck">
                                                       <button class="checkbox-btn">Deck</button>
                                                   </div>
                                                   <div class="checkbox-design position-relative">
-                                                      <input type="checkbox" id="Pet-Friendly" name="Pet Friendly" value="Pet Friendly" checked>
+                                                      <input type="checkbox" id="Pet-Friendly" formControlName="amenitites_petFriendly" value="Pet Friendly" checked>
                                                       <button class="checkbox-btn">Pet Friendly</button>
                                                   </div>
                                                   <div class="checkbox-design position-relative">
-                                                      <input type="checkbox" id="Free-Parking-Spots" name="parking-space" value="Free Parking Spots" checked>
+                                                      <input type="checkbox" id="Free-Parking-Spots" formControlName="amenitites_parkingspace" value="Free Parking Spots" checked>
                                                       <button class="checkbox-btn">Free Parking Spots</button>
                                                   </div>
                                                   <div class="checkbox-design position-relative">
-                                                      <input type="checkbox" id="Pool" name="Pool-space" value="Pool">
+                                                      <input type="checkbox" id="Pool" formControlName="amenitites_poolspace" value="Pool">
                                                       <button class="checkbox-btn">Pool</button>
                                                   </div>
                                                   <div class="checkbox-design position-relative">
-                                                      <input type="checkbox" id="Yard" name="Yard-space" value="Yard">
+                                                      <input type="checkbox" id="Yard" formControlName="amenitites_yardspace" value="Yard">
                                                       <button class="checkbox-btn">Yard</button>
                                                   </div>
                                                   <div class="checkbox-design position-relative">
-                                                      <input type="checkbox" id="Free-Wi-Fi" name="Free-Wi-Fi" value="Free Wi-Fi">
+                                                      <input type="checkbox" id="Free-Wi-Fi" formControlName="amenitites_freeWiFi" value="Free Wi-Fi">
                                                       <button class="checkbox-btn">Free Wi-Fi</button>
                                                   </div>
                                                   <div class="checkbox-design position-relative">
-                                                      <input type="checkbox" id="Gym" name="Gym-space" value="Gym" checked>
+                                                      <input type="checkbox" id="Gym" formControlName="amenitites_gymspace" value="Gym" checked>
                                                       <button class="checkbox-btn">Gym</button>
                                                   </div>
                                                   <div class="checkbox-design position-relative">
-                                                      <input type="checkbox" id="Hardwood-Floor" name="Hardwood-Floor-space" value="Hardwood Floor">
+                                                      <input type="checkbox" id="Hardwood-Floor" formControlName="amenitites_hardwoodFloorspace" value="Hardwood Floor">
                                                       <button class="checkbox-btn">Hardwood Floor</button>
                                                   </div>
                                                   <div class="checkbox-design position-relative">
-                                                      <input type="checkbox" id="Jacuzzi" name="Jacuzzi" value="Jacuzzi">
+                                                      <input type="checkbox" id="Jacuzzi" formControlName="amenitites_jacuzzi" value="Jacuzzi">
                                                       <button class="checkbox-btn">Jacuzzi</button>
                                                   </div>
                                                   </div>
@@ -573,8 +573,10 @@
                         <a routerLink="/listingproperty" class="back-btn">Back</a>
                  </mat-card-actions>
                 <mat-card-actions>
-                    <a routerLink="/listpropertymedia" class="save-continue-btn">Save & Continue</a>
-                 </mat-card-actions>
+<!--                    <a routerLink="/listpropertymedia" class="save-continue-btn">Save & Continue</a>-->
+                  <button mat-raised-button type="submit" ngClass="submit-btn">Save & Continue</button>
+
+                </mat-card-actions>
                 </div>
                 </form>
             </div>
