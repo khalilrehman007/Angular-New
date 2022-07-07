@@ -1,14 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { SecondHeaderComponent } from '../../../second-header/second-header.component';
 import { FormGroup, FormControl, Validators } from '@angular/forms'
 import { AppService } from 'src/app/service/app.service';
 
+declare const google: any;
 @Component({
   selector: 'app-property-details',
   templateUrl: './property-details.component.html',
   styleUrls: ['./property-details.component.scss']
 })
-export class PropertyDetailsComponent implements OnInit {
+export class PropertyDetailsComponent implements OnInit, AfterViewInit {
+
+  map: any;
+  @ViewChild('propertyDetails__map') mapElement: any;
+  
+  searchLocaation:any;
+  @ViewChild('searchLocation') searchElement: any;
+
   Locate = '../../../../assets/images/icons/locate.svg'
   country: any = [];
   city: any = [];
@@ -19,6 +27,8 @@ export class PropertyDetailsComponent implements OnInit {
   data: any = {};
   titleDeedType: number = -1;
   propertyInsured: number = -1;
+
+  location = { lat: 31.5204, lng: 74.3587 };
 
   propertyDetails = new FormGroup({
     titleDeed: new FormControl("", Validators.required),
@@ -52,10 +62,10 @@ export class PropertyDetailsComponent implements OnInit {
       }
     });
   }
-  toggleType(e:number) {
+  toggleType(e: number) {
     this.titleDeedType = e;
   }
-  toggleInsured(e:number) {
+  toggleInsured(e: number) {
     this.propertyInsured = e;
   }
   onCountrySelect(e: any) {
@@ -86,9 +96,9 @@ export class PropertyDetailsComponent implements OnInit {
     this.districtId = e.value;
   }
   getData() {
-    if(this.titleDeedType == -1) {
+    if (this.titleDeedType == -1) {
       alert("Select Title Deed Type");
-    } else if(this.propertyInsured == -1) {
+    } else if (this.propertyInsured == -1) {
       alert("Select Property Insurance Type")
     } else if (this.countryId == -1) {
       alert("Select Country");
@@ -110,5 +120,21 @@ export class PropertyDetailsComponent implements OnInit {
     }
   }
   ngOnInit(): void {
+  }
+  ngAfterViewInit(): void {
+    this.map = new google.maps.Map(this.mapElement.nativeElement, {
+      center: this.location,
+      zoom: 8,
+      disableDefaultUI: true,
+    })
+    let marker = new google.maps.Marker({
+      position: this.location,
+      map: this.map
+    })
+    let searchBox:any = new google.maps.places.SearchBox(this.searchElement.nativeElement);
+    this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(this.searchElement.nativeElement);
+    // this.map.addListener("bounds_changed", () => {
+    //   searchBox.setBounds(this.map.getBounds());
+    // });
   }
 }
