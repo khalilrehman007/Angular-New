@@ -29,8 +29,20 @@ export class ListpropertymediaComponent implements OnInit {
   editdata: any;
   submitted = false;
   responsedata: any;
+  oldData :any;
 
-  constructor(private uploadService: FileUploadService,private route:Router) { }
+  constructor(private uploadService: FileUploadService,private route:Router) {
+    this.getOldFormData();
+  }
+
+  getOldFormData(){
+    this.oldData = localStorage.getItem('listpropertymedia');
+    if(this.oldData != '' && this.oldData != null){
+      this.oldData = JSON.parse(this.oldData);
+      this.SubmitForm.controls.videoLink.setValue(this.oldData.videoLink);
+    }
+    return this.oldData;
+  }
 
   ngOnInit() {
     $(document).ready(function(){

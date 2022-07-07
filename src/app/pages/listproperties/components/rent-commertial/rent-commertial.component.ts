@@ -20,8 +20,82 @@ export class RentCommertialComponent implements OnInit {
   editdata: any;
   submitted = false;
   responsedata: any;
+  oldData :any;
 
   constructor(private service: AuthService,private route:Router,private notifyService : NotificationService) {
+    this.getOldFormData();
+  }
+
+  getOldFormData(){
+    this.oldData = localStorage.getItem('listpropertyinfo_rent_comercial');
+    if(this.oldData != '' && this.oldData != null){
+      this.oldData = JSON.parse(this.oldData);
+      this.SubmitForm.controls.property_studio.setValue(this.oldData.property_studio);
+      this.SubmitForm.controls.property_apartment.setValue(this.oldData.property_apartment);
+      this.SubmitForm.controls.property_villa.setValue(this.oldData.property_villa);
+      this.SubmitForm.controls.property_townHouse.setValue(this.oldData.property_townHouse);
+      this.SubmitForm.controls.property_penthouse.setValue(this.oldData.property_penthouse);
+      this.SubmitForm.controls.property_compound.setValue(this.oldData.property_compound);
+      this.SubmitForm.controls.property_duplex.setValue(this.oldData.property_duplex);
+      this.SubmitForm.controls.property_fullFloor.setValue(this.oldData.property_fullFloor);
+      this.SubmitForm.controls.property_wholeBuilding.setValue(this.oldData.property_wholeBuilding);
+      this.SubmitForm.controls.property_bulkRentUnit.setValue(this.oldData.property_bulkRentUnit);
+      this.SubmitForm.controls.property_bungalow.setValue(this.oldData.property_bungalow);
+      this.SubmitForm.controls.property_hotelApartment.setValue(this.oldData.property_hotelApartment);
+      this.SubmitForm.controls.fitting_details.setValue(this.oldData.fitting_details);
+      this.SubmitForm.controls.tenant_types.setValue(this.oldData.tenant_types);
+      this.SubmitForm.controls.gender.setValue(this.oldData.gender);
+      this.SubmitForm.controls.property_management.setValue(this.oldData.property_management);
+      this.SubmitForm.controls.occupancy.setValue(this.oldData.occupancy);
+      this.SubmitForm.controls.parking_space.setValue(this.oldData.parking_space);
+      this.SubmitForm.controls.pets.setValue(this.oldData.pets);
+      this.SubmitForm.controls.pet_cats_allowed.setValue(this.oldData.pet_cats_allowed);
+      this.SubmitForm.controls.pet_small_dogs_allowed.setValue(this.oldData.pet_small_dogs_allowed);
+      this.SubmitForm.controls.pet_big_dogs_allowed.setValue(this.oldData.pet_big_dogs_allowed);
+      this.SubmitForm.controls.carpetArea.setValue(this.oldData.carpetArea);
+      this.SubmitForm.controls.buildupArea.setValue(this.oldData.buildupArea);
+      this.SubmitForm.controls.price.setValue(this.oldData.price);
+      this.SubmitForm.controls.building_type_monthly.setValue(this.oldData.building_type_monthly);
+      this.SubmitForm.controls.building_type_quaterly.setValue(this.oldData.building_type_quaterly);
+      this.SubmitForm.controls.building_type_yearly.setValue(this.oldData.building_type_yearly);
+      this.SubmitForm.controls.securoty_deposit.setValue(this.oldData.securoty_deposit);
+      this.SubmitForm.controls.AED.setValue(this.oldData.AED);
+      this.SubmitForm.controls.securityNegotiable.setValue(this.oldData.securityNegotiable);
+      this.SubmitForm.controls.brokerage_value.setValue(this.oldData.brokerage_value);
+      this.SubmitForm.controls.brokerageAed.setValue(this.oldData.brokerageAed);
+      this.SubmitForm.controls.brokerageNegotiable.setValue(this.oldData.brokerageNegotiable);
+      this.SubmitForm.controls.availablefrom.setValue(this.oldData.availablefrom);
+      this.SubmitForm.controls.noticePeriod.setValue(this.oldData.noticePeriod);
+      this.SubmitForm.controls.lockingPeriod.setValue(this.oldData.lockingPeriod);
+      this.SubmitForm.controls.propertyDescription.setValue(this.oldData.propertyDescription);
+      this.SubmitForm.controls.propertyOffers.setValue(this.oldData.propertyOffers);
+      this.SubmitForm.controls.highlights_exclusive.setValue(this.oldData.highlights_exclusive);
+      this.SubmitForm.controls.highlights_golfView.setValue(this.oldData.highlights_golfView);
+      this.SubmitForm.controls.highlights_canalView.setValue(this.oldData.highlights_canalView);
+      this.SubmitForm.controls.highlights_affordable.setValue(this.oldData.highlights_affordable);
+      this.SubmitForm.controls.highlights_primeLocation.setValue(this.oldData.highlights_primeLocation);
+      this.SubmitForm.controls.highlights_metro.setValue(this.oldData.highlights_metro);
+      this.SubmitForm.controls.amenitites_ac.setValue(this.oldData.amenitites_ac);
+      this.SubmitForm.controls.amenitites_deckspace.setValue(this.oldData.amenitites_deckspace);
+      this.SubmitForm.controls.amenitites_petFriendly.setValue(this.oldData.amenitites_petFriendly);
+      this.SubmitForm.controls.amenitites_parkingspace.setValue(this.oldData.amenitites_parkingspace);
+      this.SubmitForm.controls.amenitites_poolspace.setValue(this.oldData.amenitites_poolspace);
+      this.SubmitForm.controls.amenitites_yardspace.setValue(this.oldData.amenitites_yardspace);
+      this.SubmitForm.controls.amenitites_freeWiFi.setValue(this.oldData.amenitites_freeWiFi);
+      this.SubmitForm.controls.amenitites_gymspace.setValue(this.oldData.amenitites_gymspace);
+      this.SubmitForm.controls.amenitites_hardwoodFloorspace.setValue(this.oldData.amenitites_hardwoodFloorspace);
+      this.SubmitForm.controls.amenitites_jacuzzi.setValue(this.oldData.amenitites_jacuzzi);
+      this.SubmitForm.controls.bedroom_1.setValue(this.oldData.bedroom_1);
+      this.SubmitForm.controls.bedroom_2.setValue(this.oldData.bedroom_2);
+      this.SubmitForm.controls.bedroom_3.setValue(this.oldData.bedroom_3);
+      this.SubmitForm.controls.bedroom_4.setValue(this.oldData.bedroom_4);
+      this.SubmitForm.controls.bedroom_5.setValue(this.oldData.bedroom_5);
+      this.SubmitForm.controls.bedroom_6.setValue(this.oldData.bedroom_6);
+      this.SubmitForm.controls.room_bathroom_1.setValue(this.oldData.room_bathroom_1);
+      this.SubmitForm.controls.room_bathroom_2.setValue(this.oldData.room_bathroom_2);
+      this.SubmitForm.controls.room_bathroom_3.setValue(this.oldData.room_bathroom_3);
+    }
+    return this.oldData;
   }
 
   ngOnInit() {

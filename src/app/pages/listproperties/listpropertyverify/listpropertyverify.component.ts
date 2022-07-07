@@ -31,6 +31,7 @@ export class ListpropertyverifyComponent implements OnInit {
   editdata: any;
   submitted = false;
   responsedata: any;
+  oldData :any;
 
   uploadDocuments(idx: number, file: File): void {
     this.progressInfos[idx] = { value: 0, fileName: file.name };
@@ -76,7 +77,18 @@ export class ListpropertyverifyComponent implements OnInit {
     }
   }
 
-  constructor(private uploadService: FileUploadService,private route:Router) { }
+  constructor(private uploadService: FileUploadService,private route:Router) {
+    this.getOldFormData();
+  }
+
+  getOldFormData(){
+    this.oldData = localStorage.getItem('listpropertyVerify');
+    if(this.oldData != '' && this.oldData != null){
+      this.oldData = JSON.parse(this.oldData);
+      this.SubmitForm.controls.videoLink.setValue(this.oldData.videoLink);
+    }
+    return this.oldData;
+  }
 
   ngOnInit() {
     $(document).ready(function(){
@@ -105,13 +117,12 @@ export class ListpropertyverifyComponent implements OnInit {
       return;
     }
 
-    console.log(this.SubmitForm.value)
-    // this.uploadFiles();
-
-    // localStorage.setItem('listpropertymedia',JSON.stringify(this.SubmitForm.value))
-    // this.route.navigate(['listpropertyverify'])
-
-
+    if(this.selectedElec != undefined){
+      console.log(this.SubmitForm.value)
+      this.uploadFiles();
+      localStorage.setItem('listpropertyVerify',JSON.stringify(this.SubmitForm.value))
+      this.route.navigate(['listpropertypublish'])
+    }
   }
 }
 

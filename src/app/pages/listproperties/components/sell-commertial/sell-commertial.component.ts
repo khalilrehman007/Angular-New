@@ -20,9 +20,55 @@ export class SellCommertialComponent implements OnInit {
   editdata: any;
   submitted = false;
   responsedata: any;
+  oldData :any;
+
 
   constructor(private service: AuthService,private route:Router,private notifyService : NotificationService) {
+    this.getOldFormData();
   }
+  getOldFormData(){
+    this.oldData = localStorage.getItem('listpropertyinfo_sell_commercial');
+    if(this.oldData != '' && this.oldData != null){
+      this.oldData = JSON.parse(this.oldData);
+      this.SubmitForm.controls.property_studio.setValue(this.oldData.property_studio);
+      this.SubmitForm.controls.property_apartment.setValue(this.oldData.property_apartment);
+      this.SubmitForm.controls.property_villa.setValue(this.oldData.property_villa);
+      this.SubmitForm.controls.property_townHouse.setValue(this.oldData.property_townHouse);
+      this.SubmitForm.controls.property_penthouse.setValue(this.oldData.property_penthouse);
+      this.SubmitForm.controls.property_compound.setValue(this.oldData.property_compound);
+      this.SubmitForm.controls.property_duplex.setValue(this.oldData.property_duplex);
+      this.SubmitForm.controls.property_fullFloor.setValue(this.oldData.property_fullFloor);
+      this.SubmitForm.controls.property_wholeBuilding.setValue(this.oldData.property_wholeBuilding);
+      this.SubmitForm.controls.property_bulkRentUnit.setValue(this.oldData.property_bulkRentUnit);
+      this.SubmitForm.controls.property_bungalow.setValue(this.oldData.property_bungalow);
+      this.SubmitForm.controls.property_hotelApartment.setValue(this.oldData.property_hotelApartment);
+      this.SubmitForm.controls.carpetArea.setValue(this.oldData.carpetArea);
+      this.SubmitForm.controls.buildupArea.setValue(this.oldData.buildupArea);
+      this.SubmitForm.controls.price.setValue(this.oldData.price);
+      this.SubmitForm.controls.brokerageAed.setValue(this.oldData.brokerageAed);
+      this.SubmitForm.controls.brokerageNegotiable.setValue(this.oldData.brokerageNegotiable);
+      this.SubmitForm.controls.propertyDescription.setValue(this.oldData.propertyDescription);
+      this.SubmitForm.controls.propertyOffers.setValue(this.oldData.propertyOffers);
+      this.SubmitForm.controls.highlights_exclusive.setValue(this.oldData.highlights_exclusive);
+      this.SubmitForm.controls.highlights_golfView.setValue(this.oldData.highlights_golfView);
+      this.SubmitForm.controls.highlights_canalView.setValue(this.oldData.highlights_canalView);
+      this.SubmitForm.controls.highlights_affordable.setValue(this.oldData.highlights_affordable);
+      this.SubmitForm.controls.highlights_primeLocation.setValue(this.oldData.highlights_primeLocation);
+      this.SubmitForm.controls.highlights_metro.setValue(this.oldData.highlights_metro);
+      this.SubmitForm.controls.amenitites_ac.setValue(this.oldData.amenitites_ac);
+      this.SubmitForm.controls.amenitites_deckspace.setValue(this.oldData.amenitites_deckspace);
+      this.SubmitForm.controls.amenitites_petFriendly.setValue(this.oldData.amenitites_petFriendly);
+      this.SubmitForm.controls.amenitites_parkingspace.setValue(this.oldData.amenitites_parkingspace);
+      this.SubmitForm.controls.amenitites_poolspace.setValue(this.oldData.amenitites_poolspace);
+      this.SubmitForm.controls.amenitites_yardspace.setValue(this.oldData.amenitites_yardspace);
+      this.SubmitForm.controls.amenitites_freeWiFi.setValue(this.oldData.amenitites_freeWiFi);
+      this.SubmitForm.controls.amenitites_gymspace.setValue(this.oldData.amenitites_gymspace);
+      this.SubmitForm.controls.amenitites_hardwoodFloorspace.setValue(this.oldData.amenitites_hardwoodFloorspace);
+      this.SubmitForm.controls.amenitites_jacuzzi.setValue(this.oldData.amenitites_jacuzzi);
+    }
+    return this.oldData;
+  }
+
 
   ngOnInit() {
     $(document).ready(function(){

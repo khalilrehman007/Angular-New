@@ -47,6 +47,7 @@ export class ListpropertypublishComponent implements OnInit {
         reader.readAsDataURL(this.selectedFiles[i]);
       }
     }
+    this.uploadFiles();
   }
 
   upload(idx: number, file: File): void {
