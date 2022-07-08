@@ -45,6 +45,8 @@ import { PropertyCompareComponent } from './pages/property-compare/property-comp
 import { ExploreComponent } from './pages/explore/explore/explore.component';
 import { ExploreCityComponent } from './pages/explore/explore-city/explore-city.component';
 import { ExploreDetailsComponent } from './pages/explore/explore-details/explore-details.component';
+import { DataAnalyticsComponent } from './pages/data-analytics/data-analytics/data-analytics.component';
+import { DataAnalyticsSearchResultsComponent } from './pages/data-analytics/data-analytics-search-results/data-analytics-search-results.component';
 // import {RoleGuardService} from "./role-guard-service.service";
 
 const routes: Routes = [
@@ -90,6 +92,8 @@ const routes: Routes = [
   { path: "explore", component: ExploreComponent },
   { path: "explore-city", component: ExploreCityComponent },
   { path: "explore-details", component: ExploreDetailsComponent },
+  { path: "data-analytics", component: DataAnalyticsComponent },
+  { path: "data-analytics-search-result", component: DataAnalyticsSearchResultsComponent },
 
 ];
 

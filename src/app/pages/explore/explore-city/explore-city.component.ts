@@ -16,61 +16,61 @@ export class ExploreCityComponent implements OnInit {
       src:'../../../../assets/images/location-img.png',
       cityname:'Al Barsha',
       desc:'Al Barsha is a safe and quiet area that offers something for everyone: be it singles looking for wallet-friendly apartments with Metro connectivity or families looking to get away from the hustle and bustle of city life.',
-      link: ''
+      link: 'explore-details'
     },
     {
       src:'../../../../assets/images/location-img.png',
       cityname:'Al Barsha',
       desc:'Al Barsha is a safe and quiet area that offers something for everyone: be it singles looking for wallet-friendly apartments with Metro connectivity or families looking to get away from the hustle and bustle of city life.',
-      link: ''
+      link: 'explore-details'
     },
     {
       src:'../../../../assets/images/location-img.png',
       cityname:'Al Barsha',
       desc:'Al Barsha is a safe and quiet area that offers something for everyone: be it singles looking for wallet-friendly apartments with Metro connectivity or families looking to get away from the hustle and bustle of city life.',
-      link: ''
+      link: 'explore-details'
     },
     {
       src:'../../../../assets/images/location-img.png',
       cityname:'Al Barsha',
       desc:'Al Barsha is a safe and quiet area that offers something for everyone: be it singles looking for wallet-friendly apartments with Metro connectivity or families looking to get away from the hustle and bustle of city life.',
-      link: ''
+      link: 'explore-details'
     },
     {
       src:'../../../../assets/images/location-img.png',
       cityname:'Al Barsha',
       desc:'Al Barsha is a safe and quiet area that offers something for everyone: be it singles looking for wallet-friendly apartments with Metro connectivity or families looking to get away from the hustle and bustle of city life.',
-      link: ''
+      link: 'explore-details'
     },
     {
       src:'../../../../assets/images/location-img.png',
       cityname:'Al Barsha',
       desc:'Al Barsha is a safe and quiet area that offers something for everyone: be it singles looking for wallet-friendly apartments with Metro connectivity or families looking to get away from the hustle and bustle of city life.',
-      link: ''
+      link: 'explore-details'
     },
     {
       src:'../../../../assets/images/location-img.png',
       cityname:'Al Barsha',
       desc:'Al Barsha is a safe and quiet area that offers something for everyone: be it singles looking for wallet-friendly apartments with Metro connectivity or families looking to get away from the hustle and bustle of city life.',
-      link: ''
+      link: 'explore-details'
     },
     {
       src:'../../../../assets/images/location-img.png',
       cityname:'Al Barsha',
       desc:'Al Barsha is a safe and quiet area that offers something for everyone: be it singles looking for wallet-friendly apartments with Metro connectivity or families looking to get away from the hustle and bustle of city life.',
-      link: ''
+      link: 'explore-details'
     },
     {
       src:'../../../../assets/images/location-img.png',
       cityname:'Al Barsha',
       desc:'Al Barsha is a safe and quiet area that offers something for everyone: be it singles looking for wallet-friendly apartments with Metro connectivity or families looking to get away from the hustle and bustle of city life.',
-      link: ''
+      link: 'explore-details'
     },
     {
       src:'../../../../assets/images/location-img.png',
       cityname:'Al Barsha',
       desc:'Al Barsha is a safe and quiet area that offers something for everyone: be it singles looking for wallet-friendly apartments with Metro connectivity or families looking to get away from the hustle and bustle of city life.',
-      link: ''
+      link: 'explore-details'
     },
   ]
   country = [
