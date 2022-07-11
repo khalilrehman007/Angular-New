@@ -1,7 +1,7 @@
 <header>
     <app-header></app-header>
 </header>
-<section [ngClass]="'inner-cntnt-wrapper slide-left-bar blogs_sec'">
+<!-- <section [ngClass]="'inner-cntnt-wrapper slide-left-bar blogs_sec'">
     <div ngClass="container_1220px">
         <div ngClass="section-title">
             <div ngClass="section-custom-title-left">
@@ -11,7 +11,6 @@
         </div>
 
         <div ngClass="row">
-          <!-- let blogs of Blogsec -->
             <div ngClass="col-lg-12 col-md-6 blog-places-col">
                 <img [src]="blog.blogDocument.fileUrl" ngClass="img-fluid blog-image-homepage" alt="">
                 <span ngClass="blog-tag">
@@ -27,7 +26,120 @@
             </div>
         </div>
     </div>
+</section> -->
+<section [ngClass]="'inner-cntnt-wrapper slide-left-bar blogs_sec padd-0'">
+<section ngClass="blogs-header-bars">
+    <div ngClass="container_1280px">
+  <div ngClass="row">
+     <div ngClass="col-xl-8 col-lg-8 col-md-12 col-sm-12">
+     <div ngClass="blogs-link-list">
+     <ul ngClass="list-unstyled d-flex justify-content-sapcebw">
+      <li><a routerLink="" ngClass="active">Dashboard</a></li>
+      <li><a routerLink="">My Activities</a></li>
+      <li><a routerLink="">My Leads</a></li>
+      <li><a routerLink="">My Listings</a></li>
+      <li><a routerLink="">My Valuations</a></li>
+      <li>
+          <div ngClass="block-wrapper">
+              <div ngClass="cstm_dropdown-list dropdown-design-2 position-relative">
+                 <button ngClass="drop-down_btn" (click)="clickEvent()">More <mat-icon>keyboard_arrow_down</mat-icon></button>
+                 <div class="cstm_dropdown-menu" [ngClass]="status ? 'active' : 'notactive'">
+                   <ul ngClass="list-unstyled">
+                      <li><a routerLink="/blog-category">Tips & Advice</a></li>
+                      <li><a routerLink="/blog-category">News</a></li>
+                      <li><a routerLink="/blog-category">Explore</a></li>
+                      <li><a routerLink="/blog-category">Life at Homes</a></li>
+                      <li><a routerLink="/blog-category">Laws</a></li>
+                      <li><a routerLink="/blog-category">Market Trends</a></li>
+                      <li><a routerLink="/blog-category">More</a></li>
+                   </ul>
+                 </div>
+              </div>
+            </div>
+      </li>
+     </ul>
+     </div>
+     </div>
+     <div ngClass="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+         <div ngClass="blogs-seach-blog">
+          <form>
+              <mat-form-field class="full-width input-design" appearance="fill">
+                  <mat-label>Blog Search</mat-label>
+                  <input matInput formControlName="BuildingName" type="text" placeholder="Please mention the name">
+                </mat-form-field>
+          </form>
+         </div>
+      </div>
+  </div>
+     </div>
+  </section>
+  <section ngClass="blog_inner-banner-blocks">
+  <div ngClass="container_1280px">
+  <div ngClass="exploredetails-breadcrumb-wrapper black-text-breadcrumb mt-3">
+      <app-breadcrumb></app-breadcrumb>
+  </div>
+  <div ngClass="blogs-details-hdr">
+    <div ngClass="heading-32px-design mb-3">
+        <h2>Do your homework well before listening to paid advisors</h2>
+        <p>By <a routerLink="">Ovalaute</a> · <span ngClass="date">March 1, 2022</span> <a routerLink="/blog-category">· Tips & Advice</a></p>
+     </div>
+     <div ngClass="key-take-ways-sec">
+        <h5>Key Takeaways</h5>
+        <ul>
+            <li>In every aspect of our lives, listening is of utmost importance.</li>
+            <li>Never ever be in a rush, Listen between the lines, Remember the focal point.</li>
+        </ul>
+     </div>
+     <div ngClass="blog_details-img mb-4">
+        <img src="{{exploreimg}}">
+     </div>
+     <div ngClass="blog-post-content">
+        <p>Real estate investment does not come with a guidebook. There are different ways you can do to put yourself on the right path and ensure best possibility for success. And listening to real estate paid professionals is the right way to start.</p>
+        <p>In most cases, paid advisors will mislead you in suggesting avoiding real estate investment altogether in your portfolio. A paid advisor can be a broker, a wealth manager, or your tax accountant. For them, this real estate investment is too management-intensive. There can be long arguments based on a particular situation, but that should not deter you from investing in real estate. You need to do your own homework to decide if real estate investment can bring potential cash flow for you.</p>
+        <h4>Know the property market first</h4>
+        <p>Before you go for a property valuation, it is important to learn about the specified market and locality you are interested in. Try to get proper information on the current trends - any increase/decrease in rent, interest rates on loans, and if possible the safety of the neighbourhood you are interested in. This will help you to recognise the current market status and plan accordingly for the future. This will help you in a big way in becoming a more effective real estate investor.</p>
+        </div>
+     </div>
+  </div>
+  </section>
+  <section ngClass="about-ovalute_blog-cntnt">
+    <div ngClass="container_1280px">
+        <div ngClass="about_ovalute-headings">
+            <h5>About Ovaluate</h5>
+            <p>Ovaluate is a global property valuation and real estate business service, matching technology-driven solutions with the professionalism and dedication of an expert team. Ovaluate is a global property valuation and real estate business service, matching technology-driven solutions with the professionalism and dedication of an expert team.Ovaluate is a global property valuation and real estate.</p>
+        </div>
+    </div>
+  </section>
+  <section ngClass="position-relative blogs_sec">
+    <div ngClass="container_1280px">
+        <div ngClass="section-title">
+            <div ngClass="section-custom-title-left">
+                <h4>Related Blogs</h4>
+                <p>Some of our picked properties near you location.</p>
+            </div>
+            <div ngClass="section-custom-title-right">
+                <a [routerLink]="['blogs']">Read all</a>
+            </div>
+        </div>
+        <div ngClass="row">
+          <!-- let blogs of Blogsec -->
+            <div ngClass="col-lg-4 col-md-6 blog-places-col" *ngFor=" let blog of blogsec">
+                <a [routerLink]="">
+                  <!-- blog.blogDocument.fileUrl -->
+                    <img [src]="blog.src" ngClass="img-fluid blog-image-homepage" alt="">
+                    <span ngClass="blog-tag">
+                        <img [src]="blog.src2" ngClass="img-fluid" alt="">
+                    </span>
+                    <div ngClass="blog-title-content">
+                        <h5>{{blog.heading}}</h5>
+                        <span>{{blog.date}}</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
 </section>
+  </section>
 <footer ngClass="footer-sec">
   <app-footer></app-footer>
 </footer>

@@ -84,6 +84,7 @@ import { ExploreCityComponent } from './pages/explore/explore-city/explore-city.
 import { ExploreDetailsComponent } from './pages/explore/explore-details/explore-details.component';
 import { DataAnalyticsComponent } from './pages/data-analytics/data-analytics/data-analytics.component';
 import { DataAnalyticsSearchResultsComponent } from './pages/data-analytics/data-analytics-search-results/data-analytics-search-results.component';
+import { BlogCategoryComponent } from './pages/blog-category/blog-category.component';
 
 @NgModule({
   declarations: [
@@ -139,7 +140,8 @@ import { DataAnalyticsSearchResultsComponent } from './pages/data-analytics/data
     ExploreCityComponent,
     ExploreDetailsComponent,
     DataAnalyticsComponent,
-    DataAnalyticsSearchResultsComponent
+    DataAnalyticsSearchResultsComponent,
+    BlogCategoryComponent
   ],
   imports: [
     BrowserModule,
