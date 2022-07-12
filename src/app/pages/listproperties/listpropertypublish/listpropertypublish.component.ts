@@ -5,6 +5,7 @@ import * as $ from 'jquery';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { FileUploadService } from '../../../service/file-upload.service';
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -18,9 +19,16 @@ export class ListpropertypublishComponent implements OnInit {
   message: string[] = [];
   previews: string[] = [];
   imageInfos?: Observable<any>;
+  priviousFormCheck :any;
+
   gallerythumb = '../../../../assets/images/image-gallery-thumbnail.png'
   checkmark = '../../../../assets/images/icons/checkmark-green.svg'
-  constructor(private uploadService: FileUploadService) { }
+  constructor(private uploadService: FileUploadService,private route:Router) {
+    this.priviousFormCheck = localStorage.getItem('property_info');
+    if(this.priviousFormCheck == '' || this.priviousFormCheck == null){
+      this.route.navigate(['listingproperty'])
+    }
+  }
   ngOnInit() {
     $(document).ready(function(){
       $('.dropdown-toggle').click(function(){

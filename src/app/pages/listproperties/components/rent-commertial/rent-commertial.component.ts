@@ -21,9 +21,14 @@ export class RentCommertialComponent implements OnInit {
   submitted = false;
   responsedata: any;
   oldData :any;
+  priviousFormCheck :any;
 
   constructor(private service: AuthService,private route:Router,private notifyService : NotificationService) {
     this.getOldFormData();
+    this.priviousFormCheck = localStorage.getItem('property_info');
+    if(this.priviousFormCheck == '' || this.priviousFormCheck == null){
+      this.route.navigate(['listingproperty'])
+    }
   }
 
   getOldFormData(){

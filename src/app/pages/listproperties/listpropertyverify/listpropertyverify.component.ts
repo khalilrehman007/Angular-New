@@ -32,6 +32,8 @@ export class ListpropertyverifyComponent implements OnInit {
   submitted = false;
   responsedata: any;
   oldData :any;
+  priviousFormCheck :any;
+
 
   uploadDocuments(idx: number, file: File): void {
     this.progressInfos[idx] = { value: 0, fileName: file.name };
@@ -79,6 +81,10 @@ export class ListpropertyverifyComponent implements OnInit {
 
   constructor(private uploadService: FileUploadService,private route:Router) {
     this.getOldFormData();
+    this.priviousFormCheck = localStorage.getItem('property_info');
+    if(this.priviousFormCheck == '' || this.priviousFormCheck == null){
+      this.route.navigate(['listingproperty'])
+    }
   }
 
   getOldFormData(){
