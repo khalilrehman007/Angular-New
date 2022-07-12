@@ -253,6 +253,68 @@
                         </div>
                     </div>
                 </div>
+                <div ngClass="unit_types-sec-wrap">
+                    <div ngClass="row">
+                        <div ngClass="col-xl-3 col-lg-3 col-sm-12">
+                            <div ngClass="block-wrapper mb-4 select-design">
+                                <label class="h6-design">UNIT TYPE <span ngClass="required">*</span></label>
+                                <mat-form-field appearance="fill">
+                                    <mat-label>UNIT TYPE</mat-label>
+                                    <mat-select>
+                                      <mat-option *ngFor="let list of bathroom" [value]="list.value">
+                                        {{list.viewValue}}
+                                      </mat-option>
+                                    </mat-select>
+                                  </mat-form-field>
+                                </div>
+                        </div>
+                        <div ngClass="col-xl-3 col-lg-3 col-sm-12">
+                            <div ngClass="block-wrapper mb-4">
+                                <label class="h6-design">NUMBER OF UNITS <span ngClass="required">*</span></label>
+                                <mat-form-field class="full-width input-design-2" appearance="fill">
+                                    <input matInput type="number" placeholder="Eg. 9999999">
+                                  </mat-form-field>
+                                  </div>
+                        </div>
+                        <div ngClass="col-xl-3 col-lg-3 col-sm-12">
+                            <div ngClass="block-wrapper mb-4">
+                                <label class="h6-design">VACANT <span ngClass="required">*</span></label>
+                                <mat-form-field class="full-width input-design-2" appearance="fill">
+                                    <input matInput type="number" placeholder="Eg. 9999999">
+                                  </mat-form-field>
+                                  </div>
+                        </div>
+                        <div ngClass="col-xl-3 col-lg-3 col-sm-12">
+                            <div ngClass="block-wrapper mb-4">
+                                <label class="h6-design">UNIT SIZE PER SQ.FT <span ngClass="required">*</span></label>
+                                <mat-form-field class="full-width input-design-2" appearance="fill">
+                                    <input matInput type="number" placeholder="Eg. 9999999">
+                                  </mat-form-field>
+                                  </div>
+                        </div>
+                        <div ngClass="col-xl-3 col-lg-3 col-sm-12">
+                            <div ngClass="block-wrapper mb-4">
+                                <label class="h6-design">BEDROOM <span ngClass="required">*</span></label>
+                                <mat-form-field class="full-width input-design-2" appearance="fill">
+                                    <input matInput type="number" placeholder="Eg. 9999999">
+                                  </mat-form-field>
+                                  </div>
+                        </div>
+                        <div ngClass="col-xl-3 col-lg-3 col-sm-12">
+                            <div ngClass="block-wrapper mb-4">
+                                <label class="h6-design">UNIT SIZE PER YEAR <span ngClass="required">*</span></label>
+                                <mat-form-field class="full-width input-design-2" appearance="fill">
+                                    <input matInput type="number" placeholder="Eg. 9999999">
+                                  </mat-form-field>
+                                  </div>
+                        </div>
+                        <div ngClass="col-xl-3 col-lg-3 col-sm-12">
+                           <div ngClass="unit_add-more">
+                             <button ngClass="add_unit-btn"><img src="{{plus}}"> Add More Unit</button>
+                            </div>
+                        </div>
+                </div>
+                </div>
                 <div class="select-features">
                     <div class="row">
                         <div class="col-sm-12">
