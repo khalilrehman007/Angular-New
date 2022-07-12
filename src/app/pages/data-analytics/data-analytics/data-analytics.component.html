@@ -1,0 +1,197 @@
+<header>
+    <app-header></app-header>
+    </header>
+  <section [ngClass]="'inner-cntnt-wrapper slide-left-bar'">
+      <section ngClass="data-analytics-bannersec" style="background-image: url('assets/images/data-analytics-banner.png')">
+        <div [ngClass]="'container_1280px'">
+            <div ngClass="text-center">
+                <button ngClass="blue-bordered-btn">
+                    <span ngClass="ai-tag">OV</span> Data Intelligence  <span ngClass="icon-di"><img src="{{chartsvg}}"></span>
+                </button>
+            </div>
+            <div ngClass="banner-black-text text-center">
+                <h2>AI-Driven Real Estate Data Analytics & Advisory </h2>
+                <p>Complete Advisory Solutions For Real Estate Stakeholders</p>
+            </div>
+            <div ngClass="search_destinations-block">
+                <form>
+                    <div ngClass="row">
+                        <div ngClass="col-xl-3 col-lg-3 col-md-3 col-sm-12">
+                            <div ngClass="block-wrapper">
+                                <div ngClass="select-design">
+                                  <mat-form-field appearance="fill">
+                                    <mat-label>Countries</mat-label>
+                                    <mat-select>
+                                      <mat-option
+                                        *ngFor="let list of country"
+                                        [value]="list.value"
+                                      >
+                                        {{ list.viewValue }}
+                                      </mat-option>
+                                    </mat-select>
+                                  </mat-form-field>
+                                </div>
+                              </div>
+                        </div>
+                        <div ngClass="col-xl-8 col-lg-8 col-md-8 col-sm-12">
+                            <div ngClass="block-wrapper">
+                                <div ngClass="position-relative">
+                                    <mat-form-field class="example-full-width input-design" appearance="fill">
+                                        <mat-label>Search by</mat-label>
+                                        <input matInput placeholder="Location Name">
+                                      </mat-form-field>
+                                  </div>
+                            </div>
+                        </div>
+                        <div ngClass="col-xl-1 col-lg-1 col-md-1 col-sm-12">
+                            <div ngClass="search-btn-block">
+                                <button ngClass="search-btn" type="submit" routerLink="/data-analytics-search-result"><img src="{{search}}"></button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+      </section>
+      <section ngClass="data-analytics-insight-sec">
+        <div [ngClass]="'container_1280px'">
+            <div ngClass="heading-32px-design text-center">
+                <h2>Data Analytics & Insights</h2>
+                <p>Ovaluate Data Intelligence is a state of art data analytics tool which covers over 50 parameters for more than 50,000 projects in the residential real estate. The unique features and analytics help stakeholders to take decisions across the real estate value chain.</p>
+            </div>
+            <div ngClass="insignhts-blocks-row">
+                <div ngClass="row">
+                    <div ngClass="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                        <div ngClass="insights-block">
+                            <div ngClass="insight-icns">
+                                <img src="{{resident}}">
+                            </div>
+                            <div ngClass="insight-cntnt-bloc">
+                                <h5>Real Estate Developers</h5>
+                                <p>Our data tool is made with great diligence and precision to serve real... <a routerLink="">know more</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div ngClass="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                        <div ngClass="insights-block">
+                            <div ngClass="insight-icns">
+                                <img src="{{equity}}">
+                            </div>
+                            <div ngClass="insight-cntnt-bloc">
+                                <h5>Banks & Private equity</h5>
+                                <p>Our solutions, reports and analysis help these sectors in following... <a routerLink="">know more</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div ngClass="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                        <div ngClass="insights-block">
+                            <div ngClass="insight-icns">
+                                <img src="{{Ancillaries}}">
+                            </div>
+                            <div ngClass="insight-cntnt-bloc">
+                                <h5>Real Estate Ancillaries</h5>
+                                <p>Industries that are directly dependent on residential real estate... <a routerLink="">know more</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div ngClass="count-blocks-sec">
+                <div ngClass="d-flex justify-content-spacebw">
+                    <div ngClass="count-block-div">
+                        <p>Transactional Records</p>
+                        <h2 ngClass="count-number">8.6 <small>mn+</small></h2>
+                    </div>
+                    <div ngClass="count-block-div">
+                        <p>Sales Volume</p>
+                        <h2 ngClass="count-number">134.2 <small>B+</small></h2>
+                    </div>
+                    <div ngClass="count-block-div">
+                        <p>Projects Covered</p>
+                        <h2 ngClass="count-number">140 <small>K+</small></h2>
+                    </div>
+                    <div ngClass="count-block-div">
+                        <p>Cities Covered</p>
+                        <h2 ngClass="count-number">230+</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </section>
+      <section ngClass="next-generation-sec" style="background-image: url('assets/images/next-gen-bg.png')">
+        <div [ngClass]="'container_1280px'">
+            <div ngClass="row justify-content-end">
+                <div ngClass="col-xl-8 col-lg-8 col-md-8 col-sm-12">
+                    <div ngClass="heading-32px-design">
+                        <h2>Next Generation Cutting Edge Analytical Database</h2>
+                    </div>
+                    <div ngClass="next-generation-row-cntnt">
+                        <div ngClass="row">
+                            <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-4" *ngFor="let next of nextcntnt">
+                                <div ngClass="next-text-block">
+                                    <h4>{{next.heading}}</h4>
+                                    <p>{{next.desc}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </section>
+      <section ngClass="insightfull-inteligence-sec">
+        <div [ngClass]="'container_1280px'">
+            <div ngClass="heading-32px-design">
+                <h2>Insightful Data Intelligence</h2>
+                <p>With 50,000+ projects analysed across 42+ cities, we cover residential real estate sector pan India for an ever informed choice</p>
+            </div>
+            <div ngClass="insightfull-data-block">
+                <div ngClass="row">
+                    <div ngClass="col-xl-5 col-lg-5 col-md-5 col-sm-12">
+                        <div ngClass="insight-text-block" *ngFor="let insight of insighttext">
+                            <h5>{{insight.heading}}</h5>
+                            <p>{{insight.desc}}</p>
+                        </div>
+                    </div>
+                    <div ngClass="col-xl-7 col-lg-7 col-md-7 col-sm-12">
+                        <div ngClass="chart-bg">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </section>
+      <section ngClass="position-relative valuationfaq-section-wrapper">
+        <div ngClass="container_1280px">
+        <div ngClass="pro-valuation-faq-wrap">
+          <div ngClass="faq-title text-center">
+            <h2>Property Valuation FAQ’s</h2>
+            <p>We Provide Simple Solutions For Complex Challenges</p>
+          </div>
+          <div ngClass="row">
+            <div ngClass="col-xl-12 col-lg-12 col-md-12 col-sm-12" *ngFor="let faq of faqsec">
+                <div ngClass="accordians-wrapper">
+                    <mat-accordion>
+                        <mat-expansion-panel>
+                            <mat-expansion-panel-header>
+                              <mat-panel-title>
+                               <h4>{{faq.heading}}</h4>
+                              </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <mat-panel-description>
+                            <p> {{faq.desc}}</p>
+                            </mat-panel-description>
+                          </mat-expansion-panel>
+                      </mat-accordion>
+                </div>
+            </div>
+          </div>
+          </div>
+        </div>
+       </section>
+  </section>
+  <footer ngClass="footer-sec">
+    <app-footer></app-footer>
+  </footer>
+  

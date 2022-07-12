@@ -1,0 +1,256 @@
+<header>
+    <app-header></app-header>
+    </header>
+  <section [ngClass]="'inner-cntnt-wrapper slide-left-bar'">
+      <section ngClass="data-analytics-bannersec" style="background-image: url('assets/images/data-analytics-banner.png')">
+        <div [ngClass]="'container_1280px'">
+            <div ngClass="text-center">
+                <button ngClass="blue-bordered-btn">
+                    <span ngClass="ai-tag">OV</span> Data Intelligence  <span ngClass="icon-di"><img src="{{chartsvg}}"></span>
+                </button>
+            </div>
+            <div ngClass="banner-black-text text-center">
+                <h2>UAE Property Buy, Rent & Projects Price Trends</h2>
+            </div>
+            <div ngClass="search_destinations-block">
+                <form>
+                    <div ngClass="row">
+                        <div ngClass="col-xl-3 col-lg-3 col-md-3 col-sm-12">
+                            <div ngClass="block-wrapper">
+                                <div ngClass="select-design">
+                                  <mat-form-field appearance="fill">
+                                    <mat-label>Countries</mat-label>
+                                    <mat-select>
+                                      <mat-option
+                                        *ngFor="let list of country"
+                                        [value]="list.value"
+                                      >
+                                        {{ list.viewValue }}
+                                      </mat-option>
+                                    </mat-select>
+                                  </mat-form-field>
+                                </div>
+                              </div>
+                        </div>
+                        <div ngClass="col-xl-8 col-lg-8 col-md-8 col-sm-12">
+                            <div ngClass="block-wrapper">
+                                <div ngClass="position-relative">
+                                    <mat-form-field class="example-full-width input-design" appearance="fill">
+                                        <mat-label>Search by</mat-label>
+                                        <input matInput placeholder="Location Name">
+                                      </mat-form-field>
+                                  </div>
+                            </div>
+                        </div>
+                        <div ngClass="col-xl-1 col-lg-1 col-md-1 col-sm-12">
+                            <div ngClass="search-btn-block">
+                                <button ngClass="search-btn" type="submit"><img src="{{search}}"></button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+      </section>
+    <section ngClass="property-sale-details">
+        <div [ngClass]="'container_1280px'">
+            <div ngClass="heading-24px-design mb-3">
+                <h2>Property Sales Transaction Prices in Dubai</h2>
+            </div>
+            <div ngClass="property_price-form-index">
+                <form>
+                    <div ngClass="transaction-filter-sec">
+                    <div ngClass="row">
+                    <div ngClass="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+                        <div ngClass="block-wrapper">
+                            <div ngClass="select-design">
+                              <mat-form-field appearance="fill">
+                                <mat-label>Apartment</mat-label>
+                                <mat-select>
+                                  <mat-option value="Apartment">Apartment</mat-option>
+                                  <mat-option value="Apartment">Apartment</mat-option>
+                                  <mat-option value="Apartment">Apartment</mat-option>
+                                </mat-select>
+                              </mat-form-field>
+                            </div>
+                          </div>
+                    </div>
+                    <div ngClass="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+                        <div ngClass="block-wrapper">
+                            <div ngClass="select-design">
+                              <mat-form-field appearance="fill">
+                                <mat-label>Bedroom</mat-label>
+                                <mat-select>
+                                  <mat-option value="1 Bedroom">1 Bedroom</mat-option>
+                                  <mat-option value="2 Bedroom">2 Bedroom</mat-option>
+                                  <mat-option value="3 Bedroom">3 Bedroom</mat-option>
+                                </mat-select>
+                              </mat-form-field>
+                            </div>
+                          </div>
+                    </div>
+                    <div ngClass="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+                        <div ngClass="block-wrapper">
+                            <div ngClass="select-design">
+                              <mat-form-field appearance="fill">
+                                <mat-label>Completed Projects</mat-label>
+                                <mat-select>
+                                  <mat-option value="Completed Projects">Projects Completed</mat-option>
+                                  <mat-option value="Completed Projects">Off Plan</mat-option>
+                                  <mat-option value="Completed Projects">Rent</mat-option>
+                                </mat-select>
+                              </mat-form-field>
+                            </div>
+                          </div>
+                    </div>
+                    <div ngClass="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+                        <div ngClass="block-wrapper">
+                            <div ngClass="cstm_dropdown-list dropdown-design-1 position-relative">
+                               <button ngClass="drop-down_btn" (click)="clickEvent()">Last 12 months</button>
+                               <div class="cstm_dropdown-menu" [ngClass]="status ? 'active' : 'notactive'">
+                                  <h4 ngClass="drop_label">Duration</h4>
+                                  <div ngClass="check-box-flex-wrapp two_layout">
+                                    <div class="checkbox-design position-relative">
+                                      <input
+                                        type="radio"
+                                        id="months"
+                                        name="months-type"
+                                        value="Last 3 months"
+                                        checked
+                                      />
+                                      <button class="checkbox-btn">Last 3 months</button>
+                                    </div>
+                                    <div class="checkbox-design position-relative">
+                                      <input
+                                        type="radio"
+                                        id="months"
+                                        name="months-type"
+                                        value="Last 6 months"
+                                      />
+                                      <button class="checkbox-btn">Last 6 months</button>
+                                    </div>
+                                    <div class="checkbox-design position-relative">
+                                      <input
+                                        type="radio"
+                                        id="months"
+                                        name="months-type"
+                                        value="Last 12 months"
+                                      />
+                                      <button class="checkbox-btn">Last 12 months</button>
+                                    </div>
+                                  </div>
+                               </div>
+                            </div>
+                          </div>
+                    </div>
+                    </div>
+                    </div>
+                    <div ngClass="property-index-numbers">
+                      <h5>Property Price Index Summary</h5>
+                      <div ngClass="row">
+                        <div ngClass="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+                          <div ngClass="price-index_divs position-relative">
+                            <h5>1,350,000 AED</h5>
+                            <p>Average asking </p>
+                            <p>sales price  <button mat-raised-button matTooltip="Sale Price is $10000000"><img src="{{info}}"></button></p>
+                            <span ngClass="index-data increasing"><mat-icon>arrow_upward</mat-icon> 16%</span>
+                          </div>
+                         </div>
+                         <div ngClass="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+                          <div ngClass="price-index_divs position-relative">
+                            <h5>1,050,000 AED</h5>
+                            <p>Average transaction</p>
+                            <p>sales price  <button mat-raised-button matTooltip="Sale Price is $10000000"><img src="{{info}}"></button></p>
+                            <span ngClass="index-data decreasing"><mat-icon>arrow_upward</mat-icon> 16%</span>
+                          </div>
+                         </div>
+                         <div ngClass="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+                          <div ngClass="price-index_divs position-relative">
+                            <h5>89,250 AED</h5>
+                            <p>Average rental</p>
+                            <p>price  <button mat-raised-button matTooltip="Sale Price is $10000000"><img src="{{info}}"></button></p>
+                            <span ngClass="index-data decreasing"><mat-icon>arrow_upward</mat-icon> 16%</span>
+                          </div>
+                         </div>
+                         <div ngClass="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+                          <div ngClass="price-index_divs position-relative">
+                            <h5>6.60%</h5>
+                            <p>Average gross</p>
+                            <p>yield</p>
+                          </div>
+                         </div>
+                      </div>
+                    </div>
+                    <div ngClass="data-chart-sec">
+                    </div>
+                    <div ngClass="request_demo-btn text-center">
+                      <button type="submit" ngClass="submit-request-btn">Request Demo</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <section ngClass="investments-hotspots-sec">
+      <div [ngClass]="'container_1280px'">
+        <div ngClass="heading-24px-design text-center">
+          <h2 ngClass="mb-0">Top Investment Hotspots in Dubai</h2>
+          <p>With 50,000+ projects analysed across 42+ cities, we cover residential real estate sector pan India for an ever informed choice</p>
+      </div>
+      <div ngClass="location-hotspots-data">
+        <div ngClass="row">
+          <div ngClass="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-4">
+             <div ngClass="hotspot-div-block">
+                <h5>Location</h5>
+                <ul ngClass="list-unstyled">
+                  <li *ngFor="let places of locations" ngClass="loc-list"><a routerLink="">{{places.value}}</a></li>
+                </ul>
+             </div>
+           </div>
+           <div ngClass="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-4">
+            <div ngClass="hotspot-div-block">
+               <h5>Price /Sq.Ft.</h5>
+               <ul ngClass="list-unstyled">
+                 <li *ngFor="let cost of prices" ngClass="price_list">{{cost.value}}</li>
+               </ul>
+            </div>
+          </div>
+          <div ngClass="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-4">
+            <div ngClass="hotspot-div-block">
+               <h5>Trend</h5>
+               <ul ngClass="list-unstyled">
+                 <li *ngFor="let trend of trends" ngClass=" {{trend.trendstatus}} trnds-list"><mat-icon>arrow_upward</mat-icon> {{trend.value}}</li>
+               </ul>
+            </div>
+          </div>
+          <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+            <div ngClass="hotspot-div-block height-100">
+               <h5>Map View</h5>
+               <div ngClass="map-view_div height-100">
+                <div ngClass="map-iframe-div height-100">
+                  <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=dubai+(My%20Business%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"><a href="https://www.gps.ie/wearable-gps/">Kids wearables</a></iframe>
+              </div>
+               </div>
+            </div>
+          </div>
+          </div>
+      </div>
+      </div>
+    </section>
+    <section ngClass="Pro-searches_cities">
+      <div [ngClass]="'container_1280px'">
+        <div ngClass="heading-24px-design text-center">
+          <h2 ngClass="mb-0">Popular Searches in Dubai</h2>
+          <p>With 50,000+ projects analysed across 42+ cities, we cover residential real estate sector pan India for an ever informed choice</p>
+      </div>
+      <div ngClass="popular_searches-lists">
+        <ul ngClass="list-unstyled d-flex justify-content-spacebw flex-wrap">
+          <li *ngFor="let popular of popularSearches"><a routerLink="/{{popular.link}}">{{popular.value}}</a></li>
+        </ul>
+      </div>
+    </div>
+    </section>
+  </section>
+  <footer ngClass="footer-sec">
+    <app-footer></app-footer>
+  </footer>
+  

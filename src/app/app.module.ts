@@ -22,6 +22,7 @@ import { FooterComponent } from './footer/footer.component';
 import {MatIconModule} from '@angular/material/icon';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import {MatExpansionModule} from '@angular/material/expansion';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
@@ -81,6 +82,10 @@ import { PropertyCompareComponent } from './pages/property-compare/property-comp
 import { ExploreComponent } from './pages/explore/explore/explore.component';
 import { ExploreCityComponent } from './pages/explore/explore-city/explore-city.component';
 import { ExploreDetailsComponent } from './pages/explore/explore-details/explore-details.component';
+import { DataAnalyticsComponent } from './pages/data-analytics/data-analytics/data-analytics.component';
+import { DataAnalyticsSearchResultsComponent } from './pages/data-analytics/data-analytics-search-results/data-analytics-search-results.component';
+import { BlogCategoryComponent } from './pages/blog-category/blog-category.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -133,7 +138,10 @@ import { ExploreDetailsComponent } from './pages/explore/explore-details/explore
     PropertyCompareComponent,
     ExploreComponent,
     ExploreCityComponent,
-    ExploreDetailsComponent
+    ExploreDetailsComponent,
+    DataAnalyticsComponent,
+    DataAnalyticsSearchResultsComponent,
+    BlogCategoryComponent
   ],
   imports: [
     BrowserModule,
@@ -158,6 +166,7 @@ import { ExploreDetailsComponent } from './pages/explore/explore-details/explore
     MatListModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatTooltipModule,
     BrowserAnimationsModule,
     MatTabsModule,
     NgxPaginationModule,

@@ -45,6 +45,9 @@ import { PropertyCompareComponent } from './pages/property-compare/property-comp
 import { ExploreComponent } from './pages/explore/explore/explore.component';
 import { ExploreCityComponent } from './pages/explore/explore-city/explore-city.component';
 import { ExploreDetailsComponent } from './pages/explore/explore-details/explore-details.component';
+import { DataAnalyticsComponent } from './pages/data-analytics/data-analytics/data-analytics.component';
+import { DataAnalyticsSearchResultsComponent } from './pages/data-analytics/data-analytics-search-results/data-analytics-search-results.component';
+import { BlogCategoryComponent } from './pages/blog-category/blog-category.component';
 // import {RoleGuardService} from "./role-guard-service.service";
 
 const routes: Routes = [
@@ -79,7 +82,8 @@ const routes: Routes = [
   { path:  'PropertyDownloadReport', component:  PropertyDownloadReportComponent},
   { path:  'PropertDetailsPage', component:  PropertyInnerComponent},
   { path: "blogs", component: BlogsComponent },
-  { path: "blogs/:id", component: BlogViewComponent },
+  // { path: "blogs/:id", component: BlogViewComponent },
+  { path: "blogs-details", component: BlogViewComponent },
   { path: "agent-details/:id", component: AgentDetailsComponent },
   { path: "company-details/:id", component: CompanyDetailsComponent },
   { path: "find-agent", component: AgentLandingComponent },
@@ -90,6 +94,9 @@ const routes: Routes = [
   { path: "explore", component: ExploreComponent },
   { path: "explore-city", component: ExploreCityComponent },
   { path: "explore-details", component: ExploreDetailsComponent },
+  { path: "data-analytics", component: DataAnalyticsComponent },
+  { path: "data-analytics-search-result", component: DataAnalyticsSearchResultsComponent },
+  { path: "blog-category", component: BlogCategoryComponent },
 
 ];
 

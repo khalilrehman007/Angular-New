@@ -246,19 +246,19 @@ export class HomeComponent implements OnInit {
   Blogsec = [
     {
       src:'assets/images/blog/blog-1.png',
-      src2: 'assets/images/tag/market-trends.png',
+      src2: 'assets/images/tag/market-trends.svg',
       heading:'The Hottest new property launches in Dubai for April 2022',
       date:'March 01, 2022'
     },
     {
       src:'assets/images/blog/blog-2.png',
-      src2: 'assets/images/tag/tips-advice.png',
+      src2: 'assets/images/tag/tips-advice.svg',
       heading:'The Hottest new property launches in Dubai for April 2022',
       date:'March 01, 2022'
     },
     {
       src:'assets/images/blog/blog-3.png',
-      src2: 'assets/images/tag/explore.png',
+      src2: 'assets/images/tag/explore.svg',
       heading:'The Hottest new property launches in Dubai for April 2022',
       date:'March 01, 2022'
     }

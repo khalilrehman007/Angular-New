@@ -21,10 +21,7 @@ export class ExploreDetailsComponent implements OnInit {
   restaurant= '../../../../assets/images/icons/restaurant.svg'
   exploredemo= '../../../../assets/images/explore-demo.png'
 
-  dynamicSlides1:any = [];
-  dynamicSlides2:any = [];
-  oldData1() {
-    this.dynamicSlides1 = [
+dynamicSlides1 = [
       {
         id: 'slide1',
         src:'../../../../assets/images/property/1.png',
@@ -61,9 +58,7 @@ export class ExploreDetailsComponent implements OnInit {
         price:"250,000AED"
       }
     ]
-  }
-  newData1() {
-    this.dynamicSlides1 = [
+ dynamicSlides2 = [
       {
         id: 'slide1',
         src:'../../../../assets/images/property/1.png',
@@ -100,85 +95,6 @@ export class ExploreDetailsComponent implements OnInit {
         price:"350,000AED"
       }
     ]
-  }
-  oldData2() {
-    this.dynamicSlides2 = [
-      {
-        id: 'slide1',
-        src:'../../../../assets/images/property/1.png',
-        alt:'Side 1',
-        title:'Side 1',
-        price:"250,000AED"
-      },
-      {
-        id: 'slide2',
-        src:'../../../../assets/images/property/1.png',
-        alt:'Side 2',
-        title:'Side 2',
-        price:"250,000AED"
-      },
-      {
-        id: 'slide3',
-        src:'../../../../assets/images/property/1.png',
-        alt:'Side 3',
-        title:'Side 3',
-        price:"250,000AED"
-      },
-      {
-        id: 'slide4',
-        src:'../../../../assets/images/property/1.png',
-        alt:'Side 4',
-        title:'Side 4',
-        price:"250,000AED"
-      },
-      {
-        id: 'slide5',
-        src:'../../../../assets/images/property/1.png',
-        alt:'Side 5',
-        title:'Side 5',
-        price:"250,000AED"
-      }
-    ]
-  }
-  newData2() {
-    this.dynamicSlides2 = [
-      {
-        id: 'slide1',
-        src:'../../../../assets/images/property/1.png',
-        alt:'Side 1',
-        title:'Side 56',
-        price:"350,000AED"
-      },
-      {
-        id: 'slide2',
-        src:'../../../../assets/images/property/1.png',
-        alt:'Side 2',
-        title:'Side 2',
-        price:"350,000AED"
-      },
-      {
-        id: 'slide3',
-        src:'../../../../assets/images/property/1.png',
-        alt:'Side 3',
-        title:'Side 3',
-        price:"350,000AED"
-      },
-      {
-        id: 'slide4',
-        src:'../../../../assets/images/property/1.png',
-        alt:'Side 4',
-        title:'Side 4',
-        price:"350,000AED"
-      },
-      {
-        id: 'slide5',
-        src:'../../../../assets/images/property/1.png',
-        alt:'Side 5',
-        title:'Side 5',
-        price:"350,000AED"
-      }
-    ]
-  }
   customOptions: OwlOptions = {
     loop: true,
     mouseDrag: true,
@@ -203,9 +119,7 @@ export class ExploreDetailsComponent implements OnInit {
     nav: false
   }
 
-  constructor(private route:Router) {
-    this.oldData1();
-    this.oldData2();
+  constructor() {
    }
 
   ngOnInit(): void {

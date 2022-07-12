@@ -1,17 +1,15 @@
 <header>
     <app-header></app-header>
 </header>
-<section [ngClass]="'inner-cntnt-wrapper slide-left-bar blogs_sec'">
-    <div ngClass="container_1280px">
+<section [ngClass]="'inner-cntnt-wrapper slide-left-bar blogs_sec padd-0'">
+    <!-- <div ngClass="container_1280px">
         <div ngClass="section-title">
             <div ngClass="section-custom-title-left">
                 <h4>Blogs</h4>
                 <p>Some of our picked properties near you location.</p>
             </div>
         </div>
-
         <div ngClass="row">
-          <!-- let blogs of Blogsec -->
             <div ngClass="col-lg-4 col-md-6 blog-places-col" *ngFor=" let blog of blogs">
                 <a [routerLink]="['/blogs/'+blog.id]" [queryParams] = "{title: blog.blogTitle}"  queryParamsHandling="merge">
                     <img [src]="'https://www.ovaluate.com/'+blog.blogDocument.fileUrl" ngClass="img-fluid blog-image-homepage" alt="">
@@ -25,7 +23,251 @@
                 </a>
             </div>
         </div>
+    </div> -->
+    <section ngClass="blogs-header-bars">
+      <div ngClass="container_1280px">
+    <div ngClass="row">
+       <div ngClass="col-xl-8 col-lg-8 col-md-12 col-sm-12">
+       <div ngClass="blogs-link-list">
+       <ul ngClass="list-unstyled d-flex justify-content-sapcebw">
+        <li><a routerLink="" ngClass="active">Dashboard</a></li>
+        <li><a routerLink="">My Activities</a></li>
+        <li><a routerLink="">My Leads</a></li>
+        <li><a routerLink="">My Listings</a></li>
+        <li><a routerLink="">My Valuations</a></li>
+        <li>
+            <div ngClass="block-wrapper">
+                <div ngClass="cstm_dropdown-list dropdown-design-2 position-relative">
+                   <button ngClass="drop-down_btn" (click)="clickEvent()">More <mat-icon>keyboard_arrow_down</mat-icon></button>
+                   <div class="cstm_dropdown-menu" [ngClass]="status ? 'active' : 'notactive'">
+                     <ul ngClass="list-unstyled">
+                        <li><a routerLink="/blog-category">Tips & Advice</a></li>
+                        <li><a routerLink="/blog-category">News</a></li>
+                        <li><a routerLink="/blog-category">Explore</a></li>
+                        <li><a routerLink="/blog-category">Life at Homes</a></li>
+                        <li><a routerLink="/blog-category">Laws</a></li>
+                        <li><a routerLink="/blog-category">Market Trends</a></li>
+                        <li><a routerLink="/blog-category">More</a></li>
+                     </ul>
+                   </div>
+                </div>
+              </div>
+        </li>
+       </ul>
+       </div>
+       </div>
+       <div ngClass="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+           <div ngClass="blogs-seach-blog">
+            <form>
+                <mat-form-field class="full-width input-design" appearance="fill">
+                    <mat-label>Blog Search</mat-label>
+                    <input matInput formControlName="BuildingName" type="text" placeholder="Please mention the name">
+                  </mat-form-field>
+            </form>
+           </div>
+        </div>
     </div>
+       </div>
+    </section>
+    <section ngClass="blog_inner-banner-blocks">
+    <div ngClass="container_1280px">
+    <div ngClass="exploredetails-breadcrumb-wrapper black-text-breadcrumb mt-3">
+        <app-breadcrumb></app-breadcrumb>
+    </div>
+    <div ngClass="explore-details-banner">
+        <div ngClass="explore_details-img">
+            <img src="{{exploreimg}}">
+        </div>
+         <div ngClass="explore_details-cntnt">
+            <div ngClass="hp-design white">
+                <h4>Do your homework well before listening to paid advisors</h4>
+                <span ngClass="blue_tag">Tips & Advice</span>
+                <p>30 November, 2022</p>
+            </div>
+        </div>
+    </div>
+    </div>
+    </section>
+    <section ngClass="position-relative wrapper-section blogs_sec">
+        <div ngClass="container_1280px">
+            <div ngClass="section-title">
+                <div ngClass="section-custom-title-left">
+                    <h4>News</h4>
+                    <p>Some of our picked properties near you location.</p>
+                </div>
+                <div ngClass="section-custom-title-right">
+                    <a [routerLink]="['blogs']">Read all</a>
+                </div>
+            </div>
+
+            <div ngClass="row">
+              <!-- let blogs of Blogsec -->
+                <div ngClass="col-lg-4 col-md-6 blog-places-col" *ngFor=" let blog of Newssec">
+                    <a routerLink="/blogs-details">
+                      <!-- blog.blogDocument.fileUrl -->
+                        <img [src]="blog.src" ngClass="img-fluid blog-image-homepage" alt="">
+                        <span ngClass="blog-tag">
+                            <img [src]="blog.src2" ngClass="img-fluid" alt="">
+                        </span>
+                        <div ngClass="blog-title-content">
+                            <h5>{{blog.heading}}</h5>
+                            <span>{{blog.date}}</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section ngClass="blogs_slider-sec">
+        <div ngClass="container_1280px">
+            <div ngClass="blogs_sliders-cntnt-bg">
+                <ngb-carousel [showNavigationIndicators]="false">
+                    <ng-template ngbSlide *ngFor="let event of eventlist">
+                       <div ngClass="row">
+                        <div ngClass="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+                        <div ngClass="blogs_cntnt-img">
+                         <a routerLink="/blogs-details">
+                              <img [src]="event.img" ngClass="img-fluid blog-image-homepage" alt="">
+                              <span ngClass="blog-tag">
+                                  <img [src]="event.src2" ngClass="img-fluid" alt="">
+                              </span>
+                        </a>
+                        </div>
+                        </div>
+                        <div ngClass="col-xl-8 col-lg-8 col-md-12 col-sm-12">
+                            <div ngClass="blog-title-content">
+                                <h5>{{event.heading}}</h5>
+                                <span> <span ngClass="blue_tag">{{event.category}}</span> {{event.date}}</span>
+                                <p>Real estate investment does not come with a guidebook. There are different ways you can do to put yourself on the right path and ensure best possibility for success. And listening to real estate paid professionals is the right way to start.</p>
+                            </div>
+                        </div>
+                       </div>
+                    </ng-template>
+                  </ngb-carousel>
+            </div>
+        </div>
+    </section>
+    <section ngClass="blogs_categries-sec">
+        <div ngClass="container_1280px">
+            <div ngClass="catogries-sec-wrapper">
+                <h2>Categories</h2>
+                <div ngClass="catogries_blogs-sec">
+                    <mat-tab-group>
+                        <mat-tab label="All">
+                            <section ngClass="position-relative blogs_sec">
+                                <div ngClass="container_1280px">
+                                    <div ngClass="row">
+                                      <!-- let blogs of Blogsec -->
+                                        <div ngClass="col-lg-4 col-md-6 blog-places-col" *ngFor=" let blog of Newssec">
+                                            <a [routerLink]="">
+                                              <!-- blog.blogDocument.fileUrl -->
+                                                <img [src]="blog.src" ngClass="img-fluid blog-image-homepage" alt="">
+                                                <span ngClass="blog-tag">
+                                                    <img [src]="blog.src2" ngClass="img-fluid" alt="">
+                                                </span>
+                                                <div ngClass="blog-title-content">
+                                                    <h5>{{blog.heading}}</h5>
+                                                    <span>{{blog.date}}</span>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </mat-tab>
+                        <mat-tab label="TIPS">
+                            <section ngClass="position-relative wrapper-section blogs_sec">
+                                <div ngClass="container_1280px">
+                                    <div ngClass="row">
+                                      <!-- let blogs of Blogsec -->
+                                        <div ngClass="col-lg-4 col-md-6 blog-places-col" *ngFor=" let blog of Newssec">
+                                            <a [routerLink]="">
+                                              <!-- blog.blogDocument.fileUrl -->
+                                                <img [src]="blog.src" ngClass="img-fluid blog-image-homepage" alt="">
+                                                <span ngClass="blog-tag">
+                                                    <img [src]="blog.src2" ngClass="img-fluid" alt="">
+                                                </span>
+                                                <div ngClass="blog-title-content">
+                                                    <h5>{{blog.heading}}</h5>
+                                                    <span>{{blog.date}}</span>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </mat-tab>
+                        <mat-tab label="PULSE">
+                            <section ngClass="position-relative wrapper-section blogs_sec">
+                                <div ngClass="container_1280px">
+                                    <div ngClass="row">
+                                      <!-- let blogs of Blogsec -->
+                                        <div ngClass="col-lg-4 col-md-6 blog-places-col" *ngFor=" let blog of Newssec">
+                                            <a [routerLink]="">
+                                              <!-- blog.blogDocument.fileUrl -->
+                                                <img [src]="blog.src" ngClass="img-fluid blog-image-homepage" alt="">
+                                                <span ngClass="blog-tag">
+                                                    <img [src]="blog.src2" ngClass="img-fluid" alt="">
+                                                </span>
+                                                <div ngClass="blog-title-content">
+                                                    <h5>{{blog.heading}}</h5>
+                                                    <span>{{blog.date}}</span>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </mat-tab>
+                        <mat-tab label="MY HOME">
+                            <section ngClass="position-relative wrapper-section blogs_sec">
+                                <div ngClass="container_1280px">
+                                    <div ngClass="row">
+                                      <!-- let blogs of Blogsec -->
+                                        <div ngClass="col-lg-4 col-md-6 blog-places-col" *ngFor=" let blog of Newssec">
+                                            <a [routerLink]="">
+                                              <!-- blog.blogDocument.fileUrl -->
+                                                <img [src]="blog.src" ngClass="img-fluid blog-image-homepage" alt="">
+                                                <span ngClass="blog-tag">
+                                                    <img [src]="blog.src2" ngClass="img-fluid" alt="">
+                                                </span>
+                                                <div ngClass="blog-title-content">
+                                                    <h5>{{blog.heading}}</h5>
+                                                    <span>{{blog.date}}</span>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </mat-tab>
+                        <mat-tab label="MARKET TRENDS">
+                            <section ngClass="position-relative wrapper-section blogs_sec">
+                                <div ngClass="container_1280px">
+                                    <div ngClass="row">
+                                      <!-- let blogs of Blogsec -->
+                                        <div ngClass="col-lg-4 col-md-6 blog-places-col" *ngFor=" let blog of Newssec">
+                                            <a [routerLink]="">
+                                              <!-- blog.blogDocument.fileUrl -->
+                                                <img [src]="blog.src" ngClass="img-fluid blog-image-homepage" alt="">
+                                                <span ngClass="blog-tag">
+                                                    <img [src]="blog.src2" ngClass="img-fluid" alt="">
+                                                </span>
+                                                <div ngClass="blog-title-content">
+                                                    <h5>{{blog.heading}}</h5>
+                                                    <span>{{blog.date}}</span>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </mat-tab>
+                      </mat-tab-group>
+                </div>
+            </div>
+        </div>
+    </section>
 </section>
 <footer ngClass="footer-sec">
   <app-footer></app-footer>
