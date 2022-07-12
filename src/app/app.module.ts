@@ -81,7 +81,6 @@ import { PropertyCompareComponent } from './pages/property-compare/property-comp
 import { ExploreComponent } from './pages/explore/explore/explore.component';
 import { ExploreCityComponent } from './pages/explore/explore-city/explore-city.component';
 import { ExploreDetailsComponent } from './pages/explore/explore-details/explore-details.component';
-
 @NgModule({
   declarations: [
     AppComponent,
