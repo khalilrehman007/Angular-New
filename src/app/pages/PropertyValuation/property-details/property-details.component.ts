@@ -13,8 +13,8 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
 
   map: any;
   @ViewChild('propertyDetails__map') mapElement: any;
-  
-  searchLocaation:any;
+
+  searchLocaation: any;
   @ViewChild('searchLocation') searchElement: any;
 
   Locate = '../../../../assets/images/icons/locate.svg'
@@ -27,6 +27,7 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
   data: any = {};
   titleDeedType: number = -1;
   propertyInsured: number = -1;
+  autocomplete: any;
 
   location = { lat: 31.5204, lng: 74.3587 };
 
@@ -122,6 +123,9 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
   }
   ngAfterViewInit(): void {
+    this.initMap();
+  }
+  initMap() {
     this.map = new google.maps.Map(this.mapElement.nativeElement, {
       center: this.location,
       zoom: 8,
@@ -131,10 +135,11 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
       position: this.location,
       map: this.map
     })
-    let searchBox:any = new google.maps.places.SearchBox(this.searchElement.nativeElement);
-    this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(this.searchElement.nativeElement);
-    // this.map.addListener("bounds_changed", () => {
-    //   searchBox.setBounds(this.map.getBounds());
-    // });
+    this.autocomplete = new google.maps.places.Autocomplete(this.searchElement.nativeElement);
+    this.autocomplete.addListener('place_changed', this.onPlaceChanged)
+  }
+  onPlaceChanged() {
+    let temp:any = document.getElementById("searchLocation");
+    let address:any = temp.value;
   }
 }
