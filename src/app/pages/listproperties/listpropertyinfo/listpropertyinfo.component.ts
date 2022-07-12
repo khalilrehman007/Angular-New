@@ -36,7 +36,10 @@ export class ListpropertyinfoComponent implements OnInit {
     this.getOldFormData();
     this.priviousFormCheck = localStorage.getItem('property_info');
     if(this.priviousFormCheck == '' || this.priviousFormCheck == null){
+      this.priviousFormCheck = JSON.parse(this.priviousFormCheck);
       this.route.navigate(['listingproperty'])
+    }else{
+      this.priviousFormCheck = JSON.parse(this.priviousFormCheck);
     }
 
   }

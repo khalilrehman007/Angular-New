@@ -23,10 +23,10 @@
                     <div class="row">
                         <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12">
                             <div class="new-proprty-details">
-                                <h5 class="propertyid">OV 3456 890 987</h5>
-                                <h5 class="proname">Blue Wave Tower</h5>
-                                <address>Etihad Tower 4, Etihad Towers,<br/>
-                                    Corniche Road, Abu Dhabi  </address>
+                                <h5 class="propertyid">{{priviousFormCheck.FloorNo}}</h5>
+                                <h5 class="proname">{{priviousFormCheck.BuildingName}}</h5>
+                                <address>{{priviousFormCheck.address}},<br/>
+                                    {{priviousFormCheck.CityId}}, {{priviousFormCheck.CountryId}}  </address>
                             </div>
                         </div>
                         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
@@ -75,7 +75,7 @@
                                               </button>
                                               <div class="dropdown-menu" id="property-type-sec">
                                                 <h5 class="h5-heading">Property Type</h5>
-                                                  <div class="property-types-cntnts">
+                                                  <div class="property-typ  es-cntnts">
                                                     <ul class="list-unstyled residentails-unit-list">
                                                       <li class="d-flex">
                                                         <div class="position-relative">
