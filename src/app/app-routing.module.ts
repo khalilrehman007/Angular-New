@@ -48,6 +48,9 @@ import { ExploreDetailsComponent } from './pages/explore/explore-details/explore
 import { DataAnalyticsComponent } from './pages/data-analytics/data-analytics/data-analytics.component';
 import { DataAnalyticsSearchResultsComponent } from './pages/data-analytics/data-analytics-search-results/data-analytics-search-results.component';
 import { BlogCategoryComponent } from './pages/blog-category/blog-category.component';
+import { ChatingComponent } from './pages/chating/chating.component';
+import { ChatNewMessageComponent } from './pages/chat-new-message/chat-new-message.component';
+import { PagenotfoundComponent } from './pages/pagenotfound/pagenotfound.component';
 // import {RoleGuardService} from "./role-guard-service.service";
 
 const routes: Routes = [
@@ -97,6 +100,9 @@ const routes: Routes = [
   { path: "data-analytics", component: DataAnalyticsComponent },
   { path: "data-analytics-search-result", component: DataAnalyticsSearchResultsComponent },
   { path: "blog-category", component: BlogCategoryComponent },
+  { path: "chat", component: ChatingComponent },
+  { path: "chat-new-message", component: ChatNewMessageComponent },
+  { path: '**', pathMatch: 'full', component: PagenotfoundComponent },
 
 ];
 
