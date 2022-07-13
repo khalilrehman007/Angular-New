@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { NgxSliderModule } from "@angular-slider/ngx-slider";
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './pages/home/home.component';
 import { DashboardComponent } from "./profile/dashboard/dashboard.component";
@@ -85,6 +86,12 @@ import { ExploreDetailsComponent } from './pages/explore/explore-details/explore
 import { DataAnalyticsComponent } from './pages/data-analytics/data-analytics/data-analytics.component';
 import { DataAnalyticsSearchResultsComponent } from './pages/data-analytics/data-analytics-search-results/data-analytics-search-results.component';
 import { BlogCategoryComponent } from './pages/blog-category/blog-category.component';
+import { ChatingComponent } from './pages/chating/chating.component';
+import { NgxEditorModule } from "ngx-editor";
+import {ScrollingModule} from '@angular/cdk/scrolling';
+import { ChatNewMessageComponent } from './pages/chat-new-message/chat-new-message.component';
+import { PagenotfoundComponent } from './pages/pagenotfound/pagenotfound.component';
+
 
 @NgModule({
   declarations: [
@@ -141,7 +148,10 @@ import { BlogCategoryComponent } from './pages/blog-category/blog-category.compo
     ExploreDetailsComponent,
     DataAnalyticsComponent,
     DataAnalyticsSearchResultsComponent,
-    BlogCategoryComponent
+    BlogCategoryComponent,
+    ChatingComponent,
+    ChatNewMessageComponent,
+    PagenotfoundComponent
   ],
   imports: [
     BrowserModule,
@@ -169,6 +179,9 @@ import { BlogCategoryComponent } from './pages/blog-category/blog-category.compo
     MatTooltipModule,
     BrowserAnimationsModule,
     MatTabsModule,
+    NgxEditorModule,
+    ScrollingModule,
+    NgxSliderModule,
     NgxPaginationModule,
     ToastrModule.forRoot({
       timeOut: 2000,

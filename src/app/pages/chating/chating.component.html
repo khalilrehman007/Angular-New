@@ -1,0 +1,243 @@
+<header>
+    <app-second-header></app-second-header>
+</header>
+<section ngClass="chat_screen-designs">
+    <div ngClass="container_1280px">
+        <div ngClass="chat-white-bg">
+            <div ngClass="chat-message-screen">
+                <div ngClass="chat-message-left-bar">
+                    <div ngClass="chat_msg-header">
+                        <div ngClass="chat-search_block d-flex justify-content-spacebw">
+                            <div ngClass="position-relative chat-search">
+                                <mat-form-field class="example-full-width" appearance="fill">
+                                    <mat-label>Search</mat-label>
+                                    <input matInput placeholder="Search...">
+                                  </mat-form-field>
+                                  <mat-icon>search</mat-icon>
+                            </div>
+                            <div ngClass="add_btn-blok">
+                                <button ngClass="add_chat-btn">+</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div ngClass="chat_msg-listing">
+                        <ul ngClass="list-unstyled">
+                            <li ngClass="active">
+                                <div ngClass="position-relative chat-list-li">
+                                    <div ngClass="chat_list-info">
+                                        <div ngClass="d-flex justify-content-spacebw">
+                                        <h4 ngClass="customer-name">Mark Vetrovs</h4>
+                                        <p ngClass="time">4h ago</p>
+                                        </div>
+                                        <h5 ngClass="chat_type-details">Request for Home Tour</h5>
+                                        <p>Hi Francis! I’m  in love with one of your properties and wanted to know wh...</p>
+                                        <button ngClass="chat_btn request">REQUEST</button>
+                                    </div>
+                                    <div ngClass="chat_customers-img">
+                                        <img src="{{customerimg}}">
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div ngClass="position-relative chat-list-li">
+                                    <div ngClass="chat_list-info">
+                                        <div ngClass="d-flex justify-content-spacebw">
+                                        <h4 ngClass="customer-name">Wilson Septimus</h4>
+                                        <p ngClass="time">Yesterday</p>
+                                        </div>
+                                        <h5 ngClass="chat_type-details">General Inquiry</h5>
+                                        <p>Hi Francis! I’m  in love with one of your properties and wanted to know wh...</p>
+                                        <button ngClass="chat_btn mail">MAIL</button>
+                                    </div>
+                                    <div ngClass="chat_customers-img">
+                                        <img src="{{customerimg2}}">
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div ngClass="position-relative chat-list-li">
+                                    <div ngClass="chat_list-info">
+                                        <div ngClass="d-flex justify-content-spacebw">
+                                        <h4 ngClass="customer-name">Phillip Schleifer</h4>
+                                        <p ngClass="time">3d ago</p>
+                                        </div>
+                                        <h5 ngClass="chat_type-details">Request for Home Tour</h5>
+                                        <p>Hi Francis! I’m  in love with one of your properties and wanted to know wh...</p>
+                                        <button ngClass="chat_btn gernal-inquiry">General Inquiry</button>
+                                    </div>
+                                    <div ngClass="chat_customers-img">
+                                        <img src="{{customerimg3}}">
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div ngClass="position-relative chat-list-li">
+                                    <div ngClass="chat_list-info">
+                                        <div ngClass="d-flex justify-content-spacebw">
+                                        <h4 ngClass="customer-name">Desirae Gouse</h4>
+                                        <p ngClass="time">4d ago</p>
+                                        </div>
+                                        <h5 ngClass="chat_type-details">Lease Maintenance</h5>
+                                        <p>Hi Francis! I’m  in love with one of your properties and wanted to know wh...</p>
+                                        <button ngClass="chat_btn maintance">MAINTENANCE</button>
+                                    </div>
+                                    <div ngClass="chat_customers-img">
+                                        <img src="{{customerimg4}}">
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div ngClass="position-relative chat-list-li">
+                                    <div ngClass="chat_list-info">
+                                        <div ngClass="d-flex justify-content-spacebw">
+                                        <h4 ngClass="customer-name">Emery Siphrom</h4>
+                                        <p ngClass="time">4d ago</p>
+                                        </div>
+                                        <h5 ngClass="chat_type-details">Lease Maintenance</h5>
+                                        <p>Hi Francis, I will send the documents</p>
+                                        <button ngClass="chat_btn maintance">MAINTENANCE</button>
+                                    </div>
+                                    <div ngClass="chat_customers-img">
+                                        <img src="{{customerimg5}}">
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div ngClass="chat-message-center-bar">
+                    <div ngClass="chat_cutomers-message-cntnt position-relative">
+                        <div ngClass="chat_msg-hdr d-flex justify-content-spacebw">
+                            <div ngClass="chat_msg-lefthdr">
+                                <button ngClass="delete-btn"><img src="{{delete}}"></button>
+                                <button ngClass="market-btn"><img src="{{shopchat}}"></button>
+                                <div ngClass="cstm_dropdown-list dropdown-design-2 position-relative">
+                                    <button ngClass="drop-down_btn" (click)="clickEvent()"><img src="{{infochat}}"></button>
+                                    <div class="cstm_dropdown-menu" [ngClass]="status ? 'active' : 'notactive'">
+                                        <p>Demo Content</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ngClass="chat_msg-righthdr">
+                                <button class="market-btn" (click)="clickEvent1()" [ngClass]="status2 ? 'active' : 'notactive'"><svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12.3942 2.95547L13.8609 5.8888C14.0609 6.29714 14.5942 6.6888 15.0442 6.7638L17.7026 7.20547C19.4026 7.4888 19.8026 8.72214 18.5776 9.9388L16.5109 12.0055C16.1609 12.3555 15.9692 13.0305 16.0776 13.5138L16.6692 16.0721C17.1359 18.0971 16.0609 18.8805 14.2692 17.8221L11.7776 16.3471C11.3276 16.0805 10.5859 16.0805 10.1276 16.3471L7.63589 17.8221C5.85256 18.8805 4.76923 18.0888 5.23589 16.0721L5.82756 13.5138C5.93589 13.0305 5.74423 12.3555 5.39423 12.0055L3.32756 9.9388C2.11089 8.72214 2.50256 7.4888 4.20256 7.20547L6.86089 6.7638C7.30256 6.6888 7.83589 6.29714 8.03589 5.8888L9.50256 2.95547C10.3026 1.3638 11.6026 1.3638 12.3942 2.95547Z" stroke="#7065F0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                    </button>
+                                <div ngClass="cstm_dropdown-list dropdown-design-2 position-relative">
+                                    <button ngClass="drop-down_btn" (click)="clickEvent2()"><img src="{{chatdots}}"></button>
+                                    <div class="cstm_dropdown-menu" [ngClass]="status3 ? 'active' : 'notactive'">
+                                        <ul ngClass="list-unstyled">
+                                            <li><a routerLink="">View</a></li>
+                                            <li><a routerLink="">Old Messages</a></li>
+                                            <li><a routerLink="">Links</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div ngClass="chat_msg-inner-cntnt">
+                            <div ngClass="message-list_cntnt customer-message">
+                                <div ngClass="position-relative">
+                                    <div ngClass="messeger_img">
+                                        <img src="{{customerimg}}">
+                                    </div>
+                                    <div ngClass="message-text">
+                                        <p>Hi Francis,<br/> I’m  in love with one of your properties, <a routerLink="">Beverly Springfield</a> and I would like to ask is it on the market?</p>
+                                    </div>
+                                </div>
+                                <p ngClass="msg_time">13:32 PM</p>
+                            </div>
+                            <div ngClass="message-list_cntnt owner-message">
+                                <div ngClass="position-relative">
+                                    <div ngClass="message-text">
+                                        <p>Hey <button ngClass="customer-mentioned-name">@Mark Vetrovs</button> yes, it’s available to rent 🙂</p>
+                                    </div>
+                                </div>
+                                <p ngClass="msg_time">13:40 PM</p>
+                            </div>
+                            <div ngClass="message-list_cntnt customer-message">
+                                <div ngClass="position-relative">
+                                    <div ngClass="messeger_img">
+                                        <img src="{{customerimg}}">
+                                    </div>
+                                    <div ngClass="message-text">
+                                        <p>May I know your availability for home tour this week?</p>
+                                    </div>
+                                </div>
+                                <p ngClass="msg_time">13:43 PM</p>
+                            </div>
+                            <div ngClass="message-list_cntnt owner-message">
+                                <div ngClass="position-relative">
+                                    <div ngClass="message-text">
+                                        <p>Here is my schedule please choose a time at your convenience.</p>
+                                    </div>
+                                </div>
+                                <p ngClass="msg_time">Message sent just now</p>
+                            </div>
+                        </div>
+                        <div ngClass="chat_msg-footer">
+                            <div ngClass="chat_textarea_field">
+                                <form [formGroup]="form">
+                                    <div class="editor">
+                                        <ngx-editor [editor]="editor" formControlName="editorContent" placeholder="Write your message...">
+                                        </ngx-editor>
+                                        <ngx-editor-menu [editor]="editor" [toolbar]="toolbar">
+                                        </ngx-editor-menu>
+                                        <button type="submit" ngClass="send_btn">Send <img src="{{send}}"></button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div ngClass="chat-message-right-bar">
+                    <div ngClass="msg-property-details">
+                        <button ngClass="close"><mat-icon>close</mat-icon></button>
+                        <div ngClass="property_msg-property-block">
+                            <img src="{{prochat}}">
+                            <h3>Beverly Springfield</h3>
+                            <address>2821 Sevilla, Palm Harbor, TX</address>
+                            <div ngClass="property-details-highlights">
+                                <span ngClass="bed">
+                                    <img src="{{bedsvg}}" alt="">3 Beds
+                                </span>
+                                <span ngClass="bath">
+                                    <img src="{{bathsvg}}" alt="">2 Bathrooms
+                                </span>
+                                <span ngClass="area">
+                                    <img src="{{squaremetersvg}}" alt="">6x7.5 m²
+                                </span>
+                            </div>
+                            <div ngClass="property_status_reports">
+                                <ul ngClass="list-unstyled">
+                                    <li ngClass="d-flex justify-content-spacebq">
+                                        <p>Status</p>
+                                        <h5 ngClass="active-status"><img src="{{activecheckmark}}"> Active</h5>
+                                    </li>
+                                    <li ngClass="d-flex justify-content-spacebq">
+                                        <p>Living space</p>
+                                        <h5 ngClass="black_bold">124 sq ft</h5>
+                                    </li>
+                                    <li ngClass="d-flex justify-content-spacebq">
+                                        <p>Repair quality</p>
+                                        <h5 ngClass="black_bold">Modern loft</h5>
+                                    </li>
+                                    <li ngClass="d-flex justify-content-spacebq">
+                                        <p>Rent price</p>
+                                        <h5 ngClass="black_bold">$2,700/mo</h5>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div ngClass="proprty_details-btn">
+                                <a routerLink="/PropertDetailsPage" ngClass="view_proprty-details">View property details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
