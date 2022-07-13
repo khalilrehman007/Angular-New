@@ -21,10 +21,18 @@ export class SellCommertialComponent implements OnInit {
   submitted = false;
   responsedata: any;
   oldData :any;
+  priviousFormCheck :any;
 
 
   constructor(private service: AuthService,private route:Router,private notifyService : NotificationService) {
     this.getOldFormData();
+    this.priviousFormCheck = localStorage.getItem('property_info');
+    if(this.priviousFormCheck == '' || this.priviousFormCheck == null){
+      this.priviousFormCheck = JSON.parse(this.priviousFormCheck);
+      this.route.navigate(['listingproperty'])
+    }else {
+      this.priviousFormCheck = JSON.parse(this.priviousFormCheck);
+    }
   }
   getOldFormData(){
     this.oldData = localStorage.getItem('listpropertyinfo_sell_commercial');
