@@ -41,8 +41,16 @@ export class AppService {
   LoadDistrict(id:number) {
     return this.http.get(this.apiurl + 'Districts/' + id);
   }
-
-  
-  
-  
+  LoadType(id:number) {
+    return this.http.get(this.apiurl + 'PropertyType/' + id);
+  }
+  ValuationPurpose() {
+    return this.http.get(this.apiurl + 'ValuationPurposes/');
+  }
+  PropertyFeatures(id:any) {
+    return this.http.get(this.apiurl + 'PropertyFeatures/' + id);
+  }
+  PropertyUnitTypes() {
+    return this.http.get(this.apiurl + 'PropertyUnitTypes/');
+  }
 }

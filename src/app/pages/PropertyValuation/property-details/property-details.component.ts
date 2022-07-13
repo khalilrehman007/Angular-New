@@ -2,6 +2,7 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { SecondHeaderComponent } from '../../../second-header/second-header.component';
 import { FormGroup, FormControl, Validators } from '@angular/forms'
 import { AppService } from 'src/app/service/app.service';
+import { Router } from '@angular/router';
 
 declare const google: any;
 @Component({
@@ -50,7 +51,7 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
     return this.propertyDetails.get("ownerPhone")
   }
 
-  constructor(private service: AppService) {
+  constructor(private service: AppService, private router:Router) {
     this.loadCountriesData();
   }
   loadCountriesData() {
@@ -117,7 +118,11 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
       this.data.PropertyInsured = this.propertyInsured;
       this.data.CustomerName = this.propertyDetails.value.propertyOwner;
       this.data.PhoneNumber = this.propertyDetails.value.ownerPhone;
-      console.log(this.data);
+      this.data.PropertyLat = 25.2785816;
+      this.data.PropertyLong = 55.3401649;
+      this.data.PropertyAddress = "119 28 C Street - Dubai - United Arab Emirates";
+      localStorage.setItem('valuationData', JSON.stringify(this.data));
+      this.router.navigate(['/PropertyType']);
     }
   }
   ngOnInit(): void {
