@@ -350,14 +350,19 @@
             </div>
             <div ngClass="text-right save-continue-sec justify-content-end">
               <mat-card-actions>
-                <!-- <a routerLink="/PropertyType" ngClass="save-continue-btn">Save & Continue</a> -->
                 <button
+                  ngClass="save-continue-btn"
+                  (click)="getData()"
+                >
+                  Save & Continue
+                </button>
+                <!-- <button
                   ngClass="save-continue-btn"
                   [disabled]="propertyDetails.invalid"
                   (click)="getData()"
                 >
                   Save & Continue
-                </button>
+                </button> -->
               </mat-card-actions>
             </div>
           </form>
