@@ -22,6 +22,7 @@ export class RentCommertialComponent implements OnInit {
   responsedata: any;
   oldData :any;
   priviousFormCheck :any;
+  data: any = {};
 
   constructor(private service: AuthService,private route:Router,private notifyService : NotificationService) {
     this.getOldFormData();
@@ -38,28 +39,28 @@ export class RentCommertialComponent implements OnInit {
     this.oldData = localStorage.getItem('listpropertyinfo_rent_comercial');
     if(this.oldData != '' && this.oldData != null){
       this.oldData = JSON.parse(this.oldData);
-      this.SubmitForm.controls.property_studio.setValue(this.oldData.property_studio);
-      this.SubmitForm.controls.property_apartment.setValue(this.oldData.property_apartment);
-      this.SubmitForm.controls.property_villa.setValue(this.oldData.property_villa);
-      this.SubmitForm.controls.property_townHouse.setValue(this.oldData.property_townHouse);
-      this.SubmitForm.controls.property_penthouse.setValue(this.oldData.property_penthouse);
-      this.SubmitForm.controls.property_compound.setValue(this.oldData.property_compound);
-      this.SubmitForm.controls.property_duplex.setValue(this.oldData.property_duplex);
-      this.SubmitForm.controls.property_fullFloor.setValue(this.oldData.property_fullFloor);
-      this.SubmitForm.controls.property_wholeBuilding.setValue(this.oldData.property_wholeBuilding);
-      this.SubmitForm.controls.property_bulkRentUnit.setValue(this.oldData.property_bulkRentUnit);
-      this.SubmitForm.controls.property_bungalow.setValue(this.oldData.property_bungalow);
-      this.SubmitForm.controls.property_hotelApartment.setValue(this.oldData.property_hotelApartment);
+      this.SubmitForm.controls.property_studio.setValue(this.oldData.propertyType.property_studio);
+      this.SubmitForm.controls.property_apartment.setValue(this.oldData.propertyType.property_apartment);
+      this.SubmitForm.controls.property_villa.setValue(this.oldData.propertyType.property_villa);
+      this.SubmitForm.controls.property_townHouse.setValue(this.oldData.propertyType.property_townHouse);
+      this.SubmitForm.controls.property_penthouse.setValue(this.oldData.propertyType.property_penthouse);
+      this.SubmitForm.controls.property_compound.setValue(this.oldData.propertyType.property_compound);
+      this.SubmitForm.controls.property_duplex.setValue(this.oldData.propertyType.property_duplex);
+      this.SubmitForm.controls.property_fullFloor.setValue(this.oldData.propertyType.property_fullFloor);
+      this.SubmitForm.controls.property_wholeBuilding.setValue(this.oldData.propertyType.property_wholeBuilding);
+      this.SubmitForm.controls.property_bulkRentUnit.setValue(this.oldData.propertyType.property_bulkRentUnit);
+      this.SubmitForm.controls.property_bungalow.setValue(this.oldData.propertyType.property_bungalow);
+      this.SubmitForm.controls.property_hotelApartment.setValue(this.oldData.propertyType.property_hotelApartment);
       this.SubmitForm.controls.fitting_details.setValue(this.oldData.fitting_details);
       this.SubmitForm.controls.tenant_types.setValue(this.oldData.tenant_types);
       this.SubmitForm.controls.gender.setValue(this.oldData.gender);
       this.SubmitForm.controls.property_management.setValue(this.oldData.property_management);
       this.SubmitForm.controls.occupancy.setValue(this.oldData.occupancy);
       this.SubmitForm.controls.parking_space.setValue(this.oldData.parking_space);
-      this.SubmitForm.controls.pets.setValue(this.oldData.pets);
-      this.SubmitForm.controls.pet_cats_allowed.setValue(this.oldData.pet_cats_allowed);
-      this.SubmitForm.controls.pet_small_dogs_allowed.setValue(this.oldData.pet_small_dogs_allowed);
-      this.SubmitForm.controls.pet_big_dogs_allowed.setValue(this.oldData.pet_big_dogs_allowed);
+      this.SubmitForm.controls.pets.setValue(this.oldData.petPolicy.pets);
+      this.SubmitForm.controls.pet_cats_allowed.setValue(this.oldData.petPolicy.pet_cats_allowed);
+      this.SubmitForm.controls.pet_small_dogs_allowed.setValue(this.oldData.petPolicy.pet_small_dogs_allowed);
+      this.SubmitForm.controls.pet_big_dogs_allowed.setValue(this.oldData.petPolicy.pet_big_dogs_allowed);
       this.SubmitForm.controls.carpetArea.setValue(this.oldData.carpetArea);
       this.SubmitForm.controls.buildupArea.setValue(this.oldData.buildupArea);
       this.SubmitForm.controls.price.setValue(this.oldData.price);
@@ -77,31 +78,31 @@ export class RentCommertialComponent implements OnInit {
       this.SubmitForm.controls.lockingPeriod.setValue(this.oldData.lockingPeriod);
       this.SubmitForm.controls.propertyDescription.setValue(this.oldData.propertyDescription);
       this.SubmitForm.controls.propertyOffers.setValue(this.oldData.propertyOffers);
-      this.SubmitForm.controls.highlights_exclusive.setValue(this.oldData.highlights_exclusive);
-      this.SubmitForm.controls.highlights_golfView.setValue(this.oldData.highlights_golfView);
-      this.SubmitForm.controls.highlights_canalView.setValue(this.oldData.highlights_canalView);
-      this.SubmitForm.controls.highlights_affordable.setValue(this.oldData.highlights_affordable);
-      this.SubmitForm.controls.highlights_primeLocation.setValue(this.oldData.highlights_primeLocation);
-      this.SubmitForm.controls.highlights_metro.setValue(this.oldData.highlights_metro);
-      this.SubmitForm.controls.amenitites_ac.setValue(this.oldData.amenitites_ac);
-      this.SubmitForm.controls.amenitites_deckspace.setValue(this.oldData.amenitites_deckspace);
-      this.SubmitForm.controls.amenitites_petFriendly.setValue(this.oldData.amenitites_petFriendly);
-      this.SubmitForm.controls.amenitites_parkingspace.setValue(this.oldData.amenitites_parkingspace);
-      this.SubmitForm.controls.amenitites_poolspace.setValue(this.oldData.amenitites_poolspace);
-      this.SubmitForm.controls.amenitites_yardspace.setValue(this.oldData.amenitites_yardspace);
-      this.SubmitForm.controls.amenitites_freeWiFi.setValue(this.oldData.amenitites_freeWiFi);
-      this.SubmitForm.controls.amenitites_gymspace.setValue(this.oldData.amenitites_gymspace);
-      this.SubmitForm.controls.amenitites_hardwoodFloorspace.setValue(this.oldData.amenitites_hardwoodFloorspace);
-      this.SubmitForm.controls.amenitites_jacuzzi.setValue(this.oldData.amenitites_jacuzzi);
-      this.SubmitForm.controls.bedroom_1.setValue(this.oldData.bedroom_1);
-      this.SubmitForm.controls.bedroom_2.setValue(this.oldData.bedroom_2);
-      this.SubmitForm.controls.bedroom_3.setValue(this.oldData.bedroom_3);
-      this.SubmitForm.controls.bedroom_4.setValue(this.oldData.bedroom_4);
-      this.SubmitForm.controls.bedroom_5.setValue(this.oldData.bedroom_5);
-      this.SubmitForm.controls.bedroom_6.setValue(this.oldData.bedroom_6);
-      this.SubmitForm.controls.room_bathroom_1.setValue(this.oldData.room_bathroom_1);
-      this.SubmitForm.controls.room_bathroom_2.setValue(this.oldData.room_bathroom_2);
-      this.SubmitForm.controls.room_bathroom_3.setValue(this.oldData.room_bathroom_3);
+      this.SubmitForm.controls.highlights_exclusive.setValue(this.oldData.highlights.highlights_exclusive);
+      this.SubmitForm.controls.highlights_golfView.setValue(this.oldData.highlights.highlights_golfView);
+      this.SubmitForm.controls.highlights_canalView.setValue(this.oldData.highlights.highlights_canalView);
+      this.SubmitForm.controls.highlights_affordable.setValue(this.oldData.highlights.highlights_affordable);
+      this.SubmitForm.controls.highlights_primeLocation.setValue(this.oldData.highlights.highlights_primeLocation);
+      this.SubmitForm.controls.highlights_metro.setValue(this.oldData.highlights.highlights_metro);
+      this.SubmitForm.controls.amenitites_ac.setValue(this.oldData.PropertyFeatures.amenitites_ac);
+      this.SubmitForm.controls.amenitites_deckspace.setValue(this.oldData.PropertyFeatures.amenitites_deckspace);
+      this.SubmitForm.controls.amenitites_petFriendly.setValue(this.oldData.PropertyFeatures.amenitites_petFriendly);
+      this.SubmitForm.controls.amenitites_parkingspace.setValue(this.oldData.PropertyFeatures.amenitites_parkingspace);
+      this.SubmitForm.controls.amenitites_poolspace.setValue(this.oldData.PropertyFeatures.amenitites_poolspace);
+      this.SubmitForm.controls.amenitites_yardspace.setValue(this.oldData.PropertyFeatures.amenitites_yardspace);
+      this.SubmitForm.controls.amenitites_freeWiFi.setValue(this.oldData.PropertyFeatures.amenitites_freeWiFi);
+      this.SubmitForm.controls.amenitites_gymspace.setValue(this.oldData.PropertyFeatures.amenitites_gymspace);
+      this.SubmitForm.controls.amenitites_hardwoodFloorspace.setValue(this.oldData.PropertyFeatures.amenitites_hardwoodFloorspace);
+      this.SubmitForm.controls.amenitites_jacuzzi.setValue(this.oldData.PropertyFeatures.amenitites_jacuzzi);
+      this.SubmitForm.controls.bedroom_1.setValue(this.oldData.bedrooms.bedroom_1);
+      this.SubmitForm.controls.bedroom_2.setValue(this.oldData.bedrooms.bedroom_2);
+      this.SubmitForm.controls.bedroom_3.setValue(this.oldData.bedrooms.bedroom_3);
+      this.SubmitForm.controls.bedroom_4.setValue(this.oldData.bedrooms.bedroom_4);
+      this.SubmitForm.controls.bedroom_5.setValue(this.oldData.bedrooms.bedroom_5);
+      this.SubmitForm.controls.bedroom_6.setValue(this.oldData.bedrooms.bedroom_6);
+      this.SubmitForm.controls.room_bathroom_1.setValue(this.oldData.bathrooms.room_bathroom_1);
+      this.SubmitForm.controls.room_bathroom_2.setValue(this.oldData.bathrooms.room_bathroom_2);
+      this.SubmitForm.controls.room_bathroom_3.setValue(this.oldData.bathrooms.room_bathroom_3);
     }
     return this.oldData;
   }
@@ -195,7 +196,115 @@ export class RentCommertialComponent implements OnInit {
     if (this.SubmitForm.invalid) {
       return;
     }
-    localStorage.setItem('listpropertyinfo_rent_comercial',JSON.stringify(this.SubmitForm.value))
+
+    let bathrooms: Array<any> = [
+      {
+        room_bathroom_1: this.SubmitForm.value.room_bathroom_1,
+        room_bathroom_2: this.SubmitForm.value.room_bathroom_2,
+        room_bathroom_3: this.SubmitForm.value.room_bathroom_3,
+      },
+    ];
+
+    let bedrooms: Array<any> = [
+      {
+        bedroom_1: this.SubmitForm.value.bedroom_1,
+        bedroom_2: this.SubmitForm.value.bedroom_2,
+        bedroom_3: this.SubmitForm.value.bedroom_3,
+        bedroom_4: this.SubmitForm.value.bedroom_4,
+        bedroom_5: this.SubmitForm.value.bedroom_5,
+        bedroom_6: this.SubmitForm.value.bedroom_6,
+      },
+    ];
+
+    let propertyType: Array<any> = [
+      {
+        property_studio: this.SubmitForm.value.property_studio,
+        property_apartment: this.SubmitForm.value.property_apartment,
+        property_villa: this.SubmitForm.value.property_villa,
+        property_townHouse: this.SubmitForm.value.property_townHouse,
+        property_penthouse: this.SubmitForm.value.property_penthouse,
+        property_compound: this.SubmitForm.value.property_compound,
+        property_duplex: this.SubmitForm.value.property_duplex,
+        property_fullFloor: this.SubmitForm.value.property_fullFloor,
+        property_wholeBuilding: this.SubmitForm.value.property_wholeBuilding,
+        property_bulkRentUnit: this.SubmitForm.value.property_bulkRentUnit,
+        property_bungalow: this.SubmitForm.value.property_bungalow,
+        property_hotelApartment: this.SubmitForm.value.property_hotelApartment,
+      },
+    ];
+
+    let PropertyFeatures: Array<any> = [
+      {
+        amenitites_ac: this.SubmitForm.value.amenitites_ac,
+        amenitites_deckspace: this.SubmitForm.value.amenitites_deckspace,
+        amenitites_petFriendly: this.SubmitForm.value.amenitites_petFriendly,
+        amenitites_parkingspace: this.SubmitForm.value.amenitites_parkingspace,
+        amenitites_poolspace: this.SubmitForm.value.amenitites_poolspace,
+        amenitites_freeWiFi: this.SubmitForm.value.amenitites_freeWiFi,
+        amenitites_gymspace: this.SubmitForm.value.amenitites_gymspace,
+        amenitites_hardwoodFloorspace: this.SubmitForm.value.amenitites_hardwoodFloorspace,
+        amenitites_jacuzzi: this.SubmitForm.value.amenitites_jacuzzi,
+      },
+    ];
+
+    let highlights: Array<any> = [
+      {
+        highlights_exclusive: this.SubmitForm.value.highlights_exclusive,
+        highlights_golfView: this.SubmitForm.value.highlights_golfView,
+        highlights_canalView: this.SubmitForm.value.highlights_canalView,
+        highlights_affordable: this.SubmitForm.value.highlights_affordable,
+        highlights_vastuComplaint: this.SubmitForm.value.highlights_vastuComplaint,
+        highlights_primeLocation: this.SubmitForm.value.highlights_primeLocation,
+        highlights_metro: this.SubmitForm.value.highlights_metro
+      },
+    ];
+
+    let petPolicy: Array<any> = [
+      {
+        pets: this.SubmitForm.value.pets,
+        pet_cats_allowed: this.SubmitForm.value.pet_cats_allowed,
+        pet_small_dogs_allowed: this.SubmitForm.value.pet_small_dogs_allowed,
+      },
+    ];
+
+    this.data.highlights = highlights[0];
+    this.data.PropertyFeatures = PropertyFeatures[0];
+    this.data.propertyType = propertyType[0];
+    this.data.bedrooms = bedrooms[0];
+    this.data.bathrooms = bathrooms[0];
+    // this.data.property_types = this.SubmitForm.value.property_types;
+    this.data.fitting_details = this.SubmitForm.value.fitting_details;
+    this.data.tenant_types = this.SubmitForm.value.tenant_types;
+    this.data.gender = this.SubmitForm.value.gender;
+    this.data.property_management = this.SubmitForm.value.property_management;
+    this.data.occupancy = this.SubmitForm.value.occupancy;
+    this.data.parking_space = this.SubmitForm.value.parking_space;
+    this.data.parking_space = this.SubmitForm.value.parking_space;
+    this.data.parking_space = this.SubmitForm.value.parking_space;
+    this.data.parking_space = this.SubmitForm.value.parking_space;
+    this.data.petPolicy = petPolicy[0];
+    this.data.carpetArea = this.SubmitForm.value.carpetArea;
+    this.data.buildupArea = this.SubmitForm.value.buildupArea;
+    this.data.price = this.SubmitForm.value.price;
+    this.data.building_type_monthly = this.SubmitForm.value.building_type_monthly;
+    this.data.building_type_yearly = this.SubmitForm.value.building_type_yearly;
+    this.data.securoty_deposit = this.SubmitForm.value.securoty_deposit;
+    this.data.securoty_deposit = this.SubmitForm.value.securoty_deposit;
+    this.data.AED = this.SubmitForm.value.AED;
+    this.data.securityNegotiable = this.SubmitForm.value.securityNegotiable;
+    this.data.brokerage_value = this.SubmitForm.value.brokerage_value;
+    this.data.brokerageAed = this.SubmitForm.value.brokerageAed;
+    this.data.brokerageNegotiable = this.SubmitForm.value.brokerageNegotiable;
+    this.data.brokerageAed = this.SubmitForm.value.brokerageAed;
+    this.data.brokerageNegotiable = this.SubmitForm.value.brokerageNegotiable;
+    this.data.availablefrom = this.SubmitForm.value.availablefrom;
+    this.data.noticePeriod = this.SubmitForm.value.noticePeriod;
+    this.data.propertyDescription = this.SubmitForm.value.propertyDescription;
+    this.data.highlights_exclusive = this.SubmitForm.value.highlights_exclusive;
+
+
+
+    localStorage.setItem('listpropertyinfo_rent_comercial',JSON.stringify(this.data))
     this.route.navigate(['listpropertymedia'])
     // console.log(this.SubmitForm.value)
   }
