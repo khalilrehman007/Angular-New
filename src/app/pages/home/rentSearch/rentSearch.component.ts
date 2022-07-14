@@ -30,10 +30,24 @@ export class RentSearchComponent implements OnInit {
   maxValue1: number = 400;
   status: boolean = false;
   clickEvent(){
-      this.status = !this.status;       
+      this.status = !this.status;     
   }
   status1: boolean = false;
   clickEvent1(){
       this.status1 = !this.status1;       
   }
+  residentialfun(){
+    document.getElementsByClassName('residential')[0].classList.add('active');
+    document.getElementsByClassName('commertial')[0].classList.remove('active');
+    document.getElementsByClassName('residential-tabs')[0].classList.remove('hide');
+    document.getElementsByClassName('commertial-tabs')[0].classList.add('hide');
+  }
+  commertialfun(){
+    document.getElementsByClassName('residential')[0].classList.remove('active');
+    document.getElementsByClassName('commertial')[0].classList.add('active');
+    document.getElementsByClassName('residential-tabs')[0].classList.add('hide');
+    document.getElementsByClassName('commertial-tabs')[0].classList.remove('hide');
+  }
 }
+
+

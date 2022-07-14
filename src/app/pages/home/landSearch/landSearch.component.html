@@ -8,29 +8,48 @@
         </div>
       </div>
       <div ngClass="flex-column flex-column-2">
-        <div ngClass="budget-button">
-          <div ngClass="dropdown">
-            <button type="button" ngClass="btn dropdown-toggle" data-bs-toggle="dropdown">
-              Budget
-            </button>
-            <div ngClass="dropdown-menu" id="budget-dropdown">
-              <div ngClass="price-range_sec">
-                <h5 ngClass="h5-heading">Price Range</h5>
-                <div ngClass="price-range-wrap">
-                  <div ngClass="wrapper">
-                    <div ngClass="extra-controls form-inline">
-                      <div ngClass="form-group">
-                        <input type="text" ngClass="js-input-from form-control" value="0" />
-                        <input type="text" ngClass="js-input-to form-control" value="0" />
+        <div ngClass="block-wrapper">
+          <div ngClass="cstm_dropdown-list dropdown-design-2 position-relative drodown_with-img">
+             <button ngClass="drop-down_btn" (click)="clickEvent()">Budget</button>
+             <div class="cstm_dropdown-menu" [ngClass]="status ? 'active' : 'notactive'">
+                <h4 ngClass="drop_label">Price Range</h4>
+              <div ngClass="rental-type-tabs-sec">
+                <mat-tab-group>
+                  <mat-tab label="Monthly">
+                    <div ngClass="price-range_sec">
+                      <div ngClass="extra-controls form-inline">
+                        <div ngClass="form-group">
+                          <input type="number" [(ngModel)]="minValue" placeholder="100,000">
+                          <input type="number" [(ngModel)]="maxValue" placeholder="Any">
+                        </div>
                       </div>
+                      <div ngClass="range-slider">
+                        <ngx-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ngx-slider>
                     </div>
-                    <div ngClass="range-slider">
-                      <input type="text" ngClass="js-range-slider" value="" />
+                    <div ngClass="rentle_type-hding">
+                      <h5 ngClass="h5-design">Rental Type</h5>
                     </div>
                   </div>
-                </div>
+                  </mat-tab>
+                  <mat-tab label="Yearly">
+                    <div ngClass="price-range_sec">
+                      <div ngClass="extra-controls form-inline">
+                        <div ngClass="form-group">
+                          <input type="number" [(ngModel)]="minValue1" placeholder="100,000">
+                          <input type="number" [(ngModel)]="maxValue1" placeholder="Any">
+                        </div>
+                      </div>
+                      <div ngClass="range-slider">
+                        <ngx-slider [(value)]="minValue1" [(highValue)]="maxValue1" [options]="options"></ngx-slider>
+                    </div>
+                    <div ngClass="rentle_type-hding">
+                      <h5 ngClass="h5-design">Rental Type</h5>
+                    </div>
+                  </div>
+                  </mat-tab>
+                </mat-tab-group>
               </div>
-            </div>
+             </div>
           </div>
         </div>
       </div>
