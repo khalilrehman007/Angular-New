@@ -14,64 +14,42 @@
         </div>
       </div>
       <div ngClass="flex-column flex-column-3">
-        <div ngClass="property-type-button">
-          <div ngClass="dropdown">
-            <button type="button" ngClass="btn dropdown-toggle" data-bs-toggle="dropdown">
-              Specialties
-            </button>
-            <div ngClass="dropdown-menu" id="property-type-sec">
-              <h5 ngClass="h5-heading">Specialties</h5>
-            </div>
+        <div ngClass="block-wrapper">
+          <div ngClass="cstm_dropdown-list dropdown-design-2 position-relative drodown_with-img">
+             <button ngClass="drop-down_btn" (click)="clickEvent()">Specialties</button>
+             <div class="cstm_dropdown-menu" [ngClass]="status ? 'active' : 'notactive'">
+              <h4 ngClass="drop_label">Specialties</h4>
+             </div>
           </div>
         </div>
       </div>
       <div ngClass="flex-column flex-column-4">
-        <div ngClass="budget-button">
-          <div ngClass="dropdown">
-            <button type="button" ngClass="btn dropdown-toggle" data-bs-toggle="dropdown">
-              Languages
-            </button>
-            <div ngClass="dropdown-menu" id="budget-dropdown">
-              <h5 ngClass="h5-heading">Agent Type</h5>
+        <div ngClass="block-wrapper">
+          <div ngClass="cstm_dropdown-list dropdown-design-2 position-relative drodown_with-img">
+             <button ngClass="drop-down_btn" (click)="clickEvent1()">Languages</button>
+             <div class="cstm_dropdown-menu" [ngClass]="status1 ? 'active' : 'notactive'">
+              <h4 ngClass="drop_label">Languages</h4>
               <ul ngClass="list-unstyled residentails-unit-list">
                 <li ngClass="d-flex">
                   <div ngClass="position-relative">
-                    <input type="radio" name="Residential for sale">
+                    <input type="checkbox" name="english">
                     <span ngClass="property_sel"></span>
                   </div>
                   <div ngClass="proprty_name">
-                    <p>Residential for sale</p>
+                    <p>English</p>
                   </div>
                 </li>
                 <li ngClass="d-flex">
                   <div ngClass="position-relative">
-                    <input type="radio" name="Residential for rent">
+                    <input type="checkbox" name="arabic">
                     <span ngClass="property_sel"></span>
                   </div>
                   <div ngClass="proprty_name">
-                    <p>Residential for rent</p>
-                  </div>
-                </li>
-                <li ngClass="d-flex">
-                  <div ngClass="position-relative">
-                    <input type="radio" name="Commercial for sale">
-                    <span ngClass="property_sel"></span>
-                  </div>
-                  <div ngClass="proprty_name">
-                    <p>Commercial for sale</p>
-                  </div>
-                </li>
-                <li ngClass="d-flex">
-                  <div ngClass="position-relative">
-                    <input type="radio" name="Commercial for Rent/Lease">
-                    <span ngClass="property_sel"></span>
-                  </div>
-                  <div ngClass="proprty_name">
-                    <p>Commercial for Rent/Lease</p>
+                    <p>Arabic</p>
                   </div>
                 </li>
               </ul>
-            </div>
+             </div>
           </div>
         </div>
       </div>

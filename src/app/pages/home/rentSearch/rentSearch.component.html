@@ -9,309 +9,323 @@
         </div>
       </div>
       <div ngClass="flex-column flex-column-2">
-        <div ngClass="budget-button">
-          <div ngClass="dropdown">
-            <button type="button" ngClass="btn dropdown-toggle" data-bs-toggle="dropdown">
-              Budget
-            </button>
-            <div ngClass="dropdown-menu" id="budget-dropdown">
-              <div ngClass="price-range_sec">
-                <h5 ngClass="h5-heading">Price Range</h5>
-                <div ngClass="price-range-wrap">
-
-                </div>
+        <div ngClass="block-wrapper">
+          <div ngClass="cstm_dropdown-list dropdown-design-2 position-relative drodown_with-img">
+             <button ngClass="drop-down_btn" (click)="clickEvent()">Budget</button>
+             <div class="cstm_dropdown-menu" [ngClass]="status ? 'active' : 'notactive'">
+                <h4 ngClass="drop_label">Price Range</h4>
+              <div ngClass="rental-type-tabs-sec">
+                <mat-tab-group>
+                  <mat-tab label="Monthly">
+                    <div ngClass="price-range_sec">
+                      <div ngClass="extra-controls form-inline">
+                        <div ngClass="form-group">
+                          <input type="number" [(ngModel)]="minValue" placeholder="100,000">
+                          <input type="number" [(ngModel)]="maxValue" placeholder="Any">
+                        </div>
+                      </div>
+                      <div ngClass="range-slider">
+                        <ngx-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ngx-slider>
+                    </div>
+                    <div ngClass="rentle_type-hding">
+                      <h5 ngClass="h5-design">Rental Type</h5>
+                    </div>
+                  </div>
+                  </mat-tab>
+                  <mat-tab label="Yearly">
+                    <div ngClass="price-range_sec">
+                      <div ngClass="extra-controls form-inline">
+                        <div ngClass="form-group">
+                          <input type="number" [(ngModel)]="minValue1" placeholder="100,000">
+                          <input type="number" [(ngModel)]="maxValue1" placeholder="Any">
+                        </div>
+                      </div>
+                      <div ngClass="range-slider">
+                        <ngx-slider [(value)]="minValue1" [(highValue)]="maxValue1" [options]="options"></ngx-slider>
+                    </div>
+                    <div ngClass="rentle_type-hding">
+                      <h5 ngClass="h5-design">Rental Type</h5>
+                    </div>
+                  </div>
+                  </mat-tab>
+                </mat-tab-group>
               </div>
-              <div ngClass="price-type_tabs">
-                <h5 ngClass="h5-heading">Rental Type</h5>
-                <ul ngClass="nav nav-tabs" role="tablist">
-                  <li ngClass="nav-item">
-                    <a ngClass="nav-link active" data-bs-toggle="tab" href="#Monthly">Monthly</a>
-                  </li>
-                  <li ngClass="nav-item">
-                    <a ngClass="nav-link" data-bs-toggle="tab" href="#Yearly">Yearly</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
+             </div>
           </div>
         </div>
       </div>
       <div ngClass="flex-column flex-column-3">
-        <div ngClass="property-type-button">
-          <div ngClass="dropdown">
-            <button type="button" ngClass="btn dropdown-toggle" data-bs-toggle="dropdown">
-              Property Type
-            </button>
-            <div ngClass="dropdown-menu" id="property-type-sec">
-              <h5 ngClass="h5-heading">Property Type</h5>
-              <div ngClass="property-types-heading">
-                <ul ngClass="nav nav-tabs" role="tablist">
-                  <li ngClass="nav-item">
-                    <a ngClass="nav-link active" data-bs-toggle="tab" href="#Residentials"><span ngClass="circle-celection"></span> Residential</a>
-                  </li>
-                  <li ngClass="nav-item">
-                    <a ngClass="nav-link" data-bs-toggle="tab" href="#Commercial"><span ngClass="circle-celection"></span> Commercial</a>
-                  </li>
-                </ul>
-              </div>
-              <div ngClass="property-types-cntnts">
-                <div ngClass="tab-content">
-                  <div id="Residentials" ngClass="tab-pane active" >
-                    <h5 ngClass="h5-heading">Residential Unit Type</h5>
-                    <ul ngClass="list-unstyled residentails-unit-list">
-                      <li ngClass="d-flex">
-                        <div ngClass="position-relative">
-                          <input type="checkbox" name="Studio">
-                          <span ngClass="property_sel"></span>
-                        </div>
-                        <div ngClass="proprty_name">
-                          <p>Studio</p>
-                        </div>
-                      </li>
-                      <li ngClass="d-flex">
-                        <div ngClass="position-relative">
-                          <input type="checkbox" name="Apartment">
-                          <span ngClass="property_sel"></span>
-                        </div>
-                        <div ngClass="proprty_name">
-                          <p>Apartment</p>
-                        </div>
-                      </li>
-                      <li ngClass="d-flex">
-                        <div ngClass="position-relative">
-                          <input type="checkbox" name="Villa">
-                          <span ngClass="property_sel"></span>
-                        </div>
-                        <div ngClass="proprty_name">
-                          <p>Villa</p>
-                        </div>
-                      </li>
-                      <li ngClass="d-flex">
-                        <div ngClass="position-relative">
-                          <input type="checkbox" name="Town House">
-                          <span ngClass="property_sel"></span>
-                        </div>
-                        <div ngClass="proprty_name">
-                          <p>Town House</p>
-                        </div>
-                      </li>
-                      <li ngClass="d-flex">
-                        <div ngClass="position-relative">
-                          <input type="checkbox" name="Penthouse">
-                          <span ngClass="property_sel"></span>
-                        </div>
-                        <div ngClass="proprty_name">
-                          <p>Penthouse</p>
-                        </div>
-                      </li>
-                      <li ngClass="d-flex">
-                        <div ngClass="position-relative">
-                          <input type="checkbox" name="Compound">
-                          <span ngClass="property_sel"></span>
-                        </div>
-                        <div ngClass="proprty_name">
-                          <p>Compound</p>
-                        </div>
-                      </li>
-                      <li ngClass="d-flex">
-                        <div ngClass="position-relative">
-                          <input type="checkbox" name="Duplex">
-                          <span ngClass="property_sel"></span>
-                        </div>
-                        <div ngClass="proprty_name">
-                          <p>Duplex</p>
-                        </div>
-                      </li>
-                      <li ngClass="d-flex">
-                        <div ngClass="position-relative">
-                          <input type="checkbox" name="Full Floor">
-                          <span ngClass="property_sel"></span>
-                        </div>
-                        <div ngClass="proprty_name">
-                          <p>Full Floor</p>
-                        </div>
-                      </li>
-                      <li ngClass="d-flex">
-                        <div ngClass="position-relative">
-                          <input type="checkbox" name="Whole Building">
-                          <span ngClass="property_sel"></span>
-                        </div>
-                        <div ngClass="proprty_name">
-                          <p>Whole Building</p>
-                        </div>
-                      </li>
-                      <li ngClass="d-flex">
-                        <div ngClass="position-relative">
-                          <input type="checkbox" name="Bulk Rent Unit">
-                          <span ngClass="property_sel"></span>
-                        </div>
-                        <div ngClass="proprty_name">
-                          <p>Bulk Rent Unit</p>
-                        </div>
-                      </li>
-                      <li ngClass="d-flex">
-                        <div ngClass="position-relative">
-                          <input type="checkbox" name="Bungalow">
-                          <span ngClass="property_sel"></span>
-                        </div>
-                        <div ngClass="proprty_name">
-                          <p>Bungalow</p>
-                        </div>
-                      </li>
-                      <li ngClass="d-flex">
-                        <div ngClass="position-relative">
-                          <input type="checkbox" name="Hotel & Hotel Apartment">
-                          <span ngClass="property_sel"></span>
-                        </div>
-                        <div ngClass="proprty_name">
-                          <p>Hotel & Hotel Apartment</p>
-                        </div>
-                      </li>
-                    </ul>
-                  </div>
-                  <div id="Commercial" ngClass="tab-pane fade">
-                    <h5 ngClass="h5-heading">Commercial Unit Type</h5>
-                    <ul ngClass="list-unstyled residentails-unit-list">
-                      <li ngClass="d-flex">
-                        <div ngClass="position-relative">
-                          <input type="checkbox" name="Office Space">
-                          <span ngClass="property_sel"></span>
-                        </div>
-                        <div ngClass="proprty_name">
-                          <p>Office Space</p>
-                        </div>
-                      </li>
-                      <li ngClass="d-flex">
-                        <div ngClass="position-relative">
-                          <input type="checkbox" name="Shop">
-                          <span ngClass="property_sel"></span>
-                        </div>
-                        <div ngClass="proprty_name">
-                          <p>Shop</p>
-                        </div>
-                      </li>
-                      <li ngClass="d-flex">
-                        <div ngClass="position-relative">
-                          <input type="checkbox" name="Retail">
-                          <span ngClass="property_sel"></span>
-                        </div>
-                        <div ngClass="proprty_name">
-                          <p>Retail</p>
-                        </div>
-                      </li>
-                      <li ngClass="d-flex">
-                        <div ngClass="position-relative">
-                          <input type="checkbox" name="Land">
-                          <span ngClass="property_sel"></span>
-                        </div>
-                        <div ngClass="proprty_name">
-                          <p>Land</p>
-                        </div>
-                      </li>
-                      <li ngClass="d-flex">
-                        <div ngClass="position-relative">
-                          <input type="checkbox" name="Industrial Land">
-                          <span ngClass="property_sel"></span>
-                        </div>
-                        <div ngClass="proprty_name">
-                          <p>Industrial Land</p>
-                        </div>
-                      </li>
-                      <li ngClass="d-flex">
-                        <div ngClass="position-relative">
-                          <input type="checkbox" name="Agricultural Land">
-                          <span ngClass="property_sel"></span>
-                        </div>
-                        <div ngClass="proprty_name">
-                          <p>Agricultural Land</p>
-                        </div>
-                      </li>
-                      <li ngClass="d-flex">
-                        <div ngClass="position-relative">
-                          <input type="checkbox" name="Duplex">
-                          <span ngClass="property_sel"></span>
-                        </div>
-                        <div ngClass="proprty_name">
-                          <p>Duplex</p>
-                        </div>
-                      </li>
-                      <li ngClass="d-flex">
-                        <div ngClass="position-relative">
-                          <input type="checkbox" name="Showroom">
-                          <span ngClass="property_sel"></span>
-                        </div>
-                        <div ngClass="proprty_name">
-                          <p>Showroom</p>
-                        </div>
-                      </li>
-                      <li ngClass="d-flex">
-                        <div ngClass="position-relative">
-                          <input type="checkbox" name="Factory">
-                          <span ngClass="property_sel"></span>
-                        </div>
-                        <div ngClass="proprty_name">
-                          <p>Factory</p>
-                        </div>
-                      </li>
-                      <li ngClass="d-flex">
-                        <div ngClass="position-relative">
-                          <input type="checkbox" name="Whole Building">
-                          <span ngClass="property_sel"></span>
-                        </div>
-                        <div ngClass="proprty_name">
-                          <p>Whole Building</p>
-                        </div>
-                      </li>
-                      <li ngClass="d-flex">
-                        <div ngClass="position-relative">
-                          <input type="checkbox" name="Co-Working Space">
-                          <span ngClass="property_sel"></span>
-                        </div>
-                        <div ngClass="proprty_name">
-                          <p>Co-Working Space</p>
-                        </div>
-                      </li>
-                      <li ngClass="d-flex">
-                        <div ngClass="position-relative">
-                          <input type="checkbox" name="Business Centre">
-                          <span ngClass="property_sel"></span>
-                        </div>
-                        <div ngClass="proprty_name">
-                          <p>Business Centre</p>
-                        </div>
-                      </li>
-                      <li ngClass="d-flex">
-                        <div ngClass="position-relative">
-                          <input type="checkbox" name="Warehouse">
-                          <span ngClass="property_sel"></span>
-                        </div>
-                        <div ngClass="proprty_name">
-                          <p>Warehouse</p>
-                        </div>
-                      </li>
-                      <li ngClass="d-flex">
-                        <div ngClass="position-relative">
-                          <input type="checkbox" name="Labor Camp">
-                          <span ngClass="property_sel"></span>
-                        </div>
-                        <div ngClass="proprty_name">
-                          <p>Labor Camp</p>
-                        </div>
-                      </li>
-                      <li ngClass="d-flex">
-                        <div ngClass="position-relative">
-                          <input type="checkbox" name="Staff Accomodation">
-                          <span ngClass="property_sel"></span>
-                        </div>
-                        <div ngClass="proprty_name">
-                          <p>Staff Accomodation</p>
-                        </div>
-                      </li>
-                    </ul>
-                  </div>
+        <div ngClass="block-wrapper">
+          <div ngClass="cstm_dropdown-list dropdown-design-2 position-relative drodown_with-img">
+             <button ngClass="drop-down_btn" (click)="clickEvent1()">Property Type</button>
+             <div class="cstm_dropdown-menu" [ngClass]="status1 ? 'active' : 'notactive'">
+                <h4 ngClass="drop_label">Property Type</h4>
+                <div ngClass="property-types-heading">
+                  <ul ngClass="nav nav-tabs" role="tablist">
+                    <li ngClass="nav-item">
+                      <a ngClass="nav-link residential active" (click)="residentialfun()"><span ngClass="circle-celection"></span> Residential</a>
+                    </li>
+                    <li ngClass="nav-item">
+                      <a ngClass="nav-link commertial" (click)="commertialfun()"><span ngClass="circle-celection"></span> Commercial</a>
+                    </li>
+                  </ul>
                 </div>
-              </div>
-            </div>
+                <div ngClass="property-types-cntnts">
+                    <div id="Residentials" ngClass="residential-tabs">
+                      <h5 ngClass="h5-heading">Residential Unit Type</h5>
+                      <ul ngClass="list-unstyled residentails-unit-list">
+                        <li ngClass="d-flex">
+                          <div ngClass="position-relative">
+                            <input type="checkbox" name="Studio">
+                            <span ngClass="property_sel"></span>
+                          </div>
+                          <div ngClass="proprty_name">
+                            <p>Studio</p>
+                          </div>
+                        </li>
+                        <li ngClass="d-flex">
+                          <div ngClass="position-relative">
+                            <input type="checkbox" name="Apartment">
+                            <span ngClass="property_sel"></span>
+                          </div>
+                          <div ngClass="proprty_name">
+                            <p>Apartment</p>
+                          </div>
+                        </li>
+                        <li ngClass="d-flex">
+                          <div ngClass="position-relative">
+                            <input type="checkbox" name="Villa">
+                            <span ngClass="property_sel"></span>
+                          </div>
+                          <div ngClass="proprty_name">
+                            <p>Villa</p>
+                          </div>
+                        </li>
+                        <li ngClass="d-flex">
+                          <div ngClass="position-relative">
+                            <input type="checkbox" name="Town House">
+                            <span ngClass="property_sel"></span>
+                          </div>
+                          <div ngClass="proprty_name">
+                            <p>Town House</p>
+                          </div>
+                        </li>
+                        <li ngClass="d-flex">
+                          <div ngClass="position-relative">
+                            <input type="checkbox" name="Penthouse">
+                            <span ngClass="property_sel"></span>
+                          </div>
+                          <div ngClass="proprty_name">
+                            <p>Penthouse</p>
+                          </div>
+                        </li>
+                        <li ngClass="d-flex">
+                          <div ngClass="position-relative">
+                            <input type="checkbox" name="Compound">
+                            <span ngClass="property_sel"></span>
+                          </div>
+                          <div ngClass="proprty_name">
+                            <p>Compound</p>
+                          </div>
+                        </li>
+                        <li ngClass="d-flex">
+                          <div ngClass="position-relative">
+                            <input type="checkbox" name="Duplex">
+                            <span ngClass="property_sel"></span>
+                          </div>
+                          <div ngClass="proprty_name">
+                            <p>Duplex</p>
+                          </div>
+                        </li>
+                        <li ngClass="d-flex">
+                          <div ngClass="position-relative">
+                            <input type="checkbox" name="Full Floor">
+                            <span ngClass="property_sel"></span>
+                          </div>
+                          <div ngClass="proprty_name">
+                            <p>Full Floor</p>
+                          </div>
+                        </li>
+                        <li ngClass="d-flex">
+                          <div ngClass="position-relative">
+                            <input type="checkbox" name="Whole Building">
+                            <span ngClass="property_sel"></span>
+                          </div>
+                          <div ngClass="proprty_name">
+                            <p>Whole Building</p>
+                          </div>
+                        </li>
+                        <li ngClass="d-flex">
+                          <div ngClass="position-relative">
+                            <input type="checkbox" name="Bulk Rent Unit">
+                            <span ngClass="property_sel"></span>
+                          </div>
+                          <div ngClass="proprty_name">
+                            <p>Bulk Rent Unit</p>
+                          </div>
+                        </li>
+                        <li ngClass="d-flex">
+                          <div ngClass="position-relative">
+                            <input type="checkbox" name="Bungalow">
+                            <span ngClass="property_sel"></span>
+                          </div>
+                          <div ngClass="proprty_name">
+                            <p>Bungalow</p>
+                          </div>
+                        </li>
+                        <li ngClass="d-flex">
+                          <div ngClass="position-relative">
+                            <input type="checkbox" name="Hotel & Hotel Apartment">
+                            <span ngClass="property_sel"></span>
+                          </div>
+                          <div ngClass="proprty_name">
+                            <p>Hotel & Hotel Apartment</p>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                    <div id="Commercial" ngClass="hide commertial-tabs">
+                      <h5 ngClass="h5-heading">Commercial Unit Type</h5>
+                      <ul ngClass="list-unstyled residentails-unit-list">
+                        <li ngClass="d-flex">
+                          <div ngClass="position-relative">
+                            <input type="checkbox" name="Office Space">
+                            <span ngClass="property_sel"></span>
+                          </div>
+                          <div ngClass="proprty_name">
+                            <p>Office Space</p>
+                          </div>
+                        </li>
+                        <li ngClass="d-flex">
+                          <div ngClass="position-relative">
+                            <input type="checkbox" name="Shop">
+                            <span ngClass="property_sel"></span>
+                          </div>
+                          <div ngClass="proprty_name">
+                            <p>Shop</p>
+                          </div>
+                        </li>
+                        <li ngClass="d-flex">
+                          <div ngClass="position-relative">
+                            <input type="checkbox" name="Retail">
+                            <span ngClass="property_sel"></span>
+                          </div>
+                          <div ngClass="proprty_name">
+                            <p>Retail</p>
+                          </div>
+                        </li>
+                        <li ngClass="d-flex">
+                          <div ngClass="position-relative">
+                            <input type="checkbox" name="Land">
+                            <span ngClass="property_sel"></span>
+                          </div>
+                          <div ngClass="proprty_name">
+                            <p>Land</p>
+                          </div>
+                        </li>
+                        <li ngClass="d-flex">
+                          <div ngClass="position-relative">
+                            <input type="checkbox" name="Industrial Land">
+                            <span ngClass="property_sel"></span>
+                          </div>
+                          <div ngClass="proprty_name">
+                            <p>Industrial Land</p>
+                          </div>
+                        </li>
+                        <li ngClass="d-flex">
+                          <div ngClass="position-relative">
+                            <input type="checkbox" name="Agricultural Land">
+                            <span ngClass="property_sel"></span>
+                          </div>
+                          <div ngClass="proprty_name">
+                            <p>Agricultural Land</p>
+                          </div>
+                        </li>
+                        <li ngClass="d-flex">
+                          <div ngClass="position-relative">
+                            <input type="checkbox" name="Duplex">
+                            <span ngClass="property_sel"></span>
+                          </div>
+                          <div ngClass="proprty_name">
+                            <p>Duplex</p>
+                          </div>
+                        </li>
+                        <li ngClass="d-flex">
+                          <div ngClass="position-relative">
+                            <input type="checkbox" name="Showroom">
+                            <span ngClass="property_sel"></span>
+                          </div>
+                          <div ngClass="proprty_name">
+                            <p>Showroom</p>
+                          </div>
+                        </li>
+                        <li ngClass="d-flex">
+                          <div ngClass="position-relative">
+                            <input type="checkbox" name="Factory">
+                            <span ngClass="property_sel"></span>
+                          </div>
+                          <div ngClass="proprty_name">
+                            <p>Factory</p>
+                          </div>
+                        </li>
+                        <li ngClass="d-flex">
+                          <div ngClass="position-relative">
+                            <input type="checkbox" name="Whole Building">
+                            <span ngClass="property_sel"></span>
+                          </div>
+                          <div ngClass="proprty_name">
+                            <p>Whole Building</p>
+                          </div>
+                        </li>
+                        <li ngClass="d-flex">
+                          <div ngClass="position-relative">
+                            <input type="checkbox" name="Co-Working Space">
+                            <span ngClass="property_sel"></span>
+                          </div>
+                          <div ngClass="proprty_name">
+                            <p>Co-Working Space</p>
+                          </div>
+                        </li>
+                        <li ngClass="d-flex">
+                          <div ngClass="position-relative">
+                            <input type="checkbox" name="Business Centre">
+                            <span ngClass="property_sel"></span>
+                          </div>
+                          <div ngClass="proprty_name">
+                            <p>Business Centre</p>
+                          </div>
+                        </li>
+                        <li ngClass="d-flex">
+                          <div ngClass="position-relative">
+                            <input type="checkbox" name="Warehouse">
+                            <span ngClass="property_sel"></span>
+                          </div>
+                          <div ngClass="proprty_name">
+                            <p>Warehouse</p>
+                          </div>
+                        </li>
+                        <li ngClass="d-flex">
+                          <div ngClass="position-relative">
+                            <input type="checkbox" name="Labor Camp">
+                            <span ngClass="property_sel"></span>
+                          </div>
+                          <div ngClass="proprty_name">
+                            <p>Labor Camp</p>
+                          </div>
+                        </li>
+                        <li ngClass="d-flex">
+                          <div ngClass="position-relative">
+                            <input type="checkbox" name="Staff Accomodation">
+                            <span ngClass="property_sel"></span>
+                          </div>
+                          <div ngClass="proprty_name">
+                            <p>Staff Accomodation</p>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                </div>
+             </div>
           </div>
         </div>
       </div>

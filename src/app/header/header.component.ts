@@ -134,4 +134,8 @@ export class HeaderComponent implements OnInit {
   clickEvent(){
       this.status = !this.status;       
   }
+  status1: boolean = false;
+  clickEvent1(){
+      this.status1 = !this.status1;       
+  }
 }
