@@ -63,16 +63,15 @@
                 <div ngClass="property-types-heading">
                   <ul ngClass="nav nav-tabs" role="tablist">
                     <li ngClass="nav-item">
-                      <a ngClass="nav-link active" data-bs-toggle="tab" href="#Residentials"><span ngClass="circle-celection"></span> Residential</a>
+                      <a ngClass="nav-link residential active" (click)="residentialfun()"><span ngClass="circle-celection"></span> Residential</a>
                     </li>
                     <li ngClass="nav-item">
-                      <a ngClass="nav-link" data-bs-toggle="tab" href="#Commercial"><span ngClass="circle-celection"></span> Commercial</a>
+                      <a ngClass="nav-link commertial" (click)="commertialfun()"><span ngClass="circle-celection"></span> Commercial</a>
                     </li>
                   </ul>
                 </div>
                 <div ngClass="property-types-cntnts">
-                  <div ngClass="tab-content">
-                    <div id="Residentials" ngClass="tab-pane active" >
+                    <div id="Residentials" ngClass="residential-tabs">
                       <h5 ngClass="h5-heading">Residential Unit Type</h5>
                       <ul ngClass="list-unstyled residentails-unit-list">
                         <li ngClass="d-flex">
@@ -185,7 +184,7 @@
                         </li>
                       </ul>
                     </div>
-                    <div id="Commercial" ngClass="tab-pane fade">
+                    <div id="Commercial" ngClass="hide commertial-tabs">
                       <h5 ngClass="h5-heading">Commercial Unit Type</h5>
                       <ul ngClass="list-unstyled residentails-unit-list">
                         <li ngClass="d-flex">
@@ -325,7 +324,6 @@
                         </li>
                       </ul>
                     </div>
-                  </div>
                 </div>
              </div>
           </div>

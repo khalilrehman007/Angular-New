@@ -20,7 +20,7 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
   homelocationsvg = 'assets/images/home-location.svg'
   bedsvg = 'assets/images/icons/Bed.svg'
-  bathsvg = 'assets/images/home-location.svg'
+  bathsvg = 'assets/images/icons/Bath-tub.svg'
   squaremetersvg = 'assets/images/icons/Square Meters.svg'
   brandimg = 'assets/images/better-home.svg'
   listingsliderimg = 'assets/images/property-listing-slider-img.png'
@@ -243,26 +243,7 @@ export class HomeComponent implements OnInit {
       paragraph:'Al Barsha is a safe and quiet area that offers something for everyone: be it singles looking for wallet-friendly apartments with Metro...'
     }
   ]
-  Blogsec = [
-    {
-      src:'assets/images/blog/blog-1.png',
-      src2: 'assets/images/tag/market-trends.svg',
-      heading:'The Hottest new property launches in Dubai for April 2022',
-      date:'March 01, 2022'
-    },
-    {
-      src:'assets/images/blog/blog-2.png',
-      src2: 'assets/images/tag/tips-advice.svg',
-      heading:'The Hottest new property launches in Dubai for April 2022',
-      date:'March 01, 2022'
-    },
-    {
-      src:'assets/images/blog/blog-3.png',
-      src2: 'assets/images/tag/explore.svg',
-      heading:'The Hottest new property launches in Dubai for April 2022',
-      date:'March 01, 2022'
-    }
-  ]
+ 
   customOptions: OwlOptions = {
     loop: true,
     mouseDrag: true,

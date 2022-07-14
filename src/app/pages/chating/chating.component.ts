@@ -22,7 +22,7 @@ export class ChatingComponent implements OnInit {
   send= '../../../assets/images/icons/send.svg'
   prochat= '../../../assets/images/property-chat-page.png'
   bedsvg = '../../../assets/images/icons/bedchat.svg'
-  bathsvg = '../../../assets/images/bathchat.svg'
+  bathsvg = '../../../assets/images/icons/bathchat.svg'
   squaremetersvg = '../../../assets/images/icons/chatdistance.svg'
   activecheckmark = '../../../assets/images/icons/green-checkmark.svg'
   constructor() { }

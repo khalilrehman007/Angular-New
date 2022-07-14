@@ -36,5 +36,16 @@ export class BuySearchComponent implements OnInit {
   clickEvent1(){
       this.status1 = !this.status1;       
   }
-
+  residentialfun1(){
+    document.getElementsByClassName('residential1')[0].classList.add('active');
+    document.getElementsByClassName('commertial1')[0].classList.remove('active');
+    document.getElementsByClassName('residential1-tabs')[0].classList.remove('hide');
+    document.getElementsByClassName('commertial1-tabs')[0].classList.add('hide');
+  }
+  commertialfun1(){
+    document.getElementsByClassName('residential1')[0].classList.remove('active');
+    document.getElementsByClassName('commertial1')[0].classList.add('active');
+    document.getElementsByClassName('residential1-tabs')[0].classList.add('hide');
+    document.getElementsByClassName('commertial1-tabs')[0].classList.remove('hide');
+  }
 }

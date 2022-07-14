@@ -56,4 +56,10 @@ export class AppService {
   StoreListingPropertyForm(data: any) {
     return this.http.post(this.apiurl + 'AddPropertyListing', data);
   }
+  FurnishingTypes() {
+    return this.http.get(this.apiurl + 'FurnishingTypes/');
+  }
+  FittingTypes() {
+    return this.http.get(this.apiurl + 'FittingTypes/');
+  }
 }

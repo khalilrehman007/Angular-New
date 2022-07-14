@@ -13,5 +13,12 @@ export class FindAgentSearchComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  status: boolean = false;
+  clickEvent(){
+      this.status = !this.status;       
+  }
+  status1: boolean = false;
+  clickEvent1(){
+      this.status1 = !this.status1;       
+  }
 }

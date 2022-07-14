@@ -99,7 +99,7 @@
             <div ngClass="section-title">
                 <div ngClass="section-title-left">
                     <h4>Residential Properties for Rent in Dubai</h4>
-                    <p>Some of our picked properties near you location.</p>
+                    <p>Some of our picked properties near your location.</p>
                 </div>
                 <div ngClass="section-title-right">
                   <ul ngClass="nav nav-tabs" role="tablist">
@@ -205,8 +205,8 @@
         <div ngClass="container_1220px">
             <div ngClass="section-title">
                 <div ngClass="section-title-left">
-                    <h4>Residential Properties for Rent in Dubai</h4>
-                    <p>Some of our picked properties near you location.</p>
+                    <h4>Commercial Properties for Rent in Dubai</h4>
+                    <p>Some of our picked properties near your location.</p>
                 </div>
                 <div ngClass="section-title-right">
                   <ul ngClass="nav nav-tabs" role="tablist">
@@ -380,16 +380,16 @@
             <div ngClass="section-title">
                 <div ngClass="section-custom-title-left">
                     <h4>Explore Places</h4>
-                    <p>Some of our picked properties near you location.</p>
+                    <p>Some of our picked properties near your location.</p>
                 </div>
                 <div ngClass="section-custom-title-right">
-                    <a [routerLink]="['#']">Read all</a>
+                    <a routerLink="/explore">Read all</a>
                 </div>
             </div>
 
             <div ngClass="row">
                 <div ngClass="col-md-6 explore-places-col" *ngFor="let explore of Exploreplaces">
-                    <a [routerLink]="['#']">
+                    <a routerLink="/explore-details">
                         <img [src]="explore.src" ngClass="img-fluid" alt="">
                     <div ngClass="explore-place-content">
                         <h5>{{explore.heading}}</h5>
@@ -405,10 +405,10 @@
             <div ngClass="section-title">
                 <div ngClass="section-custom-title-left">
                     <h4>Blogs</h4>
-                    <p>Some of our picked properties near you location.</p>
+                    <p>Some of our picked properties near your location.</p>
                 </div>
                 <div ngClass="section-custom-title-right">
-                    <a [routerLink]="['blogs']">Read all</a>
+                    <a routerLink="/blogs">Read all</a>
                 </div>
             </div>
 
