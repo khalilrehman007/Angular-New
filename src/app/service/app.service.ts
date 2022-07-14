@@ -53,4 +53,10 @@ export class AppService {
   PropertyUnitTypes() {
     return this.http.get(this.apiurl + 'PropertyUnitTypes/');
   }
+  FurnishingTypes() {
+    return this.http.get(this.apiurl + 'FurnishingTypes/');
+  }
+  FittingTypes() {
+    return this.http.get(this.apiurl + 'FittingTypes/');
+  }
 }
