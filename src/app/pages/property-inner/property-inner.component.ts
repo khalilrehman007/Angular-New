@@ -13,7 +13,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class PropertyInnerComponent implements OnInit {
   homelocationsvg = 'assets/images/home-location.svg'
   bedsvg = 'assets/images/icons/Bed.svg'
-  bathsvg = 'assets/images/home-location.svg'
+  bathsvg = 'assets/images/icons/Bath-tub.svg'
   squaremetersvg = 'assets/images/icons/Square Meters.svg'
   brandimg = 'assets/images/better-home.svg'
   listingsliderimg = 'assets/images/property-listing-slider-img.png'

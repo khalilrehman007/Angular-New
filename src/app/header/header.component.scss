@@ -814,9 +814,15 @@ textarea {
 			.nav-item {
 				margin-right: 0px !important;
 				margin-bottom: 15px;
+				svg{
+					path {
+						fill: #fff;
+					}
+				}
 			}
 		}
 		li.nav-item.fav-li {
+			>button{
 			order: 6;
 			order: 6;
 			width: 100%;
@@ -834,6 +840,7 @@ textarea {
 				}
 			}
 		}
+		}
 		.nav-item.aed-li {
 			padding-left: 15px;
 			width: 100%;
@@ -850,6 +857,10 @@ textarea {
 		.nav-item {
 			width: 100%;
 		}
+	}
+	.fav-list-dropdown {
+		position: initial !important;
+		width: 100% !important;
 	}
 }
 .fav-list-dropdown {

@@ -2,7 +2,8 @@
     <ul ngClass="nav-tabs list-unstyled">
         <li ngClass="toggle-li" >
             <button ngClass="sidebar-toggle" (click)="changeBodyClass()">
-              <img src={{togglesvg}} ngClass="icon" alt="">
+              <img src={{togglesvg}} ngClass="icon toggle_icn" alt="">
+              <img src={{close}} ngClass="icon close_icn hide" alt="">
             </button>
         </li>
         <li ngClass={{side.class}} *ngFor="let side of sidebar">
@@ -18,12 +19,12 @@
         <nav ngClass="navbar navbar-expand-xl">
           <div ngClass="container-fluid">
             <a ngClass="navbar-brand" [routerLink]="['']"><img src="{{logo}}"></a>
-            <button ngClass="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+            <button ngClass="navbar-toggler" type="button" (click)="clickEvent1()">
               <span ngClass="navbar-linebars"></span>
               <span ngClass="navbar-linebars"></span>
               <span ngClass="navbar-linebars"></span>
             </button>
-            <div ngClass="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
+            <div ngClass="collapse navbar-collapse justify-content-end" id="collapsibleNavbar" [ngClass]="status1 ? 'show' : 'noshow'">
               <ul ngClass="navbar-nav">
                 <li ngClass="nav-item">
                   <a ngClass="nav-link blue-bordered-btn" [routerLink]="['/PropertyDetail']">
