@@ -12,7 +12,7 @@ export class AppService {
     'Authorization': 'Bearer ' + localStorage.getItem('token')
 });
   constructor(private http:HttpClient) {
-    
+
   }
   LoadPropertyCategories(){
     return this.http.get(this.apiurl+'PropertyCategories',{headers:this.headers});
@@ -20,7 +20,7 @@ export class AppService {
   ProceedSearch(data:any){
     return this.http.get(this.apiurl+'PropertyCategories',{headers:this.headers});
   }
-  
+
   LoadPropertyTypes(){
     return this.http.get(this.apiurl+'PropertyType/');
   }
@@ -52,5 +52,8 @@ export class AppService {
   }
   PropertyUnitTypes() {
     return this.http.get(this.apiurl + 'PropertyUnitTypes/');
+  }
+  StoreListingPropertyForm(data: any) {
+    return this.http.post(this.apiurl + 'AddPropertyListing', data);
   }
 }

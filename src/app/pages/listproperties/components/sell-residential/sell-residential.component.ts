@@ -267,7 +267,7 @@ export class SellResidentialComponent implements OnInit {
     this.data.PropertyFeatures = PropertyFeatures[0];
     this.data.propertyType = propertyType[0];
     this.data.bedrooms = bedrooms[0];
-    this.data.bathrooms = bathrooms[0];
+    this.data.bathrooms= bathrooms[0];
     this.data.balcony = balcony[0];
     this.data.balcony = balcony[0];
     this.data.parkingSpace = parkingSpace[0];

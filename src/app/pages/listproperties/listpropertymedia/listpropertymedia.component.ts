@@ -31,6 +31,8 @@ export class ListpropertymediaComponent implements OnInit {
   responsedata: any;
   oldData :any;
   priviousFormCheck :any;
+  data: any = {};
+
 
   constructor(private uploadService: FileUploadService,private route:Router) {
     this.getOldFormData();
@@ -100,7 +102,6 @@ export class ListpropertymediaComponent implements OnInit {
       const numberOfFiles = this.selectedFiles.length;
       for (let i = 0; i < numberOfFiles; i++) {
         const reader = new FileReader();
-
         reader.onload = (e: any) => {
           this.previews.push(e.target.result);
         };
@@ -135,6 +136,7 @@ export class ListpropertymediaComponent implements OnInit {
       }
     }
   }
+
   // onSelectFile(event) {
   //     const file = event.target.files && event.target.files[0];
   //     this.selectedVideo = file;
@@ -179,24 +181,27 @@ export class ListpropertymediaComponent implements OnInit {
     return this.SubmitForm.controls;
   }
 
+
   onSubmit() {
     this.submitted = true;
     if (this.SubmitForm.invalid) {
       return;
     }
-    // console.log(this.selectedFiles)
-    // console.log(this.selectedVideo)
+    //direct file upload code uncomment
+    // this.uploadVideo();
+    // this.uploadFiles();
 
-    this.uploadVideo();
-    this.uploadFiles();
 
+
+    this.data.selectedFiles = this.previews;
+    this.data.selectedVideo = this.url;
+
+    let files = JSON.stringify(this.data)
+
+    localStorage.setItem('mediaFiles',files)
     localStorage.setItem('listpropertymedia',JSON.stringify(this.SubmitForm.value))
     this.route.navigate(['listpropertyverify'])
 
-    // var data = {propertyPictures: this.selectedFiles, propertyVideo: this.selectedVideo,videoLink:this.SubmitForm.value};
-    // localStorage.setItem('listpropertymedia',JSON.stringify(data))
-    // this.route.navigate(['listpropertyverify'])
-    // console.log(this.SubmitForm.value)
   }
 
 }
