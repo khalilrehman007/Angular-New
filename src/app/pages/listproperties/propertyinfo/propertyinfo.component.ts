@@ -107,8 +107,8 @@ export class PropertyinfoComponent implements OnInit {
     return this.oldData;
   }
   SubmitForm = new FormGroup({
-    CountryId   : new FormControl("", Validators.required),
-    CityId      : new FormControl("", Validators.required),
+    CountryId   : new FormControl(""),
+    CityId      : new FormControl(""),
     PropertyAge : new FormControl("", Validators.required),
     BuildingName: new FormControl("", Validators.required),
     UnitNo      : new FormControl("", Validators.required),
