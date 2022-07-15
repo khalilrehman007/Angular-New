@@ -62,4 +62,13 @@ export class AppService {
   FittingTypes() {
     return this.http.get(this.apiurl + 'FittingTypes/');
   }
+  LoadProfessionalTypes() {
+    return this.http.get(this.apiurl + 'ProfessionalTypes');
+  }
+  LoadPropertyListingTypes() {
+    return this.http.get(this.apiurl + 'PropertyListingTypes');
+  }
+  LoadProfessionalAndListingType(professionalTypeId,listingTypeId) {
+    return this.http.get(this.apiurl + 'PropertyListingPackagesByProfessionalAndListingType?professionalTypeId=' + professionalTypeId +'&listingTypeId='+listingTypeId);
+  }
 }
