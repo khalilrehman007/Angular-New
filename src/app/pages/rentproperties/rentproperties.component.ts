@@ -16,7 +16,7 @@ export class RentpropertiesComponent implements OnInit {
   heart ='../../../assets/images/blue-heart.svg'
   homelocationsvg = '../../../assets/images/home-location.svg'
   bedsvg = '../../../assets/images/icons/Bed.svg'
-  bathsvg = '../../../assets/images/home-location.svg'
+  bathsvg = '../../../assets/images/icons/Bath-tub.svg'
   squaremetersvg = '../../../assets/images/icons/Square Meters.svg'
   furnishing = '../../../assets/images/icons/furnishing.svg'
   betterhome = '../../../assets/images/better-home.svg'

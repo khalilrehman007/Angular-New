@@ -7,7 +7,10 @@ import { FormGroup, FormControl, Validators } from '@angular/forms'
   styleUrls: ['./agent-details.component.scss']
 })
 export class AgentDetailsComponent implements OnInit {
-
+  bedsvg = 'assets/images/icons/Bed.svg'
+  bathsvg = 'assets/images/icons/Bath-tub.svg'
+  squaremetersvg = 'assets/images/icons/Square Meters.svg'
+  furnishing = 'assets/images/icons/furnishing.svg'
   constructor() { }
 
   agentContact = new FormGroup({

@@ -7,7 +7,10 @@ import { FormGroup, FormControl, Validators } from '@angular/forms'
   styleUrls: ['./company-details.component.scss']
 })
 export class CompanyDetailsComponent implements OnInit {
-
+  bedsvg = 'assets/images/icons/Bed.svg'
+  bathsvg = 'assets/images/icons/Bath-tub.svg'
+  squaremetersvg = 'assets/images/icons/Square Meters.svg'
+  furnishing = 'assets/images/icons/furnishing.svg'
   constructor() { }
   featuredAgentData:any = {
     heading:"Featured Real Estate Companies",
