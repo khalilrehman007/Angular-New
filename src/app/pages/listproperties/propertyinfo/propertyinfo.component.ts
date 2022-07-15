@@ -107,8 +107,8 @@ export class PropertyinfoComponent implements OnInit {
     return this.oldData;
   }
   SubmitForm = new FormGroup({
-    CountryId   : new FormControl("", Validators.required),
-    CityId      : new FormControl("", Validators.required),
+    CountryId   : new FormControl(""),
+    CityId      : new FormControl(""),
     PropertyAge : new FormControl("", Validators.required),
     BuildingName: new FormControl("", Validators.required),
     UnitNo      : new FormControl("", Validators.required),
@@ -123,12 +123,16 @@ export class PropertyinfoComponent implements OnInit {
   }
   onSubmit() {
     // localStorage.removeItem("listpropertyinfo");
+
     this.submitted = true;
     if (this.SubmitForm.invalid) {
       return;
     }
+    console.log('dedede')
     let temp:any = document.getElementById("searchLocation");
+
     this.data.address = temp.value;
+
     this.data.BuildingName = this.SubmitForm.value.BuildingName;
     this.data.CityId = this.SubmitForm.value.CityId;
     this.data.CountryId = this.SubmitForm.value.CountryId;
