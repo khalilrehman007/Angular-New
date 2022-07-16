@@ -71,4 +71,19 @@ export class AppService {
   LoadProfessionalAndListingType(professionalTypeId,listingTypeId) {
     return this.http.get(this.apiurl + 'PropertyListingPackagesByProfessionalAndListingType?professionalTypeId=' + professionalTypeId +'&listingTypeId='+listingTypeId);
   }
+  LoadTenantTypes() {
+    return this.http.get(this.apiurl + 'TenantTypes');
+  }
+  LoadGenders() {
+    return this.http.get(this.apiurl + 'Genders');
+  }
+  LoadPropertyManages() {
+    return this.http.get(this.apiurl + 'PropertyManages');
+  }
+  LoadPetPolicy() {
+    return this.http.get(this.apiurl + 'PetPolicy');
+  }
+  LoadRentTypes() {
+    return this.http.get(this.apiurl + 'RentTypes');
+  }
 }
