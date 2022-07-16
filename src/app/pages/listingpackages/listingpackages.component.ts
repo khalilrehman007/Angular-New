@@ -3,6 +3,7 @@ import { HeaderComponent } from '../../header/header.component';
 import { FooterComponent } from '../../footer/footer.component';
 import { BreadcrumbComponent } from '../../breadcrumb/breadcrumb.component';
 import {AppService} from "../../service/app.service";
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-listingpackages',
@@ -18,12 +19,14 @@ export class ListingpackagesComponent implements OnInit {
   professionalTypes: any = [];
   propertyListingTypes: any = [];
   professionalAndListingType: any = [];
+  professionalArray: any = [];
+  professionalTypeId:any = '';
 
 
   constructor(private service: AppService) {
     this.loadProfessionalTypes();
     this.loadPropertyListingTypes();
-    this.loadProfessionalAndListingType(2,1);
+    // this.loadProfessionalAndListingType(2,1);
     console.log(this.professionalAndListingType)
   }
 
@@ -41,6 +44,7 @@ export class ListingpackagesComponent implements OnInit {
     });
   }
   loadPropertyListingTypes() {
+
     this.service.LoadPropertyListingTypes().subscribe(e => {
       let temp: any = e;
       if (temp.message == "Property Listing Type List fetched successfully") {
@@ -50,28 +54,71 @@ export class ListingpackagesComponent implements OnInit {
       }
     });
   }
-  loadProfessionalAndListingType(professionalTypeId,listingTypeId) {
-    console.log(professionalTypeId)
-    console.log(listingTypeId)
-    this.service.LoadProfessionalAndListingType(professionalTypeId,listingTypeId).subscribe(e => {
-      let temp: any = e;
-      if (temp.message == "The Packages fetched successfully") {
-        for (let ProfessionalAndListingType of temp.data) {
-          this.professionalAndListingType.push({
-            name: ProfessionalAndListingType.name,
-            nameAr: ProfessionalAndListingType.nameAr,
-            price:ProfessionalAndListingType.price,
-            discountPercentage:ProfessionalAndListingType.discountPercentage,
-            propertyListingTypeId:ProfessionalAndListingType.propertyListingTypeId,
-            professionalTypeId:ProfessionalAndListingType.professionalTypeId,
-            propertyListingPackageFeatures:ProfessionalAndListingType.propertyListingPackageFeatures,
-            propertyListingPackageSubFeatures:ProfessionalAndListingType.propertyListingPackageFeatures.propertyListingPackageSubFeatures,
-            propertyListingType:ProfessionalAndListingType.propertyListingType,
-            professionalType:ProfessionalAndListingType.professionalType,
-          });
+
+  public loadProfessionalAndListingType(e:any){
+    if(e.tab.textLabel == 'Agent' || e.tab.textLabel == 'Landlord' || e.tab.textLabel == 'developer' ){
+      let tempPprofessionalId = '';
+      this.professionalTypes.forEach((key : any, val: any) => {
+        if(key.name == e.tab.textLabel){
+          tempPprofessionalId = key.id
         }
-      }
-    });
+      })
+      this.professionalTypeId = tempPprofessionalId;
+      console.log('in')
+    } else {
+      let professionalId:any = document.getElementById("professionalTypeId");
+      this.professionalTypeId = professionalId.value;
+      console.log('out')
+    }
+    this.professionalAndListingType = []
+    if(e.index == 1){
+
+      this.service.LoadProfessionalAndListingType(this.professionalTypeId,2).subscribe(e => {
+        let temp: any = e;
+        if (temp.message == "The Packages fetched successfully") {
+          for (let ProfessionalAndListingType of temp.data) {
+            this.professionalAndListingType.push({
+              name: ProfessionalAndListingType.name,
+              nameAr: ProfessionalAndListingType.nameAr,
+              price:ProfessionalAndListingType.price,
+              discountPercentage:ProfessionalAndListingType.discountPercentage,
+              propertyListingTypeId:ProfessionalAndListingType.propertyListingTypeId,
+              professionalTypeId:ProfessionalAndListingType.professionalTypeId,
+              propertyListingPackageFeatures:ProfessionalAndListingType.propertyListingPackageFeatures,
+              propertyListingPackageSubFeatures:ProfessionalAndListingType.propertyListingPackageFeatures.propertyListingPackageSubFeatures,
+              propertyListingType:ProfessionalAndListingType.propertyListingType,
+              professionalType:ProfessionalAndListingType.professionalType,
+            });
+          }
+        }
+      });
+    }else {
+      console.log(this.professionalTypeId,1)
+      this.service.LoadProfessionalAndListingType(this.professionalTypeId,1).subscribe(e => {
+        let temp: any = e;
+        if (temp.message == "The Packages fetched successfully") {
+          for (let ProfessionalAndListingType of temp.data) {
+            this.professionalAndListingType.push({
+              name: ProfessionalAndListingType.name,
+              nameAr: ProfessionalAndListingType.nameAr,
+              price:ProfessionalAndListingType.price,
+              discountPercentage:ProfessionalAndListingType.discountPercentage,
+              propertyListingTypeId:ProfessionalAndListingType.propertyListingTypeId,
+              professionalTypeId:ProfessionalAndListingType.professionalTypeId,
+              propertyListingPackageFeatures:ProfessionalAndListingType.propertyListingPackageFeatures,
+              propertyListingPackageSubFeatures:ProfessionalAndListingType.propertyListingPackageFeatures.propertyListingPackageSubFeatures,
+              propertyListingType:ProfessionalAndListingType.propertyListingType,
+              professionalType:ProfessionalAndListingType.professionalType,
+            });
+          }
+        }
+      });
+    }
+    // this.professionalArray = this.professionalAndListingType.slice(0, 2)
+
+    // console.log(this.professionalAndListingType)
   }
+
+
 
 }
