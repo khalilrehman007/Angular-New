@@ -14,7 +14,7 @@ export class MapviewComponent implements OnInit {
   ovverified ='../../../assets/images/icons/ov-verified.svg'
   homelocationsvg = '../../../assets/images/home-location.svg'
   bedsvg = '../../../assets/images/icons/Bed.svg'
-  bathsvg = '../../../assets/images/home-location.svg'
+  bathsvg = '../../../assets/images/icons/Bath-tub.svg'
   squaremetersvg = '../../../assets/images/icons/Square Meters.svg'
   brandimg = '../../../assets/images/better-home.svg'
   dynamicSlides1 = [

@@ -9,45 +9,36 @@
             <ul class="nav nav-pills mb-3" id="pills-tab">
                 <li class="nav-item">
                     <a class="nav-link active" id="pills-agents-tab" data-bs-toggle="pill"
-                        data-bs-target="#pills-agents" (click)="agentData()">Find Agents</a>
+                        data-bs-target="#find-agents" (click)="agentData()">Find Agents</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="pills-companies-tab" data-bs-toggle="pill" data-bs-target="#pills-companies"
                         (click)="companyData()">Find Companies</a>
                 </li>
             </ul>
+            <div ngClass="form_tabs">
             <div class="tab-content" id="pills-tabContent">
-                <div class="tab-pane fade show active" id="pills-agents">
-                    <div class="agent-landing__tab-content">
-                        <form class="agent-landing__tab-content-form">
-                            <fieldset class="agent-landing__tab-content-form-fieldset">
-                                <label for="agent-landing__tab-content-form-search"
-                                    class="agent-landing__tab-content-form-label">Search by</label>
-                                <input id="agent-landing__tab-content-form-search" type="text"
-                                    placeholder="Location / Agent Name" class="agent-landing__tab-content-form-input">
-                            </fieldset>
-                            <button type="submit" class="agent-landing__tab-content-form-submit">
-                                <img src="assets/images/icons/search.svg" alt="">
-                            </button>
-                        </form>
-                    </div>
+                <div class="tab-pane fade show active" id="find-agents">
+                    <find-agent-search></find-agent-search>
                 </div>
                 <div class="tab-pane fade" id="pills-companies">
-                    <div class="agent-landing__tab-content">
-                        <form class="agent-landing__tab-content-form">
-                            <fieldset class="agent-landing__tab-content-form-fieldset">
-                                <label for="agent-landing__tab-content-form-search"
-                                    class="agent-landing__tab-content-form-label">Search by</label>
-                                <input id="agent-landing__tab-content-form-search" type="text"
-                                    placeholder="Location / Company Name" class="agent-landing__tab-content-form-input">
-                            </fieldset>
-                            <button type="submit" class="agent-landing__tab-content-form-submit">
-                                <img src="assets/images/icons/search.svg" alt="">
-                            </button>
+                    <div ngClass="tab-form-sec rent-form">
+                        <form>
+                          <div ngClass="flex-row">
+                            <div ngClass="flex-column flex-column-90">
+                              <div ngClass="form-grouph input-design floating-label position-relative">
+                                <label>Search by</label>
+                                <input type="text" placeholder="Location / Company Name">
+                              </div>
+                            </div>
+                            <div ngClass="flex-column flex-column-10">
+                                <button type="submit" ngClass="search-btn"><img src="assets/images/search.svg"></button>
+                            </div>
+                        </div>
                         </form>
-                    </div>
-
+                        </div>
                 </div>
+            </div>
             </div>
         </div>
     </div>
