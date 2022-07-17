@@ -16,27 +16,28 @@
           <div ngClass="row">
             <div ngClass="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                 <div ngClass="listing-packages-tabs">
-                    <mat-tab-group>
-                        <mat-tab label="{{professionalType.name}}"  *ngFor="let professionalType of professionalTypes">
+                    <mat-tab-group (selectedTabChange)="loadProfessionalAndListingType($event)">
+                        <mat-tab id="{{professionalType.id}}" label="{{professionalType.name}}"  *ngFor="let professionalType of professionalTypes">
                           <div class="package-listing-tab-content-title text-center">
                             <h2>Ovaluate Listing Packages for Landlords/Owners</h2>
                             <p>Some of our picked properties near your location.</p>
                           </div>
+                          <input type="hidden" name="professionalTypeId" id="professionalTypeId" value="{{professionalType.id}}">
                           <div ngClass="pricing-container-sec">
-                            <mat-tab-group>
-
-                              <mat-tab label="{{list.name}}" (click)="loadProfessionalAndListingType(2,2 )"
-                                       *ngFor="let list of propertyListingTypes">
+                            <mat-tab-group (selectedTabChange)="loadProfessionalAndListingType($event)" >
+                              <mat-tab label="{{list.name}}" *ngFor="let list of propertyListingTypes" >
                                 <div class="row justify-content-center">
-                                  <div class="col-lg-4 col-md-6" *ngFor="let list of professionalAndListingType">
-                                    <div [ngClass]="{'featured-listing': list.name === 'Standurd', 'standard-listing' : list.name !== 'Standurd' }">
+
+                                  <div class="col-lg-4 col-md-6"
+                                       *ngFor="let list of professionalAndListingType; let i = index">
+                                    <div *ngIf="i < 3" [ngClass]="{'featured-listing': list.name === 'Standurd', 'standard-listing' : list.name !== 'Standurd' }">
                                       <span class="recomended-bar" *ngIf="list.name == 'Standurd'">Recommended</span>
                                         <div class="listing-table-heading text-center">
                                           <h3>{{list.name}}</h3>
                                         </div>
 
                                           <div class="listing-table-pricing text-center" *ngIf="list.name != 'free'" >
-                                            <p>{{list.price}}AED</p>
+<!--                                            <p>{{list.price}}AED</p>-->
                                             <h4>{{list.price}} AED</h4>
                                             <span>inclusive of VAT</span>
                                             <h6>You Save: {{list.price}} AED / {{list.discountPercentage}}% Off</h6>
