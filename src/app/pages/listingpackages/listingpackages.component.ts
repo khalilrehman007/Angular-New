@@ -56,6 +56,7 @@ export class ListingpackagesComponent implements OnInit {
   }
 
   public loadProfessionalAndListingType(e:any){
+    let listingTypeId:any;
     if(e.tab.textLabel == 'Agent' || e.tab.textLabel == 'Landlord' || e.tab.textLabel == 'developer' ){
       let tempPprofessionalId = '';
       this.professionalTypes.forEach((key : any, val: any) => {
@@ -64,59 +65,38 @@ export class ListingpackagesComponent implements OnInit {
         }
       })
       this.professionalTypeId = tempPprofessionalId;
-      console.log('in')
+      listingTypeId = 1;
     } else {
       let professionalId:any = document.getElementById("professionalTypeId");
       this.professionalTypeId = professionalId.value;
-      console.log('out')
     }
     this.professionalAndListingType = []
-    if(e.index == 1){
-
-      this.service.LoadProfessionalAndListingType(this.professionalTypeId,2).subscribe(e => {
-        let temp: any = e;
-        if (temp.message == "The Packages fetched successfully") {
-          for (let ProfessionalAndListingType of temp.data) {
-            this.professionalAndListingType.push({
-              name: ProfessionalAndListingType.name,
-              nameAr: ProfessionalAndListingType.nameAr,
-              price:ProfessionalAndListingType.price,
-              discountPercentage:ProfessionalAndListingType.discountPercentage,
-              propertyListingTypeId:ProfessionalAndListingType.propertyListingTypeId,
-              professionalTypeId:ProfessionalAndListingType.professionalTypeId,
-              propertyListingPackageFeatures:ProfessionalAndListingType.propertyListingPackageFeatures,
-              propertyListingPackageSubFeatures:ProfessionalAndListingType.propertyListingPackageFeatures.propertyListingPackageSubFeatures,
-              propertyListingType:ProfessionalAndListingType.propertyListingType,
-              professionalType:ProfessionalAndListingType.professionalType,
-            });
-          }
-        }
-      });
+    if(e.index == 1 && listingTypeId == null){
+      listingTypeId = 2;
     }else {
-      console.log(this.professionalTypeId,1)
-      this.service.LoadProfessionalAndListingType(this.professionalTypeId,1).subscribe(e => {
-        let temp: any = e;
-        if (temp.message == "The Packages fetched successfully") {
-          for (let ProfessionalAndListingType of temp.data) {
-            this.professionalAndListingType.push({
-              name: ProfessionalAndListingType.name,
-              nameAr: ProfessionalAndListingType.nameAr,
-              price:ProfessionalAndListingType.price,
-              discountPercentage:ProfessionalAndListingType.discountPercentage,
-              propertyListingTypeId:ProfessionalAndListingType.propertyListingTypeId,
-              professionalTypeId:ProfessionalAndListingType.professionalTypeId,
-              propertyListingPackageFeatures:ProfessionalAndListingType.propertyListingPackageFeatures,
-              propertyListingPackageSubFeatures:ProfessionalAndListingType.propertyListingPackageFeatures.propertyListingPackageSubFeatures,
-              propertyListingType:ProfessionalAndListingType.propertyListingType,
-              professionalType:ProfessionalAndListingType.professionalType,
-            });
-          }
-        }
-      });
+      listingTypeId = 1;
     }
-    // this.professionalArray = this.professionalAndListingType.slice(0, 2)
+    console.log(this.professionalTypeId,listingTypeId)
+    this.service.LoadProfessionalAndListingType(this.professionalTypeId,listingTypeId).subscribe(e => {
+      let temp: any = e;
+      if (temp.message == "The Packages fetched successfully") {
+        for (let ProfessionalAndListingType of temp.data) {
+          this.professionalAndListingType.push({
+            name: ProfessionalAndListingType.name,
+            nameAr: ProfessionalAndListingType.nameAr,
+            price:ProfessionalAndListingType.price,
+            discountPercentage:ProfessionalAndListingType.discountPercentage,
+            propertyListingTypeId:ProfessionalAndListingType.propertyListingTypeId,
+            professionalTypeId:ProfessionalAndListingType.professionalTypeId,
+            propertyListingPackageFeatures:ProfessionalAndListingType.propertyListingPackageFeatures,
+            propertyListingPackageSubFeatures:ProfessionalAndListingType.propertyListingPackageFeatures.propertyListingPackageSubFeatures,
+            propertyListingType:ProfessionalAndListingType.propertyListingType,
+            professionalType:ProfessionalAndListingType.professionalType,
+          });
+        }
+      }
+    });
 
-    // console.log(this.professionalAndListingType)
   }
 
 
