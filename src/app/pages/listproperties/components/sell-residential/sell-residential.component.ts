@@ -26,78 +26,13 @@ export class SellResidentialComponent implements OnInit {
 
 
   constructor(private service: AuthService,private route:Router,private notifyService : NotificationService) {
-    this.getOldFormData();
-    this.priviousFormCheck = localStorage.getItem('property_info');
+    this.priviousFormCheck = localStorage.getItem('propertyData');
     if(this.priviousFormCheck == '' || this.priviousFormCheck == null){
-      this.priviousFormCheck = JSON.parse(this.priviousFormCheck);
       this.route.navigate(['listingproperty'])
     }else {
-      this.priviousFormCheck = JSON.parse(this.priviousFormCheck);
+      this.data = JSON.parse(this.priviousFormCheck);
     }
   }
-
-  getOldFormData(){
-    this.oldData = localStorage.getItem('listpropertyinfo_sell_residential');
-    if(this.oldData != '' && this.oldData != null){
-      this.oldData = JSON.parse(this.oldData);
-      this.SubmitForm.controls.property_studio.setValue(this.oldData.propertyType.property_studio);
-      this.SubmitForm.controls.property_apartment.setValue(this.oldData.propertyType.property_apartment);
-      this.SubmitForm.controls.property_villa.setValue(this.oldData.propertyType.property_villa);
-      this.SubmitForm.controls.property_townHouse.setValue(this.oldData.propertyType.property_townHouse);
-      this.SubmitForm.controls.property_penthouse.setValue(this.oldData.propertyType.property_penthouse);
-      this.SubmitForm.controls.property_compound.setValue(this.oldData.propertyType.property_compound);
-      this.SubmitForm.controls.property_duplex.setValue(this.oldData.propertyType.property_duplex);
-      this.SubmitForm.controls.property_fullFloor.setValue(this.oldData.propertyType.property_fullFloor);
-      this.SubmitForm.controls.property_wholeBuilding.setValue(this.oldData.propertyType.property_wholeBuilding);
-      this.SubmitForm.controls.property_bulkRentUnit.setValue(this.oldData.propertyType.property_bulkRentUnit);
-      this.SubmitForm.controls.property_bungalow.setValue(this.oldData.propertyType.property_bungalow);
-      this.SubmitForm.controls.property_hotelApartment.setValue(this.oldData.propertyType.property_hotelApartment);
-      this.SubmitForm.controls.fitting_details.setValue(this.oldData.fitting_details);
-      this.SubmitForm.controls.carpetArea.setValue(this.oldData.carpetArea);
-      this.SubmitForm.controls.buildupArea.setValue(this.oldData.buildupArea);
-      this.SubmitForm.controls.price.setValue(this.oldData.price);
-      this.SubmitForm.controls.brokerageAed.setValue(this.oldData.brokerageAed);
-      this.SubmitForm.controls.brokerageNegotiable.setValue(this.oldData.brokerageNegotiable);
-      this.SubmitForm.controls.propertyDescription.setValue(this.oldData.propertyDescription);
-      this.SubmitForm.controls.propertyOffers.setValue(this.oldData.propertyOffers);
-      this.SubmitForm.controls.highlights_exclusive.setValue(this.oldData.highlights.highlights_exclusive);
-      this.SubmitForm.controls.highlights_golfView.setValue(this.oldData.highlights.highlights_golfView);
-      this.SubmitForm.controls.highlights_canalView.setValue(this.oldData.highlights.highlights_canalView);
-      this.SubmitForm.controls.highlights_affordable.setValue(this.oldData.highlights.highlights_affordable);
-      this.SubmitForm.controls.highlights_primeLocation.setValue(this.oldData.highlights.highlights_primeLocation);
-      this.SubmitForm.controls.highlights_metro.setValue(this.oldData.highlights.highlights_metro);
-      this.SubmitForm.controls.amenitites_ac.setValue(this.oldData.amenitites_ac);
-      this.SubmitForm.controls.amenitites_deckspace.setValue(this.oldData.PropertyFeatures.amenitites_deckspace);
-      this.SubmitForm.controls.amenitites_petFriendly.setValue(this.oldData.PropertyFeatures.amenitites_petFriendly);
-      this.SubmitForm.controls.amenitites_parkingspace.setValue(this.oldData.PropertyFeatures.amenitites_parkingspace);
-      this.SubmitForm.controls.amenitites_poolspace.setValue(this.oldData.PropertyFeatures.amenitites_poolspace);
-      this.SubmitForm.controls.amenitites_yardspace.setValue(this.oldData.PropertyFeatures.amenitites_yardspace);
-      this.SubmitForm.controls.amenitites_freeWiFi.setValue(this.oldData.PropertyFeatures.amenitites_freeWiFi);
-      this.SubmitForm.controls.amenitites_gymspace.setValue(this.oldData.PropertyFeatures.amenitites_gymspace);
-      this.SubmitForm.controls.amenitites_hardwoodFloorspace.setValue(this.oldData.PropertyFeatures.amenitites_hardwoodFloorspace);
-      this.SubmitForm.controls.amenitites_jacuzzi.setValue(this.oldData.PropertyFeatures.amenitites_jacuzzi);
-      this.SubmitForm.controls.bedroom_1.setValue(this.oldData.bedrooms.bedroom_1);
-      this.SubmitForm.controls.bedroom_2.setValue(this.oldData.bedrooms.bedroom_2);
-      this.SubmitForm.controls.bedroom_3.setValue(this.oldData.bedrooms.bedroom_3);
-      this.SubmitForm.controls.room_bathroom_1.setValue(this.oldData.bathrooms.room_bathroom_1);
-      this.SubmitForm.controls.room_bathroom_2.setValue(this.oldData.bathrooms.room_bathroom_2);
-      this.SubmitForm.controls.room_bathroom_3.setValue(this.oldData.bathrooms.room_bathroom_3);
-      this.SubmitForm.controls.balcony_0.setValue(this.oldData.balcony.balcony_0);
-      this.SubmitForm.controls.balcony_1.setValue(this.oldData.balcony.balcony_1);
-      this.SubmitForm.controls.balcony_2.setValue(this.oldData.balcony.balcony_2);
-      this.SubmitForm.controls.balcony_3.setValue(this.oldData.balcony.balcony_3);
-      this.SubmitForm.controls.balcony_4.setValue(this.oldData.balcony.balcony_4);
-      this.SubmitForm.controls.balcony_4_plus.setValue(this.oldData.balcony.balcony_4_plus);
-      this.SubmitForm.controls.parking_space_0.setValue(this.oldData.parkingSpace.parking_space_0);
-      this.SubmitForm.controls.parking_space_1.setValue(this.oldData.parkingSpace.parking_space_1);
-      this.SubmitForm.controls.parking_space_2.setValue(this.oldData.parkingSpace.parking_space_2);
-      this.SubmitForm.controls.parking_space_3.setValue(this.oldData.parkingSpace.parking_space_3);
-      this.SubmitForm.controls.parking_space_4.setValue(this.oldData.parkingSpace.parking_space_4);
-      this.SubmitForm.controls.parking_space_4_plus.setValue(this.oldData.parkingSpace.parking_space_4_plus);
-    }
-    return this.oldData;
-  }
-
 
   ngOnInit() {
     $(document).ready(function(){

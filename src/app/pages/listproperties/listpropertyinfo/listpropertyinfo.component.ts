@@ -50,31 +50,31 @@ export class ListpropertyinfoComponent implements OnInit {
     this.api.LoadType(1).subscribe((result) => {
       this.propertyType = result;
       this.propertyType = this.propertyType.data
-    })
+    });
     this.api.FurnishingTypes().subscribe((result: any) => {
       this.furnishingType = result.data;
     });
     this.api.FittingTypes().subscribe((result: any) => {
       this.fittingType = result.data;
-    })
+    });
     this.api.LoadTenantTypes().subscribe((result: any) => {
       this.tenantType = result.data;
-    })
+    });
     this.api.LoadGenders().subscribe((result: any) => {
       this.genders = result.data;
-    })
+    });
     this.api.LoadPropertyManages().subscribe((result: any) => {
       this.propertyManages = result.data;
-    })
+    });
     this.api.LoadPetPolicy().subscribe((result: any) => {
       this.petPolicy = result.data;
-    })
+    });
     this.api.LoadRentTypes().subscribe((result: any) => {
       this.rentTypes = result.data;
-    })
+    });
     this.api.PropertyFeatures(1).subscribe((result: any) => {
       this.featuresData = result.data;
-    })
+    });
     this.data = this.priviousFormCheck;
   }
   ngOnInit() {
@@ -191,7 +191,7 @@ export class ListpropertyinfoComponent implements OnInit {
     }
     this.data.PropertyFeatures = temp;
 
-    localStorage.setItem('listpropertyinfo_rent_residential',JSON.stringify(this.data))
+    localStorage.setItem('propertyData',JSON.stringify(this.data))
     this.route.navigate(['listpropertymedia'])
   }
   getBedroom(e: number) {
