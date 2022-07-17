@@ -86,4 +86,10 @@ export class AppService {
   LoadRentTypes() {
     return this.http.get(this.apiurl + 'RentTypes');
   }
+  LoadTransactionTypes() {
+    return this.http.get(this.apiurl + 'PropertyTransactionTypes');
+  }
+  LoadCompletionStatus(){
+    return this.http.get(this.apiurl + 'PropertyCompletionStatus');
+  }
 }
