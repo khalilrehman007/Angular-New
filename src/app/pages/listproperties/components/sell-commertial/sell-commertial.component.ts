@@ -5,6 +5,7 @@ import * as $ from 'jquery';
 import {AuthService} from "../../../../service/auth.service";
 import {Router} from "@angular/router";
 import {NotificationService} from "../../../../service/notification.service";
+import { AppService } from 'src/app/service/app.service';
 
 @Component({
   selector: 'app-sell-commertial',
@@ -23,15 +24,38 @@ export class SellCommertialComponent implements OnInit {
   oldData :any;
   priviousFormCheck :any;
   data: any = {};
+  propertyTypes: any;
+  room:any = [1,2,3,4,5,6,7,8,9,10];
+  locatedNear: any = [{ id: 1, name: "Metro" }, { id: 2, name: "Elevator" }, {id: 3, name: "Stairs"}];
+  ownershipType: any = [{ id: 1, name: "Freehold" }, { id: 2, name: "Leasehold" }];
+  propertyTransactionType: any;
+  completionStatus: any;
+  featuresData: any;
+  featuresFormData: any = [];
 
 
-  constructor(private service: AuthService,private route:Router,private notifyService : NotificationService) {
+
+  constructor(private api:AppService, private service: AuthService,private route:Router,private notifyService : NotificationService) {
     this.priviousFormCheck = localStorage.getItem('propertyData');
     if(this.priviousFormCheck == '' || this.priviousFormCheck == null){
       this.route.navigate(['listingproperty'])
     }else {
       this.data = JSON.parse(this.priviousFormCheck);
     }
+    this.api.LoadType(2).subscribe((result:any)=>{
+      this.propertyTypes=result.data;
+    });
+    this.api.LoadTransactionTypes().subscribe((result:any)=>{
+      this.propertyTransactionType=result.data;
+    });
+    this.api.LoadCompletionStatus().subscribe((result:any)=>{
+      this.completionStatus=result.data;
+    });
+    this.api.PropertyFeatures(1).subscribe((result: any) => {
+      this.featuresData = result.data;
+    });
+    this.data.PropertyTransactionTypeId=2
+    this.data.PropertyCategoryId=2
   }
 
   ngOnInit() {
@@ -105,84 +129,52 @@ export class SellCommertialComponent implements OnInit {
     if (this.SubmitForm.invalid) {
       return;
     }
-
-    let bathrooms: Array<any> = [
-      {
-        room_bathroom_1: this.SubmitForm.value.room_bathroom_1,
-        room_bathroom_2: this.SubmitForm.value.room_bathroom_2,
-        room_bathroom_3: this.SubmitForm.value.room_bathroom_3,
-      },
-    ];
-
-    let bedrooms: Array<any> = [
-      {
-        bedroom_1: this.SubmitForm.value.bedroom_1,
-        bedroom_2: this.SubmitForm.value.bedroom_2,
-        bedroom_3: this.SubmitForm.value.bedroom_3,
-      },
-    ];
-
-    let propertyType: Array<any> = [
-      {
-        property_studio: this.SubmitForm.value.property_studio,
-        property_apartment: this.SubmitForm.value.property_apartment,
-        property_villa: this.SubmitForm.value.property_villa,
-        property_townHouse: this.SubmitForm.value.property_townHouse,
-        property_penthouse: this.SubmitForm.value.property_penthouse,
-        property_compound: this.SubmitForm.value.property_compound,
-        property_duplex: this.SubmitForm.value.property_duplex,
-        property_fullFloor: this.SubmitForm.value.property_fullFloor,
-        property_wholeBuilding: this.SubmitForm.value.property_wholeBuilding,
-        property_bulkRentUnit: this.SubmitForm.value.property_bulkRentUnit,
-        property_bungalow: this.SubmitForm.value.property_bungalow,
-        property_hotelApartment: this.SubmitForm.value.property_hotelApartment,
-      },
-    ];
-
-    let PropertyFeatures: Array<any> = [
-      {
-        amenitites_ac: this.SubmitForm.value.amenitites_ac,
-        amenitites_deckspace: this.SubmitForm.value.amenitites_deckspace,
-        amenitites_petFriendly: this.SubmitForm.value.amenitites_petFriendly,
-        amenitites_parkingspace: this.SubmitForm.value.amenitites_parkingspace,
-        amenitites_poolspace: this.SubmitForm.value.amenitites_poolspace,
-        amenitites_freeWiFi: this.SubmitForm.value.amenitites_freeWiFi,
-        amenitites_gymspace: this.SubmitForm.value.amenitites_gymspace,
-        amenitites_hardwoodFloorspace: this.SubmitForm.value.amenitites_hardwoodFloorspace,
-        amenitites_jacuzzi: this.SubmitForm.value.amenitites_jacuzzi,
-      },
-    ];
-
-    let highlights: Array<any> = [
-      {
-        highlights_exclusive: this.SubmitForm.value.highlights_exclusive,
-        highlights_golfView: this.SubmitForm.value.highlights_golfView,
-        highlights_canalView: this.SubmitForm.value.highlights_canalView,
-        highlights_affordable: this.SubmitForm.value.highlights_affordable,
-        highlights_vastuComplaint: this.SubmitForm.value.highlights_vastuComplaint,
-        highlights_primeLocation: this.SubmitForm.value.highlights_primeLocation,
-        highlights_metro: this.SubmitForm.value.highlights_metro
-      },
-    ];
-
-    this.data.highlights = highlights[0];
-    this.data.PropertyFeatures = PropertyFeatures[0];
-    this.data.propertyType = propertyType[0];
-    this.data.bedrooms = bedrooms[0];
-    this.data.bathrooms = bathrooms[0];
-    this.data.carpetArea = this.SubmitForm.value.carpetArea;
-    this.data.buildupArea = this.SubmitForm.value.buildupArea;
-    this.data.price = this.SubmitForm.value.price;
-    this.data.brokerageAed = this.SubmitForm.value.brokerageAed;
-    this.data.brokerageNegotiable = this.SubmitForm.value.brokerageNegotiable;
-    this.data.brokerageAed = this.SubmitForm.value.brokerageAed;
-    this.data.brokerageNegotiable = this.SubmitForm.value.brokerageNegotiable;
-    this.data.propertyDescription = this.SubmitForm.value.propertyDescription;
-    this.data.highlights_exclusive = this.SubmitForm.value.highlights_exclusive;
-
-    localStorage.setItem('listpropertyinfo_sell_commercial',JSON.stringify(this.data))
+    this.data.CarpetArea=this.SubmitForm.value.carpetArea;
+    this.data.BuildupArea=this.SubmitForm.value.buildupArea;
+    this.data.PropertyPrice=this.SubmitForm.value.price;
+    this.data.MaintenanceCharges=this.SubmitForm.value.maintenanceCharge;
+    this.data.BrokerageChargePrice = this.SubmitForm.value.brokerageAed;
+    this.data.AvailableDate = $("#sellCommercialDate").val()
+    this.data.PropertyDescription = this.SubmitForm.value.propertyDescription;
+    this.data.PropertyOffer = this.SubmitForm.value.propertyOffers;
+    let temp:any = []
+    for (let i = 0; i < this.featuresFormData.length; i++) {
+      temp.push({PropertyFeatureId:this.featuresFormData[i]});
+    }
+    this.data.PropertyFeatures = temp;
+    localStorage.setItem('propertyData',JSON.stringify(this.data))
     this.route.navigate(['listpropertymedia'])
-    // console.log(this.SubmitForm.value)
   }
-
+  getPropertyType(id:number){
+    this.data.PropertyTypeId=id;
+  }
+  getBedroom(e:number) {
+    this.data.Bedroom = e;
+  }
+  getBathroom(e:number) {
+    this.data.Bathroom = e;
+  }
+  getLocatedNear(e:number) {
+    this.data.LocatedNear = e;
+  }
+  getOwnershipType(e:number){
+    this.data.ownershipType = e;
+    console.log(this.data)
+  }
+  getPropertyTransactionType(id:number) {
+    this.data.PropertyTransactionType = id;
+  }
+  getCompletionStatus(id:number) {
+    this.data.CompletionStatus = id;
+  }
+  getBrokageDeposit(e: boolean) {
+    this.data.BrokerageCharge = e;
+  }
+  getFeaturesData(id: number) {
+    if (this.featuresFormData.indexOf(id) == -1) {
+      this.featuresFormData.push(id);
+    } else {
+      this.featuresFormData = this.featuresFormData.filter((e: any) => e != id)
+    }
+  }  
 }
