@@ -1844,9 +1844,8 @@ input[type=number] {
 	}
 }
 .property-valuation-sec {
-	padding-top: 65px;
-	padding-top: 75px;
-	padding-bottom: 75px;
+	padding-top: 30px;
+	padding-bottom: 0px;
 	.form-border-wrapper {
 		>div {
 			.mat-form-field-wrapper {
@@ -2363,10 +2362,11 @@ input[type=number] {
 }
 .buy-sell-form-sec {
 	background-size: cover;
-	background-repeat: no-repeat;
-	margin-top: -7px;
-	position: relative;
-	padding-top: 47px;
+    background-repeat: no-repeat;
+    position: relative;
+    padding-top: 47px;
+    background-color: #f5f7fe;
+    padding-bottom: 45px;
 	.blue-heading {
 		margin-bottom: 35px;
 	}
@@ -2765,7 +2765,11 @@ input[type=number] {
 	}
 }
 .pro-evaluations-blocks-div {
-	margin-bottom: 50px;
+	margin-bottom: 20px;
+    width: 100%;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
 	img {
 		width: 50px;
 	}
@@ -6636,6 +6640,12 @@ padding: 0px !important;
 		left: 0;
 		right: 0;
 	}
+	.home-slider-sec .carousel-item .home-slider_cntnt {
+		padding: 15px !important;
+	}
+	.home-slider-sec .carousel-item .home-slider_cntnt h2 {
+		font-size: 24px;
+	}
 	.list-new-proerty-cntnt > div .dropdown {
 		margin-bottom: 15px;
 	}
@@ -7284,3 +7294,56 @@ li.agent-details__property-list-item .col-lg-10>.row {
 .blogs-header-bars .blogs-seach-blog {
     margin-top: 25px;
 }
+.home-slider-sec {
+    border-radius: 15px;
+    overflow: hidden;
+	margin-bottom: 30px;
+}
+.home-slider-sec .carousel-item .home-slider_img img {
+    width: 100%;
+    height: 100%;
+	min-height: 400px;
+    object-fit: cover;
+}
+.home-slider-sec .carousel-item .home-slider_cntnt {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px;
+    width: 100%;
+    max-width: 700px;
+}
+.home-slider-sec .carousel-item .home-slider_cntnt h2 {
+    color: #fff;
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+.home-slider-sec .carousel-item .home-slider_cntnt p {
+    color: #fff;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+.home-slider-sec .carousel-item .home-slider_cntnt a {
+    background: var(--primary-color);
+    color: var(--body-color);
+    text-decoration: none;
+    border: 1px solid var(--primary-color);
+    padding: 9px 15px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+	max-width: 150px;
+    margin-top: 15px;
+}
+.home-slider-sec .carousel-item .home-slider_cntnt a:hover {
+    background: #fff;
+    color: var(--primary-color);
+}
+
