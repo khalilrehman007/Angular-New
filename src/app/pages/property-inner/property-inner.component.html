@@ -28,7 +28,7 @@
                             </div>
                         </div>
                     </div>
-                    <div ngClass="col-xl-5 col-lg-5 col-md-12 col-sm-12">
+                    <div ngClass="col-xl-5 col-lg-4 col-md-12 col-sm-12">
                         <div ngClass="property-name_detals">
                             <h4>Blue Wave Tower</h4>
                             <div ngClass="property-addresss">
@@ -36,7 +36,7 @@
                             </div>
                         </div>
                     </div>
-                    <div ngClass="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+                    <div ngClass="col-xl-3 col-lg-4 col-md-12 col-sm-12">
                         <div ngClass="property-action_detals text-right">
                             <button ngClass="grey-bordered-btn"><img src="{{dots}}"></button>
                             <button ngClass="grey-bordered-btn"><img src="{{blueheart}}"></button>
@@ -46,26 +46,26 @@
                 </div>
             </div>
             <div ngClass="property-gallery-div-sec">
-                <div ngClass="row">
-                    <div ngClass="col-xl-8 col-lg-8 col-md-12 col-sm-12">
-                        <div ngClass="property-gallery-sec">
-                            <ngb-carousel [showNavigationArrows]="false">
-                                <ng-template ngbSlide *ngFor="let event of eventlist">
-                                    <img [src]="event.img" alt="Random slide">
-                                </ng-template>
-                            </ngb-carousel>
-                        </div>
-                    </div>
-                    <div ngClass="col-xl-4 col-lg-4 col-md-12 col-sm-12">
-                        <div ngClass="slider-thumb-img bordered mb-4">
-                            <img src="{{thumb1}}">
-                        </div>
-                        <div ngClass="slider-thumb-img position-relative">
-                            <img src="{{thumb1}}">
-                            <button class="view-all-photos" (click)="openVerticallyCentered(content)"><img src="{{gallery}}"> View all photos</button>
-                        </div>
-                    </div>
+            <div ngClass="row">
+             <div ngClass="col-xl-8 col-lg-8 col-md-12 col-sm-12">
+            <div ngClass="property-gallery-sec">
+                <ngb-carousel [showNavigationArrows]="false">
+                    <ng-template ngbSlide *ngFor="let event of eventlist">
+                      <img [src]="event.img" alt="Random slide">
+                    </ng-template>
+                  </ngb-carousel>
+            </div>
+            </div>
+            <div ngClass="col-xl-4 col-lg-4 col-md-12 col-sm-12 mobile-gallery_flex">
+                <div ngClass="slider-thumb-img bordered mb-4">
+                    <img src="{{thumb1}}">
                 </div>
+                <div ngClass="slider-thumb-img position-relative">
+                    <img src="{{thumb1}}">
+                    <button class="view-all-photos" (click)="openVerticallyCentered(content)"><img src="{{gallery}}"> View all photos</button>
+                </div>
+            </div>
+            </div>
             </div>
             <div ngClass="property-tabs-content">
                 <div ngClass="row">
@@ -266,19 +266,19 @@
                             </div>
                             <div ngClass="contact-list-details">
                                 <div ngClass="row">
-                                    <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                    <div ngClass="col-xl-6 col-lg-12 col-md-12 col-sm-12">
                                         <button ngClass=""><img src="{{call}}"> Call Landlord</button>
                                     </div>
-                                    <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                    <div ngClass="col-xl-6 col-lg-12 col-md-12 col-sm-12">
                                         <button ngClass=""><img src="{{whatsapp}}"> Whats APP</button>
                                     </div>
-                                    <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                    <div ngClass="col-xl-6 col-lg-12 col-md-12 col-sm-12">
                                         <button ngClass=""><img src="{{chat}}"> Chat with Landlord</button>
                                     </div>
-                                    <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                    <div ngClass="col-xl-6 col-lg-12 col-md-12 col-sm-12">
                                         <button ngClass=""><img src="{{videocall}}"> Video Call</button>
                                     </div>
-                                    <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                    <div ngClass="col-xl-6 col-lg-12 col-md-6 col-sm-12">
                                         <button ngClass=""><img src="{{virtual}}"> Virtual Tour</button>
                                     </div>
                                 </div>

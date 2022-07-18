@@ -233,6 +233,23 @@ export class HomeComponent implements OnInit {
       class:'get-ready-apply'
     }
   ]
+  homebanner = [
+    {
+      img: 'assets/images/home-banner-1.png',
+      title: 'The World’s 1st AI-Driven Property Valuation Platform',
+      desc: 'Our Platform Generates Certified Valuation Reports By DLD - The Dubai Land Development.'
+    },
+    {
+      img: 'assets/images/home-banner-2.png',
+      title: 'Property Valuations Made Easy For Residents & Foreign Investors',
+      desc: 'Our Platform And Qualified Specialists Provide Seamless Real Estate Valuation Solutions In The UAE And Soon, Across The GCC.'
+    },
+    {
+      img: 'assets/images/home-banner-3.png',
+      title: 'Get Auto-Generated, DLD-Approved Valuations',
+      desc: 'Our Platform Generates Certified Valuation Reports By DLD - The Dubai Land Development.'
+    },
+  ]
   clientslide = [
     {
       id: 'slide1',
