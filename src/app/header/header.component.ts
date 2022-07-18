@@ -42,19 +42,19 @@ export class HeaderComponent implements OnInit {
       src: '../../assets/images/icons/sell.svg',
       class: 'nav-items sell',
       text: 'Sell',
-      link: 'sellrent',
+      link: '/sellrent',
     },
     {
       src: '../../assets/images/icons/land.svg',
       class: 'nav-items sell',
       text: 'Land',
-      link: '',
+      link: '/land',
     },
     {
       src: '../../assets/images/icons/building.svg',
       class: 'nav-items commertials',
       text: 'Commercials',
-      link: '',
+      link: '/SellCommertial',
     },
     {
       src: '../../assets/images/icons/find-agents.svg',
@@ -132,10 +132,10 @@ export class HeaderComponent implements OnInit {
   }
   status: boolean = false;
   clickEvent(){
-      this.status = !this.status;       
+      this.status = !this.status;
   }
   status1: boolean = false;
   clickEvent1(){
-      this.status1 = !this.status1;       
+      this.status1 = !this.status1;
   }
 }
