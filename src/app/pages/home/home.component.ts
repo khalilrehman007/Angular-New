@@ -32,19 +32,27 @@ export class HomeComponent implements OnInit {
   id: 1;
   propertyDetails:any;
   oldData1() {
-    this.service.LatestPropertiesListingResidential(1).subscribe(data=>{
-      this.propertyDetails=data;
+    let tempData :Array<Object> = []
+    this.service.LatestPropertiesListingResidential(2).subscribe(data=>{
+      this.propertyDetails= data;
       this.propertyDetails = this.propertyDetails.data;
-      this.dynamicSlides1 = this.propertyDetails;
-      //console.log(this.dynamicSlides1);
-      this.dynamicSlides1.forEach((element, i) => {
-       // console.log(element['documents']);
-         element['documents'].forEach( (innerdata, i) => {
-           //console.log(innerdata.fileUrl);
-         });
+      this.propertyDetails.forEach((element, i) => {
+        tempData.push(
+          {
+            title: element.propertyTitle,
+            price: element.propertyPrice,
+            id:element.id,
+            alt:element.propertyTitle,
+            src:'assets/images/property/1.png',
+            bedrooms:element.bedrooms,
+            bathrooms:element.bathrooms,
+            buildingName:element.buildingName,
+            carpetArea:element.carpetArea,
+          });
       })
     });
-    
+    this.dynamicSlides1 = tempData
+
     // this.dynamicSlides1 = [
     //   {
     //     id: 'slide1',
@@ -83,56 +91,95 @@ export class HomeComponent implements OnInit {
     //   }
     // ]
   }
-
   newData1() {
-   
-    this.dynamicSlides1 = [
-      {
-        id: 'slide1',
-        src:'assets/images/property/1.png',
-        alt:'Side 1',
-        title:'Side 56',
-        propertyPrice:"350,000AED"
-      },
-      {
-        id: 'slide2',
-        src:'assets/images/property/1.png',
-        alt:'Side 2',
-        title:'Side 2',
-        price:"350,000AED"
-      },
-      {
-        id: 'slide3',
-        src:'assets/images/property/1.png',
-        alt:'Side 3',
-        title:'Side 3',
-        price:"350,000AED"
-      },
-      {
-        id: 'slide4',
-        src:'assets/images/property/1.png',
-        alt:'Side 4',
-        title:'Side 4',
-        price:"350,000AED"
-      },
-      {
-        id: 'slide5',
-        src:'assets/images/property/1.png',
-        alt:'Side 5',
-        title:'Side 5',
-        price:"350,000AED"
-      }
-    ]
-    console.log(this.dynamicSlides1);
+    let tempData :Array<Object> = []
+    this.service.LatestPropertiesListingResidential(1).subscribe(data=>{
+      this.propertyDetails= data;
+      this.propertyDetails = this.propertyDetails.data;
+      this.propertyDetails.forEach((element, i) => {
+        console.log(element.documents[0])
+        tempData.push(
+          {
+            title: element.propertyTitle,
+            price: element.propertyPrice,
+            id:element.id,
+            alt:element.propertyTitle,
+            src:'assets/images/property/1.png',
+            bedrooms:element.bedrooms,
+            bathrooms:element.bathrooms,
+            buildingName:element.buildingName,
+            carpetArea:element.carpetArea,
+          });
+        //   element['documents'].forEach( (innerdata, i) => {
+        //     //console.log(innerdata.fileUrl);
+        //   });
+      })
+    });
+    this.dynamicSlides1 = tempData
+
+
+    // this.dynamicSlides1 = [
+    //   {
+    //     id: 'slide1',
+    //     src:'assets/images/property/1.png',
+    //     alt:'Side 1',
+    //     title:'Side 56',
+    //     propertyPrice:"350,000AED"
+    //   },
+    //   {
+    //     id: 'slide2',
+    //     src:'assets/images/property/1.png',
+    //     alt:'Side 2',
+    //     title:'Side 2',
+    //     price:"350,000AED"
+    //   },
+    //   {
+    //     id: 'slide3',
+    //     src:'assets/images/property/1.png',
+    //     alt:'Side 3',
+    //     title:'Side 3',
+    //     price:"350,000AED"
+    //   },
+    //   {
+    //     id: 'slide4',
+    //     src:'assets/images/property/1.png',
+    //     alt:'Side 4',
+    //     title:'Side 4',
+    //     price:"350,000AED"
+    //   },
+    //   {
+    //     id: 'slide5',
+    //     src:'assets/images/property/1.png',
+    //     alt:'Side 5',
+    //     title:'Side 5',
+    //     price:"350,000AED"
+    //   }
+    // ]
+    // console.log(this.dynamicSlides1);
   }
+
   oldData2() {
-    this.service.LatestPropertiesListingCommercial(1).subscribe(data=>{
+    let tempData :Array<Object> = []
+    this.service.LatestPropertiesListingCommercial(2).subscribe(data=>{
       this.propertyDetails=data;
       this.propertyDetails = this.propertyDetails.data;
-      this.dynamicSlides2 = this.propertyDetails;
-      //console.log(this.dynamicSlides2);
-     
+      this.propertyDetails.forEach((element, i) => {
+        tempData.push(
+          {
+            title: element.propertyTitle,
+            price: element.propertyPrice,
+            id:element.id,
+            alt:element.propertyTitle,
+            src:'assets/images/property/1.png',
+            bedrooms:element.bedrooms,
+            bathrooms:element.bathrooms,
+            buildingName:element.buildingName,
+            carpetArea:element.carpetArea,
+          });
+      })
     });
+    this.dynamicSlides2 = tempData
+
     // this.dynamicSlides2 = [
     //   {
     //     id: 'slide1',
@@ -172,43 +219,64 @@ export class HomeComponent implements OnInit {
     // ]
   }
   newData2() {
-    this.dynamicSlides2 = [
-      {
-        id: 'slide1',
-        src:'assets/images/property/1.png',
-        alt:'Side 1',
-        title:'Side 56',
-        price:"350,000AED"
-      },
-      {
-        id: 'slide2',
-        src:'assets/images/property/1.png',
-        alt:'Side 2',
-        title:'Side 2',
-        price:"350,000AED"
-      },
-      {
-        id: 'slide3',
-        src:'assets/images/property/1.png',
-        alt:'Side 3',
-        title:'Side 3',
-        price:"350,000AED"
-      },
-      {
-        id: 'slide4',
-        src:'assets/images/property/1.png',
-        alt:'Side 4',
-        title:'Side 4',
-        price:"350,000AED"
-      },
-      {
-        id: 'slide5',
-        src:'assets/images/property/1.png',
-        alt:'Side 5',
-        title:'Side 5',
-        price:"350,000AED"
-      }
-    ]
+    let tempData :Array<Object> = []
+    this.service.LatestPropertiesListingCommercial(1).subscribe(data=>{
+      this.propertyDetails=data;
+      this.propertyDetails = this.propertyDetails.data;
+      this.propertyDetails.forEach((element, i) => {
+        tempData.push(
+          {
+            title: element.propertyTitle,
+            price: element.propertyPrice,
+            id:element.id,
+            alt:element.propertyTitle,
+            src:'assets/images/property/1.png',
+            bedrooms:element.bedrooms,
+            bathrooms:element.bathrooms,
+            buildingName:element.buildingName,
+            carpetArea:element.carpetArea,
+          });
+      })
+    });
+    this.dynamicSlides2 = tempData
+
+    // this.dynamicSlides2 = [
+    //   {
+    //     id: 'slide1',
+    //     src:'assets/images/property/1.png',
+    //     alt:'Side 1',
+    //     title:'Side 56',
+    //     price:"350,000AED"
+    //   },
+    //   {
+    //     id: 'slide2',
+    //     src:'assets/images/property/1.png',
+    //     alt:'Side 2',
+    //     title:'Side 2',
+    //     price:"350,000AED"
+    //   },
+    //   {
+    //     id: 'slide3',
+    //     src:'assets/images/property/1.png',
+    //     alt:'Side 3',
+    //     title:'Side 3',
+    //     price:"350,000AED"
+    //   },
+    //   {
+    //     id: 'slide4',
+    //     src:'assets/images/property/1.png',
+    //     alt:'Side 4',
+    //     title:'Side 4',
+    //     price:"350,000AED"
+    //   },
+    //   {
+    //     id: 'slide5',
+    //     src:'assets/images/property/1.png',
+    //     alt:'Side 5',
+    //     title:'Side 5',
+    //     price:"350,000AED"
+    //   }
+    // ]
   }
   tenantsslide = [
     {
@@ -268,7 +336,7 @@ export class HomeComponent implements OnInit {
       paragraph:'Al Barsha is a safe and quiet area that offers something for everyone: be it singles looking for wallet-friendly apartments with Metro...'
     }
   ]
- 
+
   customOptions: OwlOptions = {
     loop: true,
     mouseDrag: true,
@@ -374,11 +442,10 @@ export class HomeComponent implements OnInit {
   Rent: any;
   RentAr: any;
   constructor(private service:AppService,private route:Router,private notifyService : NotificationService) {
-    this.LoadPropertyCategories() 
+    this.LoadPropertyCategories()
     this.LoadBlogs();
-    this.oldData1();
     this.oldData2();
-    this.newData1();
+    this.oldData1();
     this.service.PropertyListingTypes().subscribe(data=>{
       this.propertyType = data;
       this.propertyType = this.propertyType.data;
@@ -389,7 +456,7 @@ export class HomeComponent implements OnInit {
     });
   }
   ngOnInit():void {
-    
+
     $(document).ready(function(){
         $('.dropdown-toggle').click(function(){
         $(this).next().toggleClass('active');
@@ -411,7 +478,7 @@ export class HomeComponent implements OnInit {
           localStorage.setItem('user',JSON.stringify(this.responsedata.data))
           this.notifyService.showSuccess(this.responsedata.message, "");
         }else{
-          this.notifyService.showError("Unable to login", ""); 
+          this.notifyService.showError("Unable to login", "");
         }
         this.route.navigate([''])
       });
@@ -421,7 +488,7 @@ export class HomeComponent implements OnInit {
     this.service.LoadPropertyCategories().subscribe(data=>{
       this.categories=data;
       // this.categories = this.categories.data
-      // 
+      //
       this.categories = this.categories.data.filter((category:any, key:any, array:any)=>{
         category.checked = '';
         if(key == 0){
@@ -429,7 +496,7 @@ export class HomeComponent implements OnInit {
         }
         return category;
       })
-      
+
     });
   }
   LoadPropertyTypes(){
@@ -448,6 +515,6 @@ export class HomeComponent implements OnInit {
       })
     });
   }
- 
+
   selected = 'option1';
 }

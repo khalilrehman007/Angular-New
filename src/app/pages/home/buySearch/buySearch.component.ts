@@ -9,7 +9,15 @@ import { Options } from '@angular-slider/ngx-slider';
 })
 export class BuySearchComponent implements OnInit {
 
-  constructor(private service:AppService) {
+  constructor(private service:AppService,private api: AppService) {
+    this.api.LoadType(1).subscribe((result) => {
+      this.propertyType = result;
+      this.propertyType = this.propertyType.data
+    });
+    this.api.LoadType(2).subscribe((result) => {
+      this.propertyTypeCommercial = result;
+      this.propertyTypeCommercial = this.propertyTypeCommercial.data
+    });
   }
 
   ngOnInit(): void {
@@ -19,6 +27,9 @@ export class BuySearchComponent implements OnInit {
   step: 10;
   enforceStep: false;
   enforceRange: false;
+  propertyType: any;
+  propertyTypeCommercial: any;
+  data: any = {};
   options: Options = {
     floor: 0,
     ceil: 500,
@@ -30,11 +41,11 @@ export class BuySearchComponent implements OnInit {
   maxValue1: number = 400;
   status: boolean = false;
   clickEvent(){
-      this.status = !this.status;       
+      this.status = !this.status;
   }
   status1: boolean = false;
   clickEvent1(){
-      this.status1 = !this.status1;       
+      this.status1 = !this.status1;
   }
   residentialfun1(){
     document.getElementsByClassName('residential1')[0].classList.add('active');
@@ -47,5 +58,11 @@ export class BuySearchComponent implements OnInit {
     document.getElementsByClassName('commertial1')[0].classList.add('active');
     document.getElementsByClassName('residential1-tabs')[0].classList.add('hide');
     document.getElementsByClassName('commertial1-tabs')[0].classList.remove('hide');
+  }
+  getPropertyType(e: number) {
+    this.data.PropertyTypeId = e;
+  }
+  getPropertyCommercialType(e: number) {
+    this.data.PropertyTypeId = e;
   }
 }
