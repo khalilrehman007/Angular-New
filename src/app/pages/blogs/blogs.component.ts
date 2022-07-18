@@ -8,7 +8,7 @@ import { AppService } from 'src/app/service/app.service';
 })
 export class BlogsComponent implements OnInit {
   exploreimg = '../../../assets/images/Blog-Tile.png'
-  Newssec = [
+  allBlogs = [
     {
       src:'assets/images/blog/blog-1.png',
       src2: 'assets/images/tag/market-trends.svg',

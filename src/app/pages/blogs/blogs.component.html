@@ -27,7 +27,7 @@
     <section ngClass="blogs-header-bars">
       <div ngClass="container_1280px">
     <div ngClass="row">
-       <div ngClass="col-xl-8 col-lg-8 col-md-12 col-sm-12">
+       <div ngClass="col-xl-8 col-lg-12 col-md-12 col-sm-12">
        <div ngClass="blogs-link-list">
        <ul ngClass="list-unstyled d-flex justify-content-sapcebw">
         <li><a routerLink="" ngClass="active">Dashboard</a></li>
@@ -56,7 +56,7 @@
        </ul>
        </div>
        </div>
-       <div ngClass="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+       <div ngClass="col-xl-4 col-lg-12 col-md-12 col-sm-12">
            <div ngClass="blogs-seach-blog">
             <form>
                 <mat-form-field class="full-width input-design" appearance="fill">
@@ -96,13 +96,13 @@
                     <p>Some of our picked properties near your location.</p>
                 </div>
                 <div ngClass="section-custom-title-right">
-                    <a [routerLink]="['blogs']">Read all</a>
+                    <a [routerLink]="['/blog-category']">Read all</a>
                 </div>
             </div>
 
             <div ngClass="row">
               <!-- let blogs of Blogsec -->
-                <div ngClass="col-lg-4 col-md-6 blog-places-col" *ngFor=" let blog of Newssec">
+                <div ngClass="col-lg-4 col-md-6 blog-places-col" *ngFor=" let blog of allBlogs">
                     <a routerLink="/blogs-details">
                       <!-- blog.blogDocument.fileUrl -->
                         <img [src]="blog.src" ngClass="img-fluid blog-image-homepage" alt="">
@@ -158,8 +158,8 @@
                                 <div ngClass="container_1280px">
                                     <div ngClass="row">
                                       <!-- let blogs of Blogsec -->
-                                        <div ngClass="col-lg-4 col-md-6 blog-places-col" *ngFor=" let blog of Newssec">
-                                            <a [routerLink]="">
+                                        <div ngClass="col-lg-4 col-md-6 blog-places-col" *ngFor=" let blog of allBlogs">
+                                            <a routerLink="/blogs-details">
                                               <!-- blog.blogDocument.fileUrl -->
                                                 <img [src]="blog.src" ngClass="img-fluid blog-image-homepage" alt="">
                                                 <span ngClass="blog-tag">
@@ -180,8 +180,8 @@
                                 <div ngClass="container_1280px">
                                     <div ngClass="row">
                                       <!-- let blogs of Blogsec -->
-                                        <div ngClass="col-lg-4 col-md-6 blog-places-col" *ngFor=" let blog of Newssec">
-                                            <a [routerLink]="">
+                                        <div ngClass="col-lg-4 col-md-6 blog-places-col" *ngFor=" let blog of allBlogs">
+                                            <a routerLink="/blogs-details">
                                               <!-- blog.blogDocument.fileUrl -->
                                                 <img [src]="blog.src" ngClass="img-fluid blog-image-homepage" alt="">
                                                 <span ngClass="blog-tag">
@@ -202,8 +202,8 @@
                                 <div ngClass="container_1280px">
                                     <div ngClass="row">
                                       <!-- let blogs of Blogsec -->
-                                        <div ngClass="col-lg-4 col-md-6 blog-places-col" *ngFor=" let blog of Newssec">
-                                            <a [routerLink]="">
+                                        <div ngClass="col-lg-4 col-md-6 blog-places-col" *ngFor=" let blog of allBlogs">
+                                            <a routerLink="/blogs-details">
                                               <!-- blog.blogDocument.fileUrl -->
                                                 <img [src]="blog.src" ngClass="img-fluid blog-image-homepage" alt="">
                                                 <span ngClass="blog-tag">
@@ -224,8 +224,8 @@
                                 <div ngClass="container_1280px">
                                     <div ngClass="row">
                                       <!-- let blogs of Blogsec -->
-                                        <div ngClass="col-lg-4 col-md-6 blog-places-col" *ngFor=" let blog of Newssec">
-                                            <a [routerLink]="">
+                                        <div ngClass="col-lg-4 col-md-6 blog-places-col" *ngFor=" let blog of allBlogs">
+                                            <a routerLink="/blogs-details">
                                               <!-- blog.blogDocument.fileUrl -->
                                                 <img [src]="blog.src" ngClass="img-fluid blog-image-homepage" alt="">
                                                 <span ngClass="blog-tag">
@@ -246,8 +246,8 @@
                                 <div ngClass="container_1280px">
                                     <div ngClass="row">
                                       <!-- let blogs of Blogsec -->
-                                        <div ngClass="col-lg-4 col-md-6 blog-places-col" *ngFor=" let blog of Newssec">
-                                            <a [routerLink]="">
+                                        <div ngClass="col-lg-4 col-md-6 blog-places-col" *ngFor=" let blog of allBlogs">
+                                            <a routerLink="/blogs-details">
                                               <!-- blog.blogDocument.fileUrl -->
                                                 <img [src]="blog.src" ngClass="img-fluid blog-image-homepage" alt="">
                                                 <span ngClass="blog-tag">
