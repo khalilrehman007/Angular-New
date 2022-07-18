@@ -68,22 +68,23 @@
                 <div ngClass="col-xl-6 col-lg-6 col-sm-6 col-sm-12">
                     <div ngClass="pro-evaluations-blocks-div">
                         <img src="assets/images/residentials-icon.svg" />
-                        <h4>Residential</h4>
+                        <h4>{{categoryNameRes}}</h4>
                         <p>
-                            We offer our customer property protection of liability coverage and insurance for their better life.
+                            {{categoryDetailRes}}
+                            <!-- We offer our customer property protection of liability coverage and insurance for their better life. -->
                         </p>
                     </div>
                 </div>
                 <div ngClass="col-xl-6 col-lg-6 col-sm-6 col-sm-12">
                     <div ngClass="pro-evaluations-blocks-div">
                         <img src="assets/images/commertials.svg" />
-                        <h4>Commercial</h4>
+                        <h4>{{categoryNameCom}}</h4>
                         <p>
-                            Not sure what you should be charging for your property? No need to worry, let us do the numbers for you.
+                            {{categoryDetailCom}}
                         </p>
                     </div>
                 </div>
-                <div ngClass="col-xl-6 col-lg-6 col-sm-6 col-sm-12">
+                <!-- <div ngClass="col-xl-6 col-lg-6 col-sm-6 col-sm-12">
                     <div ngClass="pro-evaluations-blocks-div">
                         <img src="assets/images/industrial-icon.svg" />
                         <h4>Industrial</h4>
@@ -100,7 +101,7 @@
                             Get a virtual tour, and schedule visits before you rent or buy any properties. You get overall control.
                         </p>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
         </div>
@@ -739,21 +740,21 @@
                 <div ngClass="col-md-4">
                     <div ngClass="total-transaction">
                         <p ngClass="text-center">AED</p>
-                        <h2 ngClass="text-center">840.26M</h2>
+                        <h2 ngClass="text-center">{{totalTransactions}}</h2>
                         <p ngClass="text-center">Total Transaction of Dubai</p>
                     </div>
                 </div>
                 <div ngClass="col-md-4">
                     <div ngClass="total-transaction">
                         <p ngClass="text-center">AED</p>
-                        <h2 ngClass="text-center">176.52M</h2>
+                        <h2 ngClass="text-center">{{totalSales}}</h2>
                         <p ngClass="text-center">Total Sales of Dubai</p>
                     </div>
                 </div>
                 <div ngClass="col-md-4">
                     <div ngClass="total-transaction">
                         <p ngClass="text-center">AED</p>
-                        <h2 ngClass="text-center">302.49M</h2>
+                        <h2 ngClass="text-center">{{totalMortgages}}</h2>
                         <p ngClass="text-center">Total Mortgage of Dubai</p>
                     </div>
                 </div>

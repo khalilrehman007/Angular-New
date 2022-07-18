@@ -373,6 +373,20 @@ export class HomeComponent implements OnInit {
   SaleAr: any;
   Rent: any;
   RentAr: any;
+  propertyCategory: any;
+  categoryNameRes: any;
+  categoryNameArRes: any;
+  categoryNameCom: any;
+  categoryNameArCom: any;
+  categoryDetailRes: any;
+  categoryDetailResAr: any;
+  categoryDetailCom: any;
+  categoryDetailComAr: any;
+  valuationTransactions: any;
+  totalTransactions: any;
+  totalSales: any;
+  totalMortgages: any;
+
   constructor(private service:AppService,private route:Router,private notifyService : NotificationService) {
     this.LoadPropertyCategories() 
     this.LoadBlogs();
@@ -386,6 +400,28 @@ export class HomeComponent implements OnInit {
       this.SaleAr = this.propertyType[0].nameAr;
       this.Rent = this.propertyType[1].name;
       this.RentAr = this.propertyType[1].nameAr;
+    });
+
+    this.service.PropertyCategories().subscribe(data=>{
+      this.propertyCategory = data;
+      this.propertyCategory = this.propertyCategory.data;
+      this.categoryNameRes = this.propertyCategory[0].categoryName;
+      this.categoryNameArRes = this.propertyCategory[0].categoryNameAr;
+      this.categoryNameCom = this.propertyCategory[1].categoryName;
+      this.categoryNameArCom = this.propertyCategory[1].categoryNameAr;
+      this.categoryDetailRes = this.propertyCategory[0].details;
+      this.categoryDetailResAr = this.propertyCategory[0].detailsAr;
+      this.categoryDetailCom = this.propertyCategory[1].details;
+      this.categoryDetailComAr = this.propertyCategory[1].detailsAr;
+    });
+    this.service.ValuationTransactions().subscribe(data=>{
+      this.valuationTransactions = data;
+      this.valuationTransactions = this.valuationTransactions.data;
+      this.totalTransactions = this.valuationTransactions[0].value;
+      this.totalSales = this.valuationTransactions[1].value;
+      this.totalMortgages = this.valuationTransactions[2].value;
+
+      
     });
   }
   ngOnInit():void {
