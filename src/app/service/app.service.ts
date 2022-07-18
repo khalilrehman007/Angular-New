@@ -62,4 +62,13 @@ export class AppService {
   FittingTypes() {
     return this.http.get(this.apiurl + 'FittingTypes/');
   }
+  PropertyListingTypes() {
+    return this.http.get(this.apiurl + 'PropertyListingTypes/');
+  }
+  LatestPropertiesListingResidential(id: number) {
+    return this.http.get(this.apiurl + 'LatestPropertiesListingResidential/' + id);
+  }
+  LatestPropertiesListingCommercial(id: number) {
+    return this.http.get(this.apiurl + 'LatestPropertiesListingCommercial/' + id);
+  }
 }
