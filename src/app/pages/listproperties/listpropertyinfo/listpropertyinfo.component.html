@@ -26,8 +26,8 @@
                 <div class="new-proprty-details">
                   <h5 class="propertyid">{{priviousFormCheck.FloorNo}}</h5>
                   <h5 class="proname">{{priviousFormCheck.BuildingName}}</h5>
-                  <address>{{priviousFormCheck.address}},<br/>
-                    {{priviousFormCheck.CityId}}, {{priviousFormCheck.CountryId}}  </address>
+                  <address>{{priviousFormCheck.address}},<br />
+                    {{priviousFormCheck.CityId}}, {{priviousFormCheck.CountryId}} </address>
                 </div>
               </div>
               <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
@@ -78,112 +78,13 @@
                           <h5 class="h5-heading">Property Type</h5>
                           <div class="property-types-cntnts">
                             <ul class="list-unstyled residentails-unit-list">
-                              <li class="d-flex">
+                              <li class="d-flex" *ngFor="let item of propertyType">
                                 <div class="position-relative">
-                                  <input type="checkbox" >
+                                  <input type="checkbox" (click)="getPropertyType(item.id)">
                                   <span class="property_sel"></span>
                                 </div>
                                 <div class="proprty_name">
-                                  <p>studio</p>
-                                </div>
-                              </li>
-                              <li class="d-flex">
-                                <div class="position-relative">
-                                  <input type="checkbox" formControlName="property_apartment">
-                                  <span class="property_sel"></span>
-                                </div>
-                                <div class="proprty_name">
-                                  <p>Apartment</p>
-                                </div>
-                              </li>
-                              <li class="d-flex">
-                                <div class="position-relative">
-                                  <input type="checkbox" formControlName="property_villa">
-                                  <span class="property_sel"></span>
-                                </div>
-                                <div class="proprty_name">
-                                  <p>Villa</p>
-                                </div>
-                              </li>
-                              <li class="d-flex">
-                                <div class="position-relative">
-                                  <input type="checkbox" formControlName="property_townHouse">
-                                  <span class="property_sel"></span>
-                                </div>
-                                <div class="proprty_name">
-                                  <p>Town House</p>
-                                </div>
-                              </li>
-                              <li class="d-flex">
-                                <div class="position-relative">
-                                  <input type="checkbox" formControlName="property_penthouse">
-                                  <span class="property_sel"></span>
-                                </div>
-                                <div class="proprty_name">
-                                  <p>Penthouse</p>
-                                </div>
-                              </li>
-                              <li class="d-flex">
-                                <div class="position-relative">
-                                  <input type="checkbox" formControlName="property_compound">
-                                  <span class="property_sel"></span>
-                                </div>
-                                <div class="proprty_name">
-                                  <p>Compound</p>
-                                </div>
-                              </li>
-                              <li class="d-flex">
-                                <div class="position-relative">
-                                  <input type="checkbox" formControlName="property_duplex">
-                                  <span class="property_sel"></span>
-                                </div>
-                                <div class="proprty_name">
-                                  <p>Duplex</p>
-                                </div>
-                              </li>
-                              <li class="d-flex">
-                                <div class="position-relative">
-                                  <input type="checkbox" formControlName="property_fullFloor">
-                                  <span class="property_sel"></span>
-                                </div>
-                                <div class="proprty_name">
-                                  <p>Full Floor</p>
-                                </div>
-                              </li>
-                              <li class="d-flex">
-                                <div class="position-relative">
-                                  <input type="checkbox" formControlName="property_wholeBuilding">
-                                  <span class="property_sel"></span>
-                                </div>
-                                <div class="proprty_name">
-                                  <p>Whole Building</p>
-                                </div>
-                              </li>
-                              <li class="d-flex">
-                                <div class="position-relative">
-                                  <input type="checkbox" formControlName="property_bulkRentUnit">
-                                  <span class="property_sel"></span>
-                                </div>
-                                <div class="proprty_name">
-                                  <p>Bulk Rent Unit</p>
-                                </div>
-                              </li>
-                              <li class="d-flex">
-                                <div class="position-relative">
-                                  <input type="checkbox" formControlName="property_bungalow">
-                                  <span class="property_sel"></span>
-                                </div>
-                                <div class="proprty_name">
-                                  <p>Bungalow</p>
-                                </div>
-                              </li>
-                              <li class="d-flex">
-                                <div class="position-relative">
-                                  <input type="checkbox" formControlName="property_hotelApartment">
-                                  <span class="property_sel"></span>
-                                </div>
-                                <div class="proprty_name">
-                                  <p>Hotel & Hotel Apartment</p>
+                                  <p>{{item.typeDescription}}</p>
                                 </div>
                               </li>
                             </ul>
@@ -201,85 +102,13 @@
                           <h5 class="h5-heading">Bedroom</h5>
                           <div class="property-types-cntnts">
                             <ul class="list-unstyled residentails-unit-list">
-                              <li class="d-flex">
+                              <li class="d-flex" *ngFor="let item of room">
                                 <div class="position-relative">
-                                  <input type="checkbox">
+                                  <input type="checkbox" (click)="getBedroom(item)">
                                   <span class="property_sel"></span>
                                 </div>
                                 <div class="proprty_name">
-                                  <p>studio</p>
-                                </div>
-                              </li>
-                              <li class="d-flex">
-                                <div class="position-relative">
-                                  <input type="checkbox" formControlName="bedroom_BHK_1">
-                                  <span class="property_sel"></span>
-                                </div>
-                                <div class="proprty_name">
-                                  <p>1 BHK</p>
-                                </div>
-                              </li>
-                              <li class="d-flex">
-                                <div class="position-relative">
-                                  <input type="checkbox" formControlName="bedroom_BHK_2">
-                                  <span class="property_sel"></span>
-                                </div>
-                                <div class="proprty_name">
-                                  <p>2 BHK</p>
-                                </div>
-                              </li>
-                              <li class="d-flex">
-                                <div class="position-relative">
-                                  <input type="checkbox" formControlName="bedroom_BHK_3">
-                                  <span class="property_sel"></span>
-                                </div>
-                                <div class="proprty_name">
-                                  <p>3 BHK</p>
-                                </div>
-                              </li>
-                              <li class="d-flex">
-                                <div class="position-relative">
-                                  <input type="checkbox" formControlName="bedroom_BHK_4">
-                                  <span class="property_sel"></span>
-                                </div>
-                                <div class="proprty_name">
-                                  <p>4 BHK</p>
-                                </div>
-                              </li>
-                              <li class="d-flex">
-                                <div class="position-relative">
-                                  <input type="checkbox" formControlName="bedroom_BHK_5">
-                                  <span class="property_sel"></span>
-                                </div>
-                                <div class="proprty_name">
-                                  <p>5 BHK</p>
-                                </div>
-                              </li>
-                              <li class="d-flex">
-                                <div class="position-relative">
-                                  <input type="checkbox" formControlName="bedroom_BHK_6">
-                                  <span class="property_sel"></span>
-                                </div>
-                                <div class="proprty_name">
-                                  <p>6 BHK</p>
-                                </div>
-                              </li>
-                              <li class="d-flex">
-                                <div class="position-relative">
-                                  <input type="checkbox" formControlName="bedroom_BHK_7">
-                                  <span class="property_sel"></span>
-                                </div>
-                                <div class="proprty_name">
-                                  <p>7 BHK</p>
-                                </div>
-                              </li>
-                              <li class="d-flex">
-                                <div class="position-relative">
-                                  <input type="checkbox" formControlName="bedroom_BHK_8">
-                                  <span class="property_sel"></span>
-                                </div>
-                                <div class="proprty_name">
-                                  <p>7+ BHK</p>
+                                  <p>{{item}}</p>
                                 </div>
                               </li>
                             </ul>
@@ -297,31 +126,13 @@
                           <h5 class="h5-heading">Room Type</h5>
                           <div class="property-types-cntnts">
                             <ul class="list-unstyled residentails-unit-list">
-                              <li class="d-flex">
+                              <li class="d-flex" *ngFor="let item of room">
                                 <div class="position-relative">
-                                  <input type="checkbox" formControlName="room_privateBathroom">
+                                  <input type="checkbox" (click)="getBathroom(item)">
                                   <span class="property_sel"></span>
                                 </div>
                                 <div class="proprty_name">
-                                  <p>Private Bathroom</p>
-                                </div>
-                              </li>
-                              <li class="d-flex">
-                                <div class="position-relative">
-                                  <input type="checkbox" formControlName="room_attachedBathroom">
-                                  <span class="property_sel"></span>
-                                </div>
-                                <div class="proprty_name">
-                                  <p>Attached Bathroom</p>
-                                </div>
-                              </li>
-                              <li class="d-flex">
-                                <div class="position-relative">
-                                  <input type="checkbox" formControlName="room_sharedBathroom">
-                                  <span class="property_sel"></span>
-                                </div>
-                                <div class="proprty_name">
-                                  <p>Shared Bathroom</p>
+                                  <p>{{item}}</p>
                                 </div>
                               </li>
                             </ul>
@@ -336,30 +147,20 @@
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                       <h6 class="h6-design">Furnishing Type</h6>
                       <div class="checkbox-flex-box three-column button-same-select">
-                        <div class="checkbox-design position-relative">
-                          <input type="radio" id="Furnished" formControlName="property_types" value="Furnished" checked>
-                          <button class="checkbox-btn">Furnished</button>
-                        </div>
-                        <div class="checkbox-design position-relative">
-                          <input type="radio" id="Semi-Furnished" formControlName="property_types" value="Semi Furnished">
-                          <button class="checkbox-btn">Semi Furnished</button>
-                        </div>
-                        <div class="checkbox-design position-relative">
-                          <input type="radio" id="Unfurnished" formControlName="property_types" value="Unfurnished">
-                          <button class="checkbox-btn">Unfurnished</button>
+                        <div class="checkbox-design position-relative" *ngFor="let item of furnishingType"
+                          (click)="getFurnishingType(item.id)">
+                          <input type="radio" value="Furnished">
+                          <button class="checkbox-btn">{{item.name}}</button>
                         </div>
                       </div>
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                       <h6 class="h6-design">Fitting Type</h6>
-                      <div class="checkbox-flex-box two-column button-same-select max-240">
-                        <div class="checkbox-design position-relative">
-                          <input type="radio" id="None" formControlName="fitting_details" value="None" checked>
-                          <button class="checkbox-btn">None</button>
-                        </div>
-                        <div class="checkbox-design position-relative">
-                          <input type="radio" id="Fitted" formControlName="fitting_details" value="Fitted">
-                          <button class="checkbox-btn">Fitted</button>
+                      <div class="checkbox-flex-box three-column button-same-select">
+                        <div class="checkbox-design position-relative" *ngFor="let item of fittingType"
+                          (click)="getFittingType(item.id)">
+                          <input type="radio" value="Fitting">
+                          <button class="checkbox-btn">{{item.name}}</button>
                         </div>
                       </div>
                     </div>
@@ -370,34 +171,20 @@
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                       <h6 class="h6-design">Preferred Tenant Type</h6>
                       <div class="checkbox-flex-box three-column button-same-select">
-                        <div class="checkbox-design position-relative">
-                          <input type="radio" id="Family" formControlName="tenant_types" value="Family" checked>
-                          <button class="checkbox-btn">Family</button>
-                        </div>
-                        <div class="checkbox-design position-relative">
-                          <input type="radio" id="Bachelors" formControlName="tenant_types" value="Bachelors">
-                          <button class="checkbox-btn">Bachelors</button>
-                        </div>
-                        <div class="checkbox-design position-relative">
-                          <input type="radio" id="Company" formControlName="tenant_types" value="Company">
-                          <button class="checkbox-btn">Company</button>
+                        <div class="checkbox-design position-relative" *ngFor="let item of tenantType"
+                          (click)="getTenantType(item.id)">
+                          <input type="radio" value="Family">
+                          <button class="checkbox-btn">{{item.name}}</button>
                         </div>
                       </div>
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                       <h6 class="h6-design">Preferred Gender Type</h6>
                       <div class="checkbox-flex-box three-column button-same-select">
-                        <div class="checkbox-design position-relative">
-                          <input type="radio" id="Male" formControlName="gender" value="Male" checked>
-                          <button class="checkbox-btn">Male</button>
-                        </div>
-                        <div class="checkbox-design position-relative">
-                          <input type="radio" id="Female" formControlName="gender" value="Female">
-                          <button class="checkbox-btn">Female</button>
-                        </div>
-                        <div class="checkbox-design position-relative">
-                          <input type="radio" id="Any" formControlName="gender" value="Any">
-                          <button class="checkbox-btn">Any</button>
+                        <div class="checkbox-design position-relative" *ngFor="let item of genders"
+                          (click)="getGender(item.id)">
+                          <input type="radio" value="Male">
+                          <button class="checkbox-btn">{{item.name}}</button>
                         </div>
                       </div>
                     </div>
@@ -408,30 +195,20 @@
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                       <h6 class="h6-design">Property Managed by </h6>
                       <div class="checkbox-flex-box three-column button-same-select">
-                        <div class="checkbox-design position-relative">
-                          <input type="radio" id="Landlord" formControlName="property_management" value="Landlord" checked>
-                          <button class="checkbox-btn">Landlord</button>
-                        </div>
-                        <div class="checkbox-design position-relative">
-                          <input type="radio" id="Caretaker" formControlName="property_management" value="Caretaker">
-                          <button class="checkbox-btn">Caretaker</button>
-                        </div>
-                        <div class="checkbox-design position-relative">
-                          <input type="radio" id="Professional" formControlName="property_management" value="Professional">
-                          <button class="checkbox-btn">Professional</button>
+                        <div class="checkbox-design position-relative" *ngFor="let item of propertyManages"
+                          (click)="getPropertyManages(item.id)">
+                          <input type="radio" value="Landlord">
+                          <button class="checkbox-btn">{{item.name}}</button>
                         </div>
                       </div>
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                       <h6 class="h6-design">Occupancy Status</h6>
                       <div class="checkbox-flex-box two-column button-same-select max-240">
-                        <div class="checkbox-design position-relative">
-                          <input type="radio" id="Vaccant" formControlName="occupancy" value="Vaccant" checked>
-                          <button class="checkbox-btn">Vaccant</button>
-                        </div>
-                        <div class="checkbox-design position-relative">
-                          <input type="radio" id="Occupied" formControlName="occupancy" value="Occupied">
-                          <button class="checkbox-btn">Occupied</button>
+                        <div class="checkbox-design position-relative" *ngFor="let item of occupancy"
+                          (click)="getOccupancy(item.id)">
+                          <input type="radio" value="Vaccant">
+                          <button class="checkbox-btn">{{item.name}}</button>
                         </div>
                       </div>
                     </div>
@@ -442,28 +219,28 @@
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                       <h6 class="h6-design">Available Parking </h6>
                       <div class="checkbox-flex-box six-column button-same-select">
-                        <div class="checkbox-design position-relative">
-                          <input type="radio" id="parking" formControlName="parking_space" value="parking" checked>
+                        <div class="checkbox-design position-relative" (click)="getParking('0')">
+                          <input type="radio" id="parking" value="parking">
                           <button class="checkbox-btn">0</button>
                         </div>
-                        <div class="checkbox-design position-relative">
-                          <input type="radio" id="parking" formControlName="parking_space" value="parking">
+                        <div class="checkbox-design position-relative" (click)="getParking('1')">
+                          <input type="radio" id="parking" value="parking">
                           <button class="checkbox-btn">1</button>
                         </div>
-                        <div class="checkbox-design position-relative">
-                          <input type="radio" id="parking" formControlName="parking_space" value="parking">
+                        <div class="checkbox-design position-relative" (click)="getParking('2')">
+                          <input type="radio" id="parking" value="parking">
                           <button class="checkbox-btn">2</button>
                         </div>
-                        <div class="checkbox-design position-relative">
-                          <input type="radio" id="parking" formControlName="parking_space" value="parking">
+                        <div class="checkbox-design position-relative" (click)="getParking('3')">
+                          <input type="radio" id="parking" value="parking">
                           <button class="checkbox-btn">3</button>
                         </div>
-                        <div class="checkbox-design position-relative">
-                          <input type="radio" id="parking" formControlName="parking_space" value="parking">
+                        <div class="checkbox-design position-relative" (click)="getParking('4')">
+                          <input type="radio" id="parking" value="parking">
                           <button class="checkbox-btn">4</button>
                         </div>
-                        <div class="checkbox-design position-relative">
-                          <input type="radio" id="parking" formControlName="parking_space" value="parking">
+                        <div class="checkbox-design position-relative" (click)="getParking('4+')">
+                          <input type="radio" id="parking" value="parking">
                           <button class="checkbox-btn">4+</button>
                         </div>
                       </div>
@@ -478,40 +255,13 @@
                           <h5 class="h5-heading">Pet Policy</h5>
                           <div class="property-types-cntnts">
                             <ul class="list-unstyled residentails-unit-list">
-                              <li class="d-flex">
+                              <li class="d-flex" *ngFor="let item of petPolicy">
                                 <div class="position-relative">
-                                  <input type="radio" formControlName="pets">
+                                  <input type="radio" (click)="getPetPolicy(item.id)">
                                   <span class="property_sel"></span>
                                 </div>
                                 <div class="proprty_name">
-                                  <p>No pets allowed</p>
-                                </div>
-                              </li>
-                              <li class="d-flex">
-                                <div class="position-relative">
-                                  <input type="radio" formControlName="pet_cats_allowed">
-                                  <span class="property_sel"></span>
-                                </div>
-                                <div class="proprty_name">
-                                  <p>Cats allowed</p>
-                                </div>
-                              </li>
-                              <li class="d-flex">
-                                <div class="position-relative">
-                                  <input type="radio" formControlName="pet_small_dogs_allowed">
-                                  <span class="property_sel"></span>
-                                </div>
-                                <div class="proprty_name">
-                                  <p>Small dogs allowed</p>
-                                </div>
-                              </li>
-                              <li class="d-flex">
-                                <div class="position-relative">
-                                  <input type="radio" formControlName="pet_big_dogs_allowed">
-                                  <span class="property_sel"></span>
-                                </div>
-                                <div class="proprty_name">
-                                  <p>Big dogs allowed</p>
+                                  <p>{{item.name}}</p>
                                 </div>
                               </li>
                             </ul>
@@ -565,17 +315,10 @@
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                       <h6 class="h6-design">Rent Type</h6>
                       <div class="checkbox-flex-box three-column button-same-select">
-                        <div class="checkbox-design position-relative">
-                          <input type="radio" id="Monthly" formControlName="building_type_monthly" value="Monthly" checked>
-                          <button class="checkbox-btn">Monthly</button>
-                        </div>
-                        <div class="checkbox-design position-relative">
-                          <input type="radio" id="Quaterly" formControlName="building_type_quaterly" value="Quaterly">
-                          <button class="checkbox-btn">Quaterly</button>
-                        </div>
-                        <div class="checkbox-design position-relative">
-                          <input type="radio" id="Yearly" formControlName="building_type_yearly" value="Yearly">
-                          <button class="checkbox-btn">Yearly</button>
+                        <div class="checkbox-design position-relative" *ngFor="let item of rentTypes"
+                          (click)="getRentTypes(item.id)">
+                          <input type="radio" value="Monthly">
+                          <button class="checkbox-btn">{{item.name}}</button>
                         </div>
                       </div>
                     </div>
@@ -586,7 +329,7 @@
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                       <h6 class="h6-design">Do you take Security deposit?</h6>
                       <div class="checkbox-flex-box two-column button-same-select">
-                        <div class="checkbox-design position-relative">
+                        <div class="checkbox-design position-relative" (click)="getSecurityDeposit(true)">
                           <input type="radio" id="Yes" formControlName="securoty_deposit" value="Yes" checked>
                           <button class="checkbox-btn">Yes</button>
                           <div class="deposit-yes hide">
@@ -611,7 +354,7 @@
                             </ul>
                           </div>
                         </div>
-                        <div class="checkbox-design position-relative">
+                        <div class="checkbox-design position-relative" (click)="getSecurityDeposit(false)">
                           <input type="radio" id="No" formControlName="securoty_deposit" value="No">
                           <button class="checkbox-btn">No</button>
                         </div>
@@ -620,7 +363,7 @@
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                       <h6 class="h6-design">Do you charge brokerage?</h6>
                       <div class="checkbox-flex-box two-column button-same-select">
-                        <div class="checkbox-design position-relative">
+                        <div class="checkbox-design position-relative" (click)="getBrokageDeposit(true)">
                           <input type="radio" id="Yes" formControlName="brokerage_value" value="Yes" checked>
                           <button class="checkbox-btn">Yes</button>
                           <div class="deposit-yes hide">
@@ -645,7 +388,7 @@
                             </ul>
                           </div>
                         </div>
-                        <div class="checkbox-design position-relative">
+                        <div class="checkbox-design position-relative" (click)="getBrokageDeposit(false)">
                           <input type="radio" id="No" formControlName="brokerage_value" value="No">
                           <button class="checkbox-btn">No</button>
                         </div>
@@ -659,7 +402,7 @@
                       <h6 class="h6-design">Available from</h6>
                       <div class="input-date-picker input-design">
                         <mat-form-field appearance="fill">
-                          <input matInput [matDatepicker]="picker" formControlName="availablefrom">
+                          <input matInput [matDatepicker]="picker" id="formDate" formControlName="availablefrom">
                           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                           <mat-datepicker #picker></mat-datepicker>
                         </mat-form-field>
@@ -711,40 +454,46 @@
                         <mat-form-field class="full-width input-design" appearance="fill">
                           <mat-label>Offers - Increase leads on your property upto 50%!</mat-label>
                           <input matInput formControlName="propertyOffers" type="text"
-                                 placeholder="Example - 15 days of rent off. Only Pay 15 days of brokerage now! Free rental agreement.">
+                            placeholder="Example - 15 days of rent off. Only Pay 15 days of brokerage now! Free rental agreement.">
                         </mat-form-field>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="highlight-sec">
+                <!-- <div class="highlight-sec">
                   <div class="row">
                     <div class="col-sm-12">
                       <h6 class="h6-design">Highlights</h6>
                       <div class="inneR-border-wrap">
                         <div class="checkbox-flex-box autoflex-layout">
                           <div class="checkbox-design position-relative">
-                            <input type="checkbox" id="Exclusive" formControlName="highlights_exclusive" value="Exclusive" checked>
+                            <input type="checkbox" id="Exclusive" formControlName="highlights_exclusive"
+                              value="Exclusive" checked>
                             <button class="checkbox-btn">Exclusive</button>
                           </div>
                           <div class="checkbox-design position-relative">
-                            <input type="checkbox" id="Golf-View" formControlName="highlights_golfView" value="Golf View">
+                            <input type="checkbox" id="Golf-View" formControlName="highlights_golfView"
+                              value="Golf View">
                             <button class="checkbox-btn">Golf View</button>
                           </div>
                           <div class="checkbox-design position-relative">
-                            <input type="checkbox" id="Canal-View" formControlName="highlights_canalView" value="Canal View" checked>
+                            <input type="checkbox" id="Canal-View" formControlName="highlights_canalView"
+                              value="Canal View" checked>
                             <button class="checkbox-btn">Canal View</button>
                           </div>
                           <div class="checkbox-design position-relative">
-                            <input type="checkbox" id="Affordable" formControlName="highlights_affordable" value="Affordable" checked>
+                            <input type="checkbox" id="Affordable" formControlName="highlights_affordable"
+                              value="Affordable" checked>
                             <button class="checkbox-btn">Affordable</button>
                           </div>
                           <div class="checkbox-design position-relative">
-                            <input type="checkbox" id="Vastu-Complaint" formControlName="highlights_vastuComplaint" value="Vastu Complaint">
+                            <input type="checkbox" id="Vastu-Complaint" formControlName="highlights_vastuComplaint"
+                              value="Vastu Complaint">
                             <button class="checkbox-btn">Vastu Complaint</button>
                           </div>
                           <div class="checkbox-design position-relative">
-                            <input type="checkbox" id="Prime Location" formControlName="highlights_primeLocation" value="Prime Location">
+                            <input type="checkbox" id="Prime Location" formControlName="highlights_primeLocation"
+                              value="Prime Location">
                             <button class="checkbox-btn">Prime Location</button>
                           </div>
                           <div class="checkbox-design position-relative">
@@ -758,53 +507,18 @@
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> -->
                 <div class="select-amenitites">
                   <div class="row">
                     <div class="col-sm-12">
                       <h6 class="h6-design">Select Amenitites</h6>
                       <div class="inneR-border-wrap">
                         <div class="checkbox-flex-box autoflex-layout">
-                          <div class="checkbox-design position-relative">
-                            <input type="checkbox" id="ac" formControlName="amenitites_ac" value="AC" checked>
-                            <button class="checkbox-btn">A/C</button>
-                          </div>
-                          <div class="checkbox-design position-relative">
-                            <input type="checkbox" id="Deck" formControlName="amenitites_deckspace" value="Deck">
-                            <button class="checkbox-btn">Deck</button>
-                          </div>
-                          <div class="checkbox-design position-relative">
-                            <input type="checkbox" id="Pet-Friendly" formControlName="amenitites_petFriendly" value="Pet Friendly" checked>
-                            <button class="checkbox-btn">Pet Friendly</button>
-                          </div>
-                          <div class="checkbox-design position-relative">
-                            <input type="checkbox" id="Free-Parking-Spots" formControlName="amenitites_parkingspace"
-                                   value="Free Parking Spots" checked>
-                            <button class="checkbox-btn">Free Parking Spots</button>
-                          </div>
-                          <div class="checkbox-design position-relative">
-                            <input type="checkbox" id="Pool" formControlName="amenitites_poolspace" value="Pool">
-                            <button class="checkbox-btn">Pool</button>
-                          </div>
-                          <div class="checkbox-design position-relative">
-                            <input type="checkbox" id="Yard" formControlName="amenitites_yardspace" value="Yard">
-                            <button class="checkbox-btn">Yard</button>
-                          </div>
-                          <div class="checkbox-design position-relative">
-                            <input type="checkbox" id="Free-Wi-Fi" formControlName="amenitites_freeWiFi" value="Free Wi-Fi">
-                            <button class="checkbox-btn">Free Wi-Fi</button>
-                          </div>
-                          <div class="checkbox-design position-relative">
-                            <input type="checkbox" id="Gym" formControlName="amenitites_gymspace" value="Gym" checked>
-                            <button class="checkbox-btn">Gym</button>
-                          </div>
-                          <div class="checkbox-design position-relative">
-                            <input type="checkbox" id="Hardwood-Floor" formControlName="amenitites_hardwoodFloorspace" value="Hardwood Floor">
-                            <button class="checkbox-btn">Hardwood Floor</button>
-                          </div>
-                          <div class="checkbox-design position-relative">
-                            <input type="checkbox" id="Jacuzzi" formControlName="amenitites_jacuzzi" value="Jacuzzi">
-                            <button class="checkbox-btn">Jacuzzi</button>
+                          <div class="checkbox-design position-relative" *ngFor="let item of featuresData"
+                            (click)="getFeaturesData(item.propertyFeature.id)">
+                            <input type="checkbox" id={{item.propertyFeature.id}}
+                              name={{item.propertyFeature.featureName}} value={{item.propertyFeature.featureName}}>
+                            <button class="checkbox-btn">{{item.propertyFeature.featureName}}</button>
                           </div>
                         </div>
                         <div class="add-more">
@@ -821,7 +535,6 @@
                 <a routerLink="/listingproperty" class="back-btn">Back</a>
               </mat-card-actions>
               <mat-card-actions>
-                <!--                  <a routerLink="/listpropertymedia" class="save-continue-btn">Save & Continue</a>-->
                 <button mat-raised-button type="submit" ngClass="submit-btn">Save & Continue</button>
               </mat-card-actions>
             </div>

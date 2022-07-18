@@ -34,7 +34,6 @@ export class PropertyinfoComponent implements OnInit {
   oldData :any;
   countryId: number = -1;
   cityId: number = -1;
-  districtId: number = -1;
   district: any = [];
   location = { lat: 31.5204, lng: 74.3587 };
   autocomplete: any;
@@ -76,23 +75,10 @@ export class PropertyinfoComponent implements OnInit {
 
   onCitySelect(e: any) {
     this.cityId = e.value;
-    this.district = [];
-    this.service.LoadDistrict(e.value).subscribe(e => {
-      let temp: any = e;
-      if (temp.message == "District list fetched successfully") {
-        for (let district of temp.data) {
-          this.district.push({ viewValue: district.name, value: district.id });
-        }
-      }
-    });
-  }
-
-  onDistrictSelect(e: any) {
-    this.districtId = e.value;
   }
 
   getOldFormData(){
-    this.oldData = localStorage.getItem('property_info');
+    this.oldData = localStorage.getItem('propertyData');
     if(this.oldData != '' && this.oldData != null){
       this.oldData = JSON.parse(this.oldData);
       this.SubmitForm.controls.CountryId.setValue(this.oldData.CountryId);
@@ -122,28 +108,27 @@ export class PropertyinfoComponent implements OnInit {
     return this.SubmitForm.controls;
   }
   onSubmit() {
-    // localStorage.removeItem("listpropertyinfo");
+    localStorage.removeItem("propertyData");
 
     this.submitted = true;
     if (this.SubmitForm.invalid) {
       return;
     }
-    console.log('dedede')
     let temp:any = document.getElementById("searchLocation");
 
     this.data.address = temp.value;
 
-    this.data.BuildingName = this.SubmitForm.value.BuildingName;
-    this.data.CityId = this.SubmitForm.value.CityId;
-    this.data.CountryId = this.SubmitForm.value.CountryId;
-    this.data.FloorNo = this.SubmitForm.value.FloorNo;
+    this.data.CountryId = this.countryId;
+    this.data.CityId = this.cityId;
+    this.data.PropertyLat = 73;
+    this.data.PropertyLong = 74;
     this.data.PropertyAge = this.SubmitForm.value.PropertyAge;
-    this.data.TotalFloor = this.SubmitForm.value.TotalFloor;
+    this.data.BuildingName = this.SubmitForm.value.BuildingName;
     this.data.UnitNo = this.SubmitForm.value.UnitNo;
-
-    localStorage.setItem('property_info',JSON.stringify(this.data))
+    this.data.TotalFloor = this.SubmitForm.value.TotalFloor;
+    this.data.FloorNo = this.SubmitForm.value.FloorNo;
+    localStorage.setItem('propertyData',JSON.stringify(this.data))
     this.route.navigate(['listpropertyinfo'])
-    // console.log(this.SubmitForm.value)
   }
 
   ngOnInit(): void {
