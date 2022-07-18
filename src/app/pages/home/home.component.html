@@ -50,59 +50,45 @@
       </div>
       <div ngClass="property-valuation-sec">
         <div ngClass="row">
-          <div ngClass="col-xl-5 col-lg-5 col-sm-5 col-sm-12">
-            <div ngClass="property-valuation-cntnt">
-              <img src="assets/images/propety-valuation.png" />
-              <div ngClass="pro-evaluation-cntnt-wrap">
-                <h2>Property Valuation Platform</h2>
-                <p>
-                  With A Cutting-Edge Tech & An Innovative Platform, We Provide
-                  An Accurate Valuation Of Your Property.
-                </p>
-                <a [routerLink]="['/PropertyDetail']">Start Valuation</a>
+          <div ngClass="col-sm-12">
+            <div ngClass="home-slider-sec">
+              <div ngClass="home-slider-sec">
+                <ngb-carousel [showNavigationArrows]="false">
+                    <ng-template ngbSlide *ngFor="let event of homebanner">
+                      <div ngClass="home-slider_img">
+                      <img [src]="event.img" alt="Random slide">
+                      </div>
+                      <div ngClass="home-slider_cntnt">
+                        <h2>{{event.title}}</h2>
+                        <p>{{event.desc}}</p>
+                        <a routerLink="/PropertyDetail">Start Valuation</a>
                 </div>
+                </ng-template>
+                </ngb-carousel>
             </div>
         </div>
-        <div ngClass="col-xl-7 col-lg-7 col-sm-7 col-sm-12">
-            <div ngClass="row">
-                <div ngClass="col-xl-6 col-lg-6 col-sm-6 col-sm-12">
-                    <div ngClass="pro-evaluations-blocks-div">
-                        <img src="assets/images/residentials-icon.svg" />
-                        <h4>Residential</h4>
-                        <p>
-                            We offer our customer property protection of liability coverage and insurance for their better life.
-                        </p>
-                    </div>
-                </div>
-                <div ngClass="col-xl-6 col-lg-6 col-sm-6 col-sm-12">
-                    <div ngClass="pro-evaluations-blocks-div">
-                        <img src="assets/images/commertials.svg" />
-                        <h4>Commercial</h4>
-                        <p>
-                            Not sure what you should be charging for your property? No need to worry, let us do the numbers for you.
-                        </p>
-                    </div>
-                </div>
-                <div ngClass="col-xl-6 col-lg-6 col-sm-6 col-sm-12">
-                    <div ngClass="pro-evaluations-blocks-div">
-                        <img src="assets/images/industrial-icon.svg" />
-                        <h4>Industrial</h4>
-                        <p>
-                            You no longer have to negotiate commissions and haggle with other agents it only cost 2%!
-                        </p>
-                    </div>
-                </div>
-                <div ngClass="col-xl-6 col-lg-6 col-sm-6 col-sm-12">
-                    <div ngClass="pro-evaluations-blocks-div">
-                        <img src="assets/images/agriculture-icon.svg" />
-                        <h4>Agricutural</h4>
-                        <p>
-                            Get a virtual tour, and schedule visits before you rent or buy any properties. You get overall control.
-                        </p>
-                    </div>
+        </div>
+        </div>
+        <div ngClass="row">
+            <div ngClass="col-xl-6 col-lg-6 col-sm-6 col-sm-12">
+                <div ngClass="pro-evaluations-blocks-div">
+                    <img src="assets/images/residentials-icon.svg" />
+                    <h4>{{categoryNameRes}}</h4>
+                    <p>
+                        {{categoryDetailRes}}
+                        <!-- We offer our customer property protection of liability coverage and insurance for their better life. -->
+                    </p>
                 </div>
             </div>
-        </div>
+            <div ngClass="col-xl-6 col-lg-6 col-sm-6 col-sm-12">
+                <div ngClass="pro-evaluations-blocks-div">
+                    <img src="assets/images/commertials.svg" />
+                    <h4>{{categoryNameCom}}</h4>
+                    <p>
+                        {{categoryDetailCom}}
+                    </p>
+                </div>
+            </div>
         </div>
         </div>
         </div>
@@ -726,21 +712,21 @@
                 <div ngClass="col-md-4">
                     <div ngClass="total-transaction">
                         <p ngClass="text-center">AED</p>
-                        <h2 ngClass="text-center">840.26M</h2>
+                        <h2 ngClass="text-center">{{totalTransactions}}</h2>
                         <p ngClass="text-center">Total Transaction of Dubai</p>
                     </div>
                 </div>
                 <div ngClass="col-md-4">
                     <div ngClass="total-transaction">
                         <p ngClass="text-center">AED</p>
-                        <h2 ngClass="text-center">176.52M</h2>
+                        <h2 ngClass="text-center">{{totalSales}}</h2>
                         <p ngClass="text-center">Total Sales of Dubai</p>
                     </div>
                 </div>
                 <div ngClass="col-md-4">
                     <div ngClass="total-transaction">
                         <p ngClass="text-center">AED</p>
-                        <h2 ngClass="text-center">302.49M</h2>
+                        <h2 ngClass="text-center">{{totalMortgages}}</h2>
                         <p ngClass="text-center">Total Mortgage of Dubai</p>
                     </div>
                 </div>

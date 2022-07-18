@@ -71,6 +71,12 @@ export class AppService {
   LatestPropertiesListingCommercial(id: number) {
     return this.http.get(this.apiurl + 'LatestPropertiesListingCommercial/' + id);
   }
+  PropertyCategories() {
+    return this.http.get(this.apiurl + 'PropertyCategories/');
+  }
+  ValuationTransactions() {
+    return this.http.get(this.apiurl + 'ValuationTransactions/');
+  }
   LoadProfessionalTypes() {
     return this.http.get(this.apiurl + 'ProfessionalTypes');
   }
