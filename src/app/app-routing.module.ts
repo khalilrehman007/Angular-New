@@ -51,6 +51,8 @@ import { BlogCategoryComponent } from './pages/blog-category/blog-category.compo
 import { ChatingComponent } from './pages/chating/chating.component';
 import { ChatNewMessageComponent } from './pages/chat-new-message/chat-new-message.component';
 import { PagenotfoundComponent } from './pages/pagenotfound/pagenotfound.component';
+
+
 // import {RoleGuardService} from "./role-guard-service.service";
 
 const routes: Routes = [
