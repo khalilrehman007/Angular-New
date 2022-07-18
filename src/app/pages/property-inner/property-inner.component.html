@@ -6,14 +6,15 @@
         <div [ngClass]="'container_1280px'">
             <div ngClass="property-details-header">
                 <div ngClass="d-flex justify-content-spacebw">
-                <div ngClass="black-text-breadcrumb">
-                <app-breadcrumb></app-breadcrumb>
-                <a routerLink="" ngClass="back-to-text"><mat-icon>keyboard_arrow_left</mat-icon> Back to Search</a>
-                </div>
-                <div ngClass="last-updated-details">
-                    <p>Last Updated: <span ngClass="update-date">April 19, 2022</span></p>
-                    <p>Listing ID <span ngClass="update-id">#OV-4003021</span></p>
-                </div>
+                    <div ngClass="black-text-breadcrumb">
+                        <app-breadcrumb></app-breadcrumb>
+                        <a routerLink="" ngClass="back-to-text">
+                            <mat-icon>keyboard_arrow_left</mat-icon> Back to Search</a>
+                    </div>
+                    <div ngClass="last-updated-details">
+                        <p>Last Updated: <span ngClass="update-date">April 19, 2022</span></p>
+                        <p>Listing ID <span ngClass="update-id">#OV-4003021</span></p>
+                    </div>
                 </div>
             </div>
             <div ngClass="property-price-buttons-sec">
@@ -45,26 +46,26 @@
                 </div>
             </div>
             <div ngClass="property-gallery-div-sec">
-            <div ngClass="row">
-             <div ngClass="col-xl-8 col-lg-8 col-md-12 col-sm-12">
-            <div ngClass="property-gallery-sec">
-                <ngb-carousel [showNavigationArrows]="false">
-                    <ng-template ngbSlide *ngFor="let event of eventlist">
-                      <img [src]="event.img" alt="Random slide">
-                    </ng-template>
-                  </ngb-carousel>
-            </div>
-            </div>
-            <div ngClass="col-xl-4 col-lg-4 col-md-12 col-sm-12">
-                <div ngClass="slider-thumb-img bordered mb-4">
-                    <img src="{{thumb1}}">
+                <div ngClass="row">
+                    <div ngClass="col-xl-8 col-lg-8 col-md-12 col-sm-12">
+                        <div ngClass="property-gallery-sec">
+                            <ngb-carousel [showNavigationArrows]="false">
+                                <ng-template ngbSlide *ngFor="let event of eventlist">
+                                    <img [src]="event.img" alt="Random slide">
+                                </ng-template>
+                            </ngb-carousel>
+                        </div>
+                    </div>
+                    <div ngClass="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+                        <div ngClass="slider-thumb-img bordered mb-4">
+                            <img src="{{thumb1}}">
+                        </div>
+                        <div ngClass="slider-thumb-img position-relative">
+                            <img src="{{thumb1}}">
+                            <button class="view-all-photos" (click)="openVerticallyCentered(content)"><img src="{{gallery}}"> View all photos</button>
+                        </div>
+                    </div>
                 </div>
-                <div ngClass="slider-thumb-img position-relative">
-                    <img src="{{thumb1}}">
-                    <button class="view-all-photos" (click)="openVerticallyCentered(content)"><img src="{{gallery}}"> View all photos</button>
-                </div>
-            </div>
-            </div>
             </div>
             <div ngClass="property-tabs-content">
                 <div ngClass="row">
@@ -104,9 +105,10 @@
                                     </div>
                                     <div ngClass="description-block-design">
                                         <h4>Property Description</h4>
-                                        <p>Brought to you by Driven Properties, this 3 Bedroom Apartment is located in The Address Sky View Tower 2, Downtown Dubai.Downtown Dubai is the city’s busy tourism hub. A home to the towering Burj Khalifa skyscraper, with its observation deck, and the dancing Dubai Fountain where crowds gather to watch music and light shows</p>
+                                        <p>Brought to you by Driven Properties, this 3 Bedroom Apartment is located in The Address Sky View Tower 2, Downtown Dubai.Downtown Dubai is the city’s busy tourism hub. A home to the towering Burj Khalifa skyscraper,
+                                            with its observation deck, and the dancing Dubai Fountain where crowds gather to watch music and light shows</p>
                                         <div ngClass="read-more-div text-right">
-                                        <a routerLink="" ngClass="read-more-link">Read more</a>
+                                            <a routerLink="" ngClass="read-more-link">Read more</a>
                                         </div>
                                     </div>
                                 </mat-tab>
@@ -163,29 +165,29 @@
                                         <h5>Location</h5>
                                     </div>
                                     <div ngClass="row">
-                                    <div ngClass="col-xl-3 col-lg-3 col-md-12 col-sm-12">
-                                    <div ngClass="location-divs-sec">
-                                        <div ngClass="location-address">
-                                            <h4>OV 3456 890 987</h4>
-                                            <h5>Blue Wave Tower</h5>
-                                            <address>Etihad Tower 4, Etihad Towers, 
+                                        <div ngClass="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+                                            <div ngClass="location-divs-sec">
+                                                <div ngClass="location-address">
+                                                    <h4>OV 3456 890 987</h4>
+                                                    <h5>Blue Wave Tower</h5>
+                                                    <address>Etihad Tower 4, Etihad Towers, 
                                                 Corniche Road, Abu Dhabi    
                                                 <a routerLink="">District Name</a>
                                             </address>
+                                                </div>
+                                                <div ngClass="scan-buttons">
+                                                    <button ngClass="scan-btn-border"><img src="{{qrscan}}"> QR SCAN - Property Info</button>
+                                                    <button ngClass="scan-btn-border"><img src="{{qrscan}}"> Commute by Metro</button>
+                                                    <button ngClass="scan-btn-border"><img src="{{qrscan}}"> Commute by Vehicle</button>
+                                                    <button ngClass="scan-btn-border"><img src="{{qrscan}}"> Commute by Walk</button>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div ngClass="scan-buttons">
-                                            <button ngClass="scan-btn-border"><img src="{{qrscan}}"> QR SCAN - Property Info</button>
-                                            <button ngClass="scan-btn-border"><img src="{{qrscan}}"> Commute by Metro</button>
-                                            <button ngClass="scan-btn-border"><img src="{{qrscan}}"> Commute by Vehicle</button>
-                                            <button ngClass="scan-btn-border"><img src="{{qrscan}}"> Commute by Walk</button>
+                                        <div ngClass="col-xl-9 col-lg-9 col-md-12 col-sm-12">
+                                            <div ngClass="location-map-sec">
+                                                <div style="width: 100%"><iframe width="100%" height="311" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=dubai+(My%20Business%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"><a href="https://www.gps.ie/wearable-gps/">Kids wearables</a></iframe></div>
+                                            </div>
                                         </div>
-                                    </div>
-                                    </div>
-                                    <div ngClass="col-xl-9 col-lg-9 col-md-12 col-sm-12">
-                                        <div ngClass="location-map-sec">
-                                            <div style="width: 100%"><iframe width="100%" height="311" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=dubai+(My%20Business%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"><a href="https://www.gps.ie/wearable-gps/">Kids wearables</a></iframe></div>
-                                        </div>
-                                    </div>
                                     </div>
                                 </mat-tab>
                                 <mat-tab label="Explore Nearby">
@@ -204,7 +206,7 @@
                                         <img src="{{exploredemo}}">
                                     </div>
                                 </mat-tab>
-                              </mat-tab-group>
+                            </mat-tab-group>
                         </div>
                     </div>
                     <div ngClass="col-xl-4 col-lg-4 col-md-12 col-sm-12">
@@ -216,7 +218,7 @@
                             <div ngClass="property-listed-by-details d-flex">
                                 <div ngClass="property-listedby-img position-relative">
                                     <div ngClass="white-circle-outline">
-                                    <img src="{{propertylisteby}}">
+                                        <img src="{{propertylisteby}}">
                                     </div>
                                     <button ngClass="agent-or-owner-btn">Agent</button>
                                 </div>
@@ -226,7 +228,7 @@
                                     <p ngClass="properties-name">
                                         Better Homes Properties
                                     </p>
-                                    <p ngClass="rera"> RERA# 11899</p> 
+                                    <p ngClass="rera"> RERA# 11899</p>
                                     <p ngClass="permit">Permit# 7187842740</p>
                                     <a routerLink="" ngClass="properties-listed-no">47 - Active Properties Listed</a>
                                 </div>
@@ -255,10 +257,10 @@
                                         <mat-form-field class="example-full-width" appearance="fill">
                                             <mat-label>Message</mat-label>
                                             <textarea matInput placeholder="I would like to inquire about the property OV - R8986. Please contact me at your earliest convenience."></textarea>
-                                          </mat-form-field>
+                                        </mat-form-field>
                                     </div>
                                     <div ngClass="form-grouph submit-design submit-design-email-send">
-                                       <button type="submit" ngClass="btn-design-3">Send Email</button>
+                                        <button type="submit" ngClass="btn-design-3">Send Email</button>
                                     </div>
                                 </form>
                             </div>
@@ -279,92 +281,92 @@
                                     <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                                         <button ngClass=""><img src="{{virtual}}"> Virtual Tour</button>
                                     </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
             </div>
         </div>
     </section>
-<section ngClass="similer-properties-sec">
-    <div [ngClass]="'container_1220px'">
-        <div ngClass="section-custom-title-left">
-            <h4>Similar properties in the same area</h4>
-        </div>
-        <div ngClass="row">
-            <div ngClass="col-xl-3 col-lg-3 col-md-6 col-sm-12" *ngFor="let slide of dynamicSlides1">
-                <div ngClass="property-item">
-                    <img [src]="slide.src" [alt]="slide.alt" [title]="slide.title">
-                    <span [ngClass]="'popular-tag'"><img src="assets/images/tag/popular.png"></span>
-                    <div ngClass="brand-logo">
-                      <img src="{{brandimg}}" alt="">
-                  </div>
-                  <button ngClass="property-whistlist">
+    <section ngClass="similer-properties-sec">
+        <div [ngClass]="'container_1220px'">
+            <div ngClass="section-custom-title-left">
+                <h4>Similar properties in the same area</h4>
+            </div>
+            <div ngClass="row">
+                <div ngClass="col-xl-3 col-lg-3 col-md-6 col-sm-12" *ngFor="let slide of dynamicSlides1">
+                    <div ngClass="property-item">
+                        <img [src]="slide.src" [alt]="slide.alt" [title]="slide.title">
+                        <span [ngClass]="'popular-tag'"><img src="assets/images/tag/popular.png"></span>
+                        <div ngClass="brand-logo">
+                            <img src="{{brandimg}}" alt="">
+                        </div>
+                        <button ngClass="property-whistlist">
                       <svg width="22" height="23" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path d="M4.39376 6.23844C4.02517 6.63167 3.73279 7.0985 3.53331 7.61228C3.33383 8.12605 3.23116 8.67672 3.23116 9.23283C3.23116 9.78894 3.33383 10.3396 3.53331 10.8534C3.73279 11.3672 4.02517 11.834 4.39376 12.2272L11.1699 19.4563L17.946 12.2272C18.6904 11.433 19.1086 10.3559 19.1086 9.23283C19.1086 8.10972 18.6904 7.0326 17.946 6.23844C17.2016 5.44429 16.1919 4.99813 15.1392 4.99813C14.0865 4.99813 13.0768 5.44429 12.3324 6.23844L11.1699 7.47873L10.0073 6.23844C9.63871 5.84521 9.20113 5.53329 8.71954 5.32047C8.23796 5.10766 7.72179 4.99812 7.20053 4.99812C6.67926 4.99812 6.1631 5.10766 5.68152 5.32047C5.19993 5.53329 4.76235 5.84521 4.39376 6.23844V6.23844Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                       </svg>
                   </button>
-                  <div ngClass="property-info">
-                      <a routerLink="/{{slide.link}}" ngClass="property-pricing"><span>{{slide.price}}</span>/yearly</a>
-                      <a routerLink="/{{slide.link}}" ngClass="property-name">Blue Wave Tower</a>
-                      <p ngClass="property-location"><img src="{{homelocationsvg}}" width="14" alt="">Etihad Tower 4, Etihad Towers,  </p>
-                      <div ngClass="property-details">
-                          <span ngClass="bed">
+                        <div ngClass="property-info">
+                            <a routerLink="/{{slide.link}}" ngClass="property-pricing"><span>{{slide.price}}</span>/yearly</a>
+                            <a routerLink="/{{slide.link}}" ngClass="property-name">Blue Wave Tower</a>
+                            <p ngClass="property-location"><img src="{{homelocationsvg}}" width="14" alt="">Etihad Tower 4, Etihad Towers, </p>
+                            <div ngClass="property-details">
+                                <span ngClass="bed">
                               <img src="{{bedsvg}}" alt="">3 Beds
                           </span>
-                          <span ngClass="bath">
+                                <span ngClass="bath">
                               <img src="{{bathsvg}}" alt="">2Bath
                           </span>
-                          <span ngClass="area">
+                                <span ngClass="area">
                               <img src="{{squaremetersvg}}" alt="">800sqft
                           </span>
-                      </div>
-                  </div>
-                  </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 </section>
 <div ngClass="gallery-modal-design">
-<ng-template #content let-modal>
-    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
-    <div class="modal-body gallery-design">
-        <div ngClass="property-price-buttons-sec">
-            <div ngClass="row">
-                <div ngClass="col-xl-4 col-lg-4 col-md-12 col-sm-12">
-                    <div ngClass="property-price_detals">
-                        <h4>85,000 AED <small>/yearly</small></h4>
-                        <div ngClass="property-tags d-flex flex-wrap">
-                            <span ngClass="tags-bg-grey">Brokrage: 500 AED</span>
-                            <span ngClass="tags-bg-grey">Security deposit: 1000 AED</span>
+    <ng-template #content let-modal>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+        <div class="modal-body gallery-design">
+            <div ngClass="property-price-buttons-sec">
+                <div ngClass="row">
+                    <div ngClass="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+                        <div ngClass="property-price_detals">
+                            <h4>85,000 AED <small>/yearly</small></h4>
+                            <div ngClass="property-tags d-flex flex-wrap">
+                                <span ngClass="tags-bg-grey">Brokrage: 500 AED</span>
+                                <span ngClass="tags-bg-grey">Security deposit: 1000 AED</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-                    <div ngClass="property-name_detals">
-                        <h4>Blue Wave Tower</h4>
-                        <div ngClass="property-addresss">
-                            <p><img src="{{homeaddress}}"> Etihad Tower 4, Etihad Towers, Corniche Road, Abu Dhabi <a routerLink="">District Name</a></p>
+                    <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                        <div ngClass="property-name_detals">
+                            <h4>Blue Wave Tower</h4>
+                            <div ngClass="property-addresss">
+                                <p><img src="{{homeaddress}}"> Etihad Tower 4, Etihad Towers, Corniche Road, Abu Dhabi <a routerLink="">District Name</a></p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div ngClass="col-xl-2 col-lg-2 col-md-12 col-sm-12">
-                    <div ngClass="property-action_detals text-right">
-                        <button ngClass="contact-seller-btn">Contact Seller</button>
+                    <div ngClass="col-xl-2 col-lg-2 col-md-12 col-sm-12">
+                        <div ngClass="property-action_detals text-right">
+                            <button ngClass="contact-seller-btn">Contact Seller</button>
+                        </div>
                     </div>
                 </div>
             </div>
+            <ngb-carousel [showNavigationIndicators]="false">
+                <ng-template ngbSlide *ngFor="let event of eventlist">
+                    <img [src]="event.img" alt="Random slide">
+                </ng-template>
+            </ngb-carousel>
         </div>
-        <ngb-carousel [showNavigationIndicators]="false">
-            <ng-template ngbSlide *ngFor="let event of eventlist">
-              <img [src]="event.img" alt="Random slide">
-            </ng-template>
-          </ngb-carousel>
-    </div>
-  </ng-template>
-  </div>
+    </ng-template>
+</div>
 <footer ngClass="footer-sec">
     <app-footer></app-footer>
-  </footer>
+</footer>

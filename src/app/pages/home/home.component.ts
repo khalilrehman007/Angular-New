@@ -29,53 +29,70 @@ export class HomeComponent implements OnInit {
   responsedata: any;
   dynamicSlides1:any = [];
   dynamicSlides2:any = [];
+  id: 1;
+  propertyDetails:any;
   oldData1() {
-    this.dynamicSlides1 = [
-      {
-        id: 'slide1',
-        src:'assets/images/property/1.png',
-        alt:'Side 1',
-        title:'Side 1',
-        price:"250,000AED"
-      },
-      {
-        id: 'slide2',
-        src:'assets/images/property/1.png',
-        alt:'Side 2',
-        title:'Side 2',
-        price:"250,000AED"
-      },
-      {
-        id: 'slide3',
-        src:'assets/images/property/1.png',
-        alt:'Side 3',
-        title:'Side 3',
-        price:"250,000AED"
-      },
-      {
-        id: 'slide4',
-        src:'assets/images/property/1.png',
-        alt:'Side 4',
-        title:'Side 4',
-        price:"250,000AED"
-      },
-      {
-        id: 'slide5',
-        src:'assets/images/property/1.png',
-        alt:'Side 5',
-        title:'Side 5',
-        price:"250,000AED"
-      }
-    ]
+    this.service.LatestPropertiesListingResidential(1).subscribe(data=>{
+      this.propertyDetails=data;
+      this.propertyDetails = this.propertyDetails.data;
+      this.dynamicSlides1 = this.propertyDetails;
+      //console.log(this.dynamicSlides1);
+      this.dynamicSlides1.forEach((element, i) => {
+       // console.log(element['documents']);
+         element['documents'].forEach( (innerdata, i) => {
+           //console.log(innerdata.fileUrl);
+         });
+      })
+    });
+    
+    // this.dynamicSlides1 = [
+    //   {
+    //     id: 'slide1',
+    //     src:'assets/images/property/1.png',
+    //     alt:'Side 1',
+    //     title:'Side 1',
+    //     price:"250,000AED"
+    //   },
+    //   {
+    //     id: 'slide2',
+    //     src:'assets/images/property/1.png',
+    //     alt:'Side 2',
+    //     title:'Side 2',
+    //     price:"250,000AED"
+    //   },
+    //   {
+    //     id: 'slide3',
+    //     src:'assets/images/property/1.png',
+    //     alt:'Side 3',
+    //     title:'Side 3',
+    //     price:"250,000AED"
+    //   },
+    //   {
+    //     id: 'slide4',
+    //     src:'assets/images/property/1.png',
+    //     alt:'Side 4',
+    //     title:'Side 4',
+    //     price:"250,000AED"
+    //   },
+    //   {
+    //     id: 'slide5',
+    //     src:'assets/images/property/1.png',
+    //     alt:'Side 5',
+    //     title:'Side 5',
+    //     price:"250,000AED"
+    //   }
+    // ]
   }
+
   newData1() {
+   
     this.dynamicSlides1 = [
       {
         id: 'slide1',
         src:'assets/images/property/1.png',
         alt:'Side 1',
         title:'Side 56',
-        price:"350,000AED"
+        propertyPrice:"350,000AED"
       },
       {
         id: 'slide2',
@@ -106,45 +123,53 @@ export class HomeComponent implements OnInit {
         price:"350,000AED"
       }
     ]
+    console.log(this.dynamicSlides1);
   }
   oldData2() {
-    this.dynamicSlides2 = [
-      {
-        id: 'slide1',
-        src:'assets/images/property/1.png',
-        alt:'Side 1',
-        title:'Side 1',
-        price:"250,000AED"
-      },
-      {
-        id: 'slide2',
-        src:'assets/images/property/1.png',
-        alt:'Side 2',
-        title:'Side 2',
-        price:"250,000AED"
-      },
-      {
-        id: 'slide3',
-        src:'assets/images/property/1.png',
-        alt:'Side 3',
-        title:'Side 3',
-        price:"250,000AED"
-      },
-      {
-        id: 'slide4',
-        src:'assets/images/property/1.png',
-        alt:'Side 4',
-        title:'Side 4',
-        price:"250,000AED"
-      },
-      {
-        id: 'slide5',
-        src:'assets/images/property/1.png',
-        alt:'Side 5',
-        title:'Side 5',
-        price:"250,000AED"
-      }
-    ]
+    this.service.LatestPropertiesListingCommercial(1).subscribe(data=>{
+      this.propertyDetails=data;
+      this.propertyDetails = this.propertyDetails.data;
+      this.dynamicSlides2 = this.propertyDetails;
+      //console.log(this.dynamicSlides2);
+     
+    });
+    // this.dynamicSlides2 = [
+    //   {
+    //     id: 'slide1',
+    //     src:'assets/images/property/1.png',
+    //     alt:'Side 1',
+    //     title:'Side 1',
+    //     price:"250,000AED"
+    //   },
+    //   {
+    //     id: 'slide2',
+    //     src:'assets/images/property/1.png',
+    //     alt:'Side 2',
+    //     title:'Side 2',
+    //     price:"250,000AED"
+    //   },
+    //   {
+    //     id: 'slide3',
+    //     src:'assets/images/property/1.png',
+    //     alt:'Side 3',
+    //     title:'Side 3',
+    //     price:"250,000AED"
+    //   },
+    //   {
+    //     id: 'slide4',
+    //     src:'assets/images/property/1.png',
+    //     alt:'Side 4',
+    //     title:'Side 4',
+    //     price:"250,000AED"
+    //   },
+    //   {
+    //     id: 'slide5',
+    //     src:'assets/images/property/1.png',
+    //     alt:'Side 5',
+    //     title:'Side 5',
+    //     price:"250,000AED"
+    //   }
+    // ]
   }
   newData2() {
     this.dynamicSlides2 = [
@@ -343,11 +368,25 @@ export class HomeComponent implements OnInit {
     Type: new FormControl(""),
     RentalType: new FormControl("")
   })
+  propertyType: any;
+  Sale: any;
+  SaleAr: any;
+  Rent: any;
+  RentAr: any;
   constructor(private service:AppService,private route:Router,private notifyService : NotificationService) {
     this.LoadPropertyCategories() 
     this.LoadBlogs();
     this.oldData1();
     this.oldData2();
+    this.newData1();
+    this.service.PropertyListingTypes().subscribe(data=>{
+      this.propertyType = data;
+      this.propertyType = this.propertyType.data;
+      this.Sale = this.propertyType[0].name;
+      this.SaleAr = this.propertyType[0].nameAr;
+      this.Rent = this.propertyType[1].name;
+      this.RentAr = this.propertyType[1].nameAr;
+    });
   }
   ngOnInit():void {
     
