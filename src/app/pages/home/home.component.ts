@@ -24,6 +24,7 @@ export class HomeComponent implements OnInit {
   squaremetersvg = 'assets/images/icons/Square Meters.svg'
   brandimg = 'assets/images/better-home.svg'
   listingsliderimg = 'assets/images/property-listing-slider-img.png'
+  baseUrl = 'https://beta.ovaluate.com/'
   blogs: any;
   submitted = false;
   responsedata: any;
@@ -36,14 +37,16 @@ export class HomeComponent implements OnInit {
     this.service.LatestPropertiesListingResidential(2).subscribe(data=>{
       this.propertyDetails= data;
       this.propertyDetails = this.propertyDetails.data;
+
       this.propertyDetails.forEach((element, i) => {
+        let image = element.documents[0].fileUrl
         tempData.push(
           {
             title: element.propertyTitle,
             price: element.propertyPrice,
             id:element.id,
             alt:element.propertyTitle,
-            src:'assets/images/property/1.png',
+            src:this.baseUrl+image,
             bedrooms:element.bedrooms,
             bathrooms:element.bathrooms,
             buildingName:element.buildingName,
@@ -97,14 +100,14 @@ export class HomeComponent implements OnInit {
       this.propertyDetails= data;
       this.propertyDetails = this.propertyDetails.data;
       this.propertyDetails.forEach((element, i) => {
-        console.log(element.documents[0])
+        let image = element.documents[0].fileUrl
         tempData.push(
           {
             title: element.propertyTitle,
             price: element.propertyPrice,
             id:element.id,
             alt:element.propertyTitle,
-            src:'assets/images/property/1.png',
+            src:this.baseUrl+image,
             bedrooms:element.bedrooms,
             bathrooms:element.bathrooms,
             buildingName:element.buildingName,
@@ -164,13 +167,14 @@ export class HomeComponent implements OnInit {
       this.propertyDetails=data;
       this.propertyDetails = this.propertyDetails.data;
       this.propertyDetails.forEach((element, i) => {
+        let image = element.documents[0].fileUrl
         tempData.push(
           {
             title: element.propertyTitle,
             price: element.propertyPrice,
             id:element.id,
             alt:element.propertyTitle,
-            src:'assets/images/property/1.png',
+            src:this.baseUrl+image,
             bedrooms:element.bedrooms,
             bathrooms:element.bathrooms,
             buildingName:element.buildingName,
@@ -224,13 +228,15 @@ export class HomeComponent implements OnInit {
       this.propertyDetails=data;
       this.propertyDetails = this.propertyDetails.data;
       this.propertyDetails.forEach((element, i) => {
+        let image = element.documents[0].fileUrl
+        console.log(element)
         tempData.push(
           {
             title: element.propertyTitle,
             price: element.propertyPrice,
             id:element.id,
             alt:element.propertyTitle,
-            src:'assets/images/property/1.png',
+            src:this.baseUrl+image,
             bedrooms:element.bedrooms,
             bathrooms:element.bathrooms,
             buildingName:element.buildingName,
@@ -355,7 +361,7 @@ export class HomeComponent implements OnInit {
   ]
 
   customOptions: OwlOptions = {
-    loop: true,
+    loop: false,
     mouseDrag: true,
     touchDrag: true,
     pullDrag: true,
@@ -365,13 +371,13 @@ export class HomeComponent implements OnInit {
       0: {
         items: 1
       },
-      400: {
+      576: {
         items: 2
       },
-      740: {
+      992: {
         items: 3
       },
-      940: {
+      1200: {
         items: 4
       }
     },
@@ -505,7 +511,7 @@ export class HomeComponent implements OnInit {
       this.totalSales = this.valuationTransactions[1].value;
       this.totalMortgages = this.valuationTransactions[2].value;
 
-      
+
     });
   }
   ngOnInit():void {

@@ -193,7 +193,7 @@
                         <a [routerLink]="['/PropertDetailsPage']" ngClass="property-pricing"><span>{{ slide.price }}</span>/yearly</a>
                         <a [routerLink]="['/PropertDetailsPage']" ngClass="property-name">{{ slide.buildingName }}</a>
                         <p ngClass="property-location">
-                      <img src="{{ homelocationsvg }}" width="14" alt=""/>{{slide.buildingName}}
+                      <img src="{{ homelocationsvg }}" width="14" alt=""/>{{slide.propertyAddress}}
                     </p>
                     <div ngClass="property-details">
                       <span ngClass="bed">
@@ -261,14 +261,14 @@
                     <a
                       [routerLink]="['/PropertDetailsPage']"
                       ngClass="property-name"
-                      >Blue Wave Tower</a
+                      >{{slide.buildingName}}</a
                     >
                     <p ngClass="property-location">
                       <img
                         src="{{ homelocationsvg }}"
                         width="14"
                         alt=""
-                      />Etihad Tower 4, Etihad Towers,
+                      />{{slide.propertyAddress}}
                     </p>
                     <div ngClass="property-details">
                       <span ngClass="bed">
@@ -426,7 +426,7 @@
                         src="{{ homelocationsvg }}"
                         width="14"
                         alt=""
-                      />{{slide.propertyAddress}},
+                      />{{slide.propertyAddress}}
                     </p>
                     <div ngClass="property-details">
                       <span ngClass="bed">
@@ -493,7 +493,7 @@
                         src="{{ homelocationsvg }}"
                         width="14"
                         alt=""
-                      />Etihad Tower 4, Etihad Towers,
+                      />{{slide.propertyAddress}}
                     </p>
                     <div ngClass="property-details">
                       <span ngClass="bed">

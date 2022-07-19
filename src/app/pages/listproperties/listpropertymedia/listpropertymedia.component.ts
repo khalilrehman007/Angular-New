@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { SecondHeaderComponent } from '../../../second-header/second-header.component';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import * as $ from 'jquery';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { FileUploadService } from '../../../service/file-upload.service';
-import {AuthService} from "../../../service/auth.service";
-import {Router} from "@angular/router";
-import {NotificationService} from "../../../service/notification.service";
+import { AuthService } from "../../../service/auth.service";
+import { Router } from "@angular/router";
+import { NotificationService } from "../../../service/notification.service";
 
 
 @Component({
@@ -16,8 +16,8 @@ import {NotificationService} from "../../../service/notification.service";
   styleUrls: ['./listpropertymedia.component.scss']
 })
 export class ListpropertymediaComponent implements OnInit {
-  selectedFiles?: FileList;
-  selectedVideo?: FileList;
+  selectedFiles: any;
+  selectedVideo:any;
   progressInfos: any[] = [];
   message: string[] = [];
   previews: string[] = [];
@@ -29,42 +29,31 @@ export class ListpropertymediaComponent implements OnInit {
   editdata: any;
   submitted = false;
   responsedata: any;
-  oldData :any;
-  priviousFormCheck :any;
+  oldData: any;
+  priviousFormCheck: any;
   data: any = {};
+  imageData:any = [];
+  videoData:any = [];
+  documentData:any = [];
 
 
-  constructor(private uploadService: FileUploadService,private route:Router) {
-    this.getOldFormData();
-    this.priviousFormCheck = localStorage.getItem('property_info');
-    if(this.priviousFormCheck == '' || this.priviousFormCheck == null){
+  constructor(private uploadService: FileUploadService, private route: Router) {
+    this.priviousFormCheck = localStorage.getItem('propertyData');
+    if (this.priviousFormCheck == '' || this.priviousFormCheck == null) {
       this.priviousFormCheck = JSON.parse(this.priviousFormCheck);
       this.route.navigate(['listingproperty'])
-    }else {
-      this.priviousFormCheck = JSON.parse(this.priviousFormCheck);
+    } else {
+      this.data = JSON.parse(this.priviousFormCheck);
     }
-  }
-
-  getOldFormData(){
-    this.priviousFormCheck = localStorage.getItem('property_info');
-    if(this.priviousFormCheck == '' || this.priviousFormCheck == null){
-      this.route.navigate(['listingproperty'])
-    }
-    this.oldData = localStorage.getItem('listpropertymedia');
-    if(this.oldData != '' && this.oldData != null){
-      this.oldData = JSON.parse(this.oldData);
-      this.SubmitForm.controls.videoLink.setValue(this.oldData.videoLink);
-    }
-    return this.oldData;
   }
 
   ngOnInit() {
-    $(document).ready(function(){
-      $('.dropdown-toggle').click(function(){
-      $(this).next().toggleClass('active');
+    $(document).ready(function () {
+      $('.dropdown-toggle').click(function () {
+        $(this).next().toggleClass('active');
       });
-  });
-  this.imageInfos = this.uploadService.getFiles();
+    });
+    this.imageInfos = this.uploadService.getFiles();
   }
 
   upload(idx: number, file: File): void {
@@ -93,9 +82,16 @@ export class ListpropertymediaComponent implements OnInit {
   }
 
   selectFiles(event: any): void {
+    this.imageData = [];
     this.message = [];
     this.progressInfos = [];
     this.selectedFiles = event.target.files;
+    console.log(this.selectedFiles);
+    for (let i = 0; i < this.selectedFiles.length; i++) {
+      let extension: any = this.selectedFiles[i].name.split(".");
+      extension = extension[extension.length - 1];
+      this.imageData.push({ "FileId": "1", "ListingDocumentTypeId": "1", "FileName": this.selectedFiles[i].name, "Extension": extension });
+    }
 
     this.previews = [];
     if (this.selectedFiles && this.selectedFiles[0]) {
@@ -113,7 +109,14 @@ export class ListpropertymediaComponent implements OnInit {
 
 
   onSelectFile(event) {
+    this.videoData
     this.selectedVideo = event.target.files;
+    for (let i = 0; i < this.selectedVideo.length; i++) {
+      let extension: any = this.selectedVideo[i].name.split(".");
+      extension = extension[extension.length - 1];
+      this.videoData.push({ "FileId": "1", "ListingDocumentTypeId": "1", "FileName": this.selectedVideo[i].name, "Extension": extension });
+    }
+    console.log(this.videoData);
     if (this.selectedVideo && this.selectedVideo[0]) {
       const numberOfFiles = this.selectedVideo.length;
       for (let i = 0; i < numberOfFiles; i++) {
@@ -125,9 +128,9 @@ export class ListpropertymediaComponent implements OnInit {
 
         reader.readAsDataURL(this.selectedVideo[i]);
 
-        if(this.selectedVideo[i].type.indexOf('image')> -1){
+        if (this.selectedVideo[i].type.indexOf('image') > -1) {
           this.format = 'image';
-        } else if(this.selectedVideo[i].type.indexOf('video')> -1){
+        } else if (this.selectedVideo[i].type.indexOf('video') > -1) {
           this.format = 'video';
         }
         reader.onload = (event) => {
@@ -136,23 +139,6 @@ export class ListpropertymediaComponent implements OnInit {
       }
     }
   }
-
-  // onSelectFile(event) {
-  //     const file = event.target.files && event.target.files[0];
-  //     this.selectedVideo = file;
-  //     if (file) {
-  //       var reader = new FileReader();
-  //       reader.readAsDataURL(file);
-  //       if(file.type.indexOf('image')> -1){
-  //         this.format = 'image';
-  //       } else if(file.type.indexOf('video')> -1){
-  //         this.format = 'video';
-  //       }
-  //       reader.onload = (event) => {
-  //         this.url = (<FileReader>event.target).result;
-  //       }
-  //     }
-  // }
 
   uploadFiles(): void {
     this.message = [];
@@ -174,10 +160,10 @@ export class ListpropertymediaComponent implements OnInit {
 
 
   SubmitForm = new FormGroup({
-    videoLink : new FormControl("" ),
+    videoLink: new FormControl(""),
   });
 
-  get validate(){
+  get validate() {
     return this.SubmitForm.controls;
   }
 
@@ -187,22 +173,18 @@ export class ListpropertymediaComponent implements OnInit {
     if (this.SubmitForm.invalid) {
       return;
     }
-    //direct file upload code uncomment
-    // this.uploadVideo();
-    // this.uploadFiles();
-
-
 
     this.data.selectedFiles = this.previews;
     this.data.selectedVideo = this.url;
 
     let files = JSON.stringify(this.data)
 
-    localStorage.setItem('mediaFiles',files)
-    localStorage.setItem('listpropertymedia',JSON.stringify(this.SubmitForm.value))
-    this.route.navigate(['listpropertyverify'])
+    // localStorage.setItem('mediaFiles',files)
+    // localStorage.setItem('listpropertymedia',JSON.stringify(this.SubmitForm.value))
+    // this.route.navigate(['listpropertyverify'])
+
+
 
   }
 
 }
-
