@@ -96,6 +96,7 @@ const routes: Routes = [
   { path: "agent-details/:id", component: AgentDetailsComponent },
   { path: "company-details/:id", component: CompanyDetailsComponent },
   { path: "find-agent", component: AgentLandingComponent },
+  { path: "find-companies", component: AgentLandingComponent },
   { path: "listing-packages", component: ListingpackagesComponent },
   { path: "rent-properties", component: RentpropertiesComponent },
   { path: "mapview", component: MapviewComponent },

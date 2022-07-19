@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-agent-landing',
@@ -10,10 +11,19 @@ export class AgentLandingComponent implements OnInit {
   totalLength: number = 0;
   page: number = 1;
   companies:boolean = false;
-  constructor() {
+  constructor(private router: Router) {
     this.agentData();
+    let url = this.router.url.replace("/", "");
+    if(url == 'find-companies'){
+      this.companiesCheck = true;
+    }else if (url == 'find-agent'){
+      this.agentCheck = true;
+    }
   }
   featuredAgentData:any;
+  // currentURL=false;
+  agentCheck:any = false;
+  companiesCheck :any = false;
   agentList:any;
   featuredCompaniesData:any;
   companiesList:any;

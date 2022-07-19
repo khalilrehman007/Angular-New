@@ -8,20 +8,22 @@
         <div class="agent-landing__tabs-wrapper">
             <ul class="nav nav-pills mb-3" id="pills-tab">
                 <li class="nav-item">
-                    <a class="nav-link active" id="pills-agents-tab" data-bs-toggle="pill"
+                    <a class="nav-link {{agentCheck ? 'active' : ''}}"
+                       id="pills-agents-tab" data-bs-toggle="pill"
                         data-bs-target="#find-agents" (click)="agentData()">Find Agents</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="pills-companies-tab" data-bs-toggle="pill" data-bs-target="#pills-companies"
+                    <a class="nav-link {{companiesCheck ? 'active' : ''}}"
+                       id="pills-companies-tab" data-bs-toggle="pill" data-bs-target="#pills-companies"
                         (click)="companyData()">Find Companies</a>
                 </li>
             </ul>
             <div ngClass="form_tabs">
             <div class="tab-content" id="pills-tabContent">
-                <div class="tab-pane fade show active" id="find-agents">
+                <div class="tab-pane fade show {{agentCheck ? 'active' : ''}}" id="find-agents">
                     <find-agent-search></find-agent-search>
                 </div>
-                <div class="tab-pane fade" id="pills-companies">
+                <div class="tab-pane fade show {{companiesCheck ? 'active' : ''}}" id="pills-companies">
                     <div ngClass="tab-form-sec rent-form">
                         <form>
                           <div ngClass="flex-row">
