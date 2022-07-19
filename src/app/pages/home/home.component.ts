@@ -8,7 +8,7 @@ import {NgbNav} from '@ng-bootstrap/ng-bootstrap';
 import { HeaderComponent } from '../../header/header.component';
 import { FooterComponent } from '../../footer/footer.component';
 import { AppService } from 'src/app/service/app.service';
-import { FormControl, FormGroup } from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import { NotificationService } from 'src/app/service/notification.service';
 import { Router } from '@angular/router';
 
@@ -30,6 +30,9 @@ export class HomeComponent implements OnInit {
   responsedata: any;
   dynamicSlides1:any = [];
   dynamicSlides2:any = [];
+  homebanners:any = [];
+  country:any = [];
+
   id: 1;
   propertyDetails:any;
   oldData1() {
@@ -229,7 +232,6 @@ export class HomeComponent implements OnInit {
       this.propertyDetails = this.propertyDetails.data;
       this.propertyDetails.forEach((element, i) => {
         let image = element.documents[0].fileUrl
-        console.log(element)
         tempData.push(
           {
             title: element.propertyTitle,
@@ -307,23 +309,23 @@ export class HomeComponent implements OnInit {
       class:'get-ready-apply'
     }
   ]
-  homebanner = [
-    {
-      img: 'assets/images/home-banner-1.png',
-      title: 'The World’s 1st AI-Driven Property Valuation Platform',
-      desc: 'Our Platform Generates Certified Valuation Reports By DLD - The Dubai Land Development.'
-    },
-    {
-      img: 'assets/images/home-banner-2.png',
-      title: 'Property Valuations Made Easy For Residents & Foreign Investors',
-      desc: 'Our Platform And Qualified Specialists Provide Seamless Real Estate Valuation Solutions In The UAE And Soon, Across The GCC.'
-    },
-    {
-      img: 'assets/images/home-banner-3.png',
-      title: 'Get Auto-Generated, DLD-Approved Valuations',
-      desc: 'Our Platform Generates Certified Valuation Reports By DLD - The Dubai Land Development.'
-    },
-  ]
+  // homebanner = [
+  //   {
+  //     img: 'assets/images/home-banner-1.png',
+  //     title: 'The World’s 1st AI-Driven Property Valuation Platform',
+  //     desc: 'Our Platform Generates Certified Valuation Reports By DLD - The Dubai Land Development.'
+  //   },
+  //   {
+  //     img: 'assets/images/home-banner-2.png',
+  //     title: 'Property Valuations Made Easy For Residents & Foreign Investors',
+  //     desc: 'Our Platform And Qualified Specialists Provide Seamless Real Estate Valuation Solutions In The UAE And Soon, Across The GCC.'
+  //   },
+  //   {
+  //     img: 'assets/images/home-banner-3.png',
+  //     title: 'Get Auto-Generated, DLD-Approved Valuations',
+  //     desc: 'Our Platform Generates Certified Valuation Reports By DLD - The Dubai Land Development.'
+  //   },
+  // ]
   clientslide = [
     {
       id: 'slide1',
@@ -483,6 +485,9 @@ export class HomeComponent implements OnInit {
     this.LoadBlogs();
     this.oldData2();
     this.oldData1();
+    this.LoadBanners();
+    this.loadCountriesData();
+
     this.service.PropertyListingTypes().subscribe(data=>{
       this.propertyType = data;
       this.propertyType = this.propertyType.data;
@@ -573,6 +578,57 @@ export class HomeComponent implements OnInit {
         }
       })
     });
+  }
+  LoadBanners(){
+    let tempData :Array<Object> = []
+    this.service.LoadBanners().subscribe(data=>{
+      let response: any = data;
+      response.data.forEach((element, i) => {
+        let image = element.bannerDocument.fileUrl
+        tempData.push(
+          {title: element.bannerTitle, desc: element.bannerHeader, img:this.baseUrl+image});
+      })
+    });
+    this.homebanners = tempData
+  }
+
+  loadCountriesData() {
+    this.service.LoadCountries().subscribe(e => {
+      let temp: any = e;
+      if (temp.message == "Country list fetched successfully") {
+        for (let country of temp.data) {
+          this.country.push({ viewValue: country.name, value: country.id });
+        }
+      }
+    });
+  }
+
+  SubmitForm = new FormGroup({
+    email : new FormControl("", Validators.required)
+  });
+
+  proceedStore(){
+    if (this.SubmitForm.invalid) {
+      return;
+    }
+    if (this.SubmitForm.valid) {
+      this.service.StoreAddSubscriber(this.SubmitForm.value).subscribe(result => {
+        if(result!=null){
+          this.responsedata = result;
+          this.notifyService.showSuccess(this.responsedata.message, "");
+          this.SubmitForm.controls.email.setValue('');
+
+          // if(this.responsedata.data !== undefined && this.responsedata.error.length < 1){
+          //   this.notifyService.showSuccess(this.responsedata.message, "");
+          // }else{
+          //   this.notifyService.showError(this.responsedata.error[0], "");
+          // }
+        }else{
+          this.notifyService.showError("Subscriber Failed", "");
+        }
+      });
+    }
+
   }
 
   selected = 'option1';

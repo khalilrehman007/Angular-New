@@ -54,7 +54,8 @@
             <div ngClass="home-slider-sec">
               <div ngClass="home-slider-sec">
                 <ngb-carousel [showNavigationArrows]="false">
-                    <ng-template ngbSlide *ngFor="let event of homebanner">
+                    <ng-template ngbSlide *ngFor="let event of homebanners">
+                      {{event.id}}
                       <div ngClass="home-slider_img">
                       <img [src]="event.img" alt="Random slide">
                       </div>
@@ -881,8 +882,8 @@
                 <h6>
                     Discover ways to increase your home's value and get listed. No Spam.
                 </h6>
-                <form action="" ngClass="news-letter-form position-relative">
-                    <input type="email" placeholder="Enter your email address" />
+                <form [formGroup]="SubmitForm"  (ngSubmit)="proceedStore()" ngClass="news-letter-form position-relative">
+                    <input type="email" formControlName="email" placeholder="Enter your email address" />
                     <input type="submit" value="Submit" />
                 </form>
                 <p>

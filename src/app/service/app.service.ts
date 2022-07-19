@@ -29,6 +29,10 @@ export class AppService {
     // BlogBanners
     return this.http.get(this.apiurl+'blogs');
   }
+  LoadBanners(){
+    // BlogBanners
+    return this.http.get(this.apiurl+'Banners');
+  }
   LoadBlogById(){
     return this.http.get(this.apiurl+'blog/'+this.id);
   }
@@ -106,5 +110,8 @@ export class AppService {
   }
   LoadCompletionStatus(){
     return this.http.get(this.apiurl + 'PropertyCompletionStatus');
+  }
+  StoreAddSubscriber(data: any) {
+    return this.http.post(this.apiurl + 'AddSubscriber', data);
   }
 }
