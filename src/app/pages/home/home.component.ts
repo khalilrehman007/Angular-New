@@ -24,6 +24,7 @@ export class HomeComponent implements OnInit {
   squaremetersvg = 'assets/images/icons/Square Meters.svg'
   brandimg = 'assets/images/better-home.svg'
   listingsliderimg = 'assets/images/property-listing-slider-img.png'
+  baseUrl = 'https://beta.ovaluate.com/'
   blogs: any;
   submitted = false;
   responsedata: any;
@@ -45,7 +46,7 @@ export class HomeComponent implements OnInit {
             price: element.propertyPrice,
             id:element.id,
             alt:element.propertyTitle,
-            src:'https://beta.ovaluate.com/'+image,
+            src:this.baseUrl+image,
             bedrooms:element.bedrooms,
             bathrooms:element.bathrooms,
             buildingName:element.buildingName,
@@ -106,7 +107,7 @@ export class HomeComponent implements OnInit {
             price: element.propertyPrice,
             id:element.id,
             alt:element.propertyTitle,
-            src:'https://beta.ovaluate.com/'+image,
+            src:this.baseUrl+image,
             bedrooms:element.bedrooms,
             bathrooms:element.bathrooms,
             buildingName:element.buildingName,
@@ -173,7 +174,7 @@ export class HomeComponent implements OnInit {
             price: element.propertyPrice,
             id:element.id,
             alt:element.propertyTitle,
-            src:'https://beta.ovaluate.com/'+image,
+            src:this.baseUrl+image,
             bedrooms:element.bedrooms,
             bathrooms:element.bathrooms,
             buildingName:element.buildingName,
@@ -234,7 +235,7 @@ export class HomeComponent implements OnInit {
             price: element.propertyPrice,
             id:element.id,
             alt:element.propertyTitle,
-            src:'https://beta.ovaluate.com/'+image,
+            src:this.baseUrl+image,
             bedrooms:element.bedrooms,
             bathrooms:element.bathrooms,
             buildingName:element.buildingName,
