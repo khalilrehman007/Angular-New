@@ -91,6 +91,10 @@ import { NgxEditorModule } from "ngx-editor";
 import {ScrollingModule} from '@angular/cdk/scrolling';
 import { ChatNewMessageComponent } from './pages/chat-new-message/chat-new-message.component';
 import { PagenotfoundComponent } from './pages/pagenotfound/pagenotfound.component';
+import { AboutusComponent } from './pages/aboutus/aboutus.component';
+import { PrivacyPolicyComponent } from './pages/privacy-policy/privacy-policy.component';
+import { TermConditionsComponent } from './pages/term-conditions/term-conditions.component';
+import { ContactUsComponent } from './pages/contact-us/contact-us.component';
 
 
 @NgModule({
@@ -151,7 +155,11 @@ import { PagenotfoundComponent } from './pages/pagenotfound/pagenotfound.compone
     BlogCategoryComponent,
     ChatingComponent,
     ChatNewMessageComponent,
-    PagenotfoundComponent
+    PagenotfoundComponent,
+    AboutusComponent,
+    PrivacyPolicyComponent,
+    TermConditionsComponent,
+    ContactUsComponent
   ],
   imports: [
     BrowserModule,

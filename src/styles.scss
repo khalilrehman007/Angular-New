@@ -292,8 +292,8 @@ a {
 }
 .tenants-sec-wrapper {
 	.owl-item {
-		padding-right: 28px;
-		padding-right: 28px;
+		padding-right: 10px;
+		padding-left: 10px;
 	}
 }
 .owl-theme {
@@ -5586,28 +5586,7 @@ img {
 	}
 }
 @media (min-width: 1200px) {
-	.tenants-sec-wrapper {
-		.owl-stage-outer {
-			overflow: visible !important;
-		}
-	}
 	.easy-tenants-landlords-sec {
-		.tenants-bar-left {
-			position: relative;
-			z-index: 0;
-			&::before {
-				content: '';
-				position: absolute;
-				left: -100%;
-				right: 0;
-				top: 0;
-				bottom: 0;
-				background: #595ad4;
-				width: 100%;
-				height: 100%;
-				z-index: 9;
-			}
-		}
 		padding-left: 0px !important;
 		padding-right: 0px !important;
 	}
@@ -6640,6 +6619,25 @@ padding: 0px !important;
 		left: 0;
 		right: 0;
 	}
+	.home-slider-sec .carousel-item .home-slider_cntnt h2 {
+		font-size: 24px;
+		margin-bottom: 5px;
+	}
+	.inner-page-banner-sec {
+		padding: 15% 0 !important;
+	}
+	.cms-content-wrapper {
+		padding-top: 40px;
+	}
+	.cms_content-paragraph h2 {
+		font-size: 28px !important;
+	}
+	.contact-address-sec {
+		padding-top: 30px !important;
+	}
+	.cms-content-wrapper {
+		padding-top: 40px !important;
+	}
 	.home-slider-sec .carousel-item .home-slider_cntnt {
 		padding: 15px !important;
 	}
@@ -7347,3 +7345,92 @@ li.agent-details__property-list-item .col-lg-10>.row {
     color: var(--primary-color);
 }
 
+.inner-page-banner-sec {
+    background-size: cover;
+    background-repeat: no-repeat;
+	padding: 10% 0;
+}
+.inner-page-banner-sec h2 {
+    color: #fff;
+    font-size: 36px;
+    font-weight: 700;
+}
+.inner-page-banner-sec p {
+    color: #fff;
+    margin-bottom: 0px;
+}
+.cms-content-wrapper {
+    padding-top: 60px;
+    padding-bottom: 20px;
+}
+.cms_content-paragraph h2 {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 0px;
+}
+
+.cms-content-wrapper .have-questions-form {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+.cms-content-wrapper .have-questions-form .select-design .mat-form-field-flex {
+    background: transparent !important;
+    border: 1px solid #D3DBFF !important;
+    height: 42px !important;
+}
+.cms-content-wrapper .have-questions-form .select-design .mat-form-field-infix .mat-form-field-label-wrapper mat-label {
+    font-size: 14px;
+	color: #949494;
+}
+.cms-content-wrapper .have-questions-form .select-design .mat-form-field-infix {
+    border: none;
+}
+.cms-content-wrapper .have-questions-form .select-design .mat-form-field-infix .mat-form-field-label-wrapper {
+    top: -6px;
+}
+.cms-content-wrapper .have-questions-form .select-design .mat-form-field-infix .mat-select-min-line {
+    font-size: 14px;
+    display: block;
+    position: relative;
+    top: 3px;
+}
+.cms-content-wrapper .have-questions-form .select-design .mat-select-arrow-wrapper {
+    top: 7px;
+}
+.enquire_btn {
+    background: var(--primary-color);
+    color: var(--body-color);
+    text-decoration: none;
+    border: 1px solid var(--primary-color);
+    padding: 9px 30px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    max-width: 150px;
+}
+.enquire_btn:hover {
+    background: #333;
+}
+.contact-address-sec {
+    padding-top: 60px;
+}
+.contact-address-sec address {
+    margin-bottom: 1px;
+    font-size: 16px;
+    color: #000;
+}
+.contact-address-sec a {
+    display: block;
+    font-size: 16px;
+    color: #000;
+}
+.required-span {
+    color: red;
+}
+// @media (min-width: 481px){
+// .properties-slider .owl-carousel .owl-item {
+//     max-width: 297px;
+// }
+// }
