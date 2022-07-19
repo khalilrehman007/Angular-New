@@ -229,6 +229,7 @@ export class HomeComponent implements OnInit {
       this.propertyDetails = this.propertyDetails.data;
       this.propertyDetails.forEach((element, i) => {
         let image = element.documents[0].fileUrl
+        console.log(element)
         tempData.push(
           {
             title: element.propertyTitle,
