@@ -51,6 +51,10 @@ import { BlogCategoryComponent } from './pages/blog-category/blog-category.compo
 import { ChatingComponent } from './pages/chating/chating.component';
 import { ChatNewMessageComponent } from './pages/chat-new-message/chat-new-message.component';
 import { PagenotfoundComponent } from './pages/pagenotfound/pagenotfound.component';
+import { AboutusComponent } from './pages/aboutus/aboutus.component';
+import { PrivacyPolicyComponent } from './pages/privacy-policy/privacy-policy.component';
+import { TermConditionsComponent } from './pages/term-conditions/term-conditions.component';
+import { ContactUsComponent } from './pages/contact-us/contact-us.component';
 
 
 // import {RoleGuardService} from "./role-guard-service.service";
@@ -104,8 +108,11 @@ const routes: Routes = [
   { path: "blog-category", component: BlogCategoryComponent },
   { path: "chat", component: ChatingComponent },
   { path: "chat-new-message", component: ChatNewMessageComponent },
+  { path: "about-us", component: AboutusComponent },
+  { path: "privacy-policy", component: PrivacyPolicyComponent },
+  { path: "term-condition", component: TermConditionsComponent },
+  { path: "contact", component: ContactUsComponent },
   { path: '**', pathMatch: 'full', component: PagenotfoundComponent },
-
 ];
 
 @NgModule({
