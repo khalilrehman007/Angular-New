@@ -55,6 +55,12 @@ import { AboutusComponent } from './pages/aboutus/aboutus.component';
 import { PrivacyPolicyComponent } from './pages/privacy-policy/privacy-policy.component';
 import { TermConditionsComponent } from './pages/term-conditions/term-conditions.component';
 import { ContactUsComponent } from './pages/contact-us/contact-us.component';
+import { CookiePolicyComponent } from './pages/cookie-policy/cookie-policy.component';
+import { FaqComponent } from './pages/faq/faq.component';
+import { HelpCenterComponent } from './pages/help-center/help-center.component';
+import { HowItWorksComponent } from './pages/how-it-works/how-it-works.component';
+import { InvestorsComponent } from './pages/investors/investors.component';
+import { BuyPropertiesComponent } from './pages/buy-properties/buy-properties.component';
 
 
 // import {RoleGuardService} from "./role-guard-service.service";
@@ -113,6 +119,12 @@ const routes: Routes = [
   { path: "privacy-policy", component: PrivacyPolicyComponent },
   { path: "term-condition", component: TermConditionsComponent },
   { path: "contact", component: ContactUsComponent },
+  { path: "cookie", component: CookiePolicyComponent },
+  { path: "faq", component: FaqComponent },
+  { path: "help-center", component: HelpCenterComponent },
+  { path: "how-it-works", component: HowItWorksComponent },
+  { path: "investors", component: InvestorsComponent },
+  { path: "buy-properties", component: BuyPropertiesComponent },
   { path: '**', pathMatch: 'full', component: PagenotfoundComponent },
 ];
 

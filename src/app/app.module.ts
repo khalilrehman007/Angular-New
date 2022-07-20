@@ -95,6 +95,12 @@ import { AboutusComponent } from './pages/aboutus/aboutus.component';
 import { PrivacyPolicyComponent } from './pages/privacy-policy/privacy-policy.component';
 import { TermConditionsComponent } from './pages/term-conditions/term-conditions.component';
 import { ContactUsComponent } from './pages/contact-us/contact-us.component';
+import { CookiePolicyComponent } from './pages/cookie-policy/cookie-policy.component';
+import { FaqComponent } from './pages/faq/faq.component';
+import { HelpCenterComponent } from './pages/help-center/help-center.component';
+import { HowItWorksComponent } from './pages/how-it-works/how-it-works.component';
+import { InvestorsComponent } from './pages/investors/investors.component';
+import { BuyPropertiesComponent } from './pages/buy-properties/buy-properties.component';
 
 
 @NgModule({
@@ -159,7 +165,13 @@ import { ContactUsComponent } from './pages/contact-us/contact-us.component';
     AboutusComponent,
     PrivacyPolicyComponent,
     TermConditionsComponent,
-    ContactUsComponent
+    ContactUsComponent,
+    CookiePolicyComponent,
+    FaqComponent,
+    HelpCenterComponent,
+    HowItWorksComponent,
+    InvestorsComponent,
+    BuyPropertiesComponent
   ],
   imports: [
     BrowserModule,
