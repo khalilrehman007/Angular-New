@@ -30,13 +30,13 @@ export class HeaderComponent implements OnInit {
       src: '../../assets/images/icons/ioi.svg',
       class: 'nav-items buy',
       text: 'Buy',
-      link: '',
+      link: '/search/buy',
     },
     {
       src: '../../assets/images/icons/rent-icon.svg',
       class: 'nav-items buy',
       text: 'Rent',
-      link: 'rent-properties',
+      link: '/search/rent',
     },
     {
       src: '../../assets/images/icons/sell.svg',
@@ -48,7 +48,7 @@ export class HeaderComponent implements OnInit {
       src: '../../assets/images/icons/land.svg',
       class: 'nav-items sell',
       text: 'Land',
-      link: '/land',
+      link: '/search/land',
     },
     {
       src: '../../assets/images/icons/building.svg',

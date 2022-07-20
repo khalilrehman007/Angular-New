@@ -527,6 +527,7 @@ export class HomeComponent implements OnInit {
         });
     });
   }
+
   ProceedSearch() {
     this.submitted = true;
     if (this.search.invalid) {
@@ -563,12 +564,14 @@ export class HomeComponent implements OnInit {
 
     });
   }
+
   LoadPropertyTypes(){
     this.service.LoadPropertyTypes().subscribe(data=>{
       this.types=data;
       this.types = this.types.data
     });
   }
+
   LoadBlogs(){
     this.service.LoadBlogs().subscribe(data=>{
       this.blogs=data;
@@ -579,6 +582,7 @@ export class HomeComponent implements OnInit {
       })
     });
   }
+
   LoadBanners(){
     let tempData :Array<Object> = []
     this.service.LoadBanners().subscribe(data=>{

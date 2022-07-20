@@ -1,5 +1,5 @@
 <div ngClass="tab-form-sec rent-form">
-  <form>
+  <form (ngSubmit)="search()">
     <div ngClass="flex-row">
       <div ngClass="flex-column flex-column-1">
         <div ngClass="form-grouph input-design floating-label position-relative">
@@ -15,7 +15,7 @@
                 <h4 ngClass="drop_label">Price Range</h4>
               <div ngClass="rental-type-tabs-sec">
                 <mat-tab-group>
-                  <mat-tab label="Monthly">
+                  <mat-tab label="{{Rent}}">
                     <div ngClass="price-range_sec">
                       <div ngClass="extra-controls form-inline">
                         <div ngClass="form-group">
@@ -31,7 +31,7 @@
                     </div>
                   </div>
                   </mat-tab>
-                  <mat-tab label="Yearly">
+                  <mat-tab label="{{Sale}}">
                     <div ngClass="price-range_sec">
                       <div ngClass="extra-controls form-inline">
                         <div ngClass="form-group">
@@ -62,10 +62,10 @@
                 <div ngClass="property-types-heading">
                   <ul ngClass="nav nav-tabs" role="tablist">
                     <li ngClass="nav-item">
-                      <a ngClass="nav-link residential1 active" (click)="residentialfun1()"><span ngClass="circle-celection"></span> Residential</a>
+                      <a ngClass="nav-link residential1 active" (click)="rent()"><span ngClass="circle-celection"></span> {{Rent}}</a>
                     </li>
                     <li ngClass="nav-item">
-                      <a ngClass="nav-link commertial1" (click)="commertialfun1()"><span ngClass="circle-celection"></span> Commercial</a>
+                      <a ngClass="nav-link commertial1" (click)="sell()"><span ngClass="circle-celection"></span> {{Sale}}</a>
                     </li>
                   </ul>
                 </div>
