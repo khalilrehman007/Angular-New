@@ -16,14 +16,21 @@ import { NotificationService } from "../../../service/notification.service";
   styleUrls: ['./listpropertymedia.component.scss']
 })
 export class ListpropertymediaComponent implements OnInit {
+  uploadimg= '../../../../assets/images/icons/upload-icon.svg'
+  geolocation= '../../../../assets/images/icons/geo-location.svg'
+  awayproperty= '../../../../assets/images/icons/away-property.svg'
   selectedFiles: any;
   selectedVideo:any;
+  selectedDoc?: FileList;
+  selectedElec?: FileList;
   progressInfos: any[] = [];
   message: string[] = [];
   previews: string[] = [];
   imageInfos?: Observable<any>;
   url;
   format;
+  file: string;
+  Receipt: string;
   messageclass = '';
   Customerid: any;
   editdata: any;
@@ -31,6 +38,8 @@ export class ListpropertymediaComponent implements OnInit {
   responsedata: any;
   oldData: any;
   priviousFormCheck: any;
+  documentBase;
+  electricBase;
   data: any = {};
   images:any = [];
   imageData:any = [];
@@ -166,8 +175,29 @@ export class ListpropertymediaComponent implements OnInit {
       }
     }
   }
+  handleChange(files: FileList) {
+    if (files && files.length) {
+      this.file = files[0].name;
+      this.selectedDoc = files
+      const reader = new FileReader();
+      reader.readAsDataURL(files[0]);
+      reader.onload = (event) => {
+        this.documentBase = (<FileReader>event.target).result;
+      }
 
-
+    }
+  }
+  electricityReciept(files: FileList) {
+    if (files && files.length) {
+      this.Receipt = files[0].name;
+      this.selectedElec = files
+      const reader = new FileReader();
+      reader.readAsDataURL(files[0]);
+      reader.onload = (event) => {
+        this.electricBase = (<FileReader>event.target).result;
+      }
+    }
+  }
   SubmitForm = new FormGroup({
     videoLink: new FormControl(""),
   });

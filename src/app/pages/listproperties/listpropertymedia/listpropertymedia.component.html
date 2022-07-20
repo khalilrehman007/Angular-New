@@ -13,8 +13,7 @@
                 <mat-list-item ngClass="active"> <a routerLink="/listingproperty"><span ngClass="">1</span> Property Info</a> </mat-list-item>
                 <mat-list-item ngClass="active"><a routerLink=""><span ngClass="">2</span> Listing Info</a></mat-list-item>
                 <mat-list-item ngClass="active"> <a routerLink=""><span ngClass="">3</span> Media</a> </mat-list-item>
-                <mat-list-item ngClass="disabled"> <a routerLink=""><span ngClass="">4</span> Verify</a> </mat-list-item>
-                <mat-list-item ngClass="disabled"> <a routerLink=""><span ngClass="">5</span> Publish</a> </mat-list-item>
+                <mat-list-item ngClass="disabled"> <a routerLink=""><span ngClass="">4</span> Publish</a> </mat-list-item>
             </mat-list>
         </div>
         <div ngClass="list-property-content">
@@ -46,6 +45,65 @@
                 </div>
               <form [formGroup]="SubmitForm" (ngSubmit)="onSubmit()">
                 <div ngClass="form-border-wrapper">
+                    <div ngClass="list-property-header">
+                        <h5 ngClass="h5-heading">Verify Property</h5>
+                        <p>Kindly confirm some facts about the property</p>
+                    </div>
+                    <div ngClass="list-new-proerty-cntnt">
+                        <div ngClass="upload-document_div">
+                            <h6 ngClass="h6-design">Upload Documents</h6>
+                            <div ngClass="upload_documents d-flex">
+                                <div ngClass="bordered-btn-design">
+                                    <div ngClass="bordered-upload-btn">
+                                    <input type="file" hidden  #fileInput   (change)='handleChange($any($event.target).files)' >
+                                    <button mat-button (click)="fileInput.click()"><img src="{{uploadimg}}"> Upload Tittle Deed</button>
+                                    </div>
+                                    <span ngClass="outpup-filename">{{ file }}</span>
+                                </div>
+                                <div ngClass="bordered-btn-design">
+                                    <div ngClass="bordered-upload-btn">
+                                    <input type="file" hidden  #electricityreciept   (change)='electricityReciept($any($event.target).files)' >
+                                    <button mat-button (click)="electricityreciept.click()"><img src="{{uploadimg}}"> Upload Electricity Current Receipt</button>
+                                    </div>
+                                    <span ngClass="outpup-filename">{{ Receipt }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div ngClass="geo-loactionverify">
+                            <h6 ngClass="h6-design">Use Geo Location Check-In</h6>
+                            <div ngClass="inneR-border-wrap">
+                                <div ngClass="icons_txt-design">
+                                    <img src="{{geolocation}}">
+                                    <h6>At your property ?</h6>
+                                    <p>Click on 'Verify Now' then click on 'Allow Location' when asked</p>
+                                    <button ngClass="verify-now-btn">Verify Now</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div ngClass="or-divider-div text-center">
+                            <p>Or</p>
+                        </div>
+                        <div ngClass="away-from-property">
+                            <h6 ngClass="h6-design">Use Geo Location Check-In</h6>
+                            <div ngClass="inneR-border-wrap">
+                                <div ngClass="icons_txt-design">
+                                    <img src="{{awayproperty}}">
+                                    <h6>Away from the property?</h6>
+                                    <p>Verify later by opening this link on your mobile phone once you are within 300m from the property</p>
+                                </div>
+                                <div ngClass="textarea-design position-relative">
+                                    <mat-form-field class="full-width input-design" appearance="fill">
+                                        <mat-label>Paste Youtube/Vemio or any video link below</mat-label>
+                                        <input matInput type="text" formControlName="videoLink" placeholder="https://seller.ovaluate.com/my-listings/verify-listing?profile_uuid=5e68801">
+                                      </mat-form-field>
+                                      <button ngClass="verify-now-btn">Verify Now</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div ngClass="verify-later">
+                            <p>Incase you can’t verify it now <a routerLink="">Verify Later</a></p>
+                        </div>
+                    </div>
                     <div ngClass="list-property-header">
                         <h5 ngClass="h5-heading">Property Pictures & Videos</h5>
                         <p>Kindly confirm some facts about the property</p>
