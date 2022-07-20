@@ -1,0 +1,494 @@
+<div ngClass="light-bg-body">
+    <header>
+        <app-header></app-header>
+        </header>
+      <section [ngClass]="'inner-cntnt-wrapper'">
+    <section [ngClass]="'rent-propoerties-main-sec slide-left-bar'">
+       <div ngClass="properties-file-container-shadow">
+        <div ngClass="properties-file-container">
+          <app-propertyfilter></app-propertyfilter>
+          </div>
+       </div>
+       <div [ngClass]="'container_1280px'">
+        <div ngClass="row">
+          <div ngClass="col-xl-9 col-lg-9 col-md-12 col-sm-12">
+       <div ngClass="property-details-header">
+        <div ngClass="d-flex justify-content-spacebw">
+        <div ngClass="black-text-breadcrumb">
+        <app-breadcrumb></app-breadcrumb>
+        </div>
+        <div ngClass="last-updated-details">
+            <p>Last Updated: <span ngClass="update-date">April 19, 2022</span></p>
+        </div>
+        </div>
+    </div>
+    <div ngClass="heading-apragraph-design">
+       <h2>Residential Properties for Buy in UAE</h2>
+       <p>Showing 391,094 Properties for Buy in UAE</p>
+       <p>Properties For Buy in UAE. Verified Listings. Your Perfect Home is on Property Finder! Property Finder: Real Estate...  <button ngClass="read-more-btn">Read more</button></p>
+    </div>
+    <div ngClass="properties-filtr-values d-flex justify-content-spacebw">
+      <div ngClass="properties-filtr-values-left d-flex justify-content-spacebw">
+        <div class="checkbox-design position-relative">
+          <input type="radio" id="Furnished" name="property-types" value="Furnished">
+          <button class="checkbox-btn">All</button>
+      </div>
+      <div ngClass="block-wrapper">
+        <mat-form-field appearance="fill" class="select-design">
+            <mat-label><img src="{{videotiour}}"> Video Tour</mat-label>
+            <mat-select>
+              <mat-option value="Yes">
+                Yes
+              </mat-option>
+              <mat-option value="No">
+                No
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div ngClass="block-wrapper">
+          <mat-form-field appearance="fill" class="select-design">
+              <mat-label><img src="{{lsitedby}}"> Listed by</mat-label>
+              <mat-select>
+                <mat-option value="Residential">
+                  Residential
+                </mat-option>
+                <mat-option value="Commertial">
+                  Commertial
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+      </div>
+      <div ngClass="properties-filtr-values-right d-flex justify-content-spacebw">
+        <div class="checkbox-design position-relative">
+          <input type="radio" id="OV-Verified" name="property-types" value="OV-Verified">
+          <button class="checkbox-btn"><img src="{{ovverified}}">  OV-Verified</button>
+      </div>
+      <div ngClass="block-wrapper">
+        <mat-form-field appearance="fill" class="select-design">
+            <mat-label>Sort by</mat-label>
+            <mat-select>
+              <mat-option value="Latest">
+                Latest
+              </mat-option>
+              <mat-option value="Old">
+                Old
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+    <div ngClass="properties-list-design">
+      <div ngClass="properties-list-block-design">
+        <div ngClass="row">
+          <div ngClass="col-xl-4 col-md-4 col-lg-4 col-sm-12">
+            <div ngClass="properties-list_slider">
+              <ngb-carousel>
+                <ng-template ngbSlide *ngFor="let event of eventlist">
+                  <img [src]="event.img" alt="Random slide">
+                </ng-template>
+              </ngb-carousel>
+            </div>
+          </div>
+          <div ngClass="col-xl-8 col-md-8 col-lg-8 col-sm-12">
+            <div ngClass="properties-list_cntnts position-relative">
+              <div ngClass="properties-list_hdr d-flex justify-content-spacebw">
+                <div ngClass="property-price_detals">
+                  <h4>85,000 AED <small>/yearly</small></h4>
+                  <div ngClass="property-tags d-flex flex-wrap">
+                      <span ngClass="tags-bg-grey">Brokrage: 500 AED</span>
+                      <span ngClass="tags-bg-grey">Security deposit: 1000 AED</span>
+                  </div>
+              </div>
+              <div ngClass="property-action-hdr">
+                 <button ngClass="ov-verified-btn"><img src="{{ovverified}}"> OV-Verified</button>
+                 <button ngClass="circle-btn"><img src="{{order}}"></button>
+                 <button ngClass="circle-btn"><img src="{{heart}}"></button>
+              </div>
+              </div>
+              <div ngClass="property-name_detals">
+                <h4>Blue Wave Tower</h4>
+                <div ngClass="property-addresss">
+                    <p><img src="{{homelocationsvg}}"> Etihad Tower 4, Etihad Towers, Corniche Road, Abu Dhabi</p>
+                </div>
+            </div>
+            <div ngClass="topkey-highlights">
+              <h6>Hotel & Hotel Apartment</h6>
+              <div ngClass="property-details-highlights">
+                  <span ngClass="bed">
+                      <img src="{{bedsvg}}" alt="">3 Beds
+                  </span>
+                  <span ngClass="bath">
+                      <img src="{{bathsvg}}" alt="">2Bath
+                  </span>
+                  <span ngClass="area">
+                      <img src="{{squaremetersvg}}" alt="">8000sqft
+                  </span>
+                  <span ngClass="furnishing">
+                      <img src="{{furnishing}}" alt="">Furnished
+                  </span>
+              </div>
+          </div>
+          <div ngClass="key-tags">
+            <span>Exclusive</span>
+            <span>Golf & Canal Views</span>
+            <span>Affordable</span>
+            <span>Vastu complaint</span>
+            <span>Prime location</span>
+        </div>
+        <div ngClass="data-inteligence-text">
+           <h6>OV Data Intelligence - Corniche Road, Abu Dhabi </h6>
+           <div ngClass="property-range-bar d-flex">
+            <div ngClass="pro-range-whie-box">
+              <p>Recent Rent Txns</p>
+              <h6>2 in last 1 year</h6>
+            </div>
+            <div ngClass="pro-range-whie-box">
+              <p>Rent Price Range</p>
+              <h6>1,329,500 AED - 1,180,000 AED</h6>
+            </div>
+            <div ngClass="pro-range-whie-box">
+              <p>Avg. Rent/ Sq. Ft.</p>
+              <h6>1,436 AED</h6>
+            </div>
+           </div>
+        </div>
+        <div ngClass="property-footer-block">
+           <div ngClass="row align-items-center">
+            <div ngClass="col-xl-5 col-lg-12 col-md-12 col-sm-12">
+                <div ngClass="lsited-by-details d-flex">
+                  <div ngClass="list_cntnt-img">
+                  <img src="{{betterhome}}">
+                  </div>
+                  <div ngClass="list_cntnt-blcok">
+                    <h5>Olga Pikina</h5>
+                    <p>Listed on: March 09, 2022</p>
+                  </div>
+                </div>
+            </div>
+            <div ngClass="col-xl-7 col-lg-12 col-md-12 col-sm-12 text-right">
+              <div ngClass="pro-contact-details">
+                <a routerLink="/PropertDetailsPage" ngClass="grey-bordered-btn">Details</a>
+                <a routerLink="" ngClass="grey-bordered-btn">Call Now</a>
+                <a routerLink="" ngClass=""></a>
+                <div ngbDropdown class="d-inline-block">
+                <button ngClass="grren-btn grey-bordered-btn" id="dropdownBasic1" ngbDropdownToggle>Connect</button>
+                <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                  <button ngbDropdownItem><a href=""><img src="{{call}}"> Call Now</a></button>
+                  <button ngbDropdownItem><a routerLink="/chat-new-message"><img src="{{chat}}"> Chat</a></button>
+                  <button ngbDropdownItem><a href=""><img src="{{whatsapp}}"> Whats APP</a></button>
+                  <button ngbDropdownItem><a href=""><img src="{{videocall}}"> Video Call</a></button>
+                  <button ngbDropdownItem><a href=""><img src="{{virtual}}"> Virtual Tour</a></button>
+                  <button ngbDropdownItem><a href=""><img src="{{call}}"> Email</a></button>
+                </div>
+                </div>
+                <div ngbDropdown class="d-inline-block">
+                <button ngClass="grey-bordered-btn" id="dropdownBasic2" ngbDropdownToggle><img src="{{dots}}"></button>
+                <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
+                  <h5>Share with:</h5>
+                  <button ngbDropdownItem><a href=""><img src="{{fb}}"> Facebook</a></button>
+                  <button ngbDropdownItem><a href=""><img src="{{whatsapp}}"> WhatsAPP</a></button>
+                  <button ngbDropdownItem><a href=""><img src="{{twitter}}"> Twitter</a></button>
+                  <button ngbDropdownItem><a href=""><img src="{{qr}}"> QR Scan</a></button>
+                </div>
+                </div>
+                </div>
+              </div>
+            </div>
+        </div>
+        <p ngClass="premium-tag">PREMIUM</p>
+            </div>
+            <div ngClass="popular-tag-abs">
+              <img src="{{populardark}}">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div ngClass="properties-list-block-design">
+        <div ngClass="row">
+          <div ngClass="col-xl-4 col-md-4 col-lg-4 col-sm-12">
+            <div ngClass="properties-list_slider">
+              <ngb-carousel>
+                <ng-template ngbSlide *ngFor="let event of eventlist">
+                  <img [src]="event.img" alt="Random slide">
+                </ng-template>
+              </ngb-carousel>
+            </div>
+          </div>
+          <div ngClass="col-xl-8 col-md-8 col-lg-8 col-sm-12">
+            <div ngClass="properties-list_cntnts position-relative">
+              <div ngClass="properties-list_hdr d-flex justify-content-spacebw">
+                <div ngClass="property-price_detals">
+                  <h4>85,000 AED <small>/yearly</small></h4>
+                  <div ngClass="property-tags d-flex flex-wrap">
+                      <span ngClass="tags-bg-grey">Brokrage: 500 AED</span>
+                      <span ngClass="tags-bg-grey">Security deposit: 1000 AED</span>
+                  </div>
+              </div>
+              <div ngClass="property-action-hdr">
+                 <button ngClass="ov-verified-btn"><img src="{{ovverified}}"> OV-Verified</button>
+                 <button ngClass="circle-btn"><img src="{{order}}"></button>
+                 <button ngClass="circle-btn"><img src="{{heart}}"></button>
+              </div>
+              </div>
+              <div ngClass="property-name_detals">
+                <h4>Blue Wave Tower</h4>
+                <div ngClass="property-addresss">
+                    <p><img src="{{homelocationsvg}}"> Etihad Tower 4, Etihad Towers, Corniche Road, Abu Dhabi</p>
+                </div>
+            </div>
+            <div ngClass="topkey-highlights">
+              <h6>Hotel & Hotel Apartment</h6>
+              <div ngClass="property-details-highlights">
+                  <span ngClass="bed">
+                      <img src="{{bedsvg}}" alt="">3 Beds
+                  </span>
+                  <span ngClass="bath">
+                      <img src="{{bathsvg}}" alt="">2Bath
+                  </span>
+                  <span ngClass="area">
+                      <img src="{{squaremetersvg}}" alt="">8000sqft
+                  </span>
+                  <span ngClass="furnishing">
+                      <img src="{{furnishing}}" alt="">Furnished
+                  </span>
+              </div>
+          </div>
+          <div ngClass="key-tags">
+            <span>Exclusive</span>
+            <span>Golf & Canal Views</span>
+            <span>Affordable</span>
+            <span>Vastu complaint</span>
+            <span>Prime location</span>
+        </div>
+        <div ngClass="data-inteligence-text">
+           <h6>OV Data Intelligence - Corniche Road, Abu Dhabi </h6>
+           <div ngClass="property-range-bar d-flex">
+            <div ngClass="pro-range-whie-box">
+              <p>Recent Rent Txns</p>
+              <h6>2 in last 1 year</h6>
+            </div>
+            <div ngClass="pro-range-whie-box">
+              <p>Rent Price Range</p>
+              <h6>1,329,500 AED - 1,180,000 AED</h6>
+            </div>
+            <div ngClass="pro-range-whie-box">
+              <p>Avg. Rent/ Sq. Ft.</p>
+              <h6>1,436 AED</h6>
+            </div>
+           </div>
+        </div>
+        <div ngClass="property-footer-block">
+           <div ngClass="row align-items-center">
+            <div ngClass="col-xl-5 col-lg-12 col-md-12 col-sm-12">
+                <div ngClass="lsited-by-details d-flex">
+                  <div ngClass="list_cntnt-img">
+                  <img src="{{betterhome}}">
+                  </div>
+                  <div ngClass="list_cntnt-blcok">
+                    <h5>Olga Pikina</h5>
+                    <p>Listed on: March 09, 2022</p>
+                  </div>
+                </div>
+            </div>
+            <div ngClass="col-xl-7 col-lg-12 col-md-12 col-sm-12 text-right">
+              <div ngClass="pro-contact-details">
+                <a routerLink="/PropertDetailsPage" ngClass="grey-bordered-btn">Details</a>
+                <a routerLink="" ngClass="grey-bordered-btn">Call Now</a>
+                <a routerLink="" ngClass=""></a>
+                <div ngbDropdown class="d-inline-block">
+                <button ngClass="grren-btn grey-bordered-btn" id="dropdownBasic1" ngbDropdownToggle>Connect</button>
+                <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                  <button ngbDropdownItem><a href=""><img src="{{call}}"> Call Now</a></button>
+                  <button ngbDropdownItem><a routerLink="/chat-new-message"><img src="{{chat}}"> Chat</a></button>
+                  <button ngbDropdownItem><a href=""><img src="{{whatsapp}}"> Whats APP</a></button>
+                  <button ngbDropdownItem><a href=""><img src="{{videocall}}"> Video Call</a></button>
+                  <button ngbDropdownItem><a href=""><img src="{{virtual}}"> Virtual Tour</a></button>
+                  <button ngbDropdownItem><a href=""><img src="{{call}}"> Email</a></button>
+                </div>
+                </div>
+                <div ngbDropdown class="d-inline-block">
+                <button ngClass="grey-bordered-btn" id="dropdownBasic2" ngbDropdownToggle><img src="{{dots}}"></button>
+                <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
+                  <h5>Share with:</h5>
+                  <button ngbDropdownItem><a href=""><img src="{{fb}}"> Facebook</a></button>
+                  <button ngbDropdownItem><a href=""><img src="{{whatsapp}}"> WhatsAPP</a></button>
+                  <button ngbDropdownItem><a href=""><img src="{{twitter}}"> Twitter</a></button>
+                  <button ngbDropdownItem><a href=""><img src="{{qr}}"> QR Scan</a></button>
+                </div>
+                </div>
+                </div>
+              </div>
+            </div>
+        </div>
+        <p ngClass="premium-tag">PREMIUM</p>
+            </div>
+            <div ngClass="popular-tag-abs">
+              <img src="{{popularlight}}">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div ngClass="properties-list-block-design">
+        <div ngClass="row">
+          <div ngClass="col-xl-4 col-md-4 col-lg-4 col-sm-12">
+            <div ngClass="properties-list_slider">
+              <ngb-carousel>
+                <ng-template ngbSlide *ngFor="let event of eventlist">
+                  <img [src]="event.img" alt="Random slide">
+                </ng-template>
+              </ngb-carousel>
+            </div>
+          </div>
+          <div ngClass="col-xl-8 col-md-8 col-lg-8 col-sm-12">
+            <div ngClass="properties-list_cntnts position-relative">
+              <div ngClass="properties-list_hdr d-flex justify-content-spacebw">
+                <div ngClass="property-price_detals">
+                  <h4>85,000 AED <small>/yearly</small></h4>
+                  <div ngClass="property-tags d-flex flex-wrap">
+                      <span ngClass="tags-bg-grey">Brokrage: 500 AED</span>
+                      <span ngClass="tags-bg-grey">Security deposit: 1000 AED</span>
+                  </div>
+              </div>
+              <div ngClass="property-action-hdr">
+                 <button ngClass="ov-verified-btn"><img src="{{ovverified}}"> OV-Verified</button>
+                 <button ngClass="circle-btn"><img src="{{order}}"></button>
+                 <button ngClass="circle-btn"><img src="{{heart}}"></button>
+              </div>
+              </div>
+              <div ngClass="property-name_detals">
+                <h4>Blue Wave Tower</h4>
+                <div ngClass="property-addresss">
+                    <p><img src="{{homelocationsvg}}"> Etihad Tower 4, Etihad Towers, Corniche Road, Abu Dhabi</p>
+                </div>
+            </div>
+            <div ngClass="topkey-highlights">
+              <h6>Hotel & Hotel Apartment</h6>
+              <div ngClass="property-details-highlights">
+                  <span ngClass="bed">
+                      <img src="{{bedsvg}}" alt="">3 Beds
+                  </span>
+                  <span ngClass="bath">
+                      <img src="{{bathsvg}}" alt="">2Bath
+                  </span>
+                  <span ngClass="area">
+                      <img src="{{squaremetersvg}}" alt="">8000sqft
+                  </span>
+                  <span ngClass="furnishing">
+                      <img src="{{furnishing}}" alt="">Furnished
+                  </span>
+              </div>
+          </div>
+          <div ngClass="key-tags">
+            <span>Exclusive</span>
+            <span>Golf & Canal Views</span>
+            <span>Affordable</span>
+            <span>Vastu complaint</span>
+            <span>Prime location</span>
+        </div>
+        <div ngClass="data-inteligence-text">
+           <h6>OV Data Intelligence - Corniche Road, Abu Dhabi </h6>
+           <div ngClass="property-range-bar d-flex">
+            <div ngClass="pro-range-whie-box">
+              <p>Recent Rent Txns</p>
+              <h6>2 in last 1 year</h6>
+            </div>
+            <div ngClass="pro-range-whie-box">
+              <p>Rent Price Range</p>
+              <h6>1,329,500 AED - 1,180,000 AED</h6>
+            </div>
+            <div ngClass="pro-range-whie-box">
+              <p>Avg. Rent/ Sq. Ft.</p>
+              <h6>1,436 AED</h6>
+            </div>
+           </div>
+        </div>
+        <div ngClass="property-footer-block">
+           <div ngClass="row align-items-center">
+            <div ngClass="col-xl-5 col-lg-12 col-md-12 col-sm-12">
+                <div ngClass="lsited-by-details d-flex">
+                  <div ngClass="list_cntnt-img">
+                  <img src="{{betterhome}}">
+                  </div>
+                  <div ngClass="list_cntnt-blcok">
+                    <h5>Olga Pikina</h5>
+                    <p>Listed on: March 09, 2022</p>
+                  </div>
+                </div>
+            </div>
+            <div ngClass="col-xl-7 col-lg-12 col-md-12 col-sm-12 text-right">
+              <div ngClass="pro-contact-details">
+                <a routerLink="/PropertDetailsPage" ngClass="grey-bordered-btn">Details</a>
+                <a routerLink="" ngClass="grey-bordered-btn">Call Now</a>
+                <a routerLink="" ngClass=""></a>
+                <div ngbDropdown class="d-inline-block">
+                <button ngClass="grren-btn grey-bordered-btn" id="dropdownBasic1" ngbDropdownToggle>Connect</button>
+                <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                  <button ngbDropdownItem><a href=""><img src="{{call}}"> Call Now</a></button>
+                  <button ngbDropdownItem><a routerLink="/chat-new-message"><img src="{{chat}}"> Chat</a></button>
+                  <button ngbDropdownItem><a href=""><img src="{{whatsapp}}"> Whats APP</a></button>
+                  <button ngbDropdownItem><a href=""><img src="{{videocall}}"> Video Call</a></button>
+                  <button ngbDropdownItem><a href=""><img src="{{virtual}}"> Virtual Tour</a></button>
+                  <button ngbDropdownItem><a href=""><img src="{{call}}"> Email</a></button>
+                </div>
+                </div>
+                <div ngbDropdown class="d-inline-block">
+                <button ngClass="grey-bordered-btn" id="dropdownBasic2" ngbDropdownToggle><img src="{{dots}}"></button>
+                <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
+                  <h5>Share with:</h5>
+                  <button ngbDropdownItem><a href=""><img src="{{fb}}"> Facebook</a></button>
+                  <button ngbDropdownItem><a href=""><img src="{{whatsapp}}"> WhatsAPP</a></button>
+                  <button ngbDropdownItem><a href=""><img src="{{twitter}}"> Twitter</a></button>
+                  <button ngbDropdownItem><a href=""><img src="{{qr}}"> QR Scan</a></button>
+                </div>
+                </div>
+                </div>
+              </div>
+            </div>
+        </div>
+        <p ngClass="premium-tag">PREMIUM</p>
+            </div>
+            <div ngClass="popular-tag-abs">
+              <img src="{{popularlight}}">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    <div ngClass="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+       <div ngClass="properties-list-sidebar">
+          <div ngClass="lisitng-map-view">
+            <div ngClass="listing-view-map-frame">
+               <img src="{{mapview}}">
+            </div>
+            <div ngClass="see-my-lisitng">
+              <a ngClass="see-listing-btn" routerLink="/mapview"><img src="{{loc}}"> See the Listing on Map View</a>
+            </div>
+          </div>
+       </div>
+       <div ngClass="popular-searches">
+        <div ngbDropdown class="d-block">
+          <button type="button" class="btn btn-outline-primary" id="popularSearches" ngbDropdownToggle>Popular Searches</button>
+          <div ngbDropdownMenu aria-labelledby="popularSearches" open ="true">
+             <button ngbDropdownItem routerLink="">Properties for rent in UAE</button>
+             <button ngbDropdownItem routerLink="">Properties for sale in UAE</button>
+             <button ngbDropdownItem routerLink="">Apartments for rent in UAE</button>
+             <button ngbDropdownItem routerLink="">Apartments for rent in Dubai</button>
+             <button ngbDropdownItem routerLink="">Properties for sale in Dubai</button>
+             <button ngbDropdownItem routerLink="">Villas for sale in Dubai</button>
+            <button ngbDropdownItem routerLink=""> Dubai Real Estate</button>
+          </div>
+        </div>
+       </div>
+    </div>
+    </div>
+    </div>
+    </section>
+      </section>
+      <footer ngClass="footer-sec">
+        <app-footer></app-footer>
+      </footer>
+      </div>
