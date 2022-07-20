@@ -90,23 +90,13 @@ export class ListpropertyverifyComponent implements OnInit {
   }
 
   constructor(private uploadService: FileUploadService,private route:Router,private service: AppService) {
-    this.getOldFormData();
-    this.priviousFormCheck = localStorage.getItem('property_info');
+    this.priviousFormCheck = localStorage.getItem('propertyData');
     if(this.priviousFormCheck == '' || this.priviousFormCheck == null){
       this.priviousFormCheck = JSON.parse(this.priviousFormCheck);
       this.route.navigate(['listingproperty'])
     }else {
-      this.priviousFormCheck = JSON.parse(this.priviousFormCheck);
+      this.data = JSON.parse(this.priviousFormCheck);
     }
-  }
-
-  getOldFormData(){
-    this.oldData = localStorage.getItem('listpropertyVerify');
-    if(this.oldData != '' && this.oldData != null){
-      this.oldData = JSON.parse(this.oldData);
-      this.SubmitForm.controls.videoLink.setValue(this.oldData.videoLink);
-    }
-    return this.oldData;
   }
 
   ngOnInit() {

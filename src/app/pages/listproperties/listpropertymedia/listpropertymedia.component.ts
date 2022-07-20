@@ -32,6 +32,7 @@ export class ListpropertymediaComponent implements OnInit {
   oldData: any;
   priviousFormCheck: any;
   data: any = {};
+  images:any = [];
   imageData:any = [];
   videoData:any = [];
   documentData:any = [];
@@ -86,11 +87,19 @@ export class ListpropertymediaComponent implements OnInit {
     this.message = [];
     this.progressInfos = [];
     this.selectedFiles = event.target.files;
-    console.log(this.selectedFiles);
+    // console.log(JSON.stringify(this.selectedFiles[0]));
     for (let i = 0; i < this.selectedFiles.length; i++) {
       let extension: any = this.selectedFiles[i].name.split(".");
       extension = extension[extension.length - 1];
       this.imageData.push({ "FileId": "1", "ListingDocumentTypeId": "1", "FileName": this.selectedFiles[i].name, "Extension": extension });
+      const reader = new FileReader();
+      reader.readAsDataURL(this.selectedFiles[i]);
+      reader.onload = () => {
+        this.images.push(reader.result)
+        if(i < this.selectedFiles.length-1) {
+          //store in local storage
+        }
+      };
     }
 
     this.previews = [];
