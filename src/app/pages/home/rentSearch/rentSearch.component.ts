@@ -29,6 +29,7 @@ export class RentSearchComponent implements OnInit {
     this.api.LoadType(2).subscribe((result) => {
       this.propertyTypeCommercial = result;
       this.propertyTypeCommercial = this.propertyTypeCommercial.data
+      console.log(this.propertyTypeCommercial)
     });
   }
 
@@ -59,18 +60,21 @@ export class RentSearchComponent implements OnInit {
   status: boolean = false;
   clickEvent(){
       this.status = !this.status;
+
   }
   status1: boolean = false;
   clickEvent1(){
       this.status1 = !this.status1;
   }
-  rent(){
+  // rent(){
+  residentialfun1(){
     document.getElementsByClassName('residential')[0].classList.add('active');
     document.getElementsByClassName('commertial')[0].classList.remove('active');
     document.getElementsByClassName('residential-tabs')[0].classList.remove('hide');
     document.getElementsByClassName('commertial-tabs')[0].classList.add('hide');
   }
-  sell(){
+  // sell(){
+  commertialfun1(){
     document.getElementsByClassName('residential')[0].classList.remove('active');
     document.getElementsByClassName('commertial')[0].classList.add('active');
     document.getElementsByClassName('residential-tabs')[0].classList.add('hide');
@@ -85,7 +89,12 @@ export class RentSearchComponent implements OnInit {
     this.data.PropertyTypeId = e;
   }
 
+  min :number;
+  max :number;
+
   SubmitForm = new FormGroup({
+    projectName : new FormControl(""),
+    name : new FormControl(""),
   });
 
   search(){

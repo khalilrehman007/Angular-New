@@ -61,13 +61,15 @@ export class BuySearchComponent implements OnInit {
   clickEvent1(){
       this.status1 = !this.status1;
   }
-  rent(){
-    document.getElementsByClassName('residential')[0].classList.add('active');
-    document.getElementsByClassName('commertial')[0].classList.remove('active');
-    document.getElementsByClassName('residential-tabs')[0].classList.remove('hide');
-    document.getElementsByClassName('commertial-tabs')[0].classList.add('hide');
-  }
-  sell(){
+  // rent(){
+  residentialfun1(){
+      document.getElementsByClassName('residential')[0].classList.add('active');
+      document.getElementsByClassName('commertial')[0].classList.remove('active');
+      document.getElementsByClassName('residential-tabs')[0].classList.remove('hide');
+      document.getElementsByClassName('commertial-tabs')[0].classList.add('hide');
+    }
+    // sell(){
+  commertialfun1(){
     document.getElementsByClassName('residential')[0].classList.remove('active');
     document.getElementsByClassName('commertial')[0].classList.add('active');
     document.getElementsByClassName('residential-tabs')[0].classList.add('hide');
