@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AppService } from 'src/app/service/app.service';
 import { Options } from '@angular-slider/ngx-slider';
 import {Router} from "@angular/router";
+import {FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'buy-search',
@@ -79,7 +80,11 @@ export class BuySearchComponent implements OnInit {
     this.data.PropertyTypeId = e;
   }
 
+
+  SubmitForm = new FormGroup({
+  });
+
   search(){
-    this.route.navigate(['/search/buy'])
+    this.route.navigate(['/search/rent'])
   }
 }

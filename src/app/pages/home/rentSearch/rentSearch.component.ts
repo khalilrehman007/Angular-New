@@ -32,10 +32,6 @@ export class RentSearchComponent implements OnInit {
     });
   }
 
-  SubmitForm = new FormGroup({
-    button : new FormControl("")
-  });
-
   ngOnInit(): void {
   }
   Sale: any;
@@ -88,11 +84,11 @@ export class RentSearchComponent implements OnInit {
   getPropertyCommercialType(e: number) {
     this.data.PropertyTypeId = e;
   }
+
+  SubmitForm = new FormGroup({
+  });
+
   search(){
-    // if (this.SubmitForm.invalid) {
-    //   return;
-    // }
-    console.log(this.SubmitForm.value.button)
     this.route.navigate(['/search/rent'])
   }
 }

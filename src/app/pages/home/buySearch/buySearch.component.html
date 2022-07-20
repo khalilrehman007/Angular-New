@@ -1,5 +1,5 @@
 <div ngClass="tab-form-sec rent-form">
-  <form (ngSubmit)="search()">
+  <form [formGroup]="SubmitForm" >
     <div ngClass="flex-row">
       <div ngClass="flex-column flex-column-1">
         <div ngClass="form-grouph input-design floating-label position-relative">
@@ -104,7 +104,7 @@
         </div>
       </div>
       <div ngClass="flex-column flex-column-4">
-        <button type="submit" ngClass="search-btn"><img src="assets/images/search.svg"></button>
+        <button (click)="search()" ngClass="search-btn"><img src="assets/images/search.svg"></button>
       </div>
     </div>
   </form>
