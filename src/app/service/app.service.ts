@@ -1,57 +1,57 @@
-import { HttpClient,HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppService {
-  apiurl='https://beta.ovaluate.com/api/';
-  id=0;
-  headers: HttpHeaders = new HttpHeaders ({
+  apiurl = 'https://beta.ovaluate.com/api/';
+  id = 0;
+  headers: HttpHeaders = new HttpHeaders({
     'Content-Type': 'application/json',
     'Authorization': 'Bearer ' + localStorage.getItem('token')
-});
-  constructor(private http:HttpClient) {
+  });
+  constructor(private http: HttpClient) {
 
   }
-  LoadPropertyCategories(){
-    return this.http.get(this.apiurl+'PropertyCategories',{headers:this.headers});
+  LoadPropertyCategories() {
+    return this.http.get(this.apiurl + 'PropertyCategories', { headers: this.headers });
   }
-  ProceedSearch(data:any){
-    return this.http.get(this.apiurl+'PropertyCategories',{headers:this.headers});
-  }
-
-  LoadPropertyTypes(){
-    return this.http.get(this.apiurl+'PropertyType/');
+  ProceedSearch(data: any) {
+    return this.http.get(this.apiurl + 'PropertyCategories', { headers: this.headers });
   }
 
-  LoadBlogs(){
+  LoadPropertyTypes() {
+    return this.http.get(this.apiurl + 'PropertyType/');
+  }
+
+  LoadBlogs() {
     // BlogBanners
-    return this.http.get(this.apiurl+'blogs');
+    return this.http.get(this.apiurl + 'blogs');
   }
-  LoadBanners(){
+  LoadBanners() {
     // BlogBanners
-    return this.http.get(this.apiurl+'Banners');
+    return this.http.get(this.apiurl + 'Banners');
   }
-  LoadBlogById(){
-    return this.http.get(this.apiurl+'blog/'+this.id);
+  LoadBlogById() {
+    return this.http.get(this.apiurl + 'blog/' + this.id);
   }
   LoadCountries() {
     return this.http.get(this.apiurl + 'Countries');
   }
-  LoadCities(id:number) {
+  LoadCities(id: number) {
     return this.http.get(this.apiurl + 'Cities/' + id);
   }
-  LoadDistrict(id:number) {
+  LoadDistrict(id: number) {
     return this.http.get(this.apiurl + 'Districts/' + id);
   }
-  LoadType(id:number) {
+  LoadType(id: number) {
     return this.http.get(this.apiurl + 'PropertyType/' + id);
   }
   ValuationPurpose() {
     return this.http.get(this.apiurl + 'ValuationPurposes/');
   }
-  PropertyFeatures(id:any) {
+  PropertyFeatures(id: any) {
     return this.http.get(this.apiurl + 'PropertyFeatures/' + id);
   }
   PropertyUnitTypes() {
@@ -87,8 +87,8 @@ export class AppService {
   LoadPropertyListingTypes() {
     return this.http.get(this.apiurl + 'PropertyListingTypes');
   }
-  LoadProfessionalAndListingType(professionalTypeId,listingTypeId) {
-    return this.http.get(this.apiurl + 'PropertyListingPackagesByProfessionalAndListingType?professionalTypeId=' + professionalTypeId +'&listingTypeId='+listingTypeId);
+  LoadProfessionalAndListingType(professionalTypeId, listingTypeId) {
+    return this.http.get(this.apiurl + 'PropertyListingPackagesByProfessionalAndListingType?professionalTypeId=' + professionalTypeId + '&listingTypeId=' + listingTypeId);
   }
   LoadTenantTypes() {
     return this.http.get(this.apiurl + 'TenantTypes');
@@ -108,10 +108,21 @@ export class AppService {
   LoadTransactionTypes() {
     return this.http.get(this.apiurl + 'PropertyTransactionTypes');
   }
-  LoadCompletionStatus(){
+  LoadCompletionStatus() {
     return this.http.get(this.apiurl + 'PropertyCompletionStatus');
   }
   StoreAddSubscriber(data: any) {
     return this.http.post(this.apiurl + 'AddSubscriber', data);
+  }
+  AddPropertyListing(data: any) {
+    let token: any = localStorage.getItem('token')
+    //   console.log({
+    //     'Content-Type': 'application/json',
+    //     'Authorization': 'Bearer ' + localStorage.getItem('token')
+    // });
+      return this.http.post(this.apiurl + 'AddPropertyListing', {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + JSON.parse(token)
+    }, data);
   }
 }

@@ -43,7 +43,7 @@
                         </div>
                     </div>
                 </div>
-              <form [formGroup]="SubmitForm" (ngSubmit)="onSubmit()">
+              <form [formGroup]="SubmitForm">
                 <div ngClass="form-border-wrapper">
                     <div ngClass="list-property-header">
                         <h5 ngClass="h5-heading">Verify Property</h5>
@@ -170,8 +170,7 @@
                         <a routerLink="/listpropertyinfo" ngClass="back-btn">Back</a>
                  </mat-card-actions>
                 <mat-card-actions>
-<!--                    <a routerLink="/listpropertyverify" ngClass="save-continue-btn">Save & Continue</a>-->
-                  <button mat-raised-button type="submit" ngClass="submit-btn">Save & Continue</button>
+                  <button mat-raised-button type="submit" ngClass="submit-btn" (click)="onSubmit()">Publish</button>
                 </mat-card-actions>
                 </div>
                 </form>
