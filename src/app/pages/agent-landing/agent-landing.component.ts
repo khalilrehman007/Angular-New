@@ -16,8 +16,11 @@ export class AgentLandingComponent implements OnInit {
     let url = this.router.url.replace("/", "");
     if(url == 'find-companies'){
       this.companiesCheck = true;
+      this.companies = true;
+      this.companyData();
     }else if (url == 'find-agent'){
       this.agentCheck = true;
+      this.agentData();
     }
   }
   featuredAgentData:any;
