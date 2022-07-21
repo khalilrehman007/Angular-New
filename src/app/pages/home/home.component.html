@@ -191,8 +191,8 @@
                     </svg>
                   </button>
                       <div ngClass="property-info">
-                        <a [routerLink]="['/PropertDetailsPage']" ngClass="property-pricing"><span>{{ slide.price }}</span>/yearly</a>
-                        <a [routerLink]="['/PropertDetailsPage']" ngClass="property-name">{{ slide.buildingName }}</a>
+                        <a [routerLink]="['/PropertDetailsPage/'+slide.id]" ngClass="property-pricing"><span>{{ slide.price }}</span>/yearly</a>
+                        <a [routerLink]="['/PropertDetailsPage/'+slide.id]" ngClass="property-name">{{ slide.buildingName }}</a>
                         <p ngClass="property-location">
                       <img src="{{ homelocationsvg }}" width="14" alt=""/>{{slide.propertyAddress}}
                     </p>
@@ -254,13 +254,13 @@
                   </button>
                   <div ngClass="property-info">
                     <a
-                      [routerLink]="['/PropertDetailsPage']"
+                      [routerLink]="['/PropertDetailsPage/'+slide.id]"
                       ngClass="property-pricing"
                       ><span>{{ slide.price }}</span
                       >/yearly</a
                     >
                     <a
-                      [routerLink]="['/PropertDetailsPage']"
+                      [routerLink]="['/PropertDetailsPage/'+slide.id]"
                       ngClass="property-name"
                       >{{slide.buildingName}}</a
                     >
@@ -414,11 +414,11 @@
                     </svg>
                   </button>
                                                         <div ngClass="property-info">
-                                                            <a [routerLink]="['/PropertDetailsPage']" ngClass="property-pricing"><span>{{ slide.price }}</span
+                                                            <a [routerLink]="['/PropertDetailsPage/'+slide.id]" ngClass="property-pricing"><span>{{ slide.price }}</span
                       >/yearly</a
                     >
                     <a
-                      [routerLink]="['/PropertDetailsPage']"
+                      [routerLink]="['/PropertDetailsPage/'+slide.id]"
                       ngClass="property-name"
                       >{{slide.buildingName}}</a
                     >
@@ -480,12 +480,12 @@
                   </button>
                   <div ngClass="property-info">
                     <a
-                      [routerLink]="['/PropertDetailsPage']"
+                      [routerLink]="['/PropertDetailsPage/'+slide.id]"
                       ngClass="property-pricing"
                       ><span>350,000 AED</span>/yearly</a
                     >
                     <a
-                      [routerLink]="['/PropertDetailsPage']"
+                      [routerLink]="['/PropertDetailsPage/'+slide.id]"
                       ngClass="property-name"
                       >Blue Wave Tower</a
                     >
@@ -710,25 +710,11 @@
 
         <div ngClass="container_1220px">
             <div ngClass="row">
-                <div ngClass="col-md-4">
+                <div ngClass="col-md-3 col-sm-12" *ngFor="let list of transaction">
                     <div ngClass="total-transaction">
                         <p ngClass="text-center">AED</p>
-                        <h2 ngClass="text-center">{{totalTransactions}}</h2>
-                        <p ngClass="text-center">Total Transaction of Dubai</p>
-                    </div>
-                </div>
-                <div ngClass="col-md-4">
-                    <div ngClass="total-transaction">
-                        <p ngClass="text-center">AED</p>
-                        <h2 ngClass="text-center">{{totalSales}}</h2>
-                        <p ngClass="text-center">Total Sales of Dubai</p>
-                    </div>
-                </div>
-                <div ngClass="col-md-4">
-                    <div ngClass="total-transaction">
-                        <p ngClass="text-center">AED</p>
-                        <h2 ngClass="text-center">{{totalMortgages}}</h2>
-                        <p ngClass="text-center">Total Mortgage of Dubai</p>
+                        <h2 ngClass="text-center">{{list.value}}</h2>
+                        <p ngClass="text-center">{{list.key}}</p>
                     </div>
                 </div>
             </div>

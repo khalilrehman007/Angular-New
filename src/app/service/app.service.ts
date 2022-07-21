@@ -69,6 +69,9 @@ export class AppService {
   PropertyListingTypes() {
     return this.http.get(this.apiurl + 'PropertyListingTypes/');
   }
+  RentTypes() {
+    return this.http.get(this.apiurl + 'RentTypes/');
+  }
   LatestPropertiesListingResidential(id: number) {
     return this.http.get(this.apiurl + 'LatestPropertiesListingResidential/' + id);
   }
