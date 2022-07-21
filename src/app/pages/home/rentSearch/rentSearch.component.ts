@@ -57,13 +57,15 @@ export class RentSearchComponent implements OnInit {
   minValue1: number = 100;
   maxValue1: number = 400;
   status: boolean = false;
+  status1: boolean = false;
   clickEvent(){
       this.status = !this.status;
-
+      this.status1 = false;
   }
-  status1: boolean = false;
+ 
   clickEvent1(){
       this.status1 = !this.status1;
+      this.status = false;
   }
   // rent(){
   residentialfun1(){

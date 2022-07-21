@@ -3,10 +3,13 @@ $background-color_1: transparent;
 
 .property-filter-wrap {
 	.block-item {
-		width: 10%;
+		width: 13%;
 	}
 	.block-item.first-block {
 		width: 25%;
+	}
+	.block-item.seven-block {
+		width: 7%;
 	}
 }
 .clear-btn {
@@ -23,9 +26,15 @@ $background-color_1: transparent;
 	.property-filter-wrap {
 		flex-wrap: wrap;
 		.block-item {
-			width: 32%;
+			width: 49%;
 		}
 		.block-item.first-block {
+			width: 100%;
+		}
+		.block-item.seven-block {
+			width: 49%;
+		}
+		.block-item.seven-block .clear-btn {
 			width: 100%;
 		}
 	}
@@ -37,6 +46,12 @@ $background-color_1: transparent;
 			width: 49%;
 		}
 		.block-item.first-block {
+			width: 100%;
+		}
+		.block-item.seven-block {
+			width: 49%;
+		}
+		.block-item.seven-block .clear-btn {
 			width: 100%;
 		}
 	}
