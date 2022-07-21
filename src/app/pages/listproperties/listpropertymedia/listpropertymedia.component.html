@@ -60,16 +60,9 @@
                                     </div>
                                     <span ngClass="outpup-filename">{{ file }}</span>
                                 </div>
-                                <div ngClass="bordered-btn-design">
-                                    <div ngClass="bordered-upload-btn">
-                                    <input type="file" hidden  #electricityreciept   (change)='electricityReciept($any($event.target).files)' >
-                                    <button mat-button (click)="electricityreciept.click()"><img src="{{uploadimg}}"> Upload Electricity Current Receipt</button>
-                                    </div>
-                                    <span ngClass="outpup-filename">{{ Receipt }}</span>
-                                </div>
                             </div>
                         </div>
-                        <div ngClass="geo-loactionverify">
+                        <!-- <div ngClass="geo-loactionverify">
                             <h6 ngClass="h6-design">Use Geo Location Check-In</h6>
                             <div ngClass="inneR-border-wrap">
                                 <div ngClass="icons_txt-design">
@@ -102,7 +95,7 @@
                         </div>
                         <div ngClass="verify-later">
                             <p>Incase you can’t verify it now <a routerLink="">Verify Later</a></p>
-                        </div>
+                        </div> -->
                     </div>
                     <div ngClass="list-property-header">
                         <h5 ngClass="h5-heading">Property Pictures & Videos</h5>
