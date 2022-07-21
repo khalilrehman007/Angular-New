@@ -31,7 +31,9 @@ export class HomeComponent implements OnInit {
   dynamicSlides1:any = [];
   dynamicSlides2:any = [];
   homebanners:any = [];
+  transaction:any = [];
   country:any = [];
+
 
   id: 1;
   propertyDetails:any;
@@ -475,7 +477,7 @@ export class HomeComponent implements OnInit {
   categoryDetailResAr: any;
   categoryDetailCom: any;
   categoryDetailComAr: any;
-  valuationTransactions: any;
+  // valuationTransactions: any;
   totalTransactions: any;
   totalSales: any;
   totalMortgages: any;
@@ -487,7 +489,7 @@ export class HomeComponent implements OnInit {
     this.oldData1();
     this.LoadBanners();
     this.loadCountriesData();
-
+    this.ValuationTransactions();
     this.service.PropertyListingTypes().subscribe(data=>{
       this.propertyType = data;
       this.propertyType = this.propertyType.data;
@@ -509,15 +511,27 @@ export class HomeComponent implements OnInit {
       this.categoryDetailCom = this.propertyCategory[1].details;
       this.categoryDetailComAr = this.propertyCategory[1].detailsAr;
     });
+
+    // this.service.ValuationTransactions().subscribe(data=>{
+    //   this.valuationTransactions = data;
+    //   this.valuationTransactions = this.valuationTransactions.data;
+    //   this.totalTransactions = this.valuationTransactions[0].value;
+    //   this.totalSales = this.valuationTransactions[1].value;
+    //   this.totalMortgages = this.valuationTransactions[2].value;
+    //
+    // });
+  }
+  ValuationTransactions(){
+    let tempData :Array<Object> = []
     this.service.ValuationTransactions().subscribe(data=>{
-      this.valuationTransactions = data;
-      this.valuationTransactions = this.valuationTransactions.data;
-      this.totalTransactions = this.valuationTransactions[0].value;
-      this.totalSales = this.valuationTransactions[1].value;
-      this.totalMortgages = this.valuationTransactions[2].value;
-
-
+      let response: any = data;
+      response.data.forEach((element, i) => {
+        tempData.push(
+          {key: element.key, value: element.value});
+      })
     });
+    this.transaction = tempData
+    console.log(this.transaction)
   }
   ngOnInit():void {
 
