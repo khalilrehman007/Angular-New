@@ -16,13 +16,14 @@ export class BuySearchComponent implements OnInit {
       this.propertyType = result;
       this.propertyType = this.propertyType.data
     });
-    this.service.PropertyListingTypes().subscribe(data=>{
+    this.service.RentTypes().subscribe(data=>{
       let response: any = data;
-      this.Sale    = response.data[0].name;
-      this.SaleAr  = response.data[0].nameAr;
-      this.Rent    = response.data[1].name;
-      this.RentAr  = response.data[1].nameAr;
-
+      this.Monthly    = response.data[0].name;
+      this.MonthlyAr  = response.data[0].nameAr;
+      this.Quarterly    = response.data[1].name;
+      this.QuarterlyAr  = response.data[1].nameAr;
+      this.Yearly    = response.data[2].name;
+      this.YearlyAr  = response.data[3].nameAr;
     });
     this.api.LoadType(2).subscribe((result) => {
       this.propertyTypeCommercial = result;
@@ -32,10 +33,12 @@ export class BuySearchComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  Sale: any;
-  SaleAr: any;
-  Rent: any;
-  RentAr: any;
+  Monthly: any;
+  MonthlyAr: any;
+  Quarterly: any;
+  QuarterlyAr: any;
+  Yearly: any;
+  YearlyAr: any;
   minValue: number = 100;
   maxValue: number = 400;
   step: 10;

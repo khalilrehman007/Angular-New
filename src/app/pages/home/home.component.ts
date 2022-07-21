@@ -521,6 +521,7 @@ export class HomeComponent implements OnInit {
     //
     // });
   }
+
   ValuationTransactions(){
     let tempData :Array<Object> = []
     this.service.ValuationTransactions().subscribe(data=>{
@@ -533,6 +534,7 @@ export class HomeComponent implements OnInit {
     this.transaction = tempData
     console.log(this.transaction)
   }
+
   ngOnInit():void {
 
     $(document).ready(function(){
@@ -563,6 +565,7 @@ export class HomeComponent implements OnInit {
       });
     }
   }
+
   LoadPropertyCategories(){
     this.service.LoadPropertyCategories().subscribe(data=>{
       this.categories=data;
@@ -648,6 +651,20 @@ export class HomeComponent implements OnInit {
     }
 
   }
+
+  getLoadFeedback(){
+    let tempData :Array<Object> = []
+    this.service.LoadFeeback().subscribe(data=>{
+      let response: any = data;
+      response.data.forEach((element, i) => {
+        let image = element.bannerDocument.fileUrl
+        tempData.push(
+          {title: element.bannerTitle, desc: element.bannerHeader, img:this.baseUrl+image});
+      })
+    });
+    this.homebanners = tempData
+  }
+
 
   selected = 'option1';
 }

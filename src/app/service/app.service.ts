@@ -33,6 +33,10 @@ export class AppService {
     // BlogBanners
     return this.http.get(this.apiurl + 'Banners');
   }
+  LoadFeeback() {
+    // BlogBanners
+    return this.http.get(this.apiurl + 'Banners');
+  }
   LoadBlogById() {
     return this.http.get(this.apiurl + 'blog/' + this.id);
   }

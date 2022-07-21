@@ -15,7 +15,7 @@
                 <h4 ngClass="drop_label">Price Range</h4>
               <div ngClass="rental-type-tabs-sec">
                 <mat-tab-group>
-                  <mat-tab label="{{Rent}}">
+                  <mat-tab label="{{Monthly}}">
                     <div ngClass="price-range_sec">
                       <div ngClass="extra-controls form-inline">
                         <div ngClass="form-group">
@@ -31,7 +31,23 @@
                     </div>
                   </div>
                   </mat-tab>
-                  <mat-tab label="{{Sale}}">
+                  <mat-tab label="{{Quarterly}}">
+                    <div ngClass="price-range_sec">
+                      <div ngClass="extra-controls form-inline">
+                        <div ngClass="form-group">
+                          <input type="number" [(ngModel)]="minValue1" placeholder="100,000">
+                          <input type="number" [(ngModel)]="maxValue1" placeholder="Any">
+                        </div>
+                      </div>
+                      <div ngClass="range-slider">
+                        <ngx-slider [(value)]="minValue1" [(highValue)]="maxValue1" [options]="options"></ngx-slider>
+                    </div>
+                    <div ngClass="rentle_type-hding">
+                      <h5 ngClass="h5-design">Rental Type</h5>
+                    </div>
+                  </div>
+                  </mat-tab>
+                  <mat-tab label="{{Yearly}}">
                     <div ngClass="price-range_sec">
                       <div ngClass="extra-controls form-inline">
                         <div ngClass="form-group">
