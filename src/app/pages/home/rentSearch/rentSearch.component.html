@@ -6,7 +6,7 @@
       <div ngClass="flex-column flex-column-1">
         <div ngClass="form-grouph input-design floating-label position-relative">
           <label>Search by</label>
-          <input type="text"  placeholder="Location, Project Name">
+          <input type="text"  formControlName="Name" placeholder="Location, Project Name">
         </div>
       </div>
       <div ngClass="flex-column flex-column-2">
@@ -16,7 +16,7 @@
              <div class="cstm_dropdown-menu" [ngClass]="status ? 'active' : 'notactive'">
                 <h4 ngClass="drop_label">Price Range</h4>
               <div ngClass="rental-type-tabs-sec">
-                <mat-tab-group>
+                <mat-tab-group (selectedTabChange)="getRentalType($event)">
                   <mat-tab label="{{Rent}}">
                     <div ngClass="price-range_sec">
                       <div ngClass="extra-controls form-inline">
@@ -106,7 +106,7 @@
         </div>
       </div>
       <div ngClass="flex-column flex-column-4">
-        <button (click)="search()"  ngClass="search-btn"><img src="assets/images/search.svg"></button>
+        <button (click)="proceedSearch()"  ngClass="search-btn"><img src="assets/images/search.svg"></button>
       </div>
     </div>
   </form>

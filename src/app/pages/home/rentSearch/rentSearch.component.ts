@@ -29,7 +29,6 @@ export class RentSearchComponent implements OnInit {
     this.api.LoadType(2).subscribe((result) => {
       this.propertyTypeCommercial = result;
       this.propertyTypeCommercial = this.propertyTypeCommercial.data
-      console.log(this.propertyTypeCommercial)
     });
   }
 
@@ -89,6 +88,14 @@ export class RentSearchComponent implements OnInit {
     this.data.PropertyTypeId = e;
   }
 
+  getRentalType(e:any){
+    if(e.tab.textLabel == "Rent"){
+      this.data.rentalTypeId = 1;
+    }else{
+      this.data.rentalTypeId = 2;
+    }
+  }
+
   min :number;
   max :number;
 
@@ -97,7 +104,7 @@ export class RentSearchComponent implements OnInit {
     name : new FormControl(""),
   });
 
-  search(){
+  proceedSearch(){
     this.route.navigate(['/search/rent'])
   }
 }
