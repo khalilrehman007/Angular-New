@@ -32,6 +32,7 @@ export class BuySearchComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
   }
   Monthly: any;
   MonthlyAr: any;
@@ -59,24 +60,26 @@ export class BuySearchComponent implements OnInit {
   status: boolean = false;
   clickEvent(){
       this.status = !this.status;
+      this.status1 = false;
   }
   status1: boolean = false;
   clickEvent1(){
       this.status1 = !this.status1;
+      this.status = false;
   }
   // rent(){
-  residentialfun1(){
-      document.getElementsByClassName('residential')[0].classList.add('active');
-      document.getElementsByClassName('commertial')[0].classList.remove('active');
-      document.getElementsByClassName('residential-tabs')[0].classList.remove('hide');
-      document.getElementsByClassName('commertial-tabs')[0].classList.add('hide');
+  Buyresidentialfun1(){
+      document.getElementsByClassName('residential1')[0].classList.add('active');
+      document.getElementsByClassName('commertial1')[0].classList.remove('active');
+      document.getElementsByClassName('residential1-tabs')[0].classList.remove('hide');
+      document.getElementsByClassName('commertial1-tabs')[0].classList.add('hide');
     }
     // sell(){
-  commertialfun1(){
-    document.getElementsByClassName('residential')[0].classList.remove('active');
-    document.getElementsByClassName('commertial')[0].classList.add('active');
-    document.getElementsByClassName('residential-tabs')[0].classList.add('hide');
-    document.getElementsByClassName('commertial-tabs')[0].classList.remove('hide');
+  Buycommertialfun1(){
+    document.getElementsByClassName('residential1')[0].classList.remove('active');
+    document.getElementsByClassName('commertial1')[0].classList.add('active');
+    document.getElementsByClassName('residential1-tabs')[0].classList.add('hide');
+    document.getElementsByClassName('commertial1-tabs')[0].classList.remove('hide');
   }
   getPropertyType(e: number) {
     this.data.PropertyTypeId = e;

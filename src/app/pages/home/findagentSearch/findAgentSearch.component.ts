@@ -15,10 +15,12 @@ export class FindAgentSearchComponent implements OnInit {
   }
   status: boolean = false;
   clickEvent(){
-      this.status = !this.status;       
+      this.status = !this.status;  
+      this.status1 = false;     
   }
   status1: boolean = false;
   clickEvent1(){
-      this.status1 = !this.status1;       
+      this.status1 = !this.status1; 
+      this.status = false;      
   }
 }
