@@ -60,6 +60,8 @@ export class RentCommertialComponent implements OnInit {
     $(document).ready(function () {
       $('.dropdown-toggle').click(function () {
         $(this).next().toggleClass('active');
+        $(this).parent().parent().nextAll().find('.dropdown-menu').removeClass('active');
+        $(this).parent().parent().prevAll().find('.dropdown-menu').removeClass('active');
       });
     });
   }

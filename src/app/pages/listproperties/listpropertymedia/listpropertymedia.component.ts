@@ -173,13 +173,6 @@ export class ListpropertymediaComponent implements OnInit {
       this.documentBase = { "FileName": files[0].name, "Extension": extension, file:files };
     }
   }
-  electricityReciept(files: FileList) {
-    if (files && files.length) {
-      let extension: any = files[0].name.split(".");
-      extension = extension[extension.length - 1];
-      this.electricBase = { "FileName": files[0].name, "Extension": extension, file:files };
-    }
-  }
   SubmitForm = new FormGroup({
     videoLink: new FormControl(""),
   });

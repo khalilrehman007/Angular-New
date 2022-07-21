@@ -14,8 +14,7 @@
           </mat-list-item>
           <mat-list-item ngClass="active"><a routerLink=""><span ngClass="">2</span> Listing Info</a></mat-list-item>
           <mat-list-item ngClass="disabled"> <a routerLink=""><span ngClass="">3</span> Media</a> </mat-list-item>
-          <mat-list-item ngClass="disabled"> <a routerLink=""><span ngClass="">4</span> Verify</a> </mat-list-item>
-          <mat-list-item ngClass="disabled"> <a routerLink=""><span ngClass="">5</span> Publish</a> </mat-list-item>
+          <mat-list-item ngClass="disabled"> <a routerLink=""><span ngClass="">4</span> Publish</a> </mat-list-item>
         </mat-list>
       </div>
       <div class="list-property-content">
@@ -76,11 +75,11 @@
                         </button>
                         <div class="dropdown-menu" id="property-type-sec">
                           <h5 class="h5-heading">Property Type</h5>
-                          <div class="property-typ  es-cntnts">
+                          <div class="property-types-cntnts">
                             <ul class="list-unstyled residentails-unit-list">
                               <li class="d-flex" *ngFor="let item of propertyTypes">
                                 <div class="position-relative">
-                                  <input type="checkbox" (click)="getPropertyType(item.id)">
+                                  <input type="radio" (click)="getPropertyType(item.id)" value="{{item.typeDescription}}" name="property_type">
                                   <span class="property_sel"></span>
                                 </div>
                                 <div class="proprty_name">
@@ -104,7 +103,7 @@
                             <ul class="list-unstyled residentails-unit-list">
                               <li class="d-flex" *ngFor="let item of room">
                                 <div class="position-relative">
-                                  <input type="radio" (click)="getBedroom(item)">
+                                  <input type="radio" (click)="getBedroom(item)" value="{{item}}" name="bedroom">
                                   <span class="property_sel"></span>
                                 </div>
                                 <div class="proprty_name">
@@ -128,7 +127,7 @@
                             <ul class="list-unstyled residentails-unit-list">
                               <li class="d-flex" *ngFor="let item of room">
                                 <div class="position-relative">
-                                  <input type="radio" (click)="getBathroom(item)">
+                                  <input type="radio" (click)="getBathroom(item)" value="{{item}}" name="bathroom">
                                   <span class="property_sel"></span>
                                 </div>
                                 <div class="proprty_name">
@@ -148,7 +147,7 @@
                       <h6 class="h6-design">Located Near</h6>
                       <div class="checkbox-flex-box three-column button-same-select">
                         <div class="checkbox-design position-relative" *ngFor="let item of locatedNear">
-                          <input type="radio" id="Metro" (click)="getLocatedNear(item.id)">
+                          <input type="radio" id="Metro" (click)="getLocatedNear(item.id)" value="{{item.name}}" name="location_near">
                           <button class="checkbox-btn">{{item.name}}</button>
                         </div>
                       </div>
@@ -157,7 +156,7 @@
                       <h6 class="h6-design">Ownership Type</h6>
                       <div class="checkbox-flex-box two-column button-same-select max-240">
                         <div class="checkbox-design position-relative" *ngFor="let item of ownershipType">
-                          <input type="radio" id="Freehold" (click)="getOwnershipType(item.id)">
+                          <input type="radio" id="Freehold" (click)="getOwnershipType(item.id)" value="{{item.name}}" name="ownership_type">
                           <button class="checkbox-btn">{{item.name}}</button>
                         </div>
                       </div>
@@ -199,7 +198,7 @@
                       <div class="checkbox-flex-box two-column button-same-select max-240">
                         <div class="checkbox-design position-relative" *ngFor="let item of propertyTransactionType"
                           (click)="getPropertyTransactionType(item.id)">
-                          <input type="radio" value="New Booking">
+                          <input type="radio" value="{{item.name}}" name="transaction_type">
                           <button class="checkbox-btn">{{item.name}}</button>
                         </div>
                       </div>
@@ -209,7 +208,7 @@
                       <div class="checkbox-flex-box two-column button-same-select max-240">
                         <div class="checkbox-design position-relative" *ngFor="let item of completionStatus"
                           (click)="getCompletionStatus(item.id)">
-                          <input type="radio" value="Ready">
+                          <input type="radio" value="{{item.statusDescription}}" name="completion_status">
                           <button class="checkbox-btn">{{item.statusDescription}}</button>
                         </div>
                       </div>
@@ -263,7 +262,7 @@
                             <ul class="lsit-unstyled">
                               <li class="d-flex">
                                 <div class="position-relative" (click)="getBrokageDeposit(false)">
-                                  <input type="radio" formControlName="brokerageNegotiable">
+                                  <input type="checkbox" formControlName="brokerageNegotiable">
                                   <span class="property_sel"></span>
                                 </div>
                                 <div class="proprty_name">
@@ -286,6 +285,20 @@
                           <input matInput [matDatepicker]="picker" id="sellCommercialDate" formControlName="handover">
                           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                           <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                 <div class="property-title">
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <h6 class="h6-design">Property Title</h6>
+                      <div class="textarea-design">
+                        <mat-form-field class="full-width input-design" appearance="fill">
+                          <mat-label>Name Of the Property</mat-label>
+                          <input matInput formControlName="propertyOffers" type="text"
+                            placeholder="Residential Property">
                         </mat-form-field>
                       </div>
                     </div>
