@@ -7,13 +7,17 @@ import { Injectable } from '@angular/core';
 export class AppService {
   apiurl = 'https://beta.ovaluate.com/api/';
   id = 0;
+  token :any = localStorage.getItem('token');
+  bearer :any = this.token.replace(/^"(.+)"$/,'$1') ;
+
+  constructor(private http: HttpClient) {
+    console.log(this.bearer)
+  }
   headers: HttpHeaders = new HttpHeaders({
     'Content-Type': 'application/json',
-    'Authorization': 'Bearer ' + localStorage.getItem('token')
+    'Authorization': 'Bearer '+this.bearer
   });
-  constructor(private http: HttpClient) {
 
-  }
   LoadPropertyCategories() {
     return this.http.get(this.apiurl + 'PropertyCategories', { headers: this.headers });
   }
@@ -42,6 +46,15 @@ export class AppService {
   }
   LoadCountries() {
     return this.http.get(this.apiurl + 'Countries');
+  }
+  OvaluateFeatures() {
+    return this.http.get(this.apiurl + 'OvaluateFeatures');
+  }
+  LoadDashboardData(id) {
+    return this.http.get(this.apiurl + 'Dashboard/'+ id,{ headers: this.headers });
+  }
+  LoadListing(id) {
+    return this.http.get(this.apiurl + 'MyListings/'+ id,{ headers: this.headers });
   }
   LoadCities(id: number) {
     return this.http.get(this.apiurl + 'Cities/' + id);

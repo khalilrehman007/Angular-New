@@ -14,7 +14,6 @@ import { AppService } from 'src/app/service/app.service';
   encapsulation: ViewEncapsulation.None
 })
 export class DashboardComponent implements OnInit {
-
   blogs: any;
   proFrame = '../../assets/images/profile/pro-img-frame.png'
   proAvatar = '../../assets/images/profile/Profile-Pic.png'
@@ -36,23 +35,18 @@ export class DashboardComponent implements OnInit {
   logoutIcon = '../../assets/images/profile/logout-icon.svg'
   uaeFlag = '../../assets/images/profile/uae.svg'
   upload ='../../../../assets/images/icons/upload-1.svg'
- 
+
   loggedInUser = localStorage.getItem('user')
   user : any
-  
+  greet:any
+  country: any = [];
+  city: any = [];
+  countryId: number = -1;
+  cityId: number = -1;
+  dashboard :any;
 
-  
   plus= '../../../../assets/images/plus.svg'
-  country = [
-    {viewValue: 'India',value: 'india'},
-    {viewValue: 'UAE',value: 'UAE'},
-    {viewValue: 'America',value: 'America'},
-  ];
-  city = [
-    {viewValue: 'India',value: 'india'},
-    {viewValue: 'UAE',value: 'UAE'},
-    {viewValue: 'America',value: 'America'},
-  ];
+
   bedrooms = [
     {viewValue: '01',value: 'bedroom'},
     {viewValue: '02',value: 'bedroom'},
@@ -63,18 +57,32 @@ export class DashboardComponent implements OnInit {
     {viewValue: '02',value: 'bedroom'},
     {viewValue: '03',value: 'bedroom'},
   ];
-  
+
   constructor(private service:AppService,private route:Router,private notifyService : NotificationService) {
     this.getUser();
     this.LoadBlogs();
+    this.getloadDashboardData();
+    this.getLoadListing()
   }
 
   ngOnInit() {
-    // $(document).ready(function(){
-    //     $('.sidebar-toggle').click(function(){
-    //     $('body').toggleClass('sidebar-active');
-    //     });
-    // });
+    $(document).ready(function(){
+        // $('.sidebar-toggle').click(function(){
+        // $('body').toggleClass('sidebar-active');
+        // });
+    });
+
+    var myDate = new Date();
+    var hrs = myDate.getHours();
+    var greet;
+    if (hrs < 12)
+      greet = '🌅 GOOD MORNING';
+    else if (hrs >= 12 && hrs <= 17)
+      greet = '🌞 GOOD AFTERNOON';
+    else if (hrs >= 17 && hrs <= 24)
+      greet = '🌇 GOOD EVENING';
+
+    this.greet = greet
   }
   getUser(){
     this.user = localStorage.getItem('user');
@@ -97,6 +105,64 @@ export class DashboardComponent implements OnInit {
         }
       })
     });
+  }
+
+  loadCountriesData() {
+    this.service.LoadCountries().subscribe(e => {
+      let temp: any = e;
+      if (temp.message == "Country list fetched successfully") {
+        for (let country of temp.data) {
+          this.country.push({ viewValue: country.name, value: country.id });
+        }
+      }
+    });
+  }
+  onCountrySelect(e: any) {
+    this.countryId = e.value;
+    this.city = [];
+    this.service.LoadCities(e.value).subscribe(e => {
+      let temp: any = e;
+      if (temp.message == "City list fetched successfully") {
+        for (let city of temp.data) {
+          this.city.push({ viewValue: city.name, value: city.id });
+        }
+      }
+    });
+  }
+
+  getloadDashboardData() {
+    this.service.LoadDashboardData(this.user.id).subscribe(e => {
+      let temp: any = e;
+      let jsonData :any = JSON.stringify(temp.data)
+      let jsonParsDate :any = JSON.parse(jsonData);
+      console.log(jsonParsDate)
+      this.dashboard = jsonParsDate
+    });
+  }
+  baseUrl = 'https://beta.ovaluate.com/'
+  listingAll:any = [];
+  getLoadListing(){
+    let tempData :Array<Object> = []
+    this.service.LoadListing(this.user.id).subscribe(data=>{
+      let response: any = data;
+      response.data.forEach((element, i) => {
+        let image :any;
+        if(element.documents.length > 1){
+           image = element.documents[0].fileUrl
+        }
+        tempData.push(
+          {
+            propertyTitle: element.propertyTitle, propertyAddress: element.propertyAddress, img:this.baseUrl+image,
+            buildingName: element.buildingName,bedrooms: element.bedrooms,bathrooms: element.bathrooms,carpetArea: element.carpetArea,
+            unitNo: element.unitNo,totalFloor: element.totalFloor,floorNo: element.floorNo,propertyDescription: element.propertyDescription,
+            requestedDate: element.requestedDate,furnishingType: element.furnishingType,propertyPrice: element.propertyPrice,
+          }
+        );
+      })
+    });
+    this.listingAll = tempData
+
+    console.log(this.listingAll)
   }
 
 }
