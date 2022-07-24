@@ -209,7 +209,7 @@ import { BuyPropertiesComponent } from './pages/buy-properties/buy-properties.co
     })
   ],
   providers: [
-    // CookieService,{provide:HTTP_INTERCEPTORS,useClass:TokenInterceptorService,multi:true}
+    CookieService,{provide:HTTP_INTERCEPTORS,useClass:TokenInterceptorService,multi:true}
     // {provide : LocationStrategy , useClass: HashLocationStrategy}
   ],
   bootstrap: [AppComponent]

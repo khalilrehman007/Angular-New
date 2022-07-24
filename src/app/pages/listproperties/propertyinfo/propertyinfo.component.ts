@@ -116,12 +116,12 @@ export class PropertyinfoComponent implements OnInit {
     }
     let temp:any = document.getElementById("searchLocation");
 
-    this.data.address = temp.value;
+    this.data.PropertyAddress = temp.value;
 
     this.data.CountryId = this.countryId;
     this.data.CityId = this.cityId;
-    this.data.PropertyLat = 73;
-    this.data.PropertyLong = 74;
+    this.data.PropertyLat = "24.10148903316392";
+    this.data.PropertyLong = "53.09649093869425";
     this.data.PropertyAge = this.SubmitForm.value.PropertyAge;
     this.data.BuildingName = this.SubmitForm.value.BuildingName;
     this.data.UnitNo = this.SubmitForm.value.UnitNo;

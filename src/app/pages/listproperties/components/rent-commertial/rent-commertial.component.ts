@@ -27,7 +27,7 @@ export class RentCommertialComponent implements OnInit {
   propertyType: any;
   propertyManages: any;
   rentTypes: any;
-  occupancy: any = [{ id: 1, name: "Vaccant" }, { id: 2, name: "Occupied" }]
+  occupancy: any;
   room:any = [1,2,3,4,5,6,7,8,9,10];
   featuresData: any;
   featuresFormData: any = [];
@@ -52,7 +52,10 @@ export class RentCommertialComponent implements OnInit {
     this.api.PropertyFeatures(1).subscribe((result: any) => {
       this.featuresData = result.data;
     });
-    this.data.PropertyTransactionTypeId = 1;
+    this.api.LoadOccupancy().subscribe((result:any)=> {
+      this.occupancy = result.data;
+    })
+    this.data.PropertyListingTypeId = 1;
     this.data.PropertyCategoryId = 2;
   }
 
@@ -68,6 +71,7 @@ export class RentCommertialComponent implements OnInit {
 
 
   SubmitForm = new FormGroup({
+    propertyTitle: new FormControl(""),
     property_studio: new FormControl(""),
     property_apartment: new FormControl(""),
     property_villa: new FormControl(""),
@@ -142,8 +146,6 @@ export class RentCommertialComponent implements OnInit {
     return this.SubmitForm.controls;
   }
   onSubmit() {
-    // localStorage.removeItem("listpropertyinfo");
-
     this.data.CarpetArea = this.SubmitForm.value.carpetArea;
     this.data.BuildupArea = this.SubmitForm.value.buildupArea;
     this.data.PropertyPrice = this.SubmitForm.value.price;
@@ -153,6 +155,23 @@ export class RentCommertialComponent implements OnInit {
     this.data.NoticePeriod = this.SubmitForm.value.noticePeriod;
     this.data.LockingPeriod = this.SubmitForm.value.lockingPeriod;
     this.data.PropertyDescription = this.SubmitForm.value.propertyDescription;
+    this.data.PropertyTitle = this.SubmitForm.value.propertyTitle;
+    this.data.PropertyOffer = this.SubmitForm.value.propertyOffers;
+    this.data.FurnishingType = 0;
+    this.data.FittingType = 0;
+    this.data.TenantTypeId = 0;
+    this.data.Gender = 0;
+    this.data.Parkings = 0;
+    this.data.PropertyTransactionTypeId = 0;
+    this.data.Balcony = 0;
+    this.data.PropertyStatusId = 0;
+    this.data.MaintenanceCharges = 0;
+    this.data.HandoverOn = "";
+    this.data.PropertyCompletionStatusId = 0;
+    this.data.PetPolicies = "";
+    let user:any = localStorage.getItem("user");
+    this.data.UserId = JSON.parse(user).id;
+    this.data.UserEmail = JSON.parse(user).email;
     let temp:any = []
     for (let i = 0; i < this.featuresFormData.length; i++) {
       temp.push({PropertyFeatureId:this.featuresFormData[i]});
@@ -178,11 +197,10 @@ export class RentCommertialComponent implements OnInit {
     this.data.PropertyManageId = id;
   }
   getOccupancy(e: number) {
-    this.data.Occupancy = e;
-    console.log(this.data);
+    this.data.OccupancyStatusId = e;
   }
   getRentTypes(e: number) {
-    this.data.RentTypes = e;
+    this.data.RentTypeId = e;
   }
   getSecurityDeposit(e: boolean) {
     this.data.SecurityDeposit = e;

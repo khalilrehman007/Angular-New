@@ -2,84 +2,52 @@
     <app-second-header></app-second-header>
 </header>
 <section ngClass="list-properties-sec">
-   <div ngClass="listing-container">
-    <div ngClass="heading-title-sec text-center">
-        <h2>List New Property</h2>
-        <p>Make sure you filled in all the necessary fields and have uploaded all the required files.</p>
-    </div>
-    <div ngClass="listing-property-form-sec pusblished-sec">
-        <div ngClass="listing-property-ul">
-            <mat-list>
-                <mat-list-item ngClass="active"> <a routerLink="/listingproperty"><span ngClass="">1</span> Property Info</a> </mat-list-item>
-                <mat-list-item ngClass="active"><a routerLink=""><span ngClass="">2</span> Listing Info</a></mat-list-item>
-                <mat-list-item ngClass="active"> <a routerLink=""><span ngClass="">3</span> Media</a> </mat-list-item>
-                <mat-list-item ngClass="active"> <a routerLink=""><span ngClass="">4</span> Publish</a> </mat-list-item>
-            </mat-list>
+    <div ngClass="listing-container">
+        <div ngClass="heading-title-sec text-center">
+            <h2>List New Property</h2>
+            <p>Make sure you filled in all the necessary fields and have uploaded all the required files.</p>
         </div>
-        <div ngClass="list-property-content">
-            <div ngClass="list-property-body">
-                <form action="">
-                <div ngClass="form-border-wrapper">
-                    <div ngClass="list-property-header">
-                        <h5 ngClass="h5-heading">Published</h5>
-                        <p>Kindly confirm some facts about the property</p>
-                    </div>
-                    <div ngClass="succesfully-addd-property">
-                        <div ngClass="checkmark_icon">
-                            <img src="{{checkmark}}">
-                        </div>
-                        <h2>Successfully Added Your Property</h2>
-                        <p>We have received details of your property. It will be made live after quality checks within next 48 hours. You will be notified by email or SMS.</p>
-                    </div>
-                    <div ngClass="list-new-proerty-cntnt">
-                        <div ngClass="publishing-pictures-sec">
-                            <div ngClass="inneR-border-wrap">
-                                <div ngClass="div_thumb-wrapper-horizontal img_upload d-flex align-items-center">
-                                <div ngClass="pulishing-left-box d-flex align-items-center">
-                                    <div ngClass="pulishing-left-box-img">
-                                    <img ngClass="img-thumb-icon" src="{{gallerythumb}}">
-                                    </div>
-                                    <div ngClass="pulishing-left-box-cntnt">
-                                        <h6>Add Pictures</h6>
-                                        <p>Atleast 8 photos will increase property quality score by 15%</p>
-                                    </div>
-                                </div>
-                                <div ngClass="pulishing-right-box">
-                                <label class="btn btn-default p-0 upload-label position-relative">
-                                    <input type="file" accept="image/*" multiple (change)="selectFiles($event)" />
-                                    <button ngClass="black-upload-btn"><span ngClass="plus_icon-div">+</span> Upload Pictures</button>
-                                  </label>
-                                  </div>
-                                </div>
-                                <div ngClass="upload-preview-images">
-                                    <img *ngFor='let preview of previews' [src]="preview" class="preview">
-                                  </div>
+        <div ngClass="listing-property-form-sec pusblished-sec">
+            <div ngClass="listing-property-ul">
+                <mat-list>
+                    <mat-list-item ngClass="active"> <a routerLink="/listingproperty"><span ngClass="">1</span> Property
+                            Info</a> </mat-list-item>
+                    <mat-list-item ngClass="active"><a routerLink=""><span ngClass="">2</span> Listing Info</a>
+                    </mat-list-item>
+                    <mat-list-item ngClass="active"> <a routerLink=""><span ngClass="">3</span> Media</a>
+                    </mat-list-item>
+                    <mat-list-item ngClass="active"> <a routerLink=""><span ngClass="">4</span> Publish</a>
+                    </mat-list-item>
+                </mat-list>
+            </div>
+            <div ngClass="list-property-content">
+                <div ngClass="list-property-body">
+                    <form action="">
+                        <div ngClass="form-border-wrapper">
+                            <div ngClass="list-property-header">
+                                <h5 ngClass="h5-heading">Published</h5>
+                                <p>Kindly confirm some facts about the property</p>
                             </div>
-                            <div ngClass="inneR-border-wrap">
-                                <div ngClass="div_thumb-wrapper-horizontal img_upload d-flex align-items-center">
-                                <div ngClass="pulishing-left-box d-flex align-items-center">
-                                    <div ngClass="pulishing-left-box-img">
-                                    <img ngClass="img-thumb-icon" src="{{gallerythumb}}">
-                                    </div>
-                                    <div ngClass="pulishing-left-box-cntnt">
-                                        <h6>At your property ?</h6>
-                                        <p>Click on 'Verify Now' then click on 'Allow Location' when asked</p>
-                                    </div>
+                            <div ngClass="succesfully-addd-property">
+                                <div ngClass="checkmark_icon">
+                                    <img src="{{checkmark}}">
                                 </div>
-                                <div ngClass="pulishing-right-box">
-                                    <button ngClass="verify-now-btn">Verify Now</button>
-                                </div>
-                                </div>
+                                <h2>Successfully Added Your Property</h2>
+                                <p>We have received details of your property. It will be made live after quality checks
+                                    within next 48 hours. You will be notified by email or SMS.</p>
                             </div>
-                            <div ngClass="new_listing-btn">
-                                <button routerLink="/listingproperty" ngClass="blue-listing-btn"><span ngClass="plus_icon-div">+</span> Add More Listing</button>
+                            <div ngClass="list-new-proerty-cntnt">
+                                <div ngClass="publishing-pictures-sec">
+                                    <div ngClass="new_listing-btn">
+                                        <button routerLink="/listingproperty" ngClass="blue-listing-btn"><span
+                                                ngClass="plus_icon-div">+</span> Add More Listing</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
-                </form>
             </div>
         </div>
     </div>
-   </div>
 </section>

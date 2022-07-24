@@ -8,8 +8,9 @@ export class AppService {
   apiurl = 'https://beta.ovaluate.com/api/';
   id = 0;
   headers: HttpHeaders = new HttpHeaders({
-    'Content-Type': 'application/json',
-    'Authorization': 'Bearer ' + localStorage.getItem('token')
+    'Content-Type': 'false',
+    "processData": "false",
+    "dataType": "json",
   });
   constructor(private http: HttpClient) {
 
@@ -118,18 +119,21 @@ export class AppService {
   LoadCompletionStatus() {
     return this.http.get(this.apiurl + 'PropertyCompletionStatus');
   }
+  LoadOccupancy() {
+    return this.http.get(this.apiurl + 'OccupancyStatuses');
+  }
   StoreAddSubscriber(data: any) {
     return this.http.post(this.apiurl + 'AddSubscriber', data);
   }
   AddPropertyListing(data: any) {
-    let token: any = localStorage.getItem('token')
-    //   console.log({
-    //     'Content-Type': 'application/json',
-    //     'Authorization': 'Bearer ' + localStorage.getItem('token')
-    // });
-      return this.http.post(this.apiurl + 'AddPropertyListing', {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + JSON.parse(token)
-    }, data);
+    // return this.http.post(this.apiurl + 'AddPropertyListing', data);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'false',
+        "processData": "false",
+        "dataType": "json",
+      })
+    }
+    return this.http.post(this.apiurl + 'AddPropertyListing', data, httpOptions);
   }
 }

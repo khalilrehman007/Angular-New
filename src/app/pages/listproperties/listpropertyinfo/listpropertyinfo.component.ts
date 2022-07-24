@@ -30,8 +30,9 @@ export class ListpropertyinfoComponent implements OnInit {
   tenantType: any;
   genders: any;
   propertyManages: any;
-  occupancy: any = [{ id: 1, name: "Vaccant" }, { id: 2, name: "Occupied" }]
+  occupancy: any;
   petPolicy: any;
+  petPolicyData:any = [];
   rentTypes: any;
   room: any = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   featuresData: any;
@@ -75,6 +76,9 @@ export class ListpropertyinfoComponent implements OnInit {
     this.api.PropertyFeatures(1).subscribe((result: any) => {
       this.featuresData = result.data;
     });
+    this.api.LoadOccupancy().subscribe((result:any)=> {
+      this.occupancy = result.data;
+    });
     this.data = this.priviousFormCheck;
   }
   ngOnInit() {
@@ -91,6 +95,7 @@ export class ListpropertyinfoComponent implements OnInit {
   }
 
   SubmitForm = new FormGroup({
+    propertyTitle: new FormControl(""),
     property_studio: new FormControl(""),
     property_apartment: new FormControl(""),
     property_villa: new FormControl(""),
@@ -169,11 +174,16 @@ export class ListpropertyinfoComponent implements OnInit {
     if (this.SubmitForm.invalid) {
       return;
     }
-    this.data.PropertyTransactionTypeId = 1;
+
+    this.data.PropertyListingTypeId = 1;
+    this.data.PropertyTransactionTypeId = "";
     this.data.PropertyCategoryId = 1;
+    this.data.PropertyTitle = this.SubmitForm.value.propertyTitle;
+    this.data.Balcony = 0;
+    this.data.PropertyStatusId = 0;
     this.data.CarpetArea = this.SubmitForm.value.carpetArea;
     this.data.BuildupArea = this.SubmitForm.value.buildupArea;
-    this.data.Price = this.SubmitForm.value.price;
+    this.data.PropertyPrice = this.SubmitForm.value.price;
     this.data.SecurityDepositPrice = this.SubmitForm.value.AED;
     this.data.BrokerageChargePrice = this.SubmitForm.value.brokerageAed;
     this.data.AvailableDate = $("#formDate").val()
@@ -184,10 +194,15 @@ export class ListpropertyinfoComponent implements OnInit {
     this.data.MaintenanceCharges = "";
     this.data.HandoverOn = "";
     this.data.PropertyCompletionStatusId = "";
-    this.data.UserId = "";
-    this.data.VideoLink = "";
-    this.data.PropertyListingStatusId = "";
+    let user:any = localStorage.getItem("user");
+    this.data.UserId = JSON.parse(user).id;
+    this.data.UserEmail = JSON.parse(user).email;
     let temp:any = []
+    for (let i = 0; i < this.petPolicyData.length; i++) {
+      temp.push({"PetPolicyId":this.petPolicyData[i]});
+    }
+    this.data.PetPolicies = temp;
+    temp = []
     for (let i = 0; i < this.featuresFormData.length; i++) {
       temp.push({PropertyFeatureId:this.featuresFormData[i]});
     }
@@ -197,10 +212,10 @@ export class ListpropertyinfoComponent implements OnInit {
     this.route.navigate(['listpropertymedia'])
   }
   getBedroom(e: number) {
-    this.data.BedRoom = e;
+    this.data.BedRooms = e;
   }
   getBathroom(e: number) {
-    this.data.BathRoom = e;
+    this.data.BathRooms = e;
   }
   getPropertyType(e: number) {
     this.data.PropertyTypeId = e;
@@ -218,19 +233,23 @@ export class ListpropertyinfoComponent implements OnInit {
     this.data.Gender = e;
   }
   getPropertyManages(e: number) {
-    this.data.PropertyManages = e;
+    this.data.PropertyManageId = e;
   }
   getOccupancy(e: number) {
-    this.data.Occupancy = e;
+    this.data.OccupancyStatusId = e;
   }
   getParking(e: string) {
     this.data.Parkings = e;
   }
   getPetPolicy(e: number) {
-    this.data.PetPolicy = e;
+    if (this.petPolicyData.indexOf(e) == -1) {
+      this.petPolicyData.push(e);
+    } else {
+      this.petPolicyData = this.petPolicyData.filter((id: any) => e != id);
+    }
   }
   getRentTypes(e: number) {
-    this.data.RentTypes = e;
+    this.data.RentTypeId = e;
   }
   getSecurityDeposit(e: boolean) {
     this.data.SecurityDeposit = e;

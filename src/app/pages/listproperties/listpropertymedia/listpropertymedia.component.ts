@@ -1,13 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { SecondHeaderComponent } from '../../../second-header/second-header.component';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import * as $ from 'jquery';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { FileUploadService } from '../../../service/file-upload.service';
-import { AuthService } from "../../../service/auth.service";
 import { Router } from "@angular/router";
-import { NotificationService } from "../../../service/notification.service";
 import { AppService } from 'src/app/service/app.service';
 
 
@@ -45,10 +42,11 @@ export class ListpropertymediaComponent implements OnInit {
   images: any = [];
   imageData: any = [];
   videoData: any = [];
-  documentData: any = [];
+  // documentData:any = {};
+  documentData = new FormData();
 
 
-  constructor(private api:AppService, private uploadService: FileUploadService, private route: Router) {
+  constructor(private api: AppService, private uploadService: FileUploadService, private route: Router) {
     this.priviousFormCheck = localStorage.getItem('propertyData');
     if (this.priviousFormCheck == '' || this.priviousFormCheck == null) {
       this.priviousFormCheck = JSON.parse(this.priviousFormCheck);
@@ -100,7 +98,7 @@ export class ListpropertymediaComponent implements OnInit {
     for (let i = 0; i < this.selectedFiles.length; i++) {
       let extension: any = this.selectedFiles[i].name.split(".");
       extension = extension[extension.length - 1];
-      this.imageData.push({ "FileName": this.selectedFiles[i].name, "Extension": extension, file: this.selectedFiles[i]});
+      this.imageData.push({ "FileName": this.selectedFiles[i].name, "Extension": extension, file: this.selectedFiles[i] });
     }
 
     this.previews = [];
@@ -170,7 +168,7 @@ export class ListpropertymediaComponent implements OnInit {
     if (files && files.length) {
       let extension: any = files[0].name.split(".");
       extension = extension[extension.length - 1];
-      this.documentBase = { "FileName": files[0].name, "Extension": extension, file:files };
+      this.documentBase = { "FileName": files[0].name, "Extension": extension, file: files };
     }
   }
   SubmitForm = new FormGroup({
@@ -183,41 +181,52 @@ export class ListpropertymediaComponent implements OnInit {
 
   abc: any = {};
   onSubmit() {
-    // this.submitted = true;
-    // if (this.SubmitForm.invalid) {
-    //   return;
-    // }
-    // let temp: any = [];
-    // for (let i = 0; i < this.imageData.length; i++) {
-    //   temp.push({ "FileId": i + 1, "ListingDocumentTypeId": "1", "FileName": this.imageData[i].FileName, "Extension": this.imageData[i].Extension, file: this.imageData[i].file});
-    // }
-    // let start: number = temp.length;
-    // for (let i = 0; i < this.videoData.length; i++) {
-    //   temp.push({ "FileId": i + start + 1, "ListingDocumentTypeId": "2", "FileName": this.videoData[i].FileName, "Extension": this.videoData[i].Extension, file: this.videoData[i].file });
-    // }
-    // start = temp.length;
-    // temp.push({ "FileId": start + 1, "ListingDocumentTypeId": "3", "FileName": this.documentBase.FileName, "Extension": this.documentBase.Extension, file: this.documentBase.file[0] });
-    // start = temp.length;
-    // temp.push({ "FileId": start + 1, "ListingDocumentTypeId": "4", "FileName": this.electricBase.FileName, "Extension": this.electricBase.Extension, file: this.electricBase.file[0] });
-    // this.data.Documents = temp;
-    // this.documentData.PropertyListingRequest = this.data;
-    // for (let i = 0; i < temp.length; i++) {
-    //   this.documentData[i+1+"_"+temp[i].FileName] = temp[i].file;
-    // }
-    // this.api.LoadPropertyCategories().subscribe((result)=> {
-    //   console.log(result);
-    // })
-    // this.api.AddPropertyListing(this.documentData);
-    this.api.AddPropertyListing(this.documentData).subscribe((result:any)=> {
-      console.log(result);
-    })
-
-    // localStorage.setItem('mediaFiles',files)
-    // localStorage.setItem('listpropertymedia',JSON.stringify(this.SubmitForm.value))
-    // this.route.navigate(['listpropertyverify'])
-
-
-
+    this.submitted = true;
+    if (this.SubmitForm.invalid) {
+      return;
+    }
+    this.data.VideoLink = this.SubmitForm.value.videoLink;
+    let temp: any = [];
+    let tempDoc: any = [];
+    for (let i = 0; i < this.imageData.length; i++) {
+      temp.push({ "FileId": i + 1, "ListingDocumentTypeId": "1", "FileName": this.imageData[i].FileName, "Extension": this.imageData[i].Extension });
+      tempDoc.push(this.imageData[i].file);
+    }
+    let start: number = temp.length;
+    for (let i = 0; i < this.videoData.length; i++) {
+      temp.push({ "FileId": i + start + 1, "ListingDocumentTypeId": "2", "FileName": this.videoData[i].FileName, "Extension": this.videoData[i].Extension });
+      tempDoc.push(this.videoData[i].file);
+    }
+    start = temp.length;
+    temp.push({ "FileId": start + 1, "ListingDocumentTypeId": "3", "FileName": this.documentBase.FileName, "Extension": this.documentBase.Extension });
+    tempDoc.push(this.documentBase.file[0]);
+    this.data.Documents = temp;
+    this.documentData.append("PropertyListingRequest", JSON.stringify(this.data));
+    for (let i = 0; i < temp.length; i++) {
+      this.documentData.append(i + 1 + "_" + temp[i].FileName, tempDoc[i]);
+    }
+    let token:any = localStorage.getItem("token");
+    token = JSON.parse(token);
+    $.ajax({
+      url: "https://beta.ovaluate.com/api/AddPropertyListing",
+      method: "post",
+      contentType: false,
+      processData: false,
+      data: this.documentData,
+      headers: {
+        "Authorization": 'bearer '+token
+      },
+      dataType: "json",
+      success: (res) => {
+        if(res.message == "Property Listing request completed successfully") {
+          localStorage.removeItem("propertyData");
+          this.route.navigate(['listpropertypublish'])
+        }
+      },
+      error: (err) => {
+        alert("Something went wrong")
+      }
+    });
   }
 
 }
