@@ -490,6 +490,7 @@ export class HomeComponent implements OnInit {
     this.LoadBanners();
     this.loadCountriesData();
     this.ValuationTransactions();
+    this.getOvaluateFeatures();
     this.service.PropertyListingTypes().subscribe(data=>{
       this.propertyType = data;
       this.propertyType = this.propertyType.data;
@@ -532,7 +533,7 @@ export class HomeComponent implements OnInit {
       })
     });
     this.transaction = tempData
-    console.log(this.transaction)
+    // console.log(this.transaction)
   }
 
   ngOnInit():void {
@@ -550,7 +551,7 @@ export class HomeComponent implements OnInit {
       return;
     }
     if (this.search.valid) {
-      console.log(this.search.value)
+      // console.log(this.search.value)
       this.service.ProceedSearch(this.search.value).subscribe(result => {
         if(result!=null ){
           this.responsedata=result;
@@ -665,6 +666,27 @@ export class HomeComponent implements OnInit {
     this.homebanners = tempData
   }
 
-
   selected = 'option1';
+
+  ovaluateFeatures :any = [];
+  getOvaluateFeatures(){
+    let tempData :Array<Object> = []
+    this.service.OvaluateFeatures().subscribe(data=>{
+      let response: any = data;
+      response.data.forEach((element, i) => {
+        let image = element.ovaluateFeatureDocument.fileUrl
+        let className :any
+        if(element.title == "Get ready to apply.  "){
+          className = "get-ready-apply"
+        }else if(element.title == "Virtual home tour."){
+          className = "virtual-tour"
+        }else if(element.title == "Find the best deal.") {
+          className = "find-best-deal"
+        }
+        tempData.push(
+          {id:element.id,heading: element.title, desc: element.description, src:this.baseUrl+image,class:className});
+      })
+    });
+    this.ovaluateFeatures = tempData
+  }
 }

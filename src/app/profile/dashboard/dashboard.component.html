@@ -5,21 +5,21 @@
   <div ngClass="user-info-sec">
     <div ngClass="row">
       <div ngClass="col-md-8">
-        <h4 ngClass="welcm">Good Morning!</h4>
-        <h2 ngClass="user-name">Ahmed Yusef</h2>
+        <h4 ngClass="welcm">{{this.greet}}!</h4>
+        <h2 ngClass="user-name">{{this.user.firstName+' '+this.user.lastName}}</h2>
         <div class="base-details">
           <div class="row">
             <div class="col-md-4">
                 <div class="form-group">
                   <label for="txtname">Account Email</label>
-                  <h4 class="base-info-text">omranabc@gmail.com</h4>
+                  <h4 class="base-info-text">{{this.user.email}}</h4>
                   <!-- <input type="text" id="txtname" class="form-control" value="omranabc@gmail.com" placeholder="Enter the User Name"   autocomplete="off"  /> -->
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
                   <label for="txtname">Phone</label>
-                  <h4 class="base-info-text"><img src="{{uaeFlag}}" alt=""> +971 50 999 9999</h4>
+                  <h4 class="base-info-text"><img src="{{this.user.phoneNumber ? this.user.phoneNumber : 'Empty'}}" alt="">{{this.user.phoneNumber ? this.user.phoneNumber : 'Empty'}}</h4>
                   <!-- <input type="text" id="txtname" class="form-control" value="+971 50 999 9999" placeholder="Enter the User Name"   autocomplete="off"  /> -->
                 </div>
             </div>
@@ -27,7 +27,7 @@
               <div class="d-flex align-item-center">
                 <div class="form-group">
                   <label for="txtname">Location</label>
-                  <h4 class="base-info-text"><img src="{{uaeFlag}}" alt=""> Al Mankool, Dubai,  UAE</h4>
+                  <h4 class="base-info-text"><img src="#" alt="">{{this.user.location ? this.user.location : 'Empty'}}</h4>
                   <!-- <input type="text" id="txtname" class="form-control" value="Al Mankool, Dubai,  UAE" placeholder="Enter the User Name"   autocomplete="off"  /> -->
                 </div>
                 <a [routerLink]="['#']" ngClass="edit">
@@ -50,13 +50,13 @@
       </div>
     </div>
   </div>
-  
+
 </div>
 
 <div class="tab-nav-main">
 
   <div class="tab-wrap">
-    <div ngClass="container_1220px">    
+    <div ngClass="container_1220px">
       <ul class="nav nav-pills" id="pills-tab" role="tablist">
         <li class="nav-item" role="presentation">
           <button class="nav-link active" id="pills-dashboard-tab" data-bs-toggle="pill" data-bs-target="#pills-dashboard" type="button" role="tab" aria-controls="pills-dashboard" aria-selected="true">Dashboard</button>
@@ -92,10 +92,10 @@
     </div>
   </div>
 
-    <div ngClass="container_1220px">    
+    <div ngClass="container_1220px">
       <div class="tab-content" id="pills-tabContent">
       <div class="tab-pane fade show active" id="pills-dashboard" role="tabpanel" aria-labelledby="pills-dashboard-tab">
-        
+
 
       <div class="free-proplisting">
         <div class="first-title">
@@ -117,14 +117,14 @@
             <div class="card">
               <div class="content-area">
                 <h4 class="title">Listings Summary</h4>
-                <p>Last Listed 05th  May 2022</p>
+                <p>{{this.dashboard.lastPropertyLastingDate}}</p>
                 <ul class="counts-wrap">
                   <li>
-                    <h3 class="count">028</h3>
+                    <h3 class="count">{{this.dashboard.totalRestentailPropertyListing}}</h3>
                     <p>Residential</p>
                   </li>
                   <li>
-                    <h3 class="count">000</h3>
+                    <h3 class="count">{{this.dashboard.totalCommercialPropertyListing}}</h3>
                     <p>Commercial</p>
                   </li>
                 </ul>
@@ -138,14 +138,14 @@
             <div class="card">
               <div class="content-area">
                 <h4 class="title">Valuation Summary</h4>
-                <p>Last Listed 05th  May 2022</p>
+                <p>{{this.dashboard.lastValuationDate}}</p>
                 <ul class="counts-wrap">
                   <li>
-                    <h3 class="count">028</h3>
+                    <h3 class="count">{{this.dashboard.totalRestentailValuation}}</h3>
                     <p>Residential</p>
                   </li>
                   <li>
-                    <h3 class="count">000</h3>
+                    <h3 class="count">{{this.dashboard.totalCommercialValuation}}</h3>
                     <p>Commercial</p>
                   </li>
                 </ul>
@@ -159,7 +159,7 @@
       </div>
 
 
-      
+
         <div class="card mt-5">
         <section ngClass="position-relative wrapper-section properties-slider residentials-property-rent-1">
               <div ngClass="section-title">
@@ -208,12 +208,12 @@
                           <p>#OVRA-98967654</p>
                         </div>
                         <div class="col ">
-                          
+
                           <span>Building Type</span>
                           <p>Residential</p>
                         </div>
                         <div class="col ">
-                          
+
                           <span>Looking for</span>
                           <p>Buy</p>
                         </div>
@@ -228,7 +228,7 @@
                           </a>
                         </div>
                       </div>
-                      
+
                       <div class="table-row">
                         <div class="col photo-col">
                           <img src="{{proAvatar}}" alt="">
@@ -243,12 +243,12 @@
                           <p>#OVRA-98967654</p>
                         </div>
                         <div class="col ">
-                          
+
                           <span>Building Type</span>
                           <p>Residential</p>
                         </div>
                         <div class="col ">
-                          
+
                           <span>Looking for</span>
                           <p>Buy</p>
                         </div>
@@ -263,7 +263,7 @@
                           </a>
                         </div>
                       </div>
-                      
+
                       <div class="table-row">
                         <div class="col photo-col">
                           <img src="{{proAvatar}}" alt="">
@@ -278,12 +278,12 @@
                           <p>#OVRA-98967654</p>
                         </div>
                         <div class="col ">
-                          
+
                           <span>Building Type</span>
                           <p>Residential</p>
                         </div>
                         <div class="col ">
-                          
+
                           <span>Looking for</span>
                           <p>Buy</p>
                         </div>
@@ -308,7 +308,7 @@
         </div>
 
 
-          
+
         <section ngClass="position-relative wrapper-section blogs_sec mt-5">
           <div ngClass="container_1220px">
               <div ngClass="section-title">
@@ -349,7 +349,7 @@
               <div ngClass="list-property-content">
                 <div ngClass="list-property-body">
                     <form>
-                      
+
                     <div class="type-activity-status">
                               <div ngClass="block-wrapper mb-4">
                               <div class="checkbox-flex-box-auto button-same-select">
@@ -372,7 +372,7 @@
                               </div>
                               </div>
                   </div>
-                  
+
                   <div class="recent-search-item">
                   <div class="lable">05 May, 2022</div>
                   <div ngClass="row">
@@ -387,7 +387,7 @@
                     </div>
                   </div>
                 </div>
-                
+
                 <div class="recent-search-item">
                   <div class="lable">05 May, 2022</div>
                   <div ngClass="row">
@@ -398,7 +398,7 @@
                 </div>
                 </form>
                 </div>
-              </div>  
+              </div>
             </mat-tab>
             <mat-tab label="Views (02)">
               <div class="type-activity-status">
@@ -423,7 +423,7 @@
                 </div>
                 </div>
             </div>
-            
+
             <div class="agent-details__tabs">
               <div class="row">
                 <div class="col-lg-9 col-md-10">
@@ -762,11 +762,11 @@
                 </div>
               </div>
             </div>
-  
-            
-            
+
+
+
             <section class="agent-landing-featured">
-              
+
               <div class="row">
                 <div class="col-lg-9 col-md-10">
               <div class="row">
@@ -784,7 +784,7 @@
                                     <div class="agent-landing-featured__agent-right-panel">
                                         <h6 class="agent-landing-featured__property-heading" routerLink="/agent-details/1">Better Homes Properties</h6>
                                         <p class="agent-landing-featured__property-text">P.O. Box 14781, Ground Floor, Golf Building No. GB, Al Hamra Village, Ras Al Khaimah
-  
+
                                         </p>
                                         <a class="agent-landing-featured__property-link"
                                             routerLink=#>View Map</a>
@@ -824,7 +824,7 @@
                                     <div class="agent-landing-featured__agent-right-panel">
                                         <h6 class="agent-landing-featured__property-heading" routerLink="/agent-details/1">Better Homes Properties</h6>
                                         <p class="agent-landing-featured__property-text">P.O. Box 14781, Ground Floor, Golf Building No. GB, Al Hamra Village, Ras Al Khaimah
-  
+
                                         </p>
                                         <a class="agent-landing-featured__property-link"
                                             routerLink=#>View Map</a>
@@ -850,13 +850,13 @@
                         </div>
                     </div>
                 </div>
-            </div>  
-            </div>  
-          </div>  
+            </div>
+            </div>
+          </div>
             </section>
             </mat-tab>
-            <mat-tab label="Shortlisted (02)"> 
-              
+            <mat-tab label="Shortlisted (02)">
+
               <div class="type-activity-status">
                 <div ngClass="block-wrapper mb-4">
                 <div class="checkbox-flex-box-auto button-same-select">
@@ -875,8 +875,8 @@
                 </div>
                 </div>
             </div>
-            
-            
+
+
             <div class="agent-details__tabs">
               <div class="row">
                 <div class="col-lg-10 col-md-11">
@@ -938,7 +938,7 @@
                         </div>
                       </div>
                       <div class="compare-action deposit-yes">
-                        
+
                         <ul class="lsit-unstyled">
                           <li class="d-flex">
                             <label for="">
@@ -1006,9 +1006,9 @@
                             </div>
                         </div>
                       </div>
-                      
+
                       <div class="compare-action deposit-yes">
-                        
+
                         <ul class="lsit-unstyled">
                           <li class="d-flex">
                             <label for="">
@@ -1076,9 +1076,9 @@
                             </div>
                         </div>
                       </div>
-                      
+
                       <div class="compare-action deposit-yes">
-                        
+
                         <ul class="lsit-unstyled">
                           <li class="d-flex">
                             <label for="">
@@ -1094,10 +1094,10 @@
                 </div>
               </div>
             </div>
-  
+
             </mat-tab>
-            <mat-tab label="Enquired (0)"> 
-              
+            <mat-tab label="Enquired (0)">
+
               <div class="type-activity-status">
                 <div ngClass="block-wrapper mb-4">
                 <div class="checkbox-flex-box-auto button-same-select">
@@ -1116,7 +1116,7 @@
                 </div>
                 </div>
             </div>
-            
+
             <div class="agent-details__tabs">
               <div class="row">
                 <div class="col-lg-9 col-md-10">
@@ -1455,7 +1455,7 @@
                 </div>
               </div>
             </div>
-  
+
             </mat-tab>
           </mat-tab-group>
         </div>
@@ -1503,12 +1503,12 @@
                                 <p>#OVRA-98967654</p>
                               </div>
                               <div class="col ">
-                                
+
                                 <span>Building Type</span>
                                 <p>Residential</p>
                               </div>
                               <div class="col ">
-                                
+
                                 <span>Looking for</span>
                                 <p>Buy</p>
                               </div>
@@ -1523,7 +1523,7 @@
                                 </a>
                               </div>
                             </div>
-                            
+
                             <div class="table-row">
                               <div class="col photo-col">
                                 <img src="{{proAvatar}}" alt="">
@@ -1538,12 +1538,12 @@
                                 <p>#OVRA-98967654</p>
                               </div>
                               <div class="col ">
-                                
+
                                 <span>Building Type</span>
                                 <p>Residential</p>
                               </div>
                               <div class="col ">
-                                
+
                                 <span>Looking for</span>
                                 <p>Buy</p>
                               </div>
@@ -1558,7 +1558,7 @@
                                 </a>
                               </div>
                             </div>
-                            
+
                             <div class="table-row">
                               <div class="col photo-col">
                                 <img src="{{proAvatar}}" alt="">
@@ -1573,12 +1573,12 @@
                                 <p>#OVRA-98967654</p>
                               </div>
                               <div class="col ">
-                                
+
                                 <span>Building Type</span>
                                 <p>Residential</p>
                               </div>
                               <div class="col ">
-                                
+
                                 <span>Looking for</span>
                                 <p>Buy</p>
                               </div>
@@ -1616,43 +1616,43 @@
               <div class="type-activity-status">
                 <div ngClass="block-wrapper mb-4">
                 <div class="checkbox-flex-box-auto button-same-select">
-                <div class="checkbox-design position-relative">
-                    <input type="radio" id="Furnished" name="property-types" value="All" checked>
-                    <button class="checkbox-btn">All (03)</button>
-                </div>
-                <div class="checkbox-design position-relative">
-                    <input type="radio" id="Semi-Furnished" name="property-types" value="Buy">
-                    <button class="checkbox-btn">Active (1)</button>
-                </div>
-                <div class="checkbox-design position-relative">
-                    <input type="radio" id="Unfurnished" name="property-types" value="Rent">
-                    <button class="checkbox-btn">Expired (1)</button>
-                </div>
-                <div class="checkbox-design position-relative">
-                    <input type="radio" id="Unfurnished" name="property-types" value="Rent">
-                    <button class="checkbox-btn">Under Review (1)</button>
-                </div>
-                <div class="checkbox-design position-relative">
-                    <input type="radio" id="Unfurnished" name="property-types" value="Rent">
-                    <button class="checkbox-btn">Rejected (1)</button>
-                </div>
-                <div class="checkbox-design position-relative">
-                    <input type="radio" id="Unfurnished" name="property-types" value="Rent">
-                    <button class="checkbox-btn">Deleted (1)</button>
-                </div>
-                <div class="checkbox-design position-relative">
+                    <div class="checkbox-design position-relative">
+                        <input type="radio" id="Furnished" name="property-types" value="All" checked>
+                        <button class="checkbox-btn">All (03)</button>
+                    </div>
+                    <div class="checkbox-design position-relative">
+                        <input type="radio" id="Semi-Furnished" name="property-types" value="Buy">
+                        <button class="checkbox-btn">Active (1)</button>
+                    </div>
+                    <div class="checkbox-design position-relative">
+                        <input type="radio" id="Unfurnished" name="property-types" value="Rent">
+                        <button class="checkbox-btn">Expired (1)</button>
+                    </div>
+                    <div class="checkbox-design position-relative">
+                        <input type="radio" id="Unfurnished" name="property-types" value="Rent">
+                        <button class="checkbox-btn">Under Review (1)</button>
+                    </div>
+                    <div class="checkbox-design position-relative">
+                        <input type="radio" id="Unfurnished" name="property-types" value="Rent">
+                        <button class="checkbox-btn">Rejected (1)</button>
+                    </div>
+                    <div class="checkbox-design position-relative">
+                        <input type="radio" id="Unfurnished" name="property-types" value="Rent">
+                        <button class="checkbox-btn">Deleted (1)</button>
+                    </div>
+                    <div class="checkbox-design position-relative">
                     <input type="radio" id="Unfurnished" name="property-types" value="Rent">
                     <button class="checkbox-btn">Expiring Soon (1)</button>
                 </div>
                 </div>
                 </div>
             </div>
-            
+
             <div class="agent-details__tabs">
               <div class="row">
                 <div class="col-lg-9 col-md-10">
                   <ul class="agent-details__property-list">
-                    <li class="agent-details__property-list-item">
+                    <li class="agent-details__property-list-item" *ngFor="let listing of listingAll">
                         <div class="row">
                             <div class="col-lg-2">
                                 <img src="assets/images/explore-places/1.jpg" alt=""
@@ -1661,7 +1661,7 @@
                             <div class="col-lg-10">
                                 <div class="row">
                                     <div class="col-7">
-                                        <a class="agent-details__property-list-item-link">85,000 AED
+                                        <a class="agent-details__property-list-item-link">{{listing.propertyTitle}} AED
                                             <span>/yearly</span>
                                         </a>
                                     </div>
@@ -1670,105 +1670,38 @@
                                         <p class="agent-details__property-list-item-date">Expired on: June 22, 2022</p>
                                     </div>
                                 </div>
-                                <h6>Blue Wave Tower</h6>
+                                <h6>{{listing.buildingName}}</h6>
                                 <p class="agent-details__property-list-item-text">
                                     <img src="assets/images/home-location.svg" alt=""
                                         class="img-fluid agent-details__property-list-item-text-icon">
-                                    Etihad Tower 4, Etihad Towers, Corniche Road, Abu Dhabi
+                                    {{listing.propertyAddress}}
                                 </p>
-                                <p class="agent-details__property-list-item-type">Hotel & Hotel
-                                    Apartment</p>
+                                <p class="agent-details__property-list-item-type">{{listing.propertyDescription}}</p>
                                 <div class="row">
                                     <div class="col-md-10">
                                         <ul class="agent-details__property-detail-list">
                                             <li class="agent-details__property-detail-list-item">
                                                 <img src="assets/images/icons/Bed.svg" alt="">
-                                                3 Beds
+                                                {{listing.bedrooms}} Beds
                                             </li>
                                             <li class="agent-details__property-detail-list-item">
                                                 <img src="assets/images/icons/Bed.svg" alt="">
-                                                2 Bath
+                                                {{listing.bathrooms}} Bath
                                             </li>
                                             <li class="agent-details__property-detail-list-item">
                                                 <img src="assets/images/icons/Bed.svg" alt="">
-                                                8000 Sq.Ft.
+                                                {{listing.carpetArea}} Sq.Ft.
                                             </li>
                                             <li class="agent-details__property-detail-list-item">
                                                 <img src="assets/images/icons/Bed.svg" alt="">
-                                                Furnished
+                                                {{listing.furnishingType}}
                                             </li>
                                         </ul>
                                     </div>
                                     <div class="col-md-2 text-right">
                                         <!-- <img src="assets/images/better-home.svg" alt=""> -->
                                         <!-- <button class="action-btn"><img src="assets/images/profile/menu-dots.png" alt=""></button> -->
-                                     
-                                        <div ngbDropdown class="d-inline-block">
-                                          <button ngClass="grey-bordered-btn action-btn" id="dropdownBasic2" ngbDropdownToggle>
-                                            <img src="{{menuDots}}" alt=""></button>
-                                          <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
-                                            <!-- <h5>Share with:</h5> -->
-                                            <button ngbDropdownItem><a href=""><img src="{{viewLeads}}"> View Leads</a></button>
-                                            <button ngbDropdownItem><a href=""><img src="{{shareicon}}"> Share</a></button>
-                                            <button ngbDropdownItem><a href=""><img src="{{deleteIcon}}"> Delete</a></button>
-                                            <button ngbDropdownItem><a href=""><img src="{{editIcon}}"> Edit</a></button>
-                                          </div>
-                                          </div>
-                                      </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="agent-details__property-list-item">
-                        <div class="row">
-                            <div class="col-lg-2">
-                                <img src="assets/images/explore-places/1.jpg" alt=""
-                                    class="img-fluid agent-details__property-list-item-img">
-                            </div>
-                            <div class="col-lg-10">
-                                <div class="row">
-                                    <div class="col-7">
-                                        <a class="agent-details__property-list-item-link">85,000 AED
-                                            <span>/yearly</span>
-                                        </a>
-                                    </div>
-                                    <div class="col-5 text-end">
-                                        <span class="badge-img"><img src="assets/images/profile/active.png" alt=""></span>
-                                        <p class="agent-details__property-list-item-date mb-0">Posted on: March 09, 2022</p>
-                                        <p class="agent-details__property-list-item-date">Expired on: June 22, 2022</p>
-                                    </div>
-                                </div>
-                                <h6>Blue Wave Tower</h6>
-                                <p class="agent-details__property-list-item-text">
-                                    <img src="assets/images/home-location.svg" alt=""
-                                        class="img-fluid agent-details__property-list-item-text-icon">
-                                    Etihad Tower 4, Etihad Towers, Corniche Road, Abu Dhabi
-                                </p>
-                                <p class="agent-details__property-list-item-type">Hotel & Hotel
-                                    Apartment</p>
-                                <div class="row">
-                                    <div class="col-md-10">
-                                        <ul class="agent-details__property-detail-list">
-                                            <li class="agent-details__property-detail-list-item">
-                                                <img src="assets/images/icons/Bed.svg" alt="">
-                                                3 Beds
-                                            </li>
-                                            <li class="agent-details__property-detail-list-item">
-                                                <img src="assets/images/icons/Bed.svg" alt="">
-                                                2 Bath
-                                            </li>
-                                            <li class="agent-details__property-detail-list-item">
-                                                <img src="assets/images/icons/Bed.svg" alt="">
-                                                8000 Sq.Ft.
-                                            </li>
-                                            <li class="agent-details__property-detail-list-item">
-                                                <img src="assets/images/icons/Bed.svg" alt="">
-                                                Furnished
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-md-2 text-right">
-                                        <!-- <img src="assets/images/better-home.svg" alt=""> -->
+
                                         <div ngbDropdown class="d-inline-block">
                                           <button ngClass="grey-bordered-btn action-btn" id="dropdownBasic2" ngbDropdownToggle>
                                             <img src="{{menuDots}}" alt=""></button>
@@ -1790,8 +1723,8 @@
               </div>
             </div>
       </mat-tab>
-      <mat-tab label="Buy"></mat-tab>
-      <mat-tab label="Rent"> Commercial</mat-tab>
+              <mat-tab label="Buy">Buy Empty</mat-tab>
+              <mat-tab label="Rent"> Commercial Empty</mat-tab>
           </mat-tab-group>
           </div>
         </div>
@@ -1807,12 +1740,12 @@
             <mat-tab label="Personal Details">
                 <div class="row">
                   <div class="col-md-9">
-                    
+
                     <form action="">
                     <!-- form-border-wrapper -->
                     <div class="">
                         <div class="list-new-proerty-cntnt">
-                          
+
                   <div ngClass="deed-numbers">
 
                     <div ngClass="row">
@@ -1917,7 +1850,7 @@
                         </div>
                       </div>
 
-                      
+
 
 
                       <div ngClass="col-xl-6 col-lg-6 col-sm-12">
@@ -1946,7 +1879,7 @@
                       </div>
 
                     </div>
-                      
+
                     <div class="save-continue-sec">
                       <mat-card-actions>
                           <a class="save-continue-btn">Save</a>
@@ -1963,15 +1896,15 @@
                 </div>
             </mat-tab>
             <mat-tab label="Agent/Broker Details">
-              
+
               <div class="row">
                 <div class="col-md-9">
-                  
+
                   <form action="">
                   <!-- form-border-wrapper -->
                   <div class="">
                       <div class="list-new-proerty-cntnt">
-                        
+
                 <div ngClass="deed-numbers">
 
                   <div ngClass="row">
@@ -2034,8 +1967,8 @@
                     </div>
 
                   </div>
-                    
-                  
+
+
                   <div class="highlight-sec mt-3">
                     <div class="row">
                         <div class="col-sm-12">
@@ -2156,15 +2089,15 @@
                 </div>
               </div>
             </mat-tab>
-            <mat-tab label="Company Details"> 
-              
+            <mat-tab label="Company Details">
+
               <div class="row">
                 <div class="col-md-9">
                   <form action="">
                     <!-- form-border-wrapper -->
                     <div class="">
                         <div class="list-new-proerty-cntnt">
-                          
+
                   <div ngClass="deed-numbers">
 
                     <div ngClass="row">
@@ -2266,7 +2199,7 @@
                       </div>
 
                     </div>
-                      
+
 
                     <div ngClass="other-document-upload mb-4">
                       <h6 ngClass="h6-design mb-3">Douments Upload</h6>
@@ -2276,8 +2209,8 @@
                           <div ngClass="upload-files-design">
                               <div ngClass="greybordered-btn">
                               <input type="file" hidden  #emirateInput  >
-                              <button mat-button ><span ngClass="outpup-filename"> Picture: Trade License Document </span> 
-                                <img src="{{upload}}"> 
+                              <button mat-button ><span ngClass="outpup-filename"> Picture: Trade License Document </span>
+                                <img src="{{upload}}">
                                 <span ngClass="btn-txt">Picture: Emirates ID (Fornt View)</span></button>
                               </div>
                           </div>
@@ -2293,7 +2226,7 @@
                           <div ngClass="upload-files-design">
                               <div ngClass="greybordered-btn">
                               <input type="file" hidden  #emirateInput  >
-                              <button mat-button ><span ngClass="outpup-filename"> Picture: Permit No Document</span> 
+                              <button mat-button ><span ngClass="outpup-filename"> Picture: Permit No Document</span>
                                 <img src="{{upload}}"> <span ngClass="btn-txt">Picture: Emirates ID (Fornt View)</span></button>
                               </div>
                           </div>
@@ -2305,7 +2238,7 @@
                           <div ngClass="upload-files-design">
                               <div ngClass="greybordered-btn">
                               <input type="file" hidden  #emirateInput  >
-                              <button mat-button ><span ngClass="outpup-filename"> Picture: ORN Document </span> <img src="{{upload}}"> 
+                              <button mat-button ><span ngClass="outpup-filename"> Picture: ORN Document </span> <img src="{{upload}}">
                                 <span ngClass="btn-txt">Picture: Emirates ID (Fornt View)</span></button>
                               </div>
                           </div>
@@ -2321,7 +2254,7 @@
                           <div ngClass="upload-files-design">
                               <div ngClass="greybordered-btn">
                               <input type="file" hidden  #emirateInput  >
-                              <button mat-button ><span ngClass="outpup-filename"> Picture: REREA Document </span> <img src="{{upload}}"> 
+                              <button mat-button ><span ngClass="outpup-filename"> Picture: REREA Document </span> <img src="{{upload}}">
                                 <span ngClass="btn-txt">Picture: Emirates ID (Fornt View)</span></button>
                               </div>
                           </div>
@@ -2350,15 +2283,15 @@
                 </div>
               </div>
             </mat-tab>
-            <mat-tab label="Change Password"> 
-              
+            <mat-tab label="Change Password">
+
               <div class="row">
                 <div class="col-md-9">
                   <form action="">
                     <!-- form-border-wrapper -->
                     <div class="">
                         <div class="list-new-proerty-cntnt">
-                          
+
                   <div ngClass="deed-numbers">
 
                     <div ngClass="row">
@@ -2413,7 +2346,7 @@
                     <!-- form-border-wrapper -->
                     <div class="">
                         <div class="list-new-proerty-cntnt">
-                          
+
                   <div ngClass="deed-numbers account-settings">
 
                     <div ngClass="row">
@@ -2562,7 +2495,7 @@
       </div>
 
 
-      
+
         <div class="card mt-5">
         <section ngClass="position-relative wrapper-section properties-slider residentials-property-rent-1">
               <div ngClass="section-title">
@@ -2611,12 +2544,12 @@
                           <p>#OVRA-98967654</p>
                         </div>
                         <div class="col ">
-                          
+
                           <span>Building Type</span>
                           <p>Residential</p>
                         </div>
                         <div class="col ">
-                          
+
                           <span>Looking for</span>
                           <p>Buy</p>
                         </div>
@@ -2631,7 +2564,7 @@
                           </a>
                         </div>
                       </div>
-                      
+
                       <div class="table-row">
                         <div class="col photo-col">
                           <img src="{{proAvatar}}" alt="">
@@ -2646,12 +2579,12 @@
                           <p>#OVRA-98967654</p>
                         </div>
                         <div class="col ">
-                          
+
                           <span>Building Type</span>
                           <p>Residential</p>
                         </div>
                         <div class="col ">
-                          
+
                           <span>Looking for</span>
                           <p>Buy</p>
                         </div>
@@ -2666,7 +2599,7 @@
                           </a>
                         </div>
                       </div>
-                      
+
                       <div class="table-row">
                         <div class="col photo-col">
                           <img src="{{proAvatar}}" alt="">
@@ -2681,12 +2614,12 @@
                           <p>#OVRA-98967654</p>
                         </div>
                         <div class="col ">
-                          
+
                           <span>Building Type</span>
                           <p>Residential</p>
                         </div>
                         <div class="col ">
-                          
+
                           <span>Looking for</span>
                           <p>Buy</p>
                         </div>
@@ -2711,7 +2644,7 @@
         </div>
 
 
-          
+
         <section ngClass="position-relative wrapper-section blogs_sec mt-5">
           <div ngClass="container_1220px">
               <div ngClass="section-title">
@@ -2744,7 +2677,7 @@
         </section>
 
     </mat-tab>
-    <mat-tab class="tab-item" label="My Activities"> 
+    <mat-tab class="tab-item" label="My Activities">
       <div class="recent-activity">
         <h4 class="sub-title">Recent Activities</h4>
         <div class="sub-tab-nav">
@@ -2753,7 +2686,7 @@
             <div ngClass="list-property-content">
               <div ngClass="list-property-body">
                   <form>
-                    
+
                   <div class="type-activity-status">
                             <div ngClass="block-wrapper mb-4">
                             <div class="checkbox-flex-box-auto button-same-select">
@@ -2776,7 +2709,7 @@
                             </div>
                             </div>
                 </div>
-                
+
                 <div class="recent-search-item">
                 <div class="lable">05 May, 2022</div>
                 <div ngClass="row">
@@ -2791,7 +2724,7 @@
                   </div>
                 </div>
               </div>
-              
+
               <div class="recent-search-item">
                 <div class="lable">05 May, 2022</div>
                 <div ngClass="row">
@@ -2802,7 +2735,7 @@
               </div>
               </form>
               </div>
-            </div>  
+            </div>
           </mat-tab>
           <mat-tab label="Views (02)">
             <div class="type-activity-status">
@@ -2827,7 +2760,7 @@
               </div>
               </div>
           </div>
-          
+
           <div class="agent-details__tabs">
             <div class="row">
               <div class="col-lg-9 col-md-10">
@@ -3167,10 +3100,10 @@
             </div>
           </div>
 
-          
-          
+
+
           <section class="agent-landing-featured">
-            
+
             <div class="row">
               <div class="col-lg-9 col-md-10">
             <div class="row">
@@ -3254,13 +3187,13 @@
                       </div>
                   </div>
               </div>
-          </div>  
-          </div>  
-        </div>  
+          </div>
+          </div>
+        </div>
           </section>
           </mat-tab>
-          <mat-tab label="Shortlisted (02)"> 
-            
+          <mat-tab label="Shortlisted (02)">
+
             <div class="type-activity-status">
               <div ngClass="block-wrapper mb-4">
               <div class="checkbox-flex-box-auto button-same-select">
@@ -3279,8 +3212,8 @@
               </div>
               </div>
           </div>
-          
-          
+
+
           <div class="agent-details__tabs">
             <div class="row">
               <div class="col-lg-10 col-md-11">
@@ -3484,8 +3417,8 @@
           </div>
 
           </mat-tab>
-          <mat-tab label="Enquired (0)"> 
-            
+          <mat-tab label="Enquired (0)">
+
             <div class="type-activity-status">
               <div ngClass="block-wrapper mb-4">
               <div class="checkbox-flex-box-auto button-same-select">
@@ -3504,7 +3437,7 @@
               </div>
               </div>
           </div>
-          
+
           <div class="agent-details__tabs">
             <div class="row">
               <div class="col-lg-9 col-md-10">
@@ -3849,7 +3782,7 @@
       </div>
       </div>
     </mat-tab>
-    <mat-tab class="tab-item" label="My Leads"> 
+    <mat-tab class="tab-item" label="My Leads">
       <div class="recent-activity">
         <h4 class="sub-title">My Leads</h4>
         <div class="sub-tab-nav">
@@ -3891,12 +3824,12 @@
                               <p>#OVRA-98967654</p>
                             </div>
                             <div class="col ">
-                              
+
                               <span>Building Type</span>
                               <p>Residential</p>
                             </div>
                             <div class="col ">
-                              
+
                               <span>Looking for</span>
                               <p>Buy</p>
                             </div>
@@ -3911,7 +3844,7 @@
                               </a>
                             </div>
                           </div>
-                          
+
                           <div class="table-row">
                             <div class="col photo-col">
                               <img src="{{proAvatar}}" alt="">
@@ -3926,12 +3859,12 @@
                               <p>#OVRA-98967654</p>
                             </div>
                             <div class="col ">
-                              
+
                               <span>Building Type</span>
                               <p>Residential</p>
                             </div>
                             <div class="col ">
-                              
+
                               <span>Looking for</span>
                               <p>Buy</p>
                             </div>
@@ -3946,7 +3879,7 @@
                               </a>
                             </div>
                           </div>
-                          
+
                           <div class="table-row">
                             <div class="col photo-col">
                               <img src="{{proAvatar}}" alt="">
@@ -3961,12 +3894,12 @@
                               <p>#OVRA-98967654</p>
                             </div>
                             <div class="col ">
-                              
+
                               <span>Building Type</span>
                               <p>Residential</p>
                             </div>
                             <div class="col ">
-                              
+
                               <span>Looking for</span>
                               <p>Buy</p>
                             </div>
@@ -3995,8 +3928,8 @@
         </div>
       </div>
     </mat-tab>
-    <mat-tab class="tab-item" label="My Listings"> 
-      
+    <mat-tab class="tab-item" label="My Listings">
+
       <div class="recent-activity">
         <h4 class="sub-title">My Listings</h4>
         <div class="sub-tab-nav">
@@ -4036,7 +3969,7 @@
               </div>
               </div>
           </div>
-          
+
           <div class="agent-details__tabs">
             <div class="row">
               <div class="col-lg-9 col-md-10">
@@ -4091,7 +4024,7 @@
                                   <div class="col-md-2 text-right">
                                       <!-- <img src="assets/images/better-home.svg" alt=""> -->
                                       <!-- <button class="action-btn"><img src="assets/images/profile/menu-dots.png" alt=""></button> -->
-                                   
+
                                       <div ngbDropdown class="d-inline-block">
                                         <button ngClass="grey-bordered-btn action-btn" id="dropdownBasic2" ngbDropdownToggle>
                                           <img src="{{menuDots}}" alt=""></button>
@@ -4188,7 +4121,7 @@
     <mat-tab class="tab-item" label="My Valuations"> My Valuations </mat-tab>
     <mat-tab ngClass="grey-bordered-btn more-drop-btn tab-item" label="More >" disabled>
       <ng-template mat-tab-label>
-        
+
       <div ngbDropdown class="d-inline-block">
         <button mat-icon-button ngClass="action-btn" id="dropdownBasic1" ngbDropdownToggle>
           More</button>
