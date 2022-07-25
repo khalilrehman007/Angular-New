@@ -224,7 +224,7 @@ export class ListpropertymediaComponent implements OnInit {
         }
       },
       error: (err) => {
-        alert("Something went wrong")
+        console.log(err);
       }
     });
   }
