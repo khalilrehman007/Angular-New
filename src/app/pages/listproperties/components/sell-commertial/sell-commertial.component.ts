@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { SecondHeaderComponent } from '../../../../second-header/second-header.component';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import * as $ from 'jquery';
 import {AuthService} from "../../../../service/auth.service";
@@ -54,7 +53,7 @@ export class SellCommertialComponent implements OnInit {
     this.api.PropertyFeatures(1).subscribe((result: any) => {
       this.featuresData = result.data;
     });
-    this.data.PropertyTransactionTypeId=2
+    this.data.PropertyListingTypeId=2
     this.data.PropertyCategoryId=2
   }
 
@@ -126,7 +125,6 @@ export class SellCommertialComponent implements OnInit {
     return this.SubmitForm.controls;
   }
   onSubmit() {
-    // localStorage.removeItem("listpropertyinfo");
     this.submitted = true;
     if (this.SubmitForm.invalid) {
       return;
@@ -139,11 +137,29 @@ export class SellCommertialComponent implements OnInit {
     this.data.AvailableDate = $("#sellCommercialDate").val()
     this.data.PropertyDescription = this.SubmitForm.value.propertyDescription;
     this.data.PropertyOffer = this.SubmitForm.value.propertyOffers;
+    this.data.HandoverOn = this.SubmitForm.value.handover;
+    this.data.FurnishingType = 0;
+    this.data.FittingType = 0;
+    this.data.Gender = 0;
+    this.data.Parkings = 0;
+    this.data.Balcony = 0;
+    this.data.PropertyManageId = "";
+    this.data.PetPolicyId = "";
+    this.data.TenantTypeId = "";
+    this.data.RentTypeId = "";
+    this.data.SecurityDeposit = false;
+    this.data.SecurityDepositPrice = "";
+    this.data.NoticePeriod = "";
+    this.data.LockingPeriod = "";
+    let user:any = localStorage.getItem("user");
+    this.data.UserId = JSON.parse(user).id;
+    this.data.UserEmail = JSON.parse(user).email;
     let temp:any = []
     for (let i = 0; i < this.featuresFormData.length; i++) {
       temp.push({PropertyFeatureId:this.featuresFormData[i]});
     }
     this.data.PropertyFeatures = temp;
+
     localStorage.setItem('propertyData',JSON.stringify(this.data))
     this.route.navigate(['listpropertymedia'])
   }
@@ -161,10 +177,9 @@ export class SellCommertialComponent implements OnInit {
   }
   getOwnershipType(e:number){
     this.data.ownershipType = e;
-    console.log(this.data)
   }
   getPropertyTransactionType(id:number) {
-    this.data.PropertyTransactionType = id;
+    this.data.PropertyTransactionTypeId = id;
   }
   getCompletionStatus(id:number) {
     this.data.CompletionStatus = id;
