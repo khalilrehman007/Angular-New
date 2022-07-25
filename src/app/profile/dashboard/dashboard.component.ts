@@ -143,7 +143,7 @@ export class DashboardComponent implements OnInit {
   listingAll:any = [];
   getLoadListing(){
     let tempData :Array<Object> = []
-    this.service.LoadListing(this.user.id).subscribe(data=>{
+    this.service.LoadListing(35).subscribe(data=>{
       let response: any = data;
       response.data.forEach((element, i) => {
         let image :any;
