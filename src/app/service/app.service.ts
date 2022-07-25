@@ -8,14 +8,13 @@ export class AppService {
   apiurl = 'https://beta.ovaluate.com/api/';
   id = 0;
   token :any = localStorage.getItem('token');
-  bearer :any = this.token.replace(/^"(.+)"$/,'$1') ;
+  // bearer :any = this.token.replace(/^"(.+)"$/,'$1') ;
 
   constructor(private http: HttpClient) {
-    console.log(this.bearer)
   }
   headers: HttpHeaders = new HttpHeaders({
     'Content-Type': 'application/json',
-    'Authorization': 'Bearer '+this.bearer
+    'Authorization': 'Bearer '+JSON.parse(this.token)
   });
 
   LoadPropertyCategories() {
