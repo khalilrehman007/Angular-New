@@ -777,13 +777,13 @@
                         <div [ngClass]="'testimonial-section'">
                             <img src="assets/images/testimonial/quote.svg" ngClass="img-fluid testimonial-icon" alt="" />
                             <owl-carousel-o [options]="testimonialslider">
-                                <ng-container *ngFor="let slide of clientslide">
+                                <ng-container *ngFor="let slide of clientFeedback">
                                     <ng-template carouselSlide [id]="slide.id">
                                         <div ngClass="testimonial-content">
                                             <p>{{ slide.desc }}</p>
                                             <div ngClass="testimonial-info d-flex align-items-center">
                                                 <div ngClass="client_img">
-                                                    <img [src]="slide.src" ngClass="img-fluid client-img" alt="" />
+                                                    <img [src]="slide.src!= null ? slide.src : 'assets/images/testimonial/user.png'" ngClass="img-fluid client-img" alt="" />
                                                 </div>
                                                 <div ngClass="client-info">
                                                     <h5>{{ slide.heading }}</h5>

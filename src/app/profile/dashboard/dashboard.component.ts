@@ -135,7 +135,6 @@ export class DashboardComponent implements OnInit {
       let temp: any = e;
       let jsonData :any = JSON.stringify(temp.data)
       let jsonParsDate :any = JSON.parse(jsonData);
-      console.log(jsonParsDate)
       this.dashboard = jsonParsDate
     });
   }
@@ -143,9 +142,10 @@ export class DashboardComponent implements OnInit {
   listingAll:any = [];
   getLoadListing(){
     let tempData :Array<Object> = []
-    this.service.LoadListing(35).subscribe(data=>{
+    this.service.LoadListing().subscribe(data=>{
       let response: any = data;
       response.data.forEach((element, i) => {
+        console.log(element.documents[0].fileUrl)
         let image :any;
         if(element.documents.length > 1){
            image = element.documents[0].fileUrl
@@ -162,7 +162,6 @@ export class DashboardComponent implements OnInit {
     });
     this.listingAll = tempData
 
-    console.log(this.listingAll)
   }
 
 }

@@ -38,7 +38,7 @@ export class AppService {
   }
   LoadFeeback() {
     // BlogBanners
-    return this.http.get(this.apiurl + 'Banners');
+    return this.http.get(this.apiurl + 'GetFeedbacks');
   }
   LoadBlogById() {
     return this.http.get(this.apiurl + 'blog/' + this.id);
@@ -52,8 +52,8 @@ export class AppService {
   LoadDashboardData(id) {
     return this.http.get(this.apiurl + 'Dashboard/'+ id,{ headers: this.headers });
   }
-  LoadListing(id) {
-    return this.http.get(this.apiurl + 'MyListings/'+ id,{ headers: this.headers });
+  LoadListing() {
+    return this.http.post(this.apiurl + 'MyListings',{ headers: this.headers });
   }
   LoadCities(id: number) {
     return this.http.get(this.apiurl + 'Cities/' + id);
