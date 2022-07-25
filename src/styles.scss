@@ -119,8 +119,12 @@ body {
 	transition: var(--tran-05);
 	max-width: 100vw;
 	overflow-x: hidden;
+	font-size: 16px;
 	a {
 		text-decoration: none;
+	}
+	input,select,textarea{
+		font-size: 100%;
 	}
 	.alert-danger {
 		color: $color_1;
@@ -7950,5 +7954,33 @@ li.agent-details__property-list-item {
 		>div {
 			width: 100%;
 		}
+	}
+}
+@media (min-width: 1200px){
+.d-hide{
+display: none;
+}
+}
+@media (max-width: 1199px){
+	.tm-hide{
+	display: none;
+	}
+	.mobile-abs-items>ul {
+		list-style: none;
+		padding-left: 0px;
+		margin-bottom: 0px;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+	}
+	.mobile-abs-items {
+		position: absolute;
+		right: 58px;
+		border: none;
+		top:12px;
+	}
+	.mobile-abs-items .language-converter {
+		padding-left: 0px !important;
+		border: none !important;
 	}
 }

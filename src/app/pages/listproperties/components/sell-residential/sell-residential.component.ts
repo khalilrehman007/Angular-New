@@ -58,7 +58,7 @@ export class SellResidentialComponent implements OnInit {
     this.api.PropertyFeatures(1).subscribe((result: any) => {
       this.featuresData = result.data;
     })
-    this.data.PropertyTransactionTypeId = 2;
+    this.data.PropertyListingTypeId = 2;
     this.data.PropertyCategoryId = 1;
   }
 
@@ -76,6 +76,7 @@ export class SellResidentialComponent implements OnInit {
 
 
   SubmitForm = new FormGroup({
+    PropertyTitle        : new FormControl(""),
     property_studio        : new FormControl(""),
     property_apartment     : new FormControl(""),
     property_villa         : new FormControl(""),
@@ -149,6 +150,7 @@ export class SellResidentialComponent implements OnInit {
     if (this.SubmitForm.invalid) {
       return;
     }
+    this.data.PropertyTitle = this.SubmitForm.value.PropertyTitle;
     this.data.CarpetArea = this.SubmitForm.value.carpetArea;
     this.data.BuildupArea = this.SubmitForm.value.buildupArea;
     this.data.PropertyPrice = this.SubmitForm.value.price;
@@ -156,13 +158,25 @@ export class SellResidentialComponent implements OnInit {
     this.data.HandoverOn = $("#sell-residential-datepicker").val();
     this.data.propertyDescription = this.SubmitForm.value.propertyDescription;
     this.data.PropertyOffer = this.SubmitForm.value.propertyOffers;
+    this.data.BrokerageChargePrice = this.SubmitForm.value.brokerageAed;
+    this.data.TenantTypeId = "";
+    this.data.PetPolicies = "";
+    this.data.PropertyManageId = "";
+    this.data.RentTypeId = "";
+    this.data.SecurityDeposit = false;
+    this.data.SecurityDepositPrice = "";
+    this.data.AvailableDate = "";
+    this.data.NoticePeriod = "";
+    this.data.LockingPeriod = "";
+    this.data.Gender = 0;
+    let user:any = localStorage.getItem("user");
+    this.data.UserId = JSON.parse(user).id;
+    this.data.UserEmail = JSON.parse(user).email;
     let temp:any = []
     for (let i = 0; i < this.featuresFormData.length; i++) {
       temp.push({PropertyFeatureId:this.featuresFormData[i]});
     }
     this.data.PropertyFeatures = temp;
-    console.log(this.data);
-
 
     localStorage.setItem('propertyData',JSON.stringify(this.data))
     this.route.navigate(['listpropertymedia'])
@@ -178,10 +192,10 @@ export class SellResidentialComponent implements OnInit {
     this.data.BathRoom = e;
   }
   getBalcony(e:string){
-    this.data = e;    
+    this.data.Balcony = e;    
   }
   getParking(e:string){
-    this.data = e;
+    this.data.Parkings = e;
   }
   getFurnishingType(e: number) {
     this.data.FurnishingType = e;
@@ -190,7 +204,7 @@ export class SellResidentialComponent implements OnInit {
     this.data.FittingType = e;
   }
   getTransactionType(e: number) {
-    this.data.TransactionType = e;
+    this.data.PropertyTransactionTypeId = e;
   }
   getCompletionStatus(e: number) {
     this.data.PropertyCompletionStatusId = e;

@@ -178,23 +178,23 @@
                                             <input type="radio" id="parking" name="parking_space" value="zero" checked>
                                             <button class="checkbox-btn">0</button>
                                         </div>
-                                        <div class="checkbox-design position-relative">
+                                        <div class="checkbox-design position-relative" (click)="getParking('1')">
                                             <input type="radio" id="parking" name="parking_space" value="one">
                                             <button class="checkbox-btn">1</button>
                                         </div>
-                                        <div class="checkbox-design position-relative">
+                                        <div class="checkbox-design position-relative" (click)="getParking('2')">
                                             <input type="radio" id="parking" name="parking_space" value="two">
                                             <button class="checkbox-btn">2</button>
                                         </div>
-                                        <div class="checkbox-design position-relative">
+                                        <div class="checkbox-design position-relative" (click)="getParking('3')">
                                             <input type="radio" id="parking" name="parking_space" value="three">
                                             <button class="checkbox-btn">3</button>
                                         </div>
-                                        <div class="checkbox-design position-relative">
+                                        <div class="checkbox-design position-relative" (click)="getParking('4')">
                                             <input type="radio" id="parking" name="parking_space" value="four">
                                             <button class="checkbox-btn">4</button>
                                         </div>
-                                        <div class="checkbox-design position-relative">
+                                        <div class="checkbox-design position-relative" (click)="getParking('5')">
                                             <input type="radio" id="parking" name="parking_space" value="four_plus">
                                             <button class="checkbox-btn">4+</button>
                                         </div>
@@ -360,7 +360,7 @@
                                     <div class="textarea-design">
                                         <mat-form-field class="full-width input-design" appearance="fill">
                                         <mat-label>Name Of the Property</mat-label>
-                                        <input matInput formControlName="propertyOffers" type="text"
+                                        <input matInput formControlName="PropertyTitle" type="text"
                                             placeholder="Residential Property">
                                         </mat-form-field>
                                     </div>

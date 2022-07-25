@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
 import * as $ from 'jquery';
 import {NotificationService} from "../service/notification.service";
 @Component({
