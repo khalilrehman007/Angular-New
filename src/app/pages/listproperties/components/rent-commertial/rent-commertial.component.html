@@ -296,7 +296,7 @@
                       <h6 class="h6-design">Available from</h6>
                       <div class="input-date-picker input-design">
                         <mat-form-field appearance="fill">
-                          <input matInput [matDatepicker]="picker" id="rent-commertial-date"
+                          <input matInput [matDatepicker]="picker" [min]="minDate" id="rent-commertial-date"
                             formControlName="availablefrom">
                           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                           <mat-datepicker #picker></mat-datepicker>

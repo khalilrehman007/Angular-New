@@ -31,6 +31,7 @@ export class RentCommertialComponent implements OnInit {
   room:any = [1,2,3,4,5,6,7,8,9,10];
   featuresData: any;
   featuresFormData: any = [];
+  minDate = new Date();
 
   constructor(private api: AppService, private service: AuthService, private route: Router, private notifyService: NotificationService) {
     this.priviousFormCheck = localStorage.getItem('propertyData');
