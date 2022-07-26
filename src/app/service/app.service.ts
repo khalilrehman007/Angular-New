@@ -106,6 +106,12 @@ export class AppService {
   LoadPropertyListingTypes() {
     return this.http.get(this.apiurl + 'PropertyListingTypes');
   }
+  LoadListingDashboard(id) {
+    return this.http.get(this.apiurl + 'ListingDashboard/'+id,{ headers: this.headers });
+  }
+  LoadPropertyListingStatus() {
+    return this.http.get(this.apiurl + 'PropertyListingStatus');
+  }
   LoadProfessionalAndListingType(professionalTypeId, listingTypeId) {
     return this.http.get(this.apiurl + 'PropertyListingPackagesByProfessionalAndListingType?professionalTypeId=' + professionalTypeId + '&listingTypeId=' + listingTypeId);
   }

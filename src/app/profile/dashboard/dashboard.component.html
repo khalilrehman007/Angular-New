@@ -1612,7 +1612,7 @@
           <h4 class="sub-title">My Listings</h4>
           <div class="sub-tab-nav">
           <mat-tab-group>
-            <mat-tab label="All (02)">
+              <mat-tab label="All (02)">
               <div class="type-activity-status">
                 <div ngClass="block-wrapper mb-4">
                 <div class="checkbox-flex-box-auto button-same-select">
@@ -1662,12 +1662,12 @@
                                 <div class="row">
                                     <div class="col-7">
                                         <a class="agent-details__property-list-item-link">{{listing.propertyTitle}} AED
-                                            <span>/yearly</span>
+                                            <span>/{{listing.rentType}}</span>
                                         </a>
                                     </div>
                                     <div class="col-5 text-end">
-                                        <p class="agent-details__property-list-item-date mb-0">Posted on: March 09, 2022</p>
-                                        <p class="agent-details__property-list-item-date">Expired on: June 22, 2022</p>
+                                        <p class="agent-details__property-list-item-date mb-0">Posted on:{{listing.requestedDateFormat}}</p>
+                                        <p class="agent-details__property-list-item-date">Expired on: {{listing.expiredDateFormat}}</p>
                                     </div>
                                 </div>
                                 <h6>{{listing.buildingName}}</h6>
@@ -1723,8 +1723,8 @@
               </div>
             </div>
       </mat-tab>
-              <mat-tab label="Buy">Buy Empty</mat-tab>
-              <mat-tab label="Rent"> Commercial Empty</mat-tab>
+              <mat-tab label="{{this.buy}}">Buy Empty</mat-tab>
+              <mat-tab label="{{this.rent}}"> Commercial Empty</mat-tab>
           </mat-tab-group>
           </div>
         </div>
