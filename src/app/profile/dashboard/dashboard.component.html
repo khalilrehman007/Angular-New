@@ -1,5 +1,6 @@
 <app-header></app-header>
-<div ngClass="container_1220px">
+<section ngClass="slide-left-bar">
+<div ngClass="container_1280px">
   <!-- <h2 style="text-align: center;" >Welcome To Profile {{user.fullName}}</h2> -->
   <!-- <h2 style="text-align: center;" >Welcome To Profile Ahmed Yusef</h2> -->
   <div ngClass="user-info-sec">
@@ -9,21 +10,21 @@
         <h2 ngClass="user-name">{{this.user.firstName+' '+this.user.lastName}}</h2>
         <div class="base-details">
           <div class="row">
-            <div class="col-md-4">
+            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
                 <div class="form-group">
                   <label for="txtname">Account Email</label>
                   <h4 class="base-info-text">{{this.user.email}}</h4>
                   <!-- <input type="text" id="txtname" class="form-control" value="omranabc@gmail.com" placeholder="Enter the User Name"   autocomplete="off"  /> -->
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
                 <div class="form-group">
                   <label for="txtname">Phone</label>
                   <h4 class="base-info-text"><img src="{{this.user.phoneNumber ? this.user.phoneNumber : 'Empty'}}" alt="">{{this.user.phoneNumber ? this.user.phoneNumber : 'Empty'}}</h4>
                   <!-- <input type="text" id="txtname" class="form-control" value="+971 50 999 9999" placeholder="Enter the User Name"   autocomplete="off"  /> -->
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
               <div class="d-flex align-item-center">
                 <div class="form-group">
                   <label for="txtname">Location</label>
@@ -52,7 +53,6 @@
   </div>
 
 </div>
-
 <div class="tab-nav-main">
 
   <div class="tab-wrap">
@@ -160,7 +160,7 @@
 
 
 
-        <div class="card mt-5">
+        <div class="card mt-5 lead_summary">
         <section ngClass="position-relative wrapper-section properties-slider residentials-property-rent-1">
               <div ngClass="section-title">
                   <div ngClass="section-title-left">
@@ -4153,4 +4153,5 @@
   </div> -->
   </div>
 </div>
+</section>
 <app-footer></app-footer>
