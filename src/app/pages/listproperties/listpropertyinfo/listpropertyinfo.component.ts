@@ -32,7 +32,7 @@ export class ListpropertyinfoComponent implements OnInit {
   propertyManages: any;
   occupancy: any;
   petPolicy: any;
-  petPolicyData:any = [];
+  petPolicyData: any = [];
   rentTypes: any;
   room: any = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   featuresData: any;
@@ -77,7 +77,7 @@ export class ListpropertyinfoComponent implements OnInit {
     this.api.PropertyFeatures(1).subscribe((result: any) => {
       this.featuresData = result.data;
     });
-    this.api.LoadOccupancy().subscribe((result:any)=> {
+    this.api.LoadOccupancy().subscribe((result: any) => {
       this.occupancy = result.data;
     });
     this.data = this.priviousFormCheck;
@@ -131,8 +131,8 @@ export class ListpropertyinfoComponent implements OnInit {
     building_type_quaterly: new FormControl(""),
     building_type_yearly: new FormControl(""),
     securoty_deposit: new FormControl(""),
-    AED: new FormControl("", ),
-    securityNegotiable: new FormControl("" ),
+    AED: new FormControl("",),
+    securityNegotiable: new FormControl(""),
     brokerage_value: new FormControl(""),
     brokerageAed: new FormControl(""),
     brokerageNegotiable: new FormControl(""),
@@ -180,14 +180,10 @@ export class ListpropertyinfoComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
     const controls = this.SubmitForm.controls;
-    if(this.genderCheck == false || this.tenantCheck == false|| this.fittingCheck == false|| this.furnishTypeCheck == false|| this.managedCheck == false|| this.occupancyCheck == false|| this.rentTypeCheck == false|| this.petPolicyCheck == false|| this.parkingCheck == false|| this.propertyTypeCheck == false|| this.bedroomCheck == false|| this.bathroomCheck == false|| this.brokreageCheck == false|| this.securityCheck == false || this.SubmitForm.invalid) {
+    if (this.genderCheck == false || this.tenantCheck == false || this.fittingCheck == false || this.furnishTypeCheck == false || this.managedCheck == false || this.occupancyCheck == false || this.rentTypeCheck == false || this.petPolicyCheck == false || this.parkingCheck == false || this.propertyTypeCheck == false || this.bedroomCheck == false || this.bathroomCheck == false || this.brokreageCheck == false || this.securityCheck == false || this.SubmitForm.invalid) {
       alert("Please fill all the required fields");
       return;
     }
-    // if () {
-    //   alert("Please fill all the required fields");
-    //   return;
-    // }
 
     this.data.PropertyListingTypeId = 1;
     this.data.PropertyTransactionTypeId = "";
@@ -208,31 +204,34 @@ export class ListpropertyinfoComponent implements OnInit {
     this.data.MaintenanceCharges = "";
     this.data.HandoverOn = "";
     this.data.PropertyCompletionStatusId = "";
-    let user:any = localStorage.getItem("user");
+    let user: any = localStorage.getItem("user");
     this.data.UserId = JSON.parse(user).id;
     this.data.UserEmail = JSON.parse(user).email;
-    let temp:any = []
+    let temp: any = []
     for (let i = 0; i < this.petPolicyData.length; i++) {
-      temp.push({"PetPolicyId":this.petPolicyData[i]});
+      temp.push({ "PetPolicyId": this.petPolicyData[i] });
     }
     this.data.PetPolicies = temp;
     temp = []
     for (let i = 0; i < this.featuresFormData.length; i++) {
-      temp.push({PropertyFeatureId:this.featuresFormData[i]});
+      temp.push({ PropertyFeatureId: this.featuresFormData[i] });
     }
     this.data.PropertyFeatures = temp;
 
-    localStorage.setItem('propertyData',JSON.stringify(this.data))
+    localStorage.setItem('propertyData', JSON.stringify(this.data))
     this.route.navigate(['listpropertymedia'])
   }
-  getBedroom(e: number) {
-    this.data.BedRooms = e;
+  getBedroom(e: any) {
+    this.bedroomCheck = true;
+    this.data.BedRooms = e.value;
   }
-  getBathroom(e: number) {
-    this.data.BathRooms = e;
+  getBathroom(e: any) {
+    this.bathroomCheck = true;
+    this.data.BathRooms = e.value;
   }
-  getPropertyType(e: number) {
-    this.data.PropertyTypeId = e;
+  getPropertyType(e: any) {
+    this.propertyTypeCheck = true;
+    this.data.PropertyTypeId = e.value;
   }
   getFurnishingType(e: number) {
     this.data.FurnishingType = e;
@@ -255,12 +254,13 @@ export class ListpropertyinfoComponent implements OnInit {
   getParking(e: string) {
     this.data.Parkings = e;
   }
-  getPetPolicy(e: number) {
-    if (this.petPolicyData.indexOf(e) == -1) {
-      this.petPolicyData.push(e);
+  getPetPolicy(e: any) {
+    if(e.value.length == 0) {
+      this.petPolicyCheck = false;
     } else {
-      this.petPolicyData = this.petPolicyData.filter((id: any) => e != id);
+      this.petPolicyCheck = true;
     }
+    this.petPolicyData = e.value;
   }
   getRentTypes(e: number) {
     this.data.RentTypeId = e;

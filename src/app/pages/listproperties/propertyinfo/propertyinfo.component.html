@@ -93,7 +93,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div ngClass="confirm-location-sec text-right">
+                                        <div ngClass="confirm-location-sec text-right" (click)="confirmLocation()">
                                             <button ngClass="confirm-location-btn">
                                                 Confirm Location
                                             </button>
@@ -107,11 +107,11 @@
                                             <mat-list>
                                                 <mat-list-item ngClass="d-flex justify-content-spacebw">
                                                     <div ngClass="location-div-block">
-                                                        <h4 ngClass="loc-heading">Al Mankool, Dubai, UAE</h4>
-                                                        <p>2535, Road 34,Al Mankool, Duba...</p>
+                                                        <h4 ngClass="loc-heading">{{locationInformation.city}}, {{locationInformation.country}}</h4>
+                                                        <p>{{locationInformation.address}}</p>
                                                         <img src="../../../../assets/images/MapPin.svg" />
                                                     </div>
-                                                    <div ngClass="change-btn-block">
+                                                    <div ngClass="change-btn-block" (click)="changeInfo()">
                                                         <button ngClass="change-btn">Change</button>
                                                     </div>
                                                 </mat-list-item>

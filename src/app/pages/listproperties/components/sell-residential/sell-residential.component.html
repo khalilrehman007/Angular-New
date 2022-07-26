@@ -65,80 +65,53 @@
                                   </div>
                               </div>
                               <div class="property-dropdowns-list">
-                                  <div class="row">
-                                      <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-                                          <h6 class="h6-design">Type of Property</h6>
-                                          <div class="dropdown">
-                                              <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown">
-                                                  Select type of property
-                                              </button>
-                                              <div class="dropdown-menu" id="property-type-sec">
-                                                <h5 class="h5-heading">Property Type</h5>
-                                                  <div class="property-types-cntnts">
-                                                    <ul class="list-unstyled residentails-unit-list">
-                                                      <li class="d-flex" *ngFor="let item of propertyType">
-                                                        <div class="position-relative">
-                                                        <input type="radio" name="property_studio" (click)="getPropertyType(item.id)" value="{{item.typeDescription}}">
-                                                        <span class="property_sel"></span>
-                                                        </div>
-                                                        <div class="proprty_name">
-                                                          <p>{{item.typeDescription}}</p>
-                                                        </div>
-                                                      </li>
-                                                    </ul>
-                                                    </div>
-                                              </div>
+                                <div class="row">
+                                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                                        <div ngClass="block-wrapper">
+                                            <div ngClass="select-design">
+                                                <label>Type of Property</label>
+                                                <mat-form-field appearance="fill">
+                                                    <mat-label>Select type of property</mat-label>
+                                                    <mat-select (selectionChange)="getPropertyType($event)">
+                                                        <mat-option *ngFor="let item of propertyType" value="{{item.id}}" >
+                                                            {{item.typeDescription}}
+                                                        </mat-option>
+                                                    </mat-select>
+                                                </mat-form-field>
                                             </div>
-                                      </div>
-                                      <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-                                          <h6 class="h6-design">Bedroom</h6>
-                                          <div class="dropdown">
-                                              <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown">
-                                                Select no. of bedroom
-                                              </button>
-                                              <div class="dropdown-menu" id="property-type-sec">
-                                                <h5 class="h5-heading">Bedroom</h5>
-                                                  <div class="property-types-cntnts">
-                                                    <ul class="list-unstyled residentails-unit-list">
-                                                      <li class="d-flex" *ngFor="let item of room">
-                                                        <div class="position-relative">
-                                                        <input type="radio" (click)="getBedRoom(item)" name="bedroom" value="{{item}}">
-                                                        <span class="property_sel"></span>
-                                                        </div>
-                                                        <div class="proprty_name">
-                                                          <p>{{item}}</p>
-                                                        </div>
-                                                      </li>
-                                                    </ul>
-                                                    </div>
-                                              </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                                        <div ngClass="block-wrapper">
+                                            <div ngClass="select-design">
+                                                <label>Bedroom</label>
+                                                <mat-form-field appearance="fill">
+                                                    <mat-label>Select Number Of Bedrooms</mat-label>
+                                                    <mat-select (selectionChange)="getBedroom($event)">
+                                                        <mat-option *ngFor="let item of room" value="{{item}}" >
+                                                            {{item}}
+                                                        </mat-option>
+                                                    </mat-select>
+                                                </mat-form-field>
                                             </div>
-                                      </div>
-                                      <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-                                          <h6 class="h6-design">Bathroom</h6>
-                                          <div class="dropdown square-selection">
-                                              <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown">
-                                                Select no. of bathroom
-                                              </button>
-                                              <div class="dropdown-menu" id="property-type-sec">
-                                                <h5 class="h5-heading">Bathroom</h5>
-                                                  <div class="property-types-cntnts">
-                                                    <ul class="list-unstyled residentails-unit-list">
-                                                      <li class="d-flex" *ngFor="let item of room">
-                                                        <div class="position-relative">
-                                                        <input type="radio" (click)="getBathRoom(item)" name="bathroom" value="{{item}}">
-                                                        <span class="property_sel"></span>
-                                                        </div>
-                                                        <div class="proprty_name">
-                                                          <p>{{item}}</p>
-                                                        </div>
-                                                      </li>
-                                                    </ul>
-                                                    </div>
-                                              </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                                        <div ngClass="block-wrapper">
+                                            <div ngClass="select-design">
+                                                <label>Bathroom</label>
+                                                <mat-form-field appearance="fill">
+                                                    <mat-label>Select Number Of Bathrooms</mat-label>
+                                                    <mat-select (selectionChange)="getBathroom($event)">
+                                                        <mat-option *ngFor="let item of room" value="{{item}}" >
+                                                            {{item}}
+                                                        </mat-option>
+                                                    </mat-select>
+                                                </mat-form-field>
                                             </div>
-                                      </div>
-                                  </div>
+                                        </div>
+                                    </div>
+                                </div>
                               </div>
                               <div class="parking-details-sec property-dropdowns-list">
                                 <div class="row">
@@ -237,7 +210,6 @@
                                           </mat-form-field>
                                           <span class="area-sq">Sq. Ft.</span>
                                           </div>
-                                          <p class="text-right">345 Sq Yd.</p>
                                           </div>
                                       </div>
                                       <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
@@ -249,7 +221,6 @@
                                               </mat-form-field>
                                               <span class="area-sq">Sq. Ft.</span>
                                               </div>
-                                              <p class="text-right">345 Sq Yd.</p>
                                               </div>
                                       </div>
                                   </div>
@@ -301,7 +272,6 @@
                                             <span class="area-sq">AED</span>
                                             </div>
                                             </div>
-                                            <p ngClass="input-btn-text">per month</p>
                                       </div>
                                   </div>
                               </div>
@@ -439,7 +409,7 @@
                               <div class="select-amenitites">
                                 <div class="row">
                                   <div class="col-sm-12">
-                                    <h6 class="h6-design">Select Amenitites</h6>
+                                    <h6 class="h6-design">Select Features</h6>
                                     <div class="inneR-border-wrap">
                                       <div class="checkbox-flex-box autoflex-layout">
                                         <div class="checkbox-design position-relative" *ngFor="let item of featuresData"
@@ -448,9 +418,6 @@
                                             name={{item.propertyFeature.featureName}} value={{item.propertyFeature.featureName}}>
                                           <button class="checkbox-btn">{{item.propertyFeature.featureName}}</button>
                                         </div>
-                                      </div>
-                                      <div class="add-more">
-                                        <button class="add-higlights"><img src="{{plus}}"> Add Amenity</button>
                                       </div>
                                     </div>
                                   </div>
@@ -463,7 +430,6 @@
                         <a routerLink="/listingproperty" class="back-btn">Back</a>
                  </mat-card-actions>
                 <mat-card-actions>
-<!--                    <a routerLink="/listpropertymedia" class="save-continue-btn">Save & Continue</a>-->
                         <button mat-raised-button type="submit" ngClass="submit-btn">Save & Continue</button>
                  </mat-card-actions>
                 </div>

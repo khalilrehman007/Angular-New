@@ -68,35 +68,14 @@
                                 <div class="property-dropdowns-list">
                                     <div class="row">
                                         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-                                            <!-- <div class="dropdown">
-                                                <button type="button" class="btn dropdown-toggle">
-                          Select type of property
-                        </button>
-                                                <div class="dropdown-menu" id="property-type-sec">
-                                                    <h5 class="h5-heading">Property Type</h5>
-                                                    <div class="property-types-cntnts">
-                                                        <ul class="list-unstyled residentails-unit-list">
-                                                            <li class="d-flex" *ngFor="let item of propertyType">
-                                                                <div class="position-relative">
-                                                                    <input type="radio" (click)="getPropertyType(item.id);propertyTypeCheck=true" name="property_types" value="{{item.typeDescription}}">
-                                                                    <span class="property_sel"></span>
-                                                                </div>
-                                                                <div class="proprty_name">
-                                                                    <p>{{item.typeDescription}}</p>
-                                                                </div>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div> -->
                                             <div ngClass="block-wrapper">
                                                 <div ngClass="select-design">
                                                     <label>Type of Property</label>
                                                     <mat-form-field appearance="fill">
                                                         <mat-label>Select type of property</mat-label>
-                                                        <mat-select>
-                                                            <mat-option [value]="'Apartment'">
-                                                                Apartment
+                                                        <mat-select (selectionChange)="getPropertyType($event)">
+                                                            <mat-option *ngFor="let item of propertyType" value="{{item.id}}" >
+                                                                {{item.typeDescription}}
                                                             </mat-option>
                                                         </mat-select>
                                                     </mat-form-field>
@@ -104,35 +83,14 @@
                                             </div>
                                         </div>
                                         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-                                            <!-- <div class="dropdown">
-                                                <button type="button" class="btn dropdown-toggle">
-                                                    Select type of property
-                                                    </button>
-                                                <div class="dropdown-menu" id="property-type-sec">
-                                                    <h5 class="h5-heading">Bedroom</h5>
-                                                    <div class="property-types-cntnts">
-                                                        <ul class="list-unstyled residentails-unit-list">
-                                                            <li class="d-flex" *ngFor="let item of room">
-                                                                <div class="position-relative">
-                                                                    <input type="radio" (click)="getBedroom(item);bedroomCheck=true" name="bedroom" value="{{item}}">
-                                                                    <span class="property_sel"></span>
-                                                                </div>
-                                                                <div class="proprty_name">
-                                                                    <p>{{item}}</p>
-                                                                </div>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div> -->
                                             <div ngClass="block-wrapper">
                                                 <div ngClass="select-design">
                                                     <label>Bedroom</label>
                                                     <mat-form-field appearance="fill">
                                                         <mat-label>Select Number Of Bedrooms</mat-label>
-                                                        <mat-select>
-                                                            <mat-option [value]="'0'">
-                                                                0
+                                                        <mat-select (selectionChange)="getBedroom($event)">
+                                                            <mat-option *ngFor="let item of room" value="{{item}}" >
+                                                                {{item}}
                                                             </mat-option>
                                                         </mat-select>
                                                     </mat-form-field>
@@ -140,35 +98,14 @@
                                             </div>
                                         </div>
                                         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-                                            <!-- <div class="dropdown square-selection">
-                                                <button type="button" class="btn dropdown-toggle">
-                                                Select type of property
-                                                </button>
-                                                <div class="dropdown-menu" id="property-type-sec">
-                                                    <h5 class="h5-heading">Bathroom</h5>
-                                                    <div class="property-types-cntnts">
-                                                        <ul class="list-unstyled residentails-unit-list">
-                                                            <li class="d-flex" *ngFor="let item of room">
-                                                                <div class="position-relative">
-                                                                    <input type="radio" (click)="getBathroom(item);bathroomCheck=true" name="bathroom" value="{{item}}">
-                                                                    <span class="property_sel"></span>
-                                                                </div>
-                                                                <div class="proprty_name">
-                                                                    <p>{{item}}</p>
-                                                                </div>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div> -->
                                             <div ngClass="block-wrapper">
                                                 <div ngClass="select-design">
                                                     <label>Bathroom</label>
                                                     <mat-form-field appearance="fill">
                                                         <mat-label>Select Number Of Bathrooms</mat-label>
-                                                        <mat-select>
-                                                            <mat-option [value]="'0'">
-                                                                0
+                                                        <mat-select (selectionChange)="getBathroom($event)">
+                                                            <mat-option *ngFor="let item of room" value="{{item}}" >
+                                                                {{item}}
                                                             </mat-option>
                                                         </mat-select>
                                                     </mat-form-field>
@@ -275,35 +212,13 @@
                                             </div>
                                         </div>
                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                                            <!-- <div class="dropdown square-selection">
-                                                <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown">
-                                                Select the pet policy
-                                                </button>
-                                                <div class="dropdown-menu" id="property-type-sec">
-                                                    <h5 class="h5-heading">Pet Policy</h5>
-                                                    <div class="property-types-cntnts">
-                                                        <ul class="list-unstyled residentails-unit-list">
-                                                            <li class="d-flex" *ngFor="let item of petPolicy">
-                                                                <div class="position-relative">
-                                                                    <input type="checkbox" (click)="getPetPolicy(item.id);petPolicyCheck=true" value="{{item.name}}" name="pet_policy">
-                                                                    <span class="property_sel"></span>
-                                                                </div>
-                                                                <div class="proprty_name">
-                                                                    <p>{{item.name}}</p>
-                                                                </div>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div> -->
                                             <div ngClass="block-wrapper">
                                                 <div ngClass="select-design">
                                                     <label>Pet Policy</label>
                                                     <mat-form-field appearance="fill">
                                                         <mat-label> Select the pet policy</mat-label>
-                                                        <mat-select multiple>
-                                                          <mat-option [value]="'No Pets Allowed'">No Pets Allowed</mat-option>
-                                                          <mat-option [value]="'Pets Allowed'">Pets Allowed</mat-option>
+                                                        <mat-select multiple (selectionChange)="getPetPolicy($event)">
+                                                          <mat-option *ngFor="let item of petPolicy" value="{{item.id}}">{{item.name}}</mat-option>
                                                         </mat-select>
                                                       </mat-form-field>
                                                 </div>
@@ -322,7 +237,6 @@
                                                     </mat-form-field>
                                                     <span class="area-sq">Sq. Ft.</span>
                                                 </div>
-                                                <p class="text-right">345 Sq Yd.</p>
                                             </div>
                                         </div>
                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
@@ -334,7 +248,6 @@
                                                     </mat-form-field>
                                                     <span class="area-sq">Sq. Ft.</span>
                                                 </div>
-                                                <p class="text-right">345 Sq Yd.</p>
                                             </div>
                                         </div>
                                     </div>

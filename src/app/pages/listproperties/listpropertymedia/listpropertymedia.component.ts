@@ -37,13 +37,12 @@ export class ListpropertymediaComponent implements OnInit {
   oldData: any;
   priviousFormCheck: any;
   documentBase: any = [];
-  electricBase: any = [];
   data: any = {};
   images: any = [];
   imageData: any = [];
   videoData: any = [];
-  // documentData:any = {};
   documentData = new FormData();
+  btnText:string = "Publish";
 
 
   constructor(private api: AppService, private uploadService: FileUploadService, private route: Router) {
@@ -91,6 +90,19 @@ export class ListpropertymediaComponent implements OnInit {
   }
 
   selectFiles(event: any): void {
+    if(event.target.files.length > 5) {
+      alert("You can choose maximun 5 files");
+      return;
+    }
+    let temp:number = 0;
+    for(let i = 0; i < event.target.files.length; i++) {
+      temp += event.target.files[i].size
+    }
+    temp = temp/1048576
+    if(temp > 10) {
+      alert("Maximun size allowed is 10MB");
+      return;
+    }
     this.imageData = [];
     this.message = [];
     this.progressInfos = [];
@@ -117,6 +129,10 @@ export class ListpropertymediaComponent implements OnInit {
 
 
   onSelectFile(event: any) {
+    if(event.target.files[0].size/1048576 > 30) {
+      alert("Maximun size allowed is 30MB");
+      return;
+    }
     this.videoData = [];
     this.selectedVideo = event.target.files;
     for (let i = 0; i < this.selectedVideo.length; i++) {
@@ -165,6 +181,7 @@ export class ListpropertymediaComponent implements OnInit {
     }
   }
   handleChange(files: any) {
+    this.file = files[0].name;
     if (files && files.length) {
       let extension: any = files[0].name.split(".");
       extension = extension[extension.length - 1];
@@ -185,13 +202,13 @@ export class ListpropertymediaComponent implements OnInit {
   videoCheck: boolean =false;
   onSubmit() {
     this.submitted = true;
-    console.log(this.videoCheck);
     if (this.SubmitForm.invalid) {
       if(this.tittleDeedCheck == false || this.imgCheck == false || this.videoCheck == false){
         alert("Please fill all the fields");
       }
       return;
     }
+    this.btnText = "Please Wait...";
     this.data.VideoLink = this.SubmitForm.value.videoLink;
     let temp: any = [];
     let tempDoc: any = [];

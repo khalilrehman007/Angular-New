@@ -40,6 +40,10 @@ export class PropertyinfoComponent implements OnInit {
   seachAddress: any
   data: any = {};
   marker: any;
+  countryName:any;
+  cityName:any;
+  tempAddress:any;
+  locationInformation:any = {};
 
 
 
@@ -48,8 +52,18 @@ export class PropertyinfoComponent implements OnInit {
     this.getOldFormData();
     this.loadCountriesData();
   }
-
-
+  changeInfo() {
+    $("#searchLocation").focus();
+    let temp:any = $("#searchLocation").offset();
+    temp = temp.top;
+    $(window).scrollTop(temp-200);
+  }
+  confirmLocation() {
+    this.locationInformation.country = this.countryName;
+    this.locationInformation.city = this.cityName;
+    this.locationInformation.address = localStorage.getItem("address");
+    localStorage.removeItem("address");
+  }
   loadCountriesData() {
     this.service.LoadCountries().subscribe(e => {
       let temp: any = e;
@@ -66,6 +80,7 @@ export class PropertyinfoComponent implements OnInit {
     let temp = this.country.filter(function (c: any) {
       return c.value == e.value
     });
+    this.countryName = temp[0].viewValue;
     this.getLocationDetails(temp[0].viewValue);
     this.countryCheck = true;
     this.countryId = e.value;
@@ -84,6 +99,7 @@ export class PropertyinfoComponent implements OnInit {
     let temp = this.city.filter(function (c: any) {
       return c.value == e.value
     })
+    this.cityName = temp[0].viewValue;
     this.getLocationDetails(temp[0].viewValue);
     this.cityCheck = true;
     this.cityId = e.value;
@@ -187,6 +203,7 @@ export class PropertyinfoComponent implements OnInit {
   onPlaceChanged() {
     let temp: any = document.getElementById("searchLocation");
     let address: any = temp.value;
+    localStorage.setItem("address",address);
     $.ajax({
       url: "https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyBPSEz52-AfPEVbmV_3yuGUGol_KiLb3GU",
       method: "get",

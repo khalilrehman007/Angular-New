@@ -181,14 +181,14 @@ export class RentCommertialComponent implements OnInit {
     this.route.navigate(['listpropertymedia'])
   }
 
-  getPropertyType(id:number) {
-    this.data.PropertyTypeId = id;
+  getBedroom(e: any) {
+    this.data.BedRooms = e.value;
   }
-  getBedroom(e:number) {
-    this.data.Bedroom = e;
+  getBathroom(e: any) {
+    this.data.BathRooms = e.value;
   }
-  getBathroom(e:number) {
-    this.data.Bathroom = e;
+  getPropertyType(e: any) {
+    this.data.PropertyTypeId = e.value;
   }
   getPropertyManages(id:number) {
     this.data.PropertyManageId = id;
