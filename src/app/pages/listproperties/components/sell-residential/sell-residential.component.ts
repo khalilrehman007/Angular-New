@@ -32,6 +32,7 @@ export class SellResidentialComponent implements OnInit {
   completionStatus: any;
   featuresData: any;
   featuresFormData: any = [];
+  minDate = new Date();
 
 
 
