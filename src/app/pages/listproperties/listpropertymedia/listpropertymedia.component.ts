@@ -164,12 +164,14 @@ export class ListpropertymediaComponent implements OnInit {
       }
     }
   }
-  handleChange(files: any) {
-    if (files && files.length) {
-      let extension: any = files[0].name.split(".");
-      extension = extension[extension.length - 1];
-      this.documentBase = { "FileName": files[0].name, "Extension": extension, file: files };
-    }
+  fileName: string;
+  onChange(file) {
+    this.file = file.files[0];
+    this.fileName = file.files[0].name;
+  }
+  removeFile() {
+    this.file = '';
+    this.fileName = '';
   }
   SubmitForm = new FormGroup({
     videoLink: new FormControl(""),
@@ -180,9 +182,16 @@ export class ListpropertymediaComponent implements OnInit {
   }
 
   abc: any = {};
+  tittleDeedCheck: boolean = false;
+  imgCheck: boolean = false;
+  videoCheck: boolean =false;
   onSubmit() {
     this.submitted = true;
+    console.log(this.videoCheck);
     if (this.SubmitForm.invalid) {
+      if(this.tittleDeedCheck == false || this.imgCheck == false || this.videoCheck == false){
+        alert("Please fill all the fields");
+      }
       return;
     }
     this.data.VideoLink = this.SubmitForm.value.videoLink;

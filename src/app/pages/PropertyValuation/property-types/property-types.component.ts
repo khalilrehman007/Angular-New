@@ -75,7 +75,10 @@ export class PropertyTypesComponent implements OnInit {
       this.propertyUnits = result.data;
     })
   }
-
+  status: boolean = false;
+  addamenties(){
+      this.status = !this.status;
+  }
   loadType(e: number) {
     this.formData.PropertyCategoryId = e;
     this.typeSelected = false;

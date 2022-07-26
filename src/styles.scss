@@ -956,9 +956,10 @@ input[type=number] {
 		}
 	}
 	.mat-form-field-label {
-		font-size: 16px;
+		font-size: 14px;
 		color: $color_7;
 		font-weight: 400;
+		padding-top: 3px;
 	}
 	>label {
 		color: $color_8;
@@ -972,6 +973,9 @@ input[type=number] {
 	font-size: 16px;
 	font-weight: 500;
 	margin-bottom: 10px;
+}
+.select-design .mat-select-min-line {
+    font-size: 14px;
 }
 .location-information {
 	padding-top: 5px;
@@ -8064,4 +8068,63 @@ display: none;
 		margin-top: 10px !important;
 		padding: 20px !important;
 	}
+}
+.add_amenties-sec>.row{
+	align-items: flex-end;
+}
+.add_amentiies-btn {
+    background: #595ad4;
+    color: #fff;
+    border: none;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 10px 15px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 359px;
+    text-decoration: none;
+    display: block;
+    margin-left: auto;
+    text-align: center;
+}
+.add_amentiies-btn:hover {
+    background: #333;
+}
+.add_amenties-sec {
+    padding-top: 15px;
+	transition: all 0.5s ease-in-out;
+	display: none;
+}
+.add_amenties-sec.active {
+    display: block;
+}
+.bordered-upload-btn input {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+    opacity: 0;
+    cursor: pointer;
+}
+.remove-file_div p {
+    font-size: 12px;
+    margin-bottom: 5px;
+    margin-top: 8px;
+}
+.remove-file_div button {
+    background: red;
+    color: #fff;
+    border: none;
+    font-size: 13px;
+    padding: 8px 15px;
+    border-radius: 8px;
+    font-weight: 600;
+    margin-top: 5px;
+}
+.remove-file_div button:hover {
+    background: #333;
 }
