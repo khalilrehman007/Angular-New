@@ -33,6 +33,8 @@ export class HomeComponent implements OnInit {
   homebanners:any = [];
   transaction:any = [];
   country:any = [];
+  clientFeedback:any = [];
+
 
 
   id: 1;
@@ -124,46 +126,6 @@ export class HomeComponent implements OnInit {
       })
     });
     this.dynamicSlides1 = tempData
-
-
-    // this.dynamicSlides1 = [
-    //   {
-    //     id: 'slide1',
-    //     src:'assets/images/property/1.png',
-    //     alt:'Side 1',
-    //     title:'Side 56',
-    //     propertyPrice:"350,000AED"
-    //   },
-    //   {
-    //     id: 'slide2',
-    //     src:'assets/images/property/1.png',
-    //     alt:'Side 2',
-    //     title:'Side 2',
-    //     price:"350,000AED"
-    //   },
-    //   {
-    //     id: 'slide3',
-    //     src:'assets/images/property/1.png',
-    //     alt:'Side 3',
-    //     title:'Side 3',
-    //     price:"350,000AED"
-    //   },
-    //   {
-    //     id: 'slide4',
-    //     src:'assets/images/property/1.png',
-    //     alt:'Side 4',
-    //     title:'Side 4',
-    //     price:"350,000AED"
-    //   },
-    //   {
-    //     id: 'slide5',
-    //     src:'assets/images/property/1.png',
-    //     alt:'Side 5',
-    //     title:'Side 5',
-    //     price:"350,000AED"
-    //   }
-    // ]
-    // console.log(this.dynamicSlides1);
   }
 
   oldData2() {
@@ -188,44 +150,6 @@ export class HomeComponent implements OnInit {
       })
     });
     this.dynamicSlides2 = tempData
-
-    // this.dynamicSlides2 = [
-    //   {
-    //     id: 'slide1',
-    //     src:'assets/images/property/1.png',
-    //     alt:'Side 1',
-    //     title:'Side 1',
-    //     price:"250,000AED"
-    //   },
-    //   {
-    //     id: 'slide2',
-    //     src:'assets/images/property/1.png',
-    //     alt:'Side 2',
-    //     title:'Side 2',
-    //     price:"250,000AED"
-    //   },
-    //   {
-    //     id: 'slide3',
-    //     src:'assets/images/property/1.png',
-    //     alt:'Side 3',
-    //     title:'Side 3',
-    //     price:"250,000AED"
-    //   },
-    //   {
-    //     id: 'slide4',
-    //     src:'assets/images/property/1.png',
-    //     alt:'Side 4',
-    //     title:'Side 4',
-    //     price:"250,000AED"
-    //   },
-    //   {
-    //     id: 'slide5',
-    //     src:'assets/images/property/1.png',
-    //     alt:'Side 5',
-    //     title:'Side 5',
-    //     price:"250,000AED"
-    //   }
-    // ]
   }
   newData2() {
     let tempData :Array<Object> = []
@@ -249,44 +173,6 @@ export class HomeComponent implements OnInit {
       })
     });
     this.dynamicSlides2 = tempData
-
-    // this.dynamicSlides2 = [
-    //   {
-    //     id: 'slide1',
-    //     src:'assets/images/property/1.png',
-    //     alt:'Side 1',
-    //     title:'Side 56',
-    //     price:"350,000AED"
-    //   },
-    //   {
-    //     id: 'slide2',
-    //     src:'assets/images/property/1.png',
-    //     alt:'Side 2',
-    //     title:'Side 2',
-    //     price:"350,000AED"
-    //   },
-    //   {
-    //     id: 'slide3',
-    //     src:'assets/images/property/1.png',
-    //     alt:'Side 3',
-    //     title:'Side 3',
-    //     price:"350,000AED"
-    //   },
-    //   {
-    //     id: 'slide4',
-    //     src:'assets/images/property/1.png',
-    //     alt:'Side 4',
-    //     title:'Side 4',
-    //     price:"350,000AED"
-    //   },
-    //   {
-    //     id: 'slide5',
-    //     src:'assets/images/property/1.png',
-    //     alt:'Side 5',
-    //     title:'Side 5',
-    //     price:"350,000AED"
-    //   }
-    // ]
   }
   tenantsslide = [
     {
@@ -311,46 +197,7 @@ export class HomeComponent implements OnInit {
       class:'get-ready-apply'
     }
   ]
-  // homebanner = [
-  //   {
-  //     img: 'assets/images/home-banner-1.png',
-  //     title: 'The World’s 1st AI-Driven Property Valuation Platform',
-  //     desc: 'Our Platform Generates Certified Valuation Reports By DLD - The Dubai Land Development.'
-  //   },
-  //   {
-  //     img: 'assets/images/home-banner-2.png',
-  //     title: 'Property Valuations Made Easy For Residents & Foreign Investors',
-  //     desc: 'Our Platform And Qualified Specialists Provide Seamless Real Estate Valuation Solutions In The UAE And Soon, Across The GCC.'
-  //   },
-  //   {
-  //     img: 'assets/images/home-banner-3.png',
-  //     title: 'Get Auto-Generated, DLD-Approved Valuations',
-  //     desc: 'Our Platform Generates Certified Valuation Reports By DLD - The Dubai Land Development.'
-  //   },
-  // ]
-  clientslide = [
-    {
-      id: 'slide1',
-      src:'assets/images/testimonial/user.png',
-      heading:'Tanveer Ahemad',
-      desc:'Whether it’s selling your current home, getting financing, or buying a new home, we make it easy  and efficient. Whether it’s selling your current home, getting financing, or buying a new home, we make it easy  and efficient.',
-      location: 'Bur Dubai, Dubai, UAE'
-    },
-    {
-      id: 'slide2',
-      src:'assets/images/testimonial/user.png',
-      heading:'Tanveer Ahemad',
-      desc:'Whether it’s selling your current home, getting financing, or buying a new home, we make it easy  and efficient. Whether it’s selling your current home, getting financing, or buying a new home, we make it easy  and efficient.',
-      location: 'Bur Dubai, Dubai, UAE'
-    },
-    {
-      id: 'slide3',
-      src:'assets/images/testimonial/user.png',
-      heading:'Tanveer Ahemad',
-      desc:'Whether it’s selling your current home, getting financing, or buying a new home, we make it easy  and efficient. Whether it’s selling your current home, getting financing, or buying a new home, we make it easy  and efficient.',
-      location: 'Bur Dubai, Dubai, UAE'
-    }
-  ]
+
   Exploreplaces = [
     {
       src:'assets/images/explore-places/1.jpg',
@@ -488,6 +335,7 @@ export class HomeComponent implements OnInit {
     this.oldData2();
     this.oldData1();
     this.LoadBanners();
+    this.getLoadFeedback();
     this.loadCountriesData();
     this.ValuationTransactions();
     this.getOvaluateFeatures();
@@ -654,16 +502,41 @@ export class HomeComponent implements OnInit {
   }
 
   getLoadFeedback(){
+    // this.clientFeedback = [
+    //   {
+    //     id: 'slide1',
+    //     src:'assets/images/testimonial/user.png',
+    //     heading:'Tanveer Ahemad',
+    //     desc:'Whether it’s selling your current home, getting financing, or buying a new home, we make it easy  and efficient. Whether it’s selling your current home, getting financing, or buying a new home, we make it easy  and efficient.',
+    //     location: 'Bur Dubai, Dubai, UAE'
+    //   },
+    //   {
+    //     id: 'slide2',
+    //     src:'assets/images/testimonial/user.png',
+    //     heading:'Tanveer Ahemad',
+    //     desc:'Whether it’s selling your current home, getting financing, or buying a new home, we make it easy  and efficient. Whether it’s selling your current home, getting financing, or buying a new home, we make it easy  and efficient.',
+    //     location: 'Bur Dubai, Dubai, UAE'
+    //   },
+    //   {
+    //     id: 'slide3',
+    //     src:'assets/images/testimonial/user.png',
+    //     heading:'Tanveer Ahemad',
+    //     desc:'Whether it’s selling your current home, getting financing, or buying a new home, we make it easy  and efficient. Whether it’s selling your current home, getting financing, or buying a new home, we make it easy  and efficient.',
+    //     location: 'Bur Dubai, Dubai, UAE'
+    //   }
+    // ];
+
     let tempData :Array<Object> = []
     this.service.LoadFeeback().subscribe(data=>{
       let response: any = data;
       response.data.forEach((element, i) => {
-        let image = element.bannerDocument.fileUrl
+        let image = element.imageUrl
         tempData.push(
-          {title: element.bannerTitle, desc: element.bannerHeader, img:this.baseUrl+image});
+          {id:element.id,heading: element.fullName, desc: element.feedback, src:this.baseUrl+image,location:element.address});
       })
     });
-    this.homebanners = tempData
+    this.clientFeedback = tempData
+
   }
 
   selected = 'option1';

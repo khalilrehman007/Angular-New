@@ -750,6 +750,7 @@ textarea {
 		font-size: 12px;
 		color: $color_10;
 		font-weight: 600;
+		text-align: center;
 		img {
 			margin-right: 4px;
 			width: 16px;
@@ -825,21 +826,10 @@ textarea {
 		}
 		li.nav-item.fav-li {
 			>button{
-			order: 6;
-			order: 6;
-			width: 100%;
-			border: none;
-			background-color: $background-color_12;
-			border-radius: 6px;
 			padding: 2px 15px;
-			margin-left: 0px !important;
-			text-align: center;
 			.fav-link {
 				svg {
 					width: 15px !important;
-					path {
-						fill: #fff !important;
-					}
 				}
 			}
 		}
@@ -862,8 +852,17 @@ textarea {
 		}
 	}
 	.fav-list-dropdown {
+		width: 339px !important;
+		right: -79px !important;
+		top: 49px !important;
+		border: 1px solid #e0e0e0;
+	}
+	.delete-property-div {
 		position: initial !important;
-		width: 100% !important;
+		left: 0;
+		right: 0;
+		text-align: center;
+		padding: 10px 0px;
 	}
 }
 .fav-list-dropdown {
@@ -902,6 +901,7 @@ textarea {
     width: 100%;
     max-width: 90%;
     margin-left: auto;
+	flex-wrap: wrap;
 }
 .shortlisted-white-box>.short-img {
     min-width: 86px;
@@ -917,15 +917,24 @@ textarea {
     color: #000929;
     font-weight: 700;
     margin-bottom: 5px;
+	white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
 }
 .short-cntnt h4 {
     color: #000929;
     font-size: 14px;
     font-weight: 700;
 	margin-bottom: 2px;
+	white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
 }
 .short-cntnt {
     padding-left: 15px;
+	width: calc(100% - 86px);
 }
 .short-cntnt p {
     color: #4A565F;
@@ -1020,3 +1029,10 @@ textarea {
 		padding-right: 25px;
 	}
 }
+@media (max-width: 1199px){
+	.mobile-abs-items .signin-li .nav-link {
+		padding: 5px !important;
+		background-color: transparent;
+	}
+}
+
