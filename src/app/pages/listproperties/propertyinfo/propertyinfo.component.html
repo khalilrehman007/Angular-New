@@ -1,171 +1,168 @@
 <header>
-  <app-second-header></app-second-header>
+    <app-second-header></app-second-header>
 </header>
 <section ngClass="list-properties-sec">
-  <div ngClass="listing-container">
-    <div ngClass="heading-title-sec text-center">
-      <h2>List New Property</h2>
-      <p>Make sure you filled in all the necessary fields and have uploaded all the required files.</p>
-    </div>
-    <div ngClass="listing-property-form-sec">
-      <div ngClass="listing-property-ul">
-        <mat-list>
-          <mat-list-item ngClass="active"> <a routerLink="/listingproperty"><span ngClass="">1</span> Property Info</a>
-          </mat-list-item>
-          <mat-list-item ngClass="disabled"><a routerLink=""><span ngClass="">2</span> Listing Info</a></mat-list-item>
-          <mat-list-item ngClass="disabled"> <a routerLink=""><span ngClass="">3</span> Media</a> </mat-list-item>
-          <mat-list-item ngClass="disabled"> <a routerLink=""><span ngClass="">4</span> Publish</a> </mat-list-item>
-        </mat-list>
-      </div>
-      <div ngClass="list-property-content">
-        <div ngClass="list-property-header">
-          <h5 ngClass="h5-heading">Property Address</h5>
-          <p>Search for your location and confirm the exact location to track</p>
+    <div ngClass="listing-container">
+        <div ngClass="heading-title-sec text-center">
+            <h2>List New Property</h2>
+            <p>Make sure you filled in all the necessary fields and have uploaded all the required files.</p>
         </div>
-        <div ngClass="list-property-body">
-          <form [formGroup]="SubmitForm" (ngSubmit)="onSubmit()">
-            <div ngClass="form-border-wrapper">
-              <div ngClass="row">
-
-
-                <div ngClass="col-xl-6 col-lg-6 col-sm-12">
-                  <div ngClass="block-wrapper mb-4">
-                    <div ngClass="select-design">
-                      <label>Country</label>
-                      <mat-form-field appearance="fill">
-                        <mat-label>Select the Country</mat-label>
-                        <mat-select (selectionChange)="onCountrySelect($event)">
-                          <mat-option *ngFor="let list of country" [value]="list.value">
-                            {{ list.viewValue }}
-                          </mat-option>
-                        </mat-select>
-                      </mat-form-field>
-                    </div>
-                    <div *ngIf="submitted && validate['CountryId'].errors" class="alert alert-danger">
-                      <div *ngIf="validate['CountryId'].errors['required']">Country is required</div>
-                    </div>
-                  </div>
+        <div ngClass="listing-property-form-sec">
+            <div ngClass="listing-property-ul">
+                <mat-list>
+                    <mat-list-item ngClass="active"> <a routerLink="/listingproperty"><span ngClass="">1</span> Property Info</a>
+                    </mat-list-item>
+                    <mat-list-item ngClass="disabled"><a routerLink=""><span ngClass="">2</span> Listing Info</a></mat-list-item>
+                    <mat-list-item ngClass="disabled"> <a routerLink=""><span ngClass="">3</span> Media</a> </mat-list-item>
+                    <mat-list-item ngClass="disabled"> <a routerLink=""><span ngClass="">4</span> Publish</a> </mat-list-item>
+                </mat-list>
+            </div>
+            <div ngClass="list-property-content">
+                <div ngClass="list-property-header">
+                    <h5 ngClass="h5-heading">Property Address</h5>
+                    <p>Search for your location and confirm the exact location to track</p>
                 </div>
-
-                <div ngClass="col-xl-6 col-lg-6 col-sm-12">
-                  <div ngClass="select-design">
-                    <label>City</label>
-                    <mat-form-field appearance="fill">
-                      <mat-label>Select the City</mat-label>
-                      <mat-select (selectionChange)="onCitySelect($event)">
-                        <mat-option *ngFor="let listcity of city" [value]="listcity.value">
-                          {{ listcity.viewValue }}
-                        </mat-option>
-                      </mat-select>
-                    </mat-form-field>
-                  </div>
-                  <div *ngIf="submitted && validate['CityId'].errors" class="alert alert-danger">
-                    <div *ngIf="validate['CityId'].errors['required']">City is required</div>
-                  </div>
-                </div>
+                <div ngClass="list-property-body">
+                    <form [formGroup]="SubmitForm" (ngSubmit)="onSubmit()">
+                        <div ngClass="form-border-wrapper">
+                            <div ngClass="row">
 
 
+                                <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+                                    <div ngClass="block-wrapper mb-4">
+                                        <div ngClass="select-design">
+                                            <label>Country</label>
+                                            <mat-form-field appearance="fill">
+                                                <mat-label>Select the Country</mat-label>
+                                                <mat-select (selectionChange)="onCountrySelect($event);">
+                                                    <mat-option *ngFor="let list of country" [value]="list.value">
+                                                        {{ list.viewValue }}
+                                                    </mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </div>
+                                        <div *ngIf="submitted && validate['CountryId'].errors" class="alert alert-danger">
+                                            <div *ngIf="validate['CountryId'].errors['required']">Country is required</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+                                    <div ngClass="select-design">
+                                        <label>City</label>
+                                        <mat-form-field appearance="fill">
+                                            <mat-label>Select the City</mat-label>
+                                            <mat-select (selectionChange)="onCitySelect($event);">
+                                                <mat-option *ngFor="let listcity of city" [value]="listcity.value">
+                                                    {{ listcity.viewValue }}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                    <div *ngIf="submitted && validate['CityId'].errors" class="alert alert-danger">
+                                        <div *ngIf="validate['CityId'].errors['required']">City is required</div>
+                                    </div>
+                                </div>
 
 
-                <div ngClass="address-sec">
-                  <div ngClass="block-wrapper-address">
-                    <label class="h6-design"></label>
-                    <div ngClass="position-relative">
-                      <div style="width: 100%">
-                        <div #propertyDetails__map class="property-details__map"></div>
-                      </div>
-                      <div ngClass="locate-me-sec">
-                        <div ngClass="add-adrees-sec">
-                          <input matInput type="text" formControlName="address" placeholder="Add a Address"
-                            #searchLocation id="searchLocation" class="searchLocation" />
-                          <div ngClass="locate-me-btn text-right">
-                            <button ngClass="grey-bordered-btn">
+
+
+                                <div ngClass="address-sec">
+                                    <div ngClass="block-wrapper-address">
+                                        <label class="h6-design"></label>
+                                        <div ngClass="position-relative">
+                                            <div style="width: 100%">
+                                                <div #propertyDetails__map class="property-details__map"></div>
+                                            </div>
+                                            <div ngClass="locate-me-sec">
+                                                <div ngClass="add-adrees-sec">
+                                                    <input matInput type="text" formControlName="address" placeholder="Add a Address" #searchLocation id="searchLocation" class="searchLocation" />
+                                                    <div ngClass="locate-me-btn text-right">
+                                                        <button ngClass="grey-bordered-btn">
                               <img src="{{ Locate }}" /> Locate Me
                             </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div ngClass="confirm-location-sec text-right">
-                      <button ngClass="confirm-location-btn">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div ngClass="confirm-location-sec text-right">
+                                            <button ngClass="confirm-location-btn">
                         Confirm Location
                       </button>
-                    </div>
-                  </div>
-                </div>
-                <div ngClass="location-information">
-                  <div ngClass="block-wrapper mb-4">
-                    <h6 ngClass="h6-design">Location Information</h6>
-                    <div ngClass="location-info-lists">
-                      <mat-list>
-                        <mat-list-item ngClass="d-flex justify-content-spacebw">
-                          <div ngClass="location-div-block">
-                            <h4 ngClass="loc-heading">Al Mankool, Dubai, UAE</h4>
-                            <p>2535, Road 34,Al Mankool, Duba...</p>
-                            <img src="../../../../assets/images/MapPin.svg" />
-                          </div>
-                          <div ngClass="change-btn-block">
-                            <button ngClass="change-btn">Change</button>
-                          </div>
-                        </mat-list-item>
-                      </mat-list>
-                    </div>
-                  </div>
-                </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div ngClass="location-information">
+                                    <div ngClass="block-wrapper mb-4">
+                                        <h6 ngClass="h6-design">Location Information</h6>
+                                        <div ngClass="location-info-lists">
+                                            <mat-list>
+                                                <mat-list-item ngClass="d-flex justify-content-spacebw">
+                                                    <div ngClass="location-div-block">
+                                                        <h4 ngClass="loc-heading">Al Mankool, Dubai, UAE</h4>
+                                                        <p>2535, Road 34,Al Mankool, Duba...</p>
+                                                        <img src="../../../../assets/images/MapPin.svg" />
+                                                    </div>
+                                                    <div ngClass="change-btn-block">
+                                                        <button ngClass="change-btn">Change</button>
+                                                    </div>
+                                                </mat-list-item>
+                                            </mat-list>
+                                        </div>
+                                    </div>
+                                </div>
 
 
 
-                <div ngClass="unit-info-sec">
-                  <h6 ngClass="h6-design">Tower / Unit Information</h6>
-                  <div ngClass="unit-info-form">
-                    <div ngClass="row">
-                      <div ngClass="col-xl-4 col-lg-4 col-sm-12">
-                        <mat-form-field class="full-width input-design" appearance="fill">
-                          <mat-label>Property Age</mat-label>
-                          <input matInput formControlName="PropertyAge" type="number"
-                            placeholder="Please mention the Yrs.">
-                        </mat-form-field>
-                      </div>
-                      <div ngClass="col-xl-4 col-lg-4 col-sm-12">
-                        <mat-form-field class="full-width input-design" appearance="fill">
-                          <mat-label>Building Name / Project Name</mat-label>
-                          <input matInput formControlName="BuildingName" type="text"
-                            placeholder="Please mention the name">
-                        </mat-form-field>
-                      </div>
-                      <div ngClass="col-xl-4 col-lg-4 col-sm-12">
-                        <mat-form-field class="full-width input-design" appearance="fill">
-                          <mat-label>Unit No.</mat-label>
-                          <input matInput formControlName="UnitNo" type="number" placeholder="Optional">
-                        </mat-form-field>
-                      </div>
-                      <div ngClass="col-xl-4 col-lg-4 col-sm-12">
-                        <mat-form-field class="full-width input-design" appearance="fill">
-                          <mat-label>Total Floor in Building</mat-label>
-                          <input matInput formControlName="TotalFloor" type="number" placeholder="Please mention the No.">
-                        </mat-form-field>
-                      </div>
-                      <div ngClass="col-xl-4 col-lg-4 col-sm-12">
-                        <mat-form-field class="full-width input-design" appearance="fill">
-                          <mat-label>Floor No.</mat-label>
-                          <input matInput formControlName="FloorNo" type="number" placeholder="Optional">
-                        </mat-form-field>
-                      </div>
-                    </div>
-                  </div>
+                                <div ngClass="unit-info-sec">
+                                    <h6 ngClass="h6-design">Tower / Unit Information</h6>
+                                    <div ngClass="unit-info-form">
+                                        <div ngClass="row">
+                                            <div ngClass="col-xl-4 col-lg-4 col-sm-12">
+                                                <mat-form-field class="full-width input-design" appearance="fill">
+                                                    <mat-label>Property Age</mat-label>
+                                                    <input matInput formControlName="PropertyAge" type="number" placeholder="Please mention the Yrs.">
+                                                </mat-form-field>
+                                            </div>
+                                            <div ngClass="col-xl-4 col-lg-4 col-sm-12">
+                                                <mat-form-field class="full-width input-design" appearance="fill">
+                                                    <mat-label>Building Name / Project Name</mat-label>
+                                                    <input matInput formControlName="BuildingName" type="text" placeholder="Please mention the name">
+                                                </mat-form-field>
+                                            </div>
+                                            <div ngClass="col-xl-4 col-lg-4 col-sm-12">
+                                                <mat-form-field class="full-width input-design" appearance="fill">
+                                                    <mat-label>Unit No.</mat-label>
+                                                    <input matInput formControlName="UnitNo" type="number" placeholder="Optional">
+                                                </mat-form-field>
+                                            </div>
+                                            <div ngClass="col-xl-4 col-lg-4 col-sm-12">
+                                                <mat-form-field class="full-width input-design" appearance="fill">
+                                                    <mat-label>Total Floor in Building</mat-label>
+                                                    <input matInput formControlName="TotalFloor" type="number" placeholder="Please mention the No.">
+                                                </mat-form-field>
+                                            </div>
+                                            <div ngClass="col-xl-4 col-lg-4 col-sm-12">
+                                                <mat-form-field class="full-width input-design" appearance="fill">
+                                                    <mat-label>Floor No.</mat-label>
+                                                    <input matInput formControlName="FloorNo" type="number" placeholder="Optional">
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div ngClass="text-right save-continue-sec justify-content-end">
+                            <mat-card-actions>
+                                <!--                    <a routerLink="/listpropertyinfo" type="submit" ngClass="save-continue-btn">Save & Continue</a>-->
+                                <button mat-raised-button type="submit" ngClass="submit-btn">Save & Continue</button>
+
+                            </mat-card-actions>
+                        </div>
+                    </form>
                 </div>
-              </div>
             </div>
-            <div ngClass="text-right save-continue-sec justify-content-end">
-              <mat-card-actions>
-                <!--                    <a routerLink="/listpropertyinfo" type="submit" ngClass="save-continue-btn">Save & Continue</a>-->
-                <button mat-raised-button type="submit" ngClass="submit-btn">Save & Continue</button>
-
-              </mat-card-actions>
-            </div>
-          </form>
         </div>
-      </div>
     </div>
-  </div>
 </section>
