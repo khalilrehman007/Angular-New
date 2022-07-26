@@ -23,7 +23,7 @@ export class SellCommertialComponent implements OnInit {
   oldData :any;
   priviousFormCheck :any;
   data: any = {};
-  propertyTypes: any;
+  propertyType: any;
   room:any = [1,2,3,4,5,6,7,8,9,10];
   locatedNear: any = [{ id: 1, name: "Metro" }, { id: 2, name: "Elevator" }, {id: 3, name: "Stairs"}];
   ownershipType: any = [{ id: 1, name: "Freehold" }, { id: 2, name: "Leasehold" }];
@@ -31,8 +31,7 @@ export class SellCommertialComponent implements OnInit {
   completionStatus: any;
   featuresData: any;
   featuresFormData: any = [];
-
-
+  minDate = new Date();
 
   constructor(private api:AppService, private service: AuthService,private route:Router,private notifyService : NotificationService) {
     this.priviousFormCheck = localStorage.getItem('propertyData');
@@ -42,7 +41,7 @@ export class SellCommertialComponent implements OnInit {
       this.data = JSON.parse(this.priviousFormCheck);
     }
     this.api.LoadType(2).subscribe((result:any)=>{
-      this.propertyTypes=result.data;
+      this.propertyType=result.data;
     });
     this.api.LoadTransactionTypes().subscribe((result:any)=>{
       this.propertyTransactionType=result.data;
@@ -163,14 +162,14 @@ export class SellCommertialComponent implements OnInit {
     localStorage.setItem('propertyData',JSON.stringify(this.data))
     this.route.navigate(['listpropertymedia'])
   }
-  getPropertyType(id:number){
-    this.data.PropertyTypeId=id;
+  getBedroom(e: any) {
+    this.data.BedRooms = e.value;
   }
-  getBedroom(e:number) {
-    this.data.Bedroom = e;
+  getBathroom(e: any) {
+    this.data.BathRooms = e.value;
   }
-  getBathroom(e:number) {
-    this.data.Bathroom = e;
+  getPropertyType(e: any) {
+    this.data.PropertyTypeId = e.value;
   }
   getLocatedNear(e:number) {
     this.data.LocatedNear = e;

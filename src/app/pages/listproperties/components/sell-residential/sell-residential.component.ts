@@ -32,6 +32,7 @@ export class SellResidentialComponent implements OnInit {
   completionStatus: any;
   featuresData: any;
   featuresFormData: any = [];
+  minDate = new Date();
 
 
 
@@ -182,14 +183,14 @@ export class SellResidentialComponent implements OnInit {
     this.route.navigate(['listpropertymedia'])
 
   }
-  getPropertyType(id:number){
-    this.data.PropertyTypeId = id;
+  getBedroom(e: any) {
+    this.data.BedRooms = e.value;
   }
-  getBedRoom(e:number){
-    this.data.BedRoom = e;
+  getBathroom(e: any) {
+    this.data.BathRooms = e.value;
   }
-  getBathRoom(e:number){
-    this.data.BathRoom = e;
+  getPropertyType(e: any) {
+    this.data.PropertyTypeId = e.value;
   }
   getBalcony(e:string){
     this.data.Balcony = e;    
