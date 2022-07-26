@@ -206,15 +206,10 @@
                 <a ngClass="nav-link"  [routerLink]="['/login']"><img src="{{signinsvg}}"></a>
               </div>
               <div #noListItemTmpl *ngIf="user !== null">
-                <a ngClass="nav-link" [routerLink]="['/profile']">{{user.fullName}} </a>
+                <a ngClass="nav-link mat-profile-face" [routerLink]="['/profile']"><mat-icon>face</mat-icon></a>
               </div>
                 <!-- <a ngClass="nav-link" routerLink="/login"><img src="{{signinsvg}}"> Sign in</a> -->
            </li>
-            <li ngClass="nav-item signin-li d-hide logout">
-              <div #noListItemTmpl *ngIf="user !== null">
-                <a ngClass="nav-link"  (click)="logout()"><mat-icon>settings_power</mat-icon></a>
-              </div>
-            </li>
               </ul>
             </div>
             <div ngClass="collapse navbar-collapse justify-content-end" id="collapsibleNavbar" [ngClass]="status1 ? 'show' : 'noshow'">
@@ -418,7 +413,7 @@
                 </div>
                   <!-- <a ngClass="nav-link" routerLink="/login"><img src="{{signinsvg}}"> Sign in</a> -->
              </li>
-              <li ngClass="nav-item signin-li tm-hide">
+              <li ngClass="nav-item signin-li logout">
                 <div #noListItemTmpl *ngIf="user !== null">
                   <a ngClass="nav-link"  (click)="logout()"> Logout </a>
                 </div>

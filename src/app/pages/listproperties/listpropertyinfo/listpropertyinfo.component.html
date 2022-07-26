@@ -68,8 +68,7 @@
                                 <div class="property-dropdowns-list">
                                     <div class="row">
                                         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-                                            <h6 class="h6-design">Type of Property</h6>
-                                            <div class="dropdown">
+                                            <!-- <div class="dropdown">
                                                 <button type="button" class="btn dropdown-toggle">
                           Select type of property
                         </button>
@@ -89,14 +88,26 @@
                                                         </ul>
                                                     </div>
                                                 </div>
+                                            </div> -->
+                                            <div ngClass="block-wrapper">
+                                                <div ngClass="select-design">
+                                                    <label>Type of Property</label>
+                                                    <mat-form-field appearance="fill">
+                                                        <mat-label>Select type of property</mat-label>
+                                                        <mat-select>
+                                                            <mat-option [value]="'Apartment'">
+                                                                Apartment
+                                                            </mat-option>
+                                                        </mat-select>
+                                                    </mat-form-field>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-                                            <h6 class="h6-design">Bedroom</h6>
-                                            <div class="dropdown">
+                                            <!-- <div class="dropdown">
                                                 <button type="button" class="btn dropdown-toggle">
-                          Select type of property
-                        </button>
+                                                    Select type of property
+                                                    </button>
                                                 <div class="dropdown-menu" id="property-type-sec">
                                                     <h5 class="h5-heading">Bedroom</h5>
                                                     <div class="property-types-cntnts">
@@ -113,14 +124,26 @@
                                                         </ul>
                                                     </div>
                                                 </div>
+                                            </div> -->
+                                            <div ngClass="block-wrapper">
+                                                <div ngClass="select-design">
+                                                    <label>Bedroom</label>
+                                                    <mat-form-field appearance="fill">
+                                                        <mat-label>Select Number Of Bedrooms</mat-label>
+                                                        <mat-select>
+                                                            <mat-option [value]="'0'">
+                                                                0
+                                                            </mat-option>
+                                                        </mat-select>
+                                                    </mat-form-field>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-                                            <h6 class="h6-design">Bathroom</h6>
-                                            <div class="dropdown square-selection">
+                                            <!-- <div class="dropdown square-selection">
                                                 <button type="button" class="btn dropdown-toggle">
-                          Select type of property
-                        </button>
+                                                Select type of property
+                                                </button>
                                                 <div class="dropdown-menu" id="property-type-sec">
                                                     <h5 class="h5-heading">Bathroom</h5>
                                                     <div class="property-types-cntnts">
@@ -136,6 +159,19 @@
                                                             </li>
                                                         </ul>
                                                     </div>
+                                                </div>
+                                            </div> -->
+                                            <div ngClass="block-wrapper">
+                                                <div ngClass="select-design">
+                                                    <label>Bathroom</label>
+                                                    <mat-form-field appearance="fill">
+                                                        <mat-label>Select Number Of Bathrooms</mat-label>
+                                                        <mat-select>
+                                                            <mat-option [value]="'0'">
+                                                                0
+                                                            </mat-option>
+                                                        </mat-select>
+                                                    </mat-form-field>
                                                 </div>
                                             </div>
                                         </div>
@@ -239,11 +275,10 @@
                                             </div>
                                         </div>
                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                                            <h6 class="h6-design">Pet Policy</h6>
-                                            <div class="dropdown square-selection">
+                                            <!-- <div class="dropdown square-selection">
                                                 <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown">
-                          Select the pet policy
-                        </button>
+                                                Select the pet policy
+                                                </button>
                                                 <div class="dropdown-menu" id="property-type-sec">
                                                     <h5 class="h5-heading">Pet Policy</h5>
                                                     <div class="property-types-cntnts">
@@ -259,6 +294,18 @@
                                                             </li>
                                                         </ul>
                                                     </div>
+                                                </div>
+                                            </div> -->
+                                            <div ngClass="block-wrapper">
+                                                <div ngClass="select-design">
+                                                    <label>Pet Policy</label>
+                                                    <mat-form-field appearance="fill">
+                                                        <mat-label> Select the pet policy</mat-label>
+                                                        <mat-select multiple>
+                                                          <mat-option [value]="'No Pets Allowed'">No Pets Allowed</mat-option>
+                                                          <mat-option [value]="'Pets Allowed'">Pets Allowed</mat-option>
+                                                        </mat-select>
+                                                      </mat-form-field>
                                                 </div>
                                             </div>
                                         </div>
@@ -515,16 +562,13 @@
                                 <div class="select-amenitites">
                                     <div class="row">
                                         <div class="col-sm-12">
-                                            <h6 class="h6-design">Select Amenitites</h6>
+                                            <h6 class="h6-design">Select Features</h6>
                                             <div class="inneR-border-wrap">
                                                 <div class="checkbox-flex-box autoflex-layout">
                                                     <div class="checkbox-design position-relative" *ngFor="let item of featuresData" (click)="getFeaturesData(item.propertyFeature.id)">
                                                         <input type="checkbox" id={{item.propertyFeature.id}} name={{item.propertyFeature.featureName}} value={{item.propertyFeature.featureName}}>
                                                         <button class="checkbox-btn">{{item.propertyFeature.featureName}}</button>
                                                     </div>
-                                                </div>
-                                                <div class="add-more">
-                                                    <button class="add-higlights"><img src="{{plus}}"> Add Amenity</button>
                                                 </div>
                                             </div>
                                         </div>
