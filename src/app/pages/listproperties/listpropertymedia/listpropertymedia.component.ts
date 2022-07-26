@@ -164,14 +164,12 @@ export class ListpropertymediaComponent implements OnInit {
       }
     }
   }
-  fileName: string;
-  onChange(file) {
-    this.file = file.files[0];
-    this.fileName = file.files[0].name;
-  }
-  removeFile() {
-    this.file = '';
-    this.fileName = '';
+  handleChange(files: any) {
+    if (files && files.length) {
+      let extension: any = files[0].name.split(".");
+      extension = extension[extension.length - 1];
+      this.documentBase = { "FileName": files[0].name, "Extension": extension, file: files };
+    } 
   }
   SubmitForm = new FormGroup({
     videoLink: new FormControl(""),

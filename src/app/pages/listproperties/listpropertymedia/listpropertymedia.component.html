@@ -55,13 +55,10 @@
                                     <div ngClass="upload_documents d-flex">
                                         <div ngClass="bordered-btn-design">
                                             <div ngClass="bordered-upload-btn">
-                                                <input id="upload_file" type="file" #file (change)="onChange(file)" />
-                                                <button mat-button><img src="{{uploadimg}}"> Upload Tittle Deed</button>
+                                                <input type="file" hidden #fileInput (change)='handleChange($any($event.target).files)'>
+                                                <button mat-button (click)="fileInput.click();tittleDeedCheck=true"><img src="{{uploadimg}}"> Upload Tittle Deed</button>
                                             </div>
-                                            <div *ngIf="fileName" class="remove-file_div">
-                                                <p>{{fileName}}</p>
-                                              <button type="button" (click)="removeFile()">Remove File</button>
-                                            </div>
+                                            <span ngClass="outpup-filename">{{ file }}</span>
                                         </div>
                                     </div>
                                 </div>
