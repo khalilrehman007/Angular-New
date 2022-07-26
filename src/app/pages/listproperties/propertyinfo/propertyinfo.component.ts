@@ -60,7 +60,10 @@ export class PropertyinfoComponent implements OnInit {
       }
     });
   }
+  countryCheck: boolean = false;
+  cityCheck: boolean = false;
   onCountrySelect(e: any) {
+    this.countryCheck=true;
     this.countryId = e.value;
     this.city = [];
     this.service.LoadCities(e.value).subscribe(e => {
@@ -74,6 +77,7 @@ export class PropertyinfoComponent implements OnInit {
   }
 
   onCitySelect(e: any) {
+    this.cityCheck=true;
     this.cityId = e.value;
   }
 
@@ -107,11 +111,32 @@ export class PropertyinfoComponent implements OnInit {
   get validate(){
     return this.SubmitForm.controls;
   }
+  
   onSubmit() {
     localStorage.removeItem("propertyData");
 
     this.submitted = true;
+    const controls = this.SubmitForm.controls;
     if (this.SubmitForm.invalid) {
+      console.log(this.countryCheck);
+      if(controls["PropertyAge"].invalid){
+        alert('PropertyAge is required please fill it');
+      }else if(this.countryCheck == false){
+        alert('Country is required please fill it');
+      }else if(this.cityCheck == false){
+        alert('City is required please fill it');
+      }else if(controls["BuildingName"].invalid){
+        alert('BuildingName  is required please fill it');
+      }else if(controls["UnitNo"].invalid){
+        alert('UnitNo  is required please fill it');
+      }else if(controls["TotalFloor"].invalid){
+        alert('TotalFloor  is required please fill it');
+      }else if(controls["FloorNo"].invalid){
+        alert('FloorNo  is required please fill it');
+      }else if(controls["address"].invalid){
+        alert('address  is required please fill it');
+      }
+      
       return;
     }
     let temp:any = document.getElementById("searchLocation");
