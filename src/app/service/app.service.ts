@@ -52,8 +52,8 @@ export class AppService {
   LoadDashboardData(id) {
     return this.http.get(this.apiurl + 'Dashboard/'+ id,{ headers: this.headers });
   }
-  LoadListing() {
-    return this.http.post(this.apiurl + 'MyListings',{ headers: this.headers });
+  LoadListing(data) {
+    return this.http.post(this.apiurl + 'MyListings',data,{ headers: this.headers });
   }
   LoadCities(id: number) {
     return this.http.get(this.apiurl + 'Cities/' + id);

@@ -19,7 +19,6 @@ export class AuthGuard implements CanActivate {
     // }
 
 
-console.log(this.service.isAuthenticated())
     if (!this.service.isAuthenticated()) {
       this.notifyService.showError('You not having access', "");
       this.route.navigate(['login']);
