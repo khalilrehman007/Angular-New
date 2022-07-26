@@ -95,7 +95,7 @@ export class ListpropertyinfoComponent implements OnInit {
   }
 
   SubmitForm = new FormGroup({
-    propertyTitle: new FormControl(""),
+    propertyTitle: new FormControl("", [Validators.required]),
     property_studio: new FormControl(""),
     property_apartment: new FormControl(""),
     property_villa: new FormControl(""),
@@ -130,23 +130,23 @@ export class ListpropertyinfoComponent implements OnInit {
     pet_cats_allowed: new FormControl(""),
     pet_small_dogs_allowed: new FormControl(""),
     pet_big_dogs_allowed: new FormControl(""),
-    carpetArea: new FormControl(""),
-    buildupArea: new FormControl(""),
-    price: new FormControl(""),
+    carpetArea: new FormControl("", [Validators.required]),
+    buildupArea: new FormControl("", [Validators.required]),
+    price: new FormControl("", [Validators.required]),
     building_type_monthly: new FormControl(""),
     building_type_quaterly: new FormControl(""),
     building_type_yearly: new FormControl(""),
     securoty_deposit: new FormControl(""),
-    AED: new FormControl(""),
-    securityNegotiable: new FormControl(""),
+    AED: new FormControl("", ),
+    securityNegotiable: new FormControl("" ),
     brokerage_value: new FormControl(""),
     brokerageAed: new FormControl(""),
     brokerageNegotiable: new FormControl(""),
-    availablefrom: new FormControl(""),
-    noticePeriod: new FormControl(""),
-    lockingPeriod: new FormControl(""),
-    propertyDescription: new FormControl(""),
-    propertyOffers: new FormControl(""),
+    availablefrom: new FormControl("", [Validators.required]),
+    noticePeriod: new FormControl("", [Validators.required]),
+    lockingPeriod: new FormControl("", [Validators.required]),
+    propertyDescription: new FormControl("", [Validators.required]),
+    propertyOffers: new FormControl("", [Validators.required]),
     highlights_exclusive: new FormControl(""),
     highlights_golfView: new FormControl(""),
     highlights_canalView: new FormControl(""),
@@ -169,11 +169,31 @@ export class ListpropertyinfoComponent implements OnInit {
   get validate() {
     return this.SubmitForm.controls;
   }
+  genderCheck: boolean = false;
+  tenantCheck: boolean = false;
+  fittingCheck: boolean = false;
+  furnishTypeCheck: boolean = false;
+  managedCheck: boolean = false;
+  occupancyCheck: boolean = false;
+  rentTypeCheck: boolean = false;
+  petPolicyCheck: boolean = false;
+  parkingCheck: boolean = false;
+  propertyTypeCheck: boolean = false;
+  bedroomCheck: boolean = false;
+  bathroomCheck: boolean = false;
+  brokreageCheck: boolean = false;
+  securityCheck: boolean = false;
   onSubmit() {
     this.submitted = true;
-    if (this.SubmitForm.invalid) {
+    const controls = this.SubmitForm.controls;
+    if(this.genderCheck == false || this.tenantCheck == false|| this.fittingCheck == false|| this.furnishTypeCheck == false|| this.managedCheck == false|| this.occupancyCheck == false|| this.rentTypeCheck == false|| this.petPolicyCheck == false|| this.parkingCheck == false|| this.propertyTypeCheck == false|| this.bedroomCheck == false|| this.bathroomCheck == false|| this.brokreageCheck == false|| this.securityCheck == false || this.SubmitForm.invalid) {
+      alert("Please fill all the required fields");
       return;
     }
+    // if () {
+    //   alert("Please fill all the required fields");
+    //   return;
+    // }
 
     this.data.PropertyListingTypeId = 1;
     this.data.PropertyTransactionTypeId = "";
