@@ -153,4 +153,7 @@ export class AppService {
     }
     return this.http.post(this.apiurl + 'AddPropertyListing', data, httpOptions);
   }
+  PropertyListingRentBuy(data:any) {
+    return this.http.post(this.apiurl + 'PropertyListingRentBuy', data);
+  }
 }

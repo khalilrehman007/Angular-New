@@ -89,20 +89,48 @@ export class DashboardComponent implements OnInit {
     let tempData :Array<Object> = []
     this.service.LoadPropertyListingStatus().subscribe(data => {
       let response: any = data;
-      response.data.forEach((element, i) => {
-        let count:any = this.getTabCount(element.element.statusDescription)
-        console.log(count)
+
+      let name = 'Active'
+      let count :number = 0;
+      this.service.LoadListingDashboard(35).subscribe(e => {
+        let temp: any = e;
+        if(name == "all"){
+          count = temp.data.totalPropertyListing
+        }else if(name == "rent"){
+          count = temp.data.propertyListingRent
+        }else if(name == "buy"){
+          count = temp.data.propertyListingBuy
+        }else if(name == "Active"){
+          count = temp.data.propertyListingActive
+        }else if(name == "Expired"){
+          count = temp.data.propertyListingExpired
+        }else if(name == "Under Review"){
+          count = temp.data.propertyListingUnderReview
+        }else if(name == "Rejected"){
+          count = temp.data.propertyListingRejected
+        }else if(name == "Deleted"){
+          count = temp.data.propertyListingDeleted
+        }else if(name == "Expire Soon"){
+          count = temp.data.propertyListingExpireSoon
+        }
+        count = count
+      });
+      console.log(count)
+
+      // response.data.forEach((element, i) => {
+      //   let count:any = this.getTabCount(element.element.statusDescription)
+      //   console.log(count)
         // tempData.push(
         //   {id: element.id,statusDescription:element.statusDescription,count:count});
-      })
+      // })
     });
     // this.propertyListingStatus = tempData
     // console.log(this.propertyListingStatus,'dededededede')
   }
 
+  count :number;
   getTabCount(name:any){
-    console.log(name)
-    let count :any;
+    let count = 0;
     this.service.LoadListingDashboard(35).subscribe(e => {
       let temp: any = e;
       if(name == "all"){
@@ -124,9 +152,9 @@ export class DashboardComponent implements OnInit {
       }else if(name == "Expire Soon"){
         count = temp.data.propertyListingExpireSoon
       }
-
     });
-    return count;
+    this.count = count;
+    console.log(this.count)
   }
 
   ngOnInit() {
