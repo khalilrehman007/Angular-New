@@ -209,10 +209,11 @@ export class ListpropertymediaComponent implements OnInit {
   videoCheck: boolean =false;
   onSubmit() {
     this.submitted = true;
-    if (this.SubmitForm.invalid) {
-      if(this.tittleDeedCheck == false || this.imgCheck == false || this.videoCheck == false){
+    console.log(this.tittleDeedCheck);
+    console.log(this.imgCheck);
+    console.log(this.videoCheck);
+    if (this.SubmitForm.invalid || this.tittleDeedCheck == false || this.imgCheck == false || this.videoCheck == false) {
         alert("Please fill all the fields");
-      }
       return;
     }
     this.btnText = "Please Wait...";

@@ -96,18 +96,18 @@ export class SellCommertialComponent implements OnInit {
     room_bathroom_3      : new FormControl("" ),
     locatedNear    : new FormControl("" ),
     ownershipType  : new FormControl("" ),
-    carpetArea          : new FormControl("" ),
-    buildupArea         : new FormControl("" ),
+    carpetArea          : new FormControl("", [Validators.required] ),
+    buildupArea         : new FormControl("", [Validators.required] ),
     transactionType     : new FormControl("" ),
     completionStatus     : new FormControl("" ),
-    price               : new FormControl("" ),
-    maintenanceCharge   : new FormControl("" ),
+    price               : new FormControl("", [Validators.required] ),
+    maintenanceCharge   : new FormControl("", [Validators.required] ),
     brokerageAed        : new FormControl("" ),
     brokerageNegotiable : new FormControl("" ),
-    brokerage           : new FormControl("" ),
-    handover            : new FormControl("" ),
-    propertyDescription : new FormControl("" ),
-    propertyOffers      : new FormControl("" ),
+    brokerage           : new FormControl(""),
+    handover            : new FormControl("", [Validators.required] ),
+    propertyDescription : new FormControl("", [Validators.required] ),
+    propertyOffers      : new FormControl("", [Validators.required] ),
     highlights_exclusive     : new FormControl("" ),
     highlights_golfView      : new FormControl("" ),
     highlights_canalView     : new FormControl("" ),
@@ -131,9 +131,25 @@ export class SellCommertialComponent implements OnInit {
   get validate(){
     return this.SubmitForm.controls;
   }
+  propertyTypeCkick: boolean = false;
+  bedroomCheck: boolean = false;
+  bathroomCheck: boolean = false;
+  locatedNearCheck: boolean = false;
+  ownershipTypeCheck: boolean = false;
+  transactionTypeCheck: boolean = false;
+  completionStatusCheck: boolean = false;
+
   onSubmit() {
     this.submitted = true;
-    if (this.SubmitForm.invalid) {
+    console.log(this.propertyTypeCkick);
+    console.log(this.bedroomCheck);
+    console.log(this.bathroomCheck);
+    console.log(this.locatedNearCheck);
+    console.log(this.ownershipTypeCheck);
+    console.log(this.transactionTypeCheck);
+    console.log(this.completionStatusCheck);
+    if (this.SubmitForm.invalid || this.propertyTypeCkick == false || this.bedroomCheck == false || this.bathroomCheck == false || this.locatedNearCheck == false || this.ownershipTypeCheck == false || this.transactionTypeCheck == false || this.completionStatusCheck == false) {
+      alert('Please fill all the required fields');
       return;
     }
     this.data.CarpetArea=this.SubmitForm.value.carpetArea;
@@ -171,24 +187,31 @@ export class SellCommertialComponent implements OnInit {
     this.route.navigate(['listpropertymedia'])
   }
   getBedroom(e: any) {
+    this.bedroomCheck = true;
     this.data.BedRooms = e.value;
   }
   getBathroom(e: any) {
+    this.bathroomCheck = true;
     this.data.BathRooms = e.value;
   }
   getPropertyType(e: any) {
+    this.propertyTypeCkick = true;
     this.data.PropertyTypeId = e.value;
   }
   getLocatedNear(e:number) {
+    this.locatedNearCheck = true;
     this.data.LocatedNear = e;
   }
   getOwnershipType(e:number){
+    this.ownershipTypeCheck = true;
     this.data.ownershipType = e;
   }
   getPropertyTransactionType(id:number) {
+    this.transactionTypeCheck = true;
     this.data.PropertyTransactionTypeId = id;
   }
   getCompletionStatus(id:number) {
+    this.completionStatusCheck = true;
     this.data.CompletionStatus = id;
   }
   getBrokageDeposit(e: boolean) {
