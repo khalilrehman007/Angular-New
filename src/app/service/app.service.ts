@@ -106,8 +106,8 @@ export class AppService {
   LoadPropertyListingTypes() {
     return this.http.get(this.apiurl + 'PropertyListingTypes');
   }
-  LoadListingDashboard(id) {
-    return this.http.get(this.apiurl + 'ListingDashboard/'+id,{ headers: this.headers });
+  LoadListingDashboard(data) {
+    return this.http.post(this.apiurl + 'ListingDashboard/',data,{ headers: this.headers });
   }
   LoadPropertyListingStatus() {
     return this.http.get(this.apiurl + 'PropertyListingStatus');

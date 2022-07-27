@@ -6,8 +6,6 @@ import {NgbNav} from '@ng-bootstrap/ng-bootstrap';
 import {NotificationService} from "../../service/notification.service";
 
 import { AppService } from 'src/app/service/app.service';
-import {empty} from "rxjs";
-import {analyticsDisabled} from "@angular/cli/src/utilities/environment-options";
 
 @Component({
   selector: 'profile-dashboard',
@@ -59,110 +57,104 @@ export class DashboardComponent implements OnInit {
     {viewValue: '02',value: 'bedroom'},
     {viewValue: '03',value: 'bedroom'},
   ];
-
   all:any;
   rent:any;
   buy:any;
-  propertyListingStatus: any = [];
-
   constructor(private service:AppService,private route:Router,private notifyService : NotificationService) {
     this.getUser();
     this.LoadBlogs();
     this.getloadDashboardData();
     this.getLoadListing()
-    this.listingStatus();
-
+    this.getTabCount();
     this.service.LoadPropertyListingTypes().subscribe(e => {
       let temp: any = e;
       if (temp.message == "Property Listing Type List fetched successfully") {
-          this.rent = temp.data[0].name;
-          this.buy = temp.data[1].name;
+        this.rent = temp.data[0].name;
+        this.buy = temp.data[1].name;
       }
     });
   }
 
-  tabsChange(e:any) {
 
+  parentTabId : any;
+  public parentTabsChange(e:any) {
+    //allId nuLL
+    let parentTabId :any = '';
+    if(e.index == 1){
+      //rentId
+      parentTabId = 1
+    }else if(e.index == 2){
+      //buyId
+      parentTabId = 2
+    }
+    this.parentTabId = parentTabId
+    this.getTabCount();
+    this.getLoadListing()
   }
 
+
+  childTabId : any;
+  public childTabsChange(id) {
+    this.childTabId = id
+    this.getTabCount();
+    this.getLoadListing()
+  }
+
+
+  tabCounts :any = {}
+
+  getTabCount(){
+    console.log(this.parentTabId,'1111')
+    this.service.LoadListingDashboard({"UserId":this.user.id,"PropertyListingTypeId": this.parentTabId }).subscribe(data => {
+      let temp: any = data;
+      let jsonData :any = JSON.stringify(temp.data)
+      let jsonParsDate :any = JSON.parse(jsonData);
+      this.tabCounts = jsonParsDate
+      this.listingStatus();
+    })
+  }
+
+  propertyListingStatus :any = []
   listingStatus(){
     let tempData :Array<Object> = []
     this.service.LoadPropertyListingStatus().subscribe(data => {
       let response: any = data;
-
-      let name = 'Active'
-      let count :number = 0;
-      this.service.LoadListingDashboard(35).subscribe(e => {
-        let temp: any = e;
-        if(name == "all"){
-          count = temp.data.totalPropertyListing
-        }else if(name == "rent"){
-          count = temp.data.propertyListingRent
-        }else if(name == "buy"){
-          count = temp.data.propertyListingBuy
-        }else if(name == "Active"){
-          count = temp.data.propertyListingActive
-        }else if(name == "Expired"){
-          count = temp.data.propertyListingExpired
-        }else if(name == "Under Review"){
-          count = temp.data.propertyListingUnderReview
-        }else if(name == "Rejected"){
-          count = temp.data.propertyListingRejected
-        }else if(name == "Deleted"){
-          count = temp.data.propertyListingDeleted
-        }else if(name == "Expire Soon"){
-          count = temp.data.propertyListingExpireSoon
-        }
-        count = count
-      });
-      console.log(count)
-
-      // response.data.forEach((element, i) => {
-      //   let count:any = this.getTabCount(element.element.statusDescription)
-      //   console.log(count)
-        // tempData.push(
-        //   {id: element.id,statusDescription:element.statusDescription,count:count});
-      // })
+      response.data.forEach((element, i) => {
+          let name = element.statusDescription
+          let count :number = 0;
+          if(name == "all"){
+            count = this.tabCounts.totalPropertyListing
+          }else if(name == "rent"){
+            count = this.tabCounts.propertyListingRent
+          }else if(name == "buy"){
+            count = this.tabCounts.propertyListingBuy
+          }else if(name == "Active"){
+            count = this.tabCounts.propertyListingActive
+          }else if(name == "Expired"){
+            count = this.tabCounts.propertyListingExpired
+          }else if(name == "Under Review"){
+            count = this.tabCounts.propertyListingUnderReview
+          }else if(name == "Rejected"){
+            count = this.tabCounts.propertyListingRejected
+          }else if(name == "Deleted"){
+            count = this.tabCounts.propertyListingDeleted
+          }else if(name == "Expire Soon"){
+            count = this.tabCounts.propertyListingExpireSoon
+          }
+          tempData.push(
+            {id: element.id,statusDescription:element.statusDescription,count:count});
+          })
     });
-    // this.propertyListingStatus = tempData
-    // console.log(this.propertyListingStatus,'dededededede')
-  }
-
-  count :number;
-  getTabCount(name:any){
-    let count = 0;
-    this.service.LoadListingDashboard(35).subscribe(e => {
-      let temp: any = e;
-      if(name == "all"){
-        count = temp.data.totalPropertyListing
-      }else if(name == "rent"){
-        count = temp.data.propertyListingRent
-      }else if(name == "buy"){
-        count = temp.data.propertyListingBuy
-      }else if(name == "Active"){
-        count = temp.data.propertyListingActive
-      }else if(name == "Expired"){
-        count = temp.data.propertyListingExpired
-      }else if(name == "Under Review"){
-        count = temp.data.propertyListingUnderReview
-      }else if(name == "Rejected"){
-        count = temp.data.propertyListingRejected
-      }else if(name == "Deleted"){
-        count = temp.data.propertyListingDeleted
-      }else if(name == "Expire Soon"){
-        count = temp.data.propertyListingExpireSoon
-      }
-    });
-    this.count = count;
-    console.log(this.count)
+    this.propertyListingStatus = tempData
+    console.log(this.propertyListingStatus,'dede')
   }
 
   ngOnInit() {
-    $(document).ready(function(){
-        // $('.sidebar-toggle').click(function(){
-        // $('body').toggleClass('sidebar-active');
-        // });
-    });
+    // $(document).ready(function(){
+      // $('.sidebar-toggle').click(function(){
+      // $('body').toggleClass('sidebar-active');
+      // });
+    // });
 
     var myDate = new Date();
     var hrs = myDate.getHours();
@@ -235,16 +227,21 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+
   baseUrl = 'https://beta.ovaluate.com/'
   listingAll:any = [];
   getLoadListing(){
     let tempData :Array<Object> = []
-    this.service.LoadListing({"UserId":35}).subscribe(data=>{
+    this.service.LoadListing({"UserId":this.user.id,"PropertyListingTypeId": this.parentTabId , "PropertyListingStatusId":this.childTabId }).subscribe(data=>{
       let response: any = data;
       response.data.forEach((element, i) => {
         let image :any;
+        let rentTypeName = ''
+        if(element.rentType != null){
+          rentTypeName = element.rentType.name
+        }
         if(element.documents.length > 1){
-           image = element.documents[0].fileUrl
+          image = element.documents[0].fileUrl
         }
         tempData.push(
           {
@@ -252,11 +249,13 @@ export class DashboardComponent implements OnInit {
             buildingName: element.buildingName,bedrooms: element.bedrooms,bathrooms: element.bathrooms,carpetArea: element.carpetArea,
             unitNo: element.unitNo,totalFloor: element.totalFloor,floorNo: element.floorNo,propertyDescription: element.propertyDescription,
             requestedDate: element.requestedDate,furnishingType: element.furnishingType,propertyPrice: element.propertyPrice,
-            requestedDateFormat:element.requestedDateFormat,expiredDateFormat:element.expiredDateFormat,rentType:element.rentType.name
+            requestedDateFormat:element.requestedDateFormat,
+            expiredDateFormat:element.expiredDateFormat,rentType:rentTypeName
           }
         );
       })
     });
+
     this.listingAll = tempData
   }
 
