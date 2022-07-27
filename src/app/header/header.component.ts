@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import * as $ from 'jquery';
 import {NotificationService} from "../service/notification.service";
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -16,6 +17,7 @@ export class HeaderComponent implements OnInit {
   close = '../../assets/images/icons/close.svg'
   property = '../../assets/images/shortlisted-img.png'
   trash = '../../assets/images/icons/Trash-dotted.svg'
+  logoutimg = '../../assets/images/logout-popup-banner.png'
   loggedInUser = localStorage.getItem('user')
   user : any
   sidebar = [
@@ -78,7 +80,7 @@ export class HeaderComponent implements OnInit {
   currentClassIdx: number = 0;
 
   bodyClass: string;
-  constructor(private route:Router,private notifyService : NotificationService) {
+  constructor(private route:Router,private notifyService : NotificationService,private modalService: NgbModal) {
     this.getUser();
     console.log(this.user);
     this.bodyClass = this.availableClasses[this.currentClassIdx];
@@ -136,5 +138,8 @@ export class HeaderComponent implements OnInit {
   status1: boolean = false;
   clickEvent1(){
       this.status1 = !this.status1;
+  }
+  logOutPopup(content) {
+    this.modalService.open(content, { centered: true });
   }
 }

@@ -64,7 +64,9 @@
                                                 <button mat-button (click)="fileInput.click();tittleDeedCheck=true"><img
                                                         src="{{uploadimg}}"> Upload Title Deed</button>
                                             </div>
-                                            <span ngClass="outpup-filename">{{ file }}</span>
+                                            <div ngClass="output-file-name">
+                                            <p ngClass="outpup-filename"><mat-spinner></mat-spinner> File Name</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

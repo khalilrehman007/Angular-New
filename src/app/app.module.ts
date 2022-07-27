@@ -24,7 +24,7 @@ import {MatIconModule} from '@angular/material/icon';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatTooltipModule} from '@angular/material/tooltip';
-
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { CustomerComponent } from './customer/customer.component';
@@ -199,6 +199,7 @@ import { BuyPropertiesComponent } from './pages/buy-properties/buy-properties.co
     MatTooltipModule,
     BrowserAnimationsModule,
     MatTabsModule,
+    MatProgressSpinnerModule,
     NgxEditorModule,
     ScrollingModule,
     NgxSliderModule,
