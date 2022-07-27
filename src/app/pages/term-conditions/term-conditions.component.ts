@@ -8,8 +8,12 @@ import { AppService } from 'src/app/service/app.service';
 })
 export class TermConditionsComponent implements OnInit {
 
+  image:any;
   constructor(private api: AppService) {
     this.api.TermsCondition().subscribe((result:any)=> {
+      this.image = "https://beta.ovaluate.com/" + result.data.fileUrl;
+      this.image = this.image.replaceAll("\\", "/");
+      $(".inner-page-banner-sec").css({"background-image":"url('"+this.image+"')"})
       $(".cms_content-paragraph").append(result.data.pageContent);
     })
   }
