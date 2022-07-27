@@ -98,7 +98,7 @@ const routes: Routes = [
   { path:  'PropertDetailsPage/:id', component:  PropertyInnerComponent},
   { path: "blogs", component: BlogsComponent },
   // { path: "blogs/:id", component: BlogViewComponent },
-  { path: "blogs-details", component: BlogViewComponent },
+  { path: "blogs-details/:id", component: BlogViewComponent },
   { path: "agent-details/:id", component: AgentDetailsComponent },
   { path: "company-details/:id", component: CompanyDetailsComponent },
   { path: "find-agent", component: AgentLandingComponent },
