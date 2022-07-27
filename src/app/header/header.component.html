@@ -414,8 +414,8 @@
                   <!-- <a ngClass="nav-link" routerLink="/login"><img src="{{signinsvg}}"> Sign in</a> -->
              </li>
               <li ngClass="nav-item signin-li logout">
-                <div #noListItemTmpl *ngIf="user !== null">
-                  <a ngClass="nav-link"  (click)="logout()"> Logout </a>
+                <div>
+                  <a ngClass="nav-link" (click)="logOutPopup(content)"> Logout </a>
                 </div>
               </li>
              <li ngClass="nav-item aed-li">
@@ -426,4 +426,23 @@
           </div>
         </nav>
        </div>
+</div>
+<div ngClass="logout-modal">
+  <ng-template #content let-modal>
+    <div class="modal-body logout-modal-design">
+       <div ngClass="logout-banner-popup">
+        <img src="{{logoutimg}}">
+       </div>
+       <div ngClass="logout-banner-cntnt text-center">
+          <h4>Are you sure you want to log out?</h4>
+          <p>We will miss you come back soon!</p>
+       </div>
+       <div ngClass="logout-banner-footer">
+        <button type="button" class="btn-cancel" aria-label="Close" (click)="modal.dismiss('Cross click')">Cancel</button>
+        <button #noListItemTmpl *ngIf="user !== null" (click)="modal.dismiss('Cross click')">
+          <a ngClass="nav-link"  (click)="logout()"> Logout </a>
+        </button>
+     </div>
+    </div>
+</ng-template>
 </div>
