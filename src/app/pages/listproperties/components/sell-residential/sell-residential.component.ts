@@ -109,18 +109,18 @@ export class SellResidentialComponent implements OnInit {
     parking_space_4_plus: new FormControl("" ),
     property_types      : new FormControl("" ),
     fitting_details     : new FormControl("" ),
-    carpetArea          : new FormControl("" ),
-    buildupArea         : new FormControl("" ),
+    carpetArea          : new FormControl("", [Validators.required] ),
+    buildupArea         : new FormControl("", [Validators.required] ),
     transactionType     : new FormControl("" ),
     completionDetails   : new FormControl("" ),
-    price               : new FormControl("" ),
-    maintenanceCharge   : new FormControl("" ),
+    price               : new FormControl("", [Validators.required] ),
+    maintenanceCharge   : new FormControl("" , [Validators.required]),
     brokerageAed        : new FormControl("" ),
     brokerageNegotiable : new FormControl("" ),
     brokerage           : new FormControl("" ),
-    handover            : new FormControl("" ),
-    propertyDescription : new FormControl("" ),
-    propertyOffers      : new FormControl("" ),
+    handover            : new FormControl("", [Validators.required] ),
+    propertyDescription : new FormControl("", [Validators.required] ),
+    propertyOffers      : new FormControl("", [Validators.required] ),
     highlights_exclusive     : new FormControl("" ),
     highlights_golfView      : new FormControl("" ),
     highlights_canalView     : new FormControl("" ),
@@ -144,10 +144,28 @@ export class SellResidentialComponent implements OnInit {
   get validate(){
     return this.SubmitForm.controls;
   }
+  typeOfPropertyCheck: boolean = false;
+  bedroomCheck: boolean = false;
+  bathroomheck: boolean = false;
+  balconyCheck: boolean = false;
+  parkingCheck: boolean = false;
+  furnishTypeCheck: boolean = false;
+  fittingCheck: boolean = false;
+  transactionCheck: boolean = false;
+  completionCheck: boolean = false;
   onSubmit() {
+    console.log(this.typeOfPropertyCheck);
+    console.log(this.bedroomCheck);
+    console.log(this.bathroomheck);
+    console.log(this.balconyCheck);
+    console.log(this.parkingCheck);
+    console.log(this.furnishTypeCheck);
+    console.log(this.fittingCheck);
+    const controls = this.SubmitForm.controls;
     // localStorage.removeItem("listpropertyinfo");
     this.submitted = true;
-    if (this.SubmitForm.invalid) {
+    if (this.SubmitForm.invalid || this.typeOfPropertyCheck == false || this.bedroomCheck == false || this.bathroomheck == false || this.parkingCheck == false || this.furnishTypeCheck == false || this.fittingCheck == false || this.transactionCheck == false || this.completionCheck == false) {
+      alert("Please fill all the required fields");
       return;
     }
     this.data.PropertyTitle = this.SubmitForm.value.PropertyTitle;
@@ -183,30 +201,39 @@ export class SellResidentialComponent implements OnInit {
 
   }
   getPropertyType(id:number){
+    this.typeOfPropertyCheck = true;
     this.data.PropertyTypeId = id;
   }
   getBedRoom(e:number){
+    this.bedroomCheck = true;
     this.data.BedRoom = e;
   }
   getBathRoom(e:number){
+    this.bathroomheck = true;
     this.data.BathRoom = e;
   }
   getBalcony(e:string){
+    this.balconyCheck = true;
     this.data.Balcony = e;    
   }
   getParking(e:string){
+    this.parkingCheck = true;
     this.data.Parkings = e;
   }
   getFurnishingType(e: number) {
+    this.furnishTypeCheck = true;
     this.data.FurnishingType = e;
   }
   getFittingType(e: number) {
+    this.fittingCheck = true;
     this.data.FittingType = e;
   }
   getTransactionType(e: number) {
+    this.transactionCheck = true;
     this.data.PropertyTransactionTypeId = e;
   }
   getCompletionStatus(e: number) {
+    this.completionCheck = true;
     this.data.PropertyCompletionStatusId = e;
   }
   getBrokageDeposit(e: boolean) {
