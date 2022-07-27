@@ -26,10 +26,8 @@
                         <div ngClass="row">
                             <div ngClass="col-xl-8 col-lg-8 col-md-8 col-sm-12">
                                 <div class="new-proprty-details">
-                                    <h5 class="propertyid">{{priviousFormCheck.FloorNo}}</h5>
                                     <h5 class="proname">{{priviousFormCheck.BuildingName}}</h5>
-                                    <address>{{priviousFormCheck.address}},<br />
-                                        {{priviousFormCheck.CityId}}, {{priviousFormCheck.CountryId}} </address>
+                                    <address>{{priviousFormCheck.PropertyAddress}}</address>
                                 </div>
                             </div>
                             <div ngClass="col-xl-4 col-lg-4 col-md-4 col-sm-12">
@@ -37,10 +35,10 @@
                                     <p>This building also listing in ovaluate</p>
                                     <div ngClass="row">
                                         <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-                                            <p ngClass="no-units-p"><span ngClass="unit-no">04</span> Units on sale</p>
+                                            <p ngClass="no-units-p"><span ngClass="unit-no">{{propertyListingBuy}}</span> Units on sale</p>
                                         </div>
                                         <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-                                            <p ngClass="no-units-p"><span ngClass="unit-no">28</span> Units on rent</p>
+                                            <p ngClass="no-units-p"><span ngClass="unit-no">{{propertyListingRent}}</span> Units on rent</p>
                                         </div>
                                     </div>
                                 </div>

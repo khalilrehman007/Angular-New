@@ -32,6 +32,8 @@ export class RentCommertialComponent implements OnInit {
   featuresData: any;
   featuresFormData: any = [];
   minDate = new Date();
+  propertyListingBuy:number;
+  propertyListingRent:number;
 
   constructor(private api: AppService, private service: AuthService, private route: Router, private notifyService: NotificationService) {
     this.priviousFormCheck = localStorage.getItem('propertyData');
@@ -43,6 +45,10 @@ export class RentCommertialComponent implements OnInit {
       this.priviousFormCheck = JSON.parse(this.priviousFormCheck);
       this.data = this.priviousFormCheck;
     }
+    this.api.PropertyListingRentBuy({"Lat":this.data.PropertyLat,"Long":this.data.PropertyLong}).subscribe((result:any)=> {
+      this.propertyListingBuy = result.data.propertyListingBuy;
+      this.propertyListingRent = result.data.propertyListingRent;
+    })
     this.api.LoadType(2).subscribe((result:any) => {
       this.propertyType = result.data;
     });
