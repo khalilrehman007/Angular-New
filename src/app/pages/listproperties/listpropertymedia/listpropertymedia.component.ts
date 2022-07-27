@@ -43,6 +43,8 @@ export class ListpropertymediaComponent implements OnInit {
   videoData: any = [];
   documentData = new FormData();
   btnText:string = "Publish";
+  propertyListingBuy:number;
+  propertyListingRent:number;
 
 
   constructor(private api: AppService, private uploadService: FileUploadService, private route: Router) {
@@ -51,8 +53,13 @@ export class ListpropertymediaComponent implements OnInit {
       this.priviousFormCheck = JSON.parse(this.priviousFormCheck);
       this.route.navigate(['listingproperty'])
     } else {
-      this.data = JSON.parse(this.priviousFormCheck);
+      this.priviousFormCheck = JSON.parse(this.priviousFormCheck);
+      this.data = this.priviousFormCheck;
     }
+    this.api.PropertyListingRentBuy({"Lat":this.data.PropertyLat,"Long":this.data.PropertyLong}).subscribe((result:any)=> {
+      this.propertyListingBuy = result.data.propertyListingBuy;
+      this.propertyListingRent = result.data.propertyListingRent;
+    })
   }
 
   ngOnInit() {
@@ -202,10 +209,11 @@ export class ListpropertymediaComponent implements OnInit {
   videoCheck: boolean =false;
   onSubmit() {
     this.submitted = true;
-    if (this.SubmitForm.invalid) {
-      if(this.tittleDeedCheck == false || this.imgCheck == false || this.videoCheck == false){
+    console.log(this.tittleDeedCheck);
+    console.log(this.imgCheck);
+    console.log(this.videoCheck);
+    if (this.SubmitForm.invalid || this.tittleDeedCheck == false || this.imgCheck == false || this.videoCheck == false) {
         alert("Please fill all the fields");
-      }
       return;
     }
     this.btnText = "Please Wait...";

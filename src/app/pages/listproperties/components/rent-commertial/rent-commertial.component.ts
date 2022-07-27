@@ -32,14 +32,23 @@ export class RentCommertialComponent implements OnInit {
   featuresData: any;
   featuresFormData: any = [];
   minDate = new Date();
+  propertyListingBuy:number;
+  propertyListingRent:number;
 
   constructor(private api: AppService, private service: AuthService, private route: Router, private notifyService: NotificationService) {
     this.priviousFormCheck = localStorage.getItem('propertyData');
+    this.priviousFormCheck = localStorage.getItem('propertyData');
     if (this.priviousFormCheck == '' || this.priviousFormCheck == null) {
+      this.priviousFormCheck = JSON.parse(this.priviousFormCheck);
       this.route.navigate(['listingproperty'])
     } else {
-      this.data = JSON.parse(this.priviousFormCheck);
+      this.priviousFormCheck = JSON.parse(this.priviousFormCheck);
+      this.data = this.priviousFormCheck;
     }
+    this.api.PropertyListingRentBuy({"Lat":this.data.PropertyLat,"Long":this.data.PropertyLong}).subscribe((result:any)=> {
+      this.propertyListingBuy = result.data.propertyListingBuy;
+      this.propertyListingRent = result.data.propertyListingRent;
+    })
     this.api.LoadType(2).subscribe((result:any) => {
       this.propertyType = result.data;
     });
@@ -72,7 +81,7 @@ export class RentCommertialComponent implements OnInit {
 
 
   SubmitForm = new FormGroup({
-    propertyTitle: new FormControl(""),
+    propertyTitle: new FormControl("", [Validators.required]),
     property_studio: new FormControl(""),
     property_apartment: new FormControl(""),
     property_villa: new FormControl(""),
@@ -106,9 +115,9 @@ export class RentCommertialComponent implements OnInit {
     pet_cats_allowed: new FormControl(""),
     pet_small_dogs_allowed: new FormControl(""),
     pet_big_dogs_allowed: new FormControl(""),
-    carpetArea: new FormControl(""),
-    buildupArea: new FormControl(""),
-    price: new FormControl(""),
+    carpetArea: new FormControl("", [Validators.required]),
+    buildupArea: new FormControl("", [Validators.required]),
+    price: new FormControl("", [Validators.required]),
     rentType: new FormControl(""),
     building_type_monthly: new FormControl(""),
     building_type_quaterly: new FormControl(""),
@@ -119,11 +128,11 @@ export class RentCommertialComponent implements OnInit {
     brokerage_value: new FormControl(""),
     brokerageAed: new FormControl(""),
     brokerageNegotiable: new FormControl(""),
-    availablefrom: new FormControl(""),
-    noticePeriod: new FormControl(""),
-    lockingPeriod: new FormControl(""),
-    propertyDescription: new FormControl(""),
-    propertyOffers: new FormControl(""),
+    availablefrom: new FormControl("", [Validators.required]),
+    noticePeriod: new FormControl("", [Validators.required]),
+    lockingPeriod: new FormControl("", [Validators.required]),
+    propertyDescription: new FormControl("", [Validators.required]),
+    propertyOffers: new FormControl("", [Validators.required]),
     highlights_exclusive: new FormControl(""),
     highlights_golfView: new FormControl(""),
     highlights_canalView: new FormControl(""),
@@ -146,7 +155,24 @@ export class RentCommertialComponent implements OnInit {
   get validate() {
     return this.SubmitForm.controls;
   }
+  propertyTypeCkick: boolean = false;
+  badroomCheck: boolean = false;
+  bathroomCheck: boolean = false;
+  managedByCheck: boolean = false;
+  occupancyCheck: boolean = false;
+  rentTypeCheck: boolean = false;
   onSubmit() {
+    this.submitted = true;
+    console.log(this.propertyTypeCkick);
+    console.log(this.badroomCheck);
+    console.log(this.bathroomCheck);
+    console.log(this.managedByCheck);
+    console.log(this.occupancyCheck);
+    console.log(this.rentTypeCheck);
+    if (this.SubmitForm.invalid || this.propertyTypeCkick == false || this.badroomCheck == false || this.bathroomCheck == false || this.managedByCheck == false || this.occupancyCheck == false || this.rentTypeCheck == false) {
+      alert('Please fill all the required fields');
+      return;
+    }
     this.data.CarpetArea = this.SubmitForm.value.carpetArea;
     this.data.BuildupArea = this.SubmitForm.value.buildupArea;
     this.data.PropertyPrice = this.SubmitForm.value.price;
@@ -182,24 +208,30 @@ export class RentCommertialComponent implements OnInit {
   }
 
   getBedroom(e: any) {
+    this.badroomCheck = true;
     this.data.BedRooms = e.value;
   }
   getBathroom(e: any) {
+    this.bathroomCheck = true;
     this.data.BathRooms = e.value;
   }
   getPropertyType(e: any) {
+    this.propertyTypeCkick = true;
     this.data.PropertyTypeId = e.value;
   }
   getPropertyManages(id:number) {
+    this.managedByCheck = true;
     this.data.PropertyManageId = id;
   }
   getPropertyStatus(id:number) {
     this.data.PropertyManageId = id;
   }
   getOccupancy(e: number) {
+    this.occupancyCheck = true;
     this.data.OccupancyStatusId = e;
   }
   getRentTypes(e: number) {
+    this.rentTypeCheck = true;
     this.data.RentTypeId = e;
   }
   getSecurityDeposit(e: boolean) {

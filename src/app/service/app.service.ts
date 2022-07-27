@@ -153,4 +153,22 @@ export class AppService {
     }
     return this.http.post(this.apiurl + 'AddPropertyListing', data, httpOptions);
   }
+  PropertyListingRentBuy(data:any) {
+    return this.http.post(this.apiurl + 'PropertyListingRentBuy', data);
+  }
+  TermsCondition() {
+    return this.http.get(this.apiurl + 'TermsCondition');
+  }
+  CookiePolicy() {
+    return this.http.get(this.apiurl + 'CookiePolicy');
+  }
+  PrivacyPolicy() {
+    return this.http.get(this.apiurl + 'PrivacyPolicy');
+  }
+  AboutUs() {
+    return this.http.get(this.apiurl + 'AboutUs');
+  }
+  FAQ() {
+    return this.http.get(this.apiurl + 'FAQ');
+  }
 }

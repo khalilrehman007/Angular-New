@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppService } from 'src/app/service/app.service';
 
 @Component({
   selector: 'app-privacy-policy',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PrivacyPolicyComponent implements OnInit {
 
-  constructor() { }
+  constructor(private api: AppService) {
+    this.api.PrivacyPolicy().subscribe((result:any)=> {
+      $(".cms_content-paragraph").append(result.data.pageContent);
+    })
+  }
 
   ngOnInit(): void {
   }
