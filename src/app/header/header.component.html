@@ -414,7 +414,7 @@
                   <!-- <a ngClass="nav-link" routerLink="/login"><img src="{{signinsvg}}"> Sign in</a> -->
              </li>
               <li ngClass="nav-item signin-li logout">
-                <div>
+                <div #noListItemTmpl *ngIf="user !== null">
                   <a ngClass="nav-link" (click)="logOutPopup(content)"> Logout </a>
                 </div>
               </li>
