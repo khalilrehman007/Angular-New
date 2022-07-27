@@ -447,6 +447,7 @@ export class HomeComponent implements OnInit {
         }
       })
     });
+
   }
 
   LoadBanners(){

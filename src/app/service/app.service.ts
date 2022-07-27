@@ -52,8 +52,8 @@ export class AppService {
   LoadDashboardData(id) {
     return this.http.get(this.apiurl + 'Dashboard/'+ id,{ headers: this.headers });
   }
-  LoadListing() {
-    return this.http.post(this.apiurl + 'MyListings',{ headers: this.headers });
+  LoadListing(data) {
+    return this.http.post(this.apiurl + 'MyListings',data,{ headers: this.headers });
   }
   LoadCities(id: number) {
     return this.http.get(this.apiurl + 'Cities/' + id);
@@ -106,6 +106,12 @@ export class AppService {
   LoadPropertyListingTypes() {
     return this.http.get(this.apiurl + 'PropertyListingTypes');
   }
+  LoadListingDashboard(id) {
+    return this.http.get(this.apiurl + 'ListingDashboard/'+id,{ headers: this.headers });
+  }
+  LoadPropertyListingStatus() {
+    return this.http.get(this.apiurl + 'PropertyListingStatus');
+  }
   LoadProfessionalAndListingType(professionalTypeId, listingTypeId) {
     return this.http.get(this.apiurl + 'PropertyListingPackagesByProfessionalAndListingType?professionalTypeId=' + professionalTypeId + '&listingTypeId=' + listingTypeId);
   }
@@ -146,5 +152,23 @@ export class AppService {
       })
     }
     return this.http.post(this.apiurl + 'AddPropertyListing', data, httpOptions);
+  }
+  PropertyListingRentBuy(data:any) {
+    return this.http.post(this.apiurl + 'PropertyListingRentBuy', data);
+  }
+  TermsCondition() {
+    return this.http.get(this.apiurl + 'TermsCondition');
+  }
+  CookiePolicy() {
+    return this.http.get(this.apiurl + 'CookiePolicy');
+  }
+  PrivacyPolicy() {
+    return this.http.get(this.apiurl + 'PrivacyPolicy');
+  }
+  AboutUs() {
+    return this.http.get(this.apiurl + 'AboutUs');
+  }
+  FAQ() {
+    return this.http.get(this.apiurl + 'FAQ');
   }
 }

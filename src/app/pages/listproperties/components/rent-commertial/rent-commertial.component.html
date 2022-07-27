@@ -23,10 +23,8 @@
             <div class="row">
               <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12">
                 <div class="new-proprty-details">
-                  <h5 class="propertyid">{{priviousFormCheck.FloorNo}}</h5>
                   <h5 class="proname">{{priviousFormCheck.BuildingName}}</h5>
-                  <address>{{priviousFormCheck.address}},<br />
-                    {{priviousFormCheck.CityId}}, {{priviousFormCheck.CountryId}} </address>
+                  <address>{{priviousFormCheck.PropertyAddress}}</address>
                 </div>
               </div>
               <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
@@ -34,10 +32,10 @@
                   <p>This building also listing in ovaluate</p>
                   <div class="row">
                     <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-                      <p class="no-units-p"><span class="unit-no">04</span> Units on sale</p>
+                      <p class="no-units-p"><span class="unit-no">{{propertyListingBuy}}</span> Units on sale</p>
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-                      <p class="no-units-p"><span class="unit-no">28</span> Units on rent</p>
+                      <p class="no-units-p"><span class="unit-no">{{propertyListingRent}}</span> Units on rent</p>
                     </div>
                   </div>
                 </div>
@@ -67,78 +65,51 @@
                 </div>
                 <div class="property-dropdowns-list">
                   <div class="row">
-                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-                      <h6 class="h6-design">Type of Property</h6>
-                      <div class="dropdown">
-                        <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown">
-                          Select type of property
-                        </button>
-                        <div class="dropdown-menu" id="property-type-sec">
-                          <h5 class="h5-heading">Property Type</h5>
-                          <div class="property-types-cntnts">
-                            <ul class="list-unstyled residentails-unit-list">
-                              <li class="d-flex" *ngFor="let item of propertyType">
-                                <div class="position-relative">
-                                  <input type="radio" value="{{item.typeDescription}}" name="property_studio" (click)="getPropertyType(item.id)">
-                                  <span class="property_sel"></span>
-                                </div>
-                                <div class="proprty_name">
-                                  <p>{{item.typeDescription}}</p>
-                                </div>
-                              </li>
-                            </ul>
+                      <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                          <div ngClass="block-wrapper">
+                              <div ngClass="select-design">
+                                  <label>Type of Property</label>
+                                  <mat-form-field appearance="fill">
+                                      <mat-label>Select type of property</mat-label>
+                                      <mat-select (selectionChange)="getPropertyType($event)">
+                                          <mat-option *ngFor="let item of propertyType" value="{{item.id}}" >
+                                              {{item.typeDescription}}
+                                          </mat-option>
+                                      </mat-select>
+                                  </mat-form-field>
+                              </div>
                           </div>
-                        </div>
                       </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-                      <h6 class="h6-design">Bedroom</h6>
-                      <div class="dropdown">
-                        <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown">
-                          Select no. of bedroom
-                        </button>
-                        <div class="dropdown-menu" id="property-type-sec">
-                          <h5 class="h5-heading">Bedroom</h5>
-                          <div class="property-types-cntnts">
-                            <ul class="list-unstyled residentails-unit-list">
-                              <li class="d-flex" *ngFor="let item of room">
-                                <div class="position-relative">
-                                  <input type="radio" value="{{item}}" formControlName="bedroom_1" (click)="getBedroom(item)">
-                                  <span class="property_sel"></span>
-                                </div>
-                                <div class="proprty_name">
-                                  <p>{{item}}</p>
-                                </div>
-                              </li>
-                            </ul>
+                      <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                          <div ngClass="block-wrapper">
+                              <div ngClass="select-design">
+                                  <label>Bedroom</label>
+                                  <mat-form-field appearance="fill">
+                                      <mat-label>Select Number Of Bedrooms</mat-label>
+                                      <mat-select (selectionChange)="getBedroom($event)">
+                                          <mat-option *ngFor="let item of room" value="{{item}}" >
+                                              {{item}}
+                                          </mat-option>
+                                      </mat-select>
+                                  </mat-form-field>
+                              </div>
                           </div>
-                        </div>
                       </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-                      <h6 class="h6-design">Bathroom</h6>
-                      <div class="dropdown square-selection">
-                        <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown">
-                          Select no. of bathroom
-                        </button>
-                        <div class="dropdown-menu" id="property-type-sec">
-                          <h5 class="h5-heading">Bathroom</h5>
-                          <div class="property-types-cntnts">
-                            <ul class="list-unstyled residentails-unit-list">
-                              <li class="d-flex" *ngFor="let item of room">
-                                <div class="position-relative">
-                                  <input type="radio" value="{{item}}" formControlName="room_bathroom_1" (click)="getBathroom(item)">
-                                  <span class="property_sel"></span>
-                                </div>
-                                <div class="proprty_name">
-                                  <p>{{item}}</p>
-                                </div>
-                              </li>
-                            </ul>
+                      <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                          <div ngClass="block-wrapper">
+                              <div ngClass="select-design">
+                                  <label>Bathroom</label>
+                                  <mat-form-field appearance="fill">
+                                      <mat-label>Select Number Of Bathrooms</mat-label>
+                                      <mat-select (selectionChange)="getBathroom($event)">
+                                          <mat-option *ngFor="let item of room" value="{{item}}" >
+                                              {{item}}
+                                          </mat-option>
+                                      </mat-select>
+                                  </mat-form-field>
+                              </div>
                           </div>
-                        </div>
                       </div>
-                    </div>
                   </div>
                 </div>
                 <div class="property_manage-by">
@@ -176,7 +147,6 @@
                           </mat-form-field>
                           <span class="area-sq">Sq. Ft.</span>
                         </div>
-                        <p class="text-right">345 Sq Yd.</p>
                       </div>
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
@@ -188,7 +158,6 @@
                           </mat-form-field>
                           <span class="area-sq">Sq. Ft.</span>
                         </div>
-                        <p class="text-right">345 Sq Yd.</p>
                       </div>
                     </div>
                   </div>
@@ -296,7 +265,7 @@
                       <h6 class="h6-design">Available from</h6>
                       <div class="input-date-picker input-design">
                         <mat-form-field appearance="fill">
-                          <input matInput [matDatepicker]="picker" id="rent-commertial-date"
+                          <input matInput [matDatepicker]="picker" [min]="minDate" id="rent-commertial-date"
                             formControlName="availablefrom">
                           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                           <mat-datepicker #picker></mat-datepicker>
@@ -420,7 +389,7 @@
                 <div class="select-amenitites">
                   <div class="row">
                     <div class="col-sm-12">
-                      <h6 class="h6-design">Select Amenitites</h6>
+                      <h6 class="h6-design">Select Features</h6>
                       <div class="inneR-border-wrap">
                         <div class="checkbox-flex-box autoflex-layout">
                           <div class="checkbox-design position-relative" *ngFor="let item of featuresData"
@@ -429,9 +398,6 @@
                               name={{item.propertyFeature.featureName}} value={{item.propertyFeature.featureName}}>
                             <button class="checkbox-btn">{{item.propertyFeature.featureName}}</button>
                           </div>
-                        </div>
-                        <div class="add-more">
-                          <button class="add-higlights"><img src="{{plus}}"> Add Amenity</button>
                         </div>
                       </div>
                     </div>

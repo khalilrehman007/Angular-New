@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppService } from 'src/app/service/app.service';
 
 @Component({
   selector: 'app-faq',
@@ -28,7 +29,11 @@ export class FaqComponent implements OnInit {
       desc: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.'
     }
   ]
-  constructor() { }
+  constructor(private api: AppService) {
+    this.api.FAQ().subscribe((result:any)=> {
+      $(".faq-section-wrapper").append(result.data.pageContent);
+    })
+  }
 
   ngOnInit(): void {
   }

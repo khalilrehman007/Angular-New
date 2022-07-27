@@ -6,6 +6,8 @@ import {NgbNav} from '@ng-bootstrap/ng-bootstrap';
 import {NotificationService} from "../../service/notification.service";
 
 import { AppService } from 'src/app/service/app.service';
+import {empty} from "rxjs";
+import {analyticsDisabled} from "@angular/cli/src/utilities/environment-options";
 
 @Component({
   selector: 'profile-dashboard',
@@ -58,11 +60,101 @@ export class DashboardComponent implements OnInit {
     {viewValue: '03',value: 'bedroom'},
   ];
 
+  all:any;
+  rent:any;
+  buy:any;
+  propertyListingStatus: any = [];
+
   constructor(private service:AppService,private route:Router,private notifyService : NotificationService) {
     this.getUser();
     this.LoadBlogs();
     this.getloadDashboardData();
     this.getLoadListing()
+    this.listingStatus();
+
+    this.service.LoadPropertyListingTypes().subscribe(e => {
+      let temp: any = e;
+      if (temp.message == "Property Listing Type List fetched successfully") {
+          this.rent = temp.data[0].name;
+          this.buy = temp.data[1].name;
+      }
+    });
+  }
+
+  tabsChange(e:any) {
+
+  }
+
+  listingStatus(){
+    let tempData :Array<Object> = []
+    this.service.LoadPropertyListingStatus().subscribe(data => {
+      let response: any = data;
+
+      let name = 'Active'
+      let count :number = 0;
+      this.service.LoadListingDashboard(35).subscribe(e => {
+        let temp: any = e;
+        if(name == "all"){
+          count = temp.data.totalPropertyListing
+        }else if(name == "rent"){
+          count = temp.data.propertyListingRent
+        }else if(name == "buy"){
+          count = temp.data.propertyListingBuy
+        }else if(name == "Active"){
+          count = temp.data.propertyListingActive
+        }else if(name == "Expired"){
+          count = temp.data.propertyListingExpired
+        }else if(name == "Under Review"){
+          count = temp.data.propertyListingUnderReview
+        }else if(name == "Rejected"){
+          count = temp.data.propertyListingRejected
+        }else if(name == "Deleted"){
+          count = temp.data.propertyListingDeleted
+        }else if(name == "Expire Soon"){
+          count = temp.data.propertyListingExpireSoon
+        }
+        count = count
+      });
+      console.log(count)
+
+      // response.data.forEach((element, i) => {
+      //   let count:any = this.getTabCount(element.element.statusDescription)
+      //   console.log(count)
+        // tempData.push(
+        //   {id: element.id,statusDescription:element.statusDescription,count:count});
+      // })
+    });
+    // this.propertyListingStatus = tempData
+    // console.log(this.propertyListingStatus,'dededededede')
+  }
+
+  count :number;
+  getTabCount(name:any){
+    let count = 0;
+    this.service.LoadListingDashboard(35).subscribe(e => {
+      let temp: any = e;
+      if(name == "all"){
+        count = temp.data.totalPropertyListing
+      }else if(name == "rent"){
+        count = temp.data.propertyListingRent
+      }else if(name == "buy"){
+        count = temp.data.propertyListingBuy
+      }else if(name == "Active"){
+        count = temp.data.propertyListingActive
+      }else if(name == "Expired"){
+        count = temp.data.propertyListingExpired
+      }else if(name == "Under Review"){
+        count = temp.data.propertyListingUnderReview
+      }else if(name == "Rejected"){
+        count = temp.data.propertyListingRejected
+      }else if(name == "Deleted"){
+        count = temp.data.propertyListingDeleted
+      }else if(name == "Expire Soon"){
+        count = temp.data.propertyListingExpireSoon
+      }
+    });
+    this.count = count;
+    console.log(this.count)
   }
 
   ngOnInit() {
@@ -84,6 +176,7 @@ export class DashboardComponent implements OnInit {
 
     this.greet = greet
   }
+
   getUser(){
     this.user = localStorage.getItem('user');
     if(this.user != ''){
@@ -91,11 +184,13 @@ export class DashboardComponent implements OnInit {
     }
     return this.user;
   }
+
   logout(){
     this.notifyService.showSuccess('Logout Successfully', "");
     localStorage.clear();
     this.route.navigate(['login'])
   }
+
   LoadBlogs(){
     this.service.LoadBlogs().subscribe(data=>{
       this.blogs=data;
@@ -117,6 +212,7 @@ export class DashboardComponent implements OnInit {
       }
     });
   }
+
   onCountrySelect(e: any) {
     this.countryId = e.value;
     this.city = [];
@@ -138,14 +234,14 @@ export class DashboardComponent implements OnInit {
       this.dashboard = jsonParsDate
     });
   }
+
   baseUrl = 'https://beta.ovaluate.com/'
   listingAll:any = [];
   getLoadListing(){
     let tempData :Array<Object> = []
-    this.service.LoadListing().subscribe(data=>{
+    this.service.LoadListing({"UserId":35}).subscribe(data=>{
       let response: any = data;
       response.data.forEach((element, i) => {
-        console.log(element.documents[0].fileUrl)
         let image :any;
         if(element.documents.length > 1){
            image = element.documents[0].fileUrl
@@ -156,12 +252,12 @@ export class DashboardComponent implements OnInit {
             buildingName: element.buildingName,bedrooms: element.bedrooms,bathrooms: element.bathrooms,carpetArea: element.carpetArea,
             unitNo: element.unitNo,totalFloor: element.totalFloor,floorNo: element.floorNo,propertyDescription: element.propertyDescription,
             requestedDate: element.requestedDate,furnishingType: element.furnishingType,propertyPrice: element.propertyPrice,
+            requestedDateFormat:element.requestedDateFormat,expiredDateFormat:element.expiredDateFormat,rentType:element.rentType.name
           }
         );
       })
     });
     this.listingAll = tempData
-
   }
 
 }

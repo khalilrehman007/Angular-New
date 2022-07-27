@@ -1,5 +1,6 @@
 <app-header></app-header>
-<div ngClass="container_1220px">
+<section ngClass="slide-left-bar">
+<div ngClass="container_1280px">
   <!-- <h2 style="text-align: center;" >Welcome To Profile {{user.fullName}}</h2> -->
   <!-- <h2 style="text-align: center;" >Welcome To Profile Ahmed Yusef</h2> -->
   <div ngClass="user-info-sec">
@@ -9,21 +10,21 @@
         <h2 ngClass="user-name">{{this.user.firstName+' '+this.user.lastName}}</h2>
         <div class="base-details">
           <div class="row">
-            <div class="col-md-4">
+            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
                 <div class="form-group">
                   <label for="txtname">Account Email</label>
                   <h4 class="base-info-text">{{this.user.email}}</h4>
                   <!-- <input type="text" id="txtname" class="form-control" value="omranabc@gmail.com" placeholder="Enter the User Name"   autocomplete="off"  /> -->
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
                 <div class="form-group">
                   <label for="txtname">Phone</label>
                   <h4 class="base-info-text"><img src="{{this.user.phoneNumber ? this.user.phoneNumber : 'Empty'}}" alt="">{{this.user.phoneNumber ? this.user.phoneNumber : 'Empty'}}</h4>
                   <!-- <input type="text" id="txtname" class="form-control" value="+971 50 999 9999" placeholder="Enter the User Name"   autocomplete="off"  /> -->
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
               <div class="d-flex align-item-center">
                 <div class="form-group">
                   <label for="txtname">Location</label>
@@ -52,7 +53,6 @@
   </div>
 
 </div>
-
 <div class="tab-nav-main">
 
   <div class="tab-wrap">
@@ -160,7 +160,7 @@
 
 
 
-        <div class="card mt-5">
+        <div class="card mt-5 lead_summary">
         <section ngClass="position-relative wrapper-section properties-slider residentials-property-rent-1">
               <div ngClass="section-title">
                   <div ngClass="section-title-left">
@@ -1612,7 +1612,7 @@
           <h4 class="sub-title">My Listings</h4>
           <div class="sub-tab-nav">
           <mat-tab-group>
-            <mat-tab label="All (02)">
+              <mat-tab label="All (02)">
               <div class="type-activity-status">
                 <div ngClass="block-wrapper mb-4">
                 <div class="checkbox-flex-box-auto button-same-select">
@@ -1642,6 +1642,128 @@
                     </div>
                     <div class="checkbox-design position-relative">
                     <input type="radio" id="Unfurnished" name="property-types" value="Rent">
+                    <button class="checkbox-btn">Expiring Soon (1)</button>
+                </div>
+                </div>
+                </div>
+            </div>
+
+            <div class="agent-details__tabs">
+              <div class="row">
+                <div class="col-lg-9 col-md-10">
+                  <ul class="agent-details__property-list">
+                    <li class="agent-details__property-list-item" *ngFor="let listing of listingAll">
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <img src="assets/images/explore-places/1.jpg" alt=""
+                                    class="img-fluid agent-details__property-list-item-img">
+                            </div>
+                            <div class="col-lg-10">
+                                <div class="row">
+                                    <div class="col-7">
+                                        <a class="agent-details__property-list-item-link">{{listing.propertyTitle}} AED
+                                            <span>/{{listing.rentType}}</span>
+                                        </a>
+                                    </div>
+                                    <div class="col-5 text-end">
+                                        <p class="agent-details__property-list-item-date mb-0">Posted on:{{listing.requestedDateFormat}}</p>
+                                        <p class="agent-details__property-list-item-date">Expired on: {{listing.expiredDateFormat}}</p>
+                                    </div>
+                                </div>
+                                <h6>{{listing.buildingName}}</h6>
+                                <p class="agent-details__property-list-item-text">
+                                    <img src="assets/images/home-location.svg" alt=""
+                                        class="img-fluid agent-details__property-list-item-text-icon">
+                                    {{listing.propertyAddress}}
+                                </p>
+                                <p class="agent-details__property-list-item-type">{{listing.propertyDescription}}</p>
+                                <div class="row">
+                                    <div class="col-md-10">
+                                        <ul class="agent-details__property-detail-list">
+                                            <li class="agent-details__property-detail-list-item">
+                                                <img src="assets/images/icons/Bed.svg" alt="">
+                                                {{listing.bedrooms}} Beds
+                                            </li>
+                                            <li class="agent-details__property-detail-list-item">
+                                                <img src="assets/images/icons/Bed.svg" alt="">
+                                                {{listing.bathrooms}} Bath
+                                            </li>
+                                            <li class="agent-details__property-detail-list-item">
+                                                <img src="assets/images/icons/Bed.svg" alt="">
+                                                {{listing.carpetArea}} Sq.Ft.
+                                            </li>
+                                            <li class="agent-details__property-detail-list-item">
+                                                <img src="assets/images/icons/Bed.svg" alt="">
+                                                {{listing.furnishingType}}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-2 text-right">
+                                        <!-- <img src="assets/images/better-home.svg" alt=""> -->
+                                        <!-- <button class="action-btn"><img src="assets/images/profile/menu-dots.png" alt=""></button> -->
+
+                                        <div ngbDropdown class="d-inline-block">
+                                          <button ngClass="grey-bordered-btn action-btn" id="dropdownBasic2" ngbDropdownToggle>
+                                            <img src="{{menuDots}}" alt=""></button>
+                                          <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
+                                            <!-- <h5>Share with:</h5> -->
+                                            <button ngbDropdownItem><a href=""><img src="{{viewLeads}}"> View Leads</a></button>
+                                            <button ngbDropdownItem><a href=""><img src="{{shareicon}}"> Share</a></button>
+                                            <button ngbDropdownItem><a href=""><img src="{{deleteIcon}}"> Delete</a></button>
+                                            <button ngbDropdownItem><a href=""><img src="{{editIcon}}"> Edit</a></button>
+                                          </div>
+                                          </div>
+                                      </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+      </mat-tab>
+              <mat-tab label="{{this.buy}}">Buy Empty</mat-tab>
+              <mat-tab label="{{this.rent}}"> Commercial Empty</mat-tab>
+          </mat-tab-group>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="pills-valuation" role="tabpanel" aria-labelledby="pills-valuation-tab">
+        <div class="recent-activity">
+          <h4 class="sub-title">My Valuation</h4>
+          <div class="sub-tab-nav">
+          <mat-tab-group>
+            <mat-tab label="All (10)">
+              <div class="type-activity-status">
+                <div ngClass="block-wrapper mb-4">
+                <div class="checkbox-flex-box-auto button-same-select">
+                    <div class="checkbox-design position-relative">
+                        <input type="radio" id="Furnished" name="property-types" value="All" checked>
+                        <button class="checkbox-btn">All (03)</button>
+                    </div>
+                    <div class="checkbox-design position-relative">
+                        <input type="radio" id="Semi-Furnished" name="property-types" value="active">
+                        <button class="checkbox-btn">Active (1)</button>
+                    </div>
+                    <div class="checkbox-design position-relative">
+                        <input type="radio" id="Unfurnished" name="property-types" value="expired">
+                        <button class="checkbox-btn">Expired (1)</button>
+                    </div>
+                    <div class="checkbox-design position-relative">
+                        <input type="radio" id="Unfurnished" name="property-types" value="under_review">
+                        <button class="checkbox-btn">Under Review (1)</button>
+                    </div>
+                    <div class="checkbox-design position-relative">
+                        <input type="radio" id="Unfurnished" name="property-types" value="rejected">
+                        <button class="checkbox-btn">Rejected (1)</button>
+                    </div>
+                    <div class="checkbox-design position-relative">
+                        <input type="radio" id="Unfurnished" name="property-types" value="deleted">
+                        <button class="checkbox-btn">Deleted (1)</button>
+                    </div>
+                    <div class="checkbox-design position-relative">
+                    <input type="radio" id="Unfurnished" name="property-types" value="expiring-soon">
                     <button class="checkbox-btn">Expiring Soon (1)</button>
                 </div>
                 </div>
@@ -1723,14 +1845,11 @@
               </div>
             </div>
       </mat-tab>
-              <mat-tab label="Buy">Buy Empty</mat-tab>
-              <mat-tab label="Rent"> Commercial Empty</mat-tab>
+              <mat-tab label="Residential (5)">Residential</mat-tab>
+              <mat-tab label="Commertial (5)"> Commertial</mat-tab>
           </mat-tab-group>
           </div>
         </div>
-      </div>
-      <div class="tab-pane fade" id="pills-valuation" role="tabpanel" aria-labelledby="pills-valuation-tab">
-        My Valuations
       </div>
       <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
         <div class="recent-activity profile-tab-wrap">
@@ -2354,23 +2473,19 @@
 
                       <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                         <div ngClass="block-wrapper mb-4">
-                          <h3 class="sub-title">Language Settings</h3>
                           <div class="d-flex justify-content-between">
+                          <div ngClass="subheading_tittle-divs">
+                          <h3 class="sub-title">Language Settings</h3>
                           <label class="h6-design">Set your preferred language</label>
-                          <!-- <mat-form-field appearance="fill"  class="full-width input-design-2">
-                            <input matInput>
-                          </mat-form-field> -->
+                          </div>
                           <mat-form-field appearance="fill"   class="select-form input-design-2">
                             <mat-label>Select Language</mat-label>
                             <mat-select >
-                              <mat-option [value]="city" >
-                                Language 1
+                              <mat-option [value]="'English'" >
+                                English
                               </mat-option>
-                              <mat-option [value]="city">
-                                Language 1
-                              </mat-option>
-                              <mat-option [value]="city">
-                                Language 1
+                              <mat-option [value]="'Arabic'">
+                                Arabic
                               </mat-option>
                             </mat-select>
                           </mat-form-field>
@@ -2380,26 +2495,25 @@
                       <div ngClass="col-xl-6 col-lg-6 col-sm-12"></div>
                       <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                         <div ngClass="block-wrapper mb-4">
-                          <h3 class="sub-title">Push Notification Settings</h3>
                           <div class="d-flex justify-content-between">
+                          <div ngClass="subheading_tittle-divs">
+                          <h3 class="sub-title">Push Notification Settings</h3>
                           <label class="h6-design">Get notifications from estatery to stay up-to-date.</label>
-                          <!-- <mat-slide-toggle>Slide me!</mat-slide-toggle> -->
+                          </div>
                           <div class="form-check form-switch">
                             <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
                           </div>
-
                         </div>
                         </div>
                       </div>
                       <div ngClass="col-xl-6 col-lg-6 col-sm-12"></div>
                       <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                         <div ngClass="block-wrapper mb-4">
-                          <h3 class="sub-title">Delete Account</h3>
                           <div class="d-flex justify-content-between">
+                          <div ngClass="subheading_tittle-divs">
+                            <h3 class="sub-title">Delete your account</h3>
                           <label class="h6-design">Delete your account and all the data</label>
-                          <!-- <mat-form-field appearance="fill"  class="full-width input-design-2">
-                            <input matInput>
-                          </mat-form-field> -->
+                          </div>
                           <a href="#" class="btn btn-delete-act">Delete Account</a>
                         </div>
                         </div>
@@ -4153,4 +4267,5 @@
   </div> -->
   </div>
 </div>
+</section>
 <app-footer></app-footer>

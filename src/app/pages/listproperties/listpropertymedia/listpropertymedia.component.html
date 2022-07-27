@@ -10,10 +10,14 @@
         <div ngClass="listing-property-form-sec">
             <div ngClass="listing-property-ul">
                 <mat-list>
-                    <mat-list-item ngClass="active"> <a routerLink="/listingproperty"><span ngClass="">1</span> Property Info</a> </mat-list-item>
-                    <mat-list-item ngClass="active"><a routerLink=""><span ngClass="">2</span> Listing Info</a></mat-list-item>
-                    <mat-list-item ngClass="active"> <a routerLink=""><span ngClass="">3</span> Media</a> </mat-list-item>
-                    <mat-list-item ngClass="disabled"> <a routerLink=""><span ngClass="">4</span> Publish</a> </mat-list-item>
+                    <mat-list-item ngClass="active"> <a routerLink="/listingproperty"><span ngClass="">1</span> Property
+                            Info</a> </mat-list-item>
+                    <mat-list-item ngClass="active"><a routerLink=""><span ngClass="">2</span> Listing Info</a>
+                    </mat-list-item>
+                    <mat-list-item ngClass="active"> <a routerLink=""><span ngClass="">3</span> Media</a>
+                    </mat-list-item>
+                    <mat-list-item ngClass="disabled"> <a routerLink=""><span ngClass="">4</span> Publish</a>
+                    </mat-list-item>
                 </mat-list>
             </div>
             <div ngClass="list-property-content">
@@ -22,10 +26,8 @@
                         <div ngClass="row">
                             <div ngClass="col-xl-8 col-lg-8 col-md-8 col-sm-12">
                                 <div class="new-proprty-details">
-                                    <h5 class="propertyid">{{priviousFormCheck.FloorNo}}</h5>
                                     <h5 class="proname">{{priviousFormCheck.BuildingName}}</h5>
-                                    <address>{{priviousFormCheck.address}},<br/>
-                              {{priviousFormCheck.CityId}}, {{priviousFormCheck.CountryId}}  </address>
+                                    <address>{{priviousFormCheck.PropertyAddress}}</address>
                                 </div>
                             </div>
                             <div ngClass="col-xl-4 col-lg-4 col-md-4 col-sm-12">
@@ -33,10 +35,10 @@
                                     <p>This building also listing in ovaluate</p>
                                     <div ngClass="row">
                                         <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-                                            <p ngClass="no-units-p"><span ngClass="unit-no">04</span> Units on sale</p>
+                                            <p ngClass="no-units-p"><span ngClass="unit-no">{{propertyListingBuy}}</span> Units on sale</p>
                                         </div>
                                         <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-                                            <p ngClass="no-units-p"><span ngClass="unit-no">28</span> Units on rent</p>
+                                            <p ngClass="no-units-p"><span ngClass="unit-no">{{propertyListingRent}}</span> Units on rent</p>
                                         </div>
                                     </div>
                                 </div>
@@ -55,47 +57,17 @@
                                     <div ngClass="upload_documents d-flex">
                                         <div ngClass="bordered-btn-design">
                                             <div ngClass="bordered-upload-btn">
-                                                <input type="file" hidden #fileInput (change)='handleChange($any($event.target).files)'>
-                                                <button mat-button (click)="fileInput.click();tittleDeedCheck=true"><img src="{{uploadimg}}"> Upload Tittle Deed</button>
+                                                <input type="file" hidden #fileInput
+                                                    (change)='handleChange($any($event.target).files)'>
+                                                <button mat-button (click)="fileInput.click();tittleDeedCheck=true"><img
+                                                        src="{{uploadimg}}"> Upload Title Deed</button>
                                             </div>
-                                            <span ngClass="outpup-filename">{{ file }}</span>
+                                            <div ngClass="output-file-name">
+                                            <p ngClass="outpup-filename p-0">{{file}}</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <!-- <div ngClass="geo-loactionverify">
-                            <h6 ngClass="h6-design">Use Geo Location Check-In</h6>
-                            <div ngClass="inneR-border-wrap">
-                                <div ngClass="icons_txt-design">
-                                    <img src="{{geolocation}}">
-                                    <h6>At your property ?</h6>
-                                    <p>Click on 'Verify Now' then click on 'Allow Location' when asked</p>
-                                    <button ngClass="verify-now-btn">Verify Now</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div ngClass="or-divider-div text-center">
-                            <p>Or</p>
-                        </div>
-                        <div ngClass="away-from-property">
-                            <h6 ngClass="h6-design">Use Geo Location Check-In</h6>
-                            <div ngClass="inneR-border-wrap">
-                                <div ngClass="icons_txt-design">
-                                    <img src="{{awayproperty}}">
-                                    <h6>Away from the property?</h6>
-                                    <p>Verify later by opening this link on your mobile phone once you are within 300m from the property</p>
-                                </div>
-                                <div ngClass="textarea-design position-relative">
-                                    <mat-form-field class="full-width input-design" appearance="fill">
-                                        <mat-label>Paste Youtube/Vemio or any video link below</mat-label>
-                                        <input matInput type="text" formControlName="videoLink" placeholder="https://seller.ovaluate.com/my-listings/verify-listing?profile_uuid=5e68801">
-                                      </mat-form-field>
-                                      <button ngClass="verify-now-btn">Verify Now</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div ngClass="verify-later">
-                            <p>Incase you can’t verify it now <a routerLink="">Verify Later</a></p>
-                        </div> -->
                             </div>
                             <div ngClass="list-property-header">
                                 <h5 ngClass="h5-heading">Property Pictures & Videos</h5>
@@ -107,16 +79,21 @@
                                     <div ngClass="inneR-border-wrap">
                                         <div ngClass="div_thumb-wrapper img_upload">
                                             <label class="btn btn-default p-0 upload-label position-relative">
-                                    <input type="file" accept=".jpg, .png, .jpeg," multiple (change)="selectFiles($event);imgCheck=true" />
-                                    <button ngClass="black-upload-btn"><span ngClass="plus_icon-div">+</span> Upload Pictures</button>
-                                  </label>
+                                                <input type="file" accept=".jpg, .png, .jpeg," multiple
+                                                    (change)="selectFiles($event);imgCheck=true" />
+                                                <button ngClass="black-upload-btn"><span
+                                                        ngClass="plus_icon-div">+</span> Upload Pictures</button>
+                                            </label>
                                             <div ngClass="upload-preview-images">
                                                 <img *ngFor='let preview of previews' [src]="preview" class="preview">
-                                                <img ngClass="img-thumb-icon" src="../../../../assets/images/image-gallery-thumbnail.png">
+                                                <img ngClass="img-thumb-icon"
+                                                    src="../../../../assets/images/image-gallery-thumbnail.png">
                                             </div>
                                             <div ngClass="image-thumb-cntnt">
-                                                <p>Property Listings with more than 5 images get 3x more views. <br/> More Images = Higher chances of Leads.</p>
-                                                <p>Accepted formats are .jpg, .gif, .bmp & .png and Maximum size allowed 10 MB</p>
+                                                <p>Property Listings with more than 5 images get 3x more views. <br />
+                                                    More Images = Higher chances of Leads.</p>
+                                                <p>Accepted formats are .jpg, .gif, .bmp & .png and Maximum size allowed
+                                                    10 MB</p>
                                             </div>
                                         </div>
                                     </div>
@@ -126,16 +103,21 @@
                                     <div ngClass="inneR-border-wrap">
                                         <div ngClass="div_thumb-wrapper img_upload">
                                             <label class="btn btn-default p-0 upload-label position-relative">
-                                    <input type='file' accept=".mp4, .mpeg, .flv, mov, swf" multiple (change)="onSelectFile($event);videoCheck=true" />
-                                    <button ngClass="black-upload-btn"><span ngClass="plus_icon-div">+</span> Upload Videos</button>
-                                  </label>
+                                                <input type='file' accept=".mp4, .mpeg, .flv, mov, swf" multiple
+                                                    (change)="onSelectFile($event);videoCheck=true" />
+                                                <button ngClass="black-upload-btn"><span
+                                                        ngClass="plus_icon-div">+</span> Upload Videos</button>
+                                            </label>
                                             <div ngClass="upload-preview-images">
                                                 <video [src]="url" *ngIf="format==='video' && url"></video>
-                                                <img ngClass="img-thumb-icon" src="../../../../assets/images/image-gallery-thumbnail.png">
+                                                <img ngClass="img-thumb-icon"
+                                                    src="../../../../assets/images/image-gallery-thumbnail.png">
                                             </div>
                                             <div ngClass="image-thumb-cntnt">
-                                                <p>Property Listings with Video get 3x more views. <br/> Video = Higher chances of Leads.</p>
-                                                <p>Accepted formats are .MPEG, FLV, MOV & SWF and Maximum size allowed 30 MB</p>
+                                                <p>Property Listings with Video get 3x more views. <br /> Video = Higher
+                                                    chances of Leads.</p>
+                                                <p>Accepted formats are .MPEG, FLV, MOV & SWF and Maximum size allowed
+                                                    30 MB</p>
                                             </div>
                                         </div>
                                     </div>
@@ -150,7 +132,8 @@
                                             <div ngClass="textarea-design">
                                                 <mat-form-field class="full-width input-design" appearance="fill">
                                                     <mat-label>Paste Youtube/Vemio or any video link below</mat-label>
-                                                    <input matInput formControlName="videoLink" type="text" (change)="videoCheck=true" placeholder="Eg. https://www.YT.com">
+                                                    <input matInput formControlName="videoLink" type="text"
+                                                        (change)="videoCheck=true" placeholder="Eg. https://www.YT.com">
                                                 </mat-form-field>
                                             </div>
                                         </div>
@@ -163,7 +146,8 @@
                                 <a routerLink="/listpropertyinfo" ngClass="back-btn">Back</a>
                             </mat-card-actions>
                             <mat-card-actions>
-                                <button mat-raised-button type="submit" ngClass="submit-btn" (click)="onSubmit()">Publish</button>
+                                <button mat-raised-button type="submit" ngClass="submit-btn"
+                                    (click)="onSubmit()">{{btnText}}</button>
                             </mat-card-actions>
                         </div>
                     </form>

@@ -37,13 +37,14 @@ export class ListpropertymediaComponent implements OnInit {
   oldData: any;
   priviousFormCheck: any;
   documentBase: any = [];
-  electricBase: any = [];
   data: any = {};
   images: any = [];
   imageData: any = [];
   videoData: any = [];
-  // documentData:any = {};
   documentData = new FormData();
+  btnText:string = "Publish";
+  propertyListingBuy:number;
+  propertyListingRent:number;
 
 
   constructor(private api: AppService, private uploadService: FileUploadService, private route: Router) {
@@ -52,8 +53,13 @@ export class ListpropertymediaComponent implements OnInit {
       this.priviousFormCheck = JSON.parse(this.priviousFormCheck);
       this.route.navigate(['listingproperty'])
     } else {
-      this.data = JSON.parse(this.priviousFormCheck);
+      this.priviousFormCheck = JSON.parse(this.priviousFormCheck);
+      this.data = this.priviousFormCheck;
     }
+    this.api.PropertyListingRentBuy({"Lat":this.data.PropertyLat,"Long":this.data.PropertyLong}).subscribe((result:any)=> {
+      this.propertyListingBuy = result.data.propertyListingBuy;
+      this.propertyListingRent = result.data.propertyListingRent;
+    })
   }
 
   ngOnInit() {
@@ -91,6 +97,19 @@ export class ListpropertymediaComponent implements OnInit {
   }
 
   selectFiles(event: any): void {
+    if(event.target.files.length > 5) {
+      alert("You can choose maximun 5 files");
+      return;
+    }
+    let temp:number = 0;
+    for(let i = 0; i < event.target.files.length; i++) {
+      temp += event.target.files[i].size
+    }
+    temp = temp/1048576
+    if(temp > 10) {
+      alert("Maximun size allowed is 10MB");
+      return;
+    }
     this.imageData = [];
     this.message = [];
     this.progressInfos = [];
@@ -117,6 +136,10 @@ export class ListpropertymediaComponent implements OnInit {
 
 
   onSelectFile(event: any) {
+    if(event.target.files[0].size/1048576 > 30) {
+      alert("Maximun size allowed is 30MB");
+      return;
+    }
     this.videoData = [];
     this.selectedVideo = event.target.files;
     for (let i = 0; i < this.selectedVideo.length; i++) {
@@ -165,6 +188,7 @@ export class ListpropertymediaComponent implements OnInit {
     }
   }
   handleChange(files: any) {
+    this.file = files[0].name;
     if (files && files.length) {
       let extension: any = files[0].name.split(".");
       extension = extension[extension.length - 1];
@@ -192,6 +216,7 @@ export class ListpropertymediaComponent implements OnInit {
         alert("Please fill all the fields");
       return;
     }
+    this.btnText = "Please Wait...";
     this.data.VideoLink = this.SubmitForm.value.videoLink;
     let temp: any = [];
     let tempDoc: any = [];

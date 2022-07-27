@@ -23,7 +23,7 @@ export class SellCommertialComponent implements OnInit {
   oldData :any;
   priviousFormCheck :any;
   data: any = {};
-  propertyTypes: any;
+  propertyType: any;
   room:any = [1,2,3,4,5,6,7,8,9,10];
   locatedNear: any = [{ id: 1, name: "Metro" }, { id: 2, name: "Elevator" }, {id: 3, name: "Stairs"}];
   ownershipType: any = [{ id: 1, name: "Freehold" }, { id: 2, name: "Leasehold" }];
@@ -31,18 +31,25 @@ export class SellCommertialComponent implements OnInit {
   completionStatus: any;
   featuresData: any;
   featuresFormData: any = [];
-
-
+  minDate = new Date();
+  propertyListingBuy:number;
+  propertyListingRent:number;
 
   constructor(private api:AppService, private service: AuthService,private route:Router,private notifyService : NotificationService) {
     this.priviousFormCheck = localStorage.getItem('propertyData');
-    if(this.priviousFormCheck == '' || this.priviousFormCheck == null){
+    if (this.priviousFormCheck == '' || this.priviousFormCheck == null) {
+      this.priviousFormCheck = JSON.parse(this.priviousFormCheck);
       this.route.navigate(['listingproperty'])
-    }else {
-      this.data = JSON.parse(this.priviousFormCheck);
+    } else {
+      this.priviousFormCheck = JSON.parse(this.priviousFormCheck);
+      this.data = this.priviousFormCheck;
     }
+    this.api.PropertyListingRentBuy({"Lat":this.data.PropertyLat,"Long":this.data.PropertyLong}).subscribe((result:any)=> {
+      this.propertyListingBuy = result.data.propertyListingBuy;
+      this.propertyListingRent = result.data.propertyListingRent;
+    })
     this.api.LoadType(2).subscribe((result:any)=>{
-      this.propertyTypes=result.data;
+      this.propertyType=result.data;
     });
     this.api.LoadTransactionTypes().subscribe((result:any)=>{
       this.propertyTransactionType=result.data;
@@ -125,7 +132,7 @@ export class SellCommertialComponent implements OnInit {
     return this.SubmitForm.controls;
   }
   propertyTypeCkick: boolean = false;
-  badroomCheck: boolean = false;
+  bedroomCheck: boolean = false;
   bathroomCheck: boolean = false;
   locatedNearCheck: boolean = false;
   ownershipTypeCheck: boolean = false;
@@ -135,13 +142,13 @@ export class SellCommertialComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
     console.log(this.propertyTypeCkick);
-    console.log(this.badroomCheck);
+    console.log(this.bedroomCheck);
     console.log(this.bathroomCheck);
     console.log(this.locatedNearCheck);
     console.log(this.ownershipTypeCheck);
     console.log(this.transactionTypeCheck);
     console.log(this.completionStatusCheck);
-    if (this.SubmitForm.invalid || this.propertyTypeCkick == false || this.badroomCheck == false || this.bathroomCheck == false || this.locatedNearCheck == false || this.ownershipTypeCheck == false || this.transactionTypeCheck == false || this.completionStatusCheck == false) {
+    if (this.SubmitForm.invalid || this.propertyTypeCkick == false || this.bedroomCheck == false || this.bathroomCheck == false || this.locatedNearCheck == false || this.ownershipTypeCheck == false || this.transactionTypeCheck == false || this.completionStatusCheck == false) {
       alert('Please fill all the required fields');
       return;
     }
@@ -179,17 +186,17 @@ export class SellCommertialComponent implements OnInit {
     localStorage.setItem('propertyData',JSON.stringify(this.data))
     this.route.navigate(['listpropertymedia'])
   }
-  getPropertyType(id:number){
-    this.propertyTypeCkick = true;
-    this.data.PropertyTypeId=id;
+  getBedroom(e: any) {
+    this.bedroomCheck = true;
+    this.data.BedRooms = e.value;
   }
-  getBedroom(e:number) {
-    this.badroomCheck = true;
-    this.data.Bedroom = e;
-  }
-  getBathroom(e:number) {
+  getBathroom(e: any) {
     this.bathroomCheck = true;
-    this.data.Bathroom = e;
+    this.data.BathRooms = e.value;
+  }
+  getPropertyType(e: any) {
+    this.propertyTypeCkick = true;
+    this.data.PropertyTypeId = e.value;
   }
   getLocatedNear(e:number) {
     this.locatedNearCheck = true;

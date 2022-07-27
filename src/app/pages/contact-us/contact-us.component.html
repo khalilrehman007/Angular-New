@@ -16,8 +16,8 @@
             <h2>Have Some Questions?</h2>
         </div>
         <div ngClass="have-questions-form">
-            <form>
-                <div ngClass="row">
+          <form [formGroup]="Form" (ngSubmit)="onSubmit()">
+            <div ngClass="row">
                     <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                         <div ngClass="block-wrapper mb-3">
                             <label class="h6-design">Name <span ngClass="required-span">*</span></label>
@@ -27,6 +27,7 @@
                             >
                               <input
                                 matInput
+                                formControlName="Name"
                                 type="text"
                                 placeholder="Please enter your name"
                               />
@@ -42,6 +43,7 @@
                             >
                               <input
                                 matInput
+                                formControlName="Phone"
                                 type="number"
                                 placeholder="Please enter your number"
                               />
@@ -57,6 +59,7 @@
                             >
                               <input
                                 matInput
+                                formControlName="Email"
                                 type="email"
                                 placeholder="Please enter your email"
                               />
@@ -69,7 +72,7 @@
                                 <label class="h6-design">I would Like to Conduct <span ngClass="required-span">*</span></label>
                               <mat-form-field appearance="fill">
                                 <mat-label>I would Like to Conduct</mat-label>
-                                <mat-select>
+                                <mat-select (selectionChange)="onQuerySelect($event);">
                                   <mat-option
                                     *ngFor="let list of conductList"
                                     [value]="list.value"
