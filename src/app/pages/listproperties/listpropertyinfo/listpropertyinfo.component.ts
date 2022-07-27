@@ -140,7 +140,7 @@ export class ListpropertyinfoComponent implements OnInit {
     noticePeriod: new FormControl("", [Validators.required]),
     lockingPeriod: new FormControl("", [Validators.required]),
     propertyDescription: new FormControl("", [Validators.required]),
-    propertyOffers: new FormControl("", [Validators.required]),
+    propertyOffers: new FormControl(""),
     highlights_exclusive: new FormControl(""),
     highlights_golfView: new FormControl(""),
     highlights_canalView: new FormControl(""),
