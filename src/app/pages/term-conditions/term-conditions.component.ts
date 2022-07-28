@@ -9,12 +9,18 @@ import { AppService } from 'src/app/service/app.service';
 export class TermConditionsComponent implements OnInit {
 
   image:any;
+  title:any;
+  subHeading:any;
   constructor(private api: AppService) {
     this.api.TermsCondition().subscribe((result:any)=> {
+      console.log(result.data)
+      this.title = result.data.pageCaptionHelight;
+      this.subHeading = result.data.pageCaptionText;
       this.image = "https://beta.ovaluate.com/" + result.data.fileUrl;
       this.image = this.image.replaceAll("\\", "/");
       $(".inner-page-banner-sec").css({"background-image":"url('"+this.image+"')"})
       $(".cms_content-paragraph").append(result.data.pageContent);
+      $(".inner-banner-heading p").append(this.subHeading);
     })
   }
 
