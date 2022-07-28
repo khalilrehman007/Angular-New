@@ -29,6 +29,11 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
   titleDeedType: number = -1;
   propertyInsured: number = -1;
   autocomplete: any;
+  marker: any;
+  countryName:any;
+  cityName:any;
+  tempAddress:any;
+  locationInformation:any = {};
 
   location = { lat: 31.5204, lng: 74.3587 };
 
@@ -54,6 +59,18 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
   constructor(private service: AppService, private router:Router) {
     this.loadCountriesData();
   }
+  changeInfo() {
+    $("#searchLocation").focus();
+    let temp:any = $("#searchLocation").offset();
+    temp = temp.top;
+    $(window).scrollTop(temp-200);
+  }
+  confirmLocation() {
+    this.locationInformation.country = this.countryName;
+    this.locationInformation.city = this.cityName;
+    this.locationInformation.address = localStorage.getItem("address");
+    localStorage.removeItem("address");
+  }
   loadCountriesData() {
     this.service.LoadCountries().subscribe(e => {
       let temp: any = e;
@@ -71,6 +88,11 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
     this.propertyInsured = e;
   }
   onCountrySelect(e: any) {
+    let temp = this.country.filter(function (c: any) {
+      return c.value == e.value
+    });
+    this.countryName = temp[0].viewValue;
+    this.getLocationDetails(temp[0].viewValue);
     this.countryId = e.value;
     this.city = [];
     this.service.LoadCities(e.value).subscribe(e => {
@@ -83,6 +105,11 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
     });
   }
   onCitySelect(e: any) {
+    let temp = this.city.filter(function (c: any) {
+      return c.value == e.value
+    })
+    this.cityName = temp[0].viewValue;
+    this.getLocationDetails(temp[0].viewValue);
     this.cityId = e.value;
     this.district = [];
     this.service.LoadDistrict(e.value).subscribe(e => {
@@ -95,6 +122,10 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
     });
   }
   onDistrictSelect(e: any) {
+    let temp = this.district.filter(function (c: any) {
+      return c.value == e.value
+    })
+    this.getLocationDetails(temp[0].viewValue);
     this.districtId = e.value;
   }
   getData() {
@@ -108,6 +139,8 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
       alert("Select City");
     } else if (this.districtId == -1) {
       alert("Select District");
+    } else if ($("#searchLocation").val() == "") {
+      alert("Enter Address");
     } else {
       this.data.TitleDeedNo = this.propertyDetails.value.titleDeed;
       this.data.TitleDeedType = this.titleDeedType;
@@ -128,23 +161,90 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
   }
   ngAfterViewInit(): void {
-    this.initMap();
+    this.getLocation();
   }
-  initMap() {
+  initMap(e: any) {
     this.map = new google.maps.Map(this.mapElement.nativeElement, {
-      center: this.location,
+      center: e,
       zoom: 8,
       disableDefaultUI: true,
     })
-    let marker = new google.maps.Marker({
-      position: this.location,
+    this.marker = new google.maps.Marker({
+      position: e,
       map: this.map
     })
     this.autocomplete = new google.maps.places.Autocomplete(this.searchElement.nativeElement);
-    this.autocomplete.addListener('place_changed', this.onPlaceChanged)
+    this.autocomplete.addListener('place_changed', this.onPlaceChanged);
   }
   onPlaceChanged() {
-    let temp:any = document.getElementById("searchLocation");
-    let address:any = temp.value;
+    let temp: any = document.getElementById("searchLocation");
+    let address: any = temp.value;
+    localStorage.setItem("address",address);
+    $.ajax({
+      url: "https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyBPSEz52-AfPEVbmV_3yuGUGol_KiLb3GU",
+      method: "get",
+      success: (res) => {
+        let temp = res.results[0].geometry.bounds;
+        let bounds = { east: temp.northeast.lng, west: temp.southwest.lng, north: temp.northeast.lat, south: temp.southwest.lat };
+        let area = res.results[0].geometry.location;
+        localStorage.setItem("lat",area.lat);
+        localStorage.setItem("lng",area.lng);
+        this.map = new google.maps.Map($(".property-details__map")[0], {
+          center: area,
+          zoom: 6,
+          disableDefaultUI: true,
+          restriction: {
+            latLngBounds: bounds,
+            strictBounds: false,
+          },
+        })
+        this.marker = new google.maps.Marker({
+          position: area,
+          map: this.map
+        })
+      }
+    });
+  }
+  getLocationDetails(e: any) {
+    $.ajax({
+      url: "https://maps.googleapis.com/maps/api/geocode/json?address=" + e + "&key=AIzaSyBPSEz52-AfPEVbmV_3yuGUGol_KiLb3GU",
+      method: "get",
+      success: (res) => {
+        let temp = res.results[0].geometry.bounds;
+        let bounds = { east: temp.northeast.lng, west: temp.southwest.lng, north: temp.northeast.lat, south: temp.southwest.lat };
+        let area = res.results[0].geometry.location;
+        this.map = new google.maps.Map($(".property-details__map")[0], {
+          center: area,
+          zoom: 6,
+          disableDefaultUI: true,
+          restriction: {
+            latLngBounds: bounds,
+            strictBounds: false,
+          },
+        })
+        this.marker = new google.maps.Marker({
+          position: area,
+          map: this.map
+        })
+      }
+    });
+  }
+  getLocation() {
+    this.initMap(null);
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position: GeolocationPosition) => {
+          const pos = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          };
+          this.map.setCenter(pos);
+          this.marker = new google.maps.Marker({
+            position: { lat: position.coords.latitude, lng: position.coords.longitude },
+            map: this.map
+          })
+        },
+      );
+    }
   }
 }
