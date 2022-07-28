@@ -57,15 +57,25 @@ export class DashboardComponent implements OnInit {
     {viewValue: '02',value: 'bedroom'},
     {viewValue: '03',value: 'bedroom'},
   ];
+  baseUrl = 'https://beta.ovaluate.com/'
   all:any;
   rent:any;
   buy:any;
+  residential:any;
+  commercial:any
+  totalValuation:any
+  totalRestentailValuation:any
+  totalCommercialValuation:any
+
   constructor(private service:AppService,private route:Router,private notifyService : NotificationService) {
     this.getUser();
     this.LoadBlogs();
     this.getloadDashboardData();
     this.getLoadListing()
     this.getTabCount();
+    this.LoadvaluationDashboard();
+    this.getLoadMyValuaionListing();
+
     this.service.LoadPropertyListingTypes().subscribe(e => {
       let temp: any = e;
       if (temp.message == "Property Listing Type List fetched successfully") {
@@ -73,8 +83,73 @@ export class DashboardComponent implements OnInit {
         this.buy = temp.data[1].name;
       }
     });
+
   }
 
+  //My Valuation Start
+  LoadvaluationDashboard(){
+    this.service.valuationDashboard(35).subscribe(e => {
+      let temp: any = e;
+      if (temp.message == "User Data  fetched successfully") {
+        this.totalValuation = temp.data.totalValuation;
+        this.totalRestentailValuation = temp.data.totalRestentailValuation;
+        this.totalCommercialValuation = temp.data.totalCommercialValuation;
+      }
+    });
+    this.LoadPropertyCategories();
+  }
+  LoadPropertyCategories(){
+    this.service.PropertyCategories().subscribe(data=>{
+      let response:any = data;
+      this.residential = response.data[0].categoryName;
+      this.commercial = response.data[1].categoryName;
+    });
+  }
+
+  myValuationlistingAll:any = [];
+  getLoadMyValuaionListing(){
+    let tempData :Array<Object> = []
+    this.service.LoadValuationListing({"UserId":35,"PropertyCategoryId": ""} ).subscribe(data=>{
+      let response: any = data;
+      response.data.forEach((element, i) => {
+        let image :any;
+        let rentTypeName = ''
+        if(element.rentType != null){
+          rentTypeName = element.rentType.name
+        }
+        if(element.documents.length > 1){
+          image = element.documents[0].fileUrl
+        }
+        tempData.push(
+          {
+            propertyTitle: element.propertyTitle, propertyAddress: element.propertyAddress, img:this.baseUrl+image,
+            buildingName: element.buildingName,bedrooms: element.bedrooms,bathrooms: element.bathrooms,carpetArea: element.carpetArea,
+            unitNo: element.unitNo,totalFloorgit: element.totalFloor,floorNo: element.floorNo,propertyDescription: element.propertyDescription,
+            requestedDate: element.requestedDate,furnishingType: element.furnishingType,propertyPrice: element.propertyPrice,
+            requestedDateFormat:element.requestedDateFormat,
+            expiredDateFormat:element.expiredDateFormat,rentType:rentTypeName
+          }
+        );
+      })
+    });
+
+    this.myValuationlistingAll = tempData
+
+    console.log(this.myValuationlistingAll,'valuation')
+  }
+
+  //My Valuation End
+
+
+  // myValuationTabCounts :any = {}
+  // getMyValuationTabCount(){
+  //   this.service.valuationDashboard(35).subscribe(data => {
+  //     let temp: any = data;
+  //     let jsonData :any = JSON.stringify(temp.data)
+  //     let jsonParsDate :any = JSON.parse(jsonData);
+  //     this.myValuationTabCounts = jsonParsDate
+  //   })
+  // }
 
   parentTabId : any;
   public parentTabsChange(e:any) {
@@ -100,12 +175,9 @@ export class DashboardComponent implements OnInit {
     this.getLoadListing()
   }
 
-
   tabCounts :any = {}
-
   getTabCount(){
-    console.log(this.parentTabId,'1111')
-    this.service.LoadListingDashboard({"UserId":this.user.id,"PropertyListingTypeId": this.parentTabId }).subscribe(data => {
+    this.service.LoadListingDashboard({"UserId":35,"PropertyListingTypeId": this.parentTabId }).subscribe(data => {
       let temp: any = data;
       let jsonData :any = JSON.stringify(temp.data)
       let jsonParsDate :any = JSON.parse(jsonData);
@@ -219,7 +291,7 @@ export class DashboardComponent implements OnInit {
   }
 
   getloadDashboardData() {
-    this.service.LoadDashboardData(this.user.id).subscribe(e => {
+    this.service.LoadDashboardData(35).subscribe(e => {
       let temp: any = e;
       let jsonData :any = JSON.stringify(temp.data)
       let jsonParsDate :any = JSON.parse(jsonData);
@@ -227,12 +299,10 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-
-  baseUrl = 'https://beta.ovaluate.com/'
   listingAll:any = [];
   getLoadListing(){
     let tempData :Array<Object> = []
-    this.service.LoadListing({"UserId":this.user.id,"PropertyListingTypeId": this.parentTabId , "PropertyListingStatusId":this.childTabId }).subscribe(data=>{
+    this.service.LoadListing({"UserId":35,"PropertyListingTypeId": this.parentTabId , "PropertyListingStatusId":this.childTabId }).subscribe(data=>{
       let response: any = data;
       response.data.forEach((element, i) => {
         let image :any;

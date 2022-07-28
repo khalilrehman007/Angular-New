@@ -1888,7 +1888,20 @@
         </div>
       </div>
       <div class="tab-pane fade" id="pills-valuation" role="tabpanel" aria-labelledby="pills-valuation-tab">
-        My Valuations
+        <div class="recent-activity">
+          <h4 class="sub-title">My Valuation Tab</h4>
+          <div class="sub-tab-nav">
+            <mat-tab-group>
+              <mat-tab label="All ({{totalValuation}})">
+                  All
+              </mat-tab>
+              <mat-tab label="{{residential}} ({{totalRestentailValuation}})"> Residential</mat-tab>
+              <mat-tab label="{{commercial}} ({{totalCommercialValuation}})"> Commercial</mat-tab>
+            </mat-tab-group>
+          </div>
+        </div>
+
+
       </div>
       <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
         <div class="recent-activity profile-tab-wrap">
@@ -4276,7 +4289,11 @@
           </div>
         </div>
       </mat-tab>
-      <mat-tab class="tab-item" label="My Valuations"> My Valuations </mat-tab>
+      <mat-tab class="tab-item" label="My Valuations">
+        <div class="recent-activity">
+          <h4 class="sub-title">My Valuatedcfvgbhions</h4>
+        </div>
+      </mat-tab>
       <mat-tab ngClass="grey-bordered-btn more-drop-btn tab-item" label="More >" disabled>
         <ng-template mat-tab-label>
 
