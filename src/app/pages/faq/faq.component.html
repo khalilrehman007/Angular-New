@@ -1,42 +1,43 @@
 <header>
-    <app-header></app-header>
+  <app-header></app-header>
 </header>
 <section [ngClass]="'inner-cntnt-wrapper slide-left-bar sell-faq-css faq-page-sec cms-inner'">
-  <section [ngClass]="'inner-page-banner-sec position-relative'" style="background-image: url('assets/images/package-banner.png')">
-      <div [ngClass]="'container_1280px'">
-         <div ngClass="inner-banner-heading text-center">
-            <h2>Faq's</h2>
-            <p>for your property valuation</p>
-         </div>
+  <section [ngClass]="'inner-page-banner-sec position-relative'"
+    style="background-image: url('assets/images/package-banner.png')">
+    <div [ngClass]="'container_1280px'">
+      <div ngClass="inner-banner-heading text-center">
+        <h2>Faq's</h2>
+        <p>for your property valuation</p>
       </div>
+    </div>
   </section>
   <section ngClass="position-relative faq-section-wrapper">
- <div ngClass="container_1220px">
+    <!-- <div ngClass="container_1220px">
       <div ngClass="faq-title text-center">
         <h2>Frequently Asked Questions</h2>
         <p>We Provide Simple Solutions For Complex Challenges</p>
       </div>
       <div ngClass="row">
         <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12" *ngFor="let faq of faqsec">
-            <div ngClass="accordians-wrapper">
-                <mat-accordion>
-                    <mat-expansion-panel>
-                        <mat-expansion-panel-header>
-                          <mat-panel-title>
-                           <h4>{{faq.heading}}</h4>
-                          </mat-panel-title>
-                        </mat-expansion-panel-header>
-                        <mat-panel-description>
-                        <p> {{faq.desc}}</p>
-                        </mat-panel-description>
-                      </mat-expansion-panel>
-                  </mat-accordion>
-            </div>
+          <div ngClass="accordians-wrapper">
+            <mat-accordion>
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <h4>{{faq.heading}}</h4>
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <mat-panel-description>
+                  <p> {{faq.desc}}</p>
+                </mat-panel-description>
+              </mat-expansion-panel>
+            </mat-accordion>
+          </div>
         </div>
       </div>
-    </div> 
-   </section>
+    </div> -->
+  </section>
 </section>
 <footer ngClass="footer-sec">
-    <app-footer></app-footer>
+  <app-footer></app-footer>
 </footer>
