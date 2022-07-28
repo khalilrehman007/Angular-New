@@ -72,12 +72,12 @@
                                 <label class="h6-design">I would Like to Conduct <span ngClass="required-span">*</span></label>
                               <mat-form-field appearance="fill">
                                 <mat-label>I would Like to Conduct</mat-label>
-                                <mat-select (selectionChange)="onQuerySelect($event);">
+                                <mat-select (selectionChange)="onQuerySelect($event)">
                                   <mat-option
                                     *ngFor="let list of conductList"
                                     [value]="list.value"
                                   >
-                                    {{ list.value }}
+                                    {{ list.text }}
                                   </mat-option>
                                 </mat-select>
                               </mat-form-field>

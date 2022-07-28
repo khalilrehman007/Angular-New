@@ -171,4 +171,7 @@ export class AppService {
   FAQ() {
     return this.http.get(this.apiurl + 'FAQ');
   }
+  AddContactUs(data:any) {
+    return this.http.post(this.apiurl + 'AddContactUs', data);
+  }
 }
