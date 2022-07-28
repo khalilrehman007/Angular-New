@@ -30,9 +30,9 @@ export class FaqComponent implements OnInit {
     }
   ]
   constructor(private api: AppService) {
-    this.api.FAQ().subscribe((result:any)=> {
-      $(".faq-section-wrapper").append(result.data.pageContent);
-    })
+    // this.api.FAQ().subscribe((result:any)=> {
+    //   $(".faq-section-wrapper").append(result.data.pageContent);
+    // })
   }
 
   ngOnInit(): void {

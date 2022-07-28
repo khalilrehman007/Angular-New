@@ -6309,7 +6309,7 @@ li.agent-details__property-list-item {
 	padding: 10% 0;
 	h2 {
 		color: $color_5;
-		font-size: 36px;
+		font-size: 50px;
 		font-weight: 700;
 	}
 	p {
@@ -6356,17 +6356,25 @@ li.agent-details__property-list-item {
 	h1 {
 		font-size: 36px;
 		font-weight: 700;
-		margin-bottom: 0px;
+		margin-bottom: 15px;
 	}
 	h2 {
 		font-size: 18px;
 		font-weight: 700;
-		margin-bottom: 0px;
+		margin-bottom: 10px;
 	}
 	h3 {
 		font-size: 16px;
 		font-weight: 700;
 		margin-bottom: 0px;
+	}
+	p {
+		font-size: 15px;
+		line-height: 26px;
+		color: #333;
+		a{
+			color: #595ad4;
+		}
 	}
 }
 .enquire_btn {
@@ -8208,4 +8216,21 @@ display: none;
 }
 .checkbox-flex-box-auto>.checkbox-design {
     margin-bottom: 10px;
+}
+
+
+@media (min-width: 1200px){
+	.inner-page-banner-sec {
+		height: 350px;
+	}
+	.inner-page-banner-sec h2, .inner-page-banner-sec p {
+		color: #333;
+		text-align: left;
+	}
+	.inner-banner-heading {
+		position: absolute;
+		background-color: #fff;
+		bottom: 0;
+		padding: 30px;
+	}
 }
