@@ -14,13 +14,13 @@ export class PrivacyPolicyComponent implements OnInit {
   subHeading:any;
   constructor(private api: AppService) {
     this.api.PrivacyPolicy().subscribe((result:any)=> {
-      this.text = result.data.pageCaptionText.substr(0,1).toUpperCase()+result.data.pageCaptionText.substr(1);
-      this.title = this.text.split("</br>")[0];
-      this.subHeading = this.text.split("</br>")[1];
+      this.title = result.data.pageCaptionHelight;
+      this.subHeading = result.data.pageCaptionText;
       this.image = "https://beta.ovaluate.com/" + result.data.fileUrl;
       this.image = this.image.replaceAll("\\", "/");
       $(".inner-page-banner-sec").css({"background-image":"url('"+this.image+"')"})
       $(".cms_content-paragraph").append(result.data.pageContent);
+      $(".inner-banner-heading p").append(this.subHeading);
     })
   }
 
