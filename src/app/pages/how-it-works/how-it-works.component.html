@@ -5,8 +5,8 @@
   <section [ngClass]="'inner-page-banner-sec position-relative'" style="background-image: url('assets/images/package-banner.png')">
       <div [ngClass]="'container_1280px'">
          <div ngClass="inner-banner-heading text-center">
-            <h2>How it works</h2>
-            <p>3 simple steps to solve complex challenges in the valuation process</p>
+            <h2>{{heading}}</h2>
+            <p>{{subHead}}</p>
          </div>
       </div>
   </section>
@@ -24,7 +24,7 @@
           <div ngClass="how-it-works-inner">
             <h1>{{works.id}}</h1>
             <h5>{{works.heading}}</h5>
-            <p>{{works.desc}}</p>
+            <p>{{works.description}}</p>
           </div>
         </div>
       </div>
@@ -51,7 +51,7 @@
                           </mat-panel-title>
                         </mat-expansion-panel-header>
                         <mat-panel-description>
-                        <p> {{faq.desc}}</p>
+                        <p class="faq__accordion-text">{{faq.description}}</p>
                         </mat-panel-description>
                       </mat-expansion-panel>
                   </mat-accordion>

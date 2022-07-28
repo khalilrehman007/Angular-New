@@ -6,8 +6,8 @@
     style="background-image: url('assets/images/package-banner.png')">
     <div [ngClass]="'container_1280px'">
       <div ngClass="inner-banner-heading text-center">
-        <h2>Faq's</h2>
-        <p>for your property valuation</p>
+        <h2>{{title}}</h2>
+        <p class="faq__text"></p>
       </div>
     </div>
   </section>
@@ -28,7 +28,7 @@
                   </mat-panel-title>
                 </mat-expansion-panel-header>
                 <mat-panel-description>
-                  <p> {{faq.desc}}</p>
+                  <p class="faq__accordion-text">{{faq.description}}</p>
                 </mat-panel-description>
               </mat-expansion-panel>
             </mat-accordion>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppService } from 'src/app/service/app.service';
 
 @Component({
   selector: 'app-how-it-works',
@@ -6,46 +7,31 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./how-it-works.component.scss']
 })
 export class HowItWorksComponent implements OnInit {
-  howitworks = [
-    {
-      id: '01',
-      heading:'Submit Property Details & Info',
-      desc:'Use our self-upload feature to provide property details and photographs'
-    },
-    {
-      id: '02',
-      heading:'Property Review Process',
-      desc:'Our in house quality team will review your property details.'
-    },
-    {
-      id: '03',
-      heading:'Your Property Goes Live',
-      desc:'Sit back and relax as leads begin to pour in'
-    }
-  ]
-  faqsec = [
-    {
-      heading:'Can I post my property as an owner for free?',
-      desc: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.'
-    },
-    {
-      heading:'Will I receive leads even with free listing?',
-      desc: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.'
-    },
-    {
-      heading:'Why should I buy a paid owner package?',
-      desc: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.'
-    },
-    {
-      heading:'How to upgrade my free listing to a paid listing?',
-      desc: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.'
-    },
-    {
-      heading:'Can I link multiple properties with a single paid package?',
-      desc: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.'
-    }
-  ]
-  constructor() { }
+  heading:string;
+  subHead:string;
+  title:string;
+  text:string;
+
+  howitworks: any = [];
+  faqsec: any = [];
+  constructor(private api: AppService) {
+    this.api.HowWorkOvaluate().subscribe((result:any) => {
+      this.heading=result.data.pageCaptionHelight;
+      this.subHead=result.data.pageCaptionText;
+      this.howitworks = result.data.howWorkOvaluateDetails;
+    })
+    this.api.FAQ().subscribe((result:any)=> {
+      this.title=result.data.pageCaptionHelight;
+      this.text=result.data.pageCaptionText;
+      $(".faq__text").append(this.text);
+      this.faqsec= result.data.faqDetails;
+      setTimeout(function() {
+        $(".faq__accordion-text").each(function(e) {
+          $(this).html($(this).text());
+        })
+      },100);
+    })
+  }
 
   ngOnInit(): void {
   }

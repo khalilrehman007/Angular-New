@@ -11,6 +11,10 @@ import { AppService } from 'src/app/service/app.service';
   styleUrls: ['./contact-us.component.scss']
 })
 export class ContactUsComponent implements OnInit {
+  image:any;
+  title:any;
+  subHeading:any;
+
   conductList = [
     {
       value: 'Summary valuation  Certificate report',
@@ -22,7 +26,17 @@ export class ContactUsComponent implements OnInit {
     },
   ]
   conductReport:string = "";
-  constructor(private service: AuthService,private route:Router,private notifyService : NotificationService, private api:AppService) { }
+  constructor(private service: AuthService,private route:Router,private notifyService : NotificationService, private api:AppService) {
+    this.api.TermsCondition().subscribe((result:any)=> {
+      this.title = result.data.pageCaptionHelight;
+      this.subHeading = result.data.pageCaptionText;
+      this.image = "https://beta.ovaluate.com/" + result.data.fileUrl;
+      this.image = this.image.replaceAll("\\", "/");
+      $(".inner-page-banner-sec").css({"background-image":"url('"+this.image+"')"})
+      $(".inner-banner-heading p").append(this.subHeading);
+    })
+  }
+
   query: number = -1;
   onQuerySelect(e: any) {
     this.conductReport = e.value;
