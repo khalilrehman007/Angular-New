@@ -7,7 +7,10 @@ import { AppService } from 'src/app/service/app.service';
   styleUrls: ['./aboutus.component.scss']
 })
 export class AboutusComponent implements OnInit {
-
+  team1= 'assets/images/team/omran-yusef.png'
+  team2= 'assets/images/team/Badar-Bin-Nesaif.png'
+  team3= 'assets/images/team/dr-emad-salem.png'
+  team4= 'assets/images/team/abdulwahab-alshari.png'
   image:any;
   text:any;
   title:any;

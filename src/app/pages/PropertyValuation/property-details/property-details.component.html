@@ -16,8 +16,7 @@
           <mat-list-item ngClass="active">
             <a routerLink=""><span ngClass="">1</span> Details</a>
           </mat-list-item>
-          <mat-list-item ngClass="disabled"
-            ><a routerLink=""><span ngClass="">2</span> Type</a>
+          <mat-list-item ngClass="disabled"><a routerLink=""><span ngClass="">2</span> Type</a>
           </mat-list-item>
           <mat-list-item ngClass="disabled">
             <a routerLink=""><span ngClass="">3</span> Documents</a>
@@ -46,52 +45,24 @@
                   <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                     <div ngClass="block-wrapper mb-4">
                       <label class="h6-design">Title Deed No.*</label>
-                      <mat-form-field
-                        class="full-width input-design-2"
-                        appearance="fill"
-                      >
-                        <input
-                          matInput
-                          type="number"
-                          placeholder="Eg. 9999999"
-                          formControlName="titleDeed"
-                        />
+                      <mat-form-field class="full-width input-design-2" appearance="fill">
+                        <input matInput type="number" placeholder="Eg. 9999999" formControlName="titleDeed" />
                       </mat-form-field>
-                      <span
-                        style="color: red"
-                        *ngIf="
+                      <span style="color: red" *ngIf="
                           titleDeed && titleDeed.invalid && titleDeed.touched
-                        "
-                        >*This field is required</span
-                      >
+                        ">*This field is required</span>
                     </div>
                   </div>
                   <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                     <div ngClass="block-wrapper mb-4">
                       <label class="h6-design">Title Deed Type*</label>
                       <div class="checkbox-flex-box two-column max-240">
-                        <div
-                          class="checkbox-design position-relative"
-                          (click)="toggleType(0)"
-                        >
-                          <input
-                            type="radio"
-                            id="Monthly"
-                            name="building-type"
-                            value="Monthly"
-                          />
+                        <div class="checkbox-design position-relative" (click)="toggleType(0)">
+                          <input type="radio" id="Monthly" name="building-type" value="Monthly" />
                           <button class="checkbox-btn">Leasehold</button>
                         </div>
-                        <div
-                          class="checkbox-design position-relative"
-                          (click)="toggleType(1)"
-                        >
-                          <input
-                            type="radio"
-                            id="Quaterly"
-                            name="building-type"
-                            value="Quaterly"
-                          />
+                        <div class="checkbox-design position-relative" (click)="toggleType(1)">
+                          <input type="radio" id="Quaterly" name="building-type" value="Quaterly" />
                           <button class="checkbox-btn">Freehold</button>
                         </div>
                       </div>
@@ -103,57 +74,27 @@
                 <div ngClass="row">
                   <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                     <div ngClass="block-wrapper mb-4">
-                      <label class="h6-design"
-                        >Muncipality/Affection No.*</label
-                      >
-                      <mat-form-field
-                        class="full-width input-design-2"
-                        appearance="fill"
-                      >
-                        <input
-                          matInput
-                          type="number"
-                          placeholder="Eg. 9999999"
-                          formControlName="muncipality"
-                        />
+                      <label class="h6-design">Muncipality/Affection No.*</label>
+                      <mat-form-field class="full-width input-design-2" appearance="fill">
+                        <input matInput type="number" placeholder="Eg. 9999999" formControlName="muncipality" />
                       </mat-form-field>
-                      <span
-                        style="color: red"
-                        *ngIf="
+                      <span style="color: red" *ngIf="
                           muncipality &&
                           muncipality.invalid &&
                           muncipality.touched
-                        "
-                        >*This field is required</span
-                      >
+                        ">*This field is required</span>
                     </div>
                   </div>
                   <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                     <div ngClass="block-wrapper mb-4">
                       <label class="h6-design">Property Insured*</label>
                       <div class="checkbox-flex-box two-column max-240">
-                        <div
-                          class="checkbox-design position-relative"
-                          (click)="toggleInsured(0)"
-                        >
-                          <input
-                            type="radio"
-                            id="Yes"
-                            name="building-type"
-                            value="Yes"
-                          />
+                        <div class="checkbox-design position-relative" (click)="toggleInsured(0)">
+                          <input type="radio" id="Yes" name="building-type" value="Yes" />
                           <button class="checkbox-btn">Yes</button>
                         </div>
-                        <div
-                          class="checkbox-design position-relative"
-                          (click)="toggleInsured(1)"
-                        >
-                          <input
-                            type="radio"
-                            id="No"
-                            name="building-type"
-                            value="No"
-                          />
+                        <div class="checkbox-design position-relative" (click)="toggleInsured(1)">
+                          <input type="radio" id="No" name="building-type" value="No" />
                           <button class="checkbox-btn">No</button>
                         </div>
                       </div>
@@ -165,19 +106,9 @@
                 <div ngClass="row">
                   <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                     <div ngClass="block-wrapper mb-4">
-                      <label class="h6-design"
-                        >Name of the Property Owner</label
-                      >
-                      <mat-form-field
-                        class="full-width input-design-2"
-                        appearance="fill"
-                      >
-                        <input
-                          matInput
-                          type="text"
-                          placeholder="Name"
-                          formControlName="propertyOwner"
-                        />
+                      <label class="h6-design">Name of the Property Owner</label>
+                      <mat-form-field class="full-width input-design-2" appearance="fill">
+                        <input matInput type="text" placeholder="Name" formControlName="propertyOwner" />
                       </mat-form-field>
                       <p ngClass="hint-text-grey">
                         Please mention as per title deed
@@ -186,18 +117,9 @@
                   </div>
                   <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                     <div ngClass="block-wrapper mb-4">
-                      <label class="h6-design"
-                        >Phone No. of the Property Owner</label
-                      >
-                      <mat-form-field
-                        class="full-width input-design-2"
-                        appearance="fill"
-                      >
-                        <input
-                          matInput
-                          type="number"
-                          placeholder="Eg. (00) 000 0000"
-                        />
+                      <label class="h6-design">Phone No. of the Property Owner</label>
+                      <mat-form-field class="full-width input-design-2" appearance="fill">
+                        <input matInput type="number" placeholder="Eg. (00) 000 0000" />
                       </mat-form-field>
                       <p ngClass="hint-text-grey">
                         Please mention as per title deed
@@ -214,13 +136,8 @@
                         <label>Country</label>
                         <mat-form-field appearance="fill">
                           <mat-label>Select the Country</mat-label>
-                          <mat-select
-                            (selectionChange)="onCountrySelect($event)"
-                          >
-                            <mat-option
-                              *ngFor="let list of country"
-                              [value]="list.value"
-                            >
+                          <mat-select (selectionChange)="onCountrySelect($event)">
+                            <mat-option *ngFor="let list of country" [value]="list.value">
                               {{ list.viewValue }}
                             </mat-option>
                           </mat-select>
@@ -230,18 +147,15 @@
                   </div>
                   <div ngClass="col-xl-4 col-lg-4 col-sm-12">
                     <div ngClass="select-design">
-                        <label ngClass="h6-design">City</label>
-                        <mat-form-field appearance="fill">
-                          <mat-label>Select the City</mat-label>
-                          <mat-select (selectionChange)="onCitySelect($event)">
-                            <mat-option
-                              *ngFor="let listcity of city"
-                              [value]="listcity.value"
-                            >
-                              {{ listcity.viewValue }}
-                            </mat-option>
-                          </mat-select>
-                        </mat-form-field>
+                      <label ngClass="h6-design">City</label>
+                      <mat-form-field appearance="fill">
+                        <mat-label>Select the City</mat-label>
+                        <mat-select (selectionChange)="onCitySelect($event)">
+                          <mat-option *ngFor="let listcity of city" [value]="listcity.value">
+                            {{ listcity.viewValue }}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
                     </div>
                   </div>
                   <div ngClass="col-xl-4 col-lg-4 col-sm-12">
@@ -250,13 +164,8 @@
                         <label>District</label>
                         <mat-form-field appearance="fill">
                           <mat-label>Select the District</mat-label>
-                          <mat-select
-                            (selectionChange)="onDistrictSelect($event)"
-                          >
-                            <mat-option
-                              *ngFor="let listdistrict of district"
-                              [value]="listdistrict.value"
-                            >
+                          <mat-select (selectionChange)="onDistrictSelect($event)">
+                            <mat-option *ngFor="let listdistrict of district" [value]="listdistrict.value">
                               {{ listdistrict.viewValue }}
                             </mat-option>
                           </mat-select>
@@ -268,58 +177,24 @@
               </div>
               <div ngClass="address-sec">
                 <div ngClass="block-wrapper-address">
-                  <label class="h6-design"
-                    >Pin the Location of your Property</label
-                  >
+                  <label class="h6-design">Pin the Location of your Property</label>
                   <div ngClass="position-relative">
                     <div style="width: 100%">
-                      <div
-                        #propertyDetails__map
-                        class="property-details__map"
-                      ></div>
-                      <!-- <iframe
-                        width="100%"
-                        height="311"
-                        frameborder="0"
-                        scrolling="no"
-                        marginheight="0"
-                        marginwidth="0"
-                        src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=dubai+(My%20Business%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
-                        ><a href="https://www.gps.ie/wearable-gps/"
-                          >Kids wearables</a
-                        ></iframe
-                      > -->
+                      <div #propertyDetails__map class="property-details__map"></div>
                     </div>
                     <div ngClass="locate-me-sec">
                       <div ngClass="add-adrees-sec">
-                        <input
-                          matInput
-                          type="text"
-                          placeholder="Search for your location"
-                          #searchLocation
-                          id="searchLocation"
-                          class="searchLocation"
-                        />
-                        <!-- <mat-form-field
-                          class="full-width input-design"
-                          appearance="fill"
-                        >
-                          <mat-label>Add a Address</mat-label>
-                          <input
-                            matInput
-                            type="text"
-                            placeholder="Search for your location" #searchLocaation
-                          />
-                        </mat-form-field> -->
+                        <input matInput type="text" placeholder="Search for your location" #searchLocation
+                          id="searchLocation" class="searchLocation" />
                         <div ngClass="locate-me-btn text-right">
-                          <button ngClass="grey-bordered-btn">
+                          <button ngClass="grey-bordered-btn" (click)="getLocation()">
                             <img src="{{ Locate }}" /> Locate Me
                           </button>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <div ngClass="confirm-location-sec text-right">
+                  <div ngClass="confirm-location-sec text-right" (click)="confirmLocation()">
                     <button ngClass="confirm-location-btn">
                       Confirm Location
                     </button>
@@ -333,11 +208,11 @@
                     <mat-list>
                       <mat-list-item ngClass="d-flex justify-content-spacebw">
                         <div ngClass="location-div-block">
-                          <h4 ngClass="loc-heading">Al Mankool, Dubai, UAE</h4>
-                          <p>2535, Road 34,Al Mankool, Duba...</p>
+                          <h4 ngClass="loc-heading">{{locationInformation.city}}, {{locationInformation.country}}</h4>
+                          <p>{{locationInformation.address}}</p>
                           <img src="../../../../assets/images/MapPin.svg" />
                         </div>
-                        <div ngClass="change-btn-block">
+                        <div ngClass="change-btn-block" (click)="changeInfo()">
                           <button ngClass="change-btn">Change</button>
                         </div>
                       </mat-list-item>
@@ -348,19 +223,9 @@
             </div>
             <div ngClass="text-right save-continue-sec justify-content-end">
               <mat-card-actions>
-                <button
-                  ngClass="save-continue-btn"
-                  (click)="getData()"
-                >
+                <button ngClass="save-continue-btn" (click)="getData()">
                   Save & Continue
                 </button>
-                <!-- <button
-                  ngClass="save-continue-btn"
-                  [disabled]="propertyDetails.invalid"
-                  (click)="getData()"
-                >
-                  Save & Continue
-                </button> -->
               </mat-card-actions>
             </div>
           </form>

@@ -22,8 +22,7 @@ export class AuthService {
     let token :any=localStorage.getItem('token');
     const helper = new JwtHelperService();
     const isExpired = helper.isTokenExpired(token);
-    // if (localStorage.getItem('token') != null && !isExpired) {
-    if (localStorage.getItem('token') != null) {
+    if (localStorage.getItem('token') != null && !isExpired) {
       return true;
     }
     return false;

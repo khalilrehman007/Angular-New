@@ -7,35 +7,22 @@ import { AppService } from 'src/app/service/app.service';
   styleUrls: ['./faq.component.scss']
 })
 export class FaqComponent implements OnInit {
-  faqsec = [
-    {
-      heading:'Can I post my property as an owner for free?',
-      desc: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.'
-    },
-    {
-      heading:'Will I receive leads even with free listing?',
-      desc: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.'
-    },
-    {
-      heading:'Why should I buy a paid owner package?',
-      desc: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.'
-    },
-    {
-      heading:'How to upgrade my free listing to a paid listing?',
-      desc: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.'
-    },
-    {
-      heading:'Can I link multiple properties with a single paid package?',
-      desc: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.'
-    }
-  ]
+  title:string;
+  text:string;
+  faqsec: any = [];
   constructor(private api: AppService) {
-    // this.api.FAQ().subscribe((result:any)=> {
-    //   $(".faq-section-wrapper").append(result.data.pageContent);
-    // })
+    this.api.FAQ().subscribe((result:any)=> {
+      this.title=result.data.pageCaptionHelight;
+      this.text=result.data.pageCaptionText;
+      $(".faq__text").append(this.text);
+      this.faqsec= result.data.faqDetails;
+      setTimeout(function() {
+        $(".faq__accordion-text").each(function(e) {
+          $(this).html($(this).text());
+        })
+      },100);
+    })
   }
-
   ngOnInit(): void {
   }
-
 }
