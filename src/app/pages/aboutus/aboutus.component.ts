@@ -7,25 +7,26 @@ import { AppService } from 'src/app/service/app.service';
   styleUrls: ['./aboutus.component.scss']
 })
 export class AboutusComponent implements OnInit {
-  team1= 'assets/images/team/omran-yusef.png'
-  team2= 'assets/images/team/Badar-Bin-Nesaif.png'
-  team3= 'assets/images/team/dr-emad-salem.png'
-  team4= 'assets/images/team/abdulwahab-alshari.png'
-  image:any;
-  text:any;
-  title:any;
-  subHeading:any;
+  image: any;
+  title: any;
+  subHeading: any;
+  team: any = [];
   constructor(private api: AppService) {
-    this.api.AboutUs().subscribe((result:any)=> {
-      // $(".cms_content-paragraph").append(result.data.pageContent);
-      this.text = result.data.pageCaptionText.substr(0,1).toUpperCase()+result.data.pageCaptionText.substr(1);
-      this.title = this.text.split("</br>")[0];
-      this.subHeading = this.text.split("</br>")[1];
+    this.api.AboutUs().subscribe((result: any) => {
+      this.title = result.data.pageCaptionHelight;
+
+      this.subHeading = result.data.pageCaptionText; 
       this.image = "https://beta.ovaluate.com/" + result.data.fileUrl;
       this.image = this.image.replaceAll("\\", "/");
-      $(".inner-page-banner-sec").css({"background-image":"url('"+this.image+"')"})
-      $(".cms_content-paragraph").append(result.data.pageContent);
-      $(".carousel-caption").css({"position":"relative","left":"0","right":"0"})
+      $(".inner-page-banner-sec").css({ "background-image": "url('" + this.image + "')" });
+      $(".inner-page-banner-sec p").append(this.subHeading);
+      $(".cms_content-paragraph").html(result.data.pageContent);
+      $(".cms_content-paragraph-2").html(result.data.pageContentPart2);
+      $(".carousel-caption").css({ "position": "relative", "left": "0", "right": "0" });
+    })
+    this.api.TeamMembers().subscribe((result: any) => {
+      this.team = result.data;
+      console.log(this.team);
     })
   }
 

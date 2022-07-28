@@ -174,4 +174,7 @@ export class AppService {
   AddContactUs(data:any) {
     return this.http.post(this.apiurl + 'AddContactUs', data);
   }
+  TeamMembers() {
+    return this.http.get(this.apiurl + 'TeamMembers');
+  }
 }

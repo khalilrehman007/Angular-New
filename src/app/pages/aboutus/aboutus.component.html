@@ -2,83 +2,53 @@
     <app-header></app-header>
 </header>
 <section [ngClass]="'inner-cntnt-wrapper slide-left-bar cms-inner about-page-wrapper'">
-  <section [ngClass]="'inner-page-banner-sec position-relative'" style="background-image: url('assets/images/package-banner.png')">
-      <div [ngClass]="'container_1280px'">
-         <div ngClass="inner-banner-heading text-center">
-            <h2>{{title}}</h2>
-            <p>{{subHeading}}</p>
-         </div>
-      </div>
-  </section>
-  <section ngClass="cms-content-wrapper">
+    <section [ngClass]="'inner-page-banner-sec position-relative'">
+        <div [ngClass]="'container_1280px'">
+            <div ngClass="inner-banner-heading text-center">
+                <h2>{{title}}</h2>
+                <p></p>
+            </div>
+        </div>
+    </section>
+    <section ngClass="cms-content-wrapper">
+        <div [ngClass]="'container_1280px'">
+            <div ngClass="cms_content-paragraph text-center">
+            </div>
+        </div>
+    </section>
+</section>
+<section ngClass="cms-content-wrapper">
     <div [ngClass]="'container_1280px'">
-        <div ngClass="cms_content-paragraph text-center">
-            <!-- <h1>Know More About Us</h1>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p> -->
+        <div ngClass="cms_content-paragraph-2 text-center">
         </div>
     </div>
-  </section>
 </section>
 <section ngClass="our_team-sec">
     <div [ngClass]="'container_1220px'">
         <div ngClass="heading-32px-design text-center mb-5">
             <h2>Meet the Team</h2>
-            <p>Our dedicated team determines our success at Ovaluate. We are home to a network of industry professionals united together to go above and beyond and serve our clients. Our enthusiastic team is the reason for our success and has helped us achieve incredible milestones through the years.</p>
+            <p>Our dedicated team determines our success at Ovaluate. We are home to a network of industry professionals
+                united together to go above and beyond and serve our clients. Our enthusiastic team is the reason for
+                our success and has helped us achieve incredible milestones through the years.</p>
         </div>
         <div ngClass="team_row-divs">
             <div ngClass="row">
-                <div ngClass="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+                <div ngClass="col-xl-3 col-lg-3 col-md-12 col-sm-12" *ngFor="let item of team">
                     <div ngClass="team-list-div-design">
                         <div ngClass="team_img">
-                            <img src="{{team1}}">
+                            <img src="https://beta.ovaluate.com/{{item.fileUrl}}">
                         </div>
                         <div ngClass="team_cntnt">
-                            <h4>Omran Yousef</h4>
-                            <h6>CEO</h6>
-                            <p>An ambitious technopreneur on his third venture, Omran is a RICS® certified valuator with 20 years of real estate experience in the region.</p>
-                        </div>
-                    </div>
-                </div>
-                 <div ngClass="col-xl-3 col-lg-3 col-md-12 col-sm-12">
-                    <div ngClass="team-list-div-design">
-                        <div ngClass="team_img">
-                            <img src="{{team2}}">
-                        </div>
-                        <div ngClass="team_cntnt">
-                            <h4>Badar Bin Nesaif</h4>
-                            <h6>COO</h6>
-                            <p>With 12 years experience in real estate licensing & registration and masters in Real Estate Law, Badar is backed by his extensive experience with RERA-Dubai.</p>
-                        </div>
-                    </div>
-                </div>
-                <div ngClass="col-xl-3 col-lg-3 col-md-12 col-sm-12">
-                    <div ngClass="team-list-div-design">
-                        <div ngClass="team_img">
-                            <img src="{{team3}}">
-                        </div>
-                        <div ngClass="team_cntnt">
-                            <h4>Dr Emad Salem</h4>
-                            <h6>CCO</h6>
-                            <p>Based in KSA, Emad has been a specialist in real estate for over 12 years covering various industry domains and holds a PhD in Management.</p>
-                        </div>
-                    </div>
-                </div>
-                 <div ngClass="col-xl-3 col-lg-3 col-md-12 col-sm-12">
-                    <div ngClass="team-list-div-design">
-                        <div ngClass="team_img">
-                            <img src="{{team4}}">
-                        </div>
-                        <div ngClass="team_cntnt">
-                            <h4>Abdulwahab Alshari</h4>
-                            <h6>Director</h6>
-                            <p>With enterprises in Jewelry Trading, Real Estate, Property Investments & Development Abdul is a seasoned businessman with over 30 years of experience and is based in KSA</p>
+                            <h4>{{item.name}}</h4>
+                            <h6>{{item.designation.designationName}}</h6>
+                            <p>{{item.description}}</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-  </section>
+</section>
 <footer ngClass="footer-sec">
     <app-footer></app-footer>
 </footer>
