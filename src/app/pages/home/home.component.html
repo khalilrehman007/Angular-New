@@ -373,60 +373,19 @@
       <div [ngClass]="'listing-slider-area'">
         <owl-carousel-o [options]="sellrentproperty">
           <ng-container>
-            <ng-template carouselSlide>
+            <ng-template carouselSlide *ngFor="let item of slider">
               <div ngClass="row">
                 <div ngClass="col-md-6 property-listing-slider-left">
-                  <h2>Sell or Rent Your <br />Home Directly</h2>
+                  <h2>{{item.title}}</h2>
                   <ul>
-                    <li>List Property on Ovaluate Directly</li>
-                    <li>Shortlist Clients from the Limited Responses</li>
-                    <li>Connect, Manage &amp; Showcase property yourself.</li>
-                    <li>Negotiate directly without any mediator.</li>
+                    <li *ngFor="let list of item.ovaluateOfferingDetails">{{list.description}}</li>
                   </ul>
                   <div ngClass="listing-btn">
                     <a [routerLink]="['/listingproperty']" ngClass="custom-btn-primary">List Your Property</a>
                   </div>
                 </div>
                 <div ngClass="col-md-6 property-listing-slider-right">
-                  <img src="{{ listingsliderimg }}" ngClass="img-fluid lisitng-right-img" alt="" />
-                </div>
-              </div>
-            </ng-template>
-            <ng-template carouselSlide>
-              <div ngClass="row">
-                <div ngClass="col-md-6 property-listing-slider-left">
-                  <h2>Sell or Rent Your Home Directly</h2>
-                  <ul>
-                    <li>List Property on Ovaluate Directly</li>
-                    <li>Shortlist Clients from the Limited Responses</li>
-                    <li>Connect, Manage &amp; Showcase property yourself.</li>
-                    <li>Negotiate directly without any mediator.</li>
-                  </ul>
-                  <div ngClass="listing-btn">
-                    <a [routerLink]="['/listingproperty']" ngClass="custom-btn-primary">List Your Property</a>
-                  </div>
-                </div>
-                <div ngClass="col-md-6 property-listing-slider-right">
-                  <img src="{{ listingsliderimg }}" ngClass="img-fluid lisitng-right-img" alt="" />
-                </div>
-              </div>
-            </ng-template>
-            <ng-template carouselSlide>
-              <div ngClass="row">
-                <div ngClass="col-md-6 property-listing-slider-left">
-                  <h2>Sell or Rent Your Home Directly</h2>
-                  <ul>
-                    <li>List Property on Ovaluate Directly</li>
-                    <li>Shortlist Clients from the Limited Responses</li>
-                    <li>Connect, Manage &amp; Showcase property yourself.</li>
-                    <li>Negotiate directly without any mediator.</li>
-                  </ul>
-                  <div ngClass="listing-btn">
-                    <a [routerLink]="['/listingproperty']" ngClass="custom-btn-primary">List Your Property</a>
-                  </div>
-                </div>
-                <div ngClass="col-md-6 property-listing-slider-right">
-                  <img src="{{ listingsliderimg }}" ngClass="img-fluid lisitng-right-img" alt="" />
+                  <img src="https://beta.ovaluate.com/{{ item.ovaluateOfferingDocument.fileUrl }}" ngClass="img-fluid lisitng-right-img" alt="" />
                 </div>
               </div>
             </ng-template>

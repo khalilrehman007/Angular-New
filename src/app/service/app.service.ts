@@ -186,4 +186,7 @@ export class AppService {
   HowWorkOvaluate() {
     return this.http.get(this.apiurl + 'HowWorkOvaluate');
   }
+  OvaluateOfferings() {
+    return this.http.get(this.apiurl + 'OvaluateOfferings');
+  }
 }

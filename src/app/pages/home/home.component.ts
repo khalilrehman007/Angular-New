@@ -34,6 +34,7 @@ export class HomeComponent implements OnInit {
   transaction:any = [];
   country:any = [];
   clientFeedback:any = [];
+  slider: any = [];
 
 
 
@@ -369,6 +370,11 @@ export class HomeComponent implements OnInit {
     //   this.totalMortgages = this.valuationTransactions[2].value;
     //
     // });
+
+    this.service.OvaluateOfferings().subscribe((result: any=[])=>{
+      this.slider = result.data;
+      console.log(this.slider);
+    })
   }
 
   ValuationTransactions(){
