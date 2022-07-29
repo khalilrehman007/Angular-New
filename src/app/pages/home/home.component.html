@@ -178,7 +178,7 @@
                     <owl-carousel-o [options]="customOptions" ngClass="slider-shadow ">
                         <ng-container *ngFor="let slide of dynamicSlides1">
                             <ng-template carouselSlide [id]="slide.id">
-                                <div ngClass="property-item">
+                                <div ngClass="property-item position-relative">
                                     <img [src]="slide.src" [alt]="slide.alt" [title]="slide.title" />
                                     <span [ngClass]="'popular-tag'"><img src="assets/images/tag/popular.png"/></span>
                                     <div ngClass="brand-logo">
@@ -191,8 +191,8 @@
                     </svg>
                   </button>
                       <div ngClass="property-info">
-                        <a [routerLink]="['/PropertDetailsPage/'+slide.id]" ngClass="property-pricing"><span>{{ slide.price }}</span>/yearly</a>
-                        <a [routerLink]="['/PropertDetailsPage/'+slide.id]" ngClass="property-name">{{ slide.buildingName }}</a>
+                        <span ngClass="property-pricing"><span>{{ slide.price }}</span> /yearly</span>
+                        <span ngClass="property-name">{{ slide.buildingName }}</span>
                         <p ngClass="property-location">
                       <img src="{{ homelocationsvg }}" width="14" alt=""/>{{slide.propertyAddress}}
                     </p>
@@ -213,6 +213,7 @@
                       </span>
                     </div>
                   </div>
+                  <a [routerLink]="['/PropertDetailsPage/'+slide.id]" ngClass="linK_overlay"></a>
                 </div>
               </ng-template>
             </ng-container>
@@ -224,7 +225,7 @@
           <owl-carousel-o [options]="customOptions" ngClass="slider-shadow ">
             <ng-container *ngFor="let slide of dynamicSlides1">
               <ng-template carouselSlide [id]="slide.id">
-                <div ngClass="property-item">
+                <div ngClass="property-item position-relative">
                   <img
                     [src]="slide.src"
                     [alt]="slide.alt"
@@ -253,17 +254,8 @@
                     </svg>
                   </button>
                   <div ngClass="property-info">
-                    <a
-                      [routerLink]="['/PropertDetailsPage/'+slide.id]"
-                      ngClass="property-pricing"
-                      ><span>{{ slide.price }}</span
-                      >/yearly</a
-                    >
-                    <a
-                      [routerLink]="['/PropertDetailsPage/'+slide.id]"
-                      ngClass="property-name"
-                      >{{slide.buildingName}}</a
-                    >
+                    <span ngClass="property-pricing"><span>{{ slide.price }}</span> /yearly</span>
+                    <span ngClass="property-name">{{slide.buildingName}}</span>
                     <p ngClass="property-location">
                       <img
                         src="{{ homelocationsvg }}"
@@ -283,6 +275,7 @@
                       </span>
                     </div>
                   </div>
+                  <a [routerLink]="['/PropertDetailsPage/'+slide.id]" ngClass="linK_overlay"></a>
                 </div>
               </ng-template>
             </ng-container>
@@ -390,10 +383,9 @@
                                         <owl-carousel-o [options]="customOptions" ngClass="slider-shadow ">
                                             <ng-container *ngFor="let slide of dynamicSlides2">
                                                 <ng-template carouselSlide [id]="slide.id">
-                                                    <div ngClass="property-item">
+                                                    <div ngClass="property-item position-relative">
                                                         <img [src]="slide.src" [alt]="slide.alt" [title]="slide.title" />
-                                                        <span [ngClass]="'popular-tag'"><img src="assets/images/tag/popular.png"
-                  /></span>
+                                                        <span [ngClass]="'popular-tag'"><img src="assets/images/tag/popular.png"/></span>
                                                         <div ngClass="brand-logo">
                                                             <img src="{{ brandimg }}" alt="" />
                                                         </div>
@@ -413,15 +405,9 @@
                       />
                     </svg>
                   </button>
-                                                        <div ngClass="property-info">
-                                                            <a [routerLink]="['/PropertDetailsPage/'+slide.id]" ngClass="property-pricing"><span>{{ slide.price }}</span
-                      >/yearly</a
-                    >
-                    <a
-                      [routerLink]="['/PropertDetailsPage/'+slide.id]"
-                      ngClass="property-name"
-                      >{{slide.buildingName}}</a
-                    >
+                  <div ngClass="property-info">
+                  <span ngClass="property-pricing"><span>{{ slide.price }}</span> /yearly</span>
+                    <span ngClass="property-name">{{slide.buildingName}}</span>
                     <p ngClass="property-location">
                       <img
                         src="{{ homelocationsvg }}"
@@ -441,6 +427,7 @@
                       </span>
                     </div>
                   </div>
+                  <a [routerLink]="['/PropertDetailsPage/'+slide.id]" ngClass="linK_overlay"></a>
                 </div>
               </ng-template>
             </ng-container>
@@ -450,7 +437,7 @@
           <owl-carousel-o [options]="customOptions" ngClass="slider-shadow ">
             <ng-container *ngFor="let slide of dynamicSlides2">
               <ng-template carouselSlide [id]="slide.id">
-                <div ngClass="property-item">
+                <div ngClass="property-item position-relative">
                   <img
                     [src]="slide.src"
                     [alt]="slide.alt"
@@ -479,16 +466,8 @@
                     </svg>
                   </button>
                   <div ngClass="property-info">
-                    <a
-                      [routerLink]="['/PropertDetailsPage/'+slide.id]"
-                      ngClass="property-pricing"
-                      ><span>350,000 AED</span>/yearly</a
-                    >
-                    <a
-                      [routerLink]="['/PropertDetailsPage/'+slide.id]"
-                      ngClass="property-name"
-                      >Blue Wave Tower</a
-                    >
+                    <span ngClass="property-pricing"><span>350,000 AED</span> /yearly</span>
+                    <span ngClass="property-name">Blue Wave Tower</span>
                     <p ngClass="property-location">
                       <img
                         src="{{ homelocationsvg }}"
@@ -508,6 +487,7 @@
                       </span>
                     </div>
                   </div>
+                  <a [routerLink]="['/PropertDetailsPage/'+slide.id]" ngClass="linK_overlay"></a>
                 </div>
               </ng-template>
             </ng-container>

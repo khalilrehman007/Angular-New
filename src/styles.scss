@@ -3100,6 +3100,7 @@ input[type=number] {
 	text-decoration: none;
 	margin-left: 0px;
 	margin-right: 0px;
+	background-color: #fff;
 	>img {
 		overflow: hidden;
 		position: relative;
@@ -3151,6 +3152,7 @@ input[type=number] {
 		padding: 7px;
 		cursor: pointer;
 		background: transparent;
+		z-index: 99;
 		svg {
 			stroke: var(--primary-color);
 			width: auto !important;
@@ -8305,4 +8307,66 @@ display: none;
     margin-left: auto;
     margin-right: auto;
 }
+.our-mission-sec .heading {
+    text-align: left;
+}
+.our-vision-sec .heading h2, .our-vision-sec .heading p,.our-mission-sec .heading h2, .our-mission-sec .heading p {
+    color: #000;
+}
+.our-vision-sec .heading h2,.our-mission-sec .heading h2 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
 
+
+@media (min-width: 1200px){
+	.our-mission-sec .heading,.our-vision-sec .heading {
+		padding: 0px 50px;
+	}
+}
+@media (max-width: 991px){
+	.our-vision-sec .row {
+		flex-direction: column-reverse;
+	}
+}
+@media (min-width: 992px){
+	.faq-section-wrapper .row {
+		display: block;
+		margin: 0px;
+		column-count: 2;
+	}
+	.faq-section-wrapper .row>div {
+		width: 100%;
+		transition: all 0.5s ease-in-out;
+	}
+}
+.linK_overlay {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9;
+    cursor: pointer;
+}
+.no-data-found {
+    text-align: center;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    border: 1px dashed #d0cece;
+    padding: 20px;
+}
+.no-data-found .mat-icon {
+    color: #595ad4;
+    font-size: 50px;
+    width: 50px;
+    height: 50px;
+}
+.no-data-found p {
+    margin-bottom: 0px;
+    font-size: 16px;
+    color: grey;
+}

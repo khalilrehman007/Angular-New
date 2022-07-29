@@ -55,7 +55,7 @@
                                       <owl-carousel-o [options]="customOptions">
                                         <ng-container *ngFor="let slide of dynamicSlides1">
                                           <ng-template carouselSlide [id]="slide.id">
-                                            <div class="property-item">
+                                            <div class="property-item position-relative">
                                             <img [src]="slide.src" [alt]="slide.alt" [title]="slide.title">
                                             <span class="popular-tag"><img src="assets/images/tag/popular.png"></span>
                                             <div class="brand-logo">
@@ -67,8 +67,8 @@
                                               </svg>
                                           </button>
                                           <div class="property-info">
-                                              <a [routerLink]="['/PropertDetailsPage']" class="property-pricing"><span>{{slide.price}}</span>/yearly</a>
-                                              <a [routerLink]="['/PropertDetailsPage']" class="property-name">Blue Wave Tower</a>
+                                              <span class="property-pricing"><span>{{slide.price}}</span> /yearly</span>
+                                              <span class="property-name">Blue Wave Tower</span>
                                               <p class="property-location"><img src="{{homelocationsvg}}" width="14" alt="">Etihad Tower 4, Etihad Towers,  </p>
                                               <div class="property-details">
                                                   <span class="bed">
@@ -82,6 +82,7 @@
                                                   </span>
                                               </div>
                                           </div>
+                                          <a [routerLink]="['/PropertDetailsPage']" ngClass="linK_overlay"></a>
                                           </div>
                                           </ng-template>
                                         </ng-container>
