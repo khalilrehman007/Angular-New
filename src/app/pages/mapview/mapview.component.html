@@ -30,7 +30,7 @@
              <div ngClass="properties-filtr-values d-flex justify-content-spacebw">
                <div ngClass="properties-filtr-values-left d-flex justify-content-spacebw">
                  <div class="checkbox-design position-relative">
-                   <input type="radio" id="Furnished" name="property-types" value="Furnished">
+                   <input type="checkbox" id="Furnished" name="property-types" value="Furnished">
                    <button class="checkbox-btn">All</button>
                </div>
                <div ngClass="block-wrapper">
@@ -83,7 +83,7 @@
              <div ngClass="map-view-listin">
                 <div ngClass="row">
                     <div ngClass="col-xl-4 col-lg-6 col-md-6 col-sm-12 mb-4" *ngFor="let slide of dynamicSlides1">
-                        <div ngClass="property-item">
+                        <div ngClass="property-item position-relative">
                             <img [src]="slide.src" [alt]="slide.alt" [title]="slide.title">
                             <span [ngClass]="'popular-tag'"><img src="assets/images/tag/popular.png"></span>
                             <div ngClass="brand-logo">
@@ -95,8 +95,8 @@
                               </svg>
                           </button>
                           <div ngClass="property-info">
-                              <a routerLink="/{{slide.link}}" ngClass="property-pricing"><span>{{slide.price}}</span>/yearly</a>
-                              <a routerLink="/{{slide.link}}" ngClass="property-name">Blue Wave Tower</a>
+                              <span ngClass="property-pricing"><span>{{slide.price}}</span>/yearly</span>
+                              <span ngClass="property-name">Blue Wave Tower</span>
                               <p ngClass="property-location"><img src="{{homelocationsvg}}" width="14" alt="">Etihad Tower 4, Etihad Towers,  </p>
                               <div ngClass="property-details">
                                   <span ngClass="bed">
@@ -110,6 +110,7 @@
                                   </span>
                               </div>
                           </div>
+                          <a routerLink="/{{slide.link}}" ngClass="linK_overlay"></a>
                           </div>
                     </div>
                 </div>
