@@ -112,7 +112,7 @@ export class AppService {
   valuationDashboard(id) {
     return this.http.get(this.apiurl + 'ValuationDashboard/'+id,{ headers: this.headers });
   }
-  LoadValuationListing(data) {
+  LoadValuationListing(data:any) {
     return this.http.post(this.apiurl + 'MyValuations',data,{ headers: this.headers });
   }
   LoadPropertyListingStatus() {

@@ -14,7 +14,6 @@ export class AboutusComponent implements OnInit {
   constructor(private api: AppService) {
     this.api.AboutUs().subscribe((result: any) => {
       this.title = result.data.pageCaptionHelight;
-
       this.subHeading = result.data.pageCaptionText; 
       this.image = "https://beta.ovaluate.com/" + result.data.fileUrl;
       this.image = this.image.replaceAll("\\", "/");
