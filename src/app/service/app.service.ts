@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { data } from 'jquery';
 
 @Injectable({
   providedIn: 'root'
@@ -185,5 +186,11 @@ export class AppService {
   }
   HowWorkOvaluate() {
     return this.http.get(this.apiurl + 'HowWorkOvaluate');
+  }
+  OvaluateOfferings() {
+    return this.http.get(this.apiurl + 'OvaluateOfferings');
+  }
+  UpdateProfile() {
+    return this.http.post(this.apiurl + 'UpdateProfile', data);
   }
 }

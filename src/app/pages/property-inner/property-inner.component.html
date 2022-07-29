@@ -296,7 +296,7 @@
             </div>
             <div ngClass="row">
                 <div ngClass="col-xl-3 col-lg-3 col-md-6 col-sm-12" *ngFor="let slide of dynamicSlides1">
-                    <div ngClass="property-item">
+                    <div ngClass="property-item position-relative">
                         <img [src]="slide.src" [alt]="slide.alt" [title]="slide.title">
                         <span [ngClass]="'popular-tag'"><img src="assets/images/tag/popular.png"></span>
                         <div ngClass="brand-logo">
@@ -308,8 +308,8 @@
                       </svg>
                   </button>
                         <div ngClass="property-info">
-                            <a routerLink="/{{slide.link}}" ngClass="property-pricing"><span>{{slide.price}}</span>/yearly</a>
-                            <a routerLink="/{{slide.link}}" ngClass="property-name">Blue Wave Tower</a>
+                            <span ngClass="property-pricing"><span>{{slide.price}}</span>/yearly</span>
+                            <span ngClass="property-name">Blue Wave Tower</span>
                             <p ngClass="property-location"><img src="{{homelocationsvg}}" width="14" alt="">Etihad Tower 4, Etihad Towers, </p>
                             <div ngClass="property-details">
                                 <span ngClass="bed">
@@ -323,6 +323,7 @@
                           </span>
                             </div>
                         </div>
+                        <a routerLink="/{{slide.link}}" ngClass="linK_overlay"></a>
                     </div>
                 </div>
             </div>

@@ -1,31 +1,29 @@
 <header>
-    <app-header></app-header>
+  <app-header></app-header>
 </header>
 <section [ngClass]="'inner-cntnt-wrapper'">
-    <section [ngClass]="'buy-sell-form-sec slide-left-bar'" style="background-image: url('assets/images/home-bg.svg')">
-        <div [ngClass]="'container_1280px'">
-            <div [ngClass]="'blue-heading text-center'">
-                <h2>Buy, Rent, Sell & Valuate Your Property</h2>
-            </div>
-            <div ngClass="buy-sell-wrapepr-forms">
-                <div ngClass="form_tabs">
-                    <ul ngClass="nav nav-tabs" role="tablist">
-                        <li ngClass="nav-item">
-                            <a ngClass="nav-link active" data-bs-toggle="tab" href="#rent">Rent</a
-              >
+  <section [ngClass]="'buy-sell-form-sec slide-left-bar'" style="background-image: url('assets/images/home-bg.svg')">
+    <div [ngClass]="'container_1280px'">
+      <div [ngClass]="'blue-heading text-center'">
+        <h2>Buy, Rent, Sell & Valuate Your Property</h2>
+      </div>
+      <div ngClass="buy-sell-wrapepr-forms">
+        <div ngClass="form_tabs">
+          <ul ngClass="nav nav-tabs" role="tablist">
+            <li ngClass="nav-item">
+              <a ngClass="nav-link active" data-bs-toggle="tab" href="#rent">Rent</a>
             </li>
             <li ngClass="nav-item">
               <a ngClass="nav-link" data-bs-toggle="tab" href="#buy">Buy</a>
-                        </li>
-                        <!-- <li ngClass="nav-item">
+            </li>
+            <!-- <li ngClass="nav-item">
               <a ngClass="nav-link" data-bs-toggle="tab" href="#land">Land</a>
             </li>
             <li ngClass="nav-item">
               <a ngClass="nav-link" data-bs-toggle="tab" href="#commertial">Commercial</a>
             </li> -->
-                        <li ngClass="nav-item">
-                            <a ngClass="nav-link" data-bs-toggle="tab" href="#find-agents">Find Agents</a
-              >
+            <li ngClass="nav-item">
+              <a ngClass="nav-link" data-bs-toggle="tab" href="#find-agents">Find Agents</a>
             </li>
           </ul>
           <!-- Tab panes -->
@@ -37,10 +35,10 @@
               <buy-search></buy-search>
             </div>
             <div id="land" ngClass="tab-pane fade">
-<!--              <land-search></land-search>-->
+              <!--              <land-search></land-search>-->
             </div>
             <div id="commertial" ngClass="tab-pane fade">
-<!--              <comercial-search></comercial-search>-->
+              <!--              <comercial-search></comercial-search>-->
             </div>
             <div id="find-agents" ngClass="tab-pane fade">
               <find-agent-search></find-agent-search>
@@ -54,131 +52,97 @@
             <div ngClass="home-slider-sec">
               <div ngClass="home-slider-sec">
                 <ngb-carousel [showNavigationArrows]="false">
-                    <ng-template ngbSlide *ngFor="let event of homebanners">
-                      {{event.id}}
-                      <div ngClass="home-slider_img">
+                  <ng-template ngbSlide *ngFor="let event of homebanners">
+                    {{event.id}}
+                    <div ngClass="home-slider_img">
                       <img [src]="event.img" alt="Random slide">
-                      </div>
-                      <div ngClass="home-slider_cntnt">
-                        <h2>{{event.title}}</h2>
-                        <p>{{event.desc}}</p>
-                        <a routerLink="/PropertyDetail">Start Valuation</a>
-                </div>
-                </ng-template>
+                    </div>
+                    <div ngClass="home-slider_cntnt">
+                      <h2>{{event.title}}</h2>
+                      <p>{{event.desc}}</p>
+                      <a routerLink="/PropertyDetail">Start Valuation</a>
+                    </div>
+                  </ng-template>
                 </ngb-carousel>
+              </div>
             </div>
-        </div>
-        </div>
+          </div>
         </div>
         <div ngClass="row">
-            <div ngClass="col-xl-6 col-lg-6 col-sm-6 col-sm-12">
-                <div ngClass="pro-evaluations-blocks-div">
-                    <img src="assets/images/residentials-icon.svg" />
-                    <h4>{{categoryNameRes}}</h4>
-                    <p>
-                        {{categoryDetailRes}}
-                        <!-- We offer our customer property protection of liability coverage and insurance for their better life. -->
-                    </p>
-                </div>
+          <div ngClass="col-xl-6 col-lg-6 col-sm-6 col-sm-12">
+            <div ngClass="pro-evaluations-blocks-div">
+              <img src="assets/images/residentials-icon.svg" />
+              <h4>{{categoryNameRes}}</h4>
+              <p>
+                {{categoryDetailRes}}
+                <!-- We offer our customer property protection of liability coverage and insurance for their better life. -->
+              </p>
             </div>
-            <div ngClass="col-xl-6 col-lg-6 col-sm-6 col-sm-12">
-                <div ngClass="pro-evaluations-blocks-div">
-                    <img src="assets/images/commertials.svg" />
-                    <h4>{{categoryNameCom}}</h4>
-                    <p>
-                        {{categoryDetailCom}}
-                    </p>
-                </div>
+          </div>
+          <div ngClass="col-xl-6 col-lg-6 col-sm-6 col-sm-12">
+            <div ngClass="pro-evaluations-blocks-div">
+              <img src="assets/images/commertials.svg" />
+              <h4>{{categoryNameCom}}</h4>
+              <p>
+                {{categoryDetailCom}}
+              </p>
             </div>
+          </div>
         </div>
+      </div>
+    </div>
+  </section>
+  <section ngClass="position-relative wrapper-section properties-slider residentials-property-rent-1">
+    <div ngClass="container_1220px">
+      <div ngClass="section-title">
+        <div ngClass="section-title-left">
+          <h4>Residential Properties for Rent in Dubai</h4>
+          <p>Some of our picked properties near your location.</p>
         </div>
-        </div>
-    </section>
-    <section ngClass="position-relative wrapper-section properties-slider residentials-property-rent-1">
-        <div ngClass="container_1220px">
-            <div ngClass="section-title">
-                <div ngClass="section-title-left">
-                    <h4>Residential Properties for Rent in Dubai</h4>
-                    <p>Some of our picked properties near your location.</p>
-                </div>
-                <div ngClass="section-title-right">
-                    <ul ngClass="nav nav-tabs" role="tablist">
-                        <li ngClass="nav-item">
-                            <a ngClass="nav-link active" data-bs-toggle="tab" (click)="oldData1()">
-                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <div ngClass="section-title-right">
+          <ul ngClass="nav nav-tabs" role="tablist">
+            <li ngClass="nav-item">
+              <a ngClass="nav-link active" data-bs-toggle="tab" (click)="oldData1()">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path
                     d="M16.4912 12.4406C14.7746 14.149 12.3162 14.674 10.1579 13.999L6.23289 17.9156C5.94955 18.2073 5.39122 18.3823 4.99122 18.324L3.17455 18.074C2.57455 17.9906 2.01622 17.424 1.92455 16.824L1.67455 15.0073C1.61622 14.6073 1.80789 14.049 2.08289 13.7656L5.99955 9.84896C5.33289 7.68229 5.84955 5.22396 7.56622 3.51563C10.0246 1.05729 14.0162 1.05729 16.4829 3.51563C18.9496 5.97396 18.9496 9.98229 16.4912 12.4406Z"
-                    stroke="#595ad4"
-                    stroke-width="2"
-                    stroke-miterlimit="10"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                  <path
-                    d="M5.74121 14.5742L7.65788 16.4909"
-                    stroke="#595ad4"
-                    stroke-width="2"
-                    stroke-miterlimit="10"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
+                    stroke="#595ad4" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                  <path d="M5.74121 14.5742L7.65788 16.4909" stroke="#595ad4" stroke-width="2" stroke-miterlimit="10"
+                    stroke-linecap="round" stroke-linejoin="round" />
                   <path
                     d="M12.083 9.16797C12.7734 9.16797 13.333 8.60833 13.333 7.91797C13.333 7.22761 12.7734 6.66797 12.083 6.66797C11.3927 6.66797 10.833 7.22761 10.833 7.91797C10.833 8.60833 11.3927 9.16797 12.083 9.16797Z"
-                    stroke="#595ad4"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
+                    stroke="#595ad4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                 </svg> {{ Rent }}</a>
-                        </li>
-                        <li ngClass="nav-item">
-                            <a ngClass="nav-link" data-bs-toggle="tab" (click)="newData1()">
-                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            </li>
+            <li ngClass="nav-item">
+              <a ngClass="nav-link" data-bs-toggle="tab" (click)="newData1()">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path
                     d="M14.167 17.0846H5.83366C3.33366 17.0846 1.66699 15.8346 1.66699 12.918V7.08464C1.66699 4.16797 3.33366 2.91797 5.83366 2.91797H14.167C16.667 2.91797 18.3337 4.16797 18.3337 7.08464V12.918C18.3337 15.8346 16.667 17.0846 14.167 17.0846Z"
-                    stroke="#100A55"
-                    stroke-width="2"
-                    stroke-miterlimit="10"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
+                    stroke="#100A55" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round"
+                    stroke-linejoin="round" />
                   <path
                     d="M10 12.5C11.3807 12.5 12.5 11.3807 12.5 10C12.5 8.61929 11.3807 7.5 10 7.5C8.61929 7.5 7.5 8.61929 7.5 10C7.5 11.3807 8.61929 12.5 10 12.5Z"
-                    stroke="#100A55"
-                    stroke-width="2"
-                    stroke-miterlimit="10"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                  <path
-                    d="M4.58301 7.91797V12.0846"
-                    stroke="#100A55"
-                    stroke-width="2"
-                    stroke-miterlimit="10"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                  <path
-                    d="M15.417 7.91797V12.0846"
-                    stroke="#100A55"
-                    stroke-width="2"
-                    stroke-miterlimit="10"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
+                    stroke="#100A55" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                  <path d="M4.58301 7.91797V12.0846" stroke="#100A55" stroke-width="2" stroke-miterlimit="10"
+                    stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M15.417 7.91797V12.0846" stroke="#100A55" stroke-width="2" stroke-miterlimit="10"
+                    stroke-linecap="round" stroke-linejoin="round" />
                 </svg> {{ Sale }}
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
 
             <div ngClass="tab-content">
                 <div id="resedential-rent" class="tab-pane active">
                     <owl-carousel-o [options]="customOptions" ngClass="slider-shadow ">
                         <ng-container *ngFor="let slide of dynamicSlides1">
                             <ng-template carouselSlide [id]="slide.id">
-                                <div ngClass="property-item">
+                                <div ngClass="property-item position-relative">
                                     <img [src]="slide.src" [alt]="slide.alt" [title]="slide.title" />
                                     <span [ngClass]="'popular-tag'"><img src="assets/images/tag/popular.png"/></span>
                                     <div ngClass="brand-logo">
@@ -186,13 +150,14 @@
                                     </div>
                     <button ngClass="property-whistlist">
                     <svg width="22" height="23" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M4.39376 6.23844C4.02517 6.63167 3.73279 7.0985 3.53331 7.61228C3.33383 8.12605 3.23116 8.67672 3.23116 9.23283C3.23116 9.78894 3.33383 10.3396 3.53331 10.8534C3.73279 11.3672 4.02517 11.834 4.39376 12.2272L11.1699 19.4563L17.946 12.2272C18.6904 11.433 19.1086 10.3559 19.1086 9.23283C19.1086 8.10972 18.6904 7.0326 17.946 6.23844C17.2016 5.44429 16.1919 4.99813 15.1392 4.99813C14.0865 4.99813 13.0768 5.44429 12.3324 6.23844L11.1699 7.47873L10.0073 6.23844C9.63871 5.84521 9.20113 5.53329 8.71954 5.32047C8.23796 5.10766 7.72179 4.99812 7.20053 4.99812C6.67926 4.99812 6.1631 5.10766 5.68152 5.32047C5.19993 5.53329 4.76235 5.84521 4.39376 6.23844V6.23844Z"
-                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path
+                        d="M4.39376 6.23844C4.02517 6.63167 3.73279 7.0985 3.53331 7.61228C3.33383 8.12605 3.23116 8.67672 3.23116 9.23283C3.23116 9.78894 3.33383 10.3396 3.53331 10.8534C3.73279 11.3672 4.02517 11.834 4.39376 12.2272L11.1699 19.4563L17.946 12.2272C18.6904 11.433 19.1086 10.3559 19.1086 9.23283C19.1086 8.10972 18.6904 7.0326 17.946 6.23844C17.2016 5.44429 16.1919 4.99813 15.1392 4.99813C14.0865 4.99813 13.0768 5.44429 12.3324 6.23844L11.1699 7.47873L10.0073 6.23844C9.63871 5.84521 9.20113 5.53329 8.71954 5.32047C8.23796 5.10766 7.72179 4.99812 7.20053 4.99812C6.67926 4.99812 6.1631 5.10766 5.68152 5.32047C5.19993 5.53329 4.76235 5.84521 4.39376 6.23844V6.23844Z"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
                   </button>
                       <div ngClass="property-info">
-                        <a [routerLink]="['/PropertDetailsPage/'+slide.id]" ngClass="property-pricing"><span>{{ slide.price }}</span>/yearly</a>
-                        <a [routerLink]="['/PropertDetailsPage/'+slide.id]" ngClass="property-name">{{ slide.buildingName }}</a>
+                        <span ngClass="property-pricing"><span>{{ slide.price }}</span> /yearly</span>
+                        <span ngClass="property-name">{{ slide.buildingName }}</span>
                         <p ngClass="property-location">
                       <img src="{{ homelocationsvg }}" width="14" alt=""/>{{slide.propertyAddress}}
                     </p>
@@ -207,24 +172,25 @@
                       </span>
                       <span ngClass="area">
                         <img src="{{ squaremetersvg }}" alt="" />{{
-                          slide.carpetArea
+                        slide.carpetArea
                         }}
                         Sqft
                       </span>
                     </div>
                   </div>
+                  <a [routerLink]="['/PropertDetailsPage/'+slide.id]" ngClass="linK_overlay"></a>
                 </div>
               </ng-template>
             </ng-container>
-                    </owl-carousel-o>
-                </div>
+          </owl-carousel-o>
+        </div>
 
-                <div id="resedential-buy" class="tab-pane fade">
+        <div id="resedential-buy" class="tab-pane fade">
 
           <owl-carousel-o [options]="customOptions" ngClass="slider-shadow ">
             <ng-container *ngFor="let slide of dynamicSlides1">
               <ng-template carouselSlide [id]="slide.id">
-                <div ngClass="property-item">
+                <div ngClass="property-item position-relative">
                   <img
                     [src]="slide.src"
                     [alt]="slide.alt"
@@ -237,39 +203,17 @@
                     <img src="{{ brandimg }}" alt="" />
                   </div>
                   <button ngClass="property-whistlist">
-                    <svg
-                      width="22"
-                      height="23"
-                      viewBox="0 0 22 23"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
+                    <svg width="22" height="23" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path
                         d="M4.39376 6.23844C4.02517 6.63167 3.73279 7.0985 3.53331 7.61228C3.33383 8.12605 3.23116 8.67672 3.23116 9.23283C3.23116 9.78894 3.33383 10.3396 3.53331 10.8534C3.73279 11.3672 4.02517 11.834 4.39376 12.2272L11.1699 19.4563L17.946 12.2272C18.6904 11.433 19.1086 10.3559 19.1086 9.23283C19.1086 8.10972 18.6904 7.0326 17.946 6.23844C17.2016 5.44429 16.1919 4.99813 15.1392 4.99813C14.0865 4.99813 13.0768 5.44429 12.3324 6.23844L11.1699 7.47873L10.0073 6.23844C9.63871 5.84521 9.20113 5.53329 8.71954 5.32047C8.23796 5.10766 7.72179 4.99812 7.20053 4.99812C6.67926 4.99812 6.1631 5.10766 5.68152 5.32047C5.19993 5.53329 4.76235 5.84521 4.39376 6.23844V6.23844Z"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
                   </button>
                   <div ngClass="property-info">
-                    <a
-                      [routerLink]="['/PropertDetailsPage/'+slide.id]"
-                      ngClass="property-pricing"
-                      ><span>{{ slide.price }}</span
-                      >/yearly</a
-                    >
-                    <a
-                      [routerLink]="['/PropertDetailsPage/'+slide.id]"
-                      ngClass="property-name"
-                      >{{slide.buildingName}}</a
-                    >
+                    <span ngClass="property-pricing"><span>{{ slide.price }}</span> /yearly</span>
+                    <span ngClass="property-name">{{slide.buildingName}}</span>
                     <p ngClass="property-location">
-                      <img
-                        src="{{ homelocationsvg }}"
-                        width="14"
-                        alt=""
-                      />{{slide.propertyAddress}}
+                      <img src="{{ homelocationsvg }}" width="14" alt="" />{{slide.propertyAddress}}
                     </p>
                     <div ngClass="property-details">
                       <span ngClass="bed">
@@ -283,6 +227,7 @@
                       </span>
                     </div>
                   </div>
+                  <a [routerLink]="['/PropertDetailsPage/'+slide.id]" ngClass="linK_overlay"></a>
                 </div>
               </ng-template>
             </ng-container>
@@ -292,10 +237,8 @@
     </div>
   </section>
 
-<!--  Commercial Properties for Rent in Dubai-->
-  <section
-    ngClass="position-relative wrapper-section properties-slider residentials-property-rent-2"
-  >
+  <!--  Commercial Properties for Rent in Dubai-->
+  <section ngClass="position-relative wrapper-section properties-slider residentials-property-rent-2">
     <div ngClass="container_1220px">
       <div ngClass="section-title">
         <div ngClass="section-title-left">
@@ -305,80 +248,36 @@
         <div ngClass="section-title-right">
           <ul ngClass="nav nav-tabs" role="tablist">
             <li ngClass="nav-item">
-              <a
-                ngClass="nav-link active"
-                data-bs-toggle="tab"
-                (click)="oldData2()"
-              >
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 20 20"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
+              <a ngClass="nav-link active" data-bs-toggle="tab" (click)="oldData2()">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path
                     d="M16.4912 12.4406C14.7746 14.149 12.3162 14.674 10.1579 13.999L6.23289 17.9156C5.94955 18.2073 5.39122 18.3823 4.99122 18.324L3.17455 18.074C2.57455 17.9906 2.01622 17.424 1.92455 16.824L1.67455 15.0073C1.61622 14.6073 1.80789 14.049 2.08289 13.7656L5.99955 9.84896C5.33289 7.68229 5.84955 5.22396 7.56622 3.51563C10.0246 1.05729 14.0162 1.05729 16.4829 3.51563C18.9496 5.97396 18.9496 9.98229 16.4912 12.4406Z"
-                    stroke="#595ad4"
-                    stroke-width="2"
-                    stroke-miterlimit="10"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                  <path
-                    d="M5.74121 14.5742L7.65788 16.4909"
-                    stroke="#595ad4"
-                    stroke-width="2"
-                    stroke-miterlimit="10"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
+                    stroke="#595ad4" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                  <path d="M5.74121 14.5742L7.65788 16.4909" stroke="#595ad4" stroke-width="2" stroke-miterlimit="10"
+                    stroke-linecap="round" stroke-linejoin="round" />
                   <path
                     d="M12.083 9.16797C12.7734 9.16797 13.333 8.60833 13.333 7.91797C13.333 7.22761 12.7734 6.66797 12.083 6.66797C11.3927 6.66797 10.833 7.22761 10.833 7.91797C10.833 8.60833 11.3927 9.16797 12.083 9.16797Z"
-                    stroke="#595ad4"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
+                    stroke="#595ad4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
                 Rent
               </a>
-                                        </li>
-                                        <li ngClass="nav-item">
-                                            <a ngClass="nav-link" data-bs-toggle="tab" (click)="newData2()">
-                                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            </li>
+            <li ngClass="nav-item">
+              <a ngClass="nav-link" data-bs-toggle="tab" (click)="newData2()">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path
                     d="M14.167 17.0846H5.83366C3.33366 17.0846 1.66699 15.8346 1.66699 12.918V7.08464C1.66699 4.16797 3.33366 2.91797 5.83366 2.91797H14.167C16.667 2.91797 18.3337 4.16797 18.3337 7.08464V12.918C18.3337 15.8346 16.667 17.0846 14.167 17.0846Z"
-                    stroke="#100A55"
-                    stroke-width="2"
-                    stroke-miterlimit="10"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
+                    stroke="#100A55" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round"
+                    stroke-linejoin="round" />
                   <path
                     d="M10 12.5C11.3807 12.5 12.5 11.3807 12.5 10C12.5 8.61929 11.3807 7.5 10 7.5C8.61929 7.5 7.5 8.61929 7.5 10C7.5 11.3807 8.61929 12.5 10 12.5Z"
-                    stroke="#100A55"
-                    stroke-width="2"
-                    stroke-miterlimit="10"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                  <path
-                    d="M4.58301 7.91797V12.0846"
-                    stroke="#100A55"
-                    stroke-width="2"
-                    stroke-miterlimit="10"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                  <path
-                    d="M15.417 7.91797V12.0846"
-                    stroke="#100A55"
-                    stroke-width="2"
-                    stroke-miterlimit="10"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
+                    stroke="#100A55" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                  <path d="M4.58301 7.91797V12.0846" stroke="#100A55" stroke-width="2" stroke-miterlimit="10"
+                    stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M15.417 7.91797V12.0846" stroke="#100A55" stroke-width="2" stroke-miterlimit="10"
+                    stroke-linecap="round" stroke-linejoin="round" />
                 </svg> Buy
                                             </a>
                                         </li>
@@ -390,10 +289,9 @@
                                         <owl-carousel-o [options]="customOptions" ngClass="slider-shadow ">
                                             <ng-container *ngFor="let slide of dynamicSlides2">
                                                 <ng-template carouselSlide [id]="slide.id">
-                                                    <div ngClass="property-item">
+                                                    <div ngClass="property-item position-relative">
                                                         <img [src]="slide.src" [alt]="slide.alt" [title]="slide.title" />
-                                                        <span [ngClass]="'popular-tag'"><img src="assets/images/tag/popular.png"
-                  /></span>
+                                                        <span [ngClass]="'popular-tag'"><img src="assets/images/tag/popular.png"/></span>
                                                         <div ngClass="brand-logo">
                                                             <img src="{{ brandimg }}" alt="" />
                                                         </div>
@@ -407,27 +305,14 @@
                     >
                       <path
                         d="M4.39376 6.23844C4.02517 6.63167 3.73279 7.0985 3.53331 7.61228C3.33383 8.12605 3.23116 8.67672 3.23116 9.23283C3.23116 9.78894 3.33383 10.3396 3.53331 10.8534C3.73279 11.3672 4.02517 11.834 4.39376 12.2272L11.1699 19.4563L17.946 12.2272C18.6904 11.433 19.1086 10.3559 19.1086 9.23283C19.1086 8.10972 18.6904 7.0326 17.946 6.23844C17.2016 5.44429 16.1919 4.99813 15.1392 4.99813C14.0865 4.99813 13.0768 5.44429 12.3324 6.23844L11.1699 7.47873L10.0073 6.23844C9.63871 5.84521 9.20113 5.53329 8.71954 5.32047C8.23796 5.10766 7.72179 4.99812 7.20053 4.99812C6.67926 4.99812 6.1631 5.10766 5.68152 5.32047C5.19993 5.53329 4.76235 5.84521 4.39376 6.23844V6.23844Z"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
                   </button>
-                                                        <div ngClass="property-info">
-                                                            <a [routerLink]="['/PropertDetailsPage/'+slide.id]" ngClass="property-pricing"><span>{{ slide.price }}</span
-                      >/yearly</a
-                    >
-                    <a
-                      [routerLink]="['/PropertDetailsPage/'+slide.id]"
-                      ngClass="property-name"
-                      >{{slide.buildingName}}</a
-                    >
+                  <div ngClass="property-info">
+                  <span ngClass="property-pricing"><span>{{ slide.price }}</span> /yearly</span>
+                    <span ngClass="property-name">{{slide.buildingName}}</span>
                     <p ngClass="property-location">
-                      <img
-                        src="{{ homelocationsvg }}"
-                        width="14"
-                        alt=""
-                      />{{slide.propertyAddress}}
+                      <img src="{{ homelocationsvg }}" width="14" alt="" />{{slide.propertyAddress}}
                     </p>
                     <div ngClass="property-details">
                       <span ngClass="bed">
@@ -441,6 +326,7 @@
                       </span>
                     </div>
                   </div>
+                  <a [routerLink]="['/PropertDetailsPage/'+slide.id]" ngClass="linK_overlay"></a>
                 </div>
               </ng-template>
             </ng-container>
@@ -450,7 +336,7 @@
           <owl-carousel-o [options]="customOptions" ngClass="slider-shadow ">
             <ng-container *ngFor="let slide of dynamicSlides2">
               <ng-template carouselSlide [id]="slide.id">
-                <div ngClass="property-item">
+                <div ngClass="property-item position-relative">
                   <img
                     [src]="slide.src"
                     [alt]="slide.alt"
@@ -463,38 +349,17 @@
                     <img src="{{ brandimg }}" alt="" />
                   </div>
                   <button ngClass="property-whistlist">
-                    <svg
-                      width="22"
-                      height="23"
-                      viewBox="0 0 22 23"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
+                    <svg width="22" height="23" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path
                         d="M4.39376 6.23844C4.02517 6.63167 3.73279 7.0985 3.53331 7.61228C3.33383 8.12605 3.23116 8.67672 3.23116 9.23283C3.23116 9.78894 3.33383 10.3396 3.53331 10.8534C3.73279 11.3672 4.02517 11.834 4.39376 12.2272L11.1699 19.4563L17.946 12.2272C18.6904 11.433 19.1086 10.3559 19.1086 9.23283C19.1086 8.10972 18.6904 7.0326 17.946 6.23844C17.2016 5.44429 16.1919 4.99813 15.1392 4.99813C14.0865 4.99813 13.0768 5.44429 12.3324 6.23844L11.1699 7.47873L10.0073 6.23844C9.63871 5.84521 9.20113 5.53329 8.71954 5.32047C8.23796 5.10766 7.72179 4.99812 7.20053 4.99812C6.67926 4.99812 6.1631 5.10766 5.68152 5.32047C5.19993 5.53329 4.76235 5.84521 4.39376 6.23844V6.23844Z"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
                   </button>
                   <div ngClass="property-info">
-                    <a
-                      [routerLink]="['/PropertDetailsPage/'+slide.id]"
-                      ngClass="property-pricing"
-                      ><span>350,000 AED</span>/yearly</a
-                    >
-                    <a
-                      [routerLink]="['/PropertDetailsPage/'+slide.id]"
-                      ngClass="property-name"
-                      >Blue Wave Tower</a
-                    >
+                    <span ngClass="property-pricing"><span>350,000 AED</span> /yearly</span>
+                    <span ngClass="property-name">Blue Wave Tower</span>
                     <p ngClass="property-location">
-                      <img
-                        src="{{ homelocationsvg }}"
-                        width="14"
-                        alt=""
-                      />{{slide.propertyAddress}}
+                      <img src="{{ homelocationsvg }}" width="14" alt="" />{{slide.propertyAddress}}
                     </p>
                     <div ngClass="property-details">
                       <span ngClass="bed">
@@ -508,6 +373,7 @@
                       </span>
                     </div>
                   </div>
+                  <a [routerLink]="['/PropertDetailsPage/'+slide.id]" ngClass="linK_overlay"></a>
                 </div>
               </ng-template>
             </ng-container>
@@ -522,84 +388,19 @@
       <div [ngClass]="'listing-slider-area'">
         <owl-carousel-o [options]="sellrentproperty">
           <ng-container>
-            <ng-template carouselSlide>
+            <ng-template carouselSlide *ngFor="let item of slider">
               <div ngClass="row">
                 <div ngClass="col-md-6 property-listing-slider-left">
-                  <h2>Sell or Rent Your <br />Home Directly</h2>
+                  <h2>{{item.title}}</h2>
                   <ul>
-                    <li>List Property on Ovaluate Directly</li>
-                    <li>Shortlist Clients from the Limited Responses</li>
-                    <li>Connect, Manage &amp; Showcase property yourself.</li>
-                    <li>Negotiate directly without any mediator.</li>
+                    <li *ngFor="let list of item.ovaluateOfferingDetails">{{list.description}}</li>
                   </ul>
                   <div ngClass="listing-btn">
-                    <a
-                      [routerLink]="['/listingproperty']"
-                      ngClass="custom-btn-primary"
-                      >List Your Property</a
-                    >
+                    <a [routerLink]="['/listingproperty']" ngClass="custom-btn-primary">List Your Property</a>
                   </div>
                 </div>
                 <div ngClass="col-md-6 property-listing-slider-right">
-                  <img
-                    src="{{ listingsliderimg }}"
-                    ngClass="img-fluid lisitng-right-img"
-                    alt=""
-                  />
-                </div>
-              </div>
-            </ng-template>
-            <ng-template carouselSlide>
-              <div ngClass="row">
-                <div ngClass="col-md-6 property-listing-slider-left">
-                  <h2>Sell or Rent Your Home Directly</h2>
-                  <ul>
-                    <li>List Property on Ovaluate Directly</li>
-                    <li>Shortlist Clients from the Limited Responses</li>
-                    <li>Connect, Manage &amp; Showcase property yourself.</li>
-                    <li>Negotiate directly without any mediator.</li>
-                  </ul>
-                  <div ngClass="listing-btn">
-                    <a
-                      [routerLink]="['/listingproperty']"
-                      ngClass="custom-btn-primary"
-                      >List Your Property</a
-                    >
-                  </div>
-                </div>
-                <div ngClass="col-md-6 property-listing-slider-right">
-                  <img
-                    src="{{ listingsliderimg }}"
-                    ngClass="img-fluid lisitng-right-img"
-                    alt=""
-                  />
-                </div>
-              </div>
-            </ng-template>
-            <ng-template carouselSlide>
-              <div ngClass="row">
-                <div ngClass="col-md-6 property-listing-slider-left">
-                  <h2>Sell or Rent Your Home Directly</h2>
-                  <ul>
-                    <li>List Property on Ovaluate Directly</li>
-                    <li>Shortlist Clients from the Limited Responses</li>
-                    <li>Connect, Manage &amp; Showcase property yourself.</li>
-                    <li>Negotiate directly without any mediator.</li>
-                  </ul>
-                  <div ngClass="listing-btn">
-                    <a
-                      [routerLink]="['/listingproperty']"
-                      ngClass="custom-btn-primary"
-                      >List Your Property</a
-                    >
-                  </div>
-                </div>
-                <div ngClass="col-md-6 property-listing-slider-right">
-                  <img
-                    src="{{ listingsliderimg }}"
-                    ngClass="img-fluid lisitng-right-img"
-                    alt=""
-                  />
+                  <img src="https://beta.ovaluate.com/{{ item.ovaluateOfferingDocument.fileUrl }}" ngClass="img-fluid lisitng-right-img" alt="" />
                 </div>
               </div>
             </ng-template>
@@ -617,268 +418,273 @@
         </div>
         <div ngClass="section-custom-title-right">
           <a routerLink="/explore">Read all</a>
-                                                        </div>
-                                                    </div>
+        </div>
+      </div>
 
-                                                    <div ngClass="row">
-                                                        <div ngClass="col-md-6 explore-places-col" *ngFor="let explore of Exploreplaces">
-                                                            <a routerLink="/explore-details">
-                                                                <img [src]="explore.src" ngClass="img-fluid" alt="" />
-                                                                <div ngClass="explore-place-content">
-                                                                    <h5>{{ explore.heading }}</h5>
-                                                                    <p>{{ explore.paragraph }}</p>
-                                                                </div>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                    </div>
-    </section>
-    <section ngClass="position-relative wrapper-section blogs_sec">
-        <div ngClass="container_1220px">
-            <div ngClass="section-title">
-                <div ngClass="section-custom-title-left">
-                    <h4>Blogs</h4>
-                    <p>Some of our picked properties near your location.</p>
-                </div>
-                <div ngClass="section-custom-title-right">
-                    <a routerLink="/blogs">Read all</a>
-                </div>
+      <div ngClass="row">
+        <div ngClass="col-md-6 explore-places-col" *ngFor="let explore of Exploreplaces">
+          <a routerLink="/explore-details">
+            <img [src]="explore.src" ngClass="img-fluid" alt="" />
+            <div ngClass="explore-place-content">
+              <h5>{{ explore.heading }}</h5>
+              <p>{{ explore.paragraph }}</p>
             </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section ngClass="position-relative wrapper-section blogs_sec">
+    <div ngClass="container_1220px">
+      <div ngClass="section-title">
+        <div ngClass="section-custom-title-left">
+          <h4>Blogs</h4>
+          <p>Some of our picked properties near your location.</p>
+        </div>
+        <div ngClass="section-custom-title-right">
+          <a routerLink="/blogs">Read all</a>
+        </div>
+      </div>
 
-            <div ngClass="row">
-                <!-- let blogs of Blogsec -->
-                <div ngClass="col-lg-4 col-md-6 blog-places-col" *ngFor="let blog of blogs">
-                    <a [routerLink]="['/blogs-details/' + blog.id]" [queryParams]="{ title: blog.blogTitle }">
-                        <!-- blog.blogDocument.fileUrl -->
-                        <img [src]="'https://www.ovaluate.com/' + blog.blogDocument.fileUrl" ngClass="img-fluid blog-image-homepage" alt="" />
-                        <span ngClass="blog-tag">
+      <div ngClass="row">
+        <!-- let blogs of Blogsec -->
+        <div ngClass="col-lg-4 col-md-6 blog-places-col" *ngFor="let blog of blogs">
+          <a [routerLink]="['/blogs-details/' + blog.id]" [queryParams]="{ title: blog.blogTitle }">
+            <!-- blog.blogDocument.fileUrl -->
+            <img [src]="'https://www.ovaluate.com/' + blog.blogDocument.fileUrl" ngClass="img-fluid blog-image-homepage"
+              alt="" />
+            <span ngClass="blog-tag">
               <img [src]="blog.src2" ngClass="img-fluid" alt="" />
             </span>
-                        <div ngClass="blog-title-content">
-                            <h5>{{ blog.blogTitle }}</h5>
-                            <span>{{ blog.blogDate }}</span>
-                        </div>
-                    </a>
-                </div>
+            <div ngClass="blog-title-content">
+              <h5>{{ blog.blogTitle }}</h5>
+              <span>{{ blog.blogDate }}</span>
             </div>
+          </a>
         </div>
-    </section>
-    <!-- <app-blogs></app-blogs> -->
-    <section ngClass="position-relative wrapper-section bg-primary-color easy-tenants-landlords-sec">
-        <div ngClass="container_1220px">
-            <div ngClass="section-title responsive-section-title tenanats-landlord_Sec">
-                <div ngClass="section-title-left">
-                    <h2>
-                        We make it easy for <br />
-                        <span>tenants</span> and <span>landlords</span>.
-                    </h2>
+      </div>
+    </div>
+  </section>
+  <!-- <app-blogs></app-blogs> -->
+  <section ngClass="position-relative wrapper-section bg-primary-color easy-tenants-landlords-sec">
+    <div ngClass="container_1220px">
+      <div ngClass="section-title responsive-section-title tenanats-landlord_Sec">
+        <div ngClass="section-title-left">
+          <h2>
+            We make it easy for <br />
+            <span>tenants</span> and <span>landlords</span>.
+          </h2>
+        </div>
+        <div ngClass="section-custom-title-right wd-30">
+          <p>
+            Whether it’s selling your current home, getting financing, or buying a new home, we make it easy and
+            efficient. The best part? you’ll save a bunch of money and time with our services.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div ngClass="container_1220px tenants-bar-left">
+      <div ngClass="tenants-sec-wrapper">
+        <owl-carousel-o [options]="easyslider">
+          <ng-container *ngFor="let slide of tenantsslide">
+            <ng-template carouselSlide [id]="slide.id">
+              <div ngClass="{{ slide.class }}">
+                <img [src]="slide.src" ngClass="img-fluid" alt="" />
+                <div ngClass="virtual-tour-content">
+                  <h5>{{ slide.heading }}</h5>
+                  <p>{{ slide.desc }}</p>
                 </div>
-                <div ngClass="section-custom-title-right wd-30">
-                    <p>
-                        Whether it’s selling your current home, getting financing, or buying a new home, we make it easy and efficient. The best part? you’ll save a bunch of money and time with our services.
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div ngClass="container_1220px tenants-bar-left">
-            <div ngClass="tenants-sec-wrapper">
-                <owl-carousel-o [options]="easyslider">
-                    <ng-container *ngFor="let slide of tenantsslide">
-                        <ng-template carouselSlide [id]="slide.id">
-                            <div ngClass="{{ slide.class }}">
-                                <img [src]="slide.src" ngClass="img-fluid" alt="" />
-                                <div ngClass="virtual-tour-content">
-                                    <h5>{{ slide.heading }}</h5>
-                                    <p>{{ slide.desc }}</p>
-                                </div>
-                            </div>
-                        </ng-template>
-                    </ng-container>
-                </owl-carousel-o>
-            </div>
-        </div>
-        <div ngClass="line"></div>
+              </div>
+            </ng-template>
+          </ng-container>
+        </owl-carousel-o>
+      </div>
+    </div>
+    <div ngClass="line"></div>
 
-        <div ngClass="container_1220px">
-            <div ngClass="recent-data-realestate text-center">
-                <h2>Recent Real Estate Transactions of UAE</h2>
-                <p>
-                    A snapshot of recent property transactions in dubai, as captured by the DLD.
-                </p>
-            </div>
-        </div>
+    <div ngClass="container_1220px">
+      <div ngClass="recent-data-realestate text-center">
+        <h2>Recent Real Estate Transactions of UAE</h2>
+        <p>
+          A snapshot of recent property transactions in dubai, as captured by the DLD.
+        </p>
+      </div>
+    </div>
 
-        <div ngClass="container_1220px">
-            <div ngClass="row">
-                <div ngClass="col-md-3 col-sm-12" *ngFor="let list of transaction">
-                    <div ngClass="total-transaction">
-                        <p ngClass="text-center">AED</p>
-                        <h2 ngClass="text-center">{{list.value}}</h2>
-                        <p ngClass="text-center">{{list.key}}</p>
-                    </div>
-                </div>
-            </div>
+    <div ngClass="container_1220px">
+      <div ngClass="row">
+        <div ngClass="col-md-3 col-sm-12" *ngFor="let list of transaction">
+          <div ngClass="total-transaction">
+            <p ngClass="text-center">AED</p>
+            <h2 ngClass="text-center">{{list.value}}</h2>
+            <p ngClass="text-center">{{list.key}}</p>
+          </div>
         </div>
+      </div>
+    </div>
 
-        <div ngClass="bg-tree">
-            <img src="assets/images/background/tree.png" alt="" />
-        </div>
-    </section>
-    <section ngClass="position-relative wrapper-section real-hub-sec" style="background: url('assets/images/background/bg-1.png')">
-        <div ngClass="container_1220px">
-            <div [ngClass]="'mockup-conatiner position-relative'">
-                <div ngClass="row">
-                    <div ngClass="col-md-6 col-sm-12">
-                        <div ngClass="mockup-left">
-                            <h1>Real Hub</h1>
-                            <h4>on your hand</h4>
-                            <ul>
-                                <li>AI-Driven Property Valuation in Few Seconds</li>
-                                <li>Buy, Sell & Rent Residential & Commercial Properties</li>
-                                <li>Find Verified Properties near you</li>
-                                <li>Look for Verified Real Estate Agents</li>
-                            </ul>
-                            <div ngClass="download-btns">
-                                <a [routerLink]="['#']">
-                                    <img src="assets/images/icons/google-play.svg" alt="Google Play" />
-                                </a>
-                                <a [routerLink]="['#']">
-                                    <img src="assets/images/icons/app-store.svg" alt="Apple Store" />
-                                </a>
-                            </div>
-                            <img src="assets/images/barcode.png" ngClass="img-fluid barcode-mockup-img" alt="" />
-                        </div>
-                    </div>
-                    <div ngClass="col-md-6 col-sm-12">
-                        <div ngClass="mockup-right">
-                            <img src="assets/images/mockup/mobile-1.png" ngClass="img-fluid" alt="" />
-                        </div>
-                    </div>
-                </div>
+    <div ngClass="bg-tree">
+      <img src="assets/images/background/tree.png" alt="" />
+    </div>
+  </section>
+  <section ngClass="position-relative wrapper-section real-hub-sec"
+    style="background: url('assets/images/background/bg-1.png')">
+    <div ngClass="container_1220px">
+      <div [ngClass]="'mockup-conatiner position-relative'">
+        <div ngClass="row">
+          <div ngClass="col-md-6 col-sm-12">
+            <div ngClass="mockup-left">
+              <h1>Real Hub</h1>
+              <h4>on your hand</h4>
+              <ul>
+                <li>AI-Driven Property Valuation in Few Seconds</li>
+                <li>Buy, Sell & Rent Residential & Commercial Properties</li>
+                <li>Find Verified Properties near you</li>
+                <li>Look for Verified Real Estate Agents</li>
+              </ul>
+              <div ngClass="download-btns">
+                <a [routerLink]="['#']">
+                  <img src="assets/images/icons/google-play.svg" alt="Google Play" />
+                </a>
+                <a [routerLink]="['#']">
+                  <img src="assets/images/icons/app-store.svg" alt="Apple Store" />
+                </a>
+              </div>
+              <img src="assets/images/barcode.png" ngClass="img-fluid barcode-mockup-img" alt="" />
             </div>
+          </div>
+          <div ngClass="col-md-6 col-sm-12">
+            <div ngClass="mockup-right">
+              <img src="assets/images/mockup/mobile-1.png" ngClass="img-fluid" alt="" />
+            </div>
+          </div>
         </div>
-        <div ngClass="container_1220px">
-            <div ngClass="customers-say-sec">
-                <div ngClass="row">
-                    <div ngClass="col-md-6 col-sm-12">
-                        <div ngClass="testimonial-title">
-                            <h2>
-                                What customer say <br /> about <span>Ovaluate</span>
-                            </h2>
-                            <p>
-                                Whether it’s selling your current home, getting financing, or buying a new home, we make it easy and efficient.
-                            </p>
-                            <p>
-                                The best part? you’ll save a bunch of money and time with our services.
-                            </p>
+      </div>
+    </div>
+    <div ngClass="container_1220px">
+      <div ngClass="customers-say-sec">
+        <div ngClass="row">
+          <div ngClass="col-md-6 col-sm-12">
+            <div ngClass="testimonial-title">
+              <h2>
+                What customer say <br /> about <span>Ovaluate</span>
+              </h2>
+              <p>
+                Whether it’s selling your current home, getting financing, or buying a new home, we make it easy and
+                efficient.
+              </p>
+              <p>
+                The best part? you’ll save a bunch of money and time with our services.
+              </p>
+            </div>
+          </div>
+          <div ngClass="col-md-6 col-sm-12">
+            <div [ngClass]="'testimonial-section'">
+              <img src="assets/images/testimonial/quote.svg" ngClass="img-fluid testimonial-icon" alt="" />
+              <owl-carousel-o [options]="testimonialslider">
+                <ng-container *ngFor="let slide of clientFeedback">
+                  <ng-template carouselSlide [id]="slide.id">
+                    <div ngClass="testimonial-content">
+                      <p>{{ slide.desc }}</p>
+                      <div ngClass="testimonial-info d-flex align-items-center">
+                        <div ngClass="client_img">
+                          <img [src]="slide.src!= null ? slide.src : 'assets/images/testimonial/user.png'"
+                            ngClass="img-fluid client-img" alt="" />
                         </div>
-                    </div>
-                    <div ngClass="col-md-6 col-sm-12">
-                        <div [ngClass]="'testimonial-section'">
-                            <img src="assets/images/testimonial/quote.svg" ngClass="img-fluid testimonial-icon" alt="" />
-                            <owl-carousel-o [options]="testimonialslider">
-                                <ng-container *ngFor="let slide of clientFeedback">
-                                    <ng-template carouselSlide [id]="slide.id">
-                                        <div ngClass="testimonial-content">
-                                            <p>{{ slide.desc }}</p>
-                                            <div ngClass="testimonial-info d-flex align-items-center">
-                                                <div ngClass="client_img">
-                                                    <img [src]="slide.src!= null ? slide.src : 'assets/images/testimonial/user.png'" ngClass="img-fluid client-img" alt="" />
-                                                </div>
-                                                <div ngClass="client-info">
-                                                    <h5>{{ slide.heading }}</h5>
-                                                    <p>{{ slide.location }}</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </ng-template>
-                                </ng-container>
-                            </owl-carousel-o>
+                        <div ngClass="client-info">
+                          <h5>{{ slide.heading }}</h5>
+                          <p>{{ slide.location }}</p>
                         </div>
+                      </div>
                     </div>
-                </div>
+                  </ng-template>
+                </ng-container>
+              </owl-carousel-o>
             </div>
+          </div>
         </div>
-    </section>
-    <section ngClass="position-relative custom-wrapper-section bottom-selectionboxes">
-        <div ngClass="container_1220px">
-            <div ngClass="row">
-                <div ngClass="col-lg-3 col-md-6 search-col-homepage">
-                    <div ngClass="homepage-search-section">
-                        <mat-form-field appearance="fill">
-                            <mat-select [(value)]="selected">
-                                <mat-option>Popular Searches</mat-option>
-                                <mat-option value="option1">Apartments for rent in Dubai</mat-option>
-                                <mat-option value="option2">Villas for rent in Dubai</mat-option>
-                                <mat-option value="option3">Apartments for sale in Dubai</mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                    </div>
-                </div>
-                <div ngClass="col-lg-3 col-md-6 search-col-homepage">
-                    <div ngClass="homepage-search-section">
-                        <mat-form-field appearance="fill">
-                            <mat-select [(value)]="selected">
-                                <mat-option>Popular Areas</mat-option>
-                                <mat-option value="option1">Popular Areas</mat-option>
-                                <mat-option value="option2">Popular Areas</mat-option>
-                                <mat-option value="option3">Popular Areas</mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                    </div>
-                </div>
-                <div ngClass="col-lg-3 col-md-6 search-col-homepage">
-                    <div ngClass="homepage-search-section">
-                        <mat-form-field appearance="fill">
-                            <mat-select [(value)]="selected">
-                                <mat-option>Top Real Estate Agents</mat-option>
-                                <mat-option value="option1">Everose Properties</mat-option>
-                                <mat-option value="option2">Edifice Brokrage</mat-option>
-                                <mat-option value="option3">Prime Capital Real Estate Services</mat-option>
-                                <mat-option value="option1">Everose Properties</mat-option>
-                                <mat-option value="option2">Edifice Brokrage</mat-option>
-                                <mat-option value="option3">Prime Capital Real Estate Services</mat-option>
-                                <mat-option value="option1">Everose Properties</mat-option>
-                                <mat-option value="option2">Edifice Brokrage</mat-option>
-                                <mat-option value="option3">Prime Capital Real Estate Services</mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                    </div>
-                </div>
-                <div ngClass="col-lg-3 col-md-6 search-col-homepage">
-                    <div ngClass="homepage-search-section">
-                        <mat-form-field appearance="fill">
-                            <mat-select [(value)]="selected">
-                                <mat-option>Trending Searches</mat-option>
-                                <mat-option value="option1">Villa for rent in Abu Dhabi</mat-option>
-                                <mat-option value="option2">Villa for rent in Abu Dhabi</mat-option>
-                                <mat-option value="option3">Villa for rent in Abu Dhabi</mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                    </div>
-                </div>
-            </div>
+      </div>
+    </div>
+  </section>
+  <section ngClass="position-relative custom-wrapper-section bottom-selectionboxes">
+    <div ngClass="container_1220px">
+      <div ngClass="row">
+        <div ngClass="col-lg-3 col-md-6 search-col-homepage">
+          <div ngClass="homepage-search-section">
+            <mat-form-field appearance="fill">
+              <mat-select [(value)]="selected">
+                <mat-option>Popular Searches</mat-option>
+                <mat-option value="option1">Apartments for rent in Dubai</mat-option>
+                <mat-option value="option2">Villas for rent in Dubai</mat-option>
+                <mat-option value="option3">Apartments for sale in Dubai</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
         </div>
-    </section>
-    <section ngClass="position-relative wrapper-section bg-primary-color span-promises-sec">
-        <div ngClass="container_1220px">
-            <div ngClass="newsletter-section text-center">
-                <h5>No Spam Promise</h5>
-                <h1>Are you a landlord or real estate proffessional?</h1>
-                <h6>
-                    Discover ways to increase your home's value and get listed. No Spam.
-                </h6>
-                <form [formGroup]="SubmitForm"  (ngSubmit)="proceedStore()" ngClass="news-letter-form position-relative">
-                    <input type="email" formControlName="email" placeholder="Enter your email address" />
-                    <input type="submit" value="Submit" />
-                </form>
-                <p>
-                    Join <span>10,000+</span> other landlords in our estatery community.
-                </p>
-            </div>
+        <div ngClass="col-lg-3 col-md-6 search-col-homepage">
+          <div ngClass="homepage-search-section">
+            <mat-form-field appearance="fill">
+              <mat-select [(value)]="selected">
+                <mat-option>Popular Areas</mat-option>
+                <mat-option value="option1">Popular Areas</mat-option>
+                <mat-option value="option2">Popular Areas</mat-option>
+                <mat-option value="option3">Popular Areas</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
         </div>
-    </section>
+        <div ngClass="col-lg-3 col-md-6 search-col-homepage">
+          <div ngClass="homepage-search-section">
+            <mat-form-field appearance="fill">
+              <mat-select [(value)]="selected">
+                <mat-option>Top Real Estate Agents</mat-option>
+                <mat-option value="option1">Everose Properties</mat-option>
+                <mat-option value="option2">Edifice Brokrage</mat-option>
+                <mat-option value="option3">Prime Capital Real Estate Services</mat-option>
+                <mat-option value="option1">Everose Properties</mat-option>
+                <mat-option value="option2">Edifice Brokrage</mat-option>
+                <mat-option value="option3">Prime Capital Real Estate Services</mat-option>
+                <mat-option value="option1">Everose Properties</mat-option>
+                <mat-option value="option2">Edifice Brokrage</mat-option>
+                <mat-option value="option3">Prime Capital Real Estate Services</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div ngClass="col-lg-3 col-md-6 search-col-homepage">
+          <div ngClass="homepage-search-section">
+            <mat-form-field appearance="fill">
+              <mat-select [(value)]="selected">
+                <mat-option>Trending Searches</mat-option>
+                <mat-option value="option1">Villa for rent in Abu Dhabi</mat-option>
+                <mat-option value="option2">Villa for rent in Abu Dhabi</mat-option>
+                <mat-option value="option3">Villa for rent in Abu Dhabi</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section ngClass="position-relative wrapper-section bg-primary-color span-promises-sec">
+    <div ngClass="container_1220px">
+      <div ngClass="newsletter-section text-center">
+        <h5>No Spam Promise</h5>
+        <h1>Are you a landlord or real estate proffessional?</h1>
+        <h6>
+          Discover ways to increase your home's value and get listed. No Spam.
+        </h6>
+        <form [formGroup]="SubmitForm" (ngSubmit)="proceedStore()" ngClass="news-letter-form position-relative">
+          <input type="email" formControlName="email" placeholder="Enter your email address" />
+          <input type="submit" value="Submit" />
+        </form>
+        <p>
+          Join <span>10,000+</span> other landlords in our estatery community.
+        </p>
+      </div>
+    </div>
+  </section>
 </section>
 <footer ngClass="footer-sec">
-    <app-footer></app-footer>
+  <app-footer></app-footer>
 </footer>

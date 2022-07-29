@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppService } from 'src/app/service/app.service';
 
 @Component({
   selector: 'app-investors',
@@ -6,8 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./investors.component.scss']
 })
 export class InvestorsComponent implements OnInit {
+  team: any=[];
 
-  constructor() { }
+  constructor(private api: AppService) {
+    this.api.TeamMembers().subscribe((result: any) => {
+      this.team = result.data;
+      console.log(this.team);
+    })
+   }
 
   ngOnInit(): void {
   }
