@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import * as $ from 'jquery';
 import {NgbNav} from '@ng-bootstrap/ng-bootstrap';
 import {NotificationService} from "../../service/notification.service";
+import { Form, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { AppService } from 'src/app/service/app.service';
 
@@ -66,6 +67,13 @@ export class DashboardComponent implements OnInit {
   totalValuation:any
   totalRestentailValuation:any
   totalCommercialValuation:any
+  detailForm = new FormGroup({
+    firstName: new FormControl(""),
+    lastName: new FormControl(""),
+    phone: new FormControl(""),
+    location: new FormControl(""),
+
+  })
 
   constructor(private service:AppService,private route:Router,private notifyService : NotificationService) {
     this.getUser();
@@ -82,6 +90,15 @@ export class DashboardComponent implements OnInit {
         this.rent = temp.data[0].name;
         this.buy = temp.data[1].name;
       }
+    });
+    this.service.LoadCountries().subscribe(e => {
+      let temp: any = e;
+      if (temp.message == "Country list fetched successfully") {
+        for (let country of temp.data) {
+          this.country.push({ viewValue: country.name, value: country.id });
+        }
+      }
+      console.log(this.country);
     });
 
   }
@@ -289,7 +306,12 @@ export class DashboardComponent implements OnInit {
       }
     });
   }
-
+  onCitySelect(e: any) {
+    this.cityId = e.value;
+  }
+  getGender(id:number) {
+    
+  }
   getloadDashboardData() {
     this.service.LoadDashboardData(this.user.id).subscribe(e => {
       let temp: any = e;

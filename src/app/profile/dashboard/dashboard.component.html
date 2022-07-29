@@ -19,7 +19,8 @@
             <div class="col-md-4">
               <div class="form-group">
                 <label for="txtname">Phone</label>
-                <h4 class="base-info-text"><img src="{{this.user.phoneNumber ? this.user.phoneNumber : 'Empty'}}" alt="">{{this.user.phoneNumber ? this.user.phoneNumber : 'Empty'}}</h4>
+                <h4 class="base-info-text"><img src="{{this.user.phoneNumber ? this.user.phoneNumber : 'Empty'}}"
+                    alt="">{{this.user.phoneNumber ? this.user.phoneNumber : 'Empty'}}</h4>
                 <!-- <input type="text" id="txtname" class="form-control" value="+971 50 999 9999" placeholder="Enter the User Name"   autocomplete="off"  /> -->
               </div>
             </div>
@@ -27,7 +28,8 @@
               <div class="d-flex align-item-center">
                 <div class="form-group">
                   <label for="txtname">Location</label>
-                  <h4 class="base-info-text"><img src="#" alt="">{{this.user.location ? this.user.location : 'Empty'}}</h4>
+                  <h4 class="base-info-text"><img src="#" alt="">{{this.user.location ? this.user.location : 'Empty'}}
+                  </h4>
                   <!-- <input type="text" id="txtname" class="form-control" value="Al Mankool, Dubai,  UAE" placeholder="Enter the User Name"   autocomplete="off"  /> -->
                 </div>
                 <a [routerLink]="['#']" ngClass="edit">
@@ -59,19 +61,25 @@
     <div ngClass="container_1220px">
       <ul class="nav nav-pills" id="pills-tab" role="tablist">
         <li class="nav-item" role="presentation">
-          <button class="nav-link active" id="pills-dashboard-tab" data-bs-toggle="pill" data-bs-target="#pills-dashboard" type="button" role="tab" aria-controls="pills-dashboard" aria-selected="true">Dashboard</button>
+          <button class="nav-link active" id="pills-dashboard-tab" data-bs-toggle="pill"
+            data-bs-target="#pills-dashboard" type="button" role="tab" aria-controls="pills-dashboard"
+            aria-selected="true">Dashboard</button>
         </li>
         <li class="nav-item" role="presentation">
-          <button class="nav-link" id="pills-activities-tab" data-bs-toggle="pill" data-bs-target="#pills-activities" type="button" role="tab" aria-controls="pills-activities" aria-selected="false">My Activities</button>
+          <button class="nav-link" id="pills-activities-tab" data-bs-toggle="pill" data-bs-target="#pills-activities"
+            type="button" role="tab" aria-controls="pills-activities" aria-selected="false">My Activities</button>
         </li>
         <li class="nav-item" role="presentation">
-          <button class="nav-link" id="pills-leads-tab" data-bs-toggle="pill" data-bs-target="#pills-leads" type="button" role="tab" aria-controls="pills-leads" aria-selected="false">My Leads</button>
+          <button class="nav-link" id="pills-leads-tab" data-bs-toggle="pill" data-bs-target="#pills-leads"
+            type="button" role="tab" aria-controls="pills-leads" aria-selected="false">My Leads</button>
         </li>
         <li class="nav-item" role="presentation">
-          <button class="nav-link" id="pills-listing-tab" data-bs-toggle="pill" data-bs-target="#pills-listing" type="button" role="tab" aria-controls="pills-listing" aria-selected="false">My Listings</button>
+          <button class="nav-link" id="pills-listing-tab" data-bs-toggle="pill" data-bs-target="#pills-listing"
+            type="button" role="tab" aria-controls="pills-listing" aria-selected="false">My Listings</button>
         </li>
         <li class="nav-item" role="presentation">
-          <button class="nav-link" id="pills-valuation-tab" data-bs-toggle="pill" data-bs-target="#pills-valuation" type="button" role="tab" aria-controls="pills-valuation" aria-selected="false">My Valuations</button>
+          <button class="nav-link" id="pills-valuation-tab" data-bs-toggle="pill" data-bs-target="#pills-valuation"
+            type="button" role="tab" aria-controls="pills-valuation" aria-selected="false">My Valuations</button>
         </li>
         <li class="nav-item" role="presentation">
           <!-- <button class="nav-link" id="">More</button> -->
@@ -81,7 +89,9 @@
             <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
               <!-- <h5>Share with:</h5> -->
               <button ngbDropdownItem><a href=""><img src="{{viewLeads}}"> Go to Ovaluate</a></button>
-              <button ngbDropdownItem><a href="" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false"><img src="{{shareicon}}"> My Profile</a></button>
+              <button ngbDropdownItem><a href="" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button"
+                  role="tab" aria-controls="pills-profile" aria-selected="false"><img src="{{shareicon}}"> My
+                  Profile</a></button>
               <button ngbDropdownItem><a href=""><img src="{{deleteIcon}}"> My Messages</a></button>
               <button ngbDropdownItem><a href=""><img src="{{editIcon}}"> Account Settings</a></button>
               <button ngbDropdownItem><a href="" class="logout-link"><img src="{{editIcon}}"> Logout</a></button>
@@ -170,21 +180,35 @@
               <div ngClass="section-title-right">
                 <ul ngClass="nav nav-tabs" role="tablist">
                   <li ngClass="nav-item">
-                    <a ngClass="nav-link active" data-bs-toggle="tab"  data-bs-target="#resedential-rent">
+                    <a ngClass="nav-link active" data-bs-toggle="tab" data-bs-target="#resedential-rent">
                       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M16.4912 12.4406C14.7746 14.149 12.3162 14.674 10.1579 13.999L6.23289 17.9156C5.94955 18.2073 5.39122 18.3823 4.99122 18.324L3.17455 18.074C2.57455 17.9906 2.01622 17.424 1.92455 16.824L1.67455 15.0073C1.61622 14.6073 1.80789 14.049 2.08289 13.7656L5.99955 9.84896C5.33289 7.68229 5.84955 5.22396 7.56622 3.51563C10.0246 1.05729 14.0162 1.05729 16.4829 3.51563C18.9496 5.97396 18.9496 9.98229 16.4912 12.4406Z" stroke="#595ad4" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M5.74121 14.5742L7.65788 16.4909" stroke="#595ad4" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M12.083 9.16797C12.7734 9.16797 13.333 8.60833 13.333 7.91797C13.333 7.22761 12.7734 6.66797 12.083 6.66797C11.3927 6.66797 10.833 7.22761 10.833 7.91797C10.833 8.60833 11.3927 9.16797 12.083 9.16797Z" stroke="#595ad4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path
+                          d="M16.4912 12.4406C14.7746 14.149 12.3162 14.674 10.1579 13.999L6.23289 17.9156C5.94955 18.2073 5.39122 18.3823 4.99122 18.324L3.17455 18.074C2.57455 17.9906 2.01622 17.424 1.92455 16.824L1.67455 15.0073C1.61622 14.6073 1.80789 14.049 2.08289 13.7656L5.99955 9.84896C5.33289 7.68229 5.84955 5.22396 7.56622 3.51563C10.0246 1.05729 14.0162 1.05729 16.4829 3.51563C18.9496 5.97396 18.9496 9.98229 16.4912 12.4406Z"
+                          stroke="#595ad4" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round"
+                          stroke-linejoin="round" />
+                        <path d="M5.74121 14.5742L7.65788 16.4909" stroke="#595ad4" stroke-width="2"
+                          stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                        <path
+                          d="M12.083 9.16797C12.7734 9.16797 13.333 8.60833 13.333 7.91797C13.333 7.22761 12.7734 6.66797 12.083 6.66797C11.3927 6.66797 10.833 7.22761 10.833 7.91797C10.833 8.60833 11.3927 9.16797 12.083 9.16797Z"
+                          stroke="#595ad4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                       </svg>
                       Residential</a>
                   </li>
                   <li ngClass="nav-item">
-                    <a ngClass="nav-link" data-bs-toggle="tab"  data-bs-target="#resedential-buy">
+                    <a ngClass="nav-link" data-bs-toggle="tab" data-bs-target="#resedential-buy">
                       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M14.167 17.0846H5.83366C3.33366 17.0846 1.66699 15.8346 1.66699 12.918V7.08464C1.66699 4.16797 3.33366 2.91797 5.83366 2.91797H14.167C16.667 2.91797 18.3337 4.16797 18.3337 7.08464V12.918C18.3337 15.8346 16.667 17.0846 14.167 17.0846Z" stroke="#100A55" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M10 12.5C11.3807 12.5 12.5 11.3807 12.5 10C12.5 8.61929 11.3807 7.5 10 7.5C8.61929 7.5 7.5 8.61929 7.5 10C7.5 11.3807 8.61929 12.5 10 12.5Z" stroke="#100A55" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M4.58301 7.91797V12.0846" stroke="#100A55" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M15.417 7.91797V12.0846" stroke="#100A55" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path
+                          d="M14.167 17.0846H5.83366C3.33366 17.0846 1.66699 15.8346 1.66699 12.918V7.08464C1.66699 4.16797 3.33366 2.91797 5.83366 2.91797H14.167C16.667 2.91797 18.3337 4.16797 18.3337 7.08464V12.918C18.3337 15.8346 16.667 17.0846 14.167 17.0846Z"
+                          stroke="#100A55" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round"
+                          stroke-linejoin="round" />
+                        <path
+                          d="M10 12.5C11.3807 12.5 12.5 11.3807 12.5 10C12.5 8.61929 11.3807 7.5 10 7.5C8.61929 7.5 7.5 8.61929 7.5 10C7.5 11.3807 8.61929 12.5 10 12.5Z"
+                          stroke="#100A55" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round"
+                          stroke-linejoin="round" />
+                        <path d="M4.58301 7.91797V12.0846" stroke="#100A55" stroke-width="2" stroke-miterlimit="10"
+                          stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M15.417 7.91797V12.0846" stroke="#100A55" stroke-width="2" stroke-miterlimit="10"
+                          stroke-linecap="round" stroke-linejoin="round" />
                       </svg>
                       Commercial</a>
                   </li>
@@ -219,8 +243,12 @@
                     </div>
                     <div class="col contact-col">
                       <span>Contact</span>
-                      <div><p>+971 07 XXXX XXXX</p> <a href="#"><img src="{{ViewIcon}}" alt=""></a></div>
-                      <div><p>aliansari@gmail.com</p> <a href="#"><img src="{{CopyIcon}}" alt=""></a></div>
+                      <div>
+                        <p>+971 07 XXXX XXXX</p> <a href="#"><img src="{{ViewIcon}}" alt=""></a>
+                      </div>
+                      <div>
+                        <p>aliansari@gmail.com</p> <a href="#"><img src="{{CopyIcon}}" alt=""></a>
+                      </div>
                     </div>
                     <div class="col">
                       <a href="#" class="view-more">
@@ -254,8 +282,12 @@
                     </div>
                     <div class="col contact-col">
                       <span>Contact</span>
-                      <div><p>+971 07 XXXX XXXX</p> <a href="#"><img src="{{ViewIcon}}" alt=""></a></div>
-                      <div><p>aliansari@gmail.com</p> <a href="#"><img src="{{CopyIcon}}" alt=""></a></div>
+                      <div>
+                        <p>+971 07 XXXX XXXX</p> <a href="#"><img src="{{ViewIcon}}" alt=""></a>
+                      </div>
+                      <div>
+                        <p>aliansari@gmail.com</p> <a href="#"><img src="{{CopyIcon}}" alt=""></a>
+                      </div>
                     </div>
                     <div class="col">
                       <a href="#" class="view-more">
@@ -289,8 +321,12 @@
                     </div>
                     <div class="col contact-col">
                       <span>Contact</span>
-                      <div><p>+971 07 XXXX XXXX</p> <a href="#"><img src="{{ViewIcon}}" alt=""></a></div>
-                      <div><p>aliansari@gmail.com</p> <a href="#"><img src="{{CopyIcon}}" alt=""></a></div>
+                      <div>
+                        <p>+971 07 XXXX XXXX</p> <a href="#"><img src="{{ViewIcon}}" alt=""></a>
+                      </div>
+                      <div>
+                        <p>aliansari@gmail.com</p> <a href="#"><img src="{{CopyIcon}}" alt=""></a>
+                      </div>
                     </div>
                     <div class="col">
                       <a href="#" class="view-more">
@@ -324,12 +360,13 @@
             <div ngClass="row">
               <!-- let blogs of Blogsec -->
               <div ngClass="col-lg-4 col-md-6 blog-places-col" *ngFor=" let blog of blogs">
-                <a [routerLink]="['/blogs/'+blog.id]" [queryParams] = "{title: blog.blogTitle}">
+                <a [routerLink]="['/blogs/'+blog.id]" [queryParams]="{title: blog.blogTitle}">
                   <!-- blog.blogDocument.fileUrl -->
-                  <img [src]="'https://www.ovaluate.com/'+blog.blogDocument.fileUrl" ngClass="img-fluid blog-image-homepage" alt="">
+                  <img [src]="'https://www.ovaluate.com/'+blog.blogDocument.fileUrl"
+                    ngClass="img-fluid blog-image-homepage" alt="">
                   <span ngClass="blog-tag">
-                              <img [src]="blog.src2" ngClass="img-fluid" alt="">
-                          </span>
+                    <img [src]="blog.src2" ngClass="img-fluid" alt="">
+                  </span>
                   <div ngClass="blog-title-content">
                     <h5>{{blog.blogTitle}}</h5>
                     <span>{{blog.blogDate}}</span>
@@ -432,7 +469,7 @@
                           <div class="row">
                             <div class="col-lg-2">
                               <img src="assets/images/explore-places/1.jpg" alt=""
-                                   class="img-fluid agent-details__property-list-item-img">
+                                class="img-fluid agent-details__property-list-item-img">
                             </div>
                             <div class="col-lg-10">
                               <div class="row">
@@ -450,7 +487,7 @@
                               <h6>Blue Wave Tower</h6>
                               <p class="agent-details__property-list-item-text">
                                 <img src="assets/images/home-location.svg" alt=""
-                                     class="img-fluid agent-details__property-list-item-text-icon">
+                                  class="img-fluid agent-details__property-list-item-text-icon">
                                 Etihad Tower 4, Etihad Towers, Corniche Road, Abu Dhabi
                               </p>
                               <p class="agent-details__property-list-item-type">Hotel & Hotel
@@ -487,7 +524,7 @@
                           <div class="row">
                             <div class="col-lg-2">
                               <img src="assets/images/explore-places/1.jpg" alt=""
-                                   class="img-fluid agent-details__property-list-item-img">
+                                class="img-fluid agent-details__property-list-item-img">
                             </div>
                             <div class="col-lg-10">
                               <div class="row">
@@ -505,7 +542,7 @@
                               <h6>Blue Wave Tower</h6>
                               <p class="agent-details__property-list-item-text">
                                 <img src="assets/images/home-location.svg" alt=""
-                                     class="img-fluid agent-details__property-list-item-text-icon">
+                                  class="img-fluid agent-details__property-list-item-text-icon">
                                 Etihad Tower 4, Etihad Towers, Corniche Road, Abu Dhabi
                               </p>
                               <p class="agent-details__property-list-item-type">Hotel & Hotel
@@ -542,7 +579,7 @@
                           <div class="row">
                             <div class="col-lg-2">
                               <img src="assets/images/explore-places/1.jpg" alt=""
-                                   class="img-fluid agent-details__property-list-item-img">
+                                class="img-fluid agent-details__property-list-item-img">
                             </div>
                             <div class="col-lg-10">
                               <div class="row">
@@ -560,7 +597,7 @@
                               <h6>Blue Wave Tower</h6>
                               <p class="agent-details__property-list-item-text">
                                 <img src="assets/images/home-location.svg" alt=""
-                                     class="img-fluid agent-details__property-list-item-text-icon">
+                                  class="img-fluid agent-details__property-list-item-text-icon">
                                 Etihad Tower 4, Etihad Towers, Corniche Road, Abu Dhabi
                               </p>
                               <p class="agent-details__property-list-item-type">Hotel & Hotel
@@ -597,7 +634,7 @@
                           <div class="row">
                             <div class="col-lg-2">
                               <img src="assets/images/explore-places/1.jpg" alt=""
-                                   class="img-fluid agent-details__property-list-item-img">
+                                class="img-fluid agent-details__property-list-item-img">
                             </div>
                             <div class="col-lg-10">
                               <div class="row">
@@ -615,7 +652,7 @@
                               <h6>Blue Wave Tower</h6>
                               <p class="agent-details__property-list-item-text">
                                 <img src="assets/images/home-location.svg" alt=""
-                                     class="img-fluid agent-details__property-list-item-text-icon">
+                                  class="img-fluid agent-details__property-list-item-text-icon">
                                 Etihad Tower 4, Etihad Towers, Corniche Road, Abu Dhabi
                               </p>
                               <p class="agent-details__property-list-item-type">Hotel & Hotel
@@ -652,7 +689,7 @@
                           <div class="row">
                             <div class="col-lg-2">
                               <img src="assets/images/explore-places/1.jpg" alt=""
-                                   class="img-fluid agent-details__property-list-item-img">
+                                class="img-fluid agent-details__property-list-item-img">
                             </div>
                             <div class="col-lg-10">
                               <div class="row">
@@ -670,7 +707,7 @@
                               <h6>Blue Wave Tower</h6>
                               <p class="agent-details__property-list-item-text">
                                 <img src="assets/images/home-location.svg" alt=""
-                                     class="img-fluid agent-details__property-list-item-text-icon">
+                                  class="img-fluid agent-details__property-list-item-text-icon">
                                 Etihad Tower 4, Etihad Towers, Corniche Road, Abu Dhabi
                               </p>
                               <p class="agent-details__property-list-item-type">Hotel & Hotel
@@ -707,7 +744,7 @@
                           <div class="row">
                             <div class="col-lg-2">
                               <img src="assets/images/explore-places/1.jpg" alt=""
-                                   class="img-fluid agent-details__property-list-item-img">
+                                class="img-fluid agent-details__property-list-item-img">
                             </div>
                             <div class="col-lg-10">
                               <div class="row">
@@ -725,7 +762,7 @@
                               <h6>Blue Wave Tower</h6>
                               <p class="agent-details__property-list-item-text">
                                 <img src="assets/images/home-location.svg" alt=""
-                                     class="img-fluid agent-details__property-list-item-text-icon">
+                                  class="img-fluid agent-details__property-list-item-text-icon">
                                 Etihad Tower 4, Etihad Towers, Corniche Road, Abu Dhabi
                               </p>
                               <p class="agent-details__property-list-item-type">Hotel & Hotel
@@ -773,21 +810,24 @@
                         <div class="col-lg-6">
                           <div class="agent-landing-featured__agent">
                             <div class="agent-landing-featured__property-wrapper">
-                              <img src="assets/images/tag/featured.png" alt="" class="agent-landing-featured__property-tag">
+                              <img src="assets/images/tag/featured.png" alt=""
+                                class="agent-landing-featured__property-tag">
                               <div class="row">
                                 <div class="col-5 d-flex align-items-center">
-                                  <img src="/assets/images/agent-image.png" alt="" class="img-fluid agent-landing-featured__property-img">
+                                  <img src="/assets/images/agent-image.png" alt=""
+                                    class="img-fluid agent-landing-featured__property-img">
                                   <img src="assets/images/brand/betterhomes.png" alt=""
-                                       class="img-fluid agent-landing-featured__agent-company">
+                                    class="img-fluid agent-landing-featured__agent-company">
                                 </div>
                                 <div class="col-7">
                                   <div class="agent-landing-featured__agent-right-panel">
-                                    <h6 class="agent-landing-featured__property-heading" routerLink="/agent-details/1">Better Homes Properties</h6>
-                                    <p class="agent-landing-featured__property-text">P.O. Box 14781, Ground Floor, Golf Building No. GB, Al Hamra Village, Ras Al Khaimah
+                                    <h6 class="agent-landing-featured__property-heading" routerLink="/agent-details/1">
+                                      Better Homes Properties</h6>
+                                    <p class="agent-landing-featured__property-text">P.O. Box 14781, Ground Floor, Golf
+                                      Building No. GB, Al Hamra Village, Ras Al Khaimah
 
                                     </p>
-                                    <a class="agent-landing-featured__property-link"
-                                       routerLink=#>View Map</a>
+                                    <a class="agent-landing-featured__property-link" routerLink=#>View Map</a>
                                     <p class="agent-landing-featured__property-text">RERA# 11899</p>
                                     <p class="agent-landing-featured__property-text">Permit# 7187842740</p>
                                     <ul class="agent-landing-featured__property-details-list">
@@ -813,21 +853,24 @@
                         <div class="col-lg-6">
                           <div class="agent-landing-featured__agent">
                             <div class="agent-landing-featured__property-wrapper">
-                              <img src="assets/images/tag/featured.png" alt="" class="agent-landing-featured__property-tag">
+                              <img src="assets/images/tag/featured.png" alt=""
+                                class="agent-landing-featured__property-tag">
                               <div class="row">
                                 <div class="col-5 d-flex align-items-center">
-                                  <img src="/assets/images/agent-image.png" alt="" class="img-fluid agent-landing-featured__property-img">
+                                  <img src="/assets/images/agent-image.png" alt=""
+                                    class="img-fluid agent-landing-featured__property-img">
                                   <img src="assets/images/brand/betterhomes.png" alt=""
-                                       class="img-fluid agent-landing-featured__agent-company">
+                                    class="img-fluid agent-landing-featured__agent-company">
                                 </div>
                                 <div class="col-7">
                                   <div class="agent-landing-featured__agent-right-panel">
-                                    <h6 class="agent-landing-featured__property-heading" routerLink="/agent-details/1">Better Homes Properties</h6>
-                                    <p class="agent-landing-featured__property-text">P.O. Box 14781, Ground Floor, Golf Building No. GB, Al Hamra Village, Ras Al Khaimah
+                                    <h6 class="agent-landing-featured__property-heading" routerLink="/agent-details/1">
+                                      Better Homes Properties</h6>
+                                    <p class="agent-landing-featured__property-text">P.O. Box 14781, Ground Floor, Golf
+                                      Building No. GB, Al Hamra Village, Ras Al Khaimah
 
                                     </p>
-                                    <a class="agent-landing-featured__property-link"
-                                       routerLink=#>View Map</a>
+                                    <a class="agent-landing-featured__property-link" routerLink=#>View Map</a>
                                     <p class="agent-landing-featured__property-text">RERA# 11899</p>
                                     <p class="agent-landing-featured__property-text">Permit# 7187842740</p>
                                     <ul class="agent-landing-featured__property-details-list">
@@ -886,7 +929,7 @@
                             <div class="row">
                               <div class="col-lg-2">
                                 <img src="assets/images/explore-places/1.jpg" alt=""
-                                     class="img-fluid agent-details__property-list-item-img">
+                                  class="img-fluid agent-details__property-list-item-img">
                               </div>
                               <div class="col-lg-10">
                                 <div class="row">
@@ -904,7 +947,7 @@
                                 <h6>Blue Wave Tower</h6>
                                 <p class="agent-details__property-list-item-text">
                                   <img src="assets/images/home-location.svg" alt=""
-                                       class="img-fluid agent-details__property-list-item-text-icon">
+                                    class="img-fluid agent-details__property-list-item-text-icon">
                                   Etihad Tower 4, Etihad Towers, Corniche Road, Abu Dhabi
                                 </p>
                                 <p class="agent-details__property-list-item-type">Hotel & Hotel
@@ -945,7 +988,8 @@
                                   <input type="checkbox" name="">
                                   <span class="property_sel"></span>
                                   Compare
-                                </label></li>
+                                </label>
+                              </li>
                             </ul>
                             <button class="compare-btn btn">Compare</button>
                           </div>
@@ -955,7 +999,7 @@
                             <div class="row">
                               <div class="col-lg-2">
                                 <img src="assets/images/explore-places/1.jpg" alt=""
-                                     class="img-fluid agent-details__property-list-item-img">
+                                  class="img-fluid agent-details__property-list-item-img">
                               </div>
                               <div class="col-lg-10">
                                 <div class="row">
@@ -973,7 +1017,7 @@
                                 <h6>Blue Wave Tower</h6>
                                 <p class="agent-details__property-list-item-text">
                                   <img src="assets/images/home-location.svg" alt=""
-                                       class="img-fluid agent-details__property-list-item-text-icon">
+                                    class="img-fluid agent-details__property-list-item-text-icon">
                                   Etihad Tower 4, Etihad Towers, Corniche Road, Abu Dhabi
                                 </p>
                                 <p class="agent-details__property-list-item-type">Hotel & Hotel
@@ -1015,7 +1059,8 @@
                                   <input type="checkbox" name="">
                                   <span class="property_sel"></span>
                                   Compare
-                                </label></li>
+                                </label>
+                              </li>
                             </ul>
                             <button class="compare-btn btn">Compare</button>
                           </div>
@@ -1025,7 +1070,7 @@
                             <div class="row">
                               <div class="col-lg-2">
                                 <img src="assets/images/explore-places/1.jpg" alt=""
-                                     class="img-fluid agent-details__property-list-item-img">
+                                  class="img-fluid agent-details__property-list-item-img">
                               </div>
                               <div class="col-lg-10">
                                 <div class="row">
@@ -1043,7 +1088,7 @@
                                 <h6>Blue Wave Tower</h6>
                                 <p class="agent-details__property-list-item-text">
                                   <img src="assets/images/home-location.svg" alt=""
-                                       class="img-fluid agent-details__property-list-item-text-icon">
+                                    class="img-fluid agent-details__property-list-item-text-icon">
                                   Etihad Tower 4, Etihad Towers, Corniche Road, Abu Dhabi
                                 </p>
                                 <p class="agent-details__property-list-item-type">Hotel & Hotel
@@ -1085,7 +1130,8 @@
                                   <input type="checkbox" name="">
                                   <span class="property_sel"></span>
                                   Compare
-                                </label></li>
+                                </label>
+                              </li>
                             </ul>
                             <button class="compare-btn btn">Compare</button>
                           </div>
@@ -1125,7 +1171,7 @@
                           <div class="row">
                             <div class="col-lg-2">
                               <img src="assets/images/explore-places/1.jpg" alt=""
-                                   class="img-fluid agent-details__property-list-item-img">
+                                class="img-fluid agent-details__property-list-item-img">
                             </div>
                             <div class="col-lg-10">
                               <div class="row">
@@ -1143,7 +1189,7 @@
                               <h6>Blue Wave Tower</h6>
                               <p class="agent-details__property-list-item-text">
                                 <img src="assets/images/home-location.svg" alt=""
-                                     class="img-fluid agent-details__property-list-item-text-icon">
+                                  class="img-fluid agent-details__property-list-item-text-icon">
                                 Etihad Tower 4, Etihad Towers, Corniche Road, Abu Dhabi
                               </p>
                               <p class="agent-details__property-list-item-type">Hotel & Hotel
@@ -1180,7 +1226,7 @@
                           <div class="row">
                             <div class="col-lg-2">
                               <img src="assets/images/explore-places/1.jpg" alt=""
-                                   class="img-fluid agent-details__property-list-item-img">
+                                class="img-fluid agent-details__property-list-item-img">
                             </div>
                             <div class="col-lg-10">
                               <div class="row">
@@ -1198,7 +1244,7 @@
                               <h6>Blue Wave Tower</h6>
                               <p class="agent-details__property-list-item-text">
                                 <img src="assets/images/home-location.svg" alt=""
-                                     class="img-fluid agent-details__property-list-item-text-icon">
+                                  class="img-fluid agent-details__property-list-item-text-icon">
                                 Etihad Tower 4, Etihad Towers, Corniche Road, Abu Dhabi
                               </p>
                               <p class="agent-details__property-list-item-type">Hotel & Hotel
@@ -1235,7 +1281,7 @@
                           <div class="row">
                             <div class="col-lg-2">
                               <img src="assets/images/explore-places/1.jpg" alt=""
-                                   class="img-fluid agent-details__property-list-item-img">
+                                class="img-fluid agent-details__property-list-item-img">
                             </div>
                             <div class="col-lg-10">
                               <div class="row">
@@ -1253,7 +1299,7 @@
                               <h6>Blue Wave Tower</h6>
                               <p class="agent-details__property-list-item-text">
                                 <img src="assets/images/home-location.svg" alt=""
-                                     class="img-fluid agent-details__property-list-item-text-icon">
+                                  class="img-fluid agent-details__property-list-item-text-icon">
                                 Etihad Tower 4, Etihad Towers, Corniche Road, Abu Dhabi
                               </p>
                               <p class="agent-details__property-list-item-type">Hotel & Hotel
@@ -1290,7 +1336,7 @@
                           <div class="row">
                             <div class="col-lg-2">
                               <img src="assets/images/explore-places/1.jpg" alt=""
-                                   class="img-fluid agent-details__property-list-item-img">
+                                class="img-fluid agent-details__property-list-item-img">
                             </div>
                             <div class="col-lg-10">
                               <div class="row">
@@ -1308,7 +1354,7 @@
                               <h6>Blue Wave Tower</h6>
                               <p class="agent-details__property-list-item-text">
                                 <img src="assets/images/home-location.svg" alt=""
-                                     class="img-fluid agent-details__property-list-item-text-icon">
+                                  class="img-fluid agent-details__property-list-item-text-icon">
                                 Etihad Tower 4, Etihad Towers, Corniche Road, Abu Dhabi
                               </p>
                               <p class="agent-details__property-list-item-type">Hotel & Hotel
@@ -1345,7 +1391,7 @@
                           <div class="row">
                             <div class="col-lg-2">
                               <img src="assets/images/explore-places/1.jpg" alt=""
-                                   class="img-fluid agent-details__property-list-item-img">
+                                class="img-fluid agent-details__property-list-item-img">
                             </div>
                             <div class="col-lg-10">
                               <div class="row">
@@ -1363,7 +1409,7 @@
                               <h6>Blue Wave Tower</h6>
                               <p class="agent-details__property-list-item-text">
                                 <img src="assets/images/home-location.svg" alt=""
-                                     class="img-fluid agent-details__property-list-item-text-icon">
+                                  class="img-fluid agent-details__property-list-item-text-icon">
                                 Etihad Tower 4, Etihad Towers, Corniche Road, Abu Dhabi
                               </p>
                               <p class="agent-details__property-list-item-type">Hotel & Hotel
@@ -1400,7 +1446,7 @@
                           <div class="row">
                             <div class="col-lg-2">
                               <img src="assets/images/explore-places/1.jpg" alt=""
-                                   class="img-fluid agent-details__property-list-item-img">
+                                class="img-fluid agent-details__property-list-item-img">
                             </div>
                             <div class="col-lg-10">
                               <div class="row">
@@ -1418,7 +1464,7 @@
                               <h6>Blue Wave Tower</h6>
                               <p class="agent-details__property-list-item-text">
                                 <img src="assets/images/home-location.svg" alt=""
-                                     class="img-fluid agent-details__property-list-item-text-icon">
+                                  class="img-fluid agent-details__property-list-item-text-icon">
                                 Etihad Tower 4, Etihad Towers, Corniche Road, Abu Dhabi
                               </p>
                               <p class="agent-details__property-list-item-type">Hotel & Hotel
@@ -1485,7 +1531,8 @@
                     </div>
                   </div>
                 </div>
-                <section ngClass="my-lead-listing-wrap position-relative wrapper-section properties-slider residentials-property-rent-1">
+                <section
+                  ngClass="my-lead-listing-wrap position-relative wrapper-section properties-slider residentials-property-rent-1">
                   <div ngClass="tab-content">
                     <div id="resedential-rent" class="tab-pane active">
                       <div class="lead-summ-table">
@@ -1514,8 +1561,12 @@
                           </div>
                           <div class="col contact-col">
                             <span>Contact</span>
-                            <div><p>+971 07 XXXX XXXX</p> <a href="#"><img src="{{ViewIcon}}" alt=""></a></div>
-                            <div><p>aliansari@gmail.com</p> <a href="#"><img src="{{CopyIcon}}" alt=""></a></div>
+                            <div>
+                              <p>+971 07 XXXX XXXX</p> <a href="#"><img src="{{ViewIcon}}" alt=""></a>
+                            </div>
+                            <div>
+                              <p>aliansari@gmail.com</p> <a href="#"><img src="{{CopyIcon}}" alt=""></a>
+                            </div>
                           </div>
                           <div class="col">
                             <a href="#" class="view-more">
@@ -1549,8 +1600,12 @@
                           </div>
                           <div class="col contact-col">
                             <span>Contact</span>
-                            <div><p>+971 07 XXXX XXXX</p> <a href="#"><img src="{{ViewIcon}}" alt=""></a></div>
-                            <div><p>aliansari@gmail.com</p> <a href="#"><img src="{{CopyIcon}}" alt=""></a></div>
+                            <div>
+                              <p>+971 07 XXXX XXXX</p> <a href="#"><img src="{{ViewIcon}}" alt=""></a>
+                            </div>
+                            <div>
+                              <p>aliansari@gmail.com</p> <a href="#"><img src="{{CopyIcon}}" alt=""></a>
+                            </div>
                           </div>
                           <div class="col">
                             <a href="#" class="view-more">
@@ -1584,8 +1639,12 @@
                           </div>
                           <div class="col contact-col">
                             <span>Contact</span>
-                            <div><p>+971 07 XXXX XXXX</p> <a href="#"><img src="{{ViewIcon}}" alt=""></a></div>
-                            <div><p>aliansari@gmail.com</p> <a href="#"><img src="{{CopyIcon}}" alt=""></a></div>
+                            <div>
+                              <p>+971 07 XXXX XXXX</p> <a href="#"><img src="{{ViewIcon}}" alt=""></a>
+                            </div>
+                            <div>
+                              <p>aliansari@gmail.com</p> <a href="#"><img src="{{CopyIcon}}" alt=""></a>
+                            </div>
                           </div>
                           <div class="col">
                             <a href="#" class="view-more">
@@ -1615,15 +1674,18 @@
               <mat-tab label="All">
                 <div class="type-activity-status">
                   <div ngClass="block-wrapper mb-4">
-                    <div class="checkbox-flex-box-auto button-same-select" (selectedTabChange)="childTabsChange($event)">
-                          <div class="checkbox-design position-relative">
-                            <input type="radio" id="Furnished" (click)="childTabsChange('')" name="property-types" value="All" checked>
-                            <button class="checkbox-btn">All ({{this.tabCounts.totalPropertyListing}})</button>
-                          </div>
-                          <div class="checkbox-design position-relative"  *ngFor="let list of propertyListingStatus">
-                            <input type="radio" id="Semi-Furnished" (click)="childTabsChange(list.id)" name="property-types" value="{{list.statusDescription}}">
-                            <button class="checkbox-btn">{{list.statusDescription}} ({{list.count}})</button>
-                          </div>
+                    <div class="checkbox-flex-box-auto button-same-select"
+                      (selectedTabChange)="childTabsChange($event)">
+                      <div class="checkbox-design position-relative">
+                        <input type="radio" id="Furnished" (click)="childTabsChange('')" name="property-types"
+                          value="All" checked>
+                        <button class="checkbox-btn">All ({{this.tabCounts.totalPropertyListing}})</button>
+                      </div>
+                      <div class="checkbox-design position-relative" *ngFor="let list of propertyListingStatus">
+                        <input type="radio" id="Semi-Furnished" (click)="childTabsChange(list.id)" name="property-types"
+                          value="{{list.statusDescription}}">
+                        <button class="checkbox-btn">{{list.statusDescription}} ({{list.count}})</button>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -1635,24 +1697,27 @@
                           <div class="row">
                             <div class="col-lg-2">
                               <img src="assets/images/explore-places/1.jpg" alt=""
-                                   class="img-fluid agent-details__property-list-item-img">
+                                class="img-fluid agent-details__property-list-item-img">
                             </div>
                             <div class="col-lg-10">
                               <div class="row">
                                 <div class="col-7">
-                                  <a class="agent-details__property-list-item-link">{{listing.propertyPrice}} {{listing.propertyTitle}}
+                                  <a class="agent-details__property-list-item-link">{{listing.propertyPrice}}
+                                    {{listing.propertyTitle}}
                                     <span>/{{listing.rentType}}</span>
                                   </a>
                                 </div>
                                 <div class="col-5 text-end">
-                                  <p class="agent-details__property-list-item-date mb-0">Posted on: {{listing.requestedDateFormat}}</p>
-                                  <p class="agent-details__property-list-item-date">Expired on: {{listing.expiredDateFormat}}</p>
+                                  <p class="agent-details__property-list-item-date mb-0">Posted on:
+                                    {{listing.requestedDateFormat}}</p>
+                                  <p class="agent-details__property-list-item-date">Expired on:
+                                    {{listing.expiredDateFormat}}</p>
                                 </div>
                               </div>
                               <h6>{{listing.buildingName}}</h6>
                               <p class="agent-details__property-list-item-text">
                                 <img src="assets/images/home-location.svg" alt=""
-                                     class="img-fluid agent-details__property-list-item-text-icon">
+                                  class="img-fluid agent-details__property-list-item-text-icon">
                                 {{listing.propertyAddress}}
                               </p>
                               <p class="agent-details__property-list-item-type">{{listing.propertyDescription}}</p>
@@ -1682,11 +1747,13 @@
                                   <!-- <button class="action-btn"><img src="assets/images/profile/menu-dots.png" alt=""></button> -->
 
                                   <div ngbDropdown class="d-inline-block">
-                                    <button ngClass="grey-bordered-btn action-btn" id="dropdownBasic2" ngbDropdownToggle>
+                                    <button ngClass="grey-bordered-btn action-btn" id="dropdownBasic2"
+                                      ngbDropdownToggle>
                                       <img src="{{menuDots}}" alt=""></button>
                                     <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
                                       <!-- <h5>Share with:</h5> -->
-                                      <button ngbDropdownItem><a href=""><img src="{{viewLeads}}"> View Leads</a></button>
+                                      <button ngbDropdownItem><a href=""><img src="{{viewLeads}}"> View
+                                          Leads</a></button>
                                       <button ngbDropdownItem><a href=""><img src="{{shareicon}}"> Share</a></button>
                                       <button ngbDropdownItem><a href=""><img src="{{deleteIcon}}"> Delete</a></button>
                                       <button ngbDropdownItem><a href=""><img src="{{editIcon}}"> Edit</a></button>
@@ -1705,13 +1772,16 @@
               <mat-tab label="{{ rent }}">
                 <div class="type-activity-status">
                   <div ngClass="block-wrapper mb-4">
-                    <div class="checkbox-flex-box-auto button-same-select" (selectedTabChange)="childTabsChange($event)">
+                    <div class="checkbox-flex-box-auto button-same-select"
+                      (selectedTabChange)="childTabsChange($event)">
                       <div class="checkbox-design position-relative">
-                        <input type="radio" id="Furnished" (click)="childTabsChange('')" name="property-types" value="All" checked>
+                        <input type="radio" id="Furnished" (click)="childTabsChange('')" name="property-types"
+                          value="All" checked>
                         <button class="checkbox-btn">All ({{this.tabCounts.totalPropertyListing}})</button>
                       </div>
-                      <div class="checkbox-design position-relative"  *ngFor="let list of propertyListingStatus">
-                        <input type="radio" id="Semi-Furnished" (click)="childTabsChange(list.id)" name="property-types" value="{{list.statusDescription}}">
+                      <div class="checkbox-design position-relative" *ngFor="let list of propertyListingStatus">
+                        <input type="radio" id="Semi-Furnished" (click)="childTabsChange(list.id)" name="property-types"
+                          value="{{list.statusDescription}}">
                         <button class="checkbox-btn">{{list.statusDescription}} ({{list.count}})</button>
                       </div>
                     </div>
@@ -1725,24 +1795,27 @@
                           <div class="row">
                             <div class="col-lg-2">
                               <img src="assets/images/explore-places/1.jpg" alt=""
-                                   class="img-fluid agent-details__property-list-item-img">
+                                class="img-fluid agent-details__property-list-item-img">
                             </div>
                             <div class="col-lg-10">
                               <div class="row">
                                 <div class="col-7">
-                                  <a class="agent-details__property-list-item-link">{{listing.propertyPrice}} {{listing.propertyTitle}}
+                                  <a class="agent-details__property-list-item-link">{{listing.propertyPrice}}
+                                    {{listing.propertyTitle}}
                                     <span>/{{listing.rentType}}</span>
                                   </a>
                                 </div>
                                 <div class="col-5 text-end">
-                                  <p class="agent-details__property-list-item-date mb-0">Posted on: {{listing.requestedDateFormat}}</p>
-                                  <p class="agent-details__property-list-item-date">Expired on: {{listing.expiredDateFormat}}</p>
+                                  <p class="agent-details__property-list-item-date mb-0">Posted on:
+                                    {{listing.requestedDateFormat}}</p>
+                                  <p class="agent-details__property-list-item-date">Expired on:
+                                    {{listing.expiredDateFormat}}</p>
                                 </div>
                               </div>
                               <h6>{{listing.buildingName}}</h6>
                               <p class="agent-details__property-list-item-text">
                                 <img src="assets/images/home-location.svg" alt=""
-                                     class="img-fluid agent-details__property-list-item-text-icon">
+                                  class="img-fluid agent-details__property-list-item-text-icon">
                                 {{listing.propertyAddress}}
                               </p>
                               <p class="agent-details__property-list-item-type">{{listing.propertyDescription}}</p>
@@ -1772,11 +1845,13 @@
                                   <!-- <button class="action-btn"><img src="assets/images/profile/menu-dots.png" alt=""></button> -->
 
                                   <div ngbDropdown class="d-inline-block">
-                                    <button ngClass="grey-bordered-btn action-btn" id="dropdownBasic2" ngbDropdownToggle>
+                                    <button ngClass="grey-bordered-btn action-btn" id="dropdownBasic2"
+                                      ngbDropdownToggle>
                                       <img src="{{menuDots}}" alt=""></button>
                                     <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
                                       <!-- <h5>Share with:</h5> -->
-                                      <button ngbDropdownItem><a href=""><img src="{{viewLeads}}"> View Leads</a></button>
+                                      <button ngbDropdownItem><a href=""><img src="{{viewLeads}}"> View
+                                          Leads</a></button>
                                       <button ngbDropdownItem><a href=""><img src="{{shareicon}}"> Share</a></button>
                                       <button ngbDropdownItem><a href=""><img src="{{deleteIcon}}"> Delete</a></button>
                                       <button ngbDropdownItem><a href=""><img src="{{editIcon}}"> Edit</a></button>
@@ -1796,13 +1871,16 @@
               <mat-tab label="{{ buy }}">
                 <div class="type-activity-status">
                   <div ngClass="block-wrapper mb-4">
-                    <div class="checkbox-flex-box-auto button-same-select" (selectedTabChange)="childTabsChange($event)">
+                    <div class="checkbox-flex-box-auto button-same-select"
+                      (selectedTabChange)="childTabsChange($event)">
                       <div class="checkbox-design position-relative">
-                        <input type="radio" id="Furnished" (click)="childTabsChange('')" name="property-types" value="All" checked>
+                        <input type="radio" id="Furnished" (click)="childTabsChange('')" name="property-types"
+                          value="All" checked>
                         <button class="checkbox-btn">All ({{this.tabCounts.totalPropertyListing}})</button>
                       </div>
-                      <div class="checkbox-design position-relative"  *ngFor="let list of propertyListingStatus">
-                        <input type="radio" id="Semi-Furnished" (click)="childTabsChange(list.id)" name="property-types" value="{{list.statusDescription}}">
+                      <div class="checkbox-design position-relative" *ngFor="let list of propertyListingStatus">
+                        <input type="radio" id="Semi-Furnished" (click)="childTabsChange(list.id)" name="property-types"
+                          value="{{list.statusDescription}}">
                         <button class="checkbox-btn">{{list.statusDescription}} ({{list.count}})</button>
                       </div>
                     </div>
@@ -1816,24 +1894,27 @@
                           <div class="row">
                             <div class="col-lg-2">
                               <img src="assets/images/explore-places/1.jpg" alt=""
-                                   class="img-fluid agent-details__property-list-item-img">
+                                class="img-fluid agent-details__property-list-item-img">
                             </div>
                             <div class="col-lg-10">
                               <div class="row">
                                 <div class="col-7">
-                                  <a class="agent-details__property-list-item-link">{{listing.propertyPrice}} {{listing.propertyTitle}}
+                                  <a class="agent-details__property-list-item-link">{{listing.propertyPrice}}
+                                    {{listing.propertyTitle}}
                                     <span>/{{listing.rentType}}</span>
                                   </a>
                                 </div>
                                 <div class="col-5 text-end">
-                                  <p class="agent-details__property-list-item-date mb-0">Posted on: {{listing.requestedDateFormat}}</p>
-                                  <p class="agent-details__property-list-item-date">Expired on: {{listing.expiredDateFormat}}</p>
+                                  <p class="agent-details__property-list-item-date mb-0">Posted on:
+                                    {{listing.requestedDateFormat}}</p>
+                                  <p class="agent-details__property-list-item-date">Expired on:
+                                    {{listing.expiredDateFormat}}</p>
                                 </div>
                               </div>
                               <h6>{{listing.buildingName}}</h6>
                               <p class="agent-details__property-list-item-text">
                                 <img src="assets/images/home-location.svg" alt=""
-                                     class="img-fluid agent-details__property-list-item-text-icon">
+                                  class="img-fluid agent-details__property-list-item-text-icon">
                                 {{listing.propertyAddress}}
                               </p>
                               <p class="agent-details__property-list-item-type">{{listing.propertyDescription}}</p>
@@ -1863,11 +1944,13 @@
                                   <!-- <button class="action-btn"><img src="assets/images/profile/menu-dots.png" alt=""></button> -->
 
                                   <div ngbDropdown class="d-inline-block">
-                                    <button ngClass="grey-bordered-btn action-btn" id="dropdownBasic2" ngbDropdownToggle>
+                                    <button ngClass="grey-bordered-btn action-btn" id="dropdownBasic2"
+                                      ngbDropdownToggle>
                                       <img src="{{menuDots}}" alt=""></button>
                                     <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
                                       <!-- <h5>Share with:</h5> -->
-                                      <button ngbDropdownItem><a href=""><img src="{{viewLeads}}"> View Leads</a></button>
+                                      <button ngbDropdownItem><a href=""><img src="{{viewLeads}}"> View
+                                          Leads</a></button>
                                       <button ngbDropdownItem><a href=""><img src="{{shareicon}}"> Share</a></button>
                                       <button ngbDropdownItem><a href=""><img src="{{deleteIcon}}"> Delete</a></button>
                                       <button ngbDropdownItem><a href=""><img src="{{editIcon}}"> Edit</a></button>
@@ -1915,7 +1998,7 @@
                 <div class="row">
                   <div class="col-md-9">
 
-                    <form action="">
+                    <form [formGroup]="detailForm">
                       <!-- form-border-wrapper -->
                       <div class="">
                         <div class="list-new-proerty-cntnt">
@@ -1927,8 +2010,8 @@
                               <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                 <div ngClass="block-wrapper mb-4">
                                   <label class="h6-design">First Name</label>
-                                  <mat-form-field appearance="fill"  class="full-width input-design-2">
-                                    <input matInput>
+                                  <mat-form-field appearance="fill" class="full-width input-design-2">
+                                    <input matInput formControlName="firstName">
                                   </mat-form-field>
                                 </div>
                               </div>
@@ -1936,8 +2019,8 @@
                               <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                 <div ngClass="block-wrapper mb-4">
                                   <label class="h6-design">Last Name</label>
-                                  <mat-form-field appearance="fill"  class="full-width input-design-2">
-                                    <input matInput>
+                                  <mat-form-field appearance="fill" class="full-width input-design-2">
+                                    <input matInput formControlName="lastName">
                                   </mat-form-field>
                                 </div>
                               </div>
@@ -1946,22 +2029,12 @@
                                 <div ngClass="block-wrapper mb-4">
                                   <label class="h6-design">Gender</label>
                                   <div class="checkbox-flex-box two-column max-240">
-                                    <div
-                                      class="checkbox-design position-relative"
-                                    >
-                                      <input
-                                        type="radio"
-                                        name="gender"
-                                      />
+                                    <div class="checkbox-design position-relative" (click)="getGender(1)">
+                                      <input type="radio" name="gender" />
                                       <button class="checkbox-btn">Male</button>
                                     </div>
-                                    <div
-                                      class="checkbox-design position-relative"
-                                    >
-                                      <input
-                                        type="radio"
-                                        name="gender"
-                                      />
+                                    <div class="checkbox-design position-relative" (click)="getGender(2)">
+                                      <input type="radio" name="gender" />
                                       <button class="checkbox-btn">Female</button>
                                     </div>
                                   </div>
@@ -1984,69 +2057,44 @@
                               <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                 <div ngClass="block-wrapper mb-4">
                                   <label class="h6-design">Phone</label>
-                                  <mat-form-field appearance="fill"  class="full-width input-design-2">
-                                    <input matInput>
+                                  <mat-form-field appearance="fill" class="full-width input-design-2">
+                                    <input matInput formControlName="phone">
                                   </mat-form-field>
                                 </div>
                               </div>
                               <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                 <div ngClass="block-wrapper mb-4">
                                   <label class="h6-design">Location</label>
-                                  <mat-form-field appearance="fill"  class="full-width input-design-2">
-                                    <input matInput>
+                                  <mat-form-field appearance="fill" class="full-width input-design-2">
+                                    <input matInput formControlName="location">
                                   </mat-form-field>
                                 </div>
                               </div>
-
-
-                              <div ngClass="col-xl-6 col-lg-6 col-sm-12">
-                                <div ngClass="block-wrapper mb-4">
-                                  <label class="h6-design">City</label>
-
-                                  <mat-form-field appearance="fill"   class="full-width select-form input-design-2">
-                                    <mat-label>Select City</mat-label>
-                                    <mat-select >
-                                      <mat-option [value]="city" >
-                                        City 1
-                                      </mat-option>
-                                      <mat-option [value]="city">
-                                        City 1
-                                      </mat-option>
-                                      <mat-option [value]="city">
-                                        City 1
-                                      </mat-option>
-                                      <mat-option [value]="city">
-                                        City 1
-                                      </mat-option>
-                                    </mat-select>
-                                  </mat-form-field>
-
-                                </div>
-                              </div>
-
-
 
 
                               <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                 <div ngClass="block-wrapper mb-4">
                                   <label class="h6-design">Country</label>
-
                                   <mat-form-field appearance="fill"   class="full-width select-form input-design-2">
-                                    <mat-label>Select Country</mat-label>
-                                    <mat-select >
-                                      <mat-option >
-                                        Country 1
-                                      </mat-option>
-                                      <mat-option>
-                                        Country 1
-                                      </mat-option>
-                                      <mat-option>
-                                        Country 1
-                                      </mat-option>
-                                      <mat-option>
-                                        Country 1
+                                    <mat-label>Select the Country</mat-label>
+                                    <mat-select (selectionChange)="onCountrySelect($event);">
+                                      <mat-option *ngFor="let list of country" [value]="list.value">
+                                        {{ list.viewValue }}
                                       </mat-option>
                                     </mat-select>
+                                  </mat-form-field>
+                                </div>
+                              </div>
+                              <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+                                <div ngClass="block-wrapper mb-4">
+                                  <label class="h6-design">City</label>
+                                  <mat-form-field appearance="fill" class="full-width select-form input-design-2">
+                                    <mat-label>Select City</mat-label>
+                                    <mat-select (selectionChange)="onCitySelect($event);">
+                                      <mat-option *ngFor="let listcity of city" [value]="listcity.value">
+                                          {{ listcity.viewValue }}
+                                      </mat-option>
+                                  </mat-select>
                                   </mat-form-field>
 
                                 </div>
@@ -2086,7 +2134,7 @@
                               <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                 <div ngClass="block-wrapper mb-4">
                                   <label class="h6-design">BRN No.#</label>
-                                  <mat-form-field appearance="fill"  class="full-width input-design-2">
+                                  <mat-form-field appearance="fill" class="full-width input-design-2">
                                     <input matInput>
                                   </mat-form-field>
                                 </div>
@@ -2096,22 +2144,12 @@
                                 <div ngClass="block-wrapper mb-4">
                                   <label class="h6-design">Experts in</label>
                                   <div class="checkbox-flex-box two-column max-240">
-                                    <div
-                                      class="checkbox-design position-relative"
-                                    >
-                                      <input
-                                        type="radio"
-                                        name="Experts"
-                                      />
+                                    <div class="checkbox-design position-relative">
+                                      <input type="radio" name="Experts" />
                                       <button class="checkbox-btn">Residential</button>
                                     </div>
-                                    <div
-                                      class="checkbox-design position-relative"
-                                    >
-                                      <input
-                                        type="radio"
-                                        name="Experts"
-                                      />
+                                    <div class="checkbox-design position-relative">
+                                      <input type="radio" name="Experts" />
                                       <button class="checkbox-btn">Commercial</button>
                                     </div>
                                   </div>
@@ -2122,10 +2160,10 @@
                                 <div ngClass="block-wrapper mb-4">
                                   <label class="h6-design">Nationality</label>
 
-                                  <mat-form-field appearance="fill"   class="full-width select-form input-design-2">
+                                  <mat-form-field appearance="fill" class="full-width select-form input-design-2">
                                     <mat-label>Select Nationality</mat-label>
-                                    <mat-select >
-                                      <mat-option [value]="city" >
+                                    <mat-select>
+                                      <mat-option [value]="city">
                                         Nationality 1
                                       </mat-option>
                                       <mat-option [value]="city">
@@ -2194,7 +2232,8 @@
                                       </div>
                                     </div>
                                     <div class="add-more">
-                                      <button class="add-higlights"><img src="{{plus}}"> Add the Area you are looking for</button>
+                                      <button class="add-higlights"><img src="{{plus}}"> Add the Area you are looking
+                                        for</button>
                                     </div>
                                   </div>
                                 </div>
@@ -2208,23 +2247,27 @@
                                   <div ngClass="blue-upload-box">
                                     <div ngClass="upload-files-design">
                                       <div ngClass="greybordered-btn">
-                                        <input type="file" hidden  #emirateInput  >
-                                        <button mat-button ><span ngClass="outpup-filename"> Picture: Emirates ID (Fornt View) </span> <img src="{{upload}}"> <span ngClass="btn-txt">Picture: Emirates ID (Fornt View)</span></button>
+                                        <input type="file" hidden #emirateInput>
+                                        <button mat-button><span ngClass="outpup-filename"> Picture: Emirates ID (Fornt
+                                            View) </span> <img src="{{upload}}"> <span ngClass="btn-txt">Picture:
+                                            Emirates ID (Fornt View)</span></button>
                                       </div>
                                     </div>
                                   </div>
                                 </div>
                                 <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                      <span class="staus-emoji">
-                        <img src="{{approvedEmo}}" alt="">
-                      </span>
+                                  <span class="staus-emoji">
+                                    <img src="{{approvedEmo}}" alt="">
+                                  </span>
                                 </div>
                                 <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                                   <div ngClass="blue-upload-box">
                                     <div ngClass="upload-files-design">
                                       <div ngClass="greybordered-btn">
-                                        <input type="file" hidden  #emirateInput  >
-                                        <button mat-button ><span ngClass="outpup-filename"> Picture: Emirates ID (Back View) </span> <img src="{{upload}}"> <span ngClass="btn-txt">Picture: Emirates ID (Fornt View)</span></button>
+                                        <input type="file" hidden #emirateInput>
+                                        <button mat-button><span ngClass="outpup-filename"> Picture: Emirates ID (Back
+                                            View) </span> <img src="{{upload}}"> <span ngClass="btn-txt">Picture:
+                                            Emirates ID (Fornt View)</span></button>
                                       </div>
                                     </div>
                                   </div>
@@ -2234,16 +2277,18 @@
                                   <div ngClass="blue-upload-box">
                                     <div ngClass="upload-files-design">
                                       <div ngClass="greybordered-btn">
-                                        <input type="file" hidden  #emirateInput  >
-                                        <button mat-button ><span ngClass="outpup-filename"> Picture: BRN Document </span> <img src="{{upload}}"> <span ngClass="btn-txt">Picture: Emirates ID (Fornt View)</span></button>
+                                        <input type="file" hidden #emirateInput>
+                                        <button mat-button><span ngClass="outpup-filename"> Picture: BRN Document
+                                          </span> <img src="{{upload}}"> <span ngClass="btn-txt">Picture: Emirates ID
+                                            (Fornt View)</span></button>
                                       </div>
                                     </div>
                                   </div>
                                 </div>
                                 <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                      <span class="staus-emoji">
-                        <img src="{{penfingEmo}}" alt="">
-                      </span>
+                                  <span class="staus-emoji">
+                                    <img src="{{penfingEmo}}" alt="">
+                                  </span>
                                 </div>
                               </div>
                             </div>
@@ -2280,7 +2325,7 @@
                               <div ngClass="col-sm-12">
                                 <div ngClass="block-wrapper mb-4">
                                   <label class="h6-design">Company Name</label>
-                                  <mat-form-field appearance="fill"  class="full-width input-design-2">
+                                  <mat-form-field appearance="fill" class="full-width input-design-2">
                                     <input matInput>
                                   </mat-form-field>
                                 </div>
@@ -2289,7 +2334,7 @@
                               <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                 <div ngClass="block-wrapper mb-4">
                                   <label class="h6-design">Trade License No.#</label>
-                                  <mat-form-field appearance="fill"  class="full-width input-design-2">
+                                  <mat-form-field appearance="fill" class="full-width input-design-2">
                                     <input matInput>
                                   </mat-form-field>
                                 </div>
@@ -2297,7 +2342,7 @@
                               <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                 <div ngClass="block-wrapper mb-4">
                                   <label class="h6-design">Permit No.#</label>
-                                  <mat-form-field appearance="fill"  class="full-width input-design-2">
+                                  <mat-form-field appearance="fill" class="full-width input-design-2">
                                     <input matInput>
                                   </mat-form-field>
                                 </div>
@@ -2305,7 +2350,7 @@
                               <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                 <div ngClass="block-wrapper mb-4">
                                   <label class="h6-design">ORN No.#</label>
-                                  <mat-form-field appearance="fill"  class="full-width input-design-2">
+                                  <mat-form-field appearance="fill" class="full-width input-design-2">
                                     <input matInput>
                                   </mat-form-field>
                                 </div>
@@ -2313,7 +2358,7 @@
                               <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                 <div ngClass="block-wrapper mb-4">
                                   <label class="h6-design">RERA No.#</label>
-                                  <mat-form-field appearance="fill"  class="full-width input-design-2">
+                                  <mat-form-field appearance="fill" class="full-width input-design-2">
                                     <input matInput>
                                   </mat-form-field>
                                 </div>
@@ -2322,7 +2367,7 @@
                               <div ngClass="col-sm-12">
                                 <div ngClass="block-wrapper mb-4">
                                   <label class="h6-design">Company Address</label>
-                                  <mat-form-field appearance="fill"  class="full-width input-design-2">
+                                  <mat-form-field appearance="fill" class="full-width input-design-2">
                                     <input matInput>
                                   </mat-form-field>
                                 </div>
@@ -2332,10 +2377,10 @@
                                 <div ngClass="block-wrapper mb-4">
                                   <label class="h6-design">City</label>
 
-                                  <mat-form-field appearance="fill"   class="full-width select-form input-design-2">
+                                  <mat-form-field appearance="fill" class="full-width select-form input-design-2">
                                     <mat-label>Select City</mat-label>
-                                    <mat-select >
-                                      <mat-option [value]="city" >
+                                    <mat-select>
+                                      <mat-option [value]="city">
                                         City 1
                                       </mat-option>
                                       <mat-option [value]="city">
@@ -2354,16 +2399,16 @@
                                 <div ngClass="block-wrapper mb-4">
                                   <label class="h6-design">Country</label>
 
-                                  <mat-form-field appearance="fill"   class="full-width select-form input-design-2">
+                                  <mat-form-field appearance="fill" class="full-width select-form input-design-2">
                                     <mat-label>Select Country</mat-label>
-                                    <mat-select >
-                                      <mat-option >
+                                    <mat-select>
+                                      <mat-option>
                                         Country 1
                                       </mat-option>
                                       <mat-option>
                                         Country 1
                                       </mat-option>
-                                      <mat-option >
+                                      <mat-option>
                                         Country 1
                                       </mat-option>
                                     </mat-select>
@@ -2382,8 +2427,9 @@
                                   <div ngClass="blue-upload-box">
                                     <div ngClass="upload-files-design">
                                       <div ngClass="greybordered-btn">
-                                        <input type="file" hidden  #emirateInput  >
-                                        <button mat-button ><span ngClass="outpup-filename"> Picture: Trade License Document </span>
+                                        <input type="file" hidden #emirateInput>
+                                        <button mat-button><span ngClass="outpup-filename"> Picture: Trade License
+                                            Document </span>
                                           <img src="{{upload}}">
                                           <span ngClass="btn-txt">Picture: Emirates ID (Fornt View)</span></button>
                                       </div>
@@ -2391,17 +2437,19 @@
                                   </div>
                                 </div>
                                 <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                        <span class="staus-emoji">
-                          <img src="{{approvedEmo}}" alt="">
-                        </span>
+                                  <span class="staus-emoji">
+                                    <img src="{{approvedEmo}}" alt="">
+                                  </span>
                                 </div>
                                 <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                                   <div ngClass="blue-upload-box">
                                     <div ngClass="upload-files-design">
                                       <div ngClass="greybordered-btn">
-                                        <input type="file" hidden  #emirateInput  >
-                                        <button mat-button ><span ngClass="outpup-filename"> Picture: Permit No Document</span>
-                                          <img src="{{upload}}"> <span ngClass="btn-txt">Picture: Emirates ID (Fornt View)</span></button>
+                                        <input type="file" hidden #emirateInput>
+                                        <button mat-button><span ngClass="outpup-filename"> Picture: Permit No
+                                            Document</span>
+                                          <img src="{{upload}}"> <span ngClass="btn-txt">Picture: Emirates ID (Fornt
+                                            View)</span></button>
                                       </div>
                                     </div>
                                   </div>
@@ -2411,33 +2459,35 @@
                                   <div ngClass="blue-upload-box">
                                     <div ngClass="upload-files-design">
                                       <div ngClass="greybordered-btn">
-                                        <input type="file" hidden  #emirateInput  >
-                                        <button mat-button ><span ngClass="outpup-filename"> Picture: ORN Document </span> <img src="{{upload}}">
+                                        <input type="file" hidden #emirateInput>
+                                        <button mat-button><span ngClass="outpup-filename"> Picture: ORN Document
+                                          </span> <img src="{{upload}}">
                                           <span ngClass="btn-txt">Picture: Emirates ID (Fornt View)</span></button>
                                       </div>
                                     </div>
                                   </div>
                                 </div>
                                 <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                        <span class="staus-emoji">
-                          <img src="{{penfingEmo}}" alt="">
-                        </span>
+                                  <span class="staus-emoji">
+                                    <img src="{{penfingEmo}}" alt="">
+                                  </span>
                                 </div>
                                 <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                                   <div ngClass="blue-upload-box">
                                     <div ngClass="upload-files-design">
                                       <div ngClass="greybordered-btn">
-                                        <input type="file" hidden  #emirateInput  >
-                                        <button mat-button ><span ngClass="outpup-filename"> Picture: REREA Document </span> <img src="{{upload}}">
+                                        <input type="file" hidden #emirateInput>
+                                        <button mat-button><span ngClass="outpup-filename"> Picture: REREA Document
+                                          </span> <img src="{{upload}}">
                                           <span ngClass="btn-txt">Picture: Emirates ID (Fornt View)</span></button>
                                       </div>
                                     </div>
                                   </div>
                                 </div>
                                 <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                        <span class="staus-emoji">
-                          <img src="{{penfingEmo}}" alt="">
-                        </span>
+                                  <span class="staus-emoji">
+                                    <img src="{{penfingEmo}}" alt="">
+                                  </span>
                                 </div>
                               </div>
                             </div>
@@ -2474,7 +2524,7 @@
                               <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                 <div ngClass="block-wrapper mb-4">
                                   <label class="h6-design">Change Password</label>
-                                  <mat-form-field appearance="fill"  class="full-width input-design-2">
+                                  <mat-form-field appearance="fill" class="full-width input-design-2">
                                     <input matInput>
                                   </mat-form-field>
                                 </div>
@@ -2484,7 +2534,7 @@
                               <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                 <div ngClass="block-wrapper mb-4">
                                   <label class="h6-design">Confirm Password</label>
-                                  <mat-form-field appearance="fill"  class="full-width input-design-2">
+                                  <mat-form-field appearance="fill" class="full-width input-design-2">
                                     <input matInput>
                                   </mat-form-field>
                                 </div>
@@ -2534,10 +2584,10 @@
                                     <!-- <mat-form-field appearance="fill"  class="full-width input-design-2">
                             <input matInput>
                           </mat-form-field> -->
-                                    <mat-form-field appearance="fill"   class="select-form input-design-2">
+                                    <mat-form-field appearance="fill" class="select-form input-design-2">
                                       <mat-label>Select Language</mat-label>
-                                      <mat-select >
-                                        <mat-option [value]="city" >
+                                      <mat-select>
+                                        <mat-option [value]="city">
                                           Language 1
                                         </mat-option>
                                         <mat-option [value]="city">
@@ -2559,7 +2609,8 @@
                                     <label class="h6-design">Get notifications from estatery to stay up-to-date.</label>
                                     <!-- <mat-slide-toggle>Slide me!</mat-slide-toggle> -->
                                     <div class="form-check form-switch">
-                                      <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+                                      <input class="form-check-input" type="checkbox" role="switch"
+                                        id="flexSwitchCheckChecked" checked>
                                     </div>
 
                                   </div>
@@ -2627,7 +2678,7 @@
               <div class="card">
                 <div class="content-area">
                   <h4 class="title">Listings Summary</h4>
-                  <p>Last Listed 05th  May 2022</p>
+                  <p>Last Listed 05th May 2022</p>
                   <ul class="counts-wrap">
                     <li>
                       <h3 class="count">028</h3>
@@ -2648,7 +2699,7 @@
               <div class="card">
                 <div class="content-area">
                   <h4 class="title">Valuation Summary</h4>
-                  <p>Last Listed 05th  May 2022</p>
+                  <p>Last Listed 05th May 2022</p>
                   <ul class="counts-wrap">
                     <li>
                       <h3 class="count">028</h3>
@@ -2680,21 +2731,35 @@
               <div ngClass="section-title-right">
                 <ul ngClass="nav nav-tabs" role="tablist">
                   <li ngClass="nav-item">
-                    <a ngClass="nav-link active" data-bs-toggle="tab"  data-bs-target="#resedential-rent">
+                    <a ngClass="nav-link active" data-bs-toggle="tab" data-bs-target="#resedential-rent">
                       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M16.4912 12.4406C14.7746 14.149 12.3162 14.674 10.1579 13.999L6.23289 17.9156C5.94955 18.2073 5.39122 18.3823 4.99122 18.324L3.17455 18.074C2.57455 17.9906 2.01622 17.424 1.92455 16.824L1.67455 15.0073C1.61622 14.6073 1.80789 14.049 2.08289 13.7656L5.99955 9.84896C5.33289 7.68229 5.84955 5.22396 7.56622 3.51563C10.0246 1.05729 14.0162 1.05729 16.4829 3.51563C18.9496 5.97396 18.9496 9.98229 16.4912 12.4406Z" stroke="#595ad4" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M5.74121 14.5742L7.65788 16.4909" stroke="#595ad4" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M12.083 9.16797C12.7734 9.16797 13.333 8.60833 13.333 7.91797C13.333 7.22761 12.7734 6.66797 12.083 6.66797C11.3927 6.66797 10.833 7.22761 10.833 7.91797C10.833 8.60833 11.3927 9.16797 12.083 9.16797Z" stroke="#595ad4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path
+                          d="M16.4912 12.4406C14.7746 14.149 12.3162 14.674 10.1579 13.999L6.23289 17.9156C5.94955 18.2073 5.39122 18.3823 4.99122 18.324L3.17455 18.074C2.57455 17.9906 2.01622 17.424 1.92455 16.824L1.67455 15.0073C1.61622 14.6073 1.80789 14.049 2.08289 13.7656L5.99955 9.84896C5.33289 7.68229 5.84955 5.22396 7.56622 3.51563C10.0246 1.05729 14.0162 1.05729 16.4829 3.51563C18.9496 5.97396 18.9496 9.98229 16.4912 12.4406Z"
+                          stroke="#595ad4" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round"
+                          stroke-linejoin="round" />
+                        <path d="M5.74121 14.5742L7.65788 16.4909" stroke="#595ad4" stroke-width="2"
+                          stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                        <path
+                          d="M12.083 9.16797C12.7734 9.16797 13.333 8.60833 13.333 7.91797C13.333 7.22761 12.7734 6.66797 12.083 6.66797C11.3927 6.66797 10.833 7.22761 10.833 7.91797C10.833 8.60833 11.3927 9.16797 12.083 9.16797Z"
+                          stroke="#595ad4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                       </svg>
                       Residential</a>
                   </li>
                   <li ngClass="nav-item">
-                    <a ngClass="nav-link" data-bs-toggle="tab"  data-bs-target="#resedential-buy">
+                    <a ngClass="nav-link" data-bs-toggle="tab" data-bs-target="#resedential-buy">
                       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M14.167 17.0846H5.83366C3.33366 17.0846 1.66699 15.8346 1.66699 12.918V7.08464C1.66699 4.16797 3.33366 2.91797 5.83366 2.91797H14.167C16.667 2.91797 18.3337 4.16797 18.3337 7.08464V12.918C18.3337 15.8346 16.667 17.0846 14.167 17.0846Z" stroke="#100A55" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M10 12.5C11.3807 12.5 12.5 11.3807 12.5 10C12.5 8.61929 11.3807 7.5 10 7.5C8.61929 7.5 7.5 8.61929 7.5 10C7.5 11.3807 8.61929 12.5 10 12.5Z" stroke="#100A55" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M4.58301 7.91797V12.0846" stroke="#100A55" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M15.417 7.91797V12.0846" stroke="#100A55" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path
+                          d="M14.167 17.0846H5.83366C3.33366 17.0846 1.66699 15.8346 1.66699 12.918V7.08464C1.66699 4.16797 3.33366 2.91797 5.83366 2.91797H14.167C16.667 2.91797 18.3337 4.16797 18.3337 7.08464V12.918C18.3337 15.8346 16.667 17.0846 14.167 17.0846Z"
+                          stroke="#100A55" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round"
+                          stroke-linejoin="round" />
+                        <path
+                          d="M10 12.5C11.3807 12.5 12.5 11.3807 12.5 10C12.5 8.61929 11.3807 7.5 10 7.5C8.61929 7.5 7.5 8.61929 7.5 10C7.5 11.3807 8.61929 12.5 10 12.5Z"
+                          stroke="#100A55" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round"
+                          stroke-linejoin="round" />
+                        <path d="M4.58301 7.91797V12.0846" stroke="#100A55" stroke-width="2" stroke-miterlimit="10"
+                          stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M15.417 7.91797V12.0846" stroke="#100A55" stroke-width="2" stroke-miterlimit="10"
+                          stroke-linecap="round" stroke-linejoin="round" />
                       </svg>
                       Commercial</a>
                   </li>
@@ -2729,8 +2794,12 @@
                     </div>
                     <div class="col contact-col">
                       <span>Contact</span>
-                      <div><p>+971 07 XXXX XXXX</p> <a href="#"><img src="{{ViewIcon}}" alt=""></a></div>
-                      <div><p>aliansari@gmail.com</p> <a href="#"><img src="{{CopyIcon}}" alt=""></a></div>
+                      <div>
+                        <p>+971 07 XXXX XXXX</p> <a href="#"><img src="{{ViewIcon}}" alt=""></a>
+                      </div>
+                      <div>
+                        <p>aliansari@gmail.com</p> <a href="#"><img src="{{CopyIcon}}" alt=""></a>
+                      </div>
                     </div>
                     <div class="col">
                       <a href="#" class="view-more">
@@ -2764,8 +2833,12 @@
                     </div>
                     <div class="col contact-col">
                       <span>Contact</span>
-                      <div><p>+971 07 XXXX XXXX</p> <a href="#"><img src="{{ViewIcon}}" alt=""></a></div>
-                      <div><p>aliansari@gmail.com</p> <a href="#"><img src="{{CopyIcon}}" alt=""></a></div>
+                      <div>
+                        <p>+971 07 XXXX XXXX</p> <a href="#"><img src="{{ViewIcon}}" alt=""></a>
+                      </div>
+                      <div>
+                        <p>aliansari@gmail.com</p> <a href="#"><img src="{{CopyIcon}}" alt=""></a>
+                      </div>
                     </div>
                     <div class="col">
                       <a href="#" class="view-more">
@@ -2799,8 +2872,12 @@
                     </div>
                     <div class="col contact-col">
                       <span>Contact</span>
-                      <div><p>+971 07 XXXX XXXX</p> <a href="#"><img src="{{ViewIcon}}" alt=""></a></div>
-                      <div><p>aliansari@gmail.com</p> <a href="#"><img src="{{CopyIcon}}" alt=""></a></div>
+                      <div>
+                        <p>+971 07 XXXX XXXX</p> <a href="#"><img src="{{ViewIcon}}" alt=""></a>
+                      </div>
+                      <div>
+                        <p>aliansari@gmail.com</p> <a href="#"><img src="{{CopyIcon}}" alt=""></a>
+                      </div>
                     </div>
                     <div class="col">
                       <a href="#" class="view-more">
@@ -2834,12 +2911,13 @@
             <div ngClass="row">
               <!-- let blogs of Blogsec -->
               <div ngClass="col-lg-4 col-md-6 blog-places-col" *ngFor=" let blog of blogs">
-                <a [routerLink]="['/blogs/'+blog.id]" [queryParams] = "{title: blog.blogTitle}">
+                <a [routerLink]="['/blogs/'+blog.id]" [queryParams]="{title: blog.blogTitle}">
                   <!-- blog.blogDocument.fileUrl -->
-                  <img [src]="'https://www.ovaluate.com/'+blog.blogDocument.fileUrl" ngClass="img-fluid blog-image-homepage" alt="">
+                  <img [src]="'https://www.ovaluate.com/'+blog.blogDocument.fileUrl"
+                    ngClass="img-fluid blog-image-homepage" alt="">
                   <span ngClass="blog-tag">
-                              <img [src]="blog.src2" ngClass="img-fluid" alt="">
-                          </span>
+                    <img [src]="blog.src2" ngClass="img-fluid" alt="">
+                  </span>
                   <div ngClass="blog-title-content">
                     <h5>{{blog.blogTitle}}</h5>
                     <span>{{blog.blogDate}}</span>
@@ -2943,7 +3021,7 @@
                           <div class="row">
                             <div class="col-lg-2">
                               <img src="assets/images/explore-places/1.jpg" alt=""
-                                   class="img-fluid agent-details__property-list-item-img">
+                                class="img-fluid agent-details__property-list-item-img">
                             </div>
                             <div class="col-lg-10">
                               <div class="row">
@@ -2961,7 +3039,7 @@
                               <h6>Blue Wave Tower</h6>
                               <p class="agent-details__property-list-item-text">
                                 <img src="assets/images/home-location.svg" alt=""
-                                     class="img-fluid agent-details__property-list-item-text-icon">
+                                  class="img-fluid agent-details__property-list-item-text-icon">
                                 Etihad Tower 4, Etihad Towers, Corniche Road, Abu Dhabi
                               </p>
                               <p class="agent-details__property-list-item-type">Hotel & Hotel
@@ -2998,7 +3076,7 @@
                           <div class="row">
                             <div class="col-lg-2">
                               <img src="assets/images/explore-places/1.jpg" alt=""
-                                   class="img-fluid agent-details__property-list-item-img">
+                                class="img-fluid agent-details__property-list-item-img">
                             </div>
                             <div class="col-lg-10">
                               <div class="row">
@@ -3016,7 +3094,7 @@
                               <h6>Blue Wave Tower</h6>
                               <p class="agent-details__property-list-item-text">
                                 <img src="assets/images/home-location.svg" alt=""
-                                     class="img-fluid agent-details__property-list-item-text-icon">
+                                  class="img-fluid agent-details__property-list-item-text-icon">
                                 Etihad Tower 4, Etihad Towers, Corniche Road, Abu Dhabi
                               </p>
                               <p class="agent-details__property-list-item-type">Hotel & Hotel
@@ -3053,7 +3131,7 @@
                           <div class="row">
                             <div class="col-lg-2">
                               <img src="assets/images/explore-places/1.jpg" alt=""
-                                   class="img-fluid agent-details__property-list-item-img">
+                                class="img-fluid agent-details__property-list-item-img">
                             </div>
                             <div class="col-lg-10">
                               <div class="row">
@@ -3071,7 +3149,7 @@
                               <h6>Blue Wave Tower</h6>
                               <p class="agent-details__property-list-item-text">
                                 <img src="assets/images/home-location.svg" alt=""
-                                     class="img-fluid agent-details__property-list-item-text-icon">
+                                  class="img-fluid agent-details__property-list-item-text-icon">
                                 Etihad Tower 4, Etihad Towers, Corniche Road, Abu Dhabi
                               </p>
                               <p class="agent-details__property-list-item-type">Hotel & Hotel
@@ -3108,7 +3186,7 @@
                           <div class="row">
                             <div class="col-lg-2">
                               <img src="assets/images/explore-places/1.jpg" alt=""
-                                   class="img-fluid agent-details__property-list-item-img">
+                                class="img-fluid agent-details__property-list-item-img">
                             </div>
                             <div class="col-lg-10">
                               <div class="row">
@@ -3126,7 +3204,7 @@
                               <h6>Blue Wave Tower</h6>
                               <p class="agent-details__property-list-item-text">
                                 <img src="assets/images/home-location.svg" alt=""
-                                     class="img-fluid agent-details__property-list-item-text-icon">
+                                  class="img-fluid agent-details__property-list-item-text-icon">
                                 Etihad Tower 4, Etihad Towers, Corniche Road, Abu Dhabi
                               </p>
                               <p class="agent-details__property-list-item-type">Hotel & Hotel
@@ -3163,7 +3241,7 @@
                           <div class="row">
                             <div class="col-lg-2">
                               <img src="assets/images/explore-places/1.jpg" alt=""
-                                   class="img-fluid agent-details__property-list-item-img">
+                                class="img-fluid agent-details__property-list-item-img">
                             </div>
                             <div class="col-lg-10">
                               <div class="row">
@@ -3181,7 +3259,7 @@
                               <h6>Blue Wave Tower</h6>
                               <p class="agent-details__property-list-item-text">
                                 <img src="assets/images/home-location.svg" alt=""
-                                     class="img-fluid agent-details__property-list-item-text-icon">
+                                  class="img-fluid agent-details__property-list-item-text-icon">
                                 Etihad Tower 4, Etihad Towers, Corniche Road, Abu Dhabi
                               </p>
                               <p class="agent-details__property-list-item-type">Hotel & Hotel
@@ -3218,7 +3296,7 @@
                           <div class="row">
                             <div class="col-lg-2">
                               <img src="assets/images/explore-places/1.jpg" alt=""
-                                   class="img-fluid agent-details__property-list-item-img">
+                                class="img-fluid agent-details__property-list-item-img">
                             </div>
                             <div class="col-lg-10">
                               <div class="row">
@@ -3236,7 +3314,7 @@
                               <h6>Blue Wave Tower</h6>
                               <p class="agent-details__property-list-item-text">
                                 <img src="assets/images/home-location.svg" alt=""
-                                     class="img-fluid agent-details__property-list-item-text-icon">
+                                  class="img-fluid agent-details__property-list-item-text-icon">
                                 Etihad Tower 4, Etihad Towers, Corniche Road, Abu Dhabi
                               </p>
                               <p class="agent-details__property-list-item-type">Hotel & Hotel
@@ -3284,21 +3362,24 @@
                         <div class="col-lg-6">
                           <div class="agent-landing-featured__agent">
                             <div class="agent-landing-featured__property-wrapper">
-                              <img src="assets/images/tag/featured.png" alt="" class="agent-landing-featured__property-tag">
+                              <img src="assets/images/tag/featured.png" alt=""
+                                class="agent-landing-featured__property-tag">
                               <div class="row">
                                 <div class="col-5 d-flex align-items-center">
-                                  <img src="/assets/images/agent-image.png" alt="" class="img-fluid agent-landing-featured__property-img">
+                                  <img src="/assets/images/agent-image.png" alt=""
+                                    class="img-fluid agent-landing-featured__property-img">
                                   <img src="assets/images/brand/betterhomes.png" alt=""
-                                       class="img-fluid agent-landing-featured__agent-company">
+                                    class="img-fluid agent-landing-featured__agent-company">
                                 </div>
                                 <div class="col-7">
                                   <div class="agent-landing-featured__agent-right-panel">
-                                    <h6 class="agent-landing-featured__property-heading" routerLink="/agent-details/1">Better Homes Properties</h6>
-                                    <p class="agent-landing-featured__property-text">P.O. Box 14781, Ground Floor, Golf Building No. GB, Al Hamra Village, Ras Al Khaimah
+                                    <h6 class="agent-landing-featured__property-heading" routerLink="/agent-details/1">
+                                      Better Homes Properties</h6>
+                                    <p class="agent-landing-featured__property-text">P.O. Box 14781, Ground Floor, Golf
+                                      Building No. GB, Al Hamra Village, Ras Al Khaimah
 
                                     </p>
-                                    <a class="agent-landing-featured__property-link"
-                                       routerLink=#>View Map</a>
+                                    <a class="agent-landing-featured__property-link" routerLink=#>View Map</a>
                                     <p class="agent-landing-featured__property-text">RERA# 11899</p>
                                     <p class="agent-landing-featured__property-text">Permit# 7187842740</p>
                                     <ul class="agent-landing-featured__property-details-list">
@@ -3324,21 +3405,24 @@
                         <div class="col-lg-6">
                           <div class="agent-landing-featured__agent">
                             <div class="agent-landing-featured__property-wrapper">
-                              <img src="assets/images/tag/featured.png" alt="" class="agent-landing-featured__property-tag">
+                              <img src="assets/images/tag/featured.png" alt=""
+                                class="agent-landing-featured__property-tag">
                               <div class="row">
                                 <div class="col-5 d-flex align-items-center">
-                                  <img src="/assets/images/agent-image.png" alt="" class="img-fluid agent-landing-featured__property-img">
+                                  <img src="/assets/images/agent-image.png" alt=""
+                                    class="img-fluid agent-landing-featured__property-img">
                                   <img src="assets/images/brand/betterhomes.png" alt=""
-                                       class="img-fluid agent-landing-featured__agent-company">
+                                    class="img-fluid agent-landing-featured__agent-company">
                                 </div>
                                 <div class="col-7">
                                   <div class="agent-landing-featured__agent-right-panel">
-                                    <h6 class="agent-landing-featured__property-heading" routerLink="/agent-details/1">Better Homes Properties</h6>
-                                    <p class="agent-landing-featured__property-text">P.O. Box 14781, Ground Floor, Golf Building No. GB, Al Hamra Village, Ras Al Khaimah
+                                    <h6 class="agent-landing-featured__property-heading" routerLink="/agent-details/1">
+                                      Better Homes Properties</h6>
+                                    <p class="agent-landing-featured__property-text">P.O. Box 14781, Ground Floor, Golf
+                                      Building No. GB, Al Hamra Village, Ras Al Khaimah
 
                                     </p>
-                                    <a class="agent-landing-featured__property-link"
-                                       routerLink=#>View Map</a>
+                                    <a class="agent-landing-featured__property-link" routerLink=#>View Map</a>
                                     <p class="agent-landing-featured__property-text">RERA# 11899</p>
                                     <p class="agent-landing-featured__property-text">Permit# 7187842740</p>
                                     <ul class="agent-landing-featured__property-details-list">
@@ -3397,7 +3481,7 @@
                             <div class="row">
                               <div class="col-lg-2">
                                 <img src="assets/images/explore-places/1.jpg" alt=""
-                                     class="img-fluid agent-details__property-list-item-img">
+                                  class="img-fluid agent-details__property-list-item-img">
                               </div>
                               <div class="col-lg-10">
                                 <div class="row">
@@ -3415,7 +3499,7 @@
                                 <h6>Blue Wave Tower</h6>
                                 <p class="agent-details__property-list-item-text">
                                   <img src="assets/images/home-location.svg" alt=""
-                                       class="img-fluid agent-details__property-list-item-text-icon">
+                                    class="img-fluid agent-details__property-list-item-text-icon">
                                   Etihad Tower 4, Etihad Towers, Corniche Road, Abu Dhabi
                                 </p>
                                 <p class="agent-details__property-list-item-type">Hotel & Hotel
@@ -3462,7 +3546,7 @@
                             <div class="row">
                               <div class="col-lg-2">
                                 <img src="assets/images/explore-places/1.jpg" alt=""
-                                     class="img-fluid agent-details__property-list-item-img">
+                                  class="img-fluid agent-details__property-list-item-img">
                               </div>
                               <div class="col-lg-10">
                                 <div class="row">
@@ -3480,7 +3564,7 @@
                                 <h6>Blue Wave Tower</h6>
                                 <p class="agent-details__property-list-item-text">
                                   <img src="assets/images/home-location.svg" alt=""
-                                       class="img-fluid agent-details__property-list-item-text-icon">
+                                    class="img-fluid agent-details__property-list-item-text-icon">
                                   Etihad Tower 4, Etihad Towers, Corniche Road, Abu Dhabi
                                 </p>
                                 <p class="agent-details__property-list-item-type">Hotel & Hotel
@@ -3526,7 +3610,7 @@
                             <div class="row">
                               <div class="col-lg-2">
                                 <img src="assets/images/explore-places/1.jpg" alt=""
-                                     class="img-fluid agent-details__property-list-item-img">
+                                  class="img-fluid agent-details__property-list-item-img">
                               </div>
                               <div class="col-lg-10">
                                 <div class="row">
@@ -3544,7 +3628,7 @@
                                 <h6>Blue Wave Tower</h6>
                                 <p class="agent-details__property-list-item-text">
                                   <img src="assets/images/home-location.svg" alt=""
-                                       class="img-fluid agent-details__property-list-item-text-icon">
+                                    class="img-fluid agent-details__property-list-item-text-icon">
                                   Etihad Tower 4, Etihad Towers, Corniche Road, Abu Dhabi
                                 </p>
                                 <p class="agent-details__property-list-item-type">Hotel & Hotel
@@ -3620,7 +3704,7 @@
                           <div class="row">
                             <div class="col-lg-2">
                               <img src="assets/images/explore-places/1.jpg" alt=""
-                                   class="img-fluid agent-details__property-list-item-img">
+                                class="img-fluid agent-details__property-list-item-img">
                             </div>
                             <div class="col-lg-10">
                               <div class="row">
@@ -3638,7 +3722,7 @@
                               <h6>Blue Wave Tower</h6>
                               <p class="agent-details__property-list-item-text">
                                 <img src="assets/images/home-location.svg" alt=""
-                                     class="img-fluid agent-details__property-list-item-text-icon">
+                                  class="img-fluid agent-details__property-list-item-text-icon">
                                 Etihad Tower 4, Etihad Towers, Corniche Road, Abu Dhabi
                               </p>
                               <p class="agent-details__property-list-item-type">Hotel & Hotel
@@ -3675,7 +3759,7 @@
                           <div class="row">
                             <div class="col-lg-2">
                               <img src="assets/images/explore-places/1.jpg" alt=""
-                                   class="img-fluid agent-details__property-list-item-img">
+                                class="img-fluid agent-details__property-list-item-img">
                             </div>
                             <div class="col-lg-10">
                               <div class="row">
@@ -3693,7 +3777,7 @@
                               <h6>Blue Wave Tower</h6>
                               <p class="agent-details__property-list-item-text">
                                 <img src="assets/images/home-location.svg" alt=""
-                                     class="img-fluid agent-details__property-list-item-text-icon">
+                                  class="img-fluid agent-details__property-list-item-text-icon">
                                 Etihad Tower 4, Etihad Towers, Corniche Road, Abu Dhabi
                               </p>
                               <p class="agent-details__property-list-item-type">Hotel & Hotel
@@ -3730,7 +3814,7 @@
                           <div class="row">
                             <div class="col-lg-2">
                               <img src="assets/images/explore-places/1.jpg" alt=""
-                                   class="img-fluid agent-details__property-list-item-img">
+                                class="img-fluid agent-details__property-list-item-img">
                             </div>
                             <div class="col-lg-10">
                               <div class="row">
@@ -3748,7 +3832,7 @@
                               <h6>Blue Wave Tower</h6>
                               <p class="agent-details__property-list-item-text">
                                 <img src="assets/images/home-location.svg" alt=""
-                                     class="img-fluid agent-details__property-list-item-text-icon">
+                                  class="img-fluid agent-details__property-list-item-text-icon">
                                 Etihad Tower 4, Etihad Towers, Corniche Road, Abu Dhabi
                               </p>
                               <p class="agent-details__property-list-item-type">Hotel & Hotel
@@ -3785,7 +3869,7 @@
                           <div class="row">
                             <div class="col-lg-2">
                               <img src="assets/images/explore-places/1.jpg" alt=""
-                                   class="img-fluid agent-details__property-list-item-img">
+                                class="img-fluid agent-details__property-list-item-img">
                             </div>
                             <div class="col-lg-10">
                               <div class="row">
@@ -3803,7 +3887,7 @@
                               <h6>Blue Wave Tower</h6>
                               <p class="agent-details__property-list-item-text">
                                 <img src="assets/images/home-location.svg" alt=""
-                                     class="img-fluid agent-details__property-list-item-text-icon">
+                                  class="img-fluid agent-details__property-list-item-text-icon">
                                 Etihad Tower 4, Etihad Towers, Corniche Road, Abu Dhabi
                               </p>
                               <p class="agent-details__property-list-item-type">Hotel & Hotel
@@ -3840,7 +3924,7 @@
                           <div class="row">
                             <div class="col-lg-2">
                               <img src="assets/images/explore-places/1.jpg" alt=""
-                                   class="img-fluid agent-details__property-list-item-img">
+                                class="img-fluid agent-details__property-list-item-img">
                             </div>
                             <div class="col-lg-10">
                               <div class="row">
@@ -3858,7 +3942,7 @@
                               <h6>Blue Wave Tower</h6>
                               <p class="agent-details__property-list-item-text">
                                 <img src="assets/images/home-location.svg" alt=""
-                                     class="img-fluid agent-details__property-list-item-text-icon">
+                                  class="img-fluid agent-details__property-list-item-text-icon">
                                 Etihad Tower 4, Etihad Towers, Corniche Road, Abu Dhabi
                               </p>
                               <p class="agent-details__property-list-item-type">Hotel & Hotel
@@ -3895,7 +3979,7 @@
                           <div class="row">
                             <div class="col-lg-2">
                               <img src="assets/images/explore-places/1.jpg" alt=""
-                                   class="img-fluid agent-details__property-list-item-img">
+                                class="img-fluid agent-details__property-list-item-img">
                             </div>
                             <div class="col-lg-10">
                               <div class="row">
@@ -3913,7 +3997,7 @@
                               <h6>Blue Wave Tower</h6>
                               <p class="agent-details__property-list-item-text">
                                 <img src="assets/images/home-location.svg" alt=""
-                                     class="img-fluid agent-details__property-list-item-text-icon">
+                                  class="img-fluid agent-details__property-list-item-text-icon">
                                 Etihad Tower 4, Etihad Towers, Corniche Road, Abu Dhabi
                               </p>
                               <p class="agent-details__property-list-item-type">Hotel & Hotel
@@ -3980,7 +4064,8 @@
                     </div>
                   </div>
                 </div>
-                <section ngClass="my-lead-listing-wrap position-relative wrapper-section properties-slider residentials-property-rent-1">
+                <section
+                  ngClass="my-lead-listing-wrap position-relative wrapper-section properties-slider residentials-property-rent-1">
                   <div ngClass="tab-content">
                     <div id="resedential-rent" class="tab-pane active">
                       <div class="lead-summ-table">
@@ -4009,8 +4094,12 @@
                           </div>
                           <div class="col contact-col">
                             <span>Contact</span>
-                            <div><p>+971 07 XXXX XXXX</p> <a href="#"><img src="{{ViewIcon}}" alt=""></a></div>
-                            <div><p>aliansari@gmail.com</p> <a href="#"><img src="{{CopyIcon}}" alt=""></a></div>
+                            <div>
+                              <p>+971 07 XXXX XXXX</p> <a href="#"><img src="{{ViewIcon}}" alt=""></a>
+                            </div>
+                            <div>
+                              <p>aliansari@gmail.com</p> <a href="#"><img src="{{CopyIcon}}" alt=""></a>
+                            </div>
                           </div>
                           <div class="col">
                             <a href="#" class="view-more">
@@ -4044,8 +4133,12 @@
                           </div>
                           <div class="col contact-col">
                             <span>Contact</span>
-                            <div><p>+971 07 XXXX XXXX</p> <a href="#"><img src="{{ViewIcon}}" alt=""></a></div>
-                            <div><p>aliansari@gmail.com</p> <a href="#"><img src="{{CopyIcon}}" alt=""></a></div>
+                            <div>
+                              <p>+971 07 XXXX XXXX</p> <a href="#"><img src="{{ViewIcon}}" alt=""></a>
+                            </div>
+                            <div>
+                              <p>aliansari@gmail.com</p> <a href="#"><img src="{{CopyIcon}}" alt=""></a>
+                            </div>
                           </div>
                           <div class="col">
                             <a href="#" class="view-more">
@@ -4079,8 +4172,12 @@
                           </div>
                           <div class="col contact-col">
                             <span>Contact</span>
-                            <div><p>+971 07 XXXX XXXX</p> <a href="#"><img src="{{ViewIcon}}" alt=""></a></div>
-                            <div><p>aliansari@gmail.com</p> <a href="#"><img src="{{CopyIcon}}" alt=""></a></div>
+                            <div>
+                              <p>+971 07 XXXX XXXX</p> <a href="#"><img src="{{ViewIcon}}" alt=""></a>
+                            </div>
+                            <div>
+                              <p>aliansari@gmail.com</p> <a href="#"><img src="{{CopyIcon}}" alt=""></a>
+                            </div>
                           </div>
                           <div class="col">
                             <a href="#" class="view-more">
@@ -4152,7 +4249,7 @@
                           <div class="row">
                             <div class="col-lg-2">
                               <img src="assets/images/explore-places/1.jpg" alt=""
-                                   class="img-fluid agent-details__property-list-item-img">
+                                class="img-fluid agent-details__property-list-item-img">
                             </div>
                             <div class="col-lg-10">
                               <div class="row">
@@ -4169,7 +4266,7 @@
                               <h6>Blue Wave Tower</h6>
                               <p class="agent-details__property-list-item-text">
                                 <img src="assets/images/home-location.svg" alt=""
-                                     class="img-fluid agent-details__property-list-item-text-icon">
+                                  class="img-fluid agent-details__property-list-item-text-icon">
                                 Etihad Tower 4, Etihad Towers, Corniche Road, Abu Dhabi
                               </p>
                               <p class="agent-details__property-list-item-type">Hotel & Hotel
@@ -4200,11 +4297,13 @@
                                   <!-- <button class="action-btn"><img src="assets/images/profile/menu-dots.png" alt=""></button> -->
 
                                   <div ngbDropdown class="d-inline-block">
-                                    <button ngClass="grey-bordered-btn action-btn" id="dropdownBasic2" ngbDropdownToggle>
+                                    <button ngClass="grey-bordered-btn action-btn" id="dropdownBasic2"
+                                      ngbDropdownToggle>
                                       <img src="{{menuDots}}" alt=""></button>
                                     <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
                                       <!-- <h5>Share with:</h5> -->
-                                      <button ngbDropdownItem><a href=""><img src="{{viewLeads}}"> View Leads</a></button>
+                                      <button ngbDropdownItem><a href=""><img src="{{viewLeads}}"> View
+                                          Leads</a></button>
                                       <button ngbDropdownItem><a href=""><img src="{{shareicon}}"> Share</a></button>
                                       <button ngbDropdownItem><a href=""><img src="{{deleteIcon}}"> Delete</a></button>
                                       <button ngbDropdownItem><a href=""><img src="{{editIcon}}"> Edit</a></button>
@@ -4219,7 +4318,7 @@
                           <div class="row">
                             <div class="col-lg-2">
                               <img src="assets/images/explore-places/1.jpg" alt=""
-                                   class="img-fluid agent-details__property-list-item-img">
+                                class="img-fluid agent-details__property-list-item-img">
                             </div>
                             <div class="col-lg-10">
                               <div class="row">
@@ -4237,7 +4336,7 @@
                               <h6>Blue Wave Tower</h6>
                               <p class="agent-details__property-list-item-text">
                                 <img src="assets/images/home-location.svg" alt=""
-                                     class="img-fluid agent-details__property-list-item-text-icon">
+                                  class="img-fluid agent-details__property-list-item-text-icon">
                                 Etihad Tower 4, Etihad Towers, Corniche Road, Abu Dhabi
                               </p>
                               <p class="agent-details__property-list-item-type">Hotel & Hotel
@@ -4266,11 +4365,13 @@
                                 <div class="col-md-2 text-right">
                                   <!-- <img src="assets/images/better-home.svg" alt=""> -->
                                   <div ngbDropdown class="d-inline-block">
-                                    <button ngClass="grey-bordered-btn action-btn" id="dropdownBasic2" ngbDropdownToggle>
+                                    <button ngClass="grey-bordered-btn action-btn" id="dropdownBasic2"
+                                      ngbDropdownToggle>
                                       <img src="{{menuDots}}" alt=""></button>
                                     <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
                                       <!-- <h5>Share with:</h5> -->
-                                      <button ngbDropdownItem><a href=""><img src="{{viewLeads}}"> View Leads</a></button>
+                                      <button ngbDropdownItem><a href=""><img src="{{viewLeads}}"> View
+                                          Leads</a></button>
                                       <button ngbDropdownItem><a href=""><img src="{{shareicon}}"> Share</a></button>
                                       <button ngbDropdownItem><a href=""><img src="{{deleteIcon}}"> Delete</a></button>
                                       <button ngbDropdownItem><a href=""><img src="{{editIcon}}"> Edit</a></button>
