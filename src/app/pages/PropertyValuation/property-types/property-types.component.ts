@@ -26,6 +26,7 @@ export class PropertyTypesComponent implements OnInit {
   furnishingType: any;
   fittingType: any;
   featuresFormData: any = [];
+  roadCount:number = 0;
 
   unitHMTL: any = [{ show: true, id: 1 }];
 
@@ -76,8 +77,8 @@ export class PropertyTypesComponent implements OnInit {
     })
   }
   status: boolean = false;
-  addamenties(){
-      this.status = !this.status;
+  addamenties() {
+    this.status = !this.status;
   }
   loadType(e: number) {
     this.formData.PropertyCategoryId = e;
@@ -119,7 +120,7 @@ export class PropertyTypesComponent implements OnInit {
     this.formData.ValuationPurposeId = e.value;
   }
   getRoads(id: any) {
-    this.formData.NoOfRoads = id;
+    this.roadCount = id;
   }
   getBeds(e: any) {
     this.formData.Bedrooms = e.value;
@@ -141,7 +142,7 @@ export class PropertyTypesComponent implements OnInit {
     }
   }
   mapFeaturesFormData() {
-    
+
   }
   addUnits() {
     this.unitHMTL.push({ show: true, id: this.unitHMTL[this.unitHMTL.length - 1].id + 1 });
@@ -159,6 +160,29 @@ export class PropertyTypesComponent implements OnInit {
     this.formData.BuildupArea = this.propertyTypeForm.value.buildupArea;
     this.formData.Elevation = this.propertyTypeForm.value.elevation;
     this.formData.ConstructionAge = this.propertyTypeForm.value.constructionAge;
+    this.formData.NoOfRoads = this.roadCount;
+    this.formData.ValuationPropertyUnits = "";
+    let temp:any = [];
+    for (let i = 0; i < this.unitHMTL.length; i++) {
+      if(this.unitHMTL[i].show) {
+        temp.push({PropertyUnitTypeId:$("#unit-wrapper-"+this.unitHMTL[i].id).find(".mat-select-min-line").text(),NumberOfUnit:$("#unit-wrapper-"+this.unitHMTL[i].id).find(".no-of-units").val(),Vacant:$("#unit-wrapper-"+this.unitHMTL[i].id).find(".vacant").val(),UnitSize:$("#unit-wrapper-"+this.unitHMTL[i].id).find(".size-sq-ft").val(),NumberOfBeds:$("#unit-wrapper-"+this.unitHMTL[i].id).find(".bedroom").val(),RentValue:$("#unit-wrapper-"+this.unitHMTL[i].id).find(".rent-value").val()});
+      }
+    }
+    let unitName:any = [];
+    let unitID:any = [];
+    for (let i = 0 ; i < this.propertyUnits.length; i++) {
+      unitName.push(this.propertyUnits[i].name);
+      unitID.push(this.propertyUnits[i].id);
+    }
+    for (let i = 0 ; i < temp.length; i++) {
+      temp[i].PropertyUnitTypeId = unitID[unitName.indexOf(temp[i].PropertyUnitTypeId)];
+    }
+    this.formData.ValuationPropertyUnits = temp;
+    temp = []
+    for (let i = 0; i < this.featuresFormData.length; i++) {
+      temp.push({ PropertyFeatureId: this.featuresFormData[i] });
+    }
+    this.formData.PropertyFeatures = temp;
     console.log(this.formData);
   }
 }

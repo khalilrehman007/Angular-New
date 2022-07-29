@@ -71,7 +71,7 @@
                                         <div ngClass="block-wrapper mb-4 select-design">
                                             <label class="h6-design">Purpose of Valuation*</label>
                                             <mat-form-field appearance="fill">
-                                                <mat-label>Select The Purpsoe</mat-label>
+                                                <mat-label>Select The Purpose</mat-label>
                                                 <mat-select (selectionChange)="onPurposeSelect($event)">
                                                     <mat-option *ngFor="let item of purposeOfValuation"
                                                         [value]="item.id">
@@ -256,7 +256,7 @@
                                                     <label class="h6-design">NUMBER OF UNITS <span
                                                             ngClass="required">*</span></label>
                                                     <mat-form-field class="full-width input-design-2" appearance="fill">
-                                                        <input matInput type="number" placeholder="Eg. 9999999">
+                                                        <input class="no-of-units" matInput type="number" placeholder="Eg. 9999999">
                                                     </mat-form-field>
                                                 </div>
                                             </div>
@@ -265,7 +265,7 @@
                                                     <label class="h6-design">VACANT <span
                                                             ngClass="required">*</span></label>
                                                     <mat-form-field class="full-width input-design-2" appearance="fill">
-                                                        <input matInput type="number" placeholder="Eg. 9999999">
+                                                        <input class="vacant" matInput type="number" placeholder="Eg. 9999999">
                                                     </mat-form-field>
                                                 </div>
                                             </div>
@@ -274,7 +274,7 @@
                                                     <label class="h6-design">UNIT SIZE PER SQ.FT <span
                                                             ngClass="required">*</span></label>
                                                     <mat-form-field class="full-width input-design-2" appearance="fill">
-                                                        <input matInput type="number" placeholder="Eg. 9999999">
+                                                        <input class="size-sq-ft" matInput type="number" placeholder="Eg. 9999999">
                                                     </mat-form-field>
                                                 </div>
                                             </div>
@@ -283,16 +283,16 @@
                                                     <label class="h6-design">BEDROOM <span
                                                             ngClass="required">*</span></label>
                                                     <mat-form-field class="full-width input-design-2" appearance="fill">
-                                                        <input matInput type="number" placeholder="Eg. 9999999">
+                                                        <input class="bedroom" matInput type="number" placeholder="Eg. 9999999">
                                                     </mat-form-field>
                                                 </div>
                                             </div>
                                             <div ngClass="col-xl-3 col-lg-3 col-sm-12">
                                                 <div ngClass="block-wrapper mb-4">
-                                                    <label class="h6-design">UNIT SIZE PER YEAR <span
+                                                    <label class="h6-design">RENT VALUE PER YEAR<span
                                                             ngClass="required">*</span></label>
                                                     <mat-form-field class="full-width input-design-2" appearance="fill">
-                                                        <input matInput type="number" placeholder="Eg. 9999999">
+                                                        <input class="rent-value" matInput type="number" placeholder="Eg. 9999999">
                                                     </mat-form-field>
                                                 </div>
                                             </div>
