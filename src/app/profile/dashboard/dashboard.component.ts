@@ -177,7 +177,7 @@ export class DashboardComponent implements OnInit {
 
   tabCounts :any = {}
   getTabCount(){
-    this.service.LoadListingDashboard({"UserId":35,"PropertyListingTypeId": this.parentTabId }).subscribe(data => {
+    this.service.LoadListingDashboard({"UserId":this.user.id,"PropertyListingTypeId": this.parentTabId }).subscribe(data => {
       let temp: any = data;
       let jsonData :any = JSON.stringify(temp.data)
       let jsonParsDate :any = JSON.parse(jsonData);
@@ -291,7 +291,7 @@ export class DashboardComponent implements OnInit {
   }
 
   getloadDashboardData() {
-    this.service.LoadDashboardData(35).subscribe(e => {
+    this.service.LoadDashboardData(this.user.id).subscribe(e => {
       let temp: any = e;
       let jsonData :any = JSON.stringify(temp.data)
       let jsonParsDate :any = JSON.parse(jsonData);
@@ -302,7 +302,7 @@ export class DashboardComponent implements OnInit {
   listingAll:any = [];
   getLoadListing(){
     let tempData :Array<Object> = []
-    this.service.LoadListing({"UserId":35,"PropertyListingTypeId": this.parentTabId , "PropertyListingStatusId":this.childTabId }).subscribe(data=>{
+    this.service.LoadListing({"UserId":this.user.id,"PropertyListingTypeId": this.parentTabId , "PropertyListingStatusId":this.childTabId }).subscribe(data=>{
       let response: any = data;
       response.data.forEach((element, i) => {
         let image :any;
