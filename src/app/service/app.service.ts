@@ -193,12 +193,13 @@ export class AppService {
   UpdateProfile(data:any) {
     return this.http.post(this.apiurl + 'UpdateProfile', data);
   }
-
   StoreLead(data: any) {
     return this.http.post(this.apiurl + 'AddUserLead', data);
   }
-
   DisplayPropertyListing(id) {
     return this.http.get(this.apiurl + 'DisplayPropertyListing/'+id);
+  }
+  ChangePassword(data: any) {
+    return this.http.post(this.apiurl + 'ChangePassword', data);
   }
 }
