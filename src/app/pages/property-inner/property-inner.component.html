@@ -1,7 +1,7 @@
 <header>
     <app-header></app-header>
 </header>
-<section [ngClass]="'inner-cntnt-wrapper'">
+<section [ngClass]="'inner-cntnt-wrapper'" >
     <section [ngClass]="'property-listing-inner-wrapper slide-left-bar'">
         <div [ngClass]="'container_1280px'">
             <div ngClass="property-details-header">
@@ -21,18 +21,18 @@
                 <div ngClass="row">
                     <div ngClass="col-xl-4 col-lg-4 col-md-12 col-sm-12">
                         <div ngClass="property-price_detals">
-                            <h4>85,000 AED <small>/yearly</small></h4>
+                            <h4>{{propertyDetail.propertyListing.propertyPrice}} {{propertyDetail.propertyListing.country.currency}}<small>/{{propertyDetail.propertyListing.rentType}}</small></h4>
                             <div ngClass="property-tags d-flex flex-wrap">
-                                <span ngClass="tags-bg-grey">Brokrage: 500 AED</span>
-                                <span ngClass="tags-bg-grey">Security deposit: 1000 AED</span>
+                                <span ngClass="tags-bg-grey">Brokrage: {{propertyDetail.propertyListing.brokerageChargePrice}} {{propertyDetail.propertyListing.country.currency}}</span>
+                                <span ngClass="tags-bg-grey">Security deposit: {{propertyDetail.propertyListing.securityDepositPrice}} {{propertyDetail.propertyListing.country.currency}}</span>
                             </div>
                         </div>
                     </div>
                     <div ngClass="col-xl-5 col-lg-4 col-md-12 col-sm-12">
                         <div ngClass="property-name_detals">
-                            <h4>Blue Wave Tower</h4>
+                            <h4>{{propertyDetail.propertyListing.buildingName}}</h4>
                             <div ngClass="property-addresss">
-                                <p><img src="{{homelocationsvg}}"> Etihad Tower 4, Etihad Towers, Corniche Road, Abu Dhabi <a routerLink="">District Name</a></p>
+                                <p><img src="{{homelocationsvg}}"> {{propertyDetail.propertyListing.propertyAddress}} <a routerLink="">District Name</a></p>
                             </div>
                         </div>
                     </div>
@@ -50,8 +50,8 @@
              <div ngClass="col-xl-8 col-lg-8 col-md-12 col-sm-12">
             <div ngClass="property-gallery-sec">
                 <ngb-carousel [showNavigationArrows]="false">
-                    <ng-template ngbSlide *ngFor="let event of eventlist">
-                      <img [src]="event.img" alt="Random slide">
+                    <ng-template ngbSlide *ngFor="let event of propertyDetail.propertyListing.documents">
+                      <img [src]="baseUrl+event.fileUrl" alt="Random slide">
                     </ng-template>
                   </ngb-carousel>
             </div>
@@ -80,16 +80,16 @@
                                         <h6>Hotel & Hotel Apartment</h6>
                                         <div ngClass="property-details-highlights">
                                             <span ngClass="bed">
-                                                <img src="{{bedsvg}}" alt="">3 Beds
+                                                <img src="{{bedsvg}}" alt="">{{propertyDetail.propertyListing.bedrooms}} Beds
                                             </span>
                                             <span ngClass="bath">
-                                                <img src="{{bathsvg}}" alt="">2Bath
+                                                <img src="{{bathsvg}}" alt="">{{propertyDetail.propertyListing.bathrooms}} Bath
                                             </span>
                                             <span ngClass="area">
-                                                <img src="{{squaremetersvg}}" alt="">8000sqft
+                                                <img src="{{squaremetersvg}}" alt="">{{propertyDetail.propertyListing.carpetArea}}{{propertyDetail.propertyListing.country.unitType}}
                                             </span>
                                             <span ngClass="furnishing">
-                                                <img src="{{furnishing}}" alt="">Furnished
+                                                <img src="{{furnishing}}" alt="">{{propertyDetail.propertyListing.furnishingType}}
                                             </span>
                                         </div>
                                     </div>
@@ -105,8 +105,7 @@
                                     </div>
                                     <div ngClass="description-block-design">
                                         <h4>Property Description</h4>
-                                        <p>Brought to you by Driven Properties, this 3 Bedroom Apartment is located in The Address Sky View Tower 2, Downtown Dubai.Downtown Dubai is the city’s busy tourism hub. A home to the towering Burj Khalifa skyscraper,
-                                            with its observation deck, and the dancing Dubai Fountain where crowds gather to watch music and light shows</p>
+                                        <p>{{propertyDetail.propertyListing.propertyDescription}}</p>
                                         <div ngClass="read-more-div text-right">
                                             <a routerLink="" ngClass="read-more-link">Read more</a>
                                         </div>
@@ -170,8 +169,8 @@
                                                 <div ngClass="location-address">
                                                     <h4>OV 3456 890 987</h4>
                                                     <h5>Blue Wave Tower</h5>
-                                                    <address>Etihad Tower 4, Etihad Towers, 
-                                                Corniche Road, Abu Dhabi    
+                                                    <address>Etihad Tower 4, Etihad Towers,
+                                                Corniche Road, Abu Dhabi
                                                 <a routerLink="">District Name</a>
                                             </address>
                                                 </div>
@@ -213,17 +212,17 @@
                         <div ngClass="property-owner-details">
                             <div ngClass="property-listed-by">
                                 <h4>Property Listed by</h4>
-                                <img src="{{propertylistedbrand}}">
+                                  <img src="{{propertylistedbrand}}">
                             </div>
                             <div ngClass="property-listed-by-details d-flex">
                                 <div ngClass="property-listedby-img position-relative">
                                     <div ngClass="white-circle-outline">
-                                        <img src="{{propertylisteby}}">
+                                        <img src="{{baseUrl}}{{propertyDetail.user.imageUrl}}">
                                     </div>
                                     <button ngClass="agent-or-owner-btn">Agent</button>
                                 </div>
                                 <div ngClass="property-listedby-cntnt">
-                                    <h5 ngClass="propertier-name">Olga Pikina</h5>
+                                    <h5 ngClass="propertier-name">{{propertyDetail.user.fullName}}</h5>
                                     <p ngClass="propertier-type">Sales Director</p>
                                     <p ngClass="properties-name">
                                         Better Homes Properties
@@ -234,33 +233,33 @@
                                 </div>
                             </div>
                             <div ngClass="contact-propertier-form">
-                                <form>
+                                <form [formGroup]="SubmitForm">
                                     <div ngClass="form-grouph input-design white-input-design">
                                         <mat-form-field class="example-full-width" appearance="fill">
-                                            <mat-label>Name*</mat-label>
-                                            <input type="text" matInput placeholder="Location, Project Name">
+                                            <mat-label>Name</mat-label>
+                                            <input type="text" formControlName="name" matInput placeholder="Location, Project Name">
                                         </mat-form-field>
                                     </div>
                                     <div ngClass="form-grouph input-design white-input-design">
                                         <mat-form-field class="example-full-width" appearance="fill">
-                                            <mat-label>Email*</mat-label>
-                                            <input type="email" matInput placeholder="Location, Project Name">
+                                            <mat-label>Email</mat-label>
+                                            <input type="email" formControlName="email" matInput placeholder="Location, Project Name">
                                         </mat-form-field>
                                     </div>
                                     <div ngClass="form-grouph input-design white-input-design">
                                         <mat-form-field class="example-full-width" appearance="fill">
-                                            <mat-label>Phone No.*</mat-label>
-                                            <input type="email" matInput placeholder="Location, Project Name">
+                                            <mat-label>Phone No.</mat-label>
+                                            <input type="text" formControlName="phone" matInput placeholder="Location, Project Name">
                                         </mat-form-field>
                                     </div>
                                     <div ngClass="form-grouph textarea-design white-input-design">
                                         <mat-form-field class="example-full-width" appearance="fill">
                                             <mat-label>Message</mat-label>
-                                            <textarea matInput placeholder="I would like to inquire about the property OV - R8986. Please contact me at your earliest convenience."></textarea>
+                                            <textarea matInput formControlName="message" placeholder="I would like to inquire about the property OV - R8986. Please contact me at your earliest convenience."></textarea>
                                         </mat-form-field>
                                     </div>
                                     <div ngClass="form-grouph submit-design submit-design-email-send">
-                                        <button type="submit" ngClass="btn-design-3">Send Email</button>
+                                        <button type="button" (click)="leadProceedStore()" ngClass="btn-design-3">Send Email</button>
                                     </div>
                                 </form>
                             </div>
@@ -329,7 +328,7 @@
             </div>
         </div>
     </section>
-</section>
+</section  >
 <div ngClass="gallery-modal-design">
     <ng-template #content let-modal>
         <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
@@ -338,18 +337,18 @@
                 <div ngClass="row">
                     <div ngClass="col-xl-4 col-lg-4 col-md-12 col-sm-12">
                         <div ngClass="property-price_detals">
-                            <h4>85,000 AED <small>/yearly</small></h4>
+                            <h4>{{propertyDetail.propertyListing.propertyPrice}} {{propertyDetail.propertyListing.country.currency}} <small>/{{propertyDetail.propertyListing.rentType}}</small></h4>
                             <div ngClass="property-tags d-flex flex-wrap">
-                                <span ngClass="tags-bg-grey">Brokrage: 500 AED</span>
-                                <span ngClass="tags-bg-grey">Security deposit: 1000 AED</span>
+                                <span ngClass="tags-bg-grey">Brokrage: {{propertyDetail.propertyListing.brokerageChargePrice}} {{propertyDetail.propertyListing.country.currency}}</span>
+                                <span ngClass="tags-bg-grey">Security deposit: {{propertyDetail.propertyListing.securityDepositPrice}} {{propertyDetail.propertyListing.country.currency}}</span>
                             </div>
                         </div>
                     </div>
                     <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                         <div ngClass="property-name_detals">
-                            <h4>Blue Wave Tower</h4>
+                            <h4>{{propertyDetail.propertyListing.buildingName}}</h4>
                             <div ngClass="property-addresss">
-                                <p><img src="{{homeaddress}}"> Etihad Tower 4, Etihad Towers, Corniche Road, Abu Dhabi <a routerLink="">District Name</a></p>
+                                <p><img src="{{homeaddress}}"> {{propertyDetail.propertyListing.propertyAddress}} <a routerLink="">District Name</a></p>
                             </div>
                         </div>
                     </div>
@@ -361,8 +360,8 @@
                 </div>
             </div>
             <ngb-carousel [showNavigationIndicators]="false">
-                <ng-template ngbSlide *ngFor="let event of eventlist">
-                    <img [src]="event.img" alt="Random slide">
+                <ng-template ngbSlide *ngFor="let event of propertyDetail.propertyListing.documents">
+                    <img [src]="baseUrl+event.fileUrl" alt="Random slide">
                 </ng-template>
             </ngb-carousel>
         </div>

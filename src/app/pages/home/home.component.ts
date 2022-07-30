@@ -51,11 +51,14 @@ export class HomeComponent implements OnInit {
         tempData.push(
           {
             title: element.propertyTitle,
+            rentType: element.rentType.name,
+            currency: element.country.currency,
             price: element.propertyPrice,
             id:element.id,
             alt:element.propertyTitle,
             src:this.baseUrl+image,
             bedrooms:element.bedrooms,
+            propertyAddress:element.propertyAddress,
             bathrooms:element.bathrooms,
             buildingName:element.buildingName,
             carpetArea:element.carpetArea,
@@ -113,6 +116,9 @@ export class HomeComponent implements OnInit {
           {
             title: element.propertyTitle,
             price: element.propertyPrice,
+            rentType: element.rentType.name,
+            currency: element.country.currency,
+            propertyAddress:element.propertyAddress,
             id:element.id,
             alt:element.propertyTitle,
             src:this.baseUrl+image,
@@ -140,6 +146,9 @@ export class HomeComponent implements OnInit {
           {
             title: element.propertyTitle,
             price: element.propertyPrice,
+            rentType: element.rentType.name,
+            currency: element.country.currency,
+            propertyAddress:element.propertyAddress,
             id:element.id,
             alt:element.propertyTitle,
             src:this.baseUrl+image,
@@ -163,6 +172,9 @@ export class HomeComponent implements OnInit {
           {
             title: element.propertyTitle,
             price: element.propertyPrice,
+            rentType: element.rentType.name,
+            currency: element.country.currency,
+            propertyAddress:element.propertyAddress,
             id:element.id,
             alt:element.propertyTitle,
             src:this.baseUrl+image,

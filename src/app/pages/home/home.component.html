@@ -156,7 +156,7 @@
                     </svg>
                   </button>
                       <div ngClass="property-info">
-                        <span ngClass="property-pricing"><span>{{ slide.price }}</span> /yearly</span>
+                        <span ngClass="property-pricing"><span>{{ slide.price }} {{ slide.currency }}</span> / {{slide.rentType}}</span>
                         <span ngClass="property-name">{{ slide.buildingName }}</span>
                         <p ngClass="property-location">
                       <img src="{{ homelocationsvg }}" width="14" alt=""/>{{slide.propertyAddress}}
@@ -171,9 +171,7 @@
                         Bath
                       </span>
                       <span ngClass="area">
-                        <img src="{{ squaremetersvg }}" alt="" />{{
-                        slide.carpetArea
-                        }}
+                        <img src="{{ squaremetersvg }}" alt="" />{{slide.carpetArea}}
                         Sqft
                       </span>
                     </div>
@@ -210,20 +208,20 @@
                     </svg>
                   </button>
                   <div ngClass="property-info">
-                    <span ngClass="property-pricing"><span>{{ slide.price }}</span> /yearly</span>
+                    <span ngClass="property-pricing"><span>{{ slide.price }} {{ slide.currency }}</span> / {{slide.rentType}}</span>
                     <span ngClass="property-name">{{slide.buildingName}}</span>
                     <p ngClass="property-location">
                       <img src="{{ homelocationsvg }}" width="14" alt="" />{{slide.propertyAddress}}
                     </p>
                     <div ngClass="property-details">
                       <span ngClass="bed">
-                        <img src="{{ bedsvg }}" alt="" />3 Beds
+                        <img src="{{ bedsvg }}" alt="" />{{ slide.bedrooms }} Beds
                       </span>
                       <span ngClass="bath">
-                        <img src="{{ bathsvg }}" alt="" />2Bath
+                        <img src="{{ bathsvg }}" alt="" />{{ slide.bathrooms }} Bath
                       </span>
                       <span ngClass="area">
-                        <img src="{{ squaremetersvg }}" alt="" />800sqft
+                        <img src="{{ squaremetersvg }}" alt="" />{{slide.carpetArea}} sqft
                       </span>
                     </div>
                   </div>
@@ -309,7 +307,7 @@
                     </svg>
                   </button>
                   <div ngClass="property-info">
-                  <span ngClass="property-pricing"><span>{{ slide.price }}</span> /yearly</span>
+                  <span ngClass="property-pricing"><span>{{ slide.price }} {{ slide.currency }}</span> / {{slide.rentType}}</span>
                     <span ngClass="property-name">{{slide.buildingName}}</span>
                     <p ngClass="property-location">
                       <img src="{{ homelocationsvg }}" width="14" alt="" />{{slide.propertyAddress}}
@@ -356,20 +354,20 @@
                     </svg>
                   </button>
                   <div ngClass="property-info">
-                    <span ngClass="property-pricing"><span>350,000 AED</span> /yearly</span>
-                    <span ngClass="property-name">Blue Wave Tower</span>
+                    <span ngClass="property-pricing"><span>{{ slide.price }} {{ slide.currency }}</span> / {{slide.rentType}}</span>
+                    <span ngClass="property-name">{{slide.buildingName}}</span>
                     <p ngClass="property-location">
                       <img src="{{ homelocationsvg }}" width="14" alt="" />{{slide.propertyAddress}}
                     </p>
                     <div ngClass="property-details">
                       <span ngClass="bed">
-                        <img src="{{ bedsvg }}" alt="" />3 Beds
+                        <img src="{{ bedsvg }}" alt="" />{{slide.bedrooms}} Beds
                       </span>
                       <span ngClass="bath">
-                        <img src="{{ bathsvg }}" alt="" />2Bath
+                        <img src="{{ bathsvg }}" alt="" />{{slide.bathrooms}} Bath
                       </span>
                       <span ngClass="area">
-                        <img src="{{ squaremetersvg }}" alt="" />800sqft
+                        <img src="{{ squaremetersvg }}" alt="" />{{ slide.carpetArea }} sqft
                       </span>
                     </div>
                   </div>

@@ -3,6 +3,10 @@ import { HeaderComponent } from '../../header/header.component';
 import { FooterComponent } from '../../footer/footer.component';
 import { BreadcrumbComponent } from '../../breadcrumb/breadcrumb.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {AppService} from "../../service/app.service";
+import {ActivatedRoute, Router} from "@angular/router";
+import {NotificationService} from "../../service/notification.service";
 
 
 @Component({
@@ -36,6 +40,8 @@ export class PropertyInnerComponent implements OnInit {
   videocall = 'assets/images/icons/video-call.svg'
   virtual = 'assets/images/icons/virtual-tour.svg'
   homeaddress = 'assets/images/icons/home-location-white.svg'
+  user : any
+  baseUrl = 'https://beta.ovaluate.com/'
 
   eventlist = [
     {
@@ -245,13 +251,98 @@ export class PropertyInnerComponent implements OnInit {
     },
   ]
   closeResult: string;
-  constructor(private modalService: NgbModal) {}
+  propertyDetail :any;
+  constructor(private activeRoute: ActivatedRoute,private modalService: NgbModal,private service:AppService,private route:Router,private notifyService : NotificationService) {
+    this.getUser();
+    this.getloadDashboardData();
+  }
 
   openVerticallyCentered(content) {
     this.modalService.open(content, { centered: true });
   }
 
+  propertyId :any;
   ngOnInit(): void {
+    this.activeRoute.params.subscribe(params => {
+      this.propertyId = params['id']
+    });
+  }
+
+  isload :any= false
+  getloadDashboardData() {
+    this.service.DisplayPropertyListing(31).subscribe(e => {
+      let temp: any = e;
+      let jsonData :any = JSON.stringify(temp.data)
+      let jsonParsDate :any = JSON.parse(jsonData);
+
+      this.propertyDetail = jsonParsDate
+      this.isload = true
+      console.log(this.propertyDetail)
+
+      if(this.propertyDetail.propertyListing.documents[0].fileUrl != null){
+        this.thumb1 = this.baseUrl+this.propertyDetail.propertyListing.documents[0].fileUrl;
+      }
+      if(this.propertyDetail.propertyListing.documents[1].fileUrl != null){
+        this.thumb1 = this.baseUrl+this.propertyDetail.propertyListing.documents[1].fileUrl;
+      }
+    });
+  }
+
+
+  SubmitForm = new FormGroup({
+    name : new FormControl("", Validators.required),
+    email : new FormControl("", Validators.required),
+    phone : new FormControl("", Validators.required),
+    message : new FormControl("", Validators.required),
+  });
+
+  responsedata: any;
+  leadData    : any = {};
+  leadProceedStore(){
+    if (this.SubmitForm.invalid) {
+      return;
+    }
+    // if(this.user == null ){
+    //   this.route.navigate(['login'])
+    //   this.notifyService.showWarning('First you need login!', "Warning");
+    // }
+    if (this.SubmitForm.valid) {
+      this.leadData.name = this.SubmitForm.value.name
+      this.leadData.email = this.SubmitForm.value.email
+      this.leadData.phone = this.SubmitForm.value.phone
+      this.leadData.message = this.SubmitForm.value.message
+      this.leadData.PropertyListingId = this.propertyId
+      this.leadData.UserId = this.propertyDetail.user.id
+
+      this.service.StoreLead(this.leadData).subscribe(result => {
+        if(result!=null){
+          this.responsedata = result;
+          if(this.responsedata.message == "User Lead  submitted successfully"){
+            if(this.responsedata.data !== undefined && this.responsedata.error.length < 1){
+              this.SubmitForm.controls.name.setValue('');
+              this.SubmitForm.controls.email.setValue('');
+              this.SubmitForm.controls.phone.setValue('');
+              this.SubmitForm.controls.message.setValue('');
+
+              this.notifyService.showSuccess(this.responsedata.message, "");
+            }else{
+              this.notifyService.showError(this.responsedata.error[0], "");
+            }
+          }
+        }else{
+          this.notifyService.showError("User Lead  submitted Failed", "");
+        }
+      });
+    }
+
+  }
+
+  getUser(){
+    this.user = localStorage.getItem('user');
+    if(this.user != ''){
+      this.user = JSON.parse(this.user);
+    }
+    return this.user;
   }
 
 }

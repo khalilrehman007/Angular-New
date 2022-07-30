@@ -189,4 +189,12 @@ export class AppService {
   OvaluateOfferings() {
     return this.http.get(this.apiurl + 'OvaluateOfferings');
   }
+
+  StoreLead(data: any) {
+    return this.http.post(this.apiurl + 'AddUserLead', data);
+  }
+
+  DisplayPropertyListing(id) {
+    return this.http.get(this.apiurl + 'DisplayPropertyListing/'+id);
+  }
 }
