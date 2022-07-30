@@ -1,5 +1,6 @@
 <app-header></app-header>
-<div ngClass="container_1220px">
+<section [ngClass]="'profile_main-sec slide-left-bar'">
+<div ngClass="container_1280px">
   <!-- <h2 style="text-align: center;" >Welcome To Profile {{user.fullName}}</h2> -->
   <!-- <h2 style="text-align: center;" >Welcome To Profile Ahmed Yusef</h2> -->
   <div ngClass="user-info-sec">
@@ -54,11 +55,10 @@
   </div>
 
 </div>
-
 <div class="tab-nav-main">
 
   <div class="tab-wrap">
-    <div ngClass="container_1220px">
+    <div ngClass="container_1280px">
       <ul class="nav nav-pills" id="pills-tab" role="tablist">
         <li class="nav-item" role="presentation">
           <button class="nav-link active" id="pills-dashboard-tab" data-bs-toggle="pill"
@@ -105,8 +105,6 @@
   <div ngClass="container_1220px">
     <div class="tab-content" id="pills-tabContent">
       <div class="tab-pane fade show active" id="pills-dashboard" role="tabpanel" aria-labelledby="pills-dashboard-tab">
-
-
         <div class="free-proplisting">
           <div class="first-title">
             <h3 class="title">FREE Property Listing</h3>
@@ -120,7 +118,6 @@
           </ul>
           <a href="#" class="btn btn-primary">List Property</a>
         </div>
-
         <div class="statictics-wrap">
           <div class="row">
             <div class="col-md-6">
@@ -161,15 +158,12 @@
                   </ul>
                 </div>
                 <div class="image-area">
-                  <img src="{{ValuationVect}}" alt="">
+                  <img src="{{ValuationVect}}">
                 </div>
               </div>
             </div>
           </div>
         </div>
-
-
-
         <div class="card mt-5">
           <section ngClass="position-relative wrapper-section properties-slider residentials-property-rent-1">
             <div ngClass="section-title">
@@ -342,9 +336,6 @@
             </div>
           </section>
         </div>
-
-
-
         <section ngClass="position-relative wrapper-section blogs_sec mt-5">
           <div ngClass="container_1220px">
             <div ngClass="section-title">
@@ -1988,10 +1979,62 @@
           <div class="sub-tab-nav">
             <mat-tab-group>
               <mat-tab label="All ({{totalValuation}})">
-                <div class="no-data-found">
-                  <mat-icon>file_copy</mat-icon>
-                  <p>No Data Found</p>
+                <div ngClass="my-valuation-list-wrapper">
+                 <div ngClass="my-valuation-list-design d-flex">
+                  <div ngClass="my_valuation-inner-div valuation_property-name">
+                     <div ngClass="valuation_property-name-first">
+                         <span ngClass="val_pro-number">1</span>
+                     </div>
+                     <div ngClass="valuation_property-name-scnd">
+                       <p ngClass="property_id">OV-RA-1000</p>
+                       <p ngClass="property_date">06 Jul 2022</p>
+                  </div>
+                 </div>
+                  <div ngClass="my_valuation-inner-div category">
+                     <h6>Category</h6>
+                     <p>Residental</p>
+                  </div>
+                  <div ngClass="my_valuation-inner-div place">
+                    <h6>Place</h6>
+                    <p>Dubai</p>
+                 </div>
+                 <div ngClass="my_valuation-inner-div property_type">
+                  <h6>Property Type</h6>
+                  <p>Apartment</p>
+               </div>
+               <div ngClass="my_valuation-inner-div payemnt">
+                 <a routerLink="/PropertyPayment" ngClass="payment pending">Payment Pending</a>
                 </div>
+                 </div>
+
+                 <div ngClass="my-valuation-list-design d-flex">
+                  <div ngClass="my_valuation-inner-div valuation_property-name">
+                    <div ngClass="valuation_property-name-first">
+                        <span ngClass="val_pro-number">1</span>
+                    </div>
+                    <div ngClass="valuation_property-name-scnd">
+                      <p ngClass="property_id">OV-RA-1000</p>
+                      <p ngClass="property_date">06 Jul 2022</p>
+                 </div>
+                </div>
+                  <div ngClass="my_valuation-inner-div category">
+                     <h6>Category</h6>
+                     <p>Residental</p>
+                  </div>
+                  <div ngClass="my_valuation-inner-div place">
+                    <h6>Place</h6>
+                    <p>Dubai</p>
+                 </div>
+                 <div ngClass="my_valuation-inner-div property_type">
+                  <h6>Property Type</h6>
+                  <p>Apartment</p>
+               </div>
+               <div ngClass="my_valuation-inner-div payemnt">
+                 <p ngClass="payment success"><mat-icon>check_circle</mat-icon> Submitted</p>
+                 <a routerLink="/PropertyDownloadReport" ngClass="download-pdf">Download Pdf</a>
+               </div>
+                 </div>
+                 </div>
               </mat-tab>
               <mat-tab label="{{residential}} ({{totalRestentailValuation}})"> Residential</mat-tab>
               <mat-tab label="{{commercial}} ({{totalCommercialValuation}})"> Commercial</mat-tab>
@@ -4444,4 +4487,5 @@
   </div> -->
   </div>
 </div>
+</section>
 <app-footer></app-footer>
