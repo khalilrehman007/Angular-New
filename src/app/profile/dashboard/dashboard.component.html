@@ -46,7 +46,7 @@
           <img src="{{proAvatar}}" alt="" class="user-img">
         </div>
         <label for="proImg" class="edit-pro-img">
-          <input type="file" id="proImg">
+          <input type="file" id="proImg" (change)="getImage($event)">
           <img src="{{proImgEdit}}" alt="">
         </label>
       </div>
@@ -2011,7 +2011,6 @@
                   <div class="col-md-9">
 
                     <form [formGroup]="detailForm">
-                      <!-- form-border-wrapper -->
                       <div class="">
                         <div class="list-new-proerty-cntnt">
 
@@ -2115,7 +2114,7 @@
                             </div>
 
                             <div class="save-continue-sec">
-                              <mat-card-actions>
+                              <mat-card-actions (click)="getData()">
                                 <a class="save-continue-btn">Save</a>
                               </mat-card-actions>
                             </div>
