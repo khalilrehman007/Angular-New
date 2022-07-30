@@ -180,8 +180,9 @@ export class DashboardComponent implements OnInit {
       parentTabId = 2
     }
     this.parentTabId = parentTabId
+    this.childTabId = ''
     this.getTabCount();
-    this.getLoadListing()
+    this.getLoadListing();
   }
 
 
@@ -189,7 +190,7 @@ export class DashboardComponent implements OnInit {
   public childTabsChange(id) {
     this.childTabId = id
     this.getTabCount();
-    this.getLoadListing()
+    this.getLoadListing();
   }
 
   tabCounts :any = {}
@@ -310,7 +311,7 @@ export class DashboardComponent implements OnInit {
     this.cityId = e.value;
   }
   getGender(id:number) {
-    
+
   }
   getloadDashboardData() {
     this.service.LoadDashboardData(35).subscribe(e => {
