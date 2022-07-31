@@ -21,8 +21,8 @@
                     <div ngClass="price-range_sec">
                       <div ngClass="extra-controls form-inline">
                         <div ngClass="form-group">
-                          <input type="number" [(ngModel)]="minValue" placeholder="100,000">
-                          <input type="number" [(ngModel)]="maxValue" placeholder="Any">
+                          <input type="number" formControlName="PriceStart" [(ngModel)]="minValue" placeholder="100,000">
+                          <input type="number" formControlName="PriceEnd" [(ngModel)]="maxValue" placeholder="Any">
                         </div>
                       </div>
                       <div ngClass="range-slider">
@@ -37,8 +37,8 @@
                     <div ngClass="price-range_sec">
                       <div ngClass="extra-controls form-inline">
                         <div ngClass="form-group">
-                          <input type="number" [(ngModel)]="minValue1" placeholder="100,000">
-                          <input type="number" [(ngModel)]="maxValue1" placeholder="Any">
+                          <input type="number" formControlName="PriceStart" [(ngModel)]="minValue1" placeholder="100,000">
+                          <input type="number" formControlName="PriceEnd" [(ngModel)]="maxValue1" placeholder="Any">
                         </div>
                       </div>
                       <div ngClass="range-slider">
@@ -53,12 +53,12 @@
                     <div ngClass="price-range_sec">
                       <div ngClass="extra-controls form-inline">
                         <div ngClass="form-group">
-                          <input type="number" [(ngModel)]="minValue1" placeholder="100,000">
-                          <input type="number" [(ngModel)]="maxValue1" placeholder="Any">
+                          <input type="number" formControlName="PriceStart" [(ngModel)]="minValue2" placeholder="100,000">
+                          <input type="number" formControlName="PriceEnd" [(ngModel)]="maxValue2" placeholder="Any">
                         </div>
                       </div>
                       <div ngClass="range-slider">
-                        <ngx-slider [(value)]="minValue1" [(highValue)]="maxValue1" [options]="options"></ngx-slider>
+                        <ngx-slider [(value)]="minValue2" [(highValue)]="maxValue2" [options]="options"></ngx-slider>
                       </div>
                       <div ngClass="rentle_type-hding">
                         <h5 ngClass="h5-design">Rental Type</h5>
@@ -80,10 +80,10 @@
                 <div ngClass="property-types-heading">
                   <ul ngClass="nav nav-tabs" role="tablist">
                     <li ngClass="nav-item">
-                      <a ngClass="nav-link residential active" (click)="residentialfun1()"><span ngClass="circle-celection"></span>Residential</a>
+                      <a ngClass="nav-link residential active" (click)="residentialfun1(residentialId)"><span ngClass="circle-celection"></span>{{ residential }}</a>
                     </li>
                     <li ngClass="nav-item">
-                      <a ngClass="nav-link commertial" (click)="commertialfun1()"><span ngClass="circle-celection"></span>Commercial</a>
+                      <a ngClass="nav-link commertial" (click)="commertialfun1(commercialId)"><span ngClass="circle-celection"></span>{{ commercial }}</a>
                     </li>
                   </ul>
                 </div>

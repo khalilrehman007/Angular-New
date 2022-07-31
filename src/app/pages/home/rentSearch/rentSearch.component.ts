@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from 'src/app/service/app.service';
 import { Options } from '@angular-slider/ngx-slider';
-import {Router} from "@angular/router";
+import { ActivatedRoute,Router } from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
@@ -11,20 +11,21 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 })
 export class RentSearchComponent implements OnInit {
 
-  constructor(private service:AppService,private api: AppService,private route:Router) {
+  constructor(private activeRoute: ActivatedRoute,private service:AppService,private api: AppService,private route:Router) {
+    // this.data.rentalTypeId = 1
     this.api.LoadType(1).subscribe((result) => {
       this.propertyType = result;
       this.propertyType = this.propertyType.data
     });
-
+    this.LoadPropertyCategories();
     this.service.RentTypes().subscribe(data=>{
       let response: any = data;
       this.Monthly    = response.data[0].name;
-      this.MonthlyAr  = response.data[0].nameAr;
+      // this.MonthlyAr  = response.data[0].nameAr;
       this.Quarterly    = response.data[1].name;
-      this.QuarterlyAr  = response.data[1].nameAr;
+      // this.QuarterlyAr  = response.data[1].nameAr;
       this.Yearly    = response.data[2].name;
-      this.YearlyAr  = response.data[3].nameAr;
+      // this.YearlyAr  = response.data[3].nameAr;
     });
 
     this.api.LoadType(2).subscribe((result) => {
@@ -41,8 +42,8 @@ export class RentSearchComponent implements OnInit {
   QuarterlyAr: any;
   Yearly: any;
   YearlyAr: any;
-  minValue: number = 100;
-  maxValue: number = 400;
+  minValue: number = 10;
+  maxValue: number = 50;
   step: 10;
   enforceStep: false;
   enforceRange: false;
@@ -57,28 +58,39 @@ export class RentSearchComponent implements OnInit {
       return value +  'AED';
     }
   };
-  minValue1: number = 100;
-  maxValue1: number = 400;
+  minValue1: number = 10;
+  maxValue1: number = 50;
+  minValue2: number = 10;
+  maxValue2: number = 50;
   status: boolean = false;
   status1: boolean = false;
+  residential:any;
+  residentialId:any;
+  commercial:any;
+  commercialId:any;
+
   clickEvent(){
       this.status = !this.status;
       this.status1 = false;
   }
- 
+
   clickEvent1(){
       this.status1 = !this.status1;
       this.status = false;
   }
+
+  propertyCategory :any;
   // rent(){
-  residentialfun1(){
+  residentialfun1(id:any){
+    this.propertyCategory = id
     document.getElementsByClassName('residential')[0].classList.add('active');
     document.getElementsByClassName('commertial')[0].classList.remove('active');
     document.getElementsByClassName('residential-tabs')[0].classList.remove('hide');
     document.getElementsByClassName('commertial-tabs')[0].classList.add('hide');
   }
   // sell(){
-  commertialfun1(){
+  commertialfun1(id:any){
+    this.propertyCategory = id
     document.getElementsByClassName('residential')[0].classList.remove('active');
     document.getElementsByClassName('commertial')[0].classList.add('active');
     document.getElementsByClassName('residential-tabs')[0].classList.add('hide');
@@ -86,18 +98,30 @@ export class RentSearchComponent implements OnInit {
   }
 
   getPropertyType(e: number) {
-    this.data.PropertyTypeId = e;
+    this.data.PropertyTypeListingId = e;
   }
 
   getPropertyCommercialType(e: number) {
-    this.data.PropertyTypeId = e;
+    this.data.PropertyTypeListingId = e;
+  }
+
+  LoadPropertyCategories(){
+    this.service.PropertyCategories().subscribe(data=>{
+      let response:any = data;
+      this.residential = response.data[0].categoryName;
+      this.residentialId = response.data[0].id;
+      this.commercial = response.data[1].categoryName;
+      this.commercialId = response.data[1].id;
+    });
   }
 
   getRentalType(e:any){
-    if(e.tab.textLabel == "Rent"){
+    if(e.tab.textLabel == "Monthly"){
       this.data.rentalTypeId = 1;
-    }else{
+    }else if(e.tab.textLabel == "Quarterly"){
       this.data.rentalTypeId = 2;
+    }else if(e.tab.textLabel == "Yearly"){
+      this.data.rentalTypeId = 3;
     }
   }
 
@@ -105,12 +129,22 @@ export class RentSearchComponent implements OnInit {
   max :number;
 
   SubmitForm = new FormGroup({
-    projectName : new FormControl(""),
-    name : new FormControl(""),
+    Name : new FormControl(""),
+    PriceStart : new FormControl(""),
+    PriceEnd : new FormControl(""),
   });
 
   proceedSearch(){
-    this.route.navigate(['/search/rent'])
+    // this.SubmitForm.value.Name
+    // this.data.rentalTypeId
+    console.log(this.propertyCategory,'CategoryId')
+    console.log(this.data.rentalTypeId,'rentalTypeId')
+    console.log(this.data.PropertyTypeListingId,'PropertyTypeListingId')
+    console.log(this.SubmitForm.value)
+
+    this.route.navigate(['/search'],
+      {queryParams:{type:'Rent',PropertyCategoryId:this.propertyCategory,RentTypeId:this.data.rentalTypeId,PropertyTypeListingId:this.data.PropertyTypeListingId
+      ,PropertyAddress:this.SubmitForm.value.Name,PriceStart:this.SubmitForm.value.PriceStart,PriceEnd:this.SubmitForm.value.PriceEnd}})
   }
 }
 

@@ -1,20 +1,16 @@
-<form>
+<form [formGroup]="SubmitForm">
     <div ngClass="property-filter-wrap d-flex justify-content-spacebw">
         <div ngClass="block-item first-block">
             <div ngClass="block-wrapper mb-4 position-relative d-flex searc-input-combination">
             <mat-form-field appearance="fill" class="select-design">
-                <mat-label>Rent</mat-label>
-                <mat-select>
-                  <mat-option value="Rent">
-                    Rent
-                  </mat-option>
-                  <mat-option value="Sell">
-                    Sell
-                  </mat-option>
+                <mat-label>Type</mat-label>
+                <mat-select  [(value)]="selectedRentType">
+                  <mat-option *ngFor="let option of rentTypes" [value]="option.id">{{ option.name }}</mat-option>
                 </mat-select>
               </mat-form-field>
+
               <mat-form-field class="full-width input-design-2" appearance="fill">
-                <input matInput type="search" placeholder="Search by location, Property Name...">
+                <input matInput formControlName="Name" type="search" placeholder="Search by location, Property Name...">
               </mat-form-field>
             </div>
         </div>
@@ -22,13 +18,8 @@
             <div ngClass="block-wrapper mb-4">
             <mat-form-field appearance="fill" class="select-design">
                 <mat-label>Property Type</mat-label>
-                <mat-select>
-                  <mat-option value="Residential"> 
-                    Residential
-                  </mat-option>
-                  <mat-option value="Commertial">
-                    Commertial
-                  </mat-option>
+                <mat-select  [(value)]="selectedPropertyType">
+                  <mat-option *ngFor="let option of propertyTypes" [value]="option.id">{{ option.name }}</mat-option>
                 </mat-select>
               </mat-form-field>
             </div>
@@ -43,6 +34,30 @@
                   </mat-option>
                   <mat-option value="2 BHK">
                    2 BHK
+                  </mat-option>
+                  <mat-option value="3 BHK">
+                    3 BHK
+                  </mat-option>
+                  <mat-option value="4 BHK">
+                    4 BHK
+                  </mat-option>
+                  <mat-option value="5 BHK">
+                    5 BHK
+                  </mat-option>
+                  <mat-option value="6 BHK">
+                    6 BHK
+                  </mat-option>
+                  <mat-option value="7 BHK">
+                    7 BHK
+                  </mat-option>
+                  <mat-option value="8 BHK">
+                    8 BHK
+                  </mat-option>
+                  <mat-option value="9 BHK">
+                    9 BHK
+                  </mat-option>
+                  <mat-option value="10 BHK">
+                    10 BHK
                   </mat-option>
                 </mat-select>
               </mat-form-field>
@@ -59,13 +74,37 @@
                   <mat-option value="2">
                    2
                   </mat-option>
+                  <mat-option value="3">
+                    3
+                  </mat-option>
+                  <mat-option value="4">
+                    4
+                  </mat-option>
+                  <mat-option value="5">
+                    5
+                  </mat-option>
+                  <mat-option value="6">
+                    6
+                  </mat-option>
+                  <mat-option value="7">
+                    7
+                  </mat-option>
+                  <mat-option value="8">
+                    8
+                  </mat-option>
+                  <mat-option value="9">
+                    9
+                  </mat-option>
+                  <mat-option value="10">
+                    10
+                  </mat-option>
                 </mat-select>
               </mat-form-field>
             </div>
         </div>
         <div ngClass="block-item four-block">
             <div ngClass="block-wrapper mb-4">
-            <mat-form-field appearance="fill" class="select-design">
+              <mat-form-field appearance="fill" class="select-design">
                 <mat-label>Budgets</mat-label>
                 <mat-select>
                   <mat-option value="1">
@@ -77,6 +116,13 @@
                 </mat-select>
               </mat-form-field>
             </div>
+
+<!--          <div ngClass="block-wrapper mb-4">-->
+<!--            <mat-form-field class="full-width input-design-2" appearance="fill">-->
+<!--              <input matInput formControlName="Name" type="search" placeholder="Search by location, Property Name...">-->
+<!--            </mat-form-field>-->
+<!--          </div>-->
+
         </div>
         <div ngClass="block-item five-block">
             <div ngClass="block-wrapper mb-4">
