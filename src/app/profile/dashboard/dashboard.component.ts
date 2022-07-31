@@ -74,6 +74,10 @@ export class DashboardComponent implements OnInit {
     location: new FormControl(""),
 
   })
+  changePasswordForm = new FormGroup({
+    currentPassword: new FormControl(""),
+    newPassword: new FormControl("")
+  });
 
   constructor(private service:AppService,private route:Router,private notifyService : NotificationService) {
     this.getUser();
@@ -100,7 +104,20 @@ export class DashboardComponent implements OnInit {
       }
       console.log(this.country);
     });
+    
 
+  }
+
+  changePassword() {
+    if(this.changePasswordForm.value.currentPassword == this.changePasswordForm.value.newPassword) {
+      let temp:any = localStorage.getItem("user");
+      temp = JSON.parse(temp);
+      this.service.ChangePassword({"Email":temp.email,"Password":this.changePasswordForm.value.currentPassword, "ConfirmPassword":this.changePasswordForm.value.newPassword}).subscribe((result:any)=> {
+        console.log(result);
+      })
+    } else {
+      alert("Password does not match");
+    }
   }
 
   //My Valuation Start

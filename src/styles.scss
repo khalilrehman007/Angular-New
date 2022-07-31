@@ -3244,7 +3244,7 @@ input[type=number] {
 		font-weight: 40px;
 		color: $color_29;
 		font-weight: 600;
-		line-height: normal;
+		line-height: 32px;
 		margin-bottom: 20px;
 	}
 	ul {
@@ -8369,4 +8369,109 @@ display: none;
     margin-bottom: 0px;
     font-size: 16px;
     color: grey;
+}
+.my-valuation-list-design {
+    background: #F6F6F6;
+    align-items: center;
+    border-radius: 6px;
+    padding: 15px;
+    margin-bottom: 20px;
+    flex-direction: row;
+    justify-content: space-between;
+	flex-wrap: wrap;
+}
+.my_valuation-inner-div h6 {
+    color: #000;
+    opacity: 0.4;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+.my_valuation-inner-div p {
+    font-size: 14px;
+    margin-bottom: 0px;
+}
+.pending {
+    color: red !important;
+}
+.my_valuation-inner-div {
+    width: 20%;
+    padding: 0px 15px;
+}
+.valuation_property-name-first .val_pro-number {
+    display: inline-flex;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #595ad4;
+    color: #fff;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    margin-right: 10px;
+}
+.valuation_property-name-scnd {
+    margin-top: 10px;
+}
+.my-valuation-list-wrapper {
+    margin-top: 20px;
+}
+.success {
+    color: green !important;
+}
+.my_valuation-inner-div.payemnt .success .mat-icon {
+    position: relative;
+    top: 4px;
+    font-size: 14px;
+    width: 15px;
+    height: 15px;
+}
+.my_valuation-inner-div .download-pdf {
+    border: none;
+    background: #595ad4;
+    color: #fff;
+    font-size: 12px;
+    padding: 10px 10px;
+    border-radius: 7px;
+	min-width: 92px;
+}
+.my-valuation-list-design .my_valuation-inner-div.payemnt {
+    display: flex;
+    align-items: center;
+	justify-content: space-between;
+}
+.my_valuation-inner-div.payemnt .success {
+    margin-right: 10px;
+}
+.my_valuation-inner-div .payment {
+    font-size: 14px;
+}
+.my_valuation-inner-div .payment {
+    font-size: 14px;
+    cursor: pointer;
+}
+.sell-rent-home-directly .row {
+    max-width: fit-content;
+    margin: 0px;
+}
+.tenants-sec-wrapper .owl-carousel .owl-item>div {
+    max-width: fit-content;
+}
+
+
+@media (max-width: 1199px){
+	.my-valuation-list-design .my_valuation-inner-div.payemnt {
+		width: 100%;
+		margin-top: 15px;
+	}
+}
+@media (max-width: 991px){
+	.my_valuation-inner-div {
+		width: 100% !important;
+		margin-bottom: 20px;
+	}
+}
+@media (min-width: 992px){
+	.tenants-sec-wrapper .owl-stage .owl-item {
+		max-width: 33.3%;
+	}
 }
