@@ -2577,7 +2577,7 @@
 
                 <div class="row">
                   <div class="col-md-9">
-                    <form action="">
+                    <form [formGroup]="changePasswordForm">
                       <!-- form-border-wrapper -->
                       <div class="">
                         <div class="list-new-proerty-cntnt">
@@ -2591,7 +2591,7 @@
                                 <div ngClass="block-wrapper mb-4">
                                   <label class="h6-design">Change Password</label>
                                   <mat-form-field appearance="fill" class="full-width input-design-2">
-                                    <input matInput>
+                                    <input matInput formControlName="currentPassword">
                                   </mat-form-field>
                                 </div>
                               </div>
@@ -2601,7 +2601,7 @@
                                 <div ngClass="block-wrapper mb-4">
                                   <label class="h6-design">Confirm Password</label>
                                   <mat-form-field appearance="fill" class="full-width input-design-2">
-                                    <input matInput>
+                                    <input matInput formControlName="newPassword">
                                   </mat-form-field>
                                 </div>
                                 <div ngClass="hint-text">
@@ -2615,7 +2615,7 @@
                             </div>
 
                             <div class="save-continue-sec">
-                              <mat-card-actions>
+                              <mat-card-actions (click)="changePassword()">
                                 <a class="save-continue-btn">Save</a>
                               </mat-card-actions>
                             </div>

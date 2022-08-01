@@ -80,6 +80,25 @@ export class DashboardComponent implements OnInit {
     newPassword: new FormControl("")
   });
 
+  get firstName() {
+    return this.detailForm.get("firstName");
+  }
+  get lastName() {
+    return this.detailForm.get("lastName");
+  }
+  get phone() {
+    return this.detailForm.get("phone");
+  }
+  get location() {
+    return this.detailForm.get("location");
+  }
+  get currentPassword() {
+    return this.changePasswordForm.get("currentPassword");
+  }
+  get newPassword() {
+    return this.changePasswordForm.get("newPassword");
+  }
+
   constructor(private service: AppService, private route: Router, private notifyService: NotificationService) {
     this.getUser();
     this.LoadBlogs();
@@ -116,7 +135,7 @@ export class DashboardComponent implements OnInit {
       let temp:any = localStorage.getItem("user");
       temp = JSON.parse(temp);
       this.service.ChangePassword({"Email":temp.email,"Password":this.changePasswordForm.value.currentPassword, "ConfirmPassword":this.changePasswordForm.value.newPassword}).subscribe((result:any)=> {
-        console.log(result);
+        alert(result.message);
       })
     } else {
       alert("Password does not match");
