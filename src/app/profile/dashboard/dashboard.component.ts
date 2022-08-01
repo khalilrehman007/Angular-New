@@ -80,10 +80,16 @@ export class DashboardComponent implements OnInit {
     newPassword: new FormControl("")
   });
 
+
+  lastPropertyLastingDate :any;
+  totalRestentailPropertyListing :any;
+  totalCommercialPropertyListing :any;
+  lastValuationDate :any;
+  totalRestValuation :any;
+  totalCommValuation :any;
   constructor(private service: AppService, private route: Router, private notifyService: NotificationService) {
     this.getUser();
     this.LoadBlogs();
-    this.getloadDashboardData();
     this.getLoadListing()
     this.getTabCount();
     this.LoadvaluationDashboard();
@@ -103,11 +109,23 @@ export class DashboardComponent implements OnInit {
           this.country.push({ viewValue: country.name, value: country.id });
         }
       }
-      console.log(this.country);
     });
 
+    this.service.LoadDashboardData(35).subscribe(e => {
+      let temp: any = e;
+      let jsonData: any = JSON.stringify(temp.data)
+      let jsonParsDate: any = JSON.parse(jsonData);
+      this.dashboard = jsonParsDate
+      this.lastPropertyLastingDate = this.dashboard.lastPropertyLastingDate
+      this.totalRestentailPropertyListing = this.dashboard.totalRestentailPropertyListing
+      this.totalCommercialPropertyListing = this.dashboard.totalCommercialPropertyListing
+      this.lastValuationDate = this.dashboard.lastValuationDate
+      this.totalRestValuation = this.dashboard.totalRestValuation
+      this.totalCommValuation = this.dashboard.totalCommValuation
 
+    });
   }
+
   getImage(e: any) {
     this.userImage = e.target.files;
   }
@@ -333,14 +351,6 @@ export class DashboardComponent implements OnInit {
   }
   getGender(id: number) {
 
-  }
-  getloadDashboardData() {
-    this.service.LoadDashboardData(35).subscribe(e => {
-      let temp: any = e;
-      let jsonData: any = JSON.stringify(temp.data)
-      let jsonParsDate: any = JSON.parse(jsonData);
-      this.dashboard = jsonParsDate
-    });
   }
 
   listingAll: any = [];
