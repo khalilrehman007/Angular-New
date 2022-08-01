@@ -1140,6 +1140,7 @@ input[type=number] {
 	text-align: center;
 	border: 1px solid rgba(0, 0, 0, 0.2);
 	max-width: 149px;
+	width: 100%;
 	&:hover {
 		background: #0f2ead;
 		color: $color_5;
@@ -8468,6 +8469,96 @@ display: none;
     overflow: hidden;
 	width: 300px;
 }
+.reports_header {
+    display: flex;
+    flex-direction: row;
+	align-items: center;
+	margin-bottom: 35px;
+}
+.reports_header .reports_img-icon img {
+    width: auto;
+    max-width: 100%;
+}
+.reports_header .reports_title-list {
+    padding-left: 15px;
+}
+.reports_header .reports_title-list h5 {
+    font-size: 16px;
+    color: #595ad4;
+    margin-bottom: 2px;
+}
+.reports_header .reports_title-list p {
+    margin-bottom: 0px;
+    font-size: 14px;
+    color: #333;
+}
+.reports_header .reports_title-list p .discounted-price {
+    font-weight: 600;
+	opacity: 1;
+}
+.reports_header .reports_title-list p span {
+    opacity: 0.5;
+    display: inline-block;
+    padding-right: 5px;
+}
+.reports_cntnt-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+	justify-content: space-between;
+}
+.reports_cntnt-list .reports_cntnt-list-inner {
+    width: 47%;
+}
+.reports_cntnt-list .reports_cntnt-list-inner h4 {
+    font-size: 14px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e6e8f5;
+}
+.reports_cntnt-list-inner ul {
+    list-style: none;
+    padding-left: 0px;
+}
+.reports_cntnt-list-inner ul li {
+    font-size: 14px;
+    font-weight: 400;
+    padding-bottom: 5px;
+}
+.prperty_certificate-reports-div {
+    border-radius: 8px;
+    padding: 20px;
+    background-color: #f8f8f8;
+}
+.summary_certificate-btn {
+    width: 100%;
+    text-align: center;
+}
+.summary_certificate-btn {
+    width: 100%;
+    text-align: center;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    background-color: #595ad4;
+    color: #fff;
+    padding: 10px 15px;
+    font-size: 14px;
+}
+.details_certificate-btn {
+    width: 100%;
+    text-align: center;
+    border-radius: 8px;
+    border: 1px solid #595ad4;
+    color: #595ad4;
+    padding: 10px 15px;
+    font-size: 14px;
+    background-color: transparent;
+}
+.summary_certificate-btn:hover,.details_certificate-btn:hover {
+    background-color: #333;
+    color: #fff;
+}
+
 
 @media (max-width: 1199px){
 	.my-valuation-list-design .my_valuation-inner-div.payemnt {
