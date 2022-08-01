@@ -80,6 +80,32 @@ export class DashboardComponent implements OnInit {
     newPassword: new FormControl("")
   });
 
+
+  lastPropertyLastingDate :any;
+  totalRestentailPropertyListing :any;
+  totalCommercialPropertyListing :any;
+  lastValuationDate :any;
+  totalRestValuation :any;
+  totalCommValuation :any;
+  get firstName() {
+    return this.detailForm.get("firstName");
+  }
+  get lastName() {
+    return this.detailForm.get("lastName");
+  }
+  get phone() {
+    return this.detailForm.get("phone");
+  }
+  get location() {
+    return this.detailForm.get("location");
+  }
+  get currentPassword() {
+    return this.changePasswordForm.get("currentPassword");
+  }
+  get newPassword() {
+    return this.changePasswordForm.get("newPassword");
+  }
+
   constructor(private service: AppService, private route: Router, private notifyService: NotificationService) {
     this.getUser();
     this.LoadBlogs();
@@ -105,7 +131,19 @@ export class DashboardComponent implements OnInit {
       }
       console.log(this.country);
     });
+    this.service.LoadDashboardData(35).subscribe(e => {
+      let temp: any = e;
+      let jsonData: any = JSON.stringify(temp.data)
+      let jsonParsDate: any = JSON.parse(jsonData);
+      this.dashboard = jsonParsDate
+      this.lastPropertyLastingDate = this.dashboard.lastPropertyLastingDate
+      this.totalRestentailPropertyListing = this.dashboard.totalRestentailPropertyListing
+      this.totalCommercialPropertyListing = this.dashboard.totalCommercialPropertyListing
+      this.lastValuationDate = this.dashboard.lastValuationDate
+      this.totalRestValuation = this.dashboard.totalRestValuation
+      this.totalCommValuation = this.dashboard.totalCommValuation
 
+    });
 
   }
   getImage(e: any) {
@@ -125,8 +163,8 @@ export class DashboardComponent implements OnInit {
     if (this.changePasswordForm.value.currentPassword == this.changePasswordForm.value.newPassword) {
       let temp: any = localStorage.getItem("user");
       temp = JSON.parse(temp);
-      this.service.ChangePassword({ "Email": temp.email, "Password": this.changePasswordForm.value.currentPassword, "ConfirmPassword": this.changePasswordForm.value.newPassword }).subscribe((result: any) => {
-        console.log(result);
+      this.service.ChangePassword({"Email":temp.email,"Password":this.changePasswordForm.value.currentPassword, "ConfirmPassword":this.changePasswordForm.value.newPassword}).subscribe((result:any)=> {
+        alert(result.message);
       })
     } else {
       alert("Password does not match");

@@ -12,7 +12,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 export class RentSearchComponent implements OnInit {
 
   constructor(private activeRoute: ActivatedRoute,private service:AppService,private api: AppService,private route:Router) {
-    // this.data.rentalTypeId = 1
+    this.data.rentalTypeId = 1
     this.api.LoadType(1).subscribe((result) => {
       this.propertyType = result;
       this.propertyType = this.propertyType.data
@@ -79,7 +79,7 @@ export class RentSearchComponent implements OnInit {
       this.status = false;
   }
 
-  propertyCategory :any;
+  propertyCategory :any = 1;
   // rent(){
   residentialfun(id:any){
     this.propertyCategory = id
@@ -131,24 +131,21 @@ export class RentSearchComponent implements OnInit {
   SubmitForm = new FormGroup({
     Name : new FormControl(""),
     PriceStart : new FormControl(""),
-    PriceStart1 : new FormControl(""),
-    PriceStart2 : new FormControl(""),
     PriceEnd : new FormControl(""),
-    PriceEnd1 : new FormControl(""),
-    PriceEnd2 : new FormControl(""),
   });
 
   proceedSearch(){
     // this.SubmitForm.value.Name
     // this.data.rentalTypeId
+
     console.log(this.propertyCategory,'CategoryId')
     console.log(this.data.rentalTypeId,'rentalTypeId')
     console.log(this.data.PropertyTypeListingId,'PropertyTypeListingId')
     console.log(this.SubmitForm.value)
 
-    this.route.navigate(['/search'],
-      {queryParams:{type:'Rent',PropertyCategoryId:this.propertyCategory,RentTypeId:this.data.rentalTypeId,PropertyTypeListingId:this.data.PropertyTypeListingId
-      ,PropertyAddress:this.SubmitForm.value.Name,PriceStart:this.SubmitForm.value.PriceStart,PriceStart1:this.SubmitForm.value.PriceStart1,PriceStart2:this.SubmitForm.value.PriceStart2,PriceEnd:this.SubmitForm.value.PriceEnd,PriceEnd1:this.SubmitForm.value.PriceEnd1,PriceEnd2:this.SubmitForm.value.PriceEnd2}})
+    let params :any = {queryParams:{type:'Rent',PropertyCategoryId:this.propertyCategory,RentTypeId:this.data.rentalTypeId,PropertyTypeListingId:this.data.PropertyTypeListingId
+        ,PropertyAddress:this.SubmitForm.value.Name,PriceStart:this.SubmitForm.value.PriceStart,PriceEnd:this.SubmitForm.value.PriceEnd}};
+    this.route.navigate(['/search'],params)
   }
 }
 

@@ -122,7 +122,7 @@ export class RentpropertiesComponent implements OnInit {
     });
     this.searchListing = tempData
 
-    console.log(this.searchListing,'listing')
+    // console.log(this.searchListing,'listing')
   }
 
 
