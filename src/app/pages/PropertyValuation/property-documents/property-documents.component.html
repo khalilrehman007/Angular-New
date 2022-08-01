@@ -37,7 +37,7 @@
                             <h6 ngClass="blue-heading">Property Tittle Deed</h6>
                             <div ngClass="upload-files-design">
                                 <div ngClass="greybordered-btn">
-                                <input type="file" hidden  #fileInput   (change)='handleChange($any($event.target).files)' >
+                                <input type="file" hidden  #fileInput accept=".doc, .pdf, .jpg, .jpeg, .png" (change)='handleChange($any($event.target).files)' >
                                 <button mat-button (click)="fileInput.click()"><img src="{{upload}}"> Upload Files</button>
                                 </div>
                                 <div ngClass="uploded-output">
@@ -60,7 +60,7 @@
                                 <h6 ngClass="blue-heading">Affection Plan</h6>
                                 <div ngClass="upload-files-design">
                                     <div ngClass="greybordered-btn">
-                                    <input type="file" hidden  #affectioninput   (change)='affection($any($event.target).files)' >
+                                    <input type="file" hidden  #affectioninput accept=".doc, .pdf, .jpg, .jpeg, .png"  (change)='affection($any($event.target).files)' >
                                     <button mat-button (click)="affectioninput.click()"><img src="{{upload}}"> Upload Files</button>
                                     </div>
                                     <div ngClass="uploded-output">
@@ -83,7 +83,7 @@
                                     <h6 ngClass="blue-heading">Property Picture</h6>
                                     <div ngClass="upload-files-design">
                                         <div ngClass="greybordered-btn">
-                                        <input type="file" hidden  #propertyInput   (change)='property($any($event.target).files)' >
+                                        <input type="file" hidden  #propertyInput accept=".doc, .pdf, .jpg, .jpeg, .png" (change)='property($any($event.target).files)' >
                                         <button mat-button (click)="propertyInput.click()"><img src="{{upload}}"> Upload Files</button>
                                         </div>
                                         <div ngClass="uploded-output">
@@ -109,8 +109,8 @@
                         <div ngClass="blue-upload-box">
                             <div ngClass="upload-files-design">
                                 <div ngClass="greybordered-btn">
-                                <input type="file" hidden  #emirateInput   (change)='emiratesfun($any($event.target).files)' >
-                                <button mat-button (click)="emirateInput.click()"><span ngClass="outpup-filename">{{ emirate }}</span> <img src="{{upload}}"> <span ngClass="btn-txt">Picture: Emirates ID (Fornt View)</span></button>
+                                <input type="file" hidden  #emirateInput0  accept=".doc, .pdf, .jpg, .jpeg, .png" (change)='emiratesfun($any($event.target).files, 0)' >
+                                <button mat-button (click)="emirateInput0.click()"><span ngClass="outpup-filename">{{ emirate[0] }}</span> <img src="{{upload}}"> <span ngClass="btn-txt">Picture: Emirates ID (Fornt View)</span></button>
                                 </div>
                             </div>
                         </div>
@@ -119,8 +119,8 @@
                             <div ngClass="blue-upload-box">
                                 <div ngClass="upload-files-design">
                                     <div ngClass="greybordered-btn">
-                                    <input type="file" hidden  #emirateInput   (change)='emiratesfun($any($event.target).files)' >
-                                    <button mat-button (click)="emirateInput.click()"><span ngClass="outpup-filename">{{ emirate }}</span> <img src="{{upload}}"> <span ngClass="btn-txt">Picture: Emirates ID (Fornt View)</span></button>
+                                    <input type="file" hidden  #emirateInput1   (change)='emiratesfun($any($event.target).files, 1)' >
+                                    <button mat-button (click)="emirateInput1.click()"><span ngClass="outpup-filename">{{ emirate[1] }}</span> <img src="{{upload}}"> <span ngClass="btn-txt">Picture: Emirates ID (Fornt View)</span></button>
                                     </div>
                                 </div>
                             </div>
@@ -129,8 +129,8 @@
                             <div ngClass="blue-upload-box">
                                 <div ngClass="upload-files-design">
                                     <div ngClass="greybordered-btn">
-                                    <input type="file" hidden  #emirateInput   (change)='emiratesfun($any($event.target).files)' >
-                                    <button mat-button (click)="emirateInput.click()"><span ngClass="outpup-filename">{{ emirate }}</span> <img src="{{upload}}"> <span ngClass="btn-txt">Picture: Emirates ID (Fornt View)</span></button>
+                                    <input type="file" hidden  #emirateInput2   (change)='emiratesfun($any($event.target).files, 2)' >
+                                    <button mat-button (click)="emirateInput2.click()"><span ngClass="outpup-filename">{{ emirate[2] }}</span> <img src="{{upload}}"> <span ngClass="btn-txt">Picture: Emirates ID (Fornt View)</span></button>
                                     </div>
                                 </div>
                             </div>
@@ -139,8 +139,8 @@
                             <div ngClass="blue-upload-box">
                                 <div ngClass="upload-files-design">
                                     <div ngClass="greybordered-btn">
-                                    <input type="file" hidden  #emirateInput   (change)='emiratesfun($any($event.target).files)' >
-                                    <button mat-button (click)="emirateInput.click()"><span ngClass="outpup-filename">{{ emirate }}</span> <img src="{{upload}}"> <span ngClass="btn-txt">Picture: Emirates ID (Back View)</span></button>
+                                    <input type="file" hidden  #emirateInput3   (change)='emiratesfun($any($event.target).files, 3)' >
+                                    <button mat-button (click)="emirateInput3.click()"><span ngClass="outpup-filename">{{ emirate[3] }}</span> <img src="{{upload}}"> <span ngClass="btn-txt">Picture: Emirates ID (Back View)</span></button>
                                     </div>
                                 </div>
                             </div>
@@ -149,8 +149,8 @@
                             <div ngClass="blue-upload-box">
                                 <div ngClass="upload-files-design">
                                     <div ngClass="greybordered-btn">
-                                    <input type="file" hidden  #emirateInput   (change)='emiratesfun($any($event.target).files)' >
-                                    <button mat-button (click)="emirateInput.click()"><span ngClass="outpup-filename">{{ emirate }}</span> <img src="{{upload}}"> <span ngClass="btn-txt">Picture: Emirates ID (Back View)</span></button>
+                                    <input type="file" hidden  #emirateInput4   (change)='emiratesfun($any($event.target).files, 4)' >
+                                    <button mat-button (click)="emirateInput4.click()"><span ngClass="outpup-filename">{{ emirate[4] }}</span> <img src="{{upload}}"> <span ngClass="btn-txt">Picture: Emirates ID (Back View)</span></button>
                                     </div>
                                 </div>
                             </div>
@@ -159,8 +159,8 @@
                             <div ngClass="blue-upload-box">
                                 <div ngClass="upload-files-design">
                                     <div ngClass="greybordered-btn">
-                                    <input type="file" hidden  #emirateInput   (change)='emiratesfun($any($event.target).files)' >
-                                    <button mat-button (click)="emirateInput.click()"><span ngClass="outpup-filename">{{ emirate }}</span> <img src="{{upload}}"> <span ngClass="btn-txt">Picture: BRN Document</span></button>
+                                    <input type="file" hidden  #emirateInput5   (change)='emiratesfun($any($event.target).files, 5)' >
+                                    <button mat-button (click)="emirateInput5.click()"><span ngClass="outpup-filename">{{ emirate[5] }}</span> <img src="{{upload}}"> <span ngClass="btn-txt">Picture: BRN Document</span></button>
                                     </div>
                                 </div>
                             </div>
@@ -169,8 +169,8 @@
                             <div ngClass="blue-upload-box">
                                 <div ngClass="upload-files-design">
                                     <div ngClass="greybordered-btn">
-                                    <input type="file" hidden  #emirateInput   (change)='emiratesfun($any($event.target).files)' >
-                                    <button mat-button (click)="emirateInput.click()"><span ngClass="outpup-filename">{{ emirate }}</span> <img src="{{upload}}"> <span ngClass="btn-txt">Picture: BRN Document</span></button>
+                                    <input type="file" hidden  #emirateInput6   (change)='emiratesfun($any($event.target).files, 6)' >
+                                    <button mat-button (click)="emirateInput6.click()"><span ngClass="outpup-filename">{{ emirate[6] }}</span> <img src="{{upload}}"> <span ngClass="btn-txt">Picture: BRN Document</span></button>
                                     </div>
                                 </div>
                             </div>
@@ -179,8 +179,8 @@
                             <div ngClass="blue-upload-box">
                                 <div ngClass="upload-files-design">
                                     <div ngClass="greybordered-btn">
-                                    <input type="file" hidden  #emirateInput   (change)='emiratesfun($any($event.target).files)' >
-                                    <button mat-button (click)="emirateInput.click()"><span ngClass="outpup-filename">{{ emirate }}</span> <img src="{{upload}}"> <span ngClass="btn-txt">Picture: BRN Document</span></button>
+                                    <input type="file" hidden  #emirateInput7   (change)='emiratesfun($any($event.target).files, 7)' >
+                                    <button mat-button (click)="emirateInput7.click()"><span ngClass="outpup-filename">{{ emirate[7] }}</span> <img src="{{upload}}"> <span ngClass="btn-txt">Picture: BRN Document</span></button>
                                     </div>
                                 </div>
                             </div>
@@ -189,8 +189,8 @@
                             <div ngClass="blue-upload-box">
                                 <div ngClass="upload-files-design">
                                     <div ngClass="greybordered-btn">
-                                    <input type="file" hidden  #emirateInput   (change)='emiratesfun($any($event.target).files)' >
-                                    <button mat-button (click)="emirateInput.click()"><span ngClass="outpup-filename">{{ emirate }}</span> <img src="{{upload}}"> <span ngClass="btn-txt">Picture: BRN Document</span></button>
+                                    <input type="file" hidden  #emirateInput8   (change)='emiratesfun($any($event.target).files, 8)' >
+                                    <button mat-button (click)="emirateInput8.click()"><span ngClass="outpup-filename">{{ emirate[8] }}</span> <img src="{{upload}}"> <span ngClass="btn-txt">Picture: BRN Document</span></button>
                                     </div>
                                 </div>
                             </div>
@@ -203,28 +203,28 @@
                             <p>List of the documents uploaded</p>
                         </div>
                         <div ngClass="upload-documents-list">
-                            <div ngClass="doc-list-div d-flex justify-content-spacebq align-items-center" *ngFor="let doclist of documentlist">
+                            <div ngClass="doc-list-div d-flex justify-content-spacebq align-items-center" *ngFor="let item of uploadedDocuments">
                             <div ngClass="d-flex doc-list-name align-items-center">
                                 <div ngClass="document_img">
-                                    <img src="{{doclist.imgsrc}}">
+                                    <img src="{{item.imgsrc}}">
                                 </div>
                                 <div ngClass="doc-text-details">
                                 <h6>Document Name</h6>
-                                    <p>{{doclist.doctitile}}</p>
+                                    <p>{{item.documentName}}</p>
                                 </div>
                             </div>
                             <div ngClass="doc-list-file">
                                 <div ngClass="doc-text-details">
                                     <h6>File Name</h6>
-                                    <p>{{doclist.filetitle}}</p>
+                                    <p>{{item.fileName}}</p>
                                 </div>
                             </div>
                             <div ngClass="doc-list-action">
                                 <div ngClass="doc-text-actions">
                                     <h6>Action</h6>
                                     <div ngClass="action-text-btns">
-                                        <a routerLink="{{doclist.viewLink}}">View</a>
-                                        <a routerLink="{{doclist.deleteLink}}">Delete</a>
+                                        <a routerLink="{{item.viewLink}}">View</a>
+                                        <a routerLink="{{item.deleteLink}}">Delete</a>
                                     </div>
                                 </div>
                             </div>

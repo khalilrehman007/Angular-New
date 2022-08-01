@@ -17,7 +17,7 @@ import { AppService } from 'src/app/service/app.service';
 export class DashboardComponent implements OnInit {
   blogs: any;
   proFrame = '../../assets/images/profile/pro-img-frame.png'
-  proAvatar = '../../assets/images/profile/Profile-Pic.png'
+  proAvatar: any = ''
   proClose = '../../assets/images/profile/close.png'
   proImgEdit = '../../assets/images/profile/edit.png'
   proEdit = '../../assets/images/profile/create.png'
@@ -36,7 +36,13 @@ export class DashboardComponent implements OnInit {
   logoutIcon = '../../assets/images/profile/logout-icon.svg'
   uaeFlag = '../../assets/images/profile/uae.svg'
   upload = '../../../../assets/images/icons/upload-1.svg'
-
+  web = '../../../../assets/images/icons/web.png'
+  profile = '../../../../assets/images/icons/user-profile.png'
+  acsetting = '../../../../assets/images/icons/settings-icn.png'
+  aclogout = '../../../../assets/images/icons/log-out.png'
+  shareimg = '../../../../assets/images/icons/share-icn.png'
+  deleteimg = '../../../../assets/images/icons/delteicn.png'
+  editimg = '../../../../assets/images/icons/editimg.png'
   loggedInUser = localStorage.getItem('user')
   user: any
   greet: any
@@ -70,10 +76,11 @@ export class DashboardComponent implements OnInit {
   detailForm = new FormGroup({
     firstName: new FormControl(""),
     lastName: new FormControl(""),
-    phone: new FormControl(""),
+    address: new FormControl(""),
     location: new FormControl(""),
   });
-  data:any = {};
+  data: any = {};
+  userData: any;
   userImage: any;
   changePasswordForm = new FormGroup({
     currentPassword: new FormControl(""),
@@ -81,12 +88,12 @@ export class DashboardComponent implements OnInit {
   });
 
 
-  lastPropertyLastingDate :any;
-  totalRestentailPropertyListing :any;
-  totalCommercialPropertyListing :any;
-  lastValuationDate :any;
-  totalRestValuation :any;
-  totalCommValuation :any;
+  lastPropertyLastingDate: any;
+  totalRestentailPropertyListing: any;
+  totalCommercialPropertyListing: any;
+  lastValuationDate: any;
+  totalRestValuation: any;
+  totalCommValuation: any;
   get firstName() {
     return this.detailForm.get("firstName");
   }
@@ -114,7 +121,12 @@ export class DashboardComponent implements OnInit {
     this.getTabCount();
     this.LoadvaluationDashboard();
     this.getLoadMyValuaionListing();
-
+    let temp: any = localStorage.getItem("user");
+    this.service.UserProfile(JSON.parse(temp).id).subscribe((result: any) => {
+      this.userData = result.data;
+      localStorage.setItem("user", JSON.stringify(this.userData));
+      this.proAvatar = this.baseUrl + this.userData.imageUrl;
+    })
     this.service.LoadPropertyListingTypes().subscribe(e => {
       let temp: any = e;
       if (temp.message == "Property Listing Type List fetched successfully") {
@@ -129,7 +141,6 @@ export class DashboardComponent implements OnInit {
           this.country.push({ viewValue: country.name, value: country.id });
         }
       }
-      console.log(this.country);
     });
     this.service.LoadDashboardData(35).subscribe(e => {
       let temp: any = e;
@@ -144,45 +155,67 @@ export class DashboardComponent implements OnInit {
       this.totalCommValuation = this.dashboard.totalCommValuation
 
     });
+    this.LoadLeads("", "");
 
   }
   getImage(e: any) {
+    let temp: any = localStorage.getItem("user");
+    temp = JSON.parse(temp);
+    let imageData = new FormData();
     this.userImage = e.target.files;
+    let extension: any = this.userImage[0].name.split(".");
+    extension = extension[extension.length - 1];
+    imageData.append("ProfileRequest", JSON.stringify({ "Id": temp.id }))
+    imageData.append(this.userImage[0].name, this.userImage[0]);
+    imageData.append("Extension", extension);
+    this.service.UpdateImage(imageData).subscribe((result: any) => {
+      localStorage.setItem("user", JSON.stringify(result.data));
+      if (result.message == "User  fetched successfully") {
+        const reader = new FileReader();
+        reader.readAsDataURL(this.userImage[0]);
+        reader.onload = () => {
+          this.proAvatar = reader.result;
+        };
+      }
+    })
   }
   changePassword() {
-    if(this.changePasswordForm.value.currentPassword == this.changePasswordForm.value.newPassword) {
-      let temp:any = localStorage.getItem("user");
+    if(this.changePasswordForm.value.currentPassword == "") {
+      alert("Enter Password");
+    } else if (this.changePasswordForm.value.currentPassword == this.changePasswordForm.value.newPassword) {
+      let temp: any = localStorage.getItem("user");
       temp = JSON.parse(temp);
-      this.service.ChangePassword({"Email":temp.email,"Password":this.changePasswordForm.value.currentPassword, "ConfirmPassword":this.changePasswordForm.value.newPassword}).subscribe((result:any)=> {
-        alert(result.message);
+      this.service.ChangePassword({ "Id": temp.id, "Password": this.changePasswordForm.value.currentPassword, "ConfirmPassword": this.changePasswordForm.value.newPassword }).subscribe((result: any) => {
+        alert("Password Changed Successfully");
       })
     } else {
       alert("Password does not match");
     }
   }
   getData() {
+    if(this.detailForm.value.firstName == "" || this.detailForm.value.lastName == "" || this.detailForm.value.address == "" || this.countryId == -1 || this.cityId == -1 || $("#formDate").val() == "") {
+      alert("Enter all the fields");
+      return;
+    }
     let temp: any = localStorage.getItem("user");
     temp = JSON.parse(temp);
-    let detailFormData = new FormData()
     this.data.Id = temp.id;
     this.data.FirstName = this.detailForm.value.firstName;
     this.data.LastName = this.detailForm.value.lastName;
     this.data.Email = temp.email;
-    this.data.PhoneNumber = temp.phoneNumber;
-    let extension: any = this.userImage[0].name.split(".");
-    extension = extension[extension.length - 1];
-    detailFormData.append("ProfileRequest", JSON.stringify(this.data));
-    detailFormData.append("Banner", this.userImage);
-    detailFormData.append("Extension", extension);
-    this.service.UpdateProfile(detailFormData).subscribe((result:any)=> {
-      if(result.message == "User Profile  Updated successfully") {
-        alert(result.message);
+    this.data.Address = this.detailForm.value.address;
+    this.data.CountryId = this.countryId;
+    this.data.CityId = this.cityId;
+    this.data.DateOfBirth = $("#formDate").val();
+    this.service.UpdatePersonalDetails(this.data).subscribe((result: any) => {
+      if (result.message == "User  fetched successfully") {
+        alert("Profile Update Successfully");
+        localStorage.setItem("user", JSON.stringify(result.data))
       } else {
         alert("Something went wrong");
       }
     });
   }
-  //My Valuation Start
   LoadvaluationDashboard() {
     this.service.valuationDashboard(35).subscribe(e => {
       let temp: any = e;
@@ -301,9 +334,14 @@ export class DashboardComponent implements OnInit {
       })
     });
     this.propertyListingStatus = tempData
-    console.log(this.propertyListingStatus, 'dede')
   }
-
+  LoadLeads(CategoryId: any, TypeId: any) {
+    let temp: any = localStorage.getItem("user");
+    temp = JSON.parse(temp).id;
+    this.service.MyLeads({ "UserId": temp, "PropertyCategoryId": CategoryId, "PropertyListingTypeId": TypeId }).subscribe((result: any) => {
+      console.log(result.data)
+    })
+  }
   ngOnInit() {
     var myDate = new Date();
     var hrs = myDate.getHours();
@@ -370,6 +408,7 @@ export class DashboardComponent implements OnInit {
     this.cityId = e.value;
   }
   getGender(id: number) {
+    this.data.Gender = id;
 
   }
   getloadDashboardData() {
@@ -397,12 +436,12 @@ export class DashboardComponent implements OnInit {
         }
         tempData.push(
           {
-            propertyTitle: element.propertyTitle, propertyAddress: element.propertyAddress, img:this.baseUrl+image,
-            buildingName: element.buildingName,bedrooms: element.bedrooms,bathrooms: element.bathrooms,carpetArea: element.carpetArea,
-            unitNo: element.unitNo,totalFloor: element.totalFloor,floorNo: element.floorNo,propertyDescription: element.propertyDescription,
-            requestedDate: element.requestedDate,furnishingType: element.furnishingType,propertyPrice: element.propertyPrice,
-            requestedDateFormat:element.requestedDateFormat,
-            expiredDateFormat:element.expiredDateFormat,rentType:rentTypeName,currency:element.country.currency
+            propertyTitle: element.propertyTitle, propertyAddress: element.propertyAddress, img: this.baseUrl + image,
+            buildingName: element.buildingName, bedrooms: element.bedrooms, bathrooms: element.bathrooms, carpetArea: element.carpetArea,
+            unitNo: element.unitNo, totalFloor: element.totalFloor, floorNo: element.floorNo, propertyDescription: element.propertyDescription,
+            requestedDate: element.requestedDate, furnishingType: element.furnishingType, propertyPrice: element.propertyPrice,
+            requestedDateFormat: element.requestedDateFormat,
+            expiredDateFormat: element.expiredDateFormat, rentType: rentTypeName, currency: element.country.currency
           }
         );
       })

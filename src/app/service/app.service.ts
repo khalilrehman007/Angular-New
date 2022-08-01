@@ -8,14 +8,14 @@ import { data } from 'jquery';
 export class AppService {
   apiurl = 'https://beta.ovaluate.com/api/';
   id = 0;
-  token :any = localStorage.getItem('token');
+  token: any = localStorage.getItem('token');
   // bearer :any = this.token.replace(/^"(.+)"$/,'$1') ;
 
   constructor(private http: HttpClient) {
   }
   headers: HttpHeaders = new HttpHeaders({
     'Content-Type': 'application/json',
-    'Authorization': 'Bearer '+JSON.parse(this.token)
+    'Authorization': 'Bearer ' + JSON.parse(this.token)
   });
 
   LoadPropertyCategories() {
@@ -51,10 +51,10 @@ export class AppService {
     return this.http.get(this.apiurl + 'OvaluateFeatures');
   }
   LoadDashboardData(id) {
-    return this.http.get(this.apiurl + 'Dashboard/'+ id,{ headers: this.headers });
+    return this.http.get(this.apiurl + 'Dashboard/' + id, { headers: this.headers });
   }
   LoadListing(data) {
-    return this.http.post(this.apiurl + 'MyListings',data,{ headers: this.headers });
+    return this.http.post(this.apiurl + 'MyListings', data, { headers: this.headers });
   }
   LoadCities(id: number) {
     return this.http.get(this.apiurl + 'Cities/' + id);
@@ -108,13 +108,13 @@ export class AppService {
     return this.http.get(this.apiurl + 'PropertyListingTypes');
   }
   LoadListingDashboard(data) {
-    return this.http.post(this.apiurl + 'ListingDashboard/',data,{ headers: this.headers });
+    return this.http.post(this.apiurl + 'ListingDashboard/', data, { headers: this.headers });
   }
   valuationDashboard(id) {
-    return this.http.get(this.apiurl + 'ValuationDashboard/'+id,{ headers: this.headers });
+    return this.http.get(this.apiurl + 'ValuationDashboard/' + id, { headers: this.headers });
   }
-  LoadValuationListing(data:any) {
-    return this.http.post(this.apiurl + 'MyValuations',data,{ headers: this.headers });
+  LoadValuationListing(data: any) {
+    return this.http.post(this.apiurl + 'MyValuations', data, { headers: this.headers });
   }
   LoadPropertyListingStatus() {
     return this.http.get(this.apiurl + 'PropertyListingStatus');
@@ -160,7 +160,7 @@ export class AppService {
     }
     return this.http.post(this.apiurl + 'AddPropertyListing', data, httpOptions);
   }
-  PropertyListingRentBuy(data:any) {
+  PropertyListingRentBuy(data: any) {
     return this.http.post(this.apiurl + 'PropertyListingRentBuy', data);
   }
   TermsCondition() {
@@ -178,7 +178,7 @@ export class AppService {
   FAQ() {
     return this.http.get(this.apiurl + 'FAQ');
   }
-  AddContactUs(data:any) {
+  AddContactUs(data: any) {
     return this.http.post(this.apiurl + 'AddContactUs', data);
   }
   TeamMembers() {
@@ -190,8 +190,8 @@ export class AppService {
   OvaluateOfferings() {
     return this.http.get(this.apiurl + 'OvaluateOfferings');
   }
-  UpdateProfile(data:any) {
-    return this.http.post(this.apiurl + 'UpdateProfile', data);
+  UpdatePersonalDetails(data: any) {
+    return this.http.post(this.apiurl + 'UpdatePersonalDetails', data);
   }
 
   StoreLead(data: any) {
@@ -199,12 +199,28 @@ export class AppService {
   }
 
   DisplayPropertyListing(id) {
-    return this.http.get(this.apiurl + 'DisplayPropertyListing/'+id);
+    return this.http.get(this.apiurl + 'DisplayPropertyListing/' + id);
   }
-  LoadSearchListing(data:any) {
-    return this.http.post(this.apiurl + 'FindPropertites',data,{ headers: this.headers });
+  LoadSearchListing(data: any) {
+    return this.http.post(this.apiurl + 'FindPropertites', data, { headers: this.headers });
   }
   ChangePassword(data: any) {
     return this.http.post(this.apiurl + 'ChangePassword', data);
+  }
+  UpdateImage(data: any) {
+    return this.http.post(this.apiurl + 'UpdateImage', data);
+  }
+  UserProfile(id: any) {
+    return this.http.get(this.apiurl + 'UserProfile/'+id);
+  }
+  MyLeads(data: any) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'false',
+        "processData": "false",
+        "dataType": "json",
+      })
+    }
+    return this.http.post(this.apiurl + 'MyLeads', data);
   }
 }
