@@ -46,7 +46,7 @@
           <img src="{{proAvatar}}" alt="" class="user-img">
         </div>
         <label for="proImg" class="edit-pro-img">
-          <input type="file" id="proImg">
+          <input type="file" id="proImg" (change)="getImage($event)">
           <img src="{{proImgEdit}}" alt="">
         </label>
       </div>
@@ -1988,13 +1988,75 @@
           <div class="sub-tab-nav">
             <mat-tab-group>
               <mat-tab label="All ({{totalValuation}})">
+                <div ngClass="my-valuation-list-wrapper">
+                  <div ngClass="my-valuation-list-design d-flex">
+                   <div ngClass="my_valuation-inner-div valuation_property-name">
+                      <div ngClass="valuation_property-name-first">
+                          <span ngClass="val_pro-number">1</span>
+                      </div>
+                      <div ngClass="valuation_property-name-scnd">
+                        <p ngClass="property_id">OV-RA-1000</p>
+                        <p ngClass="property_date">06 Jul 2022</p>
+                   </div>
+                  </div>
+                   <div ngClass="my_valuation-inner-div category">
+                      <h6>Category</h6>
+                      <p>Residental</p>
+                   </div>
+                   <div ngClass="my_valuation-inner-div place">
+                     <h6>Place</h6>
+                     <p>Dubai</p>
+                  </div>
+                  <div ngClass="my_valuation-inner-div property_type">
+                   <h6>Property Type</h6>
+                   <p>Apartment</p>
+                </div>
+                <div ngClass="my_valuation-inner-div payemnt">
+                  <a routerLink="/PropertyPayment" ngClass="payment pending">Payment Pending</a>
+                 </div>
+                  </div>
+ 
+                  <div ngClass="my-valuation-list-design d-flex">
+                   <div ngClass="my_valuation-inner-div valuation_property-name">
+                     <div ngClass="valuation_property-name-first">
+                         <span ngClass="val_pro-number">1</span>
+                     </div>
+                     <div ngClass="valuation_property-name-scnd">
+                       <p ngClass="property_id">OV-RA-1000</p>
+                       <p ngClass="property_date">06 Jul 2022</p>
+                  </div>
+                 </div>
+                   <div ngClass="my_valuation-inner-div category">
+                      <h6>Category</h6>
+                      <p>Residental</p>
+                   </div>
+                   <div ngClass="my_valuation-inner-div place">
+                     <h6>Place</h6>
+                     <p>Dubai</p>
+                  </div>
+                  <div ngClass="my_valuation-inner-div property_type">
+                   <h6>Property Type</h6>
+                   <p>Apartment</p>
+                </div>
+                <div ngClass="my_valuation-inner-div payemnt">
+                  <p ngClass="payment success"><mat-icon>check_circle</mat-icon> Submitted</p>
+                  <a routerLink="/PropertyDownloadReport" ngClass="download-pdf">Download Pdf</a>
+                </div>
+                  </div>
+                  </div>
+              </mat-tab>
+              <mat-tab label="{{residential}} ({{totalRestentailValuation}})">
                 <div class="no-data-found">
                   <mat-icon>file_copy</mat-icon>
                   <p>No Data Found</p>
                 </div>
               </mat-tab>
-              <mat-tab label="{{residential}} ({{totalRestentailValuation}})"> Residential</mat-tab>
-              <mat-tab label="{{commercial}} ({{totalCommercialValuation}})"> Commercial</mat-tab>
+              <mat-tab label="{{commercial}} ({{totalCommercialValuation}})">
+                <div class="no-data-found">
+                  <mat-icon>file_copy</mat-icon>
+                  <p>No Data Found</p>
+                </div>
+              </mat-tab>
             </mat-tab-group>
           </div>
         </div>
@@ -2011,7 +2073,6 @@
                   <div class="col-md-9">
 
                     <form [formGroup]="detailForm">
-                      <!-- form-border-wrapper -->
                       <div class="">
                         <div class="list-new-proerty-cntnt">
 
@@ -2115,7 +2176,7 @@
                             </div>
 
                             <div class="save-continue-sec">
-                              <mat-card-actions>
+                              <mat-card-actions (click)="getData()">
                                 <a class="save-continue-btn">Save</a>
                               </mat-card-actions>
                             </div>
@@ -2220,9 +2281,6 @@
                                         <button class="checkbox-btn">Hindi</button>
                                       </div>
                                     </div>
-                                    <div class="add-more">
-                                      <button class="add-higlights"><img src="{{plus}}"> Add Languages</button>
-                                    </div>
                                   </div>
                                 </div>
                               </div>
@@ -2242,10 +2300,6 @@
                                         <input type="checkbox" id="Al Makhool" name="Area" value="Al Makhool">
                                         <button class="checkbox-btn">Al Makhool</button>
                                       </div>
-                                    </div>
-                                    <div class="add-more">
-                                      <button class="add-higlights"><img src="{{plus}}"> Add the Area you are looking
-                                        for</button>
                                     </div>
                                   </div>
                                 </div>
@@ -2561,7 +2615,7 @@
                             </div>
 
                             <div class="save-continue-sec">
-                              <mat-card-actions (click)="changePassword()">
+                              <mat-card-actions>
                                 <a class="save-continue-btn">Save</a>
                               </mat-card-actions>
                             </div>
