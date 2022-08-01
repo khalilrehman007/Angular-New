@@ -17,8 +17,9 @@ export class PropertyfilterComponent implements OnInit {
   PropertyAddress :any;
   PriceStart :any;
   PriceEnd :any;
-  minValue: number = 0;
-  maxValue: number = 0;
+  minValue: number;
+  maxValue: number;
+
 
   constructor(private activeRoute: ActivatedRoute,private service:AppService,private api: AppService,private route:Router) {
     this.type                 = this.activeRoute.snapshot.queryParamMap.get('type');
@@ -28,6 +29,9 @@ export class PropertyfilterComponent implements OnInit {
     this.PropertyAddress       = this.activeRoute.snapshot.queryParamMap.get('PropertyAddress');
     this.PriceStart            = this.activeRoute.snapshot.queryParamMap.get('PriceStart');
     this.PriceEnd              = this.activeRoute.snapshot.queryParamMap.get('PriceEnd');
+
+    this.minValue = this.PriceStart;
+    this.maxValue = this.PriceEnd;
 
     this.SubmitForm.controls.Name.setValue(this.PropertyAddress);
     this.loadType();
@@ -60,6 +64,8 @@ export class PropertyfilterComponent implements OnInit {
 
   SubmitForm = new FormGroup({
     Name : new FormControl(""),
+    PriceStart : new FormControl(""),
+    PriceEnd : new FormControl(""),
   });
   options: Options = {
     floor: 0,
@@ -68,14 +74,11 @@ export class PropertyfilterComponent implements OnInit {
       return value +  'AED';
     }
   };
-  minValue1: number = 10;
-  maxValue1: number = 50;
-  minValue2: number = 10;
-  maxValue2: number = 50;
+
   status: boolean = false;
   clickEvent(){
     this.status = !this.status;
-}
+  }
   propertyTypes:any = []
   selectedPropertyType :any;
   LoadPropertyCategories(){
