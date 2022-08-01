@@ -36,7 +36,13 @@ export class DashboardComponent implements OnInit {
   logoutIcon = '../../assets/images/profile/logout-icon.svg'
   uaeFlag = '../../assets/images/profile/uae.svg'
   upload = '../../../../assets/images/icons/upload-1.svg'
-
+  web = '../../../../assets/images/icons/web.png'
+  profile = '../../../../assets/images/icons/user-profile.png'
+  acsetting = '../../../../assets/images/icons/settings-icn.png'
+  aclogout = '../../../../assets/images/icons/log-out.png'
+  shareimg = '../../../../assets/images/icons/share-icn.png'
+  deleteimg = '../../../../assets/images/icons/delteicn.png'
+   editimg = '../../../../assets/images/icons/editimg.png'
   loggedInUser = localStorage.getItem('user')
   user: any
   greet: any
