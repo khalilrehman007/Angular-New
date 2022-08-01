@@ -17,7 +17,7 @@ import { AppService } from 'src/app/service/app.service';
 export class DashboardComponent implements OnInit {
   blogs: any;
   proFrame = '../../assets/images/profile/pro-img-frame.png'
-  proAvatar:any = ''
+  proAvatar: any = ''
   proClose = '../../assets/images/profile/close.png'
   proImgEdit = '../../assets/images/profile/edit.png'
   proEdit = '../../assets/images/profile/create.png'
@@ -42,7 +42,7 @@ export class DashboardComponent implements OnInit {
   aclogout = '../../../../assets/images/icons/log-out.png'
   shareimg = '../../../../assets/images/icons/share-icn.png'
   deleteimg = '../../../../assets/images/icons/delteicn.png'
-   editimg = '../../../../assets/images/icons/editimg.png'
+  editimg = '../../../../assets/images/icons/editimg.png'
   loggedInUser = localStorage.getItem('user')
   user: any
   greet: any
@@ -155,7 +155,7 @@ export class DashboardComponent implements OnInit {
       this.totalCommValuation = this.dashboard.totalCommValuation
 
     });
-    this.LoadLeads("","");
+    this.LoadLeads("", "");
 
   }
   getImage(e: any) {
@@ -180,7 +180,9 @@ export class DashboardComponent implements OnInit {
     })
   }
   changePassword() {
-    if (this.changePasswordForm.value.currentPassword == this.changePasswordForm.value.newPassword) {
+    if(this.changePasswordForm.value.currentPassword == "") {
+      alert("Enter Password");
+    } else if (this.changePasswordForm.value.currentPassword == this.changePasswordForm.value.newPassword) {
       let temp: any = localStorage.getItem("user");
       temp = JSON.parse(temp);
       this.service.ChangePassword({ "Id": temp.id, "Password": this.changePasswordForm.value.currentPassword, "ConfirmPassword": this.changePasswordForm.value.newPassword }).subscribe((result: any) => {
@@ -191,6 +193,10 @@ export class DashboardComponent implements OnInit {
     }
   }
   getData() {
+    if(this.detailForm.value.firstName == "" || this.detailForm.value.lastName == "" || this.detailForm.value.address == "" || this.countryId == -1 || this.cityId == -1 || $("#formDate").val() == "") {
+      alert("Enter all the fields");
+      return;
+    }
     let temp: any = localStorage.getItem("user");
     temp = JSON.parse(temp);
     this.data.Id = temp.id;
@@ -201,7 +207,6 @@ export class DashboardComponent implements OnInit {
     this.data.CountryId = this.countryId;
     this.data.CityId = this.cityId;
     this.data.DateOfBirth = $("#formDate").val();
-    console.log(this.data);
     this.service.UpdatePersonalDetails(this.data).subscribe((result: any) => {
       if (result.message == "User  fetched successfully") {
         alert("Profile Update Successfully");
@@ -330,10 +335,10 @@ export class DashboardComponent implements OnInit {
     });
     this.propertyListingStatus = tempData
   }
-  LoadLeads(CategoryId:any, TypeId:any) {
-    let temp:any = localStorage.getItem("user");
+  LoadLeads(CategoryId: any, TypeId: any) {
+    let temp: any = localStorage.getItem("user");
     temp = JSON.parse(temp).id;
-    this.service.MyLeads({ "UserId":temp,"PropertyCategoryId": CategoryId, "PropertyListingTypeId": TypeId }).subscribe((result:any)=> {
+    this.service.MyLeads({ "UserId": temp, "PropertyCategoryId": CategoryId, "PropertyListingTypeId": TypeId }).subscribe((result: any) => {
       console.log(result.data)
     })
   }
