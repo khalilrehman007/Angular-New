@@ -37,8 +37,8 @@
                     <div ngClass="price-range_sec">
                       <div ngClass="extra-controls form-inline">
                         <div ngClass="form-group">
-                          <input type="number" formControlName="PriceStart" [(ngModel)]="minValue1" placeholder="100,000">
-                          <input type="number" formControlName="PriceEnd" [(ngModel)]="maxValue1" placeholder="Any">
+                          <input type="number" formControlName="PriceStart1" [(ngModel)]="minValue1" placeholder="100,000">
+                          <input type="number" formControlName="PriceEnd1" [(ngModel)]="maxValue1" placeholder="Any">
                         </div>
                       </div>
                       <div ngClass="range-slider">
@@ -53,8 +53,8 @@
                     <div ngClass="price-range_sec">
                       <div ngClass="extra-controls form-inline">
                         <div ngClass="form-group">
-                          <input type="number" formControlName="PriceStart" [(ngModel)]="minValue2" placeholder="100,000">
-                          <input type="number" formControlName="PriceEnd" [(ngModel)]="maxValue2" placeholder="Any">
+                          <input type="number" formControlName="PriceStart2" [(ngModel)]="minValue2" placeholder="100,000">
+                          <input type="number" formControlName="PriceEnd2" [(ngModel)]="maxValue2" placeholder="Any">
                         </div>
                       </div>
                       <div ngClass="range-slider">
@@ -80,15 +80,15 @@
               <div ngClass="property-types-heading">
                 <ul ngClass="nav nav-tabs" role="tablist">
                   <li ngClass="nav-item">
-                    <a ngClass="nav-link residential active" (click)="residentialfun1(residentialId)"><span ngClass="circle-celection"></span>{{ residential }}</a>
+                    <a ngClass="nav-link residential1 active" (click)="residentialfun1(residentialId)"><span ngClass="circle-celection"></span>{{ residential }}</a>
                   </li>
                   <li ngClass="nav-item">
-                    <a ngClass="nav-link commertial" (click)="commertialfun1(commercialId)"><span ngClass="circle-celection"></span>{{ commercial }}</a>
+                    <a ngClass="nav-link commertial1" (click)="commertialfun1(commercialId)"><span ngClass="circle-celection"></span>{{ commercial }}</a>
                   </li>
                 </ul>
               </div>
               <div ngClass="property-types-cntnts">
-                <div id="Residentials" ngClass="residential-tabs">
+                <div id="Residentials" ngClass="residential-tabs1">
                   <h5 ngClass="h5-heading">Residential Unit Type</h5>
                   <ul ngClass="list-unstyled residentails-unit-list">
                     <li ngClass="d-flex" *ngFor="let item of propertyType">
@@ -102,7 +102,7 @@
                     </li>
                   </ul>
                 </div>
-                <div id="Commercial" ngClass="hide commertial-tabs">
+                <div id="Commercial" ngClass="hide commertial-tabs1">
                   <h5 ngClass="h5-heading">Commercial Unit Type</h5>
                   <ul ngClass="list-unstyled residentails-unit-list">
                     <li ngClass="d-flex" *ngFor="let item of propertyTypeCommercial">

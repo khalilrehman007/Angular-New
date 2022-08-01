@@ -4462,7 +4462,7 @@ img {
 				width: 13px;
 				background-size: contain;
 				right: 0px;
-				top: 2px;
+				top: -2px;
 			}
 		}
 	}
@@ -6556,9 +6556,8 @@ li.agent-details__property-list-item {
 		}
 	}
 	.inner-banner-sec {
-		background-size: cover;
-		background-repeat: no-repeat;
-		background-position: bottom;
+		background-color: #1c1c71;
+		padding-bottom: 40px;
 		.sell-rent-property-left {
 			padding-top: 70px;
 			padding-bottom: 100px;
@@ -6566,7 +6565,7 @@ li.agent-details__property-list-item {
 		}
 	}
 	.how-it-works-sec {
-		padding-top: 18px;
+		padding-top: 50px;
 	}
 	.accordians-wrapper {
 		h4 {
@@ -8318,6 +8317,15 @@ display: none;
     font-weight: 700;
     margin-bottom: 20px;
 }
+.certified_sec {
+    padding-top: 60px;
+    padding-bottom: 20px;
+}
+.certified_images-sec img {
+    max-width: 100%;
+    width: auto;
+    padding: 0px 15px;
+}
 
 
 @media (min-width: 1200px){
@@ -8456,7 +8464,10 @@ display: none;
 .tenants-sec-wrapper .owl-carousel .owl-item>div {
     max-width: fit-content;
 }
-
+.property-filter-wrap .cstm_dropdown-menu {
+    overflow: hidden;
+	width: 300px;
+}
 
 @media (max-width: 1199px){
 	.my-valuation-list-design .my_valuation-inner-div.payemnt {
@@ -8468,10 +8479,5 @@ display: none;
 	.my_valuation-inner-div {
 		width: 100% !important;
 		margin-bottom: 20px;
-	}
-}
-@media (min-width: 992px){
-	.tenants-sec-wrapper .owl-stage .owl-item {
-		max-width: 33.3%;
 	}
 }

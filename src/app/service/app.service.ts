@@ -190,7 +190,7 @@ export class AppService {
   OvaluateOfferings() {
     return this.http.get(this.apiurl + 'OvaluateOfferings');
   }
-  UpdateProfile() {
+  UpdateProfile(data:any) {
     return this.http.post(this.apiurl + 'UpdateProfile', data);
   }
 
