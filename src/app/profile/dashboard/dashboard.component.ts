@@ -103,7 +103,9 @@ export class DashboardComponent implements OnInit {
           this.country.push({ viewValue: country.name, value: country.id });
         }
       }
+      console.log(this.country);
     });
+
 
   }
   getImage(e: any) {
@@ -357,12 +359,12 @@ export class DashboardComponent implements OnInit {
         }
         tempData.push(
           {
-            propertyTitle: element.propertyTitle, propertyAddress: element.propertyAddress, img: this.baseUrl + image,
-            buildingName: element.buildingName, bedrooms: element.bedrooms, bathrooms: element.bathrooms, carpetArea: element.carpetArea,
-            unitNo: element.unitNo, totalFloor: element.totalFloor, floorNo: element.floorNo, propertyDescription: element.propertyDescription,
-            requestedDate: element.requestedDate, furnishingType: element.furnishingType, propertyPrice: element.propertyPrice,
-            requestedDateFormat: element.requestedDateFormat,
-            expiredDateFormat: element.expiredDateFormat, rentType: rentTypeName, currencyCode: element.country.currency
+            propertyTitle: element.propertyTitle, propertyAddress: element.propertyAddress, img:this.baseUrl+image,
+            buildingName: element.buildingName,bedrooms: element.bedrooms,bathrooms: element.bathrooms,carpetArea: element.carpetArea,
+            unitNo: element.unitNo,totalFloor: element.totalFloor,floorNo: element.floorNo,propertyDescription: element.propertyDescription,
+            requestedDate: element.requestedDate,furnishingType: element.furnishingType,propertyPrice: element.propertyPrice,
+            requestedDateFormat:element.requestedDateFormat,
+            expiredDateFormat:element.expiredDateFormat,rentType:rentTypeName,currency:element.country.currency
           }
         );
       })
