@@ -182,15 +182,15 @@ export class DashboardComponent implements OnInit {
     this.data.CityId = this.cityId;
     this.data.DateOfBirth = $("#formDate").val();
     console.log(this.data);
-    // this.service.UpdatePersonalDetails(this.data).subscribe((result: any) => {
-    //   if (result.message == "User Profile  Updated successfully") {
-    //     alert(result.message);
-    //   } else {
-    //     alert("Something went wrong");
-    //   }
-    // });
+    this.service.UpdatePersonalDetails(this.data).subscribe((result: any) => {
+      if (result.message == "User  fetched successfully") {
+        alert("Profile Update Successfully");
+        localStorage.setItem("user", JSON.stringify(result.data))
+      } else {
+        alert("Something went wrong");
+      }
+    });
   }
-  //My Valuation Start
   LoadvaluationDashboard() {
     this.service.valuationDashboard(35).subscribe(e => {
       let temp: any = e;

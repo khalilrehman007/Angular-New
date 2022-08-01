@@ -1990,60 +1990,61 @@
               <mat-tab label="All ({{totalValuation}})">
                 <div ngClass="my-valuation-list-wrapper">
                   <div ngClass="my-valuation-list-design d-flex">
-                   <div ngClass="my_valuation-inner-div valuation_property-name">
+                    <div ngClass="my_valuation-inner-div valuation_property-name">
                       <div ngClass="valuation_property-name-first">
-                          <span ngClass="val_pro-number">1</span>
+                        <span ngClass="val_pro-number">1</span>
                       </div>
                       <div ngClass="valuation_property-name-scnd">
                         <p ngClass="property_id">OV-RA-1000</p>
                         <p ngClass="property_date">06 Jul 2022</p>
-                   </div>
-                  </div>
-                   <div ngClass="my_valuation-inner-div category">
+                      </div>
+                    </div>
+                    <div ngClass="my_valuation-inner-div category">
                       <h6>Category</h6>
                       <p>Residental</p>
-                   </div>
-                   <div ngClass="my_valuation-inner-div place">
-                     <h6>Place</h6>
-                     <p>Dubai</p>
+                    </div>
+                    <div ngClass="my_valuation-inner-div place">
+                      <h6>Place</h6>
+                      <p>Dubai</p>
+                    </div>
+                    <div ngClass="my_valuation-inner-div property_type">
+                      <h6>Property Type</h6>
+                      <p>Apartment</p>
+                    </div>
+                    <div ngClass="my_valuation-inner-div payemnt">
+                      <a routerLink="/PropertyPayment" ngClass="payment pending">Payment Pending</a>
+                    </div>
                   </div>
-                  <div ngClass="my_valuation-inner-div property_type">
-                   <h6>Property Type</h6>
-                   <p>Apartment</p>
-                </div>
-                <div ngClass="my_valuation-inner-div payemnt">
-                  <a routerLink="/PropertyPayment" ngClass="payment pending">Payment Pending</a>
-                 </div>
-                  </div>
-
                   <div ngClass="my-valuation-list-design d-flex">
-                   <div ngClass="my_valuation-inner-div valuation_property-name">
-                     <div ngClass="valuation_property-name-first">
-                         <span ngClass="val_pro-number">1</span>
-                     </div>
-                     <div ngClass="valuation_property-name-scnd">
-                       <p ngClass="property_id">OV-RA-1000</p>
-                       <p ngClass="property_date">06 Jul 2022</p>
-                  </div>
-                 </div>
-                   <div ngClass="my_valuation-inner-div category">
+                    <div ngClass="my_valuation-inner-div valuation_property-name">
+                      <div ngClass="valuation_property-name-first">
+                        <span ngClass="val_pro-number">1</span>
+                      </div>
+                      <div ngClass="valuation_property-name-scnd">
+                        <p ngClass="property_id">OV-RA-1000</p>
+                        <p ngClass="property_date">06 Jul 2022</p>
+                      </div>
+                    </div>
+                    <div ngClass="my_valuation-inner-div category">
                       <h6>Category</h6>
                       <p>Residental</p>
-                   </div>
-                   <div ngClass="my_valuation-inner-div place">
-                     <h6>Place</h6>
-                     <p>Dubai</p>
+                    </div>
+                    <div ngClass="my_valuation-inner-div place">
+                      <h6>Place</h6>
+                      <p>Dubai</p>
+                    </div>
+                    <div ngClass="my_valuation-inner-div property_type">
+                      <h6>Property Type</h6>
+                      <p>Apartment</p>
+                    </div>
+                    <div ngClass="my_valuation-inner-div payemnt">
+                      <p ngClass="payment success">
+                        <mat-icon>check_circle</mat-icon> Submitted
+                      </p>
+                      <a routerLink="/PropertyDownloadReport" ngClass="download-pdf">Download Pdf</a>
+                    </div>
                   </div>
-                  <div ngClass="my_valuation-inner-div property_type">
-                   <h6>Property Type</h6>
-                   <p>Apartment</p>
                 </div>
-                <div ngClass="my_valuation-inner-div payemnt">
-                  <p ngClass="payment success"><mat-icon>check_circle</mat-icon> Submitted</p>
-                  <a routerLink="/PropertyDownloadReport" ngClass="download-pdf">Download Pdf</a>
-                </div>
-                  </div>
-                  </div>
               </mat-tab>
               <mat-tab label="{{residential}} ({{totalRestentailValuation}})">
                 <div class="no-data-found">
@@ -2060,8 +2061,6 @@
             </mat-tab-group>
           </div>
         </div>
-
-
       </div>
       <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
         <div class="recent-activity profile-tab-wrap">
@@ -2071,15 +2070,11 @@
               <mat-tab label="Personal Details">
                 <div class="row">
                   <div class="col-md-9">
-
                     <form [formGroup]="detailForm">
                       <div class="">
                         <div class="list-new-proerty-cntnt">
-
                           <div ngClass="deed-numbers">
-
                             <div ngClass="row">
-
                               <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                 <div ngClass="block-wrapper mb-4">
                                   <label class="h6-design">First Name</label>
@@ -2088,7 +2083,6 @@
                                   </mat-form-field>
                                 </div>
                               </div>
-
                               <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                 <div ngClass="block-wrapper mb-4">
                                   <label class="h6-design">Last Name</label>
@@ -2097,7 +2091,6 @@
                                   </mat-form-field>
                                 </div>
                               </div>
-
                               <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                 <div ngClass="block-wrapper mb-4">
                                   <label class="h6-design">Gender</label>
@@ -2113,7 +2106,6 @@
                                   </div>
                                 </div>
                               </div>
-
                               <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                 <div ngClass="block-wrapper mb-4">
                                   <label class="h6-design">Date of Birth</label>
@@ -2126,7 +2118,6 @@
                                   </div>
                                 </div>
                               </div>
-
                               <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                 <div ngClass="block-wrapper mb-4">
                                   <label class="h6-design">Address</label>
@@ -2143,12 +2134,10 @@
                                   </mat-form-field>
                                 </div>
                               </div>
-
-
                               <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                 <div ngClass="block-wrapper mb-4">
                                   <label class="h6-design">Country</label>
-                                  <mat-form-field appearance="fill"   class="full-width select-form input-design-2">
+                                  <mat-form-field appearance="fill" class="full-width select-form input-design-2">
                                     <mat-label>Select the Country</mat-label>
                                     <mat-select (selectionChange)="onCountrySelect($event);">
                                       <mat-option *ngFor="let list of country" [value]="list.value">
@@ -2165,45 +2154,33 @@
                                     <mat-label>Select City</mat-label>
                                     <mat-select (selectionChange)="onCitySelect($event);">
                                       <mat-option *ngFor="let listcity of city" [value]="listcity.value">
-                                          {{ listcity.viewValue }}
+                                        {{ listcity.viewValue }}
                                       </mat-option>
-                                  </mat-select>
+                                    </mat-select>
                                   </mat-form-field>
-
                                 </div>
                               </div>
-
                             </div>
-
                             <div class="save-continue-sec">
                               <mat-card-actions (click)="getData()">
                                 <a class="save-continue-btn">Save</a>
                               </mat-card-actions>
                             </div>
-
-
                           </div>
                         </div>
                       </div>
-
                     </form>
                   </div>
                 </div>
               </mat-tab>
               <mat-tab label="Agent/Broker Details">
-
                 <div class="row">
                   <div class="col-md-9">
-
                     <form action="">
-                      <!-- form-border-wrapper -->
                       <div class="">
                         <div class="list-new-proerty-cntnt">
-
                           <div ngClass="deed-numbers">
-
                             <div ngClass="row">
-
                               <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                 <div ngClass="block-wrapper mb-4">
                                   <label class="h6-design">BRN No.#</label>
@@ -2212,7 +2189,6 @@
                                   </mat-form-field>
                                 </div>
                               </div>
-
                               <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                 <div ngClass="block-wrapper mb-4">
                                   <label class="h6-design">Experts in</label>
@@ -2228,11 +2204,9 @@
                                   </div>
                                 </div>
                               </div>
-
                               <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                 <div ngClass="block-wrapper mb-4">
                                   <label class="h6-design">Nationality</label>
-
                                   <mat-form-field appearance="fill" class="full-width select-form input-design-2">
                                     <mat-label>Select Nationality</mat-label>
                                     <mat-select>
@@ -2247,13 +2221,9 @@
                                       </mat-option>
                                     </mat-select>
                                   </mat-form-field>
-
                                 </div>
                               </div>
-
                             </div>
-
-
                             <div class="highlight-sec mt-3">
                               <div class="row">
                                 <div class="col-sm-12">
@@ -2285,7 +2255,6 @@
                                 </div>
                               </div>
                             </div>
-
                             <div class="highlight-sec mt-4">
                               <div class="row">
                                 <div class="col-sm-12">
@@ -2305,7 +2274,6 @@
                                 </div>
                               </div>
                             </div>
-
                             <div ngClass="other-document-upload mt-4">
                               <h6 ngClass="h6-design mb-3">Douments Upload</h6>
                               <div ngClass="row">
@@ -2358,45 +2326,34 @@
                                 </div>
                               </div>
                             </div>
-
                             <div class="save-continue-sec">
                               <mat-card-actions>
                                 <a class="save-continue-btn">Save</a>
                               </mat-card-actions>
                             </div>
-
-
                           </div>
                         </div>
                       </div>
-
                     </form>
                   </div>
                 </div>
               </mat-tab>
               <mat-tab label="Company Details">
-
                 <div class="row">
                   <div class="col-md-9">
                     <form action="">
-                      <!-- form-border-wrapper -->
                       <div class="">
                         <div class="list-new-proerty-cntnt">
-
                           <div ngClass="deed-numbers">
-
                             <div ngClass="row">
-
-
                               <div ngClass="col-sm-12">
                                 <div ngClass="block-wrapper mb-4">
                                   <label class="h6-design">Company Name</label>
-                                  <mat-form-field appearance="fill"  class="full-width input-design-2">
+                                  <mat-form-field appearance="fill" class="full-width input-design-2">
                                     <input matInput>
                                   </mat-form-field>
                                 </div>
                               </div>
-
                               <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                 <div ngClass="block-wrapper mb-4">
                                   <label class="h6-design">Trade License No.#</label>
@@ -2578,15 +2535,10 @@
                 <div class="row">
                   <div class="col-md-9">
                     <form [formGroup]="changePasswordForm">
-                      <!-- form-border-wrapper -->
                       <div class="">
                         <div class="list-new-proerty-cntnt">
-
                           <div ngClass="deed-numbers">
-
                             <div ngClass="row">
-
-
                               <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                 <div ngClass="block-wrapper mb-4">
                                   <label class="h6-design">Change Password</label>
@@ -2596,7 +2548,6 @@
                                 </div>
                               </div>
                               <div ngClass="col-xl-6 col-lg-6 col-sm-12"></div>
-
                               <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                 <div ngClass="block-wrapper mb-4">
                                   <label class="h6-design">Confirm Password</label>
