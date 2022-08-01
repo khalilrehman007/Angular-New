@@ -104,7 +104,7 @@ export class DashboardComponent implements OnInit {
       }
       console.log(this.country);
     });
-    
+
 
   }
 
@@ -360,7 +360,7 @@ export class DashboardComponent implements OnInit {
             unitNo: element.unitNo,totalFloor: element.totalFloor,floorNo: element.floorNo,propertyDescription: element.propertyDescription,
             requestedDate: element.requestedDate,furnishingType: element.furnishingType,propertyPrice: element.propertyPrice,
             requestedDateFormat:element.requestedDateFormat,
-            expiredDateFormat:element.expiredDateFormat,rentType:rentTypeName,currencyCode:element.country.currency
+            expiredDateFormat:element.expiredDateFormat,rentType:rentTypeName,currency:element.country.currency
           }
         );
       })
