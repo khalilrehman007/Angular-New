@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {AppService} from "../service/app.service";
 import {FormControl, FormGroup} from "@angular/forms";
+import { Options } from '@angular-slider/ngx-slider';
 
 @Component({
   selector: 'app-propertyfilter',
@@ -60,7 +61,21 @@ export class PropertyfilterComponent implements OnInit {
   SubmitForm = new FormGroup({
     Name : new FormControl(""),
   });
-
+  options: Options = {
+    floor: 0,
+    ceil: 500,
+    translate: (value: number): string => {
+      return value +  'AED';
+    }
+  };
+  minValue1: number = 10;
+  maxValue1: number = 50;
+  minValue2: number = 10;
+  maxValue2: number = 50;
+  status: boolean = false;
+  clickEvent(){
+    this.status = !this.status;
+}
   propertyTypes:any = []
   selectedPropertyType :any;
   LoadPropertyCategories(){

@@ -83,18 +83,18 @@ export class BuySearchComponent implements OnInit {
   // rent(){
   residentialfun1(id:any){
     this.propertyCategory = id
-    document.getElementsByClassName('residential')[0].classList.add('active');
-    document.getElementsByClassName('commertial')[0].classList.remove('active');
-    document.getElementsByClassName('residential-tabs')[0].classList.remove('hide');
-    document.getElementsByClassName('commertial-tabs')[0].classList.add('hide');
+    document.getElementsByClassName('residential1')[0].classList.add('active');
+    document.getElementsByClassName('commertial1')[0].classList.remove('active');
+    document.getElementsByClassName('residential-tabs1')[0].classList.remove('hide');
+    document.getElementsByClassName('commertial-tabs1')[0].classList.add('hide');
   }
   // sell(){
   commertialfun1(id:any){
     this.propertyCategory = id
-    document.getElementsByClassName('residential')[0].classList.remove('active');
-    document.getElementsByClassName('commertial')[0].classList.add('active');
-    document.getElementsByClassName('residential-tabs')[0].classList.add('hide');
-    document.getElementsByClassName('commertial-tabs')[0].classList.remove('hide');
+    document.getElementsByClassName('residential1')[0].classList.remove('active');
+    document.getElementsByClassName('commertial1')[0].classList.add('active');
+    document.getElementsByClassName('residential-tabs1')[0].classList.add('hide');
+    document.getElementsByClassName('commertial-tabs1')[0].classList.remove('hide');
   }
 
   getPropertyType(e: number) {
@@ -131,7 +131,11 @@ export class BuySearchComponent implements OnInit {
   SubmitForm = new FormGroup({
     Name : new FormControl(""),
     PriceStart : new FormControl(""),
+    PriceStart1 : new FormControl(""),
+    PriceStart2 : new FormControl(""),
     PriceEnd : new FormControl(""),
+    PriceEnd1 : new FormControl(""),
+    PriceEnd2 : new FormControl(""),
   });
 
   proceedSearch(){
@@ -144,6 +148,6 @@ export class BuySearchComponent implements OnInit {
 
     this.route.navigate(['/search'],
       {queryParams:{type:'Buy',PropertyCategoryId:this.propertyCategory,RentTypeId:this.data.rentalTypeId,PropertyTypeListingId:this.data.PropertyTypeListingId
-          ,PropertyAddress:this.SubmitForm.value.Name,PriceStart:this.SubmitForm.value.PriceStart,PriceEnd:this.SubmitForm.value.PriceEnd}})
+          ,PropertyAddress:this.SubmitForm.value.Name,PriceStart:this.SubmitForm.value.PriceStart,PriceStart1:this.SubmitForm.value.PriceStart1,PriceStart2:this.SubmitForm.value.PriceStart2,PriceEnd:this.SubmitForm.value.PriceEnd,PriceEnd1:this.SubmitForm.value.PriceEnd1,PriceEnd2:this.SubmitForm.value.PriceEnd2}})
   }
 }

@@ -250,10 +250,12 @@ export class HomeComponent implements OnInit {
   easyslider: OwlOptions = {
     loop: true,
     mouseDrag: true,
+    center: true,
     touchDrag: true,
     pullDrag: true,
     dots: false,
     navSpeed: 700,
+    autoWidth: true,
     responsive: {
       0: {
         items: 1
