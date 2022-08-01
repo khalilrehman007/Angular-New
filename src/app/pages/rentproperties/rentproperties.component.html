@@ -6,7 +6,8 @@
 <section [ngClass]="'rent-propoerties-main-sec slide-left-bar'">
    <div ngClass="properties-file-container-shadow">
     <div ngClass="properties-file-container">
-      <app-propertyfilter></app-propertyfilter>
+      {{test}}
+      <app-propertyfilter (childToParentDataLoad)="childToParentDataLoad($event)"></app-propertyfilter>
       </div>
    </div>
    <div [ngClass]="'container_1280px'">

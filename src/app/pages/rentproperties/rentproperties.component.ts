@@ -91,6 +91,15 @@ export class RentpropertiesComponent implements OnInit {
     });
   }
 
+
+
+
+  test:any;
+  childToParentDataLoad(data:any){
+    this.test=data
+    console.log(data,'okokokokokokok')
+  }
+
   searchListing:any = [];
   loadListingProperty(){
     let tempData :Array<Object> = []

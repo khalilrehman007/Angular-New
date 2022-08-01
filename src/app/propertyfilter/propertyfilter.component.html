@@ -4,7 +4,7 @@
             <div ngClass="block-wrapper mb-4 position-relative d-flex searc-input-combination">
             <mat-form-field appearance="fill" class="select-design">
                 <mat-label>Type</mat-label>
-                <mat-select  [(value)]="selectedRentType">
+                <mat-select  [(value)]="selectedRentType" (selectionChange)="changeType($event)">
                   <mat-option *ngFor="let option of rentTypes" [value]="option.id">{{ option.name }}</mat-option>
                 </mat-select>
               </mat-form-field>
@@ -18,7 +18,7 @@
             <div ngClass="block-wrapper mb-4">
             <mat-form-field appearance="fill" class="select-design">
                 <mat-label>Property Type</mat-label>
-                <mat-select  [(value)]="selectedPropertyType">
+                <mat-select  [(value)]="selectedPropertyType" (selectionChange)="propertyType($event)">
                   <mat-option *ngFor="let option of propertyTypes" [value]="option.id">{{ option.name }}</mat-option>
                 </mat-select>
               </mat-form-field>
@@ -28,7 +28,7 @@
             <div ngClass="block-wrapper mb-4">
             <mat-form-field appearance="fill" class="select-design">
                 <mat-label>BHK</mat-label>
-                <mat-select>
+                <mat-select (selectionChange)="bhkType($event)">
                   <mat-option value="1 BHK">
                     1 BHK
                   </mat-option>
@@ -67,7 +67,7 @@
             <div ngClass="block-wrapper mb-4">
             <mat-form-field appearance="fill" class="select-design">
                 <mat-label>Beds & Baths</mat-label>
-                <mat-select>
+                <mat-select (selectionChange)="bedBaths($event)">
                   <mat-option value="1">
                     1
                   </mat-option>
@@ -123,12 +123,12 @@
                       <h5 ngClass="h5-design">Rental Type</h5>
                     </div>
                   </div>
-                  <mat-tab-group>
-                    <mat-tab label="Monthly">
+                  <mat-tab-group [(selectedIndex)]="RentTypeIndexId" (selectedTabChange)="getRentalType($event)">
+                    <mat-tab label="{{Monthly}}">
                     </mat-tab>
-                    <mat-tab label="Quarterly">
+                    <mat-tab label="{{Quarterly}}">
                     </mat-tab>
-                    <mat-tab label="Yearly">
+                    <mat-tab label="{{Yearly}}">
                     </mat-tab>
                   </mat-tab-group>
                 </div>
@@ -140,7 +140,7 @@
             <div ngClass="block-wrapper mb-4">
             <mat-form-field appearance="fill" class="select-design">
                 <mat-label>Posted by</mat-label>
-                <mat-select>
+                <mat-select (selectionChange)="postedBy($event)">
                   <mat-option value="Dealer">
                     Dealer
                   </mat-option>
@@ -158,7 +158,7 @@
         </div>
         <div ngClass="block-item eight-block">
           <div ngClass="block-wrapper">
-            <button ngClass="search-btn"><img src="assets/images/search.svg"></button>
+            <button ngClass="search-btn" (click)="proceedSearch()"><img src="assets/images/search.svg"></button>
           </div>
       </div>
     </div>

@@ -12,7 +12,7 @@ import {FormControl, FormGroup} from "@angular/forms";
 export class BuySearchComponent implements OnInit {
 
   constructor(private activeRoute: ActivatedRoute,private service:AppService,private api: AppService,private route:Router) {
-    // this.data.rentalTypeId = 1
+    this.data.rentalTypeId = 1
     this.api.LoadType(1).subscribe((result) => {
       this.propertyType = result;
       this.propertyType = this.propertyType.data
@@ -79,7 +79,7 @@ export class BuySearchComponent implements OnInit {
     this.status = false;
   }
 
-  propertyCategory :any;
+  propertyCategory :any = 1;
   // rent(){
   residentialfun1(id:any){
     this.propertyCategory = id

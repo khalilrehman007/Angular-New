@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,OnInit,Output,EventEmitter} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {AppService} from "../service/app.service";
 import {FormControl, FormGroup} from "@angular/forms";
 import { Options } from '@angular-slider/ngx-slider';
+import {RentpropertiesComponent} from "../pages/rentproperties/rentproperties.component";
 
 @Component({
   selector: 'app-propertyfilter',
@@ -10,6 +11,9 @@ import { Options } from '@angular-slider/ngx-slider';
   styleUrls: ['./propertyfilter.component.scss']
 })
 export class PropertyfilterComponent implements OnInit {
+
+  @Output() childToParentDataLoad:EventEmitter<any> = new EventEmitter<any>()
+
   type :any;
   PropertyCategoryId :any;
   RentTypeId :any;
@@ -19,12 +23,23 @@ export class PropertyfilterComponent implements OnInit {
   PriceEnd :any;
   minValue: number;
   maxValue: number;
+  Monthly: any;
+  MonthlyAr: any;
+  Quarterly: any;
+  QuarterlyAr: any;
+  Yearly: any;
+  YearlyAr: any;
+  data :any = {}
 
+  ngOnInit(): void {
+    //parent method
+    // this.childToParentDataLoad.emit('hikmat')
+  }
 
   constructor(private activeRoute: ActivatedRoute,private service:AppService,private api: AppService,private route:Router) {
     this.type                 = this.activeRoute.snapshot.queryParamMap.get('type');
     this.PropertyCategoryId   = this.activeRoute.snapshot.queryParamMap.get('PropertyCategoryId');
-    this.RentTypeId           = this.activeRoute.snapshot.queryParamMap.get('RentTypeId');
+    this.RentTypeId         = this.activeRoute.snapshot.queryParamMap.get('RentTypeId');
     this.PropertyTypeListingId = this.activeRoute.snapshot.queryParamMap.get('PropertyTypeListingId');
     this.PropertyAddress       = this.activeRoute.snapshot.queryParamMap.get('PropertyAddress');
     this.PriceStart            = this.activeRoute.snapshot.queryParamMap.get('PriceStart');
@@ -33,9 +48,32 @@ export class PropertyfilterComponent implements OnInit {
     this.minValue = this.PriceStart;
     this.maxValue = this.PriceEnd;
 
+
     this.SubmitForm.controls.Name.setValue(this.PropertyAddress);
     this.loadType();
     this.LoadPropertyCategories();
+    this.service.RentTypes().subscribe(data=>{
+      let response: any = data;
+      this.Monthly    = response.data[0].name;
+      this.Quarterly    = response.data[1].name;
+      this.Yearly    = response.data[2].name;
+    });
+
+    this.rentTypeIdCheck()
+  }
+  RentTypeIndexId:number;
+  public rentTypeIdCheck() {
+    // const tabCount = 3;
+    // this.RentTypeId = (this.RentTypeId + 1) % tabCount;
+
+    let RentTypeIndexId :number = 0;
+    if(this.RentTypeId == 2){
+      RentTypeIndexId = 1;
+    }else if(this.RentTypeId == 3){
+      RentTypeIndexId = 2;
+    }
+    this.RentTypeIndexId = RentTypeIndexId;
+
   }
 
   public options2 = [
@@ -67,6 +105,7 @@ export class PropertyfilterComponent implements OnInit {
     PriceStart : new FormControl(""),
     PriceEnd : new FormControl(""),
   });
+
   options: Options = {
     floor: 0,
     ceil: 500,
@@ -95,7 +134,48 @@ export class PropertyfilterComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
+
+  changeType(event) {
+    this.data.type = event.value
   }
+  propertyType(event) {
+    this.data.propertyType = event.value
+  }
+  bhkType(event) {
+    this.data.bhkType = event.value
+  }
+  bedBaths(event) {
+    this.data.bedBath = event.value
+  }
+  postedBy(event) {
+    this.data.postedBy = event.value
+  }
+
+  getRentalType(e:any){
+    if(e.tab.textLabel == "Monthly"){
+      this.data.rentalTypeId = 1;
+    }else if(e.tab.textLabel == "Quarterly"){
+      this.data.rentalTypeId = 2;
+    }else if(e.tab.textLabel == "Yearly"){
+      this.data.rentalTypeId = 3;
+    }
+  }
+
+
+  proceedSearch(){
+
+    console.log(this.data)
+    console.log(this.SubmitForm.value)
+
+    console.log('teststststst')
+
+    // console.log(this.propertyCategory,'CategoryId')
+    // console.log(this.data.rentalTypeId,'rentalTypeId')
+    // console.log(this.data.PropertyTypeListingId,'PropertyTypeListingId')
+    // console.log(this.SubmitForm.value)
+
+  }
+
+
 
 }
