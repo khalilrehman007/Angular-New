@@ -221,6 +221,6 @@ export class AppService {
         "dataType": "json",
       })
     }
-    return this.http.post(this.apiurl + 'MyLeads', data, httpOptions);
+    return this.http.post(this.apiurl + 'MyLeads', data);
   }
 }

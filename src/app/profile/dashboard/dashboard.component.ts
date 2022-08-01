@@ -155,6 +155,7 @@ export class DashboardComponent implements OnInit {
       this.totalCommValuation = this.dashboard.totalCommValuation
 
     });
+    this.LoadLeads("","");
 
   }
   getImage(e: any) {
@@ -329,7 +330,13 @@ export class DashboardComponent implements OnInit {
     });
     this.propertyListingStatus = tempData
   }
-
+  LoadLeads(CategoryId:any, TypeId:any) {
+    let temp:any = localStorage.getItem("user");
+    temp = JSON.parse(temp).id;
+    this.service.MyLeads({ "UserId":temp,"PropertyCategoryId": CategoryId, "PropertyListingTypeId": TypeId }).subscribe((result:any)=> {
+      console.log(result.data)
+    })
+  }
   ngOnInit() {
     var myDate = new Date();
     var hrs = myDate.getHours();
