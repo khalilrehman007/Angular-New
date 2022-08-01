@@ -210,4 +210,17 @@ export class AppService {
   UpdateImage(data: any) {
     return this.http.post(this.apiurl + 'UpdateImage', data);
   }
+  UserProfile(id: any) {
+    return this.http.get(this.apiurl + 'UserProfile/'+id);
+  }
+  MyLeads(data: any) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'false',
+        "processData": "false",
+        "dataType": "json",
+      })
+    }
+    return this.http.post(this.apiurl + 'MyLeads', data, httpOptions);
+  }
 }

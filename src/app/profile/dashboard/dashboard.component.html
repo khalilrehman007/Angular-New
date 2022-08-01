@@ -30,7 +30,6 @@
                   <label for="txtname">Location</label>
                   <h4 class="base-info-text"><img src="#" alt="">{{this.user.location ? this.user.location : 'Empty'}}
                   </h4>
-                  <!-- <input type="text" id="txtname" class="form-control" value="Al Mankool, Dubai,  UAE" placeholder="Enter the User Name"   autocomplete="off"  /> -->
                 </div>
                 <a [routerLink]="['#']" ngClass="edit">
                   <img src="{{proEdit}}" alt="">
@@ -43,7 +42,7 @@
       <div ngClass="col-md-4">
         <a href="#" class="close-icon"><img src="{{proClose}}" alt=""></a>
         <div class="user-image">
-          <img src="{{proAvatar}}" alt="" class="user-img">
+          <img src="{{proAvatar}}" *ngIf="proAvatar != ''" alt="" class="user-img">
         </div>
         <label for="proImg" class="edit-pro-img">
           <input type="file" id="proImg" (change)="getImage($event)">

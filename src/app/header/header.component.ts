@@ -82,7 +82,6 @@ export class HeaderComponent implements OnInit {
   bodyClass: string;
   constructor(private route:Router,private notifyService : NotificationService,private modalService: NgbModal) {
     this.getUser();
-    console.log(this.user);
     this.bodyClass = this.availableClasses[this.currentClassIdx];
     this.changeBodyClass();
   }

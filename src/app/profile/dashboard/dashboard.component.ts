@@ -17,7 +17,7 @@ import { AppService } from 'src/app/service/app.service';
 export class DashboardComponent implements OnInit {
   blogs: any;
   proFrame = '../../assets/images/profile/pro-img-frame.png'
-  proAvatar = '../../assets/images/profile/Profile-Pic.png'
+  proAvatar:any = ''
   proClose = '../../assets/images/profile/close.png'
   proImgEdit = '../../assets/images/profile/edit.png'
   proEdit = '../../assets/images/profile/create.png'
@@ -74,6 +74,7 @@ export class DashboardComponent implements OnInit {
     location: new FormControl(""),
   });
   data: any = {};
+  userData: any;
   userImage: any;
   changePasswordForm = new FormGroup({
     currentPassword: new FormControl(""),
@@ -81,12 +82,12 @@ export class DashboardComponent implements OnInit {
   });
 
 
-  lastPropertyLastingDate :any;
-  totalRestentailPropertyListing :any;
-  totalCommercialPropertyListing :any;
-  lastValuationDate :any;
-  totalRestValuation :any;
-  totalCommValuation :any;
+  lastPropertyLastingDate: any;
+  totalRestentailPropertyListing: any;
+  totalCommercialPropertyListing: any;
+  lastValuationDate: any;
+  totalRestValuation: any;
+  totalCommValuation: any;
   get firstName() {
     return this.detailForm.get("firstName");
   }
@@ -114,7 +115,12 @@ export class DashboardComponent implements OnInit {
     this.getTabCount();
     this.LoadvaluationDashboard();
     this.getLoadMyValuaionListing();
-
+    let temp: any = localStorage.getItem("user");
+    this.service.UserProfile(JSON.parse(temp).id).subscribe((result: any) => {
+      this.userData = result.data;
+      localStorage.setItem("user", JSON.stringify(this.userData));
+      this.proAvatar = this.baseUrl + this.userData.imageUrl;
+    })
     this.service.LoadPropertyListingTypes().subscribe(e => {
       let temp: any = e;
       if (temp.message == "Property Listing Type List fetched successfully") {
@@ -129,7 +135,6 @@ export class DashboardComponent implements OnInit {
           this.country.push({ viewValue: country.name, value: country.id });
         }
       }
-      console.log(this.country);
     });
     this.service.LoadDashboardData(35).subscribe(e => {
       let temp: any = e;
@@ -150,21 +155,29 @@ export class DashboardComponent implements OnInit {
     let temp: any = localStorage.getItem("user");
     temp = JSON.parse(temp);
     let imageData = new FormData();
-    imageData.append("ProfileRequest", JSON.stringify({ "Id": temp.id }))
     this.userImage = e.target.files;
-    // imageData.append()
     let extension: any = this.userImage[0].name.split(".");
     extension = extension[extension.length - 1];
-    // this.imageData.push({ "FileName": this.selectedFiles[i].name, "Extension": extension, file: this.selectedFiles[i] });
-    console.log(this.userImage[0].name, extension);
-
+    imageData.append("ProfileRequest", JSON.stringify({ "Id": temp.id }))
+    imageData.append(this.userImage[0].name, this.userImage[0]);
+    imageData.append("Extension", extension);
+    this.service.UpdateImage(imageData).subscribe((result: any) => {
+      localStorage.setItem("user", JSON.stringify(result.data));
+      if (result.message == "User  fetched successfully") {
+        const reader = new FileReader();
+        reader.readAsDataURL(this.userImage[0]);
+        reader.onload = () => {
+          this.proAvatar = reader.result;
+        };
+      }
+    })
   }
   changePassword() {
     if (this.changePasswordForm.value.currentPassword == this.changePasswordForm.value.newPassword) {
       let temp: any = localStorage.getItem("user");
       temp = JSON.parse(temp);
-      this.service.ChangePassword({"Id":temp.id,"Password":this.changePasswordForm.value.currentPassword, "ConfirmPassword":this.changePasswordForm.value.newPassword}).subscribe((result:any)=> {
-        alert(result.message);
+      this.service.ChangePassword({ "Id": temp.id, "Password": this.changePasswordForm.value.currentPassword, "ConfirmPassword": this.changePasswordForm.value.newPassword }).subscribe((result: any) => {
+        alert("Password Changed Successfully");
       })
     } else {
       alert("Password does not match");
@@ -309,7 +322,6 @@ export class DashboardComponent implements OnInit {
       })
     });
     this.propertyListingStatus = tempData
-    console.log(this.propertyListingStatus, 'dede')
   }
 
   ngOnInit() {
