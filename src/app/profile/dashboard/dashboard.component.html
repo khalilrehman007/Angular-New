@@ -2119,7 +2119,7 @@
                                   <label class="h6-design">Date of Birth</label>
                                   <div class="input-date-picker input-design">
                                     <mat-form-field appearance="fill">
-                                      <input matInput [matDatepicker]="picker">
+                                      <input matInput [matDatepicker]="picker" id="formDate">
                                       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                       <mat-datepicker #picker></mat-datepicker>
                                     </mat-form-field>
@@ -2129,9 +2129,9 @@
 
                               <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                 <div ngClass="block-wrapper mb-4">
-                                  <label class="h6-design">Phone</label>
+                                  <label class="h6-design">Address</label>
                                   <mat-form-field appearance="fill" class="full-width input-design-2">
-                                    <input matInput formControlName="phone">
+                                    <input matInput formControlName="address">
                                   </mat-form-field>
                                 </div>
                               </div>
