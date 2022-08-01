@@ -163,7 +163,7 @@ export class DashboardComponent implements OnInit {
     if (this.changePasswordForm.value.currentPassword == this.changePasswordForm.value.newPassword) {
       let temp: any = localStorage.getItem("user");
       temp = JSON.parse(temp);
-      this.service.ChangePassword({"Email":temp.email,"Password":this.changePasswordForm.value.currentPassword, "ConfirmPassword":this.changePasswordForm.value.newPassword}).subscribe((result:any)=> {
+      this.service.ChangePassword({"Id":temp.id,"Password":this.changePasswordForm.value.currentPassword, "ConfirmPassword":this.changePasswordForm.value.newPassword}).subscribe((result:any)=> {
         alert(result.message);
       })
     } else {
