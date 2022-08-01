@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { SecondHeaderComponent } from '../../../second-header/second-header.component';
 import { FormGroup, FormControl, Validators } from '@angular/forms'
 import { AppService } from 'src/app/service/app.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-property-types',
@@ -64,7 +65,7 @@ export class PropertyTypesComponent implements OnInit {
   get buildupArea() {
     return this.propertyTypeForm.get("buildupArea");
   }
-  constructor(private service: AppService,) {
+  constructor(private service: AppService, private router:Router) {
     this.formData = (window.localStorage.getItem('valuationData'));
     this.formData = JSON.parse(this.formData);
     this.loadFurnishingType();
@@ -183,6 +184,7 @@ export class PropertyTypesComponent implements OnInit {
       temp.push({ PropertyFeatureId: this.featuresFormData[i] });
     }
     this.formData.PropertyFeatures = temp;
-    console.log(this.formData);
+    localStorage.setItem('valuationData', JSON.stringify(this.formData));
+    this.router.navigate(['/PropertyDocument']);
   }
 }
