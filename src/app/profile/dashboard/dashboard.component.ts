@@ -350,7 +350,6 @@ export class DashboardComponent implements OnInit {
     temp = JSON.parse(temp).id;
     this.service.MyLeads({ "UserId": temp, "PropertyCategoryId": CategoryId, "PropertyListingTypeId": TypeId }).subscribe((result: any) => {
       this.leadsData = result.data;
-      console.log(this.leadsData)
       for(let i = 0; i < this.leadsData.length; i++) {
         if(this.leadsData[i].propertyListing.propertyCategoryId == 1) {
           this.leadsData[i].propertyCategory = "Residential"
