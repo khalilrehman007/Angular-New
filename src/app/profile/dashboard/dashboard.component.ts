@@ -187,6 +187,7 @@ export class DashboardComponent implements OnInit {
       temp = JSON.parse(temp);
       this.service.ChangePassword({ "Id": temp.id, "Password": this.changePasswordForm.value.currentPassword, "ConfirmPassword": this.changePasswordForm.value.newPassword }).subscribe((result: any) => {
         alert("Password Changed Successfully");
+        this.changePasswordForm.reset();
       })
     } else {
       alert("Password does not match");
