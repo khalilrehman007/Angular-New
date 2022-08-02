@@ -52,6 +52,7 @@ export class DashboardComponent implements OnInit {
   cityId: number = -1;
   dashboard: any;
   leadsData:any = [];
+  userData:any = {};
 
   plus = '../../../../assets/images/plus.svg'
 
@@ -79,9 +80,10 @@ export class DashboardComponent implements OnInit {
     lastName: new FormControl(""),
     address: new FormControl(""),
     location: new FormControl(""),
+    dob: new FormControl("")
   });
   data: any = {};
-  userData: any;
+  userFormData: any;
   userImage: any;
   changePasswordForm = new FormGroup({
     currentPassword: new FormControl(""),
@@ -156,7 +158,15 @@ export class DashboardComponent implements OnInit {
 
     });
     this.LoadLeads("", "");
-
+    this.userFormData = localStorage.getItem("user");
+    this.userFormData = JSON.parse(this.userFormData);
+    console.log(this.userFormData);
+    this.detailForm.patchValue({
+      firstName: this.userFormData.firstName,
+      lastName: this.userFormData.lastName,
+      address: this.userFormData.address,
+      dob: this.userFormData.dateOfBirth
+    })
   }
   getImage(e: any) {
     let temp: any = localStorage.getItem("user");
@@ -194,7 +204,12 @@ export class DashboardComponent implements OnInit {
     }
   }
   getData() {
-    if(this.detailForm.value.firstName == "" || this.detailForm.value.lastName == "" || this.detailForm.value.address == "" || this.countryId == -1 || this.cityId == -1 || $("#formDate").val() == "") {
+    if(this.detailForm.value.firstName == "" 
+    || this.detailForm.value.lastName == "" 
+    || this.detailForm.value.address == "" 
+    || this.countryId == -1 
+    || this.cityId == -1 
+    || $("#formDate").val() == "") {
       alert("Enter all the fields");
       return;
     }
