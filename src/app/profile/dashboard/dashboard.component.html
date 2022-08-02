@@ -1542,7 +1542,7 @@
                           <div class="col base-info-col">
                             <h4 class="name">{{item.name}}</h4>
                             <p>{{item.leadDate}}</p>
-                            <p>Dubai, UAE</p>
+                            <p>{{item.propertyListing.city.name}}, {{item.propertyListing.country.name}}</p>
                           </div>
                           <div class="col ">
                             <span>Property ID</span>
@@ -1586,15 +1586,15 @@
                 <div class="type-activity-status">
                   <div ngClass="block-wrapper mb-4">
                     <div class="checkbox-flex-box-auto button-same-select">
-                      <div class="checkbox-design position-relative" (click)="LoadLeads('','')">
+                      <div class="checkbox-design position-relative" (click)="LoadLeads('1','')">
                         <input type="radio" id="Furnished" name="property-types" value="All" checked>
                         <button class="checkbox-btn">All</button>
                       </div>
-                      <div class="checkbox-design position-relative" (click)="LoadLeads('','2')">
+                      <div class="checkbox-design position-relative" (click)="LoadLeads('1','2')">
                         <input type="radio" id="Semi-Furnished" name="property-types" value="Buy">
                         <button class="checkbox-btn">Buy</button>
                       </div>
-                      <div class="checkbox-design position-relative" (click)="LoadLeads('','1')">
+                      <div class="checkbox-design position-relative" (click)="LoadLeads('1','1')">
                         <input type="radio" id="Unfurnished" name="property-types" value="Rent">
                         <button class="checkbox-btn">Rent</button>
                       </div>
@@ -1613,7 +1613,7 @@
                           <div class="col base-info-col">
                             <h4 class="name">{{item.name}}</h4>
                             <p>{{item.leadDate}}</p>
-                            <p>Dubai, UAE</p>
+                            <p>{{item.propertyListing.city.name}}, {{item.propertyListing.country.name}}</p>
                           </div>
                           <div class="col ">
                             <span>Property ID</span>
@@ -1657,15 +1657,15 @@
                 <div class="type-activity-status">
                   <div ngClass="block-wrapper mb-4">
                     <div class="checkbox-flex-box-auto button-same-select">
-                      <div class="checkbox-design position-relative" (click)="LoadLeads('','')">
+                      <div class="checkbox-design position-relative" (click)="LoadLeads('2','')">
                         <input type="radio" id="Furnished" name="property-types" value="All" checked>
                         <button class="checkbox-btn">All</button>
                       </div>
-                      <div class="checkbox-design position-relative" (click)="LoadLeads('','2')">
+                      <div class="checkbox-design position-relative" (click)="LoadLeads('2','2')">
                         <input type="radio" id="Semi-Furnished" name="property-types" value="Buy">
                         <button class="checkbox-btn">Buy</button>
                       </div>
-                      <div class="checkbox-design position-relative" (click)="LoadLeads('','1')">
+                      <div class="checkbox-design position-relative" (click)="LoadLeads('2','1')">
                         <input type="radio" id="Unfurnished" name="property-types" value="Rent">
                         <button class="checkbox-btn">Rent</button>
                       </div>
@@ -1684,7 +1684,7 @@
                           <div class="col base-info-col">
                             <h4 class="name">{{item.name}}</h4>
                             <p>{{item.leadDate}}</p>
-                            <p>Dubai, UAE</p>
+                            <p>{{item.propertyListing.city.name}}, {{item.propertyListing.country.name}}</p>
                           </div>
                           <div class="col ">
                             <span>Property ID</span>
