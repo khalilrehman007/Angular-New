@@ -1,6 +1,12 @@
 $color_1: #595ad4;
 $background-color_1: transparent;
-
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{
+    -webkit-box-shadow: 0 0 0 30px #eef1f3 inset !important;
+	padding-right: 0px !important;
+}
 .property-filter-wrap {
 	.block-item {
 		width: 13%;
