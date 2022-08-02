@@ -184,6 +184,9 @@ export class AppService {
   TeamMembers() {
     return this.http.get(this.apiurl + 'TeamMembers');
   }
+  TeamMemberBanner() {
+    return this.http.get(this.apiurl + 'TeamMemberBanner');
+  }
   HowWorkOvaluate() {
     return this.http.get(this.apiurl + 'HowWorkOvaluate');
   }
