@@ -51,6 +51,7 @@ export class DashboardComponent implements OnInit {
   countryId: number = -1;
   cityId: number = -1;
   dashboard: any;
+  leadsData:any = [];
 
   plus = '../../../../assets/images/plus.svg'
 
@@ -112,7 +113,6 @@ export class DashboardComponent implements OnInit {
   get newPassword() {
     return this.changePasswordForm.get("newPassword");
   }
-
   constructor(private service: AppService, private route: Router, private notifyService: NotificationService) {
     this.getUser();
     this.LoadBlogs();
@@ -335,11 +335,31 @@ export class DashboardComponent implements OnInit {
     });
     this.propertyListingStatus = tempData
   }
+  getTab(e:any) {
+    if(e.index == 0) {
+      this.LoadLeads('','');
+    } else if(e.index == 1) {
+      this.LoadLeads('1','');
+    } else {
+      this.LoadLeads('2','');
+    }
+  }
   LoadLeads(CategoryId: any, TypeId: any) {
+    this.leadsData = [];
     let temp: any = localStorage.getItem("user");
     temp = JSON.parse(temp).id;
     this.service.MyLeads({ "UserId": temp, "PropertyCategoryId": CategoryId, "PropertyListingTypeId": TypeId }).subscribe((result: any) => {
-      console.log(result.data)
+      this.leadsData = result.data;
+      for(let i = 0; i < this.leadsData.length; i++) {
+        if(this.leadsData[i].propertyListing.propertyCategoryId == 1) {
+          this.leadsData[i].propertyCategory = "Residential"
+        } else {
+          this.leadsData[i].propertyCategory = "Commercial"
+        }
+      }
+      for(let i = 0; i < this.leadsData.length; i++) {
+        this.leadsData[i].leadDate = this.leadsData[i].leadDate.split("T")[0];
+      }
     })
   }
   ngOnInit() {
