@@ -17,7 +17,7 @@ export class PropertyfilterComponent implements OnInit {
   type :any;
   PropertyCategoryId :any;
   RentTypeId :any;
-  PropertyTypeListingId :any;
+  PropertyListingTypeId :any;
   PropertyAddress :any;
   PriceStart :any;
   PriceEnd :any;
@@ -29,6 +29,9 @@ export class PropertyfilterComponent implements OnInit {
   QuarterlyAr: any;
   Yearly: any;
   YearlyAr: any;
+  Bedrooms: any;
+  Bathrooms: any;
+  postedById: any;
   data :any = {}
 
   ngOnInit(): void {
@@ -39,11 +42,13 @@ export class PropertyfilterComponent implements OnInit {
   constructor(private activeRoute: ActivatedRoute,private service:AppService,private api: AppService,private route:Router) {
     this.type                 = this.activeRoute.snapshot.queryParamMap.get('type');
     this.PropertyCategoryId   = this.activeRoute.snapshot.queryParamMap.get('PropertyCategoryId');
-    this.RentTypeId         = this.activeRoute.snapshot.queryParamMap.get('RentTypeId');
-    this.PropertyTypeListingId = this.activeRoute.snapshot.queryParamMap.get('PropertyTypeListingId');
+    this.RentTypeId           = this.activeRoute.snapshot.queryParamMap.get('RentTypeId');
+    this.PropertyListingTypeId = this.activeRoute.snapshot.queryParamMap.get('PropertyListingTypeId');
     this.PropertyAddress       = this.activeRoute.snapshot.queryParamMap.get('PropertyAddress');
     this.PriceStart            = this.activeRoute.snapshot.queryParamMap.get('PriceStart');
     this.PriceEnd              = this.activeRoute.snapshot.queryParamMap.get('PriceEnd');
+    this.Bedrooms              = this.activeRoute.snapshot.queryParamMap.get('Bedrooms');
+    this.Bathrooms              = this.activeRoute.snapshot.queryParamMap.get('Bathrooms');
 
     this.minValue = this.PriceStart;
     this.maxValue = this.PriceEnd;
@@ -54,8 +59,8 @@ export class PropertyfilterComponent implements OnInit {
     this.LoadPropertyCategories();
     this.service.RentTypes().subscribe(data=>{
       let response: any = data;
-      this.Monthly    = response.data[0].name;
-      this.Quarterly    = response.data[1].name;
+      this.Monthly   = response.data[0].name;
+      this.Quarterly = response.data[1].name;
       this.Yearly    = response.data[2].name;
     });
 
@@ -76,10 +81,10 @@ export class PropertyfilterComponent implements OnInit {
 
   }
 
-  public options2 = [
-    {"id": 1, "name": "Rent"},
-    {"id": 2, "name": "Buy"}
-  ]
+  // public options2 = [
+  //   {"id": 1, "name": "Rent"},
+  //   {"id": 2, "name": "Buy"}
+  // ]
 
   rentTypes:any = []
   selectedRentType :any;
@@ -136,44 +141,41 @@ export class PropertyfilterComponent implements OnInit {
 
 
   changeType(event) {
-    this.data.type = event.value
+    this.PropertyListingTypeId = event.value
   }
   propertyType(event) {
-    this.data.propertyType = event.value
+    this.PropertyCategoryId = event.value
   }
-  bhkType(event) {
-    this.data.bhkType = event.value
+
+  baths(event) {
+    this.Bathrooms = event.value
   }
-  bedBaths(event) {
-    this.data.bedBath = event.value
+  beds(event) {
+    this.Bedrooms = event.value
   }
   postedBy(event) {
-    this.data.postedBy = event.value
+    this.postedById = event.value
   }
 
   getRentalType(e:any){
     if(e.tab.textLabel == "Monthly"){
-      this.data.rentalTypeId = 1;
+      this.RentTypeId = 1;
     }else if(e.tab.textLabel == "Quarterly"){
-      this.data.rentalTypeId = 2;
+      this.RentTypeId = 2;
     }else if(e.tab.textLabel == "Yearly"){
-      this.data.rentalTypeId = 3;
+      this.RentTypeId = 3;
     }
   }
 
 
   proceedSearch(){
 
-    console.log(this.data)
-    console.log(this.SubmitForm.value)
-
-    console.log('teststststst')
-
-    // console.log(this.propertyCategory,'CategoryId')
-    // console.log(this.data.rentalTypeId,'rentalTypeId')
-    // console.log(this.data.PropertyTypeListingId,'PropertyTypeListingId')
-    // console.log(this.SubmitForm.value)
-
+    let params :any = {"PropertyTypeIds":[], "PropertyAddress":this.PropertyAddress,"RentTypeId":this.RentTypeId,
+      "PropertyCategoryId":this.PropertyCategoryId,PriceStart:this.SubmitForm.value.PriceStart,PriceEnd:this.SubmitForm.value.PriceEnd,
+      Bedrooms:this.Bedrooms,Bathrooms:this.Bathrooms,
+      "PropertyListingTypeId":this.PropertyListingTypeId
+    }
+    this.childToParentDataLoad.emit(params)
   }
 
 

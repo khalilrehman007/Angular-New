@@ -53,24 +53,30 @@ export class RentpropertiesComponent implements OnInit {
   type :any;
   PropertyCategoryId :any;
   RentTypeId :any;
-  PropertyTypeListingId :any;
+  PropertyListingTypeId :any;
+  PropertyTypeIds :any;
   PropertyAddress :any;
   PriceStart :any;
   PriceEnd :any;
   baseUrl = 'https://beta.ovaluate.com/'
 
   constructor(private activeRoute: ActivatedRoute,private service:AppService,private api: AppService,private route:Router) {
-    this.type                 = this.activeRoute.snapshot.queryParamMap.get('type');
-    this.PropertyCategoryId   = this.activeRoute.snapshot.queryParamMap.get('PropertyCategoryId');
-    this.RentTypeId           = this.activeRoute.snapshot.queryParamMap.get('RentTypeId');
-    this.PropertyTypeListingId = this.activeRoute.snapshot.queryParamMap.get('PropertyTypeListingId');
+    this.type                  = this.activeRoute.snapshot.queryParamMap.get('type');
+    this.PropertyCategoryId    = this.activeRoute.snapshot.queryParamMap.get('PropertyCategoryId');
+    this.RentTypeId            = this.activeRoute.snapshot.queryParamMap.get('RentTypeId');
+    this.PropertyListingTypeId = this.activeRoute.snapshot.queryParamMap.get('PropertyListingTypeId');
+    this.PropertyTypeIds       = this.activeRoute.snapshot.queryParamMap.get('PropertyTypeIds');
     this.PropertyAddress       = this.activeRoute.snapshot.queryParamMap.get('PropertyAddress');
     this.PriceStart            = this.activeRoute.snapshot.queryParamMap.get('PriceStart');
     this.PriceEnd              = this.activeRoute.snapshot.queryParamMap.get('PriceEnd');
 
+    let params :any = {"PropertyTypeIds":this.PropertyTypeIds, "PropertyAddress":this.PropertyAddress,"RentTypeId":this.RentTypeId,
+      "PropertyCategoryId":this.PropertyCategoryId,"PriceStart":this.PriceStart, "PriceEnd" : this.PriceEnd,
+      "PropertyListingTypeId":this.PropertyListingTypeId
+    }
+
     this.LoadPropertyCategories();
-    this.loadListingProperty();
-    console.log(this.PropertyAddress)
+    this.loadListingProperty(params);
   }
 
   propertyTypes:any = []
@@ -91,21 +97,15 @@ export class RentpropertiesComponent implements OnInit {
     });
   }
 
-
-
-
-  test:any;
   childToParentDataLoad(data:any){
-    this.test=data
-    console.log(data,'okokokokokokok')
+    console.log(data)
+    this.loadListingProperty(data);
   }
 
   searchListing:any = [];
-  loadListingProperty(){
+  loadListingProperty(data:any){
     let tempData :Array<Object> = []
-    this.service.LoadSearchListing(
-      {"PropertyListingTypeId":this.PropertyTypeListingId, "PropertyAddress":this.PropertyAddress,"RentTypeId":this.RentTypeId,
-        "PropertyCategoryId":this.PropertyCategoryId,"PriceStart":this.PriceStart, "PriceEnd" : this.PriceEnd} ).subscribe(data=>{
+    this.service.LoadSearchListing(data).subscribe(data=>{
       let response: any = data;
       response.data.forEach((element, i) => {
         let image :any;
@@ -118,7 +118,7 @@ export class RentpropertiesComponent implements OnInit {
         }
         tempData.push(
           {
-            documents:element.documents,
+            documents:element.documents,propertyFeatures:element.propertyFeatures,propertyType:element.propertyType,
             propertyTitle: element.propertyTitle, propertyAddress: element.propertyAddress, img:this.baseUrl+image,
             buildingName: element.buildingName,bedrooms: element.bedrooms,bathrooms: element.bathrooms,carpetArea: element.carpetArea,
             unitNo: element.unitNo,totalFloorgit: element.totalFloor,floorNo: element.floorNo,propertyDescription: element.propertyDescription,

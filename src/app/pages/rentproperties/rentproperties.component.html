@@ -6,7 +6,6 @@
 <section [ngClass]="'rent-propoerties-main-sec slide-left-bar'">
    <div ngClass="properties-file-container-shadow">
     <div ngClass="properties-file-container">
-      {{test}}
       <app-propertyfilter (childToParentDataLoad)="childToParentDataLoad($event)"></app-propertyfilter>
       </div>
    </div>
@@ -16,7 +15,7 @@
    <div ngClass="property-details-header">
     <div ngClass="d-flex justify-content-spacebw">
     <div ngClass="black-text-breadcrumb">
-    <app-breadcrumb></app-breadcrumb>
+<!--    <app-breadcrumb></app-breadcrumb>-->
     </div>
     <div ngClass="last-updated-details">
         <p>Last Updated: <span ngClass="update-date">April 19, 2022</span></p>
@@ -26,7 +25,8 @@
 <div ngClass="heading-apragraph-design">
    <h2>{{selectedPropertyTypeName}} Properties for {{type}} in UAE</h2>
    <p>Showing {{searchListing.length}} Properties for {{type}} in UAE</p>
-   <p>{{selectedPropertyTypeDiscription}} <button ngClass="read-more-btn"></button></p>
+<!--   <p>{{selectedPropertyTypeDiscription}} <button ngClass="read-more-btn"></button></p>-->
+  <p>Properties For {{type}} in UAE. Verified Listings. Your Perfect Home is on Property Finder! Property Finder: Real Estate...  <button ngClass="read-more-btn">Read more</button></p>
 </div>
 <div ngClass="properties-filtr-values d-flex justify-content-spacebw">
   <div ngClass="properties-filtr-values-left d-flex justify-content-spacebw">
@@ -108,7 +108,8 @@
              <button ngClass="circle-btn"><img src="{{order}}"></button>
              <button ngClass="circle-btn"><img src="{{heart}}"></button>
           </div>
-          </div>
+          </div>Choose your adventure.
+
           <div ngClass="property-name_detals">
             <h4>{{list.buildingName}}</h4>
             <div ngClass="property-addresss">
@@ -116,7 +117,7 @@
             </div>
         </div>
         <div ngClass="topkey-highlights">
-          <h6>Hotel & Hotel Apartment</h6>
+          <h6>{{list.propertyType.typeDescription}},</h6>
           <div ngClass="property-details-highlights">
               <span ngClass="bed">
                   <img src="{{bedsvg}}" alt="">{{list.bedrooms}} Beds
@@ -133,11 +134,13 @@
           </div>
       </div>
       <div ngClass="key-tags">
-        <span>Exclusive</span>
-        <span>Golf & Canal Views</span>
-        <span>Affordable</span>
-        <span>Vastu complaint</span>
-        <span>Prime location</span>
+        <span *ngFor="let features of list.propertyFeatures">
+          {{features.propertyFeature.featureName}}
+        </span>
+<!--        <span>Golf & Canal Views</span>-->
+<!--        <span>Affordable</span>-->
+<!--        <span>Vastu complaint</span>-->
+<!--        <span>Prime location</span>-->
     </div>
     <div ngClass="data-inteligence-text">
        <h6>OV Data Intelligence - Corniche Road, Abu Dhabi </h6>

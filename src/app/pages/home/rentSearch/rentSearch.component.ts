@@ -97,12 +97,17 @@ export class RentSearchComponent implements OnInit {
     document.getElementsByClassName('commertial-tabs')[0].classList.remove('hide');
   }
 
+
+  PropertyTypeResidentialIds :any = []
   getPropertyType(e: number) {
-    this.data.PropertyTypeListingId = e;
+    this.PropertyTypeResidentialIds.push(e)
+    // this.data.PropertyTypeListingId = e;
   }
 
+  PropertyTypeCommercialIds :any = []
   getPropertyCommercialType(e: number) {
-    this.data.PropertyTypeListingId = e;
+    this.PropertyTypeCommercialIds.push(e)
+    // this.data.PropertyTypeListingId = e;
   }
 
   LoadPropertyCategories(){
@@ -138,13 +143,26 @@ export class RentSearchComponent implements OnInit {
     // this.SubmitForm.value.Name
     // this.data.rentalTypeId
 
-    console.log(this.propertyCategory,'CategoryId')
-    console.log(this.data.rentalTypeId,'rentalTypeId')
-    console.log(this.data.PropertyTypeListingId,'PropertyTypeListingId')
-    console.log(this.SubmitForm.value)
+    let PropertyTypeIds :any = [];
+    if(this.propertyCategory == 1){
+      //residential
+      PropertyTypeIds = this.PropertyTypeResidentialIds
+    }else if(this.propertyCategory == 2){
+      //commercial
+      PropertyTypeIds = this.PropertyTypeCommercialIds
+    }
 
-    let params :any = {queryParams:{type:'Rent',PropertyCategoryId:this.propertyCategory,RentTypeId:this.data.rentalTypeId,PropertyTypeListingId:this.data.PropertyTypeListingId
-        ,PropertyAddress:this.SubmitForm.value.Name,PriceStart:this.SubmitForm.value.PriceStart,PriceEnd:this.SubmitForm.value.PriceEnd}};
+    // console.log(PropertyTypeIds,'PropertyTypeIds')
+    // console.log(this.propertyCategory,'CategoryId')
+    // console.log(this.data.rentalTypeId,'rentalTypeId')
+    // console.log(this.SubmitForm.value)
+
+    let params :any = {queryParams:{type:'Rent',PropertyListingTypeId:1,PropertyCategoryId:this.propertyCategory,RentTypeId:this.data.rentalTypeId,PropertyTypeIds:PropertyTypeIds
+        ,PropertyAddress:this.SubmitForm.value.Name,PriceStart:this.SubmitForm.value.PriceStart,PriceEnd:this.SubmitForm.value.PriceEnd
+        ,Bedrooms:'',Bathrooms:''
+      }};
+
+    console.log(params)
     this.route.navigate(['/search'],params)
   }
 }
