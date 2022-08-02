@@ -97,12 +97,16 @@ export class BuySearchComponent implements OnInit {
     document.getElementsByClassName('commertial-tabs1')[0].classList.remove('hide');
   }
 
+  PropertyTypeResidentialIds :any = []
   getPropertyType(e: number) {
-    this.data.PropertyTypeListingId = e;
+    this.PropertyTypeResidentialIds.push(e)
+    // this.data.PropertyTypeListingId = e;
   }
 
+  PropertyTypeCommercialIds :any = []
   getPropertyCommercialType(e: number) {
-    this.data.PropertyTypeListingId = e;
+    this.PropertyTypeCommercialIds.push(e)
+    // this.data.PropertyTypeListingId = e;
   }
 
   LoadPropertyCategories(){
@@ -141,13 +145,26 @@ export class BuySearchComponent implements OnInit {
   proceedSearch(){
     // this.SubmitForm.value.Name
     // this.data.rentalTypeId
-    console.log(this.propertyCategory,'CategoryId')
-    console.log(this.data.rentalTypeId,'rentalTypeId')
-    console.log(this.data.PropertyTypeListingId,'PropertyTypeListingId')
-    console.log(this.SubmitForm.value)
+    // console.log(this.propertyCategory,'CategoryId')
+    // console.log(this.data.rentalTypeId,'rentalTypeId')
+    // console.log(this.data.PropertyTypeListingId,'PropertyTypeListingId')
+    // console.log(this.SubmitForm.value)
 
-    this.route.navigate(['/search'],
-      {queryParams:{type:'Buy',PropertyCategoryId:this.propertyCategory,RentTypeId:this.data.rentalTypeId,PropertyTypeListingId:this.data.PropertyTypeListingId
-          ,PropertyAddress:this.SubmitForm.value.Name,PriceStart:this.SubmitForm.value.PriceStart,PriceStart1:this.SubmitForm.value.PriceStart1,PriceStart2:this.SubmitForm.value.PriceStart2,PriceEnd:this.SubmitForm.value.PriceEnd,PriceEnd1:this.SubmitForm.value.PriceEnd1,PriceEnd2:this.SubmitForm.value.PriceEnd2}})
+    let PropertyTypeIds :any = [];
+    if(this.propertyCategory == 1){
+      //residential
+      PropertyTypeIds = this.PropertyTypeResidentialIds
+    }else if(this.propertyCategory == 2){
+      //commercial
+      PropertyTypeIds = this.PropertyTypeCommercialIds
+    }
+
+    let params :any = {queryParams:{type:'Buy',PropertyListingTypeId:2,PropertyCategoryId:this.propertyCategory,RentTypeId:this.data.rentalTypeId,PropertyTypeIds:PropertyTypeIds
+        ,PropertyAddress:this.SubmitForm.value.Name,PriceStart:this.SubmitForm.value.PriceStart,PriceEnd:this.SubmitForm.value.PriceEnd
+        ,Bedrooms:'',Bathrooms:''
+      }};
+
+    this.route.navigate(['/search'],params)
+
   }
 }
