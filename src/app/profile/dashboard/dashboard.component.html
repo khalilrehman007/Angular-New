@@ -19,28 +19,23 @@
             <div class="col-md-4">
               <div class="form-group">
                 <label for="txtname">Phone</label>
-                <h4 class="base-info-text"><img src="{{this.user.phoneNumber ? this.user.phoneNumber : 'Empty'}}"
-                    alt="">{{this.user.phoneNumber ? this.user.phoneNumber : 'Empty'}}</h4>
+                <h4 class="base-info-text"><a href="tel:{{this.user.phoneNumber ? this.user.phoneNumber : 'Empty'}}">{{this.user.phoneNumber ? this.user.phoneNumber : 'Empty'}}</a></h4>
                 <!-- <input type="text" id="txtname" class="form-control" value="+971 50 999 9999" placeholder="Enter the User Name"   autocomplete="off"  /> -->
               </div>
             </div>
             <div class="col-md-4">
               <div class="d-flex align-item-center">
                 <div class="form-group">
-                  <label for="txtname">Location</label>
-                  <h4 class="base-info-text"><img src="#" alt="">{{this.user.location ? this.user.location : 'Empty'}}
+                  <label for="txtname">Address</label>
+                  <h4 class="base-info-text">{{this.user.location ? this.user.location : 'Empty'}}
                   </h4>
                 </div>
-                <a [routerLink]="['#']" ngClass="edit">
-                  <img src="{{proEdit}}" alt="">
-                </a>
               </div>
             </div>
           </div>
         </div>
       </div>
       <div ngClass="col-md-4">
-        <a href="#" class="close-icon"><img src="{{proClose}}" alt=""></a>
         <div class="user-image">
           <img src="{{proAvatar}}" *ngIf="proAvatar != ''" alt="" class="user-img">
         </div>
@@ -2181,22 +2176,6 @@
                               </div>
                               <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                 <div ngClass="block-wrapper mb-4">
-                                  <label class="h6-design">Address</label>
-                                  <mat-form-field appearance="fill" class="full-width input-design-2">
-                                    <input matInput formControlName="address">
-                                  </mat-form-field>
-                                </div>
-                              </div>
-                              <div ngClass="col-xl-6 col-lg-6 col-sm-12">
-                                <div ngClass="block-wrapper mb-4">
-                                  <label class="h6-design">Location</label>
-                                  <mat-form-field appearance="fill" class="full-width input-design-2">
-                                    <input matInput formControlName="location">
-                                  </mat-form-field>
-                                </div>
-                              </div>
-                              <div ngClass="col-xl-6 col-lg-6 col-sm-12">
-                                <div ngClass="block-wrapper mb-4">
                                   <label class="h6-design">Country</label>
                                   <mat-form-field appearance="fill" class="full-width select-form input-design-2">
                                     <mat-label>Select the Country</mat-label>
@@ -2219,6 +2198,14 @@
                                       </mat-option>
                                     </mat-select>
                                   </mat-form-field>
+                                </div>
+                              </div>
+                              <div ngClass="col-xl-12 col-lg-12 col-sm-12">
+                                <div ngClass="block-wrapper mb-4">
+                                  <label class="h6-design">Address</label>
+                                  <mat-form-field class="example-full-width textarea-design" appearance="fill">
+                                    <textarea matInput></textarea>
+                                </mat-form-field>
                                 </div>
                               </div>
                             </div>
