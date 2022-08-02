@@ -4,6 +4,7 @@ import { FooterComponent } from '../../footer/footer.component';
 import { PropertyfilterComponent } from '../../propertyfilter/propertyfilter.component';
 import {ActivatedRoute, Router} from "@angular/router";
 import {AppService} from "../../service/app.service";
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-rentproperties',
@@ -58,9 +59,10 @@ export class RentpropertiesComponent implements OnInit {
   PropertyAddress :any;
   PriceStart :any;
   PriceEnd :any;
+  content :any;
   baseUrl = 'https://beta.ovaluate.com/'
 
-  constructor(private activeRoute: ActivatedRoute,private service:AppService,private api: AppService,private route:Router) {
+  constructor(private activeRoute: ActivatedRoute,private service:AppService,private api: AppService,private route:Router,private modalService: NgbModal) {
     this.type                  = this.activeRoute.snapshot.queryParamMap.get('type');
     this.PropertyCategoryId    = this.activeRoute.snapshot.queryParamMap.get('PropertyCategoryId');
     this.RentTypeId            = this.activeRoute.snapshot.queryParamMap.get('RentTypeId');
@@ -133,7 +135,9 @@ export class RentpropertiesComponent implements OnInit {
 
     // console.log(this.searchListing,'listing')
   }
-
+  openVerticallyCentered(content) {
+    this.modalService.open(content, { centered: true });
+  }
 
   ngOnInit(): void {
   }

@@ -19,28 +19,23 @@
             <div class="col-md-4">
               <div class="form-group">
                 <label for="txtname">Phone</label>
-                <h4 class="base-info-text"><img src="{{this.user.phoneNumber ? this.user.phoneNumber : 'Empty'}}"
-                    alt="">{{this.user.phoneNumber ? this.user.phoneNumber : 'Empty'}}</h4>
+                <h4 class="base-info-text"><a href="tel:{{this.user.phoneNumber ? this.user.phoneNumber : 'Empty'}}">{{this.user.phoneNumber ? this.user.phoneNumber : 'Empty'}}</a></h4>
                 <!-- <input type="text" id="txtname" class="form-control" value="+971 50 999 9999" placeholder="Enter the User Name"   autocomplete="off"  /> -->
               </div>
             </div>
             <div class="col-md-4">
               <div class="d-flex align-item-center">
                 <div class="form-group">
-                  <label for="txtname">Location</label>
-                  <h4 class="base-info-text"><img src="#" alt="">{{this.user.location ? this.user.location : 'Empty'}}
+                  <label for="txtname">Address</label>
+                  <h4 class="base-info-text">{{this.userFormData.address ? this.userFormData.address : 'Empty'}}
                   </h4>
                 </div>
-                <a [routerLink]="['#']" ngClass="edit">
-                  <img src="{{proEdit}}" alt="">
-                </a>
               </div>
             </div>
           </div>
         </div>
       </div>
       <div ngClass="col-md-4">
-        <a href="#" class="close-icon"><img src="{{proClose}}" alt=""></a>
         <div class="user-image">
           <img src="{{proAvatar}}" *ngIf="proAvatar != ''" alt="" class="user-img">
         </div>
@@ -1510,22 +1505,22 @@
         <div class="recent-activity">
           <h4 class="sub-title">My Leads</h4>
           <div class="sub-tab-nav">
-            <mat-tab-group>
-              <mat-tab label="All (02)">
+            <mat-tab-group (selectedTabChange)="getTab($event)">
+              <mat-tab label="All">
                 <div class="type-activity-status">
                   <div ngClass="block-wrapper mb-4">
                     <div class="checkbox-flex-box-auto button-same-select">
-                      <div class="checkbox-design position-relative">
+                      <div class="checkbox-design position-relative" (click)="LoadLeads('','')">
                         <input type="radio" id="Furnished" name="property-types" value="All" checked>
-                        <button class="checkbox-btn">All (03)</button>
+                        <button class="checkbox-btn">All</button>
                       </div>
-                      <div class="checkbox-design position-relative">
+                      <div class="checkbox-design position-relative" (click)="LoadLeads('','2')">
                         <input type="radio" id="Semi-Furnished" name="property-types" value="Buy">
-                        <button class="checkbox-btn">Buy (01)</button>
+                        <button class="checkbox-btn">Buy</button>
                       </div>
-                      <div class="checkbox-design position-relative">
+                      <div class="checkbox-design position-relative" (click)="LoadLeads('','1')">
                         <input type="radio" id="Unfurnished" name="property-types" value="Rent">
-                        <button class="checkbox-btn">Rent (02)</button>
+                        <button class="checkbox-btn">Rent</button>
                       </div>
                     </div>
                   </div>
@@ -1535,114 +1530,36 @@
                   <div ngClass="tab-content">
                     <div id="resedential-rent" class="tab-pane active">
                       <div class="lead-summ-table">
-                        <div class="table-row">
+                        <div class="table-row" *ngFor="let item of leadsData">
                           <div class="col photo-col">
                             <img src="{{proAvatar}}" alt="">
                           </div>
                           <div class="col base-info-col">
-                            <h4 class="name">Al Majhid Khwaizi Ansari</h4>
-                            <p>05 May, 2022</p>
-                            <p>Dubai, UAE</p>
+                            <h4 class="name">{{item.name}}</h4>
+                            <p>{{item.leadDate}}</p>
+                            <p>{{item.propertyListing.city.name}}, {{item.propertyListing.country.name}}</p>
                           </div>
                           <div class="col ">
                             <span>Property ID</span>
-                            <p>#OVRA-98967654</p>
+                            <p>{{item.propertyListing.propertyCode}}</p>
                           </div>
                           <div class="col ">
 
                             <span>Building Type</span>
-                            <p>Residential</p>
+                            <p>{{item.propertyCategory}}</p>
                           </div>
                           <div class="col ">
 
                             <span>Looking for</span>
-                            <p>Buy</p>
+                            <p>{{item.propertyListing.propertyListingType.name}}</p>
                           </div>
                           <div class="col contact-col">
                             <span>Contact</span>
                             <div>
-                              <p>+971 07 XXXX XXXX</p> <a href="#"><img src="{{ViewIcon}}" alt=""></a>
+                              <p>{{item.phone}}</p> <a href="#"><img src="{{ViewIcon}}" alt=""></a>
                             </div>
                             <div>
-                              <p>aliansari@gmail.com</p> <a href="#"><img src="{{CopyIcon}}" alt=""></a>
-                            </div>
-                          </div>
-                          <div class="col">
-                            <a href="#" class="view-more">
-                              <img src="{{MoreIcon}}" alt="" class="icon">
-                            </a>
-                          </div>
-                        </div>
-
-                        <div class="table-row">
-                          <div class="col photo-col">
-                            <img src="{{proAvatar}}" alt="">
-                          </div>
-                          <div class="col base-info-col">
-                            <h4 class="name">Al Majhid Khwaizi Ansari</h4>
-                            <p>05 May, 2022</p>
-                            <p>Dubai, UAE</p>
-                          </div>
-                          <div class="col ">
-                            <span>Property ID</span>
-                            <p>#OVRA-98967654</p>
-                          </div>
-                          <div class="col ">
-
-                            <span>Building Type</span>
-                            <p>Residential</p>
-                          </div>
-                          <div class="col ">
-
-                            <span>Looking for</span>
-                            <p>Buy</p>
-                          </div>
-                          <div class="col contact-col">
-                            <span>Contact</span>
-                            <div>
-                              <p>+971 07 XXXX XXXX</p> <a href="#"><img src="{{ViewIcon}}" alt=""></a>
-                            </div>
-                            <div>
-                              <p>aliansari@gmail.com</p> <a href="#"><img src="{{CopyIcon}}" alt=""></a>
-                            </div>
-                          </div>
-                          <div class="col">
-                            <a href="#" class="view-more">
-                              <img src="{{MoreIcon}}" alt="" class="icon">
-                            </a>
-                          </div>
-                        </div>
-
-                        <div class="table-row">
-                          <div class="col photo-col">
-                            <img src="{{proAvatar}}" alt="">
-                          </div>
-                          <div class="col base-info-col">
-                            <h4 class="name">Al Majhid Khwaizi Ansari</h4>
-                            <p>05 May, 2022</p>
-                            <p>Dubai, UAE</p>
-                          </div>
-                          <div class="col ">
-                            <span>Property ID</span>
-                            <p>#OVRA-98967654</p>
-                          </div>
-                          <div class="col ">
-
-                            <span>Building Type</span>
-                            <p>Residential</p>
-                          </div>
-                          <div class="col ">
-
-                            <span>Looking for</span>
-                            <p>Buy</p>
-                          </div>
-                          <div class="col contact-col">
-                            <span>Contact</span>
-                            <div>
-                              <p>+971 07 XXXX XXXX</p> <a href="#"><img src="{{ViewIcon}}" alt=""></a>
-                            </div>
-                            <div>
-                              <p>aliansari@gmail.com</p> <a href="#"><img src="{{CopyIcon}}" alt=""></a>
+                              <p>{{item.email}}</p> <a href="#"><img src="{{CopyIcon}}" alt=""></a>
                             </div>
                           </div>
                           <div class="col">
@@ -1659,8 +1576,148 @@
                   </div>
                 </section>
               </mat-tab>
-              <mat-tab label="Residential (02)"> Residential</mat-tab>
-              <mat-tab label="Commercial (02)"> Commercial</mat-tab>
+              <mat-tab label="Residential">
+                
+                <div class="type-activity-status">
+                  <div ngClass="block-wrapper mb-4">
+                    <div class="checkbox-flex-box-auto button-same-select">
+                      <div class="checkbox-design position-relative" (click)="LoadLeads('1','')">
+                        <input type="radio" id="Furnished" name="property-types" value="All" checked>
+                        <button class="checkbox-btn">All</button>
+                      </div>
+                      <div class="checkbox-design position-relative" (click)="LoadLeads('1','2')">
+                        <input type="radio" id="Semi-Furnished" name="property-types" value="Buy">
+                        <button class="checkbox-btn">Buy</button>
+                      </div>
+                      <div class="checkbox-design position-relative" (click)="LoadLeads('1','1')">
+                        <input type="radio" id="Unfurnished" name="property-types" value="Rent">
+                        <button class="checkbox-btn">Rent</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <section
+                  ngClass="my-lead-listing-wrap position-relative wrapper-section properties-slider residentials-property-rent-1">
+                  <div ngClass="tab-content">
+                    <div id="resedential-rent" class="tab-pane active">
+                      <div class="lead-summ-table">
+                        <div class="table-row" *ngFor="let item of leadsData">
+                          <div class="col photo-col">
+                            <img src="{{proAvatar}}" alt="">
+                          </div>
+                          <div class="col base-info-col">
+                            <h4 class="name">{{item.name}}</h4>
+                            <p>{{item.leadDate}}</p>
+                            <p>{{item.propertyListing.city.name}}, {{item.propertyListing.country.name}}</p>
+                          </div>
+                          <div class="col ">
+                            <span>Property ID</span>
+                            <p>{{item.propertyListing.propertyCode}}</p>
+                          </div>
+                          <div class="col ">
+
+                            <span>Building Type</span>
+                            <p>{{item.propertyCategory}}</p>
+                          </div>
+                          <div class="col ">
+
+                            <span>Looking for</span>
+                            <p>{{item.propertyListing.propertyListingType.name}}</p>
+                          </div>
+                          <div class="col contact-col">
+                            <span>Contact</span>
+                            <div>
+                              <p>{{item.phone}}</p> <a href="#"><img src="{{ViewIcon}}" alt=""></a>
+                            </div>
+                            <div>
+                              <p>{{item.email}}</p> <a href="#"><img src="{{CopyIcon}}" alt=""></a>
+                            </div>
+                          </div>
+                          <div class="col">
+                            <a href="#" class="view-more">
+                              <img src="{{MoreIcon}}" alt="" class="icon">
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div id="resedential-buy" class="tab-pane fade">
+                      <h1>Tab 2</h1>
+                    </div>
+                  </div>
+                </section>
+              </mat-tab>
+              <mat-tab label="Commercial">
+                
+                <div class="type-activity-status">
+                  <div ngClass="block-wrapper mb-4">
+                    <div class="checkbox-flex-box-auto button-same-select">
+                      <div class="checkbox-design position-relative" (click)="LoadLeads('2','')">
+                        <input type="radio" id="Furnished" name="property-types" value="All" checked>
+                        <button class="checkbox-btn">All</button>
+                      </div>
+                      <div class="checkbox-design position-relative" (click)="LoadLeads('2','2')">
+                        <input type="radio" id="Semi-Furnished" name="property-types" value="Buy">
+                        <button class="checkbox-btn">Buy</button>
+                      </div>
+                      <div class="checkbox-design position-relative" (click)="LoadLeads('2','1')">
+                        <input type="radio" id="Unfurnished" name="property-types" value="Rent">
+                        <button class="checkbox-btn">Rent</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <section
+                  ngClass="my-lead-listing-wrap position-relative wrapper-section properties-slider residentials-property-rent-1">
+                  <div ngClass="tab-content">
+                    <div id="resedential-rent" class="tab-pane active">
+                      <div class="lead-summ-table">
+                        <div class="table-row" *ngFor="let item of leadsData">
+                          <div class="col photo-col">
+                            <img src="{{proAvatar}}" alt="">
+                          </div>
+                          <div class="col base-info-col">
+                            <h4 class="name">{{item.name}}</h4>
+                            <p>{{item.leadDate}}</p>
+                            <p>{{item.propertyListing.city.name}}, {{item.propertyListing.country.name}}</p>
+                          </div>
+                          <div class="col ">
+                            <span>Property ID</span>
+                            <p>{{item.propertyListing.propertyCode}}</p>
+                          </div>
+                          <div class="col ">
+
+                            <span>Building Type</span>
+                            <p>{{item.propertyCategory}}</p>
+                          </div>
+                          <div class="col ">
+
+                            <span>Looking for</span>
+                            <p>{{item.propertyListing.propertyListingType.name}}</p>
+                          </div>
+                          <div class="col contact-col">
+                            <span>Contact</span>
+                            <div>
+                              <p>{{item.phone}}</p> <a href="#"><img src="{{ViewIcon}}" alt=""></a>
+                            </div>
+                            <div>
+                              <p>{{item.email}}</p> <a href="#"><img src="{{CopyIcon}}" alt=""></a>
+                            </div>
+                          </div>
+                          <div class="col">
+                            <a href="#" class="view-more">
+                              <img src="{{MoreIcon}}" alt="" class="icon">
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div id="resedential-buy" class="tab-pane fade">
+                      <h1>Tab 2</h1>
+                    </div>
+                  </div>
+                </section>
+              </mat-tab>
             </mat-tab-group>
           </div>
         </div>
@@ -2110,27 +2167,11 @@
                                   <label class="h6-design">Date of Birth</label>
                                   <div class="input-date-picker input-design">
                                     <mat-form-field appearance="fill">
-                                      <input matInput [matDatepicker]="picker" id="formDate">
+                                      <input matInput [matDatepicker]="picker" id="formDate" formControlName="dob">
                                       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                       <mat-datepicker #picker></mat-datepicker>
                                     </mat-form-field>
                                   </div>
-                                </div>
-                              </div>
-                              <div ngClass="col-xl-6 col-lg-6 col-sm-12">
-                                <div ngClass="block-wrapper mb-4">
-                                  <label class="h6-design">Address</label>
-                                  <mat-form-field appearance="fill" class="full-width input-design-2">
-                                    <input matInput formControlName="address">
-                                  </mat-form-field>
-                                </div>
-                              </div>
-                              <div ngClass="col-xl-6 col-lg-6 col-sm-12">
-                                <div ngClass="block-wrapper mb-4">
-                                  <label class="h6-design">Location</label>
-                                  <mat-form-field appearance="fill" class="full-width input-design-2">
-                                    <input matInput formControlName="location">
-                                  </mat-form-field>
                                 </div>
                               </div>
                               <div ngClass="col-xl-6 col-lg-6 col-sm-12">
@@ -2157,6 +2198,14 @@
                                       </mat-option>
                                     </mat-select>
                                   </mat-form-field>
+                                </div>
+                              </div>
+                              <div ngClass="col-xl-12 col-lg-12 col-sm-12">
+                                <div ngClass="block-wrapper mb-4">
+                                  <label class="h6-design">Address</label>
+                                  <mat-form-field class="example-full-width textarea-design" appearance="fill">
+                                    <textarea matInput formControlName="address"></textarea>
+                                </mat-form-field>
                                 </div>
                               </div>
                             </div>

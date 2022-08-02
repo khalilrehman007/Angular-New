@@ -86,19 +86,19 @@
                                             <label class="h6-design">Property Current Status*</label>
                                             <div class="checkbox-flex-box three-column">
                                                 <div class="checkbox-design position-relative"
-                                                    (click)="propertyStatus(1)">
+                                                    (click)="propertyStatus(1, 'Owner Occupied')">
                                                     <input type="radio" id="Owner Occupied" name="current-status"
                                                         value="Owner Occupied">
                                                     <button class="checkbox-btn">Owner Occupied</button>
                                                 </div>
                                                 <div class="checkbox-design position-relative"
-                                                    (click)="propertyStatus(2)">
+                                                    (click)="propertyStatus(2, 'Leased')">
                                                     <input type="radio" id="Leased" name="current-status"
                                                         value="Leased">
                                                     <button class="checkbox-btn">Leased</button>
                                                 </div>
                                                 <div class="checkbox-design position-relative"
-                                                    (click)="propertyStatus(3)">
+                                                    (click)="propertyStatus(3, 'Vacant')">
                                                     <input type="radio" id="Vacant" name="current-status"
                                                         value="Vacant">
                                                     <button class="checkbox-btn">Vacant</button>
@@ -110,7 +110,7 @@
                             </div>
                             <div *ngIf="typeSelected">
                                 <div ngClass="row">
-                                    <div ngClass="col-xl-6 col-lg-6 col-sm-12" *ngIf="propertyData.numberLabel">
+                                    <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                         <div ngClass="block-wrapper mb-4">
                                             <label class="h6-design">{{propertyData.numberLabel}}*</label>
                                             <mat-form-field class="full-width input-design-2" appearance="fill">
@@ -118,7 +118,7 @@
                                             </mat-form-field>
                                         </div>
                                     </div>
-                                    <div ngClass="col-xl-6 col-lg-6 col-sm-12" *ngIf="propertyData.hasRoads">
+                                    <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                         <div ngClass="block-wrapper mb-4">
                                             <label class="h6-design">No. of Roads</label>
                                             <div class="checkbox-flex-box six-column flex-start">
@@ -207,11 +207,11 @@
                                             </mat-form-field>
                                         </div>
                                     </div>
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12" *ngIf="propertyData.hasFurnishing">
                                         <div ngClass="block-wrapper mb-4">
                                             <label class="h6-design">Furnishing Type</label>
                                             <div class="checkbox-flex-box three-column button-same-select">
-                                                <div class="checkbox-design position-relative" *ngFor="let item of furnishingType" (click)="getFurnishingType(item.id)">
+                                                <div class="checkbox-design position-relative" *ngFor="let item of furnishingType" (click)="getFurnishingType(item.id,item.name)">
                                                     <input type="radio" id="Furnished" name="furnishing-types"
                                                         value="Furnished">
                                                     <button class="checkbox-btn">{{item.name}}</button>
@@ -219,11 +219,11 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12" *ngIf="propertyData.hasFitting">
                                         <div ngClass="block-wrapper mb-4">
                                             <label class="h6-design">Fitting Type</label>
                                             <div class="checkbox-flex-box five-column button-same-select">
-                                                <div class="checkbox-design position-relative" *ngFor="let item of fittingType" (click)="getFittingType(item.id)">
+                                                <div class="checkbox-design position-relative" *ngFor="let item of fittingType" (click)="getFittingType(item.id,item.name)">
                                                     <input type="radio" id="Furnished" name="fitting-types"
                                                         value="Furnished">
                                                     <button class="checkbox-btn">{{item.name}}</button>
@@ -232,7 +232,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div ngClass="unit_types-sec-wrap">
+                                <div ngClass="unit_types-sec-wrap" *ngIf="propertyData.hasUnits">
                                     <div *ngFor="let item of unitHMTL" >
                                         <div ngClass="row" id="unit-wrapper-{{item.id}}"
                                             *ngIf="item.show">

@@ -26,6 +26,7 @@ export class HomeComponent implements OnInit {
   listingsliderimg = 'assets/images/property-listing-slider-img.png'
   dubaigv = 'assets/images/goverment-of-dubai.png'
   landdept = 'assets/images/Dubai-Land-LOGO.png'
+  rera = 'assets/images/rera.png'
   baseUrl = 'https://beta.ovaluate.com/'
   blogs: any;
   submitted = false;

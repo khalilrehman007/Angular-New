@@ -51,6 +51,8 @@ export class DashboardComponent implements OnInit {
   countryId: number = -1;
   cityId: number = -1;
   dashboard: any;
+  leadsData:any = [];
+  userData:any = {};
 
   plus = '../../../../assets/images/plus.svg'
 
@@ -78,9 +80,10 @@ export class DashboardComponent implements OnInit {
     lastName: new FormControl(""),
     address: new FormControl(""),
     location: new FormControl(""),
+    dob: new FormControl("")
   });
   data: any = {};
-  userData: any;
+  userFormData: any;
   userImage: any;
   changePasswordForm = new FormGroup({
     currentPassword: new FormControl(""),
@@ -112,7 +115,6 @@ export class DashboardComponent implements OnInit {
   get newPassword() {
     return this.changePasswordForm.get("newPassword");
   }
-
   constructor(private service: AppService, private route: Router, private notifyService: NotificationService) {
     this.getUser();
     this.LoadBlogs();
@@ -156,7 +158,15 @@ export class DashboardComponent implements OnInit {
 
     });
     this.LoadLeads("", "");
-
+    this.userFormData = localStorage.getItem("user");
+    this.userFormData = JSON.parse(this.userFormData);
+    console.log(this.userFormData);
+    this.detailForm.patchValue({
+      firstName: this.userFormData.firstName,
+      lastName: this.userFormData.lastName,
+      address: this.userFormData.address,
+      dob: this.userFormData.dateOfBirth
+    })
   }
   getImage(e: any) {
     let temp: any = localStorage.getItem("user");
@@ -187,13 +197,19 @@ export class DashboardComponent implements OnInit {
       temp = JSON.parse(temp);
       this.service.ChangePassword({ "Id": temp.id, "Password": this.changePasswordForm.value.currentPassword, "ConfirmPassword": this.changePasswordForm.value.newPassword }).subscribe((result: any) => {
         alert("Password Changed Successfully");
+        this.changePasswordForm.reset();
       })
     } else {
       alert("Password does not match");
     }
   }
   getData() {
-    if(this.detailForm.value.firstName == "" || this.detailForm.value.lastName == "" || this.detailForm.value.address == "" || this.countryId == -1 || this.cityId == -1 || $("#formDate").val() == "") {
+    if(this.detailForm.value.firstName == "" 
+    || this.detailForm.value.lastName == "" 
+    || this.detailForm.value.address == "" 
+    || this.countryId == -1 
+    || this.cityId == -1 
+    || $("#formDate").val() == "") {
       alert("Enter all the fields");
       return;
     }
@@ -335,11 +351,31 @@ export class DashboardComponent implements OnInit {
     });
     this.propertyListingStatus = tempData
   }
+  getTab(e:any) {
+    if(e.index == 0) {
+      this.LoadLeads('','');
+    } else if(e.index == 1) {
+      this.LoadLeads('1','');
+    } else {
+      this.LoadLeads('2','');
+    }
+  }
   LoadLeads(CategoryId: any, TypeId: any) {
+    this.leadsData = [];
     let temp: any = localStorage.getItem("user");
     temp = JSON.parse(temp).id;
     this.service.MyLeads({ "UserId": temp, "PropertyCategoryId": CategoryId, "PropertyListingTypeId": TypeId }).subscribe((result: any) => {
-      console.log(result.data)
+      this.leadsData = result.data;
+      for(let i = 0; i < this.leadsData.length; i++) {
+        if(this.leadsData[i].propertyListing.propertyCategoryId == 1) {
+          this.leadsData[i].propertyCategory = "Residential"
+        } else {
+          this.leadsData[i].propertyCategory = "Commercial"
+        }
+      }
+      for(let i = 0; i < this.leadsData.length; i++) {
+        this.leadsData[i].leadDate = this.leadsData[i].leadDate.split("T")[0];
+      }
     })
   }
   ngOnInit() {
