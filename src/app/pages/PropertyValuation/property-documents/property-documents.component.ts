@@ -23,7 +23,11 @@ export class PropertyDocumentsComponent implements OnInit {
   propertyImage: any = "";
   otherImages: any = [];
   uploadedDocuments: any = [];
-  handleChange(files: FileList) {
+  documentcount: number = 0;
+  userData: any;
+  unitCount: number = 0;
+
+  handleChange(files: FileList, index: number) {
     if (files && files.length) {
       this.titleDeedImage = files[0];
       this.file = files[0].name;
@@ -31,10 +35,22 @@ export class PropertyDocumentsComponent implements OnInit {
     const reader = new FileReader();
     reader.readAsDataURL(files[0]);
     reader.onload = () => {
-      this.uploadedDocuments.push({ documentName: "Property Tittle Deed", fileName: files[0].name, imgsrc: reader.result })
+      let found = -1;
+      for (let i = 0; i < this.uploadedDocuments.length; i++) {
+        if (this.uploadedDocuments[i].index == index) {
+          found = i;
+        }
+      }
+      if (found == -1) {
+        this.uploadedDocuments.push({ index: index, documentName: "Other Documents", fileName: files[0].name, imgsrc: reader.result });
+      } else {
+        this.uploadedDocuments[found].fileName = files[0].name;
+        this.uploadedDocuments[found].imgsrc = reader.result;
+      }
     };
+    this.documentcount++;
   }
-  affection(files: FileList) {
+  affection(files: FileList, index: number) {
     if (files && files.length) {
       this.affectionImage = files[0];
       this.affecton = files[0].name;
@@ -42,10 +58,22 @@ export class PropertyDocumentsComponent implements OnInit {
     const reader = new FileReader();
     reader.readAsDataURL(files[0]);
     reader.onload = () => {
-      this.uploadedDocuments.push({ documentName: "Affection Plan", fileName: files[0].name, imgsrc: reader.result })
+      let found = -1;
+      for (let i = 0; i < this.uploadedDocuments.length; i++) {
+        if (this.uploadedDocuments[i].index == index) {
+          found = i;
+        }
+      }
+      if (found == -1) {
+        this.uploadedDocuments.push({ index: index, documentName: "Other Documents", fileName: files[0].name, imgsrc: reader.result });
+      } else {
+        this.uploadedDocuments[found].fileName = files[0].name;
+        this.uploadedDocuments[found].imgsrc = reader.result;
+      }
     };
+    this.documentcount++;
   }
-  property(files: FileList) {
+  property(files: FileList, index: number) {
     if (files && files.length) {
       this.propertyImage = files[0];
       this.propertys = files[0].name;
@@ -53,8 +81,20 @@ export class PropertyDocumentsComponent implements OnInit {
     const reader = new FileReader();
     reader.readAsDataURL(files[0]);
     reader.onload = () => {
-      this.uploadedDocuments.push({ documentName: "Property Picture", fileName: files[0].name, imgsrc: reader.result })
+      let found = -1;
+      for (let i = 0; i < this.uploadedDocuments.length; i++) {
+        if (this.uploadedDocuments[i].index == index) {
+          found = i;
+        }
+      }
+      if (found == -1) {
+        this.uploadedDocuments.push({ index: index, documentName: "Other Documents", fileName: files[0].name, imgsrc: reader.result });
+      } else {
+        this.uploadedDocuments[found].fileName = files[0].name;
+        this.uploadedDocuments[found].imgsrc = reader.result;
+      }
     };
+    this.documentcount++;
   }
   emiratesfun(files: FileList, index: number) {
     if (files && files.length) {
@@ -73,7 +113,18 @@ export class PropertyDocumentsComponent implements OnInit {
       const reader = new FileReader();
       reader.readAsDataURL(files[0]);
       reader.onload = () => {
-        this.uploadedDocuments.push({ documentName: "Other Documents", fileName: files[0].name, imgsrc: reader.result })
+        found = -1;
+        for (let i = 0; i < this.uploadedDocuments.length; i++) {
+          if (this.uploadedDocuments[i].index == index) {
+            found = i;
+          }
+        }
+        if (found == -1) {
+          this.uploadedDocuments.push({ index: index, documentName: "Other Documents", fileName: files[0].name, imgsrc: reader.result });
+        } else {
+          this.uploadedDocuments[found].fileName = files[0].name;
+          this.uploadedDocuments[found].imgsrc = reader.result;
+        }
       };
     }
   }
@@ -83,30 +134,6 @@ export class PropertyDocumentsComponent implements OnInit {
     { imgsrc: '../../../../assets/images/doc-thumbnail.svg', filetitle: 'property-deed-yu.jpg', doctitile: 'Property Tittle Deed', viewLink: '#', deleteLink: '#' },
     { imgsrc: '../../../../assets/images/doc-thumbnail.svg', filetitle: 'property-deed-yu.jpg', doctitile: 'Property Tittle Deed', viewLink: '#', deleteLink: '#' },
     { imgsrc: '../../../../assets/images/doc-thumbnail.svg', filetitle: 'property-deed-yu.jpg', doctitile: 'Property Tittle Deed', viewLink: '#', deleteLink: '#' },
-  ];
-  prodetailslist = [
-    { titlename: 'Tittle Deed No.', titlevalue: '324434343' },
-    { titlename: 'Title Dead Type', titlevalue: 'Leasehold' },
-    { titlename: 'Municipality No.', titlevalue: '78787' },
-    { titlename: 'Property Insured', titlevalue: 'Yes' },
-    { titlename: 'Name of the Owner', titlevalue: 'Omran Yusef' },
-    { titlename: 'Phone No. of the Owner', titlevalue: '+971 99 999 9999' },
-    { titlename: 'Property Category', titlevalue: 'Residential' },
-    { titlename: 'Property Type', titlevalue: 'Whole Building' },
-    { titlename: 'Purpose of valuation', titlevalue: 'Buy & Sell' },
-    { titlename: 'Property Current Status', titlevalue: 'Owner Occupied' },
-    { titlename: 'Construction Age', titlevalue: '34' },
-    { titlename: 'Elevation', titlevalue: 'G+5' },
-    { titlename: 'Plot Size', titlevalue: '3,434 Sq.Ft.', titlevalue2: '334 Sq.Mt.' },
-    { titlename: 'Buildup Area', titlevalue: '3,433 Sq.Ft.', titlevalue2: '343 Sq.Mt.' },
-  ];
-  prolocationlist = [
-    { titlename: 'Country', titlevalue: 'United Arab Emirates' },
-    { titlename: 'City', titlevalue: 'Dubai' },
-    { titlename: 'Area', titlevalue: 'Jebel Ali' },
-    { titlename: 'Property Address', titlevalue: 'Gold Souk - Gold Souq' },
-    { titlename: 'Plot No.', titlevalue: '232' },
-    { titlename: 'No. of Road', titlevalue: '1' },
   ];
   buildinglist = [
     { titlename: 'Studio', titlevalue: '30' },
@@ -124,9 +151,13 @@ export class PropertyDocumentsComponent implements OnInit {
   status6: boolean = false;
   status7: boolean = false;
   Nextshow() {
-    this.status = !this.status;
-    this.status5 = !this.status5;
-    this.status1 = !this.status1;
+    if (this.documentcount >= 3) {
+      this.status = !this.status;
+      this.status5 = !this.status5;
+      this.status1 = !this.status1;
+    } else {
+      alert("Please Upload the required Documents.");
+    }
   }
   Prevshow() {
     this.status1 = false;
@@ -153,7 +184,10 @@ export class PropertyDocumentsComponent implements OnInit {
     this.status7 = false;
     this.status2 = !this.status2;
   }
-  constructor() { }
+  constructor() {
+    this.userData = localStorage.getItem("valuationDetailData");
+    this.userData = JSON.parse(this.userData);
+  }
 
   ngOnInit(): void {
   }

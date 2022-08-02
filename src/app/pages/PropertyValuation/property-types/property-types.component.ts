@@ -28,6 +28,7 @@ export class PropertyTypesComponent implements OnInit {
   fittingType: any;
   featuresFormData: any = [];
   roadCount:number = 0;
+  formDetailData:any = {};
 
   unitHMTL: any = [{ show: true, id: 1 }];
 
@@ -70,6 +71,8 @@ export class PropertyTypesComponent implements OnInit {
     this.formData = JSON.parse(this.formData);
     this.loadFurnishingType();
     this.loadFittingType();
+    this.formDetailData = localStorage.getItem("valuationDetailData");
+    this.formDetailData = JSON.parse(this.formDetailData);
   }
 
   ngOnInit(): void {
@@ -82,6 +85,11 @@ export class PropertyTypesComponent implements OnInit {
     this.status = !this.status;
   }
   loadType(e: number) {
+    if(e == 1) {
+      this.formDetailData.propertyCategory = "Residential";
+    } else {
+      this.formDetailData.propertyCategory = "Commercial";
+    }
     this.formData.PropertyCategoryId = e;
     this.typeSelected = false;
     this.propertyType = [];
@@ -91,6 +99,7 @@ export class PropertyTypesComponent implements OnInit {
     })
   }
   valuationPurpose(e: any) {
+    this.formDetailData.propertyType = this.propertyType.filter(item => item.id == e.value)[0].typeDescription;
     this.formData.PropertyTypeId = e.value;
     this.purposeOfValuation = [];
     this.featuresData = [];
@@ -114,25 +123,33 @@ export class PropertyTypesComponent implements OnInit {
       this.fittingType = result.data;
     })
   }
-  propertyStatus(id: any) {
+  propertyStatus(id: any, name:any) {
+    this.formDetailData.PropertyStatus = name;
     this.formData.PropertyStatusId = id;
   }
   onPurposeSelect(e: any) {
+    this.formDetailData.ValuationPurpose = this.purposeOfValuation.filter(item => item.id == e.value)[0].purposeDescription;
+    console.log(this.formDetailData);
     this.formData.ValuationPurposeId = e.value;
   }
   getRoads(id: any) {
+    this.formDetailData.roads = id;
     this.roadCount = id;
   }
   getBeds(e: any) {
+    this.formDetailData.Bedrooms = e.value;
     this.formData.Bedrooms = e.value;
   }
   getBathroom(e: any) {
+    this.formDetailData.Bathrooms = e.value;
     this.formData.Bathrooms = e.value;
   }
-  getFurnishingType(id: number) {
+  getFurnishingType(id: number, name:any) {
+    this.formDetailData.Furnishing = name;
     this.formData.FurnishingType = id;
   }
-  getFittingType(id: number) {
+  getFittingType(id: number, name:any) {
+    this.formDetailData.Fitting = name;
     this.formData.FittingType = id;
   }
   getFeaturesData(id: number) {
@@ -156,6 +173,12 @@ export class PropertyTypesComponent implements OnInit {
     }
   }
   getData() {
+    this.formDetailData.PlotNo = this.propertyTypeForm.value.apartmentNo;
+    this.formDetailData.PlotNo = this.propertyTypeForm.value.elevation;
+    this.formDetailData.elevation = this.propertyTypeForm.value.elevation;
+    this.formDetailData.PlotSize = this.propertyTypeForm.value.apartmentSize;
+    this.formDetailData.BuildupArea = this.propertyTypeForm.value.buildupArea;
+
     this.formData.PlotNo = this.propertyTypeForm.value.apartmentNo;
     this.formData.PlotSize = this.propertyTypeForm.value.apartmentSize;
     this.formData.BuildupArea = this.propertyTypeForm.value.buildupArea;
@@ -178,12 +201,15 @@ export class PropertyTypesComponent implements OnInit {
     for (let i = 0 ; i < temp.length; i++) {
       temp[i].PropertyUnitTypeId = unitID[unitName.indexOf(temp[i].PropertyUnitTypeId)];
     }
+    this.formDetailData.ValuationPropertyUnits = temp;
     this.formData.ValuationPropertyUnits = temp;
     temp = []
     for (let i = 0; i < this.featuresFormData.length; i++) {
       temp.push({ PropertyFeatureId: this.featuresFormData[i] });
     }
+    this.formDetailData.PropertyFeatures = temp;
     this.formData.PropertyFeatures = temp;
+    localStorage.setItem('valuationDetailData', JSON.stringify(this.formDetailData));
     localStorage.setItem('valuationData', JSON.stringify(this.formData));
     this.router.navigate(['/PropertyDocument']);
   }

@@ -30,10 +30,11 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
   propertyInsured: number = -1;
   autocomplete: any;
   marker: any;
-  countryName:any;
-  cityName:any;
-  tempAddress:any;
-  locationInformation:any = {};
+  countryName: any;
+  cityName: any;
+  tempAddress: any;
+  locationInformation: any = {};
+  formDetailData: any = {};
 
   location = { lat: 31.5204, lng: 74.3587 };
 
@@ -56,14 +57,14 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
     return this.propertyDetails.get("ownerPhone")
   }
 
-  constructor(private service: AppService, private router:Router) {
+  constructor(private service: AppService, private router: Router) {
     this.loadCountriesData();
   }
   changeInfo() {
     $("#searchLocation").focus();
-    let temp:any = $("#searchLocation").offset();
+    let temp: any = $("#searchLocation").offset();
     temp = temp.top;
-    $(window).scrollTop(temp-200);
+    $(window).scrollTop(temp - 200);
   }
   confirmLocation() {
     this.locationInformation.country = this.countryName;
@@ -82,15 +83,26 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
     });
   }
   toggleType(e: number) {
+    if (e == 1) {
+      this.formDetailData.titleDeedType = "Leasehold";
+    } else {
+      this.formDetailData.titleDeedType = "Freehold";
+    }
     this.titleDeedType = e;
   }
   toggleInsured(e: number) {
+    if (e == 1) {
+      this.formDetailData.insured = "Yes";
+    } else {
+      this.formDetailData.insured = "No";
+    }
     this.propertyInsured = e;
   }
   onCountrySelect(e: any) {
     let temp = this.country.filter(function (c: any) {
       return c.value == e.value
     });
+    this.formDetailData.country = temp[0].viewValue;
     this.countryName = temp[0].viewValue;
     this.getLocationDetails(temp[0].viewValue);
     this.countryId = e.value;
@@ -108,6 +120,7 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
     let temp = this.city.filter(function (c: any) {
       return c.value == e.value
     })
+    this.formDetailData.city = temp[0].viewValue;
     this.cityName = temp[0].viewValue;
     this.getLocationDetails(temp[0].viewValue);
     this.cityId = e.value;
@@ -125,6 +138,7 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
     let temp = this.district.filter(function (c: any) {
       return c.value == e.value
     })
+    this.formDetailData.district = temp[0].viewValue;
     this.getLocationDetails(temp[0].viewValue);
     this.districtId = e.value;
   }
@@ -142,6 +156,14 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
     } else if ($("#searchLocation").val() == "") {
       alert("Enter Address");
     } else {
+
+      this.formDetailData.TitleDeedNo = this.propertyDetails.value.titleDeed;
+      this.formDetailData.MunicipalityNo = this.propertyDetails.value.muncipality;
+      this.formDetailData.ownerName = this.propertyDetails.value.propertyOwner;
+      this.formDetailData.PhoneNumber = this.propertyDetails.value.ownerPhone;
+      this.formDetailData.address = $("#searchLocation").val();
+      localStorage.setItem('valuationDetailData', JSON.stringify(this.formDetailData));
+
       this.data.TitleDeedNo = this.propertyDetails.value.titleDeed;
       this.data.TitleDeedType = this.titleDeedType;
       this.data.MunicipalityNo = this.propertyDetails.value.muncipality;
@@ -155,7 +177,7 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
       this.data.PropertyLong = localStorage.getItem("lng");
       localStorage.removeItem("lat");
       localStorage.removeItem("lng");
-      this.data.PropertyAddress = "119 28 C Street - Dubai - United Arab Emirates";
+      this.data.PropertyAddress = $("#searchLocation").val();
       localStorage.setItem('valuationData', JSON.stringify(this.data));
       this.router.navigate(['/PropertyType']);
     }
@@ -181,7 +203,7 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
   onPlaceChanged() {
     let temp: any = document.getElementById("searchLocation");
     let address: any = temp.value;
-    localStorage.setItem("address",address);
+    localStorage.setItem("address", address);
     $.ajax({
       url: "https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyBPSEz52-AfPEVbmV_3yuGUGol_KiLb3GU",
       method: "get",
@@ -189,8 +211,8 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
         let temp = res.results[0].geometry.bounds;
         let bounds = { east: temp.northeast.lng, west: temp.southwest.lng, north: temp.northeast.lat, south: temp.southwest.lat };
         let area = res.results[0].geometry.location;
-        localStorage.setItem("lat",area.lat);
-        localStorage.setItem("lng",area.lng);
+        localStorage.setItem("lat", area.lat);
+        localStorage.setItem("lng", area.lng);
         this.map = new google.maps.Map($(".property-details__map")[0], {
           center: area,
           zoom: 6,
