@@ -558,7 +558,66 @@
                                 </div>
                                 <div ngClass="pro-details-sec mb-4">
                                     <div ngClass="row">
-                                        <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                                        <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12" *ngFor="let item of certificateData; let i = index">
+                                            <div ngClass="prperty_certificate-reports-div">
+                                                <div ngClass="reports_header">
+                                                    <div ngClass="reports_img-icon">
+                                                        <img src="{{reportimg}}">
+                                                    </div>
+                                                    <div ngClass="reports_title-list">
+                                                        <h5>{{item.name}}</h5>
+                                                        <p *ngIf="i == 0">
+                                                            <span ngClass="discounted-price">{{valuationPrices.summeryCertificateSellingPrice}}AED</span>
+                                                            <span ngClass="regular-price"><del>{{valuationPrices.summeryCertificatePrice}}AED</del></span> 
+                                                            <span ngClass="discount_offer">{{valuationPrices.summeryCertificateDiscount}} % OFF</span>
+                                                        </p>
+                                                        <p *ngIf="i == 1">
+                                                            <span ngClass="discounted-price">{{valuationPrices.detailCertificateSellingPrice}}AED</span>
+                                                            <span ngClass="regular-price"><del>{{valuationPrices.detailedCertificatePrice}}AED</del></span> 
+                                                            <span ngClass="discount_offer">{{valuationPrices.detailCertificateDiscount}} % OFF</span>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div ngClass="reports_cntnt-list">
+                                                    <div ngClass="reports_cntnt-list-inner">
+                                                        <h4>About Company</h4>
+                                                        <ul>
+                                                            <li>Loream Isphum</li>
+                                                        </ul>
+                                                    </div>
+                                                    <div ngClass="reports_cntnt-list-inner">
+                                                        <h4>Property Information</h4>
+                                                        <ul>
+                                                            <li>Property Location</li>
+                                                            <li>District Description</li>
+                                                            <li>Property Details</li>
+                                                            <li>Property Images</li>
+                                                        </ul>
+                                                    </div>
+                                                    <div ngClass="reports_cntnt-list-inner">
+                                                        <h4>Need heading</h4>
+                                                        <ul>
+                                                            <li>Loream Isphum</li>
+                                                            <li>Loream Isphum</li>
+                                                            <li>Loream Isphum</li>
+                                                            <li>Loream Isphum</li>
+                                                        </ul>
+                                                    </div>
+                                                    <div ngClass="reports_cntnt-list-inner">
+                                                        <h4>Valuations & Inspections</h4>
+                                                        <ul>
+                                                            <li>Loream Isphum</li>
+                                                            <li>Loream Isphum</li>
+                                                            <li>Loream Isphum</li>
+                                                            <li>Loream Isphum</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <button ngClass="summary_certificate-btn">3636.9 AED Summary
+                                                    Certificate</button>
+                                            </div>
+                                        </div>
+                                        <!-- <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                                             <div ngClass="prperty_certificate-reports-div">
                                                 <div ngClass="reports_header">
                                                     <div ngClass="reports_img-icon">
@@ -661,7 +720,7 @@
                                                 <button ngClass="details_certificate-btn">3636.9 AED Detail
                                                     Certificate</button>
                                             </div>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
                             </div>

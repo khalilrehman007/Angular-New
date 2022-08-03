@@ -229,4 +229,10 @@ export class AppService {
   MyValuations(id: any) {
     return this.http.get(this.apiurl + 'MyValuations/'+id);
   }
+  ValuationPrices(id: any) {
+    return this.http.get(this.apiurl + 'ValuationPrices/'+id);
+  }
+  PropertyPackageType() {
+    return this.http.get(this.apiurl + 'PropertyPackageType');
+  }
 }

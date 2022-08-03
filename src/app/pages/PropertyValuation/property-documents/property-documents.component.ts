@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SecondHeaderComponent } from '../../../second-header/second-header.component';
 import { FormControl, Validators } from '@angular/forms';
+import { AppService } from 'src/app/service/app.service';
 
 @Component({
   selector: 'app-property-documents',
@@ -26,6 +27,8 @@ export class PropertyDocumentsComponent implements OnInit {
   documentcount: number = 0;
   userData: any;
   unitCount: number = 0;
+  certificateData:any = [];
+  valuationPrices:any = [];
 
   handleChange(files: FileList, index: number) {
     if (files && files.length) {
@@ -151,13 +154,16 @@ export class PropertyDocumentsComponent implements OnInit {
   status6: boolean = false;
   status7: boolean = false;
   Nextshow() {
-    if (this.documentcount >= 3) {
-      this.status = !this.status;
-      this.status5 = !this.status5;
-      this.status1 = !this.status1;
-    } else {
-      alert("Please Upload the required Documents.");
-    }
+    this.status = !this.status;
+    this.status5 = !this.status5;
+    this.status1 = !this.status1;
+    // if (this.documentcount >= 3) {
+    //   this.status = !this.status;
+    //   this.status5 = !this.status5;
+    //   this.status1 = !this.status1;
+    // } else {
+    //   alert("Please Upload the required Documents.");
+    // }
   }
   Prevshow() {
     this.status1 = false;
@@ -165,6 +171,15 @@ export class PropertyDocumentsComponent implements OnInit {
     this.status = !this.status;
   }
   Nextshow1() {
+    let temp:any = localStorage.getItem("valuationData");
+    temp = JSON.parse(temp);
+    this.service.ValuationPrices(temp.PropertyTypeId).subscribe((result:any)=> {
+      this.valuationPrices = result.data;
+    })
+    this.service.PropertyPackageType().subscribe((result:any)=> {
+      this.certificateData = result.data;
+      console.log(this.certificateData);
+    });
     this.status2 = !this.status2;
     this.status6 = !this.status6;
     this.status1 = !this.status1;
@@ -184,7 +199,7 @@ export class PropertyDocumentsComponent implements OnInit {
     this.status7 = false;
     this.status2 = !this.status2;
   }
-  constructor() {
+  constructor(private service: AppService) {
     this.userData = localStorage.getItem("valuationDetailData");
     this.userData = JSON.parse(this.userData);
   }

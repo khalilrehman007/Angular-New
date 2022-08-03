@@ -129,7 +129,6 @@ export class PropertyTypesComponent implements OnInit {
   }
   onPurposeSelect(e: any) {
     this.formDetailData.ValuationPurpose = this.purposeOfValuation.filter(item => item.id == e.value)[0].purposeDescription;
-    console.log(this.formDetailData);
     this.formData.ValuationPurposeId = e.value;
   }
   getRoads(id: any) {
