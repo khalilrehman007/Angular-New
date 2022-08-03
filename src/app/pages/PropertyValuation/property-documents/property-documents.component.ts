@@ -150,6 +150,8 @@ export class PropertyDocumentsComponent implements OnInit {
   status5: boolean = false;
   status6: boolean = false;
   status7: boolean = false;
+  status8: boolean = false;
+  status9: boolean = false;
   Nextshow() {
     if (this.documentcount >= 3) {
       this.status = !this.status;
@@ -183,6 +185,14 @@ export class PropertyDocumentsComponent implements OnInit {
     this.status3 = false;
     this.status7 = false;
     this.status2 = !this.status2;
+  }
+  SummaryReport() {
+    this.status8 = !this.status8;
+    this.status9 = false;
+  }
+  DetailReport() {
+    this.status9 = !this.status9;
+    this.status8 = false;
   }
   constructor() {
     this.userData = localStorage.getItem("valuationDetailData");
