@@ -2006,6 +2006,7 @@ input[type=number] {
 		img {
 			position: absolute;
 			right: 15px;
+			top: 12px;
 		}
 		&:hover {
 			background: rgba(188, 192, 212, 0.3);
@@ -8537,20 +8538,21 @@ display: none;
     border-radius: 8px;
     padding: 20px;
     background-color: #f8f8f8;
+	cursor: pointer;
+	border: 1px solid transparent;
+}
+.prperty_certificate-reports-div:hover,.prperty_certificate-reports-div.active {
+    border-color: #595ad4;
 }
 .summary_certificate-btn {
     width: 100%;
     text-align: center;
-}
-.summary_certificate-btn {
-    width: 100%;
-    text-align: center;
-    border: 1px solid transparent;
+    border: 1px solid #595ad4;
     border-radius: 8px;
-    background-color: #595ad4;
-    color: #fff;
+    color: #595ad4;
     padding: 10px 15px;
     font-size: 14px;
+    background: transparent;
 }
 .details_certificate-btn {
     width: 100%;
@@ -8565,6 +8567,12 @@ display: none;
 .summary_certificate-btn:hover,.details_certificate-btn:hover {
     background-color: #333;
     color: #fff;
+	border-color: #333;
+}
+.prperty_certificate-reports-div.active button {
+    background-color: #595ad4;
+    border-color: #595ad4;
+	color: #fff !important;
 }
 .sub-tab-nav .mat-tab-labels .mat-tab-label-active {
     position: relative;

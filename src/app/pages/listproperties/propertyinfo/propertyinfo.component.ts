@@ -181,6 +181,33 @@ export class PropertyinfoComponent implements OnInit {
     localStorage.setItem('propertyData', JSON.stringify(this.data))
     this.route.navigate(['listpropertyinfo'])
   }
+  checkLength(type:number) {
+    if(type == 1) {
+      let temp:any = this.SubmitForm.value.TotalFloor;
+      if(temp > 200) {
+        alert("Max floors allowes is 200");
+        this.SubmitForm.patchValue({
+          TotalFloor: temp.toString().slice(0,-1)
+        })
+      }
+    }
+    else {
+      let temp:any = this.SubmitForm.value.FloorNo;
+      let total:any = this.SubmitForm.value.TotalFloor;
+      if(temp > total) {
+        alert("Floor number cannot be greater than Total Floors");
+        this.SubmitForm.patchValue({
+          FloorNo: temp.toString().slice(0,-1)
+        })
+      }
+      if(temp > 200) {
+        alert("Max floors allowes is 200");
+        this.SubmitForm.patchValue({
+          FloorNo: temp.toString().slice(0,-1)
+        })
+      }
+    }
+  }
 
   ngOnInit(): void {
   }

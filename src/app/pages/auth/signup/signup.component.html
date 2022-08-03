@@ -3,7 +3,7 @@
 </header>
 <section ngClass="auth-wrapper">
 <div ngClass="form-design signup-page">
-  <form class="auth-form" [formGroup]="signup" (ngSubmit)="ProceedSignUp()">
+  <form class="auth-form" [formGroup]="signup" >
     <div ngClass="wecome-message">
       <h2>Welcome to Ovaluate</h2>
       <p>Welcome back! Please enter your details.</p>
@@ -31,7 +31,7 @@
   </div>
     <mat-form-field class="full-width input-design" appearance="fill">
         <mat-label>Phone</mat-label>
-        <input matInput type="text" formControlName="PhoneNumber" required ngModel>
+        <input matInput type="number" (input)="checkLength()" formControlName="PhoneNumber" required ngModel>
     </mat-form-field>
   <div *ngIf="submitted && validate['PhoneNumber'].errors" class="alert alert-danger">
     <div *ngIf="validate['PhoneNumber'].errors['required']">Phone Number is required</div>
@@ -186,7 +186,7 @@
             </div>
           </div>
     </div>
-    <mat-card-actions>
+    <mat-card-actions (click)="ProceedSignUp()">
         <button mat-raised-button type="submit" ngClass="submit-btn">SignUp</button>
      </mat-card-actions>
     <div ngClass="terms-text">
