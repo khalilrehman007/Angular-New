@@ -559,7 +559,7 @@
                                 <div ngClass="pro-details-sec mb-4">
                                     <div ngClass="row">
                                         <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12" *ngFor="let item of certificateData; let i = index">
-                                            <div ngClass="prperty_certificate-reports-div">
+                                            <div ngClass="prperty_certificate-reports-div" (click)="SummaryReport()" [ngClass]="status8 ? 'active' : 'notactive'">
                                                 <div ngClass="reports_header">
                                                     <div ngClass="reports_img-icon">
                                                         <img src="{{reportimg}}">
@@ -619,6 +619,8 @@
                                         </div>
                                         <!-- <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                                             <div ngClass="prperty_certificate-reports-div">
+                                        <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                                            <div class="prperty_certificate-reports-div" (click)="SummaryReport()" [ngClass]="status8 ? 'active' : 'notactive'">
                                                 <div ngClass="reports_header">
                                                     <div ngClass="reports_img-icon">
                                                         <img src="{{reportimg}}">
@@ -670,7 +672,7 @@
                                             </div>
                                         </div>
                                         <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-                                            <div ngClass="prperty_certificate-reports-div">
+                                            <div class="prperty_certificate-reports-div" (click)="DetailReport()" [ngClass]="status9 ? 'active' : 'notactive'">
                                                 <div ngClass="reports_header">
                                                     <div ngClass="reports_img-icon">
                                                         <img src="{{reportimg}}">
@@ -722,6 +724,60 @@
                                             </div>
                                         </div> -->
                                     </div>
+                                </div>
+                                <div ngClass="certified_form-sec">
+                                    <form>
+                                    <div ngClass="row">
+                                        <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+                                            <div ngClass="block-wrapper mb-4">
+                                              <label class="h6-design">Report Language <span ngClass="required-span">*</span></label>
+                                              <div class="checkbox-flex-box two-column">
+                                                <div class="checkbox-design position-relative">
+                                                  <input type="radio" id="english" name="building-type" value="english" />
+                                                  <button class="checkbox-btn">English Language</button>
+                                                </div>
+                                                <div class="checkbox-design position-relative">
+                                                  <input type="radio" id="arabic" name="building-type" value="arabic" />
+                                                  <button class="checkbox-btn">Arabic Language</button>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                    </div>
+                                    <div ngClass="row">
+                                        <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+                                            <div ngClass="block-wrapper mb-4">
+                                              <label class="h6-design">Name of the Property Owner.<span ngClass="required-span">*</span></label>
+                                              <mat-form-field class="full-width input-design-2" appearance="fill">
+                                                <input matInput type="text" placeholder="Enter the full name in the language of report" />
+                                              </mat-form-field>
+                                            </div>
+                                          </div>
+                                          <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+                                            <div ngClass="block-wrapper mb-4">
+                                              <label class="h6-design">Mobile number of the Property Owner. <span ngClass="required-span">*</span></label>
+                                              <mat-form-field class="full-width input-design-2" appearance="fill">
+                                                <input matInput type="number" placeholder="Enter mobile no" />
+                                              </mat-form-field>
+                                            </div>
+                                          </div>
+                                    </div>
+                                    <div ngClass="row mb-4">
+                                        <div ngClass="col-sm-12">
+                                            <mat-checkbox class="example-margin">Accept <a routerLink="/term-condition">Term & Conditions.</a></mat-checkbox>
+                                        </div>
+                                    </div>
+                                     <div ngClass="row">
+                                        <div ngClass="col-sm-12">
+                                            <div ngClass="block-wrapper mb-4">
+                                                <label class="h6-design">Inspection Required</label>
+                                                <mat-form-field class="full-width input-design-2" appearance="fill">
+                                                  <input matInput type="datetime-local" placeholder="Enter mobile no" />
+                                                </mat-form-field>
+                                              </div>
+                                        </div>
+                                    </div>
+                                    </form>
                                 </div>
                             </div>
                             <div class="text-right save-continue-sec">
