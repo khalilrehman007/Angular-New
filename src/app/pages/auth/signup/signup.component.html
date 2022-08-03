@@ -31,7 +31,7 @@
   </div>
     <mat-form-field class="full-width input-design" appearance="fill">
         <mat-label>Phone</mat-label>
-        <input matInput type="text" formControlName="PhoneNumber" required ngModel>
+        <input matInput type="number" (input)="checkLength()" formControlName="PhoneNumber" required ngModel>
     </mat-form-field>
   <div *ngIf="submitted && validate['PhoneNumber'].errors" class="alert alert-danger">
     <div *ngIf="validate['PhoneNumber'].errors['required']">Phone Number is required</div>

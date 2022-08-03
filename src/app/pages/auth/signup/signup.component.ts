@@ -34,6 +34,15 @@ export class SignupComponent implements OnInit {
     return this.signup.controls;
   }
   public showPassword: boolean = false;
+  checkLength() {
+    let temp:any = this.signup.value.PhoneNumber;
+    if(temp.toString().length > 12) {
+      alert("Max length allowes is 12");
+      this.signup.patchValue({
+        PhoneNumber: temp.toString().slice(0,-1)
+      })
+    }
+  }
   ngOnInit() {
     $(document).ready(function(){
       $('.dropdown-toggle').click(function(){
