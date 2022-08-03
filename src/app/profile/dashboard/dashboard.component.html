@@ -2069,7 +2069,7 @@
                     </div>
                     <div ngClass="my_valuation-inner-div property_type">
                       <h6>Property Type</h6>
-                      <p>Apartment</p>
+                      <p>{{item.propertyType.typeDescription}}</p>
                     </div>
                     <div ngClass="my_valuation-inner-div payemnt" *ngIf="item.valuationStatus.statusDescription == 'Payment Pending'">
                       <a routerLink="/PropertyPayment" ngClass="payment pending">Payment Pending</a>
@@ -2109,7 +2109,7 @@
                     </div>
                     <div ngClass="my_valuation-inner-div property_type">
                       <h6>Property Type</h6>
-                      <p>Apartment</p>
+                      <p>{{item.propertyType.typeDescription}}</p>
                     </div>
                     <div ngClass="my_valuation-inner-div payemnt" *ngIf="item.valuationStatus.statusDescription == 'Payment Pending'">
                       <a routerLink="/PropertyPayment" ngClass="payment pending">Payment Pending</a>
@@ -2149,7 +2149,7 @@
                     </div>
                     <div ngClass="my_valuation-inner-div property_type">
                       <h6>Property Type</h6>
-                      <p>Apartment</p>
+                      <p>{{item.propertyType.typeDescription}}</p>
                     </div>
                     <div ngClass="my_valuation-inner-div payemnt" *ngIf="item.valuationStatus.statusDescription == 'Payment Pending'">
                       <a routerLink="/PropertyPayment" ngClass="payment pending">Payment Pending</a>
