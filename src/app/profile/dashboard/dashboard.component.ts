@@ -218,11 +218,11 @@ export class DashboardComponent implements OnInit {
   }
   getData() {
     if(this.detailForm.value.firstName == ""
-    || this.detailForm.value.lastName == ""
-    || this.detailForm.value.address == ""
-    || this.countryId == -1
-    || this.cityId == -1
-    || $("#formDate").val() == "") {
+      || this.detailForm.value.lastName == ""
+      || this.detailForm.value.address == ""
+      || this.countryId == -1
+      || this.cityId == -1
+      || $("#formDate").val() == "") {
       alert("Enter all the fields");
       return;
     }
