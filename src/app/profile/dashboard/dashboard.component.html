@@ -1525,7 +1525,11 @@
                     </div>
                   </div>
                 </div>
-                <section
+                <div class="no-data-found" *ngIf="leadsData.length == 0">
+                  <mat-icon>file_copy</mat-icon>
+                  <p>No Data Found</p>
+                </div>
+                <section  *ngIf="leadsData.length >= 0"
                   ngClass="my-lead-listing-wrap position-relative wrapper-section properties-slider residentials-property-rent-1">
                   <div ngClass="tab-content">
                     <div id="resedential-rent" class="tab-pane active">
@@ -1596,7 +1600,11 @@
                     </div>
                   </div>
                 </div>
-                <section
+                <div class="no-data-found" *ngIf="leadsData.length == 0">
+                  <mat-icon>file_copy</mat-icon>
+                  <p>No Data Found</p>
+                </div>
+                <section  *ngIf="leadsData.length >= 0"
                   ngClass="my-lead-listing-wrap position-relative wrapper-section properties-slider residentials-property-rent-1">
                   <div ngClass="tab-content">
                     <div id="resedential-rent" class="tab-pane active">
@@ -1667,7 +1675,11 @@
                     </div>
                   </div>
                 </div>
-                <section
+                <div class="no-data-found" *ngIf="leadsData.length == 0">
+                  <mat-icon>file_copy</mat-icon>
+                  <p>No Data Found</p>
+                </div>
+                <section  *ngIf="leadsData.length >= 0"
                   ngClass="my-lead-listing-wrap position-relative wrapper-section properties-slider residentials-property-rent-1">
                   <div ngClass="tab-content">
                     <div id="resedential-rent" class="tab-pane active">
