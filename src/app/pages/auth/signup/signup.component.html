@@ -3,7 +3,7 @@
 </header>
 <section ngClass="auth-wrapper">
 <div ngClass="form-design signup-page">
-  <form class="auth-form" [formGroup]="signup" (ngSubmit)="ProceedSignUp()">
+  <form class="auth-form" [formGroup]="signup" >
     <div ngClass="wecome-message">
       <h2>Welcome to Ovaluate</h2>
       <p>Welcome back! Please enter your details.</p>
@@ -186,7 +186,7 @@
             </div>
           </div>
     </div>
-    <mat-card-actions>
+    <mat-card-actions (click)="ProceedSignUp()">
         <button mat-raised-button type="submit" ngClass="submit-btn">SignUp</button>
      </mat-card-actions>
     <div ngClass="terms-text">
