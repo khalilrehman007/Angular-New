@@ -21,18 +21,18 @@
                 <div ngClass="row">
                     <div ngClass="col-xl-4 col-lg-4 col-md-12 col-sm-12">
                         <div ngClass="property-price_detals">
-                            <h4>{{propertyDetail.propertyListing.propertyPrice}} {{propertyDetail.propertyListing.country.currency}}<small>/{{propertyDetail.propertyListing.rentType}}</small></h4>
+                            <h4>{{propertyDetailData.propertyPrice}} {{propertyDetailData.currency}}<small>/{{propertyDetailData.rentType}}</small></h4>
                             <div ngClass="property-tags d-flex flex-wrap">
-                                <span ngClass="tags-bg-grey">Brokrage: {{propertyDetail.propertyListing.brokerageChargePrice}} {{propertyDetail.propertyListing.country.currency}}</span>
-                                <span ngClass="tags-bg-grey">Security deposit: {{propertyDetail.propertyListing.securityDepositPrice}} {{propertyDetail.propertyListing.country.currency}}</span>
+                                <span ngClass="tags-bg-grey">Brokrage: {{propertyDetailData.brokerageChargePrice}} {{propertyDetailData.currency}}</span>
+                                <span ngClass="tags-bg-grey">Security deposit: {{propertyDetailData.securityDepositPrice}} {{propertyDetailData.currency}}</span>
                             </div>
                         </div>
                     </div>
                     <div ngClass="col-xl-5 col-lg-4 col-md-12 col-sm-12">
                         <div ngClass="property-name_detals">
-                            <h4>{{propertyDetail.propertyListing.buildingName}}</h4>
+                            <h4>{{propertyDetailData.buildingName}}</h4>
                             <div ngClass="property-addresss">
-                                <p><img src="{{homelocationsvg}}"> {{propertyDetail.propertyListing.propertyAddress}} <a routerLink="">District Name</a></p>
+                                <p><img src="{{homelocationsvg}}"> {{propertyDetailData.propertyAddress}} <a routerLink="">District Name</a></p>
                             </div>
                         </div>
                     </div>
@@ -50,7 +50,7 @@
              <div ngClass="col-xl-8 col-lg-8 col-md-12 col-sm-12">
             <div ngClass="property-gallery-sec">
                 <ngb-carousel [showNavigationArrows]="false">
-                    <ng-template ngbSlide *ngFor="let event of propertyDetail.propertyListing.documents">
+                    <ng-template ngbSlide *ngFor="let event of propertyDetailData.documents">
                       <img [src]="baseUrl+event.fileUrl" alt="Random slide">
                     </ng-template>
                   </ngb-carousel>
@@ -80,16 +80,16 @@
                                         <h6>Hotel & Hotel Apartment</h6>
                                         <div ngClass="property-details-highlights">
                                             <span ngClass="bed">
-                                                <img src="{{bedsvg}}" alt="">{{propertyDetail.propertyListing.bedrooms}} Beds
+                                                <img src="{{bedsvg}}" alt="">{{propertyDetailData.bedrooms}} Beds
                                             </span>
                                             <span ngClass="bath">
-                                                <img src="{{bathsvg}}" alt="">{{propertyDetail.propertyListing.bathrooms}} Bath
+                                                <img src="{{bathsvg}}" alt="">{{propertyDetailData.bathrooms}} Bath
                                             </span>
                                             <span ngClass="area">
-                                                <img src="{{squaremetersvg}}" alt="">{{propertyDetail.propertyListing.carpetArea}}{{propertyDetail.propertyListing.country.unitType}}
+                                                <img src="{{squaremetersvg}}" alt="">{{propertyDetailData.carpetArea}}{{propertyDetailData.unitType}}
                                             </span>
                                             <span ngClass="furnishing">
-                                                <img src="{{furnishing}}" alt="">{{propertyDetail.propertyListing.furnishingType}}
+                                                <img src="{{furnishing}}" alt="">{{propertyDetailData.furnishingType}}
                                             </span>
                                         </div>
                                     </div>
@@ -105,7 +105,7 @@
                                     </div>
                                     <div ngClass="description-block-design">
                                         <h4>Property Description</h4>
-                                        <p>{{propertyDetail.propertyListing.propertyDescription}}</p>
+                                        <p>{{propertyDetailData.propertyDescription}}</p>
                                         <div ngClass="read-more-div text-right">
                                             <a routerLink="" ngClass="read-more-link">Read more</a>
                                         </div>
@@ -217,12 +217,12 @@
                             <div ngClass="property-listed-by-details d-flex">
                                 <div ngClass="property-listedby-img position-relative">
                                     <div ngClass="white-circle-outline">
-                                        <img src="{{baseUrl}}{{propertyDetail.user.imageUrl}}">
+                                        <img src="{{baseUrl}}{{propertyDetailData.userImageUrl}}">
                                     </div>
                                     <button ngClass="agent-or-owner-btn">Agent</button>
                                 </div>
                                 <div ngClass="property-listedby-cntnt">
-                                    <h5 ngClass="propertier-name">{{propertyDetail.user.fullName}}</h5>
+                                    <h5 ngClass="propertier-name">{{propertyDetailData.userfullName}}</h5>
                                     <p ngClass="propertier-type">Sales Director</p>
                                     <p ngClass="properties-name">
                                         Better Homes Properties
@@ -337,18 +337,18 @@
                 <div ngClass="row">
                     <div ngClass="col-xl-4 col-lg-4 col-md-12 col-sm-12">
                         <div ngClass="property-price_detals">
-                            <h4>{{propertyDetail.propertyListing.propertyPrice}} {{propertyDetail.propertyListing.country.currency}} <small>/{{propertyDetail.propertyListing.rentType}}</small></h4>
+                            <h4>{{propertyDetailData.propertyPrice}} {{propertyDetailData.currency}} <small>/{{propertyDetailData.rentType}}</small></h4>
                             <div ngClass="property-tags d-flex flex-wrap">
-                                <span ngClass="tags-bg-grey">Brokrage: {{propertyDetail.propertyListing.brokerageChargePrice}} {{propertyDetail.propertyListing.country.currency}}</span>
-                                <span ngClass="tags-bg-grey">Security deposit: {{propertyDetail.propertyListing.securityDepositPrice}} {{propertyDetail.propertyListing.country.currency}}</span>
+                                <span ngClass="tags-bg-grey">Brokrage: {{propertyDetailData.brokerageChargePrice}} {{propertyDetailData.currency}}</span>
+                                <span ngClass="tags-bg-grey">Security deposit: {{propertyDetailData.securityDepositPrice}} {{propertyDetailData.currency}}</span>
                             </div>
                         </div>
                     </div>
                     <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                         <div ngClass="property-name_detals">
-                            <h4>{{propertyDetail.propertyListing.buildingName}}</h4>
+                            <h4>{{propertyDetailData.buildingName}}</h4>
                             <div ngClass="property-addresss">
-                                <p><img src="{{homeaddress}}"> {{propertyDetail.propertyListing.propertyAddress}} <a routerLink="">District Name</a></p>
+                                <p><img src="{{homeaddress}}"> {{propertyDetailData.propertyAddress}} <a routerLink="">District Name</a></p>
                             </div>
                         </div>
                     </div>
@@ -360,7 +360,7 @@
                 </div>
             </div>
             <ngb-carousel [showNavigationIndicators]="false">
-                <ng-template ngbSlide *ngFor="let event of propertyDetail.propertyListing.documents">
+                <ng-template ngbSlide *ngFor="let event of propertyDetailData.documents">
                     <img [src]="baseUrl+event.fileUrl" alt="Random slide">
                 </ng-template>
             </ngb-carousel>

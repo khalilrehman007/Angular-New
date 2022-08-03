@@ -252,7 +252,10 @@ export class PropertyInnerComponent implements OnInit {
   ]
   closeResult: string;
   propertyDetail :any;
+  propertyId :any;
+
   constructor(private activeRoute: ActivatedRoute,private modalService: NgbModal,private service:AppService,private route:Router,private notifyService : NotificationService) {
+    this.propertyId = this.activeRoute.snapshot.queryParamMap.get('id');
     this.getUser();
     this.getloadDashboardData();
   }
@@ -261,30 +264,76 @@ export class PropertyInnerComponent implements OnInit {
     this.modalService.open(content, { centered: true });
   }
 
-  propertyId :any;
   ngOnInit(): void {
-    this.activeRoute.params.subscribe(params => {
-      this.propertyId = params['id']
-    });
+
   }
 
   isload :any= false
+  propertyDetailData :any = {}
   getloadDashboardData() {
-    this.service.DisplayPropertyListing(31).subscribe(e => {
+    this.service.DisplayPropertyListing(this.propertyId).subscribe(e => {
       let temp: any = e;
       let jsonData :any = JSON.stringify(temp.data)
       let jsonParsDate :any = JSON.parse(jsonData);
-
       this.propertyDetail = jsonParsDate
       this.isload = true
-      console.log(this.propertyDetail)
 
-      if(this.propertyDetail.propertyListing.documents[0].fileUrl != null){
-        this.thumb1 = this.baseUrl+this.propertyDetail.propertyListing.documents[0].fileUrl;
+      if(jsonParsDate.propertyListing != null){
+        this.propertyDetailData.propertyPrice = (jsonParsDate.propertyListing.propertyPrice !== undefined) ? jsonParsDate.propertyListing.propertyPrice : ''
+        this.propertyDetailData.currency = (jsonParsDate.propertyListing.country.currency !== undefined) ? jsonParsDate.propertyListing.country.currency : ''
+        this.propertyDetailData.rentType = (jsonParsDate.propertyListing.rentType !== undefined) ? jsonParsDate.propertyListing.rentType : ''
+        this.propertyDetailData.securityDepositPrice = (jsonParsDate.propertyListing.securityDepositPrice !== undefined) ? jsonParsDate.propertyListing.securityDepositPrice : ''
+        this.propertyDetailData.brokerageChargePrice = (jsonParsDate.propertyListing.brokerageChargePrice !== undefined) ? jsonParsDate.propertyListing.brokerageChargePrice : ''
+        this.propertyDetailData.buildingName = (jsonParsDate.propertyListing.buildingName !== undefined) ? jsonParsDate.propertyListing.buildingName : ''
+        this.propertyDetailData.documents = (jsonParsDate.propertyListing.documents !== undefined) ? jsonParsDate.propertyListing.documents : ''
+        this.propertyDetailData.propertyAddress = (jsonParsDate.propertyListing.propertyAddress !== undefined) ? jsonParsDate.propertyListing.propertyAddress : ''
+        this.propertyDetailData.bedrooms = (jsonParsDate.propertyListing.bedrooms !== undefined) ? jsonParsDate.propertyListing.bedrooms : ''
+        this.propertyDetailData.bathrooms = (jsonParsDate.propertyListing.bathrooms !== undefined) ? jsonParsDate.propertyListing.bathrooms : ''
+        this.propertyDetailData.carpetArea = (jsonParsDate.propertyListing.carpetArea !== undefined) ? jsonParsDate.propertyListing.carpetArea : ''
+        this.propertyDetailData.unitType = (jsonParsDate.propertyListing.country.unitType !== undefined) ? jsonParsDate.propertyListing.country.unitType : ''
+        this.propertyDetailData.furnishingType = (jsonParsDate.propertyListing.propertyAddress !== undefined) ? jsonParsDate.propertyListing.propertyAddress : ''
+        this.propertyDetailData.propertyDescription = (jsonParsDate.propertyListing.propertyDescription !== undefined) ? jsonParsDate.propertyListing.propertyDescription : ''
+        // this.propertyDetailData.propertyDescription = (jsonParsDate.propertyListing.propertyDescription !== undefined) ? jsonParsDate.propertyListing.propertyDescription : ''
+
+        if(this.propertyDetail.propertyListing.documents[0].fileUrl != null){
+          this.thumb1 = this.baseUrl+this.propertyDetail.propertyListing.documents[0].fileUrl;
+        }
+        if(this.propertyDetail.propertyListing.documents[1].fileUrl != null){
+          this.thumb1 = this.baseUrl+this.propertyDetail.propertyListing.documents[1].fileUrl;
+        }
+      }else{
+
+        //if property not found redirect home page
+        this.notifyService.showError('Property No found!', "");
+        this.route.navigate(['/'])
+
+        ///end
+        this.propertyDetailData.propertyPrice = ''
+        this.propertyDetailData.currency = ''
+        this.propertyDetailData.rentType = ''
+        this.propertyDetailData.securityDepositPrice = ''
+        this.propertyDetailData.brokerageChargePrice = ''
+        this.propertyDetailData.buildingName = ''
+        this.propertyDetailData.documents = []
+        this.propertyDetailData.propertyAddress = ''
+        this.propertyDetailData.bedrooms = ''
+        this.propertyDetailData.bathrooms = ''
+        this.propertyDetailData.carpetArea = ''
+        this.propertyDetailData.unitType = ''
+        this.propertyDetailData.furnishingType = ''
+        this.propertyDetailData.propertyDescription = ''
       }
-      if(this.propertyDetail.propertyListing.documents[1].fileUrl != null){
-        this.thumb1 = this.baseUrl+this.propertyDetail.propertyListing.documents[1].fileUrl;
+
+      if(jsonParsDate.user != null){
+        this.propertyDetailData.userImageUrl = (jsonParsDate.user.imageUrl !== undefined) ? jsonParsDate.user.imageUrl : ''
+        this.propertyDetailData.userfullName = (jsonParsDate.user.fullName !== undefined) ? jsonParsDate.user.fullName : ''
+      }else{
+        this.propertyDetailData.userImageUrl = ''
+        this.propertyDetailData.userfullName = ''
       }
+
+      console.log(this.propertyDetailData,'deded')
+
     });
   }
 
