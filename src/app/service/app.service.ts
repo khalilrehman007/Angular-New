@@ -98,6 +98,9 @@ export class AppService {
   PropertyCategories() {
     return this.http.get(this.apiurl + 'PropertyCategories/');
   }
+  PropertySortBy() {
+    return this.http.get(this.apiurl + 'PropertySortBy/');
+  }
   ValuationTransactions() {
     return this.http.get(this.apiurl + 'ValuationTransactions/');
   }

@@ -61,6 +61,7 @@ export class RentpropertiesComponent implements OnInit {
   PriceEnd :any;
   content :any;
   baseUrl = 'https://beta.ovaluate.com/'
+  sortedById: any;
 
   constructor(private activeRoute: ActivatedRoute,private service:AppService,private api: AppService,private route:Router,private modalService: NgbModal) {
     this.type                  = this.activeRoute.snapshot.queryParamMap.get('type');
@@ -74,10 +75,30 @@ export class RentpropertiesComponent implements OnInit {
 
     let params :any = {"PropertyTypeIds":this.PropertyTypeIds, "PropertyAddress":this.PropertyAddress,"RentTypeId":this.RentTypeId,
       "PropertyCategoryId":this.PropertyCategoryId,"PriceStart":this.PriceStart, "PriceEnd" : this.PriceEnd,
-      "PropertyListingTypeId":this.PropertyListingTypeId
+      "PropertyListingTypeId":this.PropertyListingTypeId,"SortedBy":this.sortedById
     }
 
     this.LoadPropertyCategories();
+    this.loadListingProperty(params);
+    this.LoadPropertySortBy();
+  }
+
+  PropertySortBy:any = []
+  LoadPropertySortBy(){
+    this.service.PropertySortBy().subscribe(e=>{
+      let temp: any = e;
+      for (let list of temp.data) {
+        this.PropertySortBy.push({ name: list.name, id: list.id });
+      }
+    });
+  }
+
+  sortedBy(event) {
+    this.sortedById = event.value
+    let params :any = {"PropertyTypeIds":this.PropertyTypeIds, "PropertyAddress":this.PropertyAddress,"RentTypeId":this.RentTypeId,
+      "PropertyCategoryId":this.PropertyCategoryId,"PriceStart":this.PriceStart, "PriceEnd" : this.PriceEnd,
+      "PropertyListingTypeId":this.PropertyListingTypeId,"SortedBy":this.sortedById
+    }
     this.loadListingProperty(params);
   }
 

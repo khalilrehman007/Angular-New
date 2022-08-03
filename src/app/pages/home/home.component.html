@@ -176,8 +176,9 @@
                       </span>
                     </div>
                   </div>
-                  <a [routerLink]="['/PropertDetailsPage/'+slide.id]" ngClass="linK_overlay"></a>
-                </div>
+                  <a [routerLink]="['/PropertDetailsPage']" [queryParams]="{id: slide.id}" ngClass="linK_overlay"></a>
+
+                  </div>
               </ng-template>
             </ng-container>
           </owl-carousel-o>
@@ -225,7 +226,8 @@
                       </span>
                     </div>
                   </div>
-                  <a [routerLink]="['/PropertDetailsPage/'+slide.id]" ngClass="linK_overlay"></a>
+                  <a [routerLink]="['/PropertDetailsPage']" [queryParams]="{id: slide.id}" ngClass="linK_overlay"></a>
+
                 </div>
               </ng-template>
             </ng-container>
@@ -324,7 +326,7 @@
                       </span>
                     </div>
                   </div>
-                  <a [routerLink]="['/PropertDetailsPage/'+slide.id]" ngClass="linK_overlay"></a>
+                    <a [routerLink]="['/PropertDetailsPage']" [queryParams]="{id: slide.id}" ngClass="linK_overlay"></a>
                 </div>
               </ng-template>
             </ng-container>
@@ -371,7 +373,7 @@
                       </span>
                     </div>
                   </div>
-                  <a [routerLink]="['/PropertDetailsPage/'+slide.id]" ngClass="linK_overlay"></a>
+                  <a [routerLink]="['/PropertDetailsPage']" [queryParams]="{id: slide.id}" ngClass="linK_overlay"></a>
                 </div>
               </ng-template>
             </ng-container>

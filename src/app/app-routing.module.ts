@@ -95,7 +95,7 @@ const routes: Routes = [
   { path:  'PropertyReview', component:  PropertyReviewComponent},
   { path:  'PropertyPayment', component:  PropertyPaymentComponent},
   { path:  'PropertyDownloadReport', component:  PropertyDownloadReportComponent},
-  { path:  'PropertDetailsPage/:id', component:  PropertyInnerComponent},
+  { path:  'PropertDetailsPage', component:  PropertyInnerComponent},
   { path: "blogs", component: BlogsComponent },
   // { path: "blogs/:id", component: BlogViewComponent },
   { path: "blogs-details/:id", component: BlogViewComponent },

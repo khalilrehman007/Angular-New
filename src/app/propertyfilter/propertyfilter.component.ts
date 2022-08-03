@@ -57,6 +57,7 @@ export class PropertyfilterComponent implements OnInit {
     this.SubmitForm.controls.Name.setValue(this.PropertyAddress);
     this.loadType();
     this.LoadPropertyCategories();
+
     this.service.RentTypes().subscribe(data=>{
       let response: any = data;
       this.Monthly   = response.data[0].name;
@@ -169,7 +170,6 @@ export class PropertyfilterComponent implements OnInit {
 
 
   proceedSearch(){
-
     let params :any = {"PropertyTypeIds":[], "PropertyAddress":this.PropertyAddress,"RentTypeId":this.RentTypeId,
       "PropertyCategoryId":this.PropertyCategoryId,PriceStart:this.SubmitForm.value.PriceStart,PriceEnd:this.SubmitForm.value.PriceEnd,
       Bedrooms:this.Bedrooms,Bathrooms:this.Bathrooms,
