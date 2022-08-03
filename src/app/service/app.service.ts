@@ -226,4 +226,7 @@ export class AppService {
     }
     return this.http.post(this.apiurl + 'MyLeads', data);
   }
+  MyValuations(id: any) {
+    return this.http.get(this.apiurl + 'MyValuations/'+id);
+  }
 }

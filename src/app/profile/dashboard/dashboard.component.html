@@ -2043,57 +2043,38 @@
           <h4 class="sub-title mb-4">My Valuation</h4>
           <div class="sub-tab-nav">
             <mat-tab-group>
-              <mat-tab label="All ({{totalValuation}})">
-                <div ngClass="my-valuation-list-wrapper">
-                  <div ngClass="my-valuation-list-design d-flex">
+              <mat-tab label="All ({{myValuation.length}})">
+                <div class="no-data-found" *ngIf="myValuation.length == 0">
+                  <mat-icon>file_copy</mat-icon>
+                  <p>No Data Found</p>
+                </div>
+                <div ngClass="my-valuation-list-wrapper" *ngIf="myValuation.length > 0">
+                  <div ngClass="my-valuation-list-design d-flex" *ngFor="let item of myValuation; let i = index">
                     <div ngClass="my_valuation-inner-div valuation_property-name">
                       <div ngClass="valuation_property-name-first">
-                        <span ngClass="val_pro-number">1</span>
+                        <span ngClass="val_pro-number">{{i+1}}</span>
                       </div>
                       <div ngClass="valuation_property-name-scnd">
-                        <p ngClass="property_id">OV-RA-1000</p>
-                        <p ngClass="property_date">06 Jul 2022</p>
+                        <p ngClass="property_id">{{item.reportNumberCode}}</p>
+                        <p ngClass="property_date">{{item.requestedDate.split("T")[0]}}</p>
                       </div>
                     </div>
                     <div ngClass="my_valuation-inner-div category">
                       <h6>Category</h6>
-                      <p>Residental</p>
+                      <p>{{item.propertyCategory.categoryName}}</p>
                     </div>
                     <div ngClass="my_valuation-inner-div place">
                       <h6>Place</h6>
-                      <p>Dubai</p>
+                      <p>{{item.city.name}}</p>
                     </div>
                     <div ngClass="my_valuation-inner-div property_type">
                       <h6>Property Type</h6>
                       <p>Apartment</p>
                     </div>
-                    <div ngClass="my_valuation-inner-div payemnt">
+                    <div ngClass="my_valuation-inner-div payemnt" *ngIf="item.valuationStatus.statusDescription == 'Payment Pending'">
                       <a routerLink="/PropertyPayment" ngClass="payment pending">Payment Pending</a>
                     </div>
-                  </div>
-                  <div ngClass="my-valuation-list-design d-flex">
-                    <div ngClass="my_valuation-inner-div valuation_property-name">
-                      <div ngClass="valuation_property-name-first">
-                        <span ngClass="val_pro-number">1</span>
-                      </div>
-                      <div ngClass="valuation_property-name-scnd">
-                        <p ngClass="property_id">OV-RA-1000</p>
-                        <p ngClass="property_date">06 Jul 2022</p>
-                      </div>
-                    </div>
-                    <div ngClass="my_valuation-inner-div category">
-                      <h6>Category</h6>
-                      <p>Residental</p>
-                    </div>
-                    <div ngClass="my_valuation-inner-div place">
-                      <h6>Place</h6>
-                      <p>Dubai</p>
-                    </div>
-                    <div ngClass="my_valuation-inner-div property_type">
-                      <h6>Property Type</h6>
-                      <p>Apartment</p>
-                    </div>
-                    <div ngClass="my_valuation-inner-div payemnt">
+                    <div ngClass="my_valuation-inner-div payemnt" *ngIf="item.valuationStatus.statusDescription != 'Payment Pending'">
                       <p ngClass="payment success">
                         <mat-icon>check_circle</mat-icon> Submitted
                       </p>
@@ -2102,16 +2083,84 @@
                   </div>
                 </div>
               </mat-tab>
-              <mat-tab label="{{residential}} ({{totalRestentailValuation}})">
-                <div class="no-data-found">
+              <mat-tab label="{{residential}} ({{myValuationResidential.length}})">
+                <div class="no-data-found" *ngIf="myValuationResidential.length == 0">
                   <mat-icon>file_copy</mat-icon>
                   <p>No Data Found</p>
                 </div>
+                <div ngClass="my-valuation-list-wrapper" *ngIf="myValuationResidential.length > 0">
+                  <div ngClass="my-valuation-list-design d-flex" *ngFor="let item of myValuationResidential; let i = index">
+                    <div ngClass="my_valuation-inner-div valuation_property-name">
+                      <div ngClass="valuation_property-name-first">
+                        <span ngClass="val_pro-number">{{i+1}}</span>
+                      </div>
+                      <div ngClass="valuation_property-name-scnd">
+                        <p ngClass="property_id">{{item.reportNumberCode}}</p>
+                        <p ngClass="property_date">{{item.requestedDate.split("T")[0]}}</p>
+                      </div>
+                    </div>
+                    <div ngClass="my_valuation-inner-div category">
+                      <h6>Category</h6>
+                      <p>{{item.propertyCategory.categoryName}}</p>
+                    </div>
+                    <div ngClass="my_valuation-inner-div place">
+                      <h6>Place</h6>
+                      <p>{{item.city.name}}</p>
+                    </div>
+                    <div ngClass="my_valuation-inner-div property_type">
+                      <h6>Property Type</h6>
+                      <p>Apartment</p>
+                    </div>
+                    <div ngClass="my_valuation-inner-div payemnt" *ngIf="item.valuationStatus.statusDescription == 'Payment Pending'">
+                      <a routerLink="/PropertyPayment" ngClass="payment pending">Payment Pending</a>
+                    </div>
+                    <div ngClass="my_valuation-inner-div payemnt" *ngIf="item.valuationStatus.statusDescription != 'Payment Pending'">
+                      <p ngClass="payment success">
+                        <mat-icon>check_circle</mat-icon> Submitted
+                      </p>
+                      <a routerLink="/PropertyDownloadReport" ngClass="download-pdf">Download Pdf</a>
+                    </div>
+                  </div>
+                </div>
               </mat-tab>
-              <mat-tab label="{{commercial}} ({{totalCommercialValuation}})">
-                <div class="no-data-found">
+              <mat-tab label="{{commercial}} ({{myValuationCommercial.length}})">
+                <div class="no-data-found" *ngIf="myValuationCommercial.length == 0">
                   <mat-icon>file_copy</mat-icon>
                   <p>No Data Found</p>
+                </div>
+                <div ngClass="my-valuation-list-wrapper" *ngIf="myValuationCommercial.length > 0">
+                  <div ngClass="my-valuation-list-design d-flex" *ngFor="let item of myValuationCommercial; let i = index">
+                    <div ngClass="my_valuation-inner-div valuation_property-name">
+                      <div ngClass="valuation_property-name-first">
+                        <span ngClass="val_pro-number">{{i+1}}</span>
+                      </div>
+                      <div ngClass="valuation_property-name-scnd">
+                        <p ngClass="property_id">{{item.reportNumberCode}}</p>
+                        <p ngClass="property_date">{{item.requestedDate.split("T")[0]}}</p>
+                      </div>
+                    </div>
+                    <div ngClass="my_valuation-inner-div category">
+                      <h6>Category</h6>
+                      <p>{{item.propertyCategory.categoryName}}</p>
+                    </div>
+                    <div ngClass="my_valuation-inner-div place">
+                      <h6>Place</h6>
+                      <p>{{item.city.name}}</p>
+                    </div>
+                    <div ngClass="my_valuation-inner-div property_type">
+                      <h6>Property Type</h6>
+                      <p>Apartment</p>
+                    </div>
+                    <div ngClass="my_valuation-inner-div payemnt" *ngIf="item.valuationStatus.statusDescription == 'Payment Pending'">
+                      <a routerLink="/PropertyPayment" ngClass="payment pending">Payment Pending</a>
+                    </div>
+                    <div ngClass="my_valuation-inner-div payemnt" *ngIf="item.valuationStatus.statusDescription != 'Payment Pending'">
+                      <p ngClass="payment success">
+                        <mat-icon>check_circle</mat-icon> Submitted
+                      </p>
+                      <a routerLink="/PropertyDownloadReport" ngClass="download-pdf">Download Pdf</a>
+                    </div>
+                  </div>
                 </div>
               </mat-tab>
             </mat-tab-group>

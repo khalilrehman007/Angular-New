@@ -89,6 +89,9 @@ export class DashboardComponent implements OnInit {
     currentPassword: new FormControl(""),
     newPassword: new FormControl("")
   });
+  myValuation:any = [];
+  myValuationResidential:any = [];
+  myValuationCommercial:any = [];
 
 
   lastPropertyLastingDate: any;
@@ -166,6 +169,16 @@ export class DashboardComponent implements OnInit {
       lastName: this.userFormData.lastName,
       address: this.userFormData.address,
       dob: this.userFormData.dateOfBirth
+    })
+    this.service.MyValuations(JSON.parse(temp).id).subscribe((result:any) => {
+      this.myValuation = result.data;
+      for(let i = 0; i < this.myValuation.length; i++) {
+        if(this.myValuation[i].propertyCategory.categoryName == "Residential") {
+          this.myValuationResidential.push(this.myValuation[i]);
+        } else {
+          this.myValuationCommercial.push(this.myValuation[i]);
+        }
+      }
     })
   }
   getImage(e: any) {
