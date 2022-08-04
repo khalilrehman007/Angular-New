@@ -185,8 +185,34 @@ export class ListpropertyinfoComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
     const controls = this.SubmitForm.controls;
-    if (this.genderCheck == false || this.tenantCheck == false || this.fittingCheck == false || this.furnishTypeCheck == false || this.managedCheck == false || this.occupancyCheck == false || this.rentTypeCheck == false || this.petPolicyCheck == false || this.parkingCheck == false || this.propertyTypeCheck == false || this.bedroomCheck == false || this.bathroomCheck == false || this.brokreageCheck == false || this.securityCheck == false || this.SubmitForm.invalid) {
-      alert("Please fill all the required fields");
+    if (this.genderCheck == false) {
+      alert("Please select gender type");
+    } else if (this.tenantCheck == false){
+      alert("Please select tenant type");
+    } else if (this.fittingCheck == false){
+      alert("Please select fitting type");
+    } else if (this.furnishTypeCheck == false){
+      alert("Please select furnishing type");
+    } else if (this.managedCheck == false){
+      alert("Please select property manage type");
+    } else if (this.occupancyCheck == false){
+      alert("Please select occupancy status");
+    } else if (this.rentTypeCheck == false){
+      alert("Please select rent type");
+    } else if (this.petPolicyCheck == false){
+      alert("Please select pet policy");
+    } else if (this.parkingCheck == false){
+      alert("Please select available parking");
+    } else if (this.propertyTypeCheck == false){
+      alert("Please select property type");
+    } else if (this.bedroomCheck == false){
+      alert("Please select bedrooms");
+    } else if (this.bathroomCheck == false){
+      alert("Please select bathroom");
+    } else if (this.brokreageCheck == false){
+      alert("Please select charge brokerage");
+    } else if (this.securityCheck == false || this.SubmitForm.invalid){
+      alert("Please select security deposit");
       return;
     }
 
