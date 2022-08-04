@@ -89,6 +89,18 @@ export class RentpropertiesComponent implements OnInit {
   }
 
 
+  allSearch(){
+    let params :any = {type:'',"PropertyTypeIds":[], "PropertyAddress":'',"RentTypeId":'',
+      "PropertyCategoryId":'',PriceStart:'',PriceEnd:'', Bedrooms:'',Bathrooms:'',
+      "PropertyListingTypeId":'',CurrentPage:1
+    }
+    this.route.navigate(['/search'],{queryParams:params})
+    this.loadListingProperty(params);
+  }
+
+
+
+
   PropertySortBy:any = []
   LoadPropertySortBy(){
     this.service.PropertySortBy().subscribe(e=>{
