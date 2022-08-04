@@ -16,54 +16,26 @@
             <div class="cstm_dropdown-menu" [ngClass]="status ? 'active' : 'notactive'">
               <h4 ngClass="drop_label">Price Range</h4>
               <div ngClass="rental-type-tabs-sec">
+                <div ngClass="price-range_sec">
+                  <div ngClass="extra-controls form-inline">
+                    <div ngClass="form-group">
+                      <input type="number" formControlName="PriceStart" [(ngModel)]="minValue" placeholder="100,000">
+                      <input type="number" formControlName="PriceEnd" [(ngModel)]="maxValue" placeholder="Any">
+                    </div>
+                  </div>
+                  <div ngClass="range-slider">
+                    <ngx-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ngx-slider>
+                  </div>
+                  <div ngClass="rentle_type-hding">
+                    <h5 ngClass="h5-design">Rental Type</h5>
+                  </div>
+                </div>
                 <mat-tab-group (selectedTabChange)="getRentalType($event)">
                   <mat-tab label="{{Monthly}}">
-                    <div ngClass="price-range_sec">
-                      <div ngClass="extra-controls form-inline">
-                        <div ngClass="form-group">
-                          <input type="number" formControlName="PriceStart" [(ngModel)]="minValue" placeholder="100,000">
-                          <input type="number" formControlName="PriceEnd" [(ngModel)]="maxValue" placeholder="Any">
-                        </div>
-                      </div>
-                      <div ngClass="range-slider">
-                        <ngx-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ngx-slider>
-                      </div>
-                      <div ngClass="rentle_type-hding">
-                        <h5 ngClass="h5-design">Rental Type</h5>
-                      </div>
-                    </div>
                   </mat-tab>
                   <mat-tab label="{{Quarterly}}">
-                    <div ngClass="price-range_sec">
-                      <div ngClass="extra-controls form-inline">
-                        <div ngClass="form-group">
-                          <input type="number" formControlName="PriceStart1" [(ngModel)]="minValue1" placeholder="100,000">
-                          <input type="number" formControlName="PriceEnd1" [(ngModel)]="maxValue1" placeholder="Any">
-                        </div>
-                      </div>
-                      <div ngClass="range-slider">
-                        <ngx-slider [(value)]="minValue1" [(highValue)]="maxValue1" [options]="options"></ngx-slider>
-                      </div>
-                      <div ngClass="rentle_type-hding">
-                        <h5 ngClass="h5-design">Rental Type</h5>
-                      </div>
-                    </div>
                   </mat-tab>
                   <mat-tab label="{{Yearly}}">
-                    <div ngClass="price-range_sec">
-                      <div ngClass="extra-controls form-inline">
-                        <div ngClass="form-group">
-                          <input type="number" formControlName="PriceStart2" [(ngModel)]="minValue2" placeholder="100,000">
-                          <input type="number" formControlName="PriceEnd2" [(ngModel)]="maxValue2" placeholder="Any">
-                        </div>
-                      </div>
-                      <div ngClass="range-slider">
-                        <ngx-slider [(value)]="minValue2" [(highValue)]="maxValue2" [options]="options"></ngx-slider>
-                      </div>
-                      <div ngClass="rentle_type-hding">
-                        <h5 ngClass="h5-design">Rental Type</h5>
-                      </div>
-                    </div>
                   </mat-tab>
                 </mat-tab-group>
               </div>

@@ -159,11 +159,10 @@ export class BuySearchComponent implements OnInit {
       PropertyTypeIds = this.PropertyTypeCommercialIds
     }
 
-    let params :any = {queryParams:{type:'Buy',PropertyListingTypeId:2,PropertyCategoryId:this.propertyCategory,RentTypeId:this.data.rentalTypeId,PropertyTypeIds:PropertyTypeIds
+    let params :any = {queryParams:{type:'Buy',PropertyListingTypeId:1,PropertyCategoryId:this.propertyCategory,RentTypeId:this.data.rentalTypeId,PropertyTypeIds:PropertyTypeIds
         ,PropertyAddress:this.SubmitForm.value.Name,PriceStart:this.SubmitForm.value.PriceStart,PriceEnd:this.SubmitForm.value.PriceEnd
-        ,Bedrooms:'',Bathrooms:''
+        ,Bedrooms:'',Bathrooms:'',CurrentPage:1
       }};
-
     this.route.navigate(['/search'],params)
 
   }
