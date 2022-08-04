@@ -28,12 +28,12 @@ export class RentCommertialComponent implements OnInit {
   propertyManages: any;
   rentTypes: any;
   occupancy: any;
-  room:any = [1,2,3,4,5,6,7,8,9,10];
+  room: any = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   featuresData: any;
   featuresFormData: any = [];
   minDate = new Date();
-  propertyListingBuy:number;
-  propertyListingRent:number;
+  propertyListingBuy: number;
+  propertyListingRent: number;
 
   constructor(private api: AppService, private service: AuthService, private route: Router, private notifyService: NotificationService) {
     this.priviousFormCheck = localStorage.getItem('propertyData');
@@ -45,14 +45,14 @@ export class RentCommertialComponent implements OnInit {
       this.priviousFormCheck = JSON.parse(this.priviousFormCheck);
       this.data = this.priviousFormCheck;
     }
-    this.api.PropertyListingRentBuy({"Lat":this.data.PropertyLat,"Long":this.data.PropertyLong}).subscribe((result:any)=> {
+    this.api.PropertyListingRentBuy({ "Lat": this.data.PropertyLat, "Long": this.data.PropertyLong }).subscribe((result: any) => {
       this.propertyListingBuy = result.data.propertyListingBuy;
       this.propertyListingRent = result.data.propertyListingRent;
     })
-    this.api.LoadType(2).subscribe((result:any) => {
+    this.api.LoadType(2).subscribe((result: any) => {
       this.propertyType = result.data;
     });
-    
+
     this.api.LoadPropertyManages().subscribe((result: any) => {
       this.propertyManages = result.data;
     });
@@ -62,7 +62,7 @@ export class RentCommertialComponent implements OnInit {
     this.api.PropertyFeatures(1).subscribe((result: any) => {
       this.featuresData = result.data;
     });
-    this.api.LoadOccupancy().subscribe((result:any)=> {
+    this.api.LoadOccupancy().subscribe((result: any) => {
       this.occupancy = result.data;
     })
     this.data.PropertyListingTypeId = 1;
@@ -155,24 +155,61 @@ export class RentCommertialComponent implements OnInit {
   get validate() {
     return this.SubmitForm.controls;
   }
-  propertyTypeCkick: boolean = false;
+  propertyTypeCheck: boolean = false;
   badroomCheck: boolean = false;
   bathroomCheck: boolean = false;
   managedByCheck: boolean = false;
   occupancyCheck: boolean = false;
   rentTypeCheck: boolean = false;
+  genderCheck: boolean = false;
+  tenantCheck: boolean = false;
+  fittingCheck: boolean = false;
+  furnishTypeCheck: boolean = false;
+  managedCheck: boolean = false;
+  petPolicyCheck: boolean = false;
+  parkingCheck: boolean = false;
+  bedroomCheck: boolean = false;
+  brokreageCheck: boolean = false;
+  securityCheck: boolean = false;
+
   onSubmit() {
     this.submitted = true;
-    console.log(this.propertyTypeCkick);
-    console.log(this.badroomCheck);
-    console.log(this.bathroomCheck);
-    console.log(this.managedByCheck);
-    console.log(this.occupancyCheck);
-    console.log(this.rentTypeCheck);
-    if (this.SubmitForm.invalid || this.propertyTypeCkick == false || this.badroomCheck == false || this.bathroomCheck == false || this.managedByCheck == false || this.occupancyCheck == false || this.rentTypeCheck == false) {
-      alert('Please fill all the required fields');
+    if (this.propertyTypeCheck == false) {
+      alert('Please select property type');
+      return;
+    } else if (this.badroomCheck == false) {
+      alert('Please select bedroom');
+      return;
+    } else if (this.bathroomCheck == false) {
+      alert('Please select bathroom');
+      return;
+    } else if (this.managedByCheck == false) {
+      alert('Please select property manage');
+      return;
+    } else if (this.occupancyCheck == false) {
+      alert('Please select occupancy status');
+      return;
+    } else if (this.SubmitForm.value.carpetArea == ""){
+      alert("Please select carpet area");
+      return;
+    } else if (this.SubmitForm.value.buildupArea == ""){
+      alert("Please select build area");
+      return;
+    } else if (this.SubmitForm.value.price == ""){
+      alert("Please select price");
+      return;
+    } else if (this.rentTypeCheck == false) {
+      alert("Please select rent type");
+      return;
+    } else if (this.securityCheck == false) {
+      alert("Please select security deposit");
+      return;
+    } else if (this.brokreageCheck == false) {
+      alert("Please select charge brokerage");
       return;
     }
+    
+
     this.data.CarpetArea = this.SubmitForm.value.carpetArea;
     this.data.BuildupArea = this.SubmitForm.value.buildupArea;
     this.data.PropertyPrice = this.SubmitForm.value.price;
@@ -195,12 +232,12 @@ export class RentCommertialComponent implements OnInit {
     this.data.HandoverOn = "";
     this.data.PropertyCompletionStatusId = "";
     this.data.PetPolicies = "";
-    let user:any = localStorage.getItem("user");
+    let user: any = localStorage.getItem("user");
     this.data.UserId = JSON.parse(user).id;
     this.data.UserEmail = JSON.parse(user).email;
-    let temp:any = []
+    let temp: any = []
     for (let i = 0; i < this.featuresFormData.length; i++) {
-      temp.push({PropertyFeatureId:this.featuresFormData[i]});
+      temp.push({ PropertyFeatureId: this.featuresFormData[i] });
     }
     this.data.PropertyFeatures = temp;
     localStorage.setItem('propertyData', JSON.stringify(this.data))
@@ -216,14 +253,14 @@ export class RentCommertialComponent implements OnInit {
     this.data.BathRooms = e.value;
   }
   getPropertyType(e: any) {
-    this.propertyTypeCkick = true;
+    this.propertyTypeCheck = true;
     this.data.PropertyTypeId = e.value;
   }
-  getPropertyManages(id:number) {
+  getPropertyManages(id: number) {
     this.managedByCheck = true;
     this.data.PropertyManageId = id;
   }
-  getPropertyStatus(id:number) {
+  getPropertyStatus(id: number) {
     this.data.PropertyManageId = id;
   }
   getOccupancy(e: number) {
