@@ -201,13 +201,16 @@ export class PropertyDocumentsComponent implements OnInit {
     this.status7 = false;
     this.status2 = !this.status2;
   }
-  SummaryReport() {
-    this.status8 = !this.status8;
-    this.status9 = false;
-  }
-  DetailReport() {
-    this.status9 = !this.status9;
-    this.status8 = false;
+  SummaryReport(e:any, id:any) {
+    console.log(id);
+    if(e == 0) {
+      this.status8 = true;
+      this.status9 = false;
+    } else {
+      this.status9 = true;
+      this.status8 = false;
+
+    }
   }
   constructor(private service: AppService) {
     this.userData = localStorage.getItem("valuationDetailData");
