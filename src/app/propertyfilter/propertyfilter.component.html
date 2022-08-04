@@ -28,7 +28,10 @@
             <div ngClass="block-wrapper mb-4">
             <mat-form-field appearance="fill" class="select-design">
               <mat-label>Beds</mat-label>
-              <mat-select (selectionChange)="beds($event)">
+              <mat-select [(value)]="selectedBeds" (selectionChange)="beds($event)">
+                <mat-option value="">
+                  0
+                </mat-option>
                 <mat-option value="1">
                   1
                 </mat-option>
@@ -67,7 +70,10 @@
             <div ngClass="block-wrapper mb-4">
             <mat-form-field appearance="fill" class="select-design">
                 <mat-label>Baths</mat-label>
-                <mat-select (selectionChange)="baths($event)">
+                <mat-select [(value)]="selectedBaths"  (selectionChange)="baths($event)">
+                  <mat-option value="">
+                    0
+                  </mat-option>
                   <mat-option value="1">
                     1
                   </mat-option>
@@ -153,7 +159,7 @@
         </div>
         <div ngClass="block-item seven-block">
             <div ngClass="block-wrapper">
-           <button ngClass="clear-btn">Clear</button>
+           <button ngClass="clear-btn" (click)="clearSearch()">Clear</button>
             </div>
         </div>
         <div ngClass="block-item eight-block">

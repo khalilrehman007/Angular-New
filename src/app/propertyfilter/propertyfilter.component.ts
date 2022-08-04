@@ -33,6 +33,8 @@ export class PropertyfilterComponent implements OnInit {
   Bathrooms: any;
   postedById: any;
   data :any = {}
+  selectedBeds :any;
+  selectedBaths :any;
 
   ngOnInit(): void {
     //parent method
@@ -53,6 +55,7 @@ export class PropertyfilterComponent implements OnInit {
     this.minValue = this.PriceStart;
     this.maxValue = this.PriceEnd;
 
+    // this.route.routeReuseStrategy.shouldReuseRoute = () => false;
 
     this.SubmitForm.controls.Name.setValue(this.PropertyAddress);
     this.loadType();
@@ -170,11 +173,44 @@ export class PropertyfilterComponent implements OnInit {
 
 
   proceedSearch(){
-    let params :any = {"PropertyTypeIds":[], "PropertyAddress":this.PropertyAddress,"RentTypeId":this.RentTypeId,
+    let params :any = {type:this.type,"PropertyTypeIds":[],"RentTypeId":this.RentTypeId,
       "PropertyCategoryId":this.PropertyCategoryId,PriceStart:this.SubmitForm.value.PriceStart,PriceEnd:this.SubmitForm.value.PriceEnd,
-      Bedrooms:this.Bedrooms,Bathrooms:this.Bathrooms,
-      "PropertyListingTypeId":this.PropertyListingTypeId
+      Bedrooms:this.Bedrooms,Bathrooms:this.Bathrooms,PropertyAddress:this.SubmitForm.value.Name,
+      "PropertyListingTypeId":this.PropertyListingTypeId,CurrentPage:1
     }
+    this.route.navigate(['/search'],{queryParams:params})
+    this.childToParentDataLoad.emit(params)
+
+  }
+
+  clearSearch(){
+    this.type                 = ''
+    this.PropertyCategoryId   = ''
+    this.RentTypeId           = ''
+    this.PropertyListingTypeId =''
+    this.PropertyAddress       = ''
+    this.PriceStart            = ''
+    this.PriceEnd              =''
+    this.Bedrooms              = ''
+    this.Bathrooms             =''
+    this.selectedRentType      =''
+    this.selectedBeds          =''
+    this.selectedBaths         =''
+
+    this.SubmitForm.controls.Name.setValue('');
+    this.SubmitForm.controls.PriceStart.setValue('');
+    this.SubmitForm.controls.PriceEnd.setValue('');
+
+
+    this.selectedPropertyType = null
+    this.propertyTypes = []
+    this.LoadPropertyCategories();
+
+    let params :any = {type:'',"PropertyTypeIds":[], "PropertyAddress":'',"RentTypeId":'',
+      "PropertyCategoryId":'',PriceStart:'',PriceEnd:'', Bedrooms:'',Bathrooms:'',
+      "PropertyListingTypeId":'',CurrentPage:1
+    }
+    this.route.navigate(['/search'],{queryParams:params})
     this.childToParentDataLoad.emit(params)
   }
 
