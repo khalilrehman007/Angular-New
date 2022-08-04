@@ -29,6 +29,7 @@ export class PropertyDocumentsComponent implements OnInit {
   unitCount: number = 0;
   certificateData:any = [];
   valuationPrices:any = [];
+  minDate = new Date();
 
   handleChange(files: FileList, index: number) {
     if (files && files.length) {
