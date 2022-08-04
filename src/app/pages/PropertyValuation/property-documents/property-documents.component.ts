@@ -180,7 +180,7 @@ export class PropertyDocumentsComponent implements OnInit {
     })
     this.service.PropertyPackageType().subscribe((result:any)=> {
       this.certificateData = result.data;
-      console.log(this.certificateData[0].packageContent);
+      console.log(this.certificateData);
     });
     this.status2 = !this.status2;
     this.status6 = !this.status6;
@@ -201,7 +201,8 @@ export class PropertyDocumentsComponent implements OnInit {
     this.status7 = false;
     this.status2 = !this.status2;
   }
-  SummaryReport(e:any) {
+  SummaryReport(e:any, id:any) {
+    console.log(id);
     if(e == 0) {
       this.status8 = true;
       this.status9 = false;

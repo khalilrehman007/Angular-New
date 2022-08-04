@@ -579,150 +579,20 @@
                                                     </div>
                                                 </div>
                                                 <div ngClass="reports_cntnt-list">
-                                                    <div ngClass="reports_cntnt-list-inner">
-                                                        <h4>About Company</h4>
-                                                        <ul>
-                                                            <li>Loream Isphum</li>
-                                                        </ul>
-                                                    </div>
-                                                    <div ngClass="reports_cntnt-list-inner">
-                                                        <h4>Property Information</h4>
-                                                        <ul>
-                                                            <li>Property Location</li>
-                                                            <li>District Description</li>
-                                                            <li>Property Details</li>
-                                                            <li>Property Images</li>
-                                                        </ul>
-                                                    </div>
-                                                    <div ngClass="reports_cntnt-list-inner">
-                                                        <h4>Need heading</h4>
-                                                        <ul>
-                                                            <li>Loream Isphum</li>
-                                                            <li>Loream Isphum</li>
-                                                            <li>Loream Isphum</li>
-                                                            <li>Loream Isphum</li>
-                                                        </ul>
-                                                    </div>
-                                                    <div ngClass="reports_cntnt-list-inner">
-                                                        <h4>Valuations & Inspections</h4>
-                                                        <ul>
-                                                            <li>Loream Isphum</li>
-                                                            <li>Loream Isphum</li>
-                                                            <li>Loream Isphum</li>
-                                                            <li>Loream Isphum</li>
-                                                        </ul>
+                                                    <div ngClass="reports_cntnt-list-inner" *ngFor="let item2 of item.packageContent">
+                                                        <div *ngIf="item2.selected == true">
+                                                            <h4>{{item2.packageCategory.name}}</h4>
+                                                            <ul *ngIf="item2.packageCategory.packageTopic.length > 0">
+                                                                <li *ngFor="let item3 of item2.packageCategory.packageTopic">{{item3.name}}</li>
+                                                            </ul>
+                                                            <p *ngIf="item2.packageCategory.packageTopic.length == 0">-</p>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <button class="summary_certificate-btn"  (click)="SummaryReport(i)" *ngIf="i == 0" [ngClass]="status8 ? 'report-btn-active' : ''">{{valuationPrices.summeryCertificateSellingPrice}} AED Summary Certificate</button>
-                                                <button class="summary_certificate-btn"  (click)="SummaryReport(i)" *ngIf="i == 1" [ngClass]="status9 ? 'report-btn-active' : ''">{{valuationPrices.detailCertificateSellingPrice}} AED Detail Certificate</button>
+                                                <button class="summary_certificate-btn"  (click)="SummaryReport(i, item.id)" *ngIf="i == 0" [ngClass]="status8 ? 'report-btn-active' : ''">{{valuationPrices.summeryCertificateSellingPrice}} AED Summary Certificate</button>
+                                                <button class="summary_certificate-btn"  (click)="SummaryReport(i, item.id)" *ngIf="i == 1" [ngClass]="status9 ? 'report-btn-active' : ''">{{valuationPrices.detailCertificateSellingPrice}} AED Detail Certificate</button>
                                             </div>
                                         </div>
-                                        <!-- <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-                                            <div ngClass="prperty_certificate-reports-div">
-                                        <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-                                            <div class="prperty_certificate-reports-div" (click)="SummaryReport()" [ngClass]="status8 ? 'active' : 'notactive'">
-                                                <div ngClass="reports_header">
-                                                    <div ngClass="reports_img-icon">
-                                                        <img src="{{reportimg}}">
-                                                    </div>
-                                                    <div ngClass="reports_title-list">
-                                                        <h5>Summary Report</h5>
-                                                        <p><span ngClass="discounted-price">3636.9AED</span> <span
-                                                                ngClass="regular-price"><del>4041AED</del></span> <span
-                                                                ngClass="discount_offer">10 % OFF</span></p>
-                                                    </div>
-                                                </div>
-                                                <div ngClass="reports_cntnt-list">
-                                                    <div ngClass="reports_cntnt-list-inner">
-                                                        <h4>About Company</h4>
-                                                        <ul>
-                                                            <li>Loream Isphum</li>
-                                                        </ul>
-                                                    </div>
-                                                    <div ngClass="reports_cntnt-list-inner">
-                                                        <h4>Property Information</h4>
-                                                        <ul>
-                                                            <li>Property Location</li>
-                                                            <li>District Description</li>
-                                                            <li>Property Details</li>
-                                                            <li>Property Images</li>
-                                                        </ul>
-                                                    </div>
-                                                    <div ngClass="reports_cntnt-list-inner">
-                                                        <h4>Need heading</h4>
-                                                        <ul>
-                                                            <li>Loream Isphum</li>
-                                                            <li>Loream Isphum</li>
-                                                            <li>Loream Isphum</li>
-                                                            <li>Loream Isphum</li>
-                                                        </ul>
-                                                    </div>
-                                                    <div ngClass="reports_cntnt-list-inner">
-                                                        <h4>Valuations & Inspections</h4>
-                                                        <ul>
-                                                            <li>Loream Isphum</li>
-                                                            <li>Loream Isphum</li>
-                                                            <li>Loream Isphum</li>
-                                                            <li>Loream Isphum</li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                                <button ngClass="summary_certificate-btn">3636.9 AED Summary
-                                                    Certificate</button>
-                                            </div>
-                                        </div>
-                                        <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-                                            <div class="prperty_certificate-reports-div" (click)="DetailReport()" [ngClass]="status9 ? 'active' : 'notactive'">
-                                                <div ngClass="reports_header">
-                                                    <div ngClass="reports_img-icon">
-                                                        <img src="{{reportimg}}">
-                                                    </div>
-                                                    <div ngClass="reports_title-list">
-                                                        <h5>Detail Report</h5>
-                                                        <p><span ngClass="discounted-price">3636.9AED</span> <span
-                                                                ngClass="regular-price"><del>4041AED</del></span> <span
-                                                                ngClass="discount_offer">10 % OFF</span></p>
-                                                    </div>
-                                                </div>
-                                                <div ngClass="reports_cntnt-list">
-                                                    <div ngClass="reports_cntnt-list-inner">
-                                                        <h4>About Company</h4>
-                                                        <ul>
-                                                            <li>Loream Isphum</li>
-                                                        </ul>
-                                                    </div>
-                                                    <div ngClass="reports_cntnt-list-inner">
-                                                        <h4>Property Information</h4>
-                                                        <ul>
-                                                            <li>Property Location</li>
-                                                            <li>District Description</li>
-                                                            <li>Property Details</li>
-                                                            <li>Property Images</li>
-                                                        </ul>
-                                                    </div>
-                                                    <div ngClass="reports_cntnt-list-inner">
-                                                        <h4>Need heading</h4>
-                                                        <ul>
-                                                            <li>Loream Isphum</li>
-                                                            <li>Loream Isphum</li>
-                                                            <li>Loream Isphum</li>
-                                                            <li>Loream Isphum</li>
-                                                        </ul>
-                                                    </div>
-                                                    <div ngClass="reports_cntnt-list-inner">
-                                                        <h4>Valuations & Inspections</h4>
-                                                        <ul>
-                                                            <li>Loream Isphum</li>
-                                                            <li>Loream Isphum</li>
-                                                            <li>Loream Isphum</li>
-                                                            <li>Loream Isphum</li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                                <button ngClass="details_certificate-btn">3636.9 AED Detail
-                                                    Certificate</button>
-                                            </div>
-                                        </div> -->
                                     </div>
                                 </div>
                                 <div ngClass="certified_form-sec">
