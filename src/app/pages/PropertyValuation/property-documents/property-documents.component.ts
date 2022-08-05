@@ -30,6 +30,8 @@ export class PropertyDocumentsComponent implements OnInit {
   certificateData:any = [];
   valuationPrices:any = [];
   minDate = new Date();
+  formData:any = {};
+  documentData:any = [];
 
   handleChange(files: FileList, index: number) {
     if (files && files.length) {
@@ -157,9 +159,17 @@ export class PropertyDocumentsComponent implements OnInit {
   status8: boolean = false;
   status9: boolean = false;
   Nextshow() {
-    this.status = !this.status;
-    this.status5 = !this.status5;
-    this.status1 = !this.status1;
+    this.documentData.push({ "FileId":"1","DocumentTypeId":"11", "FileName" : "map.jpg", "Extension" : "jpg", "IsScreenshot": "true"});
+    let extension: any = this.titleDeedImage.name.split(".");
+    extension = extension[extension.length - 1];
+    this.documentData.push({ "FileId":"2","DocumentTypeId":"1","FileName":this.titleDeedImage.name, "Extension" : extension, "IsScreenshot": "false"});
+    extension = this.affectionImage.name.split(".");
+    extension = extension[extension.length - 1];
+    this.documentData.push({ "FileId":"3","DocumentTypeId":"1","FileName":this.affectionImage.name, "Extension" : extension, "IsScreenshot": "false"});
+    extension = this.propertyImage.name.split(".");
+    extension = extension[extension.length - 1];
+    this.documentData.push({ "FileId":"4","DocumentTypeId":"1","FileName":this.propertyImage.name, "Extension" : extension, "IsScreenshot": "false"});
+    console.log(this.documentData);
     // if (this.documentcount >= 3) {
     //   this.status = !this.status;
     //   this.status5 = !this.status5;
@@ -216,6 +226,8 @@ export class PropertyDocumentsComponent implements OnInit {
   constructor(private service: AppService) {
     this.userData = localStorage.getItem("valuationDetailData");
     this.userData = JSON.parse(this.userData);
+    this.formData = localStorage.getItem("valuationData");
+    this.formData = JSON.parse(this.formData);
   }
 
   ngOnInit(): void {
