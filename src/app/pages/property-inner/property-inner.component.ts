@@ -140,116 +140,7 @@ export class PropertyInnerComponent implements OnInit {
       link: 'PropertDetailsPage'
     }
   ]
-  propertyinfo = [
-    {
-      label: 'Listed on',
-      value:'7 Days Ago',
-    },
-    {
-      label: 'OV-Verified On',
-      value:'24 Apr 2022',
-    },
-    {
-      label: 'Building Type',
-      value:'Residential',
-    },
-    {
-      label: 'Property Type',
-      value:'Apartment',
-    },
-    {
-      label: 'Tower No. / Building Name',
-      value:'Blue Wave Tower',
-    },
-    {
-      label: 'Total Floors in Building',
-      value:'12',
-    },
-    {
-      label: 'Floor No.',
-      value:'10',
-    },
-    {
-      label: 'Unit No.',
-      value:'Not Mentioned',
-    },
-    {
-      label: 'Bedroom',
-      value:'5 BHK',
-    },
-    {
-      label: 'Bathroom',
-      value:'3',
-    },
-    {
-      label: 'Furnishing Type',
-      value:'Furnished',
-    },
-    {
-      label: 'Fitting Type',
-      value:'Shell & Core',
-    },
-    {
-      label: 'Preferred Tenant Type',
-      value:'Family',
-    },
-    {
-      label: 'Preferred Gender Type',
-      value:'Any',
-    },
-    {
-      label: 'Available Parking',
-      value:'0',
-    },
-    {
-      label: 'Pet Policy',
-      value:'No Pets Allowed',
-    },
-    {
-      label: 'Carpet Area',
-      value:'3,678 Sq. Ft.',
-    },
-    {
-      label: 'Build-up Area',
-      value:'455 Sq. Mt.',
-    },
-    {
-      label: 'Current Occupancy Status',
-      value:'Occupied',
-    },
-    {
-      label: 'Property Managed by',
-      value:'Landlord',
-    },
-    {
-      label: 'Price',
-      value:'85,000 AED',
-    },
-    {
-      label: 'Rent Type',
-      value:'Yearly',
-    },
-    {
-      label: 'Security Deposit',
-      value:'1000 AED',
-    },
-    {
-      label: 'Brokerage Deposit',
-      value:'500 AED',
-    },
-    {
-      label: 'Available From',
-      value:'01 July, 2022',
-    },
-    {
-      label: 'Notice Period',
-      value:'30 Days',
-    },
-    {
-      label: 'Locking Period',
-      value:'03 Months',
-    },
-  ]
+  propertyinfo :any = [];
   closeResult: string;
   propertyDetail :any;
   propertyId :any;
@@ -258,6 +149,7 @@ export class PropertyInnerComponent implements OnInit {
     this.propertyId = this.activeRoute.snapshot.queryParamMap.get('id');
     this.getUser();
     this.getloadDashboardData();
+    this.LoadSimilarProperty();
   }
 
   openVerticallyCentered(content) {
@@ -278,6 +170,7 @@ export class PropertyInnerComponent implements OnInit {
       this.propertyDetail = jsonParsDate
       this.isload = true
 
+      // console.log(jsonParsDate.propertyListing.rentType,'dededededed')
       if(jsonParsDate.propertyListing != null){
         this.propertyDetailData.propertyPrice = (jsonParsDate.propertyListing.propertyPrice !== undefined) ? jsonParsDate.propertyListing.propertyPrice : ''
         this.propertyDetailData.currency = (jsonParsDate.propertyListing.country.currency !== undefined) ? jsonParsDate.propertyListing.country.currency : ''
@@ -294,6 +187,32 @@ export class PropertyInnerComponent implements OnInit {
         this.propertyDetailData.furnishingType = (jsonParsDate.propertyListing.propertyAddress !== undefined) ? jsonParsDate.propertyListing.propertyAddress : ''
         this.propertyDetailData.propertyDescription = (jsonParsDate.propertyListing.propertyDescription !== undefined) ? jsonParsDate.propertyListing.propertyDescription : ''
         // this.propertyDetailData.propertyDescription = (jsonParsDate.propertyListing.propertyDescription !== undefined) ? jsonParsDate.propertyListing.propertyDescription : ''
+        this.propertyDetailData.propertyFeatures = (jsonParsDate.propertyListing.propertyFeatures !== undefined) ? jsonParsDate.propertyListing.propertyFeatures : ''
+        // this.propertyDetailData.propertyType = (jsonParsDate.propertyListing.propertyType !== undefined) ? jsonParsDate.propertyListing.propertyType : ''
+        this.propertyDetailData.requestedDateFormat = (jsonParsDate.propertyListing.requestedDateFormat !== undefined) ? jsonParsDate.propertyListing.requestedDateFormat : ''
+        this.propertyDetailData.buildingType = (jsonParsDate.propertyListing.propertyCategory.categoryName !== undefined) ? jsonParsDate.propertyListing.propertyCategory.categoryName : ''
+        this.propertyDetailData.propertyType = (jsonParsDate.propertyListing.propertyType.typeDescription !== undefined) ? jsonParsDate.propertyListing.propertyType.typeDescription : ''
+        this.propertyDetailData.buildingName = (jsonParsDate.propertyListing.buildingName !== undefined) ? jsonParsDate.propertyListing.buildingName : ''
+        this.propertyDetailData.totalFloor = (jsonParsDate.propertyListing.totalFloor !== undefined) ? jsonParsDate.propertyListing.totalFloor : ''
+        this.propertyDetailData.floorNo = (jsonParsDate.propertyListing.floorNo !== undefined) ? jsonParsDate.propertyListing.floorNo : ''
+        this.propertyDetailData.unitNo = (jsonParsDate.propertyListing.unitNo !== undefined) ? jsonParsDate.propertyListing.unitNo : ''
+        this.propertyDetailData.bedrooms = (jsonParsDate.propertyListing.bedrooms !== undefined) ? jsonParsDate.propertyListing.bedrooms : ''
+        this.propertyDetailData.bathrooms = (jsonParsDate.propertyListing.bathrooms !== undefined) ? jsonParsDate.propertyListing.bathrooms : ''
+        this.propertyDetailData.furnishingType = (jsonParsDate.propertyListing.furnishingType !== undefined) ? jsonParsDate.propertyListing.furnishingType : ''
+        this.propertyDetailData.fittingType = (jsonParsDate.propertyListing.fittingType !== undefined) ? jsonParsDate.propertyListing.fittingType : ''
+        this.propertyDetailData.tenantType = (jsonParsDate.propertyListing.tenantType.name !== undefined) ? jsonParsDate.propertyListing.tenantType.name : ''
+        this.propertyDetailData.gender = (jsonParsDate.propertyListing.gender !== undefined) ? jsonParsDate.propertyListing.gender : ''
+        this.propertyDetailData.parkings = (jsonParsDate.propertyListing.parkings !== undefined) ? jsonParsDate.propertyListing.parkings : ''
+        this.propertyDetailData.carpetArea = (jsonParsDate.propertyListing.carpetArea !== undefined) ? jsonParsDate.propertyListing.carpetArea : ''
+        this.propertyDetailData.buildupArea = (jsonParsDate.propertyListing.buildupArea !== undefined) ? jsonParsDate.propertyListing.buildupArea : ''
+        this.propertyDetailData.occupancyStatus = (jsonParsDate.propertyListing.occupancyStatus.name !== undefined) ? jsonParsDate.propertyListing.occupancyStatus.name : ''
+        this.propertyDetailData.propertyManage = (jsonParsDate.propertyListing.propertyManage.name !== undefined) ? jsonParsDate.propertyListing.propertyManage.name : ''
+        this.propertyDetailData.rentType = (jsonParsDate.propertyListing.rentType !== undefined) ? jsonParsDate.propertyListing.rentType : ''
+        this.propertyDetailData.securityDepositPrice = (jsonParsDate.propertyListing.securityDepositPrice !== undefined) ? jsonParsDate.propertyListing.securityDepositPrice : ''
+        this.propertyDetailData.brokerageChargePrice = (jsonParsDate.propertyListing.brokerageChargePrice !== undefined) ? jsonParsDate.propertyListing.brokerageChargePrice : ''
+        this.propertyDetailData.availableDate = (jsonParsDate.propertyListing.availableDate !== undefined) ? jsonParsDate.propertyListing.availableDate : ''
+        this.propertyDetailData.noticePeriod = (jsonParsDate.propertyListing.noticePeriod !== undefined) ? jsonParsDate.propertyListing.noticePeriod : ''
+        this.propertyDetailData.lockingPeriod = (jsonParsDate.propertyListing.lockingPeriod !== undefined) ? jsonParsDate.propertyListing.lockingPeriod : ''
 
         if(this.propertyDetail.propertyListing.documents[0].fileUrl != null){
           this.thumb1 = this.baseUrl+this.propertyDetail.propertyListing.documents[0].fileUrl;
@@ -301,6 +220,8 @@ export class PropertyInnerComponent implements OnInit {
         if(this.propertyDetail.propertyListing.documents[1].fileUrl != null){
           this.thumb1 = this.baseUrl+this.propertyDetail.propertyListing.documents[1].fileUrl;
         }
+        this.getPropertyInfo();
+
       }else{
 
         //if property not found redirect home page
@@ -308,20 +229,6 @@ export class PropertyInnerComponent implements OnInit {
         this.route.navigate(['/'])
 
         ///end
-        this.propertyDetailData.propertyPrice = ''
-        this.propertyDetailData.currency = ''
-        this.propertyDetailData.rentType = ''
-        this.propertyDetailData.securityDepositPrice = ''
-        this.propertyDetailData.brokerageChargePrice = ''
-        this.propertyDetailData.buildingName = ''
-        this.propertyDetailData.documents = []
-        this.propertyDetailData.propertyAddress = ''
-        this.propertyDetailData.bedrooms = ''
-        this.propertyDetailData.bathrooms = ''
-        this.propertyDetailData.carpetArea = ''
-        this.propertyDetailData.unitType = ''
-        this.propertyDetailData.furnishingType = ''
-        this.propertyDetailData.propertyDescription = ''
       }
 
       if(jsonParsDate.user != null){
@@ -332,11 +239,124 @@ export class PropertyInnerComponent implements OnInit {
         this.propertyDetailData.userfullName = ''
       }
 
-      console.log(this.propertyDetailData,'deded')
-
     });
   }
 
+
+  getPropertyInfo(){
+
+    this.propertyinfo = [
+      {
+        label: 'Listed on',
+        value:'empty',
+      },
+      {
+        label: 'OV-Verified On',
+        value:this.propertyDetailData.requestedDateFormat,
+      },
+      {
+        label: 'Building Type',
+        value:this.propertyDetailData.buildingType,
+      },
+      {
+        label: 'Property Type',
+        value:this.propertyDetailData.propertyType,
+      },
+      {
+        label: 'Tower No. / Building Name',
+        value:this.propertyDetailData.buildingName,
+      },
+      {
+        label: 'Total Floors in Building',
+        value:this.propertyDetailData.totalFloor,
+      },
+      {
+        label: 'Floor No.',
+        value:this.propertyDetailData.floorNo,
+      },
+      {
+        label: 'Unit No.',
+        value:this.propertyDetailData.unitNo,
+      },
+      {
+        label: 'Bedroom',
+        value:this.propertyDetailData.bedrooms,
+      },
+      {
+        label: 'Bathroom',
+        value:this.propertyDetailData.bathrooms,
+      },
+      {
+        label: 'Furnishing Type',
+        value:this.propertyDetailData.furnishingType,
+      },
+      {
+        label: 'Fitting Type',
+        value:this.propertyDetailData.fittingType,
+      },
+      {
+        label: 'Preferred Tenant Type',
+        value:this.propertyDetailData.tenantType,
+      },
+      {
+        label: 'Preferred Gender Type',
+        value:this.propertyDetailData.gender,
+      },
+      {
+        label: 'Available Parking',
+        value:this.propertyDetailData.parkings,
+      },
+      {
+        label: 'Pet Policy',
+        value:'empty',
+      },
+      {
+        label: 'Carpet Area',
+        value:this.propertyDetailData.carpetArea,
+      },
+      {
+        label: 'Build-up Area',
+        value:this.propertyDetailData.buildupArea,
+      },
+      {
+        label: 'Current Occupancy Status',
+        value:this.propertyDetailData.occupancyStatus,
+      },
+      {
+        label: 'Property Managed by',
+        value:this.propertyDetailData.propertyManage,
+      },
+      {
+        label: 'Price',
+        value:this.propertyDetailData.propertyPrice,
+      },
+      {
+        label: 'Rent Type',
+        value:this.propertyDetailData.propertyPrice,
+      },
+      {
+        label: 'Security Deposit',
+        value:this.propertyDetailData.securityDepositPrice,
+      },
+      {
+        label: 'Brokerage Deposit',
+        value:this.propertyDetailData.brokerageChargePrice,
+      },
+      {
+        label: 'Available From',
+        value:this.propertyDetailData.availableDate,
+      },
+      {
+        label: 'Notice Period',
+        value:this.propertyDetailData.noticePeriod,
+      },
+      {
+        label: 'Locking Period',
+        value:this.propertyDetailData.lockingPeriod,
+      },
+    ]
+
+  }
 
   SubmitForm = new FormGroup({
     name : new FormControl("", Validators.required),
@@ -384,6 +404,35 @@ export class PropertyInnerComponent implements OnInit {
       });
     }
 
+  }
+
+  similarPropertyDetails:any=[]
+  LoadSimilarProperty() {
+    let tempData :Array<Object> = []
+    this.service.LoadSimilarProperty(32).subscribe(data=>{
+      this.similarPropertyDetails= data;
+      this.similarPropertyDetails = this.similarPropertyDetails.data;
+      this.similarPropertyDetails.forEach((element, i) => {
+        let image = element.documents[0].fileUrl
+        tempData.push(
+          {
+            title: element.propertyTitle,
+            price: element.propertyPrice,
+            rentType: element.rentType.name,
+            currency: element.country.currency,
+            propertyAddress:element.propertyAddress,
+            id:element.id,
+            alt:element.propertyTitle,
+            src:this.baseUrl+image,
+            bedrooms:element.bedrooms,
+            bathrooms:element.bathrooms,
+            buildingName:element.buildingName,
+            carpetArea:element.carpetArea,
+          });
+      })
+    });
+    this.similarPropertyDetails = tempData
+    console.log(this.similarPropertyDetails,'dedededede')
   }
 
   getUser(){

@@ -95,6 +95,9 @@ export class AppService {
   LatestPropertiesListingCommercial(id: number) {
     return this.http.get(this.apiurl + 'LatestPropertiesListingCommercial/' + id);
   }
+  LoadSimilarProperty(id: number) {
+    return this.http.get(this.apiurl + 'SimilarProperties/' + id);
+  }
   PropertyCategories() {
     return this.http.get(this.apiurl + 'PropertyCategories/');
   }
