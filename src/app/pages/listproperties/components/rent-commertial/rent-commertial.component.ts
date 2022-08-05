@@ -207,6 +207,24 @@ export class RentCommertialComponent implements OnInit {
     } else if (this.brokreageCheck == false) {
       alert("Please select charge brokerage");
       return;
+    } else if ($("#formDate").val() == "") {
+      alert("Please select date");
+      return;
+    } else if (this.SubmitForm.value.noticePeriod == "") {
+      alert("Please write notice period");
+      return;
+    } else if (this.SubmitForm.value.lockingPeriod == "") {
+      alert("Please write locking period");
+      return;
+    } else if (this.SubmitForm.value.propertyTitle == "") {
+      alert("Please write property title");
+      return;
+    } else if (this.SubmitForm.value.propertyDescription == "") {
+      alert("Please write property type");
+      return;
+    } else if (this.featuresFormData.length == 0) {
+      alert("Please select features");
+      return;
     }
     
 
