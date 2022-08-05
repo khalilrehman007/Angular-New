@@ -162,6 +162,7 @@ export class RentSearchComponent implements OnInit {
         ,Bedrooms:'',Bathrooms:'',CurrentPage:1
       }};
 
+
     this.route.navigate(['/search'],params)
   }
 }
