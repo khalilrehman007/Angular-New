@@ -1,8 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import { AppService } from 'src/app/service/app.service';
 import { Options } from '@angular-slider/ngx-slider';
 import {ActivatedRoute, Router} from "@angular/router";
 import {FormControl, FormGroup} from "@angular/forms";
+import {MatChipInputEvent} from '@angular/material/chips';
+import {MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
+import {Observable} from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
 
 @Component({
   selector: 'buy-search',
@@ -32,6 +37,10 @@ export class BuySearchComponent implements OnInit {
       this.propertyTypeCommercial = result;
       this.propertyTypeCommercial = this.propertyTypeCommercial.data
     });
+    this.searchfilter = this.searchctrl.valueChanges.pipe(
+      startWith(null),
+      map((fruit: string | null) => (fruit ? this._filter(fruit) : this.searchList.slice())),
+    );
   }
 
   ngOnInit(): void {
@@ -165,5 +174,46 @@ export class BuySearchComponent implements OnInit {
       }};
     this.route.navigate(['/search'],params)
 
+  }
+   // Search Code
+  separatorKeysCodes: number[] = [ENTER, COMMA];
+  searchctrl = new FormControl('');
+  searchfilter: Observable<string[]>;
+  SearchKeyword: string[] = [];
+  searchList: string[] = ['Dubai', 'UAE', 'Dubai', 'UAE', 'Dubai'];
+
+  @ViewChild('SearchInput') SearchInput: ElementRef<HTMLInputElement>;
+  add(event: MatChipInputEvent): void {
+    const value = (event.value || '').trim();
+
+    // Add our fruit
+    if (value) {
+      this.SearchKeyword.push(value);
+    }
+
+    // Clear the input value
+    event.chipInput!.clear();
+
+    this.searchctrl.setValue(null);
+  }
+
+  remove(fruit: string): void {
+    const index = this.SearchKeyword.indexOf(fruit);
+
+    if (index >= 0) {
+      this.SearchKeyword.splice(index, 1);
+    }
+  }
+
+  selected(event: MatAutocompleteSelectedEvent): void {
+    this.SearchKeyword.push(event.option.viewValue);
+    this.SearchInput.nativeElement.value = '';
+    this.searchctrl.setValue(null);
+  }
+
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.searchList.filter(fruit => fruit.toLowerCase().includes(filterValue));
   }
 }

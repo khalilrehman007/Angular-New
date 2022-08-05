@@ -101,6 +101,8 @@ import { HelpCenterComponent } from './pages/help-center/help-center.component';
 import { HowItWorksComponent } from './pages/how-it-works/how-it-works.component';
 import { InvestorsComponent } from './pages/investors/investors.component';
 import { BuyPropertiesComponent } from './pages/buy-properties/buy-properties.component';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 
 @NgModule({
@@ -203,6 +205,8 @@ import { BuyPropertiesComponent } from './pages/buy-properties/buy-properties.co
     NgxEditorModule,
     ScrollingModule,
     NgxSliderModule,
+    MatChipsModule,
+    MatAutocompleteModule,
     NgxPaginationModule,
     ToastrModule.forRoot({
       timeOut: 2000,
