@@ -34,7 +34,7 @@
   <div ngClass="properties-filtr-values-left d-flex justify-content-spacebw">
     <div class="checkbox-design position-relative">
       <input type="checkbox" id="Furnished" name="property-types" value="Furnished">
-      <button class="checkbox-btn">All</button>
+      <button class="checkbox-btn" (click)="allSearch()">All</button>
   </div>
   <div ngClass="block-wrapper">
     <mat-form-field appearance="fill" class="select-design">
