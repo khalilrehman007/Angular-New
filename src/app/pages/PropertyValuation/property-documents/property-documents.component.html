@@ -45,7 +45,7 @@
                                                         <div ngClass="greybordered-btn">
                                                             <input type="file" hidden #fileInput
                                                                 accept=".doc, .pdf, .jpg, .jpeg, .png"
-                                                                (change)='handleChange($any($event.target).files, 7)'>
+                                                                (change)='handleChange($any($event.target).files, 10)'>
                                                             <button mat-button (click)="fileInput.click()"><img
                                                                     src="{{upload}}"> Upload Files</button>
                                                         </div>
@@ -74,7 +74,7 @@
                                                         <div ngClass="greybordered-btn">
                                                             <input type="file" hidden #affectioninput
                                                                 accept=".doc, .pdf, .jpg, .jpeg, .png"
-                                                                (change)='affection($any($event.target).files, 8)'>
+                                                                (change)='affection($any($event.target).files, 11)'>
                                                             <button mat-button (click)="affectioninput.click()"><img
                                                                     src="{{upload}}"> Upload Files</button>
                                                         </div>
@@ -103,7 +103,7 @@
                                                         <div ngClass="greybordered-btn">
                                                             <input type="file" hidden #propertyInput
                                                                 accept=".doc, .pdf, .jpg, .jpeg, .png"
-                                                                (change)='property($any($event.target).files, 9)'>
+                                                                (change)='property($any($event.target).files, 12)'>
                                                             <button mat-button (click)="propertyInput.click()"><img
                                                                     src="{{upload}}"> Upload Files</button>
                                                         </div>
@@ -636,12 +636,12 @@
                                                     <label class="h6-design">Report Language <span
                                                             ngClass="required-span">*</span></label>
                                                     <div class="checkbox-flex-box two-column">
-                                                        <div class="checkbox-design position-relative">
+                                                        <div class="checkbox-design position-relative" (click)="reportLanguage(1)">
                                                             <input type="radio" id="english" name="building-type"
                                                                 value="english" />
                                                             <button class="checkbox-btn">English Language</button>
                                                         </div>
-                                                        <div class="checkbox-design position-relative">
+                                                        <div class="checkbox-design position-relative" (click)="reportLanguage(2)">
                                                             <input type="radio" id="arabic" name="building-type"
                                                                 value="arabic" />
                                                             <button class="checkbox-btn">Arabic Language</button>

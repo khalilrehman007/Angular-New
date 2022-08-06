@@ -169,37 +169,33 @@ export class PropertyDocumentsComponent implements OnInit {
     return new File([u8arr], filename, { type: mime });
   }
   Nextshow() {
-    this.status = !this.status;
-    this.status5 = !this.status5;
-    this.status1 = !this.status1;
-    // if (this.documentcount >= 3) {
-    //   this.documentData = [];
-    //   let dataUrl: any = localStorage.getItem("mapImg");
-    //   this.mapImage = this.dataURLtoFile(dataUrl, "map.jpg");
+    if (this.documentcount >= 3) {
+      this.documentData = [];
+      let dataUrl: any = localStorage.getItem("mapImg");
+      this.mapImage = this.dataURLtoFile(dataUrl, "map.jpg");
+      this.documentData.push({ "FileId": "1", "DocumentTypeId": "11", "FileName": "map.jpg", "Extension": "jpg", "IsScreenshot": "true" });
+      let extension: any = this.titleDeedImage.name.split(".");
+      extension = extension[extension.length - 1];
+      this.documentData.push({ "FileId": "2", "DocumentTypeId": "1", "FileName": this.titleDeedImage.name, "Extension": extension, "IsScreenshot": "false" });
+      extension = this.affectionImage.name.split(".");
+      extension = extension[extension.length - 1];
+      this.documentData.push({ "FileId": "3", "DocumentTypeId": "2", "FileName": this.affectionImage.name, "Extension": extension, "IsScreenshot": "false" });
+      extension = this.propertyImage.name.split(".");
+      extension = extension[extension.length - 1];
+      this.documentData.push({ "FileId": "4", "DocumentTypeId": "3", "FileName": this.propertyImage.name, "Extension": extension, "IsScreenshot": "false" });
+      for (let i = 0; i < this.otherImages.length; i++) {
+        extension = this.otherImages[i].file.name.split(".");
+        extension = extension[extension.length - 1];
+        this.documentData.push({ "FileId": i + 5, "DocumentTypeId": "4", "FileName": this.otherImages[i].file.name, "Extension": extension, "IsScreenshot": "false" });
+      }
+      this.formData.Documents = this.documentData;
 
-    //   this.documentData.push({ "FileId": "1", "DocumentTypeId": "11", "FileName": "map.jpg", "Extension": "jpg", "IsScreenshot": "true" });
-    //   let extension: any = this.titleDeedImage.name.split(".");
-    //   extension = extension[extension.length - 1];
-    //   this.documentData.push({ "FileId": "2", "DocumentTypeId": "1", "FileName": this.titleDeedImage.name, "Extension": extension, "IsScreenshot": "false" });
-    //   extension = this.affectionImage.name.split(".");
-    //   extension = extension[extension.length - 1];
-    //   this.documentData.push({ "FileId": "3", "DocumentTypeId": "2", "FileName": this.affectionImage.name, "Extension": extension, "IsScreenshot": "false" });
-    //   extension = this.propertyImage.name.split(".");
-    //   extension = extension[extension.length - 1];
-    //   this.documentData.push({ "FileId": "4", "DocumentTypeId": "3", "FileName": this.propertyImage.name, "Extension": extension, "IsScreenshot": "false" });
-    //   for (let i = 0; i < this.otherImages.length; i++) {
-    //     extension = this.otherImages[i].file.name.split(".");
-    //     extension = extension[extension.length - 1];
-    //     this.documentData.push({ "FileId": i + 5, "DocumentTypeId": "4", "FileName": this.otherImages[i].file.name, "Extension": extension, "IsScreenshot": "false" });
-    //   }
-    //   this.formData.Documents = this.documentData;
-
-    //   this.status = !this.status;
-    //   this.status5 = !this.status5;
-    //   this.status1 = !this.status1;
-    // } else {
-    //   alert("Please Upload the required Documents.");
-    // }
+      this.status = !this.status;
+      this.status5 = !this.status5;
+      this.status1 = !this.status1;
+    } else {
+      alert("Please Upload the required Documents.");
+    }
   }
   Prevshow() {
     this.status1 = false;
@@ -225,8 +221,42 @@ export class PropertyDocumentsComponent implements OnInit {
     this.status1 = !this.status1;
   }
   Nextshow2() {
+    if(!this.formData.ReportPackageId) {
+      alert("Select Package Type");
+      return;
+    } else if(!this.formData.ReportLanguageId) {
+      alert("Select Report Language");
+      return;
+    } else if(this.reportForm.value.name == "") {
+      alert("Please Enter Owner Name");
+      return;
+    } else if(this.reportForm.value.email == "") {
+      alert("Please Enter Owner Email");
+      return;
+    } else if(this.reportForm.controls["email"].invalid) {
+      alert("Please Enter Correct Email Address");
+      return;
+    } else if(!this.termsAccepted) {
+      alert("Please Accept Terms and Conditions");
+      return;
+    } else if(this.formData.InspectionRequired && $("#formDate").val()  == "") {
+      alert("Please Enter Inspection Date");
+      return;
+    }
+    this.formData.CustomerName = this.reportForm.value.name;
+    this.formData.EmailAddress = this.reportForm.value.email;
     this.formData.InspectionDate = $("#formDate").val();
-    console.log(this.formData);
+    
+    let valuationData = new FormData();
+    valuationData.append("ValuationRequest", this.formData);
+    valuationData.append("1_map.jpg", this.mapImage);
+    valuationData.append("2_"+this.titleDeedImage.name, this.titleDeedImage);
+    valuationData.append("3_"+this.affectionImage.name, this.affectionImage);
+    valuationData.append("4_"+this.propertyImage.name, this.propertyImage);
+    for(let i = 0; i < this.otherImages.length; i++) {
+      valuationData.append(i+5+"_"+this.otherImages[i].file.name, this.otherImages[i].file);
+    }
+
     // this.status3 = !this.status3;
     // this.status7 = !this.status7;
     // this.status2 = !this.status2;
@@ -235,6 +265,9 @@ export class PropertyDocumentsComponent implements OnInit {
     this.status3 = false;
     this.status7 = false;
     this.status2 = !this.status2;
+  }
+  reportLanguage(e:any) {
+    this.formData.ReportLanguageId = e;
   }
   acceptTerms(e:any) {
     this.termsAccepted = e.checked;
@@ -257,6 +290,7 @@ export class PropertyDocumentsComponent implements OnInit {
     this.userData = JSON.parse(this.userData);
     this.formData = localStorage.getItem("valuationData");
     this.formData = JSON.parse(this.formData);
+    this.formData.InspectionRequired = false;
   }
 
   ngOnInit(): void {
