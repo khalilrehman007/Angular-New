@@ -53,6 +53,8 @@ export class DashboardComponent implements OnInit {
   dashboard: any;
   leadsData:any = [];
   userData:any = {};
+  totalLength: number = 0;
+  page: number = 1;
 
   plus = '../../../../assets/images/plus.svg'
 
