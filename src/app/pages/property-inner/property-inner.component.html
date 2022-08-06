@@ -77,7 +77,7 @@
                                         <h5>Key Highlights</h5>
                                     </div>
                                     <div ngClass="topkey-highlights">
-                                        <h6>Hotel & Hotel Apartment</h6>
+                                        <h6>{{propertyDetailData.propertyType.typeDescription}}</h6>
                                         <div ngClass="property-details-highlights">
                                             <span ngClass="bed">
                                                 <img src="{{bedsvg}}" alt="">{{propertyDetailData.bedrooms}} Beds
@@ -94,11 +94,9 @@
                                         </div>
                                     </div>
                                     <div ngClass="key-tags">
-                                        <span>Exclusive</span>
-                                        <span>Golf & Canal Views</span>
-                                        <span>Affordable</span>
-                                        <span>Vastu complaint</span>
-                                        <span>Prime location</span>
+                                        <span *ngFor="let data of propertyDetailData.propertyFeatures">
+                                            {{data.propertyFeature.featureName}}
+                                        </span>
                                     </div>
                                     <div ngClass="key-info">
                                         <p> 15 days of rent off. Only Pay 15 days of brokerage now! Free rental agreement.</p>
@@ -107,7 +105,7 @@
                                         <h4>Property Description</h4>
                                         <p>{{propertyDetailData.propertyDescription}}</p>
                                         <div ngClass="read-more-div text-right">
-                                            <a routerLink="" ngClass="read-more-link">Read more</a>
+<!--                                            <a routerLink="" ngClass="read-more-link">Read more</a>-->
                                         </div>
                                     </div>
                                 </mat-tab>
@@ -140,10 +138,10 @@
                                     <div ngClass="amenties_infor-div-sec">
                                         <div ngClass="amenties_info-row">
                                             <div ngClass="row">
-                                                <div ngClass="col-xl-3 col-lg-3 col-md-12 col-sm-12" *ngFor="let amenities of amentiesinfo">
+                                                <div ngClass="col-xl-3 col-lg-3 col-md-12 col-sm-12" *ngFor="let amenities of propertyDetailData.propertyFeatures">
                                                     <div ngClass="amenties_info-text">
-                                                        <img src="{{amenities.img}}">
-                                                        <p>{{amenities.value}}</p>
+                                                        <img src="assets/images/icons/swimming.svg">
+                                                        <p>{{amenities.propertyFeature.featureName}}</p>
                                                         <button ngClass="see-more-amenties">{{amenities.btnvalue}}</button>
                                                     </div>
                                                 </div>
@@ -200,11 +198,10 @@
                                             <div ngClass="location-divs-sec">
                                                 <div ngClass="location-address">
                                                     <h4>OV 3456 890 987</h4>
-                                                    <h5>Blue Wave Tower</h5>
-                                                    <address>Etihad Tower 4, Etihad Towers,
-                                                Corniche Road, Abu Dhabi
-                                                <a routerLink="">District Name</a>
-                                            </address>
+                                                    <h5>{{propertyDetailData.buildingName}}</h5>
+                                                    <address>{{propertyDetailData.propertyAddress}}
+                                                      <a routerLink="">District Name</a>
+                                                  </address>
                                                 </div>
                                                 <div ngClass="scan-buttons">
                                                     <button ngClass="scan-btn-border"><img src="{{qrscan}}"> QR SCAN - Property Info</button>
@@ -216,7 +213,12 @@
                                         </div>
                                         <div ngClass="col-xl-9 col-lg-9 col-md-12 col-sm-12">
                                             <div ngClass="location-map-sec">
-                                                <div style="width: 100%"><iframe width="100%" height="311" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=dubai+(My%20Business%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"><a href="https://www.gps.ie/wearable-gps/">Kids wearables</a></iframe></div>
+                                                <div style="width: 100%">
+                                                  <iframe width="100%" height="311" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+                                                          src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=dubai+(My%20Business%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed">
+                                                    <a href="https://www.gps.ie/wearable-gps/">Kids wearables</a>
+                                                  </iframe>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
