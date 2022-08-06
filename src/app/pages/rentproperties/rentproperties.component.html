@@ -137,11 +137,11 @@
         </div>
         <div ngClass="pro-range-whie-box">
           <p>Rent Price Range</p>
-          <h6>1,329,500 AED - 1,180,000 AED</h6>
+          <h6>{{list.endRentPrice}}</h6>
         </div>
         <div ngClass="pro-range-whie-box">
           <p>Avg. Rent/ Sq. Ft.</p>
-          <h6>1,436 AED</h6>
+          <h6>{{list.avgRentPrice}}</h6>
         </div>
        </div>
     </div>
@@ -150,7 +150,7 @@
         <div ngClass="col-xl-5 col-lg-12 col-md-12 col-sm-12">
             <div ngClass="lsited-by-details d-flex">
               <div ngClass="list_cntnt-img">
-              <img src="{{betterhome}}">
+              <img src="{{baseUrl+list.user.imageUrl}}">
               </div>
               <div ngClass="list_cntnt-blcok">
                 <h5>{{list.user.fullName}}</h5>

@@ -183,6 +183,7 @@ export class RentpropertiesComponent implements OnInit {
         }
         tempData.push(
           {
+            endRentPrice:element.endRentPrice,avgRentPrice:element.avgRentPrice,
             documents:element.documents,propertyFeatures:element.propertyFeatures,propertyType:element.propertyType,user:element.user,
             propertyTitle: element.propertyTitle, propertyAddress: element.propertyAddress, img:this.baseUrl+image,
             buildingName: element.buildingName,bedrooms: element.bedrooms,bathrooms: element.bathrooms,carpetArea: element.carpetArea,

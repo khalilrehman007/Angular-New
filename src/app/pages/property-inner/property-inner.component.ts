@@ -408,12 +408,12 @@ export class PropertyInnerComponent implements OnInit {
   }
 
   similarPropertyDetails:any=[]
+
   LoadSimilarProperty() {
     let tempData :Array<Object> = []
-    this.service.LoadSimilarProperty(32).subscribe(data=>{
-      this.similarPropertyDetails= data;
-      this.similarPropertyDetails = this.similarPropertyDetails.data;
-      this.similarPropertyDetails.forEach((element, i) => {
+    this.service.LoadSimilarProperty(this.propertyId).subscribe(data=>{
+      let response: any = data;
+      response.data.forEach((element, i) => {
         let image = element.documents[0].fileUrl
         tempData.push(
           {
