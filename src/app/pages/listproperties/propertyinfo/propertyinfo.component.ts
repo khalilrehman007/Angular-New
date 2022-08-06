@@ -242,12 +242,7 @@ export class PropertyinfoComponent implements OnInit {
         localStorage.setItem("lng",area.lng);
         this.map = new google.maps.Map($(".property-details__map")[0], {
           center: area,
-          zoom: 6,
-          disableDefaultUI: true,
-          restriction: {
-            latLngBounds: bounds,
-            strictBounds: false,
-          },
+          zoom: 15,
         })
         this.marker = new google.maps.Marker({
           position: area,

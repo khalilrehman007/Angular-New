@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SecondHeaderComponent } from '../../../second-header/second-header.component';
-import { FormControl, Validators } from '@angular/forms';
 import { AppService } from 'src/app/service/app.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms'
 
 @Component({
   selector: 'app-property-documents',
@@ -27,11 +27,25 @@ export class PropertyDocumentsComponent implements OnInit {
   documentcount: number = 0;
   userData: any;
   unitCount: number = 0;
-  certificateData:any = [];
-  valuationPrices:any = [];
+  certificateData: any = [];
+  valuationPrices: any = [];
   minDate = new Date();
-  formData:any = {};
-  documentData:any = [];
+  formData: any = {};
+  documentData: any = [];
+  mapImage: any;
+  termsAccepted:boolean = false;
+
+  reportForm = new FormGroup({
+    name: new FormControl("", Validators.required),
+    email: new FormControl("", [Validators.required, Validators.email])
+  })
+
+  get name() {
+    return this.reportForm.get("name");
+  }
+  get email() {
+    return this.reportForm.get("email");
+  }
 
   handleChange(files: FileList, index: number) {
     if (files && files.length) {
@@ -134,19 +148,6 @@ export class PropertyDocumentsComponent implements OnInit {
       };
     }
   }
-  documentlist = [
-    { imgsrc: '../../../../assets/images/doc-thumbnail.svg', filetitle: 'property-deed-yu.jpg', doctitile: 'Property Tittle Deed', viewLink: '#', deleteLink: '#' },
-    { imgsrc: '../../../../assets/images/doc-thumbnail.svg', filetitle: 'property-deed-yu.jpg', doctitile: 'Property Tittle Deed', viewLink: '#', deleteLink: '#' },
-    { imgsrc: '../../../../assets/images/doc-thumbnail.svg', filetitle: 'property-deed-yu.jpg', doctitile: 'Property Tittle Deed', viewLink: '#', deleteLink: '#' },
-    { imgsrc: '../../../../assets/images/doc-thumbnail.svg', filetitle: 'property-deed-yu.jpg', doctitile: 'Property Tittle Deed', viewLink: '#', deleteLink: '#' },
-    { imgsrc: '../../../../assets/images/doc-thumbnail.svg', filetitle: 'property-deed-yu.jpg', doctitile: 'Property Tittle Deed', viewLink: '#', deleteLink: '#' },
-  ];
-  buildinglist = [
-    { titlename: 'Studio', titlevalue: '30' },
-    { titlename: 'Vacant', titlevalue: '20' },
-    { titlename: 'Unit Size', titlevalue: '2,788 Sq.Ft.' },
-    { titlename: 'Unit Size', titlevalue: '1,00,000 AED' },
-  ];
 
   status: boolean = false;
   status1: boolean = false;
@@ -158,19 +159,41 @@ export class PropertyDocumentsComponent implements OnInit {
   status7: boolean = false;
   status8: boolean = false;
   status9: boolean = false;
+
+  dataURLtoFile(dataurl: any, filename: any) {
+    var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
+      bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
+    while (n--) {
+      u8arr[n] = bstr.charCodeAt(n);
+    }
+    return new File([u8arr], filename, { type: mime });
+  }
   Nextshow() {
-    this.documentData.push({ "FileId":"1","DocumentTypeId":"11", "FileName" : "map.jpg", "Extension" : "jpg", "IsScreenshot": "true"});
-    let extension: any = this.titleDeedImage.name.split(".");
-    extension = extension[extension.length - 1];
-    this.documentData.push({ "FileId":"2","DocumentTypeId":"1","FileName":this.titleDeedImage.name, "Extension" : extension, "IsScreenshot": "false"});
-    extension = this.affectionImage.name.split(".");
-    extension = extension[extension.length - 1];
-    this.documentData.push({ "FileId":"3","DocumentTypeId":"1","FileName":this.affectionImage.name, "Extension" : extension, "IsScreenshot": "false"});
-    extension = this.propertyImage.name.split(".");
-    extension = extension[extension.length - 1];
-    this.documentData.push({ "FileId":"4","DocumentTypeId":"1","FileName":this.propertyImage.name, "Extension" : extension, "IsScreenshot": "false"});
-    console.log(this.documentData);
+    this.status = !this.status;
+    this.status5 = !this.status5;
+    this.status1 = !this.status1;
     // if (this.documentcount >= 3) {
+    //   this.documentData = [];
+    //   let dataUrl: any = localStorage.getItem("mapImg");
+    //   this.mapImage = this.dataURLtoFile(dataUrl, "map.jpg");
+
+    //   this.documentData.push({ "FileId": "1", "DocumentTypeId": "11", "FileName": "map.jpg", "Extension": "jpg", "IsScreenshot": "true" });
+    //   let extension: any = this.titleDeedImage.name.split(".");
+    //   extension = extension[extension.length - 1];
+    //   this.documentData.push({ "FileId": "2", "DocumentTypeId": "1", "FileName": this.titleDeedImage.name, "Extension": extension, "IsScreenshot": "false" });
+    //   extension = this.affectionImage.name.split(".");
+    //   extension = extension[extension.length - 1];
+    //   this.documentData.push({ "FileId": "3", "DocumentTypeId": "2", "FileName": this.affectionImage.name, "Extension": extension, "IsScreenshot": "false" });
+    //   extension = this.propertyImage.name.split(".");
+    //   extension = extension[extension.length - 1];
+    //   this.documentData.push({ "FileId": "4", "DocumentTypeId": "3", "FileName": this.propertyImage.name, "Extension": extension, "IsScreenshot": "false" });
+    //   for (let i = 0; i < this.otherImages.length; i++) {
+    //     extension = this.otherImages[i].file.name.split(".");
+    //     extension = extension[extension.length - 1];
+    //     this.documentData.push({ "FileId": i + 5, "DocumentTypeId": "4", "FileName": this.otherImages[i].file.name, "Extension": extension, "IsScreenshot": "false" });
+    //   }
+    //   this.formData.Documents = this.documentData;
+
     //   this.status = !this.status;
     //   this.status5 = !this.status5;
     //   this.status1 = !this.status1;
@@ -184,14 +207,13 @@ export class PropertyDocumentsComponent implements OnInit {
     this.status = !this.status;
   }
   Nextshow1() {
-    let temp:any = localStorage.getItem("valuationData");
+    let temp: any = localStorage.getItem("valuationData");
     temp = JSON.parse(temp);
-    this.service.ValuationPrices(temp.PropertyTypeId).subscribe((result:any)=> {
+    this.service.ValuationPrices(temp.PropertyTypeId).subscribe((result: any) => {
       this.valuationPrices = result.data;
     })
-    this.service.PropertyPackageType().subscribe((result:any)=> {
+    this.service.PropertyPackageType().subscribe((result: any) => {
       this.certificateData = result.data;
-      console.log(this.certificateData);
     });
     this.status2 = !this.status2;
     this.status6 = !this.status6;
@@ -203,25 +225,32 @@ export class PropertyDocumentsComponent implements OnInit {
     this.status1 = !this.status1;
   }
   Nextshow2() {
-    this.status3 = !this.status3;
-    this.status7 = !this.status7;
-    this.status2 = !this.status2;
+    this.formData.InspectionDate = $("#formDate").val();
+    console.log(this.formData);
+    // this.status3 = !this.status3;
+    // this.status7 = !this.status7;
+    // this.status2 = !this.status2;
   }
   Prevshow2() {
     this.status3 = false;
     this.status7 = false;
     this.status2 = !this.status2;
   }
-  SummaryReport(e:any, id:any) {
-    console.log(id);
-    if(e == 0) {
+  acceptTerms(e:any) {
+    this.termsAccepted = e.checked;
+  }
+  SummaryReport(e: any, id: any) {
+    if (e == 0) {
       this.status8 = true;
       this.status9 = false;
     } else {
       this.status9 = true;
       this.status8 = false;
-
     }
+    this.formData.ReportPackageId = id;
+  }
+  onInspectionSelect(e: any) {
+    this.formData.InspectionRequired = e.checked;
   }
   constructor(private service: AppService) {
     this.userData = localStorage.getItem("valuationDetailData");
@@ -231,6 +260,9 @@ export class PropertyDocumentsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    $("#formDate").on("click", function () {
+      $(".mat-datepicker-toggle").click();
+    })
   }
 
 }

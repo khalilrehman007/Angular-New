@@ -3,6 +3,8 @@ import { SecondHeaderComponent } from '../../../second-header/second-header.comp
 import { FormGroup, FormControl, Validators } from '@angular/forms'
 import { AppService } from 'src/app/service/app.service';
 import { Router } from '@angular/router';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { map } from 'rxjs';
 
 declare const google: any;
 @Component({
@@ -57,7 +59,7 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
     return this.propertyDetails.get("ownerPhone")
   }
 
-  constructor(private service: AppService, private router: Router) {
+  constructor(private http: HttpClient, private service: AppService, private router: Router) {
     this.loadCountriesData();
   }
   changeInfo() {
@@ -142,6 +144,28 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
     this.getLocationDetails(temp[0].viewValue);
     this.districtId = e.value;
   }
+  getMapImage() {
+    let staticMapUrl: any = "https://maps.googleapis.com/maps/api/staticmap";
+    staticMapUrl += "?key=AIzaSyBPSEz52-AfPEVbmV_3yuGUGol_KiLb3GU&center=" + localStorage.getItem("lat") + "," + localStorage.getItem("lng");
+    staticMapUrl += "&size=1920x1080";
+    staticMapUrl += "&zoom=15";
+    staticMapUrl += "&maptype=" + this.map.mapTypeId;
+    staticMapUrl += "&markers=color:red|" + localStorage.getItem("lat") + "," + localStorage.getItem("lng");
+
+    const toDataURL = url => fetch(url)
+      .then(response => response.blob())
+      .then(blob => new Promise((resolve, reject) => {
+        const reader = new FileReader()
+        reader.onloadend = () => resolve(reader.result)
+        reader.onerror = reject
+        reader.readAsDataURL(blob)
+      }))
+    toDataURL(staticMapUrl)
+      .then(dataUrl => {
+        let a: any = dataUrl;
+        localStorage.setItem("mapImg", a);
+      })
+  }
   getData() {
     if (this.titleDeedType == -1) {
       alert("Select Title Deed Type");
@@ -157,6 +181,7 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
       alert("Enter Address");
     } else {
 
+      this.getMapImage();
       this.formDetailData.TitleDeedNo = this.propertyDetails.value.titleDeed;
       this.formDetailData.MunicipalityNo = this.propertyDetails.value.muncipality;
       this.formDetailData.ownerName = this.propertyDetails.value.propertyOwner;
@@ -208,19 +233,12 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
       url: "https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyBPSEz52-AfPEVbmV_3yuGUGol_KiLb3GU",
       method: "get",
       success: (res) => {
-        let temp = res.results[0].geometry.bounds;
-        let bounds = { east: temp.northeast.lng, west: temp.southwest.lng, north: temp.northeast.lat, south: temp.southwest.lat };
         let area = res.results[0].geometry.location;
         localStorage.setItem("lat", area.lat);
         localStorage.setItem("lng", area.lng);
         this.map = new google.maps.Map($(".property-details__map")[0], {
           center: area,
-          zoom: 6,
-          disableDefaultUI: true,
-          restriction: {
-            latLngBounds: bounds,
-            strictBounds: false,
-          },
+          zoom: 15,
         })
         this.marker = new google.maps.Marker({
           position: area,
