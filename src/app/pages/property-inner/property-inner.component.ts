@@ -7,6 +7,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AppService} from "../../service/app.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {NotificationService} from "../../service/notification.service";
+import { ChartConfiguration, ChartOptions, ChartType } from "chart.js";
 
 
 @Component({
@@ -442,5 +443,55 @@ export class PropertyInnerComponent implements OnInit {
     }
     return this.user;
   }
+  title = 'ng2-charts-demo';
 
+  public lineChartData: ChartConfiguration<'line'>['data'] = {
+    labels: [
+      'Aug, 2022',
+      'Sep, 2022',
+      'Oct, 2022',
+      'Nov, 2022',
+      'Dec, 2022',
+      'Jan, 2023',
+      'Feb, 2023',
+      'Mar, 2023',
+      'April, 2023',
+      'May, 2023',
+      'June, 2023',
+      'Jul, 2023'
+    ],
+    datasets: [
+      {
+        data: [ 0, 200000, 200000, 240000, 245000, 253000, 254000, 250000, 252000, 300000,290000,260000,350000],
+        label: 'Series A',
+        fill: false,
+        tension: 0.5,
+        borderColor: '#8dbfde',
+        pointBackgroundColor: '#fff',
+        pointBorderColor: '#8dbfde',
+        pointHoverBackgroundColor: '#fff',
+        pointHoverBorderColor: '#1B1571',
+        backgroundColor: 'rgba(255,0,0,0.3)'
+      }
+    ]
+  };
+  public lineChartOptions: ChartOptions<'line'> = {
+    responsive: true,
+    maintainAspectRatio: false,
+    scales: {
+      x: {  ticks: {
+        maxRotation: 70,
+        minRotation: 70,
+     }},
+    },
+    plugins: {
+      title: {
+        display: true,
+        position: 'left',
+        align: 'center',
+        text: 'AED/Year'
+    },
+    }
+  };
+  public lineChartLegend = true;
 }
