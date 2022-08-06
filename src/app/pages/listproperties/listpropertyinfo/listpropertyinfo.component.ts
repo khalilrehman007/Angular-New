@@ -118,13 +118,13 @@ export class ListpropertyinfoComponent implements OnInit {
     room_privateBathroom: new FormControl(""),
     room_attachedBathroom: new FormControl(""),
     room_sharedBathroom: new FormControl(""),
-    property_types: new FormControl(""),
-    fitting_details: new FormControl(""),
-    tenant_types: new FormControl(""),
-    gender: new FormControl(""),
-    property_management: new FormControl(""),
-    occupancy: new FormControl(""),
-    parking_space: new FormControl(""),
+    property_types: new FormControl("", [Validators.required]),
+    fitting_details: new FormControl("", [Validators.required]),
+    tenant_types: new FormControl("", [Validators.required]),
+    gender: new FormControl("", [Validators.required]),
+    property_management: new FormControl("", [Validators.required]),
+    occupancy: new FormControl("", [Validators.required]),
+    parking_space: new FormControl("", [Validators.required]),
     pets: new FormControl(""),
     pet_cats_allowed: new FormControl(""),
     pet_small_dogs_allowed: new FormControl(""),
@@ -135,7 +135,7 @@ export class ListpropertyinfoComponent implements OnInit {
     building_type_monthly: new FormControl(""),
     building_type_quaterly: new FormControl(""),
     building_type_yearly: new FormControl(""),
-    securoty_deposit: new FormControl(""),
+    securoty_deposit: new FormControl("", [Validators.required]),
     AED: new FormControl("",),
     securityNegotiable: new FormControl(""),
     brokerage_value: new FormControl(""),
@@ -218,13 +218,13 @@ export class ListpropertyinfoComponent implements OnInit {
     } else if (this.petPolicyData.length == 0) {
       alert("Please select pet policy");
       return;
-    } else if (this.SubmitForm.value.carpetArea == ""){
+    } else if (this.SubmitForm.value.carpetArea == "") {
       alert("Please select carpet area");
       return;
-    } else if (this.SubmitForm.value.buildupArea == ""){
+    } else if (this.SubmitForm.value.buildupArea == "") {
       alert("Please select build area");
       return;
-    } else if (this.SubmitForm.value.price == ""){
+    } else if (this.SubmitForm.value.price == "") {
       alert("Please select price");
       return;
     } else if (this.rentTypeCheck == false) {
@@ -249,7 +249,7 @@ export class ListpropertyinfoComponent implements OnInit {
       alert("Please write property title");
       return;
     } else if (this.SubmitForm.value.propertyDescription == "") {
-      alert("Please write property type");
+      alert("Please write property description");
       return;
     } else if (this.featuresFormData.length == 0) {
       alert("Please select features");

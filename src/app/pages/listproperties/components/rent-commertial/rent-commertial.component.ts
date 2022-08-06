@@ -103,14 +103,14 @@ export class RentCommertialComponent implements OnInit {
     room_bathroom_1: new FormControl(""),
     room_bathroom_2: new FormControl(""),
     room_bathroom_3: new FormControl(""),
-    // property_types      : new FormControl("" ),
-    propertyManagement: new FormControl(""),
-    fitting_details: new FormControl(""),
-    tenant_types: new FormControl(""),
-    gender: new FormControl(""),
+    property_types: new FormControl("", [Validators.required]),
+    propertyManagement: new FormControl("", [Validators.required]),
+    fitting_details: new FormControl("", [Validators.required]),
+    tenant_types: new FormControl("", [Validators.required]),
+    gender: new FormControl("", [Validators.required]),
     property_management: new FormControl(""),
     occupancy: new FormControl(""),
-    parking_space: new FormControl(""),
+    parking_space: new FormControl("", [Validators.required]),
     pets: new FormControl(""),
     pet_cats_allowed: new FormControl(""),
     pet_small_dogs_allowed: new FormControl(""),
@@ -118,7 +118,7 @@ export class RentCommertialComponent implements OnInit {
     carpetArea: new FormControl("", [Validators.required]),
     buildupArea: new FormControl("", [Validators.required]),
     price: new FormControl("", [Validators.required]),
-    rentType: new FormControl(""),
+    rentType: new FormControl("", [Validators.required]),
     building_type_monthly: new FormControl(""),
     building_type_quaterly: new FormControl(""),
     building_type_yearly: new FormControl(""),
@@ -189,13 +189,13 @@ export class RentCommertialComponent implements OnInit {
     } else if (this.occupancyCheck == false) {
       alert('Please select occupancy status');
       return;
-    } else if (this.SubmitForm.value.carpetArea == ""){
+    } else if (this.SubmitForm.value.carpetArea == "") {
       alert("Please select carpet area");
       return;
-    } else if (this.SubmitForm.value.buildupArea == ""){
+    } else if (this.SubmitForm.value.buildupArea == "") {
       alert("Please select build area");
       return;
-    } else if (this.SubmitForm.value.price == ""){
+    } else if (this.SubmitForm.value.price == "") {
       alert("Please select price");
       return;
     } else if (this.rentTypeCheck == false) {
@@ -220,13 +220,13 @@ export class RentCommertialComponent implements OnInit {
       alert("Please write property title");
       return;
     } else if (this.SubmitForm.value.propertyDescription == "") {
-      alert("Please write property type");
+      alert("Please write property description");
       return;
     } else if (this.featuresFormData.length == 0) {
       alert("Please select features");
       return;
     }
-    
+
 
     this.data.CarpetArea = this.SubmitForm.value.carpetArea;
     this.data.BuildupArea = this.SubmitForm.value.buildupArea;
