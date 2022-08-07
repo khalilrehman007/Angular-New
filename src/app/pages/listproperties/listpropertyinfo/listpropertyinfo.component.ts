@@ -88,6 +88,9 @@ export class ListpropertyinfoComponent implements OnInit {
     });
   }
   ngOnInit() {
+    $("#formDate").on("click", function () {
+      $(".mat-datepicker-toggle").click();
+    })
   }
   getOldFormData() {
     this.oldData = localStorage.getItem('listpropertyinfo_rent_residential');
@@ -278,6 +281,7 @@ export class ListpropertyinfoComponent implements OnInit {
     let user: any = localStorage.getItem("user");
     this.data.UserId = JSON.parse(user).id;
     this.data.UserEmail = JSON.parse(user).email;
+    this.data.ProfessionalTypeId = JSON.parse(user).professionalTypeId;
     let temp: any = []
     for (let i = 0; i < this.petPolicyData.length; i++) {
       temp.push({ "PetPolicyId": this.petPolicyData[i] });
