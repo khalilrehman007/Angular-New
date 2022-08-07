@@ -11,6 +11,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './rentproperties.component.html',
   styleUrls: ['./rentproperties.component.scss']
 })
+
+
 export class RentpropertiesComponent implements OnInit {
   videotiour ='../../../assets/images/icons/video-tour.svg'
   lsitedby ='../../../assets/images/icons/listed-by.svg'
@@ -62,6 +64,9 @@ export class RentpropertiesComponent implements OnInit {
   content :any;
   baseUrl = 'https://beta.ovaluate.com/'
   sortedById: any;
+  totalLength: number = 0;
+  page: number = 1;
+
 
   constructor(private activeRoute: ActivatedRoute,private service:AppService,private api: AppService,private route:Router,private modalService: NgbModal) {
     this.type                  = this.activeRoute.snapshot.queryParamMap.get('type');
@@ -75,13 +80,26 @@ export class RentpropertiesComponent implements OnInit {
 
     let params :any = {"PropertyTypeIds":this.PropertyTypeIds, "PropertyAddress":this.PropertyAddress,"RentTypeId":this.RentTypeId,
       "PropertyCategoryId":this.PropertyCategoryId,"PriceStart":this.PriceStart, "PriceEnd" : this.PriceEnd,
-      "PropertyListingTypeId":this.PropertyListingTypeId,"SortedBy":this.sortedById
+      "PropertyListingTypeId":this.PropertyListingTypeId,"SortedBy":this.sortedById,CurrentPage:1
     }
 
     this.LoadPropertyCategories();
     this.loadListingProperty(params);
     this.LoadPropertySortBy();
   }
+
+
+  allSearch(){
+    let params :any = {type:'',"PropertyTypeIds":[], "PropertyAddress":'',"RentTypeId":'',
+      "PropertyCategoryId":'',PriceStart:'',PriceEnd:'', Bedrooms:'',Bathrooms:'',
+      "PropertyListingTypeId":'',CurrentPage:1
+    }
+    this.route.navigate(['/search'],{queryParams:params})
+    this.loadListingProperty(params);
+  }
+
+
+
 
   PropertySortBy:any = []
   LoadPropertySortBy(){
@@ -93,11 +111,21 @@ export class RentpropertiesComponent implements OnInit {
     });
   }
 
+  pageChanged(value: any) {
+    this.page = value;
+    let params :any = {"PropertyTypeIds":this.PropertyTypeIds, "PropertyAddress":this.PropertyAddress,"RentTypeId":this.RentTypeId,
+      "PropertyCategoryId":this.PropertyCategoryId,"PriceStart":this.PriceStart, "PriceEnd" : this.PriceEnd,
+      "PropertyListingTypeId":this.PropertyListingTypeId,"SortedBy":this.sortedById,CurrentPage:this.page
+    }
+
+    this.loadListingProperty(params);
+  }
+
   sortedBy(event) {
     this.sortedById = event.value
     let params :any = {"PropertyTypeIds":this.PropertyTypeIds, "PropertyAddress":this.PropertyAddress,"RentTypeId":this.RentTypeId,
       "PropertyCategoryId":this.PropertyCategoryId,"PriceStart":this.PriceStart, "PriceEnd" : this.PriceEnd,
-      "PropertyListingTypeId":this.PropertyListingTypeId,"SortedBy":this.sortedById
+      "PropertyListingTypeId":this.PropertyListingTypeId,"SortedBy":this.sortedById,CurrentPage:this.page
     }
     this.loadListingProperty(params);
   }
@@ -121,16 +149,30 @@ export class RentpropertiesComponent implements OnInit {
   }
 
   childToParentDataLoad(data:any){
-    console.log(data)
+    let response :any = data
+    this.type                  = response.type
+    this.PropertyCategoryId    = response.PropertyCategoryId
+    this.RentTypeId            = response.RentTypeId
+    this.PropertyListingTypeId = response.PropertyListingTypeId
+    this.PropertyTypeIds       = response.PropertyTypeIds
+    this.PropertyAddress       = response.PropertyAddress
+    this.PriceStart            = response.PriceStart
+    this.PriceEnd              = response.PriceEnd
+    this.page                  = response.CurrentPage
+
+    this.selectedPropertyTypeName = null
+    this.LoadPropertyCategories();
     this.loadListingProperty(data);
   }
 
   searchListing:any = [];
+  totalRecord:any;
   loadListingProperty(data:any){
     let tempData :Array<Object> = []
     this.service.LoadSearchListing(data).subscribe(data=>{
       let response: any = data;
-      response.data.forEach((element, i) => {
+      this.totalRecord = response.data.totalRecord;
+      response.data.propertyListings.forEach((element, i) => {
         let image :any;
         let rentTypeName = ''
         if(element.rentType != null){
@@ -141,7 +183,8 @@ export class RentpropertiesComponent implements OnInit {
         }
         tempData.push(
           {
-            documents:element.documents,propertyFeatures:element.propertyFeatures,propertyType:element.propertyType,
+            endRentPrice:element.endRentPrice,avgRentPrice:element.avgRentPrice,
+            documents:element.documents,propertyFeatures:element.propertyFeatures,propertyType:element.propertyType,user:element.user,
             propertyTitle: element.propertyTitle, propertyAddress: element.propertyAddress, img:this.baseUrl+image,
             buildingName: element.buildingName,bedrooms: element.bedrooms,bathrooms: element.bathrooms,carpetArea: element.carpetArea,
             unitNo: element.unitNo,totalFloorgit: element.totalFloor,floorNo: element.floorNo,propertyDescription: element.propertyDescription,
@@ -154,9 +197,13 @@ export class RentpropertiesComponent implements OnInit {
     });
     this.searchListing = tempData
 
-    // console.log(this.searchListing,'listing')
+    console.log(this.searchListing,'listing')
   }
-  openVerticallyCentered(content) {
+
+  modelPropertyPictures :any=[]
+  openVerticallyCentered(content,data) {
+    this.modelPropertyPictures=data
+    console.log(this.modelPropertyPictures)
     this.modalService.open(content, { centered: true });
   }
 

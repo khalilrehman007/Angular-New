@@ -24,7 +24,7 @@
 </div>
 <div ngClass="heading-apragraph-design">
    <h2>{{selectedPropertyTypeName}} Properties for {{type}} in UAE</h2>
-   <p>Showing {{searchListing.length}} Properties for {{type}} in UAE</p>
+   <p>Showing {{totalRecord}} Properties for {{type}} in UAE</p>
 <!--   <p>{{selectedPropertyTypeDiscription}} <button ngClass="read-more-btn"></button></p>-->
   <p>Properties For {{type}} in UAE. Verified Listings. Your Perfect Home is on Property Finder! Property Finder: Real Estate...
 <!--    <button ngClass="read-more-btn">Read more</button>-->
@@ -34,7 +34,7 @@
   <div ngClass="properties-filtr-values-left d-flex justify-content-spacebw">
     <div class="checkbox-design position-relative">
       <input type="checkbox" id="Furnished" name="property-types" value="Furnished">
-      <button class="checkbox-btn">All</button>
+      <button class="checkbox-btn" (click)="allSearch()">All</button>
   </div>
   <div ngClass="block-wrapper">
     <mat-form-field appearance="fill" class="select-design">
@@ -68,13 +68,13 @@
   </div>
 </div>
 <div ngClass="properties-list-design">
-  <div ngClass="properties-list-block-design" *ngFor=" let list of searchListing">
+  <div ngClass="properties-list-block-design" *ngFor=" let list of searchListing | paginate: { itemsPerPage: 10, currentPage: page ,totalItems:totalRecord }">
     <div ngClass="row">
       <div ngClass="col-xl-4 col-md-4 col-lg-4 col-sm-12">
         <div ngClass="properties-list_slider">
           <ngb-carousel>
             <ng-template ngbSlide *ngFor="let event of list.documents">
-              <img [src]="baseUrl+event.fileUrl" alt="Random slide" (click)="openVerticallyCentered(content)">
+              <img [src]="baseUrl+event.fileUrl" alt="Random slide" (click)="openVerticallyCentered(content,list.documents)">
             </ng-template>
           </ngb-carousel>
         </div>
@@ -137,11 +137,11 @@
         </div>
         <div ngClass="pro-range-whie-box">
           <p>Rent Price Range</p>
-          <h6>1,329,500 AED - 1,180,000 AED</h6>
+          <h6>{{list.endRentPrice}}</h6>
         </div>
         <div ngClass="pro-range-whie-box">
           <p>Avg. Rent/ Sq. Ft.</p>
-          <h6>1,436 AED</h6>
+          <h6>{{list.avgRentPrice}}</h6>
         </div>
        </div>
     </div>
@@ -150,11 +150,11 @@
         <div ngClass="col-xl-5 col-lg-12 col-md-12 col-sm-12">
             <div ngClass="lsited-by-details d-flex">
               <div ngClass="list_cntnt-img">
-              <img src="{{betterhome}}">
+              <img src="{{baseUrl+list.user.imageUrl}}">
               </div>
               <div ngClass="list_cntnt-blcok">
-                <h5>Olga Pikina</h5>
-                <p>Listed on: March 09, 2022</p>
+                <h5>{{list.user.fullName}}</h5>
+                <p>Listed on: {{list.requestedDateFormat}}</p>
               </div>
             </div>
         </div>
@@ -196,6 +196,9 @@
       </div>
     </div>
   </div>
+  <section class="agent-pagination-wrapper">
+    <pagination-controls (pageChange)="pageChanged($event)" class="text-center my-pagination"></pagination-controls>
+  </section>
 </div>
 </div>
 <div ngClass="col-xl-3 col-lg-3 col-md-12 col-sm-12">
@@ -233,8 +236,8 @@
         <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
         <div class="modal-body gallery-design">
           <ngb-carousel>
-            <ng-template ngbSlide *ngFor="let event of eventlist">
-              <img [src]="event.img" alt="Random slide">
+            <ng-template ngbSlide *ngFor="let event of modelPropertyPictures">
+              <img [src]="baseUrl+event.fileUrl" alt="Random slide">
             </ng-template>
           </ngb-carousel>
         </div>

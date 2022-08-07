@@ -77,7 +77,7 @@
                                         <h5>Key Highlights</h5>
                                     </div>
                                     <div ngClass="topkey-highlights">
-                                        <h6>Hotel & Hotel Apartment</h6>
+                                        <h6>{{propertyDetailData.propertyType.typeDescription}}</h6>
                                         <div ngClass="property-details-highlights">
                                             <span ngClass="bed">
                                                 <img src="{{bedsvg}}" alt="">{{propertyDetailData.bedrooms}} Beds
@@ -94,11 +94,9 @@
                                         </div>
                                     </div>
                                     <div ngClass="key-tags">
-                                        <span>Exclusive</span>
-                                        <span>Golf & Canal Views</span>
-                                        <span>Affordable</span>
-                                        <span>Vastu complaint</span>
-                                        <span>Prime location</span>
+                                        <span *ngFor="let data of propertyDetailData.propertyFeatures">
+                                            {{data.propertyFeature.featureName}}
+                                        </span>
                                     </div>
                                     <div ngClass="key-info">
                                         <p> 15 days of rent off. Only Pay 15 days of brokerage now! Free rental agreement.</p>
@@ -107,7 +105,7 @@
                                         <h4>Property Description</h4>
                                         <p>{{propertyDetailData.propertyDescription}}</p>
                                         <div ngClass="read-more-div text-right">
-                                            <a routerLink="" ngClass="read-more-link">Read more</a>
+<!--                                            <a routerLink="" ngClass="read-more-link">Read more</a>-->
                                         </div>
                                     </div>
                                 </mat-tab>
@@ -140,10 +138,10 @@
                                     <div ngClass="amenties_infor-div-sec">
                                         <div ngClass="amenties_info-row">
                                             <div ngClass="row">
-                                                <div ngClass="col-xl-3 col-lg-3 col-md-12 col-sm-12" *ngFor="let amenities of amentiesinfo">
+                                                <div ngClass="col-xl-3 col-lg-3 col-md-12 col-sm-12" *ngFor="let amenities of propertyDetailData.propertyFeatures">
                                                     <div ngClass="amenties_info-text">
-                                                        <img src="{{amenities.img}}">
-                                                        <p>{{amenities.value}}</p>
+                                                        <img src="assets/images/icons/swimming.svg">
+                                                        <p>{{amenities.propertyFeature.featureName}}</p>
                                                         <button ngClass="see-more-amenties">{{amenities.btnvalue}}</button>
                                                     </div>
                                                 </div>
@@ -155,8 +153,40 @@
                                     <div ngClass="tabs-heading-div">
                                         <h5>Rental Price Trends</h5>
                                     </div>
-                                    <div ngClass="chart-demo-img">
-                                        <img src="{{pricedemo}}">
+                                    <div ngClass="price_trend-texts">
+                                        <p>3 beds in Downtown Dubai - Rent Evolutions <span ngClass=""><mat-icon>trending_up</mat-icon></span> 40%</p>
+                                    </div>
+                                    <div ngClass="price-chart-trends">
+                                        <canvas baseChart width="400" height="400"
+                                            [type]="'line'"
+                                            [data]="lineChartData"
+                                            [options]="lineChartOptions"
+                                            [legend]="false"
+                                            >
+                                        </canvas>
+                                    </div>
+                                    <div ngClass="property_like-dislikes">
+                                        <div ngClass="row">
+                                            <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                                                <div ngClass="like-dislike-box-wrap position-relative">
+                                                    <h4><strong>This Property cost 186% more</strong> then the average</h4>
+                                                    <p>Average Rent is <strong>280, 00 AED/year</strong></p>
+                                                    <span ngClass="dislike-icon"><mat-icon>thumb_down</mat-icon></span>
+                                                    <span ngClass="home_icon"><mat-icon>home</mat-icon></span>
+                                                </div>
+                                            </div>
+                                             <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                                                <div ngClass="like-dislike-box-wrap position-relative">
+                                                    <h4><strong>This Property is 24% bigger</strong> then the average</h4>
+                                                    <p>Average Size is <strong>2,047 sqft</strong></p>
+                                                    <span ngClass="like-icon"><mat-icon>thumb_up</mat-icon></span>
+                                                    <span ngClass="home_icon"><mat-icon>home</mat-icon></span>
+                                                </div>
+                                            </div>
+                                            <div ngClass="col-sm-12">
+                                                <p ngClass="price-trent_desc-info">The data displayed is based on the average price and size of all listing that were live in the Ovaluate in Dubai</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </mat-tab>
                                 <mat-tab label="Location">
@@ -168,11 +198,10 @@
                                             <div ngClass="location-divs-sec">
                                                 <div ngClass="location-address">
                                                     <h4>OV 3456 890 987</h4>
-                                                    <h5>Blue Wave Tower</h5>
-                                                    <address>Etihad Tower 4, Etihad Towers,
-                                                Corniche Road, Abu Dhabi
-                                                <a routerLink="">District Name</a>
-                                            </address>
+                                                    <h5>{{propertyDetailData.buildingName}}</h5>
+                                                    <address>{{propertyDetailData.propertyAddress}}
+                                                      <a routerLink="">District Name</a>
+                                                  </address>
                                                 </div>
                                                 <div ngClass="scan-buttons">
                                                     <button ngClass="scan-btn-border"><img src="{{qrscan}}"> QR SCAN - Property Info</button>
@@ -184,7 +213,12 @@
                                         </div>
                                         <div ngClass="col-xl-9 col-lg-9 col-md-12 col-sm-12">
                                             <div ngClass="location-map-sec">
-                                                <div style="width: 100%"><iframe width="100%" height="311" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=dubai+(My%20Business%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"><a href="https://www.gps.ie/wearable-gps/">Kids wearables</a></iframe></div>
+                                                <div style="width: 100%">
+                                                  <iframe width="100%" height="311" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+                                                          src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=dubai+(My%20Business%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed">
+                                                    <a href="https://www.gps.ie/wearable-gps/">Kids wearables</a>
+                                                  </iframe>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -294,12 +328,12 @@
                 <h4>Similar properties in the same area</h4>
             </div>
             <div ngClass="row">
-                <div ngClass="col-xl-3 col-lg-3 col-md-6 col-sm-12" *ngFor="let slide of dynamicSlides1">
+                <div ngClass="col-xl-3 col-lg-3 col-md-6 col-sm-12" *ngFor="let slide of similarPropertyDetails">
                     <div ngClass="property-item position-relative">
                         <img [src]="slide.src" [alt]="slide.alt" [title]="slide.title">
                         <span [ngClass]="'popular-tag'"><img src="assets/images/tag/popular.png"></span>
                         <div ngClass="brand-logo">
-                            <img src="{{brandimg}}" alt="">
+                            <img src="{{slide.src}}" alt="">
                         </div>
                         <button ngClass="property-whistlist">
                       <svg width="22" height="23" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -307,22 +341,22 @@
                       </svg>
                   </button>
                         <div ngClass="property-info">
-                            <span ngClass="property-pricing"><span>{{slide.price}}</span>/yearly</span>
-                            <span ngClass="property-name">Blue Wave Tower</span>
-                            <p ngClass="property-location"><img src="{{homelocationsvg}}" width="14" alt="">Etihad Tower 4, Etihad Towers, </p>
+                          <span ngClass="property-pricing"><span>{{ slide.price }} {{ slide.currency }}</span> / {{slide.rentType}}</span>
+                          <span ngClass="property-name">{{slide.buildingName}}</span>
+                            <p ngClass="property-location"><img src="{{homelocationsvg}}" width="14" alt="">{{slide.propertyAddress}} </p>
                             <div ngClass="property-details">
                                 <span ngClass="bed">
-                              <img src="{{bedsvg}}" alt="">3 Beds
+                              <img src="{{bedsvg}}" alt="">{{slide.bedrooms}} Beds
                           </span>
                                 <span ngClass="bath">
-                              <img src="{{bathsvg}}" alt="">2Bath
+                              <img src="{{bathsvg}}" alt="">{{slide.bathrooms}} Bath
                           </span>
                                 <span ngClass="area">
-                              <img src="{{squaremetersvg}}" alt="">800sqft
+                              <img src="{{squaremetersvg}}" alt="">{{slide.carpetArea}} sqft
                           </span>
                             </div>
                         </div>
-                        <a routerLink="/{{slide.link}}" ngClass="linK_overlay"></a>
+                        <a [routerLink]="['/PropertDetailsPage']" [queryParams]="{id: slide.id}" ngClass="linK_overlay"></a>
                     </div>
                 </div>
             </div>

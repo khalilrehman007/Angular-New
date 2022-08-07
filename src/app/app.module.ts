@@ -26,7 +26,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-
+import { NgChartsModule } from 'ng2-charts';
 import { CustomerComponent } from './customer/customer.component';
 import { ListingComponent } from './listing/listing.component';
 import { AddnewComponent } from './addnew/addnew.component';
@@ -101,6 +101,8 @@ import { HelpCenterComponent } from './pages/help-center/help-center.component';
 import { HowItWorksComponent } from './pages/how-it-works/how-it-works.component';
 import { InvestorsComponent } from './pages/investors/investors.component';
 import { BuyPropertiesComponent } from './pages/buy-properties/buy-properties.component';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 
 @NgModule({
@@ -203,6 +205,9 @@ import { BuyPropertiesComponent } from './pages/buy-properties/buy-properties.co
     NgxEditorModule,
     ScrollingModule,
     NgxSliderModule,
+    MatChipsModule,
+    MatAutocompleteModule,
+    NgChartsModule,
     NgxPaginationModule,
     ToastrModule.forRoot({
       timeOut: 2000,
