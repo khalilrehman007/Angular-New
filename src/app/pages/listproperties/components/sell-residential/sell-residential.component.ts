@@ -81,6 +81,9 @@ export class SellResidentialComponent implements OnInit {
         $(this).parent().parent().prevAll().find('.dropdown-menu').removeClass('active');
       });
     });
+    $("#sell-residential-datepicker").on("click", function () {
+      $(".mat-datepicker-toggle").click();
+    })
   }
 
 
@@ -263,6 +266,7 @@ export class SellResidentialComponent implements OnInit {
     let user: any = localStorage.getItem("user");
     this.data.UserId = JSON.parse(user).id;
     this.data.UserEmail = JSON.parse(user).email;
+    this.data.ProfessionalTypeId = JSON.parse(user).professionalTypeId;
     let temp: any = []
     for (let i = 0; i < this.featuresFormData.length; i++) {
       temp.push({ PropertyFeatureId: this.featuresFormData[i] });

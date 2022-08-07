@@ -235,8 +235,6 @@ export class PropertyinfoComponent implements OnInit {
       url: "https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyBPSEz52-AfPEVbmV_3yuGUGol_KiLb3GU",
       method: "get",
       success: (res) => {
-        let temp = res.results[0].geometry.bounds;
-        let bounds = { east: temp.northeast.lng, west: temp.southwest.lng, north: temp.northeast.lat, south: temp.southwest.lat };
         let area = res.results[0].geometry.location;
         localStorage.setItem("lat",area.lat);
         localStorage.setItem("lng",area.lng);
