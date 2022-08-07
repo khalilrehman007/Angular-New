@@ -246,9 +246,13 @@ export class PropertyDocumentsComponent implements OnInit {
     this.formData.CustomerName = this.reportForm.value.name;
     this.formData.EmailAddress = this.reportForm.value.email;
     this.formData.InspectionDate = $("#formDate").val();
+    this.formData.InspectionDate = $("#formDate").val();
+    let userData:any = localStorage.getItem("user");
+    userData = JSON.parse(userData);
+    this.formData.UserId = userData.id;
     
     let valuationData = new FormData();
-    valuationData.append("ValuationRequest", this.formData);
+    valuationData.append("ValuationRequest", JSON.stringify(this.formData));
     valuationData.append("1_map.jpg", this.mapImage);
     valuationData.append("2_"+this.titleDeedImage.name, this.titleDeedImage);
     valuationData.append("3_"+this.affectionImage.name, this.affectionImage);
@@ -256,7 +260,29 @@ export class PropertyDocumentsComponent implements OnInit {
     for(let i = 0; i < this.otherImages.length; i++) {
       valuationData.append(i+5+"_"+this.otherImages[i].file.name, this.otherImages[i].file);
     }
-
+    let token:any = localStorage.getItem("token");
+    token = JSON.parse(token);
+    $.ajax({
+      url: "https://beta.ovaluate.com/api/AddValuation",
+      method: "post",
+      contentType: false,
+      processData: false,
+      data: valuationData,
+      headers: {
+        "Authorization": 'bearer '+token
+      },
+      dataType: "json",
+      success: (res) => {
+        console.log(res);
+        // if(res.message == "Property Listing request completed successfully") {
+        //   localStorage.removeItem("propertyData");
+        //   this.route.navigate(['listpropertypublish'])
+        // }
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
     // this.status3 = !this.status3;
     // this.status7 = !this.status7;
     // this.status2 = !this.status2;
