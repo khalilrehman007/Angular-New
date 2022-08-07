@@ -43,8 +43,9 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
   propertyDetails = new FormGroup({
     titleDeed: new FormControl("", Validators.required),
     muncipality: new FormControl("", Validators.required),
+    PhoneNumber: new FormControl("", Validators.required), 
     propertyOwner: new FormControl(""),
-    ownerPhone: new FormControl(""),
+    ownerPhone: new FormControl("", Validators.required),
   })
   get titleDeed() {
     return this.propertyDetails.get("titleDeed")
@@ -68,12 +69,24 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
     temp = temp.top;
     $(window).scrollTop(temp - 200);
   }
+  
+  checkLength() {
+    let temp:any = this.propertyDetails.value.ownerPhone;
+    if(temp.toString().length > 12) {
+      alert("Max length allowes is 12");
+      this.propertyDetails.patchValue({
+        ownerPhone: temp.toString().slice(0,-1)
+      })
+    }
+  }
+
   confirmLocation() {
     this.locationInformation.country = this.countryName;
     this.locationInformation.city = this.cityName;
     this.locationInformation.address = localStorage.getItem("address");
     localStorage.removeItem("address");
   }
+  
   loadCountriesData() {
     this.service.LoadCountries().subscribe(e => {
       let temp: any = e;
@@ -84,6 +97,7 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
       }
     });
   }
+  
   toggleType(e: number) {
     if (e == 1) {
       this.formDetailData.titleDeedType = "Leasehold";

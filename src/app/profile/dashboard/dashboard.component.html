@@ -1700,7 +1700,8 @@
                     <div ngClass="tab-content">
                       <div id="resedential-rent" class="tab-pane active">
                         <div class="lead-summ-table">
-                          <div class="table-row" *ngFor="let item of leadsData | paginate: { itemsPerPage: 10, currentPage: page, totalItems:totalLength } ">
+                          <div class="table-row"
+                            *ngFor="let item of leadsData | paginate: { itemsPerPage: 10, currentPage: page, totalItems:totalLength } ">
                             <div class="col photo-col">
                               <img src="{{proAvatar}}" alt="">
                             </div>
@@ -1746,7 +1747,8 @@
                     </div>
                   </section>
                   <section class="agent-pagination-wrapper">
-                    <pagination-controls (pageChange)="page = $event" class="text-center my-pagination"></pagination-controls>
+                    <pagination-controls (pageChange)="page = $event" class="text-center my-pagination">
+                    </pagination-controls>
                   </section>
                 </mat-tab>
               </mat-tab-group>
@@ -1786,7 +1788,8 @@
                     <div class="row">
                       <div class="col-lg-9 col-md-10">
                         <ul class="agent-details__property-list">
-                          <li class="agent-details__property-list-item" *ngFor="let listing of listingAll | paginate: { itemsPerPage: 10, currentPage: page, totalItems:totalLength }">
+                          <li class="agent-details__property-list-item"
+                            *ngFor="let listing of listingAll | paginate: { itemsPerPage: 10, currentPage: page, totalItems:totalLength }">
                             <div class="row">
                               <div class="col-lg-2">
                                 <img src="assets/images/explore-places/1.jpg" alt=""
@@ -1858,7 +1861,8 @@
                             </div>
                           </li>
                           <section class="agent-pagination-wrapper">
-                            <pagination-controls (pageChange)="page = $event" class="text-center my-pagination"></pagination-controls>
+                            <pagination-controls (pageChange)="page = $event" class="text-center my-pagination">
+                            </pagination-controls>
                           </section>
                         </ul>
                       </div>
@@ -1891,7 +1895,8 @@
                     <div class="row">
                       <div class="col-lg-9 col-md-10">
                         <ul class="agent-details__property-list">
-                          <li class="agent-details__property-list-item" *ngFor="let listing of listingAll | paginate: { itemsPerPage: 10, currentPage: page, totalItems:totalLength }">
+                          <li class="agent-details__property-list-item"
+                            *ngFor="let listing of listingAll | paginate: { itemsPerPage: 10, currentPage: page, totalItems:totalLength }">
                             <div class="row">
                               <div class="col-lg-2">
                                 <img src="assets/images/explore-places/1.jpg" alt=""
@@ -1963,7 +1968,8 @@
                             </div>
                           </li>
                           <section class="agent-pagination-wrapper">
-                            <pagination-controls (pageChange)="page = $event" class="text-center my-pagination"></pagination-controls>
+                            <pagination-controls (pageChange)="page = $event" class="text-center my-pagination">
+                            </pagination-controls>
                           </section>
                         </ul>
                       </div>
@@ -1997,7 +2003,8 @@
                     <div class="row">
                       <div class="col-lg-9 col-md-10">
                         <ul class="agent-details__property-list">
-                          <li class="agent-details__property-list-item" *ngFor="let listing of listingAll | paginate: { itemsPerPage: 10, currentPage: page, totalItems:totalLength }">
+                          <li class="agent-details__property-list-item"
+                            *ngFor="let listing of listingAll | paginate: { itemsPerPage: 10, currentPage: page, totalItems:totalLength }">
                             <div class="row">
                               <div class="col-lg-2">
                                 <img src="assets/images/explore-places/1.jpg" alt=""
@@ -2056,7 +2063,8 @@
                                         <img src="{{menuDots}}" alt=""></button>
                                       <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
                                         <!-- <h5>Share with:</h5> -->
-                                        <button ngbDropdownItem><a href=""><img src="{{profile}}"> View Leads</a></button>
+                                        <button ngbDropdownItem><a href=""><img src="{{profile}}"> View
+                                            Leads</a></button>
                                         <button ngbDropdownItem><a href=""><img src="{{shareimg}}"> Share</a></button>
                                         <button ngbDropdownItem><a href=""><img src="{{deleteimg}}"> Delete</a></button>
                                         <button ngbDropdownItem><a href=""><img src="{{editimg}}"> Edit</a></button>
@@ -2068,7 +2076,8 @@
                             </div>
                           </li>
                           <section class="agent-pagination-wrapper">
-                            <pagination-controls (pageChange)="page = $event" class="text-center my-pagination"></pagination-controls>
+                            <pagination-controls (pageChange)="page = $event" class="text-center my-pagination">
+                            </pagination-controls>
                           </section>
                         </ul>
                       </div>
@@ -2080,7 +2089,7 @@
           </div>
         </div>
 
-        
+
         <div class="tab-pane fade" id="pills-valuation" role="tabpanel" aria-labelledby="pills-valuation-tab">
           <div class="recent-activity">
             <h4 class="sub-title mb-4">My Valuation</h4>
@@ -2092,7 +2101,8 @@
                     <p>No Data Found</p>
                   </div>
                   <div ngClass="my-valuation-list-wrapper" *ngIf="myValuation.length > 0">
-                    <div ngClass="my-valuation-list-design d-flex" *ngFor="let item of myValuation | paginate: { itemsPerPage: 10, currentPage: myValuation.page, totalItems:myValuation.length }; let i = index">
+                    <div ngClass="my-valuation-list-design d-flex"
+                      *ngFor="let item of myValuation | paginate: { itemsPerPage: 10, currentPage: myValuation.page, totalItems:myValuation.length }; let i = index">
                       <div ngClass="my_valuation-inner-div valuation_property-name">
                         <div ngClass="valuation_property-name-first">
                           <span ngClass="val_pro-number">{{i+1}}</span>
@@ -2128,7 +2138,8 @@
                     </div>
                   </div>
                   <div class="pagination-wrapper">
-                    <pagination-controls (pageChange)="pageChanged($event)" class="text-center my-pagination"></pagination-controls>
+                    <pagination-controls (pageChange)="pageChanged($event)" class="text-center my-pagination">
+                    </pagination-controls>
                   </div>
                 </mat-tab>
 
@@ -2175,7 +2186,8 @@
                     </div>
                   </div>
                   <div class="agent-pagination-wrapper">
-                    <pagination-controls (pageChange)="page = $event" class="text-center my-pagination"></pagination-controls>
+                    <pagination-controls (pageChange)="page = $event" class="text-center my-pagination">
+                    </pagination-controls>
                   </div>
                 </mat-tab>
 
@@ -2222,7 +2234,8 @@
                     </div>
                   </div>
                   <div class="agent-pagination-wrapper">
-                    <pagination-controls (pageChange)="page = $event" class="text-center my-pagination"></pagination-controls>
+                    <pagination-controls (pageChange)="page = $event" class="text-center my-pagination">
+                    </pagination-controls>
                   </div>
                 </mat-tab>
               </mat-tab-group>
@@ -2690,8 +2703,8 @@
                     </div>
                   </div>
                 </mat-tab>
-                <mat-tab label="Change Password">
 
+                <mat-tab label="Change Password">
                   <div class="row">
                     <div class="col-md-9">
                       <form [formGroup]="changePasswordForm">
@@ -4381,7 +4394,7 @@
             </div>
           </div>
         </mat-tab>
-        
+
         <mat-tab class="tab-item" label="My Listings">
           <div class="recent-activity">
             <h4 class="sub-title">My Listings</h4>
