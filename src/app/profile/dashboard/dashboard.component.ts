@@ -500,5 +500,8 @@ export class DashboardComponent implements OnInit {
 
     this.listingAll = tempData
   }
+  pageChanged(value: any) {
+    this.page = value;
+  }
 
 }
