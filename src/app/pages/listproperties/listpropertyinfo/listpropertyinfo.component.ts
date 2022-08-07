@@ -38,8 +38,8 @@ export class ListpropertyinfoComponent implements OnInit {
   featuresData: any;
   featuresFormData: any = [];
   minDate = new Date();
-  propertyListingBuy:number;
-  propertyListingRent:number;
+  propertyListingBuy: number;
+  propertyListingRent: number;
 
   constructor(private api: AppService, private service: AuthService, private route: Router, private notifyService: NotificationService) {
     this.getOldFormData();
@@ -51,7 +51,7 @@ export class ListpropertyinfoComponent implements OnInit {
       this.priviousFormCheck = JSON.parse(this.priviousFormCheck);
       this.data = this.priviousFormCheck;
     }
-    this.api.PropertyListingRentBuy({"Lat":this.data.PropertyLat,"Long":this.data.PropertyLong}).subscribe((result:any)=> {
+    this.api.PropertyListingRentBuy({ "Lat": this.data.PropertyLat, "Long": this.data.PropertyLong }).subscribe((result: any) => {
       this.propertyListingBuy = result.data.propertyListingBuy;
       this.propertyListingRent = result.data.propertyListingRent;
     })
@@ -88,6 +88,9 @@ export class ListpropertyinfoComponent implements OnInit {
     });
   }
   ngOnInit() {
+    $("#formDate").on("click", function () {
+      $(".mat-datepicker-toggle").click();
+    })
   }
   getOldFormData() {
     this.oldData = localStorage.getItem('listpropertyinfo_rent_residential');
@@ -118,13 +121,13 @@ export class ListpropertyinfoComponent implements OnInit {
     room_privateBathroom: new FormControl(""),
     room_attachedBathroom: new FormControl(""),
     room_sharedBathroom: new FormControl(""),
-    property_types: new FormControl(""),
-    fitting_details: new FormControl(""),
-    tenant_types: new FormControl(""),
-    gender: new FormControl(""),
-    property_management: new FormControl(""),
-    occupancy: new FormControl(""),
-    parking_space: new FormControl(""),
+    property_types: new FormControl("", [Validators.required]),
+    fitting_details: new FormControl("", [Validators.required]),
+    tenant_types: new FormControl("", [Validators.required]),
+    gender: new FormControl("", [Validators.required]),
+    property_management: new FormControl("", [Validators.required]),
+    occupancy: new FormControl("", [Validators.required]),
+    parking_space: new FormControl("", [Validators.required]),
     pets: new FormControl(""),
     pet_cats_allowed: new FormControl(""),
     pet_small_dogs_allowed: new FormControl(""),
@@ -135,7 +138,7 @@ export class ListpropertyinfoComponent implements OnInit {
     building_type_monthly: new FormControl(""),
     building_type_quaterly: new FormControl(""),
     building_type_yearly: new FormControl(""),
-    securoty_deposit: new FormControl(""),
+    securoty_deposit: new FormControl("", [Validators.required]),
     AED: new FormControl("",),
     securityNegotiable: new FormControl(""),
     brokerage_value: new FormControl(""),
@@ -185,8 +188,74 @@ export class ListpropertyinfoComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
     const controls = this.SubmitForm.controls;
-    if (this.genderCheck == false || this.tenantCheck == false || this.fittingCheck == false || this.furnishTypeCheck == false || this.managedCheck == false || this.occupancyCheck == false || this.rentTypeCheck == false || this.petPolicyCheck == false || this.parkingCheck == false || this.propertyTypeCheck == false || this.bedroomCheck == false || this.bathroomCheck == false || this.brokreageCheck == false || this.securityCheck == false || this.SubmitForm.invalid) {
-      alert("Please fill all the required fields");
+    if (this.propertyTypeCheck == false) {
+      alert("Please select property type");
+      return;
+    } else if (this.bedroomCheck == false) {
+      alert("Please select bedrooms");
+      return;
+    } else if (this.bathroomCheck == false) {
+      alert("Please select bathroom");
+      return;
+    } else if (this.furnishTypeCheck == false) {
+      alert("Please select furnishing type");
+      return;
+    } else if (this.fittingCheck == false) {
+      alert("Please select fitting type");
+      return;
+    } else if (this.tenantCheck == false) {
+      alert("Please select preferred tenant type");
+      return;
+    } else if (this.genderCheck == false) {
+      alert("Please select gender type");
+      return;
+    } else if (this.managedCheck == false) {
+      alert("Please select property manage type");
+      return;
+    } else if (this.occupancyCheck == false) {
+      alert("Please select occupancy status");
+      return;
+    } else if (this.parkingCheck == false) {
+      alert("Please select available parking");
+      return;
+    } else if (this.petPolicyData.length == 0) {
+      alert("Please select pet policy");
+      return;
+    } else if (this.SubmitForm.value.carpetArea == "") {
+      alert("Please select carpet area");
+      return;
+    } else if (this.SubmitForm.value.buildupArea == "") {
+      alert("Please select build area");
+      return;
+    } else if (this.SubmitForm.value.price == "") {
+      alert("Please select price");
+      return;
+    } else if (this.rentTypeCheck == false) {
+      alert("Please select rent type");
+      return;
+    } else if (this.securityCheck == false) {
+      alert("Please select security deposit");
+      return;
+    } else if (this.brokreageCheck == false) {
+      alert("Please select charge brokerage");
+      return;
+    } else if ($("#formDate").val() == "") {
+      alert("Please select date");
+      return;
+    } else if (this.SubmitForm.value.noticePeriod == "") {
+      alert("Please write notice period");
+      return;
+    } else if (this.SubmitForm.value.lockingPeriod == "") {
+      alert("Please write locking period");
+      return;
+    } else if (this.SubmitForm.value.propertyTitle == "") {
+      alert("Please write property title");
+      return;
+    } else if (this.SubmitForm.value.propertyDescription == "") {
+      alert("Please write property description");
+      return;
+    } else if (this.featuresFormData.length == 0) {
+      alert("Please select features");
       return;
     }
 
@@ -212,6 +281,7 @@ export class ListpropertyinfoComponent implements OnInit {
     let user: any = localStorage.getItem("user");
     this.data.UserId = JSON.parse(user).id;
     this.data.UserEmail = JSON.parse(user).email;
+    this.data.ProfessionalTypeId = JSON.parse(user).professionalTypeId;
     let temp: any = []
     for (let i = 0; i < this.petPolicyData.length; i++) {
       temp.push({ "PetPolicyId": this.petPolicyData[i] });
@@ -260,7 +330,7 @@ export class ListpropertyinfoComponent implements OnInit {
     this.data.Parkings = e;
   }
   getPetPolicy(e: any) {
-    if(e.value.length == 0) {
+    if (e.value.length == 0) {
       this.petPolicyCheck = false;
     } else {
       this.petPolicyCheck = true;

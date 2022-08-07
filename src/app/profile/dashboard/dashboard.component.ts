@@ -53,6 +53,8 @@ export class DashboardComponent implements OnInit {
   dashboard: any;
   leadsData:any = [];
   userData:any = {};
+  totalLength: number = 0;
+  page: number = 1;
 
   plus = '../../../../assets/images/plus.svg'
 
@@ -497,6 +499,9 @@ export class DashboardComponent implements OnInit {
     });
 
     this.listingAll = tempData
+  }
+  pageChanged(value: any) {
+    this.page = value;
   }
 
 }
