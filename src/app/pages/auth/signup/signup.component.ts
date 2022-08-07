@@ -26,9 +26,9 @@ export class SignupComponent implements OnInit {
   signup = new FormGroup({
     FirstName: new FormControl("", Validators.required),
     LastName: new FormControl("", Validators.required),
-    Email: new FormControl("", Validators.required),
+    Email: new FormControl("", [Validators.required, Validators.email]),
     PhoneNumber: new FormControl("", Validators.required),
-    Password: new FormControl("", Validators.required)
+    Password: new FormControl("", [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&]).{8,}')])
   });
   get validate(){
     return this.signup.controls;
@@ -61,6 +61,13 @@ export class SignupComponent implements OnInit {
 
   ProceedSignUp() {
     this.submitted = true;
+    if(this.signup.controls["Email"].invalid) {
+      alert("Please Enter a valid Email");
+      return
+    } else if(this.signup.controls["Password"].invalid) {
+      alert("Password does not meet the required pattern");
+      return
+    }
     if (this.signup.invalid) {
       return;
     }
