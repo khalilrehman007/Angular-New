@@ -163,6 +163,8 @@ export class PropertyInnerComponent implements OnInit {
 
   isload :any= false
   propertyDetailData :any = {}
+  chartLabel :any = []
+  chartData :any = []
   getloadDashboardData() {
     this.service.DisplayPropertyListing(this.propertyId).subscribe(e => {
       let temp: any = e;
@@ -214,12 +216,23 @@ export class PropertyInnerComponent implements OnInit {
         this.propertyDetailData.availableDate = (jsonParsDate.propertyListing.availableDate !== undefined) ? jsonParsDate.propertyListing.availableDate : ''
         this.propertyDetailData.noticePeriod = (jsonParsDate.propertyListing.noticePeriod !== undefined) ? jsonParsDate.propertyListing.noticePeriod : ''
         this.propertyDetailData.lockingPeriod = (jsonParsDate.propertyListing.lockingPeriod !== undefined) ? jsonParsDate.propertyListing.lockingPeriod : ''
+        this.propertyDetailData.propertyLat = (jsonParsDate.propertyListing.propertyLat !== undefined) ? jsonParsDate.propertyListing.propertyLat : ''
+        this.propertyDetailData.propertyLong = (jsonParsDate.propertyListing.propertyLong !== undefined) ? jsonParsDate.propertyListing.propertyLong : ''
 
         if(this.propertyDetail.propertyListing.documents[0].fileUrl != null){
           this.thumb1 = this.baseUrl+this.propertyDetail.propertyListing.documents[0].fileUrl;
         }
         if(this.propertyDetail.propertyListing.documents[1].fileUrl != null){
           this.thumb1 = this.baseUrl+this.propertyDetail.propertyListing.documents[1].fileUrl;
+        }
+
+        if(jsonParsDate.detailsChart != null){
+          jsonParsDate.detailsChart.chart.forEach((element, i) => {
+              let date :any = element.date
+              let price :any = element.price
+              this.chartLabel.push(date);
+              this.chartData.push(price);
+          })
         }
         this.getPropertyInfo();
 
@@ -446,23 +459,10 @@ export class PropertyInnerComponent implements OnInit {
   title = 'ng2-charts-demo';
 
   public lineChartData: ChartConfiguration<'line'>['data'] = {
-    labels: [
-      'Aug, 2022',
-      'Sep, 2022',
-      'Oct, 2022',
-      'Nov, 2022',
-      'Dec, 2022',
-      'Jan, 2023',
-      'Feb, 2023',
-      'Mar, 2023',
-      'April, 2023',
-      'May, 2023',
-      'June, 2023',
-      'Jul, 2023'
-    ],
+    labels: this.chartLabel,
     datasets: [
       {
-        data: [ 0, 200000, 200000, 240000, 245000, 253000, 254000, 250000, 252000, 300000,290000,260000,350000],
+        data: this.chartData,
         label: 'Series A',
         fill: false,
         tension: 0.5,
