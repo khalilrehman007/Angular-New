@@ -20,6 +20,18 @@ export class HeaderComponent implements OnInit {
   logoutimg = '../../assets/images/logout-popup-banner.png'
   loggedInUser = localStorage.getItem('user')
   user : any
+  availableClasses: string[] = ["sidebar-active", "nosidebar"];
+  currentClassIdx: number = 0;
+
+  params :any = {};
+  bodyClass: string;
+  constructor(private route:Router,private notifyService : NotificationService,private modalService: NgbModal) {
+    this.getUser();
+    this.bodyClass = this.availableClasses[this.currentClassIdx];
+    this.changeBodyClass();
+    this.params = {queryParams:{type:'Rent',PropertyListingTypeId:1}};
+  }
+
   sidebar = [
     {
       src: '../../assets/images/icons/login.svg',
@@ -31,13 +43,13 @@ export class HeaderComponent implements OnInit {
       src: '../../assets/images/icons/ioi.svg',
       class: 'nav-items buy',
       text: 'Buy',
-      link: '/search/buy',
+      link: '/search/Buy',
     },
     {
       src: '../../assets/images/icons/rent-icon.svg',
       class: 'nav-items buy',
       text: 'Rent',
-      link: '/search/rent',
+      link: '/search/Rent',
     },
     {
       src: '../../assets/images/icons/sell.svg',
@@ -76,15 +88,13 @@ export class HeaderComponent implements OnInit {
       link: 'blogs',
     }
   ]
-  availableClasses: string[] = ["sidebar-active", "nosidebar"];
-  currentClassIdx: number = 0;
 
-  bodyClass: string;
-  constructor(private route:Router,private notifyService : NotificationService,private modalService: NgbModal) {
-    this.getUser();
-    this.bodyClass = this.availableClasses[this.currentClassIdx];
-    this.changeBodyClass();
+
+  search(name:any){
+
   }
+
+
   changeBodyClass() {
     // get html body element
     const bodyElement = document.body;

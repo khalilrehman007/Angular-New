@@ -55,6 +55,18 @@ export class PropertyfilterComponent implements OnInit {
     this.minValue = this.PriceStart;
     this.maxValue = this.PriceEnd;
 
+    if(this.type == null){
+      this.activeRoute.params.subscribe(params => {
+        if(params['type'] == 'Buy'){
+          this.PropertyListingTypeId = 2;
+          this.type = 'Buy'
+        }else if(params['type'] == 'Rent'){
+          this.PropertyListingTypeId = 1;
+          this.type = 'Rent';
+        }
+      });
+    }
+
     // this.route.routeReuseStrategy.shouldReuseRoute = () => false;
 
     this.SubmitForm.controls.Name.setValue(this.PropertyAddress);

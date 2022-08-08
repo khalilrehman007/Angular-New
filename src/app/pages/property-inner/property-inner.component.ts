@@ -8,13 +8,16 @@ import {AppService} from "../../service/app.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {NotificationService} from "../../service/notification.service";
 import { ChartConfiguration, ChartOptions, ChartType } from "chart.js";
+import {DomSanitizer} from "@angular/platform-browser";
 
+declare const google: any;
 
 @Component({
   selector: 'app-property-inner',
   templateUrl: './property-inner.component.html',
   styleUrls: ['./property-inner.component.scss']
 })
+
 export class PropertyInnerComponent implements OnInit {
   homelocationsvg = 'assets/images/home-location.svg'
   bedsvg = 'assets/images/icons/Bed.svg'
@@ -146,7 +149,7 @@ export class PropertyInnerComponent implements OnInit {
   propertyDetail :any;
   propertyId :any;
 
-  constructor(private activeRoute: ActivatedRoute,private modalService: NgbModal,private service:AppService,private route:Router,private notifyService : NotificationService) {
+  constructor(private domSanitizer: DomSanitizer,private activeRoute: ActivatedRoute,private modalService: NgbModal,private service:AppService,private route:Router,private notifyService : NotificationService) {
     this.propertyId = this.activeRoute.snapshot.queryParamMap.get('id');
     this.getUser();
     this.getloadDashboardData();
@@ -156,6 +159,7 @@ export class PropertyInnerComponent implements OnInit {
   openVerticallyCentered(content) {
     this.modalService.open(content, { centered: true });
   }
+  locationAddress :any = "https://maps.google.com/maps?q=24.10148903316392,53.09649093869425&hl=es&z=14&amp;output=embed";
 
   ngOnInit(): void {
 
@@ -219,6 +223,13 @@ export class PropertyInnerComponent implements OnInit {
         this.propertyDetailData.propertyLat = (jsonParsDate.propertyListing.propertyLat !== undefined) ? jsonParsDate.propertyListing.propertyLat : ''
         this.propertyDetailData.propertyLong = (jsonParsDate.propertyListing.propertyLong !== undefined) ? jsonParsDate.propertyListing.propertyLong : ''
 
+        // let location ="https://maps.google.com/maps?q="+this.propertyDetailData.propertyLat+','+this.propertyDetailData.propertyLong+'&hl=es&z=14&amp;output=embed';
+        // let resp :any = this.domSanitizer.bypassSecurityTrustResourceUrl(location);
+        // // var url = location.replace("watch?v=", "v/");
+        // this.locationAddress = resp
+        //
+        // console.log(this.locationAddress)
+
         if(this.propertyDetail.propertyListing.documents[0].fileUrl != null){
           this.thumb1 = this.baseUrl+this.propertyDetail.propertyListing.documents[0].fileUrl;
         }
@@ -228,10 +239,10 @@ export class PropertyInnerComponent implements OnInit {
 
         if(jsonParsDate.detailsChart != null){
           jsonParsDate.detailsChart.chart.forEach((element, i) => {
-              let date :any = element.date
-              let price :any = element.price
-              this.chartLabel.push(date);
-              this.chartData.push(price);
+            let date :any = element.date
+            let price :any = element.price
+            this.chartLabel.push(date);
+            this.chartData.push(price);
           })
         }
         this.getPropertyInfo();
@@ -255,7 +266,6 @@ export class PropertyInnerComponent implements OnInit {
 
     });
   }
-
 
   getPropertyInfo(){
 
@@ -480,9 +490,9 @@ export class PropertyInnerComponent implements OnInit {
     maintainAspectRatio: false,
     scales: {
       x: {  ticks: {
-        maxRotation: 70,
-        minRotation: 70,
-     }},
+          maxRotation: 70,
+          minRotation: 70,
+        }},
     },
     plugins: {
       title: {
@@ -490,7 +500,7 @@ export class PropertyInnerComponent implements OnInit {
         position: 'left',
         align: 'center',
         text: 'AED/Year'
-    },
+      },
     }
   };
   public lineChartLegend = true;
