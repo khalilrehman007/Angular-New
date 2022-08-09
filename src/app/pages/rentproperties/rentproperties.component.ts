@@ -78,6 +78,17 @@ export class RentpropertiesComponent implements OnInit {
     this.PriceStart            = this.activeRoute.snapshot.queryParamMap.get('PriceStart');
     this.PriceEnd              = this.activeRoute.snapshot.queryParamMap.get('PriceEnd');
 
+    if(this.type == null){
+      this.activeRoute.params.subscribe(params => {
+        if(params['type'] == 'Buy'){
+          this.PropertyListingTypeId = 2;
+          this.type = 'Buy'
+        }else if(params['type'] == 'Rent'){
+          this.PropertyListingTypeId = 1;
+          this.type = 'Rent';
+        }
+      });
+    }
     let params :any = {"PropertyTypeIds":this.PropertyTypeIds, "PropertyAddress":this.PropertyAddress,"RentTypeId":this.RentTypeId,
       "PropertyCategoryId":this.PropertyCategoryId,"PriceStart":this.PriceStart, "PriceEnd" : this.PriceEnd,
       "PropertyListingTypeId":this.PropertyListingTypeId,"SortedBy":this.sortedById,CurrentPage:1
@@ -97,8 +108,6 @@ export class RentpropertiesComponent implements OnInit {
     this.route.navigate(['/search'],{queryParams:params})
     this.loadListingProperty(params);
   }
-
-
 
 
   PropertySortBy:any = []
@@ -183,7 +192,7 @@ export class RentpropertiesComponent implements OnInit {
         }
         tempData.push(
           {
-            endRentPrice:element.endRentPrice,avgRentPrice:element.avgRentPrice,
+            StartRentPrice:element.startRentPrice,EndRentPrice:element.endRentPrice,AvgRentPrice:element.avgRentPrice,RecentRentTxns:element.recentRentTxns,
             documents:element.documents,propertyFeatures:element.propertyFeatures,propertyType:element.propertyType,user:element.user,
             propertyTitle: element.propertyTitle, propertyAddress: element.propertyAddress, img:this.baseUrl+image,
             buildingName: element.buildingName,bedrooms: element.bedrooms,bathrooms: element.bathrooms,carpetArea: element.carpetArea,
@@ -208,6 +217,7 @@ export class RentpropertiesComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
   }
 
 }

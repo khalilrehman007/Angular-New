@@ -4809,6 +4809,8 @@ img {
 		padding-left: 10px;
 		padding-right: 10px;
 		font-size: 13px;
+		padding-top: 8px;
+		padding-bottom: 8px;
 	}
 	>.dropdown {
 		margin-right: 7px;
@@ -4818,7 +4820,7 @@ img {
 		}
 		.dropdown-item {
 			border-bottom: 1px solid #E5E7EB;
-			margin-bottom: 5px;
+			padding-top: 10px;
 			padding-bottom: 10px;
 			a {
 				display: block;
@@ -4827,12 +4829,19 @@ img {
 				font-weight: 500;
 				img {
 					margin-right: 8px;
+					width: 20px;
+					position: relative;
+                    bottom: 1px;
 				}
 			}
 			&:last-child {
 				border-bottom: none;
-				margin-bottom: 5px;
-				padding-bottom: 0px;
+			}
+			.facebook{
+				img{
+					width: 12px;
+					margin-right: 14px;
+				}
 			}
 		}
 		h5 {
@@ -8713,7 +8722,57 @@ display: none;
     margin-bottom: 0px;
     margin-top: 10px;
 }
-
+.call-now_link>.grey-bordered-btn::after{
+	display: none;
+}
+.call-now_link>.grey-bordered-btn {
+    margin-right: 7px;
+    background-color: #fff;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 13px;
+    padding: 10.25px 15px;
+}
+.call-now_link > .grey-bordered-btn::after{
+	display: none !important;
+}
+.call-now_link .dropdown-menu .mention_ref {
+    font-size: 13px;
+    text-align: center;
+    margin-bottom: 5px;
+}
+.call-now_link .dropdown-menu .oval_finder-red {
+    margin-bottom: 0px;
+    text-align: center;
+    color: red;
+    font-size: 13px;
+    line-height: 18px;
+}
+.call-now_link .dropdown-menu {
+    padding: 15px;
+}
+.ref_id {
+    display: block;
+}
+.last-contaceted-on p {
+    font-size: 14px;
+    margin-bottom: 0px;
+}
+.last-contaceted-on p .mat-icon {
+    width: 18px;
+    height: 18px;
+    font-size: 18px;
+    position: relative;
+    top: 4px;
+    margin-right: 5px;
+}
+.last-contaceted-on p {
+    font-size: 14px;
+    background-color: #ffebbf;
+    padding: 3px 10px;
+    margin: 5px 0px;
+    border-radius: 8px;
+}
 
 @media (max-width: 1199px){
 	.my-valuation-list-design .my_valuation-inner-div.payemnt {

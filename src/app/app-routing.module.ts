@@ -105,6 +105,7 @@ const routes: Routes = [
   { path: "find-companies", component: AgentLandingComponent },
   { path: "listing-packages", component: ListingpackagesComponent },
   { path: "search", component: RentpropertiesComponent },
+  { path: "search/:type", component: RentpropertiesComponent },
   { path: "mapview", component: MapviewComponent },
   { path: "PropertyCompare", component: PropertyCompareComponent },
   { path: "explore", component: ExploreComponent },
