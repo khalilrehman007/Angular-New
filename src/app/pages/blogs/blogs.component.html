@@ -61,39 +61,11 @@
     </div>
     </div>
     </section>
-    <section ngClass="position-relative wrapper-section latest-news_sec">
-        <div ngClass="container_1280px">
-            <div ngClass="section-title">
-                <div ngClass="section-custom-title-left">
-                    <h4>Latest News</h4>
-                    <p>Some of our picked latest news near your location.</p>
-                </div>
-            </div>
-
-            <div ngClass="row">
-              <!-- let blogs of Blogsec -->
-                <div ngClass="col-lg-4 col-md-6 blog-places-col" *ngFor=" let blog of allBlogs">
-                    <a [routerLink]="['/blogs-details/' + blog.heading]">
-                      <!-- blog.blogDocument.fileUrl -->
-                      <div ngClass="latest_news_flex">
-                        <div ngClass="latest-news_img">
-                        <img [src]="blog.src" ngClass="img-fluid blog-image-homepage" alt="">
-                        </div>
-                        <div ngClass="latest-news-content">
-                            <h5>{{blog.heading}}</h5>
-                            <span>{{blog.date}}</span>
-                        </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
     <section ngClass="position-relative wrapper-section blogs_sec">
         <div ngClass="container_1280px">
             <div ngClass="section-title">
                 <div ngClass="section-custom-title-left">
-                    <h4>News</h4>
+                    <h4>Latest News</h4>
                     <p>Some of our picked properties near your location.</p>
                 </div>
                 <div ngClass="section-custom-title-right">
