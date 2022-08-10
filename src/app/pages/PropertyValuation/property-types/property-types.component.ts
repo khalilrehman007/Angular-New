@@ -73,6 +73,10 @@ export class PropertyTypesComponent implements OnInit {
     this.loadFittingType();
     this.formDetailData = localStorage.getItem("valuationDetailData");
     this.formDetailData = JSON.parse(this.formDetailData);
+    this.formData.FurnishingType = 0;
+    this.formData.FittingType = 0;
+    this.formData.Bedrooms = 0;
+    this.formData.Bathrooms = 0;
   }
 
   ngOnInit(): void {
@@ -212,6 +216,7 @@ export class PropertyTypesComponent implements OnInit {
     }
     this.formDetailData.PropertyFeatures = temp;
     this.formData.PropertyFeatures = temp;
+    console.log(this.formData);
     localStorage.setItem('valuationDetailData', JSON.stringify(this.formDetailData));
     localStorage.setItem('valuationData', JSON.stringify(this.formData));
     this.router.navigate(['/PropertyDocument']);
