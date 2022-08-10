@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { AppService } from 'src/app/service/app.service';
 
 @Component({
-  selector: 'app-blog-category',
-  templateUrl: './blog-category.component.html',
-  styleUrls: ['./blog-category.component.scss']
+  selector: 'app-law-blog',
+  templateUrl: './law-blog.component.html',
+  styleUrls: ['./law-blog.component.scss']
 })
-export class BlogCategoryComponent implements OnInit {
+export class LawBlogComponent implements OnInit {
   exploreimg = '../../../assets/images/Blog-Tile.png'
   Newssec = [
     {

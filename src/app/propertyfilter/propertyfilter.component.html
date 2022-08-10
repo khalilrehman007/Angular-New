@@ -157,6 +157,100 @@
               </mat-form-field>
             </div>
         </div>
+        <div ngClass="block-item six-block">
+          <div ngClass="block-wrapper more-filter_btn-wrapper">
+             <button ngClass="more-filter-button" (click)="openVerticallyCentered(content)">More Filters</button>
+          </div>
+          <div ngClass="gallery-modal-design more_filters-modal">
+            <ng-template #content let-modal>
+                <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+                <div class="modal-body more-filter-form-design">
+                  <div ngClass="row">
+                  <div ngClass="col-xl-12 col-lg-12 col-sm-12">
+                    <div ngClass="form_heading mb-4">
+                      <h4 ngClass="h4-design">More Filters</h4>
+                    </div>
+                  </div>
+                  <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+                  <div ngClass="block-wrapper mb-4">
+                    <label class="h6-design">Furnishing Type</label>
+                    <div class="checkbox-flex-box three-column button-same-select">
+                        <div class="checkbox-design position-relative">
+                            <input type="radio" id="Furnished" name="furnishing-types" value="Furnished">
+                            <button class="checkbox-btn">Furnished</button>
+                        </div>
+                        <div class="checkbox-design position-relative">
+                          <input type="radio" id="Unfurnished" name="furnishing-types" value="Unfurnished">
+                          <button class="checkbox-btn">Unfurnished</button>
+                      </div>
+                      <div class="checkbox-design position-relative">
+                        <input type="radio" id="Semi Furnished" name="furnishing-types" value="Semi Furnished">
+                        <button class="checkbox-btn">Semi Furnished</button>
+                    </div>
+                    </div>
+                </div>
+                </div>
+                <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+                <div ngClass="block-wrapper mb-2">
+                  <label class="h6-design">Property Area (sqft)</label>
+                  <div ngClass="row">
+                    <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+                      <div ngClass="block-wrapper mb-2">
+                          <div ngClass="position-relative">
+                              <mat-form-field class="full-width input-design-2" appearance="fill">
+                                  <input matInput type="number" placeholder="Min. Area">
+                              </mat-form-field>
+                              <p ngClass="input-overlay-layer">sqft.</p>
+                          </div>
+                      </div>
+                  </div>
+                  <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+                    <div ngClass="block-wrapper mb-2">
+                        <div ngClass="position-relative">
+                            <mat-form-field class="full-width input-design-2" appearance="fill">
+                                <input matInput type="number" placeholder="Max. Area">
+                            </mat-form-field>
+                            <p ngClass="input-overlay-layer">sqft.</p>
+                        </div>
+                    </div>
+                </div>
+                    </div>
+              </div>
+              </div>
+              <div ngClass="col-xl-12 col-lg-12 col-sm-12">
+                <div class="select-features">
+                  <div class="row">
+                      <div class="col-sm-12">
+                          <label class="h6-design">Select Amenities</label>
+                          <div class="inneR-border-wrap">
+                              <div class="checkbox-flex-box autoflex-layout">
+                                  <div class="checkbox-design position-relative">
+                                      <input type="checkbox" name="Amenities" value="Central A/C">
+                                      <button class="checkbox-btn">Central A/C</button>
+                                  </div>
+                                  <div class="checkbox-design position-relative">
+                                    <input type="checkbox" name="Amenities" value="Maids Room">
+                                    <button class="checkbox-btn">Maids Room</button>
+                                </div>
+                                <div class="checkbox-design position-relative">
+                                  <input type="checkbox" name="Amenities" value="Balcony">
+                                  <button class="checkbox-btn">Balcony</button>
+                              </div>
+                              <div class="checkbox-design position-relative">
+                                <input type="checkbox" name="Amenities" value="Pets Allowed">
+                                <button class="checkbox-btn">Pets Allowed</button>
+                            </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              </div>
+              </div>
+                </div>
+            </ng-template>
+          </div>
+      </div>
         <div ngClass="block-item seven-block">
             <div ngClass="block-wrapper">
               <button ngClass="clear-btn" (click)="clearSearch()">Clear</button>
@@ -169,3 +263,4 @@
       </div>
     </div>
 </form>
+

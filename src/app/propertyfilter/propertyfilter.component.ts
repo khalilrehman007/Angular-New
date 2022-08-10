@@ -4,6 +4,7 @@ import {AppService} from "../service/app.service";
 import {FormControl, FormGroup} from "@angular/forms";
 import { Options } from '@angular-slider/ngx-slider';
 import {RentpropertiesComponent} from "../pages/rentproperties/rentproperties.component";
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-propertyfilter',
@@ -41,7 +42,7 @@ export class PropertyfilterComponent implements OnInit {
     // this.childToParentDataLoad.emit('hikmat')
   }
 
-  constructor(private activeRoute: ActivatedRoute,private service:AppService,private api: AppService,private route:Router) {
+  constructor(private activeRoute: ActivatedRoute,private service:AppService,private api: AppService,private route:Router,private modalService: NgbModal) {
     this.type                 = this.activeRoute.snapshot.queryParamMap.get('type');
     this.PropertyCategoryId   = this.activeRoute.snapshot.queryParamMap.get('PropertyCategoryId');
     this.RentTypeId           = this.activeRoute.snapshot.queryParamMap.get('RentTypeId');
@@ -225,7 +226,10 @@ export class PropertyfilterComponent implements OnInit {
     this.route.navigate(['/search'],{queryParams:params})
     this.childToParentDataLoad.emit(params)
   }
-
+  modelPropertyPictures :any=[]
+  openVerticallyCentered(content) {
+    this.modalService.open(content, { centered: true });
+  }
 
 
 }
