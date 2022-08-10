@@ -182,7 +182,11 @@ export class PropertyTypesComponent implements OnInit {
     this.formData.PlotSize = this.propertyTypeForm.value.apartmentSize;
     this.formData.BuildupArea = this.propertyTypeForm.value.buildupArea;
     this.formData.Elevation = this.propertyTypeForm.value.elevation;
-    this.formData.ConstructionAge = this.propertyTypeForm.value.constructionAge;
+    if(this.propertyData.hasAge) {
+      this.formData.ConstructionAge = this.propertyTypeForm.value.constructionAge;
+    } else {
+      this.formData.ConstructionAge = 0;
+    }
     this.formData.NoOfRoads = this.roadCount;
     this.formData.ValuationPropertyUnits = "";
     let temp:any = [];

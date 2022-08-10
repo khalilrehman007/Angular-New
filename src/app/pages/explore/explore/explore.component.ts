@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HeaderComponent } from '../../../header/header.component';
-import { FooterComponent } from '../../../footer/footer.component';
-import { BreadcrumbComponent } from '../../../breadcrumb/breadcrumb.component';
+import { AppService } from 'src/app/service/app.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms'
 
 @Component({
   selector: 'app-explore',
@@ -55,11 +54,17 @@ export class ExploreComponent implements OnInit {
       link: 'explore-city'
     }
   ]
-  country = [
-    {viewValue: 'UAE',value: 'UAE',img: '../../../../assets/images/flags/uae.svg'},
-    {viewValue: 'UAE',value: 'UAE',img: '../../../../assets/images/flags/uae.svg'},
-  ];
-  constructor() { }
+  country:any = [];
+  constructor(private service: AppService) {
+    this.service.LoadCountries().subscribe(e => {
+      let temp: any = e;
+      if (temp.message == "Country list fetched successfully") {
+        for (let country of temp.data) {
+          this.country.push({ viewValue: country.name, value: country.id });
+        }
+      }
+    });
+  }
 
   ngOnInit(): void {
   }

@@ -241,4 +241,7 @@ export class AppService {
   PropertyPackageType() {
     return this.http.get(this.apiurl + 'PropertyPackageType');
   }
+  ExploreCountry(id:any) {
+    return this.http.get(this.apiurl + 'ExploreCountry/' + id);
+  }
 }

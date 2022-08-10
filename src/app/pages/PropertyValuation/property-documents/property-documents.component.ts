@@ -34,6 +34,7 @@ export class PropertyDocumentsComponent implements OnInit {
   documentData: any = [];
   mapImage: any;
   termsAccepted:boolean = false;
+  reportPrice:any = 0;
 
   reportForm = new FormGroup({
     name: new FormControl("", Validators.required),
@@ -224,7 +225,7 @@ export class PropertyDocumentsComponent implements OnInit {
     if(!this.formData.ReportPackageId) {
       alert("Select Package Type");
       return;
-    } else if(!this.formData.ReportLanguageId) {
+    } else if(!this.formData.ReportLanguage) {
       alert("Select Report Language");
       return;
     } else if(this.reportForm.value.name == "") {
@@ -246,7 +247,12 @@ export class PropertyDocumentsComponent implements OnInit {
     this.formData.CustomerName = this.reportForm.value.name;
     this.formData.EmailAddress = this.reportForm.value.email;
     this.formData.InspectionDate = $("#formDate").val();
-    this.formData.InspectionDate = $("#formDate").val();
+    if(this.formData.InspectionRequired) {
+      this.formData.ValuationPayment = {"Email":this.reportForm.value.email, "CustomerName":this.reportForm.value.name, "TotalAmount":this.reportPrice+1000,"InspectionAmount":1000,"ReportAmount":this.reportPrice};
+    } else {
+      this.formData.ValuationPayment = {"Email":this.reportForm.value.email, "CustomerName":this.reportForm.value.name, "TotalAmount":this.reportPrice,"InspectionAmount":0,"ReportAmount":this.reportPrice};
+    }
+
     let userData:any = localStorage.getItem("user");
     userData = JSON.parse(userData);
     this.formData.UserId = userData.id;
@@ -260,6 +266,7 @@ export class PropertyDocumentsComponent implements OnInit {
     for(let i = 0; i < this.otherImages.length; i++) {
       valuationData.append(i+5+"_"+this.otherImages[i].file.name, this.otherImages[i].file);
     }
+    console.log(JSON.stringify(this.formData));
     let token:any = localStorage.getItem("token");
     token = JSON.parse(token);
     $.ajax({
@@ -293,12 +300,12 @@ export class PropertyDocumentsComponent implements OnInit {
     this.status2 = !this.status2;
   }
   reportLanguage(e:any) {
-    this.formData.ReportLanguageId = e;
+    this.formData.ReportLanguage = e;
   }
   acceptTerms(e:any) {
     this.termsAccepted = e.checked;
   }
-  SummaryReport(e: any, id: any) {
+  SummaryReport(e: any, id: any, price:any) {
     if (e == 0) {
       this.status8 = true;
       this.status9 = false;
@@ -306,6 +313,7 @@ export class PropertyDocumentsComponent implements OnInit {
       this.status9 = true;
       this.status8 = false;
     }
+    this.reportPrice = price;
     this.formData.ReportPackageId = id;
   }
   onInspectionSelect(e: any) {

@@ -617,11 +617,11 @@
                                                     </div>
                                                 </div>
                                                 <button class="summary_certificate-btn"
-                                                    (click)="SummaryReport(i, item.id)" *ngIf="i == 0"
+                                                    (click)="SummaryReport(i, item.id, valuationPrices.summeryCertificateSellingPrice)" *ngIf="i == 0"
                                                     [ngClass]="status8 ? 'report-btn-active' : ''">{{valuationPrices.summeryCertificateSellingPrice}}
                                                     AED Summary Certificate</button>
                                                 <button class="summary_certificate-btn"
-                                                    (click)="SummaryReport(i, item.id)" *ngIf="i == 1"
+                                                    (click)="SummaryReport(i, item.id, valuationPrices.detailCertificateSellingPrice)" *ngIf="i == 1"
                                                     [ngClass]="status9 ? 'report-btn-active' : ''">{{valuationPrices.detailCertificateSellingPrice}}
                                                     AED Detail Certificate</button>
                                             </div>
