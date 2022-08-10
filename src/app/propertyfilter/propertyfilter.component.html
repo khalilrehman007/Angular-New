@@ -218,7 +218,7 @@
               </div>
               </div>
               <div ngClass="col-xl-12 col-lg-12 col-sm-12">
-                <div class="select-features">
+                <div class="select-features mb-3">
                   <div class="row">
                       <div class="col-sm-12">
                           <label class="h6-design">Select Amenities</label>
@@ -245,6 +245,27 @@
                       </div>
                   </div>
               </div>
+              </div>
+              <div ngClass="col-xl-12 col-lg-12 col-sm-12">
+                <div ngClass="block-wrapper keywords_design-input">
+                  <label class="h6-design">Keywords</label>
+                  <mat-form-field class="example-chip-list" appearance="fill">
+                    <mat-label>Add Keywords</mat-label>
+                    <mat-chip-list #chipList aria-label="Keyword selection">
+                      <mat-chip *ngFor="let KeywordName of Keywords" (removed)="remove(KeywordName)">
+                        {{KeywordName.name}}
+                        <button matChipRemove>
+                          <mat-icon>cancel</mat-icon>
+                        </button>
+                      </mat-chip>
+                      <input placeholder="Keywords..."
+                             [matChipInputFor]="chipList"
+                             [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                             [matChipInputAddOnBlur]="addOnBlur"
+                             (matChipInputTokenEnd)="add($event)">
+                    </mat-chip-list>
+                  </mat-form-field>
+                </div>
               </div>
               </div>
                 </div>

@@ -1,11 +1,15 @@
 import { Component,OnInit,Output,EventEmitter} from '@angular/core';
+import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import {MatChipInputEvent} from '@angular/material/chips';
 import {ActivatedRoute, Router} from "@angular/router";
 import {AppService} from "../service/app.service";
 import {FormControl, FormGroup} from "@angular/forms";
 import { Options } from '@angular-slider/ngx-slider';
 import {RentpropertiesComponent} from "../pages/rentproperties/rentproperties.component";
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
+export interface KeywordString {
+  name: string;
+}
 @Component({
   selector: 'app-propertyfilter',
   templateUrl: './propertyfilter.component.html',
@@ -231,5 +235,28 @@ export class PropertyfilterComponent implements OnInit {
     this.modalService.open(content, { centered: true });
   }
 
+// Keywords
+addOnBlur = true;
+  readonly separatorKeysCodes = [ENTER, COMMA] as const;
+  Keywords: KeywordString[] = [{name: 'Property'}];
 
+  add(event: MatChipInputEvent): void {
+    const value = (event.value || '').trim();
+
+    // Add our fruit
+    if (value) {
+      this.Keywords.push({name: value});
+    }
+
+    // Clear the input value
+    event.chipInput!.clear();
+  }
+
+  remove(fruit: KeywordString): void {
+    const index = this.Keywords.indexOf(fruit);
+
+    if (index >= 0) {
+      this.Keywords.splice(index, 1);
+    }
+  }
 }
