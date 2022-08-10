@@ -32,7 +32,7 @@
                             <div ngClass="row">
 
 
-                                <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+                                <div ngClass="col-xl-4 col-lg-4 col-md-12 col-sm-12">
                                     <div ngClass="block-wrapper mb-4">
                                         <div ngClass="select-design">
                                             <label>Country</label>
@@ -53,7 +53,7 @@
                                     </div>
                                 </div>
 
-                                <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+                                <div ngClass="col-xl-4 col-lg-4 col-md-12 col-sm-12">
                                     <div ngClass="select-design">
                                         <label>City</label>
                                         <mat-form-field appearance="fill">
@@ -69,10 +69,22 @@
                                         <div *ngIf="validate['CityId'].errors['required']">City is required</div>
                                     </div>
                                 </div>
-
-
-
-
+                                <div ngClass="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+                                    <div ngClass="select-design">
+                                        <label>District</label>
+                                        <mat-form-field appearance="fill">
+                                            <mat-label>Select the District</mat-label>
+                                            <mat-select (selectionChange)="onCitySelect($event);">
+                                                <mat-option *ngFor="let listcity of city" [value]="listcity.value">
+                                                    {{ listcity.viewValue }}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                    <div *ngIf="submitted && validate['CityId'].errors" class="alert alert-danger">
+                                        <div *ngIf="validate['CityId'].errors['required']">City is required</div>
+                                    </div>
+                                </div>
                                 <div ngClass="address-sec">
                                     <div ngClass="block-wrapper-address">
                                         <label class="h6-design"></label>

@@ -85,7 +85,6 @@ import { ExploreCityComponent } from './pages/explore/explore-city/explore-city.
 import { ExploreDetailsComponent } from './pages/explore/explore-details/explore-details.component';
 import { DataAnalyticsComponent } from './pages/data-analytics/data-analytics/data-analytics.component';
 import { DataAnalyticsSearchResultsComponent } from './pages/data-analytics/data-analytics-search-results/data-analytics-search-results.component';
-import { BlogCategoryComponent } from './pages/blog-category/blog-category.component';
 import { ChatingComponent } from './pages/chating/chating.component';
 import { NgxEditorModule } from "ngx-editor";
 import {ScrollingModule} from '@angular/cdk/scrolling';
@@ -103,6 +102,12 @@ import { InvestorsComponent } from './pages/investors/investors.component';
 import { BuyPropertiesComponent } from './pages/buy-properties/buy-properties.component';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { TipsAdviceComponent } from './pages/blog-category/tips-advice/tips-advice.component';
+import { NewsBlogComponent } from './pages/blog-category/news-blog/news-blog.component';
+import { ExploreBlogComponent } from './pages/blog-category/explore-blog/explore-blog.component';
+import { LifeAtHomeBlogComponent } from './pages/blog-category/life-at-home-blog/life-at-home-blog.component';
+import { LawBlogComponent } from './pages/blog-category/law-blog/law-blog.component';
+import { MarketTrendsBlogComponent } from './pages/blog-category/market-trends-blog/market-trends-blog.component';
 
 
 @NgModule({
@@ -160,7 +165,6 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     ExploreDetailsComponent,
     DataAnalyticsComponent,
     DataAnalyticsSearchResultsComponent,
-    BlogCategoryComponent,
     ChatingComponent,
     ChatNewMessageComponent,
     PagenotfoundComponent,
@@ -173,7 +177,13 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     HelpCenterComponent,
     HowItWorksComponent,
     InvestorsComponent,
-    BuyPropertiesComponent
+    BuyPropertiesComponent,
+    TipsAdviceComponent,
+    NewsBlogComponent,
+    ExploreBlogComponent,
+    LifeAtHomeBlogComponent,
+    LawBlogComponent,
+    MarketTrendsBlogComponent
   ],
   imports: [
     BrowserModule,

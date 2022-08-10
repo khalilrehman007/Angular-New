@@ -41,8 +41,8 @@ export class AppService {
     // BlogBanners
     return this.http.get(this.apiurl + 'GetFeedbacks');
   }
-  LoadBlogById() {
-    return this.http.get(this.apiurl + 'blog/' + this.id);
+  LoadBlogById(id:any) {
+    return this.http.get(this.apiurl + 'blog/' + id);
   }
   LoadCountries() {
     return this.http.get(this.apiurl + 'Countries');

@@ -2,80 +2,13 @@
     <app-header></app-header>
 </header>
 <section [ngClass]="'inner-cntnt-wrapper slide-left-bar blogs_sec padd-0'">
-    <!-- <div ngClass="container_1280px">
-        <div ngClass="section-title">
-            <div ngClass="section-custom-title-left">
-                <h4>Blogs</h4>
-                <p>Some of our picked properties near your location.</p>
-            </div>
-        </div>
-        <div ngClass="row">
-            <div ngClass="col-lg-4 col-md-6 blog-places-col" *ngFor=" let blog of blogs">
-                <a [routerLink]="['/blogs/'+blog.id]" [queryParams] = "{title: blog.blogTitle}"  queryParamsHandling="merge">
-                    <img [src]="'https://www.ovaluate.com/'+blog.blogDocument.fileUrl" ngClass="img-fluid blog-image-homepage" alt="">
-                    <span ngClass="blog-tag">
-                        <img [src]="blog.src2" ngClass="img-fluid" alt="">
-                    </span>
-                    <div ngClass="blog-title-content">
-                        <h5>{{blog.blogTitle}}</h5>
-                        <span>{{blog.blogDate}}</span>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </div> -->
-    <!-- <section ngClass="blogs-header-bars">
-      <div ngClass="container_1280px">
-    <div ngClass="row">
-       <div ngClass="col-xl-8 col-lg-12 col-md-12 col-sm-12">
-       <div ngClass="blogs-link-list">
-       <ul ngClass="list-unstyled d-flex justify-content-sapcebw">
-        <li><a routerLink="" ngClass="active">Dashboard</a></li>
-        <li><a routerLink="">My Activities</a></li>
-        <li><a routerLink="">My Leads</a></li>
-        <li><a routerLink="">My Listings</a></li>
-        <li><a routerLink="">My Valuations</a></li>
-        <li>
-            <div ngClass="block-wrapper">
-                <div ngClass="cstm_dropdown-list dropdown-design-2 position-relative">
-                   <button ngClass="drop-down_btn" (click)="clickEvent()">More <mat-icon>keyboard_arrow_down</mat-icon></button>
-                   <div class="cstm_dropdown-menu" [ngClass]="status ? 'active' : 'notactive'">
-                     <ul ngClass="list-unstyled">
-                        <li><a routerLink="/blog-category">Tips & Advice</a></li>
-                        <li><a routerLink="/blog-category">News</a></li>
-                        <li><a routerLink="/blog-category">Explore</a></li>
-                        <li><a routerLink="/blog-category">Life at Homes</a></li>
-                        <li><a routerLink="/blog-category">Laws</a></li>
-                        <li><a routerLink="/blog-category">Market Trends</a></li>
-                        <li><a routerLink="/blog-category">More</a></li>
-                     </ul>
-                   </div>
-                </div>
-              </div>
-        </li>
-       </ul>
-       </div>
-       </div>
-       <div ngClass="col-xl-4 col-lg-12 col-md-12 col-sm-12">
-           <div ngClass="blogs-seach-blog">
-            <form>
-                <mat-form-field class="full-width input-design" appearance="fill">
-                    <mat-label>Blog Search</mat-label>
-                    <input matInput formControlName="BuildingName" type="text" placeholder="Please mention the name">
-                  </mat-form-field>
-            </form>
-           </div>
-        </div>
-    </div>
-       </div>
-    </section> -->
     <section ngClass="blog_inner-banner-blocks">
     <div ngClass="container_1280px">
     <div ngClass="exploredetails-breadcrumb-wrapper black-text-breadcrumb mt-3">
         <app-breadcrumb></app-breadcrumb>
     </div>
      <div ngClass="heading-32px-design mb-3">
-        <h2>Tips & Advice</h2>
+        <h2>Laws</h2>
         <p>Some of our picked properties near your location.</p>
      </div>
     </div>

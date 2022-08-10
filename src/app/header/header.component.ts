@@ -58,18 +58,6 @@ export class HeaderComponent implements OnInit {
       link: '/sellrent',
     },
     {
-      src: '../../assets/images/icons/land.svg',
-      class: 'nav-items sell',
-      text: 'Land',
-      link: '/search/land',
-    },
-    {
-      src: '../../assets/images/icons/building.svg',
-      class: 'nav-items commertials',
-      text: 'Commercials',
-      link: '/SellCommertial',
-    },
-    {
       src: '../../assets/images/icons/find-agents.svg',
       class: 'nav-items find-agents',
       text: 'Find Agents',
