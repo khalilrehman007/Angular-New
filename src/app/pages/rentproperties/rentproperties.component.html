@@ -161,32 +161,39 @@
         <div ngClass="col-xl-7 col-lg-12 col-md-12 col-sm-12 text-right">
           <div ngClass="pro-contact-details">
             <a routerLink="/agent-details/{{list.user.id}}" ngClass="grey-bordered-btn">Details</a>
-            <a routerLink="" ngClass="grey-bordered-btn">Call Now</a>
-            <a routerLink="" ngClass=""></a>
+            <div ngbDropdown placement="top-end" class="d-inline-block call-now_link">
+              <button type="button" class="grey-bordered-btn" id="dropdownBasic5" ngbDropdownToggle>Call Now</button>
+              <div ngbDropdownMenu aria-labelledby="dropdownBasic5">
+                 <p ngClass="mention_ref">Mention the reference</p>
+                 <p ngClass="oval_finder-red">"Ovaluate Finder" <span ngClass="ref_id">PF-AR-70404</span></p>
+              </div>
+            </div>
             <div ngbDropdown class="d-inline-block">
             <button ngClass="grren-btn grey-bordered-btn" id="dropdownBasic1" ngbDropdownToggle>Connect</button>
             <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-              <button ngbDropdownItem><a href=""><img src="{{call}}"> Call Now</a></button>
               <button ngbDropdownItem><a routerLink="/chat-new-message"><img src="{{chat}}"> Chat</a></button>
               <button ngbDropdownItem><a href=""><img src="{{whatsapp}}"> Whats APP</a></button>
               <button ngbDropdownItem><a href=""><img src="{{videocall}}"> Video Call</a></button>
               <button ngbDropdownItem><a href=""><img src="{{virtual}}"> Virtual Tour</a></button>
-              <button ngbDropdownItem><a href=""><img src="{{call}}"> Email</a></button>
+              <button ngbDropdownItem><a href="mailto:info@ovaluate.com"><img src="{{email}}"> Email</a></button>
             </div>
             </div>
             <div ngbDropdown class="d-inline-block">
             <button ngClass="grey-bordered-btn" id="dropdownBasic2" ngbDropdownToggle><img src="{{dots}}"></button>
             <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
               <h5>Share with:</h5>
-              <button ngbDropdownItem><a href=""><img src="{{fb}}"> Facebook</a></button>
-              <button ngbDropdownItem><a href=""><img src="{{whatsapp}}"> WhatsAPP</a></button>
-              <button ngbDropdownItem><a href=""><img src="{{twitter}}"> Twitter</a></button>
-              <button ngbDropdownItem><a href=""><img src="{{qr}}"> QR Scan</a></button>
+              <button ngbDropdownItem><a href="" ngClass="facebook"><img src="{{fb}}"> Facebook</a></button>
+              <button ngbDropdownItem><a href="" ngClass="whatsapp"><img src="{{whatsapp}}"> WhatsAPP</a></button>
+              <button ngbDropdownItem><a href="" ngClass="twitter"><img src="{{twitter}}"> Twitter</a></button>
+              <button ngbDropdownItem><a href="" ngClass="qr-scan"><img src="{{qr}}"> QR Scan</a></button>
             </div>
             </div>
             </div>
           </div>
         </div>
+    </div>
+    <div ngClass="last-contaceted-on">
+      <p><mat-icon> phone</mat-icon> Last contacted on: 9 Aug 2022</p>
     </div>
     <p ngClass="premium-tag">PREMIUM</p>
         </div>

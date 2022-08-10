@@ -24,7 +24,7 @@ export class AuthGuard implements CanActivate {
       this.route.navigate(['login']);
       return false;
     }
-    this.notifyService.showSuccess('Welcome To Your Profile.', "");
+    // this.notifyService.showSuccess('Welcome To Your Profile.', "");
     return true;
   }
 
