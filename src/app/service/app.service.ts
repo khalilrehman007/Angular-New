@@ -244,4 +244,7 @@ export class AppService {
   ExploreCountry(id:any) {
     return this.http.get(this.apiurl + 'ExploreCountry/' + id);
   }
+  ValuationDocumentTypes() {
+    return this.http.get(this.apiurl + 'ValuationDocumentTypes');
+  }
 }

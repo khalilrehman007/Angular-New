@@ -30,7 +30,7 @@ export class PropertyTypesComponent implements OnInit {
   roadCount:number = 0;
   formDetailData:any = {};
 
-  unitHMTL: any = [{ show: true, id: 1 }];
+  unitHMTL: any = [];
 
   room = [
     { viewValue: '01', value: '01' },
@@ -108,6 +108,9 @@ export class PropertyTypesComponent implements OnInit {
     this.purposeOfValuation = [];
     this.featuresData = [];
     this.propertyData = this.propertyType.filter(item => item.id == e.value)[0];
+    if(this.propertyData.hasUnits) {
+      this.unitHMTL= [{ show: true, id: 1 }];
+    }
     this.service.ValuationPurpose().subscribe((result) => {
       this.purposeOfValuation = result;
       this.purposeOfValuation = this.purposeOfValuation.data;
@@ -178,7 +181,11 @@ export class PropertyTypesComponent implements OnInit {
   getData() {
     this.formDetailData.PlotNo = this.propertyTypeForm.value.apartmentNo;
     this.formDetailData.PlotNo = this.propertyTypeForm.value.elevation;
-    this.formDetailData.elevation = this.propertyTypeForm.value.elevation;
+    if(this.propertyData.hasElevation) {
+      this.formDetailData.elevation = this.propertyTypeForm.value.elevation;
+    } else {
+      this.formDetailData.elevation = 0;
+    }
     this.formDetailData.PlotSize = this.propertyTypeForm.value.apartmentSize;
     this.formDetailData.BuildupArea = this.propertyTypeForm.value.buildupArea;
 
@@ -216,7 +223,6 @@ export class PropertyTypesComponent implements OnInit {
     }
     this.formDetailData.PropertyFeatures = temp;
     this.formData.PropertyFeatures = temp;
-    console.log(this.formData);
     localStorage.setItem('valuationDetailData', JSON.stringify(this.formDetailData));
     localStorage.setItem('valuationData', JSON.stringify(this.formData));
     this.router.navigate(['/PropertyDocument']);

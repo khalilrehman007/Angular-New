@@ -206,7 +206,6 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
       localStorage.removeItem("lat");
       localStorage.removeItem("lng");
       this.data.PropertyAddress = $("#searchLocation").val();
-      console.log(this.data);
       localStorage.setItem('valuationData', JSON.stringify(this.data));
       this.router.navigate(['/PropertyType']);
     }

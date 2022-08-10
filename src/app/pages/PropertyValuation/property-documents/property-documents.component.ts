@@ -35,17 +35,18 @@ export class PropertyDocumentsComponent implements OnInit {
   mapImage: any;
   termsAccepted:boolean = false;
   reportPrice:any = 0;
+  documentType:any = [];
 
   reportForm = new FormGroup({
     name: new FormControl("", Validators.required),
-    email: new FormControl("", [Validators.required, Validators.email])
+    phone: new FormControl("", Validators.required)
   })
 
   get name() {
     return this.reportForm.get("name");
   }
   get email() {
-    return this.reportForm.get("email");
+    return this.reportForm.get("phone");
   }
 
   handleChange(files: FileList, index: number) {
@@ -117,7 +118,7 @@ export class PropertyDocumentsComponent implements OnInit {
     };
     this.documentcount++;
   }
-  emiratesfun(files: FileList, index: number) {
+  emiratesfun(files: FileList, index: number, id:any) {
     if (files && files.length) {
       let found: number = -1;
       for (let i = 0; i < this.otherImages.length; i++) {
@@ -126,7 +127,7 @@ export class PropertyDocumentsComponent implements OnInit {
         }
       }
       if (found == -1) {
-        this.otherImages.push({ index: index, file: files[0] });
+        this.otherImages.push({ index: index, file: files[0], id:id });
       } else {
         this.otherImages[found].file = files[0];
       }
@@ -174,20 +175,20 @@ export class PropertyDocumentsComponent implements OnInit {
       this.documentData = [];
       let dataUrl: any = localStorage.getItem("mapImg");
       this.mapImage = this.dataURLtoFile(dataUrl, "map.jpg");
-      this.documentData.push({ "FileId": "1", "DocumentTypeId": "11", "FileName": "map.jpg", "Extension": "jpg", "IsScreenshot": "true" });
+      this.documentData.push({ "FileId": "1", "DocumentTypeId": this.documentType[this.documentType.length-1].id, "FileName": "map.jpg", "Extension": "jpg", "IsScreenshot": "true" });
       let extension: any = this.titleDeedImage.name.split(".");
       extension = extension[extension.length - 1];
-      this.documentData.push({ "FileId": "2", "DocumentTypeId": "1", "FileName": this.titleDeedImage.name, "Extension": extension, "IsScreenshot": "false" });
+      this.documentData.push({ "FileId": "2", "DocumentTypeId": 1, "FileName": this.titleDeedImage.name, "Extension": extension, "IsScreenshot": "false" });
       extension = this.affectionImage.name.split(".");
       extension = extension[extension.length - 1];
-      this.documentData.push({ "FileId": "3", "DocumentTypeId": "2", "FileName": this.affectionImage.name, "Extension": extension, "IsScreenshot": "false" });
+      this.documentData.push({ "FileId": "3", "DocumentTypeId": 2, "FileName": this.affectionImage.name, "Extension": extension, "IsScreenshot": "false" });
       extension = this.propertyImage.name.split(".");
       extension = extension[extension.length - 1];
-      this.documentData.push({ "FileId": "4", "DocumentTypeId": "3", "FileName": this.propertyImage.name, "Extension": extension, "IsScreenshot": "false" });
+      this.documentData.push({ "FileId": "4", "DocumentTypeId": 3, "FileName": this.propertyImage.name, "Extension": extension, "IsScreenshot": "false" });
       for (let i = 0; i < this.otherImages.length; i++) {
         extension = this.otherImages[i].file.name.split(".");
         extension = extension[extension.length - 1];
-        this.documentData.push({ "FileId": i + 5, "DocumentTypeId": "4", "FileName": this.otherImages[i].file.name, "Extension": extension, "IsScreenshot": "false" });
+        this.documentData.push({ "FileId": i + 5, "DocumentTypeId": this.otherImages[i].id, "FileName": this.otherImages[i].file.name, "Extension": extension, "IsScreenshot": "false" });
       }
       this.formData.Documents = this.documentData;
 
@@ -231,11 +232,8 @@ export class PropertyDocumentsComponent implements OnInit {
     } else if(this.reportForm.value.name == "") {
       alert("Please Enter Owner Name");
       return;
-    } else if(this.reportForm.value.email == "") {
+    } else if(this.reportForm.value.phone == "") {
       alert("Please Enter Owner Email");
-      return;
-    } else if(this.reportForm.controls["email"].invalid) {
-      alert("Please Enter Correct Email Address");
       return;
     } else if(!this.termsAccepted) {
       alert("Please Accept Terms and Conditions");
@@ -245,18 +243,20 @@ export class PropertyDocumentsComponent implements OnInit {
       return;
     }
     this.formData.CustomerName = this.reportForm.value.name;
-    this.formData.EmailAddress = this.reportForm.value.email;
+    this.formData.PhoneNumber = this.reportForm.value.phone;
     this.formData.InspectionDate = $("#formDate").val();
-    if(this.formData.InspectionRequired) {
-      this.formData.ValuationPayment = {"Email":this.reportForm.value.email, "CustomerName":this.reportForm.value.name, "TotalAmount":this.reportPrice+1000,"InspectionAmount":1000,"ReportAmount":this.reportPrice};
-    } else {
-      this.formData.ValuationPayment = {"Email":this.reportForm.value.email, "CustomerName":this.reportForm.value.name, "TotalAmount":this.reportPrice,"InspectionAmount":0,"ReportAmount":this.reportPrice};
-    }
 
     let userData:any = localStorage.getItem("user");
     userData = JSON.parse(userData);
     this.formData.UserId = userData.id;
+    this.formData.EmailAddress = userData.email;
     
+    if(this.formData.InspectionRequired) {
+      this.formData.ValuationPayment = {"Email":userData.email, "CustomerName":this.reportForm.value.name, "TotalAmount":this.reportPrice+1000,"InspectionAmount":1000,"ReportAmount":this.reportPrice};
+    } else {
+      this.formData.ValuationPayment = {"Email":userData.email, "CustomerName":this.reportForm.value.name, "TotalAmount":this.reportPrice,"InspectionAmount":0,"ReportAmount":this.reportPrice};
+    }
+
     let valuationData = new FormData();
     valuationData.append("ValuationRequest", JSON.stringify(this.formData));
     valuationData.append("1_map.jpg", this.mapImage);
@@ -266,7 +266,6 @@ export class PropertyDocumentsComponent implements OnInit {
     for(let i = 0; i < this.otherImages.length; i++) {
       valuationData.append(i+5+"_"+this.otherImages[i].file.name, this.otherImages[i].file);
     }
-    console.log(JSON.stringify(this.formData));
     let token:any = localStorage.getItem("token");
     token = JSON.parse(token);
     $.ajax({
@@ -280,19 +279,20 @@ export class PropertyDocumentsComponent implements OnInit {
       },
       dataType: "json",
       success: (res) => {
-        console.log(res);
-        // if(res.message == "Property Listing request completed successfully") {
-        //   localStorage.removeItem("propertyData");
-        //   this.route.navigate(['listpropertypublish'])
-        // }
+        if(res.message == "valuation request completed successfully") {
+          console.log(res)
+          localStorage.setItem("valuationResponse", res.data);
+          this.status3 = !this.status3;
+          this.status7 = !this.status7;
+          this.status2 = !this.status2;
+        } else {
+          alert("Something went wrong");
+        }
       },
       error: (err) => {
         console.log(err);
       }
     });
-    // this.status3 = !this.status3;
-    // this.status7 = !this.status7;
-    // this.status2 = !this.status2;
   }
   Prevshow2() {
     this.status3 = false;
@@ -325,6 +325,9 @@ export class PropertyDocumentsComponent implements OnInit {
     this.formData = localStorage.getItem("valuationData");
     this.formData = JSON.parse(this.formData);
     this.formData.InspectionRequired = false;
+    this.service.ValuationDocumentTypes().subscribe((result:any)=> {
+      this.documentType = result.data;
+    })
   }
 
   ngOnInit(): void {
