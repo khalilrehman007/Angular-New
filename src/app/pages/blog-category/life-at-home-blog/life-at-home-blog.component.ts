@@ -52,8 +52,13 @@ export class LifeAtHomeBlogComponent implements OnInit {
     }
   ]
   blogs: any;
+  lifeatHome: any;
   constructor(private service:AppService) { 
     this.LoadBlogs();
+    this.service.BlogCategorybyId(4).subscribe((result:any)=> {
+      this.lifeatHome = result.data;
+      console.log(this.lifeatHome);
+    })
   }
 
   ngOnInit(): void {

@@ -52,8 +52,13 @@ export class ExploreBlogComponent implements OnInit {
     }
   ]
   blogs: any;
+  exploreBlog: any;
   constructor(private service:AppService) { 
     this.LoadBlogs();
+    this.service.BlogCategorybyId(3).subscribe((result:any)=> {
+      this.exploreBlog = result.data;
+      console.log(this.exploreBlog);
+    })
   }
 
   ngOnInit(): void {

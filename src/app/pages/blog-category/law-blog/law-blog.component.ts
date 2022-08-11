@@ -52,8 +52,13 @@ export class LawBlogComponent implements OnInit {
     }
   ]
   blogs: any;
+  lawBlogs: any;
   constructor(private service:AppService) { 
     this.LoadBlogs();
+    this.service.BlogCategorybyId(5).subscribe((result:any)=> {
+      this.lawBlogs = result.data;
+      console.log(this.lawBlogs);
+    })
   }
 
   ngOnInit(): void {

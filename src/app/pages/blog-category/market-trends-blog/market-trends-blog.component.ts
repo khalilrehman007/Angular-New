@@ -52,8 +52,13 @@ export class MarketTrendsBlogComponent implements OnInit {
     }
   ]
   blogs: any;
+  marketTrendsBlog: any;
   constructor(private service:AppService) { 
     this.LoadBlogs();
+    this.service.BlogCategorybyId(6).subscribe((result:any)=> {
+      this.marketTrendsBlog = result.data;
+      console.log(this.marketTrendsBlog);
+    })
   }
 
   ngOnInit(): void {
