@@ -14,7 +14,7 @@
                                 <div ngClass="select-design">
                                   <mat-form-field appearance="fill">
                                     <mat-label>Countries</mat-label>
-                                    <mat-select>
+                                    <mat-select (selectionChange)="onCountrySelect($event)">
                                       <mat-option
                                         *ngFor="let list of country"
                                         [value]="list.value"
@@ -52,7 +52,7 @@
             <div ngClass="explore-breadcrumb-wrapper black-text-breadcrumb">
                 <app-breadcrumb></app-breadcrumb>
             </div>
-            <div ngClass="explore-word-sec">
+            <div ngClass="explore-word-sec" *ngIf="selectedCountry">
                 <div ngClass="d-flex justify-content-spacebw mb-4">
                     <div ngClass="hp-design">
                         <h4>Explore World</h4>
@@ -64,23 +64,23 @@
                 </div>
                 <div ngClass="explore-locations-block-designs">
                     <div ngClass="hp-design mb-4">
-                        <h4>UAE</h4>
+                        <h4>{{selectedCountry.viewValue}}</h4>
                     </div>
                     <div ngClass="explore-locations-lists">
-                        <div ngClass="row">
-                            <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-4" *ngFor="let loc of citylocations">
+                        <div ngClass="row" *ngIf="cityData.length > 0">
+                            <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-4" *ngFor="let item of cityData">
                                 <div ngClass="loc-div-block position-relative">
                                     <div ngClass="loc-img-design">
-                                        <img src="{{loc.src}}">
+                                        <img src="https://beta.ovaluate.com/{{item.cityDocument.fileUrl}}">
                                     </div>
                                     <div ngClass="loc-img-cntnt">
                                         <div ngClass="d-flex justify-content-spacebw align-items-center">
                                             <div ngClass="hp-design white">
-                                                <h4 ngClass="city-name">{{loc.cityname}}</h4>
-                                                <p ngClass="country-name">{{loc.countryname}}</p>
+                                                <h4 ngClass="city-name">{{item.name}}</h4>
+                                                <p ngClass="country-name">{{item.country.name}}</p>
                                             </div>
                                             <div ngClass="explore-link">
-                                                <a routerLink="/{{loc.link}}">Explore <mat-icon>keyboard_arrow_right</mat-icon></a>
+                                                <a routerLink="/explore-city">Explore <mat-icon>keyboard_arrow_right</mat-icon></a>
                                             </div>
                                         </div>
                                     </div>
@@ -89,12 +89,10 @@
                         </div>
                     </div>
                 </div>
-                <div ngClass="explore-description_sec mt-4">
+                <div ngClass="explore-description_sec mt-4" *ngIf="selectedCountry">
                     <div ngClass="hp-design hp-explore-spacing">
-                        <h4>Explore UAE</h4>
-                        <p>Whether you are looking to rent, buy or sell your home, Zillow's directory of local real estate agents and brokers in Daytona Beach FL connects you with professionals who can help meet your needs. Because the Daytona Beach FL real estate market is unique, it's important to choose a real estate agent or broker with local expertise to guide you through the process of renting, buying or selling your next home. Our directory helps you find real estate professionals who specialize in buying, selling, foreclosures, or relocation - among many other options. Alternatively, you could work with a local agent or real estate broker who provides an entire suite of buying and selling services.</p>
-                        <p>No matter what type of real estate needs you have, finding the local real estate professional you want to work with is the first step. The Daytona Beach FL real estate directory lets you view and compare real estate agents, read reviews, see an agent's current listings and past sales, and contact agents directly from their profile pages on Zillow.</p>
-                        <p>Zillow is the leading real estate and rental marketplace dedicated to empowering consumers with data, inspiration and knowledge around the place they call home, and connecting them with the best local professionals who can help.</p>
+                        <h4>Explore {{selectedCountry.viewValue}}</h4>
+                        <p>{{selectedCountry.desc}}.</p>
                     </div>
                 </div>
             </div>

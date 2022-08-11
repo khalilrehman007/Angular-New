@@ -247,4 +247,7 @@ export class AppService {
   ValuationDocumentTypes() {
     return this.http.get(this.apiurl + 'ValuationDocumentTypes');
   }
+  FindCities(data:any) {
+    return this.http.post(this.apiurl + 'FindCities', data);
+  }
 }
