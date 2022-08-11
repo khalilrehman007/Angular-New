@@ -1,114 +1,71 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import {COMMA, ENTER} from '@angular/cdk/keycodes';
-import { HeaderComponent } from '../../../header/header.component';
-import { FooterComponent } from '../../../footer/footer.component';
-import { BreadcrumbComponent } from '../../../breadcrumb/breadcrumb.component';
-import {MatChipInputEvent} from '@angular/material/chips';
-import {MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
-import {Observable} from 'rxjs';
-import {map, startWith} from 'rxjs/operators';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { MatChipInputEvent } from '@angular/material/chips';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
+import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { ActivatedRoute } from '@angular/router';
+import { AppService } from 'src/app/service/app.service';
 @Component({
   selector: 'app-explore-city',
   templateUrl: './explore-city.component.html',
   styleUrls: ['./explore-city.component.scss']
 })
 export class ExploreCityComponent implements OnInit {
-  uaeflag='../../../../assets/images/flags/uae.svg'
-  search='../../../../assets/images/search.svg'
-  citylocations = [
-    {
-      src:'../../../../assets/images/location-img.png',
-      cityname:'Al Barsha',
-      desc:'Al Barsha is a safe and quiet area that offers something for everyone: be it singles looking for wallet-friendly apartments with Metro connectivity or families looking to get away from the hustle and bustle of city life.',
-      link: 'explore-details'
-    },
-    {
-      src:'../../../../assets/images/location-img.png',
-      cityname:'Al Barsha',
-      desc:'Al Barsha is a safe and quiet area that offers something for everyone: be it singles looking for wallet-friendly apartments with Metro connectivity or families looking to get away from the hustle and bustle of city life.',
-      link: 'explore-details'
-    },
-    {
-      src:'../../../../assets/images/location-img.png',
-      cityname:'Al Barsha',
-      desc:'Al Barsha is a safe and quiet area that offers something for everyone: be it singles looking for wallet-friendly apartments with Metro connectivity or families looking to get away from the hustle and bustle of city life.',
-      link: 'explore-details'
-    },
-    {
-      src:'../../../../assets/images/location-img.png',
-      cityname:'Al Barsha',
-      desc:'Al Barsha is a safe and quiet area that offers something for everyone: be it singles looking for wallet-friendly apartments with Metro connectivity or families looking to get away from the hustle and bustle of city life.',
-      link: 'explore-details'
-    },
-    {
-      src:'../../../../assets/images/location-img.png',
-      cityname:'Al Barsha',
-      desc:'Al Barsha is a safe and quiet area that offers something for everyone: be it singles looking for wallet-friendly apartments with Metro connectivity or families looking to get away from the hustle and bustle of city life.',
-      link: 'explore-details'
-    },
-    {
-      src:'../../../../assets/images/location-img.png',
-      cityname:'Al Barsha',
-      desc:'Al Barsha is a safe and quiet area that offers something for everyone: be it singles looking for wallet-friendly apartments with Metro connectivity or families looking to get away from the hustle and bustle of city life.',
-      link: 'explore-details'
-    },
-    {
-      src:'../../../../assets/images/location-img.png',
-      cityname:'Al Barsha',
-      desc:'Al Barsha is a safe and quiet area that offers something for everyone: be it singles looking for wallet-friendly apartments with Metro connectivity or families looking to get away from the hustle and bustle of city life.',
-      link: 'explore-details'
-    },
-    {
-      src:'../../../../assets/images/location-img.png',
-      cityname:'Al Barsha',
-      desc:'Al Barsha is a safe and quiet area that offers something for everyone: be it singles looking for wallet-friendly apartments with Metro connectivity or families looking to get away from the hustle and bustle of city life.',
-      link: 'explore-details'
-    },
-    {
-      src:'../../../../assets/images/location-img.png',
-      cityname:'Al Barsha',
-      desc:'Al Barsha is a safe and quiet area that offers something for everyone: be it singles looking for wallet-friendly apartments with Metro connectivity or families looking to get away from the hustle and bustle of city life.',
-      link: 'explore-details'
-    },
-    {
-      src:'../../../../assets/images/location-img.png',
-      cityname:'Al Barsha',
-      desc:'Al Barsha is a safe and quiet area that offers something for everyone: be it singles looking for wallet-friendly apartments with Metro connectivity or families looking to get away from the hustle and bustle of city life.',
-      link: 'explore-details'
-    },
-  ]
+  uaeflag = '../../../../assets/images/flags/uae.svg'
+  search = '../../../../assets/images/search.svg'
   country = [
-    {viewValue: 'UAE',value: 'UAE',img: '../../../../assets/images/flags/uae.svg'},
-    {viewValue: 'UAE',value: 'UAE',img: '../../../../assets/images/flags/uae.svg'},
+    { viewValue: 'UAE', value: 'UAE', img: '../../../../assets/images/flags/uae.svg' },
+    { viewValue: 'UAE', value: 'UAE', img: '../../../../assets/images/flags/uae.svg' },
   ];
-  constructor() {
-    this.searchfilter = this.searchctrl.valueChanges.pipe(
-      startWith(null),
-      map((fruit: string | null) => (fruit ? this._filter(fruit) : this.searchList.slice())),
-    );
-   }
-
-  ngOnInit(): void {
-  }
-  // Search Code
+  id: any;
+  cityData: any = {};
+  districtData: any = [];
   separatorKeysCodes: number[] = [ENTER, COMMA];
   searchctrl = new FormControl('');
   searchfilter: Observable<string[]>;
   SearchKeyword: string[] = [];
-  searchList: string[] = ['Dubai', 'UAE', 'Dubai', 'UAE', 'Dubai'];
+  searchList: string[] = [];
+
+  constructor(private route: ActivatedRoute, private service: AppService) {
+    this.route.params.subscribe(params => {
+      this.id = params['id'];
+    });
+    this.searchfilter = this.searchctrl.valueChanges.pipe(
+      startWith(null),
+      map((fruit: string | null) => (fruit ? this._filter(fruit) : this.searchList.slice())),
+    );
+    this.service.ExploreCity(this.id).subscribe((result:any) => {
+      this.cityData = result.data;
+    })
+    this.service.FindDistricts({ "CityId": this.id, "Locations": [] }).subscribe((result: any) => {
+      this.districtData = result.data;
+      for (let i = 0; i < this.districtData.length; i++) {
+        this.searchList.push(this.districtData[i].name)
+      }
+    })
+  }
+  ngOnInit(): void {
+  }
+  checkDistrict(city: any) {
+    if (this.SearchKeyword.length == 0) {
+      return false;
+    } else if (this.SearchKeyword.indexOf(city) == -1) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
   @ViewChild('SearchInput') SearchInput: ElementRef<HTMLInputElement>;
   add(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
 
-    // Add our fruit
     if (value) {
       this.SearchKeyword.push(value);
     }
 
-    // Clear the input value
     event.chipInput!.clear();
 
     this.searchctrl.setValue(null);

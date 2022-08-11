@@ -121,7 +121,7 @@ const routes: Routes = [
   { path: "PropertyCompare", component: PropertyCompareComponent },
   { path: "explore", component: ExploreComponent },
   { path: "explore-city/:id", component: ExploreCityComponent },
-  { path: "explore-details", component: ExploreDetailsComponent },
+  { path: "explore-details/:id", component: ExploreDetailsComponent },
   { path: "data-analytics", component: DataAnalyticsComponent },
   { path: "data-analytics-search-result", component: DataAnalyticsSearchResultsComponent },
   { path: "chat", component: ChatingComponent },
