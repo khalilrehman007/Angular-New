@@ -120,7 +120,7 @@ const routes: Routes = [
   { path: "mapview", component: MapviewComponent },
   { path: "PropertyCompare", component: PropertyCompareComponent },
   { path: "explore", component: ExploreComponent },
-  { path: "explore-city", component: ExploreCityComponent },
+  { path: "explore-city/:id", component: ExploreCityComponent },
   { path: "explore-details", component: ExploreDetailsComponent },
   { path: "data-analytics", component: DataAnalyticsComponent },
   { path: "data-analytics-search-result", component: DataAnalyticsSearchResultsComponent },

@@ -87,8 +87,8 @@
                         <h4>{{selectedCountry.viewValue}}</h4>
                     </div>
                     <div ngClass="explore-locations-lists">
-                        <div ngClass="row" *ngIf="cityData.length > 0">
-                            <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-4" *ngFor="let item of cityData">
+                        <div class="row" *ngIf="cityData.length > 0">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-4" *ngFor="let item of cityData" [ngClass]="checkCity(item.name) ? 'd-none' : ''">
                                 <div ngClass="loc-div-block position-relative">
                                     <div ngClass="loc-img-design">
                                         <img src="https://beta.ovaluate.com/{{item.cityDocument.fileUrl}}">
@@ -100,7 +100,7 @@
                                                 <p ngClass="country-name">{{item.country.name}}</p>
                                             </div>
                                             <div ngClass="explore-link">
-                                                <a routerLink="/explore-city">Explore <mat-icon>keyboard_arrow_right</mat-icon></a>
+                                                <a routerLink="/explore-city/{{item.id}}">Explore <mat-icon>keyboard_arrow_right</mat-icon></a>
                                             </div>
                                         </div>
                                     </div>

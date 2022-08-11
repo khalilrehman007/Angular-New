@@ -14,14 +14,34 @@
                 <form>
                     <div ngClass="row">
                         <div ngClass="col-xl-11 col-lg-11 col-md-11 col-sm-12">
-                            <div ngClass="block-wrapper">
-                                <div ngClass="position-relative">
-                                    <mat-form-field class="example-full-width input-design" appearance="fill">
-                                        <mat-label>Search by</mat-label>
-                                        <input matInput placeholder="Location Name">
-                                      </mat-form-field>
-                                  </div>
-                            </div>
+                            <div ngClass="block-wrapper height-100">
+                                <mat-form-field class="example-chip-list input-design searh_input-design height-100" appearance="fill">
+                                  <mat-label>Search</mat-label>
+                                  <mat-chip-list #chipList aria-label="Search selection">
+                                    <mat-chip
+                                      *ngFor="let SearchValue of SearchKeyword"
+                                      (removed)="remove(SearchValue)">
+                                      {{SearchValue}}
+                                      <button matChipRemove>
+                                        <mat-icon>cancel</mat-icon>
+                                      </button>
+                                    </mat-chip>
+                                    <input
+                                      placeholder="Location, Project Name"
+                                      #SearchInput
+                                      [formControl]="searchctrl"
+                                      [matAutocomplete]="auto"
+                                      [matChipInputFor]="chipList"
+                                      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                      (matChipInputTokenEnd)="add($event)">
+                                  </mat-chip-list>
+                                  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+                                    <mat-option *ngFor="let SearchValue of searchfilter | async" [value]="SearchValue">
+                                      {{SearchValue}}
+                                    </mat-option>
+                                  </mat-autocomplete>
+                                </mat-form-field>
+                              </div>
                         </div>
                         <div ngClass="col-xl-1 col-lg-1 col-md-1 col-sm-12">
                             <div ngClass="search-btn-block">
