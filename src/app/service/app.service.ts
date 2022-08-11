@@ -259,4 +259,7 @@ export class AppService {
   BlogCategories() {
     return this.http.get(this.apiurl + 'BlogCategories');
   }
+  BlogCategorybyId(id:any) {
+    return this.http.get(this.apiurl + 'BlogCategory/' + id);
+  }
 }

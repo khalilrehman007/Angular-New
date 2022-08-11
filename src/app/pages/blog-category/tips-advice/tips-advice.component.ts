@@ -52,8 +52,12 @@ export class TipsAdviceComponent implements OnInit {
     }
   ]
   blogs: any;
-  constructor(private service:AppService) { 
-    this.LoadBlogs();
+  tipsAndAdvice: any;
+  constructor(private service:AppService) {
+    this.service.BlogCategorybyId(1).subscribe((result:any)=> {
+      this.tipsAndAdvice = result.data;
+      console.log(this.tipsAndAdvice);
+    })
   }
 
   ngOnInit(): void {
