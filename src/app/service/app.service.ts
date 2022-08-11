@@ -250,4 +250,10 @@ export class AppService {
   FindCities(data:any) {
     return this.http.post(this.apiurl + 'FindCities', data);
   }
+  BlogLatestNews() {
+    return this.http.get(this.apiurl + 'BlogLatestNews');
+  }
+  BlogFeatures() {
+    return this.http.get(this.apiurl + 'BlogFeatures');
+  }
 }

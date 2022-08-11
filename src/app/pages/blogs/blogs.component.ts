@@ -52,8 +52,18 @@ export class BlogsComponent implements OnInit {
     }
   ]
   blogs: any;
+  latestNews:any = [];
+  featureBlogs: any;
   constructor(private service:AppService) { 
     this.LoadBlogs();
+    this.service.BlogLatestNews().subscribe((result:any)=> {
+      this.latestNews.push(result.data[0]);
+      this.latestNews.push(result.data[1]);
+      this.latestNews.push(result.data[2]);
+    })
+    this.service.BlogFeatures().subscribe((result:any)=> {
+      this.featureBlogs = result.data;
+    })
   }
 
   ngOnInit(): void {
@@ -62,8 +72,6 @@ export class BlogsComponent implements OnInit {
     this.service.LoadBlogs().subscribe(data=>{
       this.blogs=data;
       this.blogs=this.blogs.data;
-      console.log(this.blogs);
-
     });
   }
   status: boolean = false;
