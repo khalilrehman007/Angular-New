@@ -62,16 +62,26 @@ export class ExploreComponent implements OnInit {
   cityData:any = [];
   country:any = [];
   selectedCountry:any;
+  separatorKeysCodesExplore: number[] = [ENTER, COMMA];
+  searchctrlExplore = new FormControl('');
+  searchfilterExplore: Observable<string[]>;
+  SearchKeywordExplore: string[] = [];
+  searchListExplore:any = [];
+
+
   onCountrySelect(e:any)  {
+    this.searchListExplore = [];
     this.selectedCountry = this.country.filter((item:any)=> {
       if(item.value == e.value) {
         return item;
       }
     })
     this.selectedCountry = this.selectedCountry[0];
-    console.log(this.selectedCountry);
     this.service.FindCities({ "CountryId":e.value, "Locations" : [ ] }).subscribe((result:any)=> {
       this.cityData = result.data;
+      for(let i = 0; i < this.cityData.length; i++) {
+        this.searchListExplore.push(this.cityData[i].name)
+      }
     })
   }
   constructor(private service: AppService) {
@@ -91,12 +101,6 @@ export class ExploreComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  // Search Code
-  separatorKeysCodesExplore: number[] = [ENTER, COMMA];
-  searchctrlExplore = new FormControl('');
-  searchfilterExplore: Observable<string[]>;
-  SearchKeywordExplore: string[] = [];
-  searchListExplore: string[] = ['Dubai', 'UAE', 'Dubai', 'UAE', 'Dubai'];
 
   @ViewChild('SearchInput') SearchInput: ElementRef<HTMLInputElement>;
   add(event: MatChipInputEvent): void {
@@ -120,7 +124,15 @@ export class ExploreComponent implements OnInit {
       this.SearchKeywordExplore.splice(index, 1);
     }
   }
-
+  checkCity(city:any) {
+    if(this.SearchKeywordExplore.length == 0) {
+      return false;
+    } else if(this.SearchKeywordExplore.indexOf(city) == -1) {
+      return true;
+    } else {
+      return false;
+    }
+  }
   selected(event: MatAutocompleteSelectedEvent): void {
     this.SearchKeywordExplore.push(event.option.viewValue);
     this.SearchInput.nativeElement.value = '';
