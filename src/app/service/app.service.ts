@@ -265,4 +265,7 @@ export class AppService {
   BlogCategorybyId(id:any) {
     return this.http.get(this.apiurl + 'BlogCategory/' + id);
   }
+  ExploreCity(id:any) {
+    return this.http.get(this.apiurl + 'ExploreCity/' + id);
+  }
 }
