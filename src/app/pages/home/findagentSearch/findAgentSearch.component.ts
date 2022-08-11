@@ -21,19 +21,22 @@ export class FindAgentSearchComponent implements OnInit {
       startWith(null),
       map((fruit: string | null) => (fruit ? this._filter(fruit) : this.searchList.slice())),
     );
+
+    this.getExpertIn();
+    this.getSpokenLanguages();
   }
 
   ngOnInit(): void {
   }
   status: boolean = false;
   clickEvent(){
-      this.status = !this.status;  
-      this.status1 = false;     
+      this.status = !this.status;
+      this.status1 = false;
   }
   status1: boolean = false;
   clickEvent1(){
-      this.status1 = !this.status1; 
-      this.status = false;      
+      this.status1 = !this.status1;
+      this.status = false;
   }
   // Search Code
   separatorKeysCodes: number[] = [ENTER, COMMA];
@@ -75,5 +78,31 @@ export class FindAgentSearchComponent implements OnInit {
     const filterValue = value.toLowerCase();
 
     return this.searchList.filter(fruit => fruit.toLowerCase().includes(filterValue));
+  }
+
+  ExpertIn :any = [];
+  getExpertIn(){
+    let tempData :Array<Object> = []
+    this.service.LoadExpertIn().subscribe(data=>{
+      let response: any = data;
+      response.data.forEach((element, i) => {
+        tempData.push(
+          {id: element.id, name: element.name});
+      })
+    });
+    this.ExpertIn = tempData
+    console.log(this.ExpertIn)
+  }
+  SpokenLanguages :any = [];
+  getSpokenLanguages(){
+    let tempData :Array<Object> = []
+    this.service.LoadSpokenLanguages().subscribe(data=>{
+      let response: any = data;
+      response.data.forEach((element, i) => {
+        tempData.push(
+          {id: element.id, name: element.name});
+      })
+    });
+    this.SpokenLanguages = tempData
   }
 }

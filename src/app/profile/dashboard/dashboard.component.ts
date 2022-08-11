@@ -128,6 +128,10 @@ export class DashboardComponent implements OnInit {
     this.getTabCount();
     this.LoadvaluationDashboard();
     this.getLoadMyValuaionListing();
+    this.getSpokenLanguages();
+    this.getExpertIn();
+    this.getNationality();
+    this.getDistricts();
     let temp: any = localStorage.getItem("user");
     this.service.UserProfile(JSON.parse(temp).id).subscribe((result: any) => {
       this.userData = result.data;
@@ -471,6 +475,42 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+  otherImages: any = [];
+  uploadedDocuments: any = [];
+  emirate: any = [];
+  emiratesfun(files: FileList, index: number) {
+    if (files && files.length) {
+      let found: number = -1;
+      for (let i = 0; i < this.otherImages.length; i++) {
+        if (this.otherImages[i].index == index) {
+          found = i;
+        }
+      }
+      if (found == -1) {
+        this.otherImages.push({ index: index, file: files[0] });
+      } else {
+        this.otherImages[found].file = files[0];
+      }
+      this.emirate[index] = files[0].name;
+      const reader = new FileReader();
+      reader.readAsDataURL(files[0]);
+      reader.onload = () => {
+        found = -1;
+        for (let i = 0; i < this.uploadedDocuments.length; i++) {
+          if (this.uploadedDocuments[i].index == index) {
+            found = i;
+          }
+        }
+        if (found == -1) {
+          this.uploadedDocuments.push({ index: index, documentName: "Other Documents", fileName: files[0].name, imgsrc: reader.result });
+        } else {
+          this.uploadedDocuments[found].fileName = files[0].name;
+          this.uploadedDocuments[found].imgsrc = reader.result;
+        }
+      };
+    }
+  }
+
   listingAll: any = [];
   getLoadListing() {
     let tempData: Array<Object> = []
@@ -502,6 +542,205 @@ export class DashboardComponent implements OnInit {
   }
   pageChanged(value: any) {
     this.page = value;
+  }
+
+
+  agnetBorker = new FormGroup({
+    BRNNo: new FormControl(""),
+  });
+
+  ExpertIn :any = [];
+  getExpertIn(){
+    let tempData :Array<Object> = []
+    this.service.LoadExpertIn().subscribe(data=>{
+      let response: any = data;
+      response.data.forEach((element, i) => {
+        tempData.push(
+          {id: element.id, name: element.name});
+      })
+    });
+    this.ExpertIn = tempData
+    console.log(this.ExpertIn)
+  }
+  SpokenLanguages :any = [];
+  getSpokenLanguages(){
+    let tempData :Array<Object> = []
+    this.service.LoadSpokenLanguages().subscribe(data=>{
+      let response: any = data;
+      response.data.forEach((element, i) => {
+        tempData.push(
+          {id: element.id, name: element.name});
+      })
+    });
+    this.SpokenLanguages = tempData
+  }
+
+
+  Nationality :any = [];
+  getNationality(){
+    let tempData :Array<Object> = []
+    this.service.LoadNationality().subscribe(data=>{
+      let response: any = data;
+      response.data.forEach((element, i) => {
+        tempData.push(
+          {id: element.id, name: element.name});
+      })
+    });
+    this.Nationality = tempData
+  }
+
+  expertArray :any = [];
+  expertsChange(e:any,value:any):void {
+    let exists = true;
+    this.expertArray.forEach((element, i) => {
+      if(element == value){
+        exists = false
+      }
+    })
+    if(exists){
+      this.expertArray.push(value)
+    }else{
+      this.expertArray.forEach((element,index)=>{
+        if(element==value) delete this.expertArray[index];
+      });
+    }
+  }
+
+  languagesArray :any = [];
+  languagesArrayChange(e:any,value:any):void {
+    let exists = true;
+    this.languagesArray.forEach((element, i) => {
+      if(element == value){
+        exists = false
+      }
+    })
+    if(exists){
+      this.languagesArray.push(value)
+    }else{
+      this.languagesArray.forEach((element,index)=>{
+        if(element==value) delete this.languagesArray[index];
+      });
+    }
+  }
+
+  districts :any = [];
+  getDistricts(){
+    let tempData :Array<Object> = []
+    this.service.LoadDistrict(1).subscribe(data=>{
+      let response: any = data;
+      response.data.forEach((element, i) => {
+        tempData.push(
+          {id: element.id, name: element.name});
+      })
+    });
+    this.districts = tempData
+  }
+
+  districtsIds :any = []
+  getDistrictsIds(e: number) {
+    this.districtsIds.push(e)
+  }
+
+  NationalityId :any;
+  onChangeNationality(event) {
+    this.NationalityId = event.value;
+  }
+
+  agentFormData: any = {};
+
+
+  finalBrokerDocments :any = []
+  documentsObject(){
+    this.uploadedDocuments.forEach((element, i) => {
+      let extension: any = element.fileName.split(".");
+      this.finalBrokerDocments.push({ "FileId": i, "RegistrationDocumentTypeId": i.toString(), "FileName": element.fileName, "Extension": extension[1] });
+    })
+  }
+
+  agentBrokerId :any;
+  imageObject :any = []
+  getAgentData() {
+    if (this.NationalityId == null || this.NationalityId == undefined) {
+      this.notifyService.showError('Please Nationality', "Error");
+    }
+    if (this.otherImages.length < 3) {
+      this.notifyService.showError('Please Select All File', "Error");
+    } else {
+      let expertObject: any = []
+      this.expertArray.forEach((element, i) => {
+        expertObject.push({"ExpertIn":element})
+      })
+
+      let langObject: any = []
+      this.languagesArray.forEach((element, i) => {
+        langObject.push({SpokenLanguageId: element})
+      })
+
+      let districtsIdsObject: any = []
+      this.districtsIds.forEach((element, i) => {
+        districtsIdsObject.push({DistrictId: element})
+      })
+
+
+      this.agentFormData.BRNNo = this.agnetBorker.value.BRNNo;
+
+      let userData: any = localStorage.getItem("user");
+      userData = JSON.parse(userData);
+      this.agentFormData.UserId = userData.id.toString();
+      this.agentFormData.AboutMe = 'test';
+      if (this.agentBrokerId == null) {
+        this.agentFormData.Id = "0";
+      } else {
+        this.agentFormData.Id = this.agentBrokerId.toString();
+      }
+
+      this.agentFormData.NationalityId = this.NationalityId.toString();
+      this.agentFormData.AgentLanguages = langObject;
+      this.agentFormData.AgentAreas = districtsIdsObject;
+      // this.agentFormData.ExpertIn   = expertObject;
+      this.documentsObject();
+      this.agentFormData.Documents = this.finalBrokerDocments
+      this.uploadedDocuments = [];
+      this.finalBrokerDocments = [];
+
+      let valuationData = new FormData();
+      valuationData.delete('AgentRequest')
+      valuationData.append("AgentRequest", JSON.stringify(this.agentFormData));
+
+      for (let i = 0; i < this.imageObject.length; i++) {
+        valuationData.delete(this.imageObject[i])
+      }
+
+      for(let i = 0; i < 3; i++) {
+        this.imageObject.push()
+        valuationData.append(i+"_"+this.otherImages[i].file.name, this.otherImages[i].file);
+      }
+      let token: any = localStorage.getItem("token");
+      token = JSON.parse(token);
+      $.ajax({
+        url: "https://beta.ovaluate.com/api/AddUpdateAgentDetails",
+        method: "post",
+        contentType: false,
+        processData: false,
+        data: valuationData,
+        headers: {
+          "Authorization": 'bearer ' + token
+        },
+        dataType: "json",
+        success: (res) => {
+          this.agentBrokerId = res.data.id;
+          this.notifyService.showSuccess(res.message, "");
+          // if(res.message == "Property Listing request completed successfully") {
+          //   localStorage.removeItem("propertyData");
+          //   this.route.navigate(['listpropertypublish'])
+          // }
+        },
+        error: (err) => {
+          this.notifyService.showError(err, "");
+
+        }
+      });
+    }
   }
 
 }
