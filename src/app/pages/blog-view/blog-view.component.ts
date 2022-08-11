@@ -47,8 +47,8 @@ export class BlogViewComponent implements OnInit {
       this.blog=data;
       this.blog=this.blog.data;
       this.blog.blogDocument.fileUrl = 'https://www.ovaluate.com/'+this.blog.blogDocument.fileUrl;
-      console.log(this.blog);
       $(".blog-post-content").html(this.blog.contentData);
+      console.log(this.blog);
     });
   }
    status: boolean = false;

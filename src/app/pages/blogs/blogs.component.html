@@ -42,20 +42,20 @@
             </div>
         </div>
     </section>
-    <section ngClass="blog_inner-banner-blocks">
+    <section ngClass="blog_inner-banner-blocks" *ngIf="mainBlog != {}">
         <div ngClass="container_1280px">
             <div ngClass="exploredetails-breadcrumb-wrapper black-text-breadcrumb mt-3">
                 <app-breadcrumb></app-breadcrumb>
             </div>
             <div ngClass="explore-details-banner">
                 <div ngClass="explore_details-img">
-                    <img src="{{exploreimg}}">
+                    <img src="https://beta.ovaluate.com/{{mainBlog.blogDocument.fileUrl}}">
                 </div>
                 <div ngClass="explore_details-cntnt">
                     <div ngClass="hp-design white">
-                        <h4>Do your homework well before listening to paid advisors</h4>
-                        <span ngClass="blue_tag">Tips & Advice</span>
-                        <p>30 November, 2022</p>
+                        <h4>{{mainBlog.blogTitle}}</h4>
+                        <span ngClass="blue_tag">{{mainBlog.blogCategory.categoryName}}</span>
+                        <p>{{mainBlog.blogDate.split("T")[0]}}</p>
                     </div>
                 </div>
             </div>
