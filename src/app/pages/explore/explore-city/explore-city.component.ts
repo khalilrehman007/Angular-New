@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { AppService } from 'src/app/service/app.service';
+import { HeaderComponent } from '../../../header/header.component';
+import { FooterComponent } from '../../../footer/footer.component';
+import { BreadcrumbComponent } from '../../../breadcrumb/breadcrumb.component';
 
 @Component({
   selector: 'app-explore-city',
@@ -76,14 +77,7 @@ export class ExploreCityComponent implements OnInit {
     {viewValue: 'UAE',value: 'UAE',img: '../../../../assets/images/flags/uae.svg'},
     {viewValue: 'UAE',value: 'UAE',img: '../../../../assets/images/flags/uae.svg'},
   ];
-  id:any;
-  cityData:any = [];
-  districtData:any = [];
-  constructor(private route: ActivatedRoute, private service: AppService) {
-    this.route.params.subscribe(params => {
-      this.id = params['id'];
-    });
-  }
+  constructor() { }
 
   ngOnInit(): void {
   }

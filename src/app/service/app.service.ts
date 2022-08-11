@@ -259,7 +259,4 @@ export class AppService {
   BlogCategories() {
     return this.http.get(this.apiurl + 'BlogCategories');
   }
-  FindDistricts(data:any) {
-    return this.http.post(this.apiurl + 'FindDistricts', data);
-  }
 }
