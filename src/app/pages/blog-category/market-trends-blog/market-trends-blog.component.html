@@ -18,18 +18,18 @@
             <div ngClass="catogries-blog_row">
             <div ngClass="row">
             <div ngClass="col-xl-8 col-lg-8 col-sm-12">
-            <div ngClass="row">
+            <div ngClass="row" *ngIf="marketTrendsBlog.blogs.length > 0">
               <!-- let blogs of Blogsec -->
-                <div ngClass="col-lg-6 col-md-6 blog-places-col" *ngFor=" let blog of Newssec">
-                    <a [routerLink]="['/blogs-details/' + blog.heading]">
+                <div ngClass="col-lg-6 col-md-6 blog-places-col" *ngFor=" let blog of marketTrendsBlog.blogs">
+                    <a routerLink="/blogs-details/{{blog.id}}">
                       <!-- blog.blogDocument.fileUrl -->
-                        <img [src]="blog.src" ngClass="img-fluid blog-image-homepage" alt="">
-                        <span ngClass="blog-tag">
+                        <img src="https://beta.ovaluate.com/{{blog.blogDocument.fileUrl}}" ngClass="img-fluid blog-image-homepage" alt="">
+                        <!-- <span ngClass="blog-tag">
                             <img [src]="blog.src2" ngClass="img-fluid" alt="">
-                        </span>
+                        </span> -->
                         <div ngClass="blog-title-content">
-                            <h5>{{blog.heading}}</h5>
-                            <span>{{blog.date}}</span>
+                            <h5>{{blog.blogTitle}}</h5>
+                            <span>{{blog.blogDate.split("T")[0]}}</span>
                         </div>
                     </a>
                 </div>
