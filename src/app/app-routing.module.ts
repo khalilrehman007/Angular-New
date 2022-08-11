@@ -47,7 +47,6 @@ import { ExploreCityComponent } from './pages/explore/explore-city/explore-city.
 import { ExploreDetailsComponent } from './pages/explore/explore-details/explore-details.component';
 import { DataAnalyticsComponent } from './pages/data-analytics/data-analytics/data-analytics.component';
 import { DataAnalyticsSearchResultsComponent } from './pages/data-analytics/data-analytics-search-results/data-analytics-search-results.component';
-import { BlogCategoryComponent } from './pages/blog-category/blog-category.component';
 import { ChatingComponent } from './pages/chating/chating.component';
 import { ChatNewMessageComponent } from './pages/chat-new-message/chat-new-message.component';
 import { PagenotfoundComponent } from './pages/pagenotfound/pagenotfound.component';
@@ -61,6 +60,12 @@ import { HelpCenterComponent } from './pages/help-center/help-center.component';
 import { HowItWorksComponent } from './pages/how-it-works/how-it-works.component';
 import { InvestorsComponent } from './pages/investors/investors.component';
 import { BuyPropertiesComponent } from './pages/buy-properties/buy-properties.component';
+import { TipsAdviceComponent } from './pages/blog-category/tips-advice/tips-advice.component';
+import { NewsBlogComponent } from './pages/blog-category/news-blog/news-blog.component';
+import { ExploreBlogComponent } from './pages/blog-category/explore-blog/explore-blog.component';
+import { LifeAtHomeBlogComponent } from './pages/blog-category/life-at-home-blog/life-at-home-blog.component';
+import { LawBlogComponent } from './pages/blog-category/law-blog/law-blog.component';
+import { MarketTrendsBlogComponent } from './pages/blog-category/market-trends-blog/market-trends-blog.component';
 
 
 // import {RoleGuardService} from "./role-guard-service.service";
@@ -97,6 +102,12 @@ const routes: Routes = [
   { path:  'PropertyDownloadReport', component:  PropertyDownloadReportComponent},
   { path:  'PropertDetailsPage', component:  PropertyInnerComponent},
   { path: "blogs", component: BlogsComponent },
+  { path: "tips-advice", component: TipsAdviceComponent },
+  { path: "newsblog", component: NewsBlogComponent },
+  { path: "exploreblog", component: ExploreBlogComponent },
+  { path: "left-at-home", component: LifeAtHomeBlogComponent },
+  { path: "lawblog", component: LawBlogComponent },
+  { path: "market-trends", component: MarketTrendsBlogComponent },
   // { path: "blogs/:id", component: BlogViewComponent },
   { path: "blogs-details/:id", component: BlogViewComponent },
   { path: "agent-details/:id", component: AgentDetailsComponent },
@@ -109,11 +120,10 @@ const routes: Routes = [
   { path: "mapview", component: MapviewComponent },
   { path: "PropertyCompare", component: PropertyCompareComponent },
   { path: "explore", component: ExploreComponent },
-  { path: "explore-city", component: ExploreCityComponent },
-  { path: "explore-details", component: ExploreDetailsComponent },
+  { path: "explore-city/:id", component: ExploreCityComponent },
+  { path: "explore-details/:id", component: ExploreDetailsComponent },
   { path: "data-analytics", component: DataAnalyticsComponent },
   { path: "data-analytics-search-result", component: DataAnalyticsSearchResultsComponent },
-  { path: "blog-category", component: BlogCategoryComponent },
   { path: "chat", component: ChatingComponent },
   { path: "chat-new-message", component: ChatNewMessageComponent },
   { path: "about-us", component: AboutusComponent },

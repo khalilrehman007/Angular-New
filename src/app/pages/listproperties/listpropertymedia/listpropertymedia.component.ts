@@ -226,11 +226,11 @@ export class ListpropertymediaComponent implements OnInit {
     }
     let start: number = temp.length;
     for (let i = 0; i < this.videoData.length; i++) {
-      temp.push({ "FileId": i + start + 1, "ListingDocumentTypeId": "2", "FileName": this.videoData[i].FileName, "Extension": this.videoData[i].Extension });
+      temp.push({ "FileId": i + start + 1, "ListingDocumentTypeId": "3", "FileName": this.videoData[i].FileName, "Extension": this.videoData[i].Extension });
       tempDoc.push(this.videoData[i].file);
     }
     start = temp.length;
-    temp.push({ "FileId": start + 1, "ListingDocumentTypeId": "3", "FileName": this.documentBase.FileName, "Extension": this.documentBase.Extension });
+    temp.push({ "FileId": start + 1, "ListingDocumentTypeId": "2", "FileName": this.documentBase.FileName, "Extension": this.documentBase.Extension });
     tempDoc.push(this.documentBase.file[0]);
     this.data.Documents = temp;
     this.documentData.append("PropertyListingRequest", JSON.stringify(this.data));

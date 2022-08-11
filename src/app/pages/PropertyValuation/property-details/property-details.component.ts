@@ -43,8 +43,6 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
   propertyDetails = new FormGroup({
     titleDeed: new FormControl("", Validators.required),
     muncipality: new FormControl("", Validators.required),
-    PhoneNumber: new FormControl("", Validators.required), 
-    propertyOwner: new FormControl(""),
     ownerPhone: new FormControl("", Validators.required),
   })
   get titleDeed() {
@@ -52,12 +50,6 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
   }
   get muncipality() {
     return this.propertyDetails.get("muncipality")
-  }
-  get propertyOwner() {
-    return this.propertyDetails.get("propertyOwner")
-  }
-  get ownerPhone() {
-    return this.propertyDetails.get("ownerPhone")
   }
 
   constructor(private http: HttpClient, private service: AppService, private router: Router) {
@@ -198,7 +190,6 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
       this.getMapImage();
       this.formDetailData.TitleDeedNo = this.propertyDetails.value.titleDeed;
       this.formDetailData.MunicipalityNo = this.propertyDetails.value.muncipality;
-      this.formDetailData.ownerName = this.propertyDetails.value.propertyOwner;
       this.formDetailData.PhoneNumber = this.propertyDetails.value.ownerPhone;
       this.formDetailData.address = $("#searchLocation").val();
       localStorage.setItem('valuationDetailData', JSON.stringify(this.formDetailData));
@@ -210,8 +201,6 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
       this.data.CityId = this.cityId;
       this.data.DistrictId = this.districtId;
       this.data.PropertyInsured = this.propertyInsured;
-      this.data.CustomerName = this.propertyDetails.value.propertyOwner;
-      this.data.PhoneNumber = this.propertyDetails.value.ownerPhone;
       this.data.PropertyLat = localStorage.getItem("lat");
       this.data.PropertyLong = localStorage.getItem("lng");
       localStorage.removeItem("lat");

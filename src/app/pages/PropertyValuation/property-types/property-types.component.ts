@@ -30,7 +30,7 @@ export class PropertyTypesComponent implements OnInit {
   roadCount:number = 0;
   formDetailData:any = {};
 
-  unitHMTL: any = [{ show: true, id: 1 }];
+  unitHMTL: any = [];
 
   room = [
     { viewValue: '01', value: '01' },
@@ -73,6 +73,10 @@ export class PropertyTypesComponent implements OnInit {
     this.loadFittingType();
     this.formDetailData = localStorage.getItem("valuationDetailData");
     this.formDetailData = JSON.parse(this.formDetailData);
+    this.formData.FurnishingType = 0;
+    this.formData.FittingType = 0;
+    this.formData.Bedrooms = 0;
+    this.formData.Bathrooms = 0;
   }
 
   ngOnInit(): void {
@@ -104,6 +108,9 @@ export class PropertyTypesComponent implements OnInit {
     this.purposeOfValuation = [];
     this.featuresData = [];
     this.propertyData = this.propertyType.filter(item => item.id == e.value)[0];
+    if(this.propertyData.hasUnits) {
+      this.unitHMTL= [{ show: true, id: 1 }];
+    }
     this.service.ValuationPurpose().subscribe((result) => {
       this.purposeOfValuation = result;
       this.purposeOfValuation = this.purposeOfValuation.data;
@@ -174,7 +181,11 @@ export class PropertyTypesComponent implements OnInit {
   getData() {
     this.formDetailData.PlotNo = this.propertyTypeForm.value.apartmentNo;
     this.formDetailData.PlotNo = this.propertyTypeForm.value.elevation;
-    this.formDetailData.elevation = this.propertyTypeForm.value.elevation;
+    if(this.propertyData.hasElevation) {
+      this.formDetailData.elevation = this.propertyTypeForm.value.elevation;
+    } else {
+      this.formDetailData.elevation = 0;
+    }
     this.formDetailData.PlotSize = this.propertyTypeForm.value.apartmentSize;
     this.formDetailData.BuildupArea = this.propertyTypeForm.value.buildupArea;
 
@@ -182,7 +193,11 @@ export class PropertyTypesComponent implements OnInit {
     this.formData.PlotSize = this.propertyTypeForm.value.apartmentSize;
     this.formData.BuildupArea = this.propertyTypeForm.value.buildupArea;
     this.formData.Elevation = this.propertyTypeForm.value.elevation;
-    this.formData.ConstructionAge = this.propertyTypeForm.value.constructionAge;
+    if(this.propertyData.hasAge) {
+      this.formData.ConstructionAge = this.propertyTypeForm.value.constructionAge;
+    } else {
+      this.formData.ConstructionAge = 0;
+    }
     this.formData.NoOfRoads = this.roadCount;
     this.formData.ValuationPropertyUnits = "";
     let temp:any = [];

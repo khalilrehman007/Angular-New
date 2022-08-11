@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { AppService } from 'src/app/service/app.service';
 
 @Component({
-  selector: 'app-blog-category',
-  templateUrl: './blog-category.component.html',
-  styleUrls: ['./blog-category.component.scss']
+  selector: 'app-market-trends-blog',
+  templateUrl: './market-trends-blog.component.html',
+  styleUrls: ['./market-trends-blog.component.scss']
 })
-export class BlogCategoryComponent implements OnInit {
+export class MarketTrendsBlogComponent implements OnInit {
   exploreimg = '../../../assets/images/Blog-Tile.png'
   Newssec = [
     {
@@ -52,8 +52,13 @@ export class BlogCategoryComponent implements OnInit {
     }
   ]
   blogs: any;
+  marketTrendsBlog: any;
   constructor(private service:AppService) { 
     this.LoadBlogs();
+    this.service.BlogCategorybyId(6).subscribe((result:any)=> {
+      this.marketTrendsBlog = result.data;
+      console.log(this.marketTrendsBlog);
+    })
   }
 
   ngOnInit(): void {

@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { AppService } from 'src/app/service/app.service';
 
 @Component({
-  selector: 'app-blogs',
-  templateUrl: './blogs.component.html',
-  styleUrls: ['./blogs.component.scss']
+  selector: 'app-law-blog',
+  templateUrl: './law-blog.component.html',
+  styleUrls: ['./law-blog.component.scss']
 })
-export class BlogsComponent implements OnInit {
+export class LawBlogComponent implements OnInit {
   exploreimg = '../../../assets/images/Blog-Tile.png'
-  allBlogs = [
+  Newssec = [
     {
       src:'assets/images/blog/blog-1.png',
       src2: 'assets/images/tag/market-trends.svg',
@@ -52,26 +52,12 @@ export class BlogsComponent implements OnInit {
     }
   ]
   blogs: any;
-  latestNews:any = [];
-  featureBlogs: any;
-  categoryBlogs: any;
-  mainBlog: any = {};
+  lawBlogs: any;
   constructor(private service:AppService) { 
     this.LoadBlogs();
-    this.service.BlogLatestNews().subscribe((result:any)=> {
-      this.latestNews.push(result.data[0]);
-      this.latestNews.push(result.data[1]);
-      this.latestNews.push(result.data[2]);
-    })
-    this.service.BlogFeatures().subscribe((result:any)=> {
-      this.featureBlogs = result.data;
-    })
-    this.service.BlogCategories().subscribe((result:any)=> {
-      this.categoryBlogs = result.data;
-    })
-    this.service.LoadBlogById(1).subscribe((result:any)=>{
-      this.mainBlog = result.data;
-      console.log(this.mainBlog);
+    this.service.BlogCategorybyId(5).subscribe((result:any)=> {
+      this.lawBlogs = result.data;
+      console.log(this.lawBlogs);
     })
   }
 
@@ -81,6 +67,8 @@ export class BlogsComponent implements OnInit {
     this.service.LoadBlogs().subscribe(data=>{
       this.blogs=data;
       this.blogs=this.blogs.data;
+      console.log(this.blogs);
+
     });
   }
   status: boolean = false;

@@ -34,13 +34,13 @@
                                     <h5 ngClass="h5-heading">Documents</h5>
                                     <p>Please provide your propety type for the valuation</p>
                                 </div>
-                                <div ngClass="madatory-document-upload mb-4">
+                                <div ngClass="madatory-document-upload mb-4" *ngIf="documentType.length > 0">
                                     <h6 ngClass="h6-design mb-3">Mandatory Documents to upload*</h6>
                                     <div ngClass="row">
                                         <div ngClass="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                                             <div ngClass="blue-upload-box">
                                                 <div ngClass="blue-upload-bordered-btn">
-                                                    <h6 ngClass="blue-heading">Property Tittle Deed</h6>
+                                                    <h6 ngClass="blue-heading">{{documentType[0].documentName}}</h6>
                                                     <div ngClass="upload-files-design">
                                                         <div ngClass="greybordered-btn">
                                                             <input type="file" hidden #fileInput
@@ -69,7 +69,7 @@
                                         <div ngClass="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                                             <div ngClass="blue-upload-box">
                                                 <div ngClass="blue-upload-bordered-btn">
-                                                    <h6 ngClass="blue-heading">Affection Plan</h6>
+                                                    <h6 ngClass="blue-heading">{{documentType[1].documentName}}</h6>
                                                     <div ngClass="upload-files-design">
                                                         <div ngClass="greybordered-btn">
                                                             <input type="file" hidden #affectioninput
@@ -98,7 +98,7 @@
                                         <div ngClass="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                                             <div ngClass="blue-upload-box">
                                                 <div ngClass="blue-upload-bordered-btn">
-                                                    <h6 ngClass="blue-heading">Property Picture</h6>
+                                                    <h6 ngClass="blue-heading">{{documentType[2].documentName}}</h6>
                                                     <div ngClass="upload-files-design">
                                                         <div ngClass="greybordered-btn">
                                                             <input type="file" hidden #propertyInput
@@ -126,7 +126,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div ngClass="other-document-upload mb-4">
+                                <div ngClass="other-document-upload mb-4" *ngIf="documentType.length > 0">
                                     <h6 ngClass="h6-design mb-3">Other Documents Upload (optional)</h6>
                                     <div ngClass="row">
                                         <div ngClass="col-xl-4 col-lg-4 col-md-4 col-sm-12">
@@ -135,11 +135,10 @@
                                                     <div ngClass="greybordered-btn">
                                                         <input type="file" hidden #emirateInput0
                                                             accept=".doc, .pdf, .jpg, .jpeg, .png"
-                                                            (change)='emiratesfun($any($event.target).files, 0)'>
+                                                            (change)='emiratesfun($any($event.target).files, 0, documentType[3].id)'>
                                                         <button mat-button (click)="emirateInput0.click()"><span
                                                                 ngClass="outpup-filename">{{ emirate[0] }}</span> <img
-                                                                src="{{upload}}"> <span ngClass="btn-txt">Picture:
-                                                                Emirates ID (Fornt View)</span></button>
+                                                                src="{{upload}}"> <span ngClass="btn-txt">{{documentType[3].documentName}}</span></button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -150,11 +149,10 @@
                                                     <div ngClass="greybordered-btn">
                                                         <input type="file" hidden #emirateInput1
                                                             accept=".doc, .pdf, .jpg, .jpeg, .png"
-                                                            (change)='emiratesfun($any($event.target).files, 1)'>
+                                                            (change)='emiratesfun($any($event.target).files, 1, documentType[4].id)'>
                                                         <button mat-button (click)="emirateInput1.click()"><span
                                                                 ngClass="outpup-filename">{{ emirate[1] }}</span> <img
-                                                                src="{{upload}}"> <span ngClass="btn-txt">Picture:
-                                                                Emirates ID (Fornt View)</span></button>
+                                                                src="{{upload}}"> <span ngClass="btn-txt">{{documentType[4].documentName}}</span></button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -165,11 +163,10 @@
                                                     <div ngClass="greybordered-btn">
                                                         <input type="file" hidden #emirateInput2
                                                             accept=".doc, .pdf, .jpg, .jpeg, .png"
-                                                            (change)='emiratesfun($any($event.target).files, 2)'>
+                                                            (change)='emiratesfun($any($event.target).files, 2, documentType[5].id)'>
                                                         <button mat-button (click)="emirateInput2.click()"><span
                                                                 ngClass="outpup-filename">{{ emirate[2] }}</span> <img
-                                                                src="{{upload}}"> <span ngClass="btn-txt">Picture:
-                                                                Emirates ID (Fornt View)</span></button>
+                                                                src="{{upload}}"> <span ngClass="btn-txt">{{documentType[5].documentName}}</span></button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -180,11 +177,10 @@
                                                     <div ngClass="greybordered-btn">
                                                         <input type="file" hidden #emirateInput3
                                                             accept=".doc, .pdf, .jpg, .jpeg, .png"
-                                                            (change)='emiratesfun($any($event.target).files, 3)'>
+                                                            (change)='emiratesfun($any($event.target).files, 3, documentType[6].id)'>
                                                         <button mat-button (click)="emirateInput3.click()"><span
                                                                 ngClass="outpup-filename">{{ emirate[3] }}</span> <img
-                                                                src="{{upload}}"> <span ngClass="btn-txt">Picture:
-                                                                Emirates ID (Back View)</span></button>
+                                                                src="{{upload}}"> <span ngClass="btn-txt">{{documentType[6].documentName}}</span></button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -195,11 +191,10 @@
                                                     <div ngClass="greybordered-btn">
                                                         <input type="file" hidden #emirateInput4
                                                             accept=".doc, .pdf, .jpg, .jpeg, .png"
-                                                            (change)='emiratesfun($any($event.target).files, 4)'>
+                                                            (change)='emiratesfun($any($event.target).files, 4, documentType[7].id)'>
                                                         <button mat-button (click)="emirateInput4.click()"><span
                                                                 ngClass="outpup-filename">{{ emirate[4] }}</span> <img
-                                                                src="{{upload}}"> <span ngClass="btn-txt">Picture:
-                                                                Emirates ID (Back View)</span></button>
+                                                                src="{{upload}}"> <span ngClass="btn-txt">{{documentType[7].documentName}}</span></button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -210,11 +205,10 @@
                                                     <div ngClass="greybordered-btn">
                                                         <input type="file" hidden #emirateInput5
                                                             accept=".doc, .pdf, .jpg, .jpeg, .png"
-                                                            (change)='emiratesfun($any($event.target).files, 5)'>
+                                                            (change)='emiratesfun($any($event.target).files, 5, documentType[8].id)'>
                                                         <button mat-button (click)="emirateInput5.click()"><span
                                                                 ngClass="outpup-filename">{{ emirate[5] }}</span> <img
-                                                                src="{{upload}}"> <span ngClass="btn-txt">Picture: BRN
-                                                                Document</span></button>
+                                                                src="{{upload}}"> <span ngClass="btn-txt">{{documentType[8].documentName}}</span></button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -225,41 +219,10 @@
                                                     <div ngClass="greybordered-btn">
                                                         <input type="file" hidden #emirateInput6
                                                             accept=".doc, .pdf, .jpg, .jpeg, .png"
-                                                            (change)='emiratesfun($any($event.target).files, 6)'>
+                                                            (change)='emiratesfun($any($event.target).files, 6, documentType[9].id)'>
                                                         <button mat-button (click)="emirateInput6.click()"><span
                                                                 ngClass="outpup-filename">{{ emirate[6] }}</span> <img
-                                                                src="{{upload}}"> <span ngClass="btn-txt">Picture: BRN
-                                                                Document</span></button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div ngClass="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-                                            <div ngClass="blue-upload-box">
-                                                <div ngClass="upload-files-design">
-                                                    <div ngClass="greybordered-btn">
-                                                        <input type="file" hidden #emirateInput7
-                                                            accept=".doc, .pdf, .jpg, .jpeg, .png"
-                                                            (change)='emiratesfun($any($event.target).files, 7)'>
-                                                        <button mat-button (click)="emirateInput7.click()"><span
-                                                                ngClass="outpup-filename">{{ emirate[7] }}</span> <img
-                                                                src="{{upload}}"> <span ngClass="btn-txt">Picture: BRN
-                                                                Document</span></button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div ngClass="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-                                            <div ngClass="blue-upload-box">
-                                                <div ngClass="upload-files-design">
-                                                    <div ngClass="greybordered-btn">
-                                                        <input type="file" hidden #emirateInput8
-                                                            accept=".doc, .pdf, .jpg, .jpeg, .png"
-                                                            (change)='emiratesfun($any($event.target).files, 8)'>
-                                                        <button mat-button (click)="emirateInput8.click()"><span
-                                                                ngClass="outpup-filename">{{ emirate[8] }}</span> <img
-                                                                src="{{upload}}"> <span ngClass="btn-txt">Picture: BRN
-                                                                Document</span></button>
+                                                                src="{{upload}}"> <span ngClass="btn-txt">{{documentType[9].documentName}}</span></button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -565,7 +528,7 @@
                         </div>
                         <div class="valuation-cstm_tabs property_certificate-type"
                             [ngClass]="status2 ? 'active' : 'hide'">
-                            <div ngClass="form-border-wrapper">
+                            <div ngClass="form-border-wrapper" *ngIf="certificateData.length > 0">
                                 <div ngClass="list-property-header">
                                     <h5 ngClass="h5-heading">Certificate Type</h5>
                                     <p>Select the type of certification you are looking for?</p>
@@ -617,11 +580,11 @@
                                                     </div>
                                                 </div>
                                                 <button class="summary_certificate-btn"
-                                                    (click)="SummaryReport(i, item.id)" *ngIf="i == 0"
+                                                    (click)="SummaryReport(i, item.id, valuationPrices.summeryCertificateSellingPrice)" *ngIf="i == 0"
                                                     [ngClass]="status8 ? 'report-btn-active' : ''">{{valuationPrices.summeryCertificateSellingPrice}}
                                                     AED Summary Certificate</button>
                                                 <button class="summary_certificate-btn"
-                                                    (click)="SummaryReport(i, item.id)" *ngIf="i == 1"
+                                                    (click)="SummaryReport(i, item.id, valuationPrices.detailCertificateSellingPrice)" *ngIf="i == 1"
                                                     [ngClass]="status9 ? 'report-btn-active' : ''">{{valuationPrices.detailCertificateSellingPrice}}
                                                     AED Detail Certificate</button>
                                             </div>
@@ -662,10 +625,10 @@
                                             </div>
                                             <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                                 <div ngClass="block-wrapper mb-4">
-                                                    <label class="h6-design">Enter Email of Property Owner<span
+                                                    <label class="h6-design">Enter Phone of Property Owner<span
                                                             ngClass="required-span">*</span></label>
                                                     <mat-form-field class="full-width input-design-2" appearance="fill">
-                                                        <input matInput type="email" placeholder="Enter email" formControlName="email" />
+                                                        <input matInput type="phone" placeholder="Enter Phone" formControlName="phone" />
                                                     </mat-form-field>
                                                 </div>
                                             </div>

@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { AppService } from 'src/app/service/app.service';
 
 @Component({
-  selector: 'app-blogs',
-  templateUrl: './blogs.component.html',
-  styleUrls: ['./blogs.component.scss']
+  selector: 'app-tips-advice',
+  templateUrl: './tips-advice.component.html',
+  styleUrls: ['./tips-advice.component.scss']
 })
-export class BlogsComponent implements OnInit {
+export class TipsAdviceComponent implements OnInit {
   exploreimg = '../../../assets/images/Blog-Tile.png'
-  allBlogs = [
+  Newssec = [
     {
       src:'assets/images/blog/blog-1.png',
       src2: 'assets/images/tag/market-trends.svg',
@@ -52,26 +52,11 @@ export class BlogsComponent implements OnInit {
     }
   ]
   blogs: any;
-  latestNews:any = [];
-  featureBlogs: any;
-  categoryBlogs: any;
-  mainBlog: any = {};
-  constructor(private service:AppService) { 
-    this.LoadBlogs();
-    this.service.BlogLatestNews().subscribe((result:any)=> {
-      this.latestNews.push(result.data[0]);
-      this.latestNews.push(result.data[1]);
-      this.latestNews.push(result.data[2]);
-    })
-    this.service.BlogFeatures().subscribe((result:any)=> {
-      this.featureBlogs = result.data;
-    })
-    this.service.BlogCategories().subscribe((result:any)=> {
-      this.categoryBlogs = result.data;
-    })
-    this.service.LoadBlogById(1).subscribe((result:any)=>{
-      this.mainBlog = result.data;
-      console.log(this.mainBlog);
+  tipsAndAdvice: any;
+  constructor(private service:AppService) {
+    this.service.BlogCategorybyId(1).subscribe((result:any)=> {
+      this.tipsAndAdvice = result.data;
+      console.log(this.tipsAndAdvice);
     })
   }
 
@@ -81,6 +66,8 @@ export class BlogsComponent implements OnInit {
     this.service.LoadBlogs().subscribe(data=>{
       this.blogs=data;
       this.blogs=this.blogs.data;
+      console.log(this.blogs);
+
     });
   }
   status: boolean = false;
@@ -88,3 +75,4 @@ export class BlogsComponent implements OnInit {
       this.status = !this.status;       
   }
 }
+

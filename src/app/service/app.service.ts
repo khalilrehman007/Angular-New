@@ -53,8 +53,8 @@ export class AppService {
     // BlogBanners
     return this.http.get(this.apiurl + 'GetFeedbacks');
   }
-  LoadBlogById() {
-    return this.http.get(this.apiurl + 'blog/' + this.id);
+  LoadBlogById(id:any) {
+    return this.http.get(this.apiurl + 'blog/' + id);
   }
   LoadCountries() {
     return this.http.get(this.apiurl + 'Countries');
@@ -252,5 +252,35 @@ export class AppService {
   }
   PropertyPackageType() {
     return this.http.get(this.apiurl + 'PropertyPackageType');
+  }
+  ExploreCountry(id:any) {
+    return this.http.get(this.apiurl + 'ExploreCountry/' + id);
+  }
+  ValuationDocumentTypes() {
+    return this.http.get(this.apiurl + 'ValuationDocumentTypes');
+  }
+  FindCities(data:any) {
+    return this.http.post(this.apiurl + 'FindCities', data);
+  }
+  BlogLatestNews() {
+    return this.http.get(this.apiurl + 'BlogLatestNews');
+  }
+  BlogFeatures() {
+    return this.http.get(this.apiurl + 'BlogFeatures');
+  }
+  BlogCategories() {
+    return this.http.get(this.apiurl + 'BlogCategories');
+  }
+  FindDistricts(data:any) {
+    return this.http.post(this.apiurl + 'FindDistricts', data);
+  }
+  BlogCategorybyId(id:any) {
+    return this.http.get(this.apiurl + 'BlogCategory/' + id);
+  }
+  ExploreCity(id:any) {
+    return this.http.get(this.apiurl + 'ExploreCity/' + id);
+  }
+  ExploreDistrict(id:any) {
+    return this.http.get(this.apiurl + 'ExploreDistrict/' + id);
   }
 }
