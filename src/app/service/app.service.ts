@@ -256,4 +256,7 @@ export class AppService {
   BlogFeatures() {
     return this.http.get(this.apiurl + 'BlogFeatures');
   }
+  BlogCategories() {
+    return this.http.get(this.apiurl + 'BlogCategories');
+  }
 }
