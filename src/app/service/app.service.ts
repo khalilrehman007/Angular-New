@@ -268,4 +268,7 @@ export class AppService {
   ExploreCity(id:any) {
     return this.http.get(this.apiurl + 'ExploreCity/' + id);
   }
+  ExploreDistrict(id:any) {
+    return this.http.get(this.apiurl + 'ExploreDistrict/' + id);
+  }
 }
