@@ -55,6 +55,7 @@ export class BlogsComponent implements OnInit {
   latestNews:any = [];
   featureBlogs: any;
   categoryBlogs: any;
+  mainBlog: any = {};
   constructor(private service:AppService) { 
     this.LoadBlogs();
     this.service.BlogLatestNews().subscribe((result:any)=> {
@@ -67,7 +68,10 @@ export class BlogsComponent implements OnInit {
     })
     this.service.BlogCategories().subscribe((result:any)=> {
       this.categoryBlogs = result.data;
-      console.log(this.categoryBlogs);
+    })
+    this.service.LoadBlogById(1).subscribe((result:any)=>{
+      this.mainBlog = result.data;
+      console.log(this.mainBlog);
     })
   }
 
