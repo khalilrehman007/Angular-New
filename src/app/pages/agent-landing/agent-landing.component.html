@@ -89,16 +89,19 @@
                 <div class="agent-landing-featured__agent">
                     <div class="agent-landing-featured__property-wrapper">
                         <img src="assets/images/tag/featured.png" alt="" class="agent-landing-featured__property-tag">
+<<<<<<< HEAD
+                        <div class="row" routerLink="/agent-details/{{item.agentDetails.user.id}}">
+=======
                         <div class="row height-100">
+>>>>>>> b2cc7300c31df7cde5b695a6d9a48d02ecf7796a
                             <div class="col-5 d-flex align-items-center">
                                 <img src="https://beta.ovaluate.com/{{item.agentDetails.user.imageUrl}}" alt="" class="img-fluid agent-landing-featured__property-img">
                                 <img src="assets/images/brand/betterhomes.png" alt="" class="img-fluid agent-landing-featured__agent-company">
                             </div>
                             <div class="col-7">
                                 <div class="agent-landing-featured__agent-right-panel">
-                                    <h6 class="agent-landing-featured__property-heading" routerLink="/agent-details/1">{{item.agentDetails.user.fullName}}</h6>
+                                    <h6 class="agent-landing-featured__property-heading" >{{item.agentDetails.user.fullName}}</h6>
                                     <p class="agent-landing-featured__property-text">{{item.agentDetails.user.address}}</p>
-                                    <a class="agent-landing-featured__property-link" >View Map</a>
                                     <p class="agent-landing-featured__property-text">RERA# {{item.agentDetails.company.reraNo}}</p>
                                     <p class="agent-landing-featured__property-text">Permits# {{item.agentDetails.company.premitNo}}</p>
                                     <ul class="agent-landing-featured__property-details-list">

@@ -8,6 +8,7 @@ import {MatChipInputEvent} from '@angular/material/chips';
 import {MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
+import { data } from 'jquery';
 
 @Component({
   selector: 'find-agent-search',
@@ -24,6 +25,9 @@ export class FindAgentSearchComponent implements OnInit {
 
     this.getExpertIn();
     this.getSpokenLanguages();
+    this.service.AgentAutoCompleteSearch({"Searching":"mr","CountryId":"1"}).subscribe((result:any)=>{
+      console.log(result);
+    })
   }
 
   ngOnInit(): void {
@@ -43,7 +47,7 @@ export class FindAgentSearchComponent implements OnInit {
   searchctrl = new FormControl('');
   searchfilter: Observable<string[]>;
   SearchKeyword: string[] = [];
-  searchList: string[] = ['Dubai', 'UAE', 'Dubai', 'UAE', 'Dubai'];
+  searchList: any = [];
 
   @ViewChild('SearchInput') SearchInput: ElementRef<HTMLInputElement>;
   add(event: MatChipInputEvent): void {

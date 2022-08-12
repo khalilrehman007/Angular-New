@@ -286,4 +286,14 @@ export class AppService {
   ExploreDistrict(id:any) {
     return this.http.get(this.apiurl + 'ExploreDistrict/' + id);
   }
+  FindCompanies(data) {
+    return this.http.post(this.apiurl + 'FindCompanies', data);
+  }
+  DisplayAgent(id:any) {
+    return this.http.get(this.apiurl + 'DisplayAgent?userId=' + id);
+  }
+  AgentAutoCompleteSearch(data) {
+    return this.http.post(this.apiurl + 'AgentAutoCompleteSearch', data);
+  }
+  
 }
