@@ -15,29 +15,27 @@
                 <div class="agent-details__wrapper">
                     <div class="row">
                         <div class="col-sm-12 col-md-4">
-                            <img src="/assets/images/agent-image.png" alt=""
-                                class="img-fluid agent-details__wrapper-img">
+                            <img src="https://beta.ovaluate.com/{{agentDetail.agentDetails.user.imageUrl}}" alt="" class="img-fluid agent-details__wrapper-img">
                         </div>
                         <div class="col-sm-12 col-md-8">
                             <div class="agent-details__wrapper-details">
-                                <h4 class="agent-details__wrapper-details-heading">Olga Pikina</h4>
+                                <h4 class="agent-details__wrapper-details-heading">{{agentDetail.agentDetails.user.fullName}}</h4>
                                 <p class="agent-details__wrapper-details-text">Sales Director / 10 Yrs. Exp</p>
-                                <h6 class="agent-details__wrapper-details-desc">Better Homes Properties</h6>
-                                <p class="agent-details__wrapper-details-phone">+971 50 456 3423</p>
-                                <p class="agent-details__wrapper-details-text">Dubai, UAE</p>
-                                <p class="agent-details__wrapper-details-text">BRN#: 89876</p>
-                                <p class="agent-details__wrapper-details-text">Language: English, Hindi, Arabic, Urdu,
-                                    Danish</p>
-                                <p class="agent-details__wrapper-details-text">Area: Downtown Dubai, AL Mankool</p>
+                                <h6 class="agent-details__wrapper-details-desc">{{agentDetail.agentDetails.company.companyName}}</h6>
+                                <p class="agent-details__wrapper-details-phone">{{agentDetail.agentDetails.user.phoneNumber}}</p>
+                                <p class="agent-details__wrapper-details-text">{{agentDetail.agentDetails.company.companyAdress}} UAE</p>
+                                <p class="agent-details__wrapper-details-text">{{agentDetail.agentDetails.brnNo}}</p>
+                                <p class="agent-details__wrapper-details-text">Language: </p>
+                                <p class="agent-details__wrapper-details-text">Area: {{agentDetail.agentDetails.agentAreas}}</p>
                                 <ul class="agent-details__wrapper-details-list">
                                     <li class="agent-details__wrapper-details-list-item">
-                                        <p class="agent-details__wrapper-details-list-text">247 <br> Sale</p>
+                                        <p class="agent-details__wrapper-details-list-text">{{agentDetail.salePropertyListingCount}} <br> Sale</p>
                                     </li>
                                     <li class="agent-details__wrapper-details-list-item">
-                                        <p class="agent-details__wrapper-details-list-text">247 <br> Rent</p>
+                                        <p class="agent-details__wrapper-details-list-text">{{agentDetail.rentPropertyListingCount}} <br> Rent</p>
                                     </li>
                                     <li class="agent-details__wrapper-details-list-item">
-                                        <p class="agent-details__wrapper-details-list-text">247 <br> Commercial</p>
+                                        <p class="agent-details__wrapper-details-list-text">{{agentDetail.commercialPropertyListingCount}} <br> Commercial</p>
                                     </li>
                                 </ul>
                             </div>
@@ -57,13 +55,7 @@
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" id="about">
                                 <div class="agent-details__tab-content">
-                                    <p>Mohammad Khalil is a result-oriented person With a passion for service that comes
-                                        from a background of working in the retail business. As a real estate agent and
-                                        a member of the Driven Properties family, Mohammad Khalil carries his passion
-                                        towards helping families find their next home tooled by his original skill of
-                                        identifying clients’ needs and using his experience to meet their best interests
-                                        Mohammad speaks Arabic as a mother tongue and speaks fluent English which helps
-                                        him communicate freely and smoothly with clients.</p>
+                                    <p>{{agentDetail.agentDetails.aboutMe}}</p>
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="properties">
@@ -423,7 +415,7 @@
                 <div class="agent-details__form-wrapper">
                     <div class="row mb-3">
                         <div class="col-8 d-flex align-items-center">
-                            <h6>Contact Olga Pikina</h6>
+                            <h6>Contact {{agentDetail.agentDetails.user.fullName}}</h6>
                         </div>
                         <div class="col-4 text-end">
                             <img src="assets/images/better-home.svg" alt="" class="agent-details__form-img">
@@ -432,21 +424,21 @@
                     <form class="agent-details__form" [formGroup]="agentContact">
                         <fieldset class="agent-details__form-fieldset">
                             <label for="name" class="agent-details__form-label">Name*</label>
-                            <input type="text" name="name" id="name" placeholder="Location, Project Name"
+                            <input type="text" name="name" id="name" placeholder="Enter your full name"
                                 class="agent-details__form-input" formControlName="name">
                             <span style="color: red" *ngIf="name && name.invalid && name.touched">*This field is
                                 required</span>
                         </fieldset>
                         <fieldset class="agent-details__form-fieldset">
                             <label for="email" class="agent-details__form-label">Email*</label>
-                            <input type="text" name="email" id="email" placeholder="Location, Project Name"
+                            <input type="text" name="email" id="email" placeholder="Enter your email address"
                                 class="agent-details__form-input" formControlName="email">
                             <span style="color: red" *ngIf="email && email.invalid && email.touched">*This field is
                                 required</span>
                         </fieldset>
                         <fieldset class="agent-details__form-fieldset">
                             <label for="phone" class="agent-details__form-label">Phone No.*</label>
-                            <input type="text" name="phone" id="phone" placeholder="Location, Project Name"
+                            <input type="text" name="phone" id="phone" placeholder="Enter your phone number"
                                 class="agent-details__form-input" formControlName="phone">
                             <span style="color: red" *ngIf="phone && phone.invalid && phone.touched">*This field is
                                 required</span>

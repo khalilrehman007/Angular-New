@@ -35,17 +35,10 @@ export class AgentLandingComponent implements OnInit {
       this.agentDetails = result.data;
       console.log(this.agentDetails);
     })
-<<<<<<< HEAD
-    // this.service.FindCompanies(1).subscribe((result:any)=>{
-    //   this.bestCompaniesDetails = result.data;
-    //   console.log(this.bestCompaniesDetails)
-    // })
-=======
     this.searchfilter = this.searchctrl.valueChanges.pipe(
       startWith(null),
       map((searchCompenies: string | null) => (searchCompenies ? this._filter(searchCompenies) : this.searchList.slice())),
     );
->>>>>>> b2cc7300c31df7cde5b695a6d9a48d02ecf7796a
   }
   featuredAgentData:any;
   // currentURL=false;
