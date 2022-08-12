@@ -37,6 +37,18 @@ export class AppService {
     // BlogBanners
     return this.http.get(this.apiurl + 'Banners');
   }
+  LoadExpertIn() {
+    // BlogBanners
+    return this.http.get(this.apiurl + 'ExpertIn');
+  }
+  LoadSpokenLanguages() {
+    // BlogBanners
+    return this.http.get(this.apiurl + 'SpokenLanguages');
+  }
+  LoadNationality() {
+    // BlogBanners
+    return this.http.get(this.apiurl + 'Nationalties');
+  }
   LoadFeeback() {
     // BlogBanners
     return this.http.get(this.apiurl + 'GetFeedbacks');
@@ -270,5 +282,8 @@ export class AppService {
   }
   BestAgent(id:any) {
     return this.http.get(this.apiurl + 'BestAgent?countryId=' + id);
+  }
+  ExploreDistrict(id:any) {
+    return this.http.get(this.apiurl + 'ExploreDistrict/' + id);
   }
 }

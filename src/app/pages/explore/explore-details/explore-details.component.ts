@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
-import { HeaderComponent } from '../../../header/header.component';
-import { FooterComponent } from '../../../footer/footer.component';
-import { BreadcrumbComponent } from '../../../breadcrumb/breadcrumb.component';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AppService } from 'src/app/service/app.service';
 
 @Component({
   selector: 'app-explore-details',
@@ -118,8 +116,17 @@ dynamicSlides1 = [
     },
     nav: false
   }
+  id: any;
+  districtDetail:any = {};
 
-  constructor() {
+  constructor(private route: ActivatedRoute, private service: AppService) {
+    this.route.params.subscribe(params => {
+      this.id = params['id'];
+    });
+    this.service.ExploreDistrict(this.id).subscribe((result:any) => {
+      this.districtDetail = result.data;
+      console.log(this.districtDetail);
+    })
    }
 
   ngOnInit(): void {

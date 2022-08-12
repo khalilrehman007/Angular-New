@@ -159,7 +159,7 @@ export class PropertyInnerComponent implements OnInit {
   openVerticallyCentered(content) {
     this.modalService.open(content, { centered: true });
   }
-  locationAddress :any = "https://maps.google.com/maps?q=24.10148903316392,53.09649093869425&hl=es&z=14&amp;output=embed";
+  locationAddress1 = '';
 
   ngOnInit(): void {
 
@@ -223,12 +223,19 @@ export class PropertyInnerComponent implements OnInit {
         this.propertyDetailData.propertyLat = (jsonParsDate.propertyListing.propertyLat !== undefined) ? jsonParsDate.propertyListing.propertyLat : ''
         this.propertyDetailData.propertyLong = (jsonParsDate.propertyListing.propertyLong !== undefined) ? jsonParsDate.propertyListing.propertyLong : ''
 
+        // console.log(this.propertyDetailData.propertyLat,this.propertyDetailData.propertyLong)
         // let location ="https://maps.google.com/maps?q="+this.propertyDetailData.propertyLat+','+this.propertyDetailData.propertyLong+'&hl=es&z=14&amp;output=embed';
-        // let resp :any = this.domSanitizer.bypassSecurityTrustResourceUrl(location);
+
+        let ree  = "https://maps.google.com/maps?q="+this.propertyDetailData.propertyLat+","+this.propertyDetailData.propertyLong+"&hl=es&z=14&amp;output=embed"
+        let resp :any = this.domSanitizer.bypassSecurityTrustUrl(ree);
+        this.locationAddress1 = resp
+
+
         // // var url = location.replace("watch?v=", "v/");
-        // this.locationAddress = resp
-        //
-        // console.log(this.locationAddress)
+
+        // https://maps.google.com/maps?q=24.10148903316392,53.09649093869425&hl=es&z=14&amp;output=embed
+        // this.locationAddress = "https://maps.google.com/maps?q=24.10148903316392,53.09649093869425&hl=es&z=14&amp;output=embed";
+
 
         if(this.propertyDetail.propertyListing.documents[0].fileUrl != null){
           this.thumb1 = this.baseUrl+this.propertyDetail.propertyListing.documents[0].fileUrl;

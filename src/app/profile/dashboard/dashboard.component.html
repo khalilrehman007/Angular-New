@@ -2348,7 +2348,7 @@
                 <mat-tab label="Agent/Broker Details">
                   <div class="row">
                     <div class="col-md-9">
-                      <form action="">
+                      <form [formGroup]="agnetBorker">
                         <div class="">
                           <div class="list-new-proerty-cntnt">
                             <div ngClass="deed-numbers">
@@ -2357,39 +2357,33 @@
                                   <div ngClass="block-wrapper mb-4">
                                     <label class="h6-design">BRN No.#</label>
                                     <mat-form-field appearance="fill" class="full-width input-design-2">
-                                      <input matInput>
+                                      <input matInput formControlName="BRNNo">
                                     </mat-form-field>
                                   </div>
                                 </div>
                                 <div ngClass="col-xl-6 col-lg-6 col-sm-12">
-                                  <div ngClass="block-wrapper mb-4">
-                                    <label class="h6-design">Experts in</label>
-                                    <div class="checkbox-flex-box two-column max-240">
-                                      <div class="checkbox-design position-relative">
-                                        <input type="radio" name="Experts" />
-                                        <button class="checkbox-btn">Residential</button>
-                                      </div>
-                                      <div class="checkbox-design position-relative">
-                                        <input type="radio" name="Experts" />
-                                        <button class="checkbox-btn">Commercial</button>
+
+                                  <div class="col-sm-12">
+                                    <h6 class="h6-design">Experts in</h6>
+                                    <div class="inneR-border-wrap">
+                                      <div class="checkbox-flex-box autoflex-layout">
+                                        <div class="checkbox-design position-relative" (change)="expertsChange($event,list.id)" *ngFor="let list of ExpertIn">
+                                          <input type="checkbox" id="{{list.name}}" name="{{list.name}}" value="{{list.id}}" >
+                                          <button class="checkbox-btn">{{list.name}}</button>
+                                        </div>
                                       </div>
                                     </div>
                                   </div>
+
                                 </div>
                                 <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                   <div ngClass="block-wrapper mb-4">
                                     <label class="h6-design">Nationality</label>
                                     <mat-form-field appearance="fill" class="full-width select-form input-design-2">
                                       <mat-label>Select Nationality</mat-label>
-                                      <mat-select>
-                                        <mat-option [value]="city">
-                                          Nationality 1
-                                        </mat-option>
-                                        <mat-option [value]="city">
-                                          Nationality 1
-                                        </mat-option>
-                                        <mat-option [value]="city">
-                                          Nationality 1
+                                      <mat-select (selectionChange)="onChangeNationality($event)">
+                                        <mat-option [value]="list.id" *ngFor="let list of Nationality">
+                                          {{list.name}}
                                         </mat-option>
                                       </mat-select>
                                     </mat-form-field>
@@ -2402,25 +2396,9 @@
                                     <h6 class="h6-design">Languages</h6>
                                     <div class="inneR-border-wrap">
                                       <div class="checkbox-flex-box autoflex-layout">
-                                        <div class="checkbox-design position-relative">
-                                          <input type="checkbox" id="English" name="Languages" value="English" checked>
-                                          <button class="checkbox-btn">English</button>
-                                        </div>
-                                        <div class="checkbox-design position-relative">
-                                          <input type="checkbox" id="Arabic" name="Languages" value="Arabic">
-                                          <button class="checkbox-btn">Arabic</button>
-                                        </div>
-                                        <div class="checkbox-design position-relative">
-                                          <input type="checkbox" id="Urdu" name="Languages" value="Urdu" checked>
-                                          <button class="checkbox-btn">Urdu</button>
-                                        </div>
-                                        <div class="checkbox-design position-relative">
-                                          <input type="checkbox" id="Danish" name="Languages" value="Danish" checked>
-                                          <button class="checkbox-btn">Danish</button>
-                                        </div>
-                                        <div class="checkbox-design position-relative">
-                                          <input type="checkbox" id="Hindi" name="Languages" value="Hindi">
-                                          <button class="checkbox-btn">Hindi</button>
+                                        <div class="checkbox-design position-relative" (change)="languagesArrayChange($event,list.id)" *ngFor="let list of SpokenLanguages">
+                                          <input type="checkbox" id="{{list.name}}" name="{{list.name}}" value="{{list.id}}" >
+                                          <button class="checkbox-btn">{{list.name}}</button>
                                         </div>
                                       </div>
                                     </div>
@@ -2430,20 +2408,36 @@
                               <div class="highlight-sec mt-4">
                                 <div class="row">
                                   <div class="col-sm-12">
-                                    <h6 class="h6-design">Area</h6>
-                                    <div class="inneR-border-wrap">
-                                      <div class="checkbox-flex-box autoflex-layout">
-                                        <div class="checkbox-design position-relative">
-                                          <input type="checkbox" id="Downtown" name="Area" value="Downtown" checked>
-                                          <button class="checkbox-btn">Downtown Dubai</button>
-                                        </div>
-                                        <div class="checkbox-design position-relative">
-                                          <input type="checkbox" id="Al Makhool" name="Area" value="Al Makhool">
-                                          <button class="checkbox-btn">Al Makhool</button>
-                                        </div>
-                                      </div>
+                                    <div id="Residentials" ngClass="residential-tabs1">
+                                      <h5 ngClass="h5-heading">Area</h5>
+                                      <ul ngClass="list-unstyled residentails-unit-list">
+                                        <li ngClass="d-flex" *ngFor="let item of districts">
+                                          <div ngClass="position-relative">
+                                            <input type="checkbox" (click)="getDistrictsIds(item.id)">
+                                            <span ngClass="property_sel"></span>
+                                          </div>
+                                          <div ngClass="proprty_name">
+                                            <p>{{item.name}}</p>
+                                          </div>
+                                        </li>
+                                      </ul>
                                     </div>
                                   </div>
+<!--                                  <div class="col-sm-12">-->
+<!--                                    <h6 class="h6-design">Area</h6>-->
+<!--                                    <div class="inneR-border-wrap">-->
+<!--                                      <div class="checkbox-flex-box autoflex-layout">-->
+<!--                                        <div class="checkbox-design position-relative">-->
+<!--                                          <input type="checkbox" id="Downtown" name="Area" value="Downtown" checked>-->
+<!--                                          <button class="checkbox-btn">Downtown Dubai</button>-->
+<!--                                        </div>-->
+<!--                                        <div class="checkbox-design position-relative">-->
+<!--                                          <input type="checkbox" id="Al Makhool" name="Area" value="Al Makhool">-->
+<!--                                          <button class="checkbox-btn">Al Makhool</button>-->
+<!--                                        </div>-->
+<!--                                      </div>-->
+<!--                                    </div>-->
+<!--                                  </div>-->
                                 </div>
                               </div>
                               <div ngClass="other-document-upload mt-4">
@@ -2453,28 +2447,34 @@
                                     <div ngClass="blue-upload-box">
                                       <div ngClass="upload-files-design">
                                         <div ngClass="greybordered-btn">
-                                          <input type="file" hidden #emirateInput>
-                                          <button mat-button><span ngClass="outpup-filename"> Picture: Emirates ID
-                                              (Fornt
-                                              View) </span> <img src="{{upload}}"> <span ngClass="btn-txt">Picture:
-                                              Emirates ID (Fornt View)</span></button>
+                                          <input type="file" hidden #emirateInput0
+                                                 accept=".doc, .pdf, .jpg, .jpeg, .png"
+                                                 (change)='emiratesfun($any($event.target).files, 0)'>
+                                          <button mat-button (click)="emirateInput0.click()"><span
+                                            ngClass="outpup-filename">{{ emirate[0] }}</span> <img
+                                            src="{{upload}}"> <span ngClass="btn-txt">Picture:
+                                                                Emirates ID (Fornt View)</span></button>
                                         </div>
+
                                       </div>
                                     </div>
                                   </div>
                                   <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                                     <span class="staus-emoji">
-                                      <img src="{{approvedEmo}}" alt="">
+<!--                                      <img src="{{approvedEmo}}" alt="">-->
                                     </span>
                                   </div>
                                   <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                                     <div ngClass="blue-upload-box">
                                       <div ngClass="upload-files-design">
                                         <div ngClass="greybordered-btn">
-                                          <input type="file" hidden #emirateInput>
-                                          <button mat-button><span ngClass="outpup-filename"> Picture: Emirates ID (Back
-                                              View) </span> <img src="{{upload}}"> <span ngClass="btn-txt">Picture:
-                                              Emirates ID (Fornt View)</span></button>
+                                          <input type="file" hidden #emirateInput1
+                                                 accept=".doc, .pdf, .jpg, .jpeg, .png"
+                                                 (change)='emiratesfun($any($event.target).files, 1)'>
+                                          <button mat-button (click)="emirateInput1.click()"><span
+                                            ngClass="outpup-filename">{{ emirate[1] }}</span> <img
+                                            src="{{upload}}"> <span ngClass="btn-txt">Picture:
+                                                                Emirates ID (Fornt View)</span></button>
                                         </div>
                                       </div>
                                     </div>
@@ -2484,23 +2484,25 @@
                                     <div ngClass="blue-upload-box">
                                       <div ngClass="upload-files-design">
                                         <div ngClass="greybordered-btn">
-                                          <input type="file" hidden #emirateInput>
-                                          <button mat-button><span ngClass="outpup-filename"> Picture: BRN Document
-                                            </span> <img src="{{upload}}"> <span ngClass="btn-txt">Picture: Emirates ID
-                                              (Fornt View)</span></button>
-                                        </div>
-                                      </div>
+                                          <input type="file" hidden #emirateInput2
+                                                 accept=".doc, .pdf, .jpg, .jpeg, .png"
+                                                 (change)='emiratesfun($any($event.target).files, 2)'>
+                                          <button mat-button (click)="emirateInput2.click()"><span
+                                            ngClass="outpup-filename">{{ emirate[2] }}</span> <img
+                                            src="{{upload}}"> <span ngClass="btn-txt">Picture:
+                                                                Emirates ID (Fornt View)</span></button>
+                                        </div>                                  </div>
                                     </div>
                                   </div>
                                   <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                                     <span class="staus-emoji">
-                                      <img src="{{penfingEmo}}" alt="">
+<!--                                      <img src="{{penfingEmo}}" alt="">-->
                                     </span>
                                   </div>
                                 </div>
                               </div>
                               <div class="save-continue-sec">
-                                <mat-card-actions>
+                                <mat-card-actions (click)="getAgentData()">
                                   <a class="save-continue-btn">Save</a>
                                 </mat-card-actions>
                               </div>

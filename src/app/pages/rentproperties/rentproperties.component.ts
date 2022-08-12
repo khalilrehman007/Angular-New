@@ -99,6 +99,14 @@ export class RentpropertiesComponent implements OnInit {
     this.LoadPropertySortBy();
   }
 
+  callNumberText = "Call Now"
+  callNumber(text:any){
+    if(text == "Call Now"){
+      this.callNumberText = "+9000000000"
+    }else{
+      this.callNumberText = "Call Now"
+    }
+  }
 
   allSearch(){
     let params :any = {type:'',"PropertyTypeIds":[], "PropertyAddress":'',"RentTypeId":'',

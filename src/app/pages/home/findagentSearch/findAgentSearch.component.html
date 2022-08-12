@@ -42,7 +42,9 @@
           <div ngClass="cstm_dropdown-list dropdown-design-2 position-relative drodown_with-img">
              <button ngClass="drop-down_btn" (click)="clickEvent()">Specialties</button>
              <div class="cstm_dropdown-menu" [ngClass]="status ? 'active' : 'notactive'">
-              <h4 ngClass="drop_label">Specialties</h4>
+              <h4 ngClass="drop_label" ngbSlide *ngFor="let list of ExpertIn">
+                {{list.name}}
+              </h4>
              </div>
           </div>
         </div>
@@ -54,22 +56,13 @@
              <div class="cstm_dropdown-menu" [ngClass]="status1 ? 'active' : 'notactive'">
               <h4 ngClass="drop_label">Languages</h4>
               <ul ngClass="list-unstyled residentails-unit-list">
-                <li ngClass="d-flex">
+                <li ngClass="d-flex" ngbSlide *ngFor="let list of SpokenLanguages">
                   <div ngClass="position-relative">
                     <input type="radio" name="language" value="English">
                     <span ngClass="property_sel"></span>
                   </div>
                   <div ngClass="proprty_name">
-                    <p>English</p>
-                  </div>
-                </li>
-                <li ngClass="d-flex">
-                  <div ngClass="position-relative">
-                    <input type="radio" name="language" value="Arabic">
-                    <span ngClass="property_sel"></span>
-                  </div>
-                  <div ngClass="proprty_name">
-                    <p>Arabic</p>
+                    <p>{{list.name}}</p>
                   </div>
                 </li>
               </ul>
