@@ -97,7 +97,7 @@ export class PropertyTypesComponent implements OnInit {
     this.formData.PropertyCategoryId = e;
     this.typeSelected = false;
     this.propertyType = [];
-    this.service.LoadType(e).subscribe((result) => {
+    this.service.LoadType({id:e, lat:this.formData.PropertyLat, lng:this.formData.PropertyLong}).subscribe((result) => {
       this.propertyType = result;
       this.propertyType = this.propertyType.data
     })
@@ -193,11 +193,7 @@ export class PropertyTypesComponent implements OnInit {
     this.formData.PlotSize = this.propertyTypeForm.value.apartmentSize;
     this.formData.BuildupArea = this.propertyTypeForm.value.buildupArea;
     this.formData.Elevation = this.propertyTypeForm.value.elevation;
-    if(this.propertyData.hasAge) {
-      this.formData.ConstructionAge = this.propertyTypeForm.value.constructionAge;
-    } else {
-      this.formData.ConstructionAge = 0;
-    }
+    this.formData.ConstructionAge = this.propertyTypeForm.value.constructionAge;
     this.formData.NoOfRoads = this.roadCount;
     this.formData.ValuationPropertyUnits = "";
     let temp:any = [];

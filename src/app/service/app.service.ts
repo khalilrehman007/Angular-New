@@ -74,8 +74,8 @@ export class AppService {
   LoadDistrict(id: number) {
     return this.http.get(this.apiurl + 'Districts/' + id);
   }
-  LoadType(id: number) {
-    return this.http.get(this.apiurl + 'PropertyType/' + id);
+  LoadType(e: any) {
+    return this.http.get(this.apiurl + 'PropertyType/?Proplat=' + e.lat + '&Proplong=' + e.lng + '&categoryId=' + e.id);
   }
   ValuationPurpose() {
     return this.http.get(this.apiurl + 'ValuationPurposes/');
