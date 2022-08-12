@@ -37,6 +37,7 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
   tempAddress: any;
   locationInformation: any = {};
   formDetailData: any = {};
+  showLoader: boolean = false;
 
   location = { lat: 31.5204, lng: 74.3587 };
 
@@ -61,13 +62,13 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
     temp = temp.top;
     $(window).scrollTop(temp - 200);
   }
-  
+
   checkLength() {
-    let temp:any = this.propertyDetails.value.ownerPhone;
-    if(temp.toString().length > 12) {
+    let temp: any = this.propertyDetails.value.ownerPhone;
+    if (temp.toString().length > 12) {
       alert("Max length allowes is 12");
       this.propertyDetails.patchValue({
-        ownerPhone: temp.toString().slice(0,-1)
+        ownerPhone: temp.toString().slice(0, -1)
       })
     }
   }
@@ -78,18 +79,20 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
     this.locationInformation.address = localStorage.getItem("address");
     localStorage.removeItem("address");
   }
-  
+
   loadCountriesData() {
+    this.showLoader = true;
     this.service.LoadCountries().subscribe(e => {
       let temp: any = e;
       if (temp.message == "Country list fetched successfully") {
         for (let country of temp.data) {
           this.country.push({ viewValue: country.name, value: country.id });
         }
+        this.showLoader = false;
       }
     });
   }
-  
+
   toggleType(e: number) {
     if (e == 1) {
       this.formDetailData.titleDeedType = "Leasehold";
@@ -107,6 +110,7 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
     this.propertyInsured = e;
   }
   onCountrySelect(e: any) {
+    this.showLoader = true;
     let temp = this.country.filter(function (c: any) {
       return c.value == e.value
     });
@@ -121,10 +125,12 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
         for (let city of temp.data) {
           this.city.push({ viewValue: city.name, value: city.id });
         }
+        this.showLoader = false;
       }
     });
   }
   onCitySelect(e: any) {
+    this.showLoader = true;
     let temp = this.city.filter(function (c: any) {
       return c.value == e.value
     })
@@ -139,6 +145,7 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
         for (let district of temp.data) {
           this.district.push({ viewValue: district.name, value: district.id });
         }
+        this.showLoader = false;
       }
     });
   }

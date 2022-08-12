@@ -116,13 +116,13 @@
                                         <div ngClass="block-wrapper mb-4">
                                             <label class="h6-design">{{propertyData.numberLabel}} <span ngClass="required-span">*</span></label>
                                             <mat-form-field class="full-width input-design-2" appearance="fill">
-                                                <input matInput type="number" placeholder="Eg. 9999999" formControlName="apartmentNo">
+                                                <input matInput type="number" placeholder="Enter plot no e.g. 999" formControlName="apartmentNo">
                                             </mat-form-field>
                                         </div>
                                     </div>
                                     <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                         <div ngClass="block-wrapper mb-4">
-                                            <label class="h6-design">No. of Roads</label>
+                                            <label class="h6-design">No. of Roads <span ngClass="required-span">*</span></label>
                                             <div class="checkbox-flex-box six-column flex-start">
                                                 <div class="checkbox-design position-relative" (click)="getRoads(1)">
                                                     <input type="radio" id="roads" name="no-of-roads" value="roads">
@@ -144,7 +144,7 @@
                                             <label class="h6-design">Construction Age <span ngClass="required-span">*</span></label>
                                             <div ngClass="position-relative">
                                                 <mat-form-field class="full-width input-design-2" appearance="fill">
-                                                    <input matInput type="number" formControlName="constructionAge">
+                                                    <input matInput type="number" formControlName="constructionAge" placeholder="Enter costruction age e.g. 10">
                                                 </mat-form-field>
                                                 <p ngClass="input-overlay-layer">Yrs.</p>
                                             </div>
@@ -154,17 +154,17 @@
                                         <div ngClass="block-wrapper mb-4">
                                             <label class="h6-design">Elevation <span ngClass="required-span">*</span></label>
                                             <mat-form-field class="full-width input-design-2" appearance="fill">
-                                                <input matInput type="text" placeholder="Eg. G+4" formControlName="elevation">
+                                                <input matInput type="text" placeholder="Enter plot elevation e.g. B+G+10" formControlName="elevation">
                                             </mat-form-field>
                                         </div>
                                     </div>
                                     <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                         <div ngClass="block-wrapper mb-4">
-                                            <label class="h6-design">{{propertyData.typeDescription}} Size in Sq.
-                                                Ft. <span ngClass="required-span">*</span></label>
+                                            <label class="h6-design">{{propertyData.typeDescription}} Size in Sq.Ft.
+                                                <span ngClass="required-span">*</span></label>
                                             <div ngClass="position-relative">
                                                 <mat-form-field class="full-width input-design-2" appearance="fill">
-                                                    <input matInput type="number" formControlName="apartmentSize">
+                                                    <input matInput type="number" formControlName="apartmentSize" placeholder="{{propertyData.typeDescription}} Size in Sq.Ft.">
                                                 </mat-form-field>
                                                 <p ngClass="input-overlay-layer">Sq. Ft.</p>
                                             </div>
@@ -176,7 +176,7 @@
                                                 Ft. <span ngClass="required-span">*</span></label>
                                             <div ngClass="position-relative">
                                                 <mat-form-field class="full-width input-design-2" appearance="fill">
-                                                    <input matInput type="number" formControlName="buildupArea">
+                                                    <input matInput type="number" formControlName="buildupArea" placeholder="Enter buildup area e.g. 9,000">
                                                 </mat-form-field>
                                                 <p ngClass="input-overlay-layer">Sq. Ft.</p>
                                             </div>
@@ -333,13 +333,13 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div ngClass="totel_iccum-annum">
+                                <div ngClass="totel_iccum-annum" *ngIf="totalExpenseWrapper">
                                     <div ngClass="row">
                                         <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                             <div ngClass="block-wrapper mb-4">
                                                 <label class="h6-design">Totel Income per Annum <span ngClass="required-span">*</span></label>
                                                 <mat-form-field class="full-width input-design-2" appearance="fill">
-                                                    <input matInput type="number" placeholder="enter totel income eg. 5,000,000">
+                                                    <input matInput type="number" placeholder="Enter totel income eg. 5,000,000">
                                                 </mat-form-field>
                                             </div>
                                         </div>
@@ -347,7 +347,7 @@
                                             <div ngClass="block-wrapper mb-4">
                                                 <label class="h6-design">Totel Expense per Annum <span ngClass="required-span">*</span></label>
                                                 <mat-form-field class="full-width input-design-2" appearance="fill">
-                                                    <input matInput type="number" placeholder="enter totel expense eg. 3,500,000">
+                                                    <input matInput type="number" placeholder="Enter totel expense eg. 3,500,000">
                                                 </mat-form-field>
                                             </div>
                                         </div>
@@ -369,3 +369,4 @@
         </div>
     </div>
 </section>
+<app-loader *ngIf="showLoader"></app-loader>
