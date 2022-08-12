@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
+import { AppService } from 'src/app/service/app.service';
 
 @Component({
   selector: 'app-agent-landing',
@@ -11,7 +12,8 @@ export class AgentLandingComponent implements OnInit {
   totalLength: number = 0;
   page: number = 1;
   companies:boolean = false;
-  constructor(private router: Router) {
+  agentDetails: any;
+  constructor(private router: Router, private service:AppService ) {
     this.agentData();
     let url = this.router.url.replace("/", "");
     if(url == 'find-companies'){
@@ -22,6 +24,10 @@ export class AgentLandingComponent implements OnInit {
       this.agentCheck = true;
       this.agentData();
     }
+    this.service.BestAgent(1).subscribe((result:any)=> {
+      this.agentDetails = result.data;
+      console.log(this.agentDetails);
+    })
   }
   featuredAgentData:any;
   // currentURL=false;
