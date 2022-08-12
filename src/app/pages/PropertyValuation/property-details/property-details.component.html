@@ -47,7 +47,7 @@
                 <div ngClass="row">
                   <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                     <div ngClass="block-wrapper mb-4">
-                      <label class="h6-design">Title Deed No.*</label>
+                      <label class="h6-design">Title Deed No. <span ngClass="required-span">*</span> <span ngClass="small-label">(Insert "0" if you don't have NO)</span></label>
                       <mat-form-field class="full-width input-design-2" appearance="fill">
                         <input matInput type="number" placeholder="Title Deed No" formControlName="titleDeed" />
                       </mat-form-field>
@@ -58,7 +58,7 @@
                   </div>
                   <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                     <div ngClass="block-wrapper mb-4">
-                      <label class="h6-design">Title Deed Type*</label>
+                      <label class="h6-design">Title Deed Type <span ngClass="required-span">*</span></label>
                       <div class="checkbox-flex-box two-column max-240">
                         <div class="checkbox-design position-relative" (click)="toggleType(1)">
                           <input type="radio" id="Monthly" name="building-type" value="Monthly" />
@@ -77,7 +77,7 @@
                 <div ngClass="row">
                   <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                     <div ngClass="block-wrapper mb-4">
-                      <label class="h6-design">Muncipality/Affection No.*</label>
+                      <label class="h6-design">Muncipality/Affection No. <span ngClass="required-span">*</span> <span ngClass="small-label">(Insert "0" if you don't have NO)</span></label>
                       <mat-form-field class="full-width input-design-2" appearance="fill">
                         <input matInput type="number" placeholder="Enter the Municipality No/Affection No." formControlName="muncipality" />
                       </mat-form-field>
@@ -90,7 +90,7 @@
                   </div>
                   <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                     <div ngClass="block-wrapper mb-4">
-                      <label class="h6-design">Property Insured*</label>
+                      <label class="h6-design">Property Insured <span ngClass="required-span">*</span></label>
                       <div class="checkbox-flex-box two-column max-240">
                         <div class="checkbox-design position-relative" (click)="toggleInsured(1)">
                           <input type="radio" id="Yes" name="building-type" value="Yes" />
@@ -110,7 +110,7 @@
                   <div ngClass="col-xl-4 col-lg-4 col-sm-12">
                     <div ngClass="block-wrapper mb-4">
                       <div ngClass="select-design">
-                        <label>Country</label>
+                        <label>Country <span ngClass="required-span">*</span></label>
                         <mat-form-field appearance="fill">
                           <mat-label>Select the Country</mat-label>
                           <mat-select (selectionChange)="onCountrySelect($event)">
@@ -124,7 +124,7 @@
                   </div>
                   <div ngClass="col-xl-4 col-lg-4 col-sm-12">
                     <div ngClass="select-design">
-                      <label ngClass="h6-design">City</label>
+                      <label ngClass="h6-design">City <span ngClass="required-span">*</span></label>
                       <mat-form-field appearance="fill">
                         <mat-label>Select the City</mat-label>
                         <mat-select (selectionChange)="onCitySelect($event)">
@@ -138,7 +138,7 @@
                   <div ngClass="col-xl-4 col-lg-4 col-sm-12">
                     <div ngClass="block-wrapper mb-4">
                       <div ngClass="select-design">
-                        <label>District</label>
+                        <label>District <span ngClass="required-span">*</span></label>
                         <mat-form-field appearance="fill">
                           <mat-label>Select the District</mat-label>
                           <mat-select (selectionChange)="onDistrictSelect($event)">
@@ -154,7 +154,7 @@
               </div>
               <div ngClass="address-sec">
                 <div ngClass="block-wrapper-address">
-                  <label class="h6-design">Pin the Location of your Property</label>
+                  <label class="h6-design">Pin the Location of your Property <span ngClass="required-span">*</span></label>
                   <div ngClass="position-relative">
                     <div style="width: 100%">
                       <div #propertyDetails__map class="property-details__map"></div>
@@ -180,7 +180,7 @@
               </div>
               <div ngClass="location-information">
                 <div ngClass="block-wrapper mb-4">
-                  <h6 ngClass="h6-design">Location Information</h6>
+                  <h6 ngClass="h6-design">Location Information <span ngClass="required-span">*</span></h6>
                   <div ngClass="location-info-lists">
                     <mat-list>
                       <mat-list-item ngClass="d-flex justify-content-spacebw">

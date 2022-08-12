@@ -38,7 +38,17 @@ input:-webkit-autofill:active{
     -webkit-box-shadow: 0 0 0 30px white inset !important;
 	padding-right: 0px !important;
 }
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
 
 
 
@@ -1286,7 +1296,15 @@ input[type=number] {
 .checkbox-flex-box {
 	display: flex;
 	flex-direction: row;
-	justify-content: space-between;
+	justify-content: flex-start;
+	flex-wrap: wrap;
+	.checkbox-design{
+		margin-right: 10px;
+		margin-bottom: 5px;
+	}
+	.checkbox-design:last-child{
+		margin-right: 0px;
+	}
 }
 .checkbox-flex-box.two-column {
 	>div {
@@ -1543,8 +1561,7 @@ input[type=number] {
 	justify-content: flex-start;
 	>div {
 		min-width: 15%;
-		padding: 0px 8px;
-		margin-bottom: 15px;
+		margin-bottom: 10px;
 	}
 }
 .div_thumb-wrapper {
@@ -8965,4 +8982,10 @@ li.agent-details__property-list-item {
 .ExDetailhide{
     opacity: 0;
     height: 0;
+}
+.small-label {
+    font-size: 12px;
+    color: gray;
+    text-transform: initial;
+    padding-left: 3px;
 }
