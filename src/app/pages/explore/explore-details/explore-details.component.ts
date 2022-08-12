@@ -18,81 +18,131 @@ export class ExploreDetailsComponent implements OnInit {
   exploreimg='../../../../assets/images/Blog-Tile.png'
   restaurant= '../../../../assets/images/icons/restaurant.svg'
   exploredemo= '../../../../assets/images/explore-demo.png'
+  dubaigv = 'assets/images/goverment-of-dubai.png'
+  landdept = 'assets/images/Dubai-Land-LOGO.png'
+  rera = 'assets/images/rera.png'
+  baseUrl = 'https://beta.ovaluate.com/'
+  blogs: any;
+  submitted = false;
+  responsedata: any;
+  dynamicSlides1:any = [];
+  dynamicSlides2:any = [];
+  homebanners:any = [];
+  transaction:any = [];
+  country:any = [];
+  clientFeedback:any = [];
+  slider: any = [];
 
-dynamicSlides1 = [
-      {
-        id: 'slide1',
-        src:'../../../../assets/images/property/1.png',
-        alt:'Side 1',
-        title:'Side 1',
-        price:"250,000AED"
-      },
-      {
-        id: 'slide2',
-        src:'../../../../assets/images/property/1.png',
-        alt:'Side 2',
-        title:'Side 2',
-        price:"250,000AED"
-      },
-      {
-        id: 'slide3',
-        src:'../../../../assets/images/property/1.png',
-        alt:'Side 3',
-        title:'Side 3',
-        price:"250,000AED"
-      },
-      {
-        id: 'slide4',
-        src:'../../../../assets/images/property/1.png',
-        alt:'Side 4',
-        title:'Side 4',
-        price:"250,000AED"
-      },
-      {
-        id: 'slide5',
-        src:'../../../../assets/images/property/1.png',
-        alt:'Side 5',
-        title:'Side 5',
-        price:"250,000AED"
-      }
-    ]
- dynamicSlides2 = [
-      {
-        id: 'slide1',
-        src:'../../../../assets/images/property/1.png',
-        alt:'Side 1',
-        title:'Side 56',
-        price:"350,000AED"
-      },
-      {
-        id: 'slide2',
-        src:'../../../../assets/images/property/1.png',
-        alt:'Side 2',
-        title:'Side 2',
-        price:"350,000AED"
-      },
-      {
-        id: 'slide3',
-        src:'../../../../assets/images/property/1.png',
-        alt:'Side 3',
-        title:'Side 3',
-        price:"350,000AED"
-      },
-      {
-        id: 'slide4',
-        src:'../../../../assets/images/property/1.png',
-        alt:'Side 4',
-        title:'Side 4',
-        price:"350,000AED"
-      },
-      {
-        id: 'slide5',
-        src:'../../../../assets/images/property/1.png',
-        alt:'Side 5',
-        title:'Side 5',
-        price:"350,000AED"
-      }
-    ]
+
+
+  id: 1;
+  propertyDetails:any;
+  oldData1() {
+    let tempData :Array<Object> = []
+    this.service.LatestPropertiesListingResidential(2).subscribe(data=>{
+      this.propertyDetails= data;
+      this.propertyDetails = this.propertyDetails.data;
+
+      this.propertyDetails.forEach((element, i) => {
+        let image = element.documents[0].fileUrl
+        tempData.push(
+          {
+            title: element.propertyTitle,
+            rentType: element.rentType.name,
+            currency: element.country.currency,
+            price: element.propertyPrice,
+            id:element.id,
+            alt:element.propertyTitle,
+            src:this.baseUrl+image,
+            bedrooms:element.bedrooms,
+            propertyAddress:element.propertyAddress,
+            bathrooms:element.bathrooms,
+            buildingName:element.buildingName,
+            carpetArea:element.carpetArea,
+          });
+      })
+    });
+    this.dynamicSlides1 = tempData
+  }
+  newData1() {
+    let tempData :Array<Object> = []
+    this.service.LatestPropertiesListingResidential(1).subscribe(data=>{
+      this.propertyDetails= data;
+      this.propertyDetails = this.propertyDetails.data;
+      this.propertyDetails.forEach((element, i) => {
+        let image = element.documents[0].fileUrl
+        tempData.push(
+          {
+            title: element.propertyTitle,
+            price: element.propertyPrice,
+            rentType: element.rentType.name,
+            currency: element.country.currency,
+            propertyAddress:element.propertyAddress,
+            id:element.id,
+            alt:element.propertyTitle,
+            src:this.baseUrl+image,
+            bedrooms:element.bedrooms,
+            bathrooms:element.bathrooms,
+            buildingName:element.buildingName,
+            carpetArea:element.carpetArea,
+          });
+      })
+    });
+    this.dynamicSlides1 = tempData
+  }
+
+  oldData2() {
+    let tempData :Array<Object> = []
+    this.service.LatestPropertiesListingCommercial(2).subscribe(data=>{
+      this.propertyDetails=data;
+      this.propertyDetails = this.propertyDetails.data;
+      this.propertyDetails.forEach((element, i) => {
+        let image = element.documents[0].fileUrl
+        tempData.push(
+          {
+            title: element.propertyTitle,
+            price: element.propertyPrice,
+            rentType: element.rentType.name,
+            currency: element.country.currency,
+            propertyAddress:element.propertyAddress,
+            id:element.id,
+            alt:element.propertyTitle,
+            src:this.baseUrl+image,
+            bedrooms:element.bedrooms,
+            bathrooms:element.bathrooms,
+            buildingName:element.buildingName,
+            carpetArea:element.carpetArea,
+          });
+      })
+    });
+    this.dynamicSlides2 = tempData
+  }
+  newData2() {
+    let tempData :Array<Object> = []
+    this.service.LatestPropertiesListingCommercial(1).subscribe(data=>{
+      this.propertyDetails=data;
+      this.propertyDetails = this.propertyDetails.data;
+      this.propertyDetails.forEach((element, i) => {
+        let image = element.documents[0].fileUrl
+        tempData.push(
+          {
+            title: element.propertyTitle,
+            price: element.propertyPrice,
+            rentType: element.rentType.name,
+            currency: element.country.currency,
+            propertyAddress:element.propertyAddress,
+            id:element.id,
+            alt:element.propertyTitle,
+            src:this.baseUrl+image,
+            bedrooms:element.bedrooms,
+            bathrooms:element.bathrooms,
+            buildingName:element.buildingName,
+            carpetArea:element.carpetArea,
+          });
+      })
+    });
+    this.dynamicSlides2 = tempData
+  }
   customOptions: OwlOptions = {
     loop: true,
     mouseDrag: true,
@@ -116,7 +166,6 @@ dynamicSlides1 = [
     },
     nav: false
   }
-  id: any;
   districtDetail:any = {};
 
   constructor(private route: ActivatedRoute, private service: AppService) {
@@ -126,10 +175,42 @@ dynamicSlides1 = [
     this.service.ExploreDistrict(this.id).subscribe((result:any) => {
       this.districtDetail = result.data;
       console.log(this.districtDetail);
-    })
+    });
+    this.oldData2();
+    this.oldData1();
    }
 
   ngOnInit(): void {
+  }
+  status: boolean = false;
+  status1: boolean = false;
+  status2: boolean = false;
+  status3: boolean = false;
+  status4: boolean = false;
+  status5: boolean = false;
+  Overview() {
+    this.status = !this.status;
+    this.status1 = false;
+    this.status2 = false;
+    this.status3 = false;
+  }
+  NearBy() {
+    this.status = false;
+    this.status1 = !this.status1;
+    this.status2 = false;
+    this.status3 = false;
+  }
+  ResPro() {
+    this.status = false;
+    this.status1 = false;
+    this.status2 = !this.status2;
+    this.status3 = false;
+  }
+  ComPro() {
+    this.status = false;
+    this.status1 = false;
+    this.status2 = false;
+    this.status3 = !this.status3;
   }
 
 }

@@ -51,17 +51,15 @@
                 </div>
             </div>
             <div ngClass="row">
-                <!-- let blogs of Blogsec -->
-                <div ngClass="col-lg-4 col-md-6 blog-places-col" *ngFor=" let blog of blogsec">
-                    <a [routerLink]="['/blogs-details/' + blog.heading]">
-                        <!-- blog.blogDocument.fileUrl -->
-                        <img [src]="blog.src" ngClass="img-fluid blog-image-homepage" alt="">
-                        <span ngClass="blog-tag">
-                            <img [src]="blog.src2" ngClass="img-fluid" alt="">
-                        </span>
+                <div ngClass="col-lg-4 col-md-6 blog-places-col" *ngFor=" let item of blog.blogCategory.blogs">
+                    <a href="/blogs-details/{{item.id}}">
+                        <img src="https://beta.ovaluate.com/{{item.blogDocument.fileUrl}}" ngClass="img-fluid blog-image-homepage" alt="">
+                        <!-- <span ngClass="blog-tag">
+                            <img [src]="item.src2" ngClass="img-fluid" alt="">
+                        </span> -->
                         <div ngClass="blog-title-content">
-                            <h5>{{blog.heading}}</h5>
-                            <span>{{blog.date}}</span>
+                            <h5>{{item.blogTitle}}</h5>
+                            <span>{{item.blogDate.split("T")[0]}}</span>
                         </div>
                     </a>
                 </div>
