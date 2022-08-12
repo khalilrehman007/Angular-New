@@ -27,8 +27,10 @@ export class PropertyTypesComponent implements OnInit {
   furnishingType: any;
   fittingType: any;
   featuresFormData: any = [];
-  roadCount:number = 0;
-  formDetailData:any = {};
+  roadCount: number = 0;
+  formDetailData: any = {};
+  totalExpenseWrapper: boolean = false;
+  showLoader: boolean = false;
 
   unitHMTL: any = [];
 
@@ -43,6 +45,7 @@ export class PropertyTypesComponent implements OnInit {
     { viewValue: '08', value: '08' },
     { viewValue: '09', value: '09' },
     { viewValue: '10', value: '10' },
+    { viewValue: '10+', value: '10+' },
   ];
   propertyTypeForm = new FormGroup({
     apartmentNo: new FormControl("", Validators.required),
@@ -66,7 +69,7 @@ export class PropertyTypesComponent implements OnInit {
   get buildupArea() {
     return this.propertyTypeForm.get("buildupArea");
   }
-  constructor(private service: AppService, private router:Router) {
+  constructor(private service: AppService, private router: Router) {
     this.formData = (window.localStorage.getItem('valuationData'));
     this.formData = JSON.parse(this.formData);
     this.loadFurnishingType();
@@ -89,7 +92,8 @@ export class PropertyTypesComponent implements OnInit {
     this.status = !this.status;
   }
   loadType(e: number) {
-    if(e == 1) {
+    this.showLoader = true;
+    if (e == 1) {
       this.formDetailData.propertyCategory = "Residential";
     } else {
       this.formDetailData.propertyCategory = "Commercial";
@@ -97,19 +101,21 @@ export class PropertyTypesComponent implements OnInit {
     this.formData.PropertyCategoryId = e;
     this.typeSelected = false;
     this.propertyType = [];
-    this.service.LoadType({id:e, lat:this.formData.PropertyLat, lng:this.formData.PropertyLong}).subscribe((result) => {
+    this.service.LoadType({ id: e, lat: this.formData.PropertyLat, lng: this.formData.PropertyLong }).subscribe((result) => {
       this.propertyType = result;
       this.propertyType = this.propertyType.data
+      this.showLoader = false;
     })
   }
   valuationPurpose(e: any) {
+    this.showLoader = true;
     this.formDetailData.propertyType = this.propertyType.filter(item => item.id == e.value)[0].typeDescription;
     this.formData.PropertyTypeId = e.value;
     this.purposeOfValuation = [];
     this.featuresData = [];
     this.propertyData = this.propertyType.filter(item => item.id == e.value)[0];
-    if(this.propertyData.hasUnits) {
-      this.unitHMTL= [{ show: true, id: 1 }];
+    if (this.propertyData.hasUnits) {
+      this.unitHMTL = [{ show: true, id: 1 }];
     }
     this.service.ValuationPurpose().subscribe((result) => {
       this.purposeOfValuation = result;
@@ -117,6 +123,7 @@ export class PropertyTypesComponent implements OnInit {
     });
     this.service.PropertyFeatures(this.propertyData.id).subscribe((result: any) => {
       this.featuresData = result.data;
+      this.showLoader = false;
     })
     this.typeSelected = true;
   }
@@ -130,7 +137,12 @@ export class PropertyTypesComponent implements OnInit {
       this.fittingType = result.data;
     })
   }
-  propertyStatus(id: any, name:any) {
+  propertyStatus(id: any, name: any) {
+    if (name == "Leased") {
+      this.totalExpenseWrapper = true;
+    } else {
+      this.totalExpenseWrapper = false;
+    }
     this.formDetailData.PropertyStatus = name;
     this.formData.PropertyStatusId = id;
   }
@@ -150,11 +162,11 @@ export class PropertyTypesComponent implements OnInit {
     this.formDetailData.Bathrooms = e.value;
     this.formData.Bathrooms = e.value;
   }
-  getFurnishingType(id: number, name:any) {
+  getFurnishingType(id: number, name: any) {
     this.formDetailData.Furnishing = name;
     this.formData.FurnishingType = id;
   }
-  getFittingType(id: number, name:any) {
+  getFittingType(id: number, name: any) {
     this.formDetailData.Fitting = name;
     this.formData.FittingType = id;
   }
@@ -179,13 +191,51 @@ export class PropertyTypesComponent implements OnInit {
     }
   }
   getData() {
+    if(!this.formData.PropertyCategoryId) {
+      alert("Please Select Property Category");
+      return;
+    } else if(!this.formData.PropertyTypeId) {
+      alert("Please Select Property Type");
+      return;
+    } else if(!this.formData.ValuationPurposeId) {
+      alert("Please Select Valuation Purpose");
+      return;
+    } else if(!this.formData.PropertyStatusId) {
+      alert("Please Select Property Status");
+      return;
+    } else if(this.propertyTypeForm.value.apartmentNo == "") {
+      alert("Please Enter Apartment No");
+      return;
+    } else if(this.roadCount == 0) {
+      alert("Please Select Number of Road");
+      return;
+    } else if(this.propertyTypeForm.value.constructionAge == "") {
+      alert("Please Enter Constrution Age");
+      return;
+    } else if(this.propertyTypeForm.value.elevation == "") {
+      alert("Please Enter Elevation");
+      return;
+    } else if(this.propertyTypeForm.value.apartmentSize == "") {
+      alert("Please Enter Plot Size");
+      return;
+    } else if(this.propertyTypeForm.value.buildupArea == "") {
+      alert("Please Enter Buildup Area");
+      return;
+    } else if(!this.formData.Bedrooms) {
+      alert("Please Select Bedrooms");
+      return;
+    } else if(!this.formData.Bathrooms) {
+      alert("Please Select Bedrooms");
+      return;
+    }
     this.formDetailData.PlotNo = this.propertyTypeForm.value.apartmentNo;
     this.formDetailData.PlotNo = this.propertyTypeForm.value.elevation;
-    if(this.propertyData.hasElevation) {
+    if (this.propertyData.hasElevation) {
       this.formDetailData.elevation = this.propertyTypeForm.value.elevation;
     } else {
       this.formDetailData.elevation = 0;
     }
+    this.formData.ConstructionAge = this.propertyTypeForm.value.constructionAge;
     this.formDetailData.PlotSize = this.propertyTypeForm.value.apartmentSize;
     this.formDetailData.BuildupArea = this.propertyTypeForm.value.buildupArea;
 
@@ -193,22 +243,21 @@ export class PropertyTypesComponent implements OnInit {
     this.formData.PlotSize = this.propertyTypeForm.value.apartmentSize;
     this.formData.BuildupArea = this.propertyTypeForm.value.buildupArea;
     this.formData.Elevation = this.propertyTypeForm.value.elevation;
-    this.formData.ConstructionAge = this.propertyTypeForm.value.constructionAge;
     this.formData.NoOfRoads = this.roadCount;
     this.formData.ValuationPropertyUnits = "";
-    let temp:any = [];
+    let temp: any = [];
     for (let i = 0; i < this.unitHMTL.length; i++) {
-      if(this.unitHMTL[i].show) {
-        temp.push({PropertyUnitTypeId:$("#unit-wrapper-"+this.unitHMTL[i].id).find(".mat-select-min-line").text(),NumberOfUnit:$("#unit-wrapper-"+this.unitHMTL[i].id).find(".no-of-units").val(),Vacant:$("#unit-wrapper-"+this.unitHMTL[i].id).find(".vacant").val(),UnitSize:$("#unit-wrapper-"+this.unitHMTL[i].id).find(".size-sq-ft").val(),NumberOfBeds:$("#unit-wrapper-"+this.unitHMTL[i].id).find(".bedroom").val(),RentValue:$("#unit-wrapper-"+this.unitHMTL[i].id).find(".rent-value").val()});
+      if (this.unitHMTL[i].show) {
+        temp.push({ PropertyUnitTypeId: $("#unit-wrapper-" + this.unitHMTL[i].id).find(".mat-select-min-line").text(), NumberOfUnit: $("#unit-wrapper-" + this.unitHMTL[i].id).find(".no-of-units").val(), Vacant: $("#unit-wrapper-" + this.unitHMTL[i].id).find(".vacant").val(), UnitSize: $("#unit-wrapper-" + this.unitHMTL[i].id).find(".size-sq-ft").val(), NumberOfBeds: $("#unit-wrapper-" + this.unitHMTL[i].id).find(".bedroom").val(), RentValue: $("#unit-wrapper-" + this.unitHMTL[i].id).find(".rent-value").val() });
       }
     }
-    let unitName:any = [];
-    let unitID:any = [];
-    for (let i = 0 ; i < this.propertyUnits.length; i++) {
+    let unitName: any = [];
+    let unitID: any = [];
+    for (let i = 0; i < this.propertyUnits.length; i++) {
       unitName.push(this.propertyUnits[i].name);
       unitID.push(this.propertyUnits[i].id);
     }
-    for (let i = 0 ; i < temp.length; i++) {
+    for (let i = 0; i < temp.length; i++) {
       temp[i].PropertyUnitTypeId = unitID[unitName.indexOf(temp[i].PropertyUnitTypeId)];
     }
     this.formDetailData.ValuationPropertyUnits = temp;
