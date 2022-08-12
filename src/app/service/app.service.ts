@@ -286,4 +286,10 @@ export class AppService {
   ExploreDistrict(id:any) {
     return this.http.get(this.apiurl + 'ExploreDistrict/' + id);
   }
+  PropertiesListingResidentialByDistrict(data:any) {
+    return this.http.post(this.apiurl + 'PropertiesListingResidentialByDistrict', data);
+  }
+  PropertiesListingCommercialByDistrict(data:any) {
+    return this.http.post(this.apiurl + 'PropertiesListingCommercialByDistrict', data);
+  }
 }

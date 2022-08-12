@@ -39,7 +39,7 @@ export class ExploreDetailsComponent implements OnInit {
   propertyDetails:any;
   oldData1() {
     let tempData :Array<Object> = []
-    this.service.LatestPropertiesListingResidential(2).subscribe(data=>{
+    this.service.PropertiesListingResidentialByDistrict({ "DistictId": this.id,"PropertyListingTypeId": "1" }).subscribe(data=>{
       this.propertyDetails= data;
       this.propertyDetails = this.propertyDetails.data;
 
@@ -63,10 +63,11 @@ export class ExploreDetailsComponent implements OnInit {
       })
     });
     this.dynamicSlides1 = tempData
+    console.log(this.dynamicSlides1,'ResidentialOld')
   }
   newData1() {
     let tempData :Array<Object> = []
-    this.service.LatestPropertiesListingResidential(1).subscribe(data=>{
+    this.service.PropertiesListingResidentialByDistrict({ "DistictId": this.id,"PropertyListingTypeId": "1" }).subscribe(data=>{
       this.propertyDetails= data;
       this.propertyDetails = this.propertyDetails.data;
       this.propertyDetails.forEach((element, i) => {
@@ -89,11 +90,13 @@ export class ExploreDetailsComponent implements OnInit {
       })
     });
     this.dynamicSlides1 = tempData
+    console.log(this.dynamicSlides1,'ResidentialNew')
+
   }
 
   oldData2() {
     let tempData :Array<Object> = []
-    this.service.LatestPropertiesListingCommercial(2).subscribe(data=>{
+    this.service.PropertiesListingCommercialByDistrict({ "DistictId": this.id,"PropertyListingTypeId": "1" }).subscribe(data=>{
       this.propertyDetails=data;
       this.propertyDetails = this.propertyDetails.data;
       this.propertyDetails.forEach((element, i) => {
@@ -116,10 +119,12 @@ export class ExploreDetailsComponent implements OnInit {
       })
     });
     this.dynamicSlides2 = tempData
+    console.log(this.dynamicSlides2,'CommercialOld')
+
   }
   newData2() {
     let tempData :Array<Object> = []
-    this.service.LatestPropertiesListingCommercial(1).subscribe(data=>{
+    this.service.PropertiesListingCommercialByDistrict({ "DistictId": this.id,"PropertyListingTypeId": "1" }).subscribe(data=>{
       this.propertyDetails=data;
       this.propertyDetails = this.propertyDetails.data;
       this.propertyDetails.forEach((element, i) => {
@@ -142,6 +147,8 @@ export class ExploreDetailsComponent implements OnInit {
       })
     });
     this.dynamicSlides2 = tempData
+    console.log(this.dynamicSlides2,'CommercialNew')
+
   }
   customOptions: OwlOptions = {
     loop: true,
@@ -182,7 +189,7 @@ export class ExploreDetailsComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  status: boolean = false;
+  status: boolean = true;
   status1: boolean = false;
   status2: boolean = false;
   status3: boolean = false;
