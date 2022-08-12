@@ -61,29 +61,31 @@
             </div>
         </div>
         <div class="row" *ngIf="!companies">
-            <div class="col-lg-4" *ngFor="let item of featuredAgentData.list">
+            <div class="col-lg-4" *ngFor="let item of agentDetails">
                 <div class="agent-landing-featured__agent">
                     <div class="agent-landing-featured__property-wrapper">
-                        <img src={{item.tag}} alt="" class="agent-landing-featured__property-tag">
+                        <img src="assets/images/tag/featured.png" alt="" class="agent-landing-featured__property-tag">
                         <div class="row">
                             <div class="col-5 d-flex align-items-center">
-                                <img src={{item.img}} alt="" class="img-fluid agent-landing-featured__property-img">
-                                <img src={{item.company}} alt=""
-                                    class="img-fluid agent-landing-featured__agent-company">
+                                <img src="https://beta.ovaluate.com/{{item.agentDetails.user.imageUrl}}" alt="" class="img-fluid agent-landing-featured__property-img">
+                                <img src="assets/images/brand/betterhomes.png" alt="" class="img-fluid agent-landing-featured__agent-company">
                             </div>
                             <div class="col-7">
                                 <div class="agent-landing-featured__agent-right-panel">
-                                    <h6 class="agent-landing-featured__property-heading" routerLink="/agent-details/1">{{item.heading}}</h6>
-                                    <p class="agent-landing-featured__property-text">{{item.text}}</p>
-                                    <a class="agent-landing-featured__property-link"
-                                        routerLink={{item.link.url}}>{{item.link.text}}</a>
-                                    <p class="agent-landing-featured__property-text">{{item.rera}}</p>
-                                    <p class="agent-landing-featured__property-text">{{item.permit}}</p>
+                                    <h6 class="agent-landing-featured__property-heading" routerLink="/agent-details/1">{{item.agentDetails.user.fullName}}</h6>
+                                    <p class="agent-landing-featured__property-text">{{item.agentDetails.user.address}}</p>
+                                    <a class="agent-landing-featured__property-link" >View Map</a>
+                                    <p class="agent-landing-featured__property-text">RERA# {{item.agentDetails.company.reraNo}}</p>
+                                    <p class="agent-landing-featured__property-text">Permits# {{item.agentDetails.company.premitNo}}</p>
                                     <ul class="agent-landing-featured__property-details-list">
-                                        <li class="agent-landing-featured__property-details-list-item"
-                                            *ngFor="let detail of item.details">
-                                            <p class="agent-landing-featured__property-details-list-text">
-                                                {{detail.count}}<br>{{detail.name}}</p>
+                                        <li class="agent-landing-featured__property-details-list-item">
+                                            <p class="agent-landing-featured__property-details-list-text">{{item.salePropertyListingCount}}<br>Sale</p>
+                                        </li>
+                                        <li class="agent-landing-featured__property-details-list-item">
+                                            <p class="agent-landing-featured__property-details-list-text">{{item.rentPropertyListingCount}}<br>Rents</p>
+                                        </li>
+                                        <li class="agent-landing-featured__property-details-list-item">
+                                            <p class="agent-landing-featured__property-details-list-text">{{item.commercialPropertyListingCount}}<br>Commercial</p>
                                         </li>
                                     </ul>
                                 </div>
