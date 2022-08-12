@@ -1296,15 +1296,7 @@ input[type=number] {
 .checkbox-flex-box {
 	display: flex;
 	flex-direction: row;
-	justify-content: flex-start;
-	flex-wrap: wrap;
-	.checkbox-design{
-		margin-right: 10px;
-		margin-bottom: 5px;
-	}
-	.checkbox-design:last-child{
-		margin-right: 0px;
-	}
+	justify-content: space-between;
 }
 .checkbox-flex-box.two-column {
 	>div {
@@ -1561,7 +1553,8 @@ input[type=number] {
 	justify-content: flex-start;
 	>div {
 		min-width: 15%;
-		margin-bottom: 10px;
+		padding: 0px 8px;
+		margin-bottom: 15px;
 	}
 }
 .div_thumb-wrapper {
