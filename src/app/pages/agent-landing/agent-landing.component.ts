@@ -13,6 +13,7 @@ export class AgentLandingComponent implements OnInit {
   page: number = 1;
   companies:boolean = false;
   agentDetails: any;
+  bestCompaniesDetails: any;
   constructor(private router: Router, private service:AppService ) {
     this.agentData();
     let url = this.router.url.replace("/", "");
@@ -28,6 +29,10 @@ export class AgentLandingComponent implements OnInit {
       this.agentDetails = result.data;
       console.log(this.agentDetails);
     })
+    // this.service.FindCompanies(1).subscribe((result:any)=>{
+    //   this.bestCompaniesDetails = result.data;
+    //   console.log(this.bestCompaniesDetails)
+    // })
   }
   featuredAgentData:any;
   // currentURL=false;
