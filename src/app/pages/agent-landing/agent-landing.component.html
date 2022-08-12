@@ -28,10 +28,34 @@
                         <form>
                           <div ngClass="flex-row">
                             <div ngClass="flex-column flex-column-90">
-                              <div ngClass="form-grouph input-design floating-label position-relative">
-                                <label>Search by</label>
-                                <input type="text" placeholder="Location / Company Name">
-                              </div>
+                                <div ngClass="block-wrapper">
+                                    <mat-form-field class="example-chip-list input-design searh_input-design" appearance="fill">
+                                      <mat-label>Search</mat-label>
+                                      <mat-chip-list #chipList aria-label="Search selection">
+                                        <mat-chip
+                                          *ngFor="let SearchValue of SearchKeyword"
+                                          (removed)="remove(SearchValue)">
+                                          {{SearchValue}}
+                                          <button matChipRemove>
+                                            <mat-icon>cancel</mat-icon>
+                                          </button>
+                                        </mat-chip>
+                                        <input
+                                          placeholder="Location, Project Name"
+                                          #SearchInput
+                                          [formControl]="searchctrl"
+                                          [matAutocomplete]="auto"
+                                          [matChipInputFor]="chipList"
+                                          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                          (matChipInputTokenEnd)="add($event)">
+                                      </mat-chip-list>
+                                      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+                                        <mat-option *ngFor="let SearchValue of searchfilter | async" [value]="SearchValue">
+                                          {{SearchValue}}
+                                        </mat-option>
+                                      </mat-autocomplete>
+                                    </mat-form-field>
+                                  </div>
                             </div>
                             <div ngClass="flex-column flex-column-10">
                                 <button type="submit" ngClass="search-btn"><img src="assets/images/search.svg"></button>
@@ -65,7 +89,7 @@
                 <div class="agent-landing-featured__agent">
                     <div class="agent-landing-featured__property-wrapper">
                         <img src="assets/images/tag/featured.png" alt="" class="agent-landing-featured__property-tag">
-                        <div class="row">
+                        <div class="row height-100">
                             <div class="col-5 d-flex align-items-center">
                                 <img src="https://beta.ovaluate.com/{{item.agentDetails.user.imageUrl}}" alt="" class="img-fluid agent-landing-featured__property-img">
                                 <img src="assets/images/brand/betterhomes.png" alt="" class="img-fluid agent-landing-featured__agent-company">

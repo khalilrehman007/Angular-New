@@ -1,6 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {Router} from "@angular/router";
 import { AppService } from 'src/app/service/app.service';
+import {MatChipInputEvent} from '@angular/material/chips';
+import {MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
+import {Observable} from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-agent-landing',
@@ -28,6 +34,10 @@ export class AgentLandingComponent implements OnInit {
       this.agentDetails = result.data;
       console.log(this.agentDetails);
     })
+    this.searchfilter = this.searchctrl.valueChanges.pipe(
+      startWith(null),
+      map((searchCompenies: string | null) => (searchCompenies ? this._filter(searchCompenies) : this.searchList.slice())),
+    );
   }
   featuredAgentData:any;
   // currentURL=false;
@@ -730,5 +740,44 @@ export class AgentLandingComponent implements OnInit {
   }
   ngOnInit(): void {
   }
+  // Search Code
+  separatorKeysCodes: number[] = [ENTER, COMMA];
+  searchctrl = new FormControl('');
+  searchfilter: Observable<string[]>;
+  SearchKeyword: string[] = [];
+  searchList: string[] = ['Dubai', 'UAE', 'Dubai', 'UAE', 'Dubai'];
 
+  @ViewChild('SearchInput') SearchInput: ElementRef<HTMLInputElement>;
+  add(event: MatChipInputEvent): void {
+    const value = (event.value || '').trim();
+
+    if (value) {
+      this.SearchKeyword.push(value);
+    }
+
+    // Clear the input value
+    event.chipInput!.clear();
+
+    this.searchctrl.setValue(null);
+  }
+
+  remove(searchCompenies: string): void {
+    const index = this.SearchKeyword.indexOf(searchCompenies);
+
+    if (index >= 0) {
+      this.SearchKeyword.splice(index, 1);
+    }
+  }
+
+  selected(event: MatAutocompleteSelectedEvent): void {
+    this.SearchKeyword.push(event.option.viewValue);
+    this.SearchInput.nativeElement.value = '';
+    this.searchctrl.setValue(null);
+  }
+
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.searchList.filter(searchCompenies => searchCompenies.toLowerCase().includes(filterValue));
+  }
 }

@@ -216,14 +216,14 @@
             }
         }
     }
-
     &__agent {
-        margin-bottom: 40px;
+       height: 100%;
 
         .agent-landing-featured__property-wrapper {
             padding: 0;
             position: relative;
             box-shadow: 2px 2px 40px rgba($color: #000929, $alpha: .05);
+            height: 100%;
         }
 
         .agent-landing-featured__property-img {
@@ -359,4 +359,7 @@
 }
 .flex-column-90 {
     width: 95%;
+}
+.agent-landing-featured .container>.row:last-child>div {
+    margin-bottom: 40px;
 }
