@@ -48,7 +48,7 @@
                 <app-breadcrumb></app-breadcrumb>
             </div>
             <div ngClass="explore-details-banner">
-                <div ngClass="explore_details-img">
+                <div routerLink="/blogs-details/{{mainBlog.id}}" ngClass="explore_details-img">
                     <img src="https://beta.ovaluate.com/{{mainBlog.blogDocument.fileUrl}}">
                 </div>
                 <div ngClass="explore_details-cntnt">

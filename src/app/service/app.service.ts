@@ -74,8 +74,8 @@ export class AppService {
   LoadDistrict(id: number) {
     return this.http.get(this.apiurl + 'Districts/' + id);
   }
-  LoadType(id: number) {
-    return this.http.get(this.apiurl + 'PropertyType/' + id);
+  LoadType(e: any) {
+    return this.http.get(this.apiurl + 'PropertyType/?Proplat=' + e.lat + '&Proplong=' + e.lng + '&categoryId=' + e.id);
   }
   ValuationPurpose() {
     return this.http.get(this.apiurl + 'ValuationPurposes/');
@@ -286,6 +286,19 @@ export class AppService {
   ExploreDistrict(id:any) {
     return this.http.get(this.apiurl + 'ExploreDistrict/' + id);
   }
+  FindCompanies(data) {
+    return this.http.post(this.apiurl + 'FindCompanies', data);
+  }
+  DisplayAgent(id:any) {
+    return this.http.get(this.apiurl + 'DisplayAgent?userId=' + id);
+  }
+  AgentAutoCompleteSearch(data) {
+    return this.http.post(this.apiurl + 'AgentAutoCompleteSearch', data);
+  }
+  CompanyLocationAutoCompleteSearch(data) {
+    return this.http.post(this.apiurl + 'CompanyLocationAutoCompleteSearch', data);
+  }
+
   PropertiesListingResidentialByDistrict(data:any) {
     return this.http.post(this.apiurl + 'PropertiesListingResidentialByDistrict', data);
   }

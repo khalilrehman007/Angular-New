@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms'
+import { AppService } from 'src/app/service/app.service';
 
 @Component({
   selector: 'app-agent-details',
@@ -11,7 +12,13 @@ export class AgentDetailsComponent implements OnInit {
   bathsvg = 'assets/images/icons/Bath-tub.svg'
   squaremetersvg = 'assets/images/icons/Square Meters.svg'
   furnishing = 'assets/images/icons/furnishing.svg'
-  constructor() { }
+  agentDetail: any;
+  constructor(private service:AppService) {
+    this.service.DisplayAgent(35).subscribe((result:any)=>{
+      this.agentDetail= result.data;
+      console.log(this.agentDetail)
+    })
+   }
 
   agentContact = new FormGroup({
     name: new FormControl("", Validators.required),

@@ -8,39 +8,62 @@
         <div class="agent-landing__tabs-wrapper">
             <ul class="nav nav-pills mb-3" id="pills-tab">
                 <li class="nav-item">
-                    <a class="nav-link {{agentCheck ? 'active' : ''}}"
-                       id="pills-agents-tab" data-bs-toggle="pill"
+                    <a class="nav-link {{agentCheck ? 'active' : ''}}" id="pills-agents-tab" data-bs-toggle="pill"
                         data-bs-target="#find-agents" (click)="agentData()">Find Agents</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{companiesCheck ? 'active' : ''}}"
-                       id="pills-companies-tab" data-bs-toggle="pill" data-bs-target="#pills-companies"
-                        (click)="companyData()">Find Companies</a>
+                    <a class="nav-link {{companiesCheck ? 'active' : ''}}" id="pills-companies-tab"
+                        data-bs-toggle="pill" data-bs-target="#pills-companies" (click)="companyData()">Find
+                        Companies</a>
                 </li>
             </ul>
             <div ngClass="form_tabs">
-            <div class="tab-content" id="pills-tabContent">
-                <div class="tab-pane fade show {{agentCheck ? 'active' : ''}}" id="find-agents">
-                    <find-agent-search></find-agent-search>
-                </div>
-                <div class="tab-pane fade show {{companiesCheck ? 'active' : ''}}" id="pills-companies">
-                    <div ngClass="tab-form-sec rent-form">
-                        <form>
-                          <div ngClass="flex-row">
-                            <div ngClass="flex-column flex-column-90">
-                              <div ngClass="form-grouph input-design floating-label position-relative">
-                                <label>Search by</label>
-                                <input type="text" placeholder="Location / Company Name">
-                              </div>
-                            </div>
-                            <div ngClass="flex-column flex-column-10">
-                                <button type="submit" ngClass="search-btn"><img src="assets/images/search.svg"></button>
-                            </div>
+                <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show {{agentCheck ? 'active' : ''}}" id="find-agents">
+                        <find-agent-search></find-agent-search>
+                    </div>
+                    <div class="tab-pane fade show {{companiesCheck ? 'active' : ''}}" id="pills-companies">
+                        <div ngClass="tab-form-sec rent-form">
+                            <form>
+                                <div ngClass="flex-row">
+                                    <div ngClass="flex-column flex-column-90">
+                                        <div ngClass="block-wrapper">
+                                            <mat-form-field class="example-chip-list input-design searh_input-design"
+                                                appearance="fill">
+                                                <mat-label>Search</mat-label>
+                                                <mat-chip-list #chipList aria-label="Search selection">
+                                                    <mat-chip *ngFor="let SearchValue of SearchKeyword"
+                                                        (removed)="remove(SearchValue)">
+                                                        {{SearchValue}}
+                                                        <button matChipRemove>
+                                                            <mat-icon>cancel</mat-icon>
+                                                        </button>
+                                                    </mat-chip>
+                                                    <input placeholder="Location, Project Name" #SearchInput
+                                                        [formControl]="searchctrl" [matAutocomplete]="auto"
+                                                        [matChipInputFor]="chipList"
+                                                        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                                        (matChipInputTokenEnd)="add($event)">
+                                                </mat-chip-list>
+                                                <mat-autocomplete #auto="matAutocomplete"
+                                                    (optionSelected)="selected($event)">
+                                                    <mat-option *ngFor="let SearchValue of searchfilter | async"
+                                                        [value]="SearchValue">
+                                                        {{SearchValue}}
+                                                    </mat-option>
+                                                </mat-autocomplete>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                    <div ngClass="flex-column flex-column-10">
+                                        <button type="submit" ngClass="search-btn"><img
+                                                src="assets/images/search.svg"></button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
-                        </form>
-                        </div>
+                    </div>
                 </div>
-            </div>
             </div>
         </div>
     </div>
@@ -65,61 +88,73 @@
                 <div class="agent-landing-featured__agent">
                     <div class="agent-landing-featured__property-wrapper">
                         <img src="assets/images/tag/featured.png" alt="" class="agent-landing-featured__property-tag">
-                        <div class="row">
-                            <div class="col-5 d-flex align-items-center">
-                                <img src="https://beta.ovaluate.com/{{item.agentDetails.user.imageUrl}}" alt="" class="img-fluid agent-landing-featured__property-img">
-                                <img src="assets/images/brand/betterhomes.png" alt="" class="img-fluid agent-landing-featured__agent-company">
-                            </div>
-                            <div class="col-7">
-                                <div class="agent-landing-featured__agent-right-panel">
-                                    <h6 class="agent-landing-featured__property-heading" routerLink="/agent-details/1">{{item.agentDetails.user.fullName}}</h6>
-                                    <p class="agent-landing-featured__property-text">{{item.agentDetails.user.address}}</p>
-                                    <a class="agent-landing-featured__property-link" >View Map</a>
-                                    <p class="agent-landing-featured__property-text">RERA# {{item.agentDetails.company.reraNo}}</p>
-                                    <p class="agent-landing-featured__property-text">Permits# {{item.agentDetails.company.premitNo}}</p>
-                                    <ul class="agent-landing-featured__property-details-list">
-                                        <li class="agent-landing-featured__property-details-list-item">
-                                            <p class="agent-landing-featured__property-details-list-text">{{item.salePropertyListingCount}}<br>Sale</p>
-                                        </li>
-                                        <li class="agent-landing-featured__property-details-list-item">
-                                            <p class="agent-landing-featured__property-details-list-text">{{item.rentPropertyListingCount}}<br>Rents</p>
-                                        </li>
-                                        <li class="agent-landing-featured__property-details-list-item">
-                                            <p class="agent-landing-featured__property-details-list-text">{{item.commercialPropertyListingCount}}<br>Commercial</p>
-                                        </li>
-                                    </ul>
+                        <div class="row" routerLink="/agent-details/{{item.agentDetails.user.id}}">
+                            <div class="row height-100">
+                                <div class="col-5 d-flex align-items-center">
+                                    <img src="https://beta.ovaluate.com/{{item.agentDetails.user.imageUrl}}" alt=""
+                                        class="img-fluid agent-landing-featured__property-img">
+                                    <img src="assets/images/brand/betterhomes.png" alt=""
+                                        class="img-fluid agent-landing-featured__agent-company">
+                                </div>
+                                <div class="col-7">
+                                    <div class="agent-landing-featured__agent-right-panel">
+                                        <h6 class="agent-landing-featured__property-heading">
+                                            {{item.agentDetails.user.fullName}}</h6>
+                                        <p class="agent-landing-featured__property-text">
+                                            {{item.agentDetails.user.address}}</p>
+                                        <p class="agent-landing-featured__property-text">RERA#
+                                            {{item.agentDetails.company.reraNo}}</p>
+                                        <p class="agent-landing-featured__property-text">Permits#
+                                            {{item.agentDetails.company.premitNo}}</p>
+                                        <ul class="agent-landing-featured__property-details-list">
+                                            <li class="agent-landing-featured__property-details-list-item">
+                                                <p class="agent-landing-featured__property-details-list-text">
+                                                    {{item.salePropertyListingCount}}<br>Sale</p>
+                                            </li>
+                                            <li class="agent-landing-featured__property-details-list-item">
+                                                <p class="agent-landing-featured__property-details-list-text">
+                                                    {{item.rentPropertyListingCount}}<br>Rents</p>
+                                            </li>
+                                            <li class="agent-landing-featured__property-details-list-item">
+                                                <p class="agent-landing-featured__property-details-list-text">
+                                                    {{item.commercialPropertyListingCount}}<br>Commercial</p>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row" *ngIf="companies">
-            <div class="col-lg-4" *ngFor="let item of featuredCompaniesData.list">
-                <div class="agent-landing-featured__property">
-                    <div class="agent-landing-featured__property-wrapper">
-                        <img src={{item.tag}} alt="" class="agent-landing-featured__property-tag">
-                        <div class="row">
-                            <div class="col-5 d-flex align-items-center">
-                                <img src={{item.img}} alt="" class="img-fluid agent-landing-featured__property-img">
+            <div class="row" *ngIf="companies">
+                <div class="col-lg-4" *ngFor="let item of featuredCompaniesData.list">
+                    <div class="agent-landing-featured__property">
+                        <div class="agent-landing-featured__property-wrapper">
+                            <img src={{item.tag}} alt="" class="agent-landing-featured__property-tag">
+                            <div class="row">
+                                <div class="col-5 d-flex align-items-center">
+                                    <img src={{item.img}} alt="" class="img-fluid agent-landing-featured__property-img">
+                                </div>
+                                <div class="col-7">
+                                    <h6 class="agent-landing-featured__property-heading"
+                                        routerLink="/company-details/1">
+                                        {{item.heading}}</h6>
+                                    <p class="agent-landing-featured__property-text">{{item.text}}</p>
+                                    <a class="agent-landing-featured__property-link"
+                                        routerLink={{item.link.url}}>{{item.link.text}}</a>
+                                    <p class="agent-landing-featured__property-text">{{item.rera}}</p>
+                                    <p class="agent-landing-featured__property-text">{{item.permit}}</p>
+                                </div>
                             </div>
-                            <div class="col-7">
-                                <h6 class="agent-landing-featured__property-heading" routerLink="/company-details/1">{{item.heading}}</h6>
-                                <p class="agent-landing-featured__property-text">{{item.text}}</p>
-                                <a class="agent-landing-featured__property-link"
-                                    routerLink={{item.link.url}}>{{item.link.text}}</a>
-                                <p class="agent-landing-featured__property-text">{{item.rera}}</p>
-                                <p class="agent-landing-featured__property-text">{{item.permit}}</p>
-                            </div>
+                            <ul class="agent-landing-featured__property-details-list">
+                                <li class="agent-landing-featured__property-details-list-item"
+                                    *ngFor="let detail of item.details">
+                                    <p class="agent-landing-featured__property-details-list-text">
+                                        {{detail.count}}<br>{{detail.name}}</p>
+                                </li>
+                            </ul>
                         </div>
-                        <ul class="agent-landing-featured__property-details-list">
-                            <li class="agent-landing-featured__property-details-list-item"
-                                *ngFor="let detail of item.details">
-                                <p class="agent-landing-featured__property-details-list-text">
-                                    {{detail.count}}<br>{{detail.name}}</p>
-                            </li>
-                        </ul>
                     </div>
                 </div>
             </div>
