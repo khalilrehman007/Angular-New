@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms'
+import { ActivatedRoute } from '@angular/router';
 import { AppService } from 'src/app/service/app.service';
 
 @Component({
@@ -13,8 +14,17 @@ export class AgentDetailsComponent implements OnInit {
   squaremetersvg = 'assets/images/icons/Square Meters.svg'
   furnishing = 'assets/images/icons/furnishing.svg'
   agentDetail: any;
-  constructor(private service:AppService) {
-    this.service.DisplayAgent(35).subscribe((result:any)=>{
+  id: any;
+  user: any;
+  constructor(private service:AppService, private route: ActivatedRoute) {
+    this.route.params.subscribe(params=>{
+      this.id = params['id'];
+      this.service.id = params['id'];
+    })
+    this.user = localStorage.getItem("user");
+    this.user= JSON.parse(this.user);
+    console.log(this.user.id)
+    this.service.DisplayAgent({"PropertyListingId":"","AgentUserId":this.id,"LoginUserId":this.id}).subscribe((result:any)=>{
       this.agentDetail= result.data;
       console.log(this.agentDetail)
     })
@@ -39,6 +49,7 @@ export class AgentDetailsComponent implements OnInit {
   get message() {
     return this.agentContact.get("message")
   }
+  
   ngOnInit(): void {
   }
 

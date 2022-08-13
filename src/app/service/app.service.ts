@@ -292,8 +292,8 @@ export class AppService {
   FindCompanies(data) {
     return this.http.post(this.apiurl + 'FindCompanies', data);
   }
-  DisplayAgent(id:any) {
-    return this.http.get(this.apiurl + 'DisplayAgent?userId=' + id);
+  DisplayAgent(data) {
+    return this.http.post(this.apiurl + 'DisplayAgent', data);
   }
   AgentAutoCompleteSearch(data) {
     return this.http.post(this.apiurl + 'AgentAutoCompleteSearch', data);
