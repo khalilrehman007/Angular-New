@@ -732,21 +732,29 @@
                                                             <input matInput type="number"
                                                                 placeholder="1234 1234 1234 1234" formControlName="cardNumber" (input)="checkLength(1)">
                                                         </mat-form-field>
-                                                        <div ngClass="custom-input-flex d-flex mt-3">
-                                                            <div class="input-date-picker input-design">
-                                                                <mat-form-field appearance="fill">
-                                                                    <input matInput [matDatepicker]="picker" formControlName="expiryDate" (input)="validateDate()">
-                                                                    <mat-label>MM / YY</mat-label>
-                                                                    <mat-datepicker-toggle matSuffix [for]="picker">
-                                                                    </mat-datepicker-toggle>
-                                                                    <mat-datepicker #picker></mat-datepicker>
+                                                        <div ngClass="custom-input-flex mt-3">
+                                                            <div ngClass="row width-100">
+                                                            <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
+                                                            <div ngClass="month-box">
+                                                                <mat-form-field class="full-width input-design-2" appearance="fill">
+                                                                  <input matInput type="number" placeholder="Month">
                                                                 </mat-form-field>
+                                                              </div>
                                                             </div>
-                                                            <div ngClass="cvc-box">
-                                                                <mat-form-field class="full-width input-design-2"
-                                                                    appearance="fill">
-                                                                    <input matInput type="number" formControlName="cvv" (input)="checkLength(2)" placeholder="CVC">
+                                                            <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
+                                                              <div ngClass="year-box">
+                                                                <mat-form-field class="full-width input-design-2" appearance="fill">
+                                                                  <input matInput type="number" placeholder="Year">
                                                                 </mat-form-field>
+                                                              </div>
+                                                            </div>
+                                                            <div ngClass="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                                              <div ngClass="cvc-box">
+                                                              <mat-form-field class="full-width input-design-2" appearance="fill">
+                                                                <input matInput type="number" placeholder="CVC">
+                                                              </mat-form-field>
+                                                            </div>
+                                                            </div>
                                                             </div>
                                                         </div>
                                                     </div>
