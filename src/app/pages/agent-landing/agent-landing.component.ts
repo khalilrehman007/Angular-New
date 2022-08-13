@@ -22,6 +22,7 @@ export class AgentLandingComponent implements OnInit {
   bestCompaniesDetails: any;
   constructor(private router: Router, private service: AppService) {
     this.agentData();
+    this.companyData();
     let url = this.router.url.replace("/", "");
     if (url == 'find-companies') {
       this.companiesCheck = true;
@@ -53,7 +54,6 @@ export class AgentLandingComponent implements OnInit {
   companiesList: any;
   agentData() {
     this.page = 1;
-    this.companies = false;
     this.featuredAgentData = {
       heading: "Featured Real Estate Companies",
       desc: "Some of our best property agents",
@@ -396,9 +396,16 @@ export class AgentLandingComponent implements OnInit {
       ]
     };
   }
+  toggleCompany(e:boolean) {
+    if(e) {
+      this.companies = false;
+    } else {
+      this.companies = true;
+    }
+
+  }
   companyData() {
     this.page = 1;
-    this.companies = true;
     this.featuredCompaniesData = {
       heading: "Featured Real Estate Companies",
       desc: "Some of our best property agents",
@@ -745,7 +752,6 @@ export class AgentLandingComponent implements OnInit {
   }
   ngOnInit(): void {
   }
-  // Search Code
   separatorKeysCodes: number[] = [ENTER, COMMA];
   searchctrl = new FormControl('');
   searchfilter: Observable<string[]>;
