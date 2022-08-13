@@ -7,6 +7,7 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { data } from 'jquery';
 
 @Component({
   selector: 'app-agent-landing',
@@ -20,6 +21,7 @@ export class AgentLandingComponent implements OnInit {
   companies: boolean = false;
   agentDetails: any;
   bestCompaniesDetails: any;
+  findAgent: any = [];
   separatorKeysCodes: number[] = [ENTER, COMMA];
   searchctrl = new FormControl('');
   searchfilter: Observable<string[]>;
@@ -37,6 +39,10 @@ export class AgentLandingComponent implements OnInit {
       this.agentCheck = true;
       this.agentData();
     }
+    this.service.FindAgents({"CountryId":"1","DistrictsId":[2,1],"CompaniesId":[],"UserId":"0","EpertInId":"0","LanguageId":"0","CurrentPage":"1"}).subscribe((result: any) => {
+      this.findAgent = result.data;
+      console.log(this.findAgent.agents)
+    })
     this.service.BestAgent(1).subscribe((result: any) => {
       this.agentDetails = result.data;
     })
@@ -406,8 +412,8 @@ export class AgentLandingComponent implements OnInit {
       ]
     };
   }
-  toggleCompany(e:boolean) {
-    if(e) {
+  toggleCompany(e: boolean) {
+    if (e) {
       this.companies = false;
     } else {
       this.companies = true;
