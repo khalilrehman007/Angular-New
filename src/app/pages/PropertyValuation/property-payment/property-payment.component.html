@@ -81,19 +81,21 @@
                                                 <input matInput type="number" placeholder="1234 1234 1234 1234 ">
                                               </mat-form-field>
                                               <div ngClass="custom-input-flex d-flex mt-3">
-                                              <div class="input-date-picker input-design">
-                                                <mat-form-field appearance="fill">
-                                                    <input matInput [matDatepicker]="picker">
-                                                    <mat-label>MM / YY</mat-label>
-                                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                                                    <mat-datepicker #picker></mat-datepicker>
-                                                  </mat-form-field>
+                                                <div ngClass="month-box">
+                                                    <mat-form-field class="full-width input-design-2" appearance="fill">
+                                                      <input matInput type="number" placeholder="Month">
+                                                    </mat-form-field>
+                                                  </div>
+                                                  <div ngClass="year-box">
+                                                    <mat-form-field class="full-width input-design-2" appearance="fill">
+                                                      <input matInput type="number" placeholder="Year">
+                                                    </mat-form-field>
                                                   </div>
                                                   <div ngClass="cvc-box">
                                                   <mat-form-field class="full-width input-design-2" appearance="fill">
                                                     <input matInput type="number" placeholder="CVC">
                                                   </mat-form-field>
-                                            </div>
+                                                </div>
                                             </div>
                                         </div>
                                         <div ngClass="block-wrapper mb-4">
