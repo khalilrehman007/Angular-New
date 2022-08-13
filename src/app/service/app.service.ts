@@ -298,7 +298,7 @@ export class AppService {
   AgentAutoCompleteSearch(data) {
     return this.http.post(this.apiurl + 'AgentAutoCompleteSearch', data);
   }
-  CompanyLocationAutoCompleteSearch(data) {
+  CompanyLocationAutoCompleteSearch(data:any) {
     return this.http.post(this.apiurl + 'CompanyLocationAutoCompleteSearch', data);
   }
 

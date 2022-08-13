@@ -20,6 +20,11 @@ export class AgentLandingComponent implements OnInit {
   companies: boolean = false;
   agentDetails: any;
   bestCompaniesDetails: any;
+  separatorKeysCodes: number[] = [ENTER, COMMA];
+  searchctrl = new FormControl('');
+  searchfilter: Observable<string[]>;
+  SearchKeyword: string[] = [];
+  searchList: any= [];
   constructor(private router: Router, private service: AppService) {
     this.agentData();
     this.companyData();
@@ -34,7 +39,12 @@ export class AgentLandingComponent implements OnInit {
     }
     this.service.BestAgent(1).subscribe((result: any) => {
       this.agentDetails = result.data;
-      console.log(this.agentDetails);
+    })
+    this.service.CompanyLocationAutoCompleteSearch({"Searching":"mr","CountryId":"1"}).subscribe((result:any)=> {
+      console.log();
+      for(let i = 0; i < result.data.locationAutoComplete.length ; i++) {
+        this.searchList.push(result.data.locationAutoComplete[i].item2);
+      }
     })
     // this.service.FindCompanies(1).subscribe((result:any)=>{
     //   this.bestCompaniesDetails = result.data;
@@ -752,11 +762,6 @@ export class AgentLandingComponent implements OnInit {
   }
   ngOnInit(): void {
   }
-  separatorKeysCodes: number[] = [ENTER, COMMA];
-  searchctrl = new FormControl('');
-  searchfilter: Observable<string[]>;
-  SearchKeyword: string[] = [];
-  searchList: string[] = ['Dubai', 'UAE', 'Dubai', 'UAE', 'Dubai'];
 
   @ViewChild('SearchInput') SearchInput: ElementRef<HTMLInputElement>;
   add(event: MatChipInputEvent): void {

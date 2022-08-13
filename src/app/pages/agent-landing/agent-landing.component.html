@@ -27,7 +27,7 @@
                             <form>
                                 <div ngClass="flex-row">
                                     <div ngClass="flex-column flex-column-90">
-                                        <div ngClass="block-wrapper">
+                                        <div ngClass="block-wrapper" *ngIf="searchList.length > 0">
                                             <mat-form-field class="example-chip-list input-design searh_input-design"
                                                 appearance="fill">
                                                 <mat-label>Search</mat-label>
