@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-erroralert',
@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./erroralert.component.scss']
 })
 export class ErroralertComponent implements OnInit {
+  @Input() error: any;
+  
+
   hideAlertNg:boolean=true;
   constructor() { }
 

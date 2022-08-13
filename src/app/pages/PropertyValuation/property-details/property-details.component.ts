@@ -14,6 +14,8 @@ declare const google: any;
 })
 export class PropertyDetailsComponent implements OnInit, AfterViewInit {
 
+  error: any = "testing"
+
   map: any;
   @ViewChild('propertyDetails__map') mapElement: any;
 
@@ -38,6 +40,7 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
   locationInformation: any = {};
   formDetailData: any = {};
   showLoader: boolean = false;
+  
 
   location = { lat: 31.5204, lng: 74.3587 };
 
