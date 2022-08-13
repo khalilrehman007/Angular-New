@@ -33,10 +33,11 @@ export class PropertyDocumentsComponent implements OnInit {
   formData: any = {};
   documentData: any = [];
   mapImage: any;
-  termsAccepted:boolean = false;
-  reportPrice:any = 0;
-  documentType:any = [];
-  valuationResponse:any = {};
+  termsAccepted: boolean = false;
+  reportPrice: any = 0;
+  documentType: any = [];
+  valuationResponse: any = {};
+  showPayment: boolean = false;
 
   reportForm = new FormGroup({
     name: new FormControl("", Validators.required),
@@ -44,9 +45,10 @@ export class PropertyDocumentsComponent implements OnInit {
   })
 
   paymentForm = new FormGroup({
-    cardNumber: new FormControl("",Validators.required),
+    cardNumber: new FormControl("", Validators.required),
     expiryDate: new FormControl("", Validators.required),
-    cvv: new FormControl("", Validators.required)
+    cvv: new FormControl("", Validators.required),
+    cardName: new FormControl("", Validators.required)
   })
 
   get name() {
@@ -63,6 +65,9 @@ export class PropertyDocumentsComponent implements OnInit {
   }
   get cvv() {
     return this.paymentForm.get("cvv");
+  }
+  get cardName() {
+    return this.paymentForm.get("cardName");
   }
   validateDate() {
     console.log(this.minDate);
@@ -136,7 +141,7 @@ export class PropertyDocumentsComponent implements OnInit {
     };
     this.documentcount++;
   }
-  emiratesfun(files: FileList, index: number, id:any) {
+  emiratesfun(files: FileList, index: number, id: any) {
     if (files && files.length) {
       let found: number = -1;
       for (let i = 0; i < this.otherImages.length; i++) {
@@ -145,7 +150,7 @@ export class PropertyDocumentsComponent implements OnInit {
         }
       }
       if (found == -1) {
-        this.otherImages.push({ index: index, file: files[0], id:id });
+        this.otherImages.push({ index: index, file: files[0], id: id });
       } else {
         this.otherImages[found].file = files[0];
       }
@@ -276,7 +281,7 @@ export class PropertyDocumentsComponent implements OnInit {
     // userData = JSON.parse(userData);
     // this.formData.UserId = userData.id;
     // this.formData.EmailAddress = userData.email;
-    
+
     // if(this.formData.InspectionRequired) {
     //   this.formData.ValuationPayment = {"Email":userData.email, "CustomerName":this.reportForm.value.name, "TotalAmount":this.reportPrice+1000,"InspectionAmount":1000,"ReportAmount":this.reportPrice};
     // } else {
@@ -306,8 +311,9 @@ export class PropertyDocumentsComponent implements OnInit {
     //   dataType: "json",
     //   success: (res) => {
     //     if(res.message == "valuation request completed successfully") {
-    //       console.log(res)
+    //       this.valuationResponse = res.data;
     //       localStorage.setItem("valuationResponse", JSON.stringify(res.data));
+    //       this.showPayment = true;
     //       this.status3 = !this.status3;
     //       this.status7 = !this.status7;
     //       this.status2 = !this.status2;
@@ -325,13 +331,13 @@ export class PropertyDocumentsComponent implements OnInit {
     this.status7 = false;
     this.status2 = !this.status2;
   }
-  reportLanguage(e:any) {
+  reportLanguage(e: any) {
     this.formData.ReportLanguage = e;
   }
-  acceptTerms(e:any) {
+  acceptTerms(e: any) {
     this.termsAccepted = e.checked;
   }
-  SummaryReport(e: any, id: any, price:any) {
+  SummaryReport(e: any, id: any, price: any) {
     if (e == 0) {
       this.status8 = true;
       this.status9 = false;
@@ -345,21 +351,38 @@ export class PropertyDocumentsComponent implements OnInit {
   onInspectionSelect(e: any) {
     this.formData.InspectionRequired = e.checked;
   }
-  checkLength(e:any) {
-    if(e == 1) {
-      let temp:any = this.paymentForm.value.cardNumber;
-      if(temp.toString().length > 16) {
-        alert("Max length allowes is 16");
+  onKeypressEvent(e:any) {
+    this.checkLength(3, false)
+  }
+  checkLength(e: any, type:boolean) {
+    if (e == 1) {
+      let temp: any = this.paymentForm.value.cardNumber;
+      if (temp.toString().length > 16) {
         this.paymentForm.patchValue({
-          cardNumber: temp.toString().slice(0,-1)
+          cardNumber: temp.toString().slice(0, -1)
         })
       }
-    } else {
-      let temp:any = this.paymentForm.value.cvv;
-      if(temp.toString().length > 4) {
-        alert("Max length allowes is 4");
+    } else if (e == 2) {
+      let temp: any = this.paymentForm.value.cvv;
+      if (temp.toString().length > 4) {
         this.paymentForm.patchValue({
-          cvv: temp.toString().slice(0,-1)
+          cvv: temp.toString().slice(0, -1)
+        })
+      }
+    } else if(e == 3) {
+      let temp: any = this.paymentForm.value.expiryDate;
+      if(temp.toString().length == 2 && !type) {
+        this.paymentForm.patchValue({
+          expiryDate: temp.toString()+"/"
+        })
+      } else if(temp.toString().length == 3 && type){
+        this.paymentForm.patchValue({
+          expiryDate: temp.toString().slice(0, -1)
+        })
+      }
+      else if (temp.toString().length > 5) {
+        this.paymentForm.patchValue({
+          expiryDate: temp.toString().slice(0, -1)
         })
       }
     }
@@ -370,15 +393,15 @@ export class PropertyDocumentsComponent implements OnInit {
     this.formData = localStorage.getItem("valuationData");
     this.formData = JSON.parse(this.formData);
     this.formData.InspectionRequired = false;
-    this.service.ValuationDocumentTypes().subscribe((result:any)=> {
+    this.service.ValuationDocumentTypes().subscribe((result: any) => {
       this.documentType = result.data;
     })
     this.valuationResponse = localStorage.getItem("valuationResponse");
     this.valuationResponse = JSON.parse(this.valuationResponse);
     console.log(this.valuationResponse);
-    this.status3 = !this.status3;
-    this.status7 = !this.status7;
-    this.status2 = !this.status2;
+    this.showPayment = true;
+    this.status = !this.status;
+    this.status3 = true;
   }
 
   ngOnInit(): void {
