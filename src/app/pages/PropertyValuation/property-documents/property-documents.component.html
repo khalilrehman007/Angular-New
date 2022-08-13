@@ -716,13 +716,13 @@
                                         </div>
                                         <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                             <div ngClass="payment-right-form-sec">
-                                                <form>
+                                                <form [formGroup]="paymentForm">
                                                     <div ngClass="block-wrapper mb-3">
                                                         <label class="h6-design">Email</label>
                                                         <mat-form-field class="full-width input-design-2 grey-input-bg"
                                                             appearance="fill">
                                                             <input matInput type="email"
-                                                                placeholder="omran.yusef@gmail.com">
+                                                                placeholder="abc@xyz.com" disabled>
                                                         </mat-form-field>
                                                     </div>
                                                     <div ngClass="block-wrapper mb-3">
@@ -730,12 +730,12 @@
                                                         <mat-form-field class="full-width input-design-2"
                                                             appearance="fill">
                                                             <input matInput type="number"
-                                                                placeholder="1234 1234 1234 1234 ">
+                                                                placeholder="1234 1234 1234 1234" formControlName="cardNumber" (input)="checkLength(1)">
                                                         </mat-form-field>
                                                         <div ngClass="custom-input-flex d-flex mt-3">
                                                             <div class="input-date-picker input-design">
                                                                 <mat-form-field appearance="fill">
-                                                                    <input matInput [matDatepicker]="picker">
+                                                                    <input matInput [matDatepicker]="picker" formControlName="expiryDate" (input)="validateDate()">
                                                                     <mat-label>MM / YY</mat-label>
                                                                     <mat-datepicker-toggle matSuffix [for]="picker">
                                                                     </mat-datepicker-toggle>
@@ -745,7 +745,7 @@
                                                             <div ngClass="cvc-box">
                                                                 <mat-form-field class="full-width input-design-2"
                                                                     appearance="fill">
-                                                                    <input matInput type="number" placeholder="CVC">
+                                                                    <input matInput type="number" formControlName="cvv" (input)="checkLength(2)" placeholder="CVC">
                                                                 </mat-form-field>
                                                             </div>
                                                         </div>

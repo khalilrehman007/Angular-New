@@ -212,7 +212,7 @@ export class PropertyTypesComponent implements OnInit {
     } else if(this.propertyTypeForm.value.constructionAge == "") {
       alert("Please Enter Constrution Age");
       return;
-    } else if(this.propertyTypeForm.value.elevation == "") {
+    } else if(this.propertyData.hasElevation && this.propertyTypeForm.value.elevation == "") {
       alert("Please Enter Elevation");
       return;
     } else if(this.propertyTypeForm.value.apartmentSize == "") {
@@ -226,6 +226,15 @@ export class PropertyTypesComponent implements OnInit {
       return;
     } else if(!this.formData.Bathrooms) {
       alert("Please Select Bedrooms");
+      return;
+    } else if(this.propertyData.hasFurnishing && !this.formData.FurnishingType) {
+      alert("Please Select Furnishing Type");
+      return;
+    } else if(this.propertyData.hasFitting && !this.formData.FittingType) {
+      alert("Please Select Fitting Type");
+      return;
+    } else if(this.propertyData.hasPropertyFeature && this.featuresFormData.length == 0) {
+      alert("Please Select Property Features");
       return;
     }
     this.formDetailData.PlotNo = this.propertyTypeForm.value.apartmentNo;
