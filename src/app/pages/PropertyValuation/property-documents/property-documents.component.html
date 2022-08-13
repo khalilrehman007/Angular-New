@@ -680,21 +680,21 @@
                                             <div ngClass="payment-left-form-sec position-relative">
                                                 <div ngClass="payment-price-box">
                                                     <p>Pay Ovaluate Real Estate Valuation Services LLC</p>
-                                                    <h3 ngClass="price">AED 2500</h3>
+                                                    <h3 ngClass="price">AED {{valuationResponse.valuationPayment.totalAmount}}</h3>
                                                 </div>
                                                 <div ngClass="payment-another-info">
                                                     <div ngClass="detail-box d-flex justify-content-spacebw">
                                                         <div ngClass="pay-heading-block">
-                                                            <h6>Detail Report</h6>
+                                                            <h6>{{valuationResponse.reportPackage.name}}</h6>
                                                             <p>Residential - Apartment Valuation Report</p>
                                                         </div>
-                                                        <p ngClass="price">AED 1,500</p>
+                                                        <p ngClass="price">AED {{valuationResponse.valuationPayment.reportAmount}}</p>
                                                     </div>
                                                     <div ngClass="Inspection-box d-flex justify-content-spacebw">
                                                         <div ngClass="pay-heading-block">
                                                             <h6>Inspection</h6>
                                                         </div>
-                                                        <p ngClass="price">AED 1,500</p>
+                                                        <p ngClass="price">AED {{valuationResponse.valuationPayment.inspectionAmount}}</p>
                                                     </div>
                                                     <div ngClass="tax-box d-flex justify-content-spacebw">
                                                         <div ngClass="pay-heading-block">
@@ -706,7 +706,7 @@
                                                         <div ngClass="pay-heading-block">
                                                             <h6>Total Due</h6>
                                                         </div>
-                                                        <p ngClass="price">AED 2,500</p>
+                                                        <p ngClass="price">AED {{valuationResponse.valuationPayment.totalAmount}}</p>
                                                     </div>
                                                 </div>
                                                 <div ngClass="strip-btn-div">
@@ -722,7 +722,7 @@
                                                         <mat-form-field class="full-width input-design-2 grey-input-bg"
                                                             appearance="fill">
                                                             <input matInput type="email"
-                                                                placeholder="abc@xyz.com" disabled>
+                                                                placeholder="{{valuationResponse.emailAddress}}" disabled>
                                                         </mat-form-field>
                                                     </div>
                                                     <div ngClass="block-wrapper mb-3">
