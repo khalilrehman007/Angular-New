@@ -295,5 +295,14 @@ export class AppService {
   AgentAutoCompleteSearch(data) {
     return this.http.post(this.apiurl + 'AgentAutoCompleteSearch', data);
   }
-  
+  CompanyLocationAutoCompleteSearch(data) {
+    return this.http.post(this.apiurl + 'CompanyLocationAutoCompleteSearch', data);
+  }
+
+  PropertiesListingResidentialByDistrict(data:any) {
+    return this.http.post(this.apiurl + 'PropertiesListingResidentialByDistrict', data);
+  }
+  PropertiesListingCommercialByDistrict(data:any) {
+    return this.http.post(this.apiurl + 'PropertiesListingCommercialByDistrict', data);
+  }
 }
