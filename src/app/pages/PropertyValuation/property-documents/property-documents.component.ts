@@ -36,19 +36,37 @@ export class PropertyDocumentsComponent implements OnInit {
   termsAccepted:boolean = false;
   reportPrice:any = 0;
   documentType:any = [];
+  valuationResponse:any = {};
 
   reportForm = new FormGroup({
     name: new FormControl("", Validators.required),
     phone: new FormControl("", Validators.required)
   })
 
+  paymentForm = new FormGroup({
+    cardNumber: new FormControl("",Validators.required),
+    expiryDate: new FormControl("", Validators.required),
+    cvv: new FormControl("", Validators.required)
+  })
+
   get name() {
     return this.reportForm.get("name");
   }
   get email() {
-    return this.reportForm.get("phone");
+    return this.reportForm.get("email");
   }
-
+  get cardNumber() {
+    return this.paymentForm.get("cardNumber");
+  }
+  get expiryDate() {
+    return this.paymentForm.get("expiryDate");
+  }
+  get cvv() {
+    return this.paymentForm.get("cvv");
+  }
+  validateDate() {
+    console.log(this.minDate);
+  }
   handleChange(files: FileList, index: number) {
     if (files && files.length) {
       this.titleDeedImage = files[0];
@@ -171,33 +189,36 @@ export class PropertyDocumentsComponent implements OnInit {
     return new File([u8arr], filename, { type: mime });
   }
   Nextshow() {
-    if (this.documentcount >= 3) {
-      this.documentData = [];
-      let dataUrl: any = localStorage.getItem("mapImg");
-      this.mapImage = this.dataURLtoFile(dataUrl, "map.jpg");
-      this.documentData.push({ "FileId": "1", "DocumentTypeId": this.documentType[this.documentType.length-1].id, "FileName": "map.jpg", "Extension": "jpg", "IsScreenshot": "true" });
-      let extension: any = this.titleDeedImage.name.split(".");
-      extension = extension[extension.length - 1];
-      this.documentData.push({ "FileId": "2", "DocumentTypeId": 1, "FileName": this.titleDeedImage.name, "Extension": extension, "IsScreenshot": "false" });
-      extension = this.affectionImage.name.split(".");
-      extension = extension[extension.length - 1];
-      this.documentData.push({ "FileId": "3", "DocumentTypeId": 2, "FileName": this.affectionImage.name, "Extension": extension, "IsScreenshot": "false" });
-      extension = this.propertyImage.name.split(".");
-      extension = extension[extension.length - 1];
-      this.documentData.push({ "FileId": "4", "DocumentTypeId": 3, "FileName": this.propertyImage.name, "Extension": extension, "IsScreenshot": "false" });
-      for (let i = 0; i < this.otherImages.length; i++) {
-        extension = this.otherImages[i].file.name.split(".");
-        extension = extension[extension.length - 1];
-        this.documentData.push({ "FileId": i + 5, "DocumentTypeId": this.otherImages[i].id, "FileName": this.otherImages[i].file.name, "Extension": extension, "IsScreenshot": "false" });
-      }
-      this.formData.Documents = this.documentData;
+    this.status = !this.status;
+    this.status5 = !this.status5;
+    this.status1 = !this.status1;
+    // if (this.documentcount >= 3) {
+    //   this.documentData = [];
+    //   let dataUrl: any = localStorage.getItem("mapImg");
+    //   this.mapImage = this.dataURLtoFile(dataUrl, "map.jpg");
+    //   this.documentData.push({ "FileId": "1", "DocumentTypeId": this.documentType[this.documentType.length-1].id, "FileName": "map.jpg", "Extension": "jpg", "IsScreenshot": "true" });
+    //   let extension: any = this.titleDeedImage.name.split(".");
+    //   extension = extension[extension.length - 1];
+    //   this.documentData.push({ "FileId": "2", "DocumentTypeId": 1, "FileName": this.titleDeedImage.name, "Extension": extension, "IsScreenshot": "false" });
+    //   extension = this.affectionImage.name.split(".");
+    //   extension = extension[extension.length - 1];
+    //   this.documentData.push({ "FileId": "3", "DocumentTypeId": 2, "FileName": this.affectionImage.name, "Extension": extension, "IsScreenshot": "false" });
+    //   extension = this.propertyImage.name.split(".");
+    //   extension = extension[extension.length - 1];
+    //   this.documentData.push({ "FileId": "4", "DocumentTypeId": 3, "FileName": this.propertyImage.name, "Extension": extension, "IsScreenshot": "false" });
+    //   for (let i = 0; i < this.otherImages.length; i++) {
+    //     extension = this.otherImages[i].file.name.split(".");
+    //     extension = extension[extension.length - 1];
+    //     this.documentData.push({ "FileId": i + 5, "DocumentTypeId": this.otherImages[i].id, "FileName": this.otherImages[i].file.name, "Extension": extension, "IsScreenshot": "false" });
+    //   }
+    //   this.formData.Documents = this.documentData;
 
-      this.status = !this.status;
-      this.status5 = !this.status5;
-      this.status1 = !this.status1;
-    } else {
-      alert("Please Upload the required Documents.");
-    }
+    //   this.status = !this.status;
+    //   this.status5 = !this.status5;
+    //   this.status1 = !this.status1;
+    // } else {
+    //   alert("Please Upload the required Documents.");
+    // }
   }
   Prevshow() {
     this.status1 = false;
@@ -223,76 +244,81 @@ export class PropertyDocumentsComponent implements OnInit {
     this.status1 = !this.status1;
   }
   Nextshow2() {
-    if(!this.formData.ReportPackageId) {
-      alert("Select Package Type");
-      return;
-    } else if(!this.formData.ReportLanguage) {
-      alert("Select Report Language");
-      return;
-    } else if(this.reportForm.value.name == "") {
-      alert("Please Enter Owner Name");
-      return;
-    } else if(this.reportForm.value.phone == "") {
-      alert("Please Enter Owner Email");
-      return;
-    } else if(!this.termsAccepted) {
-      alert("Please Accept Terms and Conditions");
-      return;
-    } else if(this.formData.InspectionRequired && $("#formDate").val()  == "") {
-      alert("Please Enter Inspection Date");
-      return;
-    }
-    this.formData.CustomerName = this.reportForm.value.name;
-    this.formData.PhoneNumber = this.reportForm.value.phone;
-    this.formData.InspectionDate = $("#formDate").val();
+    this.valuationResponse = localStorage.getItem("valuationResponse");
+    console.log(JSON.parse(this.valuationResponse));
+    this.status3 = !this.status3;
+    this.status7 = !this.status7;
+    this.status2 = !this.status2;
+    // if(!this.formData.ReportPackageId) {
+    //   alert("Select Package Type");
+    //   return;
+    // } else if(!this.formData.ReportLanguage) {
+    //   alert("Select Report Language");
+    //   return;
+    // } else if(this.reportForm.value.name == "") {
+    //   alert("Please Enter Owner Name");
+    //   return;
+    // } else if(this.reportForm.value.phone == "") {
+    //   alert("Please Enter Owner Email");
+    //   return;
+    // } else if(!this.termsAccepted) {
+    //   alert("Please Accept Terms and Conditions");
+    //   return;
+    // } else if(this.formData.InspectionRequired && $("#formDate").val()  == "") {
+    //   alert("Please Enter Inspection Date");
+    //   return;
+    // }
+    // this.formData.CustomerName = this.reportForm.value.name;
+    // this.formData.PhoneNumber = this.reportForm.value.phone;
+    // this.formData.InspectionDate = $("#formDate").val();
 
-    let userData:any = localStorage.getItem("user");
-    userData = JSON.parse(userData);
-    this.formData.UserId = userData.id;
-    this.formData.EmailAddress = userData.email;
+    // let userData:any = localStorage.getItem("user");
+    // userData = JSON.parse(userData);
+    // this.formData.UserId = userData.id;
+    // this.formData.EmailAddress = userData.email;
     
-    if(this.formData.InspectionRequired) {
-      this.formData.ValuationPayment = {"Email":userData.email, "CustomerName":this.reportForm.value.name, "TotalAmount":this.reportPrice+1000,"InspectionAmount":1000,"ReportAmount":this.reportPrice};
-    } else {
-      this.formData.ValuationPayment = {"Email":userData.email, "CustomerName":this.reportForm.value.name, "TotalAmount":this.reportPrice,"InspectionAmount":0,"ReportAmount":this.reportPrice};
-    }
+    // if(this.formData.InspectionRequired) {
+    //   this.formData.ValuationPayment = {"Email":userData.email, "CustomerName":this.reportForm.value.name, "TotalAmount":this.reportPrice+1000,"InspectionAmount":1000,"ReportAmount":this.reportPrice};
+    // } else {
+    //   this.formData.ValuationPayment = {"Email":userData.email, "CustomerName":this.reportForm.value.name, "TotalAmount":this.reportPrice,"InspectionAmount":0,"ReportAmount":this.reportPrice};
+    // }
 
-    let valuationData = new FormData();
-    valuationData.append("ValuationRequest", JSON.stringify(this.formData));
-    valuationData.append("1_map.jpg", this.mapImage);
-    valuationData.append("2_"+this.titleDeedImage.name, this.titleDeedImage);
-    valuationData.append("3_"+this.affectionImage.name, this.affectionImage);
-    valuationData.append("4_"+this.propertyImage.name, this.propertyImage);
-    for(let i = 0; i < this.otherImages.length; i++) {
-      valuationData.append(i+5+"_"+this.otherImages[i].file.name, this.otherImages[i].file);
-    }
-    let token:any = localStorage.getItem("token");
-    token = JSON.parse(token);
-    $.ajax({
-      url: "https://beta.ovaluate.com/api/AddValuation",
-      method: "post",
-      contentType: false,
-      processData: false,
-      data: valuationData,
-      headers: {
-        "Authorization": 'bearer '+token
-      },
-      dataType: "json",
-      success: (res) => {
-        if(res.message == "valuation request completed successfully") {
-          console.log(res)
-          localStorage.setItem("valuationResponse", res.data);
-          this.status3 = !this.status3;
-          this.status7 = !this.status7;
-          this.status2 = !this.status2;
-        } else {
-          alert("Something went wrong");
-        }
-      },
-      error: (err) => {
-        console.log(err);
-      }
-    });
+    // let valuationData = new FormData();
+    // valuationData.append("ValuationRequest", JSON.stringify(this.formData));
+    // valuationData.append("1_map.jpg", this.mapImage);
+    // valuationData.append("2_"+this.titleDeedImage.name, this.titleDeedImage);
+    // valuationData.append("3_"+this.affectionImage.name, this.affectionImage);
+    // valuationData.append("4_"+this.propertyImage.name, this.propertyImage);
+    // for(let i = 0; i < this.otherImages.length; i++) {
+    //   valuationData.append(i+5+"_"+this.otherImages[i].file.name, this.otherImages[i].file);
+    // }
+    // let token:any = localStorage.getItem("token");
+    // token = JSON.parse(token);
+    // $.ajax({
+    //   url: "https://beta.ovaluate.com/api/AddValuation",
+    //   method: "post",
+    //   contentType: false,
+    //   processData: false,
+    //   data: valuationData,
+    //   headers: {
+    //     "Authorization": 'bearer '+token
+    //   },
+    //   dataType: "json",
+    //   success: (res) => {
+    //     if(res.message == "valuation request completed successfully") {
+    //       console.log(res)
+    //       localStorage.setItem("valuationResponse", JSON.stringify(res.data));
+    //       this.status3 = !this.status3;
+    //       this.status7 = !this.status7;
+    //       this.status2 = !this.status2;
+    //     } else {
+    //       alert("Something went wrong");
+    //     }
+    //   },
+    //   error: (err) => {
+    //     console.log(err);
+    //   }
+    // });
   }
   Prevshow2() {
     this.status3 = false;
@@ -319,6 +345,25 @@ export class PropertyDocumentsComponent implements OnInit {
   onInspectionSelect(e: any) {
     this.formData.InspectionRequired = e.checked;
   }
+  checkLength(e:any) {
+    if(e == 1) {
+      let temp:any = this.paymentForm.value.cardNumber;
+      if(temp.toString().length > 16) {
+        alert("Max length allowes is 16");
+        this.paymentForm.patchValue({
+          cardNumber: temp.toString().slice(0,-1)
+        })
+      }
+    } else {
+      let temp:any = this.paymentForm.value.cvv;
+      if(temp.toString().length > 4) {
+        alert("Max length allowes is 4");
+        this.paymentForm.patchValue({
+          cvv: temp.toString().slice(0,-1)
+        })
+      }
+    }
+  }
   constructor(private service: AppService) {
     this.userData = localStorage.getItem("valuationDetailData");
     this.userData = JSON.parse(this.userData);
@@ -328,6 +373,12 @@ export class PropertyDocumentsComponent implements OnInit {
     this.service.ValuationDocumentTypes().subscribe((result:any)=> {
       this.documentType = result.data;
     })
+    this.valuationResponse = localStorage.getItem("valuationResponse");
+    this.valuationResponse = JSON.parse(this.valuationResponse);
+    console.log(this.valuationResponse);
+    this.status3 = !this.status3;
+    this.status7 = !this.status7;
+    this.status2 = !this.status2;
   }
 
   ngOnInit(): void {

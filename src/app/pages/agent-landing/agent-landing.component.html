@@ -9,11 +9,11 @@
             <ul class="nav nav-pills mb-3" id="pills-tab">
                 <li class="nav-item">
                     <a class="nav-link {{agentCheck ? 'active' : ''}}" id="pills-agents-tab" data-bs-toggle="pill"
-                        data-bs-target="#find-agents" (click)="agentData()">Find Agents</a>
+                        data-bs-target="#find-agents" (click)="toggleCompany(true)">Find Agents</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{companiesCheck ? 'active' : ''}}" id="pills-companies-tab"
-                        data-bs-toggle="pill" data-bs-target="#pills-companies" (click)="companyData()">Find
+                        data-bs-toggle="pill" data-bs-target="#pills-companies" (click)="toggleCompany(false)">Find
                         Companies</a>
                 </li>
             </ul>
@@ -83,7 +83,7 @@
                 <p class="agent-landing-featured__text">{{featuredAgentData.desc}}</p>
             </div>
         </div>
-        <div class="row" *ngIf="!companies">
+        <div class="row {{companies ? 'd-none' : ''}}">
             <div class="col-lg-4" *ngFor="let item of agentDetails">
                 <div class="agent-landing-featured__agent">
                     <div class="agent-landing-featured__property-wrapper">
@@ -127,41 +127,41 @@
                     </div>
                 </div>
             </div>
-            <div class="row" *ngIf="companies">
-                <div class="col-lg-4" *ngFor="let item of featuredCompaniesData.list">
-                    <div class="agent-landing-featured__property">
-                        <div class="agent-landing-featured__property-wrapper">
-                            <img src={{item.tag}} alt="" class="agent-landing-featured__property-tag">
-                            <div class="row">
-                                <div class="col-5 d-flex align-items-center">
-                                    <img src={{item.img}} alt="" class="img-fluid agent-landing-featured__property-img">
-                                </div>
-                                <div class="col-7">
-                                    <h6 class="agent-landing-featured__property-heading"
-                                        routerLink="/company-details/1">
-                                        {{item.heading}}</h6>
-                                    <p class="agent-landing-featured__property-text">{{item.text}}</p>
-                                    <a class="agent-landing-featured__property-link"
-                                        routerLink={{item.link.url}}>{{item.link.text}}</a>
-                                    <p class="agent-landing-featured__property-text">{{item.rera}}</p>
-                                    <p class="agent-landing-featured__property-text">{{item.permit}}</p>
-                                </div>
+        </div>
+        <div class="row {{!companies ? 'd-none' : ''}}">
+            <div class="col-lg-4" *ngFor="let item of featuredCompaniesData.list">
+                <div class="agent-landing-featured__property">
+                    <div class="agent-landing-featured__property-wrapper">
+                        <img src={{item.tag}} alt="" class="agent-landing-featured__property-tag">
+                        <div class="row">
+                            <div class="col-5 d-flex align-items-center">
+                                <img src={{item.img}} alt="" class="img-fluid agent-landing-featured__property-img">
                             </div>
-                            <ul class="agent-landing-featured__property-details-list">
-                                <li class="agent-landing-featured__property-details-list-item"
-                                    *ngFor="let detail of item.details">
-                                    <p class="agent-landing-featured__property-details-list-text">
-                                        {{detail.count}}<br>{{detail.name}}</p>
-                                </li>
-                            </ul>
+                            <div class="col-7">
+                                <h6 class="agent-landing-featured__property-heading"
+                                    routerLink="/company-details/1">
+                                    {{item.heading}}</h6>
+                                <p class="agent-landing-featured__property-text">{{item.text}}</p>
+                                <a class="agent-landing-featured__property-link"
+                                    routerLink={{item.link.url}}>{{item.link.text}}</a>
+                                <p class="agent-landing-featured__property-text">{{item.rera}}</p>
+                                <p class="agent-landing-featured__property-text">{{item.permit}}</p>
+                            </div>
                         </div>
+                        <ul class="agent-landing-featured__property-details-list">
+                            <li class="agent-landing-featured__property-details-list-item"
+                                *ngFor="let detail of item.details">
+                                <p class="agent-landing-featured__property-details-list-text">
+                                    {{detail.count}}<br>{{detail.name}}</p>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-<section class="agent-landing-list" *ngIf="!companies">
+<section class="agent-landing-list {{companies ? 'd-none' : ''}}">
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -224,7 +224,7 @@
         </div>
     </div>
 </section>
-<section class="agent-landing-list" *ngIf="companies">
+<section class="agent-landing-list {{!companies ? 'd-none' : ''}}">
     <div class="container">
         <div class="row">
             <div class="col-12">
