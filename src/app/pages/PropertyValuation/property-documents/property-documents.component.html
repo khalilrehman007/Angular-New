@@ -680,7 +680,7 @@
                                     <button (click)="Prevshow1()" class="back-btn">Back</button>
                                 </mat-card-actions>
                                 <mat-card-actions>
-                                    <button (click)="Nextshow2()" class="save-continue-btn">Publish</button>
+                                    <button (click)="Nextshow2()" class="save-continue-btn">{{publishText}}</button>
                                 </mat-card-actions>
                             </div>
                         </div>
@@ -774,22 +774,15 @@
                                                                 formControlName="cvv" (input)="checkLength(2, false)">
                                                         </mat-form-field>
                                                     </div>
-                                                    <div ngClass="block-wrapper mb-4">
-                                                        <label class="h6-design">Name on Card</label>
-                                                        <mat-form-field class="full-width input-design-2"
-                                                            appearance="fill">
-                                                            <input matInput type="text" placeholder="Name" formControlName="cardName">
-                                                        </mat-form-field>
-                                                    </div>
                                                 </form>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="text-right save-continue-sec">
-                                <mat-card-actions>
-                                    <a routerLink="/PropertyDownloadReport" class="save-continue-btn">Proceed to Pay</a>
+                            <div class="text-right save-continue-sec justify-content-end">
+                                <mat-card-actions (click)="getPaymentData()">
+                                    <a class="save-continue-btn">Proceed to Pay</a>
                                 </mat-card-actions>
                             </div>
                         </div>
@@ -799,3 +792,4 @@
         </div>
     </div>
 </section>
+<app-loader *ngIf="showLoader"></app-loader>

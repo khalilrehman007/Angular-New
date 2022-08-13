@@ -308,4 +308,7 @@ export class AppService {
   PropertiesListingCommercialByDistrict(data:any) {
     return this.http.post(this.apiurl + 'PropertiesListingCommercialByDistrict', data);
   }
+  ValuationPayment(data:any) {
+    return this.http.post(this.apiurl + 'ValuationPayment', data);
+  }
 }
