@@ -14,7 +14,12 @@ declare const google: any;
 })
 export class PropertyDetailsComponent implements OnInit, AfterViewInit {
 
+  response="";
   error: any = "testing"
+  showError:boolean = false;
+  errorResponse(data:any){
+    this.showError = false;
+  }
 
   map: any;
   @ViewChild('propertyDetails__map') mapElement: any;
@@ -183,18 +188,30 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
       })
   }
   getData() {
-    if (this.titleDeedType == -1) {
-      alert("Select Title Deed Type");
+    if (this.propertyDetails.value.titleDeed == "") {
+      this.error = "Enter Title Deed No";
+      this.showError = true;
+    } else if (this.titleDeedType == -1) {
+      this.error = "Select Title Deed Type";
+      this.showError = true;
+    } else if (this.propertyDetails.value.muncipality == "") {
+      this.error = "Enter Muncipality/Affection No";
+      this.showError = true;
     } else if (this.propertyInsured == -1) {
-      alert("Select Property Insurance Type")
+      this.error = "Select Property Insurance Type";
+      this.showError = true;
     } else if (this.countryId == -1) {
-      alert("Select Country");
+      this.error = "Select Country";
+      this.showError = true;
     } else if (this.cityId == -1) {
-      alert("Select City");
+      this.error = "Select City";
+      this.showError = true;
     } else if (this.districtId == -1) {
-      alert("Select District");
+      this.error = "Select District";
+      this.showError = true;
     } else if ($("#searchLocation").val() == "") {
-      alert("Enter Address");
+      this.error = "Enter Address";
+      this.showError = true;
     } else {
 
       this.getMapImage();

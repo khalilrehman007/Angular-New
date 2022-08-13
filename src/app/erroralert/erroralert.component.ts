@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { outputAst } from '@angular/compiler';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-erroralert',
@@ -7,15 +8,20 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ErroralertComponent implements OnInit {
   @Input() error: any;
-  
+  @Output() errorResponse: EventEmitter<any> = new EventEmitter()
 
-  hideAlertNg:boolean=true;
+
+  hideAlertNg: boolean = true;
   constructor() { }
 
   ngOnInit(): void {
+    
   }
-  hideAlert(){
-    this.hideAlertNg=!this.hideAlertNg;
-}
+  sendData(){
+    this.errorResponse.emit("clicked")
+  }
+  hideAlert() {
+    this.hideAlertNg = !this.hideAlertNg;
+  }
 
 }
