@@ -301,11 +301,14 @@ export class AppService {
   CompanyLocationAutoCompleteSearch(data) {
     return this.http.post(this.apiurl + 'CompanyLocationAutoCompleteSearch', data);
   }
-
+  
   PropertiesListingResidentialByDistrict(data:any) {
     return this.http.post(this.apiurl + 'PropertiesListingResidentialByDistrict', data);
   }
   PropertiesListingCommercialByDistrict(data:any) {
     return this.http.post(this.apiurl + 'PropertiesListingCommercialByDistrict', data);
+  }
+  FindAgents(data) {
+    return this.http.post(this.apiurl + 'FindAgents', data);
   }
 }
