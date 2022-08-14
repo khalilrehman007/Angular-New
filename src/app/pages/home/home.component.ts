@@ -38,6 +38,7 @@ export class HomeComponent implements OnInit {
   country:any = [];
   clientFeedback:any = [];
   slider: any = [];
+  user : any
 
 
 
@@ -45,7 +46,7 @@ export class HomeComponent implements OnInit {
   propertyDetails:any;
   oldData1() {
     let tempData :Array<Object> = []
-    this.service.LatestPropertiesListingResidential(2).subscribe(data=>{
+    this.service.LatestPropertiesListingResidential({ "DistictId":"1","PropertyListingTypeId": "2","UserId":this.userId }).subscribe(data=>{
       this.propertyDetails= data;
       this.propertyDetails = this.propertyDetails.data;
 
@@ -70,47 +71,10 @@ export class HomeComponent implements OnInit {
     });
     this.dynamicSlides1 = tempData
 
-    // this.dynamicSlides1 = [
-    //   {
-    //     id: 'slide1',
-    //     src:'assets/images/property/1.png',
-    //     alt:'Side 1',
-    //     title:'Side 1',
-    //     price:"250,000AED"
-    //   },
-    //   {
-    //     id: 'slide2',
-    //     src:'assets/images/property/1.png',
-    //     alt:'Side 2',
-    //     title:'Side 2',
-    //     price:"250,000AED"
-    //   },
-    //   {
-    //     id: 'slide3',
-    //     src:'assets/images/property/1.png',
-    //     alt:'Side 3',
-    //     title:'Side 3',
-    //     price:"250,000AED"
-    //   },
-    //   {
-    //     id: 'slide4',
-    //     src:'assets/images/property/1.png',
-    //     alt:'Side 4',
-    //     title:'Side 4',
-    //     price:"250,000AED"
-    //   },
-    //   {
-    //     id: 'slide5',
-    //     src:'assets/images/property/1.png',
-    //     alt:'Side 5',
-    //     title:'Side 5',
-    //     price:"250,000AED"
-    //   }
-    // ]
   }
   newData1() {
     let tempData :Array<Object> = []
-    this.service.LatestPropertiesListingResidential(1).subscribe(data=>{
+    this.service.LatestPropertiesListingResidential({ "DistictId":"1","PropertyListingTypeId": 1,"UserId":this.userId }).subscribe(data=>{
       this.propertyDetails= data;
       this.propertyDetails = this.propertyDetails.data;
       this.propertyDetails.forEach((element, i) => {
@@ -140,7 +104,7 @@ export class HomeComponent implements OnInit {
 
   oldData2() {
     let tempData :Array<Object> = []
-    this.service.LatestPropertiesListingCommercial(2).subscribe(data=>{
+    this.service.LatestPropertiesListingCommercial({ "DistictId":"1","PropertyListingTypeId": "2","UserId":this.userId}).subscribe(data=>{
       this.propertyDetails=data;
       this.propertyDetails = this.propertyDetails.data;
       this.propertyDetails.forEach((element, i) => {
@@ -166,7 +130,7 @@ export class HomeComponent implements OnInit {
   }
   newData2() {
     let tempData :Array<Object> = []
-    this.service.LatestPropertiesListingCommercial(1).subscribe(data=>{
+    this.service.LatestPropertiesListingCommercial({ "DistictId":"1","PropertyListingTypeId": "1","UserId":this.userId}).subscribe(data=>{
       this.propertyDetails=data;
       this.propertyDetails = this.propertyDetails.data;
       this.propertyDetails.forEach((element, i) => {
@@ -346,17 +310,23 @@ export class HomeComponent implements OnInit {
   totalTransactions: any;
   totalSales: any;
   totalMortgages: any;
-
+  userId :any;
   constructor(private service:AppService,private route:Router,private notifyService : NotificationService) {
     this.LoadPropertyCategories()
     this.LoadBlogs();
-    this.oldData2();
-    this.oldData1();
     this.LoadBanners();
     this.getLoadFeedback();
     this.loadCountriesData();
     this.ValuationTransactions();
     this.getOvaluateFeatures();
+    this.getUser();
+    let userId = '';
+    if(this.user !== null){
+      userId = this.user.id;
+    }
+    this.userId = userId;
+    this.oldData2();
+    this.oldData1();
     this.service.PropertyListingTypes().subscribe(data=>{
       this.propertyType = data;
       this.propertyType = this.propertyType.data;
@@ -392,6 +362,14 @@ export class HomeComponent implements OnInit {
       this.slider = result.data;
       console.log(this.slider);
     })
+  }
+
+  getUser(){
+    this.user = localStorage.getItem('user');
+    if(this.user != ''){
+      this.user = JSON.parse(this.user);
+    }
+    return this.user;
   }
 
   ValuationTransactions(){

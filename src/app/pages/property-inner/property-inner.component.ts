@@ -148,6 +148,7 @@ export class PropertyInnerComponent implements OnInit {
   closeResult: string;
   propertyDetail :any;
   propertyId :any;
+  userId :any;
 
   constructor(private domSanitizer: DomSanitizer,private activeRoute: ActivatedRoute,private modalService: NgbModal,private service:AppService,private route:Router,private notifyService : NotificationService) {
     this.propertyId = this.activeRoute.snapshot.queryParamMap.get('id');
@@ -170,7 +171,7 @@ export class PropertyInnerComponent implements OnInit {
   chartLabel :any = []
   chartData :any = []
   getloadDashboardData() {
-    this.service.DisplayPropertyListing(this.propertyId).subscribe(e => {
+    this.service.DisplayPropertyListing({"PropertyListingId":this.propertyId,"LoginUserId":this.userId}).subscribe(e => {
       let temp: any = e;
       let jsonData :any = JSON.stringify(temp.data)
       let jsonParsDate :any = JSON.parse(jsonData);
@@ -441,7 +442,7 @@ export class PropertyInnerComponent implements OnInit {
 
   LoadSimilarProperty() {
     let tempData :Array<Object> = []
-    this.service.LoadSimilarProperty(this.propertyId).subscribe(data=>{
+    this.service.LoadSimilarProperty({"UserId":this.userId,"PropertyListingId":this.propertyId}).subscribe(data=>{
       let response: any = data;
       response.data.forEach((element, i) => {
         let image = element.documents[0].fileUrl
@@ -463,13 +464,13 @@ export class PropertyInnerComponent implements OnInit {
       })
     });
     this.similarPropertyDetails = tempData
-    console.log(this.similarPropertyDetails,'dedededede')
   }
 
   getUser(){
     this.user = localStorage.getItem('user');
     if(this.user != ''){
       this.user = JSON.parse(this.user);
+      this.userId = this.user.id;
     }
     return this.user;
   }

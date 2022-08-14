@@ -101,14 +101,14 @@ export class AppService {
   RentTypes() {
     return this.http.get(this.apiurl + 'RentTypes/');
   }
-  LatestPropertiesListingResidential(id: number) {
-    return this.http.get(this.apiurl + 'LatestPropertiesListingResidential/' + id);
+  LatestPropertiesListingResidential(data :any) {
+    return this.http.post(this.apiurl + 'LatestPropertiesListingResidential',data);
   }
-  LatestPropertiesListingCommercial(id: number) {
-    return this.http.get(this.apiurl + 'LatestPropertiesListingCommercial/' + id);
+  LatestPropertiesListingCommercial(data:any) {
+    return this.http.post(this.apiurl + 'PropertiesListingCommercialByDistrict',data);
   }
-  LoadSimilarProperty(id: number) {
-    return this.http.get(this.apiurl + 'SimilarProperties/' + id);
+  LoadSimilarProperty(data: any) {
+    return this.http.post(this.apiurl + 'SimilarProperties' , data);
   }
   PropertyCategories() {
     return this.http.get(this.apiurl + 'PropertyCategories/');
@@ -219,8 +219,8 @@ export class AppService {
     return this.http.post(this.apiurl + 'AddUserLead', data);
   }
 
-  DisplayPropertyListing(id) {
-    return this.http.get(this.apiurl + 'DisplayPropertyListing/' + id);
+  DisplayPropertyListing(data:any) {
+    return this.http.post(this.apiurl + 'DisplayPropertyListing',data);
   }
   LoadSearchListing(data: any) {
     return this.http.post(this.apiurl + 'FindPropertites', data, { headers: this.headers });
