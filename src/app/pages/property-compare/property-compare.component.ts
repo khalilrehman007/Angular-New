@@ -19,5 +19,7 @@ export class PropertyCompareComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  scroll(el: HTMLElement) {
+    el.scrollIntoView();
+}
 }

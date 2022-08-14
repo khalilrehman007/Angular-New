@@ -109,6 +109,8 @@ import { LifeAtHomeBlogComponent } from './pages/blog-category/life-at-home-blog
 import { LawBlogComponent } from './pages/blog-category/law-blog/law-blog.component';
 import { MarketTrendsBlogComponent } from './pages/blog-category/market-trends-blog/market-trends-blog.component';
 import { LoaderComponent } from './loader/loader.component';
+import { SuccessAlertComponent } from './success-alert/success-alert.component';
+import { ErroralertComponent } from './erroralert/erroralert.component';
 
 
 @NgModule({
@@ -185,7 +187,9 @@ import { LoaderComponent } from './loader/loader.component';
     LifeAtHomeBlogComponent,
     LawBlogComponent,
     MarketTrendsBlogComponent,
-    LoaderComponent
+    LoaderComponent,
+    SuccessAlertComponent,
+    ErroralertComponent
   ],
   imports: [
     BrowserModule,

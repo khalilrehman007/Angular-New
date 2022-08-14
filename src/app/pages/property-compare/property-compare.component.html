@@ -4,6 +4,13 @@
 </header>
 <section ngClass="properties-comparison-sec">
     <div ngClass="container_1280px">
+         <div ngClass="property_compare-header">
+            <ul>
+                <li (click)="scroll(target)">Location</li>
+                <li (click)="scroll(property_info)">Property Info</li>
+                <li (click)="scroll(other_details)">Other Details</li>
+            </ul>
+         </div>
          <div ngClass="property-compare-box">
             <div ngClass="compare-block">
             <div ngClass="table-responsive table-design">
@@ -33,7 +40,7 @@
                 </table>
             </div>
             </div>
-            <div ngClass="grey-heading">
+            <div ngClass="grey-heading" #target>
                 <h2>Location</h2>
             </div>
             <div ngClass="compare-block">
@@ -77,7 +84,7 @@
                     </table>
                 </div>
             </div>
-            <div ngClass="grey-heading">
+            <div ngClass="grey-heading" #property_info>
                 <h2>Property Info</h2>
             </div>
             <div ngClass="compare-block">
@@ -187,7 +194,7 @@
                     </table>
                 </div>
             </div>
-            <div ngClass="grey-heading">
+            <div ngClass="grey-heading" #other_details>
                 <h2>Other Details</h2>
             </div>
               <div ngClass="compare-block">

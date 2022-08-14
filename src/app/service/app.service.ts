@@ -53,7 +53,7 @@ export class AppService {
     // BlogBanners
     return this.http.get(this.apiurl + 'GetFeedbacks');
   }
-  LoadBlogById(id:any) {
+  LoadBlogById(id: any) {
     return this.http.get(this.apiurl + 'blog/' + id);
   }
   LoadCountries() {
@@ -74,7 +74,10 @@ export class AppService {
   LoadDistrict(id: number) {
     return this.http.get(this.apiurl + 'Districts/' + id);
   }
-  LoadType(e: any) {
+  LoadType(id: number) {
+    return this.http.get(this.apiurl + 'PropertyType/' + id);
+  }
+  LoadTypebyLatLng(e: any) {
     return this.http.get(this.apiurl + 'PropertyType/?Proplat=' + e.lat + '&Proplong=' + e.lng + '&categoryId=' + e.id);
   }
   ValuationPurpose() {
@@ -232,7 +235,7 @@ export class AppService {
     return this.http.post(this.apiurl + 'UpdateImage', data);
   }
   UserProfile(id: any) {
-    return this.http.get(this.apiurl + 'UserProfile/'+id);
+    return this.http.get(this.apiurl + 'UserProfile/' + id);
   }
   MyLeads(data: any) {
     const httpOptions = {
@@ -245,21 +248,21 @@ export class AppService {
     return this.http.post(this.apiurl + 'MyLeads', data);
   }
   MyValuations(id: any) {
-    return this.http.get(this.apiurl + 'MyValuations/'+id);
+    return this.http.get(this.apiurl + 'MyValuations/' + id);
   }
   ValuationPrices(id: any) {
-    return this.http.get(this.apiurl + 'ValuationPrices/'+id);
+    return this.http.get(this.apiurl + 'ValuationPrices/' + id);
   }
   PropertyPackageType() {
     return this.http.get(this.apiurl + 'PropertyPackageType');
   }
-  ExploreCountry(id:any) {
+  ExploreCountry(id: any) {
     return this.http.get(this.apiurl + 'ExploreCountry/' + id);
   }
   ValuationDocumentTypes() {
     return this.http.get(this.apiurl + 'ValuationDocumentTypes');
   }
-  FindCities(data:any) {
+  FindCities(data: any) {
     return this.http.post(this.apiurl + 'FindCities', data);
   }
   BlogLatestNews() {
@@ -271,38 +274,44 @@ export class AppService {
   BlogCategories() {
     return this.http.get(this.apiurl + 'BlogCategories');
   }
-  FindDistricts(data:any) {
+  FindDistricts(data: any) {
     return this.http.post(this.apiurl + 'FindDistricts', data);
   }
-  BlogCategorybyId(id:any) {
+  BlogCategorybyId(id: any) {
     return this.http.get(this.apiurl + 'BlogCategory/' + id);
   }
-  ExploreCity(id:any) {
+  ExploreCity(id: any) {
     return this.http.get(this.apiurl + 'ExploreCity/' + id);
   }
-  BestAgent(id:any) {
+  BestAgent(id: any) {
     return this.http.get(this.apiurl + 'BestAgent?countryId=' + id);
   }
-  ExploreDistrict(id:any) {
+  ExploreDistrict(id: any) {
     return this.http.get(this.apiurl + 'ExploreDistrict/' + id);
   }
   FindCompanies(data) {
     return this.http.post(this.apiurl + 'FindCompanies', data);
   }
-  DisplayAgent(id:any) {
-    return this.http.get(this.apiurl + 'DisplayAgent?userId=' + id);
+  DisplayAgent(data) {
+    return this.http.post(this.apiurl + 'DisplayAgent', data);
   }
   AgentAutoCompleteSearch(data) {
     return this.http.post(this.apiurl + 'AgentAutoCompleteSearch', data);
   }
-  CompanyLocationAutoCompleteSearch(data) {
+  CompanyLocationAutoCompleteSearch(data: any) {
     return this.http.post(this.apiurl + 'CompanyLocationAutoCompleteSearch', data);
   }
 
-  PropertiesListingResidentialByDistrict(data:any) {
+  PropertiesListingResidentialByDistrict(data: any) {
     return this.http.post(this.apiurl + 'PropertiesListingResidentialByDistrict', data);
   }
-  PropertiesListingCommercialByDistrict(data:any) {
+  PropertiesListingCommercialByDistrict(data: any) {
     return this.http.post(this.apiurl + 'PropertiesListingCommercialByDistrict', data);
+  }
+  ValuationPayment(data: any) {
+    return this.http.post(this.apiurl + 'ValuationPayment', data);
+  }
+  FindAgents(data:any) {
+    return this.http.post(this.apiurl + 'FindAgents', data);
   }
 }
