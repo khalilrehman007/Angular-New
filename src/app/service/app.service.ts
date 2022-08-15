@@ -108,7 +108,7 @@ export class AppService {
     return this.http.post(this.apiurl + 'LatestPropertiesListingResidential',data);
   }
   LatestPropertiesListingCommercial(data:any) {
-    return this.http.post(this.apiurl + 'PropertiesListingCommercialByDistrict',data);
+    return this.http.post(this.apiurl + 'LatestPropertiesListingCommercial',data);
   }
   LoadSimilarProperty(data: any) {
     return this.http.post(this.apiurl + 'SimilarProperties' , data);
@@ -313,5 +313,12 @@ export class AppService {
   }
   FindAgents(data:any) {
     return this.http.post(this.apiurl + 'FindAgents', data);
+  }
+  FavoriteAddRemove(status:any,data:any) {
+    if(status == true){
+      return this.http.post(this.apiurl + 'RemoveFavorite', data,{ headers: this.headers });
+    }else{
+      return this.http.post(this.apiurl + 'AddToFavorite', data,{ headers: this.headers });
+    }
   }
 }

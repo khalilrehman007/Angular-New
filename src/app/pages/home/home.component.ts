@@ -45,8 +45,9 @@ export class HomeComponent implements OnInit {
   id: 1;
   propertyDetails:any;
   oldData1() {
+    console.log('okokokokokokokok')
     let tempData :Array<Object> = []
-    this.service.LatestPropertiesListingResidential({ "DistictId":"1","PropertyListingTypeId": "2","UserId":this.userId }).subscribe(data=>{
+    this.service.LatestPropertiesListingResidential({"UserId":this.userId,"propertyListingTypeId":"2"}).subscribe(data=>{
       this.propertyDetails= data;
       this.propertyDetails = this.propertyDetails.data;
 
@@ -58,6 +59,7 @@ export class HomeComponent implements OnInit {
             rentType: element.rentType.name,
             currency: element.country.currency,
             price: element.propertyPrice,
+            favorite: element.favorite,
             id:element.id,
             alt:element.propertyTitle,
             src:this.baseUrl+image,
@@ -74,7 +76,7 @@ export class HomeComponent implements OnInit {
   }
   newData1() {
     let tempData :Array<Object> = []
-    this.service.LatestPropertiesListingResidential({ "DistictId":"1","PropertyListingTypeId": 1,"UserId":this.userId }).subscribe(data=>{
+    this.service.LatestPropertiesListingResidential({"UserId":this.userId,"propertyListingTypeId":"1"}).subscribe(data=>{
       this.propertyDetails= data;
       this.propertyDetails = this.propertyDetails.data;
       this.propertyDetails.forEach((element, i) => {
@@ -83,6 +85,7 @@ export class HomeComponent implements OnInit {
           {
             title: element.propertyTitle,
             price: element.propertyPrice,
+            favorite: element.favorite,
             rentType: element.rentType.name,
             currency: element.country.currency,
             propertyAddress:element.propertyAddress,
@@ -104,7 +107,7 @@ export class HomeComponent implements OnInit {
 
   oldData2() {
     let tempData :Array<Object> = []
-    this.service.LatestPropertiesListingCommercial({ "DistictId":"1","PropertyListingTypeId": "2","UserId":this.userId}).subscribe(data=>{
+    this.service.LatestPropertiesListingCommercial({"UserId":this.userId,"propertyListingTypeId":"2"}).subscribe(data=>{
       this.propertyDetails=data;
       this.propertyDetails = this.propertyDetails.data;
       this.propertyDetails.forEach((element, i) => {
@@ -114,6 +117,7 @@ export class HomeComponent implements OnInit {
             title: element.propertyTitle,
             price: element.propertyPrice,
             rentType: element.rentType.name,
+            favorite: element.favorite,
             currency: element.country.currency,
             propertyAddress:element.propertyAddress,
             id:element.id,
@@ -130,7 +134,7 @@ export class HomeComponent implements OnInit {
   }
   newData2() {
     let tempData :Array<Object> = []
-    this.service.LatestPropertiesListingCommercial({ "DistictId":"1","PropertyListingTypeId": "1","UserId":this.userId}).subscribe(data=>{
+    this.service.LatestPropertiesListingCommercial({"UserId":this.userId,"propertyListingTypeId":"1"}).subscribe(data=>{
       this.propertyDetails=data;
       this.propertyDetails = this.propertyDetails.data;
       this.propertyDetails.forEach((element, i) => {
@@ -140,6 +144,7 @@ export class HomeComponent implements OnInit {
             title: element.propertyTitle,
             price: element.propertyPrice,
             rentType: element.rentType.name,
+            favorite: element.favorite,
             currency: element.country.currency,
             propertyAddress:element.propertyAddress,
             id:element.id,
@@ -563,5 +568,32 @@ export class HomeComponent implements OnInit {
       })
     });
     this.ovaluateFeatures = tempData
+  }
+
+  wishlistStatus :any;
+  AddToFavorite(id:any,status:any) {
+    if(this.userId == ''){
+      this.notifyService.showSuccess('First you need to login', "");
+      this.route.navigate(['/login'])
+    }
+
+    this.service.FavoriteAddRemove(status,{"UserId":this.userId,"PropertyListingId":id}).subscribe(data => {
+      let responsedata :any = data
+      if(responsedata.message == "Favorite is Removed successfully"){
+        this.oldData1();
+        this.newData1();
+        this.oldData2();
+        this.newData2();
+        this.wishlistStatus = "Favorite is Removed successfully"
+        this.notifyService.showSuccess('Favorite is Removed successfully', "");
+      }else {
+        this.oldData1();
+        this.newData1();
+        this.oldData2();
+        this.newData2();
+        this.wishlistStatus = "Favorite is added successfully"
+        this.notifyService.showSuccess('Favorite is added successfully', "");
+      }
+    });
   }
 }
