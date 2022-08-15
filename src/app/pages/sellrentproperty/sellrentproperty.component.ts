@@ -12,23 +12,6 @@ import { AppService } from 'src/app/service/app.service';
 })
 export class SellrentpropertyComponent implements OnInit {
   bannerimg = 'assets/images/sellrentpage/sell-rent-property-img-bg.png'
-  howitworks = [
-    {
-      id: '01',
-      heading: 'Submit Property Details & Info',
-      desc: 'Use our self-upload feature to provide property details and photographs'
-    },
-    {
-      id: '02',
-      heading: 'Property Review Process',
-      desc: 'Our in house quality team will review your property details.'
-    },
-    {
-      id: '03',
-      heading: 'Your Property Goes Live',
-      desc: 'Sit back and relax as leads begin to pour in'
-    }
-  ]
   premiumproperrty = [
     {
       id: '028',
@@ -64,10 +47,19 @@ export class SellrentpropertyComponent implements OnInit {
     }
   ]
   
+  heading:string;
+  subHead:string;
   title:string;
   text:string;
+
+  howitworks: any = [];
   faqsec: any = [];
   constructor(private api: AppService) {
+    this.api.HowWorkOvaluate().subscribe((result:any) => {
+      this.heading=result.data.pageCaptionHelight;
+      this.subHead=result.data.pageCaptionText;
+      this.howitworks = result.data.howWorkOvaluateDetails;
+    })
     this.api.FAQ().subscribe((result:any)=> {
       this.title=result.data.pageCaptionHelight;
       this.text=result.data.pageCaptionText;
