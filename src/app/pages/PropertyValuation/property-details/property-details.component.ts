@@ -168,8 +168,8 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
   getMapImage() {
     let staticMapUrl: any = "https://maps.googleapis.com/maps/api/staticmap";
     staticMapUrl += "?key=AIzaSyBPSEz52-AfPEVbmV_3yuGUGol_KiLb3GU&center=" + localStorage.getItem("lat") + "," + localStorage.getItem("lng");
-    staticMapUrl += "&size=1920x1080";
-    staticMapUrl += "&zoom=15";
+    staticMapUrl += "&size=640x360&scale=2";
+    staticMapUrl += "&zoom=13";
     staticMapUrl += "&maptype=" + this.map.mapTypeId;
     staticMapUrl += "&markers=color:red|" + localStorage.getItem("lat") + "," + localStorage.getItem("lng");
 

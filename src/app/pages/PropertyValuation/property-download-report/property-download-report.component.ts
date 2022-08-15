@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AppService } from 'src/app/service/app.service';
 
 @Component({
@@ -11,32 +12,21 @@ export class PropertyDownloadReportComponent implements OnInit {
   report = '../../../../assets/images/icons/print.svg'
   valuationResponse: any = {};
   showLoader: boolean = false;
-  constructor(private service: AppService) {
+  constructor(private service: AppService, private router: Router) {
     this.valuationResponse = localStorage.getItem("valuationResponse");
     this.valuationResponse = JSON.parse(this.valuationResponse);
   }
   downloadReport() {
     this.showLoader = true;
-    // this.service.GenerateReport(this.valuationResponse.reportNumberCode).subscribe((result:any) => {
-    //   console.log(result);
-    //   this.showLoader = false;
-    // });
-    let token: any = localStorage.getItem("token");
-    token = JSON.parse(token);
-    $.ajax({
-      // url: "https://beta.ovaluate.com/api/GenerateReport?ReportNumberCode=" + this.valuationResponse.reportNumberCode,
-      method: "post",
-      headers: {
-        "Authorization": 'bearer ' + token
-      },
-      dataType: "json",
-      success: (res) => {
-        this.showLoader = false;
-        console.log(res.body)
-      },
-      error: (err) => {
-        console.log("error");
-      }
+    this.service.GenerateReport(this.valuationResponse.reportNumberCode).subscribe((result: any) => {
+      console.log(result.body);
+      var blob = new Blob([result.body]);
+      var link = document.createElement('a');
+      link.href = window.URL.createObjectURL(blob);
+      link.download = this.valuationResponse.reportNumberCode + ".pdf";
+      link.click();
+      this.showLoader = false;
+      this.router.navigate(['/']);
     });
   }
   ngOnInit(): void {
