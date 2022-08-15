@@ -1,62 +1,62 @@
 <header>
-    <app-header></app-header>
-    </header>
+  <app-header></app-header>
+</header>
 <section [ngClass]="'inner-cntnt-wrapper sell-rent-properties-page sell-faq-css'">
-<section ngClass="position-relative slide-left-bar inner-banner-sec">
+  <section ngClass="position-relative slide-left-bar inner-banner-sec">
     <div ngClass="container_1280px">
       <div ngClass="inner-banner-row">
-    <div ngClass="bredcrumb-wrapper light-color">
-     <app-breadcrumb></app-breadcrumb>
-     </div>
-      <div ngClass="row">
-        <div ngClass="col-md-6">
-          <div ngClass="sell-rent-property-left">
-            <h1>Sell or Rent Your <br>Property Directly - FREE</h1>
-            <ul>
-              <li>List Property on Ovaluate Directly</li>
-              <li>Shortlist Clients from the Limited Responses</li>
-              <li>Connect, Manage & Showcase property yourself.</li>
-              <li>Negotiate directly without any mediator.</li>
-            </ul>
-            <div ngClass="custom-2btn">
-              <a routerLink="/listingproperty">List Your Property Now!</a>
+        <div ngClass="bredcrumb-wrapper light-color">
+          <app-breadcrumb></app-breadcrumb>
+        </div>
+        <div ngClass="row">
+          <div ngClass="col-md-6">
+            <div ngClass="sell-rent-property-left">
+              <h1>Sell or Rent Your <br>Property Directly - FREE</h1>
+              <ul>
+                <li>List Property on Ovaluate Directly</li>
+                <li>Shortlist Clients from the Limited Responses</li>
+                <li>Connect, Manage & Showcase property yourself.</li>
+                <li>Negotiate directly without any mediator.</li>
+              </ul>
+              <div ngClass="custom-2btn">
+                <a routerLink="/listingproperty">List Your Property Now!</a>
+              </div>
+            </div>
+          </div>
+          <div ngClass="col-md-6">
+            <div ngClass="sell-rent-property-right text-center">
+              <img src="assets/images/sellrentpage/sell-rent-property-img.svg" ngClass="img-fluid" alt="">
             </div>
           </div>
         </div>
-        <div ngClass="col-md-6">
-          <div ngClass="sell-rent-property-right text-center">
-            <img src="assets/images/sellrentpage/sell-rent-property-img.svg" ngClass="img-fluid" alt="">
-          </div>
-        </div>
-      </div>
       </div>
     </div>
-   </section>
-   <section ngClass="position-relative how-it-works-sec">
+  </section>
+  <section ngClass="position-relative how-it-works-sec">
     <div ngClass="container_1220px">
       <div ngClass="how-it-works">
-          <div ngClass="title text-center">
-            <h2>How it Works?</h2>
-            <p>Some of our picked properties near your location.</p>
-          </div>
-      </div>
-      <div ngClass="how-it-works-process">
-      <div ngClass="row">
-        <div ngClass="col-md-4 how-it-works-box" *ngFor="let works of howitworks">
-          <div ngClass="how-it-works-inner">
-            <h1>{{works.id}}</h1>
-            <h5>{{works.heading}}</h5>
-            <p>{{works.desc}}</p>
-          </div>
+        <div ngClass="title text-center">
+          <h2>How it Works?</h2>
+          <p>Some of our picked properties near your location.</p>
         </div>
       </div>
+      <div ngClass="how-it-works-process">
+        <div ngClass="row">
+          <div ngClass="col-md-4 how-it-works-box" *ngFor="let works of howitworks">
+            <div ngClass="how-it-works-inner">
+              <h1>{{works.id}}</h1>
+              <h5>{{works.heading}}</h5>
+              <p>{{works.desc}}</p>
+            </div>
+          </div>
+        </div>
       </div>
       <div ngClass="green-btn-design text-center">
         <a routerLink="/listingproperty" ngClass="green-btn">List Your Property Now!</a>
       </div>
     </div>
-   </section>
-   <section ngClass="position-relative premium-property-sec">
+  </section>
+  <section ngClass="position-relative premium-property-sec">
     <div ngClass="container_1220px">
       <div ngClass="premium-property-package">
         <div ngClass="title text-center">
@@ -66,24 +66,24 @@
       </div>
       <div ngClass="row">
         <div ngClass="col-md-6 premium-property-package-box" *ngFor="let property of premiumproperrty">
-            <div ngClass="premium-property-package-inner">
-              <div ngClass="content">
-                <h5>{{property.heading}}</h5>
-                <h1>{{property.id}}</h1>
-                <p>{{property.desc}}</p>
-                <div ngClass="btn-custom">
-                  <a routerLink="/{{property.link}}">{{property.buttontext}}</a>
-                </div>
-              </div>
-              <div ngClass="listing-premium-img">
-                <img src="{{property.src}}" ngClass="img-fluid" alt="">
+          <div ngClass="premium-property-package-inner">
+            <div ngClass="content">
+              <h5>{{property.heading}}</h5>
+              <h1>{{property.id}}</h1>
+              <p>{{property.desc}}</p>
+              <div ngClass="btn-custom">
+                <a routerLink="/{{property.link}}">{{property.buttontext}}</a>
               </div>
             </div>
+            <div ngClass="listing-premium-img">
+              <img src="{{property.src}}" ngClass="img-fluid" alt="">
+            </div>
+          </div>
         </div>
       </div>
     </div>
-   </section>
-   <section ngClass="position-relative faq-section-wrapper">
+  </section>
+  <section ngClass="position-relative faq-section-wrapper">
     <div ngClass="container_1220px">
       <div ngClass="faq-title text-center">
         <h2>Frequently Asked Questions</h2>
@@ -91,25 +91,25 @@
       </div>
       <div ngClass="row">
         <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12" *ngFor="let faq of faqsec">
-            <div ngClass="accordians-wrapper">
-                <mat-accordion>
-                    <mat-expansion-panel>
-                        <mat-expansion-panel-header>
-                          <mat-panel-title>
-                           <h4>{{faq.heading}}</h4>
-                          </mat-panel-title>
-                        </mat-expansion-panel-header>
-                        <mat-panel-description>
-                        <p> {{faq.desc}}</p>
-                        </mat-panel-description>
-                      </mat-expansion-panel>
-                  </mat-accordion>
-            </div>
+          <div ngClass="accordians-wrapper">
+            <mat-accordion>
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <h4>{{faq.heading}}</h4>
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <mat-panel-description>
+                  <p class="faq__accordion-text">{{faq.description}}</p>
+                </mat-panel-description>
+              </mat-expansion-panel>
+            </mat-accordion>
+          </div>
         </div>
       </div>
     </div>
-   </section>
+  </section>
 </section>
 <footer ngClass="footer-sec">
-    <app-footer></app-footer>
-  </footer>
+  <app-footer></app-footer>
+</footer>
