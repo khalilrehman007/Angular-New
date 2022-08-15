@@ -339,7 +339,7 @@
                                             <div ngClass="block-wrapper mb-4">
                                                 <label class="h6-design">Totel Income per Annum <span ngClass="required-span">*</span></label>
                                                 <mat-form-field class="full-width input-design-2" appearance="fill">
-                                                    <input matInput type="number" placeholder="Enter totel income eg. 5,000,000">
+                                                    <input matInput type="number" formControlName="income" placeholder="Enter totel income eg. 5,000,000">
                                                 </mat-form-field>
                                             </div>
                                         </div>
@@ -347,7 +347,7 @@
                                             <div ngClass="block-wrapper mb-4">
                                                 <label class="h6-design">Totel Expense per Annum <span ngClass="required-span">*</span></label>
                                                 <mat-form-field class="full-width input-design-2" appearance="fill">
-                                                    <input matInput type="number" placeholder="Enter totel expense eg. 3,500,000">
+                                                    <input matInput type="number" formControlName="expense" placeholder="Enter totel expense eg. 3,500,000">
                                                 </mat-form-field>
                                             </div>
                                         </div>
@@ -370,3 +370,4 @@
     </div>
 </section>
 <app-loader *ngIf="showLoader"></app-loader>
+<app-erroralert [error]="error" (errorResponse)="errorResponse($event)" *ngIf="showError"></app-erroralert>
