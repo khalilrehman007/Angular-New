@@ -104,14 +104,14 @@ export class AppService {
   RentTypes() {
     return this.http.get(this.apiurl + 'RentTypes/');
   }
-  LatestPropertiesListingResidential(data :any) {
-    return this.http.post(this.apiurl + 'LatestPropertiesListingResidential',data);
+  LatestPropertiesListingResidential(data: any) {
+    return this.http.post(this.apiurl + 'LatestPropertiesListingResidential', data);
   }
-  LatestPropertiesListingCommercial(data:any) {
-    return this.http.post(this.apiurl + 'PropertiesListingCommercialByDistrict',data);
+  LatestPropertiesListingCommercial(data: any) {
+    return this.http.post(this.apiurl + 'PropertiesListingCommercialByDistrict', data);
   }
   LoadSimilarProperty(data: any) {
-    return this.http.post(this.apiurl + 'SimilarProperties' , data);
+    return this.http.post(this.apiurl + 'SimilarProperties', data);
   }
   PropertyCategories() {
     return this.http.get(this.apiurl + 'PropertyCategories/');
@@ -222,8 +222,8 @@ export class AppService {
     return this.http.post(this.apiurl + 'AddUserLead', data);
   }
 
-  DisplayPropertyListing(data:any) {
-    return this.http.post(this.apiurl + 'DisplayPropertyListing',data);
+  DisplayPropertyListing(data: any) {
+    return this.http.post(this.apiurl + 'DisplayPropertyListing', data);
   }
   LoadSearchListing(data: any) {
     return this.http.post(this.apiurl + 'FindPropertites', data, { headers: this.headers });
@@ -311,11 +311,15 @@ export class AppService {
   ValuationPayment(data: any) {
     return this.http.post(this.apiurl + 'ValuationPayment', data);
   }
-  FindAgents(data:any) {
+  FindAgents(data: any) {
     return this.http.post(this.apiurl + 'FindAgents', data);
   }
-  GenerateReport(data:any) {
-    console.log(this.apiurl + 'GenerateReport?ReportNumberCode=' + data);
-    return this.http.post(this.apiurl + 'GenerateReport?ReportNumberCode=' + data, "");
+  GenerateReport(data: any) {
+    // return this.http.get(this.apiurl + 'GenerateReport?ReportNumberCode=' + data);
+    return this.http.request("Get", this.apiurl + 'GenerateReport?ReportNumberCode=' + data, {
+      body: "",
+      observe: "response",
+      responseType: "blob",
+    });
   }
 }
