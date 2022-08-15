@@ -314,6 +314,14 @@ export class AppService {
   FindAgents(data:any) {
     return this.http.post(this.apiurl + 'FindAgents', data);
   }
+  GenerateReport(data: any) {
+    // return this.http.get(this.apiurl + 'GenerateReport?ReportNumberCode=' + data);
+    return this.http.request("Get", this.apiurl + 'GenerateReport?ReportNumberCode=' + data, {
+      body: "",
+      observe: "response",
+      responseType: "blob",
+    });
+  }
   FavoriteAddRemove(status:any,data:any) {
     if(status == true){
       return this.http.post(this.apiurl + 'RemoveFavorite', data,{ headers: this.headers });

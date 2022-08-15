@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppService } from 'src/app/service/app.service';
+import * as mapboxgl from 'mapbox-gl';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-explore-details',
@@ -15,9 +17,9 @@ export class ExploreDetailsComponent implements OnInit {
   squaremetersvg = '../../../../assets/images/icons/Square Meters.svg'
   brandimg = '../../../../assets/images/better-home.svg'
   listingsliderimg = 'assets/images/property-listing-slider-img.png'
-  exploreimg='../../../../assets/images/Blog-Tile.png'
-  restaurant= '../../../../assets/images/icons/restaurant.svg'
-  exploredemo= '../../../../assets/images/explore-demo.png'
+  exploreimg = '../../../../assets/images/Blog-Tile.png'
+  restaurant = '../../../../assets/images/icons/restaurant.svg'
+  exploredemo = '../../../../assets/images/explore-demo.png'
   dubaigv = 'assets/images/goverment-of-dubai.png'
   landdept = 'assets/images/Dubai-Land-LOGO.png'
   rera = 'assets/images/rera.png'
@@ -25,22 +27,28 @@ export class ExploreDetailsComponent implements OnInit {
   blogs: any;
   submitted = false;
   responsedata: any;
-  dynamicSlides1:any = [];
-  dynamicSlides2:any = [];
-  homebanners:any = [];
-  transaction:any = [];
-  country:any = [];
-  clientFeedback:any = [];
+  dynamicSlides1: any = [];
+  dynamicSlides2: any = [];
+  homebanners: any = [];
+  transaction: any = [];
+  country: any = [];
+  clientFeedback: any = [];
   slider: any = [];
+  status: boolean = true;
+  status1: boolean = false;
+  status2: boolean = false;
+  status3: boolean = false;
+  status4: boolean = false;
+  status5: boolean = false;
 
 
 
   id: 1;
-  propertyDetails:any;
+  propertyDetails: any;
   oldData1() {
-    let tempData :Array<Object> = []
-    this.service.PropertiesListingResidentialByDistrict({ "DistictId": this.id,"PropertyListingTypeId": "1" }).subscribe(data=>{
-      this.propertyDetails= data;
+    let tempData: Array<Object> = []
+    this.service.PropertiesListingResidentialByDistrict({ "DistictId": this.id, "PropertyListingTypeId": "1" }).subscribe(data => {
+      this.propertyDetails = data;
       this.propertyDetails = this.propertyDetails.data;
 
       this.propertyDetails.forEach((element, i) => {
@@ -51,24 +59,23 @@ export class ExploreDetailsComponent implements OnInit {
             rentType: element.rentType.name,
             currency: element.country.currency,
             price: element.propertyPrice,
-            id:element.id,
-            alt:element.propertyTitle,
-            src:this.baseUrl+image,
-            bedrooms:element.bedrooms,
-            propertyAddress:element.propertyAddress,
-            bathrooms:element.bathrooms,
-            buildingName:element.buildingName,
-            carpetArea:element.carpetArea,
+            id: element.id,
+            alt: element.propertyTitle,
+            src: this.baseUrl + image,
+            bedrooms: element.bedrooms,
+            propertyAddress: element.propertyAddress,
+            bathrooms: element.bathrooms,
+            buildingName: element.buildingName,
+            carpetArea: element.carpetArea,
           });
       })
     });
     this.dynamicSlides1 = tempData
-    console.log(this.dynamicSlides1,'ResidentialOld')
   }
   newData1() {
-    let tempData :Array<Object> = []
-    this.service.PropertiesListingResidentialByDistrict({ "DistictId": this.id,"PropertyListingTypeId": "1" }).subscribe(data=>{
-      this.propertyDetails= data;
+    let tempData: Array<Object> = []
+    this.service.PropertiesListingResidentialByDistrict({ "DistictId": this.id, "PropertyListingTypeId": "1" }).subscribe(data => {
+      this.propertyDetails = data;
       this.propertyDetails = this.propertyDetails.data;
       this.propertyDetails.forEach((element, i) => {
         let image = element.documents[0].fileUrl
@@ -78,26 +85,25 @@ export class ExploreDetailsComponent implements OnInit {
             price: element.propertyPrice,
             rentType: element.rentType.name,
             currency: element.country.currency,
-            propertyAddress:element.propertyAddress,
-            id:element.id,
-            alt:element.propertyTitle,
-            src:this.baseUrl+image,
-            bedrooms:element.bedrooms,
-            bathrooms:element.bathrooms,
-            buildingName:element.buildingName,
-            carpetArea:element.carpetArea,
+            propertyAddress: element.propertyAddress,
+            id: element.id,
+            alt: element.propertyTitle,
+            src: this.baseUrl + image,
+            bedrooms: element.bedrooms,
+            bathrooms: element.bathrooms,
+            buildingName: element.buildingName,
+            carpetArea: element.carpetArea,
           });
       })
     });
     this.dynamicSlides1 = tempData
-    console.log(this.dynamicSlides1,'ResidentialNew')
 
   }
 
   oldData2() {
-    let tempData :Array<Object> = []
-    this.service.PropertiesListingCommercialByDistrict({ "DistictId": this.id,"PropertyListingTypeId": "1" }).subscribe(data=>{
-      this.propertyDetails=data;
+    let tempData: Array<Object> = []
+    this.service.PropertiesListingCommercialByDistrict({ "DistictId": this.id, "PropertyListingTypeId": "1" }).subscribe(data => {
+      this.propertyDetails = data;
       this.propertyDetails = this.propertyDetails.data;
       this.propertyDetails.forEach((element, i) => {
         let image = element.documents[0].fileUrl
@@ -107,25 +113,24 @@ export class ExploreDetailsComponent implements OnInit {
             price: element.propertyPrice,
             rentType: element.rentType.name,
             currency: element.country.currency,
-            propertyAddress:element.propertyAddress,
-            id:element.id,
-            alt:element.propertyTitle,
-            src:this.baseUrl+image,
-            bedrooms:element.bedrooms,
-            bathrooms:element.bathrooms,
-            buildingName:element.buildingName,
-            carpetArea:element.carpetArea,
+            propertyAddress: element.propertyAddress,
+            id: element.id,
+            alt: element.propertyTitle,
+            src: this.baseUrl + image,
+            bedrooms: element.bedrooms,
+            bathrooms: element.bathrooms,
+            buildingName: element.buildingName,
+            carpetArea: element.carpetArea,
           });
       })
     });
     this.dynamicSlides2 = tempData
-    console.log(this.dynamicSlides2,'CommercialOld')
 
   }
   newData2() {
-    let tempData :Array<Object> = []
-    this.service.PropertiesListingCommercialByDistrict({ "DistictId": this.id,"PropertyListingTypeId": "1" }).subscribe(data=>{
-      this.propertyDetails=data;
+    let tempData: Array<Object> = []
+    this.service.PropertiesListingCommercialByDistrict({ "DistictId": this.id, "PropertyListingTypeId": "1" }).subscribe(data => {
+      this.propertyDetails = data;
       this.propertyDetails = this.propertyDetails.data;
       this.propertyDetails.forEach((element, i) => {
         let image = element.documents[0].fileUrl
@@ -135,19 +140,18 @@ export class ExploreDetailsComponent implements OnInit {
             price: element.propertyPrice,
             rentType: element.rentType.name,
             currency: element.country.currency,
-            propertyAddress:element.propertyAddress,
-            id:element.id,
-            alt:element.propertyTitle,
-            src:this.baseUrl+image,
-            bedrooms:element.bedrooms,
-            bathrooms:element.bathrooms,
-            buildingName:element.buildingName,
-            carpetArea:element.carpetArea,
+            propertyAddress: element.propertyAddress,
+            id: element.id,
+            alt: element.propertyTitle,
+            src: this.baseUrl + image,
+            bedrooms: element.bedrooms,
+            bathrooms: element.bathrooms,
+            buildingName: element.buildingName,
+            carpetArea: element.carpetArea,
           });
       })
     });
     this.dynamicSlides2 = tempData
-    console.log(this.dynamicSlides2,'CommercialNew')
 
   }
   customOptions: OwlOptions = {
@@ -173,28 +177,29 @@ export class ExploreDetailsComponent implements OnInit {
     },
     nav: false
   }
-  districtDetail:any = {};
+  districtDetail: any = {};
 
   constructor(private route: ActivatedRoute, private service: AppService) {
     this.route.params.subscribe(params => {
       this.id = params['id'];
     });
-    this.service.ExploreDistrict(this.id).subscribe((result:any) => {
+    this.service.ExploreDistrict(this.id).subscribe((result: any) => {
       this.districtDetail = result.data;
-      console.log(this.districtDetail);
     });
     this.oldData2();
     this.oldData1();
-   }
+  }
 
   ngOnInit(): void {
+    mapboxgl.accessToken = environment.mapbox.accessToken;
+    let map = new mapboxgl.Map({
+      container: 'explore-near-map',
+      style: 'mapbox://styles/mapbox/streets-v11',
+      center: [-74.5, 40],
+      zoom: 9,
+      projection: 'globe'
+    });
   }
-  status: boolean = true;
-  status1: boolean = false;
-  status2: boolean = false;
-  status3: boolean = false;
-  status4: boolean = false;
-  status5: boolean = false;
   Overview() {
     this.status = !this.status;
     this.status1 = false;
@@ -219,5 +224,4 @@ export class ExploreDetailsComponent implements OnInit {
     this.status2 = false;
     this.status3 = !this.status3;
   }
-
 }

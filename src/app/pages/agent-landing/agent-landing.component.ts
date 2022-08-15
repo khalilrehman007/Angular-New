@@ -20,13 +20,14 @@ export class AgentLandingComponent implements OnInit {
   page: number = 1;
   companies: boolean = false;
   agentDetails: any;
-  bestCompaniesDetails: any;
+  companylisting: any;
   findAgent: any = [];
   separatorKeysCodes: number[] = [ENTER, COMMA];
   searchctrl = new FormControl('');
   searchfilter: Observable<string[]>;
   SearchKeyword: string[] = [];
-  searchList: any= [];
+  searchList: any = ["Duabi", "UAE", "Investment Park"];
+  agentObject: any = { "CountryId": "1", "DistrictsId": [], "CompaniesId": [], "UserId": "0", "EpertInId": "0", "LanguageId": "0", "CurrentPage": 1 };
   constructor(private router: Router, private service: AppService) {
     this.agentData();
     this.companyData();
@@ -39,23 +40,24 @@ export class AgentLandingComponent implements OnInit {
       this.agentCheck = true;
       this.agentData();
     }
-    this.service.FindAgents({"CountryId":"1","DistrictsId":[2,1],"CompaniesId":[],"UserId":"0","EpertInId":"0","LanguageId":"0","CurrentPage":"1"}).subscribe((result: any) => {
-      this.findAgent = result.data;
-      console.log(this.findAgent.agents)
-    })
+
+    this.agentListData(this.agentObject);
+
     this.service.BestAgent(1).subscribe((result: any) => {
       this.agentDetails = result.data;
     })
-    this.service.CompanyLocationAutoCompleteSearch({"Searching":"mr","CountryId":"1"}).subscribe((result:any)=> {
-      console.log();
-      for(let i = 0; i < result.data.locationAutoComplete.length ; i++) {
+    this.service.CompanyLocationAutoCompleteSearch({ "Searching": "mr", "CountryId": "1" }).subscribe((result: any) => {
+      for (let i = 0; i < result.data.locationAutoComplete.length; i++) {
         this.searchList.push(result.data.locationAutoComplete[i].item2);
       }
+      // for(let i = 0; i < result.data.locationAutoComplete.length ; i++) {
+      //   this.searchList.push(result.data.locationAutoComplete[i].item2);
+      // }
     })
-    // this.service.FindCompanies(1).subscribe((result:any)=>{
-    //   this.bestCompaniesDetails = result.data;
-    //   console.log(this.bestCompaniesDetails)
-    // })
+    this.service.FindCompanies({ "CountryId": "1", "DistrictsId": [], "CompaniesId": [], "CurrentPage": "1" }).subscribe((result: any) => {
+      this.companylisting = result.data;
+      console.log(result)
+    })
     this.searchfilter = this.searchctrl.valueChanges.pipe(
       startWith(null),
       map((searchCompenies: string | null) => (searchCompenies ? this._filter(searchCompenies) : this.searchList.slice())),
@@ -765,6 +767,8 @@ export class AgentLandingComponent implements OnInit {
   }
   pageChanged(value: any) {
     this.page = value;
+    this.agentObject.CurrentPage = value;
+    this.agentListData(this.agentObject);
   }
   ngOnInit(): void {
   }
@@ -797,9 +801,15 @@ export class AgentLandingComponent implements OnInit {
     this.searchctrl.setValue(null);
   }
 
+  agentListData(data: any) {
+    this.service.FindAgents(data).subscribe((result: any) => {
+      this.findAgent = result.data;
+      console.log(this.findAgent)
+    })
+  }
+
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
-
     return this.searchList.filter(searchCompenies => searchCompenies.toLowerCase().includes(filterValue));
   }
 }

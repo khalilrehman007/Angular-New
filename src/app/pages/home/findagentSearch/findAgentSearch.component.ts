@@ -26,7 +26,6 @@ export class FindAgentSearchComponent implements OnInit {
     this.getExpertIn();
     this.getSpokenLanguages();
     this.service.AgentAutoCompleteSearch({"Searching":"mr","CountryId":"1"}).subscribe((result:any)=>{
-      console.log(result);
     })
   }
 
@@ -95,7 +94,6 @@ export class FindAgentSearchComponent implements OnInit {
       })
     });
     this.ExpertIn = tempData
-    console.log(this.ExpertIn)
   }
   SpokenLanguages :any = [];
   getSpokenLanguages(){

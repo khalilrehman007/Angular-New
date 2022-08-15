@@ -3,6 +3,7 @@ import { SecondHeaderComponent } from '../../../second-header/second-header.comp
 import { AppService } from 'src/app/service/app.service';
 import { DatePipe } from '@angular/common';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-property-documents',
@@ -42,6 +43,11 @@ export class PropertyDocumentsComponent implements OnInit {
   showPayment: boolean = false;
   publishText: any = "Publish";
   showLoader: boolean = false;
+  error: any = ""
+  showError:boolean = false;
+  errorResponse(data:any){
+    this.showError = false;
+  }
 
   reportForm = new FormGroup({
     name: new FormControl("", Validators.required),
@@ -219,7 +225,8 @@ export class PropertyDocumentsComponent implements OnInit {
       this.status5 = !this.status5;
       this.status1 = !this.status1;
     } else {
-      alert("Please Upload the required Documents.");
+      this.error = "Please Upload the required Documents.";
+      this.showError = true;
     }
   }
   Prevshow() {
@@ -247,24 +254,31 @@ export class PropertyDocumentsComponent implements OnInit {
   }
   Nextshow2() {
     if (!this.formData.ReportPackageId) {
-      alert("Select Package Type");
+      this.error = "Select Package Type";
+      this.showError = true;
       return;
     } else if (!this.formData.ReportLanguage) {
-      alert("Select Report Language");
+      this.error = "Select Report Language";
+      this.showError = true;
       return;
     } else if (this.reportForm.value.name == "") {
-      alert("Please Enter Owner Name");
+      this.error = "Please Enter Owner Name";
+      this.showError = true;
       return;
     } else if (this.reportForm.value.phone == "") {
-      alert("Please Enter Owner Email");
+      this.error = "Please Enter Owner Email";
+      this.showError = true;
       return;
     } else if (!this.termsAccepted) {
-      alert("Please Accept Terms and Conditions");
+      this.error = "Please Accept Terms and Conditions";
+      this.showError = true;
       return;
     } else if (this.formData.InspectionRequired && $("#formDate").val() == "") {
-      alert("Please Enter Inspection Date");
+      this.error = "Please Enter Inspection Date";
+      this.showError = true;
       return;
     }
+    this.showLoader = true;
     this.publishText = "Please Wait...";
     this.formData.CustomerName = this.reportForm.value.name;
     this.formData.PhoneNumber = this.reportForm.value.phone;
@@ -310,6 +324,7 @@ export class PropertyDocumentsComponent implements OnInit {
           this.status3 = !this.status3;
           this.status7 = !this.status7;
           this.status2 = !this.status2;
+          this.showLoader = false;
         } else {
           alert("Something went wrong");
         }
@@ -420,13 +435,14 @@ export class PropertyDocumentsComponent implements OnInit {
     this.service.ValuationPayment(data).subscribe((result: any) => {
       if (result.message == "Valuation transaction completed successfully") {
         this.showLoader = false;
+        this.router.navigate(['/PropertyDownloadReport']);
       } else {
         this.showLoader = false;
         alert(result.error)
       }
     })
   }
-  constructor(private service: AppService, private datePipe: DatePipe) {
+  constructor(private service: AppService, private datePipe: DatePipe, private router: Router) {
     this.userData = localStorage.getItem("valuationDetailData");
     this.userData = JSON.parse(this.userData);
     this.formData = localStorage.getItem("valuationData");

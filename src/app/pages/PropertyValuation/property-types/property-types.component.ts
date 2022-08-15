@@ -33,6 +33,11 @@ export class PropertyTypesComponent implements OnInit {
   showLoader: boolean = false;
 
   unitHMTL: any = [];
+  error: any = ""
+  showError:boolean = false;
+  errorResponse(data:any){
+    this.showError = false;
+  }
 
   room = [
     { viewValue: '01', value: '01' },
@@ -53,6 +58,8 @@ export class PropertyTypesComponent implements OnInit {
     elevation: new FormControl("", Validators.required),
     apartmentSize: new FormControl("", Validators.required),
     buildupArea: new FormControl("", Validators.required),
+    income: new FormControl("", Validators.required),
+    expense: new FormControl("", Validators.required),
   })
   get apartmentNo() {
     return this.propertyTypeForm.get("apartmentNo");
@@ -68,6 +75,12 @@ export class PropertyTypesComponent implements OnInit {
   }
   get buildupArea() {
     return this.propertyTypeForm.get("buildupArea");
+  }
+  get income() {
+    return this.propertyTypeForm.get("income");
+  }
+  get expense() {
+    return this.propertyTypeForm.get("expense");
   }
   constructor(private service: AppService, private router: Router) {
     this.formData = (window.localStorage.getItem('valuationData'));
@@ -192,49 +205,72 @@ export class PropertyTypesComponent implements OnInit {
   }
   getData() {
     if(!this.formData.PropertyCategoryId) {
-      alert("Please Select Property Category");
+      this.error = "Please Select Property Category";
+      this.showError = true;
       return;
     } else if(!this.formData.PropertyTypeId) {
-      alert("Please Select Property Type");
+      this.error = "Please Select Property Type";
+      this.showError = true;
       return;
     } else if(!this.formData.ValuationPurposeId) {
-      alert("Please Select Valuation Purpose");
+      this.error = "Please Select Valuation Purpose";
+      this.showError = true;
       return;
     } else if(!this.formData.PropertyStatusId) {
-      alert("Please Select Property Status");
+      this.error = "Please Select Property Status";
+      this.showError = true;
       return;
     } else if(this.propertyTypeForm.value.apartmentNo == "") {
-      alert("Please Enter Apartment No");
+      this.error = "Please Enter Apartment No";
+      this.showError = true;
       return;
     } else if(this.roadCount == 0) {
-      alert("Please Select Number of Road");
+      this.error = "Please Select Number of Road";
+      this.showError = true;
       return;
     } else if(this.propertyTypeForm.value.constructionAge == "") {
-      alert("Please Enter Constrution Age");
+      this.error = "Please Enter Constrution Age";
+      this.showError = true;
       return;
     } else if(this.propertyData.hasElevation && this.propertyTypeForm.value.elevation == "") {
-      alert("Please Enter Elevation");
+      this.error = "Please Enter Elevation";
+      this.showError = true;
       return;
     } else if(this.propertyTypeForm.value.apartmentSize == "") {
-      alert("Please Enter Plot Size");
+      this.error = "Please Enter Plot Size";
+      this.showError = true;
       return;
     } else if(this.propertyTypeForm.value.buildupArea == "") {
-      alert("Please Enter Buildup Area");
+      this.error = "Please Enter Buildup Area";
+      this.showError = true;
       return;
     } else if(!this.formData.Bedrooms) {
-      alert("Please Select Bedrooms");
+      this.error = "Please Select Bedrooms";
+      this.showError = true;
       return;
     } else if(!this.formData.Bathrooms) {
-      alert("Please Select Bedrooms");
+      this.error = "Please Select Bathrooms";
+      this.showError = true;
       return;
     } else if(this.propertyData.hasFurnishing && !this.formData.FurnishingType) {
-      alert("Please Select Furnishing Type");
+      this.error = "Please Select Furnishing Type";
+      this.showError = true;
       return;
     } else if(this.propertyData.hasFitting && !this.formData.FittingType) {
-      alert("Please Select Fitting Type");
+      this.error = "Please Select Fitting Type";
+      this.showError = true;
       return;
     } else if(this.propertyData.hasPropertyFeature && this.featuresFormData.length == 0) {
-      alert("Please Select Property Features");
+      this.error = "Please Select Property Features";
+      this.showError = true;
+      return;
+    } else if(this.formData.PropertyStatusId == 2 && this.propertyTypeForm.value.income  == "") {
+      this.error = "Please Enter Total Income";
+      this.showError = true;
+      return;
+    } else if(this.formData.PropertyStatusId == 2 && this.propertyTypeForm.value.expense  == "") {
+      this.error = "Please Enter Total Expense";
+      this.showError = true;
       return;
     }
     this.formDetailData.PlotNo = this.propertyTypeForm.value.apartmentNo;

@@ -138,8 +138,7 @@
                                 <img src={{item.img}} alt="" class="img-fluid agent-landing-featured__property-img">
                             </div>
                             <div class="col-7">
-                                <h6 class="agent-landing-featured__property-heading"
-                                    routerLink="/company-details/1">
+                                <h6 class="agent-landing-featured__property-heading" routerLink="/company-details/1">
                                     {{item.heading}}</h6>
                                 <p class="agent-landing-featured__property-text">{{item.text}}</p>
                                 <a class="agent-landing-featured__property-link"
@@ -189,18 +188,21 @@
                                             </div>
                                         </div>
                                         <div class="agent-landing-featured__agent-text-wrapper">
-                                            <h6 class="agent-landing-featured__property-heading">{{data.user.firstName}}</h6>
-                                            <p class="agent-landing-featured__property-text">{{data.expertIn}}</p>
+                                            <h6 class="agent-landing-featured__property-heading">{{data.user.fullName}}
+                                            </h6>
+                                            <p class="agent-landing-featured__property-text">
+                                                {{data.company.companyName}}</p>
                                             <a class="agent-landing-featured__property-link m-0"
-                                                routerLink={{data.link.url}}>{{data.link.text}}</a>
-                                            <p class="agent-landing-featured__property-text mb-3">{{data.location}}</p>
+                                                routerLink={{data.link.url}}>{{data.user.phoneNumber}}</a>
+                                            <p class="agent-landing-featured__property-text mb-3">{{data.user.location}}
+                                            </p>
                                             <p class="agent-landing-featured__property-text">{{data.language}}</p>
                                         </div>
                                     </div>
                                 </td>
                                 <td class="agent-landing-list__table-data">
-                                    <h6 class="agent-landing-featured__property-heading">{{data.heading}}</h6>
-                                    <p class="agent-landing-featured__property-text">{{data.text}}</p>
+                                    <h6 class="agent-landing-featured__property-heading">{{data.user.location}}</h6>
+                                    <p class="agent-landing-featured__property-text">{{data.user.phoneNumber}}</p>
                                     <a class="agent-landing-featured__property-link"
                                         routerLink={{data.link.url}}>{{data.link.text}}</a>
                                     <p class="agent-landing-featured__property-text">{{data.permit}}</p>
