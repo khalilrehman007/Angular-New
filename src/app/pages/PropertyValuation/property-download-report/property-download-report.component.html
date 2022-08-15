@@ -39,7 +39,7 @@
                                     <p>Your transaction has been completed successfully.</p>
                                     <p>Please click the dowload button below for the property ID</p>
                                     <h4 ngClass="report-id">OV-89589236</h4>
-                                    <button ngClass="download-report-btn">Download Report</button>
+                                    <button ngClass="download-report-btn" (click)="downloadReport()">Download Report</button>
                                     <div ngClass="report-print-icon">
                                         <button ngClass="print-report-btn"><img src="{{report}}"></button>
                                     </div>
@@ -55,3 +55,4 @@
     </div>
    </div>
 </section>
+<app-loader *ngIf="showLoader"></app-loader>

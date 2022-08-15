@@ -3,6 +3,7 @@ import { SecondHeaderComponent } from '../../../second-header/second-header.comp
 import { AppService } from 'src/app/service/app.service';
 import { DatePipe } from '@angular/common';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-property-documents',
@@ -434,13 +435,14 @@ export class PropertyDocumentsComponent implements OnInit {
     this.service.ValuationPayment(data).subscribe((result: any) => {
       if (result.message == "Valuation transaction completed successfully") {
         this.showLoader = false;
+        this.router.navigate(['/PropertyDownloadReport']);
       } else {
         this.showLoader = false;
         alert(result.error)
       }
     })
   }
-  constructor(private service: AppService, private datePipe: DatePipe) {
+  constructor(private service: AppService, private datePipe: DatePipe, private router: Router) {
     this.userData = localStorage.getItem("valuationDetailData");
     this.userData = JSON.parse(this.userData);
     this.formData = localStorage.getItem("valuationData");

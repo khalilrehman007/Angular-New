@@ -314,4 +314,8 @@ export class AppService {
   FindAgents(data:any) {
     return this.http.post(this.apiurl + 'FindAgents', data);
   }
+  GenerateReport(data:any) {
+    console.log(this.apiurl + 'GenerateReport?ReportNumberCode=' + data);
+    return this.http.post(this.apiurl + 'GenerateReport?ReportNumberCode=' + data, "");
+  }
 }
