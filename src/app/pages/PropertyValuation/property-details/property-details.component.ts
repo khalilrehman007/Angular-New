@@ -15,7 +15,7 @@ declare const google: any;
 export class PropertyDetailsComponent implements OnInit, AfterViewInit {
 
   response="";
-  error: any = "testing"
+  error: any = ""
   showError:boolean = false;
   errorResponse(data:any){
     this.showError = false;
