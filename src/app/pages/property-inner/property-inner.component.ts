@@ -153,6 +153,11 @@ export class PropertyInnerComponent implements OnInit {
   constructor(private domSanitizer: DomSanitizer,private activeRoute: ActivatedRoute,private modalService: NgbModal,private service:AppService,private route:Router,private notifyService : NotificationService) {
     this.propertyId = this.activeRoute.snapshot.queryParamMap.get('id');
     this.getUser();
+    let userId = '';
+    if(this.user !== null){
+      userId = this.user.id;
+    }
+    this.userId = userId;
     this.getloadDashboardData();
     this.LoadSimilarProperty();
   }
@@ -177,6 +182,8 @@ export class PropertyInnerComponent implements OnInit {
       let jsonParsDate :any = JSON.parse(jsonData);
       this.propertyDetail = jsonParsDate
       this.isload = true
+
+      console.log(jsonParsDate.propertyListing,'dedededeuububububdedede')
 
       // console.log(jsonParsDate.propertyListing.rentType,'dededededed')
       if(jsonParsDate.propertyListing != null){
@@ -472,7 +479,6 @@ export class PropertyInnerComponent implements OnInit {
     this.user = localStorage.getItem('user');
     if(this.user != ''){
       this.user = JSON.parse(this.user);
-      this.userId = this.user.id;
     }
     return this.user;
   }
