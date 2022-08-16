@@ -40,6 +40,7 @@ export class PropertyfilterComponent implements OnInit {
   data :any = {}
   selectedBeds :any;
   selectedBaths :any;
+  furnishingType: any;
 
   ngOnInit(): void {
     //parent method
@@ -71,6 +72,11 @@ export class PropertyfilterComponent implements OnInit {
         }
       });
     }
+
+    this.api.FurnishingTypes().subscribe((result: any) => {
+      this.furnishingType = result.data;
+      console.log(this.furnishingType)
+    });
 
     // this.route.routeReuseStrategy.shouldReuseRoute = () => false;
 
