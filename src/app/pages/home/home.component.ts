@@ -11,6 +11,7 @@ import { AppService } from 'src/app/service/app.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import { NotificationService } from 'src/app/service/notification.service';
 import { Router } from '@angular/router';
+import {AuthService} from "../../service/auth.service";
 
 @Component({
   selector: 'app-home',
@@ -316,7 +317,7 @@ export class HomeComponent implements OnInit {
   totalMortgages: any;
   userId :any;
   explorePlaces: any
-  constructor(private service:AppService,private route:Router,private notifyService : NotificationService) {
+  constructor(private authService:AuthService,private service:AppService,private route:Router,private notifyService : NotificationService) {
     this.LoadPropertyCategories()
     this.LoadBlogs();
     this.LoadBanners();
@@ -579,6 +580,11 @@ export class HomeComponent implements OnInit {
     if(this.userId == ''){
       this.notifyService.showSuccess('First you need to login', "");
       this.route.navigate(['/login'])
+    }
+
+    if (!this.authService.isAuthenticated()) {
+      this.notifyService.showError('You not having access', "");
+      this.route.navigate(['login']);
     }
 
     this.service.FavoriteAddRemove(status,{"UserId":this.userId,"PropertyListingId":id}).subscribe(data => {

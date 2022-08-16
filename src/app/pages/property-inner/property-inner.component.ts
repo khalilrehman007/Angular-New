@@ -9,6 +9,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {NotificationService} from "../../service/notification.service";
 import { ChartConfiguration, ChartOptions, ChartType } from "chart.js";
 import {DomSanitizer} from "@angular/platform-browser";
+import {AuthService} from "../../service/auth.service";
 
 declare const google: any;
 
@@ -150,7 +151,7 @@ export class PropertyInnerComponent implements OnInit {
   propertyId :any;
   userId :any;
 
-  constructor(private domSanitizer: DomSanitizer,private activeRoute: ActivatedRoute,private modalService: NgbModal,private service:AppService,private route:Router,private notifyService : NotificationService) {
+  constructor(private authService:AuthService,private domSanitizer: DomSanitizer,private activeRoute: ActivatedRoute,private modalService: NgbModal,private service:AppService,private route:Router,private notifyService : NotificationService) {
     this.propertyId = this.activeRoute.snapshot.queryParamMap.get('id');
     this.getUser();
     let userId = '';
@@ -524,23 +525,31 @@ export class PropertyInnerComponent implements OnInit {
 
   wishlistStatus :any;
   AddToFavorite(id:any,status:any) {
-    console.log(status,id)
     if(this.userId == ''){
       this.notifyService.showSuccess('First you need to login', "");
       this.route.navigate(['/login'])
     }
+    if (!this.authService.isAuthenticated()) {
+      this.notifyService.showError('You not having access', "");
+      this.route.navigate(['login']);
+    }
+
     this.service.FavoriteAddRemove(status,{"UserId":this.userId,"PropertyListingId":id}).subscribe(data => {
       let responsedata :any = data
       if(responsedata.message == "Favorite is Removed successfully"){
-        this.getUser();
-        this.getloadDashboardData();
         this.wishlistStatus = "Favorite is Removed successfully"
         this.notifyService.showSuccess('Favorite is Removed successfully', "");
+        setTimeout(() => {
+          this.getUser();
+          this.getloadDashboardData();
+        }, 1000);
       }else {
-        this.getUser();
-        this.getloadDashboardData();
         this.wishlistStatus = "Favorite is added successfully"
         this.notifyService.showSuccess('Favorite is added successfully', "");
+        setTimeout(() => {
+          this.getUser();
+          this.getloadDashboardData();
+        }, 1000);
       }
     });
   }
