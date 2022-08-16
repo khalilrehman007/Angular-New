@@ -419,7 +419,17 @@
                 </div>
               </li>
              <li ngClass="nav-item aed-li">
-              <a ngClass="nav-link aed-sq" [routerLink]="['#']"><img src="{{flagsvg}}"> AED | Sqft</a>
+              <button class="nav-link aed-sq" (click)="clickEvent2()"><img src="{{flagsvg}}"> AED | Sqft</button>
+              <div class="country_list-dropdown" [ngClass]="status2 ? 'active' : 'notactive'">
+                <button (click)="clickEvent2()"><img src="{{close}}"></button>
+                <div ngClass="countries_dropdown-list">
+                  <ul ngClass="list-unstyled">
+                    <li><img src="{{flagsvg}}"> AED | Sqft</li>
+                    <li><img src="{{flagsvg}}"> AED | Sqft</li>
+                    <li><img src="{{flagsvg}}"> AED | Sqft</li>
+                  </ul>
+                </div>
+              </div>
              </li>
               </ul>
             </div>
