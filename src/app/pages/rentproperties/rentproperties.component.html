@@ -92,7 +92,7 @@
           <div ngClass="property-action-hdr">
              <button ngClass="ov-verified-btn"><img src="{{ovverified}}"> {{list.propertyCode}}</button>
              <button ngClass="circle-btn"><img src="{{order}}"></button>
-             <button ngClass="circle-btn"><img src="{{heart}}"></button>
+             <button ngClass="circle-btn"><img src="{{heart}}" (click)="AddToFavorite(list.id,list.favorite)"></button>
           </div>
           </div>Choose your adventure.
 

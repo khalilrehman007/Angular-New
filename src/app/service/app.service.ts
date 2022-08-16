@@ -109,7 +109,7 @@ export class AppService {
     return this.http.post(this.apiurl + 'LatestPropertiesListingResidential', data);
   }
   LatestPropertiesListingCommercial(data: any) {
-    return this.http.post(this.apiurl + 'PropertiesListingCommercialByDistrict', data);
+    return this.http.post(this.apiurl + 'LatestPropertiesListingCommercial', data);
   }
   LoadSimilarProperty(data: any) {
     return this.http.post(this.apiurl + 'SimilarProperties', data);
@@ -290,6 +290,9 @@ export class AppService {
   ExploreDistrict(id: any) {
     return this.http.get(this.apiurl + 'ExploreDistrict/' + id);
   }
+  NearPlaces(id: any) {
+    return this.http.get(this.apiurl + 'NearPlaces/' + id);
+  }
   FindCompanies(data) {
     return this.http.post(this.apiurl + 'FindCompanies', data);
   }
@@ -323,7 +326,14 @@ export class AppService {
       responseType: "blob",
     });
   }
-  getLatLng(address:any) {
+  getLatLng(address: any) {
     return this.http.get(environment.mapbox.geoCoder + address + ".json?types=address&access_token=" + environment.mapbox.accessToken);
+  }
+  FavoriteAddRemove(status: any, data: any) {
+    if (status == true) {
+      return this.http.post(this.apiurl + 'RemoveFavorite', data, { headers: this.headers });
+    } else {
+      return this.http.post(this.apiurl + 'AddToFavorite', data, { headers: this.headers });
+    }
   }
 }

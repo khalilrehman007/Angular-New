@@ -223,6 +223,8 @@ export class PropertyInnerComponent implements OnInit {
         this.propertyDetailData.lockingPeriod = (jsonParsDate.propertyListing.lockingPeriod !== undefined) ? jsonParsDate.propertyListing.lockingPeriod : ''
         this.propertyDetailData.propertyLat = (jsonParsDate.propertyListing.propertyLat !== undefined) ? jsonParsDate.propertyListing.propertyLat : ''
         this.propertyDetailData.propertyLong = (jsonParsDate.propertyListing.propertyLong !== undefined) ? jsonParsDate.propertyListing.propertyLong : ''
+        this.propertyDetailData.id = (jsonParsDate.propertyListing.id !== undefined) ? jsonParsDate.propertyListing.id : ''
+        this.propertyDetailData.favorite = (jsonParsDate.propertyListing.favorite !== undefined) ? jsonParsDate.propertyListing.favorite : ''
 
         // console.log(this.propertyDetailData.propertyLat,this.propertyDetailData.propertyLong)
         // let location ="https://maps.google.com/maps?q="+this.propertyDetailData.propertyLat+','+this.propertyDetailData.propertyLong+'&hl=es&z=14&amp;output=embed';
@@ -512,4 +514,28 @@ export class PropertyInnerComponent implements OnInit {
     }
   };
   public lineChartLegend = true;
+
+
+  wishlistStatus :any;
+  AddToFavorite(id:any,status:any) {
+    console.log(status,id)
+    if(this.userId == ''){
+      this.notifyService.showSuccess('First you need to login', "");
+      this.route.navigate(['/login'])
+    }
+    this.service.FavoriteAddRemove(status,{"UserId":this.userId,"PropertyListingId":id}).subscribe(data => {
+      let responsedata :any = data
+      if(responsedata.message == "Favorite is Removed successfully"){
+        this.getUser();
+        this.getloadDashboardData();
+        this.wishlistStatus = "Favorite is Removed successfully"
+        this.notifyService.showSuccess('Favorite is Removed successfully', "");
+      }else {
+        this.getUser();
+        this.getloadDashboardData();
+        this.wishlistStatus = "Favorite is added successfully"
+        this.notifyService.showSuccess('Favorite is added successfully', "");
+      }
+    });
+  }
 }
