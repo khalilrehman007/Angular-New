@@ -96,6 +96,12 @@ export class AppService {
   FurnishingTypes() {
     return this.http.get(this.apiurl + 'FurnishingTypes/');
   }
+  VideoTour() {
+    return this.http.get(this.apiurl + 'VideoTour/');
+  }
+  PropertyListingFeatures() {
+    return this.http.get(this.apiurl + 'PropertyListingFeatures/');
+  }
   FittingTypes() {
     return this.http.get(this.apiurl + 'FittingTypes/');
   }

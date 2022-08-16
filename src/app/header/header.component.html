@@ -1,4 +1,4 @@
-<div id="sidebar">
+Z<div id="sidebar">
     <ul ngClass="nav-tabs list-unstyled">
         <li ngClass="toggle-li" >
             <button ngClass="sidebar-toggle" (click)="changeBodyClass()">
@@ -226,11 +226,9 @@
               <button class="nav-link aed-sq" (click)="clickEvent2()"><img src="{{flagsvg}}"> AED | Sqft</button>
               <div class="country_list-dropdown" [ngClass]="status2 ? 'active' : 'notactive'">
                 <button (click)="clickEvent2()"><img src="{{close}}"></button>
-                <div ngClass="countries_dropdown-list">
+                <div ngClass="countries_dropdown-list" *ngFor="let data of headerCountries">
                   <ul ngClass="list-unstyled">
-                    <li><img src="{{flagsvg}}"> AED | Sqft</li>
-                    <li><img src="{{flagsvg}}"> AED | Sqft</li>
-                    <li><img src="{{flagsvg}}"> AED | Sqft</li>
+                    <li><img src="{{flagsvg}}">{{data.currency}}</li>
                   </ul>
                 </div>
               </div>

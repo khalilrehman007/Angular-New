@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import * as $ from 'jquery';
 import {NotificationService} from "../service/notification.service";
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import {AppService} from "../service/app.service";
+import { AppService } from '../service/app.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -23,16 +23,22 @@ export class HeaderComponent implements OnInit {
   user : any
   availableClasses: string[] = ["sidebar-active", "nosidebar"];
   currentClassIdx: number = 0;
+  headerCountries: any;
   userId :any;
   baseUrl = 'https://beta.ovaluate.com/'
 
   params :any = {};
   bodyClass: string;
-  constructor(private service:AppService,private route:Router,private notifyService : NotificationService,private modalService: NgbModal) {
+  constructor(private route:Router,private notifyService : NotificationService,private modalService: NgbModal, private service:AppService) {
     this.getUser();
     this.bodyClass = this.availableClasses[this.currentClassIdx];
     this.changeBodyClass();
     this.params = {queryParams:{type:'Rent',PropertyListingTypeId:1}};
+
+    this.service.LoadCountries().subscribe((result:any)=>{
+      this.headerCountries = result.data;
+    })
+
     let userId = '';
     if(this.user !== null){
       userId = this.user.id;

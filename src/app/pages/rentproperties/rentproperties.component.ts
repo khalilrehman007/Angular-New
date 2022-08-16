@@ -67,6 +67,8 @@ export class RentpropertiesComponent implements OnInit {
   sortedById: any;
   totalLength: number = 0;
   page: number = 1;
+  videoTour: any;
+  videoTourSorting: any;
 
 
   constructor(private notifyService : NotificationService,private activeRoute: ActivatedRoute,private service:AppService,private api: AppService,private route:Router,private modalService: NgbModal) {
@@ -98,6 +100,11 @@ export class RentpropertiesComponent implements OnInit {
     this.LoadPropertyCategories();
     this.loadListingProperty(params);
     this.LoadPropertySortBy();
+
+    this.service.VideoTour().subscribe((result:any)=>{
+      this.videoTour = result.data;
+      console.log(this.videoTour)
+    })
   }
 
   callNumberText = "Call Now"
@@ -144,6 +151,15 @@ export class RentpropertiesComponent implements OnInit {
     let params :any = {"PropertyTypeIds":this.PropertyTypeIds, "PropertyAddress":this.PropertyAddress,"RentTypeId":this.RentTypeId,
       "PropertyCategoryId":this.PropertyCategoryId,"PriceStart":this.PriceStart, "PriceEnd" : this.PriceEnd,
       "PropertyListingTypeId":this.PropertyListingTypeId,"SortedBy":this.sortedById,CurrentPage:this.page
+    }
+    this.loadListingProperty(params);
+  }
+
+  videoSorting(event) {
+    this.videoTourSorting = event.value
+    let params :any = {"PropertyTypeIds":this.PropertyTypeIds, "PropertyAddress":this.PropertyAddress,"RentTypeId":this.RentTypeId,
+      "PropertyCategoryId":this.PropertyCategoryId,"PriceStart":this.PriceStart, "PriceEnd" : this.PriceEnd,
+      "PropertyListingTypeId":this.PropertyListingTypeId,"videoSorting":this.videoTourSorting,CurrentPage:this.page
     }
     this.loadListingProperty(params);
   }

@@ -39,7 +39,13 @@
                     <div ngClass="col-xl-3 col-lg-4 col-md-12 col-sm-12">
                         <div ngClass="property-action_detals text-right">
                             <button ngClass="grey-bordered-btn"><img src="{{dots}}"></button>
-                            <button ngClass="grey-bordered-btn" (click)="AddToFavorite(propertyDetailData.id,propertyDetailData.favorite)"><img src="{{blueheart}}"></button>
+                            <button ngClass="grey-bordered-btn red-fill" (click)="AddToFavorite(propertyDetailData.id,propertyDetailData.favorite)">
+                                <svg width="22" height="23" viewBox="0 0 22 23" fill="#595ad4" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                      d="M4.39376 6.23844C4.02517 6.63167 3.73279 7.0985 3.53331 7.61228C3.33383 8.12605 3.23116 8.67672 3.23116 9.23283C3.23116 9.78894 3.33383 10.3396 3.53331 10.8534C3.73279 11.3672 4.02517 11.834 4.39376 12.2272L11.1699 19.4563L17.946 12.2272C18.6904 11.433 19.1086 10.3559 19.1086 9.23283C19.1086 8.10972 18.6904 7.0326 17.946 6.23844C17.2016 5.44429 16.1919 4.99813 15.1392 4.99813C14.0865 4.99813 13.0768 5.44429 12.3324 6.23844L11.1699 7.47873L10.0073 6.23844C9.63871 5.84521 9.20113 5.53329 8.71954 5.32047C8.23796 5.10766 7.72179 4.99812 7.20053 4.99812C6.67926 4.99812 6.1631 5.10766 5.68152 5.32047C5.19993 5.53329 4.76235 5.84521 4.39376 6.23844V6.23844Z"
+                                      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                  </svg>
+                            </button>
                             <button ngClass="grey-bordered-btn text-btn">Browse Near by Lisitng</button>
                         </div>
                     </div>
