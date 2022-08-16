@@ -174,7 +174,7 @@
               <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                 <div ngClass="block-wrapper mb-4">
                   <label class="h6-design">Furnishing Type</label>
-                  <div class="checkbox-flex-box three-column button-same-select" >
+                  <div class="checkbox-flex-box three-column button-same-select">
                     <div class="checkbox-design position-relative" *ngFor="let data of furnishingType">
                       <input type="radio" id="Furnished" name="furnishing-types" value="Furnished">
                       <button class="checkbox-btn">{{data.name}}</button>
@@ -224,11 +224,11 @@
                       <label class="h6-design">Select Amenities</label>
                       <div class="inneR-border-wrap">
                         <div class="checkbox-flex-box autoflex-layout">
-                          <div class="checkbox-design position-relative">
+                          <div class="checkbox-design position-relative" *ngFor="let data of propertyListingFeatures">
                             <input type="checkbox" name="Amenities" value="Central A/C">
-                            <button class="checkbox-btn">Central A/C</button>
+                            <button class="checkbox-btn">{{data.featureName}}</button>
                           </div>
-                          <div class="checkbox-design position-relative">
+                          <!-- <div class="checkbox-design position-relative">
                             <input type="checkbox" name="Amenities" value="Maids Room">
                             <button class="checkbox-btn">Maids Room</button>
                           </div>
@@ -239,7 +239,7 @@
                           <div class="checkbox-design position-relative">
                             <input type="checkbox" name="Amenities" value="Pets Allowed">
                             <button class="checkbox-btn">Pets Allowed</button>
-                          </div>
+                          </div> -->
                         </div>
                       </div>
                     </div>
