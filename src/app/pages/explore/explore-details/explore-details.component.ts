@@ -178,13 +178,18 @@ export class ExploreDetailsComponent implements OnInit {
     nav: false
   }
   districtDetail: any = {};
+  dataLoaded:boolean = false;
 
   constructor(private route: ActivatedRoute, private service: AppService) {
     this.route.params.subscribe(params => {
       this.id = params['id'];
     });
     this.service.ExploreDistrict(this.id).subscribe((result: any) => {
+      this.dataLoaded = true;
       this.districtDetail = result.data;
+      this.service.getLatLng(this.districtDetail.name).subscribe((result:any) => {
+        console.log("Dubai Data", result);
+      })
     });
     this.oldData2();
     this.oldData1();
@@ -195,9 +200,8 @@ export class ExploreDetailsComponent implements OnInit {
     let map = new mapboxgl.Map({
       container: 'explore-near-map',
       style: 'mapbox://styles/mapbox/streets-v11',
-      center: [-74.5, 40],
-      zoom: 9,
-      projection: 'globe'
+      center: [53.8478, 23.4241],
+      zoom: 6,
     });
   }
   Overview() {

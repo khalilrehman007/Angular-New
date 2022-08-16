@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { data } from 'jquery';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -321,5 +322,8 @@ export class AppService {
       observe: "response",
       responseType: "blob",
     });
+  }
+  getLatLng(address:any) {
+    return this.http.get(environment.mapbox.geoCoder + address + ".json?types=address&access_token=" + environment.mapbox.accessToken);
   }
 }
