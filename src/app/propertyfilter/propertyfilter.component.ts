@@ -79,7 +79,6 @@ export class PropertyfilterComponent implements OnInit {
     });
     this.api.PropertyListingFeatures().subscribe((result: any) => {
       this.propertyListingFeatures = result.data;
-      console.log(this.propertyListingFeatures)
     });
 
     // this.route.routeReuseStrategy.shouldReuseRoute = () => false;
