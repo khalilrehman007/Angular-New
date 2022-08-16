@@ -23,11 +23,18 @@ export class AgentDetailsComponent implements OnInit {
     })
     this.user = localStorage.getItem("user");
     this.user= JSON.parse(this.user);
-    console.log(this.user.id)
-    this.service.DisplayAgent({"PropertyListingId":"","AgentUserId":this.id,"LoginUserId":this.id}).subscribe((result:any)=>{
-      this.agentDetail= result.data;
-      console.log(this.agentDetail)
-    })
+    if(this.user != null) {
+      this.service.DisplayAgent({"PropertyListingId":"","AgentUserId":this.id,"LoginUserId":this.id}).subscribe((result:any)=>{
+        this.agentDetail= result.data;
+        console.log(this.agentDetail)
+      })
+    } else {
+      this.service.DisplayAgent({"PropertyListingId":"","AgentUserId":this.id,"LoginUserId":""}).subscribe((result:any)=>{
+        this.agentDetail= result.data;
+        console.log(this.agentDetail)
+      })
+
+    }
    }
 
   agentContact = new FormGroup({
