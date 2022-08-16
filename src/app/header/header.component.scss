@@ -751,6 +751,9 @@ textarea {
 		color: $color_10;
 		font-weight: 600;
 		text-align: center;
+		background: transparent;
+		border: none;
+		padding: 0px;
 		img {
 			margin-right: 4px;
 			width: 16px;
@@ -1023,6 +1026,50 @@ textarea {
     position: absolute;
     top: 4px;
     right: 10px;
+}
+.country_list-dropdown {
+    position: absolute;
+    right: 25px;
+    background-color: #fff;
+    border-radius: 7px;
+    width: 100%;
+    max-width: 300px;
+    overflow: auto;
+    height: 500px;
+}
+.country_list-dropdown.notactive {
+    display: none;
+}
+.country_list-dropdown {
+    position: absolute;
+    right: 25px;
+    background-color: #fff;
+    border-radius: 7px;
+    width: 100%;
+    max-width: 300px;
+    overflow: auto;
+    height: 500px;
+    padding: 20px;
+	margin-top: 25px;
+}
+.country_list-dropdown>button {
+    border: none;
+    background: transparent;
+    width: 100%;
+    text-align: right;
+}
+.countries_dropdown-list ul li {
+    padding: 10px 0px;
+    border-bottom: 1px solid #f4f4f4;
+    font-size: 14px;
+}
+.countries_dropdown-list ul li img {
+    position: relative;
+    bottom: 1px;
+    margin-right: 10px;
+}
+.country_list-dropdown {
+    padding: 25px;
 }
 
 @media (max-width: 1199px){
