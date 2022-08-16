@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { data } from 'jquery';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -104,14 +105,14 @@ export class AppService {
   RentTypes() {
     return this.http.get(this.apiurl + 'RentTypes/');
   }
-  LatestPropertiesListingResidential(data :any) {
-    return this.http.post(this.apiurl + 'LatestPropertiesListingResidential',data);
+  LatestPropertiesListingResidential(data: any) {
+    return this.http.post(this.apiurl + 'LatestPropertiesListingResidential', data);
   }
-  LatestPropertiesListingCommercial(data:any) {
-    return this.http.post(this.apiurl + 'LatestPropertiesListingCommercial',data);
+  LatestPropertiesListingCommercial(data: any) {
+    return this.http.post(this.apiurl + 'LatestPropertiesListingCommercial', data);
   }
   LoadSimilarProperty(data: any) {
-    return this.http.post(this.apiurl + 'SimilarProperties' , data);
+    return this.http.post(this.apiurl + 'SimilarProperties', data);
   }
   PropertyCategories() {
     return this.http.get(this.apiurl + 'PropertyCategories/');
@@ -222,8 +223,8 @@ export class AppService {
     return this.http.post(this.apiurl + 'AddUserLead', data);
   }
 
-  DisplayPropertyListing(data:any) {
-    return this.http.post(this.apiurl + 'DisplayPropertyListing',data);
+  DisplayPropertyListing(data: any) {
+    return this.http.post(this.apiurl + 'DisplayPropertyListing', data);
   }
   LoadSearchListing(data: any) {
     return this.http.post(this.apiurl + 'FindPropertites', data, { headers: this.headers });
@@ -314,7 +315,7 @@ export class AppService {
   ValuationPayment(data: any) {
     return this.http.post(this.apiurl + 'ValuationPayment', data);
   }
-  FindAgents(data:any) {
+  FindAgents(data: any) {
     return this.http.post(this.apiurl + 'FindAgents', data);
   }
   GenerateReport(data: any) {
@@ -325,11 +326,14 @@ export class AppService {
       responseType: "blob",
     });
   }
-  FavoriteAddRemove(status:any,data:any) {
-    if(status == true){
-      return this.http.post(this.apiurl + 'RemoveFavorite', data,{ headers: this.headers });
-    }else{
-      return this.http.post(this.apiurl + 'AddToFavorite', data,{ headers: this.headers });
+  getLatLng(address: any) {
+    return this.http.get(environment.mapbox.geoCoder + address + ".json?types=address&access_token=" + environment.mapbox.accessToken);
+  }
+  FavoriteAddRemove(status: any, data: any) {
+    if (status == true) {
+      return this.http.post(this.apiurl + 'RemoveFavorite', data, { headers: this.headers });
+    } else {
+      return this.http.post(this.apiurl + 'AddToFavorite', data, { headers: this.headers });
     }
   }
 }
