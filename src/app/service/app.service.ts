@@ -336,4 +336,12 @@ export class AppService {
       return this.http.post(this.apiurl + 'AddToFavorite', data, { headers: this.headers });
     }
   }
+
+  FavoriteListingCount(id: any) {
+    return this.http.get(this.apiurl + 'FavoriteListingCount?UserId=' + id,{ headers: this.headers });
+  }
+  FavoriteListing(data: any) {
+    return this.http.post(this.apiurl + 'FavoriteListing' ,data,{ headers: this.headers });
+  }
+
 }
