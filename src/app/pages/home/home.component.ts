@@ -316,6 +316,7 @@ export class HomeComponent implements OnInit {
   totalSales: any;
   totalMortgages: any;
   userId :any;
+  explorePlaces: any
   constructor(private service:AppService,private route:Router,private notifyService : NotificationService) {
     this.LoadPropertyCategories()
     this.LoadBlogs();
@@ -365,7 +366,11 @@ export class HomeComponent implements OnInit {
 
     this.service.OvaluateOfferings().subscribe((result: any=[])=>{
       this.slider = result.data;
-      console.log(this.slider);
+    })
+
+    this.service.NearPlaces(1).subscribe((result:any)=>{
+      this.explorePlaces = result.data;
+      console.log(this.explorePlaces)
     })
   }
 

@@ -289,6 +289,9 @@ export class AppService {
   ExploreDistrict(id: any) {
     return this.http.get(this.apiurl + 'ExploreDistrict/' + id);
   }
+  NearPlaces(id: any) {
+    return this.http.get(this.apiurl + 'NearPlaces/' + id);
+  }
   FindCompanies(data) {
     return this.http.post(this.apiurl + 'FindCompanies', data);
   }
