@@ -41,7 +41,7 @@
                                             <div class="checkbox-flex-box two-column max-240">
                                                 <div class="checkbox-design position-relative" (click)="loadType(1)">
                                                     <input type="radio" id="Residential" name="property-cateogary"
-                                                        value="Residential" checked>
+                                                        value="Residential">
                                                     <button class="checkbox-btn">Residential</button>
                                                 </div>
                                                 <div class="checkbox-design position-relative" (click)="loadType(2)">
@@ -90,7 +90,7 @@
                                                 <div class="checkbox-design position-relative"
                                                     (click)="propertyStatus(1, 'Owner Occupied')">
                                                     <input type="radio" id="Owner Occupied" name="current-status"
-                                                        value="Owner Occupied" checked>
+                                                        value="Owner Occupied">
                                                     <button class="checkbox-btn">Owner Occupied</button>
                                                 </div>
                                                 <div class="checkbox-design position-relative"
@@ -125,7 +125,7 @@
                                             <label class="h6-design">No. of Roads <span ngClass="required-span">*</span></label>
                                             <div class="checkbox-flex-box flex-start six-column">
                                                 <div class="checkbox-design position-relative" (click)="getRoads(1)">
-                                                    <input type="radio" id="roads" name="no-of-roads" value="roads" checked>
+                                                    <input type="radio" id="roads" name="no-of-roads" value="roads">
                                                     <button class="checkbox-btn">1</button>
                                                 </div>
                                                 <div class="checkbox-design position-relative" (click)="getRoads(2)">
@@ -144,7 +144,7 @@
                                             <label class="h6-design">Construction Age <span ngClass="required-span">*</span></label>
                                             <div ngClass="position-relative">
                                                 <mat-form-field class="full-width input-design-2" appearance="fill">
-                                                    <input matInput type="number" formControlName="constructionAge" placeholder="Enter costruction age e.g. 10">
+                                                    <input matInput type="number" formControlName="constructionAge" placeholder="Enter costruction age e.g. 10" (input)="getValue()">
                                                 </mat-form-field>
                                                 <p ngClass="input-overlay-layer">Yrs.</p>
                                             </div>
@@ -170,7 +170,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+                                    <div ngClass="col-xl-6 col-lg-6 col-sm-12" *ngIf="propertyData.hasBuildUpArea">
                                         <div ngClass="block-wrapper mb-4">
                                             <label class="h6-design">Buildup Area in Sq.
                                                 Ft. <span ngClass="required-span">*</span></label>
