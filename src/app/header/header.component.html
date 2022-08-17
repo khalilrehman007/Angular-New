@@ -44,158 +44,26 @@
                   </div>
                   <div ngClass="shortlisted-inner-cntnt">
                     <mat-tab-group>
-                      <mat-tab label="All (03)">
+                      <mat-tab label="All ({{allCount}})">
                         <div ngClass="shortlisted-inner-details">
-                          <div ngClass="shortlisted-project-cntnt position-relative">
-                            <div ngClass="property-selection-div">
-                              <div ngClass="selection-checkbox-selector">
-                                <input type="checkbox" value="property" checked>
-                                <button ngClass="cstm-selection-btn"></button>
-                              </div>
-                              <div ngClass="shortlisted-white-box">
-                                 <div ngClass="short-img">
-                                  <img src="{{property}}">
-                                 </div>
-                                 <div ngClass="short-cntnt">
-                                    <h2>85,000 AED <small>/yearly</small></h2>
-                                    <h4>Blue Wave Tower</h4>
-                                    <p>Apartment</p>
-                                    <address>Etihad Tower 4, Etihad 2 Beds / 8000 Sq.Ft.</address>
-                                 </div>
-                              </div>
-                              </div>
-                              <div ngClass="delete-property-div">
-                                <button ngClass="delete-btn"><img src="{{trash}}"></button>
-                              </div>
-                          </div>
-                          <div ngClass="shortlisted-project-cntnt position-relative">
-                            <div ngClass="property-selection-div">
-                              <div ngClass="selection-checkbox-selector">
-                                <input type="checkbox" value="property2">
-                                <button ngClass="cstm-selection-btn"></button>
-                              </div>
-                              <div ngClass="shortlisted-white-box">
-                                 <div ngClass="short-img">
-                                  <img src="{{property}}">
-                                 </div>
-                                 <div ngClass="short-cntnt">
-                                    <h2>85,000 AED <small>/yearly</small></h2>
-                                    <h4>Blue Wave Tower</h4>
-                                    <p>Apartment</p>
-                                    <address>Etihad Tower 4, Etihad 2 Beds / 8000 Sq.Ft.</address>
-                                 </div>
-                              </div>
-                              </div>
-                              <div ngClass="delete-property-div">
-                                <button ngClass="delete-btn"><img src="{{trash}}"></button>
-                              </div>
-                          </div>
                           <div ngClass="compare-btn-design">
                             <a routerLink="/PropertyCompare" ngClass="compare-btn">Compare</a>
                           </div>
                         </div>
                       </mat-tab>
-                      <mat-tab label="Buy (01)">
+                      <mat-tab label="Buy ({{buyCount}})">
                         <div ngClass="shortlisted-inner-details">
-                          <div ngClass="shortlisted-project-cntnt position-relative">
-                            <div ngClass="property-selection-div">
-                              <div ngClass="selection-checkbox-selector">
-                                <input type="checkbox" value="property" checked>
-                                <button ngClass="cstm-selection-btn"></button>
-                              </div>
-                              <div ngClass="shortlisted-white-box">
-                                 <div ngClass="short-img">
-                                  <img src="{{property}}">
-                                 </div>
-                                 <div ngClass="short-cntnt">
-                                    <h2>85,000 AED <small>/yearly</small></h2>
-                                    <h4>Blue Wave Tower</h4>
-                                    <p>Apartment</p>
-                                    <address>Etihad Tower 4, Etihad 2 Beds / 8000 Sq.Ft.</address>
-                                 </div>
-                              </div>
-                              </div>
-                              <div ngClass="delete-property-div">
-                                <button ngClass="delete-btn"><img src="{{trash}}"></button>
-                              </div>
-                          </div>
-                          <div ngClass="shortlisted-project-cntnt position-relative">
-                            <div ngClass="property-selection-div">
-                              <div ngClass="selection-checkbox-selector">
-                                <input type="checkbox" value="property2">
-                                <button ngClass="cstm-selection-btn"></button>
-                              </div>
-                              <div ngClass="shortlisted-white-box">
-                                 <div ngClass="short-img">
-                                  <img src="{{property}}">
-                                 </div>
-                                 <div ngClass="short-cntnt">
-                                    <h2>85,000 AED <small>/yearly</small></h2>
-                                    <h4>Blue Wave Tower</h4>
-                                    <p>Apartment</p>
-                                    <address>Etihad Tower 4, Etihad 2 Beds / 8000 Sq.Ft.</address>
-                                 </div>
-                              </div>
-                              </div>
-                              <div ngClass="delete-property-div">
-                                <button ngClass="delete-btn"><img src="{{trash}}"></button>
-                              </div>
-                          </div>
                           <div ngClass="compare-btn-design">
                             <a routerLink="/PropertyCompare" ngClass="compare-btn">Compare</a>
                           </div>
                         </div>
                       </mat-tab>
-                      <mat-tab label="Rent (02)">
+                      <mat-tab label="Rent ({{rentCount}})">
                         <div ngClass="shortlisted-inner-details">
-                          <div ngClass="shortlisted-project-cntnt position-relative">
-                            <div ngClass="property-selection-div">
-                              <div ngClass="selection-checkbox-selector">
-                                <input type="checkbox" value="property" checked>
-                                <button ngClass="cstm-selection-btn"></button>
-                              </div>
-                              <div ngClass="shortlisted-white-box">
-                                 <div ngClass="short-img">
-                                  <img src="{{property}}">
-                                 </div>
-                                 <div ngClass="short-cntnt">
-                                    <h2>85,000 AED <small>/yearly</small></h2>
-                                    <h4>Blue Wave Tower</h4>
-                                    <p>Apartment</p>
-                                    <address>Etihad Tower 4, Etihad 2 Beds / 8000 Sq.Ft.</address>
-                                 </div>
-                              </div>
-                              </div>
-                              <div ngClass="delete-property-div">
-                                <button ngClass="delete-btn"><img src="{{trash}}"></button>
-                              </div>
-                          </div>
-                          <div ngClass="shortlisted-project-cntnt position-relative">
-                            <div ngClass="property-selection-div">
-                              <div ngClass="selection-checkbox-selector">
-                                <input type="checkbox" value="property2">
-                                <button ngClass="cstm-selection-btn"></button>
-                              </div>
-                              <div ngClass="shortlisted-white-box">
-                                 <div ngClass="short-img">
-                                  <img src="{{property}}">
-                                 </div>
-                                 <div ngClass="short-cntnt">
-                                    <h2>85,000 AED <small>/yearly</small></h2>
-                                    <h4>Blue Wave Tower</h4>
-                                    <p>Apartment</p>
-                                    <address>Etihad Tower 4, Etihad 2 Beds / 8000 Sq.Ft.</address>
-                                 </div>
-                              </div>
-                              </div>
-                              <div ngClass="delete-property-div">
-                                <button ngClass="delete-btn"><img src="{{trash}}"></button>
-                              </div>
-                          </div>
                           <div ngClass="compare-btn-design">
                             <a routerLink="/PropertyCompare" ngClass="compare-btn">Compare</a>
                           </div>
-                        </div> 
+                        </div>
                       </mat-tab>
                     </mat-tab-group>
                   </div>
@@ -246,159 +114,95 @@
                       <button (click)="clickEvent()"><img src="{{close}}"></button>
                     </div>
                     <div ngClass="shortlisted-inner-cntnt">
-                      <mat-tab-group>
-                        <mat-tab label="All (03)">
+                      <mat-tab-group (selectedTabChange)="getCountChange($event)">
+                        <mat-tab label="All ({{allCount}})">
                           <div ngClass="shortlisted-inner-details">
-                            <div ngClass="shortlisted-project-cntnt position-relative">
+
+                            <div ngClass="shortlisted-project-cntnt position-relative" *ngFor="let list of wishlistingDataAll">
                               <div ngClass="property-selection-div">
                                 <div ngClass="selection-checkbox-selector">
                                   <input type="checkbox" value="property" checked>
                                   <button ngClass="cstm-selection-btn"></button>
                                 </div>
                                 <div ngClass="shortlisted-white-box">
-                                   <div ngClass="short-img">
+                                  <div ngClass="short-img">
                                     <img src="{{property}}">
-                                   </div>
-                                   <div ngClass="short-cntnt">
-                                      <h2>85,000 AED <small>/yearly</small></h2>
-                                      <h4>Blue Wave Tower</h4>
-                                      <p>Apartment</p>
-                                      <address>Etihad Tower 4, Etihad 2 Beds / 8000 Sq.Ft.</address>
-                                   </div>
+                                  </div>
+                                  <div ngClass="short-cntnt">
+                                    <h2>{{list.price}} {{list.currency}} <small>/{{list.rentType}}</small></h2>
+                                    <h4>{{list.title}}</h4>
+                                    <p>{{list.propertyType}}</p>
+                                    <address>{{list.propertyAddress}}</address>
+                                  </div>
                                 </div>
-                                </div>
-                                <div ngClass="delete-property-div">
-                                  <button ngClass="delete-btn"><img src="{{trash}}"></button>
-                                </div>
+                              </div>
+                              <div ngClass="delete-property-div">
+                                <button ngClass="delete-btn" (click)="removeFavorite(list.id)"><img src="{{trash}}"></button>
+                              </div>
                             </div>
-                            <div ngClass="shortlisted-project-cntnt position-relative">
+
+                            <div ngClass="compare-btn-design">
+                              <a routerLink="/PropertyCompare" ngClass="compare-btn">Compare</a>
+                            </div>
+                          </div>
+                        </mat-tab>
+                        <mat-tab label="Buy ({{buyCount}})">
+                          <div ngClass="shortlisted-inner-details">
+                            <div ngClass="shortlisted-project-cntnt position-relative" *ngFor="let list of wishlistingDataBuy">
                               <div ngClass="property-selection-div">
                                 <div ngClass="selection-checkbox-selector">
-                                  <input type="checkbox" value="property2">
+                                  <input type="checkbox" value="property" checked>
                                   <button ngClass="cstm-selection-btn"></button>
                                 </div>
                                 <div ngClass="shortlisted-white-box">
-                                   <div ngClass="short-img">
+                                  <div ngClass="short-img">
                                     <img src="{{property}}">
-                                   </div>
-                                   <div ngClass="short-cntnt">
-                                      <h2>85,000 AED <small>/yearly</small></h2>
-                                      <h4>Blue Wave Tower</h4>
-                                      <p>Apartment</p>
-                                      <address>Etihad Tower 4, Etihad 2 Beds / 8000 Sq.Ft.</address>
-                                   </div>
+                                  </div>
+                                  <div ngClass="short-cntnt">
+                                    <h2>{{list.price}} {{list.currency}} <small>/{{list.rentType}}</small></h2>
+                                    <h4>{{list.title}}</h4>
+                                    <p>{{list.propertyType}}</p>
+                                    <address>{{list.propertyAddress}}</address>
+                                  </div>
                                 </div>
-                                </div>
-                                <div ngClass="delete-property-div">
-                                  <button ngClass="delete-btn"><img src="{{trash}}"></button>
-                                </div>
+                              </div>
+                              <div ngClass="delete-property-div">
+                                <button ngClass="delete-btn" (click)="removeFavorite(list.id)"><img src="{{trash}}"></button>
+                              </div>
                             </div>
                             <div ngClass="compare-btn-design">
                               <a routerLink="/PropertyCompare" ngClass="compare-btn">Compare</a>
                             </div>
                           </div>
                         </mat-tab>
-                        <mat-tab label="Buy (01)">
+                        <mat-tab label="Rent ({{rentCount}})">
                           <div ngClass="shortlisted-inner-details">
-                            <div ngClass="shortlisted-project-cntnt position-relative">
+                            <div ngClass="shortlisted-project-cntnt position-relative" *ngFor="let list of wishlistingDataRent">
                               <div ngClass="property-selection-div">
                                 <div ngClass="selection-checkbox-selector">
                                   <input type="checkbox" value="property" checked>
                                   <button ngClass="cstm-selection-btn"></button>
                                 </div>
                                 <div ngClass="shortlisted-white-box">
-                                   <div ngClass="short-img">
+                                  <div ngClass="short-img">
                                     <img src="{{property}}">
-                                   </div>
-                                   <div ngClass="short-cntnt">
-                                      <h2>85,000 AED <small>/yearly</small></h2>
-                                      <h4>Blue Wave Tower</h4>
-                                      <p>Apartment</p>
-                                      <address>Etihad Tower 4, Etihad 2 Beds / 8000 Sq.Ft.</address>
-                                   </div>
+                                  </div>
+                                  <div ngClass="short-cntnt">
+                                    <h2>{{list.price}} {{list.currency}} <small>/{{list.rentType}}</small></h2>
+                                    <h4>{{list.title}}</h4>
+                                    <p>{{list.propertyType}}</p>
+                                    <address>{{list.propertyAddress}}</address>
+                                  </div>
                                 </div>
-                                </div>
-                                <div ngClass="delete-property-div">
-                                  <button ngClass="delete-btn"><img src="{{trash}}"></button>
-                                </div>
-                            </div>
-                            <div ngClass="shortlisted-project-cntnt position-relative">
-                              <div ngClass="property-selection-div">
-                                <div ngClass="selection-checkbox-selector">
-                                  <input type="checkbox" value="property2">
-                                  <button ngClass="cstm-selection-btn"></button>
-                                </div>
-                                <div ngClass="shortlisted-white-box">
-                                   <div ngClass="short-img">
-                                    <img src="{{property}}">
-                                   </div>
-                                   <div ngClass="short-cntnt">
-                                      <h2>85,000 AED <small>/yearly</small></h2>
-                                      <h4>Blue Wave Tower</h4>
-                                      <p>Apartment</p>
-                                      <address>Etihad Tower 4, Etihad 2 Beds / 8000 Sq.Ft.</address>
-                                   </div>
-                                </div>
-                                </div>
-                                <div ngClass="delete-property-div">
-                                  <button ngClass="delete-btn"><img src="{{trash}}"></button>
-                                </div>
+                              </div>
+                              <div ngClass="delete-property-div">
+                                <button ngClass="delete-btn" (click)="removeFavorite(list.id)"><img src="{{trash}}"></button>
+                              </div>
                             </div>
                             <div ngClass="compare-btn-design">
                               <a routerLink="/PropertyCompare" ngClass="compare-btn">Compare</a>
                             </div>
                           </div>
-                        </mat-tab>
-                        <mat-tab label="Rent (02)">
-                          <div ngClass="shortlisted-inner-details">
-                            <div ngClass="shortlisted-project-cntnt position-relative">
-                              <div ngClass="property-selection-div">
-                                <div ngClass="selection-checkbox-selector">
-                                  <input type="checkbox" value="property" checked>
-                                  <button ngClass="cstm-selection-btn"></button>
-                                </div>
-                                <div ngClass="shortlisted-white-box">
-                                   <div ngClass="short-img">
-                                    <img src="{{property}}">
-                                   </div>
-                                   <div ngClass="short-cntnt">
-                                      <h2>85,000 AED <small>/yearly</small></h2>
-                                      <h4>Blue Wave Tower</h4>
-                                      <p>Apartment</p>
-                                      <address>Etihad Tower 4, Etihad 2 Beds / 8000 Sq.Ft.</address>
-                                   </div>
-                                </div>
-                                </div>
-                                <div ngClass="delete-property-div">
-                                  <button ngClass="delete-btn"><img src="{{trash}}"></button>
-                                </div>
-                            </div>
-                            <div ngClass="shortlisted-project-cntnt position-relative">
-                              <div ngClass="property-selection-div">
-                                <div ngClass="selection-checkbox-selector">
-                                  <input type="checkbox" value="property2">
-                                  <button ngClass="cstm-selection-btn"></button>
-                                </div>
-                                <div ngClass="shortlisted-white-box">
-                                   <div ngClass="short-img">
-                                    <img src="{{property}}">
-                                   </div>
-                                   <div ngClass="short-cntnt">
-                                      <h2>85,000 AED <small>/yearly</small></h2>
-                                      <h4>Blue Wave Tower</h4>
-                                      <p>Apartment</p>
-                                      <address>Etihad Tower 4, Etihad 2 Beds / 8000 Sq.Ft.</address>
-                                   </div>
-                                </div>
-                                </div>
-                                <div ngClass="delete-property-div">
-                                  <button ngClass="delete-btn"><img src="{{trash}}"></button>
-                                </div>
-                            </div>
-                            <div ngClass="compare-btn-design">
-                              <a routerLink="/PropertyCompare" ngClass="compare-btn">Compare</a>
-                            </div>
-                          </div> 
                         </mat-tab>
                       </mat-tab-group>
                     </div>

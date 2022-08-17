@@ -24,6 +24,8 @@ export class HeaderComponent implements OnInit {
   availableClasses: string[] = ["sidebar-active", "nosidebar"];
   currentClassIdx: number = 0;
   headerCountries: any;
+  userId :any;
+  baseUrl = 'https://beta.ovaluate.com/'
 
   params :any = {};
   bodyClass: string;
@@ -37,6 +39,14 @@ export class HeaderComponent implements OnInit {
       this.headerCountries = result.data;
     })
 
+    let userId = '';
+    if(this.user !== null){
+      userId = this.user.id;
+    }
+    this.userId = userId;
+
+    this.getWishlisting();
+    this.getCountData('');
   }
 
   sidebar = [
@@ -138,12 +148,16 @@ export class HeaderComponent implements OnInit {
   status: boolean = false;
   clickEvent(){
       this.status = !this.status;
+      this.getWishlisting();
+      this.getCountData('');
       this.status1 = false;
       this.status2 = false;
   }
   status1: boolean = false;
   clickEvent1(){
       this.status1 = !this.status1;
+      this.getWishlisting();
+      this.getCountData('');
       this.status2 = false;
       this.status = false;
   }
@@ -156,4 +170,86 @@ export class HeaderComponent implements OnInit {
   logOutPopup(content) {
     this.modalService.open(content, { centered: true });
   }
+
+  buyCount :any;
+  rentCount :any;
+  allCount :any;
+  getWishlisting() {
+    let tempData :Array<Object> = []
+    this.service.FavoriteListingCount(this.userId).subscribe(data=>{
+      let response: any = data;
+      this.allCount = response.data.all
+      this.rentCount = response.data.rent
+      this.buyCount = response.data.buy
+    });
+  }
+  getCountChange(e:any){
+    let PropertyListingTypeId :any ;
+    if(e.index == 1){
+      PropertyListingTypeId = 1
+    }else if(e.index == 2){
+      PropertyListingTypeId = 2
+    }else{
+      PropertyListingTypeId = '';
+    }
+    this.getCountData(PropertyListingTypeId);
+  }
+  wishlistingDataAll :any = []
+  wishlistingDataRent :any = []
+  wishlistingDataBuy :any = []
+  getCountData(PropertyListingTypeId){
+    let tempData :Array<Object> = []
+    this.service.FavoriteListing({"UserId":this.userId,"PropertyListingTypeId":PropertyListingTypeId}).subscribe(data=>{
+      let response: any = data;
+      response.data.forEach((element, i) => {
+        let image = element.documents[0].fileUrl
+        tempData.push(
+          {
+            title: element.propertyTitle,
+            rentType: element.rentType.name,
+            propertyType: element.propertyType.typeDescription,
+            currency: element.country.currency,
+            price: element.propertyPrice,
+            favorite: element.favorite,
+            id:element.id,
+            alt:element.propertyTitle,
+            src:this.baseUrl+image,
+            bedrooms:element.bedrooms,
+            propertyAddress:element.propertyAddress,
+            bathrooms:element.bathrooms,
+            buildingName:element.buildingName,
+            carpetArea:element.carpetArea,
+          });
+      })
+    });
+    if(PropertyListingTypeId == 1){
+      this.wishlistingDataRent = tempData
+    }else if(PropertyListingTypeId == 2){
+      this.wishlistingDataBuy = tempData
+    }else{
+      this.wishlistingDataAll = tempData
+    }
+  }
+
+  wishlistStatus :any;
+  removeFavorite(id:any) {
+    if(this.userId == ''){
+      this.notifyService.showSuccess('First you need to login', "");
+      this.route.navigate(['/login'])
+    }
+
+    this.service.FavoriteAddRemove(true,{"UserId":this.userId,"PropertyListingId":id}).subscribe(data => {
+      let responsedata :any = data
+      this.wishlistStatus = "Favorite is Removed successfully"
+      this.notifyService.showSuccess('Favorite is Removed successfully', "");
+    });
+    setTimeout(() => {
+      this.getCountData('');
+      this.getCountData(1);
+      this.getCountData(2);
+      this.getWishlisting();
+    }, 1000);
+  }
+
+
 }

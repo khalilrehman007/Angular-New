@@ -45,7 +45,6 @@ export class HomeComponent implements OnInit {
   id: 1;
   propertyDetails:any;
   oldData1() {
-    console.log('okokokokokokokok')
     let tempData :Array<Object> = []
     this.service.LatestPropertiesListingResidential({"UserId":this.userId,"propertyListingTypeId":"2"}).subscribe(data=>{
       this.propertyDetails= data;
@@ -398,9 +397,9 @@ export class HomeComponent implements OnInit {
   ngOnInit():void {
 
     $(document).ready(function(){
-        $('.dropdown-toggle').click(function(){
+      $('.dropdown-toggle').click(function(){
         $(this).next().toggleClass('active');
-        });
+      });
     });
   }
 
@@ -576,7 +575,7 @@ export class HomeComponent implements OnInit {
   }
 
   wishlistStatus :any;
-  AddToFavorite(id:any,status:any) {
+  AddToFavorite(id:any,status:any,part:any) {
     if(this.userId == ''){
       this.notifyService.showSuccess('First you need to login', "");
       this.route.navigate(['/login'])
@@ -585,20 +584,31 @@ export class HomeComponent implements OnInit {
     this.service.FavoriteAddRemove(status,{"UserId":this.userId,"PropertyListingId":id}).subscribe(data => {
       let responsedata :any = data
       if(responsedata.message == "Favorite is Removed successfully"){
-        this.oldData1();
-        this.newData1();
-        this.oldData2();
-        this.newData2();
         this.wishlistStatus = "Favorite is Removed successfully"
         this.notifyService.showSuccess('Favorite is Removed successfully', "");
       }else {
-        this.oldData1();
-        this.newData1();
-        this.oldData2();
-        this.newData2();
         this.wishlistStatus = "Favorite is added successfully"
         this.notifyService.showSuccess('Favorite is added successfully', "");
       }
     });
+    if(part == "resedential-old"){
+      setTimeout(() => {
+        this.oldData1();
+      }, 1000);
+    }else if(part == "resedential-new"){
+      setTimeout(() => {
+        this.newData1();
+      }, 1000);
+    }else if(part == "commercial-old"){
+      setTimeout(() => {
+        this.oldData2();
+      }, 1000);
+    }else if(part == "commercial-new"){
+      setTimeout(() => {
+        this.newData2();
+        }, 1000);
+    }
   }
+
+
 }
