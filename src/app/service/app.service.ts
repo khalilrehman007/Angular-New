@@ -352,5 +352,8 @@ export class AppService {
   MyPropertyListings(id: any) {
     return this.http.get(this.apiurl + 'MyPropertyListings/' + id);
   }
+  ComparableProperties(data: any) {
+    return this.http.post(this.apiurl + 'ComparableProperties',data,{ headers: this.headers });
+  }
 
 }
