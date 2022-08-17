@@ -31,7 +31,7 @@ export class PropertyTypesComponent implements OnInit {
   formDetailData: any = {};
   totalExpenseWrapper: boolean = false;
   showLoader: boolean = false;
-
+  mask = ["A","A+9","A+99","A+A+9", "A+A+99"];
   unitHMTL: any = [];
   error: any = ""
   showError:boolean = false;
