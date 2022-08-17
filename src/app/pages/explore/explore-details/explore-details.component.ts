@@ -41,7 +41,7 @@ export class ExploreDetailsComponent implements OnInit {
   status4: boolean = false;
   status5: boolean = false;
   map: any;
-
+  bounds: any = [];
 
   id: 1;
   propertyDetails: any;
@@ -185,29 +185,28 @@ export class ExploreDetailsComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.id = params['id'];
     });
+    this.oldData2();
+    this.oldData1();
+    
     this.service.ExploreDistrict(this.id).subscribe((result: any) => {
       this.dataLoaded = true;
       this.districtDetail = result.data;
-      console.log((parseFloat(this.districtDetail.northEastLng) + parseFloat(this.districtDetail.southWestLng))/2, (parseFloat(this.districtDetail.northEastLat) + parseFloat(this.districtDetail.southWestLat))/2);
+      console.log((parseFloat(this.districtDetail.northEastLng) + parseFloat(this.districtDetail.southWestLng)) / 2, (parseFloat(this.districtDetail.northEastLat) + parseFloat(this.districtDetail.southWestLat)) / 2);
+      this.bounds.push([this.districtDetail.southWestLng, this.districtDetail.southWestLat]);
+      this.bounds.push([this.districtDetail.northEastLng, this.districtDetail.northEastLat]);
       this.map = new mapboxgl.Map({
         container: 'explore-near-map',
         style: 'mapbox://styles/mapbox/streets-v11',
-        // center: [this.districtDetail.southWestLng, this.districtDetail.northEastLat],
-        center: [(parseFloat(this.districtDetail.northEastLng) + parseFloat(this.districtDetail.southWestLng))/2, (parseFloat(this.districtDetail.northEastLat) + parseFloat(this.districtDetail.southWestLat))/2],
+        center: [(parseFloat(this.districtDetail.northEastLng) + parseFloat(this.districtDetail.southWestLng)) / 2, (parseFloat(this.districtDetail.northEastLat) + parseFloat(this.districtDetail.southWestLat)) / 2],
         zoom: 11,
+        maxBounds: this.bounds
       })
-      const marker = new mapboxgl.Marker({ color: "#FF0000", draggable: false }).setLngLat([this.districtDetail.southWestLng, this.districtDetail.northEastLat]).addTo(this.map);
+      const marker = new mapboxgl.Marker({ color: "#FF0000", draggable: true }).setLngLat([(parseFloat(this.districtDetail.northEastLng) + parseFloat(this.districtDetail.southWestLng)) / 2, (parseFloat(this.districtDetail.northEastLat) + parseFloat(this.districtDetail.southWestLat)) / 2]).addTo(this.map);
       // get lat lng on marker drag end
-      // marker.on('dragend', function (e) {
-      //   console.log(e.target._lngLat);
-      // });
-
-      // this.service.getLatLng(this.districtDetail.name).subscribe((result: any) => {
-      //   console.log("Dubai Data", result);
-      // })
+      marker.on('dragend', function (e: any) {
+        console.log(e.target._lngLat);
+      });
     });
-    this.oldData2();
-    this.oldData1();
   }
 
   ngOnInit(): void {
