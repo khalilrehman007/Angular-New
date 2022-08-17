@@ -50,9 +50,6 @@ export class AgentLandingComponent implements OnInit {
       for (let i = 0; i < result.data.locationAutoComplete.length; i++) {
         this.searchList.push(result.data.locationAutoComplete[i].item2);
       }
-      // for(let i = 0; i < result.data.locationAutoComplete.length ; i++) {
-      //   this.searchList.push(result.data.locationAutoComplete[i].item2);
-      // }
     })
     this.service.FindCompanies({ "CountryId": "1", "DistrictsId": [], "CompaniesId": [], "CurrentPage": "1" }).subscribe((result: any) => {
       this.companylisting = result.data;
@@ -804,7 +801,7 @@ export class AgentLandingComponent implements OnInit {
   agentListData(data: any) {
     this.service.FindAgents(data).subscribe((result: any) => {
       this.findAgent = result.data;
-      console.log(this.findAgent)
+      console.log("Find Agent" ,this.findAgent)
     })
   }
 
