@@ -47,7 +47,8 @@
                 <div ngClass="row">
                   <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                     <div ngClass="block-wrapper mb-4">
-                      <label class="h6-design">Title Deed No. <span ngClass="required-span">*</span> <span ngClass="small-label">(Insert "0" if you don't have NO)</span></label>
+                      <label class="h6-design">Title Deed No. <span ngClass="required-span">*</span> <span
+                          ngClass="small-label">(Insert "0" if you don't have NO)</span></label>
                       <mat-form-field class="full-width input-design-2" appearance="fill">
                         <input matInput type="number" placeholder="Title Deed No" formControlName="titleDeed" />
                       </mat-form-field>
@@ -57,11 +58,37 @@
                     </div>
                   </div>
                   <div ngClass="col-xl-6 col-lg-6 col-sm-12">
-                    <div ngClass="block-wrapper mb-4">
+                    <div ngClass="block-wrapper mb-4" *ngIf="oldData.TitleDeedType == 1">
                       <label class="h6-design">Title Deed Type <span ngClass="required-span">*</span></label>
                       <div class="checkbox-flex-box two-column max-240">
                         <div class="checkbox-design position-relative" (click)="toggleType(1)">
-                          <input type="radio" id="Monthly" name="titleDeed-type" value="Monthly" checked/>
+                          <input type="radio" id="Monthly" name="titleDeed-type" value="Monthly" checked />
+                          <button class="checkbox-btn">Leasehold</button>
+                        </div>
+                        <div class="checkbox-design position-relative" (click)="toggleType(2)">
+                          <input type="radio" id="Quaterly" name="titleDeed-type" value="Quaterly" />
+                          <button class="checkbox-btn">Freehold</button>
+                        </div>
+                      </div>
+                    </div>
+                    <div ngClass="block-wrapper mb-4" *ngIf="oldData.TitleDeedType == 2">
+                      <label class="h6-design">Title Deed Type <span ngClass="required-span">*</span></label>
+                      <div class="checkbox-flex-box two-column max-240">
+                        <div class="checkbox-design position-relative" (click)="toggleType(1)">
+                          <input type="radio" id="Monthly" name="titleDeed-type" value="Monthly" />
+                          <button class="checkbox-btn">Leasehold</button>
+                        </div>
+                        <div class="checkbox-design position-relative" (click)="toggleType(2)">
+                          <input type="radio" id="Quaterly" name="titleDeed-type" value="Quaterly" checked />
+                          <button class="checkbox-btn">Freehold</button>
+                        </div>
+                      </div>
+                    </div>
+                    <div ngClass="block-wrapper mb-4" *ngIf="oldData.TitleDeedType != 1 && oldData.TitleDeedType != 2 ">
+                      <label class="h6-design">Title Deed Type <span ngClass="required-span">*</span></label>
+                      <div class="checkbox-flex-box two-column max-240">
+                        <div class="checkbox-design position-relative" (click)="toggleType(1)">
+                          <input type="radio" id="Monthly" name="titleDeed-type" value="Monthly" />
                           <button class="checkbox-btn">Leasehold</button>
                         </div>
                         <div class="checkbox-design position-relative" (click)="toggleType(2)">
@@ -77,9 +104,11 @@
                 <div ngClass="row">
                   <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                     <div ngClass="block-wrapper mb-4">
-                      <label class="h6-design">Muncipality/Affection No. <span ngClass="required-span">*</span> <span ngClass="small-label">(Insert "0" if you don't have NO)</span></label>
+                      <label class="h6-design">Muncipality/Affection No. <span ngClass="required-span">*</span> <span
+                          ngClass="small-label">(Insert "0" if you don't have NO)</span></label>
                       <mat-form-field class="full-width input-design-2" appearance="fill">
-                        <input matInput type="number" placeholder="Enter the Municipality No/Affection No." formControlName="muncipality" />
+                        <input matInput type="number" placeholder="Enter the Municipality No/Affection No."
+                          formControlName="muncipality" />
                       </mat-form-field>
                       <span style="color: red" *ngIf="
                           muncipality &&
@@ -91,9 +120,29 @@
                   <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                     <div ngClass="block-wrapper mb-4">
                       <label class="h6-design">Property Insured <span ngClass="required-span">*</span></label>
-                      <div class="checkbox-flex-box two-column max-240">
+                      <div class="checkbox-flex-box two-column max-240" *ngIf="oldData.PropertyInsured == 1">
                         <div class="checkbox-design position-relative" (click)="toggleInsured(1)">
-                          <input type="radio" id="Yes" name="propertyInsured-type" value="Yes" checked/>
+                          <input type="radio" id="Yes" name="propertyInsured-type" value="Yes" checked />
+                          <button class="checkbox-btn">Yes</button>
+                        </div>
+                        <div class="checkbox-design position-relative" (click)="toggleInsured(2)">
+                          <input type="radio" id="No" name="propertyInsured-type" value="No" />
+                          <button class="checkbox-btn">No</button>
+                        </div>
+                      </div>
+                      <div class="checkbox-flex-box two-column max-240" *ngIf="oldData.PropertyInsured == 2">
+                        <div class="checkbox-design position-relative" (click)="toggleInsured(1)">
+                          <input type="radio" id="Yes" name="propertyInsured-type" value="Yes" />
+                          <button class="checkbox-btn">Yes</button>
+                        </div>
+                        <div class="checkbox-design position-relative" (click)="toggleInsured(2)">
+                          <input type="radio" id="No" name="propertyInsured-type" value="No" checked/>
+                          <button class="checkbox-btn">No</button>
+                        </div>
+                      </div>
+                      <div class="checkbox-flex-box two-column max-240" *ngIf="oldData.PropertyInsured != 1 && oldData.PropertyInsured != 2 ">
+                        <div class="checkbox-design position-relative" (click)="toggleInsured(1)">
+                          <input type="radio" id="Yes" name="propertyInsured-type" value="Yes" />
                           <button class="checkbox-btn">Yes</button>
                         </div>
                         <div class="checkbox-design position-relative" (click)="toggleInsured(2)">
@@ -113,7 +162,7 @@
                         <label>Country <span ngClass="required-span">*</span></label>
                         <mat-form-field appearance="fill">
                           <mat-label>Select the Country</mat-label>
-                          <mat-select (selectionChange)="onCountrySelect($event)">
+                          <mat-select [(value)]="countryId" (selectionChange)="onCountrySelect($event)">
                             <mat-option *ngFor="let list of country" [value]="list.value">
                               {{ list.viewValue }}
                             </mat-option>
@@ -127,7 +176,7 @@
                       <label ngClass="h6-design">City <span ngClass="required-span">*</span></label>
                       <mat-form-field appearance="fill">
                         <mat-label>Select the City</mat-label>
-                        <mat-select (selectionChange)="onCitySelect($event)">
+                        <mat-select [(value)]="cityId" (selectionChange)="onCitySelect($event)">
                           <mat-option *ngFor="let listcity of city" [value]="listcity.value">
                             {{ listcity.viewValue }}
                           </mat-option>
@@ -141,7 +190,7 @@
                         <label>District <span ngClass="required-span">*</span></label>
                         <mat-form-field appearance="fill">
                           <mat-label>Select the District</mat-label>
-                          <mat-select (selectionChange)="onDistrictSelect($event)">
+                          <mat-select [(value)]="districtId" (selectionChange)="onDistrictSelect($event)">
                             <mat-option *ngFor="let listdistrict of district" [value]="listdistrict.value">
                               {{ listdistrict.viewValue }}
                             </mat-option>
@@ -154,7 +203,8 @@
               </div>
               <div ngClass="address-sec">
                 <div ngClass="block-wrapper-address">
-                  <label class="h6-design">Pin the Location of your Property <span ngClass="required-span">*</span></label>
+                  <label class="h6-design">Pin the Location of your Property <span
+                      ngClass="required-span">*</span></label>
                   <div ngClass="position-relative">
                     <div style="width: 100%">
                       <div #propertyDetails__map class="property-details__map"></div>
