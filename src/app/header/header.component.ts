@@ -5,6 +5,7 @@ import {NotificationService} from "../service/notification.service";
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AppService } from '../service/app.service';
 import {AuthService} from "../service/auth.service";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -193,6 +194,9 @@ export class HeaderComponent implements OnInit {
     }else{
       PropertyListingTypeId = '';
     }
+    this.allCheckbox  = [];
+    this.rentCheckbox = [];
+    this.buyCheckbox  = [];
     this.getCountData(PropertyListingTypeId);
   }
   wishlistingDataAll :any = []
@@ -223,13 +227,16 @@ export class HeaderComponent implements OnInit {
           });
       })
     });
-    if(PropertyListingTypeId == 1){
-      this.wishlistingDataRent = tempData
-    }else if(PropertyListingTypeId == 2){
-      this.wishlistingDataBuy = tempData
-    }else{
-      this.wishlistingDataAll = tempData
-    }
+
+    setTimeout(() => {
+      if(PropertyListingTypeId == 1){
+        this.wishlistingDataRent = tempData
+      }else if(PropertyListingTypeId == 2){
+        this.wishlistingDataBuy = tempData
+      }else{
+        this.wishlistingDataAll = tempData
+      }
+    }, 1000);
   }
 
   wishlistStatus :any;
@@ -256,5 +263,61 @@ export class HeaderComponent implements OnInit {
     }, 1000);
   }
 
+  allCheckbox :any = []
+  allFormCheckbox(id:number){
+    this.allCheckbox.push({'id':id})
+    console.log(this.allCheckbox);
+  }
+
+  rentCheckbox :any = []
+  rentFormCheckbox(id:number){
+    this.rentCheckbox.push({'id':id})
+    console.log(this.rentCheckbox);
+  }
+
+  buyCheckbox :any = []
+  buyFormCheckbox(id:number){
+    this.buyCheckbox.push({'id':id})
+    console.log(this.buyCheckbox);
+  }
+
+  compareProceed(type:any){
+    if(this.userId == ''){
+      this.notifyService.showSuccess('First you need to login', "");
+      this.route.navigate(['/login'])
+    }
+    if (!this.authService.isAuthenticated()) {
+      this.notifyService.showError('You not having access', "");
+      this.route.navigate(['login']);
+    }
+
+    if(type == "all"){
+      console.log(this.allCheckbox.length)
+      if(this.allCheckbox.length < 2 || this.allCheckbox.length > 4){
+        this.notifyService.showWarning('Selected property atleast less than < 4 greater than > 2 ', "");
+      }else{
+        localStorage.removeItem("compareIds");
+        localStorage.setItem('compareIds',JSON.stringify(this.allCheckbox))
+        this.route.navigateByUrl('/PropertyCompare');
+      }
+    }else if(type == 'rent'){
+      if(this.rentCheckbox.length < 2 || this.rentCheckbox.length > 4){
+        this.notifyService.showWarning('Selected property atleast less than < 4 greater than > 2 ', "");
+      }else{
+        localStorage.removeItem("compareIds");
+        localStorage.setItem('compareIds',JSON.stringify(this.allCheckbox))
+        this.route.navigateByUrl('/PropertyCompare');
+      }
+    }else if(type == "buy"){
+      if(this.buyCheckbox.length < 2 || this.buyCheckbox.length > 4){
+        this.notifyService.showWarning('Selected property atleast less than < 4 greater than > 2 ', "");
+      }else{
+        localStorage.removeItem("compareIds");
+        localStorage.setItem('compareIds',JSON.stringify(this.allCheckbox))
+        this.route.navigateByUrl('/PropertyCompare');
+      }
+    }
+
+  }
 
 }

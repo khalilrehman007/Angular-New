@@ -22,15 +22,15 @@
                                 <h4>Rental Property Comparision</h4>
                             </div>
                         </td>
-                        <td *ngFor="let property of properties">
+                        <td *ngFor="let property of compareData">
                             <div ngClass="property-comparison-block position-relative">
                                 <div ngClass="com-img">
-                                    <img src="{{property.img}}">
+                                    <img src="{{property.src}}">
                                 </div>
                                 <div ngClass="com-cntnt">
-                                    <h4> {{property.price}} AED  <small>/yearly</small></h4>
+                                    <h4> {{property.price}} {{property.currency}}  <small>/{{property.rentType}}</small></h4>
                                     <h5>{{property.title}}</h5>
-                                    <address>{{property.address}}</address>
+                                    <address>{{property.propertyAddress}}</address>
                                 </div>
                                 <button ngClass="delete-property"><img src="{{trash}}"></button>
                             </div>
@@ -51,34 +51,25 @@
                             <td ngClass="first-td-design">
                                 Building Name / Project Name
                             </td>
-                            <td>
-                                <strong>Blue Wave Tower</strong>
+                            <td *ngFor="let property of compareData">
+                                <strong>{{property.title}}</strong>
                             </td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
                         </tr>
                         <tr>
                             <td ngClass="first-td-design">
                                 Locality
                             </td>
-                            <td>
-                                Corniche Road, Abu Dhabi
-                            </td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                          <td *ngFor="let property of compareData">
+                            {{property.propertyAddress}}
+                          </td>
                         </tr>
                         <tr>
                             <td ngClass="first-td-design">
                                 City
                             </td>
-                            <td>
-                                Abu Dhabi
-                            </td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                          <td *ngFor="let property of compareData">
+                            {{property.city}}
+                          </td>
                         </tr>
                        </tbody>
                     </table>
@@ -95,100 +86,73 @@
                             <td ngClass="first-td-design">
                                 Apartment Size
                             </td>
-                            <td>
-                                3,678 Sq. Ft.
-                            </td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                          <td *ngFor="let property of compareData">
+                            {{property.carpetArea}}
+                          </td>
                         </tr>
                         <tr>
                             <td ngClass="first-td-design">
-                                BHK
+                              Bedrooms
                             </td>
-                            <td>
-                                3 BHK
-                            </td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                          <td *ngFor="let property of compareData">
+                            {{property.bedrooms}}
+                          </td>
                         </tr>
                         <tr>
                             <td ngClass="first-td-design">
-                                Bathroom
+                              Bathrooms
                             </td>
-                            <td>
-                                2
-                            </td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                          <td *ngFor="let property of compareData">
+                           {{property.bathrooms}}
+                          </td>
                         </tr>
                         <tr>
                             <td ngClass="first-td-design">
                                 Available Parking
                             </td>
-                            <td>
-                                0
-                            </td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                          <td *ngFor="let property of compareData">
+                            {{property.parkings}}
+                          </td>
                         </tr>
                         <tr>
                             <td ngClass="first-td-design">
                                 Construction Age
                             </td>
-                            <td>
-                                29 Yrs
-                            </td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                          <td *ngFor="let property of compareData">
+                            {{property.propertyAge}}
+                          </td>
                         </tr>
                         <tr>
                             <td ngClass="first-td-design">
                                 Floor Number
                             </td>
-                            <td>
-                                8
-                            </td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                          <td *ngFor="let property of compareData">
+                            {{property.floorNo}}
+                          </td>
                         </tr>
                         <tr>
                             <td ngClass="first-td-design">
                                 Total Floors
                             </td>
-                            <td>
-                                23
-                            </td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                          <td *ngFor="let property of compareData">
+                           {{property.totalFloor}}
+                          </td>
                         </tr>
                         <tr>
                             <td ngClass="first-td-design">
                                 Tower Block
                             </td>
-                            <td>
-                                A
-                            </td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                          <td *ngFor="let property of compareData">
+                            {{property.towerBlock}}
+                          </td>
                         </tr>
                         <tr>
                             <td ngClass="first-td-design">
                                 Unit No
                             </td>
-                            <td>
-                                891
-                            </td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                          <td *ngFor="let property of compareData">
+                           {{property.unitNo}}
+                          </td>
                         </tr>
                        </tbody>
                     </table>
@@ -205,34 +169,26 @@
                             <td ngClass="first-td-design">
                                 Furnishing Status
                             </td>
-                            <td>
-                                Unfurnished
-                            </td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                          <td *ngFor="let property of compareData">
+                            {{property.furnishingType}}
+                          </td>
                         </tr>
                         <tr>
                             <td ngClass="first-td-design">
                                 Property Features
                             </td>
-                            <td>
-                                <ul ngClass="list-unstyled">
-                                    <li><img src="{{swimm}}"> Swimming Pool</li>
-                                    <li><img src="{{swimm}}"> Swimming Pool</li>
-                                    <li><img src="{{swimm}}"> Swimming Pool</li>
-                                    <li><img src="{{swimm}}"> Swimming Pool</li>
-                                    <li><img src="{{swimm}}"> Swimming Pool</li>
-                                    <li><img src="{{swimm}}"> Swimming Pool</li>
-                                    <li><img src="{{swimm}}"> Swimming Pool</li>
-                                </ul>
+                            <td *ngFor="let property of compareData">
+                              <ul ngClass="list-unstyled">
+                                <li *ngFor="let data of property.propertyFeatures">
+                                  <img height="40px" width="40px" src="{{baseUrl+data.propertyFeature.document.fileUrl}}">
+                                  {{data.propertyFeature.featureName}}
+                                </li>
+
                                 <div ngClass="proprty-View-detials">
-                                    <a routerLink="/PropertDetailsPage" ngClass="grey-bordered-btn">View Details</a>
+                                  <a [routerLink]="['/PropertDetailsPage']" [queryParams]="{id: property.id}" ngClass="grey-bordered-btn">View Details</a>
                                 </div>
+                              </ul>
                             </td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
                         </tr>
                        </tbody>
                     </table>

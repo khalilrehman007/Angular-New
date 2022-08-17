@@ -117,11 +117,42 @@
                       <mat-tab-group (selectedTabChange)="getCountChange($event)">
                         <mat-tab label="All ({{allCount}})">
                           <div ngClass="shortlisted-inner-details">
-
-                            <div ngClass="shortlisted-project-cntnt position-relative" *ngFor="let list of wishlistingDataAll">
+                            <form>
+                              <div ngClass="shortlisted-project-cntnt position-relative" *ngFor="let list of wishlistingDataAll">
+                                <div ngClass="property-selection-div">
+                                  <div ngClass="selection-checkbox-selector">
+                                    <input type="checkbox" value="{{list.id}}" (click)="allFormCheckbox(list.id)">
+                                    <button ngClass="cstm-selection-btn"></button>
+                                  </div>
+                                  <div ngClass="shortlisted-white-box">
+                                    <div ngClass="short-img">
+                                      <img src="{{list.src}}">
+                                    </div>
+                                    <div ngClass="short-cntnt">
+                                      <h2>{{list.price}} {{list.currency}} <small>/{{list.rentType}}</small></h2>
+                                      <h4>{{list.title}}</h4>
+                                      <p>{{list.propertyType}}</p>
+                                      <address>{{list.propertyAddress}}</address>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div ngClass="delete-property-div">
+                                  <button ngClass="delete-btn" (click)="removeFavorite(list.id)"><img src="{{trash}}"></button>
+                                </div>
+                              </div>
+                              <div ngClass="compare-btn-design">
+                                <a (click)="compareProceed('all')" *ngIf="wishlistingDataAll.length > 1" ngClass="compare-btn">Compare</a>
+                                <a ngClass="compare-btn" *ngIf="wishlistingDataAll.length < 2" >Please select property atleast two.</a>
+                              </div>
+                            </form>
+                          </div>
+                        </mat-tab>
+                        <mat-tab label="Rent ({{rentCount}})">
+                          <div ngClass="shortlisted-inner-details">
+                            <div ngClass="shortlisted-project-cntnt position-relative" *ngFor="let list of wishlistingDataRent">
                               <div ngClass="property-selection-div">
                                 <div ngClass="selection-checkbox-selector">
-                                  <input type="checkbox" value="property" checked>
+                                  <input type="checkbox" value="{{list.id}}" (click)="rentFormCheckbox(list.id)">
                                   <button ngClass="cstm-selection-btn"></button>
                                 </div>
                                 <div ngClass="shortlisted-white-box">
@@ -140,9 +171,9 @@
                                 <button ngClass="delete-btn" (click)="removeFavorite(list.id)"><img src="{{trash}}"></button>
                               </div>
                             </div>
-
                             <div ngClass="compare-btn-design">
-                              <a routerLink="/PropertyCompare" ngClass="compare-btn">Compare</a>
+                              <a (click)="compareProceed('rent')" *ngIf="wishlistingDataRent.length > 1" ngClass="compare-btn">Compare</a>
+                              <a ngClass="compare-btn" *ngIf="wishlistingDataRent.length < 2" >Please select property atleast two.</a>
                             </div>
                           </div>
                         </mat-tab>
@@ -151,7 +182,7 @@
                             <div ngClass="shortlisted-project-cntnt position-relative" *ngFor="let list of wishlistingDataBuy">
                               <div ngClass="property-selection-div">
                                 <div ngClass="selection-checkbox-selector">
-                                  <input type="checkbox" value="property" checked>
+                                  <input type="checkbox" value="{{list.id}}" (click)="buyFormCheckbox(list.id)" >
                                   <button ngClass="cstm-selection-btn"></button>
                                 </div>
                                 <div ngClass="shortlisted-white-box">
@@ -171,36 +202,8 @@
                               </div>
                             </div>
                             <div ngClass="compare-btn-design">
-                              <a routerLink="/PropertyCompare" ngClass="compare-btn">Compare</a>
-                            </div>
-                          </div>
-                        </mat-tab>
-                        <mat-tab label="Rent ({{rentCount}})">
-                          <div ngClass="shortlisted-inner-details">
-                            <div ngClass="shortlisted-project-cntnt position-relative" *ngFor="let list of wishlistingDataRent">
-                              <div ngClass="property-selection-div">
-                                <div ngClass="selection-checkbox-selector">
-                                  <input type="checkbox" value="property" checked>
-                                  <button ngClass="cstm-selection-btn"></button>
-                                </div>
-                                <div ngClass="shortlisted-white-box">
-                                  <div ngClass="short-img">
-                                    <img src="{{list.src}}">
-                                  </div>
-                                  <div ngClass="short-cntnt">
-                                    <h2>{{list.price}} {{list.currency}} <small>/{{list.rentType}}</small></h2>
-                                    <h4>{{list.title}}</h4>
-                                    <p>{{list.propertyType}}</p>
-                                    <address>{{list.propertyAddress}}</address>
-                                  </div>
-                                </div>
-                              </div>
-                              <div ngClass="delete-property-div">
-                                <button ngClass="delete-btn" (click)="removeFavorite(list.id)"><img src="{{trash}}"></button>
-                              </div>
-                            </div>
-                            <div ngClass="compare-btn-design">
-                              <a routerLink="/PropertyCompare" ngClass="compare-btn">Compare</a>
+                              <a (click)="compareProceed('buy')"  *ngIf="wishlistingDataBuy.length > 1" ngClass="compare-btn">Compare</a>
+                              <a ngClass="compare-btn" *ngIf="wishlistingDataBuy.length < 2" >Please select property atleast two.</a>
                             </div>
                           </div>
                         </mat-tab>
