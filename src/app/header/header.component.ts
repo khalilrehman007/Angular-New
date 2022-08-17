@@ -4,6 +4,7 @@ import * as $ from 'jquery';
 import {NotificationService} from "../service/notification.service";
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AppService } from '../service/app.service';
+import {AuthService} from "../service/auth.service";
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -29,7 +30,7 @@ export class HeaderComponent implements OnInit {
 
   params :any = {};
   bodyClass: string;
-  constructor(private route:Router,private notifyService : NotificationService,private modalService: NgbModal, private service:AppService) {
+  constructor(private authService:AuthService,private route:Router,private notifyService : NotificationService,private modalService: NgbModal, private service:AppService) {
     this.getUser();
     this.bodyClass = this.availableClasses[this.currentClassIdx];
     this.changeBodyClass();
@@ -236,6 +237,10 @@ export class HeaderComponent implements OnInit {
     if(this.userId == ''){
       this.notifyService.showSuccess('First you need to login', "");
       this.route.navigate(['/login'])
+    }
+    if (!this.authService.isAuthenticated()) {
+      this.notifyService.showError('You not having access', "");
+      this.route.navigate(['login']);
     }
 
     this.service.FavoriteAddRemove(true,{"UserId":this.userId,"PropertyListingId":id}).subscribe(data => {

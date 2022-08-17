@@ -6,6 +6,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {AppService} from "../../service/app.service";
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {NotificationService} from "../../service/notification.service";
+import {AuthService} from "../../service/auth.service";
 
 @Component({
   selector: 'app-rentproperties',
@@ -69,9 +70,10 @@ export class RentpropertiesComponent implements OnInit {
   page: number = 1;
   videoTour: any;
   videoTourSorting: any;
+  user : any
+  userId :any;
 
-
-  constructor(private notifyService : NotificationService,private activeRoute: ActivatedRoute,private service:AppService,private api: AppService,private route:Router,private modalService: NgbModal) {
+  constructor(private authService:AuthService,private notifyService : NotificationService,private activeRoute: ActivatedRoute,private service:AppService,private api: AppService,private route:Router,private modalService: NgbModal) {
     this.type                  = this.activeRoute.snapshot.queryParamMap.get('type');
     this.PropertyCategoryId    = this.activeRoute.snapshot.queryParamMap.get('PropertyCategoryId');
     this.RentTypeId            = this.activeRoute.snapshot.queryParamMap.get('RentTypeId');
@@ -100,7 +102,12 @@ export class RentpropertiesComponent implements OnInit {
     this.LoadPropertyCategories();
     this.loadListingProperty(params);
     this.LoadPropertySortBy();
-
+    this.getUser();
+    let userId = '';
+    if(this.user !== null){
+      userId = this.user.id;
+    }
+    this.userId = userId;
     this.service.VideoTour().subscribe((result:any)=>{
       this.videoTour = result.data;
       console.log(this.videoTour)
@@ -252,31 +259,39 @@ export class RentpropertiesComponent implements OnInit {
       this.notifyService.showSuccess('First you need to login', "");
       this.route.navigate(['/login'])
     }
+    if (!this.authService.isAuthenticated()) {
+      this.notifyService.showError('You not having access', "");
+      this.route.navigate(['login']);
+    }
+
     let params :any = {"PropertyTypeIds":this.PropertyTypeIds, "PropertyAddress":this.PropertyAddress,"RentTypeId":this.RentTypeId,
       "PropertyCategoryId":this.PropertyCategoryId,"PriceStart":this.PriceStart, "PriceEnd" : this.PriceEnd,
       "PropertyListingTypeId":this.PropertyListingTypeId,"SortedBy":this.sortedById,CurrentPage:1
     }
+    console.log(status,this.userId)
     this.service.FavoriteAddRemove(status,{"UserId":this.userId,"PropertyListingId":id}).subscribe(data => {
       let responsedata :any = data
       if(responsedata.message == "Favorite is Removed successfully"){
-        this.loadListingProperty(params);
         this.wishlistStatus = "Favorite is Removed successfully"
         this.notifyService.showSuccess('Favorite is Removed successfully', "");
+        setTimeout(() => {
+          this.loadListingProperty(params);
+        }, 1000);
       }else {
-        this.loadListingProperty(params);
         this.wishlistStatus = "Favorite is added successfully"
         this.notifyService.showSuccess('Favorite is added successfully', "");
+        setTimeout(() => {
+          this.loadListingProperty(params);
+        }, 1000);
       }
     });
   }
 
-  user : any
-  userId :any;
+
   getUser(){
     this.user = localStorage.getItem('user');
     if(this.user != ''){
       this.user = JSON.parse(this.user);
-      this.userId = this.user.id;
     }
     return this.user;
   }
