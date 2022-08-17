@@ -28,6 +28,7 @@ export class AgentLandingComponent implements OnInit {
   SearchKeyword: string[] = [];
   searchList: any = ["Duabi", "UAE", "Investment Park"];
   agentObject: any = { "CountryId": "1", "DistrictsId": [], "CompaniesId": [], "UserId": "0", "EpertInId": "0", "LanguageId": "0", "CurrentPage": 1 };
+  allCountries: any;
   constructor(private router: Router, private service: AppService) {
     this.agentData();
     this.companyData();
@@ -53,12 +54,14 @@ export class AgentLandingComponent implements OnInit {
     })
     this.service.FindCompanies({ "CountryId": "1", "DistrictsId": [], "CompaniesId": [], "CurrentPage": "1" }).subscribe((result: any) => {
       this.companylisting = result.data;
-      console.log(result)
     })
     this.searchfilter = this.searchctrl.valueChanges.pipe(
       startWith(null),
       map((searchCompenies: string | null) => (searchCompenies ? this._filter(searchCompenies) : this.searchList.slice())),
     );
+    this.service.LoadCountries().subscribe((result:any)=>{
+      this.allCountries = result.data;
+    })
   }
   featuredAgentData: any;
   // currentURL=false;
@@ -801,7 +804,7 @@ export class AgentLandingComponent implements OnInit {
   agentListData(data: any) {
     this.service.FindAgents(data).subscribe((result: any) => {
       this.findAgent = result.data;
-      console.log("Find Agent" ,this.findAgent)
+      console.log("Find Agent", this.findAgent)
     })
   }
 
