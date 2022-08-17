@@ -41,7 +41,7 @@
                   <mat-form-field appearance="fill" class="select-design">
                     <mat-label><img src="{{videotiour}}"> Video Tour</mat-label>
                     <mat-select (selectionChange)="videoSorting($event)">
-                      <mat-option value="item.name" *ngFor="let item of videoTour">{{item.name}}</mat-option>
+                      <mat-option value="{{item.id}}" *ngFor="let item of videoTour">{{item.name}}</mat-option>
                     </mat-select>
                   </mat-form-field>
                 </div>
