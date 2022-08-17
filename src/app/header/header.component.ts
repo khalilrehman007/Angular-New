@@ -149,19 +149,29 @@ export class HeaderComponent implements OnInit {
   }
   status: boolean = false;
   clickEvent(){
+    if (!this.authService.isAuthenticated()) {
+      this.notifyService.showError('You not having access', "");
+      this.route.navigate(['login']);
+    }else{
       this.status = !this.status;
       this.getWishlisting();
       this.getCountData('');
       this.status1 = false;
       this.status2 = false;
+    }
   }
   status1: boolean = false;
   clickEvent1(){
-      this.status1 = !this.status1;
-      this.getWishlisting();
-      this.getCountData('');
-      this.status2 = false;
-      this.status = false;
+      if (!this.authService.isAuthenticated()) {
+        this.notifyService.showError('You not having access', "");
+        this.route.navigate(['login']);
+      }else{
+        this.status1 = !this.status1;
+        this.status2 = false;
+        this.status = false;
+        this.getWishlisting();
+        this.getCountData('');
+      }
   }
   status2: boolean = false;
   clickEvent2(){
@@ -207,12 +217,27 @@ export class HeaderComponent implements OnInit {
     this.service.FavoriteListing({"UserId":this.userId,"PropertyListingTypeId":PropertyListingTypeId}).subscribe(data=>{
       let response: any = data;
       response.data.forEach((element, i) => {
-        let image = element.documents[0].fileUrl
+
+        let image :any ='';
+        if(element.documents !== null && element.documents !== undefined && element.documents.length > 0){
+          image = element.documents[0].fileUrl
+        }
+
+        let rentType :any ='';
+        if(element.rentType !== null && element.rentType !== undefined){
+          rentType = element.rentType.name
+        }
+
+        let propertyType :any ='';
+        if(element.propertyType !== null && element.propertyType !== undefined){
+          propertyType = element.propertyType.typeDescription
+        }
+
         tempData.push(
           {
             title: element.propertyTitle,
-            rentType: element.rentType.name,
-            propertyType: element.propertyType.typeDescription,
+            rentType: rentType,
+            propertyType: propertyType,
             currency: element.country.currency,
             price: element.propertyPrice,
             favorite: element.favorite,

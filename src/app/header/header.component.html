@@ -120,7 +120,7 @@
                             <form>
                               <div ngClass="shortlisted-project-cntnt position-relative" *ngFor="let list of wishlistingDataAll">
                                 <div ngClass="property-selection-div">
-                                  <div ngClass="selection-checkbox-selector">
+                                  <div ngClass="selection-checkbox-selector" *ngIf="wishlistingDataAll.length > 1">
                                     <input type="checkbox" value="{{list.id}}" (click)="allFormCheckbox(list.id)">
                                     <button ngClass="cstm-selection-btn"></button>
                                   </div>
@@ -142,7 +142,7 @@
                               </div>
                               <div ngClass="compare-btn-design">
                                 <a (click)="compareProceed('all')" *ngIf="wishlistingDataAll.length > 1" ngClass="compare-btn">Compare</a>
-                                <a ngClass="compare-btn" *ngIf="wishlistingDataAll.length < 2" >Please select property atleast two.</a>
+<!--                                <a ngClass="compare-btn" *ngIf="wishlistingDataAll.length < 2" >Please select property atleast two.</a>-->
                               </div>
                             </form>
                           </div>
@@ -151,7 +151,7 @@
                           <div ngClass="shortlisted-inner-details">
                             <div ngClass="shortlisted-project-cntnt position-relative" *ngFor="let list of wishlistingDataRent">
                               <div ngClass="property-selection-div">
-                                <div ngClass="selection-checkbox-selector">
+                                <div ngClass="selection-checkbox-selector" *ngIf="wishlistingDataRent.length > 1">
                                   <input type="checkbox" value="{{list.id}}" (click)="rentFormCheckbox(list.id)">
                                   <button ngClass="cstm-selection-btn"></button>
                                 </div>
@@ -173,7 +173,7 @@
                             </div>
                             <div ngClass="compare-btn-design">
                               <a (click)="compareProceed('rent')" *ngIf="wishlistingDataRent.length > 1" ngClass="compare-btn">Compare</a>
-                              <a ngClass="compare-btn" *ngIf="wishlistingDataRent.length < 2" >Please select property atleast two.</a>
+<!--                              <a ngClass="compare-btn" *ngIf="wishlistingDataRent.length < 2" >Please select property atleast two.</a>-->
                             </div>
                           </div>
                         </mat-tab>
@@ -181,7 +181,7 @@
                           <div ngClass="shortlisted-inner-details">
                             <div ngClass="shortlisted-project-cntnt position-relative" *ngFor="let list of wishlistingDataBuy">
                               <div ngClass="property-selection-div">
-                                <div ngClass="selection-checkbox-selector">
+                                <div ngClass="selection-checkbox-selector" *ngIf="wishlistingDataBuy.length > 1">
                                   <input type="checkbox" value="{{list.id}}" (click)="buyFormCheckbox(list.id)" >
                                   <button ngClass="cstm-selection-btn"></button>
                                 </div>
@@ -203,7 +203,7 @@
                             </div>
                             <div ngClass="compare-btn-design">
                               <a (click)="compareProceed('buy')"  *ngIf="wishlistingDataBuy.length > 1" ngClass="compare-btn">Compare</a>
-                              <a ngClass="compare-btn" *ngIf="wishlistingDataBuy.length < 2" >Please select property atleast two.</a>
+<!--                              <a ngClass="compare-btn" *ngIf="wishlistingDataBuy.length < 2" >Please select property atleast two.</a>-->
                             </div>
                           </div>
                         </mat-tab>

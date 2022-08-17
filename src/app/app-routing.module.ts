@@ -94,7 +94,7 @@ const routes: Routes = [
   { path:  'RentCommertial', component:  RentCommertialComponent},
   { path:  'SellCommertial', component:  SellCommertialComponent},
   { path:  'SellResidential', component:  SellResidentialComponent},
-  { path:  'PropertyDetail', component:  PropertyDetailsComponent},
+  { path:  'PropertyDetail', component:  PropertyDetailsComponent,canActivate: [AuthGuard]},
   { path:  'PropertyType', component:  PropertyTypesComponent},
   { path:  'PropertyDocument', component:  PropertyDocumentsComponent},
   { path:  'PropertyReview', component:  PropertyReviewComponent},
