@@ -349,5 +349,8 @@ export class AppService {
   FavoriteListing(data: any) {
     return this.http.post(this.apiurl + 'FavoriteListing' ,data,{ headers: this.headers });
   }
+  MyPropertyListings(id: any) {
+    return this.http.get(this.apiurl + 'MyPropertyListings/' + id);
+  }
 
 }

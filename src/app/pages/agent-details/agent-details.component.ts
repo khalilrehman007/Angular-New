@@ -16,6 +16,7 @@ export class AgentDetailsComponent implements OnInit {
   agentDetail: any;
   id: any;
   user: any;
+  myListing:any = [];
   constructor(private service:AppService, private route: ActivatedRoute) {
     this.route.params.subscribe(params=>{
       this.id = params['id'];
@@ -26,15 +27,17 @@ export class AgentDetailsComponent implements OnInit {
     if(this.user != null) {
       this.service.DisplayAgent({"PropertyListingId":"","AgentUserId":this.id,"LoginUserId":this.id}).subscribe((result:any)=>{
         this.agentDetail= result.data;
-        console.log(this.agentDetail)
       })
     } else {
       this.service.DisplayAgent({"PropertyListingId":"","AgentUserId":this.id,"LoginUserId":""}).subscribe((result:any)=>{
         this.agentDetail= result.data;
-        console.log(this.agentDetail)
       })
 
     }
+    this.service.MyPropertyListings(this.id).subscribe((result:any) => {
+      this.myListing = result.data;
+      console.log(this.myListing);
+    })
    }
 
   agentContact = new FormGroup({
