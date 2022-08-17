@@ -14,10 +14,10 @@ declare const google: any;
 })
 export class PropertyDetailsComponent implements OnInit, AfterViewInit {
 
-  response="";
+  response = "";
   error: any = ""
-  showError:boolean = false;
-  errorResponse(data:any){
+  showError: boolean = false;
+  errorResponse(data: any) {
     this.showError = false;
   }
 
@@ -45,7 +45,12 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
   locationInformation: any = {};
   formDetailData: any = {};
   showLoader: boolean = false;
-  
+  bounds: any;
+  northEast: any;
+  southWest: any;
+  areabounds: any;
+  options: any;
+  locationSelected:boolean = false;
 
   location = { lat: 31.5204, lng: 74.3587 };
 
@@ -63,6 +68,10 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
 
   constructor(private http: HttpClient, private service: AppService, private router: Router) {
     this.loadCountriesData();
+    this.options = {
+      bounds: [],
+      strictBounds: true,
+    };
   }
   changeInfo() {
     $("#searchLocation").focus();
@@ -124,7 +133,7 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
     });
     this.formDetailData.country = temp[0].viewValue;
     this.countryName = temp[0].viewValue;
-    this.getLocationDetails(temp[0].viewValue);
+    this.getLocationDetails(temp[0].viewValue, false);
     this.countryId = e.value;
     this.city = [];
     this.service.LoadCities(e.value).subscribe(e => {
@@ -144,7 +153,7 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
     })
     this.formDetailData.city = temp[0].viewValue;
     this.cityName = temp[0].viewValue;
-    this.getLocationDetails(temp[0].viewValue);
+    this.getLocationDetails(temp[0].viewValue, false);
     this.cityId = e.value;
     this.district = [];
     this.service.LoadDistrict(e.value).subscribe(e => {
@@ -158,11 +167,13 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
     });
   }
   onDistrictSelect(e: any) {
+    this.locationSelected = false;
+    $("#searchLocation").val("");
     let temp = this.district.filter(function (c: any) {
       return c.value == e.value
     })
     this.formDetailData.district = temp[0].viewValue;
-    this.getLocationDetails(temp[0].viewValue);
+    this.getLocationDetails(temp[0].viewValue, true);
     this.districtId = e.value;
   }
   getMapImage() {
@@ -209,7 +220,7 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
     } else if (this.districtId == -1) {
       this.error = "Select District";
       this.showError = true;
-    } else if ($("#searchLocation").val() == "") {
+    } else if ($("#searchLocation").val() == "" || !this.locationSelected) {
       this.error = "Enter Address";
       this.showError = true;
     } else {
@@ -277,27 +288,36 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
       }
     });
   }
-  getLocationDetails(e: any) {
+  getLocationDetails(e: any, status:boolean) {
+    $(".pac-container.pac-logo").remove();
     $.ajax({
       url: "https://maps.googleapis.com/maps/api/geocode/json?address=" + e + "&key=AIzaSyBPSEz52-AfPEVbmV_3yuGUGol_KiLb3GU",
       method: "get",
       success: (res) => {
         let temp = res.results[0].geometry.bounds;
-        let bounds = { east: temp.northeast.lng, west: temp.southwest.lng, north: temp.northeast.lat, south: temp.southwest.lat };
+        this.bounds = { east: temp.northeast.lng, west: temp.southwest.lng, north: temp.northeast.lat, south: temp.southwest.lat };
+        let northEast = new google.maps.LatLng(temp.northeast.lat, temp.northeast.lng);
+        let southWest = new google.maps.LatLng(temp.southwest.lat, temp.southwest.lng);
+        let areabounds = new google.maps.LatLngBounds(southWest, northEast);
+        this.options.bounds = areabounds;
         let area = res.results[0].geometry.location;
         this.map = new google.maps.Map($(".property-details__map")[0], {
           center: area,
           zoom: 6,
           disableDefaultUI: true,
           restriction: {
-            latLngBounds: bounds,
-            strictBounds: false,
+            latLngBounds: this.bounds,
+            strictBounds: true,
           },
         })
         this.marker = new google.maps.Marker({
           position: area,
           map: this.map
-        })
+        });
+        this.autocomplete = new google.maps.places.Autocomplete(this.searchElement.nativeElement, this.options);
+        this.autocomplete.addListener('place_changed', this.onPlaceChanged);
+        this.autocomplete.setBounds(this.bounds);
+        this.locationSelected = status;
       }
     });
   }
