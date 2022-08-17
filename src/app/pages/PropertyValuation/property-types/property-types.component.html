@@ -123,7 +123,7 @@
                                     <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                         <div ngClass="block-wrapper mb-4">
                                             <label class="h6-design">No. of Roads <span ngClass="required-span">*</span></label>
-                                            <div class="checkbox-flex-box six-column flex-start">
+                                            <div class="checkbox-flex-box flex-start six-column">
                                                 <div class="checkbox-design position-relative" (click)="getRoads(1)">
                                                     <input type="radio" id="roads" name="no-of-roads" value="roads">
                                                     <button class="checkbox-btn">1</button>
@@ -144,7 +144,7 @@
                                             <label class="h6-design">Construction Age <span ngClass="required-span">*</span></label>
                                             <div ngClass="position-relative">
                                                 <mat-form-field class="full-width input-design-2" appearance="fill">
-                                                    <input matInput type="number" formControlName="constructionAge" placeholder="Enter costruction age e.g. 10">
+                                                    <input matInput type="number" formControlName="constructionAge" placeholder="Enter costruction age e.g. 10" (input)="getValue()">
                                                 </mat-form-field>
                                                 <p ngClass="input-overlay-layer">Yrs.</p>
                                             </div>
@@ -154,6 +154,7 @@
                                         <div ngClass="block-wrapper mb-4">
                                             <label class="h6-design">Elevation <span ngClass="required-span">*</span></label>
                                             <mat-form-field class="full-width input-design-2" appearance="fill">
+                                                <!-- <input matInput type="text" placeholder="Enter plot elevation e.g. B+G+10" formControlName="elevation" [textMask]="{mask: mask}"> -->
                                                 <input matInput type="text" placeholder="Enter plot elevation e.g. B+G+10" formControlName="elevation">
                                             </mat-form-field>
                                         </div>
@@ -170,7 +171,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+                                    <div ngClass="col-xl-6 col-lg-6 col-sm-12" *ngIf="propertyData.hasBuildUpArea">
                                         <div ngClass="block-wrapper mb-4">
                                             <label class="h6-design">Buildup Area in Sq.
                                                 Ft. <span ngClass="required-span">*</span></label>
@@ -224,7 +225,7 @@
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12" *ngIf="propertyData.hasFitting">
                                         <div ngClass="block-wrapper mb-4">
                                             <label class="h6-design">Fitting Type</label>
-                                            <div class="checkbox-flex-box five-column button-same-select">
+                                            <div class="checkbox-flex-box four-column button-same-select">
                                                 <div class="checkbox-design position-relative" *ngFor="let item of fittingType" (click)="getFittingType(item.id,item.name)">
                                                     <input type="radio" id="Furnished" name="fitting-types"
                                                         value="Furnished">

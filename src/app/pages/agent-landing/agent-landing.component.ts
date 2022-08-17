@@ -59,12 +59,8 @@ export class AgentLandingComponent implements OnInit {
       startWith(null),
       map((searchCompenies: string | null) => (searchCompenies ? this._filter(searchCompenies) : this.searchList.slice())),
     );
-    this.service.LoadCountries().subscribe((result:any)=>{
-      this.allCountries = result.data;
-    })
   }
   featuredAgentData: any;
-  // currentURL=false;
   agentCheck: any = false;
   companiesCheck: any = false;
   agentList: any;

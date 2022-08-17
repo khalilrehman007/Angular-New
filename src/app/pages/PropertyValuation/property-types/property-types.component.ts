@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./property-types.component.scss']
 })
 export class PropertyTypesComponent implements OnInit {
-
+  selected = 'option1';
   @ViewChild('unitWrapper') unitWrapper: ElementRef;
 
   plus = '../../../../assets/images/plus.svg';
@@ -31,7 +31,7 @@ export class PropertyTypesComponent implements OnInit {
   formDetailData: any = {};
   totalExpenseWrapper: boolean = false;
   showLoader: boolean = false;
-
+  mask = ["A","A+9","A+99","A+A+9", "A+A+99"];
   unitHMTL: any = [];
   error: any = ""
   showError:boolean = false;
@@ -203,6 +203,17 @@ export class PropertyTypesComponent implements OnInit {
       }
     }
   }
+  getValue()  {
+    let age:any = this.propertyTypeForm.value.constructionAge;
+    if(age > 40) {
+      this.error = "The construction age can't be greater than 40 years.";
+      this.propertyTypeForm.patchValue({
+        constructionAge:"40"
+      })
+      this.showError = true;
+    }
+    console.log();
+  }
   getData() {
     if(!this.formData.PropertyCategoryId) {
       this.error = "Please Select Property Category";
@@ -240,7 +251,7 @@ export class PropertyTypesComponent implements OnInit {
       this.error = "Please Enter Plot Size";
       this.showError = true;
       return;
-    } else if(this.propertyTypeForm.value.buildupArea == "") {
+    } else if(this.propertyTypeForm.value.buildupArea == "" && this.formData.FurnishingType) {
       this.error = "Please Enter Buildup Area";
       this.showError = true;
       return;
@@ -282,7 +293,11 @@ export class PropertyTypesComponent implements OnInit {
     }
     this.formData.ConstructionAge = this.propertyTypeForm.value.constructionAge;
     this.formDetailData.PlotSize = this.propertyTypeForm.value.apartmentSize;
-    this.formDetailData.BuildupArea = this.propertyTypeForm.value.buildupArea;
+    if (this.propertyData.hasBuildUpArea) {
+      this.formDetailData.BuildupArea = this.propertyTypeForm.value.buildupArea;
+    } else {
+      this.formDetailData.BuildupArea = 0;
+    }
 
     this.formData.PlotNo = this.propertyTypeForm.value.apartmentNo;
     this.formData.PlotSize = this.propertyTypeForm.value.apartmentSize;
