@@ -1325,6 +1325,11 @@ input[type=number] {
 		width: 14%;
 	}
 }
+.checkbox-flex-box.four-column {
+	>div {
+		width: 23%;
+	}
+}
 .input-flaoted-right-text {
 	.mat-form-field-flex {
 		height: 44px;
@@ -9076,4 +9081,14 @@ li.agent-details__property-list-item {
 .red-fill svg path {
     stroke: red;
     fill: red;
+}
+
+@media (max-width: 767px){
+	.checkbox-flex-box.four-column {
+		flex-wrap: wrap;
+	}
+	.checkbox-flex-box.four-column>.checkbox-design {
+		width: 48%;
+		margin-bottom: 15px;
+	}
 }

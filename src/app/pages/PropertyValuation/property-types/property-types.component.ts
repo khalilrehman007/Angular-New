@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./property-types.component.scss']
 })
 export class PropertyTypesComponent implements OnInit {
-
+  selected = 'option1';
   @ViewChild('unitWrapper') unitWrapper: ElementRef;
 
   plus = '../../../../assets/images/plus.svg';

@@ -41,7 +41,7 @@
                                             <div class="checkbox-flex-box two-column max-240">
                                                 <div class="checkbox-design position-relative" (click)="loadType(1)">
                                                     <input type="radio" id="Residential" name="property-cateogary"
-                                                        value="Residential">
+                                                        value="Residential" checked>
                                                     <button class="checkbox-btn">Residential</button>
                                                 </div>
                                                 <div class="checkbox-design position-relative" (click)="loadType(2)">
@@ -90,7 +90,7 @@
                                                 <div class="checkbox-design position-relative"
                                                     (click)="propertyStatus(1, 'Owner Occupied')">
                                                     <input type="radio" id="Owner Occupied" name="current-status"
-                                                        value="Owner Occupied">
+                                                        value="Owner Occupied" checked>
                                                     <button class="checkbox-btn">Owner Occupied</button>
                                                 </div>
                                                 <div class="checkbox-design position-relative"
@@ -123,9 +123,9 @@
                                     <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                         <div ngClass="block-wrapper mb-4">
                                             <label class="h6-design">No. of Roads <span ngClass="required-span">*</span></label>
-                                            <div class="checkbox-flex-box six-column flex-start">
+                                            <div class="checkbox-flex-box flex-start six-column">
                                                 <div class="checkbox-design position-relative" (click)="getRoads(1)">
-                                                    <input type="radio" id="roads" name="no-of-roads" value="roads">
+                                                    <input type="radio" id="roads" name="no-of-roads" value="roads" checked>
                                                     <button class="checkbox-btn">1</button>
                                                 </div>
                                                 <div class="checkbox-design position-relative" (click)="getRoads(2)">
@@ -224,7 +224,7 @@
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12" *ngIf="propertyData.hasFitting">
                                         <div ngClass="block-wrapper mb-4">
                                             <label class="h6-design">Fitting Type</label>
-                                            <div class="checkbox-flex-box five-column button-same-select">
+                                            <div class="checkbox-flex-box four-column button-same-select">
                                                 <div class="checkbox-design position-relative" *ngFor="let item of fittingType" (click)="getFittingType(item.id,item.name)">
                                                     <input type="radio" id="Furnished" name="fitting-types"
                                                         value="Furnished">

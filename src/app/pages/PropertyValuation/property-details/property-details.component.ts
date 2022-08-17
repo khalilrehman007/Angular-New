@@ -13,7 +13,7 @@ declare const google: any;
   styleUrls: ['./property-details.component.scss']
 })
 export class PropertyDetailsComponent implements OnInit, AfterViewInit {
-
+  selected = 'option1';
   response="";
   error: any = ""
   showError:boolean = false;
