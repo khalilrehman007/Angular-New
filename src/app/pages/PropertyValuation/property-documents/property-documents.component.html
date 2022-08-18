@@ -522,7 +522,7 @@
                                                 <div ngClass="doc-text-actions">
                                                     <h6>Action</h6>
                                                     <div ngClass="action-text-btns no-sperator">
-                                                        <a routerLink="{{item.viewLink}}">View</a>
+                                                        <a (click)="viewImage(item.imgsrc)" class="view-image-btn">View</a>
                                                     </div>
                                                 </div>
                                             </div>
