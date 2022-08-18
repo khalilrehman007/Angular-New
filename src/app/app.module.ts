@@ -14,7 +14,6 @@ import {FormsModule} from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {NgbNavModule} from '@ng-bootstrap/ng-bootstrap';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { TextMaskModule } from 'angular2-text-mask';
 // import { HashLocationStrategy, LocationStrategy  } from '@angular/common';
 import { SellrentpropertyComponent } from './pages/sellrentproperty/sellrentproperty.component';
 import { MatSliderModule } from '@angular/material/slider';
@@ -225,7 +224,6 @@ import { ErroralertComponent } from './erroralert/erroralert.component';
     MatChipsModule,
     MatAutocompleteModule,
     NgChartsModule,
-    TextMaskModule,
     NgxPaginationModule,
     ToastrModule.forRoot({
       timeOut: 2000,
