@@ -49,40 +49,57 @@ export class PropertyCompareComponent implements OnInit {
     this.service.ComparableProperties(this.compareIds).subscribe(data => {
       let responsedata :any = data
       responsedata.data.forEach((element, i) => {
-        let image = element.documents[0].fileUrl
 
-        let rentType :any ='';
-        if(element.rentType !== null && element.rentType !== undefined){
-          rentType = element.rentType.name
+        let alreadyExists = true;
+        this.compareHideId.forEach((idcheck, i) => {
+            if(idcheck == element.id){
+              alreadyExists = false;
+            }
+        })
+
+        if(alreadyExists){
+          let image = element.documents[0].fileUrl
+          let rentType: any = '';
+          if (element.rentType !== null && element.rentType !== undefined) {
+            rentType = element.rentType.name
+          }
+          tempData.push(
+            {
+              title: element.propertyTitle,
+              rentType: rentType,
+              currency: element.country.currency,
+              price: element.propertyPrice,
+              favorite: element.favorite,
+              id: element.id,
+              alt: element.propertyTitle,
+              src: this.baseUrl + image,
+              bedrooms: element.bedrooms,
+              propertyAddress: element.propertyAddress,
+              bathrooms: element.bathrooms,
+              buildingName: element.buildingName,
+              carpetArea: element.carpetArea,
+              city: element.city.name,
+              parkings: element.parkings,
+              propertyAge: element.propertyAge,
+              floorNo: element.floorNo,
+              totalFloor: element.totalFloor,
+              towerBlock: 'empty',
+              unitNo: element.unitNo,
+              furnishingType: element.furnishingType,
+              propertyFeatures: element.propertyFeatures,
+            });
         }
-        tempData.push(
-          {
-            title: element.propertyTitle,
-            rentType: rentType,
-            currency: element.country.currency,
-            price: element.propertyPrice,
-            favorite: element.favorite,
-            id:element.id,
-            alt:element.propertyTitle,
-            src:this.baseUrl+image,
-            bedrooms:element.bedrooms,
-            propertyAddress:element.propertyAddress,
-            bathrooms:element.bathrooms,
-            buildingName:element.buildingName,
-            carpetArea:element.carpetArea,
-            city:element.city.name,
-            parkings:element.parkings,
-            propertyAge:element.propertyAge,
-            floorNo:element.floorNo,
-            totalFloor:element.totalFloor,
-            towerBlock:'empty',
-            unitNo:element.unitNo,
-            furnishingType:element.furnishingType,
-            propertyFeatures:element.propertyFeatures,
-          });
       })
     });
     this.compareData = tempData
-    console.log(this.compareData)
   }
+
+  compareHideId :any = [];
+  delete(id:number){
+    this.compareHideId.push(id)
+    setTimeout(() => {
+      this.getCompareData();
+    }, 1000);
+  }
+
 }
