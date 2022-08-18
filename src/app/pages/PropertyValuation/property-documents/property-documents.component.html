@@ -43,7 +43,7 @@
                                                     <h6 ngClass="blue-heading">{{documentType[0].documentName}}</h6>
                                                     <div ngClass="upload-files-design">
                                                         <div ngClass="greybordered-btn">
-                                                            <input type="file" hidden #fileInput
+                                                            <input type="file" hidden #fileInput class="title-deed-image"
                                                                 accept=".doc, .pdf, .jpg, .jpeg, .png"
                                                                 (change)='handleChange($any($event.target).files, 10)'>
                                                             <button mat-button (click)="fileInput.click()"><img
@@ -52,8 +52,7 @@
                                                         <div ngClass="uploded-output">
                                                             <span ngClass="outpup-filename">{{ file }}</span>
                                                             <div ngClass="action-btns">
-                                                                <button ngClass="trash"><img src="{{trash}}"></button>
-                                                                <button ngClass="edit"><img src="{{edit}}"></button>
+                                                                <button ngClass="trash" (click)="deleteImage(10)"><img src="{{trash}}"></button>
                                                             </div>
                                                             <p ngClass="drag-drop-text">Drag & drop file here or Browse
                                                             </p>
@@ -73,6 +72,7 @@
                                                     <div ngClass="upload-files-design">
                                                         <div ngClass="greybordered-btn">
                                                             <input type="file" hidden #affectioninput
+                                                            class="affection-image"
                                                                 accept=".doc, .pdf, .jpg, .jpeg, .png"
                                                                 (change)='affection($any($event.target).files, 11)'>
                                                             <button mat-button (click)="affectioninput.click()"><img
@@ -81,8 +81,7 @@
                                                         <div ngClass="uploded-output">
                                                             <span ngClass="outpup-filename">{{ affecton }}</span>
                                                             <div ngClass="action-btns">
-                                                                <button ngClass="trash"><img src="{{trash}}"></button>
-                                                                <button ngClass="edit"><img src="{{edit}}"></button>
+                                                                <button ngClass="trash" (click)="deleteImage(11)"><img src="{{trash}}"></button>
                                                             </div>
                                                             <p ngClass="drag-drop-text">Drag & drop file here or Browse
                                                             </p>
@@ -102,6 +101,7 @@
                                                     <div ngClass="upload-files-design">
                                                         <div ngClass="greybordered-btn">
                                                             <input type="file" hidden #propertyInput
+                                                                class="front-view-image"
                                                                 accept=".doc, .pdf, .jpg, .jpeg, .png"
                                                                 (change)='property($any($event.target).files, 12)'>
                                                             <button mat-button (click)="propertyInput.click()"><img
@@ -110,8 +110,7 @@
                                                         <div ngClass="uploded-output">
                                                             <span ngClass="outpup-filename">{{ propertys }}</span>
                                                             <div ngClass="action-btns">
-                                                                <button ngClass="trash"><img src="{{trash}}"></button>
-                                                                <button ngClass="edit"><img src="{{edit}}"></button>
+                                                                <button ngClass="trash" (click)="deleteImage(12)"><img src="{{trash}}"></button>
                                                             </div>
                                                             <p ngClass="drag-drop-text">Drag & drop file here or Browse
                                                             </p>
@@ -134,6 +133,7 @@
                                                 <div ngClass="upload-files-design">
                                                     <div ngClass="greybordered-btn">
                                                         <input type="file" hidden #emirateInput0
+                                                            class="emirateInput0"
                                                             accept=".doc, .pdf, .jpg, .jpeg, .png"
                                                             (change)='emiratesfun($any($event.target).files, 0, documentType[3].id)'>
                                                         <button mat-button (click)="emirateInput0.click()"><span
@@ -149,6 +149,7 @@
                                                 <div ngClass="upload-files-design">
                                                     <div ngClass="greybordered-btn">
                                                         <input type="file" hidden #emirateInput1
+                                                            class="emirateInput1"
                                                             accept=".doc, .pdf, .jpg, .jpeg, .png"
                                                             (change)='emiratesfun($any($event.target).files, 1, documentType[4].id)'>
                                                         <button mat-button (click)="emirateInput1.click()"><span
@@ -164,6 +165,7 @@
                                                 <div ngClass="upload-files-design">
                                                     <div ngClass="greybordered-btn">
                                                         <input type="file" hidden #emirateInput2
+                                                            class="emirateInput2"
                                                             accept=".doc, .pdf, .jpg, .jpeg, .png"
                                                             (change)='emiratesfun($any($event.target).files, 2, documentType[5].id)'>
                                                         <button mat-button (click)="emirateInput2.click()"><span
@@ -179,6 +181,7 @@
                                                 <div ngClass="upload-files-design">
                                                     <div ngClass="greybordered-btn">
                                                         <input type="file" hidden #emirateInput3
+                                                            class="emirateInput3"
                                                             accept=".doc, .pdf, .jpg, .jpeg, .png"
                                                             (change)='emiratesfun($any($event.target).files, 3, documentType[6].id)'>
                                                         <button mat-button (click)="emirateInput3.click()"><span
@@ -194,6 +197,7 @@
                                                 <div ngClass="upload-files-design">
                                                     <div ngClass="greybordered-btn">
                                                         <input type="file" hidden #emirateInput4
+                                                            class="emirateInput4"
                                                             accept=".doc, .pdf, .jpg, .jpeg, .png"
                                                             (change)='emiratesfun($any($event.target).files, 4, documentType[7].id)'>
                                                         <button mat-button (click)="emirateInput4.click()"><span
@@ -209,6 +213,7 @@
                                                 <div ngClass="upload-files-design">
                                                     <div ngClass="greybordered-btn">
                                                         <input type="file" hidden #emirateInput5
+                                                            class="emirateInput5"
                                                             accept=".doc, .pdf, .jpg, .jpeg, .png"
                                                             (change)='emiratesfun($any($event.target).files, 5, documentType[8].id)'>
                                                         <button mat-button (click)="emirateInput5.click()"><span
@@ -224,6 +229,7 @@
                                                 <div ngClass="upload-files-design">
                                                     <div ngClass="greybordered-btn">
                                                         <input type="file" hidden #emirateInput6
+                                                            class="emirateInput6"
                                                             accept=".doc, .pdf, .jpg, .jpeg, .png"
                                                             (change)='emiratesfun($any($event.target).files, 6, documentType[9].id)'>
                                                         <button mat-button (click)="emirateInput6.click()"><span
@@ -264,7 +270,7 @@
                                                     <h6>Action</h6>
                                                     <div ngClass="action-text-btns">
                                                         <a (click)="viewImage(item.imgsrc)" class="view-image-btn">View</a>
-                                                        <a class="view-image-btn">Delete</a>
+                                                        <a (click)="deleteImage(item.index)" class="view-image-btn">Delete</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -516,7 +522,7 @@
                                                 <div ngClass="doc-text-actions">
                                                     <h6>Action</h6>
                                                     <div ngClass="action-text-btns no-sperator">
-                                                        <a routerLink="{{item.viewLink}}">View</a>
+                                                        <a (click)="viewImage(item.imgsrc)" class="view-image-btn">View</a>
                                                     </div>
                                                 </div>
                                             </div>
