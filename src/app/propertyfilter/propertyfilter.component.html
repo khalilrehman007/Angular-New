@@ -145,14 +145,9 @@
     <div ngClass="block-item five-block">
       <div ngClass="block-wrapper mb-4">
         <mat-form-field appearance="fill" class="select-design">
-          <mat-label>Posted by</mat-label>
+          <mat-label >Posted by</mat-label>
           <mat-select (selectionChange)="postedBy($event)">
-            <mat-option value="Dealer">
-              Dealer
-            </mat-option>
-            <mat-option value="Owner">
-              Owner
-            </mat-option>
+            <mat-option value="Dealer" *ngFor="let data of postedByOption">{{data.name}}</mat-option>
           </mat-select>
         </mat-form-field>
       </div>

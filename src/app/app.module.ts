@@ -14,7 +14,6 @@ import {FormsModule} from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {NgbNavModule} from '@ng-bootstrap/ng-bootstrap';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { TextMaskModule } from 'angular2-text-mask';
 // import { HashLocationStrategy, LocationStrategy  } from '@angular/common';
 import { SellrentpropertyComponent } from './pages/sellrentproperty/sellrentproperty.component';
 import { MatSliderModule } from '@angular/material/slider';
@@ -112,6 +111,7 @@ import { MarketTrendsBlogComponent } from './pages/blog-category/market-trends-b
 import { LoaderComponent } from './loader/loader.component';
 import { SuccessAlertComponent } from './success-alert/success-alert.component';
 import { ErroralertComponent } from './erroralert/erroralert.component';
+import { PaymentPackagesComponent } from './pages/payment-packages/payment-packages.component';
 
 
 @NgModule({
@@ -190,7 +190,8 @@ import { ErroralertComponent } from './erroralert/erroralert.component';
     MarketTrendsBlogComponent,
     LoaderComponent,
     SuccessAlertComponent,
-    ErroralertComponent
+    ErroralertComponent,
+    PaymentPackagesComponent
   ],
   imports: [
     BrowserModule,
@@ -225,7 +226,6 @@ import { ErroralertComponent } from './erroralert/erroralert.component';
     MatChipsModule,
     MatAutocompleteModule,
     NgChartsModule,
-    TextMaskModule,
     NgxPaginationModule,
     ToastrModule.forRoot({
       timeOut: 2000,

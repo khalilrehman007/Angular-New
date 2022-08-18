@@ -31,11 +31,12 @@ export class PropertyTypesComponent implements OnInit {
   formDetailData: any = {};
   totalExpenseWrapper: boolean = false;
   showLoader: boolean = false;
-  mask = ["A","A+9","A+99","A+A+9", "A+A+99"];
+  mask = ["A", "A+9", "A+99", "A+A+9", "A+A+99"];
   unitHMTL: any = [];
   error: any = ""
-  showError:boolean = false;
-  errorResponse(data:any){
+  showError: boolean = false;
+  oldLength: number = 0;
+  errorResponse(data: any) {
     this.showError = false;
   }
 
@@ -203,83 +204,126 @@ export class PropertyTypesComponent implements OnInit {
       }
     }
   }
-  getValue()  {
-    let age:any = this.propertyTypeForm.value.constructionAge;
-    if(age > 40) {
+  getValue() {
+    let age: any = this.propertyTypeForm.value.constructionAge;
+    if (age > 40) {
       this.error = "The construction age can't be greater than 40 years.";
       this.propertyTypeForm.patchValue({
-        constructionAge:"40"
+        constructionAge: "40"
       })
       this.showError = true;
     }
     console.log();
   }
+  getKey(e: any) {
+    let temp: any = this.propertyTypeForm.value.elevation;
+    if (temp.toString().length == 0) {
+      if (e.key >= 0 && e.key <= 9) {
+        this.propertyTypeForm.patchValue({
+          elevation: ""
+        })
+      } else {
+        this.propertyTypeForm.patchValue({
+          elevation: e.key.toString().toUpperCase() + "+"
+        })
+      }
+    } else if (temp.toString().length == 2) {
+      this.propertyTypeForm.patchValue({
+        elevation: temp + e.key.toString().toUpperCase() + "+"
+      })
+    } else {
+      if (e.key >= 0 && e.key <= 9 && temp.toString().length < 6) {
+        this.propertyTypeForm.patchValue({
+          elevation: temp + e.key.toString()
+        })
+      }
+    }
+  }
+  getElevation(type: boolean) {
+    let temp: any = this.propertyTypeForm.value.elevation;
+    if (temp.toString().length >= this.oldLength) {
+      this.propertyTypeForm.patchValue({
+        elevation: temp.toString().slice(0, -1)
+      })
+      temp = this.propertyTypeForm.value.elevation;
+      this.oldLength = temp.toString().length;
+    } else if (temp.toString().length == 1 || temp.toString().length == 3) {
+      this.propertyTypeForm.patchValue({
+        elevation: temp.toString().slice(0, -1)
+      })
+      temp = this.propertyTypeForm.value.elevation;
+      this.oldLength = temp.toString().length;
+    } else {
+      temp = this.propertyTypeForm.value.elevation;
+      this.oldLength = temp.toString().length;
+    }
+  }
   getData() {
-    if(!this.formData.PropertyCategoryId) {
+    if (!this.formData.PropertyCategoryId) {
       this.error = "Please Select Property Category";
       this.showError = true;
       return;
-    } else if(!this.formData.PropertyTypeId) {
+    } else if (!this.formData.PropertyTypeId) {
       this.error = "Please Select Property Type";
       this.showError = true;
       return;
-    } else if(!this.formData.ValuationPurposeId) {
+    } else if (!this.formData.ValuationPurposeId) {
       this.error = "Please Select Valuation Purpose";
       this.showError = true;
       return;
-    } else if(!this.formData.PropertyStatusId) {
+    } else if (!this.formData.PropertyStatusId) {
       this.error = "Please Select Property Status";
       this.showError = true;
       return;
-    } else if(this.propertyTypeForm.value.apartmentNo == "") {
+    } else if (this.propertyTypeForm.value.apartmentNo == "") {
       this.error = "Please Enter Apartment No";
       this.showError = true;
       return;
-    } else if(this.roadCount == 0) {
+    } else if (this.roadCount == 0) {
       this.error = "Please Select Number of Road";
       this.showError = true;
       return;
-    } else if(this.propertyTypeForm.value.constructionAge == "") {
+    } else if (this.propertyTypeForm.value.constructionAge == "") {
       this.error = "Please Enter Constrution Age";
       this.showError = true;
       return;
-    } else if(this.propertyData.hasElevation && this.propertyTypeForm.value.elevation == "") {
+    } else if (this.propertyData.hasElevation && this.propertyTypeForm.value.elevation == "") {
       this.error = "Please Enter Elevation";
       this.showError = true;
       return;
-    } else if(this.propertyTypeForm.value.apartmentSize == "") {
+    } else if (this.propertyTypeForm.value.apartmentSize == "") {
       this.error = "Please Enter Plot Size";
       this.showError = true;
       return;
-    } else if(this.propertyTypeForm.value.buildupArea == "" && this.formData.FurnishingType) {
+    } else if (this.propertyTypeForm.value.buildupArea == "" && this.formData.FurnishingType) {
       this.error = "Please Enter Buildup Area";
       this.showError = true;
       return;
-    } else if(!this.formData.Bedrooms) {
+    } else if (!this.formData.Bedrooms) {
       this.error = "Please Select Bedrooms";
       this.showError = true;
       return;
-    } else if(!this.formData.Bathrooms) {
+    } else if (!this.formData.Bathrooms) {
       this.error = "Please Select Bathrooms";
       this.showError = true;
       return;
-    } else if(this.propertyData.hasFurnishing && !this.formData.FurnishingType) {
+    } else if (this.propertyData.hasFurnishing && !this.formData.FurnishingType) {
       this.error = "Please Select Furnishing Type";
       this.showError = true;
       return;
-    } else if(this.propertyData.hasFitting && !this.formData.FittingType) {
+    } else if (this.propertyData.hasFitting && !this.formData.FittingType) {
       this.error = "Please Select Fitting Type";
       this.showError = true;
       return;
-    } else if(this.propertyData.hasPropertyFeature && this.featuresFormData.length == 0) {
+    } else if (this.propertyData.hasPropertyFeature && this.featuresFormData.length == 0) {
       this.error = "Please Select Property Features";
       this.showError = true;
       return;
-    } else if(this.formData.PropertyStatusId == 2 && this.propertyTypeForm.value.income  == "") {
+    } else if (this.formData.PropertyStatusId == 2 && this.propertyTypeForm.value.income == "") {
       this.error = "Please Enter Total Income";
       this.showError = true;
       return;
-    } else if(this.formData.PropertyStatusId == 2 && this.propertyTypeForm.value.expense  == "") {
+    } else if (this.formData.PropertyStatusId == 2 && this.propertyTypeForm.value.expense == "") {
       this.error = "Please Enter Total Expense";
       this.showError = true;
       return;

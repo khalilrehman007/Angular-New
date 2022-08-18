@@ -93,7 +93,7 @@ export class PropertyDocumentsComponent implements OnInit {
         }
       }
       if (found == -1) {
-        this.uploadedDocuments.push({ index: index, documentName: "Other Documents", fileName: files[0].name, imgsrc: reader.result });
+        this.uploadedDocuments.push({ index: index, documentName: "Title Deed", fileName: files[0].name, imgsrc: reader.result });
       } else {
         this.uploadedDocuments[found].fileName = files[0].name;
         this.uploadedDocuments[found].imgsrc = reader.result;
@@ -116,7 +116,7 @@ export class PropertyDocumentsComponent implements OnInit {
         }
       }
       if (found == -1) {
-        this.uploadedDocuments.push({ index: index, documentName: "Other Documents", fileName: files[0].name, imgsrc: reader.result });
+        this.uploadedDocuments.push({ index: index, documentName: "Affection Plan", fileName: files[0].name, imgsrc: reader.result });
       } else {
         this.uploadedDocuments[found].fileName = files[0].name;
         this.uploadedDocuments[found].imgsrc = reader.result;
@@ -139,7 +139,7 @@ export class PropertyDocumentsComponent implements OnInit {
         }
       }
       if (found == -1) {
-        this.uploadedDocuments.push({ index: index, documentName: "Other Documents", fileName: files[0].name, imgsrc: reader.result });
+        this.uploadedDocuments.push({ index: index, documentName: "Picture: Front View", fileName: files[0].name, imgsrc: reader.result });
       } else {
         this.uploadedDocuments[found].fileName = files[0].name;
         this.uploadedDocuments[found].imgsrc = reader.result;
