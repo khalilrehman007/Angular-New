@@ -549,14 +549,14 @@
                                 <div ngClass="pro-details-sec mb-4">
                                     <div ngClass="row">
                                         <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12"
-                                            *ngFor="let item of certificateData.packageTypes; let i = index">
+                                            *ngFor="let item of data; let i = index">
                                             <div ngClass="prperty_certificate-reports-div">
                                                 <div ngClass="reports_header">
                                                     <div ngClass="reports_img-icon">
                                                         <img src="{{reportimg}}">
                                                     </div>
                                                     <div ngClass="reports_title-list">
-                                                        <h5>{{item.name}}</h5>
+                                                        <h5>{{certificateData.packageTypes[i].name}}</h5>
                                                         <p *ngIf="i == 0">
                                                             <span
                                                                 ngClass="discounted-price">{{valuationPrices.summeryCertificateSellingPrice}}AED</span>
@@ -579,14 +579,12 @@
                                                 </div>
                                                 <div ngClass="reports_cntnt-list">
                                                     <div ngClass="reports_cntnt-list-inner"
-                                                        *ngFor="let item2 of certificateData.packageCategories">
+                                                        *ngFor="let item2 of certificateData.packageCategories; let j = index ">
                                                         <h4>{{item2.name}}</h4>
-                                                        <ul *ngIf="selectData(item2.id, i)">
-                                                            <li
-                                                                *ngFor="let item3 of selectedData.packageTopic">
-                                                                {{item3.name}}</li>
+                                                        <ul *ngFor="let item3 of data[i][j]">
+                                                            <li *ngIf="item3.selected == true">{{item3.packageTopic.name}}</li>
+                                                            <li *ngIf="item3.selected == false">-</li>
                                                         </ul>
-                                                        <p *ngIf="!selectData(item2.id, i)">-</p>
                                                     </div>
                                                 </div>
                                                 <button class="summary_certificate-btn"
