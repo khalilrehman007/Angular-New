@@ -213,6 +213,8 @@ export class PropertyDocumentsComponent implements OnInit {
   status7: boolean = false;
   status8: boolean = false;
   status9: boolean = false;
+  data:any = [];
+  selectedData:any = [];
 
   dataURLtoFile(dataurl: any, filename: any) {
     var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
@@ -222,35 +224,97 @@ export class PropertyDocumentsComponent implements OnInit {
     }
     return new File([u8arr], filename, { type: mime });
   }
-  Nextshow() {
-    if (this.documentcount >= 3) {
-      this.documentData = [];
-      let dataUrl: any = localStorage.getItem("mapImg");
-      this.mapImage = this.dataURLtoFile(dataUrl, "map.jpg");
-      this.documentData.push({ "FileId": "1", "DocumentTypeId": this.documentType[this.documentType.length - 1].id, "FileName": "map.jpg", "Extension": "jpg", "IsScreenshot": "true" });
-      let extension: any = this.titleDeedImage.name.split(".");
-      extension = extension[extension.length - 1];
-      this.documentData.push({ "FileId": "2", "DocumentTypeId": 1, "FileName": this.titleDeedImage.name, "Extension": extension, "IsScreenshot": "false" });
-      extension = this.affectionImage.name.split(".");
-      extension = extension[extension.length - 1];
-      this.documentData.push({ "FileId": "3", "DocumentTypeId": 2, "FileName": this.affectionImage.name, "Extension": extension, "IsScreenshot": "false" });
-      extension = this.propertyImage.name.split(".");
-      extension = extension[extension.length - 1];
-      this.documentData.push({ "FileId": "4", "DocumentTypeId": 3, "FileName": this.propertyImage.name, "Extension": extension, "IsScreenshot": "false" });
-      for (let i = 0; i < this.otherImages.length; i++) {
-        extension = this.otherImages[i].file.name.split(".");
-        extension = extension[extension.length - 1];
-        this.documentData.push({ "FileId": i + 5, "DocumentTypeId": this.otherImages[i].id, "FileName": this.otherImages[i].file.name, "Extension": extension, "IsScreenshot": "false" });
-      }
-      this.formData.Documents = this.documentData;
-
-      this.status = !this.status;
-      this.status5 = !this.status5;
-      this.status1 = !this.status1;
+  selectData(e:any, index:any) {
+    let temp:any = this.data[index].filter((item: any) => item.id == e);
+    if(temp.length > 0) {
+      this.selectedData = temp[0];
+      return true;
     } else {
-      this.error = "Please Upload the required Documents.";
-      this.showError = true;
+      return false;
     }
+  }
+  checkPackage() {
+    this.service.PropertyPackageType().subscribe((result: any) => {
+      this.certificateData = result.data;
+      console.log(this.certificateData);
+      let temp:any = [];
+      let a:any = [];
+      let found:boolean = false;
+      for (let i = 0; i < this.certificateData.packageTypes[0].packageContent.length; i++) {
+        if(this.certificateData.packageTypes[0].packageContent[i].selected == true) {
+          a = this.certificateData.packageCategories.filter((e: any) => e.id == this.certificateData.packageTypes[0].packageContent[i].packageCategoryId);
+          found = false;
+          if(temp.length == 0) {
+            temp.push(a[0]);
+          } else {
+            for(let j = 0; j < temp.length ; j++) {
+              if(temp[j].id == a[0].id) {
+                found = true;
+              }
+            }
+            if(!found) {
+              temp.push(a[0]);
+            }
+          }
+        }
+      }
+      this.data.push(temp);
+      temp = [];
+      for (let i = 0; i < this.certificateData.packageTypes[1].packageContent.length; i++) {
+        if(this.certificateData.packageTypes[1].packageContent[i].selected == true) {
+          a = this.certificateData.packageCategories.filter((e: any) => e.id == this.certificateData.packageTypes[1].packageContent[i].packageCategoryId);
+          found = false;
+          if(temp.length == 0) {
+            temp.push(a[0]);
+          } else {
+            for(let j = 0; j < temp.length ; j++) {
+              if(temp[j].id == a[0].id) {
+                found = true;
+              }
+            }
+            if(!found) {
+              temp.push(a[0]);
+            }
+          }
+        }
+      }
+      this.data.push(temp);
+      console.log(this.data);
+    });
+  }
+  Nextshow() {
+
+    this.status = !this.status;
+    this.status5 = !this.status5;
+    this.status1 = !this.status1;
+    // if (this.documentcount >= 3) {
+    //   this.documentData = [];
+    //   let dataUrl: any = localStorage.getItem("mapImg");
+    //   this.mapImage = this.dataURLtoFile(dataUrl, "map.jpg");
+    //   this.documentData.push({ "FileId": "1", "DocumentTypeId": this.documentType[this.documentType.length - 1].id, "FileName": "map.jpg", "Extension": "jpg", "IsScreenshot": "true" });
+    //   let extension: any = this.titleDeedImage.name.split(".");
+    //   extension = extension[extension.length - 1];
+    //   this.documentData.push({ "FileId": "2", "DocumentTypeId": 1, "FileName": this.titleDeedImage.name, "Extension": extension, "IsScreenshot": "false" });
+    //   extension = this.affectionImage.name.split(".");
+    //   extension = extension[extension.length - 1];
+    //   this.documentData.push({ "FileId": "3", "DocumentTypeId": 2, "FileName": this.affectionImage.name, "Extension": extension, "IsScreenshot": "false" });
+    //   extension = this.propertyImage.name.split(".");
+    //   extension = extension[extension.length - 1];
+    //   this.documentData.push({ "FileId": "4", "DocumentTypeId": 3, "FileName": this.propertyImage.name, "Extension": extension, "IsScreenshot": "false" });
+    //   for (let i = 0; i < this.otherImages.length; i++) {
+    //     extension = this.otherImages[i].file.name.split(".");
+    //     extension = extension[extension.length - 1];
+    //     this.documentData.push({ "FileId": i + 5, "DocumentTypeId": this.otherImages[i].id, "FileName": this.otherImages[i].file.name, "Extension": extension, "IsScreenshot": "false" });
+    //   }
+    //   this.formData.Documents = this.documentData;
+
+    //   this.status = !this.status;
+    //   this.status5 = !this.status5;
+    //   this.status1 = !this.status1;
+    // } else {
+    //   this.error = "Please Upload the required Documents.";
+    //   this.showError = true;
+    // }
   }
   Prevshow() {
     this.status1 = false;
@@ -263,9 +327,7 @@ export class PropertyDocumentsComponent implements OnInit {
     this.service.ValuationPrices(temp.PropertyTypeId).subscribe((result: any) => {
       this.valuationPrices = result.data;
     })
-    this.service.PropertyPackageType().subscribe((result: any) => {
-      this.certificateData = result.data;
-    });
+    this.checkPackage();
     this.status2 = !this.status2;
     this.status6 = !this.status6;
     this.status1 = !this.status1;
