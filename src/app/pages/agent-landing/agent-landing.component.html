@@ -180,22 +180,22 @@
                                 <td class="agent-landing-list__table-data">
                                     <div class="agent-landing-featured__agent-wrapper">
                                         <div class="agent-landing-featured__agent-img-outer-wrapper">
-                                            <div class="agent-landing-featured__agent-img-inner-wrapper">
+                                            <div class="agent-landing-featured__agent-img-inner-wrapper" *ngIf="data.user && data.user.imageUrl">
                                                 <img src="https://beta.ovaluate.com/{{data.user.imageUrl}}" alt="" class="img-fluid agent-landing-featured__agent-img">
                                             </div>
                                         </div>
                                         <div class="agent-landing-featured__agent-text-wrapper">
-                                            <h6 class="agent-landing-featured__property-heading">{{data.user.fullName}}</h6>
+                                            <h6 class="agent-landing-featured__property-heading" *ngIf="data.user && data.user.fullName">{{data.user.fullName}}</h6>
                                             <p class="agent-landing-featured__property-text" *ngIf="data.company && data.company.companyName">{{data.company.companyName}}</p>
-                                            <p class="agent-landing-featured__property-link m-0">{{data.user.phoneNumber}}</p>
+                                            <p class="agent-landing-featured__property-link m-0" *ngIf="data.user && data.user.phoneNumber">{{data.user.phoneNumber}}</p>
                                             <p class="agent-landing-featured__property-text mb-3" *ngIf="data.user && data.user.cityId">{{data.user.cityId}},{{data.user.countryId}}</p>
-                                            <p class="agent-landing-featured__property-text">Languages: {{data.agentLanguages}}</p>
+                                            <p class="agent-landing-featured__property-text" *ngIf="data.user && data.user.agentLanguages">Languages: {{data.agentLanguages}}</p>
                                         </div>
                                     </div>
                                 </td>
                                 <td class="agent-landing-list__table-data">
                                     <h6 class="agent-landing-featured__property-heading" *ngIf="data.company && data.company.companyName">{{data.company.companyName}}</h6>
-                                    <p class="agent-landing-featured__property-text">{{data.user.phoneNumber}}</p>
+                                    <p class="agent-landing-featured__property-text" *ngIf="data.user && data.user.phoneNumber">{{data.user.phoneNumber}}</p>
                                 </td>
                                 <td class="agent-landing-list__table-data">
                                     <div class="agent-landing-list__specialities">
