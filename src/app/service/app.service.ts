@@ -296,6 +296,9 @@ export class AppService {
   BestAgent(id: any) {
     return this.http.get(this.apiurl + 'BestAgent?countryId=' + id);
   }
+  BestCompanies(id: any) {
+    return this.http.get(this.apiurl + 'BestCompanies?countryId=' + id);
+  }
   ExploreDistrict(id: any) {
     return this.http.get(this.apiurl + 'ExploreDistrict/' + id);
   }

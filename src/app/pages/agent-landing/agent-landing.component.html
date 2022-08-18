@@ -129,29 +129,34 @@
             </div>
         </div>
         <div class="row {{!companies ? 'd-none' : ''}}">
-            <div class="col-lg-4" *ngFor="let item of featuredCompaniesData.list">
+            <div class="col-lg-4" *ngFor="let item of bestCompanies">
                 <div class="agent-landing-featured__property">
-                    <div class="agent-landing-featured__property-wrapper">
-                        <img src={{item.tag}} alt="" class="agent-landing-featured__property-tag">
+                    <div class="agent-landing-featured__property-wrapper" routerLink="/company-details/1"> >
+                        <img src="assets/images/tag/featured.png" alt="" class="agent-landing-featured__property-tag">
                         <div class="row">
                             <div class="col-5 d-flex align-items-center">
-                                <img src={{item.img}} alt="" class="img-fluid agent-landing-featured__property-img">
+                                <img src="assets/images/brand/betterhomes.png" alt="" class="img-fluid agent-landing-featured__property-img">
                             </div>
                             <div class="col-7">
-                                <h6 class="agent-landing-featured__property-heading" routerLink="/company-details/1">
-                                    {{item.heading}}</h6>
-                                <p class="agent-landing-featured__property-text">{{item.text}}</p>
-                                <a class="agent-landing-featured__property-link"
-                                    routerLink={{item.link.url}}>{{item.link.text}}</a>
-                                <p class="agent-landing-featured__property-text">{{item.rera}}</p>
-                                <p class="agent-landing-featured__property-text">{{item.permit}}</p>
+                                <h6 class="agent-landing-featured__property-heading" *ngIf="item.company && item.company.companyName" >{{item.company.companyName}}</h6>
+                                <p class="agent-landing-featured__property-text" *ngIf="item.company && item.company.companyAdress">{{item.company.companyAdress}}</p>
+                                <p class="agent-landing-featured__property-text" *ngIf="item.company && item.company.reraNo">RERA# {{item.company.reraNo}}</p>
+                                <p class="agent-landing-featured__property-text" *ngIf="item.company && item.company.permitNo">Permit# {{item.company.permitNo}}</p>
+                                <p class="agent-landing-featured__property-text" *ngIf="item.company && item.company.ornNo">ORN# {{item.company.ornNo}}</p>
                             </div>
                         </div>
                         <ul class="agent-landing-featured__property-details-list">
-                            <li class="agent-landing-featured__property-details-list-item"
-                                *ngFor="let detail of item.details">
+                            <li class="agent-landing-featured__property-details-list-item">
                                 <p class="agent-landing-featured__property-details-list-text">
-                                    {{detail.count}}<br>{{detail.name}}</p>
+                                    {{item.statistics.salePropertyListingCount}}<br>Sale</p>
+                            </li>
+                            <li class="agent-landing-featured__property-details-list-item">
+                                <p class="agent-landing-featured__property-details-list-text">
+                                    {{item.statistics.rentPropertyListingCount}}<br>Rents</p>
+                            </li>
+                            <li class="agent-landing-featured__property-details-list-item">
+                                <p class="agent-landing-featured__property-details-list-text">
+                                    {{item.statistics.commercialPropertyListingCount}}<br>Commercial</p>
                             </li>
                         </ul>
                     </div>
