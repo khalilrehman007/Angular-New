@@ -263,8 +263,8 @@
                                                 <div ngClass="doc-text-actions">
                                                     <h6>Action</h6>
                                                     <div ngClass="action-text-btns">
-                                                        <a routerLink="{{item.viewLink}}">View</a>
-                                                        <a routerLink="{{item.deleteLink}}">Delete</a>
+                                                        <a (click)="viewImage(item.imgsrc)" class="view-image-btn">View</a>
+                                                        <a class="view-image-btn">Delete</a>
                                                     </div>
                                                 </div>
                                             </div>

@@ -362,6 +362,10 @@ export class PropertyDocumentsComponent implements OnInit {
   onKeypressEvent(e: any) {
     this.checkLength(3, false)
   }
+  viewImage(e:any) {
+    let w:any = window.open("");
+    w.document.write("<div style='width:100vw; height:100vh; margin:-8px; display:flex; justify-content:center; align-items:center;background-color:#000;'><img style='width:100%; max-width:1200px;' src='" + e + "'></div>");
+  }
   checkLength(e: any, type: boolean) {
     if (e == 1) {
       let temp: any = this.paymentForm.value.cardNumber;
