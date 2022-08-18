@@ -189,7 +189,7 @@
                                             <p class="agent-landing-featured__property-text" *ngIf="data.company && data.company.companyName">{{data.company.companyName}}</p>
                                             <p class="agent-landing-featured__property-link m-0">{{data.user.phoneNumber}}</p>
                                             <p class="agent-landing-featured__property-text mb-3" *ngIf="data.user && data.user.cityId">{{data.user.cityId}},{{data.user.countryId}}</p>
-                                            <!-- <p class="agent-landing-featured__property-text">Languages: {{data.language}}</p> -->
+                                            <p class="agent-landing-featured__property-text">Languages: {{data.agentLanguages}}</p>
                                         </div>
                                     </div>
                                 </td>
@@ -204,10 +204,10 @@
                                         </ul>
                                     </div>
                                 </td>
-                                <!-- <td class="agent-landing-list__table-data">
-                                    <a class="agent-landing-list__table-btn" routerLink="/agent-details/1">
-                                        <img src={{data.btn.img}} alt="">{{data.btn.text}}</a>
-                                </td> -->
+                                <td class="agent-landing-list__table-data">
+                                    <a class="agent-landing-list__table-btn" routerLink="/agent-details/{{data.user.id}}">
+                                        <img src="assets/images/icons/eye.svg" alt="" >"View Detail"</a>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
