@@ -23,7 +23,7 @@
                             </div>
                         </td>
                         <td *ngFor="let property of compareData">
-                            <div ngClass="property-comparison-block position-relative">
+                            <div  ngClass="property-comparison-block position-relative">
                                 <div ngClass="com-img">
                                     <img src="{{property.src}}">
                                 </div>
@@ -32,7 +32,7 @@
                                     <h5>{{property.title}}</h5>
                                     <address>{{property.propertyAddress}}</address>
                                 </div>
-                                <button ngClass="delete-property"><img src="{{trash}}"></button>
+                                <button ngClass="delete-property" (click)="delete(property.id)"><img src="{{trash}}"></button>
                             </div>
                         </td>
                     </tr>

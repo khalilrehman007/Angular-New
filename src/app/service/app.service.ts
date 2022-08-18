@@ -96,6 +96,9 @@ export class AppService {
   FurnishingTypes() {
     return this.http.get(this.apiurl + 'FurnishingTypes/');
   }
+  ProfessionalTypes() {
+    return this.http.get(this.apiurl + 'ProfessionalTypes/');
+  }
   VideoTour() {
     return this.http.get(this.apiurl + 'VideoTour/');
   }
