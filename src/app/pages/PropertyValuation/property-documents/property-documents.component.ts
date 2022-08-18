@@ -18,7 +18,7 @@ export class PropertyDocumentsComponent implements OnInit {
   checkmark = '../../../../assets/images/icons/checkmark-circle.svg'
   stripe = '../../../../assets/images/stripe.svg'
   reportimg = '../../../../assets/images/report-icon.png'
-  file: string;
+  file: string = "";
   affecton: string;
   propertys: string;
   emirate: any = [];
@@ -44,8 +44,8 @@ export class PropertyDocumentsComponent implements OnInit {
   publishText: any = "Publish";
   showLoader: boolean = false;
   error: any = ""
-  showError:boolean = false;
-  errorResponse(data:any){
+  showError: boolean = false;
+  errorResponse(data: any) {
     this.showError = false;
   }
 
@@ -77,6 +77,29 @@ export class PropertyDocumentsComponent implements OnInit {
   }
   get cardName() {
     return this.paymentForm.get("cardName");
+  }
+  deleteImage(index: any) {
+    this.uploadedDocuments = this.uploadedDocuments.filter((e: any) => e.index != index);
+    if (index == 10) {
+      this.titleDeedImage = "";
+      this.file = "";
+      this.documentcount--;
+      $(".title-deed-image").val("");
+    } else if (index == 11) {
+      this.affectionImage = "";
+      this.affecton = "";
+      this.documentcount--;
+      $(".affection-image").val("");
+    } else if (index == 12) {
+      this.propertyImage = "";
+      this.propertys = "";
+      this.documentcount--;
+      $(".front-view-image").val("");
+    } else {
+      this.otherImages = this.otherImages.filter((e: any) => e.index != index);
+      this.emirate[index] = "";
+      $(".emirateInput" + index).val("");
+    }
   }
   handleChange(files: FileList, index: number) {
     if (files && files.length) {
@@ -362,8 +385,8 @@ export class PropertyDocumentsComponent implements OnInit {
   onKeypressEvent(e: any) {
     this.checkLength(3, false)
   }
-  viewImage(e:any) {
-    let w:any = window.open("");
+  viewImage(e: any) {
+    let w: any = window.open("");
     w.document.write("<div style='width:100vw; height:100vh; margin:-8px; display:flex; justify-content:center; align-items:center;background-color:#000;'><img style='width:100%; max-width:1200px;' src='" + e + "'></div>");
   }
   checkLength(e: any, type: boolean) {
