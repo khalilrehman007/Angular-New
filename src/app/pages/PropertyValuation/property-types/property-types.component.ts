@@ -242,7 +242,6 @@ export class PropertyTypesComponent implements OnInit {
   getElevation(type: boolean) {
     let temp: any = this.propertyTypeForm.value.elevation;
     if (temp.toString().length >= this.oldLength) {
-      console.log("start");
       this.propertyTypeForm.patchValue({
         elevation: temp.toString().slice(0, -1)
       })
