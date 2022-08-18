@@ -155,7 +155,7 @@
                                             <label class="h6-design">Elevation <span ngClass="required-span">*</span></label>
                                             <mat-form-field class="full-width input-design-2" appearance="fill">
                                                 <!-- <input matInput type="text" placeholder="Enter plot elevation e.g. B+G+10" formControlName="elevation" [textMask]="{mask: mask}"> -->
-                                                <input matInput type="text" placeholder="Enter plot elevation e.g. B+G+10" formControlName="elevation">
+                                                <input matInput type="text" placeholder="Enter plot elevation e.g. B+G+10" formControlName="elevation" (keypress)="getKey($event)" (input)="getElevation(false)">
                                             </mat-form-field>
                                         </div>
                                     </div>
