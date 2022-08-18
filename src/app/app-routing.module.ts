@@ -66,7 +66,7 @@ import { ExploreBlogComponent } from './pages/blog-category/explore-blog/explore
 import { LifeAtHomeBlogComponent } from './pages/blog-category/life-at-home-blog/life-at-home-blog.component';
 import { LawBlogComponent } from './pages/blog-category/law-blog/law-blog.component';
 import { MarketTrendsBlogComponent } from './pages/blog-category/market-trends-blog/market-trends-blog.component';
-
+import { PaymentPackagesComponent } from './pages/payment-packages/payment-packages.component';
 
 // import {RoleGuardService} from "./role-guard-service.service";
 
@@ -136,6 +136,7 @@ const routes: Routes = [
   { path: "how-it-works", component: HowItWorksComponent },
   { path: "investors", component: InvestorsComponent },
   { path: "buy-properties", component: BuyPropertiesComponent },
+  { path: "payment", component: PaymentPackagesComponent },
   { path: '**', pathMatch: 'full', component: PagenotfoundComponent },
 ];
 
