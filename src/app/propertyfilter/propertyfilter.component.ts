@@ -84,7 +84,6 @@ export class PropertyfilterComponent implements OnInit {
     });
     this.api.ProfessionalTypes().subscribe((result: any) => {
       this.postedByOption = result.data;
-      console.log(this.postedByOption)
     });
 
     // this.route.routeReuseStrategy.shouldReuseRoute = () => false;

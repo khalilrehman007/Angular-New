@@ -20,6 +20,7 @@ export class AgentLandingComponent implements OnInit {
   page: number = 1;
   companies: boolean = false;
   agentDetails: any;
+  bestCompanies: any;
   companylisting: any;
   findAgent: any = [];
   separatorKeysCodes: number[] = [ENTER, COMMA];
@@ -47,6 +48,10 @@ export class AgentLandingComponent implements OnInit {
     this.service.BestAgent(1).subscribe((result: any) => {
       this.agentDetails = result.data;
     })
+    this.service.BestCompanies(1).subscribe((result: any) => {
+      this.bestCompanies = result.data;
+      console.log(this.bestCompanies)
+    })
     this.service.CompanyLocationAutoCompleteSearch({ "Searching": "mr", "CountryId": "1" }).subscribe((result: any) => {
       for (let i = 0; i < result.data.locationAutoComplete.length; i++) {
         this.searchList.push(result.data.locationAutoComplete[i].item2);
@@ -59,6 +64,9 @@ export class AgentLandingComponent implements OnInit {
       startWith(null),
       map((searchCompenies: string | null) => (searchCompenies ? this._filter(searchCompenies) : this.searchList.slice())),
     );
+    this.service.LoadCountries().subscribe((result:any)=>{
+      this.allCountries = result.data;
+    })
   }
   featuredAgentData: any;
   agentCheck: any = false;
@@ -800,7 +808,7 @@ export class AgentLandingComponent implements OnInit {
   agentListData(data: any) {
     this.service.FindAgents(data).subscribe((result: any) => {
       this.findAgent = result.data;
-      console.log("Find Agent", this.findAgent)
+      // console.log("Find Agent", this.findAgent)
     })
   }
 

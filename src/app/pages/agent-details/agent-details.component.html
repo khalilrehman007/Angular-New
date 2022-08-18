@@ -14,19 +14,19 @@
             <div class="col-lg-8">
                 <div class="agent-details__wrapper">
                     <div class="row">
-                        <div class="col-sm-12 col-md-4">
+                        <div class="col-sm-12 col-md-4" *ngIf="agentDetail.agentDetails && agentDetail.agentDetails.user.imageUrl">
                             <img src="https://beta.ovaluate.com/{{agentDetail.agentDetails.user.imageUrl}}" alt="" class="img-fluid agent-details__wrapper-img">
                         </div>
                         <div class="col-sm-12 col-md-8">
                             <div class="agent-details__wrapper-details">
-                                <h4 class="agent-details__wrapper-details-heading">{{agentDetail.agentDetails.user.fullName}}</h4>
-                                <p class="agent-details__wrapper-details-text">{{agentDetail.agentDetails.expertIn}}</p>
-                                <h6 class="agent-details__wrapper-details-desc">{{agentDetail.agentDetails.company.companyName}}</h6>
-                                <p class="agent-details__wrapper-details-phone">{{agentDetail.agentDetails.user.phoneNumber}}</p>
-                                <p class="agent-details__wrapper-details-text">{{agentDetail.agentDetails.company.companyAdress}}, UAE</p>
-                                <p class="agent-details__wrapper-details-text">{{agentDetail.agentDetails.brnNo}}</p>
-                                <p class="agent-details__wrapper-details-text">Language: </p>
-                                <p class="agent-details__wrapper-details-text">Area: {{agentDetail.agentDetails.agentAreas}}</p>
+                                <h4 class="agent-details__wrapper-details-heading" *ngIf="agentDetail.agentDetails.user && agentDetail.agentDetails.user.fullName">{{agentDetail.agentDetails.user.fullName}}</h4>
+                                <p class="agent-details__wrapper-details-text" *ngIf="agentDetail.agentDetails && agentDetail.agentDetails.expertIn">{{agentDetail.agentDetails.expertIn}}</p>
+                                <h6 class="agent-details__wrapper-details-desc" *ngIf="agentDetail.agentDetails.company && agentDetail.agentDetails.company.companyName">{{agentDetail.agentDetails.company.companyName}}</h6>
+                                <p class="agent-details__wrapper-details-phone" *ngIf="agentDetail.agentDetails.user && agentDetail.agentDetails.user.phoneNumber">{{agentDetail.agentDetails.user.phoneNumber}}</p>
+                                <p class="agent-details__wrapper-details-text" *ngIf="agentDetail.agentDetails.company && agentDetail.agentDetails.company.companyAdress">{{agentDetail.agentDetails.company.companyAdress}}, UAE</p>
+                                <p class="agent-details__wrapper-details-text" *ngIf="agentDetail.agentDetails && agentDetail.agentDetails.brnNo">{{agentDetail.agentDetails.brnNo}}</p>
+                                <p class="agent-details__wrapper-details-text" *ngIf="agentDetail.agentDetails && agentDetail.agentDetails.imageUrl">Language: {{agentDetail.agentLanguages}}</p>
+                                <p class="agent-details__wrapper-details-text" *ngIf="agentDetail.agentDetails && agentDetail.agentDetails.agentAreas">Area: {{agentDetail.agentDetails.agentAreas}}</p>
                                 <ul class="agent-details__wrapper-details-list">
                                     <li class="agent-details__wrapper-details-list-item">
                                         <p class="agent-details__wrapper-details-list-text">{{agentDetail.salePropertyListingCount}} <br> Sale</p>
@@ -90,7 +90,7 @@
                                             <div class="col-lg-10">
                                                 <div class="row">
                                                     <div class="col-7">
-                                                        <a class="agent-details__property-list-item-link">{{item.propertyPrice}} AED
+                                                        <a class="agent-details__property-list-item-link" >{{item.propertyPrice}} AED
                                                             <span>/yearly</span>
                                                         </a>
                                                     </div>

@@ -28,6 +28,10 @@ export class PropertyTypesComponent implements OnInit {
   fittingType: any;
   featuresFormData: any = [];
   roadCount: number = 0;
+  bedrooms:number = 0;
+  bathrooms:number = 0;
+  furnishing:number = 0;
+  fitting:number = 0;
   formDetailData: any = {};
   totalExpenseWrapper: boolean = false;
   showLoader: boolean = false;
@@ -36,6 +40,7 @@ export class PropertyTypesComponent implements OnInit {
   error: any = ""
   showError: boolean = false;
   oldLength: number = 0;
+  oldData: any = "";
   errorResponse(data: any) {
     this.showError = false;
   }
@@ -84,6 +89,7 @@ export class PropertyTypesComponent implements OnInit {
     return this.propertyTypeForm.get("expense");
   }
   constructor(private service: AppService, private router: Router) {
+    this.loadOldData();
     this.formData = (window.localStorage.getItem('valuationData'));
     this.formData = JSON.parse(this.formData);
     this.loadFurnishingType();
@@ -95,11 +101,45 @@ export class PropertyTypesComponent implements OnInit {
     this.formData.Bedrooms = 0;
     this.formData.Bathrooms = 0;
   }
-
   ngOnInit(): void {
     this.service.PropertyUnitTypes().subscribe((result: any) => {
       this.propertyUnits = result.data;
     })
+  }
+  loadOldData() {
+    if (localStorage.getItem("propertyTypeData")) {
+      this.oldData = localStorage.getItem("propertyTypeData");
+      this.formData = this.oldData = JSON.parse(this.oldData);
+      this.roadCount = this.oldData.NoOfRoads;
+      this.bedrooms = this.oldData.Bedrooms;
+      this.bathrooms = this.oldData.Bathrooms;
+      this.furnishing = this.oldData.FurnishingType;
+      this.fitting = this.oldData.FittingType;
+      for(let i = 0; i < this.oldData.PropertyFeatures.length; i++) {
+        this.featuresFormData.push(this.oldData.PropertyFeatures[i].PropertyFeatureId);
+      }
+      this.propertyTypeForm.patchValue({
+        apartmentNo: this.oldData.PlotNo,
+        constructionAge: this.oldData.ConstructionAge,
+        elevation: this.oldData.Elevation,
+        apartmentSize: this.oldData.PlotSize,
+        buildupArea: this.oldData.BuildupArea
+      })
+      this.service.LoadTypebyLatLng({ id: this.oldData.PropertyCategoryId, lat: parseFloat(this.oldData.PropertyLat), lng: parseFloat(this.oldData.PropertyLong) }).subscribe((result:any) => {
+        this.propertyType = result.data;
+        this.showLoader = false;
+        this.propertyData = this.propertyType.filter(item => item.id == this.oldData.PropertyTypeId)[0];
+        this.service.ValuationPurpose().subscribe((result) => {
+          this.purposeOfValuation = result;
+          this.purposeOfValuation = this.purposeOfValuation.data;
+        });
+        this.service.PropertyFeatures(this.propertyData.id).subscribe((result: any) => {
+          this.featuresData = result.data;
+          this.showLoader = false;
+        })
+        this.typeSelected = true;
+      })
+    }
   }
   status: boolean = false;
   addamenties() {
@@ -120,6 +160,14 @@ export class PropertyTypesComponent implements OnInit {
       this.propertyType = this.propertyType.data
       this.showLoader = false;
     })
+  }
+  checkOldData(id:number) {
+    for(let i = 0; i < this.oldData.PropertyFeatures.length; i++) {
+      if(id == this.oldData.PropertyFeatures[i].PropertyFeatureId) {
+        return true;
+      }
+    }
+    return false;
   }
   valuationPurpose(e: any) {
     this.showLoader = true;
@@ -170,19 +218,19 @@ export class PropertyTypesComponent implements OnInit {
   }
   getBeds(e: any) {
     this.formDetailData.Bedrooms = e.value;
-    this.formData.Bedrooms = e.value;
+    this.bedrooms = e.value;
   }
   getBathroom(e: any) {
     this.formDetailData.Bathrooms = e.value;
-    this.formData.Bathrooms = e.value;
+    this.bathrooms = e.value;
   }
   getFurnishingType(id: number, name: any) {
     this.formDetailData.Furnishing = name;
-    this.formData.FurnishingType = id;
+    this.furnishing = id;
   }
   getFittingType(id: number, name: any) {
     this.formDetailData.Fitting = name;
-    this.formData.FittingType = id;
+    this.fitting = id;
   }
   getFeaturesData(id: number) {
     if (this.featuresFormData.indexOf(id) == -1) {
@@ -213,7 +261,6 @@ export class PropertyTypesComponent implements OnInit {
       })
       this.showError = true;
     }
-    console.log();
   }
   getKey(e: any) {
     let temp: any = this.propertyTypeForm.value.elevation;
@@ -299,19 +346,19 @@ export class PropertyTypesComponent implements OnInit {
       this.error = "Please Enter Buildup Area";
       this.showError = true;
       return;
-    } else if (!this.formData.Bedrooms) {
+    } else if (this.bedrooms == 0 && this.propertyData.hasBed) {
       this.error = "Please Select Bedrooms";
       this.showError = true;
       return;
-    } else if (!this.formData.Bathrooms) {
+    } else if (this.bathrooms == 0 && this.propertyData.hasBath) {
       this.error = "Please Select Bathrooms";
       this.showError = true;
       return;
-    } else if (this.propertyData.hasFurnishing && !this.formData.FurnishingType) {
+    } else if (this.propertyData.hasFurnishing && this.furnishing == 0) {
       this.error = "Please Select Furnishing Type";
       this.showError = true;
       return;
-    } else if (this.propertyData.hasFitting && !this.formData.FittingType) {
+    } else if (this.propertyData.hasFitting && this.fitting == 0) {
       this.error = "Please Select Fitting Type";
       this.showError = true;
       return;
@@ -328,6 +375,10 @@ export class PropertyTypesComponent implements OnInit {
       this.showError = true;
       return;
     }
+    this.formData.Bedrooms = this.bedrooms;
+    this.formData.Bathrooms = this.bathrooms;
+    this.formData.FurnishingType = this.furnishing;
+    this.formData.FittingType = this.fitting;
     this.formDetailData.PlotNo = this.propertyTypeForm.value.apartmentNo;
     this.formDetailData.PlotNo = this.propertyTypeForm.value.elevation;
     if (this.propertyData.hasElevation) {
@@ -349,6 +400,13 @@ export class PropertyTypesComponent implements OnInit {
     this.formData.Elevation = this.propertyTypeForm.value.elevation;
     this.formData.NoOfRoads = this.roadCount;
     this.formData.ValuationPropertyUnits = "";
+    if(this.formData.PropertyStatusId == 2) {
+      this.formData.Income = this.propertyTypeForm.value.income;
+      this.formData.Expense = this.propertyTypeForm.value.expense;
+    } else {
+      this.formData.Income = this.propertyTypeForm.value.income;
+      this.formData.Expense = this.propertyTypeForm.value.expense;
+    }
     let temp: any = [];
     for (let i = 0; i < this.unitHMTL.length; i++) {
       if (this.unitHMTL[i].show) {
@@ -373,6 +431,7 @@ export class PropertyTypesComponent implements OnInit {
     this.formDetailData.PropertyFeatures = temp;
     this.formData.PropertyFeatures = temp;
     localStorage.setItem('valuationDetailData', JSON.stringify(this.formDetailData));
+    localStorage.setItem('propertyTypeData', JSON.stringify(this.formData));
     localStorage.setItem('valuationData', JSON.stringify(this.formData));
     this.router.navigate(['/PropertyDocument']);
   }
