@@ -370,19 +370,19 @@ export class PropertyInnerComponent implements OnInit {
       },
       {
         label: 'Price',
-        value:this.propertyDetailData.propertyPrice,
+        value:this.propertyDetailData.propertyPrice+' '+this.propertyDetailData.currency,
       },
       {
         label: 'Rent Type',
-        value:this.propertyDetailData.propertyPrice,
+        value:this.propertyDetailData.propertyPrice+' '+this.propertyDetailData.currency,
       },
       {
         label: 'Security Deposit',
-        value:this.propertyDetailData.securityDepositPrice,
+        value:this.propertyDetailData.securityDepositPrice+' '+this.propertyDetailData.currency,
       },
       {
         label: 'Brokerage Deposit',
-        value:this.propertyDetailData.brokerageChargePrice,
+        value:this.propertyDetailData.brokerageChargePrice+' '+this.propertyDetailData.currency,
       },
       {
         label: 'Available From',
