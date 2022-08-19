@@ -7,6 +7,7 @@ import { NotificationService } from "../../service/notification.service";
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { AppService } from 'src/app/service/app.service';
+import {AuthService} from "../../service/auth.service";
 
 @Component({
   selector: 'profile-dashboard',
@@ -120,7 +121,7 @@ export class DashboardComponent implements OnInit {
   get newPassword() {
     return this.changePasswordForm.get("newPassword");
   }
-  constructor(private service: AppService, private route: Router, private notifyService: NotificationService) {
+  constructor(private authService:AuthService,private service: AppService, private route: Router, private notifyService: NotificationService) {
     this.getUser();
     this.LoadBlogs();
     this.getloadDashboardData();
@@ -132,6 +133,12 @@ export class DashboardComponent implements OnInit {
     this.getExpertIn();
     this.getNationality();
     this.getDistricts();
+    this.lordMyActivityListingView();
+    this.lordMyActivityAgentView();
+    this.getViewCount();
+    this.getEnquiredCount();
+    this.getCountData('');
+    this.getWishlisting();
     let temp: any = localStorage.getItem("user");
     this.service.UserProfile(JSON.parse(temp).id).subscribe((result: any) => {
       this.userData = result.data;
@@ -742,5 +749,318 @@ export class DashboardComponent implements OnInit {
       });
     }
   }
+
+
+  viewBuyCount :any;
+  viewRentCount :any;
+  viewAgentCount :any;
+  viewAllCount :any;
+  getViewCount() {
+    let tempData :Array<Object> = []
+    this.service.MyActivityViewCount(this.user.id).subscribe(data=>{
+      let response: any = data;
+      this.viewAllCount = response.data.all
+      this.viewRentCount = response.data.rent
+      this.viewBuyCount = response.data.buy
+      this.viewAgentCount = response.data.agents
+    });
+  }
+
+
+  viewChangeId :any;
+  myActivityViewChange(e:any){
+    this.viewChangeId = e;
+    this.lordMyActivityListingView();
+  }
+
+  myActivityListingView : any = []
+  lordMyActivityListingView(){
+    let tempData: Array<Object> = []
+    this.service.MyActivityPropertyListingView({"UserId":this.user.id,"PropertyListingTypeId":this.viewChangeId}).subscribe(data => {
+      let response: any = data;
+      response.data.forEach((element, i) => {
+        let image: any;
+        let rentTypeName = ''
+        if (element.rentType != null) {
+          rentTypeName = element.rentType.name
+        }
+        if (element.documents.length > 1) {
+          image = element.documents[0].fileUrl
+        }
+        tempData.push(
+          {
+            propertyTitle: element.propertyTitle, propertyAddress: element.propertyAddress, img: this.baseUrl + image,
+            buildingName: element.buildingName, bedrooms: element.bedrooms, bathrooms: element.bathrooms, carpetArea: element.carpetArea,
+            unitNo: element.unitNo, totalFloor: element.totalFloor, floorNo: element.floorNo, propertyDescription: element.propertyDescription,
+            requestedDate: element.requestedDate, furnishingType: element.furnishingType, propertyPrice: element.propertyPrice,
+            requestedDateFormat: element.requestedDateFormat,propertyType:element.propertyType.typeDescription,
+            expiredDateFormat: element.expiredDateFormat, rentType: rentTypeName, currency: element.country.currency
+          }
+        );
+      })
+    });
+    this.myActivityListingView = tempData;
+  }
+
+
+  myActivityAgentView :any =[]
+  lordMyActivityAgentView(){
+    let tempData: Array<Object> = []
+    this.service.MyActivityAgentView({"UserId":this.user.id}).subscribe(data => {
+      let response: any = data;
+      response.data.forEach((element, i) => {
+        let image: any ;
+        if (element.agentDetails.company.documents.length > 1 && element.agentDetails.company.documents !== undefined &&element.agentDetails.company.documents !== null) {
+          image = element.agentDetails.company.documents[0].fileUrl
+        }
+        tempData.push(
+          {
+           img: this.baseUrl+image,rentPropertyListingCount: element.rentPropertyListingCount,salePropertyListingCount: element.salePropertyListingCount,
+            commercialPropertyListingCount: element.commercialPropertyListingCount,company:element.agentDetails.company.companyName,
+            aboutCompany:element.agentDetails.company.aboutCompany,premitNo:element.agentDetails.company.premitNo,
+            reraNo:element.agentDetails.company.reraNo,id:element.agentDetails.user.id
+          }
+        );
+      })
+    });
+    this.myActivityAgentView = tempData;
+    console.log(this.myActivityAgentView,'agents agents')
+  }
+
+
+
+  buyCount :any;
+  rentCount :any;
+  allCount :any;
+  getWishlisting() {
+    let tempData :Array<Object> = []
+    this.service.FavoriteListingCount(this.user.id).subscribe(data=>{
+      let response: any = data;
+      this.allCount = response.data.all
+      this.rentCount = response.data.rent
+      this.buyCount = response.data.buy
+    });
+  }
+  getCountChange(e:any){
+    let PropertyListingTypeId :any ;
+    if(e == 1){
+      PropertyListingTypeId = 1
+    }else if(e == 2){
+      PropertyListingTypeId = 2
+    }else{
+      PropertyListingTypeId = '';
+    }
+    console.log(PropertyListingTypeId)
+    this.allCheckbox  = [];
+    this.rentCheckbox = [];
+    this.buyCheckbox  = [];
+    this.getCountData(PropertyListingTypeId);
+  }
+  wishlistingData :any = []
+  getCountData(PropertyListingTypeId){
+    let tempData :Array<Object> = []
+    this.service.FavoriteListing({"UserId":this.user.id,"PropertyListingTypeId":PropertyListingTypeId}).subscribe(data=>{
+      let response: any = data;
+      response.data.forEach((element, i) => {
+
+        let image :any ='';
+        if(element.documents !== null && element.documents !== undefined && element.documents.length > 0){
+          image = element.documents[0].fileUrl
+        }
+
+        let rentType :any ='';
+        if(element.rentType !== null && element.rentType !== undefined){
+          rentType = element.rentType.name
+        }
+
+        let propertyType :any ='';
+        if(element.propertyType !== null && element.propertyType !== undefined){
+          propertyType = element.propertyType.typeDescription
+        }
+
+        tempData.push(
+          {
+            title: element.propertyTitle,
+            rentType: rentType,
+            propertyType: propertyType,
+            currency: element.country.currency,
+            price: element.propertyPrice,
+            favorite: element.favorite,
+            id:element.id,
+            alt:element.propertyTitle,
+            src:this.baseUrl+image,
+            bedrooms:element.bedrooms,
+            propertyAddress:element.propertyAddress,
+            bathrooms:element.bathrooms,
+            buildingName:element.buildingName,
+            carpetArea:element.carpetArea,
+            requestedDateFormat: element.requestedDateFormat,
+            furnishingType: element.furnishingType
+          });
+      })
+    });
+    setTimeout(() => {
+      this.wishlistingData = tempData
+    }, 1000);
+    console.log(this.wishlistingData,'datdatadtadt')
+  }
+
+  wishlistStatus :any;
+  removeFavorite(id:any) {
+    if(this.user.id == ''){
+      this.notifyService.showSuccess('First you need to login', "");
+      this.route.navigate(['/login'])
+    }
+    if (!this.authService.isAuthenticated()) {
+      this.notifyService.showError('You not having access', "");
+      this.route.navigate(['login']);
+    }
+
+    this.service.FavoriteAddRemove(true,{"UserId":this.user.id,"PropertyListingId":id}).subscribe(data => {
+      let responsedata :any = data
+      this.wishlistStatus = "Favorite is Removed successfully"
+      this.notifyService.showSuccess('Favorite is Removed successfully', "");
+    });
+    setTimeout(() => {
+      this.getCountData('');
+      this.getCountData(1);
+      this.getCountData(2);
+      this.getWishlisting();
+    }, 1000);
+  }
+
+  allCheckbox :any = []
+  allFormCheckbox(id:number){
+    this.allCheckbox.push({'id':id})
+    console.log(this.allCheckbox);
+  }
+
+  rentCheckbox :any = []
+  rentFormCheckbox(id:number){
+    this.rentCheckbox.push({'id':id})
+    console.log(this.rentCheckbox);
+  }
+
+  buyCheckbox :any = []
+  buyFormCheckbox(id:number){
+    this.buyCheckbox.push({'id':id})
+    console.log(this.buyCheckbox);
+  }
+
+  compareProceed(type:any){
+    if(this.user.id == ''){
+      this.notifyService.showSuccess('First you need to login', "");
+      this.route.navigate(['/login'])
+    }
+    if (!this.authService.isAuthenticated()) {
+      this.notifyService.showError('You not having access', "");
+      this.route.navigate(['login']);
+    }
+
+    if(type == "all"){
+      console.log(this.allCheckbox.length)
+      if(this.allCheckbox.length < 2 || this.allCheckbox.length > 4){
+        this.notifyService.showWarning('Selected property atleast less than < 4 greater than > 2 ', "");
+      }else{
+        localStorage.removeItem("compareIds");
+        localStorage.setItem('compareIds',JSON.stringify(this.allCheckbox))
+        this.route.navigateByUrl('/PropertyCompare');
+      }
+    }else if(type == 'rent'){
+      if(this.rentCheckbox.length < 2 || this.rentCheckbox.length > 4){
+        this.notifyService.showWarning('Selected property atleast less than < 4 greater than > 2 ', "");
+      }else{
+        localStorage.removeItem("compareIds");
+        localStorage.setItem('compareIds',JSON.stringify(this.allCheckbox))
+        this.route.navigateByUrl('/PropertyCompare');
+      }
+    }else if(type == "buy"){
+      if(this.buyCheckbox.length < 2 || this.buyCheckbox.length > 4){
+        this.notifyService.showWarning('Selected property atleast less than < 4 greater than > 2 ', "");
+      }else{
+        localStorage.removeItem("compareIds");
+        localStorage.setItem('compareIds',JSON.stringify(this.allCheckbox))
+        this.route.navigateByUrl('/PropertyCompare');
+      }
+    }
+
+  }
+
+  enquiredBuyCount :any;
+  enquiredRentCount :any;
+  enquiredAllCount :any;
+  getEnquiredCount() {
+    this.service.MyActivityEnquiredCount(this.user.id).subscribe(data=>{
+      let response: any = data;
+      this.enquiredAllCount = response.data.all
+      this.enquiredRentCount = response.data.rent
+      this.enquiredBuyCount = response.data.buy
+    });
+  }
+
+
+  getEnquiredCountChange(e:any){
+    let PropertyListingTypeId :any ;
+    if(e == 1){
+      PropertyListingTypeId = 1
+    }else if(e == 2){
+      PropertyListingTypeId = 2
+    }else{
+      PropertyListingTypeId = '';
+    }
+    this.getEnquiredListingData(PropertyListingTypeId);
+  }
+
+  enquiredlistingData :any = []
+  getEnquiredListingData(PropertyListingTypeId){
+    let tempData :Array<Object> = []
+    this.service.MyActivityEnquired({"UserId":this.user.id,"PropertyListingTypeId":PropertyListingTypeId}).subscribe(data=>{
+      let response: any = data;
+      response.data.forEach((element, i) => {
+
+        let image :any ='';
+        if(element.documents !== null && element.documents !== undefined && element.documents.length > 0){
+          image = element.documents[0].fileUrl
+        }
+
+        let rentType :any ='';
+        if(element.rentType !== null && element.rentType !== undefined){
+          rentType = element.rentType.name
+        }
+
+        let propertyType :any ='';
+        if(element.propertyType !== null && element.propertyType !== undefined){
+          propertyType = element.propertyType.typeDescription
+        }
+
+        tempData.push(
+          {
+            title: element.propertyTitle,
+            rentType: rentType,
+            propertyType: propertyType,
+            currency: element.country.currency,
+            price: element.propertyPrice,
+            favorite: element.favorite,
+            id:element.id,
+            alt:element.propertyTitle,
+            src:this.baseUrl+image,
+            bedrooms:element.bedrooms,
+            propertyAddress:element.propertyAddress,
+            bathrooms:element.bathrooms,
+            buildingName:element.buildingName,
+            carpetArea:element.carpetArea,
+            requestedDateFormat: element.requestedDateFormat,
+            furnishingType: element.furnishingType
+          });
+      })
+    });
+    setTimeout(() => {
+      this.enquiredlistingData = tempData
+    }, 1000);
+    console.log(this.enquiredlistingData,'datdatadtadt')
+  }
+
+
+
 
 }
