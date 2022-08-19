@@ -559,18 +559,18 @@
                                                         <h5>{{certificateData.packageTypes[i].name}}</h5>
                                                         <p *ngIf="i == 0">
                                                             <span
-                                                                ngClass="discounted-price">{{valuationPrices.summeryCertificateSellingPrice}}AED</span>
+                                                                ngClass="discounted-price">{{valuationPrices.summeryCertificateSellingPrice}}{{currency}}</span>
                                                             <span
-                                                                ngClass="regular-price"><del>{{valuationPrices.summeryCertificatePrice}}AED</del></span>
+                                                                ngClass="regular-price"><del>{{valuationPrices.summeryCertificatePrice}}{{currency}}</del></span>
                                                             <span
                                                                 ngClass="discount_offer">{{valuationPrices.summeryCertificateDiscount}}
                                                                 % OFF</span>
                                                         </p>
                                                         <p *ngIf="i == 1">
                                                             <span
-                                                                ngClass="discounted-price">{{valuationPrices.detailCertificateSellingPrice}}AED</span>
+                                                                ngClass="discounted-price">{{valuationPrices.detailCertificateSellingPrice}}{{currency}}</span>
                                                             <span
-                                                                ngClass="regular-price"><del>{{valuationPrices.detailedCertificatePrice}}AED</del></span>
+                                                                ngClass="regular-price"><del>{{valuationPrices.detailedCertificatePrice}}{{currency}}</del></span>
                                                             <span
                                                                 ngClass="discount_offer">{{valuationPrices.detailCertificateDiscount}}
                                                                 % OFF</span>
@@ -591,12 +591,12 @@
                                                     (click)="SummaryReport(i, certificateData.packageTypes[i].id, valuationPrices.summeryCertificateSellingPrice)"
                                                     *ngIf="i == 0"
                                                     [ngClass]="status8 ? 'report-btn-active' : ''">{{valuationPrices.summeryCertificateSellingPrice}}
-                                                    AED Summary Certificate</button>
+                                                    {{currency}} Summary Certificate</button>
                                                 <button class="summary_certificate-btn"
                                                     (click)="SummaryReport(i, certificateData.packageTypes[i].id, valuationPrices.detailCertificateSellingPrice)"
                                                     *ngIf="i == 1"
                                                     [ngClass]="status9 ? 'report-btn-active' : ''">{{valuationPrices.detailCertificateSellingPrice}}
-                                                    AED Detail Certificate</button>
+                                                    {{currency}} Detail Certificate</button>
                                             </div>
                                         </div>
                                     </div>
@@ -698,23 +698,23 @@
                                             <div ngClass="payment-left-form-sec position-relative">
                                                 <div ngClass="payment-price-box">
                                                     <p>Pay Ovaluate Real Estate Valuation Services LLC</p>
-                                                    <h3 ngClass="price">AED
+                                                    <h3 ngClass="price">{{currency}}
                                                         {{valuationResponse.valuationPayment.totalAmount}}</h3>
                                                 </div>
                                                 <div ngClass="payment-another-info">
                                                     <div ngClass="detail-box d-flex justify-content-spacebw">
                                                         <div ngClass="pay-heading-block">
                                                             <h6>{{valuationResponse.reportPackage.name}}</h6>
-                                                            <p>Residential - Apartment Valuation Report</p>
+                                                            <p>{{userData.propertyCategory}} - {{userData.propertyType}} Valuation Report</p>
                                                         </div>
-                                                        <p ngClass="price">AED
+                                                        <p ngClass="price">{{currency}}
                                                             {{valuationResponse.valuationPayment.reportAmount}}</p>
                                                     </div>
                                                     <div ngClass="Inspection-box d-flex justify-content-spacebw">
                                                         <div ngClass="pay-heading-block">
                                                             <h6>Inspection</h6>
                                                         </div>
-                                                        <p ngClass="price">AED
+                                                        <p ngClass="price">{{currency}}
                                                             {{valuationResponse.valuationPayment.inspectionAmount}}</p>
                                                     </div>
                                                     <div ngClass="tax-box d-flex justify-content-spacebw">
@@ -727,7 +727,7 @@
                                                         <div ngClass="pay-heading-block">
                                                             <h6>Total Due</h6>
                                                         </div>
-                                                        <p ngClass="price">AED
+                                                        <p ngClass="price">{{currency}}
                                                             {{valuationResponse.valuationPayment.totalAmount}}</p>
                                                     </div>
                                                 </div>

@@ -45,6 +45,7 @@ export class PropertyDocumentsComponent implements OnInit {
   showLoader: boolean = false;
   error: any = ""
   showError: boolean = false;
+  currency:any = localStorage.getItem("currency");
   errorResponse(data: any) {
     this.showError = false;
   }
@@ -348,7 +349,6 @@ export class PropertyDocumentsComponent implements OnInit {
     } else {
       this.formData.ValuationPayment = { "Email": userData.email, "CustomerName": this.reportForm.value.name, "TotalAmount": this.reportPrice, "InspectionAmount": 0, "ReportAmount": this.reportPrice };
     }
-    console.log(this.formData);
     let valuationData = new FormData();
     valuationData.append("ValuationRequest", JSON.stringify(this.formData));
     valuationData.append("1_map.jpg", this.mapImage);
@@ -489,9 +489,14 @@ export class PropertyDocumentsComponent implements OnInit {
       return;
     }
     this.showLoader = true;
-    let data: any = { "CardNumder": number, "reportNumberCode": this.valuationResponse.reportNumberCode, "Month": date.toString().split("/")[0], "Year": "20" + date.toString().split("/")[1], "CVC": cvv, "Amount": this.valuationResponse.valuationPayment.totalAmount, "Email": this.valuationResponse.emailAddress, "CustomerName": this.valuationResponse.customerName, "DescriptionPayment": this.valuationResponse.reportPackage.name };
+    let data: any = { "CardNumder": number,"Currency" :this.currency, "reportNumberCode": this.valuationResponse.reportNumberCode, "Month": date.toString().split("/")[0], "Year": "20" + date.toString().split("/")[1], "CVC": cvv, "Amount": this.valuationResponse.valuationPayment.totalAmount, "Email": this.valuationResponse.emailAddress, "CustomerName": this.valuationResponse.customerName, "DescriptionPayment": this.userData.propertyCategory + " " + this.userData.propertyType + " " + this.valuationResponse.reportPackage.name };
     this.service.ValuationPayment(data).subscribe((result: any) => {
       if (result.message == "Valuation transaction completed successfully") {
+        localStorage.removeItem("bounds");
+        localStorage.removeItem("valuationDetailData");
+        localStorage.removeItem("propertyTypeData");
+        localStorage.removeItem("valuationData");
+        localStorage.removeItem("mapImg");
         this.showLoader = false;
         this.router.navigate(['/PropertyDownloadReport']);
       } else {
