@@ -343,7 +343,8 @@ export class PropertyDocumentsComponent implements OnInit {
     this.formData.EmailAddress = userData.email;
 
     if (this.formData.InspectionRequired) {
-      this.formData.ValuationPayment = { "Email": userData.email, "CustomerName": this.reportForm.value.name, "TotalAmount": this.reportPrice + 1000, "InspectionAmount": localStorage.getItem("inspectionFee"), "ReportAmount": this.reportPrice };
+      let a:any = localStorage.getItem("inspectionFee");
+      this.formData.ValuationPayment = { "Email": userData.email, "CustomerName": this.reportForm.value.name, "TotalAmount": parseInt(this.reportPrice) + parseInt(a), "InspectionAmount": localStorage.getItem("inspectionFee"), "ReportAmount": this.reportPrice };
     } else {
       this.formData.ValuationPayment = { "Email": userData.email, "CustomerName": this.reportForm.value.name, "TotalAmount": this.reportPrice, "InspectionAmount": 0, "ReportAmount": this.reportPrice };
     }
