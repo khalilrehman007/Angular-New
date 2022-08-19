@@ -541,7 +541,7 @@
                         </div>
                         <div class="valuation-cstm_tabs property_certificate-type"
                             [ngClass]="status2 ? 'active' : 'hide'">
-                            <div ngClass="form-border-wrapper" *ngIf="certificateData.length > 0">
+                            <div ngClass="form-border-wrapper" *ngIf="certificateData.packageTypes">
                                 <div ngClass="list-property-header">
                                     <h5 ngClass="h5-heading">Certificate Type</h5>
                                     <p>Select the type of certification you are looking for?</p>
@@ -549,7 +549,62 @@
                                 <div ngClass="pro-details-sec mb-4">
                                     <div ngClass="row">
                                         <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12"
-                                            *ngFor="let item of certificateData; let i = index">
+                                            *ngFor="let item of data; let i = index">
+                                            <div ngClass="prperty_certificate-reports-div">
+                                                <div ngClass="reports_header">
+                                                    <div ngClass="reports_img-icon">
+                                                        <img src="{{reportimg}}">
+                                                    </div>
+                                                    <div ngClass="reports_title-list">
+                                                        <h5>{{certificateData.packageTypes[i].name}}</h5>
+                                                        <p *ngIf="i == 0">
+                                                            <span
+                                                                ngClass="discounted-price">{{valuationPrices.summeryCertificateSellingPrice}}AED</span>
+                                                            <span
+                                                                ngClass="regular-price"><del>{{valuationPrices.summeryCertificatePrice}}AED</del></span>
+                                                            <span
+                                                                ngClass="discount_offer">{{valuationPrices.summeryCertificateDiscount}}
+                                                                % OFF</span>
+                                                        </p>
+                                                        <p *ngIf="i == 1">
+                                                            <span
+                                                                ngClass="discounted-price">{{valuationPrices.detailCertificateSellingPrice}}AED</span>
+                                                            <span
+                                                                ngClass="regular-price"><del>{{valuationPrices.detailedCertificatePrice}}AED</del></span>
+                                                            <span
+                                                                ngClass="discount_offer">{{valuationPrices.detailCertificateDiscount}}
+                                                                % OFF</span>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div ngClass="reports_cntnt-list">
+                                                    <div ngClass="reports_cntnt-list-inner"
+                                                        *ngFor="let item2 of certificateData.packageCategories; let j = index ">
+                                                        <h4>{{item2.name}}</h4>
+                                                        <ul *ngFor="let item3 of data[i][j]">
+                                                            <li *ngIf="item3.selected == true">{{item3.packageTopic.name}}</li>
+                                                            <li *ngIf="item3.selected == false">-</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <button class="summary_certificate-btn"
+                                                    (click)="SummaryReport(i, item.id, valuationPrices.summeryCertificateSellingPrice)"
+                                                    *ngIf="i == 0"
+                                                    [ngClass]="status8 ? 'report-btn-active' : ''">{{valuationPrices.summeryCertificateSellingPrice}}
+                                                    AED Summary Certificate</button>
+                                                <button class="summary_certificate-btn"
+                                                    (click)="SummaryReport(i, item.id, valuationPrices.detailCertificateSellingPrice)"
+                                                    *ngIf="i == 1"
+                                                    [ngClass]="status9 ? 'report-btn-active' : ''">{{valuationPrices.detailCertificateSellingPrice}}
+                                                    AED Detail Certificate</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div ngClass="pro-details-sec mb-4">
+                                    <div ngClass="row">
+                                        <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12"
+                                            *ngFor="let item of certificateData.packageTypes; let i = index">
                                             <div ngClass="prperty_certificate-reports-div">
                                                 <div ngClass="reports_header">
                                                     <div ngClass="reports_img-icon">
@@ -605,7 +660,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div ngClass="certified_form-sec">
                                     <form [formGroup]="reportForm">
                                         <div ngClass="row">

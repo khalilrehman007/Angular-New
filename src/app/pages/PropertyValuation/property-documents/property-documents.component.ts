@@ -213,6 +213,8 @@ export class PropertyDocumentsComponent implements OnInit {
   status7: boolean = false;
   status8: boolean = false;
   status9: boolean = false;
+  data:any = [];
+  selectedData:any = [];
 
   dataURLtoFile(dataurl: any, filename: any) {
     var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
@@ -221,6 +223,37 @@ export class PropertyDocumentsComponent implements OnInit {
       u8arr[n] = bstr.charCodeAt(n);
     }
     return new File([u8arr], filename, { type: mime });
+  }
+  selectData(e:any, index:any) {
+    let temp:any = this.data[index].filter((item: any) => item.id == e);
+    if(temp.length > 0) {
+      this.selectedData = temp[0];
+      return true;
+    } else {
+      return false;
+    }
+  }
+  checkPackage() {
+    this.service.PropertyPackageType().subscribe((result: any) => {
+      this.certificateData = result.data;
+      let temp:any = [];
+      let a:any = [];
+      for(let i = 0; i < this.certificateData.packageCategories.length ; i++) {
+        temp = this.certificateData.packageTypes[0].packageContent.filter((e:any) => {
+          return e.packageCategoryId == this.certificateData.packageCategories[i].id;
+        })
+        a.push(temp);
+      }
+      this.data.push(a);
+      a = temp = [];
+      for(let i = 0; i < this.certificateData.packageCategories.length ; i++) {
+        temp = this.certificateData.packageTypes[1].packageContent.filter((e:any) => {
+          return e.packageCategoryId == this.certificateData.packageCategories[i].id;
+        })
+        a.push(temp);
+      }
+      this.data.push(a);
+    });
   }
   Nextshow() {
     if (this.documentcount >= 3) {
@@ -263,9 +296,6 @@ export class PropertyDocumentsComponent implements OnInit {
     this.service.ValuationPrices(temp.PropertyTypeId).subscribe((result: any) => {
       this.valuationPrices = result.data;
     })
-    this.service.PropertyPackageType().subscribe((result: any) => {
-      this.certificateData = result.data;
-    });
     this.status2 = !this.status2;
     this.status6 = !this.status6;
     this.status1 = !this.status1;
@@ -478,6 +508,7 @@ export class PropertyDocumentsComponent implements OnInit {
     this.service.ValuationDocumentTypes().subscribe((result: any) => {
       this.documentType = result.data;
     })
+    this.checkPackage();
   }
 
   ngOnInit(): void {

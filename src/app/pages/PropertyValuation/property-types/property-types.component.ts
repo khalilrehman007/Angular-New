@@ -238,7 +238,6 @@ export class PropertyTypesComponent implements OnInit {
     } else {
       this.featuresFormData = this.featuresFormData.filter((e: any) => e != id)
     }
-    console.log(this.featuresFormData);
   }
   mapFeaturesFormData() {
 
@@ -262,7 +261,6 @@ export class PropertyTypesComponent implements OnInit {
       })
       this.showError = true;
     }
-    console.log();
   }
   getKey(e: any) {
     let temp: any = this.propertyTypeForm.value.elevation;
