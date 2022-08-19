@@ -29,7 +29,6 @@ export class AgentLandingComponent implements OnInit {
   SearchKeyword: string[] = [];
   searchList: any = ["Duabi", "UAE", "Investment Park"];
   agentObject: any = { "CountryId": "1", "DistrictsId": [], "CompaniesId": [], "UserId": "0", "EpertInId": "0", "LanguageId": "0", "CurrentPage": 1 };
-  companiesObject: any = {"CountryId":"1","DistrictsId":[],"CompaniesId" :[],"CurrentPage": 1};
   allCountries: any;
   constructor(private router: Router, private service: AppService) {
     this.agentData();
@@ -45,7 +44,7 @@ export class AgentLandingComponent implements OnInit {
     }
 
     this.agentListData(this.agentObject);
-    this.companiesListData(this.companiesObject);
+    this.companiesListData({"CountryId":"1","DistrictsId":[],"CompaniesId" :[],"CurrentPage": 1});
 
     this.service.BestAgent(1).subscribe((result: any) => {
       this.agentDetails = result.data;
@@ -770,7 +769,7 @@ export class AgentLandingComponent implements OnInit {
     this.page = value;
     this.agentObject.CurrentPage = value;
     this.agentListData(this.agentObject);
-    this.companiesListData(this.companiesObject);
+    this.companiesListData({"CountryId":"1","DistrictsId":[],"CompaniesId" :[],"CurrentPage": value});
   }
   ngOnInit(): void {
   }

@@ -242,14 +242,13 @@
                                 <td class="agent-landing-list__table-data">
                                     <div class="agent-landing-featured__property-wrapper">
                                         <div class="row">
-                                            <!-- <div class="col-5 d-flex align-items-center">
+                                            <div class="col-5 d-flex align-items-center">
                                                 <img src="assets/images/brand/betterhomes.png" alt="" class="img-fluid agent-landing-featured__property-img">
-                                            </div> -->
+                                            </div>
                                             <div class="col-7">
-                                                <h6 class="agent-landing-featured__property-heading" *ngIf="data.companies && data.companies.companyName">{{data.companies.companyName}}</h6>
-                                                <!-- <p class="agent-landing-featured__property-text">{{data.text}}</p> -->
-                                                <!-- <a class="agent-landing-featured__property-link" routerLink={{data.link.url}}>{{data.link.text}}</a> -->
-                                                <!-- <p class="agent-landing-featured__property-text">{{data.permit}}</p> -->
+                                                <h6 class="agent-landing-featured__property-heading" *ngIf="data.companyName">{{data.companyName}}</h6>
+                                                <p class="agent-landing-featured__property-text" *ngIf="data.companyAdress">{{data.companyAdress}}</p>
+                                                <p class="agent-landing-featured__property-text" *ngIf="data.reraNo">RERA# {{data.reraNo}} | <span *ngIf="data.premitNo">Permit# {{data.premitNo}}</span> </p>
                                             </div>
                                         </div>
                                     </div>
@@ -261,13 +260,13 @@
                                         </ul>
                                     </div> -->
                                 </td>
-                                <!-- <td class="agent-landing-list__table-data">
-                                    <p>{{data.agents}}<br>Agents</p>
+                                <td class="agent-landing-list__table-data">
+                                    <p>{{data.agents.length}}<br>Agents</p>
                                 </td>
                                 <td class="agent-landing-list__table-data">
-                                    <a class="agent-landing-list__table-btn" routerLink="/company-details/1">
-                                        <img src={{data.btn.img}} alt="">{{data.btn.text}}</a>
-                                </td> -->
+                                    <a class="agent-landing-list__table-btn" routerLink="/company-details/{{data.id}}">
+                                        <img src="assets/images/icons/eye.svg" alt="">View Detail</a>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
