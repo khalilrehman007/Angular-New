@@ -49,7 +49,7 @@ export class PropertyinfoComponent implements OnInit {
 
 
   constructor(private route: Router, private notifyService: NotificationService, private service: AppService) {
-    this.getOldFormData();
+    this.loadOldData();
     this.loadCountriesData();
   }
   changeInfo() {
@@ -105,20 +105,7 @@ export class PropertyinfoComponent implements OnInit {
     this.cityId = e.value;
   }
 
-  getOldFormData() {
-    this.oldData = localStorage.getItem('propertyData');
-    if (this.oldData != '' && this.oldData != null) {
-      this.oldData = JSON.parse(this.oldData);
-      this.SubmitForm.controls.CountryId.setValue(this.oldData.CountryId);
-      this.SubmitForm.controls.CityId.setValue(this.oldData.CityId);
-      this.SubmitForm.controls.PropertyAge.setValue(this.oldData.PropertyAge);
-      this.SubmitForm.controls.BuildingName.setValue(this.oldData.BuildingName);
-      this.SubmitForm.controls.UnitNo.setValue(this.oldData.UnitNo);
-      this.SubmitForm.controls.TotalFloor.setValue(this.oldData.TotalFloor);
-      this.SubmitForm.controls.FloorNo.setValue(this.oldData.FloorNo);
-      this.SubmitForm.controls.address.setValue(this.oldData.address);
-    }
-    return this.oldData;
+  loadOldData() {
   }
   SubmitForm = new FormGroup({
     CountryId: new FormControl(""),

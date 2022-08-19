@@ -238,39 +238,34 @@
                             </tr>
                         </thead>
                         <tbody class="agent-landing-list__table-body">
-                            <tr class="agent-landing-list__table-row"
-                                *ngFor="let data of companiesList.tableData | paginate: { itemsPerPage: 10, currentPage: page, totalItems:totalLength }">
+                            <tr class="agent-landing-list__table-row" *ngFor="let data of findCompanies.companies | paginate: { itemsPerPage: 10, currentPage: page, totalItems:totalLength }">
                                 <td class="agent-landing-list__table-data">
                                     <div class="agent-landing-featured__property-wrapper">
                                         <div class="row">
                                             <div class="col-5 d-flex align-items-center">
-                                                <img src={{data.img}} alt=""
-                                                    class="img-fluid agent-landing-featured__property-img">
+                                                <img src="assets/images/brand/betterhomes.png" alt="" class="img-fluid agent-landing-featured__property-img">
                                             </div>
                                             <div class="col-7">
-                                                <h6 class="agent-landing-featured__property-heading">{{data.heading}}
-                                                </h6>
-                                                <p class="agent-landing-featured__property-text">{{data.text}}</p>
-                                                <a class="agent-landing-featured__property-link"
-                                                    routerLink={{data.link.url}}>{{data.link.text}}</a>
-                                                <p class="agent-landing-featured__property-text">{{data.permit}}</p>
+                                                <h6 class="agent-landing-featured__property-heading" *ngIf="data.companyName">{{data.companyName}}</h6>
+                                                <p class="agent-landing-featured__property-text" *ngIf="data.companyAdress">{{data.companyAdress}}</p>
+                                                <p class="agent-landing-featured__property-text" *ngIf="data.reraNo">RERA# {{data.reraNo}} | <span *ngIf="data.premitNo">Permit# {{data.premitNo}}</span> </p>
                                             </div>
                                         </div>
                                     </div>
                                 </td>
                                 <td class="agent-landing-list__table-data">
-                                    <div class="agent-landing-list__specialities">
+                                    <!-- <div class="agent-landing-list__specialities">
                                         <ul>
                                             <li *ngFor="let item of data.specialities">{{item}}</li>
                                         </ul>
-                                    </div>
+                                    </div> -->
                                 </td>
                                 <td class="agent-landing-list__table-data">
-                                    <p>{{data.agents}}<br>Agents</p>
+                                    <p>{{data.agents.length}}<br>Agents</p>
                                 </td>
                                 <td class="agent-landing-list__table-data">
-                                    <a class="agent-landing-list__table-btn" routerLink="/company-details/1">
-                                        <img src={{data.btn.img}} alt="">{{data.btn.text}}</a>
+                                    <a class="agent-landing-list__table-btn" routerLink="/company-details/{{data.id}}">
+                                        <img src="assets/images/icons/eye.svg" alt="">View Detail</a>
                                 </td>
                             </tr>
                         </tbody>
