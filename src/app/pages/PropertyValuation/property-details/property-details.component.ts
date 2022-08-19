@@ -146,7 +146,7 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
       let temp: any = e;
       if (temp.message == "Country list fetched successfully") {
         for (let country of temp.data) {
-          this.country.push({ viewValue: country.name, value: country.id });
+          this.country.push({ viewValue: country.name, value: country.id, currency: country.currency});
         }
         this.showLoader = false;
       }
@@ -181,6 +181,7 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
     let temp = this.country.filter(function (c: any) {
       return c.value == e.value
     });
+    localStorage.setItem("currency" , temp[0].currency);
     this.formDetailData.country = temp[0].viewValue;
     this.countryName = temp[0].viewValue;
     this.getLocationDetails(temp[0].viewValue, false);
