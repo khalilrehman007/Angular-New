@@ -588,12 +588,12 @@
                                                     </div>
                                                 </div>
                                                 <button class="summary_certificate-btn"
-                                                    (click)="SummaryReport(i, item.id, valuationPrices.summeryCertificateSellingPrice)"
+                                                    (click)="SummaryReport(i, certificateData.packageTypes[i].id, valuationPrices.summeryCertificateSellingPrice)"
                                                     *ngIf="i == 0"
                                                     [ngClass]="status8 ? 'report-btn-active' : ''">{{valuationPrices.summeryCertificateSellingPrice}}
                                                     AED Summary Certificate</button>
                                                 <button class="summary_certificate-btn"
-                                                    (click)="SummaryReport(i, item.id, valuationPrices.detailCertificateSellingPrice)"
+                                                    (click)="SummaryReport(i, certificateData.packageTypes[i].id, valuationPrices.detailCertificateSellingPrice)"
                                                     *ngIf="i == 1"
                                                     [ngClass]="status9 ? 'report-btn-active' : ''">{{valuationPrices.detailCertificateSellingPrice}}
                                                     AED Detail Certificate</button>
@@ -601,66 +601,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- <div ngClass="pro-details-sec mb-4">
-                                    <div ngClass="row">
-                                        <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12"
-                                            *ngFor="let item of certificateData.packageTypes; let i = index">
-                                            <div ngClass="prperty_certificate-reports-div">
-                                                <div ngClass="reports_header">
-                                                    <div ngClass="reports_img-icon">
-                                                        <img src="{{reportimg}}">
-                                                    </div>
-                                                    <div ngClass="reports_title-list">
-                                                        <h5>{{item.name}}</h5>
-                                                        <p *ngIf="i == 0">
-                                                            <span
-                                                                ngClass="discounted-price">{{valuationPrices.summeryCertificateSellingPrice}}AED</span>
-                                                            <span
-                                                                ngClass="regular-price"><del>{{valuationPrices.summeryCertificatePrice}}AED</del></span>
-                                                            <span
-                                                                ngClass="discount_offer">{{valuationPrices.summeryCertificateDiscount}}
-                                                                % OFF</span>
-                                                        </p>
-                                                        <p *ngIf="i == 1">
-                                                            <span
-                                                                ngClass="discounted-price">{{valuationPrices.detailCertificateSellingPrice}}AED</span>
-                                                            <span
-                                                                ngClass="regular-price"><del>{{valuationPrices.detailedCertificatePrice}}AED</del></span>
-                                                            <span
-                                                                ngClass="discount_offer">{{valuationPrices.detailCertificateDiscount}}
-                                                                % OFF</span>
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                                <div ngClass="reports_cntnt-list">
-                                                    <div ngClass="reports_cntnt-list-inner"
-                                                        *ngFor="let item2 of item.packageContent">
-                                                        <div *ngIf="item2.selected == true">
-                                                            <h4>{{item2.packageCategory.name}}</h4>
-                                                            <ul *ngIf="item2.packageCategory.packageTopic.length > 0">
-                                                                <li
-                                                                    *ngFor="let item3 of item2.packageCategory.packageTopic">
-                                                                    {{item3.name}}</li>
-                                                            </ul>
-                                                            <p *ngIf="item2.packageCategory.packageTopic.length == 0">-
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <button class="summary_certificate-btn"
-                                                    (click)="SummaryReport(i, item.id, valuationPrices.summeryCertificateSellingPrice)"
-                                                    *ngIf="i == 0"
-                                                    [ngClass]="status8 ? 'report-btn-active' : ''">{{valuationPrices.summeryCertificateSellingPrice}}
-                                                    AED Summary Certificate</button>
-                                                <button class="summary_certificate-btn"
-                                                    (click)="SummaryReport(i, item.id, valuationPrices.detailCertificateSellingPrice)"
-                                                    *ngIf="i == 1"
-                                                    [ngClass]="status9 ? 'report-btn-active' : ''">{{valuationPrices.detailCertificateSellingPrice}}
-                                                    AED Detail Certificate</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> -->
                                 <div ngClass="certified_form-sec">
                                     <form [formGroup]="reportForm">
                                         <div ngClass="row">
@@ -672,7 +612,7 @@
                                                         <div class="checkbox-design position-relative"
                                                             (click)="reportLanguage(1)">
                                                             <input type="radio" id="english" name="building-type"
-                                                                value="english" checked/>
+                                                                value="english"/>
                                                             <button class="checkbox-btn">English Language</button>
                                                         </div>
                                                         <div class="checkbox-design position-relative"

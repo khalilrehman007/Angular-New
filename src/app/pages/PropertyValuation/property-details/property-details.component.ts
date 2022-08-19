@@ -190,7 +190,7 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
       let temp: any = e;
       if (temp.message == "City list fetched successfully") {
         for (let city of temp.data) {
-          this.city.push({ viewValue: city.name, value: city.id });
+          this.city.push({ viewValue: city.name, value: city.id, inspectionFee: city.inspectionFee });
         }
         this.showLoader = false;
       }
@@ -201,6 +201,7 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
     let temp = this.city.filter(function (c: any) {
       return c.value == e.value
     })
+    localStorage.setItem("inspectionFee", temp[0].inspectionFee);
     this.formDetailData.city = temp[0].viewValue;
     this.cityName = temp[0].viewValue;
     this.getLocationDetails(temp[0].viewValue, false);
@@ -345,7 +346,7 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
       success: (res) => {
         let temp = res.results[0].geometry.bounds;
         this.bounds = { east: temp.northeast.lng, west: temp.southwest.lng, north: temp.northeast.lat, south: temp.southwest.lat };
-        localStorage.setItem("bounds",JSON.stringify(this.bounds));
+        localStorage.setItem("bounds", JSON.stringify(this.bounds));
         let northEast = new google.maps.LatLng(temp.northeast.lat, temp.northeast.lng);
         let southWest = new google.maps.LatLng(temp.southwest.lat, temp.southwest.lng);
         let areabounds = new google.maps.LatLngBounds(southWest, northEast);
@@ -372,7 +373,7 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
     });
   }
   getLocation() {
-      if (this.oldData == "") {
+    if (this.oldData == "") {
       this.initMap(null, 8);
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
@@ -390,7 +391,7 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
         );
       }
     } else {
-      let bounds:any = localStorage.getItem("bounds");
+      let bounds: any = localStorage.getItem("bounds");
       bounds = JSON.parse(bounds);
       let northEast = new google.maps.LatLng(bounds.north, bounds.east);
       let southWest = new google.maps.LatLng(bounds.south, bounds.west);

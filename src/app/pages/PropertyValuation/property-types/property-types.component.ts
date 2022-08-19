@@ -89,7 +89,6 @@ export class PropertyTypesComponent implements OnInit {
     return this.propertyTypeForm.get("expense");
   }
   constructor(private service: AppService, private router: Router) {
-    this.loadOldData();
     this.formData = (window.localStorage.getItem('valuationData'));
     this.formData = JSON.parse(this.formData);
     this.loadFurnishingType();
@@ -100,6 +99,7 @@ export class PropertyTypesComponent implements OnInit {
     this.formData.FittingType = 0;
     this.formData.Bedrooms = 0;
     this.formData.Bathrooms = 0;
+    this.loadOldData();
   }
   ngOnInit(): void {
     this.service.PropertyUnitTypes().subscribe((result: any) => {
@@ -110,6 +110,13 @@ export class PropertyTypesComponent implements OnInit {
     if (localStorage.getItem("propertyTypeData")) {
       this.oldData = localStorage.getItem("propertyTypeData");
       this.formData = this.oldData = JSON.parse(this.oldData);
+      if(this.oldData.PropertyStatusId == 2) {
+        this.totalExpenseWrapper = true;
+        this.propertyTypeForm.patchValue({
+          income: this.oldData.Income,
+          expense: this.oldData.Expense
+        })
+      }
       this.roadCount = this.oldData.NoOfRoads;
       this.bedrooms = this.oldData.Bedrooms;
       this.bathrooms = this.oldData.Bathrooms;
@@ -404,8 +411,8 @@ export class PropertyTypesComponent implements OnInit {
       this.formData.Income = this.propertyTypeForm.value.income;
       this.formData.Expense = this.propertyTypeForm.value.expense;
     } else {
-      this.formData.Income = this.propertyTypeForm.value.income;
-      this.formData.Expense = this.propertyTypeForm.value.expense;
+      this.formData.Income = 0;
+      this.formData.Expense = 0;
     }
     let temp: any = [];
     for (let i = 0; i < this.unitHMTL.length; i++) {

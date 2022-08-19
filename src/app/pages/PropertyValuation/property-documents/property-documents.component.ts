@@ -293,7 +293,6 @@ export class PropertyDocumentsComponent implements OnInit {
   Nextshow1() {
     let temp: any = localStorage.getItem("valuationData");
     temp = JSON.parse(temp);
-    console.log(temp);
     this.service.ValuationPrices({ "PropertyTypeId":temp.PropertyTypeId,"CountryId": temp.CountryId }).subscribe((result: any) => {
       this.valuationPrices = result.data;
     })
@@ -344,11 +343,11 @@ export class PropertyDocumentsComponent implements OnInit {
     this.formData.EmailAddress = userData.email;
 
     if (this.formData.InspectionRequired) {
-      this.formData.ValuationPayment = { "Email": userData.email, "CustomerName": this.reportForm.value.name, "TotalAmount": this.reportPrice + 1000, "InspectionAmount": 1000, "ReportAmount": this.reportPrice };
+      this.formData.ValuationPayment = { "Email": userData.email, "CustomerName": this.reportForm.value.name, "TotalAmount": this.reportPrice + 1000, "InspectionAmount": localStorage.getItem("inspectionFee"), "ReportAmount": this.reportPrice };
     } else {
       this.formData.ValuationPayment = { "Email": userData.email, "CustomerName": this.reportForm.value.name, "TotalAmount": this.reportPrice, "InspectionAmount": 0, "ReportAmount": this.reportPrice };
     }
-
+    console.log(this.formData);
     let valuationData = new FormData();
     valuationData.append("ValuationRequest", JSON.stringify(this.formData));
     valuationData.append("1_map.jpg", this.mapImage);
@@ -380,7 +379,7 @@ export class PropertyDocumentsComponent implements OnInit {
           this.status2 = !this.status2;
           this.showLoader = false;
         } else {
-          alert("Something went wrong");
+          console.log(res);
         }
       },
       error: (err) => {
