@@ -293,7 +293,8 @@ export class PropertyDocumentsComponent implements OnInit {
   Nextshow1() {
     let temp: any = localStorage.getItem("valuationData");
     temp = JSON.parse(temp);
-    this.service.ValuationPrices(temp.PropertyTypeId).subscribe((result: any) => {
+    console.log(temp);
+    this.service.ValuationPrices({ "PropertyTypeId":temp.PropertyTypeId,"CountryId": temp.CountryId }).subscribe((result: any) => {
       this.valuationPrices = result.data;
     })
     this.status2 = !this.status2;

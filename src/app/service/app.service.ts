@@ -260,8 +260,8 @@ export class AppService {
   MyValuations(id: any) {
     return this.http.get(this.apiurl + 'MyValuations/' + id);
   }
-  ValuationPrices(id: any) {
-    return this.http.get(this.apiurl + 'ValuationPrices/' + id);
+  ValuationPrices(data: any) {
+    return this.http.post(this.apiurl + 'ValuationPriceByCountry', data);
   }
   PropertyPackageType() {
     return this.http.get(this.apiurl + 'PropertyPackageType');
