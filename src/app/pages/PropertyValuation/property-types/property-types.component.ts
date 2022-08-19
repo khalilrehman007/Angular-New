@@ -27,6 +27,7 @@ export class PropertyTypesComponent implements OnInit {
   furnishingType: any;
   fittingType: any;
   featuresFormData: any = [];
+  featuresFormName: any = [];
   roadCount: number = 0;
   bedrooms:number = 0;
   bathrooms:number = 0;
@@ -239,15 +240,17 @@ export class PropertyTypesComponent implements OnInit {
     this.formDetailData.Fitting = name;
     this.fitting = id;
   }
-  getFeaturesData(id: number) {
+  getFeaturesData(id: number, name:any) {
     if (this.featuresFormData.indexOf(id) == -1) {
       this.featuresFormData.push(id);
     } else {
       this.featuresFormData = this.featuresFormData.filter((e: any) => e != id)
     }
-  }
-  mapFeaturesFormData() {
-
+    if (this.featuresFormName.indexOf(name) == -1) {
+      this.featuresFormName.push(name);
+    } else {
+      this.featuresFormName = this.featuresFormName.filter((e: any) => e != name)
+    }
   }
   addUnits() {
     this.unitHMTL.push({ show: true, id: this.unitHMTL[this.unitHMTL.length - 1].id + 1 });
@@ -431,11 +434,11 @@ export class PropertyTypesComponent implements OnInit {
     }
     this.formDetailData.ValuationPropertyUnits = temp;
     this.formData.ValuationPropertyUnits = temp;
-    temp = []
+    temp = [];
     for (let i = 0; i < this.featuresFormData.length; i++) {
       temp.push({ PropertyFeatureId: this.featuresFormData[i] });
     }
-    this.formDetailData.PropertyFeatures = temp;
+    this.formDetailData.PropertyFeatures = this.featuresFormName;
     this.formData.PropertyFeatures = temp;
     localStorage.setItem('valuationDetailData', JSON.stringify(this.formDetailData));
     localStorage.setItem('propertyTypeData', JSON.stringify(this.formData));

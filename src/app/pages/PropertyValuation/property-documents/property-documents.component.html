@@ -448,7 +448,7 @@
                                                     </div>
                                                 </div>
                                                 <div ngClass="building-unit-details-div">
-                                                    <h6>Building Unit Details</h6>
+                                                    <h6 *ngIf="userData.ValuationPropertyUnits.length > 0">Building Unit Details</h6>
                                                     <div ngClass="building-unit_div"
                                                         *ngFor="let item of userData.ValuationPropertyUnits; let i = index">
                                                         <p ngClass="building-unit-no">{{i+1}}</p>
@@ -488,6 +488,14 @@
                                                                     <p>{{item.Vacant}}</p>
                                                                 </div>
                                                             </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row" *ngIf="userData.PropertyFeatures.length > 0">
+                                                    <h6>Property Feature</h6>
+                                                    <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12" *ngFor="let item of userData.PropertyFeatures">
+                                                        <div ngClass="pro-details-info-blocks">
+                                                            <p>{{item}}</p>
                                                         </div>
                                                     </div>
                                                 </div>

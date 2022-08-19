@@ -464,28 +464,38 @@ export class PropertyDocumentsComponent implements OnInit {
     let cvv: any = this.paymentForm.value.cvv;
     let currentDate: any = this.datePipe.transform(this.minDate, 'yyyy-MM-dd')?.split("-");
     if (this.paymentForm.value.cardNumber == "") {
-      alert("Please Enter Card Number");
+      this.error = "Please Enter Card Number";
+      this.showError = true;
       return;
     } else if (number.toString().length < 16) {
-      alert("Please Enter a Valid Card Number");
+      this.error = "Please Enter a Valid Card Number";
+      this.showError = true;
       return;
     } else if (this.paymentForm.value.expiryDate == "") {
-      alert("Please Enter Card Expiry");
+      this.error = "Please Enter Card Expiry";
+      this.showError = true;
       return;
     } else if (date.toString().length < 5) {
-      alert("Please Enter a Valid Card Expiry");
+      this.error = "Please Enter a Valid Card Expiry";
+      this.showError = true;
       return;
     } else if (this.paymentForm.value.cvv == "") {
-      alert("Please Enter CVV");
+      this.error = "Please Enter CVV";
+      this.showError = true;
       return;
     } else if (cvv.toString().length < 3) {
       alert("Please Enter a valid CVV");
+      this.error = "Please Enter a valid CVV";
+      this.showError = true;
       return;
     } else if ("20" + date.toString().split("/")[1] < currentDate[0]) {
-      alert("Please Enter a Valid Card Expiry");
+      this.error = "Please Enter a Valid Card Expiry";
+      this.showError = true;
       return;
     } else if ("20" + date.toString().split("/")[1] == currentDate[0] && date.toString().split("/")[0] < currentDate[1] || date.toString().split("/")[0] > 12) {
       alert("Please Enter a Valid Card Expiry");
+      this.error = "Please Enter a Valid Card Expiry";
+      this.showError = true;
       return;
     }
     this.showLoader = true;
