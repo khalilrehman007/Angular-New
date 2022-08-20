@@ -24,7 +24,8 @@ export class ListpropertyinfoComponent implements OnInit {
   oldData: any;
   priviousFormCheck: any;
   data: any = {};
-  propertyType: any;
+  propertyType: any = [];
+  selectedPropertyType:any = {};
   furnishingType: any;
   fittingType: any;
   tenantType: any;
@@ -34,12 +35,14 @@ export class ListpropertyinfoComponent implements OnInit {
   petPolicy: any;
   petPolicyData: any = [];
   rentTypes: any;
-  room: any = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  room: any = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, "10+"];
   featuresData: any;
   featuresFormData: any = [];
   minDate = new Date();
   propertyListingBuy: number;
   propertyListingRent: number;
+  listingTypeId:number = 0;
+  categoryID:number = 0;
 
   constructor(private api: AppService, private service: AuthService, private route: Router, private notifyService: NotificationService) {
     this.getOldFormData();
@@ -55,10 +58,6 @@ export class ListpropertyinfoComponent implements OnInit {
       this.propertyListingBuy = result.data.propertyListingBuy;
       this.propertyListingRent = result.data.propertyListingRent;
     })
-    this.api.LoadType(1).subscribe((result) => {
-      this.propertyType = result;
-      this.propertyType = this.propertyType.data
-    });
     this.api.FurnishingTypes().subscribe((result: any) => {
       this.furnishingType = result.data;
     });
@@ -92,10 +91,20 @@ export class ListpropertyinfoComponent implements OnInit {
       $(".mat-datepicker-toggle").click();
     })
   }
+  onListTypeSelect(id:any) {
+    this.listingTypeId = id;
+  }
   getOldFormData() {
     this.oldData = localStorage.getItem('listpropertyinfo_rent_residential');
   }
-
+  getCategory(id:any) {
+    this.categoryID = id;
+    this.api.LoadType(id).subscribe((result) => {
+      // this.propertyTypeCheck = false;
+      this.propertyType = result;
+      this.propertyType = this.propertyType.data
+    });
+  }
   SubmitForm = new FormGroup({
     propertyTitle: new FormControl("", [Validators.required]),
     property_studio: new FormControl(""),
@@ -305,6 +314,8 @@ export class ListpropertyinfoComponent implements OnInit {
     this.data.BathRooms = e.value;
   }
   getPropertyType(e: any) {
+    this.selectedPropertyType = this.propertyType.filter((item:any) => item.id == e.value)[0]
+    console.log(this.selectedPropertyType);
     this.propertyTypeCheck = true;
     this.data.PropertyTypeId = e.value;
   }
