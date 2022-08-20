@@ -34,16 +34,17 @@ export class PropertyinfoComponent implements OnInit {
   oldData: any = "";
   countryId: number = -1;
   cityId: number = -1;
+  districtId: any = -1;
   district: any = [];
   location = { lat: 25.2048, lng: 55.2708 };
   autocomplete: any;
   seachAddress: any
   data: any = {};
   marker: any;
-  countryName:any;
-  cityName:any;
-  tempAddress:any;
-  locationInformation:any = {};
+  countryName: any;
+  cityName: any;
+  tempAddress: any;
+  locationInformation: any = {};
   bounds: any;
   northEast: any;
   southWest: any;
@@ -51,7 +52,6 @@ export class PropertyinfoComponent implements OnInit {
   options: any;
   locationSelected: boolean = false;
   showLoader: boolean = false;
-  districtId:any;
 
 
 
@@ -64,11 +64,45 @@ export class PropertyinfoComponent implements OnInit {
       strictBounds: true,
     };
   }
+  loadOldData() {
+    if (localStorage.getItem("propertyData")) {
+      this.oldData = localStorage.getItem("propertyData");
+      this.oldData = JSON.parse(this.oldData);
+      console.log(this.oldData);
+      this.SubmitForm.patchValue({
+        PropertyAge: this.oldData.PropertyAge,
+        BuildingName: this.oldData.BuildingName,
+        UnitNo: this.oldData.UnitNo,
+        TotalFloor: this.oldData.TotalFloor,
+        FloorNo: this.oldData.FloorNo
+      })
+      this.countryId = this.oldData.CountryId;
+      this.cityId = this.oldData.CityId;
+      this.districtId = this.oldData.DistrictId
+      this.service.LoadCities(this.countryId).subscribe(e => {
+        let temp: any = e;
+        if (temp.message == "City list fetched successfully") {
+          for (let city of temp.data) {
+            this.city.push({ viewValue: city.name, value: city.id });
+          }
+          this.service.LoadDistrict(this.cityId).subscribe(e => {
+            let temp: any = e;
+            if (temp.message == "District list fetched successfully") {
+              for (let district of temp.data) {
+                this.district.push({ viewValue: district.name, value: district.id });
+              }
+              this.showLoader = false;
+            }
+          });
+        }
+      });
+    }
+  }
   changeInfo() {
     $("#searchLocation").focus();
-    let temp:any = $("#searchLocation").offset();
+    let temp: any = $("#searchLocation").offset();
     temp = temp.top;
-    $(window).scrollTop(temp-200);
+    $(window).scrollTop(temp - 200);
   }
   confirmLocation() {
     this.locationInformation.country = this.countryName;
@@ -135,11 +169,7 @@ export class PropertyinfoComponent implements OnInit {
     });
   }
 
-  loadOldData() {
-  }
   SubmitForm = new FormGroup({
-    CountryId: new FormControl(""),
-    CityId: new FormControl(""),
     PropertyAge: new FormControl("", Validators.required),
     BuildingName: new FormControl("", Validators.required),
     UnitNo: new FormControl("", Validators.required),
@@ -161,10 +191,12 @@ export class PropertyinfoComponent implements OnInit {
       console.log(this.countryCheck);
       if (controls["PropertyAge"].invalid) {
         alert('PropertyAge is required please fill it');
-      } else if (this.countryCheck == false) {
-        alert('Country is required please fill it');
-      } else if (this.cityCheck == false) {
-        alert('City is required please fill it');
+      } else if (this.countryId == -1) {
+        alert('Select Country');
+      } else if (this.cityId == -1) {
+        alert('Select City');
+      } else if (this.districtId == -1) {
+        alert('Select District');
       } else if (controls["BuildingName"].invalid) {
         alert('BuildingName  is required please fill it');
       } else if (controls["UnitNo"].invalid) {
@@ -185,6 +217,7 @@ export class PropertyinfoComponent implements OnInit {
 
     this.data.CountryId = this.countryId;
     this.data.CityId = this.cityId;
+    this.data.DistrictId = this.districtId;
     this.data.PropertyLat = localStorage.getItem("lat");
     this.data.PropertyLong = localStorage.getItem("lng");
     this.data.PropertyAge = this.SubmitForm.value.PropertyAge;
@@ -197,29 +230,29 @@ export class PropertyinfoComponent implements OnInit {
     localStorage.setItem('propertyData', JSON.stringify(this.data))
     this.route.navigate(['listpropertyinfo'])
   }
-  checkLength(type:number) {
-    if(type == 1) {
-      let temp:any = this.SubmitForm.value.TotalFloor;
-      if(temp > 200) {
+  checkLength(type: number) {
+    if (type == 1) {
+      let temp: any = this.SubmitForm.value.TotalFloor;
+      if (temp > 200) {
         alert("Max floors allowes is 200");
         this.SubmitForm.patchValue({
-          TotalFloor: temp.toString().slice(0,-1)
+          TotalFloor: temp.toString().slice(0, -1)
         })
       }
     }
     else {
-      let temp:any = this.SubmitForm.value.FloorNo;
-      let total:any = this.SubmitForm.value.TotalFloor;
-      if(temp > total) {
+      let temp: any = this.SubmitForm.value.FloorNo;
+      let total: any = this.SubmitForm.value.TotalFloor;
+      if (temp > total) {
         alert("Floor number cannot be greater than Total Floors");
         this.SubmitForm.patchValue({
-          FloorNo: temp.toString().slice(0,-1)
+          FloorNo: temp.toString().slice(0, -1)
         })
       }
-      if(temp > 200) {
+      if (temp > 200) {
         alert("Max floors allowes is 200");
         this.SubmitForm.patchValue({
-          FloorNo: temp.toString().slice(0,-1)
+          FloorNo: temp.toString().slice(0, -1)
         })
       }
     }
