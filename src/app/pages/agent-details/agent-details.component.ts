@@ -17,6 +17,8 @@ export class AgentDetailsComponent implements OnInit {
   id: any;
   user: any;
   myListing: any = [];
+  totalLength: number = 0;
+  page: number = 1;
   constructor(private service: AppService, private route: ActivatedRoute) {
     this.route.params.subscribe(params => {
       this.id = params['id'];
@@ -38,6 +40,10 @@ export class AgentDetailsComponent implements OnInit {
       this.myListing = result.data;
       console.log(this.myListing);
     })
+  }
+
+  pageChanged(value: any) {
+    this.page = value;
   }
 
   agentContact = new FormGroup({

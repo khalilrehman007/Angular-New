@@ -12,7 +12,7 @@
         </div>
         <div class="row">
             <div class="col-lg-8">
-                <div class="agent-details__wrapper">
+                <div class="agent-details__wrapper" >
                     <div class="row">
                         <div class="col-sm-12 col-md-4" *ngIf="agentDetail.agentDetails && agentDetail.agentDetails.user.imageUrl">
                             <img src="https://beta.ovaluate.com/{{agentDetail.agentDetails.user.imageUrl}}" alt="" class="img-fluid agent-details__wrapper-img">
@@ -81,7 +81,7 @@
                                     </div>
                                 </div>
                                 <ul class="agent-details__property-list">
-                                    <li class="agent-details__property-list-item" *ngFor="let item of myListing">
+                                    <li class="agent-details__property-list-item" *ngFor="let item of myListing | paginate: { itemsPerPage: 10, currentPage: page, totalItems:totalLength }" >
                                         <div class="row">
                                             <div class="col-lg-2">
                                                 <img src="assets/images/explore-places/1.jpg" alt=""
@@ -210,6 +210,10 @@
                 </div>
             </div>
         </div>
+        <section class="agent-pagination-wrapper">
+            <pagination-controls (pageChange)="pageChanged($event)" class="text-center my-pagination">
+            </pagination-controls>
+          </section>
     </div>
 </section>
 <footer ngClass="footer-sec">
