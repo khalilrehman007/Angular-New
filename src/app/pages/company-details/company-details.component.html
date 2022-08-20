@@ -15,30 +15,27 @@
                 <div class="company-details__wrapper">
                     <div class="row">
                         <div class="col-sm-12 col-md-4">
-                            <img src="assets/images/better-home.svg" alt=""
-                                class="img-fluid company-details__wrapper-img">
+                            <img src="assets/images/better-home.svg" alt="" class="img-fluid company-details__wrapper-img">
                         </div>
                         <div class="col-sm-12 col-md-8">
                             <div class="company-details__wrapper-details">
-                                <h4 class="company-details__wrapper-details-heading">Better Homes Properties</h4>
-                                <p class="company-details__wrapper-details-text mb-0">P.O. Box 14781, Ground Floor, Golf
-                                    Building No. GB, Al Hamra Village, Ras Al Khaimah</p>
-                                <a class="company-details__wrapper-details-desc mb-3 d-inline-block">View Map</a>
-                                <p class="company-details__wrapper-details-text">ORN#: 11917</p>
-                                <p class="company-details__wrapper-details-text">RERA# 11896</p>
-                                <p class="company-details__wrapper-details-text">Permit# 7187842740</p>
+                                <h4 class="company-details__wrapper-details-heading" *ngIf="companyDetails.company && companyDetails.company.companyName">{{companyDetails.company.companyName}}</h4>
+                                <p class="company-details__wrapper-details-text mb-0" *ngIf="companyDetails.company && companyDetails.company.companyAdress">{{companyDetails.company.companyAdress}}</p>
+                                <p class="company-details__wrapper-details-text">ORN#: {{companyDetails.company.ornNo}}</p>
+                                <p class="company-details__wrapper-details-text">RERA# {{companyDetails.company.reraNo}}</p>
+                                <p class="company-details__wrapper-details-text">Permit# {{companyDetails.company.premitNo}}</p>
                                 <ul class="company-details__wrapper-details-list">
                                     <li class="company-details__wrapper-details-list-item">
-                                        <p class="company-details__wrapper-details-list-text">126 <br> Agents</p>
+                                        <p class="company-details__wrapper-details-list-text">{{companyDetails.agentNumber}} <br> Agents</p>
                                     </li>
                                     <li class="company-details__wrapper-details-list-item">
-                                        <p class="company-details__wrapper-details-list-text">247 <br> Sale</p>
+                                        <p class="company-details__wrapper-details-list-text">{{companyDetails.statistics.salePropertyListingCount}} <br> Sale</p>
                                     </li>
                                     <li class="company-details__wrapper-details-list-item">
-                                        <p class="company-details__wrapper-details-list-text">247 <br> Rent</p>
+                                        <p class="company-details__wrapper-details-list-text">{{companyDetails.statistics.rentPropertyListingCount}} <br> Rent</p>
                                     </li>
                                     <li class="company-details__wrapper-details-list-item">
-                                        <p class="company-details__wrapper-details-list-text">247 <br> Commercial</p>
+                                        <p class="company-details__wrapper-details-list-text">{{companyDetails.statistics.commercialPropertyListingCount}} <br> Commercial</p>
                                     </li>
                                 </ul>
                             </div>
@@ -62,15 +59,7 @@
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" id="about">
                                 <div class="company-details__tab-content">
-                                    <p>Established in 2012, Driven Properties has grown into a leading property
-                                        brokerage, investment, and consultancy company. We offer a full spectrum of
-                                        innovative and customizable property solutions and wealth management services to
-                                        clients in the UAE and abroad. With extensive local and international
-                                        experience, our dedicated team of real estate agents in Dubai boast a portfolio
-                                        of commercial, residential, retail, and off-plan properties. Providing a
-                                        reliable source of information on the properties and market trends, our property
-                                        consultants are well-versed in the principles of the real estate market,
-                                        negotiation, market analysis, property management, and ethical conduct.</p>
+                                    <p>{{companyDetails.company.aboutCompany}}</p>
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="agent">
@@ -472,7 +461,7 @@
                 <div class="company-details__form-wrapper">
                     <div class="row mb-3">
                         <div class="col-8 d-flex align-items-center">
-                            <h6>Contact Olga Pikina</h6>
+                            <h6>Contact {{companyDetails.company.companyName}}</h6>
                         </div>
                         <div class="col-4 text-end">
                             <img src="assets/images/better-home.svg" alt="" class="company-details__form-img">
@@ -481,21 +470,21 @@
                     <form class="company-details__form" [formGroup]="agentContact">
                         <fieldset class="company-details__form-fieldset">
                             <label for="name" class="company-details__form-label">Name*</label>
-                            <input type="text" name="name" id="name" placeholder="Location, Project Name"
+                            <input type="text" name="name" id="name" placeholder="Enter your name"
                                 class="company-details__form-input" formControlName="name">
                             <span style="color: red" *ngIf="name && name.invalid && name.touched">*This field is
                                 required</span>
                         </fieldset>
                         <fieldset class="company-details__form-fieldset">
                             <label for="email" class="company-details__form-label">Email*</label>
-                            <input type="text" name="email" id="email" placeholder="Location, Project Name"
+                            <input type="text" name="email" id="email" placeholder="Enter your email"
                                 class="company-details__form-input" formControlName="email">
                             <span style="color: red" *ngIf="email && email.invalid && email.touched">*This field is
                                 required</span>
                         </fieldset>
                         <fieldset class="company-details__form-fieldset">
                             <label for="phone" class="company-details__form-label">Phone No.*</label>
-                            <input type="text" name="phone" id="phone" placeholder="Location, Project Name"
+                            <input type="text" name="phone" id="phone" placeholder="Enter your phone number"
                                 class="company-details__form-input" formControlName="phone">
                             <span style="color: red" *ngIf="phone && phone.invalid && phone.touched">*This field is
                                 required</span>

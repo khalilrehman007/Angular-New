@@ -311,6 +311,12 @@ export class AppService {
   DisplayAgent(data) {
     return this.http.post(this.apiurl + 'DisplayAgent', data);
   }
+  // DisplayCompany(data) {
+  //   return this.http.post(this.apiurl + 'DisplayCompany', data);
+  // }
+  DisplayCompany(id: any) {
+    return this.http.get(this.apiurl + 'DisplayCompany?companyId=' + id);
+  }
   AgentAutoCompleteSearch(data) {
     return this.http.post(this.apiurl + 'AgentAutoCompleteSearch', data);
   }
