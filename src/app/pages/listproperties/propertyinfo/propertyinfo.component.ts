@@ -52,17 +52,14 @@ export class PropertyinfoComponent implements OnInit {
   options: any;
   locationSelected: boolean = false;
   showLoader: boolean = false;
-
-
-
-
+  
   constructor(private route: Router, private notifyService: NotificationService, private service: AppService) {
-    this.loadOldData();
     this.loadCountriesData();
     this.options = {
       bounds: [],
       strictBounds: true,
     };
+    this.loadOldData();
   }
   loadOldData() {
     if (localStorage.getItem("propertyData")) {
@@ -85,6 +82,11 @@ export class PropertyinfoComponent implements OnInit {
           for (let city of temp.data) {
             this.city.push({ viewValue: city.name, value: city.id });
           }
+          let id = this.cityId;
+          let a = this.city.filter(function (c: any) {
+            return c.value == id;
+          });
+          this.locationInformation.city = a[0].viewValue;
           this.service.LoadDistrict(this.cityId).subscribe(e => {
             let temp: any = e;
             if (temp.message == "District list fetched successfully") {
@@ -96,6 +98,7 @@ export class PropertyinfoComponent implements OnInit {
           });
         }
       });
+      this.locationInformation.address = this.oldData.PropertyAddress;
     }
   }
   changeInfo() {
@@ -117,6 +120,13 @@ export class PropertyinfoComponent implements OnInit {
         for (let country of temp.data) {
           this.country.push({ viewValue: country.name, value: country.id });
         }
+      }
+      if (this.oldData != "") {
+        let id = this.countryId;
+        let a = this.country.filter(function (c: any) {
+          return c.value == id;
+        });
+        this.locationInformation.country = a[0].viewValue;
       }
     });
   }
@@ -149,7 +159,6 @@ export class PropertyinfoComponent implements OnInit {
       }
     });
   }
-
   onCitySelect(e: any) {
     let temp = this.city.filter(function (c: any) {
       return c.value == e.value
@@ -168,7 +177,6 @@ export class PropertyinfoComponent implements OnInit {
       }
     });
   }
-
   SubmitForm = new FormGroup({
     PropertyAge: new FormControl("", Validators.required),
     BuildingName: new FormControl("", Validators.required),
@@ -177,12 +185,9 @@ export class PropertyinfoComponent implements OnInit {
     FloorNo: new FormControl("", Validators.required),
     address: new FormControl("", Validators.required),
   });
-
-
   get validate() {
     return this.SubmitForm.controls;
   }
-
   onSubmit() {
     localStorage.removeItem("propertyData");
     this.submitted = true;
@@ -257,7 +262,6 @@ export class PropertyinfoComponent implements OnInit {
       }
     }
   }
-
   ngOnInit(): void {
   }
   ngAfterViewInit(): void {
@@ -287,6 +291,7 @@ export class PropertyinfoComponent implements OnInit {
         let area = res.results[0].geometry.location;
         localStorage.setItem("lat", area.lat);
         localStorage.setItem("lng", area.lng);
+        this.locationSelected = true;
         this.map = new google.maps.Map($(".property-details__map")[0], {
           center: area,
           zoom: 15,
