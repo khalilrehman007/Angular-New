@@ -84,9 +84,9 @@
                                 </div>
                                 <ul class="agent-details__property-list">
                                     <li class="agent-details__property-list-item" *ngFor="let item of myListing | paginate: { itemsPerPage: 10, currentPage: page, totalItems:totalLength }" >
-                                        <div class="row">
+                                        <div class="row" routerLink="/PropertDetailsPage/{{item.id}}">
                                             <div class="col-lg-2">
-                                                <img src="assets/images/explore-places/1.jpg" alt=""
+                                                <img src="assets/images/placeholder.png" alt=""
                                                     class="img-fluid agent-details__property-list-item-img">
                                             </div>
                                             <div class="col-lg-10">
@@ -97,7 +97,7 @@
                                                         </a>
                                                     </div>
                                                     <div class="col-5 text-end">
-                                                        <p class="agent-details__property-list-item-date">{{item.requestedDateFormat}}</p>
+                                                        <p class="agent-details__property-list-item-date">Listed on {{item.requestedDateFormat}}</p>
                                                     </div>
                                                 </div>
                                                 <h6>{{item.buildingName}}</h6>

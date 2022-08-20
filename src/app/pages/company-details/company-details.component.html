@@ -53,7 +53,7 @@
                             </li>
                             <li class="nav-item">
                                 <button class="nav-link" id="properties-tab" data-bs-toggle="tab"
-                                    data-bs-target="#properties">Our Properties(78)</button>
+                                    data-bs-target="#properties">Our Properties{{companyDetails.properties.length}}</button>
                             </li>
                         </ul>
                         <div class="tab-content" id="myTabContent">
@@ -124,320 +124,47 @@
                                     </div>
                                 </div>
                                 <ul class="company-details__property-list">
-                                    <li class="company-details__property-list-item">
-                                        <div class="row">
+                                    <li class="company-details__property-list-item" *ngFor="let item of companyDetails.properties | paginate: { itemsPerPage: 10, currentPage: page, totalItems:totalLength }">
+                                        <div class="row" [routerLink]="['/PropertDetailsPage']" [queryParams]="{id: item.id}">
                                             <div class="col-lg-2">
-                                                <img src="assets/images/explore-places/1.jpg" alt=""
+                                                <img src="assets/images/placeholder.png" alt=""
                                                     class="img-fluid company-details__property-list-item-img">
                                             </div>
                                             <div class="col-lg-10">
                                                 <div class="row">
                                                     <div class="col-7">
-                                                        <a class="company-details__property-list-item-link">85,000 AED
-                                                            <span>/yearly</span>
+                                                        <a class="company-details__property-list-item-link">{{item.propertyPrice}} <span>/yearly</span>
                                                         </a>
                                                     </div>
                                                     <div class="col-5 text-end">
-                                                        <p class="company-details__property-list-item-date">Listed on 05
-                                                            May, 2022</p>
+                                                        <p class="company-details__property-list-item-date">Listed on {{item.requestedDateFormat}}</p>
                                                     </div>
                                                 </div>
                                                 <h6>Blue Wave Tower</h6>
                                                 <p class="company-details__property-list-item-text">
                                                     <img src="assets/images/home-location.svg" alt=""
                                                         class="img-fluid company-details__property-list-item-text-icon">
-                                                    Etihad Tower 4, Etihad Towers, Corniche Road, Abu Dhabi
+                                                        {{item.propertyAddress}}
                                                 </p>
-                                                <p class="company-details__property-list-item-type">Hotel & Hotel
-                                                    Apartment</p>
+                                                <p class="company-details__property-list-item-type">{{item.propertyTitle}}</p>
                                                 <div class="row">
                                                     <div class="col-md-10">
                                                         <ul class="company-details__property-detail-list">
                                                             <li class="company-details__property-detail-list-item">
                                                                 <img src="{{bedsvg}}" alt="">
-                                                                3 Beds
+                                                                {{item.bedrooms}}
                                                             </li>
                                                             <li class="company-details__property-detail-list-item">
                                                                 <img src="{{bathsvg}}" alt="">
-                                                                2 Bath
+                                                                {{item.bathrooms}}
                                                             </li>
                                                             <li class="company-details__property-detail-list-item">
                                                                 <img src="{{squaremetersvg}}" alt="">
-                                                                8000 Sq.Ft.
+                                                                {{item.buildupArea}}
                                                             </li>
                                                             <li class="company-details__property-detail-list-item">
                                                                 <img src="{{furnishing}}" alt="">
-                                                                Furnished
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="col-md-2">
-                                                        <img src="assets/images/better-home.svg" alt="">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="company-details__property-list-item">
-                                        <div class="row">
-                                            <div class="col-lg-2">
-                                                <img src="assets/images/explore-places/1.jpg" alt=""
-                                                    class="img-fluid company-details__property-list-item-img">
-                                            </div>
-                                            <div class="col-lg-10">
-                                                <div class="row">
-                                                    <div class="col-7">
-                                                        <a class="company-details__property-list-item-link">85,000 AED
-                                                            <span>/yearly</span>
-                                                        </a>
-                                                    </div>
-                                                    <div class="col-5 text-end">
-                                                        <p class="company-details__property-list-item-date">Listed on 05
-                                                            May, 2022</p>
-                                                    </div>
-                                                </div>
-                                                <h6>Blue Wave Tower</h6>
-                                                <p class="company-details__property-list-item-text">
-                                                    <img src="assets/images/home-location.svg" alt=""
-                                                        class="img-fluid company-details__property-list-item-text-icon">
-                                                    Etihad Tower 4, Etihad Towers, Corniche Road, Abu Dhabi
-                                                </p>
-                                                <p class="company-details__property-list-item-type">Hotel & Hotel
-                                                    Apartment</p>
-                                                <div class="row">
-                                                    <div class="col-md-10">
-                                                        <ul class="company-details__property-detail-list">
-                                                            <li class="company-details__property-detail-list-item">
-                                                                <img src="{{bedsvg}}" alt="">
-                                                                3 Beds
-                                                            </li>
-                                                            <li class="company-details__property-detail-list-item">
-                                                                <img src="{{bathsvg}}" alt="">
-                                                                2 Bath
-                                                            </li>
-                                                            <li class="company-details__property-detail-list-item">
-                                                                <img src="{{squaremetersvg}}" alt="">
-                                                                8000 Sq.Ft.
-                                                            </li>
-                                                            <li class="company-details__property-detail-list-item">
-                                                                <img src="{{furnishing}}" alt="">
-                                                                Furnished
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="col-md-2">
-                                                        <img src="assets/images/better-home.svg" alt="">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="company-details__property-list-item">
-                                        <div class="row">
-                                            <div class="col-lg-2">
-                                                <img src="assets/images/explore-places/1.jpg" alt=""
-                                                    class="img-fluid company-details__property-list-item-img">
-                                            </div>
-                                            <div class="col-lg-10">
-                                                <div class="row">
-                                                    <div class="col-7">
-                                                        <a class="company-details__property-list-item-link">85,000 AED
-                                                            <span>/yearly</span>
-                                                        </a>
-                                                    </div>
-                                                    <div class="col-5 text-end">
-                                                        <p class="company-details__property-list-item-date">Listed on 05
-                                                            May, 2022</p>
-                                                    </div>
-                                                </div>
-                                                <h6>Blue Wave Tower</h6>
-                                                <p class="company-details__property-list-item-text">
-                                                    <img src="assets/images/home-location.svg" alt=""
-                                                        class="img-fluid company-details__property-list-item-text-icon">
-                                                    Etihad Tower 4, Etihad Towers, Corniche Road, Abu Dhabi
-                                                </p>
-                                                <p class="company-details__property-list-item-type">Hotel & Hotel
-                                                    Apartment</p>
-                                                <div class="row">
-                                                    <div class="col-md-10">
-                                                        <ul class="company-details__property-detail-list">
-                                                            <li class="company-details__property-detail-list-item">
-                                                                <img src="{{bedsvg}}" alt="">
-                                                                3 Beds
-                                                            </li>
-                                                            <li class="company-details__property-detail-list-item">
-                                                                <img src="{{bathsvg}}" alt="">
-                                                                2 Bath
-                                                            </li>
-                                                            <li class="company-details__property-detail-list-item">
-                                                                <img src="{{squaremetersvg}}" alt="">
-                                                                8000 Sq.Ft.
-                                                            </li>
-                                                            <li class="company-details__property-detail-list-item">
-                                                                <img src="{{furnishing}}" alt="">
-                                                                Furnished
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="col-md-2">
-                                                        <img src="assets/images/better-home.svg" alt="">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="company-details__property-list-item">
-                                        <div class="row">
-                                            <div class="col-lg-2">
-                                                <img src="assets/images/explore-places/1.jpg" alt=""
-                                                    class="img-fluid company-details__property-list-item-img">
-                                            </div>
-                                            <div class="col-lg-10">
-                                                <div class="row">
-                                                    <div class="col-7">
-                                                        <a class="company-details__property-list-item-link">85,000 AED
-                                                            <span>/yearly</span>
-                                                        </a>
-                                                    </div>
-                                                    <div class="col-5 text-end">
-                                                        <p class="company-details__property-list-item-date">Listed on 05
-                                                            May, 2022</p>
-                                                    </div>
-                                                </div>
-                                                <h6>Blue Wave Tower</h6>
-                                                <p class="company-details__property-list-item-text">
-                                                    <img src="assets/images/home-location.svg" alt=""
-                                                        class="img-fluid company-details__property-list-item-text-icon">
-                                                    Etihad Tower 4, Etihad Towers, Corniche Road, Abu Dhabi
-                                                </p>
-                                                <p class="company-details__property-list-item-type">Hotel & Hotel
-                                                    Apartment</p>
-                                                <div class="row">
-                                                    <div class="col-md-10">
-                                                        <ul class="company-details__property-detail-list">
-                                                            <li class="company-details__property-detail-list-item">
-                                                                <img src="{{bedsvg}}" alt="">
-                                                                3 Beds
-                                                            </li>
-                                                            <li class="company-details__property-detail-list-item">
-                                                                <img src="{{bathsvg}}" alt="">
-                                                                2 Bath
-                                                            </li>
-                                                            <li class="company-details__property-detail-list-item">
-                                                                <img src="{{squaremetersvg}}" alt="">
-                                                                8000 Sq.Ft.
-                                                            </li>
-                                                            <li class="company-details__property-detail-list-item">
-                                                                <img src="{{furnishing}}" alt="">
-                                                                Furnished
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="col-md-2">
-                                                        <img src="assets/images/better-home.svg" alt="">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="company-details__property-list-item">
-                                        <div class="row">
-                                            <div class="col-lg-2">
-                                                <img src="assets/images/explore-places/1.jpg" alt=""
-                                                    class="img-fluid company-details__property-list-item-img">
-                                            </div>
-                                            <div class="col-lg-10">
-                                                <div class="row">
-                                                    <div class="col-7">
-                                                        <a class="company-details__property-list-item-link">85,000 AED
-                                                            <span>/yearly</span>
-                                                        </a>
-                                                    </div>
-                                                    <div class="col-5 text-end">
-                                                        <p class="company-details__property-list-item-date">Listed on 05
-                                                            May, 2022</p>
-                                                    </div>
-                                                </div>
-                                                <h6>Blue Wave Tower</h6>
-                                                <p class="company-details__property-list-item-text">
-                                                    <img src="assets/images/home-location.svg" alt=""
-                                                        class="img-fluid company-details__property-list-item-text-icon">
-                                                    Etihad Tower 4, Etihad Towers, Corniche Road, Abu Dhabi
-                                                </p>
-                                                <p class="company-details__property-list-item-type">Hotel & Hotel
-                                                    Apartment</p>
-                                                <div class="row">
-                                                    <div class="col-md-10">
-                                                        <ul class="company-details__property-detail-list">
-                                                            <li class="company-details__property-detail-list-item">
-                                                                <img src="{{bedsvg}}" alt="">
-                                                                3 Beds
-                                                            </li>
-                                                            <li class="company-details__property-detail-list-item">
-                                                                <img src="{{bathsvg}}" alt="">
-                                                                2 Bath
-                                                            </li>
-                                                            <li class="company-details__property-detail-list-item">
-                                                                <img src="{{squaremetersvg}}" alt="">
-                                                                8000 Sq.Ft.
-                                                            </li>
-                                                            <li class="company-details__property-detail-list-item">
-                                                                <img src="{{furnishing}}" alt="">
-                                                                Furnished
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="col-md-2">
-                                                        <img src="assets/images/better-home.svg" alt="">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="company-details__property-list-item">
-                                        <div class="row">
-                                            <div class="col-lg-2">
-                                                <img src="assets/images/explore-places/1.jpg" alt=""
-                                                    class="img-fluid company-details__property-list-item-img">
-                                            </div>
-                                            <div class="col-lg-10">
-                                                <div class="row">
-                                                    <div class="col-7">
-                                                        <a class="company-details__property-list-item-link">85,000 AED
-                                                            <span>/yearly</span>
-                                                        </a>
-                                                    </div>
-                                                    <div class="col-5 text-end">
-                                                        <p class="company-details__property-list-item-date">Listed on 05
-                                                            May, 2022</p>
-                                                    </div>
-                                                </div>
-                                                <h6>Blue Wave Tower</h6>
-                                                <p class="company-details__property-list-item-text">
-                                                    <img src="assets/images/home-location.svg" alt=""
-                                                        class="img-fluid company-details__property-list-item-text-icon">
-                                                    Etihad Tower 4, Etihad Towers, Corniche Road, Abu Dhabi
-                                                </p>
-                                                <p class="company-details__property-list-item-type">Hotel & Hotel
-                                                    Apartment</p>
-                                                <div class="row">
-                                                    <div class="col-md-10">
-                                                        <ul class="company-details__property-detail-list">
-                                                            <li class="company-details__property-detail-list-item">
-                                                                <img src="{{bedsvg}}" alt="">
-                                                                3 Beds
-                                                            </li>
-                                                            <li class="company-details__property-detail-list-item">
-                                                                <img src="{{bathsvg}}" alt="">
-                                                                2 Bath
-                                                            </li>
-                                                            <li class="company-details__property-detail-list-item">
-                                                                <img src="{{squaremetersvg}}" alt="">
-                                                                8000 Sq.Ft.
-                                                            </li>
-                                                            <li class="company-details__property-detail-list-item">
-                                                                <img src="{{furnishing}}" alt="">
-                                                                Furnished
+                                                                {{item.furnishingType}}
                                                             </li>
                                                         </ul>
                                                     </div>
@@ -449,11 +176,16 @@
                                         </div>
                                     </li>
                                 </ul>
+                                <section class="agent-pagination-wrapper">
+                                    <pagination-controls (pageChange)="pageChanged($event)" class="text-center my-pagination">
+                                    </pagination-controls>
+                                </section>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            
             <div class="col-lg-4">
                 <div class="company-details__form-wrapper">
                     <div class="row mb-3">

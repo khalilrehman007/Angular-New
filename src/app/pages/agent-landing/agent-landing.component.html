@@ -130,8 +130,8 @@
         </div>
         <div class="row {{!companies ? 'd-none' : ''}}">
             <div class="col-lg-4" *ngFor="let item of bestCompanies">
-                <div class="agent-landing-featured__property">
-                    <div class="agent-landing-featured__property-wrapper" routerLink="/company-details/1"> >
+                <div class="agent-landing-featured__property" routerLink="/company-details/{{item.company.id}}">
+                    <div class="agent-landing-featured__property-wrapper" > >
                         <img src="assets/images/tag/featured.png" alt="" class="agent-landing-featured__property-tag">
                         <div class="row">
                             <div class="col-5 d-flex align-items-center">
