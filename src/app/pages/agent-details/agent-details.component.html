@@ -26,7 +26,9 @@
                                 <p class="agent-details__wrapper-details-text" *ngIf="agentDetail.agentDetails.company && agentDetail.agentDetails.company.companyAdress">{{agentDetail.agentDetails.company.companyAdress}}, UAE</p>
                                 <p class="agent-details__wrapper-details-text" *ngIf="agentDetail.agentDetails && agentDetail.agentDetails.brnNo">{{agentDetail.agentDetails.brnNo}}</p>
                                 <p class="agent-details__wrapper-details-text" *ngIf="agentDetail.agentDetails && agentDetail.agentDetails.imageUrl">Language: {{agentDetail.agentLanguages}}</p>
-                                <p class="agent-details__wrapper-details-text" *ngIf="agentDetail.agentDetails && agentDetail.agentDetails.agentAreas">Area: {{agentDetail.agentDetails.agentAreas}}</p>
+                                <p class="agent-details__wrapper-details-text" *ngIf="agentDetail.agentDetails && agentDetail.agentDetails.agentAreas">Area:
+                                    <span *ngFor="let item of agentDetail.agentDetails.agentAreas">{{item.district.name}}</span>
+                                </p>
                                 <ul class="agent-details__wrapper-details-list">
                                     <li class="agent-details__wrapper-details-list-item">
                                         <p class="agent-details__wrapper-details-list-text">{{agentDetail.salePropertyListingCount}} <br> Sale</p>
@@ -49,7 +51,7 @@
                             </li>
                             <li class="nav-item">
                                 <button class="nav-link" id="properties-tab" data-bs-toggle="tab"
-                                    data-bs-target="#properties">My Properties(78)</button>
+                                    data-bs-target="#properties">My Properties({{myListing.length}})</button>
                             </li>
                         </ul>
                         <div class="tab-content" id="myTabContent">

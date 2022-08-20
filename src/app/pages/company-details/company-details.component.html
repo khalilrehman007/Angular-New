@@ -21,9 +21,9 @@
                             <div class="company-details__wrapper-details">
                                 <h4 class="company-details__wrapper-details-heading" *ngIf="companyDetails.company && companyDetails.company.companyName">{{companyDetails.company.companyName}}</h4>
                                 <p class="company-details__wrapper-details-text mb-0" *ngIf="companyDetails.company && companyDetails.company.companyAdress">{{companyDetails.company.companyAdress}}</p>
-                                <p class="company-details__wrapper-details-text">ORN#: {{companyDetails.company.ornNo}}</p>
-                                <p class="company-details__wrapper-details-text">RERA# {{companyDetails.company.reraNo}}</p>
-                                <p class="company-details__wrapper-details-text">Permit# {{companyDetails.company.premitNo}}</p>
+                                <p class="company-details__wrapper-details-text" *ngIf="companyDetails.company && companyDetails.company.ornNo">ORN#: {{companyDetails.company.ornNo}}</p>
+                                <p class="company-details__wrapper-details-text" *ngIf="companyDetails.company && companyDetails.company.reraNo">RERA# {{companyDetails.company.reraNo}}</p>
+                                <p class="company-details__wrapper-details-text" *ngIf="companyDetails.company && companyDetails.company.premitNo">Permit# {{companyDetails.company.premitNo}}</p>
                                 <ul class="company-details__wrapper-details-list">
                                     <li class="company-details__wrapper-details-list-item">
                                         <p class="company-details__wrapper-details-list-text">{{companyDetails.agentNumber}} <br> Agents</p>
@@ -49,7 +49,7 @@
                             </li>
                             <li class="nav-item">
                                 <button class="nav-link" id="agent-tab" data-bs-toggle="tab" data-bs-target="#agent">Our
-                                    Agents(126)</button>
+                                    Agents{{companyDetails.company.agents.length}}</button>
                             </li>
                             <li class="nav-item">
                                 <button class="nav-link" id="properties-tab" data-bs-toggle="tab"
@@ -63,37 +63,34 @@
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="agent">
-                                <div class="row">
-                                    <div class="col-lg-6" *ngFor="let item of featuredAgentData.list">
-                                        <div class="company-details__agent">
+                                <div class="row" >
+                                    <div class="col-lg-6" *ngFor="let item of companyDetails.company.agents">
+                                        <div class="company-details__agent" routerLink="/agent-details/{{item.user.id}}">
                                             <div class="company-details__agent-wrapper">
-                                                <img src={{item.tag}} alt="" class="company-details__agent-tag">
                                                 <div class="row">
-                                                    <div class="col-xl-5 col-lg-5 col-md-5 col-sm-12 d-flex align-items-center">
-                                                        <img src={{item.img}} alt=""
+                                                    <div class="col-xl-5 col-lg-5 col-md-5 col-sm-12 d-flex align-items-center" *ngIf="item.user && item.user.imageUrl">
+                                                        <img src="https://beta.ovaluate.com/{{item.user.imageUrl}}" alt=""
                                                             class="img-fluid company-details__agent-img">
-                                                        <img src={{item.company}} alt=""
-                                                            class="img-fluid company-details__agent-company">
                                                     </div>
                                                     <div class="col-xl-7 col-lg-7 col-md-7 col-sm-12">
                                                         <div class="company-details__agent-right-panel">
-                                                            <h6 class="company-details__agent-heading"
-                                                                routerLink="/agent-details/1">{{item.heading}}</h6>
-                                                            <p class="company-details__agent-text">
-                                                                {{item.text}}</p>
-                                                            <a class="company-details__agent-text company-details__agent-link"
-                                                                routerLink={{item.link.url}}>{{item.link.text}}</a>
-                                                            <p class="company-details__agent-text mb-3">
-                                                                {{item.location}}</p>
-                                                            <p class="company-details__agent-text">
-                                                                {{item.nationality}}</p>
-                                                            <p class="company-details__agent-text">
-                                                                {{item.language}}</p>
-                                                            <ul class="company-details__agent-details-list">
-                                                                <li class="company-details__agent-details-list-item"
-                                                                    *ngFor="let detail of item.details">
+                                                            <h6 class="company-details__agent-heading" *ngIf="item.user && item.user.fullName" >{{item.user.fullName}}</h6>
+                                                            <p class="company-details__agent-text" *ngIf="item && item.expertIn">{{item.expertIn}}</p>
+                                                            <a class="company-details__agent-text company-details__agent-link" *ngIf="item.user && item.user.phoneNumber">{{item.user.phoneNumber}}</a>
+                                                            <p class="company-details__agent-text mb-3" *ngIf="item.user && item.user.location">Location: {{item.user.location}}</p>
+                                                            <p class="company-details__agent-text" *ngIf="item.agents && item.agents.agentLanguages">Language: {{item.agents.agentLanguages}}</p>
+                                                            <ul class="company-details__agent-details-list" >
+                                                                <li class="company-details__agent-details-list-item">
                                                                     <p class="company-details__agent-details-list-text">
-                                                                        {{detail.count}}<br>{{detail.name}}</p>
+                                                                        {{companyDetails.statistics.salePropertyListingCount}}<br>Sale</p>
+                                                                </li>
+                                                                <li class="company-details__agent-details-list-item">
+                                                                    <p class="company-details__agent-details-list-text">
+                                                                        {{companyDetails.statistics.rentPropertyListingCount}}<br>Rents</p>
+                                                                </li>
+                                                                <li class="company-details__agent-details-list-item">
+                                                                    <p class="company-details__agent-details-list-text">
+                                                                        {{companyDetails.statistics.commercialPropertyListingCount}}<br>Commercial</p>
                                                                 </li>
                                                             </ul>
                                                         </div>
