@@ -31,7 +31,7 @@ export class PropertyinfoComponent implements OnInit {
   editdata: any;
   submitted = false;
   responsedata: any;
-  oldData: any;
+  oldData: any = "";
   countryId: number = -1;
   cityId: number = -1;
   district: any = [];
@@ -44,6 +44,14 @@ export class PropertyinfoComponent implements OnInit {
   cityName:any;
   tempAddress:any;
   locationInformation:any = {};
+  bounds: any;
+  northEast: any;
+  southWest: any;
+  areabounds: any;
+  options: any;
+  locationSelected: boolean = false;
+  showLoader: boolean = false;
+  districtId:any;
 
 
 
@@ -51,6 +59,10 @@ export class PropertyinfoComponent implements OnInit {
   constructor(private route: Router, private notifyService: NotificationService, private service: AppService) {
     this.loadOldData();
     this.loadCountriesData();
+    this.options = {
+      bounds: [],
+      strictBounds: true,
+    };
   }
   changeInfo() {
     $("#searchLocation").focus();
@@ -76,12 +88,21 @@ export class PropertyinfoComponent implements OnInit {
   }
   countryCheck: boolean = false;
   cityCheck: boolean = false;
+  onDistrictSelect(e: any) {
+    this.locationSelected = false;
+    $("#searchLocation").val("");
+    let temp = this.district.filter(function (c: any) {
+      return c.value == e.value
+    })
+    this.getLocationDetails(temp[0].viewValue, true);
+    this.districtId = e.value;
+  }
   onCountrySelect(e: any) {
     let temp = this.country.filter(function (c: any) {
       return c.value == e.value
     });
     this.countryName = temp[0].viewValue;
-    this.getLocationDetails(temp[0].viewValue);
+    this.getLocationDetails(temp[0].viewValue, false);
     this.countryCheck = true;
     this.countryId = e.value;
     this.city = [];
@@ -100,9 +121,18 @@ export class PropertyinfoComponent implements OnInit {
       return c.value == e.value
     })
     this.cityName = temp[0].viewValue;
-    this.getLocationDetails(temp[0].viewValue);
+    this.getLocationDetails(temp[0].viewValue, false);
     this.cityCheck = true;
     this.cityId = e.value;
+    this.service.LoadDistrict(e.value).subscribe(e => {
+      let temp: any = e;
+      if (temp.message == "District list fetched successfully") {
+        for (let district of temp.data) {
+          this.district.push({ viewValue: district.name, value: district.id });
+        }
+        this.showLoader = false;
+      }
+    });
   }
 
   loadOldData() {
@@ -125,7 +155,6 @@ export class PropertyinfoComponent implements OnInit {
 
   onSubmit() {
     localStorage.removeItem("propertyData");
-
     this.submitted = true;
     const controls = this.SubmitForm.controls;
     if (this.SubmitForm.invalid) {
@@ -201,10 +230,10 @@ export class PropertyinfoComponent implements OnInit {
   ngAfterViewInit(): void {
     this.getLocation();
   }
-  initMap(e: any) {
+  initMap(e: any, zoom: any) {
     this.map = new google.maps.Map(this.mapElement.nativeElement, {
       center: e,
-      zoom: 8,
+      zoom: zoom,
       disableDefaultUI: true,
     })
     this.marker = new google.maps.Marker({
@@ -217,14 +246,14 @@ export class PropertyinfoComponent implements OnInit {
   onPlaceChanged() {
     let temp: any = document.getElementById("searchLocation");
     let address: any = temp.value;
-    localStorage.setItem("address",address);
+    localStorage.setItem("address", address);
     $.ajax({
       url: "https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyBPSEz52-AfPEVbmV_3yuGUGol_KiLb3GU",
       method: "get",
       success: (res) => {
         let area = res.results[0].geometry.location;
-        localStorage.setItem("lat",area.lat);
-        localStorage.setItem("lng",area.lng);
+        localStorage.setItem("lat", area.lat);
+        localStorage.setItem("lng", area.lng);
         this.map = new google.maps.Map($(".property-details__map")[0], {
           center: area,
           zoom: 15,
@@ -236,46 +265,82 @@ export class PropertyinfoComponent implements OnInit {
       }
     });
   }
-  getLocationDetails(e: any) {
+  getLocationDetails(e: any, status: boolean) {
+    $(".pac-container.pac-logo").remove();
     $.ajax({
       url: "https://maps.googleapis.com/maps/api/geocode/json?address=" + e + "&key=AIzaSyBPSEz52-AfPEVbmV_3yuGUGol_KiLb3GU",
       method: "get",
       success: (res) => {
         let temp = res.results[0].geometry.bounds;
-        let bounds = { east: temp.northeast.lng, west: temp.southwest.lng, north: temp.northeast.lat, south: temp.southwest.lat };
+        this.bounds = { east: temp.northeast.lng, west: temp.southwest.lng, north: temp.northeast.lat, south: temp.southwest.lat };
+        localStorage.setItem("bounds", JSON.stringify(this.bounds));
+        let northEast = new google.maps.LatLng(temp.northeast.lat, temp.northeast.lng);
+        let southWest = new google.maps.LatLng(temp.southwest.lat, temp.southwest.lng);
+        let areabounds = new google.maps.LatLngBounds(southWest, northEast);
+        this.options.bounds = areabounds;
         let area = res.results[0].geometry.location;
         this.map = new google.maps.Map($(".property-details__map")[0], {
           center: area,
           zoom: 6,
           disableDefaultUI: true,
           restriction: {
-            latLngBounds: bounds,
-            strictBounds: false,
+            latLngBounds: this.bounds,
+            strictBounds: true,
           },
         })
         this.marker = new google.maps.Marker({
           position: area,
           map: this.map
-        })
+        });
+        this.autocomplete = new google.maps.places.Autocomplete(this.searchElement.nativeElement, this.options);
+        this.autocomplete.addListener('place_changed', this.onPlaceChanged);
+        this.autocomplete.setBounds(this.bounds);
+        this.locationSelected = status;
       }
     });
   }
   getLocation() {
-    this.initMap(null);
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position: GeolocationPosition) => {
-          const pos = {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude,
-          };
-          this.map.setCenter(pos);
-          this.marker = new google.maps.Marker({
-            position: { lat: position.coords.latitude, lng: position.coords.longitude },
-            map: this.map
-          })
+    if (this.oldData == "") {
+      this.initMap(null, 8);
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position: GeolocationPosition) => {
+            const pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude,
+            };
+            this.map.setCenter(pos);
+            this.marker = new google.maps.Marker({
+              position: { lat: position.coords.latitude, lng: position.coords.longitude },
+              map: this.map
+            })
+          },
+        );
+      }
+    } else {
+      let bounds: any = localStorage.getItem("bounds");
+      bounds = JSON.parse(bounds);
+      let northEast = new google.maps.LatLng(bounds.north, bounds.east);
+      let southWest = new google.maps.LatLng(bounds.south, bounds.west);
+      let areabounds = new google.maps.LatLngBounds(southWest, northEast);
+      this.options.bounds = areabounds;
+      this.map = new google.maps.Map($(".property-details__map")[0], {
+        center: { "lat": parseInt(this.oldData.PropertyLat), "lng": parseInt(this.oldData.PropertyLong) },
+        zoom: 10,
+        disableDefaultUI: true,
+        restriction: {
+          latLngBounds: bounds,
+          strictBounds: true,
         },
-      );
+      });
+      this.marker = new google.maps.Marker({
+        position: { "lat": parseInt(this.oldData.PropertyLat), "lng": parseInt(this.oldData.PropertyLong) },
+        map: this.map
+      });
+      this.autocomplete = new google.maps.places.Autocomplete(this.searchElement.nativeElement, this.options);
+      this.autocomplete.addListener('place_changed', this.onPlaceChanged);
+      this.autocomplete.setBounds(this.bounds);
+      $("#searchLocation").val(this.oldData.PropertyAddress);
     }
   }
 }
