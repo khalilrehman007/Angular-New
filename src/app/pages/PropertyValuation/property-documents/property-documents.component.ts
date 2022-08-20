@@ -45,6 +45,7 @@ export class PropertyDocumentsComponent implements OnInit {
   showLoader: boolean = false;
   error: any = ""
   showError: boolean = false;
+  currency:any = localStorage.getItem("currency");
   errorResponse(data: any) {
     this.showError = false;
   }
@@ -293,7 +294,7 @@ export class PropertyDocumentsComponent implements OnInit {
   Nextshow1() {
     let temp: any = localStorage.getItem("valuationData");
     temp = JSON.parse(temp);
-    this.service.ValuationPrices(temp.PropertyTypeId).subscribe((result: any) => {
+    this.service.ValuationPrices({ "PropertyTypeId":temp.PropertyTypeId,"CountryId": temp.CountryId }).subscribe((result: any) => {
       this.valuationPrices = result.data;
     })
     this.status2 = !this.status2;
@@ -343,11 +344,11 @@ export class PropertyDocumentsComponent implements OnInit {
     this.formData.EmailAddress = userData.email;
 
     if (this.formData.InspectionRequired) {
-      this.formData.ValuationPayment = { "Email": userData.email, "CustomerName": this.reportForm.value.name, "TotalAmount": this.reportPrice + 1000, "InspectionAmount": 1000, "ReportAmount": this.reportPrice };
+      let a:any = localStorage.getItem("inspectionFee");
+      this.formData.ValuationPayment = { "Email": userData.email, "CustomerName": this.reportForm.value.name, "TotalAmount": parseInt(this.reportPrice) + parseInt(a), "InspectionAmount": localStorage.getItem("inspectionFee"), "ReportAmount": this.reportPrice };
     } else {
       this.formData.ValuationPayment = { "Email": userData.email, "CustomerName": this.reportForm.value.name, "TotalAmount": this.reportPrice, "InspectionAmount": 0, "ReportAmount": this.reportPrice };
     }
-
     let valuationData = new FormData();
     valuationData.append("ValuationRequest", JSON.stringify(this.formData));
     valuationData.append("1_map.jpg", this.mapImage);
@@ -379,7 +380,7 @@ export class PropertyDocumentsComponent implements OnInit {
           this.status2 = !this.status2;
           this.showLoader = false;
         } else {
-          alert("Something went wrong");
+          console.log(res);
         }
       },
       error: (err) => {
@@ -463,34 +464,49 @@ export class PropertyDocumentsComponent implements OnInit {
     let cvv: any = this.paymentForm.value.cvv;
     let currentDate: any = this.datePipe.transform(this.minDate, 'yyyy-MM-dd')?.split("-");
     if (this.paymentForm.value.cardNumber == "") {
-      alert("Please Enter Card Number");
+      this.error = "Please Enter Card Number";
+      this.showError = true;
       return;
     } else if (number.toString().length < 16) {
-      alert("Please Enter a Valid Card Number");
+      this.error = "Please Enter a Valid Card Number";
+      this.showError = true;
       return;
     } else if (this.paymentForm.value.expiryDate == "") {
-      alert("Please Enter Card Expiry");
+      this.error = "Please Enter Card Expiry";
+      this.showError = true;
       return;
     } else if (date.toString().length < 5) {
-      alert("Please Enter a Valid Card Expiry");
+      this.error = "Please Enter a Valid Card Expiry";
+      this.showError = true;
       return;
     } else if (this.paymentForm.value.cvv == "") {
-      alert("Please Enter CVV");
+      this.error = "Please Enter CVV";
+      this.showError = true;
       return;
     } else if (cvv.toString().length < 3) {
       alert("Please Enter a valid CVV");
+      this.error = "Please Enter a valid CVV";
+      this.showError = true;
       return;
     } else if ("20" + date.toString().split("/")[1] < currentDate[0]) {
-      alert("Please Enter a Valid Card Expiry");
+      this.error = "Please Enter a Valid Card Expiry";
+      this.showError = true;
       return;
     } else if ("20" + date.toString().split("/")[1] == currentDate[0] && date.toString().split("/")[0] < currentDate[1] || date.toString().split("/")[0] > 12) {
       alert("Please Enter a Valid Card Expiry");
+      this.error = "Please Enter a Valid Card Expiry";
+      this.showError = true;
       return;
     }
     this.showLoader = true;
-    let data: any = { "CardNumder": number, "reportNumberCode": this.valuationResponse.reportNumberCode, "Month": date.toString().split("/")[0], "Year": "20" + date.toString().split("/")[1], "CVC": cvv, "Amount": this.valuationResponse.valuationPayment.totalAmount, "Email": this.valuationResponse.emailAddress, "CustomerName": this.valuationResponse.customerName, "DescriptionPayment": this.valuationResponse.reportPackage.name };
+    let data: any = { "CardNumder": number,"Currency" :this.currency, "reportNumberCode": this.valuationResponse.reportNumberCode, "Month": date.toString().split("/")[0], "Year": "20" + date.toString().split("/")[1], "CVC": cvv, "Amount": this.valuationResponse.valuationPayment.totalAmount, "Email": this.valuationResponse.emailAddress, "CustomerName": this.valuationResponse.customerName, "DescriptionPayment": this.userData.propertyCategory + " " + this.userData.propertyType + " " + this.valuationResponse.reportPackage.name };
     this.service.ValuationPayment(data).subscribe((result: any) => {
       if (result.message == "Valuation transaction completed successfully") {
+        localStorage.removeItem("bounds");
+        localStorage.removeItem("valuationDetailData");
+        localStorage.removeItem("propertyTypeData");
+        localStorage.removeItem("valuationData");
+        localStorage.removeItem("mapImg");
         this.showLoader = false;
         this.router.navigate(['/PropertyDownloadReport']);
       } else {

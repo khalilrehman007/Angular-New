@@ -260,8 +260,8 @@ export class AppService {
   MyValuations(id: any) {
     return this.http.get(this.apiurl + 'MyValuations/' + id);
   }
-  ValuationPrices(id: any) {
-    return this.http.get(this.apiurl + 'ValuationPrices/' + id);
+  ValuationPrices(data: any) {
+    return this.http.post(this.apiurl + 'ValuationPriceByCountry', data);
   }
   PropertyPackageType() {
     return this.http.get(this.apiurl + 'PropertyPackageType');
@@ -368,4 +368,20 @@ export class AppService {
     return this.http.post(this.apiurl + 'ComparableProperties',data,{ headers: this.headers });
   }
 
+  MyActivityViewCount(id: any) {
+    return this.http.get(this.apiurl + 'MyActivityPropertyListingViewCount?UserId=' + id,{ headers: this.headers });
+  }
+
+  MyActivityPropertyListingView(data) {
+    return this.http.post(this.apiurl + 'MyActivityPropertyListingView', data, { headers: this.headers });
+  }
+  MyActivityAgentView(data) {
+    return this.http.post(this.apiurl + 'MyActivityAgentView', data, { headers: this.headers });
+  }
+  MyActivityEnquiredCount(id: any) {
+    return this.http.get(this.apiurl + 'MyActivityEnquiredCount?loginUserId=' + id,{ headers: this.headers });
+  }
+  MyActivityEnquired(data) {
+    return this.http.post(this.apiurl + 'MyActivityEnquired', data, { headers: this.headers });
+  }
 }

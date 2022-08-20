@@ -463,7 +463,7 @@
                                                     <div *ngFor="let item of featuresData">
                                                         <div class="checkbox-design position-relative"
                                                             *ngIf="oldData.PropertyFeatures && checkOldData(item.propertyFeatureId)"
-                                                            (click)="getFeaturesData(item.propertyFeatureId)">
+                                                            (click)="getFeaturesData(item.propertyFeatureId, item.propertyFeature.featureName)">
                                                             <input type="checkbox" id={{item.propertyFeature.id}}
                                                                 name={{item.propertyFeature.featureName}}
                                                                 value={{item.propertyFeature.featureName}} checked>
@@ -472,7 +472,7 @@
                                                         </div>
                                                         <div class="checkbox-design position-relative"
                                                             *ngIf="oldData.PropertyFeatures && !checkOldData(item.propertyFeatureId)"
-                                                            (click)="getFeaturesData(item.propertyFeatureId)">
+                                                            (click)="getFeaturesData(item.propertyFeatureId, item.propertyFeature.featureName)">
                                                             <input type="checkbox" id={{item.propertyFeature.id}}
                                                                 name={{item.propertyFeature.featureName}}
                                                                 value={{item.propertyFeature.featureName}} >
@@ -481,7 +481,7 @@
                                                         </div>
                                                         <div class="checkbox-design position-relative"
                                                             *ngIf="!oldData.PropertyFeatures"
-                                                            (click)="getFeaturesData(item.propertyFeatureId)">
+                                                            (click)="getFeaturesData(item.propertyFeatureId, item.propertyFeature.featureName)">
                                                             <input type="checkbox" id={{item.propertyFeature.id}}
                                                                 name={{item.propertyFeature.featureName}}
                                                                 value={{item.propertyFeature.featureName}} >

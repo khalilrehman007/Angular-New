@@ -30,60 +30,48 @@
                     <form [formGroup]="SubmitForm">
                         <div ngClass="form-border-wrapper">
                             <div ngClass="row">
-
-
-                                <div ngClass="col-xl-4 col-lg-4 col-md-12 col-sm-12">
-                                    <div ngClass="block-wrapper mb-4">
-                                        <div ngClass="select-design">
-                                            <label>Country</label>
-                                            <mat-form-field appearance="fill">
-                                                <mat-label>Select the Country</mat-label>
-                                                <mat-select (selectionChange)="onCountrySelect($event);">
-                                                    <mat-option *ngFor="let list of country" [value]="list.value">
-                                                        {{ list.viewValue }}
-                                                    </mat-option>
-                                                </mat-select>
-                                            </mat-form-field>
-                                        </div>
-                                        <div *ngIf="submitted && validate['CountryId'].errors"
-                                            class="alert alert-danger">
-                                            <div *ngIf="validate['CountryId'].errors['required']">Country is required
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div ngClass="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+                                <div ngClass="col-xl-4 col-lg-4 col-sm-12">
+                                  <div ngClass="block-wrapper mb-4">
                                     <div ngClass="select-design">
-                                        <label>City</label>
-                                        <mat-form-field appearance="fill">
-                                            <mat-label>Select the City</mat-label>
-                                            <mat-select (selectionChange)="onCitySelect($event);">
-                                                <mat-option *ngFor="let listcity of city" [value]="listcity.value">
-                                                    {{ listcity.viewValue }}
-                                                </mat-option>
-                                            </mat-select>
-                                        </mat-form-field>
+                                      <label>Country <span ngClass="required-span">*</span></label>
+                                      <mat-form-field appearance="fill">
+                                        <mat-label>Select the Country</mat-label>
+                                        <mat-select [(value)]="countryId" (selectionChange)="onCountrySelect($event)">
+                                          <mat-option *ngFor="let list of country" [value]="list.value">
+                                            {{ list.viewValue }}
+                                          </mat-option>
+                                        </mat-select>
+                                      </mat-form-field>
                                     </div>
-                                    <div *ngIf="submitted && validate['CityId'].errors" class="alert alert-danger">
-                                        <div *ngIf="validate['CityId'].errors['required']">City is required</div>
-                                    </div>
+                                  </div>
                                 </div>
-                                <div ngClass="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+                                <div ngClass="col-xl-4 col-lg-4 col-sm-12">
+                                  <div ngClass="select-design">
+                                    <label ngClass="h6-design">City <span ngClass="required-span">*</span></label>
+                                    <mat-form-field appearance="fill">
+                                      <mat-label>Select the City</mat-label>
+                                      <mat-select [(value)]="cityId" (selectionChange)="onCitySelect($event)">
+                                        <mat-option *ngFor="let listcity of city" [value]="listcity.value">
+                                          {{ listcity.viewValue }}
+                                        </mat-option>
+                                      </mat-select>
+                                    </mat-form-field>
+                                  </div>
+                                </div>
+                                <div ngClass="col-xl-4 col-lg-4 col-sm-12">
+                                  <div ngClass="block-wrapper mb-4">
                                     <div ngClass="select-design">
-                                        <label>District</label>
-                                        <mat-form-field appearance="fill">
-                                            <mat-label>Select the District</mat-label>
-                                            <mat-select (selectionChange)="onCitySelect($event);">
-                                                <mat-option *ngFor="let listcity of city" [value]="listcity.value">
-                                                    {{ listcity.viewValue }}
-                                                </mat-option>
-                                            </mat-select>
-                                        </mat-form-field>
+                                      <label>District <span ngClass="required-span">*</span></label>
+                                      <mat-form-field appearance="fill">
+                                        <mat-label>Select the District</mat-label>
+                                        <mat-select [(value)]="districtId" (selectionChange)="onDistrictSelect($event)">
+                                          <mat-option *ngFor="let listdistrict of district" [value]="listdistrict.value">
+                                            {{ listdistrict.viewValue }}
+                                          </mat-option>
+                                        </mat-select>
+                                      </mat-form-field>
                                     </div>
-                                    <div *ngIf="submitted && validate['CityId'].errors" class="alert alert-danger">
-                                        <div *ngIf="validate['CityId'].errors['required']">City is required</div>
-                                    </div>
+                                  </div>
                                 </div>
                                 <div ngClass="address-sec">
                                     <div ngClass="block-wrapper-address">

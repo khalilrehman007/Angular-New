@@ -27,6 +27,7 @@ export class PropertyTypesComponent implements OnInit {
   furnishingType: any;
   fittingType: any;
   featuresFormData: any = [];
+  featuresFormName: any = [];
   roadCount: number = 0;
   bedrooms:number = 0;
   bathrooms:number = 0;
@@ -89,7 +90,6 @@ export class PropertyTypesComponent implements OnInit {
     return this.propertyTypeForm.get("expense");
   }
   constructor(private service: AppService, private router: Router) {
-    this.loadOldData();
     this.formData = (window.localStorage.getItem('valuationData'));
     this.formData = JSON.parse(this.formData);
     this.loadFurnishingType();
@@ -100,6 +100,7 @@ export class PropertyTypesComponent implements OnInit {
     this.formData.FittingType = 0;
     this.formData.Bedrooms = 0;
     this.formData.Bathrooms = 0;
+    this.loadOldData();
   }
   ngOnInit(): void {
     this.service.PropertyUnitTypes().subscribe((result: any) => {
@@ -110,6 +111,13 @@ export class PropertyTypesComponent implements OnInit {
     if (localStorage.getItem("propertyTypeData")) {
       this.oldData = localStorage.getItem("propertyTypeData");
       this.formData = this.oldData = JSON.parse(this.oldData);
+      if(this.oldData.PropertyStatusId == 2) {
+        this.totalExpenseWrapper = true;
+        this.propertyTypeForm.patchValue({
+          income: this.oldData.Income,
+          expense: this.oldData.Expense
+        })
+      }
       this.roadCount = this.oldData.NoOfRoads;
       this.bedrooms = this.oldData.Bedrooms;
       this.bathrooms = this.oldData.Bathrooms;
@@ -232,15 +240,17 @@ export class PropertyTypesComponent implements OnInit {
     this.formDetailData.Fitting = name;
     this.fitting = id;
   }
-  getFeaturesData(id: number) {
+  getFeaturesData(id: number, name:any) {
     if (this.featuresFormData.indexOf(id) == -1) {
       this.featuresFormData.push(id);
     } else {
       this.featuresFormData = this.featuresFormData.filter((e: any) => e != id)
     }
-  }
-  mapFeaturesFormData() {
-
+    if (this.featuresFormName.indexOf(name) == -1) {
+      this.featuresFormName.push(name);
+    } else {
+      this.featuresFormName = this.featuresFormName.filter((e: any) => e != name)
+    }
   }
   addUnits() {
     this.unitHMTL.push({ show: true, id: this.unitHMTL[this.unitHMTL.length - 1].id + 1 });
@@ -404,8 +414,8 @@ export class PropertyTypesComponent implements OnInit {
       this.formData.Income = this.propertyTypeForm.value.income;
       this.formData.Expense = this.propertyTypeForm.value.expense;
     } else {
-      this.formData.Income = this.propertyTypeForm.value.income;
-      this.formData.Expense = this.propertyTypeForm.value.expense;
+      this.formData.Income = 0;
+      this.formData.Expense = 0;
     }
     let temp: any = [];
     for (let i = 0; i < this.unitHMTL.length; i++) {
@@ -424,11 +434,11 @@ export class PropertyTypesComponent implements OnInit {
     }
     this.formDetailData.ValuationPropertyUnits = temp;
     this.formData.ValuationPropertyUnits = temp;
-    temp = []
+    temp = [];
     for (let i = 0; i < this.featuresFormData.length; i++) {
       temp.push({ PropertyFeatureId: this.featuresFormData[i] });
     }
-    this.formDetailData.PropertyFeatures = temp;
+    this.formDetailData.PropertyFeatures = this.featuresFormName;
     this.formData.PropertyFeatures = temp;
     localStorage.setItem('valuationDetailData', JSON.stringify(this.formDetailData));
     localStorage.setItem('propertyTypeData', JSON.stringify(this.formData));
