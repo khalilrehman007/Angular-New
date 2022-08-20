@@ -15,18 +15,25 @@ export class CompanyDetailsComponent implements OnInit {
   furnishing = 'assets/images/icons/furnishing.svg'
   companyDetails: any;
   id: any;
+  totalLength: number = 0;
+  page: number = 1;
   constructor(private service:AppService, private route: ActivatedRoute) {
     this.route.params.subscribe(params => {
       this.id = params['id'];
       this.service.id = params['id'];
     }) 
-    this.service.DisplayCompany(2).subscribe((result:any)=>{
+    this.service.DisplayCompany(this.id).subscribe((result:any)=>{
       this.companyDetails = result.data;
       console.log(this.companyDetails)
 
     })
 
   }
+
+  pageChanged(value: any) {
+    this.page = value;
+  }
+
   featuredAgentData:any = {
     heading:"Featured Real Estate Companies",
     desc:"Some of our best property agents",

@@ -101,7 +101,7 @@
                                         <h6 class="agent-landing-featured__property-heading">
                                             {{item.agentDetails.user.fullName}}</h6>
                                         <p class="agent-landing-featured__property-text">
-                                            {{item.agentDetails.user.address}}</p>
+                                            {{item.agentDetails.expertIn}}</p>
                                         <p class="agent-landing-featured__property-text" *ngIf="item.agentDetails.company && item.agentDetails.company.reraNo">RERA#
                                             {{item.agentDetails.company.reraNo}}</p>
                                         <p class="agent-landing-featured__property-text" *ngIf="item.agentDetails.company && item.agentDetails.company.premitNo">Permits#
@@ -130,8 +130,8 @@
         </div>
         <div class="row {{!companies ? 'd-none' : ''}}">
             <div class="col-lg-4" *ngFor="let item of bestCompanies">
-                <div class="agent-landing-featured__property">
-                    <div class="agent-landing-featured__property-wrapper" routerLink="/company-details/1"> >
+                <div class="agent-landing-featured__property" routerLink="/company-details/{{item.company.id}}">
+                    <div class="agent-landing-featured__property-wrapper" > >
                         <img src="assets/images/tag/featured.png" alt="" class="agent-landing-featured__property-tag">
                         <div class="row">
                             <div class="col-5 d-flex align-items-center">
@@ -193,7 +193,7 @@
                                             <h6 class="agent-landing-featured__property-heading" *ngIf="data.user && data.user.fullName">{{data.user.fullName}}</h6>
                                             <p class="agent-landing-featured__property-text" *ngIf="data.company && data.company.companyName">{{data.company.companyName}}</p>
                                             <p class="agent-landing-featured__property-link m-0" *ngIf="data.user && data.user.phoneNumber">{{data.user.phoneNumber}}</p>
-                                            <p class="agent-landing-featured__property-text mb-3" *ngIf="data.user && data.user.cityId">{{data.user.cityId}},{{data.user.countryId}}</p>
+                                            <p class="agent-landing-featured__property-text mb-3" *ngIf="data.user && data.user.countryId">{{filterCountry(data.user.countryId)}}</p>
                                             <p class="agent-landing-featured__property-text" *ngIf="data.user && data.user.agentLanguages">Languages: {{data.agentLanguages}}</p>
                                         </div>
                                     </div>
