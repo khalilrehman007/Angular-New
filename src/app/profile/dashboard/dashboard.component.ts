@@ -121,8 +121,10 @@ export class DashboardComponent implements OnInit {
   get newPassword() {
     return this.changePasswordForm.get("newPassword");
   }
+  userId :number;
   constructor(private authService:AuthService,private service: AppService, private route: Router, private notifyService: NotificationService) {
     this.getUser();
+    this.userId = this.user.id;
     this.LoadBlogs();
     this.getloadDashboardData();
     this.getLoadListing()
