@@ -16,29 +16,35 @@ export class AgentDetailsComponent implements OnInit {
   agentDetail: any;
   id: any;
   user: any;
-  myListing:any = [];
-  constructor(private service:AppService, private route: ActivatedRoute) {
-    this.route.params.subscribe(params=>{
+  myListing: any = [];
+  totalLength: number = 0;
+  page: number = 1;
+  constructor(private service: AppService, private route: ActivatedRoute) {
+    this.route.params.subscribe(params => {
       this.id = params['id'];
       this.service.id = params['id'];
     })
     this.user = localStorage.getItem("user");
-    this.user= JSON.parse(this.user);
-    if(this.user != null) {
-      this.service.DisplayAgent({"PropertyListingId":"","AgentUserId":this.id,"LoginUserId":this.id}).subscribe((result:any)=>{
-        this.agentDetail= result.data;
+    this.user = JSON.parse(this.user);
+    if (this.user != null) {
+      this.service.DisplayAgent({ "PropertyListingId": "", "AgentUserId": this.id, "LoginUserId": this.id }).subscribe((result: any) => {
+        this.agentDetail = result.data;
       })
     } else {
-      this.service.DisplayAgent({"PropertyListingId":"","AgentUserId":this.id,"LoginUserId":""}).subscribe((result:any)=>{
-        this.agentDetail= result.data;
+      this.service.DisplayAgent({ "PropertyListingId": "", "AgentUserId": this.id, "LoginUserId": "" }).subscribe((result: any) => {
+        this.agentDetail = result.data;
       })
 
     }
-    this.service.MyPropertyListings(this.id).subscribe((result:any) => {
+    this.service.MyPropertyListings(this.id).subscribe((result: any) => {
       this.myListing = result.data;
       console.log(this.myListing);
     })
-   }
+  }
+
+  pageChanged(value: any) {
+    this.page = value;
+  }
 
   agentContact = new FormGroup({
     name: new FormControl("", Validators.required),
@@ -59,7 +65,7 @@ export class AgentDetailsComponent implements OnInit {
   get message() {
     return this.agentContact.get("message")
   }
-  
+
   ngOnInit(): void {
   }
 

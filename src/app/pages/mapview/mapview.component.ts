@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HeaderComponent } from '../../header/header.component';
 import { FooterComponent } from '../../footer/footer.component';
 import { PropertyfilterComponent } from '../../propertyfilter/propertyfilter.component';
+import { AppService } from 'src/app/service/app.service';
 
 @Component({
   selector: 'app-mapview',
@@ -17,6 +18,8 @@ export class MapviewComponent implements OnInit {
   bathsvg = '../../../assets/images/icons/Bath-tub.svg'
   squaremetersvg = '../../../assets/images/icons/Square Meters.svg'
   brandimg = '../../../assets/images/better-home.svg'
+  propertyDetails: any;
+
   dynamicSlides1 = [
     {
       id: 'slide1',
@@ -51,7 +54,9 @@ export class MapviewComponent implements OnInit {
       link: 'PropertDetailsPage'
     }
   ]
-  constructor() { }
+  constructor(service:AppService) {
+    this.propertyDetails=localStorage.getItem('listingForMap')
+  }
 
   ngOnInit(): void {
   }

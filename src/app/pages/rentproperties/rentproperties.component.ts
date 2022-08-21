@@ -72,6 +72,7 @@ export class RentpropertiesComponent implements OnInit {
   videoTourSorting: any;
   user: any
   userId: any;
+  listingForMap:any = [];
 
   constructor(private authService: AuthService, private notifyService: NotificationService, private activeRoute: ActivatedRoute, private service: AppService, private api: AppService, private route: Router, private modalService: NgbModal) {
     this.type = this.activeRoute.snapshot.queryParamMap.get('type');
@@ -215,8 +216,10 @@ export class RentpropertiesComponent implements OnInit {
   totalRecord: any;
   loadListingProperty(data: any) {
     let tempData: Array<Object> = []
-    this.service.LoadSearchListing(data).subscribe(data => {
-      let response: any = data;
+    this.service.LoadSearchListing(data).subscribe((response:any) => {
+      this.listingForMap = response.data.propertyListings;
+      localStorage.setItem('listingForMap',JSON.stringify(this.listingForMap))
+      console.log(this.listingForMap)
       this.totalRecord = response.data.totalRecord;
       response.data.propertyListings.forEach((element, i) => {
         let image: any;
@@ -244,7 +247,6 @@ export class RentpropertiesComponent implements OnInit {
       })
     });
 
-    console.log(this.searchListing, 'listing')
   }
 
   modelPropertyPictures: any = []

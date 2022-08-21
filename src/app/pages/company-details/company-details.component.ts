@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms'
+import { ActivatedRoute } from '@angular/router';
+import { AppService } from 'src/app/service/app.service';
 
 @Component({
   selector: 'app-company-details',
@@ -11,7 +13,27 @@ export class CompanyDetailsComponent implements OnInit {
   bathsvg = 'assets/images/icons/Bath-tub.svg'
   squaremetersvg = 'assets/images/icons/Square Meters.svg'
   furnishing = 'assets/images/icons/furnishing.svg'
-  constructor() { }
+  companyDetails: any;
+  id: any;
+  totalLength: number = 0;
+  page: number = 1;
+  constructor(private service:AppService, private route: ActivatedRoute) {
+    this.route.params.subscribe(params => {
+      this.id = params['id'];
+      this.service.id = params['id'];
+    }) 
+    this.service.DisplayCompany(this.id).subscribe((result:any)=>{
+      this.companyDetails = result.data;
+      console.log(this.companyDetails)
+
+    })
+
+  }
+
+  pageChanged(value: any) {
+    this.page = value;
+  }
+
   featuredAgentData:any = {
     heading:"Featured Real Estate Companies",
     desc:"Some of our best property agents",

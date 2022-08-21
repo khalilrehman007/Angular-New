@@ -30,6 +30,8 @@ export class AgentLandingComponent implements OnInit {
   searchList: any = ["Duabi", "UAE", "Investment Park"];
   agentObject: any = { "CountryId": "1", "DistrictsId": [], "CompaniesId": [], "UserId": "0", "EpertInId": "0", "LanguageId": "0", "CurrentPage": 1 };
   allCountries: any;
+  country: any = [];
+
   constructor(private router: Router, private service: AppService) {
     this.agentData();
     this.companyData();
@@ -44,7 +46,7 @@ export class AgentLandingComponent implements OnInit {
     }
 
     this.agentListData(this.agentObject);
-    this.companiesListData({"CountryId":"1","DistrictsId":[],"CompaniesId" :[],"CurrentPage": 1});
+    this.companiesListData({ "CountryId": "1", "DistrictsId": [], "CompaniesId": [], "CurrentPage": 1 });
 
     this.service.BestAgent(1).subscribe((result: any) => {
       this.agentDetails = result.data;
@@ -52,17 +54,17 @@ export class AgentLandingComponent implements OnInit {
     this.service.BestCompanies(1).subscribe((result: any) => {
       this.bestCompanies = result.data;
     })
-    // this.service.FindCompanies({}).subscribe((result: any) => {
-    //   this.findCompanies = result.data;
-    //   console.log(this.findCompanies)
-    // })
     this.searchfilter = this.searchctrl.valueChanges.pipe(
       startWith(null),
       map((searchCompenies: string | null) => (searchCompenies ? this._filter(searchCompenies) : this.searchList.slice())),
     );
-    this.service.LoadCountries().subscribe((result:any)=>{
-      this.allCountries = result.data;
-    })
+    this.service.LoadCountries().subscribe((result: any) => {
+      if (result.message == "Country list fetched successfully") {
+        for (let country of result.data) {
+          this.country.push({ name: country.name, id: country.id });
+        }
+      }
+    });
   }
   featuredAgentData: any;
   agentCheck: any = false;
@@ -769,8 +771,13 @@ export class AgentLandingComponent implements OnInit {
     this.page = value;
     this.agentObject.CurrentPage = value;
     this.agentListData(this.agentObject);
-    this.companiesListData({"CountryId":"1","DistrictsId":[],"CompaniesId" :[],"CurrentPage": value});
+    this.companiesListData({ "CountryId": "1", "DistrictsId": [], "CompaniesId": [], "CurrentPage": value });
   }
+  filterCountry(id: any) {
+    let temp = this.country.filter((c: any) => c.id == id)[0];
+    return temp.name;
+  }
+  
   ngOnInit(): void {
   }
 
@@ -805,13 +812,11 @@ export class AgentLandingComponent implements OnInit {
   agentListData(data: any) {
     this.service.FindAgents(data).subscribe((result: any) => {
       this.findAgent = result.data;
-      // console.log("Find Agent", this.findAgent)
     })
   }
   companiesListData(data: any) {
     this.service.FindCompanies(data).subscribe((result: any) => {
       this.findCompanies = result.data;
-      console.log("Find Companies", this.findCompanies)
     })
   }
 

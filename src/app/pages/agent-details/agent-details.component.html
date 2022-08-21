@@ -12,7 +12,7 @@
         </div>
         <div class="row">
             <div class="col-lg-8">
-                <div class="agent-details__wrapper">
+                <div class="agent-details__wrapper" >
                     <div class="row">
                         <div class="col-sm-12 col-md-4" *ngIf="agentDetail.agentDetails && agentDetail.agentDetails.user.imageUrl">
                             <img src="https://beta.ovaluate.com/{{agentDetail.agentDetails.user.imageUrl}}" alt="" class="img-fluid agent-details__wrapper-img">
@@ -26,7 +26,9 @@
                                 <p class="agent-details__wrapper-details-text" *ngIf="agentDetail.agentDetails.company && agentDetail.agentDetails.company.companyAdress">{{agentDetail.agentDetails.company.companyAdress}}, UAE</p>
                                 <p class="agent-details__wrapper-details-text" *ngIf="agentDetail.agentDetails && agentDetail.agentDetails.brnNo">{{agentDetail.agentDetails.brnNo}}</p>
                                 <p class="agent-details__wrapper-details-text" *ngIf="agentDetail.agentDetails && agentDetail.agentDetails.imageUrl">Language: {{agentDetail.agentLanguages}}</p>
-                                <p class="agent-details__wrapper-details-text" *ngIf="agentDetail.agentDetails && agentDetail.agentDetails.agentAreas">Area: {{agentDetail.agentDetails.agentAreas}}</p>
+                                <p class="agent-details__wrapper-details-text" *ngIf="agentDetail.agentDetails && agentDetail.agentDetails.agentAreas">Area:
+                                    <span *ngFor="let item of agentDetail.agentDetails.agentAreas">{{item.district.name}}</span>
+                                </p>
                                 <ul class="agent-details__wrapper-details-list">
                                     <li class="agent-details__wrapper-details-list-item">
                                         <p class="agent-details__wrapper-details-list-text">{{agentDetail.salePropertyListingCount}} <br> Sale</p>
@@ -49,7 +51,7 @@
                             </li>
                             <li class="nav-item">
                                 <button class="nav-link" id="properties-tab" data-bs-toggle="tab"
-                                    data-bs-target="#properties">My Properties(78)</button>
+                                    data-bs-target="#properties">My Properties({{myListing.length}})</button>
                             </li>
                         </ul>
                         <div class="tab-content" id="myTabContent">
@@ -81,10 +83,10 @@
                                     </div>
                                 </div>
                                 <ul class="agent-details__property-list">
-                                    <li class="agent-details__property-list-item" *ngFor="let item of myListing">
-                                        <div class="row">
+                                    <li class="agent-details__property-list-item" *ngFor="let item of myListing | paginate: { itemsPerPage: 10, currentPage: page, totalItems:totalLength }" >
+                                        <div class="row" routerLink="/PropertDetailsPage/{{item.id}}">
                                             <div class="col-lg-2">
-                                                <img src="assets/images/explore-places/1.jpg" alt=""
+                                                <img src="assets/images/placeholder.png" alt=""
                                                     class="img-fluid agent-details__property-list-item-img">
                                             </div>
                                             <div class="col-lg-10">
@@ -95,7 +97,7 @@
                                                         </a>
                                                     </div>
                                                     <div class="col-5 text-end">
-                                                        <p class="agent-details__property-list-item-date">{{item.requestedDateFormat}}</p>
+                                                        <p class="agent-details__property-list-item-date">Listed on {{item.requestedDateFormat}}</p>
                                                     </div>
                                                 </div>
                                                 <h6>{{item.buildingName}}</h6>
@@ -210,6 +212,10 @@
                 </div>
             </div>
         </div>
+        <section class="agent-pagination-wrapper">
+            <pagination-controls (pageChange)="pageChanged($event)" class="text-center my-pagination">
+            </pagination-controls>
+          </section>
     </div>
 </section>
 <footer ngClass="footer-sec">
