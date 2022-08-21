@@ -384,4 +384,7 @@ export class AppService {
   MyActivityEnquired(data) {
     return this.http.post(this.apiurl + 'MyActivityEnquired', data, { headers: this.headers });
   }
+  PropertyTransactionTypes() {
+    return this.http.get(this.apiurl + 'PropertyTransactionTypes');
+  }
 }
