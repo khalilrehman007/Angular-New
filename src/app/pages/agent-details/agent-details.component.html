@@ -12,32 +12,53 @@
         </div>
         <div class="row">
             <div class="col-lg-8">
-                <div class="agent-details__wrapper" >
+                <div class="agent-details__wrapper">
                     <div class="row">
-                        <div class="col-sm-12 col-md-4" *ngIf="agentDetail.agentDetails && agentDetail.agentDetails.user.imageUrl">
-                            <img src="https://beta.ovaluate.com/{{agentDetail.agentDetails.user.imageUrl}}" alt="" class="img-fluid agent-details__wrapper-img">
+                        <div class="col-sm-12 col-md-4"
+                            *ngIf="agentDetail.agentDetails && agentDetail.agentDetails.user.imageUrl">
+                            <img src="https://beta.ovaluate.com/{{agentDetail.agentDetails.user.imageUrl}}" alt=""
+                                class="img-fluid agent-details__wrapper-img">
                         </div>
                         <div class="col-sm-12 col-md-8">
                             <div class="agent-details__wrapper-details">
-                                <h4 class="agent-details__wrapper-details-heading" *ngIf="agentDetail.agentDetails.user && agentDetail.agentDetails.user.fullName">{{agentDetail.agentDetails.user.fullName}}</h4>
-                                <p class="agent-details__wrapper-details-text" *ngIf="agentDetail.agentDetails && agentDetail.agentDetails.expertIn">{{agentDetail.agentDetails.expertIn}}</p>
-                                <h6 class="agent-details__wrapper-details-desc" *ngIf="agentDetail.agentDetails.company && agentDetail.agentDetails.company.companyName">{{agentDetail.agentDetails.company.companyName}}</h6>
-                                <p class="agent-details__wrapper-details-phone" *ngIf="agentDetail.agentDetails.user && agentDetail.agentDetails.user.phoneNumber">{{agentDetail.agentDetails.user.phoneNumber}}</p>
-                                <p class="agent-details__wrapper-details-text" *ngIf="agentDetail.agentDetails.company && agentDetail.agentDetails.company.companyAdress">{{agentDetail.agentDetails.company.companyAdress}}, UAE</p>
-                                <p class="agent-details__wrapper-details-text" *ngIf="agentDetail.agentDetails && agentDetail.agentDetails.brnNo">{{agentDetail.agentDetails.brnNo}}</p>
-                                <p class="agent-details__wrapper-details-text" *ngIf="agentDetail.agentDetails && agentDetail.agentDetails.imageUrl">Language: {{agentDetail.agentLanguages}}</p>
-                                <p class="agent-details__wrapper-details-text" *ngIf="agentDetail.agentDetails && agentDetail.agentDetails.agentAreas">Area:
-                                    <span *ngFor="let item of agentDetail.agentDetails.agentAreas">{{item.district.name}}</span>
+                                <h4 class="agent-details__wrapper-details-heading"
+                                    *ngIf="agentDetail.agentDetails.user && agentDetail.agentDetails.user.fullName">
+                                    {{agentDetail.agentDetails.user.fullName}}</h4>
+                                <p class="agent-details__wrapper-details-text"
+                                    *ngIf="agentDetail.agentDetails && agentDetail.agentDetails.expertIn">
+                                    {{agentDetail.agentDetails.expertIn}}</p>
+                                <h6 class="agent-details__wrapper-details-desc"
+                                    *ngIf="agentDetail.agentDetails.company && agentDetail.agentDetails.company.companyName">
+                                    {{agentDetail.agentDetails.company.companyName}}</h6>
+                                <p class="agent-details__wrapper-details-phone"
+                                    *ngIf="agentDetail.agentDetails.user && agentDetail.agentDetails.user.phoneNumber">
+                                    {{agentDetail.agentDetails.user.phoneNumber}}</p>
+                                <p class="agent-details__wrapper-details-text"
+                                    *ngIf="agentDetail.agentDetails.company && agentDetail.agentDetails.company.companyAdress">
+                                    {{agentDetail.agentDetails.company.companyAdress}}, UAE</p>
+                                <p class="agent-details__wrapper-details-text"
+                                    *ngIf="agentDetail.agentDetails && agentDetail.agentDetails.brnNo">
+                                    {{agentDetail.agentDetails.brnNo}}</p>
+                                <p class="agent-details__wrapper-details-text"
+                                    *ngIf="agentDetail.agentDetails && agentDetail.agentDetails.imageUrl">Language:
+                                    {{agentDetail.agentLanguages}}</p>
+                                <p class="agent-details__wrapper-details-text"
+                                    *ngIf="agentDetail.agentDetails && agentDetail.agentDetails.agentAreas">Area:
+                                    <span
+                                        *ngFor="let item of agentDetail.agentDetails.agentAreas">{{item.district.name}}</span>
                                 </p>
                                 <ul class="agent-details__wrapper-details-list">
                                     <li class="agent-details__wrapper-details-list-item">
-                                        <p class="agent-details__wrapper-details-list-text">{{agentDetail.salePropertyListingCount}} <br> Sale</p>
+                                        <p class="agent-details__wrapper-details-list-text">
+                                            {{agentDetail.salePropertyListingCount}} <br> Sale</p>
                                     </li>
                                     <li class="agent-details__wrapper-details-list-item">
-                                        <p class="agent-details__wrapper-details-list-text">{{agentDetail.rentPropertyListingCount}} <br> Rent</p>
+                                        <p class="agent-details__wrapper-details-list-text">
+                                            {{agentDetail.rentPropertyListingCount}} <br> Rent</p>
                                     </li>
                                     <li class="agent-details__wrapper-details-list-item">
-                                        <p class="agent-details__wrapper-details-list-text">{{agentDetail.commercialPropertyListingCount}} <br> Commercial</p>
+                                        <p class="agent-details__wrapper-details-list-text">
+                                            {{agentDetail.commercialPropertyListingCount}} <br> Commercial</p>
                                     </li>
                                 </ul>
                             </div>
@@ -83,8 +104,10 @@
                                     </div>
                                 </div>
                                 <ul class="agent-details__property-list">
-                                    <li class="agent-details__property-list-item" *ngFor="let item of myListing | paginate: { itemsPerPage: 10, currentPage: page, totalItems:totalLength }" >
-                                        <div class="row" routerLink="/PropertDetailsPage/{{item.id}}">
+                                    <li class="agent-details__property-list-item"
+                                        *ngFor="let item of myListing | paginate: { itemsPerPage: 10, currentPage: page, totalItems:totalLength }">
+                                        <div class="row" [routerLink]="['/PropertDetailsPage']"
+                                            [queryParams]="{id: item.id}">
                                             <div class="col-lg-2">
                                                 <img src="assets/images/placeholder.png" alt=""
                                                     class="img-fluid agent-details__property-list-item-img">
@@ -92,12 +115,14 @@
                                             <div class="col-lg-10">
                                                 <div class="row">
                                                     <div class="col-7">
-                                                        <a class="agent-details__property-list-item-link" >{{item.propertyPrice}} AED
+                                                        <a class="agent-details__property-list-item-link">{{item.propertyPrice}}
+                                                            AED
                                                             <span>/yearly</span>
                                                         </a>
                                                     </div>
                                                     <div class="col-5 text-end">
-                                                        <p class="agent-details__property-list-item-date">Listed on {{item.requestedDateFormat}}</p>
+                                                        <p class="agent-details__property-list-item-date">Listed on
+                                                            {{item.requestedDateFormat}}</p>
                                                     </div>
                                                 </div>
                                                 <h6>{{item.buildingName}}</h6>
@@ -106,7 +131,8 @@
                                                         class="img-fluid agent-details__property-list-item-text-icon">
                                                     {{item.propertyAddress}}
                                                 </p>
-                                                <p class="agent-details__property-list-item-type">{{item.propertyTitle}}</p>
+                                                <p class="agent-details__property-list-item-type">{{item.propertyTitle}}
+                                                </p>
                                                 <div class="row">
                                                     <div class="col-md-10">
                                                         <ul class="agent-details__property-detail-list">
@@ -136,6 +162,10 @@
                                         </div>
                                     </li>
                                 </ul>
+                                <section class="agent-pagination-wrapper">
+                                    <pagination-controls (pageChange)="pageChanged($event)" class="text-center my-pagination">
+                                    </pagination-controls>
+                                </section>
                             </div>
                         </div>
                     </div>
@@ -212,10 +242,6 @@
                 </div>
             </div>
         </div>
-        <section class="agent-pagination-wrapper">
-            <pagination-controls (pageChange)="pageChanged($event)" class="text-center my-pagination">
-            </pagination-controls>
-          </section>
     </div>
 </section>
 <footer ngClass="footer-sec">
