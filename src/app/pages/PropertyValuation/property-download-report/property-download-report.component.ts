@@ -18,6 +18,7 @@ export class PropertyDownloadReportComponent implements OnInit {
   }
   downloadReport() {
     this.showLoader = true;
+    // this.service.GenerateReport("OV-RP-DD-100077").subscribe((result: any) => {
     this.service.GenerateReport(this.valuationResponse.reportNumberCode).subscribe((result: any) => {
       console.log(result.body);
       var blob = new Blob([result.body]);
