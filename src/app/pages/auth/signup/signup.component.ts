@@ -5,6 +5,7 @@ import * as $ from 'jquery';
 import { AuthService } from 'src/app/service/auth.service';
 import { Router } from '@angular/router';
 import { NotificationService } from 'src/app/service/notification.service';
+import { AppService } from 'src/app/service/app.service';
 
 
 @Component({
@@ -18,10 +19,16 @@ export class SignupComponent implements OnInit {
   info = '../../../../assets/images/info.svg'
   responsedata: any;
   submitted = false;
+  signUpPropertytype: any = [];
 
   // emailFormControl = new FormControl('', [Validators.required, Validators.email]);
-  constructor(private service: AuthService,private route:Router,private notifyService : NotificationService) {
+  constructor(private service: AuthService,private route:Router,private notifyService : NotificationService, private response:AppService) {
     localStorage.clear();
+    this.response.ProfessionalTypes().subscribe((result:any)=>{
+      this.signUpPropertytype = result.data;
+      console.log(this.signUpPropertytype)
+
+    })
   }
   signup = new FormGroup({
     FirstName: new FormControl("", Validators.required),

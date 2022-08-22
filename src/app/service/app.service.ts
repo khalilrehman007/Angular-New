@@ -96,9 +96,6 @@ export class AppService {
   FurnishingTypes() {
     return this.http.get(this.apiurl + 'FurnishingTypes/');
   }
-  ProfessionalTypes() {
-    return this.http.get(this.apiurl + 'ProfessionalTypes/');
-  }
   VideoTour() {
     return this.http.get(this.apiurl + 'VideoTour/');
   }
@@ -134,6 +131,9 @@ export class AppService {
   }
   LoadProfessionalTypes() {
     return this.http.get(this.apiurl + 'ProfessionalTypes');
+  }
+  ProfessionalTypes() {
+    return this.http.get(this.apiurl + 'ProfessionalTypes/');
   }
   LoadPropertyListingTypes() {
     return this.http.get(this.apiurl + 'PropertyListingTypes');
