@@ -25,7 +25,7 @@ export class ListpropertyinfoComponent implements OnInit {
   priviousFormCheck: any;
   data: any = {};
   propertyType: any = [];
-  selectedPropertyType:any = {};
+  selectedPropertyType: any = {};
   furnishingType: any;
   fittingType: any;
   tenantType: any;
@@ -41,8 +41,26 @@ export class ListpropertyinfoComponent implements OnInit {
   minDate = new Date();
   propertyListingBuy: number;
   propertyListingRent: number;
-  listingTypeId:number = 0;
-  categoryID:number = 0;
+  listingTypeId: number = 0;
+  categoryID: number = 0;
+  genderCheck: boolean = false;
+  tenantCheck: boolean = false;
+  fittingCheck: boolean = false;
+  furnishTypeCheck: boolean = false;
+  managedCheck: boolean = false;
+  occupancyCheck: boolean = false;
+  rentTypeCheck: boolean = false;
+  petPolicyCheck: boolean = false;
+  parkingCheck: boolean = false;
+  propertyTypeCheck: boolean = false;
+  bedroomCheck: boolean = false;
+  bathroomCheck: boolean = false;
+  brokreageCheck: boolean = false;
+  securityCheck: boolean = false;
+  transactionType: any = [];
+  completionStatus:any = [];
+  locatedNear: any = [{ id: 1, name: "Metro" }, { id: 2, name: "Elevator" }, { id: 3, name: "Stairs" }];
+  ownershipType: any = [{ id: 1, name: "Freehold" }, { id: 2, name: "Leasehold" }];
 
   constructor(private api: AppService, private service: AuthService, private route: Router, private notifyService: NotificationService) {
     this.getOldFormData();
@@ -91,16 +109,23 @@ export class ListpropertyinfoComponent implements OnInit {
       $(".mat-datepicker-toggle").click();
     })
   }
-  onListTypeSelect(id:any) {
+  onListTypeSelect(id: any) {
     this.listingTypeId = id;
+    if (id == 2) {
+      this.api.PropertyTransactionTypes().subscribe((result: any) => {
+        this.transactionType = result.data;
+      })
+      this.api.LoadCompletionStatus().subscribe((result: any) => {
+        this.completionStatus = result.data;
+      })
+    }
   }
   getOldFormData() {
     this.oldData = localStorage.getItem('listpropertyinfo_rent_residential');
   }
-  getCategory(id:any) {
+  getCategory(id: any) {
     this.categoryID = id;
     this.api.LoadType(id).subscribe((result) => {
-      // this.propertyTypeCheck = false;
       this.propertyType = result;
       this.propertyType = this.propertyType.data
     });
@@ -180,20 +205,6 @@ export class ListpropertyinfoComponent implements OnInit {
   get validate() {
     return this.SubmitForm.controls;
   }
-  genderCheck: boolean = false;
-  tenantCheck: boolean = false;
-  fittingCheck: boolean = false;
-  furnishTypeCheck: boolean = false;
-  managedCheck: boolean = false;
-  occupancyCheck: boolean = false;
-  rentTypeCheck: boolean = false;
-  petPolicyCheck: boolean = false;
-  parkingCheck: boolean = false;
-  propertyTypeCheck: boolean = false;
-  bedroomCheck: boolean = false;
-  bathroomCheck: boolean = false;
-  brokreageCheck: boolean = false;
-  securityCheck: boolean = false;
   onSubmit() {
     this.submitted = true;
     const controls = this.SubmitForm.controls;
@@ -314,7 +325,7 @@ export class ListpropertyinfoComponent implements OnInit {
     this.data.BathRooms = e.value;
   }
   getPropertyType(e: any) {
-    this.selectedPropertyType = this.propertyType.filter((item:any) => item.id == e.value)[0]
+    this.selectedPropertyType = this.propertyType.filter((item: any) => item.id == e.value)[0]
     console.log(this.selectedPropertyType);
     this.propertyTypeCheck = true;
     this.data.PropertyTypeId = e.value;
@@ -350,6 +361,18 @@ export class ListpropertyinfoComponent implements OnInit {
   }
   getRentTypes(e: number) {
     this.data.RentTypeId = e;
+  }
+  getTransactionType(e: number) {
+    this.data.PropertyTransactionTypeId = e;
+  }
+  getCompletionStatus(e: number) {
+    this.data.PropertyCompletionStatusId = e;
+  }
+  getLocatedNear(e: number) {
+    this.data.LocatedNear = e;
+  }
+  getOwnershipType(e: number) {
+    this.data.ownershipType = e;
   }
   getSecurityDeposit(e: boolean) {
     this.data.SecurityDeposit = e;
