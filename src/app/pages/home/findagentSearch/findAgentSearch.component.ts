@@ -16,98 +16,248 @@ import { data } from 'jquery';
   styleUrls: ['./findAgentSearch.component.scss']
 })
 export class FindAgentSearchComponent implements OnInit {
-  
-  // Find agentLocation property
-  searchByLocation: number[] = [ENTER, COMMA];
-  SearchByLocationctrl = new FormControl('');
-  SearchByObserve: Observable<string[]>;
-  SearchByLocString: string[] = [];
-  allSearchByLocString: string[] = ['Dubai', 'UAE', 'Dubai', 'UAE', 'Dubai'];
 
-  @ViewChild('LetSearchByLocationInput') LetSearchByLocationInput: ElementRef<HTMLInputElement>;
+  // Find agentLocation property
+  // searchByLocation: number[] = [ENTER, COMMA];
+  // SearchByLocationctrl = new FormControl('');
+  // SearchByObserve: Observable<string[]>;
+  // SearchByLocString: string[] = [];
+  // allSearchByLocString: string[] = ['hikmat', 'waris', 'Dubai', 'UAE', 'Dubai'];
+  //
+  // @ViewChild('LetSearchByLocationInput') LetSearchByLocationInput: ElementRef<HTMLInputElement>;
+  // add(event: MatChipInputEvent): void {
+  //   const value = (event.value || '').trim();
+  //   if (value) {
+  //     this.SearchByLocString.push(value);
+  // }
+  //
+  //   // Clear the input value
+  //   event.chipInput!.clear();
+  //
+  //   this.SearchByLocationctrl.setValue(null);
+  // }
+
+  // remove(LetSearchByLocation: string): void {
+  //   const index = this.SearchByLocString.indexOf(LetSearchByLocation);
+  //
+  //   if (index >= 0) {
+  //     this.SearchByLocString.splice(index, 1);
+  //   }
+  // }
+
+  // selected(event: MatAutocompleteSelectedEvent): void {
+  //   this.SearchByLocString.push(event.option.viewValue);
+  //   this.LetSearchByLocationInput.nativeElement.value = '';
+  //   this.SearchByLocationctrl.setValue(null);
+  // }
+
+  // private _filter(value: string): string[] {
+  //   const filterValue = value.toLowerCase();
+  //
+  //   return this.allSearchByLocString.filter(LetSearchByLocation => LetSearchByLocation.toLowerCase().includes(filterValue));
+  // }
+
+  // Find Agent
+
+  // searchByAgent: number[] = [ENTER, COMMA];
+  // SearchByAgentctrl = new FormControl('');
+  // SearchByAgentObserve: Observable<string[]>;
+  // SearchByAgentString: string[] = [];
+  // allSearchByAgentString: string[] = ['Dubai', 'UAE', 'Dubai', 'UAE', 'Dubai'];
+  //
+  // @ViewChild('LetSearchByAgentInput') LetSearchByAgentInput: ElementRef<HTMLInputElement>;
+
+
+  // add1(event: MatChipInputEvent): void {
+  //   const value = (event.value || '').trim();
+  //   if (value) {
+  //     this.SearchByAgentString.push(value);
+  // }
+  //
+  //   // Clear the input value
+  //   event.chipInput!.clear();
+  //
+  //   this.SearchByAgentctrl.setValue(null);
+  // }
+  //
+  // remove1(LetSearchByAgentInput: string): void {
+  //   const index = this.SearchByLocString.indexOf(LetSearchByAgentInput);
+  //
+  //   if (index >= 0) {
+  //     this.SearchByAgentString.splice(index, 1);
+  //   }
+  // }
+  //
+  // selected1(event: MatAutocompleteSelectedEvent): void {
+  //   this.SearchByAgentString.push(event.option.viewValue);
+  //   this.LetSearchByAgentInput.nativeElement.value = '';
+  //   this.SearchByAgentctrl.setValue(null);
+  // }
+
+
+
+
+
+  separatorKeysCodes: number[] = [ENTER, COMMA];
+  fruitCtrl = new FormControl('');
+  filteredFruits: Observable<string[]>;
+  fruits: string[] = [];
+  allFruits: string[];
+
+  @ViewChild('fruitInput') fruitInput: ElementRef<HTMLInputElement>;
+
+
+  getLoaction(data:any){
+    let tempData :any = []
+    this.service.CompanyLocationAutoCompleteSearch(data).subscribe(data=>{
+      let response: any = data;
+      response.data.locationAutoComplete.forEach((element, i) => {
+        tempData.push(element.item2);
+      })
+    });
+    this.allFruits = tempData
+  }
+
+  separatorKeysCodes1: number[] = [ENTER, COMMA];
+  fruitCtrl1 = new FormControl('');
+  filteredFruits1: Observable<string[]>;
+  fruits1: string[] = [];
+  allFruits1: string[];
+
+  @ViewChild('fruitInput1') fruitInput1: ElementRef<HTMLInputElement>;
+
+
+  getAgent(data:any){
+    let tempData :any = []
+    this.service.AgentAutoCompleteSearch(data).subscribe(data=>{
+      let response: any = data;
+      response.data.agentAutoComplete.forEach((element, i) => {
+        tempData.push(element.value);
+      })
+    });
+    this.allFruits1 = tempData
+  }
+
+  getUrllanguageIds : any = []
+  getUrlExpertInId : any ;
+
+  constructor(private activeRoute: ActivatedRoute,private service:AppService,public route:Router) {
+
+    this.getAgent({"Searching":"Rahul","CountryId":"1"});
+    this.getLoaction({"Searching":"mr","CountryId":"1"});
+
+    this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
+      startWith(null),
+      map((fruit: string | null) => (fruit ? this._filter(fruit) : this.allFruits.slice())),
+    );
+    this.filteredFruits1 = this.fruitCtrl1.valueChanges.pipe(
+      startWith(null),
+      map((fruit: string | null) => (fruit ? this._filter1(fruit) : this.allFruits1.slice())),
+    );
+
+
+    // this.searchfilter = this.searchctrl.valueChanges.pipe(
+    //   startWith(null),
+    //   map((fruit: string | null) => (fruit ? this._filter(fruit) : this.searchList.slice())),
+    // );
+
+    this.getUrllanguageIds = this.activeRoute.snapshot.queryParamMap.get('LanguageId');
+    this.getUrlExpertInId = this.activeRoute.snapshot.queryParamMap.get('ExpertInId');
+
+    console.log(this.getUrllanguageIds)
+    console.log(this.getUrlExpertInId)
+
+    this.getExpertIn();
+    this.getSpokenLanguages();
+  }
+
+
+
+
   add(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
+
+    // Add our fruit
     if (value) {
-      this.SearchByLocString.push(value);
-  }
+      this.fruits.push(value);
+    }
 
     // Clear the input value
     event.chipInput!.clear();
 
-    this.SearchByLocationctrl.setValue(null);
+    this.fruitCtrl.setValue(null);
   }
 
-  remove(LetSearchByLocation: string): void {
-    const index = this.SearchByLocString.indexOf(LetSearchByLocation);
+  remove(fruit: string): void {
+    const index = this.fruits.indexOf(fruit);
 
     if (index >= 0) {
-      this.SearchByLocString.splice(index, 1);
+      this.fruits.splice(index, 1);
     }
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
-    this.SearchByLocString.push(event.option.viewValue);
-    this.LetSearchByLocationInput.nativeElement.value = '';
-    this.SearchByLocationctrl.setValue(null);
+    this.fruits.push(event.option.viewValue);
+    this.fruitInput.nativeElement.value = '';
+    this.fruitCtrl.setValue(null);
   }
 
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
-
-    return this.allSearchByLocString.filter(LetSearchByLocation => LetSearchByLocation.toLowerCase().includes(filterValue));
+    return this.allFruits.filter(fruit => fruit.toLowerCase().includes(filterValue));
   }
 
-  // Find Agent
 
-  searchByAgent: number[] = [ENTER, COMMA];
-  SearchByAgentctrl = new FormControl('');
-  SearchByAgentObserve: Observable<string[]>;
-  SearchByAgentString: string[] = [];
-  allSearchByAgentString: string[] = ['Dubai', 'UAE', 'Dubai', 'UAE', 'Dubai'];
 
-  @ViewChild('LetSearchByAgentInput') LetSearchByAgentInput: ElementRef<HTMLInputElement>;
 
 
   add1(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
+
+    // Add our fruit
     if (value) {
-      this.SearchByAgentString.push(value);
-  }
+      this.fruits1.push(value);
+    }
 
     // Clear the input value
     event.chipInput!.clear();
 
-    this.SearchByAgentctrl.setValue(null);
+    this.fruitCtrl1.setValue(null);
   }
 
-  remove1(LetSearchByAgentInput: string): void {
-    const index = this.SearchByLocString.indexOf(LetSearchByAgentInput);
+  remove1(fruit: string): void {
+    const index = this.fruits1.indexOf(fruit);
 
     if (index >= 0) {
-      this.SearchByAgentString.splice(index, 1);
+      this.fruits1.splice(index, 1);
     }
   }
 
   selected1(event: MatAutocompleteSelectedEvent): void {
-    this.SearchByAgentString.push(event.option.viewValue);
-    this.LetSearchByAgentInput.nativeElement.value = '';
-    this.SearchByAgentctrl.setValue(null);
+    this.fruits1.push(event.option.viewValue);
+    this.fruitInput1.nativeElement.value = '';
+    this.fruitCtrl1.setValue(null);
   }
 
-  constructor(private service:AppService) {
-    this.getExpertIn();
-    this.getSpokenLanguages();
-    this.service.AgentAutoCompleteSearch({"Searching":"mr","CountryId":"1"}).subscribe((result:any)=>{
-    })
-    this.SearchByObserve = this.SearchByLocationctrl.valueChanges.pipe(
-      startWith(null),
-      map((LetSearchByLocation: string | null) => (LetSearchByLocation ? this._filter(LetSearchByLocation) : this.allSearchByLocString.slice())),
-    );
-    this.SearchByAgentObserve = this.SearchByAgentctrl.valueChanges.pipe(
-      startWith(null),
-      map((LetSearchByAgent: string | null) => (LetSearchByAgent ? this._filter(LetSearchByAgent) : this.allSearchByLocString.slice())),
-    );
+  private _filter1(value: string): string[] {
+    const filterValue = value.toLowerCase();
+    return this.allFruits1.filter(fruit => fruit.toLowerCase().includes(filterValue));
   }
+
+
+
+
+
+
+  // languageCheck(id:number){
+  //   let exists = false;
+  //   this.LanguageId.forEach((element, i) => {
+  //     if(element == id){
+  //       exists = true;
+  //     }
+  //   })
+  //   return exists;
+  // }
 
   ngOnInit(): void {
   }
@@ -122,7 +272,46 @@ export class FindAgentSearchComponent implements OnInit {
       this.status = false;
   }
   // Search Code
+  // separatorKeysCodes: number[] = [ENTER, COMMA];
+  // searchctrl = new FormControl('');
+  // searchfilter: Observable<string[]>;
+  // SearchKeyword: string[] = [];
+  // searchList: any = [];
 
+  // @ViewChild('SearchInput') SearchInput: ElementRef<HTMLInputElement>;
+  // add(event: MatChipInputEvent): void {
+  //   const value = (event.value || '').trim();
+  //
+  //   // Add our fruit
+  //   if (value) {
+  //     this.SearchKeyword.push(value);
+  //   }
+  //
+  //   // Clear the input value
+  //   event.chipInput!.clear();
+  //
+  //   this.searchctrl.setValue(null);
+  // }
+  //
+  // remove(fruit: string): void {
+  //   const index = this.SearchKeyword.indexOf(fruit);
+  //
+  //   if (index >= 0) {
+  //     this.SearchKeyword.splice(index, 1);
+  //   }
+  // }
+  //
+  // selected(event: MatAutocompleteSelectedEvent): void {
+  //   this.SearchKeyword.push(event.option.viewValue);
+  //   this.SearchInput.nativeElement.value = '';
+  //   this.searchctrl.setValue(null);
+  // }
+
+  // private _filter(value: string): string[] {
+  //   const filterValue = value.toLowerCase();
+  //
+  //   return this.searchList.filter(fruit => fruit.toLowerCase().includes(filterValue));
+  // }
 
   ExpertIn :any = [];
   getExpertIn(){
@@ -147,5 +336,53 @@ export class FindAgentSearchComponent implements OnInit {
       })
     });
     this.SpokenLanguages = tempData
+  }
+
+  ExpertInId :number ;
+  getExpertInId(id:number){
+    this.ExpertInId = id
+  }
+  LanguageId :number ;
+  getLanguageId(id:number){
+
+    this.LanguageId = id
+    ///multiple code
+
+    // let exists :any = true;
+    // this.LanguageId.forEach((element, i) => {
+    //      if(id == element){
+    //       exists = false;
+    //     }
+    // })
+    // if(exists){
+    //   this.LanguageId.push(id);
+    // }else{
+    //   const index = this.LanguageId.indexOf(id);
+    //   if (index >= 0) {
+    //     this.LanguageId.splice(index, 1);
+    //   }
+    // }
+  }
+
+  proceedSearch(){
+    // console.log('dededed')
+    // if(this.LanguageId.length < 1){
+    //   this.LanguageId = this.getUrllanguageIds;
+    // }
+    //
+    // let languages :any = []
+    // this.LanguageId.forEach((element, i) => {
+    //   languages.push(element);
+    // })
+
+    // if(this.LanguageId.length < 1){
+    //   this.LanguageId = this.getUrllanguageIds;
+    // }
+
+
+    // let params :any = {queryParams:{LanguageId:JSON.stringify(this.LanguageId),ExpertInId:this.ExpertInId}};
+    let params :any = {queryParams:{LanguageId:this.LanguageId,ExpertInId:this.ExpertInId}};
+    this.route.navigate(['/find-agent'],params)
+
   }
 }

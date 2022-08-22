@@ -1,6 +1,6 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { Router } from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import { AppService } from 'src/app/service/app.service';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { data } from 'jquery';
+import {AuthService} from "../../service/auth.service";
 
 @Component({
   selector: 'app-agent-landing',
@@ -31,21 +32,37 @@ export class AgentLandingComponent implements OnInit {
   agentObject: any = { "CountryId": "1", "DistrictsId": [], "CompaniesId": [], "UserId": "0", "EpertInId": "0", "LanguageId": "0", "CurrentPage": 1 };
   allCountries: any;
   country: any = [];
+  languageIds : any;
+  ExpertInId : any ;
 
-  constructor(private router: Router, private service: AppService) {
+  constructor( private activeRoute: ActivatedRoute,private authService: AuthService,private router: Router, private service: AppService) {
     this.agentData();
     this.companyData();
+    this.languageIds = this.activeRoute.snapshot.queryParamMap.get('LanguageId');
+    this.ExpertInId = this.activeRoute.snapshot.queryParamMap.get('ExpertInId');
+
+    if(this.ExpertInId == null){
+      this.ExpertInId = 0
+    }
+    if(this.languageIds == null){
+      this.languageIds = 0
+    }
+
     let url = this.router.url.replace("/", "");
+    url = this.router.url.split('?')[0];
+
     if (url == 'find-companies') {
       this.companiesCheck = true;
       this.companies = true;
       this.companyData();
-    } else if (url == 'find-agent') {
+    } else if (url == '/find-agent') {
       this.agentCheck = true;
       this.agentData();
     }
 
-    this.agentListData(this.agentObject);
+    let agentObject: any = { "CountryId": "1", "DistrictsId": [], "CompaniesId": [], "UserId": "0", "EpertInId": this.ExpertInId, "LanguageId": this.languageIds, "CurrentPage": 1 };
+
+    this.agentListData(agentObject);
     this.companiesListData({ "CountryId": "1", "DistrictsId": [], "CompaniesId": [], "CurrentPage": 1 });
 
     this.service.BestAgent(1).subscribe((result: any) => {
@@ -777,7 +794,7 @@ export class AgentLandingComponent implements OnInit {
     let temp = this.country.filter((c: any) => c.id == id)[0];
     return temp.name;
   }
-  
+
   ngOnInit(): void {
   }
 

@@ -66,7 +66,7 @@
             <div ngClass="properties-list-design">
               <div ngClass="properties-list-block-design"
                 *ngFor=" let list of searchListing | paginate: { itemsPerPage: 10, currentPage: page ,totalItems:totalRecord }">
-                <div ngClass="row">
+                <div ngClass="row" [routerLink]="['/PropertDetailsPage']" [queryParams]="{id: list.id}">
                   <div ngClass="col-xl-4 col-md-4 col-lg-4 col-sm-12">
                     <div ngClass="properties-list_slider">
                       <ngb-carousel>

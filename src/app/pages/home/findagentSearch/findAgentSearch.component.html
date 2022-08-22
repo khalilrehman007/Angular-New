@@ -3,60 +3,62 @@
     <div ngClass="flex-row">
       <div ngClass="flex-column flex-column-1">
         <div ngClass="block-wrapper">
-          <mat-form-field class="example-chip-list input-design searh_input-design" appearance="fill">
-            <mat-chip-list #chipList aria-label="Search By Location">
+          <mat-form-field class="example-chip-list" appearance="fill">
+            <mat-label>Locations</mat-label>
+            <mat-chip-list #chipList aria-label="Fruit selection">
               <mat-chip
-                *ngFor="let LetSearchByLocation of SearchByLocString"
-                (removed)="remove(LetSearchByLocation)">
-                {{LetSearchByLocation}}
+                *ngFor="let fruit of fruits"
+                (removed)="remove(fruit)">
+                {{fruit}}
                 <button matChipRemove>
                   <mat-icon>cancel</mat-icon>
                 </button>
               </mat-chip>
               <input
-                placeholder="Location, Project Name"
-                #LetSearchByLocationInput
-                [formControl]="SearchByLocationctrl"
+                placeholder="Locations"
+                #fruitInput
+                [formControl]="fruitCtrl"
                 [matAutocomplete]="auto"
                 [matChipInputFor]="chipList"
-                [matChipInputSeparatorKeyCodes]="searchByLocation"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                 (matChipInputTokenEnd)="add($event)">
             </mat-chip-list>
             <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-              <mat-option *ngFor="let LetSearchByLocation of SearchByObserve | async" [value]="LetSearchByLocation">
-                {{LetSearchByLocation}}
+              <mat-option *ngFor="let fruit of filteredFruits | async" [value]="fruit">
+                {{fruit}}
               </mat-option>
             </mat-autocomplete>
-          </mat-form-field>          
+          </mat-form-field>
         </div>
       </div>
       <div ngClass="flex-column flex-column-2">
         <div ngClass="block-wrapper">
-          <mat-form-field class="example-chip-list input-design searh_input-design" appearance="fill">
-            <mat-chip-list #chipList1 aria-label="Search By Location">
+          <mat-form-field class="example-chip-list" appearance="fill">
+            <mat-label>Agents</mat-label>
+            <mat-chip-list #chipList1 aria-label="Fruit selection">
               <mat-chip
-                *ngFor="let LetSearchByAgent of SearchByAgentString"
-                (removed)="remove1(LetSearchByAgent)">
-                {{LetSearchByAgent}}
+                *ngFor="let fruit of fruits1"
+                (removed)="remove1(fruit)">
+                {{fruit}}
                 <button matChipRemove>
                   <mat-icon>cancel</mat-icon>
                 </button>
               </mat-chip>
               <input
-                placeholder="Search By Agent Name"
-                #LetSearchByAgentInput
-                [formControl]="SearchByAgentctrl"
-                [matAutocomplete]="auto"
+                placeholder="Agent"
+                #fruitInput1
+                [formControl]="fruitCtrl1"
+                [matAutocomplete]="auto1"
                 [matChipInputFor]="chipList1"
-                [matChipInputSeparatorKeyCodes]="searchByAgent"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes1"
                 (matChipInputTokenEnd)="add1($event)">
             </mat-chip-list>
-            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected1($event)">
-              <mat-option *ngFor="let LetSearchByAgent of SearchByAgentObserve | async" [value]="LetSearchByAgent">
-                {{LetSearchByAgent}}
+            <mat-autocomplete #auto1="matAutocomplete" (optionSelected)="selected1($event)">
+              <mat-option *ngFor="let fruit of filteredFruits1 | async" [value]="fruit">
+                {{fruit}}
               </mat-option>
             </mat-autocomplete>
-          </mat-form-field>          
+          </mat-form-field>
         </div>
       </div>
       <div ngClass="flex-column flex-column-3">
@@ -66,8 +68,9 @@
              <div class="cstm_dropdown-menu" [ngClass]="status ? 'active' : 'notactive'">
               <ul ngClass="list-unstyled residentails-unit-list">
                 <li ngClass="d-flex" ngbSlide *ngFor="let list of ExpertIn">
-                  <div ngClass="position-relative">
-                    <input type="radio" name="language" value="English">
+                  <div (click)="getExpertInId(list.id)" ngClass="position-relative">
+                    <input *ngIf="getUrlExpertInId == list.id" checked type="radio" name="ExpertIn" value="English">
+                    <input *ngIf="getUrlExpertInId != list.id"  type="radio" name="ExpertIn" value="English">
                     <span ngClass="property_sel"></span>
                   </div>
                   <div ngClass="proprty_name">
@@ -87,8 +90,14 @@
               <h4 ngClass="drop_label">Languages</h4>
               <ul ngClass="list-unstyled residentails-unit-list">
                 <li ngClass="d-flex" ngbSlide *ngFor="let list of SpokenLanguages">
-                  <div ngClass="position-relative">
-                    <input type="checkbox" name="language" value="English">
+                  <div  *ngIf="getUrllanguageIds !== null" (click)="getLanguageId(list.id)" ngClass="position-relative">
+<!--                    <input  *ngIf="getUrllanguageIds.includes(list.id)" checked  type="checkbox" name="language" value="English">-->
+                    <input *ngIf="getUrllanguageIds == list.id" checked type="radio" name="language" value="English">
+                    <input *ngIf="getUrllanguageIds != list.id"  type="radio" name="language" value="English">
+                    <span ngClass="property_sel"></span>
+                  </div>
+                  <div  *ngIf="getUrllanguageIds == null" (click)="getLanguageId(list.id)" ngClass="position-relative">
+                    <input  type="checkbox" name="language" value="English">
                     <span ngClass="property_sel"></span>
                   </div>
                   <div ngClass="proprty_name">
@@ -101,7 +110,7 @@
         </div>
       </div>
       <div ngClass="flex-column flex-column-5">
-        <button type="submit" ngClass="search-btn" routerLink="/find-agent/"><img src="assets/images/search.svg"></button>
+        <button type="submit" (click)="proceedSearch()" ngClass="search-btn" ><img src="assets/images/search.svg"></button>
       </div>
     </div>
   </form>
