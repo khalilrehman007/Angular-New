@@ -1,127 +1,139 @@
 <div ngClass="light-bg-body">
-    <header>
-        <app-header></app-header>
-        </header>
-      <section [ngClass]="'inner-cntnt-wrapper'">
+  <header>
+    <app-header></app-header>
+  </header>
+  <section [ngClass]="'inner-cntnt-wrapper'">
     <section [ngClass]="'rent-propoerties-main-sec slide-left-bar'">
-       <div ngClass="properties-file-container-shadow">
+      <div ngClass="properties-file-container-shadow">
         <div ngClass="properties-file-container">
           <app-propertyfilter></app-propertyfilter>
-          </div>
-       </div>
-       <div [ngClass]="'container_map-view'">
-        <div ngClass="row">
-        <div ngClass="col-xl-4 col-lg-4 col-md-12 col-sm-12">
-            <div ngClass="map-view_sec position-relative height-100">
-                <div ngClass="map-iframe-div height-100">
-                    <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=dubai+(My%20Business%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"><a href="https://www.gps.ie/wearable-gps/">Kids wearables</a></iframe>
-                </div>
-                <div ngClass="back-to-search">
-                    <a routerLink="/rent-properties" ngClass="back-to-text"><mat-icon>keyboard_arrow_left</mat-icon> Back to List View</a>
-                </div>
-            </div>
         </div>
-        <div ngClass="col-xl-8 col-lg-8 col-md-12 col-sm-12">
+      </div>
+      <div [ngClass]="'container_map-view'">
+        <div ngClass="row">
+          <div ngClass="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+            <div ngClass="map-view_sec position-relative height-100">
+              <div ngClass="map-iframe-div height-100">
+                <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+                  src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=dubai+(My%20Business%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"><a
+                    href="https://www.gps.ie/wearable-gps/">Kids wearables</a></iframe>
+              </div>
+              <div ngClass="back-to-search">
+                <a routerLink="/rent-properties" ngClass="back-to-text">
+                  <mat-icon>keyboard_arrow_left</mat-icon> Back to List View
+                </a>
+              </div>
+            </div>
+          </div>
+          <div ngClass="col-xl-8 col-lg-8 col-md-12 col-sm-12">
             <div ngClass="map-view-right-listings">
-            <div ngClass="heading-apragraph-design">
+              <div ngClass="heading-apragraph-design">
                 <h2>Residential Properties for Rent in UAE</h2>
                 <p>Showing 391,094 Properties for Rent in UAE</p>
-             </div>
-             <div ngClass="properties-filtr-values d-flex justify-content-spacebw">
-               <div ngClass="properties-filtr-values-left d-flex justify-content-spacebw">
-                 <div class="checkbox-design position-relative">
-                   <input type="checkbox" id="Furnished" name="property-types" value="Furnished">
-                   <button class="checkbox-btn">All</button>
-               </div>
-               <div ngClass="block-wrapper">
-                 <mat-form-field appearance="fill" class="select-design">
-                     <mat-label><img src="{{videotiour}}"> Video Tour</mat-label>
-                     <mat-select>
-                       <mat-option value="Yes">
-                         Yes
-                       </mat-option>
-                       <mat-option value="No">
-                         No
-                       </mat-option>
-                     </mat-select>
-                   </mat-form-field>
-                 </div>
-                 <div ngClass="block-wrapper">
-                   <mat-form-field appearance="fill" class="select-design">
-                       <mat-label><img src="{{lsitedby}}"> Listed by</mat-label>
-                       <mat-select>
-                         <mat-option value="Residential">
-                           Residential
-                         </mat-option>
-                         <mat-option value="Commertial">
-                           Commertial
-                         </mat-option>
-                       </mat-select>
-                     </mat-form-field>
-                   </div>
-               </div>
-               <div ngClass="properties-filtr-values-right d-flex justify-content-spacebw">
-                 <div class="checkbox-design position-relative">
-                   <input type="radio" id="OV-Verified" name="property-types" value="OV-Verified">
-                   <button class="checkbox-btn"><img src="{{ovverified}}">  OV-Verified</button>
-               </div>
-               <div ngClass="block-wrapper">
-                 <mat-form-field appearance="fill" class="select-design">
-                     <mat-label>Sort by</mat-label>
-                     <mat-select>
-                       <mat-option value="Latest">
-                         Latest
-                       </mat-option>
-                       <mat-option value="Old">
-                         Old
-                       </mat-option>
-                     </mat-select>
-                   </mat-form-field>
-                 </div>
-               </div>
-             </div>
-             <div ngClass="map-view-listin">
-                <div ngClass="row">
-                    <div ngClass="col-xl-4 col-lg-6 col-md-6 col-sm-12 mb-4" *ngFor="let slide of dynamicSlides1">
-                        <div ngClass="property-item position-relative">
-                            <img [src]="slide.src" [alt]="slide.alt" [title]="slide.title">
-                            <span [ngClass]="'popular-tag'"><img src="assets/images/tag/popular.png"></span>
-                            <div ngClass="brand-logo">
-                              <img src="{{brandimg}}" alt="">
-                          </div>
-                          <button ngClass="property-whistlist">
-                              <svg width="22" height="23" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                  <path d="M4.39376 6.23844C4.02517 6.63167 3.73279 7.0985 3.53331 7.61228C3.33383 8.12605 3.23116 8.67672 3.23116 9.23283C3.23116 9.78894 3.33383 10.3396 3.53331 10.8534C3.73279 11.3672 4.02517 11.834 4.39376 12.2272L11.1699 19.4563L17.946 12.2272C18.6904 11.433 19.1086 10.3559 19.1086 9.23283C19.1086 8.10972 18.6904 7.0326 17.946 6.23844C17.2016 5.44429 16.1919 4.99813 15.1392 4.99813C14.0865 4.99813 13.0768 5.44429 12.3324 6.23844L11.1699 7.47873L10.0073 6.23844C9.63871 5.84521 9.20113 5.53329 8.71954 5.32047C8.23796 5.10766 7.72179 4.99812 7.20053 4.99812C6.67926 4.99812 6.1631 5.10766 5.68152 5.32047C5.19993 5.53329 4.76235 5.84521 4.39376 6.23844V6.23844Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                              </svg>
-                          </button>
-                          <div ngClass="property-info">
-                              <span ngClass="property-pricing"><span>{{slide.price}}</span>/yearly</span>
-                              <span ngClass="property-name">Blue Wave Tower</span>
-                              <p ngClass="property-location"><img src="{{homelocationsvg}}" width="14" alt="">Etihad Tower 4, Etihad Towers,  </p>
-                              <div ngClass="property-details">
-                                  <span ngClass="bed">
-                                      <img src="{{bedsvg}}" alt="">3 Beds
-                                  </span>
-                                  <span ngClass="bath">
-                                      <img src="{{bathsvg}}" alt="">2Bath
-                                  </span>
-                                  <span ngClass="area">
-                                      <img src="{{squaremetersvg}}" alt="">800sqft
-                                  </span>
-                              </div>
-                          </div>
-                          <a routerLink="/{{slide.link}}" ngClass="linK_overlay"></a>
-                          </div>
-                    </div>
+              </div>
+              <div ngClass="properties-filtr-values d-flex justify-content-spacebw">
+                <div ngClass="properties-filtr-values-left d-flex justify-content-spacebw">
+                  <div class="checkbox-design position-relative">
+                    <input type="checkbox" id="Furnished" name="property-types" value="Furnished">
+                    <button class="checkbox-btn">All</button>
+                  </div>
+                  <div ngClass="block-wrapper">
+                    <mat-form-field appearance="fill" class="select-design">
+                      <mat-label><img src="{{videotiour}}"> Video Tour</mat-label>
+                      <mat-select>
+                        <mat-option value="Yes">
+                          Yes
+                        </mat-option>
+                        <mat-option value="No">
+                          No
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                  <div ngClass="block-wrapper">
+                    <mat-form-field appearance="fill" class="select-design">
+                      <mat-label><img src="{{lsitedby}}"> Listed by</mat-label>
+                      <mat-select>
+                        <mat-option value="Residential">
+                          Residential
+                        </mat-option>
+                        <mat-option value="Commertial">
+                          Commertial
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
                 </div>
-             </div>
+                <div ngClass="properties-filtr-values-right d-flex justify-content-spacebw">
+                  <div class="checkbox-design position-relative">
+                    <input type="radio" id="OV-Verified" name="property-types" value="OV-Verified">
+                    <button class="checkbox-btn"><img src="{{ovverified}}"> OV-Verified</button>
+                  </div>
+                  <div ngClass="block-wrapper">
+                    <mat-form-field appearance="fill" class="select-design">
+                      <mat-label>Sort by</mat-label>
+                      <mat-select>
+                        <mat-option value="Latest">
+                          Latest
+                        </mat-option>
+                        <mat-option value="Old">
+                          Old
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </div>
+              <div ngClass="map-view-listin">
+                <div ngClass="row" *ngIf="propertyDetails.length > 0">
+                  <div ngClass="col-xl-4 col-lg-6 col-md-6 col-sm-12 mb-4" *ngFor="let slide of propertyDetails">
+                    <div ngClass="property-item position-relative">
+                      <img *ngIf="slide.documents.length > 0" src="https://beta.ovaluate.com/{{slide.documents[0].fileUrl}}" [alt]="">
+                      <img *ngIf="slide.documents.length == 0" src="assets/images/placeholder.png" [alt]="">
+                      <!-- <div *ngIf="slide.document[0].fileUrl;">
+                      </div> -->
+                      <!-- <img ! src="../../../assets/images/property/1.png" [alt]="" [title]="slide.propertyTitle"> -->
+                      <!-- https://beta.ovaluate.com/{{slide.documents[0].fileUrl}} -->
+                      <!-- <span [ngClass]="'popular-tag'"><img src="assets/images/tag/popular.png"></span>
+                      <div ngClass="brand-logo">
+                        <img src="{{brandimg}}" alt="">
+                      </div> -->
+                      <button ngClass="property-whistlist">
+                        <svg width="22" height="23" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            d="M4.39376 6.23844C4.02517 6.63167 3.73279 7.0985 3.53331 7.61228C3.33383 8.12605 3.23116 8.67672 3.23116 9.23283C3.23116 9.78894 3.33383 10.3396 3.53331 10.8534C3.73279 11.3672 4.02517 11.834 4.39376 12.2272L11.1699 19.4563L17.946 12.2272C18.6904 11.433 19.1086 10.3559 19.1086 9.23283C19.1086 8.10972 18.6904 7.0326 17.946 6.23844C17.2016 5.44429 16.1919 4.99813 15.1392 4.99813C14.0865 4.99813 13.0768 5.44429 12.3324 6.23844L11.1699 7.47873L10.0073 6.23844C9.63871 5.84521 9.20113 5.53329 8.71954 5.32047C8.23796 5.10766 7.72179 4.99812 7.20053 4.99812C6.67926 4.99812 6.1631 5.10766 5.68152 5.32047C5.19993 5.53329 4.76235 5.84521 4.39376 6.23844V6.23844Z"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                      </button>
+                      <div ngClass="property-info">
+                        <span ngClass="property-pricing"><span>{{slide.propertyPrice}} {{slide.country.currency}}</span>/yearly</span>
+                        <span ngClass="property-name">{{slide.companyName}}</span>
+                        <p ngClass="property-location"><img src="{{homelocationsvg}}" width="14"
+                            alt="">{{slide.propertyAddress}}</p>
+                        <div ngClass="property-details">
+                          <span ngClass="bed">
+                            <img src="{{bedsvg}}" alt="">{{slide.bedrooms}} Beds
+                          </span>
+                          <span ngClass="bath">
+                            <img src="{{bathsvg}}" alt="">{{slide.bathrooms}} Bath
+                          </span>
+                          <span ngClass="area">
+                            <img src="{{squaremetersvg}}" alt="">{{slide.buildupArea}} sqft
+                          </span>
+                        </div>
+                      </div>
+                      <!-- <a routerLink="/{{slide.link}}" ngClass="linK_overlay"></a> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
-    </div>
-    </div>
-    </section>
-      </section>
-      <footer ngClass="footer-sec">
-        <app-footer></app-footer>
-      </footer>
       </div>
+    </section>
+  </section>
+  <footer ngClass="footer-sec">
+    <app-footer></app-footer>
+  </footer>
+</div>

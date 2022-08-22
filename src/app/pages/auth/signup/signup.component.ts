@@ -26,8 +26,6 @@ export class SignupComponent implements OnInit {
     localStorage.clear();
     this.response.ProfessionalTypes().subscribe((result:any)=>{
       this.signUpPropertytype = result.data;
-      console.log(this.signUpPropertytype)
-
     })
   }
   signup = new FormGroup({

@@ -56,6 +56,7 @@ export class DashboardComponent implements OnInit {
   userData:any = {};
   totalLength: number = 0;
   page: number = 1;
+  professionalType: any;
 
   plus = '../../../../assets/images/plus.svg'
 
@@ -144,6 +145,10 @@ export class DashboardComponent implements OnInit {
     let temp: any = localStorage.getItem("user");
     this.service.UserProfile(JSON.parse(temp).id).subscribe((result: any) => {
       this.userData = result.data;
+      this.professionalType = result.data.professionalTypeId;
+      if(this.professionalType == null) {
+        this.professionalType = 0;
+      }
       localStorage.setItem("user", JSON.stringify(this.userData));
       this.proAvatar = this.baseUrl + this.userData.imageUrl;
     })
@@ -178,7 +183,6 @@ export class DashboardComponent implements OnInit {
     this.LoadLeads("", "");
     this.userFormData = localStorage.getItem("user");
     this.userFormData = JSON.parse(this.userFormData);
-    console.log(this.userFormData);
     this.detailForm.patchValue({
       firstName: this.userFormData.firstName,
       lastName: this.userFormData.lastName,
@@ -569,7 +573,6 @@ export class DashboardComponent implements OnInit {
       })
     });
     this.ExpertIn = tempData
-    console.log(this.ExpertIn)
   }
   SpokenLanguages :any = [];
   getSpokenLanguages(){
@@ -826,7 +829,6 @@ export class DashboardComponent implements OnInit {
       })
     });
     this.myActivityAgentView = tempData;
-    console.log(this.myActivityAgentView,'agents agents')
   }
 
 
@@ -852,7 +854,6 @@ export class DashboardComponent implements OnInit {
     }else{
       PropertyListingTypeId = '';
     }
-    console.log(PropertyListingTypeId)
     this.allCheckbox  = [];
     this.rentCheckbox = [];
     this.buyCheckbox  = [];
@@ -904,7 +905,6 @@ export class DashboardComponent implements OnInit {
     setTimeout(() => {
       this.wishlistingData = tempData
     }, 1000);
-    console.log(this.wishlistingData,'datdatadtadt')
   }
 
   wishlistStatus :any;
@@ -934,19 +934,16 @@ export class DashboardComponent implements OnInit {
   allCheckbox :any = []
   allFormCheckbox(id:number){
     this.allCheckbox.push({'id':id})
-    console.log(this.allCheckbox);
   }
 
   rentCheckbox :any = []
   rentFormCheckbox(id:number){
     this.rentCheckbox.push({'id':id})
-    console.log(this.rentCheckbox);
   }
 
   buyCheckbox :any = []
   buyFormCheckbox(id:number){
     this.buyCheckbox.push({'id':id})
-    console.log(this.buyCheckbox);
   }
 
   compareProceed(type:any){
@@ -960,7 +957,6 @@ export class DashboardComponent implements OnInit {
     }
 
     if(type == "all"){
-      console.log(this.allCheckbox.length)
       if(this.allCheckbox.length < 2 || this.allCheckbox.length > 4){
         this.notifyService.showWarning('Selected property atleast less than < 4 greater than > 2 ', "");
       }else{
@@ -1059,7 +1055,6 @@ export class DashboardComponent implements OnInit {
     setTimeout(() => {
       this.enquiredlistingData = tempData
     }, 1000);
-    console.log(this.enquiredlistingData,'datdatadtadt')
   }
 
 

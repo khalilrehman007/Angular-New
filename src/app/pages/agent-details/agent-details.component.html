@@ -109,8 +109,10 @@
                                         <div class="row" [routerLink]="['/PropertDetailsPage']"
                                             [queryParams]="{id: item.id}">
                                             <div class="col-lg-2">
-                                                <img src="assets/images/placeholder.png" alt=""
-                                                    class="img-fluid agent-details__property-list-item-img">
+                                                <img *ngIf="item.documents.length > 0" src="https://beta.ovaluate.com/{{item.fileUrl}}" [alt]="" class="img-fluid agent-details__property-list-item-img">
+                                                <img *ngIf="item.documents.length == 0" src="assets/images/placeholder.png" [alt]="" class="img-fluid agent-details__property-list-item-img">
+                                                <!-- <img src="assets/images/placeholder.png" alt=""
+                                                    class="img-fluid agent-details__property-list-item-img"> -->
                                             </div>
                                             <div class="col-lg-10">
                                                 <div class="row">
