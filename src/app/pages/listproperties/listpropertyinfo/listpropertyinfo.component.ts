@@ -111,6 +111,12 @@ export class ListpropertyinfoComponent implements OnInit {
     this.api.LoadOccupancy().subscribe((result: any) => {
       this.occupancy = result.data;
     });
+    this.data.BedRooms = 0;
+    this.data.BathRooms = 0;
+    this.data.FurnishingType = 0;
+    this.data.FittingType = 0;
+    this.data.BuildupArea = 0;
+    this.data.CarpetArea = 0;
   }
   ngOnInit() {
     $("#formDate").on("click", function () {
@@ -425,19 +431,9 @@ export class ListpropertyinfoComponent implements OnInit {
       temp.push({ PropertyFeatureId: this.featuresFormData[i] });
     }
     this.data.PropertyFeatures = temp;
-    // this.data.PropertyTransactionTypeId = "";
-    // this.data.Balcony = 0;
-    // this.data.PropertyStatusId = 0;
-    // this.data.MaintenanceCharges = "";
-    // this.data.HandoverOn = "";
-    // this.data.PropertyCompletionStatusId = "";
-    // let user: any = localStorage.getItem("user");
-    // this.data.UserId = JSON.parse(user).id;
-    // this.data.UserEmail = JSON.parse(user).email;
-    // this.data.ProfessionalTypeId = JSON.parse(user).professionalTypeId;
 
-    // localStorage.setItem('propertyData', JSON.stringify(this.data))
-    // this.route.navigate(['listpropertymedia'])
-    console.log(this.data);
+    localStorage.setItem('propertyData', JSON.stringify(this.data));
+    this.route.navigate(['listpropertymedia'])
+    // console.log(this.data);
   }
 }
