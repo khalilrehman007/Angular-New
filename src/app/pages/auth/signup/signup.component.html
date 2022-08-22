@@ -63,24 +63,24 @@
           </button>
           <div ngClass="dropdown-menu" id="property-type-sec">
             <h5 ngClass="h5-heading">Property Type</h5>
-            <div ngClass="property-types-heading">
-              <ul ngClass="nav nav-tabs" role="tablist">
-                <li ngClass="nav-item">
+            <div ngClass="property-types-heading" >
+              <ul ngClass="nav nav-tabs" role="tablist" *ngFor="let data of signUpPropertytype">
+                <li ngClass="nav-item" >
                   <a ngClass="nav-link active" data-bs-toggle="tab" href="#landowner"><span
-                      ngClass="circle-celection"></span> Landlord / Property Owner</a>
+                      ngClass="circle-celection"></span> {{data.name}}</a>
                 </li>
-                <li ngClass="nav-item">
+                <!-- <li ngClass="nav-item">
                   <a ngClass="nav-link" data-bs-toggle="tab" href="#agencybroker"><span
-                      ngClass="circle-celection"></span> Agency/Brokerage Firm</a>
+                      ngClass="circle-celection"></span> {{data.name}}</a>
                 </li>
                 <li ngClass="nav-item">
                   <a ngClass="nav-link" data-bs-toggle="tab" href="#agentbroker"><span
-                      ngClass="circle-celection"></span> Agent/Broker</a>
-                </li>
-                <li ngClass="nav-item">
+                      ngClass="circle-celection"></span> {{data.name}}</a>
+                </li> -->
+                <!-- <li ngClass="nav-item">
                   <a ngClass="nav-link" data-bs-toggle="tab" href="#propertymanager"><span
                       ngClass="circle-celection"></span> Property Manager</a>
-                </li>
+                </li> -->
               </ul>
             </div>
             <div ngClass="property-types-cntnts">
