@@ -4,37 +4,59 @@
       <div ngClass="flex-column flex-column-1">
         <div ngClass="block-wrapper">
           <mat-form-field class="example-chip-list input-design searh_input-design" appearance="fill">
-            <mat-label>Search</mat-label>
-            <mat-chip-list #chipList aria-label="Search selection">
+            <mat-chip-list #chipList aria-label="Search By Location">
               <mat-chip
-                *ngFor="let SearchValue of SearchKeyword"
-                (removed)="remove(SearchValue)">
-                {{SearchValue}}
+                *ngFor="let LetSearchByLocation of SearchByLocString"
+                (removed)="remove(LetSearchByLocation)">
+                {{LetSearchByLocation}}
                 <button matChipRemove>
                   <mat-icon>cancel</mat-icon>
                 </button>
               </mat-chip>
               <input
                 placeholder="Location, Project Name"
-                #SearchInput
-                [formControl]="searchctrl"
+                #LetSearchByLocationInput
+                [formControl]="SearchByLocationctrl"
                 [matAutocomplete]="auto"
                 [matChipInputFor]="chipList"
-                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                [matChipInputSeparatorKeyCodes]="searchByLocation"
                 (matChipInputTokenEnd)="add($event)">
             </mat-chip-list>
             <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-              <mat-option *ngFor="let SearchValue of searchfilter | async" [value]="SearchValue">
-                {{SearchValue}}
+              <mat-option *ngFor="let LetSearchByLocation of SearchByObserve | async" [value]="LetSearchByLocation">
+                {{LetSearchByLocation}}
               </mat-option>
             </mat-autocomplete>
-          </mat-form-field>
+          </mat-form-field>          
         </div>
       </div>
       <div ngClass="flex-column flex-column-2">
-        <div ngClass="form-grouph input-design floating-label position-relative">
-          <label>Search by</label>
-          <input type="text" placeholder="Agent Name">
+        <div ngClass="block-wrapper">
+          <mat-form-field class="example-chip-list input-design searh_input-design" appearance="fill">
+            <mat-chip-list #chipList1 aria-label="Search By Location">
+              <mat-chip
+                *ngFor="let LetSearchByAgent of SearchByAgentString"
+                (removed)="remove1(LetSearchByAgent)">
+                {{LetSearchByAgent}}
+                <button matChipRemove>
+                  <mat-icon>cancel</mat-icon>
+                </button>
+              </mat-chip>
+              <input
+                placeholder="Search By Agent Name"
+                #LetSearchByAgentInput
+                [formControl]="SearchByAgentctrl"
+                [matAutocomplete]="auto"
+                [matChipInputFor]="chipList1"
+                [matChipInputSeparatorKeyCodes]="searchByAgent"
+                (matChipInputTokenEnd)="add1($event)">
+            </mat-chip-list>
+            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected1($event)">
+              <mat-option *ngFor="let LetSearchByAgent of SearchByAgentObserve | async" [value]="LetSearchByAgent">
+                {{LetSearchByAgent}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>          
         </div>
       </div>
       <div ngClass="flex-column flex-column-3">

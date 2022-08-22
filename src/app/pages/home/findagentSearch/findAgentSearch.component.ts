@@ -16,17 +16,97 @@ import { data } from 'jquery';
   styleUrls: ['./findAgentSearch.component.scss']
 })
 export class FindAgentSearchComponent implements OnInit {
+  
+  // Find agentLocation property
+  searchByLocation: number[] = [ENTER, COMMA];
+  SearchByLocationctrl = new FormControl('');
+  SearchByObserve: Observable<string[]>;
+  SearchByLocString: string[] = [];
+  allSearchByLocString: string[] = ['Dubai', 'UAE', 'Dubai', 'UAE', 'Dubai'];
+
+  @ViewChild('LetSearchByLocationInput') LetSearchByLocationInput: ElementRef<HTMLInputElement>;
+  add(event: MatChipInputEvent): void {
+    const value = (event.value || '').trim();
+    if (value) {
+      this.SearchByLocString.push(value);
+  }
+
+    // Clear the input value
+    event.chipInput!.clear();
+
+    this.SearchByLocationctrl.setValue(null);
+  }
+
+  remove(LetSearchByLocation: string): void {
+    const index = this.SearchByLocString.indexOf(LetSearchByLocation);
+
+    if (index >= 0) {
+      this.SearchByLocString.splice(index, 1);
+    }
+  }
+
+  selected(event: MatAutocompleteSelectedEvent): void {
+    this.SearchByLocString.push(event.option.viewValue);
+    this.LetSearchByLocationInput.nativeElement.value = '';
+    this.SearchByLocationctrl.setValue(null);
+  }
+
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.allSearchByLocString.filter(LetSearchByLocation => LetSearchByLocation.toLowerCase().includes(filterValue));
+  }
+
+  // Find Agent
+
+  searchByAgent: number[] = [ENTER, COMMA];
+  SearchByAgentctrl = new FormControl('');
+  SearchByAgentObserve: Observable<string[]>;
+  SearchByAgentString: string[] = [];
+  allSearchByAgentString: string[] = ['Dubai', 'UAE', 'Dubai', 'UAE', 'Dubai'];
+
+  @ViewChild('LetSearchByAgentInput') LetSearchByAgentInput: ElementRef<HTMLInputElement>;
+
+
+  add1(event: MatChipInputEvent): void {
+    const value = (event.value || '').trim();
+    if (value) {
+      this.SearchByAgentString.push(value);
+  }
+
+    // Clear the input value
+    event.chipInput!.clear();
+
+    this.SearchByAgentctrl.setValue(null);
+  }
+
+  remove1(LetSearchByAgentInput: string): void {
+    const index = this.SearchByLocString.indexOf(LetSearchByAgentInput);
+
+    if (index >= 0) {
+      this.SearchByAgentString.splice(index, 1);
+    }
+  }
+
+  selected1(event: MatAutocompleteSelectedEvent): void {
+    this.SearchByAgentString.push(event.option.viewValue);
+    this.LetSearchByAgentInput.nativeElement.value = '';
+    this.SearchByAgentctrl.setValue(null);
+  }
 
   constructor(private service:AppService) {
-    this.searchfilter = this.searchctrl.valueChanges.pipe(
-      startWith(null),
-      map((fruit: string | null) => (fruit ? this._filter(fruit) : this.searchList.slice())),
-    );
-
     this.getExpertIn();
     this.getSpokenLanguages();
     this.service.AgentAutoCompleteSearch({"Searching":"mr","CountryId":"1"}).subscribe((result:any)=>{
     })
+    this.SearchByObserve = this.SearchByLocationctrl.valueChanges.pipe(
+      startWith(null),
+      map((LetSearchByLocation: string | null) => (LetSearchByLocation ? this._filter(LetSearchByLocation) : this.allSearchByLocString.slice())),
+    );
+    this.SearchByAgentObserve = this.SearchByAgentctrl.valueChanges.pipe(
+      startWith(null),
+      map((LetSearchByAgent: string | null) => (LetSearchByAgent ? this._filter(LetSearchByAgent) : this.allSearchByLocString.slice())),
+    );
   }
 
   ngOnInit(): void {
@@ -42,46 +122,7 @@ export class FindAgentSearchComponent implements OnInit {
       this.status = false;
   }
   // Search Code
-  separatorKeysCodes: number[] = [ENTER, COMMA];
-  searchctrl = new FormControl('');
-  searchfilter: Observable<string[]>;
-  SearchKeyword: string[] = [];
-  searchList: any = [];
 
-  @ViewChild('SearchInput') SearchInput: ElementRef<HTMLInputElement>;
-  add(event: MatChipInputEvent): void {
-    const value = (event.value || '').trim();
-
-    // Add our fruit
-    if (value) {
-      this.SearchKeyword.push(value);
-    }
-
-    // Clear the input value
-    event.chipInput!.clear();
-
-    this.searchctrl.setValue(null);
-  }
-
-  remove(fruit: string): void {
-    const index = this.SearchKeyword.indexOf(fruit);
-
-    if (index >= 0) {
-      this.SearchKeyword.splice(index, 1);
-    }
-  }
-
-  selected(event: MatAutocompleteSelectedEvent): void {
-    this.SearchKeyword.push(event.option.viewValue);
-    this.SearchInput.nativeElement.value = '';
-    this.searchctrl.setValue(null);
-  }
-
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-
-    return this.searchList.filter(fruit => fruit.toLowerCase().includes(filterValue));
-  }
 
   ExpertIn :any = [];
   getExpertIn(){
