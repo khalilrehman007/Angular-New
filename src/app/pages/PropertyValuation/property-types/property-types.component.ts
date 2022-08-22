@@ -29,10 +29,10 @@ export class PropertyTypesComponent implements OnInit {
   featuresFormData: any = [];
   featuresFormName: any = [];
   roadCount: number = 0;
-  bedrooms:number = 0;
-  bathrooms:number = 0;
-  furnishing:number = 0;
-  fitting:number = 0;
+  bedrooms: number = 0;
+  bathrooms: number = 0;
+  furnishing: number = 0;
+  fitting: number = 0;
   formDetailData: any = {};
   totalExpenseWrapper: boolean = false;
   showLoader: boolean = false;
@@ -111,7 +111,7 @@ export class PropertyTypesComponent implements OnInit {
     if (localStorage.getItem("propertyTypeData")) {
       this.oldData = localStorage.getItem("propertyTypeData");
       this.formData = this.oldData = JSON.parse(this.oldData);
-      if(this.oldData.PropertyStatusId == 2) {
+      if (this.oldData.PropertyStatusId == 2) {
         this.totalExpenseWrapper = true;
         this.propertyTypeForm.patchValue({
           income: this.oldData.Income,
@@ -123,7 +123,7 @@ export class PropertyTypesComponent implements OnInit {
       this.bathrooms = this.oldData.Bathrooms;
       this.furnishing = this.oldData.FurnishingType;
       this.fitting = this.oldData.FittingType;
-      for(let i = 0; i < this.oldData.PropertyFeatures.length; i++) {
+      for (let i = 0; i < this.oldData.PropertyFeatures.length; i++) {
         this.featuresFormData.push(this.oldData.PropertyFeatures[i].PropertyFeatureId);
       }
       this.propertyTypeForm.patchValue({
@@ -133,7 +133,7 @@ export class PropertyTypesComponent implements OnInit {
         apartmentSize: this.oldData.PlotSize,
         buildupArea: this.oldData.BuildupArea
       })
-      this.service.LoadTypebyLatLng({ id: this.oldData.PropertyCategoryId, lat: parseFloat(this.oldData.PropertyLat), lng: parseFloat(this.oldData.PropertyLong) }).subscribe((result:any) => {
+      this.service.LoadTypebyLatLng({ id: this.oldData.PropertyCategoryId, lat: parseFloat(this.oldData.PropertyLat), lng: parseFloat(this.oldData.PropertyLong) }).subscribe((result: any) => {
         this.propertyType = result.data;
         this.showLoader = false;
         this.propertyData = this.propertyType.filter(item => item.id == this.oldData.PropertyTypeId)[0];
@@ -165,13 +165,17 @@ export class PropertyTypesComponent implements OnInit {
     this.propertyType = [];
     this.service.LoadTypebyLatLng({ id: e, lat: this.formData.PropertyLat, lng: this.formData.PropertyLong }).subscribe((result) => {
       this.propertyType = result;
-      this.propertyType = this.propertyType.data
+      this.propertyType = this.propertyType.data;
+      if (this.propertyType.length == 0) {
+        this.error = "We don't have data in the selected location";
+        this.showError = true;
+      }
       this.showLoader = false;
     })
   }
-  checkOldData(id:number) {
-    for(let i = 0; i < this.oldData.PropertyFeatures.length; i++) {
-      if(id == this.oldData.PropertyFeatures[i].PropertyFeatureId) {
+  checkOldData(id: number) {
+    for (let i = 0; i < this.oldData.PropertyFeatures.length; i++) {
+      if (id == this.oldData.PropertyFeatures[i].PropertyFeatureId) {
         return true;
       }
     }
@@ -240,7 +244,7 @@ export class PropertyTypesComponent implements OnInit {
     this.formDetailData.Fitting = name;
     this.fitting = id;
   }
-  getFeaturesData(id: number, name:any) {
+  getFeaturesData(id: number, name: any) {
     if (this.featuresFormData.indexOf(id) == -1) {
       this.featuresFormData.push(id);
     } else {
@@ -410,7 +414,7 @@ export class PropertyTypesComponent implements OnInit {
     this.formData.Elevation = this.propertyTypeForm.value.elevation;
     this.formData.NoOfRoads = this.roadCount;
     this.formData.ValuationPropertyUnits = "";
-    if(this.formData.PropertyStatusId == 2) {
+    if (this.formData.PropertyStatusId == 2) {
       this.formData.Income = this.propertyTypeForm.value.income;
       this.formData.Expense = this.propertyTypeForm.value.expense;
     } else {
