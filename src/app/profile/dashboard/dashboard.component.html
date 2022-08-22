@@ -78,6 +78,10 @@
               type="button" role="tab" aria-controls="pills-valuation" aria-selected="false">My Valuations</button>
           </li>
           <li class="nav-item" role="presentation">
+            <button class="nav-link" id="pills-packages-tab" data-bs-toggle="pill" data-bs-target="#pills-packages"
+              type="button" role="tab" aria-controls="pills-packages" aria-selected="false">My Packages</button>
+          </li>
+          <li class="nav-item" role="presentation">
             <!-- <button class="nav-link" id="">More</button> -->
             <div ngbDropdown class="d-inline-block">
               <button mat-icon-button ngClass="action-btn" id="dropdownBasic1" ngbDropdownToggle>
@@ -579,7 +583,7 @@
                 <mat-tab label="Shortlisted">
 
                   <div class="type-activity-status">
-                    <div ngClass="block-wrapper mb-4">
+                    <div ngClass="block-wrapper mb-4 d-flex justify-content-spacebw">
                       <div class="checkbox-flex-box-auto button-same-select">
                         <div (click)="getCountChange('')" class="checkbox-design position-relative">
                           <input type="radio" id="Furnished" name="property-types" value="All" checked>
@@ -594,16 +598,19 @@
                           <button class="checkbox-btn">Buy ({{buyCount}})</button>
                         </div>
                       </div>
+                      <div ngClass="compare_hdr-btn">
+                        <button ngClass="compare-btn btn">Compare</button>
+                      </div>
                     </div>
                   </div>
 
 
-                  <div class="agent-details__tabs">
+                  <div class="agent-details__tabs shortlisted-tabs_list">
                     <div class="row">
-                      <div class="col-lg-10 col-md-11">
+                      <div class="col-lg-12 col-md-12">
                         <ul class="agent-details__property-list">
                           <li class="compare-action-pro-list" *ngFor="let wishData of wishlistingData | paginate: { itemsPerPage: 10, currentPage: page, totalItems:totalLength }">
-                            <div class="agent-details__property-list-item">
+                            <div class="agent-details__property-list-item position-relative">
                               <div class="row">
                                 <div class="col-lg-2">
                                   <img src="{{wishData.src}}" alt=""
@@ -655,19 +662,10 @@
                                   </div>
                                 </div>
                               </div>
-                            </div>
-                            <div class="compare-action deposit-yes">
-
-                              <ul class="lsit-unstyled">
-                                <li class="d-flex">
-                                  <label for="">
-                                    <input type="checkbox" name="">
-                                    <span class="property_sel"></span>
-                                    Compare
-                                  </label>
-                                </li>
-                              </ul>
-                              <button class="compare-btn btn">Compare</button>
+                              <div ngClass="selection-checkbox-selector">
+                                <input type="checkbox" name="compare">
+                                <button ngClass="cstm-selection-btn"></button>
+                              </div>
                             </div>
                           </li>
                         </ul>
@@ -771,7 +769,6 @@
             </div>
           </div>
         </div>
-
         <div class="tab-pane fade" id="pills-leads" role="tabpanel" aria-labelledby="pills-leads-tab">
           <div class="recent-activity">
             <h4 class="sub-title">My Leads</h4>
@@ -1019,8 +1016,6 @@
             </div>
           </div>
         </div>
-
-
         <div class="tab-pane fade" id="pills-listing" role="tabpanel" aria-labelledby="pills-listing-tab">
           <div class="recent-activity">
             <h4 class="sub-title">My Listings</h4>
@@ -1352,8 +1347,6 @@
             </div>
           </div>
         </div>
-
-
         <div class="tab-pane fade" id="pills-valuation" role="tabpanel" aria-labelledby="pills-valuation-tab">
           <div class="recent-activity">
             <h4 class="sub-title mb-4">My Valuation</h4>
@@ -1503,6 +1496,33 @@
                   </div>
                 </mat-tab>
               </mat-tab-group>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="pills-packages" role="tabpanel" aria-labelledby="pills-valuation-tab">
+          <div class="recent-activity">
+            <h4 class="sub-title mb-4">My Packages</h4>
+            <div ngClass="packages_details">
+              <div ngClass="package_flex d-flex justify-content-spacebw">
+                  <div ngClass="packge-item packge_type">
+                    <p>Package Type</p>
+                    <h6>Standard</h6>
+                  </div>
+                   <div ngClass="packge-item packge_price">
+                    <p>Package Price</p>
+                    <h6>0 AED <span>inclusive of VAT</span></h6>
+                  </div>
+                  <div ngClass="packge-item packge_validity">
+                    <p>Package Validity</p>
+                    <h6>15 Days</h6>
+                  </div>
+                  <div ngClass="packge-item packge_renew">
+                    <button ngClass="renew-btn">Renew</button>
+                  </div>
+              </div>
+            </div>
+            <div ngClass="packge-item packge_others text-center mt-5 mb-5">
+              <button ngClass="other-packages_btn" routerLink="/listing-packages">Other Packages</button>
             </div>
           </div>
         </div>

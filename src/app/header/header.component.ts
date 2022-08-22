@@ -158,6 +158,7 @@ export class HeaderComponent implements OnInit {
       this.getCountData('');
       this.status1 = false;
       this.status2 = false;
+      this.status3 = false;
     }
   }
   status1: boolean = false;
@@ -169,6 +170,7 @@ export class HeaderComponent implements OnInit {
         this.status1 = !this.status1;
         this.status2 = false;
         this.status = false;
+        this.status3 = false;
         this.getWishlisting();
         this.getCountData('');
       }
@@ -178,6 +180,14 @@ export class HeaderComponent implements OnInit {
       this.status2 = !this.status2;
       this.status1 = false;
       this.status = false;
+      this.status3 = false;
+  }
+  status3: boolean = false;
+  clickEvent3(){
+      this.status3 = !this.status3;
+      this.status1 = false;
+      this.status = false;
+      this.status2 = false;
   }
   logOutPopup(content) {
     this.modalService.open(content, { centered: true });
