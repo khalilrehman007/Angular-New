@@ -92,7 +92,7 @@
                                                 <label>Type of Property</label>
                                                 <mat-form-field appearance="fill">
                                                     <mat-label>Select type of property</mat-label>
-                                                    <mat-select (selectionChange)="getPropertyType($event)">
+                                                    <mat-select [(value)]="data.PropertyTypeId" (selectionChange)="getPropertyType($event)">
                                                         <mat-option *ngFor="let item of propertyType"
                                                             value="{{item.id}}">
                                                             {{item.typeDescription}}
