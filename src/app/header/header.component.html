@@ -211,6 +211,22 @@
                     </div>
                   </div>
                </li>
+               <li ngClass="nav-item position-relative notification_header-list">
+                <button (click)="clickEvent3()"><mat-icon>notifications_none</mat-icon></button>
+                <div class="notifivation-list-dropdown" [ngClass]="status3 ? 'active' : 'notactive'">
+                  <div ngClass="shortlisted-header d-flex justify-content-spacebw">
+                    <h4>Notifications</h4>
+                    <button (click)="clickEvent3()"><img src="{{close}}"></button>
+                  </div>
+                  <div ngClass="notifivation-inner-cntnt">
+                      <ul ngClass="list-unstyled">
+                        <li ngClass="position-relative">Message Recieved <span ngClass="notifiction_time">10 AM</span></li>
+                        <li ngClass="position-relative">Message Recieved <span ngClass="notifiction_time">10 AM</span></li>
+                        <li ngClass="position-relative">Message Recieved <span ngClass="notifiction_time">10 AM</span></li>
+                      </ul>
+                  </div>
+                </div>
+             </li>
                <li ngClass="nav-item signin-li tm-hide">
                 <div #noListItemTmpl *ngIf="user == null">
                   <a ngClass="nav-link"  [routerLink]="['/login']"><img src="{{signinsvg}}"> Sign in </a>
