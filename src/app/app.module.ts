@@ -112,6 +112,9 @@ import { LoaderComponent } from './loader/loader.component';
 import { SuccessAlertComponent } from './success-alert/success-alert.component';
 import { ErroralertComponent } from './erroralert/erroralert.component';
 import { PaymentPackagesComponent } from './pages/payment-packages/payment-packages.component';
+import { environment } from "../environments/environment";
+import { initializeApp } from "firebase/app";
+initializeApp(environment.firebase);
 
 
 @NgModule({

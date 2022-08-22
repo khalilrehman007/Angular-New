@@ -1,7 +1,9 @@
-import { Component, DoCheck } from '@angular/core';
+import { Component, DoCheck, OnInit } from '@angular/core';
+import { environment } from "../environments/environment";
 import { ActivatedRoute, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { NotificationService } from './service/notification.service'
+import { getMessaging, getToken, onMessage } from "firebase/messaging";
 
 @Component({
   selector: 'app-root',
@@ -11,25 +13,50 @@ import { NotificationService } from './service/notification.service'
 
 
 
-export class AppComponent implements DoCheck {
+export class AppComponent implements DoCheck, OnInit {
   title = 'ovaluate';
-  displaymenu=false;
-  constructor(private cookie:CookieService,private route:Router,private notifyService : NotificationService){
-
+  message: any = null;
+  displaymenu = false;
+  constructor(private cookie: CookieService, private route: Router, private notifyService: NotificationService) {
   }
-  showToasterSuccess(){
+  ngOnInit(): void {
+    Notification.requestPermission().then((permission) => {
+      if (permission === 'granted') {
+        this.requestPermission();
+        this.listen();
+      }
+    })
+  }
+  requestPermission() {
+    const messaging = getMessaging();
+    getToken(messaging,
+      { vapidKey: environment.firebase.vapidKey }).then(
+        (currentToken) => {
+          if (currentToken) {
+            console.log(currentToken);
+          }
+        }).catch((err) => {});
+  }
+  listen() {
+    const messaging = getMessaging();
+    onMessage(messaging, (payload) => {
+      console.log('Message received. ', payload);
+      this.message = payload;
+    });
+  }
+  showToasterSuccess() {
     this.notifyService.showSuccess("Data shown successfully !!", "Success")
   }
 
-  showToasterError(){
+  showToasterError() {
     this.notifyService.showError("Something is wrong", "Fail")
   }
 
-  showToasterInfo(){
+  showToasterInfo() {
     this.notifyService.showInfo("This is info", "Info")
   }
 
-  showToasterWarning(){
+  showToasterWarning() {
     this.notifyService.showWarning("This is warning", "Warning")
   }
   ngDoCheck(): void {
@@ -40,10 +67,10 @@ export class AppComponent implements DoCheck {
     }
   }
   onActivate() {
-    window.scroll({ 
-            top: 0, 
-            left: 0, 
-            behavior: 'smooth' 
-     });
- }
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
+  }
 }
