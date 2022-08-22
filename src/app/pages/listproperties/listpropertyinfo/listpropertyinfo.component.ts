@@ -14,6 +14,12 @@ import { AppService } from 'src/app/service/app.service';
   styleUrls: ['./listpropertyinfo.component.scss']
 })
 export class ListpropertyinfoComponent implements OnInit {
+
+  error: any = ""
+  showError: boolean = false;
+  errorResponse(data: any) {
+    this.showError = false;
+  }
   plus = '../../../../assets/images/plus.svg'
   messageclass = ''
   message = ''
@@ -61,6 +67,7 @@ export class ListpropertyinfoComponent implements OnInit {
   completionStatus:any = [];
   locatedNear: any = [{ id: 1, name: "Metro" }, { id: 2, name: "Elevator" }, { id: 3, name: "Stairs" }];
   ownershipType: any = [{ id: 1, name: "Freehold" }, { id: 2, name: "Leasehold" }];
+  showLoader: boolean = false;
 
   constructor(private api: AppService, private service: AuthService, private route: Router, private notifyService: NotificationService) {
     this.getOldFormData();
@@ -201,120 +208,8 @@ export class ListpropertyinfoComponent implements OnInit {
     amenitites_hardwoodFloorspace: new FormControl(""),
     amenitites_jacuzzi: new FormControl(""),
   });
-
   get validate() {
     return this.SubmitForm.controls;
-  }
-  onSubmit() {
-    this.submitted = true;
-    const controls = this.SubmitForm.controls;
-    if (this.propertyTypeCheck == false) {
-      alert("Please select property type");
-      return;
-    } else if (this.bedroomCheck == false) {
-      alert("Please select bedrooms");
-      return;
-    } else if (this.bathroomCheck == false) {
-      alert("Please select bathroom");
-      return;
-    } else if (this.furnishTypeCheck == false) {
-      alert("Please select furnishing type");
-      return;
-    } else if (this.fittingCheck == false) {
-      alert("Please select fitting type");
-      return;
-    } else if (this.tenantCheck == false) {
-      alert("Please select preferred tenant type");
-      return;
-    } else if (this.genderCheck == false) {
-      alert("Please select gender type");
-      return;
-    } else if (this.managedCheck == false) {
-      alert("Please select property manage type");
-      return;
-    } else if (this.occupancyCheck == false) {
-      alert("Please select occupancy status");
-      return;
-    } else if (this.parkingCheck == false) {
-      alert("Please select available parking");
-      return;
-    } else if (this.petPolicyData.length == 0) {
-      alert("Please select pet policy");
-      return;
-    } else if (this.SubmitForm.value.carpetArea == "") {
-      alert("Please select carpet area");
-      return;
-    } else if (this.SubmitForm.value.buildupArea == "") {
-      alert("Please select build area");
-      return;
-    } else if (this.SubmitForm.value.price == "") {
-      alert("Please select price");
-      return;
-    } else if (this.rentTypeCheck == false) {
-      alert("Please select rent type");
-      return;
-    } else if (this.securityCheck == false) {
-      alert("Please select security deposit");
-      return;
-    } else if (this.brokreageCheck == false) {
-      alert("Please select charge brokerage");
-      return;
-    } else if ($("#formDate").val() == "") {
-      alert("Please select date");
-      return;
-    } else if (this.SubmitForm.value.noticePeriod == "") {
-      alert("Please write notice period");
-      return;
-    } else if (this.SubmitForm.value.lockingPeriod == "") {
-      alert("Please write locking period");
-      return;
-    } else if (this.SubmitForm.value.propertyTitle == "") {
-      alert("Please write property title");
-      return;
-    } else if (this.SubmitForm.value.propertyDescription == "") {
-      alert("Please write property description");
-      return;
-    } else if (this.featuresFormData.length == 0) {
-      alert("Please select features");
-      return;
-    }
-
-    this.data.PropertyListingTypeId = 1;
-    this.data.PropertyTransactionTypeId = "";
-    this.data.PropertyCategoryId = 1;
-    this.data.PropertyTitle = this.SubmitForm.value.propertyTitle;
-    this.data.Balcony = 0;
-    this.data.PropertyStatusId = 0;
-    this.data.CarpetArea = this.SubmitForm.value.carpetArea;
-    this.data.BuildupArea = this.SubmitForm.value.buildupArea;
-    this.data.PropertyPrice = this.SubmitForm.value.price;
-    this.data.SecurityDepositPrice = this.SubmitForm.value.AED;
-    this.data.BrokerageChargePrice = this.SubmitForm.value.brokerageAed;
-    this.data.AvailableDate = $("#formDate").val()
-    this.data.NoticePeriod = this.SubmitForm.value.noticePeriod;
-    this.data.LockingPeriod = this.SubmitForm.value.lockingPeriod;
-    this.data.PropertyOffer = this.SubmitForm.value.propertyOffers;
-    this.data.PropertyDescription = this.SubmitForm.value.propertyDescription;
-    this.data.MaintenanceCharges = "";
-    this.data.HandoverOn = "";
-    this.data.PropertyCompletionStatusId = "";
-    let user: any = localStorage.getItem("user");
-    this.data.UserId = JSON.parse(user).id;
-    this.data.UserEmail = JSON.parse(user).email;
-    this.data.ProfessionalTypeId = JSON.parse(user).professionalTypeId;
-    let temp: any = []
-    for (let i = 0; i < this.petPolicyData.length; i++) {
-      temp.push({ "PetPolicyId": this.petPolicyData[i] });
-    }
-    this.data.PetPolicies = temp;
-    temp = []
-    for (let i = 0; i < this.featuresFormData.length; i++) {
-      temp.push({ PropertyFeatureId: this.featuresFormData[i] });
-    }
-    this.data.PropertyFeatures = temp;
-
-    localStorage.setItem('propertyData', JSON.stringify(this.data))
-    this.route.navigate(['listpropertymedia'])
   }
   getBedroom(e: any) {
     this.bedroomCheck = true;
@@ -348,15 +243,13 @@ export class ListpropertyinfoComponent implements OnInit {
   getOccupancy(e: number) {
     this.data.OccupancyStatusId = e;
   }
+  getBalcony(id:any) {
+    this.data.Balcony = id;
+  }
   getParking(e: string) {
     this.data.Parkings = e;
   }
   getPetPolicy(e: any) {
-    if (e.value.length == 0) {
-      this.petPolicyCheck = false;
-    } else {
-      this.petPolicyCheck = true;
-    }
     this.petPolicyData = e.value;
   }
   getRentTypes(e: number) {
@@ -374,10 +267,10 @@ export class ListpropertyinfoComponent implements OnInit {
   getOwnershipType(e: number) {
     this.data.ownershipType = e;
   }
-  getSecurityDeposit(e: boolean) {
+  getSecurityDeposit(e: any) {
     this.data.SecurityDeposit = e;
   }
-  getBrokageDeposit(e: boolean) {
+  getBrokageDeposit(e: any) {
     this.data.BrokerageCharge = e;
   }
   getFeaturesData(id: number) {
@@ -386,5 +279,177 @@ export class ListpropertyinfoComponent implements OnInit {
     } else {
       this.featuresFormData = this.featuresFormData.filter((e: any) => e != id)
     }
+  }
+  onSubmit() {
+    if (this.listingTypeId == 0) {
+      this.error = "Select Listing Type";
+      this.showError = true;
+      return;
+    } else if(this.categoryID == 0) {
+      this.error = "Select Category ID";
+      this.showError = true;
+      return;
+    } else if(!this.data.PropertyTypeId) {
+      this.error = "Select Property Type";
+      this.showError = true;
+      return;
+    } else if(this.selectedPropertyType.hasBed && !this.data.BedRooms) {
+      this.error = "Select Bedrooms";
+      this.showError = true;
+      return;
+    } else if(this.selectedPropertyType.hasBath && !this.data.BathRooms) {
+      this.error = "Select BathRooms";
+      this.showError = true;
+      return;
+    } else if(this.selectedPropertyType.hasFurnishing && !this.data.FurnishingType) {
+      this.error = "Select Furnishing Type";
+      this.showError = true;
+      return;
+    } else if(this.selectedPropertyType.hasFitting && !this.data.FittingType) {
+      this.error = "Select Fitting Type";
+      this.showError = true;
+      return;
+    } else if(this.selectedPropertyType.hasCarpetArea && this.SubmitForm.value.carpetArea == "") {
+      this.error = "Enter Carpet Area";
+      this.showError = true;
+      return;
+    } else if(this.selectedPropertyType.hasBuildUpArea && this.SubmitForm.value.buildupArea == "") {
+      this.error = "Enter BuildUp Area";
+      this.showError = true;
+      return;
+    } else if(!this.data.TenantTypeId && this.listingTypeId == 1) {
+      this.error = "Select Tenant Type";
+      this.showError = true;
+      return;
+    } else if(!this.data.Gender && this.listingTypeId == 1) {
+      this.error = "Select Gender";
+      this.showError = true;
+      return;
+    } else if(!this.data.PropertyManageId && this.listingTypeId == 1) {
+      this.error = "Select Property Manager";
+      this.showError = true;
+      return;
+    } else if(!this.data.OccupancyStatusId && this.listingTypeId == 1) {
+      this.error = "Select Occupancy Status";
+      this.showError = true;
+      return;
+    } else if(this.categoryID == 1 && !this.data.Balcony) {
+      this.error = "Select Balcony";
+      this.showError = true;
+      return;
+    } else if(this.categoryID == 1 && !this.data.Parkings) {
+      this.error = "Select Parking";
+      this.showError = true;
+      return;
+    } else if(this.listingTypeId == 2 && !this.data.PropertyTransactionTypeId) {
+      this.error = "Select Transaction Type";
+      this.showError = true;
+      return;
+    } else if(this.listingTypeId == 2 && !this.data.PropertyCompletionStatusId) {
+      this.error = "Select Completetion Status";
+      this.showError = true;
+      return;
+    } else if(this.listingTypeId == 1 && this.petPolicyData.length == 0) {
+      this.error = "Select Pet Policy";
+      this.showError = true;
+      return;
+    } else if(this.listingTypeId == 2 && $("#sell-residential-datepicker").val() == "") {
+      this.error = "Enter Handover Date";
+      this.showError = true;
+      return;
+    } else if(this.listingTypeId == 2 && this.categoryID == 2 && !this.data.LocatedNear) {
+      this.error = "Select Near Location";
+      this.showError = true;
+      return;
+    } else if(this.listingTypeId == 2 && this.categoryID == 2 && !this.data.ownershipType) {
+      this.error = "Select Ownership Type";
+      this.showError = true;
+      return;
+    } else if(this.SubmitForm.value.price == "") {
+      this.error = "Enter Price";
+      this.showError = true;
+      return;
+    } else if(this.listingTypeId == 1 && !this.data.RentTypeId) {
+      this.error = "Select Rent Type";
+      this.showError = true;
+      return;
+    } else if(this.listingTypeId == 1 && !this.data.SecurityDeposit) {
+      this.error = "Select Security Deposit";
+      this.showError = true;
+      return;
+    } else if(this.data.SecurityDeposit == "true" && this.SubmitForm.value.AED == "") {
+      this.error = "Enter Security Deposit Price";
+      this.showError = true;
+      return;
+    } else if(this.listingTypeId == 1 && !this.data.BrokerageCharge) {
+      this.error = "Select Brokerage Type";
+      this.showError = true;
+      return;
+    } else if(this.data.BrokerageCharge == "true" && this.SubmitForm.value.brokerageAed == "") {
+      this.error = "Enter Brokerage Price";
+      this.showError = true;
+      return;
+    } else if(this.listingTypeId == 1 && this.SubmitForm.value.availablefrom == "") {
+      this.error = "Enter Available Date";
+      this.showError = true;
+      return;
+    } else if(this.listingTypeId == 1 && this.SubmitForm.value.noticePeriod == "") {
+      this.error = "Enter Notice Days";
+      this.showError = true;
+      return;
+    } else if(this.listingTypeId == 1 && this.SubmitForm.value.lockingPeriod == "") {
+      this.error = "Enter Locking Days";
+      this.showError = true;
+      return;
+    } else if(this.listingTypeId == 1 && this.SubmitForm.value.propertyTitle == "") {
+      this.error = "Enter Property Title";
+      this.showError = true;
+      return;
+    } else if(this.listingTypeId == 1 && this.SubmitForm.value.propertyDescription == "") {
+      this.error = "Enter Property Description";
+      this.showError = true;
+      return;
+    } else if(this.selectedPropertyType.hasPropertyFeature && this.featuresFormData.length == 0) {
+      this.error = "Select Property Features";
+      this.showError = true;
+      return;
+    }
+
+    // this.data.PropertyListingTypeId = 1;
+    // this.data.PropertyTransactionTypeId = "";
+    // this.data.PropertyCategoryId = 1;
+    // this.data.PropertyTitle = this.SubmitForm.value.propertyTitle;
+    // this.data.Balcony = 0;
+    // this.data.PropertyStatusId = 0;
+    // this.data.CarpetArea = this.SubmitForm.value.carpetArea;
+    // this.data.BuildupArea = this.SubmitForm.value.buildupArea;
+    // this.data.PropertyPrice = this.SubmitForm.value.price;
+    // this.data.SecurityDepositPrice = this.SubmitForm.value.AED;
+    // this.data.BrokerageChargePrice = this.SubmitForm.value.brokerageAed;
+    // this.data.AvailableDate = $("#formDate").val()
+    // this.data.NoticePeriod = this.SubmitForm.value.noticePeriod;
+    // this.data.LockingPeriod = this.SubmitForm.value.lockingPeriod;
+    // this.data.PropertyOffer = this.SubmitForm.value.propertyOffers;
+    // this.data.PropertyDescription = this.SubmitForm.value.propertyDescription;
+    // this.data.MaintenanceCharges = "";
+    // this.data.HandoverOn = "";
+    // this.data.PropertyCompletionStatusId = "";
+    // let user: any = localStorage.getItem("user");
+    // this.data.UserId = JSON.parse(user).id;
+    // this.data.UserEmail = JSON.parse(user).email;
+    // this.data.ProfessionalTypeId = JSON.parse(user).professionalTypeId;
+    // let temp: any = []
+    // for (let i = 0; i < this.petPolicyData.length; i++) {
+    //   temp.push({ "PetPolicyId": this.petPolicyData[i] });
+    // }
+    // this.data.PetPolicies = temp;
+    // temp = []
+    // for (let i = 0; i < this.featuresFormData.length; i++) {
+    //   temp.push({ PropertyFeatureId: this.featuresFormData[i] });
+    // }
+    // this.data.PropertyFeatures = temp;
+
+    // localStorage.setItem('propertyData', JSON.stringify(this.data))
+    // this.route.navigate(['listpropertymedia'])
   }
 }

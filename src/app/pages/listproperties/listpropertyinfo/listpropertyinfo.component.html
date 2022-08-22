@@ -229,76 +229,76 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4" *ngIf="listingTypeId == 1 && categoryID == 1 || listingTypeId == 2 && categoryID == 1">
-                                                <h6 class="h6-design">Balcony </h6>
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4" *ngIf="categoryID == 1">
+                                                <h6 class="h6-design">Balcony</h6>
                                                 <div class="checkbox-flex-box six-column button-same-select">
-                                                    <div class="checkbox-design position-relative">
+                                                    <div class="checkbox-design position-relative" (click)="getBalcony('0')">
                                                         <input type="radio" value="0"
                                                             name="balcony">
                                                         <button class="checkbox-btn">0</button>
                                                     </div>
-                                                    <div class="checkbox-design position-relative">
+                                                    <div class="checkbox-design position-relative" (click)="getBalcony('1')">
                                                         <input type="radio" value="1"
                                                             name="balcony">
                                                         <button class="checkbox-btn">1</button>
                                                     </div>
-                                                    <div class="checkbox-design position-relative">
+                                                    <div class="checkbox-design position-relative" (click)="getBalcony('2')">
                                                         <input type="radio" value="2"
                                                             name="balcony">
                                                         <button class="checkbox-btn">2</button>
                                                     </div>
-                                                    <div class="checkbox-design position-relative">
+                                                    <div class="checkbox-design position-relative" (click)="getBalcony('3')">
                                                         <input type="radio" value="3"
                                                             name="balcony">
                                                         <button class="checkbox-btn">3</button>
                                                     </div>
-                                                    <div class="checkbox-design position-relative">
+                                                    <div class="checkbox-design position-relative" (click)="getBalcony('4')">
                                                         <input type="radio" value="4"
                                                             name="balcony">
                                                         <button class="checkbox-btn">4</button>
                                                     </div>
-                                                    <div class="checkbox-design position-relative">
+                                                    <div class="checkbox-design position-relative" (click)="getBalcony('4+')">
                                                         <input type="radio" value="4+"
                                                             name="balcony">
                                                         <button class="checkbox-btn">4+</button>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4" *ngIf="listingTypeId == 1 && categoryID == 1 || listingTypeId == 2 && categoryID == 1">
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4" *ngIf="categoryID == 1">
                                                 <h6 class="h6-design">Available Parking </h6>
                                                 <div class="checkbox-flex-box six-column button-same-select">
                                                     <div class="checkbox-design position-relative"
-                                                        (click)="getParking('0');parkingCheck=true">
+                                                        (click)="getParking('0')">
                                                         <input type="radio" id="parking" value="0"
                                                             name="available_parking">
                                                         <button class="checkbox-btn">0</button>
                                                     </div>
                                                     <div class="checkbox-design position-relative"
-                                                        (click)="getParking('1');parkingCheck=true">
+                                                        (click)="getParking('1')">
                                                         <input type="radio" id="parking" value="1"
                                                             name="available_parking">
                                                         <button class="checkbox-btn">1</button>
                                                     </div>
                                                     <div class="checkbox-design position-relative"
-                                                        (click)="getParking('2');parkingCheck=true">
+                                                        (click)="getParking('2')">
                                                         <input type="radio" id="parking" value="2"
                                                             name="available_parking">
                                                         <button class="checkbox-btn">2</button>
                                                     </div>
                                                     <div class="checkbox-design position-relative"
-                                                        (click)="getParking('3');parkingCheck=true">
+                                                        (click)="getParking('3')">
                                                         <input type="radio" id="parking" value="3"
                                                             name="available_parking">
                                                         <button class="checkbox-btn">3</button>
                                                     </div>
                                                     <div class="checkbox-design position-relative"
-                                                        (click)="getParking('4');parkingCheck=true">
+                                                        (click)="getParking('4')">
                                                         <input type="radio" id="parking" value="4"
                                                             name="available_parking">
                                                         <button class="checkbox-btn">4</button>
                                                     </div>
                                                     <div class="checkbox-design position-relative"
-                                                        (click)="getParking('4+');parkingCheck=true">
+                                                        (click)="getParking('4+')">
                                                         <input type="radio" id="parking" value="4+"
                                                             name="available_parking">
                                                         <button class="checkbox-btn">4+</button>
@@ -383,7 +383,7 @@
                                                 <div class="checkbox-flex-box three-column button-same-select">
                                                     <div class="checkbox-design position-relative"
                                                         *ngFor="let item of rentTypes"
-                                                        (click)="getRentTypes(item.id);rentTypeCheck=true">
+                                                        (click)="getRentTypes(item.id)">
                                                         <input type="radio" value="{{item.name}}" name="rent_types">
                                                         <button class="checkbox-btn">{{item.name}}</button>
                                                     </div>
@@ -393,7 +393,7 @@
                                                 <h6 class="h6-design">Do you take Security deposit?</h6>
                                                 <div class="checkbox-flex-box two-column button-same-select">
                                                     <div class="checkbox-design position-relative"
-                                                        (click)="getSecurityDeposit(true);securityCheck=true">
+                                                        (click)="getSecurityDeposit('true')">
                                                         <input type="radio" id="Yes" formControlName="securoty_deposit"
                                                             value="Yes" checked>
                                                         <button class="checkbox-btn">Yes</button>
@@ -423,7 +423,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="checkbox-design position-relative"
-                                                        (click)="getSecurityDeposit(false);securityCheck=true">
+                                                        (click)="getSecurityDeposit('false')">
                                                         <input type="radio" id="No" formControlName="securoty_deposit"
                                                             value="No">
                                                         <button class="checkbox-btn">No</button>
@@ -434,7 +434,7 @@
                                                 <h6 class="h6-design">Do you charge brokerage?</h6>
                                                 <div class="checkbox-flex-box two-column button-same-select">
                                                     <div class="checkbox-design position-relative"
-                                                        (click)="getBrokageDeposit(true);brokreageCheck=true">
+                                                        (click)="getBrokageDeposit('true')">
                                                         <input type="radio" id="Yes" formControlName="brokerage_value"
                                                             value="Yes" checked>
                                                         <button class="checkbox-btn">Yes</button>
@@ -464,7 +464,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="checkbox-design position-relative"
-                                                        (click)="getBrokageDeposit(false);brokreageCheck=true">
+                                                        (click)="getBrokageDeposit('false')">
                                                         <input type="radio" id="No" formControlName="brokerage_value"
                                                             value="No">
                                                         <button class="checkbox-btn">No</button>
@@ -576,3 +576,5 @@
         </div>
     </div>
 </section>
+<app-loader *ngIf="showLoader"></app-loader>
+<app-erroralert [error]="error" (errorResponse)="errorResponse($event)" *ngIf="showError"></app-erroralert>
