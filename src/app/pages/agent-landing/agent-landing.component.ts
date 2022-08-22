@@ -27,7 +27,7 @@ export class AgentLandingComponent implements OnInit {
   searchctrl = new FormControl('');
   searchfilter: Observable<string[]>;
   SearchKeyword: string[] = [];
-  searchList: any = ["Duabi", "UAE", "Investment Park"];
+  searchList: any = [];
   agentObject: any = { "CountryId": "1", "DistrictsId": [], "CompaniesId": [], "UserId": "0", "EpertInId": "0", "LanguageId": "0", "CurrentPage": 1 };
   allCountries: any;
   country: any = [];

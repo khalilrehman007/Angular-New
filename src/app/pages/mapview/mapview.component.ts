@@ -55,7 +55,10 @@ export class MapviewComponent implements OnInit {
     }
   ]
   constructor(service:AppService) {
-    this.propertyDetails=localStorage.getItem('listingForMap')
+    this.propertyDetails=localStorage.getItem('listingForMap');
+    this.propertyDetails=JSON.parse(this.propertyDetails);
+    console.log(this.propertyDetails);
+    
   }
 
   ngOnInit(): void {
