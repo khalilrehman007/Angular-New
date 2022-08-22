@@ -118,7 +118,10 @@ export class ListpropertyinfoComponent implements OnInit {
     })
   }
   onListTypeSelect(id: any) {
-    this.listingTypeId = id;
+    this.listingTypeId = 0;
+    setTimeout(()=> {
+      this.listingTypeId = id;
+    }, 100)
     if (id == 2) {
       this.api.PropertyTransactionTypes().subscribe((result: any) => {
         this.transactionType = result.data;
@@ -127,92 +130,50 @@ export class ListpropertyinfoComponent implements OnInit {
         this.completionStatus = result.data;
       })
     }
+    this.clearData();
   }
   getOldFormData() {
     this.oldData = localStorage.getItem('listpropertyinfo_rent_residential');
   }
-  getCategory(id: any) {
-    let temp:any = localStorage.getItem('propertyData');
+  clearData() {
+    let temp: any = localStorage.getItem('propertyData');
     this.data = JSON.parse(temp);
+    this.propertyTypeCheck = false;
+    this.featuresFormData = [];
+    this.SubmitForm.patchValue({
+      propertyTitle: "",
+      carpetArea: "",
+      buildupArea: "",
+      price: "",
+      AED: "",
+      brokerageAed: "",
+      availablefrom: "",
+      noticePeriod: "",
+      lockingPeriod: "",
+      propertyDescription: "",
+      propertyOffers: "",
+    });
+  }
+  getCategory(id: any) {
     this.categoryID = id;
     this.api.LoadType(id).subscribe((result) => {
       this.propertyType = result;
       this.propertyType = this.propertyType.data
     });
-    this.propertyTypeCheck = false;
-    this.SubmitForm.reset();
-    console.log(this.data);
+    this.clearData();
   }
   SubmitForm = new FormGroup({
     propertyTitle: new FormControl("", [Validators.required]),
-    property_studio: new FormControl(""),
-    property_apartment: new FormControl(""),
-    property_villa: new FormControl(""),
-    property_townHouse: new FormControl(""),
-    property_penthouse: new FormControl(""),
-    property_compound: new FormControl(""),
-    property_duplex: new FormControl(""),
-    property_fullFloor: new FormControl(""),
-    property_wholeBuilding: new FormControl(""),
-    property_bulkRentUnit: new FormControl(""),
-    property_bungalow: new FormControl("",),
-    property_hotelApartment: new FormControl(""),
-    bedroom_BHK_1: new FormControl(""),
-    bedroom_BHK_2: new FormControl(""),
-    bedroom_BHK_3: new FormControl(""),
-    bedroom_BHK_4: new FormControl("",),
-    bedroom_BHK_5: new FormControl(""),
-    bedroom_BHK_6: new FormControl(""),
-    bedroom_BHK_7: new FormControl(""),
-    bedroom_BHK_8: new FormControl(""),
-    room_privateBathroom: new FormControl(""),
-    room_attachedBathroom: new FormControl(""),
-    room_sharedBathroom: new FormControl(""),
-    property_types: new FormControl("", [Validators.required]),
-    fitting_details: new FormControl("", [Validators.required]),
-    tenant_types: new FormControl("", [Validators.required]),
-    gender: new FormControl("", [Validators.required]),
-    property_management: new FormControl("", [Validators.required]),
-    occupancy: new FormControl("", [Validators.required]),
-    parking_space: new FormControl("", [Validators.required]),
-    pets: new FormControl(""),
-    pet_cats_allowed: new FormControl(""),
-    pet_small_dogs_allowed: new FormControl(""),
-    pet_big_dogs_allowed: new FormControl(""),
     carpetArea: new FormControl("", [Validators.required]),
     buildupArea: new FormControl("", [Validators.required]),
     price: new FormControl("", [Validators.required]),
-    building_type_monthly: new FormControl(""),
-    building_type_quaterly: new FormControl(""),
-    building_type_yearly: new FormControl(""),
-    securoty_deposit: new FormControl("", [Validators.required]),
     AED: new FormControl("",),
-    securityNegotiable: new FormControl(""),
-    brokerage_value: new FormControl(""),
-    brokerageAed: new FormControl(""),
-    brokerageNegotiable: new FormControl(""),
+    brokerageAed: new FormControl("",),
     availablefrom: new FormControl("", [Validators.required]),
     noticePeriod: new FormControl("", [Validators.required]),
     lockingPeriod: new FormControl("", [Validators.required]),
     propertyDescription: new FormControl("", [Validators.required]),
     propertyOffers: new FormControl(""),
-    highlights_exclusive: new FormControl(""),
-    highlights_golfView: new FormControl(""),
-    highlights_canalView: new FormControl(""),
-    highlights_affordable: new FormControl(""),
-    highlights_vastuComplaint: new FormControl(""),
-    highlights_primeLocation: new FormControl(""),
-    highlights_metro: new FormControl(""),
-    amenitites_ac: new FormControl(""),
-    amenitites_deckspace: new FormControl(""),
-    amenitites_petFriendly: new FormControl(""),
-    amenitites_parkingspace: new FormControl(""),
-    amenitites_poolspace: new FormControl(""),
-    amenitites_yardspace: new FormControl(""),
-    amenitites_freeWiFi: new FormControl(""),
-    amenitites_gymspace: new FormControl(""),
-    amenitites_hardwoodFloorspace: new FormControl(""),
-    amenitites_jacuzzi: new FormControl(""),
   });
   get validate() {
     return this.SubmitForm.controls;
@@ -422,12 +383,12 @@ export class ListpropertyinfoComponent implements OnInit {
 
     this.data.PropertyListingTypeId = this.listingTypeId;
     this.data.PropertyCategoryId = this.categoryID;
-    if(this.selectedPropertyType.hasCarpetArea) {
+    if (this.selectedPropertyType.hasCarpetArea) {
       this.data.CarpetArea = this.SubmitForm.value.carpetArea;
     } else {
       this.data.CarpetArea = 0;
     }
-    if(this.selectedPropertyType.hasBuildUpArea) {
+    if (this.selectedPropertyType.hasBuildUpArea) {
       this.data.BuildupArea = this.SubmitForm.value.buildupArea;
     } else {
       this.data.BuildupArea = 0;
