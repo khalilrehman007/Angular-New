@@ -185,8 +185,9 @@
                                 <td class="agent-landing-list__table-data">
                                     <div class="agent-landing-featured__agent-wrapper">
                                         <div class="agent-landing-featured__agent-img-outer-wrapper">
-                                            <div class="agent-landing-featured__agent-img-inner-wrapper" *ngIf="data.user && data.user.imageUrl">
-                                                <img src="https://beta.ovaluate.com/{{data.user.imageUrl}}" alt="" class="img-fluid agent-landing-featured__agent-img">
+                                            <div class="agent-landing-featured__agent-img-inner-wrapper" >
+                                                <img *ngIf="data.documents.length > 0" src="https://beta.ovaluate.com/{{data.user.imageUrl}}" [alt]="" class="img-fluid agent-landing-featured__agent-img">
+                                                <img *ngIf="data.documents.length == 0" src="assets/images/placeholder.png" [alt]="">
                                             </div>
                                         </div>
                                         <div class="agent-landing-featured__agent-text-wrapper">
