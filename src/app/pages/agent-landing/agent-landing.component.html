@@ -185,13 +185,13 @@
                                 <td class="agent-landing-list__table-data">
                                     <div class="agent-landing-featured__agent-wrapper">
                                         <div class="agent-landing-featured__agent-img-outer-wrapper">
-                                            <div class="agent-landing-featured__agent-img-inner-wrapper" >
+                                            <div class="agent-landing-featured__agent-img-inner-wrapper" routerLink="/agent-details/{{data.user.id}}">
                                                 <img *ngIf="data.user.imageUrl != null" src="https://beta.ovaluate.com/{{data.user.imageUrl}}" [alt]="" class="img-fluid agent-landing-featured__agent-img">
                                                 <img *ngIf="data.user.imageUrl == null" src="assets/images/user.png" [alt]="">
                                             </div>
                                         </div>
                                         <div class="agent-landing-featured__agent-text-wrapper">
-                                            <h6 class="agent-landing-featured__property-heading" *ngIf="data.user && data.user.fullName">{{data.user.fullName}}</h6>
+                                            <h6 class="agent-landing-featured__property-heading" *ngIf="data.user && data.user.fullName" routerLink="/agent-details/{{data.user.id}}">{{data.user.fullName}}</h6>
                                             <p class="agent-landing-featured__property-text" *ngIf="data.company && data.company.companyName">{{data.company.companyName}}</p>
                                             <p class="agent-landing-featured__property-link m-0" *ngIf="data.user && data.user.phoneNumber">{{data.user.phoneNumber}}</p>
                                             <p class="agent-landing-featured__property-text mb-3" *ngIf="data.user && data.user.countryId">{{filterCountry(data.user.countryId)}}</p>
