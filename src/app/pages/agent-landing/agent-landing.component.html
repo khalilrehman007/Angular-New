@@ -186,8 +186,8 @@
                                     <div class="agent-landing-featured__agent-wrapper">
                                         <div class="agent-landing-featured__agent-img-outer-wrapper">
                                             <div class="agent-landing-featured__agent-img-inner-wrapper" >
-                                                <img *ngIf="data.documents.length > 0" src="https://beta.ovaluate.com/{{data.user.imageUrl}}" [alt]="" class="img-fluid agent-landing-featured__agent-img">
-                                                <img *ngIf="data.documents.length == 0" src="assets/images/placeholder.png" [alt]="">
+                                                <img *ngIf="data.user.imageUrl != null" src="https://beta.ovaluate.com/{{data.user.imageUrl}}" [alt]="" class="img-fluid agent-landing-featured__agent-img">
+                                                <img *ngIf="data.user.imageUrl == null" src="assets/images/user.png" [alt]="">
                                             </div>
                                         </div>
                                         <div class="agent-landing-featured__agent-text-wrapper">
