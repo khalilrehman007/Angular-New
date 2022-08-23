@@ -71,7 +71,6 @@ export class BlogsComponent implements OnInit {
     })
     this.service.LoadBlogById(1).subscribe((result:any)=>{
       this.mainBlog = result.data;
-      console.log(this.mainBlog);
     })
   }
 
