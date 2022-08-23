@@ -470,6 +470,7 @@ export class PropertyInnerComponent implements OnInit {
             price: element.propertyPrice,
             rentType: element.rentType.name,
             currency: element.country.currency,
+            favorite: element.favorite,
             propertyAddress:element.propertyAddress,
             id:element.id,
             alt:element.propertyTitle,
@@ -550,6 +551,7 @@ export class PropertyInnerComponent implements OnInit {
         setTimeout(() => {
           this.getUser();
           this.getloadDashboardData();
+          this.LoadSimilarProperty();
         }, 1000);
       }else {
         this.wishlistStatus = "Favorite is added successfully"
@@ -557,6 +559,7 @@ export class PropertyInnerComponent implements OnInit {
         setTimeout(() => {
           this.getUser();
           this.getloadDashboardData();
+          this.LoadSimilarProperty();
         }, 1000);
       }
     });
