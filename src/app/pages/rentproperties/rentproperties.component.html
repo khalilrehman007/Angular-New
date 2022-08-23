@@ -66,8 +66,8 @@
             <div ngClass="properties-list-design">
               <div ngClass="properties-list-block-design"
                 *ngFor=" let list of searchListing | paginate: { itemsPerPage: 10, currentPage: page ,totalItems:totalRecord }">
-                <div ngClass="row" [routerLink]="['/PropertDetailsPage']" [queryParams]="{id: list.id}">
-                  <div ngClass="col-xl-4 col-md-4 col-lg-4 col-sm-12">
+                <div ngClass="row" >
+                  <div ngClass="col-xl-4 col-md-4 col-lg-4 col-sm-12" [routerLink]="['/PropertDetailsPage']" [queryParams]="{id: list.id}">
                     <div ngClass="properties-list_slider">
                       <ngb-carousel>
                         <ng-template ngbSlide *ngFor="let event of list.documents">
@@ -80,7 +80,7 @@
                   <div ngClass="col-xl-8 col-md-8 col-lg-8 col-sm-12">
                     <div ngClass="properties-list_cntnts position-relative">
                       <div ngClass="properties-list_hdr d-flex justify-content-spacebw">
-                        <div ngClass="property-price_detals">
+                        <div ngClass="property-price_detals" [routerLink]="['/PropertDetailsPage']" [queryParams]="{id: list.id}">
                           <h4>{{list.propertyPrice}} {{list.currency}} <small>/{{list.rentType}}</small></h4>
                           <div ngClass="property-tags d-flex flex-wrap">
                             <span ngClass="tags-bg-grey">Brokrage: {{list.brokerageChargePrice}}
@@ -89,7 +89,7 @@
                               {{list.rentType}}</span>
                           </div>
                         </div>
-                        <div ngClass="property-action-hdr">
+                        <div ngClass="property-action-hdr" [routerLink]="['/PropertDetailsPage']" [queryParams]="{id: list.id}">
                           <button ngClass="ov-verified-btn"><img src="{{ovverified}}"> {{list.propertyCode}}</button>
                           <button ngClass="circle-btn"><img src="{{order}}"></button>
                           <button [ngClass]="list.favorite == true ? 'grey-bordered-btn red-fill' : 'grey-bordered-btn'" (click)="AddToFavorite(list.id,list.favorite)">
@@ -102,7 +102,7 @@
                         </div>
                       </div>Choose your adventure.
 
-                      <div ngClass="property-name_detals">
+                      <div ngClass="property-name_detals" [routerLink]="['/PropertDetailsPage']" [queryParams]="{id: list.id}">
                         <h4>{{list.buildingName}}</h4>
                         <div ngClass="property-addresss">
                           <p><img src="{{homelocationsvg}}"> {{list.propertyAddress}}</p>
@@ -211,11 +211,11 @@
                           </div>
                         </div>
                       </div>
-                      <div ngClass="last-contaceted-on">
-                        <p>
-                          <mat-icon> phone</mat-icon> Last contacted on: 9 Aug 2022
-                        </p>
-                      </div>
+<!--                      <div ngClass="last-contaceted-on">-->
+<!--                        <p>-->
+<!--                          <mat-icon> phone</mat-icon> Last contacted on: 9 Aug 2022-->
+<!--                        </p>-->
+<!--                      </div>-->
                       <p ngClass="premium-tag">PREMIUM</p>
                     </div>
                     <div ngClass="popular-tag-abs">
