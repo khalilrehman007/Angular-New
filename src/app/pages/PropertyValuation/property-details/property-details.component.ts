@@ -65,7 +65,7 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
   get muncipality() {
     return this.propertyDetails.get("muncipality")
   }
-
+  
   constructor(private http: HttpClient, private service: AppService, private router: Router) {
     this.loadCountriesData();
     this.loadOldData();
@@ -122,24 +122,12 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
     temp = temp.top;
     $(window).scrollTop(temp - 200);
   }
-
-  // checkLength() {
-  //   let temp: any = this.propertyDetails.value.ownerPhone;
-  //   if (temp.toString().length > 12) {
-  //     alert("Max length allowes is 12");
-  //     this.propertyDetails.patchValue({
-  //       ownerPhone: temp.toString().slice(0, -1)
-  //     })
-  //   }
-  // }
-
   confirmLocation() {
     this.locationInformation.country = this.countryName;
     this.locationInformation.city = this.cityName;
     this.locationInformation.address = localStorage.getItem("address");
     localStorage.removeItem("address");
   }
-
   loadCountriesData() {
     this.showLoader = true;
     this.service.LoadCountries().subscribe(e => {
@@ -159,7 +147,6 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
       }
     });
   }
-
   toggleType(e: number) {
     if (e == 1) {
       this.formDetailData.titleDeedType = "Leasehold";
