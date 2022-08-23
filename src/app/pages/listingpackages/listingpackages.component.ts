@@ -21,13 +21,15 @@ export class ListingpackagesComponent implements OnInit {
   professionalAndListingType: any = [];
   professionalArray: any = [];
   professionalTypeId:any = '';
+  professionalPakageView: any;
+  professionalTypeTab: any;
 
 
   constructor(private service: AppService) {
     this.loadProfessionalTypes();
     this.loadPropertyListingTypes();
-    // this.loadProfessionalAndListingType(2,1);
-    console.log(this.professionalAndListingType)
+    this.professionalTypeTab = localStorage.getItem('user');
+    this.professionalTypeTab = JSON.parse(this.professionalTypeTab);
   }
 
   ngOnInit(): void {
