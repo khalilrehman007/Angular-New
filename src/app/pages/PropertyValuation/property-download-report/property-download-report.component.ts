@@ -10,6 +10,7 @@ import { AppService } from 'src/app/service/app.service';
 export class PropertyDownloadReportComponent implements OnInit {
   stripe = '../../../../assets/images/report.png'
   report = '../../../../assets/images/icons/print.svg'
+  download = '../../../../assets/images/download.gif'
   valuationResponse: any = {};
   showLoader: boolean = false;
   constructor(private service: AppService, private router: Router) {

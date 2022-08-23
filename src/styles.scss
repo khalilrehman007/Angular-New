@@ -9234,3 +9234,20 @@ li.agent-details__property-list-item {
 .inspection-required-block.input-date-picker .mat-form-field-flex > .mat-form-field-infix input {
     font-size: 16px;
 }
+.mat-chip-list-wrapper {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+	scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.mat-chip-list-wrapper::-webkit-scrollbar {
+    display: none;
+}
+.mat-chip-list-wrapper .mat-chip {
+    width: auto !important;
+    white-space: nowrap;
+}
+.mat-chip-list-wrapper {
+    flex-wrap: nowrap !important;
+}
