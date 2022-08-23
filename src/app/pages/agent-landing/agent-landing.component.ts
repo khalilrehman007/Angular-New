@@ -19,6 +19,7 @@ export class AgentLandingComponent implements OnInit {
 
   totalLength: number = 0;
   page: number = 1;
+  companypage: number = 1;
   companies: boolean = false;
   agentDetails: any;
   bestCompanies: any;
@@ -436,10 +437,13 @@ export class AgentLandingComponent implements OnInit {
   toggleCompany(e: boolean) {
     if (e) {
       this.companies = false;
+      this.totalLength = this.findAgent.length;
+      this.agentListData(this.agentObject);
     } else {
       this.companies = true;
+      this.totalLength = this.findCompanies.length;
+      this.companiesListData({ "CountryId": "1", "DistrictsId": [], "CompaniesId": [], "CurrentPage": 1 });
     }
-
   }
   companyData() {
     this.page = 1;
@@ -784,11 +788,13 @@ export class AgentLandingComponent implements OnInit {
     };
 
   }
-  pageChanged(value: any) {
+  agentpageChanged(value: any) {
     this.page = value;
-    this.agentObject.CurrentPage = value;
-    this.agentListData(this.agentObject);
-    this.companiesListData({ "CountryId": "1", "DistrictsId": [], "CompaniesId": [], "CurrentPage": value });
+    // this.companiesListData({ "CountryId": "1", "DistrictsId": [], "CompaniesId": [], "CurrentPage": value });
+  }
+  companypageChanged(value: any) {
+    this.companypage = value;
+    // this.companiesListData({ "CountryId": "1", "DistrictsId": [], "CompaniesId": [], "CurrentPage": value });
   }
   filterCountry(id: any) {
     let temp = this.country.filter((c: any) => c.id == id)[0];
@@ -836,7 +842,13 @@ export class AgentLandingComponent implements OnInit {
       this.findCompanies = result.data;
     })
   }
-
+  pageChanged(e: any) {
+    if (this.companies) {
+      this.companypage = e;
+    } else {
+      this.page = e;
+    }
+  }
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
     return this.searchList.filter(searchCompenies => searchCompenies.toLowerCase().includes(filterValue));
