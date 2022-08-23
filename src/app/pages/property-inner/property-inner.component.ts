@@ -176,6 +176,7 @@ export class PropertyInnerComponent implements OnInit {
   propertyDetailData :any = {}
   chartLabel :any = []
   chartData :any = []
+  documentCheck :any = true
   getloadDashboardData() {
     this.service.DisplayPropertyListing({"PropertyListingId":this.propertyId,"LoginUserId":this.userId}).subscribe(e => {
       let temp: any = e;
@@ -194,7 +195,7 @@ export class PropertyInnerComponent implements OnInit {
         this.propertyDetailData.securityDepositPrice = (jsonParsDate.propertyListing.securityDepositPrice !== undefined) ? jsonParsDate.propertyListing.securityDepositPrice : ''
         this.propertyDetailData.brokerageChargePrice = (jsonParsDate.propertyListing.brokerageChargePrice !== undefined) ? jsonParsDate.propertyListing.brokerageChargePrice : ''
         this.propertyDetailData.buildingName = (jsonParsDate.propertyListing.buildingName !== undefined) ? jsonParsDate.propertyListing.buildingName : ''
-        this.propertyDetailData.documents = (jsonParsDate.propertyListing.documents !== undefined) ? jsonParsDate.propertyListing.documents : ''
+        this.propertyDetailData.documents = (jsonParsDate.propertyListing.documents !== undefined) ? jsonParsDate.propertyListing.documents : []
         this.propertyDetailData.propertyAddress = (jsonParsDate.propertyListing.propertyAddress !== undefined) ? jsonParsDate.propertyListing.propertyAddress : ''
         this.propertyDetailData.bedrooms = (jsonParsDate.propertyListing.bedrooms !== undefined) ? jsonParsDate.propertyListing.bedrooms : ''
         this.propertyDetailData.bathrooms = (jsonParsDate.propertyListing.bathrooms !== undefined) ? jsonParsDate.propertyListing.bathrooms : ''
@@ -241,6 +242,9 @@ export class PropertyInnerComponent implements OnInit {
         let resp :any = this.domSanitizer.bypassSecurityTrustUrl(ree);
         this.locationAddress1 = resp
 
+        if(this.propertyDetail.propertyListing.documents.length == 0){
+          this.documentCheck = false;
+        }
 
         // // var url = location.replace("watch?v=", "v/");
 
@@ -275,10 +279,10 @@ export class PropertyInnerComponent implements OnInit {
       }
 
       if(jsonParsDate.user != null){
-        this.propertyDetailData.userImageUrl = (jsonParsDate.user.imageUrl !== undefined) ? jsonParsDate.user.imageUrl : ''
+        this.propertyDetailData.userImageUrl = (jsonParsDate.user.imageUrl !== undefined) ? this.baseUrl+jsonParsDate.user.imageUrl : '../assets/images/user.png'
         this.propertyDetailData.userfullName = (jsonParsDate.user.fullName !== undefined) ? jsonParsDate.user.fullName : ''
       }else{
-        this.propertyDetailData.userImageUrl = ''
+        this.propertyDetailData.userImageUrl = '../assets/images/user.png'
         this.propertyDetailData.userfullName = ''
       }
 
@@ -455,7 +459,11 @@ export class PropertyInnerComponent implements OnInit {
     this.service.LoadSimilarProperty({"UserId":this.userId,"PropertyListingId":this.propertyId}).subscribe(data=>{
       let response: any = data;
       response.data.forEach((element, i) => {
-        let image = element.documents[0].fileUrl
+        let image = 'assets/images/placeholder.png'
+        if(element.documents.length > 1){
+            image = this.baseUrl+element.documents[0].fileUrl
+        }
+
         tempData.push(
           {
             title: element.propertyTitle,
@@ -465,7 +473,7 @@ export class PropertyInnerComponent implements OnInit {
             propertyAddress:element.propertyAddress,
             id:element.id,
             alt:element.propertyTitle,
-            src:this.baseUrl+image,
+            src:image,
             bedrooms:element.bedrooms,
             bathrooms:element.bathrooms,
             buildingName:element.buildingName,
