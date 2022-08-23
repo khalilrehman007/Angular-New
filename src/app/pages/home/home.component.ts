@@ -491,6 +491,7 @@ export class HomeComponent implements OnInit {
 
   proceedStore(){
     if (this.SubmitForm.invalid) {
+      this.notifyService.showError('Wrong email', "");
       return;
     }
     if (this.SubmitForm.valid) {

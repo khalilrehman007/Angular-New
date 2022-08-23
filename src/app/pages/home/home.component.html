@@ -676,7 +676,7 @@
           Discover ways to increase your home's value and get listed. No Spam.
         </h6>
         <form [formGroup]="SubmitForm" (ngSubmit)="proceedStore()" ngClass="news-letter-form position-relative">
-          <input type="email" formControlName="email" placeholder="Enter your email address" />
+          <input type="email" ngModel email="true" formControlName="email" placeholder="Enter your email address" />
           <input type="submit" value="Submit" />
         </form>
         <p>
