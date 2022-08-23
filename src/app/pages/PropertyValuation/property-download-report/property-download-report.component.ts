@@ -10,6 +10,7 @@ import { AppService } from 'src/app/service/app.service';
 export class PropertyDownloadReportComponent implements OnInit {
   stripe = '../../../../assets/images/report.png'
   report = '../../../../assets/images/icons/print.svg'
+  download = '../../../../assets/images/download.gif'
   valuationResponse: any = {};
   showLoader: boolean = false;
   constructor(private service: AppService, private router: Router) {
@@ -18,6 +19,7 @@ export class PropertyDownloadReportComponent implements OnInit {
   }
   downloadReport() {
     this.showLoader = true;
+    // this.service.GenerateReport("OV-RP-DD-100077").subscribe((result: any) => {
     this.service.GenerateReport(this.valuationResponse.reportNumberCode).subscribe((result: any) => {
       console.log(result.body);
       var blob = new Blob([result.body]);

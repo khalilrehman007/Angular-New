@@ -387,4 +387,5 @@ export class AppService {
   PropertyTransactionTypes() {
     return this.http.get(this.apiurl + 'PropertyTransactionTypes');
   }
+
 }

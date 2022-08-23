@@ -855,8 +855,8 @@ export class DashboardComponent implements OnInit {
       PropertyListingTypeId = '';
     }
     this.allCheckbox  = [];
-    this.rentCheckbox = [];
-    this.buyCheckbox  = [];
+    // this.rentCheckbox = [];
+    // this.buyCheckbox  = [];
     this.getCountData(PropertyListingTypeId);
   }
   wishlistingData :any = []
@@ -934,19 +934,23 @@ export class DashboardComponent implements OnInit {
   allCheckbox :any = []
   allFormCheckbox(id:number){
     this.allCheckbox.push({'id':id})
+
+    console.log(this.allCheckbox)
+
   }
 
-  rentCheckbox :any = []
-  rentFormCheckbox(id:number){
-    this.rentCheckbox.push({'id':id})
-  }
-
-  buyCheckbox :any = []
-  buyFormCheckbox(id:number){
-    this.buyCheckbox.push({'id':id})
-  }
+  // rentCheckbox :any = []
+  // rentFormCheckbox(id:number){
+  //   this.rentCheckbox.push({'id':id})
+  // }
+  //
+  // buyCheckbox :any = []
+  // buyFormCheckbox(id:number){
+  //   this.buyCheckbox.push({'id':id})
+  // }
 
   compareProceed(type:any){
+    console.log(type,'dededede')
     if(this.user.id == ''){
       this.notifyService.showSuccess('First you need to login', "");
       this.route.navigate(['/login'])
@@ -964,23 +968,24 @@ export class DashboardComponent implements OnInit {
         localStorage.setItem('compareIds',JSON.stringify(this.allCheckbox))
         this.route.navigateByUrl('/PropertyCompare');
       }
-    }else if(type == 'rent'){
-      if(this.rentCheckbox.length < 2 || this.rentCheckbox.length > 4){
-        this.notifyService.showWarning('Selected property atleast less than < 4 greater than > 2 ', "");
-      }else{
-        localStorage.removeItem("compareIds");
-        localStorage.setItem('compareIds',JSON.stringify(this.allCheckbox))
-        this.route.navigateByUrl('/PropertyCompare');
-      }
-    }else if(type == "buy"){
-      if(this.buyCheckbox.length < 2 || this.buyCheckbox.length > 4){
-        this.notifyService.showWarning('Selected property atleast less than < 4 greater than > 2 ', "");
-      }else{
-        localStorage.removeItem("compareIds");
-        localStorage.setItem('compareIds',JSON.stringify(this.allCheckbox))
-        this.route.navigateByUrl('/PropertyCompare');
-      }
     }
+    // else if(type == 'rent'){
+    //   if(this.rentCheckbox.length < 2 || this.rentCheckbox.length > 4){
+    //     this.notifyService.showWarning('Selected property atleast less than < 4 greater than > 2 ', "");
+    //   }else{
+    //     localStorage.removeItem("compareIds");
+    //     localStorage.setItem('compareIds',JSON.stringify(this.allCheckbox))
+    //     this.route.navigateByUrl('/PropertyCompare');
+    //   }
+    // }else if(type == "buy"){
+    //   if(this.buyCheckbox.length < 2 || this.buyCheckbox.length > 4){
+    //     this.notifyService.showWarning('Selected property atleast less than < 4 greater than > 2 ', "");
+    //   }else{
+    //     localStorage.removeItem("compareIds");
+    //     localStorage.setItem('compareIds',JSON.stringify(this.allCheckbox))
+    //     this.route.navigateByUrl('/PropertyCompare');
+    //   }
+    // }
 
   }
 

@@ -186,8 +186,8 @@
                                     <div class="agent-landing-featured__agent-wrapper">
                                         <div class="agent-landing-featured__agent-img-outer-wrapper">
                                             <div class="agent-landing-featured__agent-img-inner-wrapper" >
-                                                <img *ngIf="data.documents.length > 0" src="https://beta.ovaluate.com/{{data.user.imageUrl}}" [alt]="" class="img-fluid agent-landing-featured__agent-img">
-                                                <img *ngIf="data.documents.length == 0" src="assets/images/placeholder.png" [alt]="">
+                                                <img *ngIf="data.user.imageUrl != null" src="https://beta.ovaluate.com/{{data.user.imageUrl}}" [alt]="" class="img-fluid agent-landing-featured__agent-img">
+                                                <img *ngIf="data.user.imageUrl == null" src="assets/images/user.png" [alt]="">
                                             </div>
                                         </div>
                                         <div class="agent-landing-featured__agent-text-wrapper">
@@ -239,7 +239,7 @@
                             </tr>
                         </thead>
                         <tbody class="agent-landing-list__table-body">
-                            <tr class="agent-landing-list__table-row" *ngFor="let data of findCompanies.companies | paginate: { itemsPerPage: 10, currentPage: page, totalItems:totalLength }">
+                            <tr class="agent-landing-list__table-row" *ngFor="let data of findCompanies.companies | paginate: { itemsPerPage: 10, currentPage: companypage, totalItems:totalLength }">
                                 <td class="agent-landing-list__table-data">
                                     <div class="agent-landing-featured__property-wrapper">
                                         <div class="row">
@@ -255,11 +255,11 @@
                                     </div>
                                 </td>
                                 <td class="agent-landing-list__table-data">
-                                    <!-- <div class="agent-landing-list__specialities">
+                                    <div class="agent-landing-list__specialities">
                                         <ul>
                                             <li *ngFor="let item of data.specialities">{{item}}</li>
                                         </ul>
-                                    </div> -->
+                                    </div>
                                 </td>
                                 <td class="agent-landing-list__table-data">
                                     <p>{{data.agents.length}}<br>Agents</p>
@@ -277,7 +277,7 @@
     </div>
 </section>
 <section class="agent-pagination-wrapper">
-    <pagination-controls (pageChange)="pageChanged($event)" class="text-center my-pagination"></pagination-controls>
+    <pagination-controls (pageChange)="pageChanged($event)"class="text-center my-pagination"></pagination-controls>
 </section>
 <section class="agent-landing-text-wrapper">
     <div class="container">

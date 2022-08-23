@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild ,AfterViewInit} from '@angular/core';
 import { HeaderComponent } from '../../header/header.component';
 import { FooterComponent } from '../../footer/footer.component';
 import { PropertyfilterComponent } from '../../propertyfilter/propertyfilter.component';
 import { AppService } from 'src/app/service/app.service';
+declare const google: any;
 
 @Component({
   selector: 'app-mapview',
   templateUrl: './mapview.component.html',
   styleUrls: ['./mapview.component.scss']
 })
-export class MapviewComponent implements OnInit {
+export class MapviewComponent implements OnInit,AfterViewInit{
   videotiour ='../../../assets/images/icons/video-tour.svg'
   lsitedby ='../../../assets/images/icons/listed-by.svg'
   ovverified ='../../../assets/images/icons/ov-verified.svg'
@@ -19,6 +20,11 @@ export class MapviewComponent implements OnInit {
   squaremetersvg = '../../../assets/images/icons/Square Meters.svg'
   brandimg = '../../../assets/images/better-home.svg'
   propertyDetails: any;
+  locations: any;
+  autocomplete: any;
+  marker: any;
+  map: any;
+  @ViewChild('mapView') mapElement: any;
 
   dynamicSlides1 = [
     {
@@ -62,6 +68,34 @@ export class MapviewComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+  ngAfterViewInit(): void {
+      this.initMap(null, 6);
+  }
+
+  initMap(e: any, zoom: any) {
+    this.map = new google.maps.Map($(".mapView")[0], {
+      center: { "lat": 23.4241, "lng": 53.8478 },
+      zoom: zoom,
+      disableDefaultUI: true,
+    })
+    this.marker = new google.maps.Marker({
+      position: { "lat": 23.4241, "lng": 53.8478 },
+      map: this.map
+    })
+
+    for (let i = 0; i < this.propertyDetails.length; i++) {
+
+      // console.log(this.propertyDetails.propertyLat);
+      let latLng = {lat: this.propertyDetails[i].propertyLat, lng: this.propertyDetails[i].propertyLong};
+      this.marker = new google.maps.Marker({
+        position: latLng,
+        map: this.map
+    })
+  
+      // marker.setMap(this.map)
+    }
+
   }
 
 }

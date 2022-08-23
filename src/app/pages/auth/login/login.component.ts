@@ -4,7 +4,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import { AuthService } from 'src/app/service/auth.service';
 import { Router } from '@angular/router';
 import { NotificationService } from 'src/app/service/notification.service';
-
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-login',
@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
   submitted = false;
   responsedata: any;
 
-  constructor(private service: AuthService,private route:Router,private notifyService : NotificationService) {
+  constructor(private service: AuthService,private route:Router,private notifyService : NotificationService,private _location: Location) {
     localStorage.clear();
   }
   Login = new FormGroup({
@@ -54,7 +54,8 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('token',JSON.stringify(this.responsedata.data.refreshToken))
             localStorage.setItem('user',JSON.stringify(this.responsedata.data))
             this.notifyService.showSuccess(this.responsedata.message, "");
-            this.route.navigate([''])
+            // this.route.navigate([''])
+            this._location.back();
           }else{
             if(this.responsedata.error.length > 0){
               this.notifyService.showError(this.responsedata.error[0], "");

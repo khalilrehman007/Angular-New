@@ -599,7 +599,7 @@
                         </div>
                       </div>
                       <div ngClass="compare_hdr-btn">
-                        <button ngClass="compare-btn btn">Compare</button>
+                        <button (click)="compareProceed('all')" ngClass="compare-btn btn">Compare</button>
                       </div>
                     </div>
                   </div>
@@ -662,9 +662,9 @@
                                   </div>
                                 </div>
                               </div>
-                              <div ngClass="selection-checkbox-selector">
-                                <input type="checkbox" name="compare">
-                                <button ngClass="cstm-selection-btn"></button>
+                              <div (click)="allFormCheckbox(wishData.id)" ngClass="selection-checkbox-selector">
+                                <input  type="checkbox" name="compare">
+                                <button  ngClass="cstm-selection-btn"></button>
                               </div>
                             </div>
                           </li>

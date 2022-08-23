@@ -9,7 +9,9 @@ export class BreadcrumbComponent implements OnInit {
   currentURL='';
 
   constructor(private router: Router) {
-    this.currentURL = this.router.url.replace("/", "");
+    let url = this.router.url.replace("/", "");
+    url = this.router.url.split('?')[0];
+    this.currentURL = url
   }
 
   ngOnInit(): void {

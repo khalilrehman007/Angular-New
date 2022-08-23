@@ -14,6 +14,13 @@ import { AppService } from 'src/app/service/app.service';
   styleUrls: ['./listpropertymedia.component.scss']
 })
 export class ListpropertymediaComponent implements OnInit {
+  
+  error: any = ""
+  showError: boolean = false;
+  errorResponse(data: any) {
+    this.showError = false;
+  }
+
   uploadimg = '../../../../assets/images/icons/upload-icon.svg'
   geolocation = '../../../../assets/images/icons/geo-location.svg'
   awayproperty = '../../../../assets/images/icons/away-property.svg'
@@ -42,9 +49,11 @@ export class ListpropertymediaComponent implements OnInit {
   imageData: any = [];
   videoData: any = [];
   documentData = new FormData();
-  btnText:string = "Publish";
-  propertyListingBuy:number;
-  propertyListingRent:number;
+  btnText: string = "Publish";
+  propertyListingBuy: number;
+  propertyListingRent: number;
+  titledeedUploaded:boolean = false;
+  showLoader: boolean = false;
 
 
   constructor(private api: AppService, private uploadService: FileUploadService, private route: Router) {
@@ -56,12 +65,11 @@ export class ListpropertymediaComponent implements OnInit {
       this.priviousFormCheck = JSON.parse(this.priviousFormCheck);
       this.data = this.priviousFormCheck;
     }
-    this.api.PropertyListingRentBuy({"Lat":this.data.PropertyLat,"Long":this.data.PropertyLong}).subscribe((result:any)=> {
+    this.api.PropertyListingRentBuy({ "Lat": this.data.PropertyLat, "Long": this.data.PropertyLong }).subscribe((result: any) => {
       this.propertyListingBuy = result.data.propertyListingBuy;
       this.propertyListingRent = result.data.propertyListingRent;
     })
   }
-
   ngOnInit() {
     $(document).ready(function () {
       $('.dropdown-toggle').click(function () {
@@ -70,7 +78,6 @@ export class ListpropertymediaComponent implements OnInit {
     });
     this.imageInfos = this.uploadService.getFiles();
   }
-
   upload(idx: number, file: File): void {
     this.progressInfos[idx] = { value: 0, fileName: file.name };
 
@@ -95,18 +102,17 @@ export class ListpropertymediaComponent implements OnInit {
       );
     }
   }
-
   selectFiles(event: any): void {
-    if(event.target.files.length > 5) {
+    if (event.target.files.length > 5) {
       alert("You can choose maximun 5 files");
       return;
     }
-    let temp:number = 0;
-    for(let i = 0; i < event.target.files.length; i++) {
+    let temp: number = 0;
+    for (let i = 0; i < event.target.files.length; i++) {
       temp += event.target.files[i].size
     }
-    temp = temp/1048576
-    if(temp > 10) {
+    temp = temp / 1048576
+    if (temp > 10) {
       alert("Maximun size allowed is 10MB");
       return;
     }
@@ -133,10 +139,8 @@ export class ListpropertymediaComponent implements OnInit {
       }
     }
   }
-
-
   onSelectFile(event: any) {
-    if(event.target.files[0].size/1048576 > 30) {
+    if (event.target.files[0].size / 1048576 > 30) {
       alert("Maximun size allowed is 30MB");
       return;
     }
@@ -169,7 +173,6 @@ export class ListpropertymediaComponent implements OnInit {
       }
     }
   }
-
   uploadFiles(): void {
     this.message = [];
     if (this.selectedFiles) {
@@ -178,7 +181,6 @@ export class ListpropertymediaComponent implements OnInit {
       }
     }
   }
-
   uploadVideo(): void {
     this.message = [];
     if (this.selectedVideo) {
@@ -188,34 +190,31 @@ export class ListpropertymediaComponent implements OnInit {
     }
   }
   handleChange(files: any) {
+    this.titledeedUploaded = true;
     this.file = files[0].name;
     if (files && files.length) {
       let extension: any = files[0].name.split(".");
       extension = extension[extension.length - 1];
       this.documentBase = { "FileName": files[0].name, "Extension": extension, file: files };
-    } 
+    }
   }
   SubmitForm = new FormGroup({
     videoLink: new FormControl(""),
   });
-
   get validate() {
     return this.SubmitForm.controls;
   }
-
   abc: any = {};
   tittleDeedCheck: boolean = false;
   imgCheck: boolean = false;
-  videoCheck: boolean =false;
+  videoCheck: boolean = false;
   onSubmit() {
-    this.submitted = true;
-    console.log(this.tittleDeedCheck);
-    console.log(this.imgCheck);
-    console.log(this.videoCheck);
-    if (this.SubmitForm.invalid || this.tittleDeedCheck == false || this.imgCheck == false || this.videoCheck == false) {
-        alert("Please fill all the fields");
+    if (!this.titledeedUploaded) {
+      this.error = "Plese Upload Title Deed Image";
+      this.showError = true;
       return;
     }
+    this.showLoader = true;
     this.btnText = "Please Wait...";
     this.data.VideoLink = this.SubmitForm.value.videoLink;
     let temp: any = [];
@@ -232,12 +231,14 @@ export class ListpropertymediaComponent implements OnInit {
     start = temp.length;
     temp.push({ "FileId": start + 1, "ListingDocumentTypeId": "2", "FileName": this.documentBase.FileName, "Extension": this.documentBase.Extension });
     tempDoc.push(this.documentBase.file[0]);
+    let userData:any = localStorage.getItem("user");
+    this.data.ProfessionalTypeId = JSON.parse(userData).professionalTypeId;
     this.data.Documents = temp;
     this.documentData.append("PropertyListingRequest", JSON.stringify(this.data));
     for (let i = 0; i < temp.length; i++) {
       this.documentData.append(i + 1 + "_" + temp[i].FileName, tempDoc[i]);
     }
-    let token:any = localStorage.getItem("token");
+    let token: any = localStorage.getItem("token");
     token = JSON.parse(token);
     $.ajax({
       url: "https://beta.ovaluate.com/api/AddPropertyListing",
@@ -246,11 +247,11 @@ export class ListpropertymediaComponent implements OnInit {
       processData: false,
       data: this.documentData,
       headers: {
-        "Authorization": 'bearer '+token
+        "Authorization": 'bearer ' + token
       },
       dataType: "json",
       success: (res) => {
-        if(res.message == "Property Listing request completed successfully") {
+        if (res.message == "Property Listing request completed successfully") {
           localStorage.removeItem("propertyData");
           this.route.navigate(['listpropertypublish'])
         }
