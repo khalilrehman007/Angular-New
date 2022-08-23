@@ -612,56 +612,49 @@
       <div ngClass="row">
         <div ngClass="col-lg-3 col-md-6 search-col-homepage">
           <div ngClass="homepage-search-section">
-            <mat-form-field appearance="fill">
-              <mat-select [(value)]="selected">
-                <mat-option>Popular Searches</mat-option>
-                <mat-option value="option1">Apartments for rent in Dubai</mat-option>
-                <mat-option value="option2">Villas for rent in Dubai</mat-option>
-                <mat-option value="option3">Apartments for sale in Dubai</mat-option>
-              </mat-select>
-            </mat-form-field>
+            <h2>Popular Searches</h2>
+            <ul ngClass="list-unstyled">
+              <li><a routerLink="">Apartments for rent in Dubai</a></li>
+              <li><a routerLink="">Villas for rent in Dubai</a></li>
+              <li><a routerLink="">Apartments for sale in Dubai</a></li>
+            </ul>
           </div>
         </div>
         <div ngClass="col-lg-3 col-md-6 search-col-homepage">
           <div ngClass="homepage-search-section">
-            <mat-form-field appearance="fill">
-              <mat-select [(value)]="selected">
-                <mat-option>Popular Areas</mat-option>
-                <mat-option value="option1">Popular Areas</mat-option>
-                <mat-option value="option2">Popular Areas</mat-option>
-                <mat-option value="option3">Popular Areas</mat-option>
-              </mat-select>
-            </mat-form-field>
+            <h2>Popular Areas</h2>
+            <ul ngClass="list-unstyled">
+              <li><a routerLink="">Popular Areas</a></li>
+              <li><a routerLink="">Popular Areas</a></li>
+              <li><a routerLink="">Popular Areas</a></li>
+            </ul>
           </div>
         </div>
         <div ngClass="col-lg-3 col-md-6 search-col-homepage">
           <div ngClass="homepage-search-section">
-            <mat-form-field appearance="fill">
-              <mat-select [(value)]="selected">
-                <mat-option>Top Real Estate Agents</mat-option>
-                <mat-option value="option1">Everose Properties</mat-option>
-                <mat-option value="option2">Edifice Brokrage</mat-option>
-                <mat-option value="option3">Prime Capital Real Estate Services</mat-option>
-                <mat-option value="option1">Everose Properties</mat-option>
-                <mat-option value="option2">Edifice Brokrage</mat-option>
-                <mat-option value="option3">Prime Capital Real Estate Services</mat-option>
-                <mat-option value="option1">Everose Properties</mat-option>
-                <mat-option value="option2">Edifice Brokrage</mat-option>
-                <mat-option value="option3">Prime Capital Real Estate Services</mat-option>
-              </mat-select>
-            </mat-form-field>
+            <h2>Top Real Estate Agents</h2>
+            <ul ngClass="list-unstyled">
+              <li><a routerLink="">Everose Properties</a></li>
+              <li><a routerLink="">Edifice Brokrage</a></li>
+              <li><a routerLink="">Prime Capital Real Estate Services</a></li>
+              <li><a routerLink="">Everose Properties</a></li>
+              <li><a routerLink="">Edifice Brokrage</a></li>
+              <li><a routerLink="">Prime Capital Real Estate Services</a></li>
+              <li><a routerLink="">Everose Properties</a></li>
+              <li><a routerLink="">Edifice Brokrage</a></li>
+              <li><a routerLink="">Prime Capital Real Estate Services</a></li>
+            </ul>
           </div>
         </div>
         <div ngClass="col-lg-3 col-md-6 search-col-homepage">
           <div ngClass="homepage-search-section">
-            <mat-form-field appearance="fill">
-              <mat-select [(value)]="selected">
-                <mat-option>Trending Searches</mat-option>
-                <mat-option value="option1">Villa for rent in Abu Dhabi</mat-option>
-                <mat-option value="option2">Villa for rent in Abu Dhabi</mat-option>
-                <mat-option value="option3">Villa for rent in Abu Dhabi</mat-option>
-              </mat-select>
-            </mat-form-field>
+            <h2>Trending Searches</h2>
+            <ul ngClass="list-unstyled">
+              <li><a routerLink="">Villa for rent in Abu Dhabi</a></li>
+              <li><a routerLink="">Villa for rent in Abu Dhabi</a></li>
+              <li><a routerLink="">Villa for rent in Abu Dhabi</a></li>
+              <li><a routerLink="">Villa for rent in Abu Dhabi</a></li>
+            </ul>
           </div>
         </div>
       </div>
@@ -676,7 +669,7 @@
           Discover ways to increase your home's value and get listed. No Spam.
         </h6>
         <form [formGroup]="SubmitForm" (ngSubmit)="proceedStore()" ngClass="news-letter-form position-relative">
-          <input type="email" formControlName="email" placeholder="Enter your email address" />
+          <input type="email" ngModel email="true" formControlName="email" placeholder="Enter your email address" />
           <input type="submit" value="Submit" />
         </form>
         <p>

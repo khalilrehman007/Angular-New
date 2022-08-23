@@ -197,6 +197,9 @@ export class HeaderComponent implements OnInit {
   rentCount :any;
   allCount :any;
   getWishlisting() {
+    if(this.userId == ''){
+      return;
+    }
     let tempData :Array<Object> = []
     this.service.FavoriteListingCount(this.userId).subscribe(data=>{
       let response: any = data;
@@ -223,6 +226,9 @@ export class HeaderComponent implements OnInit {
   wishlistingDataRent :any = []
   wishlistingDataBuy :any = []
   getCountData(PropertyListingTypeId){
+    if(this.userId == ''){
+      return;
+    }
     let tempData :Array<Object> = []
     this.service.FavoriteListing({"UserId":this.userId,"PropertyListingTypeId":PropertyListingTypeId}).subscribe(data=>{
       let response: any = data;
