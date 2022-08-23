@@ -31,6 +31,24 @@ export class AgentDetailsComponent implements OnInit {
     if (this.user != null) {
       this.service.DisplayAgent({ "PropertyListingId": "", "AgentUserId": this.id, "LoginUserId": this.id }).subscribe((result: any) => {
         this.agentDetail = result.data;
+
+        if(result.data != null){
+          this.newAgentDetail.image = (result.data.agentDetails.user.imageUrl !== undefined) ? result.data.agentDetails.user.imageUrl : ''
+          this.newAgentDetail.fullName = (result.data.agentDetails.user.fullName !== undefined) ? result.data.agentDetails.user.fullName : ''
+          this.newAgentDetail.expertIn = (result.data.agentDetails.expertIn !== undefined) ? result.data.agentDetails.expertIn : ''
+          this.newAgentDetail.companyName = (result.data.agentDetails.company.companyName !== undefined) ? result.data.agentDetails.company.companyName : ''
+          this.newAgentDetail.phoneNumber = (result.data.agentDetails.user.phoneNumber !== undefined) ? result.data.agentDetails.user.phoneNumber : ''
+          this.newAgentDetail.companyAdress = (result.data.agentDetails.company.companyAdress !== undefined) ? result.data.agentDetails.company.companyAdress : ''
+          this.newAgentDetail.brnNo = (result.data.agentDetails.brnNo !== undefined) ? result.data.agentDetails.brnNo : ''
+          this.newAgentDetail.agentLanguages = (result.data.agentDetails.agentLanguages !== undefined) ? result.data.agentDetails.agentLanguages  : ''
+          this.newAgentDetail.agentAreas = (result.data.agentDetails.agentAreas !== undefined) ? result.data.agentDetails.agentAreas : ''
+          this.newAgentDetail.salePropertyListingCount = (result.data.salePropertyListingCount !== undefined) ? result.data.salePropertyListingCount : ''
+          this.newAgentDetail.rentPropertyListingCount = (result.data.rentPropertyListingCount !== undefined) ? result.data.rentPropertyListingCount : ''
+          this.newAgentDetail.commercialPropertyListingCount = (result.data.commercialPropertyListingCount !== undefined) ? result.data.commercialPropertyListingCount : ''
+          this.newAgentDetail.aboutMe = (result.data.agentDetails.aboutMe !== undefined) ? result.data.agentDetails.aboutMe : ''
+
+        }
+
       })
     } else {
       this.service.DisplayAgent({ "PropertyListingId": "", "AgentUserId": this.id, "LoginUserId": "" }).subscribe((result: any) => {
