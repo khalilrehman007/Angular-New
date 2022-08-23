@@ -16,7 +16,9 @@ import { data } from 'jquery';
   styleUrls: ['./findAgentSearch.component.scss']
 })
 export class FindAgentSearchComponent implements OnInit {
-
+  myControl = new FormControl('');
+  options: string[] = ['One', 'Two', 'Three'];
+  filteredOptions: Observable<string[]>;
   // Find agentLocation property
   // searchByLocation: number[] = [ENTER, COMMA];
   // SearchByLocationctrl = new FormControl('');
@@ -275,6 +277,10 @@ export class FindAgentSearchComponent implements OnInit {
   // }
 
   ngOnInit(): void {
+    this.filteredOptions = this.myControl.valueChanges.pipe(
+      startWith(''),
+      map(value => this._filter(value || '')),
+    );
   }
   status: boolean = false;
   clickEvent(){

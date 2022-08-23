@@ -40,6 +40,9 @@
                                     <p>Please click the dowload button below for the property ID</p>
                                     <h4 ngClass="report-id">{{this.valuationResponse.reportNumberCode}}</h4>
                                     <button ngClass="download-report-btn" (click)="downloadReport()">Download Report</button>
+                                    <div ngClass="download_animation">
+                                        <img src="{{download}}">
+                                    </div>
                                     <div ngClass="report-print-icon">
                                         <button ngClass="print-report-btn"><img src="{{report}}"></button>
                                     </div>
