@@ -41,6 +41,7 @@ export class RentpropertiesComponent implements OnInit {
   twitter = '../../../assets/images/icons/twiiter-share.svg'
   qr = '../../../assets/images/icons/qr-share.svg'
   fb = '../../../assets/images/icons/fb-share.svg'
+  share = '../../../assets/images/icons/share-1.png'
   eventlist = [
     {
       img: '../../../assets/images/slider.png',
