@@ -840,6 +840,7 @@ export class AgentLandingComponent implements OnInit {
   companiesListData(data: any) {
     this.service.FindCompanies(data).subscribe((result: any) => {
       this.findCompanies = result.data;
+      console.log(this.findCompanies);
     })
   }
   pageChanged(e: any) {

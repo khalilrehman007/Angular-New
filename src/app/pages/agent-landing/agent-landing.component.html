@@ -244,7 +244,8 @@
                                     <div class="agent-landing-featured__property-wrapper">
                                         <div class="row">
                                             <div class="col-5 d-flex align-items-center">
-                                                <img src="assets/images/brand/betterhomes.png" alt="" class="img-fluid agent-landing-featured__property-img">
+                                                <img *ngIf="data.documents.length > 0 && data.documents[0].fileUrl" src="https://beta.ovaluate.com/{{data.documents[0].fileUrl}}" alt="" class="img-fluid agent-landing-featured__property-img">
+                                                <img *ngIf="data.documents.length == 0" src="assets/images/placeholder.png" alt="" class="img-fluid agent-landing-featured__property-img">
                                             </div>
                                             <div class="col-7">
                                                 <h6 class="agent-landing-featured__property-heading" *ngIf="data.companyName">{{data.companyName}}</h6>
