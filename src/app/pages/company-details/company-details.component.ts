@@ -13,7 +13,7 @@ export class CompanyDetailsComponent implements OnInit {
   bathsvg = 'assets/images/icons/Bath-tub.svg'
   squaremetersvg = 'assets/images/icons/Square Meters.svg'
   furnishing = 'assets/images/icons/furnishing.svg'
-  companyDetails: any;
+  companyDetails: any = {};
   id: any;
   totalLength: number = 0;
   page: number = 1;
@@ -25,7 +25,6 @@ export class CompanyDetailsComponent implements OnInit {
     this.service.DisplayCompany(this.id).subscribe((result:any)=>{
       this.companyDetails = result.data;
       console.log(this.companyDetails)
-
     })
 
   }
