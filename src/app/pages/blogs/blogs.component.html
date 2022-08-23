@@ -49,13 +49,15 @@
             </div>
             <div ngClass="explore-details-banner">
                 <div routerLink="/blogs-details/{{mainBlog.id}}" ngClass="explore_details-img">
-                    <img src="https://beta.ovaluate.com/{{mainBlog.blogDocument.fileUrl}}">
+                    <img *ngIf="mainBlog.blogDocument && mainBlog.blogDocument.fileUrl" src="https://beta.ovaluate.com/{{mainBlog.blogDocument.fileUrl}}">
+                    <!-- <img *ngIf="mainBlog.blogDocument.fileUrl != null" src="https://beta.ovaluate.com/{{mainBlog.blogDocument.fileUrl}}">
+                    <img *ngIf="mainBlog.blogDocument.fileUrl == null" src="assets/images/placeholder.png" [alt]=""> -->
                 </div>
                 <div ngClass="explore_details-cntnt">
                     <div ngClass="hp-design white">
-                        <h4>{{mainBlog.blogTitle}}</h4>
-                        <span ngClass="blue_tag">{{mainBlog.blogCategory.categoryName}}</span>
-                        <p>{{mainBlog.blogDate.split("T")[0]}}</p>
+                        <h4 *ngIf="mainBlog && mainBlog.blogTitle" >{{mainBlog.blogTitle}}</h4>
+                        <span *ngIf="mainBlog.blogCategory && mainBlog.blogCategory.categoryName" ngClass="blue_tag">{{mainBlog.blogCategory.categoryName}}</span>
+                        <p *ngIf="mainBlog && mainBlog.blogData">{{mainBlog.blogDate.split("T")[0]}}</p>
                     </div>
                 </div>
             </div>
@@ -78,9 +80,6 @@
                     <a routerLink="/blogs-details/{{item.id}}">
                         <img src="https://beta.ovaluate.com/{{item.blogDocument.fileUrl}}"
                             ngClass="img-fluid blog-image-homepage" alt="">
-                        <!-- <span ngClass="blog-tag">
-                            <img [src]="latestNews.src2" ngClass="img-fluid" alt="">
-                        </span> -->
                         <div ngClass="blog-title-content">
                             <h5>{{item.pageTittle}}</h5>
                             <span>{{item.blogDate.split("T")[0]}}</span>
@@ -101,9 +100,6 @@
                                     <a routerLink="/blogs-details/{{item.id}}">
                                         <img src="https://beta.ovaluate.com/{{item.blogDocument.fileUrl}}"
                                             ngClass="img-fluid blog-image-homepage" alt="">
-                                        <!-- <span ngClass="blog-tag">
-                                            <img [src]="event.src2" ngClass="img-fluid" alt="">
-                                        </span> -->
                                     </a>
                                 </div>
                             </div>
@@ -134,9 +130,6 @@
                                         <div ngClass="col-lg-4 col-md-6 blog-places-col" *ngFor=" let item2 of item.blogs; let i=index">
                                             <a routerLink="/blogs-details/{{item2.id}}" *ngIf="i < 3">
                                                 <img src="https://beta.ovaluate.com/{{item2.blogDocument.fileUrl}}" ngClass="img-fluid blog-image-homepage" alt="">
-                                                <!-- <span ngClass="blog-tag">
-                                                    <img [src]="blog.src2" ngClass="img-fluid" alt="">
-                                                </span> -->
                                                 <div ngClass="blog-title-content">
                                                     <h5>{{item2.pageTittle}}</h5>
                                                     <span>{{item2.blogDate.split("T")[0]}}</span>
