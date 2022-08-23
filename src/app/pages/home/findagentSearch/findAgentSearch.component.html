@@ -16,6 +16,7 @@
               </mat-chip>
               <input
                 placeholder="Locations"
+                (ngModelChange)="onLocationSearchChange($event)"
                 #fruitInput
                 [formControl]="fruitCtrl"
                 [matAutocomplete]="auto"
@@ -46,6 +47,7 @@
               </mat-chip>
               <input
                 placeholder="Agent"
+                (ngModelChange)="onAgentSearchChange($event)"
                 #fruitInput1
                 [formControl]="fruitCtrl1"
                 [matAutocomplete]="auto1"

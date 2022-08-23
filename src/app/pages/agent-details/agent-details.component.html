@@ -15,50 +15,53 @@
                 <div class="agent-details__wrapper">
                     <div class="row">
                         <div class="col-sm-12 col-md-4"
-                            *ngIf="agentDetail.agentDetails && agentDetail.agentDetails.user.imageUrl">
-                            <img src="https://beta.ovaluate.com/{{agentDetail.agentDetails.user.imageUrl}}" alt=""
+                            *ngIf="newAgentDetail.image">
+                            <img  src="https://beta.ovaluate.com/{{newAgentDetail.image}}" alt=""
                                 class="img-fluid agent-details__wrapper-img">
                         </div>
                         <div class="col-sm-12 col-md-8">
                             <div class="agent-details__wrapper-details">
                                 <h4 class="agent-details__wrapper-details-heading"
-                                    *ngIf="agentDetail.agentDetails.user && agentDetail.agentDetails.user.fullName">
-                                    {{agentDetail.agentDetails.user.fullName}}</h4>
+                                    *ngIf="newAgentDetail.fullName">
+                                    {{newAgentDetail.fullName}}</h4>
                                 <p class="agent-details__wrapper-details-text"
-                                    *ngIf="agentDetail.agentDetails && agentDetail.agentDetails.expertIn">
-                                    {{agentDetail.agentDetails.expertIn}}</p>
+                                    *ngIf="newAgentDetail.expertIn">
+                                    {{newAgentDetail.expertIn}}</p>
                                 <h6 class="agent-details__wrapper-details-desc"
-                                    *ngIf="agentDetail.agentDetails.company && agentDetail.agentDetails.company.companyName">
-                                    {{agentDetail.agentDetails.company.companyName}}</h6>
+                                    *ngIf="newAgentDetail.companyName">
+                                    {{newAgentDetail.companyName}}</h6>
                                 <p class="agent-details__wrapper-details-phone"
-                                    *ngIf="agentDetail.agentDetails.user && agentDetail.agentDetails.user.phoneNumber">
-                                    {{agentDetail.agentDetails.user.phoneNumber}}</p>
+                                    *ngIf="newAgentDetail.phoneNumber">
+                                    {{newAgentDetail.phoneNumber}}</p>
                                 <p class="agent-details__wrapper-details-text"
-                                    *ngIf="agentDetail.agentDetails.company && agentDetail.agentDetails.company.companyAdress">
-                                    {{agentDetail.agentDetails.company.companyAdress}}, UAE</p>
+                                    *ngIf="newAgentDetail.companyAdress">
+                                    {{newAgentDetail.companyAdress}}, UAE</p>
                                 <p class="agent-details__wrapper-details-text"
-                                    *ngIf="agentDetail.agentDetails && agentDetail.agentDetails.brnNo">
-                                    {{agentDetail.agentDetails.brnNo}}</p>
+                                    *ngIf="newAgentDetail.brnNo">
+                                    {{newAgentDetail.brnNo}}</p>
                                 <p class="agent-details__wrapper-details-text"
-                                    *ngIf="agentDetail.agentDetails && agentDetail.agentDetails.imageUrl">Language:
-                                    {{agentDetail.agentLanguages}}</p>
+                                    *ngIf="newAgentDetail.agentLanguages">Language:
+<!--                                    {{agentDetail.agentLanguages}}-->
+                                  <span
+                                    *ngFor="let item of newAgentDetail.agentLanguages">{{item.spokenLanguage}}</span>
+                                </p>
                                 <p class="agent-details__wrapper-details-text"
-                                    *ngIf="agentDetail.agentDetails && agentDetail.agentDetails.agentAreas">Area:
+                                    *ngIf="newAgentDetail.agentAreas">Area:
                                     <span
-                                        *ngFor="let item of agentDetail.agentDetails.agentAreas">{{item.district.name}}</span>
+                                        *ngFor="let item of newAgentDetail.agentAreas">{{item.district.name}}</span>
                                 </p>
                                 <ul class="agent-details__wrapper-details-list">
                                     <li class="agent-details__wrapper-details-list-item">
                                         <p class="agent-details__wrapper-details-list-text">
-                                            {{agentDetail.salePropertyListingCount}} <br> Sale</p>
+                                            {{newAgentDetail.salePropertyListingCount}} <br> Sale</p>
                                     </li>
                                     <li class="agent-details__wrapper-details-list-item">
                                         <p class="agent-details__wrapper-details-list-text">
-                                            {{agentDetail.rentPropertyListingCount}} <br> Rent</p>
+                                            {{newAgentDetail.rentPropertyListingCount}} <br> Rent</p>
                                     </li>
                                     <li class="agent-details__wrapper-details-list-item">
                                         <p class="agent-details__wrapper-details-list-text">
-                                            {{agentDetail.commercialPropertyListingCount}} <br> Commercial</p>
+                                            {{newAgentDetail.commercialPropertyListingCount}} <br> Commercial</p>
                                     </li>
                                 </ul>
                             </div>
@@ -78,7 +81,7 @@
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" id="about">
                                 <div class="agent-details__tab-content">
-                                    <p>{{agentDetail.agentDetails.aboutMe}}</p>
+                                    <p>{{newAgentDetail.aboutMe}}</p>
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="properties">
@@ -177,7 +180,7 @@
                 <div class="agent-details__form-wrapper">
                     <div class="row mb-3">
                         <div class="col-8 d-flex align-items-center">
-                            <h6>Contact {{agentDetail.agentDetails.user.fullName}}</h6>
+                            <h6>Contact {{newAgentDetail.fullName}}</h6>
                         </div>
                         <div class="col-4 text-end">
                             <img src="assets/images/better-home.svg" alt="" class="agent-details__form-img">
