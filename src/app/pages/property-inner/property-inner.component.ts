@@ -10,6 +10,8 @@ import {NotificationService} from "../../service/notification.service";
 import { ChartConfiguration, ChartOptions, ChartType } from "chart.js";
 import {DomSanitizer} from "@angular/platform-browser";
 import {AuthService} from "../../service/auth.service";
+import * as mapboxgl from 'mapbox-gl';
+import { environment } from 'src/environments/environment';
 
 declare const google: any;
 
@@ -148,10 +150,16 @@ export class PropertyInnerComponent implements OnInit {
   propertyinfo :any = [];
   closeResult: string;
   propertyDetail :any;
+  districtDetail: any = {};
+  dataLoaded: boolean = false;
   propertyId :any;
   userId :any;
+  map: any;
+  bounds: any = [];
+  id: 1;
 
   constructor(private authService:AuthService,private domSanitizer: DomSanitizer,private activeRoute: ActivatedRoute,private modalService: NgbModal,private service:AppService,private route:Router,private notifyService : NotificationService) {
+    mapboxgl.accessToken = environment.mapbox.accessToken;
     this.propertyId = this.activeRoute.snapshot.queryParamMap.get('id');
     this.getUser();
     let userId = '';
@@ -159,6 +167,48 @@ export class PropertyInnerComponent implements OnInit {
       userId = this.user.id;
     }
     this.userId = userId;
+    this.service.ExploreDistrict(this.id).subscribe((result: any) => {
+      this.dataLoaded = true;
+      this.districtDetail = result.data;
+      this.bounds.push([this.districtDetail.southWestLng, this.districtDetail.southWestLat]);
+      this.bounds.push([this.districtDetail.northEastLng, this.districtDetail.northEastLat]);
+      this.map = new mapboxgl.Map({
+        container: 'explore-near-map',
+        style: 'mapbox://styles/mapbox/streets-v11',
+        center: [(parseFloat(this.districtDetail.northEastLng) + parseFloat(this.districtDetail.southWestLng)) / 2, (parseFloat(this.districtDetail.northEastLat) + parseFloat(this.districtDetail.southWestLat)) / 2],
+        zoom: 11,
+        maxBounds: this.bounds
+      })
+      let marker = new mapboxgl.Marker({ color: "#FF0000", draggable: true }).setLngLat([(parseFloat(this.districtDetail.northEastLng) + parseFloat(this.districtDetail.southWestLng)) / 2, (parseFloat(this.districtDetail.northEastLat) + parseFloat(this.districtDetail.southWestLat)) / 2]).addTo(this.map).setPopup(
+        new mapboxgl.Popup({ offset: 25 }) // add popups
+          .setHTML(this.districtDetail.name)
+      ).togglePopup();
+      // get lat lng on marker drag end
+      marker.on('dragend', (e: any) => {
+        $.ajax({
+          url: "https://api.mapbox.com/geocoding/v5/mapbox.places/" + e.target._lngLat.lng + "," + e.target._lngLat.lat + ".json?types=address&access_token=" + environment.mapbox.accessToken,
+          // url: "https://api.mapbox.com/geocoding/v5/mapbox.places/-73.989,40.733.json?types=address&access_token=" + environment.mapbox.accessToken,
+          method: "get",
+          contentType: false,
+          processData: false,
+          dataType: "json",
+          success: (res: any) => {
+            marker.remove();
+            if (res.features.length > 0) {
+              marker = new mapboxgl.Marker({ color: "#FF0000", draggable: true }).setLngLat([e.target._lngLat.lng, e.target._lngLat.lat]).addTo(this.map).setPopup(
+                new mapboxgl.Popup({ offset: 25 })
+                  .setHTML(res.features[0].place_name)
+              ).togglePopup();
+            } else {
+              marker = new mapboxgl.Marker({ color: "#FF0000", draggable: true }).setLngLat([e.target._lngLat.lng, e.target._lngLat.lat]).addTo(this.map);
+            }
+          },
+          error: (err) => {
+            console.log(err);
+          }
+        });
+      });
+    });
     this.getloadDashboardData();
     this.LoadSimilarProperty();
   }
