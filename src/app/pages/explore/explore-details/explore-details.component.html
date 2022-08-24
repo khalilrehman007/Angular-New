@@ -24,10 +24,10 @@
                         <div ngClass="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                             <div ngClass="blogs-link-list">
                                 <ul ngClass="list-unstyled d-flex justify-content-start">
-                                    <li><a (click)="Overview()">Overview</a></li>
-                                    <li><a (click)="NearBy()">Nearby</a></li>
-                                    <li><a (click)="ResPro()">Residential Properties</a></li>
-                                    <li><a (click)="ComPro()">Commercial Properties</a></li>
+                                    <li [ngClass]="status ? 'tactive' : 'thide'"><a (click)="Overview()">Overview</a></li>
+                                    <li [ngClass]="status1 ? 'tactive' : 'thide'"><a (click)="NearBy()">Nearby</a></li>
+                                    <li [ngClass]="status2 ? 'tactive' : 'thide'"><a (click)="ResPro()">Residential Properties</a></li>
+                                    <li [ngClass]="status3 ? 'tactive' : 'thide'"><a (click)="ComPro()">Commercial Properties</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -43,14 +43,14 @@
                 <div ngClass="tabs-heading-div">
                     <h5>Nearby Al Barsha</h5>
                 </div>
-                <div ngClass="explore-near-by-buttons">
+                <!-- <div ngClass="explore-near-by-buttons">
                     <button ngClass="explore-btn-design">All</button>
                     <button ngClass="explore-btn-design active"><img src="{{restaurant}}"> Restaurants</button>
                     <button ngClass="explore-btn-design"><img src="{{restaurant}}"> Groceries</button>
                     <button ngClass="explore-btn-design"><img src="{{restaurant}}"> Cafes</button>
                     <button ngClass="explore-btn-design"><img src="{{restaurant}}"> Shopping</button>
                     <button ngClass="explore-btn-design"><img src="{{restaurant}}"> Schools</button>
-                </div>
+                </div> -->
                 <div class="explore-near-map" id="explore-near-map">
                 </div>
             </div>
