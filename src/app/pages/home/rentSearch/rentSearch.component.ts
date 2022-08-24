@@ -16,6 +16,13 @@ import {map, startWith} from 'rxjs/operators';
 })
 export class RentSearchComponent implements OnInit {
 
+  // Search Code
+  separatorKeysCodes: number[] = [ENTER, COMMA];
+  searchctrl = new FormControl('');
+  searchfilter: Observable<string[]>;
+  SearchKeyword: string[] = [];
+  searchList: string[] = [];
+
   constructor(private activeRoute: ActivatedRoute,private service:AppService,private api: AppService,private route:Router) {
     this.data.rentalTypeId = 1
     this.api.LoadType(1).subscribe((result) => {
@@ -23,6 +30,7 @@ export class RentSearchComponent implements OnInit {
       this.propertyType = this.propertyType.data
     });
     this.LoadPropertyCategories();
+    this.getLoaction({"Searching":"","CountryId":"1"});
     this.service.RentTypes().subscribe(data=>{
       let response: any = data;
       this.Monthly    = response.data[0].name;
@@ -42,6 +50,22 @@ export class RentSearchComponent implements OnInit {
       map((fruit: string | null) => (fruit ? this._filter(fruit) : this.searchList.slice())),
     );
   }
+
+  locationOnSearchData :any = []
+  getLoaction(data:any){
+    let tempData :any = []
+    let tempCompleteData :any = []
+    this.service.DistrictAutoComplete(data).subscribe(data=>{
+      let response: any = data;
+      response.data.locationAutoComplete.forEach((element, i) => {
+        tempData.push(element.item2);
+        tempCompleteData.push({'id':element.item1,'value':element.item2})
+      })
+    });
+    this.searchList = tempData
+    this.locationOnSearchData = tempCompleteData
+  }
+
 
   ngOnInit(): void {
   }
@@ -168,18 +192,14 @@ export class RentSearchComponent implements OnInit {
 
     let params :any = {queryParams:{type:'Rent',PropertyListingTypeId:1,PropertyCategoryId:this.propertyCategory,RentTypeId:this.data.rentalTypeId,PropertyTypeIds:PropertyTypeIds
         ,PropertyAddress:this.SubmitForm.value.Name,PriceStart:this.SubmitForm.value.PriceStart,PriceEnd:this.SubmitForm.value.PriceEnd
-        ,Bedrooms:'',Bathrooms:'',CurrentPage:1
+        ,Bedrooms:'',Bathrooms:'',CurrentPage:1,DistrictsId:JSON.stringify(this.DistrictsId),DistrictsValue:JSON.stringify(this.SearchKeyword)
       }};
 
 
     this.route.navigate(['/search'],params)
   }
-  // Search Code
-  separatorKeysCodes: number[] = [ENTER, COMMA];
-  searchctrl = new FormControl('');
-  searchfilter: Observable<string[]>;
-  SearchKeyword: string[] = [];
-  searchList: string[] = ['Dubai', 'UAE', 'Dubai', 'UAE', 'Dubai'];
+
+
 
   @ViewChild('SearchInput') SearchInput: ElementRef<HTMLInputElement>;
   add(event: MatChipInputEvent): void {
@@ -197,6 +217,18 @@ export class RentSearchComponent implements OnInit {
   }
 
   remove(fruit: string): void {
+    let removeId :any;
+    this.locationOnSearchData.forEach((element, i) => {
+      if(element.value == fruit){
+        removeId = element.id
+      }
+    })
+
+    let companyIndex :number = this.DistrictsId.indexOf(removeId);
+    if (companyIndex !== -1) {
+      this.DistrictsId.splice(companyIndex, 1);
+    }
+
     const index = this.SearchKeyword.indexOf(fruit);
 
     if (index >= 0) {
@@ -204,7 +236,14 @@ export class RentSearchComponent implements OnInit {
     }
   }
 
+  DistrictsId :any = []
   selected(event: MatAutocompleteSelectedEvent): void {
+    this.locationOnSearchData.forEach((element, i) => {
+      if(element.value == event.option.viewValue){
+        this.DistrictsId.push(element.id)
+      }
+    })
+
     this.SearchKeyword.push(event.option.viewValue);
     this.SearchInput.nativeElement.value = '';
     this.searchctrl.setValue(null);

@@ -7,6 +7,7 @@ import { AppService } from "../../service/app.service";
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NotificationService } from "../../service/notification.service";
 import { AuthService } from "../../service/auth.service";
+import {JsonpInterceptor} from "@angular/common/http";
 
 @Component({
   selector: 'app-rentproperties',
@@ -74,6 +75,8 @@ export class RentpropertiesComponent implements OnInit {
   user: any
   userId: any;
   listingForMap:any = [];
+  DistrictsId:any = [];
+  DistrictsValue:any = [];
 
   constructor(private authService: AuthService, private notifyService: NotificationService, private activeRoute: ActivatedRoute, private service: AppService, private api: AppService, private route: Router, private modalService: NgbModal) {
     this.type = this.activeRoute.snapshot.queryParamMap.get('type');
@@ -84,6 +87,12 @@ export class RentpropertiesComponent implements OnInit {
     this.PropertyAddress = this.activeRoute.snapshot.queryParamMap.get('PropertyAddress');
     this.PriceStart = this.activeRoute.snapshot.queryParamMap.get('PriceStart');
     this.PriceEnd = this.activeRoute.snapshot.queryParamMap.get('PriceEnd');
+    let DistrictsId :any = this.activeRoute.snapshot.queryParamMap.get('DistrictsId');
+    let DistrictsValue :any = this.activeRoute.snapshot.queryParamMap.get('DistrictsValue');
+    this.DistrictsId = JSON.parse(DistrictsId)
+    this.DistrictsValue = JSON.parse(DistrictsValue)
+
+    console.log(this.DistrictsId )
 
     if (this.type == null) {
       this.activeRoute.params.subscribe(params => {
@@ -99,7 +108,7 @@ export class RentpropertiesComponent implements OnInit {
     let params: any = {
       "PropertyTypeIds": this.PropertyTypeIds, "PropertyAddress": this.PropertyAddress, "RentTypeId": this.RentTypeId,
       "PropertyCategoryId": this.PropertyCategoryId, "PriceStart": this.PriceStart, "PriceEnd": this.PriceEnd,
-      "PropertyListingTypeId": this.PropertyListingTypeId, "SortedBy": this.sortedById, CurrentPage: 1
+      "PropertyListingTypeId": this.PropertyListingTypeId, "SortedBy": this.sortedById, CurrentPage: 1,DistrictsId:this.DistrictsId
     }
 
     this.LoadPropertyCategories();
@@ -151,7 +160,7 @@ export class RentpropertiesComponent implements OnInit {
     let params: any = {
       "PropertyTypeIds": this.PropertyTypeIds, "PropertyAddress": this.PropertyAddress, "RentTypeId": this.RentTypeId,
       "PropertyCategoryId": this.PropertyCategoryId, "PriceStart": this.PriceStart, "PriceEnd": this.PriceEnd,
-      "PropertyListingTypeId": this.PropertyListingTypeId, "SortedBy": this.sortedById, CurrentPage: this.page
+      "PropertyListingTypeId": this.PropertyListingTypeId, "SortedBy": this.sortedById, CurrentPage: this.page,DistrictsId:this.DistrictsId
     }
 
     this.loadListingProperty(params);
@@ -162,7 +171,7 @@ export class RentpropertiesComponent implements OnInit {
     let params: any = {
       "PropertyTypeIds": this.PropertyTypeIds, "PropertyAddress": this.PropertyAddress, "RentTypeId": this.RentTypeId,
       "PropertyCategoryId": this.PropertyCategoryId, "PriceStart": this.PriceStart, "PriceEnd": this.PriceEnd,
-      "PropertyListingTypeId": this.PropertyListingTypeId, "SortedBy": this.sortedById, CurrentPage: this.page
+      "PropertyListingTypeId": this.PropertyListingTypeId, "SortedBy": this.sortedById, CurrentPage: this.page,DistrictsId:this.DistrictsId
     }
     this.loadListingProperty(params);
   }
@@ -172,7 +181,7 @@ export class RentpropertiesComponent implements OnInit {
     let params: any = {
       "PropertyTypeIds": this.PropertyTypeIds, "PropertyAddress": this.PropertyAddress, "RentTypeId": this.RentTypeId,
       "PropertyCategoryId": this.PropertyCategoryId, "PriceStart": this.PriceStart, "PriceEnd": this.PriceEnd,
-      "PropertyListingTypeId": this.PropertyListingTypeId, "videoSorting": this.videoTourSorting, CurrentPage: this.page
+      "PropertyListingTypeId": this.PropertyListingTypeId, "videoSorting": this.videoTourSorting, CurrentPage: this.page,DistrictsId:this.DistrictsId
     }
     console.log(params);
     this.loadListingProperty(params);
@@ -287,7 +296,7 @@ export class RentpropertiesComponent implements OnInit {
     let params: any = {
       "PropertyTypeIds": this.PropertyTypeIds, "PropertyAddress": this.PropertyAddress, "RentTypeId": this.RentTypeId,
       "PropertyCategoryId": this.PropertyCategoryId, "PriceStart": this.PriceStart, "PriceEnd": this.PriceEnd,
-      "PropertyListingTypeId": this.PropertyListingTypeId, "SortedBy": this.sortedById, CurrentPage: 1
+      "PropertyListingTypeId": this.PropertyListingTypeId, "SortedBy": this.sortedById, CurrentPage: 1,DistrictsId:this.DistrictsId
     }
     this.service.FavoriteAddRemove(status, { "UserId": this.userId, "PropertyListingId": id }).subscribe(data => {
       let responsedata: any = data

@@ -9,8 +9,31 @@
           </mat-select>
         </mat-form-field>
 
-        <mat-form-field class="full-width input-design-2" appearance="fill">
-          <input matInput formControlName="Name" type="search" placeholder="Search by location, Property Name...">
+        <mat-form-field class="example-chip-list" appearance="fill">
+          <mat-label>Locations...</mat-label>
+          <mat-chip-list #chipList aria-label="Fruit selection">
+            <mat-chip
+              *ngFor="let fruit of fruits"
+              (removed)="remove1(fruit)">
+              {{fruit}}
+              <button matChipRemove>
+                <mat-icon>cancel</mat-icon>
+              </button>
+            </mat-chip>
+            <input
+              placeholder="New Location.."
+              #fruitInput
+              [formControl]="fruitCtrl"
+              [matAutocomplete]="auto1"
+              [matChipInputFor]="chipList"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+              (matChipInputTokenEnd)="add1($event)">
+          </mat-chip-list>
+          <mat-autocomplete #auto1="matAutocomplete" (optionSelected)="selected($event)">
+            <mat-option *ngFor="let fruit of filteredFruits | async" [value]="fruit">
+              {{fruit}}
+            </mat-option>
+          </mat-autocomplete>
         </mat-form-field>
       </div>
     </div>

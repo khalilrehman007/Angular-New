@@ -17,6 +17,8 @@ import {map, startWith} from 'rxjs/operators';
 export class BuySearchComponent implements OnInit {
 
   constructor(private activeRoute: ActivatedRoute,private service:AppService,private api: AppService,private route:Router) {
+    this.getLoaction({"Searching":"","CountryId":"1"});
+
     this.data.rentalTypeId = 1
     this.api.LoadType(1).subscribe((result) => {
       this.propertyType = result;
@@ -41,6 +43,22 @@ export class BuySearchComponent implements OnInit {
       startWith(null),
       map((fruit: string | null) => (fruit ? this._filter(fruit) : this.searchList.slice())),
     );
+  }
+
+
+  locationOnSearchData :any = []
+  getLoaction(data:any){
+    let tempData :any = []
+    let tempCompleteData :any = []
+    this.service.DistrictAutoComplete(data).subscribe(data=>{
+      let response: any = data;
+      response.data.locationAutoComplete.forEach((element, i) => {
+        tempData.push(element.item2);
+        tempCompleteData.push({'id':element.item1,'value':element.item2})
+      })
+    });
+    this.searchList = tempData
+    this.locationOnSearchData = tempCompleteData
   }
 
   ngOnInit(): void {
@@ -170,7 +188,7 @@ export class BuySearchComponent implements OnInit {
 
     let params :any = {queryParams:{type:'Buy',PropertyListingTypeId:2,PropertyCategoryId:this.propertyCategory,RentTypeId:this.data.rentalTypeId,PropertyTypeIds:PropertyTypeIds
         ,PropertyAddress:this.SubmitForm.value.Name,PriceStart:this.SubmitForm.value.PriceStart,PriceEnd:this.SubmitForm.value.PriceEnd
-        ,Bedrooms:'',Bathrooms:'',CurrentPage:1
+        ,Bedrooms:'',Bathrooms:'',CurrentPage:1,DistrictsId:JSON.stringify(this.DistrictsId),DistrictsValue:JSON.stringify(this.SearchKeyword)
       }};
     this.route.navigate(['/search'],params)
 
@@ -198,6 +216,18 @@ export class BuySearchComponent implements OnInit {
   }
 
   remove(fruit: string): void {
+    let removeId :any;
+    this.locationOnSearchData.forEach((element, i) => {
+      if(element.value == fruit){
+        removeId = element.id
+      }
+    })
+
+    let companyIndex :number = this.DistrictsId.indexOf(removeId);
+    if (companyIndex !== -1) {
+      this.DistrictsId.splice(companyIndex, 1);
+    }
+
     const index = this.SearchKeyword.indexOf(fruit);
 
     if (index >= 0) {
@@ -205,7 +235,15 @@ export class BuySearchComponent implements OnInit {
     }
   }
 
+  DistrictsId :any = []
   selected(event: MatAutocompleteSelectedEvent): void {
+    this.locationOnSearchData.forEach((element, i) => {
+      if(element.value == event.option.viewValue){
+        this.DistrictsId.push(element.id)
+      }
+    })
+
+
     this.SearchKeyword.push(event.option.viewValue);
     this.SearchInput.nativeElement.value = '';
     this.searchctrl.setValue(null);

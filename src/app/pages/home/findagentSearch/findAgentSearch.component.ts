@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import {Component, OnInit, ElementRef, ViewChild, Output, EventEmitter} from '@angular/core';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import { AppService } from 'src/app/service/app.service';
 import { Options } from '@angular-slider/ngx-slider';
@@ -16,97 +16,65 @@ import { data } from 'jquery';
   styleUrls: ['./findAgentSearch.component.scss']
 })
 export class FindAgentSearchComponent implements OnInit {
+  @Output() childParentDataLoad:EventEmitter<any> = new EventEmitter<any>()
+
   myControl = new FormControl('');
   options: string[] = ['One', 'Two', 'Three'];
   filteredOptions: Observable<string[]>;
-  // Find agentLocation property
-  // searchByLocation: number[] = [ENTER, COMMA];
-  // SearchByLocationctrl = new FormControl('');
-  // SearchByObserve: Observable<string[]>;
-  // SearchByLocString: string[] = [];
-  // allSearchByLocString: string[] = ['hikmat', 'waris', 'Dubai', 'UAE', 'Dubai'];
-  //
-  // @ViewChild('LetSearchByLocationInput') LetSearchByLocationInput: ElementRef<HTMLInputElement>;
-  // add(event: MatChipInputEvent): void {
-  //   const value = (event.value || '').trim();
-  //   if (value) {
-  //     this.SearchByLocString.push(value);
-  // }
-  //
-  //   // Clear the input value
-  //   event.chipInput!.clear();
-  //
-  //   this.SearchByLocationctrl.setValue(null);
-  // }
-
-  // remove(LetSearchByLocation: string): void {
-  //   const index = this.SearchByLocString.indexOf(LetSearchByLocation);
-  //
-  //   if (index >= 0) {
-  //     this.SearchByLocString.splice(index, 1);
-  //   }
-  // }
-
-  // selected(event: MatAutocompleteSelectedEvent): void {
-  //   this.SearchByLocString.push(event.option.viewValue);
-  //   this.LetSearchByLocationInput.nativeElement.value = '';
-  //   this.SearchByLocationctrl.setValue(null);
-  // }
-
-  // private _filter(value: string): string[] {
-  //   const filterValue = value.toLowerCase();
-  //
-  //   return this.allSearchByLocString.filter(LetSearchByLocation => LetSearchByLocation.toLowerCase().includes(filterValue));
-  // }
-
-  // Find Agent
-
-  // searchByAgent: number[] = [ENTER, COMMA];
-  // SearchByAgentctrl = new FormControl('');
-  // SearchByAgentObserve: Observable<string[]>;
-  // SearchByAgentString: string[] = [];
-  // allSearchByAgentString: string[] = ['Dubai', 'UAE', 'Dubai', 'UAE', 'Dubai'];
-  //
-  // @ViewChild('LetSearchByAgentInput') LetSearchByAgentInput: ElementRef<HTMLInputElement>;
-
-
-  // add1(event: MatChipInputEvent): void {
-  //   const value = (event.value || '').trim();
-  //   if (value) {
-  //     this.SearchByAgentString.push(value);
-  // }
-  //
-  //   // Clear the input value
-  //   event.chipInput!.clear();
-  //
-  //   this.SearchByAgentctrl.setValue(null);
-  // }
-  //
-  // remove1(LetSearchByAgentInput: string): void {
-  //   const index = this.SearchByLocString.indexOf(LetSearchByAgentInput);
-  //
-  //   if (index >= 0) {
-  //     this.SearchByAgentString.splice(index, 1);
-  //   }
-  // }
-  //
-  // selected1(event: MatAutocompleteSelectedEvent): void {
-  //   this.SearchByAgentString.push(event.option.viewValue);
-  //   this.LetSearchByAgentInput.nativeElement.value = '';
-  //   this.SearchByAgentctrl.setValue(null);
-  // }
-
-
-
 
 
   separatorKeysCodes: number[] = [ENTER, COMMA];
   fruitCtrl = new FormControl('');
   filteredFruits: Observable<string[]>;
   fruits: string[] = [];
-  allFruits: string[];
+  allFruits: string[] = [];
 
   @ViewChild('fruitInput') fruitInput: ElementRef<HTMLInputElement>;
+
+  myControl1 = new FormControl('');
+  options1: string[] = [];
+  filteredOptions1: Observable<string[]>;
+
+
+  agentOnSearchData :any = []
+  getAgent(data:any){
+    let tempData :any = []
+    let tempCompleteData :any = []
+    this.service.AgentAutoCompleteSearch(data).subscribe(data=>{
+      let response: any = data;
+      response.data.agentAutoComplete.forEach((element, i) => {
+        tempData.push(element.value);
+        tempCompleteData.push({'id':element.key,'value':element.value})
+      })
+    });
+    this.options1 = tempData
+    this.agentOnSearchData = tempCompleteData
+  }
+
+  getUrllanguageIds : any = []
+  getUrlExpertInId : any ;
+  districtValue : any  = [];
+
+  constructor(private activeRoute: ActivatedRoute,private service:AppService,public route:Router) {
+
+    this.getUrllanguageIds = this.activeRoute.snapshot.queryParamMap.get('LanguageId');
+    this.getUrlExpertInId = this.activeRoute.snapshot.queryParamMap.get('ExpertInId');
+    this.districtValue = this.activeRoute.snapshot.queryParamMap.get('districtValue');
+
+    if(this.districtValue !== null){
+      this.fruits = JSON.parse(this.districtValue)
+    }
+
+    this.getExpertIn();
+    this.getSpokenLanguages();
+    this.getAgent({"Searching":'',"CountryId":"1"});
+    this.getLoaction({"Searching":'',"CountryId":"1"});
+    this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
+      startWith(null),
+      map((fruit: string | null) => (fruit ? this._filter(fruit) : this.allFruits.slice())),
+    );
+  }
+
 
   locationOnSearchData :any = []
   getLoaction(data:any){
@@ -116,76 +84,34 @@ export class FindAgentSearchComponent implements OnInit {
       let response: any = data;
       response.data.locationAutoComplete.forEach((element, i) => {
         tempData.push(element.item2);
-        // tempCompleteData.push({'id':element.item1,'value':element.item2})
-        tempCompleteData.push(element.item1)
+        tempCompleteData.push({'id':element.item1,'value':element.item2})
       })
     });
     this.allFruits = tempData
     this.locationOnSearchData = tempCompleteData
   }
 
-  separatorKeysCodes1: number[] = [ENTER, COMMA];
-  fruitCtrl1 = new FormControl('');
-  filteredFruits1: Observable<string[]>;
-  fruits1: string[] = [];
-  allFruits1: string[];
 
-  @ViewChild('fruitInput1') fruitInput1: ElementRef<HTMLInputElement>;
-
-
-  getAgent(data:any){
-    let tempData :any = []
-    this.service.AgentAutoCompleteSearch(data).subscribe(data=>{
-      let response: any = data;
-      response.data.agentAutoComplete.forEach((element, i) => {
-        tempData.push(element.value);
-      })
-    });
-    this.allFruits1 = tempData
-  }
-
-  getUrllanguageIds : any = []
-  getUrlExpertInId : any ;
-
-  constructor(private activeRoute: ActivatedRoute,private service:AppService,public route:Router) {
-
-    // this.searchfilter = this.searchctrl.valueChanges.pipe(
-    //   startWith(null),
-    //   map((fruit: string | null) => (fruit ? this._filter(fruit) : this.searchList.slice())),
-    // );
-
-    this.getUrllanguageIds = this.activeRoute.snapshot.queryParamMap.get('LanguageId');
-    this.getUrlExpertInId = this.activeRoute.snapshot.queryParamMap.get('ExpertInId');
-
-    console.log(this.getUrllanguageIds)
-    console.log(this.getUrlExpertInId)
-
-    this.getExpertIn();
-    this.getSpokenLanguages();
-  }
-
-
-
-  onLocationSearchChange(searchValue: string): void {
-    this.getLoaction({"Searching":searchValue,"CountryId":"1"});
-    setTimeout(() => {
-      this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
-        startWith(null),
-        map((fruit: string | null) => (fruit ? this._filter(fruit) : this.allFruits.slice())),
-      );
-    }, 1000);
-
-  }
-  onAgentSearchChange(searchValue: string): void {
-    this.getAgent({"Searching":searchValue,"CountryId":"1"});
-    setTimeout(() => {
-      this.filteredFruits1 = this.fruitCtrl1.valueChanges.pipe(
-        startWith(null),
-        map((fruit: string | null) => (fruit ? this._filter1(fruit) : this.allFruits1.slice())),
-      );
-    }, 1000);
-
-  }
+  // onLocationSearchChange(searchValue: string): void {
+  //   this.getLoaction({"Searching":searchValue,"CountryId":"1"});
+  //   setTimeout(() => {
+  //     this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
+  //       startWith(null),
+  //       map((fruit: string | null) => (fruit ? this._filter(fruit) : this.allFruits.slice())),
+  //     );
+  //   }, 1000);
+  //
+  // }
+  // onAgentSearchChange(searchValue: string): void {
+  //   this.getAgent({"Searching":searchValue,"CountryId":"1"});
+  //   setTimeout(() => {
+  //     this.filteredFruits1 = this.fruitCtrl1.valueChanges.pipe(
+  //       startWith(null),
+  //       map((fruit: string | null) => (fruit ? this._filter1(fruit) : this.allFruits1.slice())),
+  //     );
+  //   }, 1000);
+  //
+  // }
 
 
 
@@ -205,6 +131,19 @@ export class FindAgentSearchComponent implements OnInit {
   }
 
   remove(fruit: string): void {
+
+    let removeId :any;
+    this.locationOnSearchData.forEach((element, i) => {
+      if(element.value == fruit){
+        removeId = element.id
+      }
+    })
+
+    let companyIndex :number = this.DistrictsId.indexOf(removeId);
+    if (companyIndex !== -1) {
+      this.DistrictsId.splice(companyIndex, 1);
+    }
+
     const index = this.fruits.indexOf(fruit);
 
     if (index >= 0) {
@@ -214,11 +153,11 @@ export class FindAgentSearchComponent implements OnInit {
 
   DistrictsId :any = []
   selected(event: MatAutocompleteSelectedEvent): void {
-
-    console.log(this.locationOnSearchData)
-
-    // this.DistrictsId.push(this.locationOnSearchData);
-
+    this.locationOnSearchData.forEach((element, i) => {
+      if(element.value == event.option.viewValue){
+        this.DistrictsId.push(element.id)
+      }
+    })
     this.fruits.push(event.option.viewValue);
     this.fruitInput.nativeElement.value = '';
     this.fruitCtrl.setValue(null);
@@ -231,39 +170,12 @@ export class FindAgentSearchComponent implements OnInit {
 
 
 
-  add1(event: MatChipInputEvent): void {
-    const value = (event.value || '').trim();
-
-    // Add our fruit
-    if (value) {
-      this.fruits1.push(value);
-    }
-
-    // Clear the input value
-    event.chipInput!.clear();
-
-    this.fruitCtrl1.setValue(null);
-  }
-
-  remove1(fruit: string): void {
-    const index = this.fruits1.indexOf(fruit);
-
-    if (index >= 0) {
-      this.fruits1.splice(index, 1);
-    }
-  }
-
-  selected1(event: MatAutocompleteSelectedEvent): void {
-    this.fruits1.push(event.option.viewValue);
-    this.fruitInput1.nativeElement.value = '';
-    this.fruitCtrl1.setValue(null);
-  }
-
+  agentName : any = '';
   private _filter1(value: string): string[] {
+    this.agentName = value;
     const filterValue = value.toLowerCase();
-    return this.allFruits1.filter(fruit => fruit.toLowerCase().includes(filterValue));
+    return this.options1.filter(option => option.toLowerCase().includes(filterValue));
   }
-
 
 
   // languageCheck(id:number){
@@ -277,20 +189,20 @@ export class FindAgentSearchComponent implements OnInit {
   // }
 
   ngOnInit(): void {
-    this.filteredOptions = this.myControl.valueChanges.pipe(
+    this.filteredOptions1 = this.myControl1.valueChanges.pipe(
       startWith(''),
-      map(value => this._filter(value || '')),
+      map(value => this._filter1(value || '')),
     );
   }
   status: boolean = false;
   clickEvent(){
-      this.status = !this.status;
-      this.status1 = false;
+    this.status = !this.status;
+    this.status1 = false;
   }
   status1: boolean = false;
   clickEvent1(){
-      this.status1 = !this.status1;
-      this.status = false;
+    this.status1 = !this.status1;
+    this.status = false;
   }
 
   ExpertIn :any = [];
@@ -318,11 +230,11 @@ export class FindAgentSearchComponent implements OnInit {
     this.SpokenLanguages = tempData
   }
 
-  ExpertInId :number ;
+  ExpertInId :any = 0 ;
   getExpertInId(id:number){
     this.ExpertInId = id
   }
-  LanguageId :number ;
+  LanguageId : any = 0 ;
   getLanguageId(id:number){
 
     this.LanguageId = id
@@ -374,12 +286,39 @@ export class FindAgentSearchComponent implements OnInit {
     //   })
     // })
     //
-    console.log(this.DistrictsId)
+
+    let getAgentId :any = 0 ;
+    this.agentOnSearchData.forEach((element, i) => {
+      if(element.value == this.agentName){
+        getAgentId = element.id
+      }
+    })
 
 
+    let agentObject: any = {
+      "CountryId":"1",
+      "DistrictsId":this.DistrictsId,
+      "CompaniesId" :[],
+      "UserId":getAgentId,
+      "EpertInId": this.ExpertInId,
+      "LanguageId":this.LanguageId,
+      "CurrentPage":"1"
+    };
 
-    // let params :any = {queryParams:{LanguageId:this.LanguageId,ExpertInId:this.ExpertInId}};
-    // this.route.navigate(['/find-agent'],params)
+    console.log(agentObject)
+
+    let params :any = {queryParams:
+        {
+          districtValue:JSON.stringify(this.fruits),
+          getAgentId:getAgentId,
+          LanguageId:this.LanguageId,
+          ExpertInId:this.ExpertInId,
+          locationId:JSON.stringify(this.DistrictsId
+          )}};
+
+    this.childParentDataLoad.emit(agentObject)
+
+    this.route.navigate(['/find-agent'],params)
 
   }
 }
