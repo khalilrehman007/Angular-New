@@ -154,6 +154,9 @@ export class PropertyInnerComponent implements OnInit {
   dataLoaded: boolean = false;
   propertyId :any;
   userId :any;
+  propertyLat:number;
+  propertyLng:number;
+  buildingName:any;
   map: any;
   bounds: any = [];
   id: 1;
@@ -167,48 +170,6 @@ export class PropertyInnerComponent implements OnInit {
       userId = this.user.id;
     }
     this.userId = userId;
-    this.service.ExploreDistrict(this.id).subscribe((result: any) => {
-      this.dataLoaded = true;
-      this.districtDetail = result.data;
-      this.bounds.push([this.districtDetail.southWestLng, this.districtDetail.southWestLat]);
-      this.bounds.push([this.districtDetail.northEastLng, this.districtDetail.northEastLat]);
-      this.map = new mapboxgl.Map({
-        container: 'explore-near-map',
-        style: 'mapbox://styles/mapbox/streets-v11',
-        center: [(parseFloat(this.districtDetail.northEastLng) + parseFloat(this.districtDetail.southWestLng)) / 2, (parseFloat(this.districtDetail.northEastLat) + parseFloat(this.districtDetail.southWestLat)) / 2],
-        zoom: 11,
-        maxBounds: this.bounds
-      })
-      let marker = new mapboxgl.Marker({ color: "#FF0000", draggable: true }).setLngLat([(parseFloat(this.districtDetail.northEastLng) + parseFloat(this.districtDetail.southWestLng)) / 2, (parseFloat(this.districtDetail.northEastLat) + parseFloat(this.districtDetail.southWestLat)) / 2]).addTo(this.map).setPopup(
-        new mapboxgl.Popup({ offset: 25 }) // add popups
-          .setHTML(this.districtDetail.name)
-      ).togglePopup();
-      // get lat lng on marker drag end
-      marker.on('dragend', (e: any) => {
-        $.ajax({
-          url: "https://api.mapbox.com/geocoding/v5/mapbox.places/" + e.target._lngLat.lng + "," + e.target._lngLat.lat + ".json?types=address&access_token=" + environment.mapbox.accessToken,
-          // url: "https://api.mapbox.com/geocoding/v5/mapbox.places/-73.989,40.733.json?types=address&access_token=" + environment.mapbox.accessToken,
-          method: "get",
-          contentType: false,
-          processData: false,
-          dataType: "json",
-          success: (res: any) => {
-            marker.remove();
-            if (res.features.length > 0) {
-              marker = new mapboxgl.Marker({ color: "#FF0000", draggable: true }).setLngLat([e.target._lngLat.lng, e.target._lngLat.lat]).addTo(this.map).setPopup(
-                new mapboxgl.Popup({ offset: 25 })
-                  .setHTML(res.features[0].place_name)
-              ).togglePopup();
-            } else {
-              marker = new mapboxgl.Marker({ color: "#FF0000", draggable: true }).setLngLat([e.target._lngLat.lng, e.target._lngLat.lat]).addTo(this.map);
-            }
-          },
-          error: (err) => {
-            console.log(err);
-          }
-        });
-      });
-    });
     this.getloadDashboardData();
     this.LoadSimilarProperty();
   }
@@ -217,9 +178,47 @@ export class PropertyInnerComponent implements OnInit {
     this.modalService.open(content, { centered: true });
   }
   locationAddress1 = '';
-
+  onTabChanged(e:any) {
+    console.log(e)
+    if(e.index == 5) {
+      this.map = new mapboxgl.Map({
+        container: 'property-near-map',
+        style: 'mapbox://styles/mapbox/streets-v11',
+        center: [this.propertyLng, this.propertyLat],
+        zoom: 11,
+      })
+      let marker = new mapboxgl.Marker({ color: "#FF0000", draggable: false }).setLngLat([this.propertyLng, this.propertyLat]).addTo(this.map).setPopup(
+        new mapboxgl.Popup({ offset: 25 }) // add popups
+          .setHTML(this.buildingName)
+      ).togglePopup();
+      // get lat lng on marker drag end
+      // marker.on('dragend', (e: any) => {
+      //   $.ajax({
+      //     url: "https://api.mapbox.com/geocoding/v5/mapbox.places/" + e.target._lngLat.lng + "," + e.target._lngLat.lat + ".json?types=address&access_token=" + environment.mapbox.accessToken,
+      //     // url: "https://api.mapbox.com/geocoding/v5/mapbox.places/-73.989,40.733.json?types=address&access_token=" + environment.mapbox.accessToken,
+      //     method: "get",
+      //     contentType: false,
+      //     processData: false,
+      //     dataType: "json",
+      //     success: (res: any) => {
+      //       marker.remove();
+      //       if (res.features.length > 0) {
+      //         marker = new mapboxgl.Marker({ color: "#FF0000", draggable: true }).setLngLat([e.target._lngLat.lng, e.target._lngLat.lat]).addTo(this.map).setPopup(
+      //           new mapboxgl.Popup({ offset: 25 })
+      //             .setHTML(res.features[0].place_name)
+      //         ).togglePopup();
+      //       } else {
+      //         marker = new mapboxgl.Marker({ color: "#FF0000", draggable: true }).setLngLat([e.target._lngLat.lng, e.target._lngLat.lat]).addTo(this.map);
+      //       }
+      //     },
+      //     error: (err) => {
+      //       console.log(err);
+      //     }
+      //   });
+      // });
+    }
+  }
   ngOnInit(): void {
-
   }
 
   isload :any= false
@@ -230,6 +229,10 @@ export class PropertyInnerComponent implements OnInit {
   getloadDashboardData() {
     this.service.DisplayPropertyListing({"PropertyListingId":this.propertyId,"LoginUserId":this.userId}).subscribe(e => {
       let temp: any = e;
+      console.log(temp.data);
+      this.propertyLat = temp.data.propertyListing.propertyLat;
+      this.propertyLng = temp.data.propertyListing.propertyLong;
+      this.buildingName = temp.data.propertyListing.buildingName;
       let jsonData :any = JSON.stringify(temp.data)
       let jsonParsDate :any = JSON.parse(jsonData);
       this.propertyDetail = jsonParsDate
@@ -337,14 +340,11 @@ export class PropertyInnerComponent implements OnInit {
         this.getPropertyInfo();
 
       }else{
-
         //if property not found redirect home page
         this.notifyService.showError('Property No found!', "");
         this.route.navigate(['/'])
-
         ///end
       }
-
       if(jsonParsDate.user != null && jsonParsDate.user != undefined && jsonParsDate.user.imageUrl != null){
         this.propertyDetailData.userImageUrl = (jsonParsDate.user.imageUrl !== undefined) ? this.baseUrl+jsonParsDate.user.imageUrl : '../assets/images/user.png'
         this.propertyDetailData.userfullName = (jsonParsDate.user.fullName !== undefined) ? jsonParsDate.user.fullName : ''
@@ -352,7 +352,6 @@ export class PropertyInnerComponent implements OnInit {
         this.propertyDetailData.userImageUrl = '../assets/images/user.png'
         this.propertyDetailData.userfullName = ''
       }
-
     });
   }
 
