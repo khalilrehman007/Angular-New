@@ -101,7 +101,7 @@ $color_45: #090E2B;
 $color_46: #727272;
 $color_47: #949494;
 $color_48: #333;
-$color_49: red;
+$color_49: #FF0000;
 $color_50: #4D5369;
 $color_51: #E5E7EB;
 $color_52: var(--gray);
@@ -141,6 +141,7 @@ $border-color_5: #E5E7EB;
 $border-color_6: #2E2E2E;
 $border-color_7: #333;
 $outline-color_1: #595ad4;
+$btncolor: #0B26AD;
 
 /* Track */
 /* Handle */
@@ -322,7 +323,7 @@ a {
 }
 .listing-slider-area {
 	padding: 0px 0px 20px 20px;
-	border: 2px solid var(--stroke-color);
+	border: 0.25px solid var(--stroke-color);
 	border-radius: 10px;
 	background: var(--background-color-tabs);
 	overflow: hidden;
@@ -655,7 +656,7 @@ textarea {
 	}
 }
 .submit-btn {
-	background: #595ad4;
+	background: $btncolor;
 	border-radius: 8px;
 	width: 100%;
 	border: none;
@@ -920,7 +921,7 @@ input[type=number] {
 		.mat-list-item.active {
 			a {
 				>span {
-					background: #595ad4;
+					background: $btncolor;
 					color: $color_5;
 				}
 			}
@@ -1082,7 +1083,7 @@ input[type=number] {
 	justify-content: space-between;
 	align-items: center;
 	.save-continue-btn {
-		background: #595ad4;
+		background: $btncolor;
 		color: $color_5;
 		border: none;
 		font-size: 16px;
@@ -2572,7 +2573,7 @@ input[type=number] {
 	}
 }
 .search-btn {
-	background: #595ad4;
+	background: #0B26AD;
 	border: none;
 	width: 100%;
 	height: 98%;
@@ -3115,7 +3116,7 @@ input[type=number] {
 }
 .section-title-right {
 	width: max-content;
-	border: 2px solid var(--stroke-color);
+	border: 0.25px solid var(--stroke-color);
 	background: var(--background-color-tabs);
 	padding: 5px 0px;
 	border-radius: var(--border-radius);
@@ -3143,7 +3144,7 @@ input[type=number] {
 		.nav-link.active {
 			color: $color_29 !important;
 			background-color: $background-color_1;
-			border: 2px solid var(--stroke-color);
+			border: 0.25px solid var(--stroke-color);
 			svg {
 				path {
 					stroke: var(--primary-color) !important;
@@ -3331,7 +3332,7 @@ input[type=number] {
 .listing-btn {
 	margin-top: 2rem;
 	.custom-btn-primary {
-		background: var(--primary-color);
+		background: $btncolor;
 		color: $color_4;
 		text-decoration: none;
 		border: 1px solid var(--primary-color);
@@ -3501,7 +3502,7 @@ input[type=number] {
 }
 .mockup-conatiner {
 	background: var(--body-color);
-	border: 2px solid var(--stroke-color);
+	border: 0.25px solid var(--stroke-color);
 	border-radius: var(--border-radius);
 	padding: 67px 77px 44px 77px;
 }
@@ -3647,7 +3648,7 @@ input[type=number] {
 		height: 45px;
 		padding: 8px 30px;
 		line-height: normal;
-		background: #595ad4;
+		background: $btncolor;
 		color: $color_5;
 		border: 0;
 		margin-left: -120px;
@@ -3787,9 +3788,8 @@ img {
 	.carousel-inner {
 		img {
 			width: 100%;
-			height: 100%;
+			height: 426px;
 			object-fit: cover;
-			max-height: 460px;
 			border-radius: 15px;
 		}
 	}
@@ -3806,17 +3806,17 @@ img {
 	}
 }
 .slider-thumb-img.bordered {
-	border: 2px solid #0021B2;
+	border: 0.25px solid #0021B2;
 	border-radius: 10px;
 	padding: 6px;
-	height: 200px;
 }
 .slider-thumb-img {
+	height: 200px;
 	.view-all-photos {
 		position: absolute;
 		right: 15px;
 		bottom: 20px;
-		border: 2px solid #0021B2;
+		border: 0.25px solid #0021B2;
 		border-radius: 8px;
 		background: #fff;
 		font-size: 14px;
@@ -3939,7 +3939,7 @@ img {
 		background: transparent;
 		text-transform: uppercase;
 		margin-right: 4px;
-		border: 0.5px solid #4A565F;
+		border: 0.25px solid #4A565F;
 		display: inline-block;
 		letter-spacing: 2px;
 		font-weight: 600;
@@ -3951,7 +3951,6 @@ img {
 	border-radius: 10px;
 	padding: 12px 20px;
 	background: #F0F3F5;
-	border-radius: 10px;
 	padding: 12px 20px;
 	margin-bottom: 15px;
 	margin-top: 15px;
@@ -4095,7 +4094,7 @@ img {
 	}
 }
 .scan-btn-border {
-	border: 1.5px solid #D3DBFF;
+	border: 0.25px solid #D3DBFF;
 	background: transparent;
 	border-radius: 8px;
 	color: $color_3;
@@ -4133,7 +4132,7 @@ img {
 	flex-wrap: wrap;
 }
 .explore-btn-design {
-	border: 1.5px solid #D3DBFF;
+	border: 0.25px solid #D3DBFF;
 	background: transparent;
 	border-radius: 8px;
 	color: $color_3;
@@ -4141,16 +4140,6 @@ img {
 	font-size: 13px;
 	width: auto;
 	padding: 10px 7px;
-	text-align: left;
-	margin-bottom: 15px;
-	border: 1.5px solid #D3DBFF;
-	background: transparent;
-	border-radius: 8px;
-	color: $color_3;
-	font-weight: 500;
-	font-size: 13px;
-	width: auto;
-	padding: 10px 24px;
 	text-align: left;
 	margin-bottom: 15px;
 	opacity: 0.7;
@@ -4450,7 +4439,7 @@ img {
 		border: none;
 		margin-bottom: 70px;
 		.mat-tab-label {
-			border: 1px solid #E5E7EB;
+			border: 0.25px solid #E5E7EB;
 			border-radius: 8px;
 			font-size: 14px;
 			color: $color_15;
@@ -4632,7 +4621,7 @@ img {
 	margin-bottom: 10px;
 	.checkbox-design {
 		.checkbox-btn {
-			border: 1.5px solid #D3DBFF;
+			border: 0.25px solid #D3DBFF;
 			min-width: 75px;
 			background-color: $background-color_3;
 			box-shadow: 0px 0px 13px rgba(0, 33, 178, 0.1);
@@ -4645,7 +4634,7 @@ img {
 	.mat-form-field-flex {
 		background-color: $background-color_3 !important;
 		box-shadow: 0px 0px 13px rgba(0, 33, 178, 0.1);
-		border: 1.5px solid #D3DBFF;
+		border: 0.25px solid #D3DBFF;
 		.mat-select-arrow-wrapper {
 			filter: brightness(0);
 			background-size: 14px;
@@ -4774,7 +4763,7 @@ img {
 		background: #fff;
 		width: 30px;
 		height: 30px;
-		border: 1.5px solid #E8E6F9;
+		border: 0.25px solid #E8E6F9;
 		border-radius: 50%;
 		&:hover {
 			background: #F4F6FF;
@@ -5086,7 +5075,7 @@ img {
 .shortlisted-inner-cntnt {
 	padding: 15px;
 	.mat-tab-label {
-		border: 1px solid #D3DBFF;
+		border: 0.25px solid #D3DBFF;
 		color: $color_2;
 		font-size: 12px;
 		height: auto;
@@ -5165,9 +5154,6 @@ img {
 }
 .search-btn-block {
 	height: 100%;
-	>.search-btn {
-		background-color: $background-color_9;
-	}
 }
 .explore-banner-sec {
 	background-size: cover;
@@ -5265,7 +5251,7 @@ img {
 	}
 }
 .citites-guide-block-div {
-	border: 1.5px solid #F0EFFB;
+	border: 0.25px solid #F0EFFB;
 	box-shadow: 0px 4px 20px rgba(14, 8, 84, 0.08);
 	border-radius: 8px;
 	background-color: $background-color_3;
@@ -5394,7 +5380,7 @@ img {
 	padding-bottom: 50px;
 	.blue-bordered-btn {
 		background: transparent;
-		border: 2px solid #595ad4;
+		border: 0.25px solid $btncolor;
 		color: $color_2;
 		font-size: 14px;
 		font-weight: 500;
@@ -5403,7 +5389,7 @@ img {
 		.ai-tag {
 			border-radius: 3px;
 			color: $color_5;
-			background-color: $background-color_9;
+			background-color: $btncolor;
 			padding: 2px 8px;
 			font-size: 10px;
 			margin: 0px 2px;
@@ -5818,7 +5804,7 @@ img {
 	padding: 0px !important;
 }
 .blogs-header-bars {
-	border-bottom: 1.5px solid #F0EFFB;
+	border-bottom: 0.25px solid #F0EFFB;
 	padding-top: 10px;
 	padding-bottom: 10px;
 	.blogs-seach-blog {
@@ -6403,10 +6389,10 @@ li.agent-details__property-list-item {
 				margin-bottom: 15px;
 			}
 			a {
-				background: var(--primary-color);
+				background: $btncolor;
 				color: $color_4;
 				text-decoration: none;
-				border: 1px solid var(--primary-color);
+				border: 1px solid $btncolor;
 				padding: 9px 15px;
 				border-radius: 5px;
 				font-size: 14px;
@@ -9046,7 +9032,7 @@ li.agent-details__property-list-item {
     height: 60px;
 }
 .alert-message-wrap.error .mat-icon {
-    color: red;
+    color: #FF0000;
 }
 .alert-message-wrap.success .mat-icon {
     color: green;
@@ -9058,7 +9044,7 @@ li.agent-details__property-list-item {
     border-radius: 6px;
 }
 .error .ok-btn {
-    background: red;
+    background: #FF0000;
 }
 .success .ok-btn {
     background: green;
@@ -9073,11 +9059,11 @@ li.agent-details__property-list-item {
     width: 100% !important;
 }
 .red-fill svg {
-    fill: red;
+    fill: #FF0000;
 }
 .red-fill svg path {
-    stroke: red;
-    fill: red;
+    stroke: #FF0000;
+    fill: #FF0000;
 }
 .property-gallery-sec {
     height: 100%;
@@ -9153,7 +9139,7 @@ li.agent-details__property-list-item {
     font-size: 13px;
 }
 .renew-btn {
-    background-color: red;
+    background-color: #FF0000;
     border: none;
     color: #fff;
     padding: 8px 15px;
@@ -9164,7 +9150,7 @@ li.agent-details__property-list-item {
     background-color: #595ad5;
 }
 .other-packages_btn {
-    background: #595ad5;
+    background: $btncolor;
     color: #fff;
     border: none;
     padding: 12px 20px;
@@ -9211,6 +9197,12 @@ li.agent-details__property-list-item {
     z-index: 99;
     cursor: pointer;
     opacity: 0;
+}
+.properties-list_slider img {
+    object-position: center;
+    height: 100%;
+    object-fit: contain;
+    background: #f4f4f4;
 }
 .shortlisted-tabs_list .agent-details__property-list-item .selection-checkbox-selector input:checked+.cstm-selection-btn {
     background-color: #595ad4 !important;
@@ -9293,4 +9285,7 @@ li.agent-details__property-list-item {
 }
 .checkbox-design-2 {
     margin-bottom: 10px;
+}
+.footer-company>img {
+    max-width: 253px;
 }

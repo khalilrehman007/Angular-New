@@ -52,7 +52,7 @@
                       <mat-form-field class="full-width input-design-2" appearance="fill">
                         <input matInput type="number" placeholder="Title Deed No" formControlName="titleDeed" />
                       </mat-form-field>
-                      <span style="color: red" *ngIf="
+                      <span style="color: #FF0000" *ngIf="
                           titleDeed && titleDeed.invalid && titleDeed.touched
                         ">*This field is required</span>
                     </div>
@@ -110,7 +110,7 @@
                         <input matInput type="number" placeholder="Enter the Municipality No/Affection No."
                           formControlName="muncipality" />
                       </mat-form-field>
-                      <span style="color: red" *ngIf="
+                      <span style="color: #FF0000;" *ngIf="
                           muncipality &&
                           muncipality.invalid &&
                           muncipality.touched

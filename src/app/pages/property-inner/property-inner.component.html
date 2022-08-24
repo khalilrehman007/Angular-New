@@ -1,7 +1,7 @@
 <header>
     <app-header></app-header>
 </header>
-<section [ngClass]="'inner-cntnt-wrapper'" >
+<section [ngClass]="'inner-cntnt-wrapper'">
     <section [ngClass]="'property-listing-inner-wrapper slide-left-bar'">
         <div [ngClass]="'container_1280px'">
             <div ngClass="property-details-header">
@@ -9,7 +9,8 @@
                     <div ngClass="black-text-breadcrumb">
                         <app-breadcrumb></app-breadcrumb>
                         <a routerLink="" ngClass="back-to-text">
-                            <mat-icon>keyboard_arrow_left</mat-icon> Back to Search</a>
+                            <mat-icon>keyboard_arrow_left</mat-icon> Back to Search
+                        </a>
                     </div>
                     <div ngClass="last-updated-details">
                         <p>Last Updated: <span ngClass="update-date">April 19, 2022</span></p>
@@ -21,10 +22,13 @@
                 <div ngClass="row">
                     <div ngClass="col-xl-4 col-lg-4 col-md-12 col-sm-12">
                         <div ngClass="property-price_detals">
-                            <h4>{{propertyDetailData.propertyPrice}} {{propertyDetailData.currency}}<small>/{{propertyDetailData.rentType}}</small></h4>
+                            <h4>{{propertyDetailData.propertyPrice}}
+                                {{propertyDetailData.currency}}<small>/{{propertyDetailData.rentType}}</small></h4>
                             <div ngClass="property-tags d-flex flex-wrap">
-                                <span ngClass="tags-bg-grey">Brokrage: {{propertyDetailData.brokerageChargePrice}} {{propertyDetailData.currency}}</span>
-                                <span ngClass="tags-bg-grey">Security deposit: {{propertyDetailData.securityDepositPrice}} {{propertyDetailData.currency}}</span>
+                                <span ngClass="tags-bg-grey">Brokrage: {{propertyDetailData.brokerageChargePrice}}
+                                    {{propertyDetailData.currency}}</span>
+                                <span ngClass="tags-bg-grey">Security deposit:
+                                    {{propertyDetailData.securityDepositPrice}} {{propertyDetailData.currency}}</span>
                             </div>
                         </div>
                     </div>
@@ -39,12 +43,15 @@
                     <div ngClass="col-xl-3 col-lg-4 col-md-12 col-sm-12">
                         <div ngClass="property-action_detals text-right">
                             <button ngClass="grey-bordered-btn"><img src="{{dots}}"></button>
-                            <button [ngClass]="propertyDetailData.favorite == true ? 'grey-bordered-btn red-fill' : 'grey-bordered-btn'" (click)="AddToFavorite(propertyDetailData.id,propertyDetailData.favorite)">
-                                <svg width="22" height="23" viewBox="0 0 22 23" fill="#595ad4" xmlns="http://www.w3.org/2000/svg">
+                            <button
+                                [ngClass]="propertyDetailData.favorite == true ? 'grey-bordered-btn red-fill' : 'grey-bordered-btn'"
+                                (click)="AddToFavorite(propertyDetailData.id,propertyDetailData.favorite)">
+                                <svg width="22" height="23" viewBox="0 0 22 23" fill="#595ad4"
+                                    xmlns="http://www.w3.org/2000/svg">
                                     <path
-                                      d="M4.39376 6.23844C4.02517 6.63167 3.73279 7.0985 3.53331 7.61228C3.33383 8.12605 3.23116 8.67672 3.23116 9.23283C3.23116 9.78894 3.33383 10.3396 3.53331 10.8534C3.73279 11.3672 4.02517 11.834 4.39376 12.2272L11.1699 19.4563L17.946 12.2272C18.6904 11.433 19.1086 10.3559 19.1086 9.23283C19.1086 8.10972 18.6904 7.0326 17.946 6.23844C17.2016 5.44429 16.1919 4.99813 15.1392 4.99813C14.0865 4.99813 13.0768 5.44429 12.3324 6.23844L11.1699 7.47873L10.0073 6.23844C9.63871 5.84521 9.20113 5.53329 8.71954 5.32047C8.23796 5.10766 7.72179 4.99812 7.20053 4.99812C6.67926 4.99812 6.1631 5.10766 5.68152 5.32047C5.19993 5.53329 4.76235 5.84521 4.39376 6.23844V6.23844Z"
-                                      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                  </svg>
+                                        d="M4.39376 6.23844C4.02517 6.63167 3.73279 7.0985 3.53331 7.61228C3.33383 8.12605 3.23116 8.67672 3.23116 9.23283C3.23116 9.78894 3.33383 10.3396 3.53331 10.8534C3.73279 11.3672 4.02517 11.834 4.39376 12.2272L11.1699 19.4563L17.946 12.2272C18.6904 11.433 19.1086 10.3559 19.1086 9.23283C19.1086 8.10972 18.6904 7.0326 17.946 6.23844C17.2016 5.44429 16.1919 4.99813 15.1392 4.99813C14.0865 4.99813 13.0768 5.44429 12.3324 6.23844L11.1699 7.47873L10.0073 6.23844C9.63871 5.84521 9.20113 5.53329 8.71954 5.32047C8.23796 5.10766 7.72179 4.99812 7.20053 4.99812C6.67926 4.99812 6.1631 5.10766 5.68152 5.32047C5.19993 5.53329 4.76235 5.84521 4.39376 6.23844V6.23844Z"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
                             </button>
                             <button ngClass="grey-bordered-btn text-btn">Browse Near by Lisitng</button>
                         </div>
@@ -52,33 +59,34 @@
                 </div>
             </div>
             <div ngClass="property-gallery-div-sec">
-            <div ngClass="row">
-             <div ngClass="col-xl-8 col-lg-8 col-md-12 col-sm-12">
-            <div  *ngIf="documentCheck" ngClass="property-gallery-sec">
-                <ngb-carousel *ngIf="documentCheck" [showNavigationArrows]="false">
-                    <ng-template ngbSlide *ngFor="let event of propertyDetailData.documents">
-                      <img [src]="baseUrl+event.fileUrl" alt="Random slide">
-                    </ng-template>
-                </ngb-carousel>
-            </div>
-             <div *ngIf="documentCheck == false" ngClass="property-gallery-sec" >
-               <ngb-carousel *ngIf="documentCheck" [showNavigationArrows]="false">
-                 <ng-template ngbSlide>
-                   <img src="{{thumb1}}" alt="Random slide">
-                 </ng-template>
-               </ngb-carousel>
-             </div>
-            </div>
-            <div ngClass="col-xl-4 col-lg-4 col-md-12 col-sm-12 mobile-gallery_flex">
-                <div ngClass="slider-thumb-img bordered mb-4">
-                    <img src="{{thumb1}}">
+                <div ngClass="row">
+                    <div ngClass="col-xl-8 col-lg-8 col-md-12 col-sm-12">
+                        <div *ngIf="documentCheck" ngClass="property-gallery-sec">
+                            <ngb-carousel *ngIf="documentCheck" [showNavigationArrows]="false">
+                                <ng-template ngbSlide *ngFor="let event of propertyDetailData.documents">
+                                    <img [src]="baseUrl+event.fileUrl" alt="Random slide">
+                                </ng-template>
+                            </ngb-carousel>
+                        </div>
+                        <div *ngIf="documentCheck == false" ngClass="property-gallery-sec">
+                            <ngb-carousel *ngIf="documentCheck" [showNavigationArrows]="false">
+                                <ng-template ngbSlide>
+                                    <img src="{{thumb1}}" alt="Random slide">
+                                </ng-template>
+                            </ngb-carousel>
+                        </div>
+                    </div>
+                    <div ngClass="col-xl-4 col-lg-4 col-md-12 col-sm-12 mobile-gallery_flex">
+                        <div ngClass="slider-thumb-img bordered mb-4">
+                            <img src="{{thumb1}}">
+                        </div>
+                        <div ngClass="slider-thumb-img position-relative">
+                            <img src="{{thumb2}}">
+                            <button class="view-all-photos" (click)="openVerticallyCentered(content)"><img
+                                    src="{{gallery}}"> View all photos</button>
+                        </div>
+                    </div>
                 </div>
-                <div ngClass="slider-thumb-img position-relative">
-                    <img src="{{thumb2}}">
-                    <button class="view-all-photos" (click)="openVerticallyCentered(content)"><img src="{{gallery}}"> View all photos</button>
-                </div>
-            </div>
-            </div>
             </div>
             <div ngClass="property-tabs-content">
                 <div ngClass="row">
@@ -99,7 +107,8 @@
                                                 <img src="{{bathsvg}}" alt="">{{propertyDetailData.bathrooms}} Bath
                                             </span>
                                             <span ngClass="area">
-                                                <img src="{{squaremetersvg}}" alt="">{{propertyDetailData.carpetArea}}{{propertyDetailData.unitType}}
+                                                <img src="{{squaremetersvg}}"
+                                                    alt="">{{propertyDetailData.carpetArea}}{{propertyDetailData.unitType}}
                                             </span>
                                             <span ngClass="furnishing">
                                                 <img src="{{furnishing}}" alt="">{{propertyDetailData.furnishingType}}
@@ -112,13 +121,14 @@
                                         </span>
                                     </div>
                                     <div ngClass="key-info">
-                                        <p> 15 days of rent off. Only Pay 15 days of brokerage now! Free rental agreement.</p>
+                                        <p> 15 days of rent off. Only Pay 15 days of brokerage now! Free rental
+                                            agreement.</p>
                                     </div>
                                     <div ngClass="description-block-design">
                                         <h4>Property Description</h4>
                                         <p>{{propertyDetailData.propertyDescription}}</p>
                                         <div ngClass="read-more-div text-right">
-<!--                                            <a routerLink="" ngClass="read-more-link">Read more</a>-->
+                                            <!--                                            <a routerLink="" ngClass="read-more-link">Read more</a>-->
                                         </div>
                                     </div>
                                 </mat-tab>
@@ -134,7 +144,8 @@
                                     <div ngClass="property_infor-div-sec">
                                         <div ngClass="property_info-row">
                                             <div ngClass="row">
-                                                <div ngClass="col-xl-3 col-lg-3 col-md-12 col-sm-12" *ngFor="let pro of propertyinfo">
+                                                <div ngClass="col-xl-3 col-lg-3 col-md-12 col-sm-12"
+                                                    *ngFor="let pro of propertyinfo">
                                                     <div ngClass="property_info-text">
                                                         <p>{{pro.label}}</p>
                                                         <h6>{{pro.value}}</h6>
@@ -151,11 +162,14 @@
                                     <div ngClass="amenties_infor-div-sec">
                                         <div ngClass="amenties_info-row">
                                             <div ngClass="row">
-                                                <div ngClass="col-xl-3 col-lg-3 col-md-12 col-sm-12" *ngFor="let amenities of propertyDetailData.propertyFeatures">
+                                                <div ngClass="col-xl-3 col-lg-3 col-md-12 col-sm-12"
+                                                    *ngFor="let amenities of propertyDetailData.propertyFeatures">
                                                     <div ngClass="amenties_info-text">
-                                                        <img height="40px" width="40px" src="{{baseUrl+amenities.propertyFeature.document.fileUrl}}">
+                                                        <img height="40px" width="40px"
+                                                            src="{{baseUrl+amenities.propertyFeature.document.fileUrl}}">
                                                         <p>{{amenities.propertyFeature.featureName}}</p>
-                                                        <button ngClass="see-more-amenties">{{amenities.btnvalue}}</button>
+                                                        <button
+                                                            ngClass="see-more-amenties">{{amenities.btnvalue}}</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -167,37 +181,47 @@
                                         <h5>Rental Price Trends</h5>
                                     </div>
                                     <div ngClass="price_trend-texts">
-                                        <p>3 beds in Downtown Dubai - Rent Evolutions <span ngClass=""><mat-icon>trending_up</mat-icon></span> 40%</p>
+                                        <p>3 beds in Downtown Dubai - Rent Evolutions <span ngClass="">
+                                                <mat-icon>trending_up</mat-icon>
+                                            </span> 40%</p>
                                     </div>
                                     <div ngClass="price-chart-trends">
-                                        <canvas baseChart width="400" height="400"
-                                            [type]="'line'"
-                                            [data]="lineChartData"
-                                            [options]="lineChartOptions"
-                                            [legend]="false"
-                                            >
+                                        <canvas baseChart width="400" height="400" [type]="'line'"
+                                            [data]="lineChartData" [options]="lineChartOptions" [legend]="false">
                                         </canvas>
                                     </div>
                                     <div ngClass="property_like-dislikes">
                                         <div ngClass="row">
                                             <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                                                 <div ngClass="like-dislike-box-wrap position-relative">
-                                                    <h4><strong>This Property cost 186% more</strong> then the average</h4>
+                                                    <h4><strong>This Property cost 186% more</strong> then the average
+                                                    </h4>
                                                     <p>Average Rent is <strong>280, 00 AED/year</strong></p>
-                                                    <span ngClass="dislike-icon"><mat-icon>thumb_down</mat-icon></span>
-                                                    <span ngClass="home_icon"><mat-icon>home</mat-icon></span>
+                                                    <span ngClass="dislike-icon">
+                                                        <mat-icon>thumb_down</mat-icon>
+                                                    </span>
+                                                    <span ngClass="home_icon">
+                                                        <mat-icon>home</mat-icon>
+                                                    </span>
                                                 </div>
                                             </div>
-                                             <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                                            <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                                                 <div ngClass="like-dislike-box-wrap position-relative">
-                                                    <h4><strong>This Property is 24% bigger</strong> then the average</h4>
+                                                    <h4><strong>This Property is 24% bigger</strong> then the average
+                                                    </h4>
                                                     <p>Average Size is <strong>2,047 sqft</strong></p>
-                                                    <span ngClass="like-icon"><mat-icon>thumb_up</mat-icon></span>
-                                                    <span ngClass="home_icon"><mat-icon>home</mat-icon></span>
+                                                    <span ngClass="like-icon">
+                                                        <mat-icon>thumb_up</mat-icon>
+                                                    </span>
+                                                    <span ngClass="home_icon">
+                                                        <mat-icon>home</mat-icon>
+                                                    </span>
                                                 </div>
                                             </div>
                                             <div ngClass="col-sm-12">
-                                                <p ngClass="price-trent_desc-info">The data displayed is based on the average price and size of all listing that were live in the Ovaluate in Dubai</p>
+                                                <p ngClass="price-trent_desc-info">The data displayed is based on the
+                                                    average price and size of all listing that were live in the Ovaluate
+                                                    in Dubai</p>
                                             </div>
                                         </div>
                                     </div>
@@ -213,23 +237,28 @@
                                                     <h4>OV 3456 890 987</h4>
                                                     <h5>{{propertyDetailData.buildingName}}</h5>
                                                     <address>{{propertyDetailData.propertyAddress}}
-                                                  </address>
+                                                    </address>
                                                 </div>
                                                 <div ngClass="scan-buttons">
-                                                    <button ngClass="scan-btn-border"><img src="{{qrscan}}"> QR SCAN - Property Info</button>
-                                                    <button ngClass="scan-btn-border"><img src="{{qrscan}}"> Commute by Metro</button>
-                                                    <button ngClass="scan-btn-border"><img src="{{qrscan}}"> Commute by Vehicle</button>
-                                                    <button ngClass="scan-btn-border"><img src="{{qrscan}}"> Commute by Walk</button>
+                                                    <button ngClass="scan-btn-border"><img src="{{qrscan}}"> QR SCAN -
+                                                        Property Info</button>
+                                                    <button ngClass="scan-btn-border"><img src="{{qrscan}}"> Commute by
+                                                        Metro</button>
+                                                    <button ngClass="scan-btn-border"><img src="{{qrscan}}"> Commute by
+                                                        Vehicle</button>
+                                                    <button ngClass="scan-btn-border"><img src="{{qrscan}}"> Commute by
+                                                        Walk</button>
                                                 </div>
                                             </div>
                                         </div>
                                         <div ngClass="col-xl-9 col-lg-9 col-md-12 col-sm-12">
                                             <div ngClass="location-map-sec">
                                                 <div style="width: 100%">
-                                                  <iframe width="100%" height="311" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
-                                                         src="https://maps.google.com/maps?q=24.10148903316392,53.09649093869425&hl=es&z=14&amp;output=embed" >
-                                                    <a href="https://www.gps.ie/wearable-gps/">Kids wearables</a>
-                                                  </iframe>
+                                                    <iframe width="100%" height="311" frameborder="0" scrolling="no"
+                                                        marginheight="0" marginwidth="0"
+                                                        src="https://maps.google.com/maps?q=24.10148903316392,53.09649093869425&hl=es&z=14&amp;output=embed">
+                                                        <a href="https://www.gps.ie/wearable-gps/">Kids wearables</a>
+                                                    </iframe>
                                                 </div>
                                             </div>
                                         </div>
@@ -241,15 +270,20 @@
                                     </div>
                                     <div ngClass="explore-near-by-buttons">
                                         <button ngClass="explore-btn-design">All</button>
-                                        <button ngClass="explore-btn-design active"><img src="{{restaurant}}"> Restaurants</button>
-                                        <button ngClass="explore-btn-design"><img src="{{restaurant}}"> Groceries</button>
+                                        <button ngClass="explore-btn-design active"><img src="{{restaurant}}">
+                                            Restaurants</button>
+                                        <button ngClass="explore-btn-design"><img src="{{restaurant}}">
+                                            Groceries</button>
                                         <button ngClass="explore-btn-design"><img src="{{restaurant}}"> Cafes</button>
-                                        <button ngClass="explore-btn-design"><img src="{{restaurant}}"> Shopping</button>
+                                        <button ngClass="explore-btn-design"><img src="{{restaurant}}">
+                                            Shopping</button>
                                         <button ngClass="explore-btn-design"><img src="{{restaurant}}"> Schools</button>
                                     </div>
-                                    <div ngClass="explore-near-map">
-                                        <img src="{{exploredemo}}">
+                                    <div class="explore-near-map" id="explore-near-map">
                                     </div>
+                                    <!-- <div ngClass="explore-near-map">
+                                        <img src="{{exploredemo}}">
+                                    </div> -->
                                 </mat-tab>
                             </mat-tab-group>
                         </div>
@@ -258,7 +292,7 @@
                         <div ngClass="property-owner-details">
                             <div ngClass="property-listed-by">
                                 <h4>Property Listed by</h4>
-                                  <img src="{{propertylistedbrand}}">
+                                <img src="{{propertylistedbrand}}">
                             </div>
                             <div ngClass="property-listed-by-details d-flex">
                                 <div ngClass="property-listedby-img position-relative">
@@ -283,29 +317,34 @@
                                     <div ngClass="form-grouph input-design white-input-design">
                                         <mat-form-field class="example-full-width" appearance="fill">
                                             <mat-label>Name</mat-label>
-                                            <input type="text" formControlName="name" matInput placeholder="Location, Project Name">
+                                            <input type="text" formControlName="name" matInput
+                                                placeholder="Location, Project Name">
                                         </mat-form-field>
                                     </div>
                                     <div ngClass="form-grouph input-design white-input-design">
                                         <mat-form-field class="example-full-width" appearance="fill">
                                             <mat-label>Email</mat-label>
-                                            <input type="email" formControlName="email" matInput placeholder="Location, Project Name">
+                                            <input type="email" formControlName="email" matInput
+                                                placeholder="Location, Project Name">
                                         </mat-form-field>
                                     </div>
                                     <div ngClass="form-grouph input-design white-input-design">
                                         <mat-form-field class="example-full-width" appearance="fill">
                                             <mat-label>Phone No.</mat-label>
-                                            <input type="text" formControlName="phone" matInput placeholder="Location, Project Name">
+                                            <input type="text" formControlName="phone" matInput
+                                                placeholder="Location, Project Name">
                                         </mat-form-field>
                                     </div>
                                     <div ngClass="form-grouph textarea-design white-input-design">
                                         <mat-form-field class="example-full-width" appearance="fill">
                                             <mat-label>Message</mat-label>
-                                            <textarea matInput formControlName="message" placeholder="I would like to inquire about the property OV - R8986. Please contact me at your earliest convenience."></textarea>
+                                            <textarea matInput formControlName="message"
+                                                placeholder="I would like to inquire about the property OV - R8986. Please contact me at your earliest convenience."></textarea>
                                         </mat-form-field>
                                     </div>
                                     <div ngClass="form-grouph submit-design submit-design-email-send">
-                                        <button type="button" (click)="leadProceedStore()" ngClass="btn-design-3">Send Email</button>
+                                        <button type="button" (click)="leadProceedStore()" ngClass="btn-design-3">Send
+                                            Email</button>
                                     </div>
                                 </form>
                             </div>
@@ -348,34 +387,42 @@
                         <div ngClass="brand-logo">
                             <img src="{{slide.src}}" alt="">
                         </div>
-                        <button [ngClass]="slide.favorite == true ? 'property-whistlist red-fill' : 'property-whistlist'" (click)="AddToFavorite(slide.id,slide.favorite)">
-                      <svg width="22" height="23" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M4.39376 6.23844C4.02517 6.63167 3.73279 7.0985 3.53331 7.61228C3.33383 8.12605 3.23116 8.67672 3.23116 9.23283C3.23116 9.78894 3.33383 10.3396 3.53331 10.8534C3.73279 11.3672 4.02517 11.834 4.39376 12.2272L11.1699 19.4563L17.946 12.2272C18.6904 11.433 19.1086 10.3559 19.1086 9.23283C19.1086 8.10972 18.6904 7.0326 17.946 6.23844C17.2016 5.44429 16.1919 4.99813 15.1392 4.99813C14.0865 4.99813 13.0768 5.44429 12.3324 6.23844L11.1699 7.47873L10.0073 6.23844C9.63871 5.84521 9.20113 5.53329 8.71954 5.32047C8.23796 5.10766 7.72179 4.99812 7.20053 4.99812C6.67926 4.99812 6.1631 5.10766 5.68152 5.32047C5.19993 5.53329 4.76235 5.84521 4.39376 6.23844V6.23844Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                      </svg>
-                  </button>
+                        <button
+                            [ngClass]="slide.favorite == true ? 'property-whistlist red-fill' : 'property-whistlist'"
+                            (click)="AddToFavorite(slide.id,slide.favorite)">
+                            <svg width="22" height="23" viewBox="0 0 22 23" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M4.39376 6.23844C4.02517 6.63167 3.73279 7.0985 3.53331 7.61228C3.33383 8.12605 3.23116 8.67672 3.23116 9.23283C3.23116 9.78894 3.33383 10.3396 3.53331 10.8534C3.73279 11.3672 4.02517 11.834 4.39376 12.2272L11.1699 19.4563L17.946 12.2272C18.6904 11.433 19.1086 10.3559 19.1086 9.23283C19.1086 8.10972 18.6904 7.0326 17.946 6.23844C17.2016 5.44429 16.1919 4.99813 15.1392 4.99813C14.0865 4.99813 13.0768 5.44429 12.3324 6.23844L11.1699 7.47873L10.0073 6.23844C9.63871 5.84521 9.20113 5.53329 8.71954 5.32047C8.23796 5.10766 7.72179 4.99812 7.20053 4.99812C6.67926 4.99812 6.1631 5.10766 5.68152 5.32047C5.19993 5.53329 4.76235 5.84521 4.39376 6.23844V6.23844Z"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </button>
                         <div ngClass="property-info">
-                          <span ngClass="property-pricing"><span>{{ slide.price }} {{ slide.currency }}</span> / {{slide.rentType}}</span>
-                          <span ngClass="property-name">{{slide.buildingName}}</span>
-                            <p ngClass="property-location"><img src="{{homelocationsvg}}" width="14" alt="">{{slide.propertyAddress}} </p>
+                            <span ngClass="property-pricing"><span>{{ slide.price }} {{ slide.currency }}</span> /
+                                {{slide.rentType}}</span>
+                            <span ngClass="property-name">{{slide.buildingName}}</span>
+                            <p ngClass="property-location"><img src="{{homelocationsvg}}" width="14"
+                                    alt="">{{slide.propertyAddress}} </p>
                             <div ngClass="property-details">
                                 <span ngClass="bed">
-                              <img src="{{bedsvg}}" alt="">{{slide.bedrooms}} Beds
-                          </span>
+                                    <img src="{{bedsvg}}" alt="">{{slide.bedrooms}} Beds
+                                </span>
                                 <span ngClass="bath">
-                              <img src="{{bathsvg}}" alt="">{{slide.bathrooms}} Bath
-                          </span>
+                                    <img src="{{bathsvg}}" alt="">{{slide.bathrooms}} Bath
+                                </span>
                                 <span ngClass="area">
-                              <img src="{{squaremetersvg}}" alt="">{{slide.carpetArea}} sqft
-                          </span>
+                                    <img src="{{squaremetersvg}}" alt="">{{slide.carpetArea}} sqft
+                                </span>
                             </div>
                         </div>
-                        <a [routerLink]="['/PropertDetailsPage']" [queryParams]="{id: slide.id}" ngClass="linK_overlay"></a>
+                        <a [routerLink]="['/PropertDetailsPage']" [queryParams]="{id: slide.id}"
+                            ngClass="linK_overlay"></a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-</section  >
+</section>
 <div ngClass="gallery-modal-design">
     <ng-template #content let-modal>
         <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
@@ -384,10 +431,13 @@
                 <div ngClass="row">
                     <div ngClass="col-xl-4 col-lg-4 col-md-12 col-sm-12">
                         <div ngClass="property-price_detals">
-                            <h4>{{propertyDetailData.propertyPrice}} {{propertyDetailData.currency}} <small>/{{propertyDetailData.rentType}}</small></h4>
+                            <h4>{{propertyDetailData.propertyPrice}} {{propertyDetailData.currency}}
+                                <small>/{{propertyDetailData.rentType}}</small></h4>
                             <div ngClass="property-tags d-flex flex-wrap">
-                                <span ngClass="tags-bg-grey">Brokrage: {{propertyDetailData.brokerageChargePrice}} {{propertyDetailData.currency}}</span>
-                                <span ngClass="tags-bg-grey">Security deposit: {{propertyDetailData.securityDepositPrice}} {{propertyDetailData.currency}}</span>
+                                <span ngClass="tags-bg-grey">Brokrage: {{propertyDetailData.brokerageChargePrice}}
+                                    {{propertyDetailData.currency}}</span>
+                                <span ngClass="tags-bg-grey">Security deposit:
+                                    {{propertyDetailData.securityDepositPrice}} {{propertyDetailData.currency}}</span>
                             </div>
                         </div>
                     </div>
@@ -395,7 +445,8 @@
                         <div ngClass="property-name_detals">
                             <h4>{{propertyDetailData.buildingName}}</h4>
                             <div ngClass="property-addresss">
-                                <p><img src="{{homeaddress}}"> {{propertyDetailData.propertyAddress}} <a routerLink="">District Name</a></p>
+                                <p><img src="{{homeaddress}}"> {{propertyDetailData.propertyAddress}} <a
+                                        routerLink="">District Name</a></p>
                             </div>
                         </div>
                     </div>
@@ -412,9 +463,9 @@
                 </ng-template>
             </ngb-carousel>
             <ngb-carousel *ngIf="documentCheck == false" [showNavigationIndicators]="false">
-              <ng-template ngbSlide >
-                <img src="{{thumb1}}" alt="Random slide">
-              </ng-template>
+                <ng-template ngbSlide>
+                    <img src="{{thumb1}}" alt="Random slide">
+                </ng-template>
             </ngb-carousel>
         </div>
     </ng-template>

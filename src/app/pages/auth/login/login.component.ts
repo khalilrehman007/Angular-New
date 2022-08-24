@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,DoCheck, ElementRef,ViewChild, OnInit } from '@angular/core';
 import { SecondHeaderComponent } from '../../../second-header/second-header.component';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import { AuthService } from 'src/app/service/auth.service';
@@ -22,6 +22,8 @@ export class LoginComponent implements OnInit {
   editdata: any;
   submitted = false;
   responsedata: any;
+  auth2: any;
+  @ViewChild('loginRef', { static: true }) loginElement!: ElementRef;
 
   constructor(private service: AuthService,private route:Router,private notifyService : NotificationService,private _location: Location) {
     localStorage.clear();
@@ -36,6 +38,7 @@ export class LoginComponent implements OnInit {
 
   public showPassword: boolean = false;
   ngOnInit(): void {
+    this.googleAuthSDK();
   }
   public togglePasswordVisibility(): void {
     this.showPassword = !this.showPassword;
@@ -68,5 +71,46 @@ export class LoginComponent implements OnInit {
         // this.route.navigate([''])
       });
     }
+  }
+  callLogin() {
+
+    this.auth2.attachClickHandler(this.loginElement.nativeElement, {},
+      (googleAuthUser: any) => {
+        console.log(googleAuthUser.getAuthResponse());
+        //Print profile details in the console logs
+        let profile = googleAuthUser.getBasicProfile();
+        console.log('access_token || ' + googleAuthUser.getAuthResponse().access_token);
+        console.log('ID: ' + profile.getId());
+        console.log('Name: ' + profile.getName());
+        console.log('Image URL: ' + profile.getImageUrl());
+        console.log('Email: ' + profile.getEmail());
+
+      }, (error: any) => {
+        alert(JSON.stringify(error, undefined, 2));
+      });
+
+  }
+
+  googleAuthSDK() {
+    (<any>window)['googleSDKLoaded'] = () => {
+      (<any>window)['gapi'].load('auth2', () => {
+        this.auth2 = (<any>window)['gapi'].auth2.init({
+          client_id: '420182016845-ai84cpb21nrb6t1tq8jm8jc98b2vp0o8.apps.googleusercontent.com',
+          plugin_name:'login',
+          cookiepolicy: 'single_host_origin',
+          scope: 'profile email'
+        });
+        this.callLogin();
+      });
+    }
+
+    (function (d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) { return; }
+      js = d.createElement('script');
+      js.id = id;
+      js.src = "https://apis.google.com/js/platform.js?onload=googleSDKLoaded";
+      fjs?.parentNode?.insertBefore(js, fjs);
+    }(document, 'script', 'google-jssdk'));
   }
 }

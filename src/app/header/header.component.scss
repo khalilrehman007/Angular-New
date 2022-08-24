@@ -21,6 +21,7 @@ $background-color_10: #fff;
 $background-color_11: #f0f3f5;
 $background-color_12: #ec0606;
 $border-color_1: transparent;
+$btncolor: #0B26AD;
 
 #sidebar {
 	position: absolute;
@@ -355,7 +356,7 @@ header {
 		}
 	}
 	.blue-bordered-btn {
-		border: 2px solid #595ad4;
+		border: 0.25px solid #595ad4;
 		color: $color_4;
 		font-size: 12px;
 		font-weight: 500;
@@ -694,7 +695,7 @@ span.irs-max {
 .ai-tag {
 	border-radius: 3px;
 	color: $color_9;
-	background-color: $background-color_7;
+	background-color: $btncolor;
 	padding: 2px 8px;
 	font-size: 10px;
 	margin: 0px 2px;
@@ -879,7 +880,7 @@ textarea {
     border-radius: 7px;
     width: 412px;
     top: 47px;
-	overflow: auto;
+    overflow: hidden;
 	height: 500px;
 }
 .fav-li>button {
@@ -1006,13 +1007,25 @@ textarea {
     font-size: 16px;
     font-weight: 600;
     padding: 11px 15px;
+	cursor: pointer;
 }
 .compare-btn:hover {
     background-color: #595ad4;
     color: #fff;
 }
-.compare-btn-design {
-    margin-top: 45px;
+.fav-list-dropdown .compare-btn-design {
+    position: absolute;
+    left: 0;
+    right: 0;
+	bottom: 15px;
+}
+.shortlisted-inner-details {
+    max-height: 400px;
+    overflow: auto;
+    padding-bottom: 80px;
+}
+.fav-list-dropdown .compare-btn-design {
+    outline: 15px solid #fff;
 }
 .shortlisted-header button {
     border: none;
