@@ -4,8 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AppService } from 'src/app/service/app.service';
 import * as mapboxgl from 'mapbox-gl';
 import { environment } from 'src/environments/environment';
-import {NotificationService} from "../../../service/notification.service";
-import {AuthService} from "../../../service/auth.service";
+import { NotificationService } from "../../../service/notification.service";
+import { AuthService } from "../../../service/auth.service";
 
 @Component({
   selector: 'app-explore-details',
@@ -51,14 +51,14 @@ export class ExploreDetailsComponent implements OnInit {
   propertyDetails: any;
   oldData1() {
     let tempData: Array<Object> = []
-    this.service.PropertiesListingResidentialByDistrict({ "DistictId": this.id, "PropertyListingTypeId": "1" ,"UserId":this.userId}).subscribe(data => {
+    this.service.PropertiesListingResidentialByDistrict({ "DistictId": this.id, "PropertyListingTypeId": "1", "UserId": this.userId }).subscribe(data => {
       this.propertyDetails = data;
       this.propertyDetails = this.propertyDetails.data;
 
       this.propertyDetails.forEach((element, i) => {
         let image = 'assets/images/placeholder.png'
-        if(element.documents.length > 1){
-          image = this.baseUrl+element.documents[0].fileUrl
+        if (element.documents.length > 1) {
+          image = this.baseUrl + element.documents[0].fileUrl
         }
         tempData.push(
           {
@@ -68,7 +68,7 @@ export class ExploreDetailsComponent implements OnInit {
             price: element.propertyPrice,
             id: element.id,
             alt: element.propertyTitle,
-            src:image,
+            src: image,
             bedrooms: element.bedrooms,
             propertyAddress: element.propertyAddress,
             bathrooms: element.bathrooms,
@@ -81,13 +81,13 @@ export class ExploreDetailsComponent implements OnInit {
   }
   newData1() {
     let tempData: Array<Object> = []
-    this.service.PropertiesListingResidentialByDistrict({ "DistictId": this.id, "PropertyListingTypeId": "2" ,"UserId":this.userId}).subscribe(data => {
+    this.service.PropertiesListingResidentialByDistrict({ "DistictId": this.id, "PropertyListingTypeId": "2", "UserId": this.userId }).subscribe(data => {
       this.propertyDetails = data;
       this.propertyDetails = this.propertyDetails.data;
       this.propertyDetails.forEach((element, i) => {
         let image = 'assets/images/placeholder.png'
-        if(element.documents.length > 1){
-          image = this.baseUrl+element.documents[0].fileUrl
+        if (element.documents.length > 1) {
+          image = this.baseUrl + element.documents[0].fileUrl
         }
         tempData.push(
           {
@@ -112,13 +112,13 @@ export class ExploreDetailsComponent implements OnInit {
 
   oldData2() {
     let tempData: Array<Object> = []
-    this.service.PropertiesListingCommercialByDistrict({ "DistictId": this.id, "PropertyListingTypeId": "1" ,"UserId":this.userId}).subscribe(data => {
+    this.service.PropertiesListingCommercialByDistrict({ "DistictId": this.id, "PropertyListingTypeId": "1", "UserId": this.userId }).subscribe(data => {
       this.propertyDetails = data;
       this.propertyDetails = this.propertyDetails.data;
       this.propertyDetails.forEach((element, i) => {
         let image = 'assets/images/placeholder.png'
-        if(element.documents.length > 1){
-          image = this.baseUrl+element.documents[0].fileUrl
+        if (element.documents.length > 1) {
+          image = this.baseUrl + element.documents[0].fileUrl
         }
         tempData.push(
           {
@@ -142,13 +142,13 @@ export class ExploreDetailsComponent implements OnInit {
   }
   newData2() {
     let tempData: Array<Object> = []
-    this.service.PropertiesListingCommercialByDistrict({ "DistictId": this.id, "PropertyListingTypeId": "2","UserId":this.userId }).subscribe(data => {
+    this.service.PropertiesListingCommercialByDistrict({ "DistictId": this.id, "PropertyListingTypeId": "2", "UserId": this.userId }).subscribe(data => {
       this.propertyDetails = data;
       this.propertyDetails = this.propertyDetails.data;
       this.propertyDetails.forEach((element, i) => {
         let image = 'assets/images/placeholder.png'
-        if(element.documents.length > 1){
-          image = this.baseUrl+element.documents[0].fileUrl
+        if (element.documents.length > 1) {
+          image = this.baseUrl + element.documents[0].fileUrl
         }
         tempData.push(
           {
@@ -195,10 +195,10 @@ export class ExploreDetailsComponent implements OnInit {
   }
   districtDetail: any = {};
   dataLoaded: boolean = false;
-  userId :any;
-  user : any
+  userId: any;
+  user: any
 
-  constructor(private authService:AuthService,private router: Router,private route: ActivatedRoute, private service: AppService,private notifyService : NotificationService) {
+  constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute, private service: AppService, private notifyService: NotificationService) {
     mapboxgl.accessToken = environment.mapbox.accessToken;
     this.route.params.subscribe(params => {
       this.id = params['id'];
@@ -207,14 +207,13 @@ export class ExploreDetailsComponent implements OnInit {
     this.oldData1();
     this.getUser();
     let userId = '';
-    if(this.user !== null){
+    if (this.user !== null) {
       userId = this.user.id;
     }
     this.userId = userId;
     this.service.ExploreDistrict(this.id).subscribe((result: any) => {
       this.dataLoaded = true;
       this.districtDetail = result.data;
-      console.log((parseFloat(this.districtDetail.northEastLng) + parseFloat(this.districtDetail.southWestLng)) / 2, (parseFloat(this.districtDetail.northEastLat) + parseFloat(this.districtDetail.southWestLat)) / 2);
       this.bounds.push([this.districtDetail.southWestLng, this.districtDetail.southWestLat]);
       this.bounds.push([this.districtDetail.northEastLng, this.districtDetail.northEastLat]);
       this.map = new mapboxgl.Map({
@@ -224,14 +223,37 @@ export class ExploreDetailsComponent implements OnInit {
         zoom: 11,
         maxBounds: this.bounds
       })
-      const marker = new mapboxgl.Marker({ color: "#FF0000", draggable: true }).setLngLat([(parseFloat(this.districtDetail.northEastLng) + parseFloat(this.districtDetail.southWestLng)) / 2, (parseFloat(this.districtDetail.northEastLat) + parseFloat(this.districtDetail.southWestLat)) / 2]).addTo(this.map);
+      let marker = new mapboxgl.Marker({ color: "#FF0000", draggable: true }).setLngLat([(parseFloat(this.districtDetail.northEastLng) + parseFloat(this.districtDetail.southWestLng)) / 2, (parseFloat(this.districtDetail.northEastLat) + parseFloat(this.districtDetail.southWestLat)) / 2]).addTo(this.map).setPopup(
+        new mapboxgl.Popup({ offset: 25 }) // add popups
+          .setHTML(this.districtDetail.name)
+      ).togglePopup();
       // get lat lng on marker drag end
-      marker.on('dragend', function (e: any) {
-        console.log(e.target._lngLat);
+      marker.on('dragend', (e: any) => {
+        $.ajax({
+          url: "https://api.mapbox.com/geocoding/v5/mapbox.places/" + e.target._lngLat.lng + "," + e.target._lngLat.lat + ".json?types=address&access_token=" + environment.mapbox.accessToken,
+          // url: "https://api.mapbox.com/geocoding/v5/mapbox.places/-73.989,40.733.json?types=address&access_token=" + environment.mapbox.accessToken,
+          method: "get",
+          contentType: false,
+          processData: false,
+          dataType: "json",
+          success: (res: any) => {
+            marker.remove();
+            if (res.features.length > 0) {
+              marker = new mapboxgl.Marker({ color: "#FF0000", draggable: true }).setLngLat([e.target._lngLat.lng, e.target._lngLat.lat]).addTo(this.map).setPopup(
+                new mapboxgl.Popup({ offset: 25 })
+                  .setHTML(res.features[0].place_name)
+              ).togglePopup();
+            } else {
+              marker = new mapboxgl.Marker({ color: "#FF0000", draggable: true }).setLngLat([e.target._lngLat.lng, e.target._lngLat.lat]).addTo(this.map);
+            }
+          },
+          error: (err) => {
+            console.log(err);
+          }
+        });
       });
     });
   }
-
   ngOnInit(): void {
   }
   Overview() {
@@ -258,17 +280,17 @@ export class ExploreDetailsComponent implements OnInit {
     this.status2 = false;
     this.status3 = !this.status3;
   }
-  getUser(){
+  getUser() {
     this.user = localStorage.getItem('user');
-    if(this.user != ''){
+    if (this.user != '') {
       this.user = JSON.parse(this.user);
     }
     return this.user;
   }
 
-  wishlistStatus :any;
-  AddToFavorite(id:any,status:any,part:any) {
-    if(this.userId == ''){
+  wishlistStatus: any;
+  AddToFavorite(id: any, status: any, part: any) {
+    if (this.userId == '') {
       this.notifyService.showSuccess('First you need to login', "");
       this.router.navigate(['/login'])
     }
@@ -278,29 +300,29 @@ export class ExploreDetailsComponent implements OnInit {
       this.router.navigate(['login']);
     }
 
-    this.service.FavoriteAddRemove(status,{"UserId":this.userId,"PropertyListingId":id}).subscribe(data => {
-      let responsedata :any = data
-      if(responsedata.message == "Favorite is Removed successfully"){
+    this.service.FavoriteAddRemove(status, { "UserId": this.userId, "PropertyListingId": id }).subscribe(data => {
+      let responsedata: any = data
+      if (responsedata.message == "Favorite is Removed successfully") {
         this.wishlistStatus = "Favorite is Removed successfully"
         this.notifyService.showSuccess('Favorite is Removed successfully', "");
-      }else {
+      } else {
         this.wishlistStatus = "Favorite is added successfully"
         this.notifyService.showSuccess('Favorite is added successfully', "");
       }
     });
-    if(part == "resedential-old"){
+    if (part == "resedential-old") {
       setTimeout(() => {
         this.oldData1();
       }, 1000);
-    }else if(part == "resedential-new"){
+    } else if (part == "resedential-new") {
       setTimeout(() => {
         this.newData1();
       }, 1000);
-    }else if(part == "commercial-old"){
+    } else if (part == "commercial-old") {
       setTimeout(() => {
         this.oldData2();
       }, 1000);
-    }else if(part == "commercial-new"){
+    } else if (part == "commercial-new") {
       setTimeout(() => {
         this.newData2();
       }, 1000);
