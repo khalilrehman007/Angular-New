@@ -185,7 +185,23 @@ export class PropertyInnerComponent implements OnInit {
       this.propertyDetail = jsonParsDate
       this.isload = true
 
-      console.log(jsonParsDate.propertyListing,'dedededeuububububdedede')
+      let tenantType :any = '';
+      if(jsonParsDate.propertyListing.tenantType !==null && jsonParsDate.propertyListing.tenantType.name !== null && jsonParsDate.propertyListing.tenantType.name !== undefined){
+        tenantType = jsonParsDate.propertyListing.tenantType.name
+      }
+
+      let occupancyStatus :any = '';
+      if(jsonParsDate.propertyListing.occupancyStatus !== null && jsonParsDate.propertyListing.occupancyStatus.name !== null && jsonParsDate.propertyListing.occupancyStatus.name !== undefined){
+        occupancyStatus = jsonParsDate.propertyListing.occupancyStatus.name
+      }
+      let propertyManage :any = '';
+      if(jsonParsDate.propertyListing.propertyManage !== null && jsonParsDate.propertyListing.propertyManage.name !== null && jsonParsDate.propertyListing.propertyManage.name !== undefined){
+        propertyManage = jsonParsDate.propertyListing.propertyManage.name
+      }
+      let rentType :any = '';
+      if(jsonParsDate.propertyListing.rentType !== null && jsonParsDate.propertyListing.rentType.name !== null && jsonParsDate.propertyListing.rentType.name !== undefined){
+        rentType = jsonParsDate.propertyListing.rentType.name
+      }
 
       // console.log(jsonParsDate.propertyListing.rentType,'dededededed')
       if(jsonParsDate.propertyListing != null){
@@ -217,14 +233,14 @@ export class PropertyInnerComponent implements OnInit {
         this.propertyDetailData.bathrooms = (jsonParsDate.propertyListing.bathrooms !== undefined) ? jsonParsDate.propertyListing.bathrooms : ''
         this.propertyDetailData.furnishingType = (jsonParsDate.propertyListing.furnishingType !== undefined) ? jsonParsDate.propertyListing.furnishingType : ''
         this.propertyDetailData.fittingType = (jsonParsDate.propertyListing.fittingType !== undefined) ? jsonParsDate.propertyListing.fittingType : ''
-        this.propertyDetailData.tenantType = (jsonParsDate.propertyListing.tenantType.name !== undefined) ? jsonParsDate.propertyListing.tenantType.name : ''
+        this.propertyDetailData.tenantType = tenantType
         this.propertyDetailData.gender = (jsonParsDate.propertyListing.gender !== undefined) ? jsonParsDate.propertyListing.gender : ''
         this.propertyDetailData.parkings = (jsonParsDate.propertyListing.parkings !== undefined) ? jsonParsDate.propertyListing.parkings : ''
         this.propertyDetailData.carpetArea = (jsonParsDate.propertyListing.carpetArea !== undefined) ? jsonParsDate.propertyListing.carpetArea : ''
         this.propertyDetailData.buildupArea = (jsonParsDate.propertyListing.buildupArea !== undefined) ? jsonParsDate.propertyListing.buildupArea : ''
-        this.propertyDetailData.occupancyStatus = (jsonParsDate.propertyListing.occupancyStatus.name !== undefined) ? jsonParsDate.propertyListing.occupancyStatus.name : ''
-        this.propertyDetailData.propertyManage = (jsonParsDate.propertyListing.propertyManage.name !== undefined) ? jsonParsDate.propertyListing.propertyManage.name : ''
-        this.propertyDetailData.rentType = (jsonParsDate.propertyListing.rentType !== undefined) ? jsonParsDate.propertyListing.rentType : ''
+        this.propertyDetailData.occupancyStatus = occupancyStatus
+        this.propertyDetailData.propertyManage = propertyManage
+        this.propertyDetailData.rentType = rentType
         this.propertyDetailData.securityDepositPrice = (jsonParsDate.propertyListing.securityDepositPrice !== undefined) ? jsonParsDate.propertyListing.securityDepositPrice : ''
         this.propertyDetailData.brokerageChargePrice = (jsonParsDate.propertyListing.brokerageChargePrice !== undefined) ? jsonParsDate.propertyListing.brokerageChargePrice : ''
         this.propertyDetailData.availableDate = (jsonParsDate.propertyListing.availableDate !== undefined) ? jsonParsDate.propertyListing.availableDate : ''
@@ -242,6 +258,7 @@ export class PropertyInnerComponent implements OnInit {
         let resp :any = this.domSanitizer.bypassSecurityTrustUrl(ree);
         this.locationAddress1 = resp
 
+
         if(this.propertyDetail.propertyListing.documents.length == 0){
           this.documentCheck = false;
         }
@@ -252,11 +269,11 @@ export class PropertyInnerComponent implements OnInit {
         // this.locationAddress = "https://maps.google.com/maps?q=24.10148903316392,53.09649093869425&hl=es&z=14&amp;output=embed";
 
 
-        if(this.propertyDetail.propertyListing.documents[0].fileUrl != null){
+        if(this.propertyDetail.propertyListing.documents[0].fileUrl != null && this.propertyDetail.propertyListing.documents[0].fileUrl !== undefined){
           this.thumb1 = this.baseUrl+this.propertyDetail.propertyListing.documents[0].fileUrl;
         }
-        if(this.propertyDetail.propertyListing.documents[1].fileUrl != null){
-          this.thumb1 = this.baseUrl+this.propertyDetail.propertyListing.documents[1].fileUrl;
+        if(this.propertyDetail.propertyListing.documents.length > 0 && this.propertyDetail.propertyListing.documents[1].fileUrl !== undefined){
+          this.thumb2 = this.baseUrl+this.propertyDetail.propertyListing.documents[1].fileUrl;
         }
 
         if(jsonParsDate.detailsChart != null){
@@ -278,7 +295,7 @@ export class PropertyInnerComponent implements OnInit {
         ///end
       }
 
-      if(jsonParsDate.user != null){
+      if(jsonParsDate.user != null && jsonParsDate.user != undefined && jsonParsDate.user.imageUrl != null){
         this.propertyDetailData.userImageUrl = (jsonParsDate.user.imageUrl !== undefined) ? this.baseUrl+jsonParsDate.user.imageUrl : '../assets/images/user.png'
         this.propertyDetailData.userfullName = (jsonParsDate.user.fullName !== undefined) ? jsonParsDate.user.fullName : ''
       }else{
