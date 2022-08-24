@@ -323,6 +323,9 @@ export class AppService {
   CompanyLocationAutoCompleteSearch(data: any) {
     return this.http.post(this.apiurl + 'CompanyLocationAutoCompleteSearch', data);
   }
+  DistrictAutoComplete(data: any) {
+    return this.http.post(this.apiurl + 'DistrictAutoComplete', data);
+  }
 
   PropertiesListingResidentialByDistrict(data: any) {
     return this.http.post(this.apiurl + 'PropertiesListingResidentialByDistrict', data);

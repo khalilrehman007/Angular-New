@@ -35,12 +35,22 @@ export class AgentLandingComponent implements OnInit {
   country: any = [];
   languageIds: any;
   ExpertInId: any;
+  getAgentId: any;
+  locationId: any = [];
 
   constructor(private activeRoute: ActivatedRoute, private authService: AuthService, private router: Router, private service: AppService) {
     this.agentData();
     this.companyData();
+    this.getCompany({"Searching":'',"CountryId":"1"});
+
     this.languageIds = this.activeRoute.snapshot.queryParamMap.get('LanguageId');
     this.ExpertInId = this.activeRoute.snapshot.queryParamMap.get('ExpertInId');
+    this.locationId = this.activeRoute.snapshot.queryParamMap.get('locationId');
+    this.getAgentId = this.activeRoute.snapshot.queryParamMap.get('getAgentId');
+
+    this.locationId = JSON.parse(this.locationId);
+
+    console.log(this.languageIds,this.ExpertInId,this.locationId,this.getAgentId)
 
     if (this.ExpertInId == null) {
       this.ExpertInId = 0
@@ -61,7 +71,12 @@ export class AgentLandingComponent implements OnInit {
       this.agentData();
     }
 
-    let agentObject: any = { "CountryId": "1", "DistrictsId": [], "CompaniesId": [], "UserId": "0", "EpertInId": this.ExpertInId, "LanguageId": this.languageIds, "CurrentPage": 1 };
+    let agentObject: any = { "CountryId": "1", "DistrictsId": this.locationId,
+      "CompaniesId": [], "UserId": "0", "EpertInId": this.ExpertInId,
+      "LanguageId": this.languageIds, "CurrentPage": 1
+    };
+
+    this.agentListData(agentObject);
 
     this.companiesListData({ "CountryId": "1", "DistrictsId": [], "CompaniesId": [], "CurrentPage": 1 });
 
@@ -80,10 +95,25 @@ export class AgentLandingComponent implements OnInit {
         for (let country of result.data) {
           this.country.push({ name: country.name, id: country.id });
         }
-        this.agentListData(agentObject);
       }
     });
   }
+
+  companyOnSearchData :any = []
+  getCompany(data:any){
+    let tempData :any = []
+    let tempCompleteData :any = []
+    this.service.CompanyLocationAutoCompleteSearch(data).subscribe(data=>{
+      let response: any = data;
+      response.data.companyAutoComplete.forEach((element, i) => {
+        tempData.push(element.value);
+        tempCompleteData.push({'id':element.key,'value':element.value})
+      })
+    });
+    this.searchList = tempData
+    this.companyOnSearchData = tempCompleteData
+  }
+
   featuredAgentData: any;
   agentCheck: any = false;
   companiesCheck: any = false;
@@ -818,7 +848,21 @@ export class AgentLandingComponent implements OnInit {
     this.searchctrl.setValue(null);
   }
 
+
+  removeCompanyIds :any =[]
   remove(searchCompenies: string): void {
+    let removeId :any;
+    this.companyOnSearchData.forEach((element, i) => {
+      if(element.value == searchCompenies){
+        removeId = element.id
+      }
+    })
+
+    let companyIndex :number = this.companyIds.indexOf(removeId);
+    if (companyIndex !== -1) {
+      this.companyIds.splice(companyIndex, 1);
+    }
+
     const index = this.SearchKeyword.indexOf(searchCompenies);
 
     if (index >= 0) {
@@ -826,7 +870,13 @@ export class AgentLandingComponent implements OnInit {
     }
   }
 
+  companyIds :any = []
   selected(event: MatAutocompleteSelectedEvent): void {
+    this.companyOnSearchData.forEach((element, i) => {
+      if(element.value == event.option.viewValue){
+        this.companyIds.push(element.id)
+      }
+    })
     this.SearchKeyword.push(event.option.viewValue);
     this.SearchInput.nativeElement.value = '';
     this.searchctrl.setValue(null);
@@ -854,4 +904,19 @@ export class AgentLandingComponent implements OnInit {
     const filterValue = value.toLowerCase();
     return this.searchList.filter(searchCompenies => searchCompenies.toLowerCase().includes(filterValue));
   }
+
+
+  childParentDataLoad(data: any) {
+    console.log(data)
+    this.agentListData(data);
+  }
+
+  proceedCompanySearch(){
+
+    let params :any = { "CountryId": "1", "DistrictsId": [], "CompaniesId": this.companyIds, "CurrentPage": 1 }
+    this.router.navigate(['/find-agent'],{queryParams:params})
+    this.companiesListData(params);
+
+  }
+
 }

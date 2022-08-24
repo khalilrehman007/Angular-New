@@ -1,4 +1,4 @@
-import { Component,OnInit,Output,EventEmitter} from '@angular/core';
+import {Component, OnInit, Output, EventEmitter, ViewChild, ElementRef} from '@angular/core';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {MatChipInputEvent} from '@angular/material/chips';
 import {ActivatedRoute, Router} from "@angular/router";
@@ -7,6 +7,9 @@ import {FormControl, FormGroup} from "@angular/forms";
 import { Options } from '@angular-slider/ngx-slider';
 import {RentpropertiesComponent} from "../pages/rentproperties/rentproperties.component";
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import {Observable} from "rxjs";
+import {map, startWith} from "rxjs/operators";
+import {MatAutocompleteSelectedEvent} from "@angular/material/autocomplete";
 export interface KeywordString {
   name: string;
 }
@@ -43,12 +46,21 @@ export class PropertyfilterComponent implements OnInit {
   furnishingType: any;
   propertyListingFeatures: any;
   postedByOption: any;
-  
+  DistrictsId:any = [];
+  DistrictsValue:any = [];
 
   ngOnInit(): void {
     //parent method
     // this.childToParentDataLoad.emit('hikmat')
   }
+
+
+  separatorKeysCodes1: number[] = [ENTER, COMMA];
+  fruitCtrl = new FormControl('');
+  filteredFruits: Observable<string[]>;
+  fruits: string[] = [];
+  allFruits: string[] = [];
+  @ViewChild('fruitInput') fruitInput: ElementRef<HTMLInputElement>;
 
   constructor(private activeRoute: ActivatedRoute,private service:AppService,private api: AppService,private route:Router,private modalService: NgbModal) {
     this.type                 = this.activeRoute.snapshot.queryParamMap.get('type');
@@ -60,6 +72,25 @@ export class PropertyfilterComponent implements OnInit {
     this.PriceEnd              = this.activeRoute.snapshot.queryParamMap.get('PriceEnd');
     this.Bedrooms              = this.activeRoute.snapshot.queryParamMap.get('Bedrooms');
     this.Bathrooms              = this.activeRoute.snapshot.queryParamMap.get('Bathrooms');
+    let DistrictsId :any = this.activeRoute.snapshot.queryParamMap.get('DistrictsId');
+    let DistrictsValue :any = this.activeRoute.snapshot.queryParamMap.get('DistrictsValue');
+    this.DistrictsId = JSON.parse(DistrictsId)
+    this.DistrictsValue = JSON.parse(DistrictsValue)
+
+    this.getLoaction({"Searching":"","CountryId":"1"});
+
+    if(this.DistrictsValue !== null){
+      this.fruits = this.DistrictsValue
+    }
+
+    console.log(this.DistrictsId)
+    console.log(this.DistrictsValue)
+
+
+    this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
+      startWith(null),
+      map((fruit: string | null) => (fruit ? this._filter(fruit) : this.allFruits.slice())),
+    );
 
     this.minValue = this.PriceStart;
     this.maxValue = this.PriceEnd;
@@ -101,6 +132,78 @@ export class PropertyfilterComponent implements OnInit {
 
     this.rentTypeIdCheck()
   }
+
+
+  locationOnSearchData :any = []
+  getLoaction(data:any){
+    let tempData :any = []
+    let tempCompleteData :any = []
+    this.service.CompanyLocationAutoCompleteSearch(data).subscribe(data=>{
+      let response: any = data;
+      response.data.locationAutoComplete.forEach((element, i) => {
+        tempData.push(element.item2);
+        tempCompleteData.push({'id':element.item1,'value':element.item2})
+      })
+    });
+    this.allFruits = tempData
+    this.locationOnSearchData = tempCompleteData
+  }
+
+
+
+  add1(event: MatChipInputEvent): void {
+
+    const value = (event.value || '').trim();
+
+    // Add our fruit
+    if (value) {
+      this.fruits.push(value);
+    }
+
+    // Clear the input value
+    event.chipInput!.clear();
+
+    this.fruitCtrl.setValue(null);
+  }
+
+  remove1(fruit: string): void {
+
+    let removeId :any;
+    this.locationOnSearchData.forEach((element, i) => {
+      if(element.value == fruit){
+        removeId = element.id
+      }
+    })
+
+    let companyIndex :number = this.DistrictsId.indexOf(removeId);
+    if (companyIndex !== -1) {
+      this.DistrictsId.splice(companyIndex, 1);
+    }
+
+    const index = this.fruits.indexOf(fruit);
+
+    if (index >= 0) {
+      this.fruits.splice(index, 1);
+    }
+  }
+
+  selected(event: MatAutocompleteSelectedEvent): void {
+    this.locationOnSearchData.forEach((element, i) => {
+      if(element.value == event.option.viewValue){
+        this.DistrictsId.push(element.id)
+      }
+    })
+    this.fruits.push(event.option.viewValue);
+    this.fruitInput.nativeElement.value = '';
+    this.fruitCtrl.setValue(null);
+  }
+
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+    return this.allFruits.filter(fruit => fruit.toLowerCase().includes(filterValue));
+  }
+
+
   RentTypeIndexId:number;
   public rentTypeIdCheck() {
     // const tabCount = 3;
@@ -207,10 +310,16 @@ export class PropertyfilterComponent implements OnInit {
     let params :any = {type:this.type,"PropertyTypeIds":[],"RentTypeId":this.RentTypeId,
       "PropertyCategoryId":this.PropertyCategoryId,PriceStart:this.SubmitForm.value.PriceStart,PriceEnd:this.SubmitForm.value.PriceEnd,
       Bedrooms:this.Bedrooms,Bathrooms:this.Bathrooms,PropertyAddress:this.SubmitForm.value.Name,
-      "PropertyListingTypeId":this.PropertyListingTypeId,CurrentPage:1
+      "PropertyListingTypeId":this.PropertyListingTypeId,CurrentPage:1,DistrictsId:JSON.stringify(this.DistrictsId),
+      DistrictsValue:JSON.stringify(this.DistrictsValue)
+    }
+    let objects :any = {type:this.type,"PropertyTypeIds":[],"RentTypeId":this.RentTypeId,
+      "PropertyCategoryId":this.PropertyCategoryId,PriceStart:this.SubmitForm.value.PriceStart,PriceEnd:this.SubmitForm.value.PriceEnd,
+      Bedrooms:this.Bedrooms,Bathrooms:this.Bathrooms,PropertyAddress:this.SubmitForm.value.Name,
+      "PropertyListingTypeId":this.PropertyListingTypeId,CurrentPage:1,DistrictsId:this.DistrictsId
     }
     this.route.navigate(['/search'],{queryParams:params})
-    this.childToParentDataLoad.emit(params)
+    this.childToParentDataLoad.emit(objects)
 
   }
 
@@ -239,7 +348,7 @@ export class PropertyfilterComponent implements OnInit {
 
     let params :any = {type:'',"PropertyTypeIds":[], "PropertyAddress":'',"RentTypeId":'',
       "PropertyCategoryId":'',PriceStart:'',PriceEnd:'', Bedrooms:'',Bathrooms:'',
-      "PropertyListingTypeId":'',CurrentPage:1
+      "PropertyListingTypeId":'',CurrentPage:1,DistrictsId:JSON.stringify(this.DistrictsId),DistrictsValue:JSON.stringify(this.fruits)
     }
     this.route.navigate(['/search'],{queryParams:params})
     this.childToParentDataLoad.emit(params)

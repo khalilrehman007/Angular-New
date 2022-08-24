@@ -20,7 +20,7 @@
             <div ngClass="form_tabs">
                 <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade show {{agentCheck ? 'active' : ''}}" id="find-agents">
-                        <find-agent-search></find-agent-search>
+                        <find-agent-search (childParentDataLoad)="childParentDataLoad($event)"></find-agent-search>
                     </div>
                     <div class="tab-pane fade show {{companiesCheck ? 'active' : ''}}" id="pills-companies">
                         <div ngClass="tab-form-sec rent-form">
@@ -56,7 +56,7 @@
                                         </div>
                                     </div>
                                     <div ngClass="flex-column flex-column-10">
-                                        <button type="submit" ngClass="search-btn"><img
+                                        <button (click)="proceedCompanySearch()"  ngClass="search-btn"><img
                                                 src="assets/images/search.svg"></button>
                                     </div>
                                 </div>
