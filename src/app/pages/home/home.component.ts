@@ -543,9 +543,13 @@ export class HomeComponent implements OnInit {
     this.service.LoadFeeback().subscribe(data=>{
       let response: any = data;
       response.data.forEach((element, i) => {
-        let image = element.imageUrl
+        let image = '../assets/images/user.png'
+        if(element.imageUrl !== null && element.imageUrl !== undefined){
+          image = this.baseUrl+element.imageUrl
+        }
+
         tempData.push(
-          {id:element.id,heading: element.fullName, desc: element.feedback, src:this.baseUrl+image,location:element.address});
+          {id:element.id,heading: element.fullName, desc: element.feedback, src:image,location:element.address});
       })
     });
     this.clientFeedback = tempData
