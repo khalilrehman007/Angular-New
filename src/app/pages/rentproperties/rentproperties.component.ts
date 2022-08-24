@@ -87,7 +87,7 @@ export class RentpropertiesComponent implements OnInit {
     this.PropertyAddress = this.activeRoute.snapshot.queryParamMap.get('PropertyAddress');
     this.PriceStart = this.activeRoute.snapshot.queryParamMap.get('PriceStart');
     this.PriceEnd = this.activeRoute.snapshot.queryParamMap.get('PriceEnd');
-    let DistrictsId :any = this.activeRoute.snapshot.queryParamMap.get('DistrictsId');
+    let DistrictsId :any = this.activeRoute.snapshot.queryParamMap.get('DistrictIds');
     let DistrictsValue :any = this.activeRoute.snapshot.queryParamMap.get('DistrictsValue');
     this.DistrictsId = JSON.parse(DistrictsId)
     this.DistrictsValue = JSON.parse(DistrictsValue)
@@ -108,7 +108,7 @@ export class RentpropertiesComponent implements OnInit {
     let params: any = {
       "PropertyTypeIds": this.PropertyTypeIds, "PropertyAddress": this.PropertyAddress, "RentTypeId": this.RentTypeId,
       "PropertyCategoryId": this.PropertyCategoryId, "PriceStart": this.PriceStart, "PriceEnd": this.PriceEnd,
-      "PropertyListingTypeId": this.PropertyListingTypeId, "SortedBy": this.sortedById, CurrentPage: 1,DistrictsId:this.DistrictsId
+      "PropertyListingTypeId": this.PropertyListingTypeId, "SortedBy": this.sortedById, CurrentPage: 1,DistrictIds:this.DistrictsId
     }
 
     this.LoadPropertyCategories();
@@ -160,7 +160,7 @@ export class RentpropertiesComponent implements OnInit {
     let params: any = {
       "PropertyTypeIds": this.PropertyTypeIds, "PropertyAddress": this.PropertyAddress, "RentTypeId": this.RentTypeId,
       "PropertyCategoryId": this.PropertyCategoryId, "PriceStart": this.PriceStart, "PriceEnd": this.PriceEnd,
-      "PropertyListingTypeId": this.PropertyListingTypeId, "SortedBy": this.sortedById, CurrentPage: this.page,DistrictsId:this.DistrictsId
+      "PropertyListingTypeId": this.PropertyListingTypeId, "SortedBy": this.sortedById, CurrentPage: this.page,DistrictIds:this.DistrictsId
     }
 
     this.loadListingProperty(params);
@@ -171,7 +171,7 @@ export class RentpropertiesComponent implements OnInit {
     let params: any = {
       "PropertyTypeIds": this.PropertyTypeIds, "PropertyAddress": this.PropertyAddress, "RentTypeId": this.RentTypeId,
       "PropertyCategoryId": this.PropertyCategoryId, "PriceStart": this.PriceStart, "PriceEnd": this.PriceEnd,
-      "PropertyListingTypeId": this.PropertyListingTypeId, "SortedBy": this.sortedById, CurrentPage: this.page,DistrictsId:this.DistrictsId
+      "PropertyListingTypeId": this.PropertyListingTypeId, "SortedBy": this.sortedById, CurrentPage: this.page,DistrictIds:this.DistrictsId
     }
     this.loadListingProperty(params);
   }
@@ -181,7 +181,7 @@ export class RentpropertiesComponent implements OnInit {
     let params: any = {
       "PropertyTypeIds": this.PropertyTypeIds, "PropertyAddress": this.PropertyAddress, "RentTypeId": this.RentTypeId,
       "PropertyCategoryId": this.PropertyCategoryId, "PriceStart": this.PriceStart, "PriceEnd": this.PriceEnd,
-      "PropertyListingTypeId": this.PropertyListingTypeId, "videoSorting": this.videoTourSorting, CurrentPage: this.page,DistrictsId:this.DistrictsId
+      "PropertyListingTypeId": this.PropertyListingTypeId, "videoSorting": this.videoTourSorting, CurrentPage: this.page,DistrictIds:this.DistrictsId
     }
     console.log(params);
     this.loadListingProperty(params);
@@ -296,7 +296,7 @@ export class RentpropertiesComponent implements OnInit {
     let params: any = {
       "PropertyTypeIds": this.PropertyTypeIds, "PropertyAddress": this.PropertyAddress, "RentTypeId": this.RentTypeId,
       "PropertyCategoryId": this.PropertyCategoryId, "PriceStart": this.PriceStart, "PriceEnd": this.PriceEnd,
-      "PropertyListingTypeId": this.PropertyListingTypeId, "SortedBy": this.sortedById, CurrentPage: 1,DistrictsId:this.DistrictsId
+      "PropertyListingTypeId": this.PropertyListingTypeId, "SortedBy": this.sortedById, CurrentPage: 1,DistrictIds:this.DistrictsId
     }
     this.service.FavoriteAddRemove(status, { "UserId": this.userId, "PropertyListingId": id }).subscribe(data => {
       let responsedata: any = data

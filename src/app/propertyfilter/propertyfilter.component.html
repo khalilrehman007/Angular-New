@@ -193,8 +193,8 @@
                 <div ngClass="block-wrapper mb-4">
                   <label class="h6-design">Furnishing Type</label>
                   <div class="checkbox-flex-box three-column button-same-select">
-                    <div class="checkbox-design position-relative" *ngFor="let data of furnishingType">
-                      <input type="radio" id="Furnished" name="furnishing-types" value="Furnished">
+                    <div (click)="furnishedTypeChange(data.id)" class="checkbox-design position-relative" *ngFor="let data of furnishingType">
+                      <input type="radio"  id="Furnished" name="furnishing-types" value="Furnished">
                       <button class="checkbox-btn">{{data.name}}</button>
                     </div>
                     <!-- <div class="checkbox-design position-relative">
@@ -216,7 +216,7 @@
                       <div ngClass="block-wrapper mb-2">
                         <div ngClass="position-relative">
                           <mat-form-field class="full-width input-design-2" appearance="fill">
-                            <input matInput type="number" placeholder="Min. Area">
+                            <input (keypress)="minCarpetAreaChange(minCarpet.value)" #minCarpet matInput type="number" placeholder="Min. Area">
                           </mat-form-field>
                           <p ngClass="input-overlay-layer">sqft.</p>
                         </div>
@@ -226,7 +226,7 @@
                       <div ngClass="block-wrapper mb-2">
                         <div ngClass="position-relative">
                           <mat-form-field class="full-width input-design-2" appearance="fill">
-                            <input matInput type="number" placeholder="Max. Area">
+                            <input (keypress)="maxCarpetAreaChange(maxCarpet.value)" #maxCarpet matInput type="number" placeholder="Max. Area">
                           </mat-form-field>
                           <p ngClass="input-overlay-layer">sqft.</p>
                         </div>

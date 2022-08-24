@@ -72,7 +72,7 @@ export class PropertyfilterComponent implements OnInit {
     this.PriceEnd              = this.activeRoute.snapshot.queryParamMap.get('PriceEnd');
     this.Bedrooms              = this.activeRoute.snapshot.queryParamMap.get('Bedrooms');
     this.Bathrooms              = this.activeRoute.snapshot.queryParamMap.get('Bathrooms');
-    let DistrictsId :any = this.activeRoute.snapshot.queryParamMap.get('DistrictsId');
+    let DistrictsId :any = this.activeRoute.snapshot.queryParamMap.get('DistrictIds');
     let DistrictsValue :any = this.activeRoute.snapshot.queryParamMap.get('DistrictsValue');
     this.DistrictsId = JSON.parse(DistrictsId)
     this.DistrictsValue = JSON.parse(DistrictsValue)
@@ -310,13 +310,13 @@ export class PropertyfilterComponent implements OnInit {
     let params :any = {type:this.type,"PropertyTypeIds":[],"RentTypeId":this.RentTypeId,
       "PropertyCategoryId":this.PropertyCategoryId,PriceStart:this.SubmitForm.value.PriceStart,PriceEnd:this.SubmitForm.value.PriceEnd,
       Bedrooms:this.Bedrooms,Bathrooms:this.Bathrooms,PropertyAddress:this.SubmitForm.value.Name,
-      "PropertyListingTypeId":this.PropertyListingTypeId,CurrentPage:1,DistrictsId:JSON.stringify(this.DistrictsId),
+      "PropertyListingTypeId":this.PropertyListingTypeId,CurrentPage:1,DistrictIds:JSON.stringify(this.DistrictsId),
       DistrictsValue:JSON.stringify(this.DistrictsValue)
     }
     let objects :any = {type:this.type,"PropertyTypeIds":[],"RentTypeId":this.RentTypeId,
       "PropertyCategoryId":this.PropertyCategoryId,PriceStart:this.SubmitForm.value.PriceStart,PriceEnd:this.SubmitForm.value.PriceEnd,
       Bedrooms:this.Bedrooms,Bathrooms:this.Bathrooms,PropertyAddress:this.SubmitForm.value.Name,
-      "PropertyListingTypeId":this.PropertyListingTypeId,CurrentPage:1,DistrictsId:this.DistrictsId
+      "PropertyListingTypeId":this.PropertyListingTypeId,CurrentPage:1,DistrictIds:this.DistrictsId
     }
     this.route.navigate(['/search'],{queryParams:params})
     this.childToParentDataLoad.emit(objects)
@@ -348,10 +348,16 @@ export class PropertyfilterComponent implements OnInit {
 
     let params :any = {type:'',"PropertyTypeIds":[], "PropertyAddress":'',"RentTypeId":'',
       "PropertyCategoryId":'',PriceStart:'',PriceEnd:'', Bedrooms:'',Bathrooms:'',
-      "PropertyListingTypeId":'',CurrentPage:1,DistrictsId:JSON.stringify(this.DistrictsId),DistrictsValue:JSON.stringify(this.fruits)
+      "PropertyListingTypeId":'',CurrentPage:1,DistrictIds:JSON.stringify(this.DistrictsId),DistrictsValue:JSON.stringify(this.fruits)
     }
+
+    let object :any = {type:'',"PropertyTypeIds":[], "PropertyAddress":'',"RentTypeId":'',
+      "PropertyCategoryId":'',PriceStart:'',PriceEnd:'', Bedrooms:'',Bathrooms:'',
+      "PropertyListingTypeId":'',CurrentPage:1,DistrictIds:[]
+    }
+
     this.route.navigate(['/search'],{queryParams:params})
-    this.childToParentDataLoad.emit(params)
+    this.childToParentDataLoad.emit(object)
   }
   modelPropertyPictures :any=[]
   openVerticallyCentered(content) {
@@ -365,7 +371,7 @@ addOnBlur = true;
 
   add(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
-
+    console.log(value,'ohohoho')
     // Add our fruit
     if (value) {
       this.Keywords.push({name: value});
@@ -382,4 +388,26 @@ addOnBlur = true;
       this.Keywords.splice(index, 1);
     }
   }
+
+
+  furnishedType :any = '';
+  furnishedTypeChange(data :any){
+    this.furnishedType = data
+  }
+
+  propertyFeatureIds :any = [];
+  propertyFeatureChange(data :any){
+    this.propertyFeatureIds.push(data)
+  }
+
+
+  minCarpet : any = ''
+  minCarpetAreaChange(searchValue: any): void {
+    this.minCarpet = searchValue
+  }
+  maxCarpet : any = ''
+  maxCarpetAreaChange(searchValue: any): void {
+    this.maxCarpet = searchValue
+  }
+
 }
