@@ -13,7 +13,7 @@
                         </a>
                     </div>
                     <div ngClass="last-updated-details">
-                        <!-- <p>Last Updated: <span ngClass="update-date">April 19, 2022</span></p> -->
+                        <p>Last Updated: <span ngClass="update-date">April 19, 2022</span></p>
                         <p>Listing ID <span ngClass="update-id">#OV-4003021</span></p>
                     </div>
                 </div>
@@ -53,7 +53,7 @@
                                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                                 </svg>
                             </button>
-                            <button ngClass="grey-bordered-btn text-btn" (click)="scroll(NearLsiting)">Browse Near by Lisitng</button>
+                            <button ngClass="grey-bordered-btn text-btn">Browse Near by Lisitng</button>
                         </div>
                     </div>
                 </div>
@@ -92,7 +92,7 @@
                 <div ngClass="row">
                     <div ngClass="col-xl-8 col-lg-8 col-md-12 col-sm-12">
                         <div ngClass="property_details-tabs">
-                            <mat-tab-group>
+                            <mat-tab-group (selectedTabChange)="onTabChanged($event);">
                                 <mat-tab label="Key Highlights">
                                     <div ngClass="tabs-heading-div">
                                         <h5>Key Highlights</h5>
@@ -268,22 +268,8 @@
                                     <div ngClass="tabs-heading-div">
                                         <h5>Explore Nearby</h5>
                                     </div>
-                                    <!-- <div ngClass="explore-near-by-buttons">
-                                        <button ngClass="explore-btn-design">All</button>
-                                        <button ngClass="explore-btn-design active"><img src="{{restaurant}}">
-                                            Restaurants</button>
-                                        <button ngClass="explore-btn-design"><img src="{{restaurant}}">
-                                            Groceries</button>
-                                        <button ngClass="explore-btn-design"><img src="{{restaurant}}"> Cafes</button>
-                                        <button ngClass="explore-btn-design"><img src="{{restaurant}}">
-                                            Shopping</button>
-                                        <button ngClass="explore-btn-design"><img src="{{restaurant}}"> Schools</button>
-                                    </div> -->
-                                    <div class="explore-near-map" id="explore-near-map">
+                                    <div class="property-near-map" id="property-near-map" style="width: 100%; height: 400px;">
                                     </div>
-                                    <!-- <div ngClass="explore-near-map">
-                                        <img src="{{exploredemo}}">
-                                    </div> -->
                                 </mat-tab>
                             </mat-tab-group>
                         </div>
@@ -373,7 +359,7 @@
             </div>
         </div>
     </section>
-    <section ngClass="similer-properties-sec" #NearLsiting>
+    <section ngClass="similer-properties-sec">
         <div [ngClass]="'container_1220px'">
             <div ngClass="section-custom-title-left">
                 <h4>Similar properties in the same area</h4>
