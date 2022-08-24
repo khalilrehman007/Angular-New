@@ -477,7 +477,9 @@ export class PropertyInnerComponent implements OnInit {
     phone : new FormControl("", Validators.required),
     message : new FormControl("", Validators.required),
   });
-
+  scroll(el: HTMLElement) {
+    el.scrollIntoView();
+  }
   responsedata: any;
   leadData    : any = {};
   leadProceedStore(){
