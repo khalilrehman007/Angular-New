@@ -89,93 +89,95 @@
                                     <p>{{newAgentDetail.aboutMe}}</p>
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="properties" *ngIf="myListing.length > 0">
-                                <div class="agent-details__tab-content mb-3">
-                                    <div class="agent-details__property-wrapper">
-                                        <div class="row">
-                                            <div class="col-xl-8 col-lg-8 col-md-4 col-12 d-flex align-items-center">
-                                                <h6>My Properties</h6>
-                                            </div>
-                                            <div class="col-xl-4 col-lg-4 col-md-8 col-12 text-end">
-                                                <div class="agent-details__select-wrapper">
-                                                    <mat-form-field appearance="fill">
-                                                        <mat-label>Sort By</mat-label>
-                                                        <mat-select>
-                                                            <mat-option value="Location">Location</mat-option>
-                                                            <mat-option value="Area">Area</mat-option>
-                                                            <mat-option value="Size">Size</mat-option>
-                                                        </mat-select>
-                                                    </mat-form-field>
+                            <div class="tab-pane fade" id="properties">
+                                <div *ngIf="myListing.length > 0">
+                                    <div class="agent-details__tab-content mb-3">
+                                        <div class="agent-details__property-wrapper">
+                                            <div class="row">
+                                                <div class="col-xl-8 col-lg-8 col-md-4 col-12 d-flex align-items-center">
+                                                    <h6>My Properties</h6>
+                                                </div>
+                                                <div class="col-xl-4 col-lg-4 col-md-8 col-12 text-end">
+                                                    <div class="agent-details__select-wrapper">
+                                                        <mat-form-field appearance="fill">
+                                                            <mat-label>Sort By</mat-label>
+                                                            <mat-select>
+                                                                <mat-option value="Location">Location</mat-option>
+                                                                <mat-option value="Area">Area</mat-option>
+                                                                <mat-option value="Size">Size</mat-option>
+                                                            </mat-select>
+                                                        </mat-form-field>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <ul class="agent-details__property-list">
+                                        <li class="agent-details__property-list-item"
+                                            *ngFor="let item of myListing | paginate: { itemsPerPage: 10, currentPage: page, totalItems:totalLength }">
+                                            <div class="row" [routerLink]="['/PropertDetailsPage']"
+                                                [queryParams]="{id: item.id}">
+                                                <div class="col-lg-2">
+                                                    <img *ngIf="item.documents.length > 0" src="https://beta.ovaluate.com/{{item.fileUrl}}" [alt]="" class="img-fluid agent-details__property-list-item-img">
+                                                    <img *ngIf="item.documents.length == 0" src="assets/images/placeholder.png" [alt]="" class="img-fluid agent-details__property-list-item-img">
+                                                    <!-- <img src="assets/images/placeholder.png" alt=""
+                                                        class="img-fluid agent-details__property-list-item-img"> -->
+                                                </div>
+                                                <div class="col-lg-10">
+                                                    <div class="row">
+                                                        <div class="col-7">
+                                                            <a class="agent-details__property-list-item-link">{{item.propertyPrice}}
+                                                                AED
+                                                                <span>/yearly</span>
+                                                            </a>
+                                                        </div>
+                                                        <div class="col-5 text-end">
+                                                            <p class="agent-details__property-list-item-date">Listed on
+                                                                {{item.requestedDateFormat}}</p>
+                                                        </div>
+                                                    </div>
+                                                    <h6>{{item.buildingName}}</h6>
+                                                    <p class="agent-details__property-list-item-text">
+                                                        <img src="assets/images/home-location.svg" alt=""
+                                                            class="img-fluid agent-details__property-list-item-text-icon">
+                                                        {{item.propertyAddress}}
+                                                    </p>
+                                                    <p class="agent-details__property-list-item-type">{{item.propertyTitle}}
+                                                    </p>
+                                                    <div class="row">
+                                                        <div class="col-md-10">
+                                                            <ul class="agent-details__property-detail-list">
+                                                                <li class="agent-details__property-detail-list-item">
+                                                                    <img src="{{bedsvg}}" alt="">
+                                                                    {{item.bedrooms}} Beds
+                                                                </li>
+                                                                <li class="agent-details__property-detail-list-item">
+                                                                    <img src="{{bathsvg}}" alt="">
+                                                                    {{item.bathrooms}} Bath
+                                                                </li>
+                                                                <li class="agent-details__property-detail-list-item">
+                                                                    <img src="{{squaremetersvg}}" alt="">
+                                                                    {{item.buildupArea}} Sq.Ft.
+                                                                </li>
+                                                                <li class="agent-details__property-detail-list-item">
+                                                                    <img src="{{furnishing}}" alt="">
+                                                                    {{item.furnishingType}}
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <img src="assets/images/better-home.svg" alt="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <section class="agent-pagination-wrapper">
+                                        <pagination-controls (pageChange)="pageChanged($event)" class="text-center my-pagination">
+                                        </pagination-controls>
+                                    </section>
                                 </div>
-                                <ul class="agent-details__property-list">
-                                    <li class="agent-details__property-list-item"
-                                        *ngFor="let item of myListing | paginate: { itemsPerPage: 10, currentPage: page, totalItems:totalLength }">
-                                        <div class="row" [routerLink]="['/PropertDetailsPage']"
-                                            [queryParams]="{id: item.id}">
-                                            <div class="col-lg-2">
-                                                <img *ngIf="item.documents.length > 0" src="https://beta.ovaluate.com/{{item.fileUrl}}" [alt]="" class="img-fluid agent-details__property-list-item-img">
-                                                <img *ngIf="item.documents.length == 0" src="assets/images/placeholder.png" [alt]="" class="img-fluid agent-details__property-list-item-img">
-                                                <!-- <img src="assets/images/placeholder.png" alt=""
-                                                    class="img-fluid agent-details__property-list-item-img"> -->
-                                            </div>
-                                            <div class="col-lg-10">
-                                                <div class="row">
-                                                    <div class="col-7">
-                                                        <a class="agent-details__property-list-item-link">{{item.propertyPrice}}
-                                                            AED
-                                                            <span>/yearly</span>
-                                                        </a>
-                                                    </div>
-                                                    <div class="col-5 text-end">
-                                                        <p class="agent-details__property-list-item-date">Listed on
-                                                            {{item.requestedDateFormat}}</p>
-                                                    </div>
-                                                </div>
-                                                <h6>{{item.buildingName}}</h6>
-                                                <p class="agent-details__property-list-item-text">
-                                                    <img src="assets/images/home-location.svg" alt=""
-                                                        class="img-fluid agent-details__property-list-item-text-icon">
-                                                    {{item.propertyAddress}}
-                                                </p>
-                                                <p class="agent-details__property-list-item-type">{{item.propertyTitle}}
-                                                </p>
-                                                <div class="row">
-                                                    <div class="col-md-10">
-                                                        <ul class="agent-details__property-detail-list">
-                                                            <li class="agent-details__property-detail-list-item">
-                                                                <img src="{{bedsvg}}" alt="">
-                                                                {{item.bedrooms}} Beds
-                                                            </li>
-                                                            <li class="agent-details__property-detail-list-item">
-                                                                <img src="{{bathsvg}}" alt="">
-                                                                {{item.bathrooms}} Bath
-                                                            </li>
-                                                            <li class="agent-details__property-detail-list-item">
-                                                                <img src="{{squaremetersvg}}" alt="">
-                                                                {{item.buildupArea}} Sq.Ft.
-                                                            </li>
-                                                            <li class="agent-details__property-detail-list-item">
-                                                                <img src="{{furnishing}}" alt="">
-                                                                {{item.furnishingType}}
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="col-md-2">
-                                                        <img src="assets/images/better-home.svg" alt="">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                                <section class="agent-pagination-wrapper">
-                                    <pagination-controls (pageChange)="pageChanged($event)" class="text-center my-pagination">
-                                    </pagination-controls>
-                                </section>
                             </div>
                         </div>
                     </div>
