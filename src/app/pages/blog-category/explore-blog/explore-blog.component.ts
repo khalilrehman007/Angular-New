@@ -57,7 +57,6 @@ export class ExploreBlogComponent implements OnInit {
     this.LoadBlogs();
     this.service.BlogCategorybyId(3).subscribe((result:any)=> {
       this.exploreBlog = result.data;
-      console.log(this.exploreBlog);
     })
   }
 
@@ -66,9 +65,7 @@ export class ExploreBlogComponent implements OnInit {
   LoadBlogs(){
     this.service.LoadBlogs().subscribe(data=>{
       this.blogs=data;
-      this.blogs=this.blogs.data;
-      console.log(this.blogs);
-
+      this.blogs=this.blogs.data; 
     });
   }
   status: boolean = false;
