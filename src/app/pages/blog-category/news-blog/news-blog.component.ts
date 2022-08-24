@@ -56,7 +56,6 @@ export class NewsBlogComponent implements OnInit {
   constructor(private service:AppService) {
     this.service.BlogCategorybyId(2).subscribe((result:any)=> {
       this.newsBlog = result.data;
-      console.log(this.newsBlog);
     })
   }
 

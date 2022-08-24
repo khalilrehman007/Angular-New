@@ -9,18 +9,19 @@
             </div>
             <div ngClass="blogs-details-hdr">
                 <div ngClass="heading-32px-design mb-3">
-                    <h2>{{blog.blogTitle}}</h2>
-                    <p>By <a routerLink="">Ovalaute</a> · <span ngClass="date">{{blog.blogDate.split("T")[0]}}</span> <a
-                            routerLink="/blog-category">· Tips & Advice</a></p>
+                    <h2 *ngIf="blog && blog.blogTitle">{{blog.blogTitle}}</h2>
+                    <p *ngIf="blog && blog.blogDate">By <a routerLink="">Ovalaute</a> · <span
+                            ngClass="date">{{blog.blogDate.split("T")[0]}}</span> <a routerLink="/blog-category">· Tips
+                            & Advice</a></p>
                 </div>
                 <div ngClass="key-take-ways-sec">
                     <h5>Key Takeaways</h5>
-                    <ul>
+                    <ul *ngIf="blog && blog.blogDetails">
                         <li *ngFor="let item of blog.blogDetails">{{item.keyTakeAway}}</li>
                     </ul>
                 </div>
                 <div ngClass="blog_details-img mb-4">
-                    <img src="{{blog.blogDocument.fileUrl}}">
+                    <img *ngIf="blog && blog.blogDocument.fileUrl" src="{{blog.blogDocument.fileUrl}}">
                 </div>
                 <div class="blog-post-content">
                 </div>
@@ -50,16 +51,18 @@
                     <a [routerLink]="['/blog-category']">Read all</a>
                 </div>
             </div>
-            <div ngClass="row">
+            <div ngClass="row" *ngIf="blog && blog.blogCategory.blogs">
                 <div ngClass="col-lg-4 col-md-6 blog-places-col" *ngFor=" let item of blog.blogCategory.blogs">
                     <a href="/blogs-details/{{item.id}}">
-                        <img src="https://beta.ovaluate.com/{{item.blogDocument.fileUrl}}" ngClass="img-fluid blog-image-homepage" alt="">
+                        <img *ngIf="item.blogDocument && item.blogDocument.fileUrl"
+                            src="https://beta.ovaluate.com/{{item.blogDocument.fileUrl}}"
+                            ngClass="img-fluid blog-image-homepage" alt="">
                         <!-- <span ngClass="blog-tag">
                             <img [src]="item.src2" ngClass="img-fluid" alt="">
                         </span> -->
                         <div ngClass="blog-title-content">
-                            <h5>{{item.blogTitle}}</h5>
-                            <span>{{item.blogDate.split("T")[0]}}</span>
+                            <h5 *ngIf="item && item.blogTitle">{{item.blogTitle}}</h5>
+                            <span *ngIf="item && item.blogData">{{item.blogDate.split("T")[0]}}</span>
                         </div>
                     </a>
                 </div>

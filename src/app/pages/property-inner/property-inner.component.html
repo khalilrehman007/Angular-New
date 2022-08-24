@@ -61,7 +61,7 @@
                     </ng-template>
                 </ngb-carousel>
             </div>
-             <div *ngIf="!documentCheck" ngClass="property-gallery-sec" >
+             <div *ngIf="documentCheck == false" ngClass="property-gallery-sec" >
                <ngb-carousel *ngIf="documentCheck" [showNavigationArrows]="false">
                  <ng-template ngbSlide>
                    <img src="{{thumb1}}" alt="Random slide">
@@ -74,7 +74,7 @@
                     <img src="{{thumb1}}">
                 </div>
                 <div ngClass="slider-thumb-img position-relative">
-                    <img src="{{thumb1}}">
+                    <img src="{{thumb2}}">
                     <button class="view-all-photos" (click)="openVerticallyCentered(content)"><img src="{{gallery}}"> View all photos</button>
                 </div>
             </div>
@@ -338,6 +338,7 @@
         <div [ngClass]="'container_1220px'">
             <div ngClass="section-custom-title-left">
                 <h4>Similar properties in the same area</h4>
+                <p *ngIf="similarPropertyDetails.length < 1">No similar properties....</p>
             </div>
             <div ngClass="row">
                 <div ngClass="col-xl-3 col-lg-3 col-md-6 col-sm-12" *ngFor="let slide of similarPropertyDetails">
@@ -405,10 +406,15 @@
                     </div>
                 </div>
             </div>
-            <ngb-carousel [showNavigationIndicators]="false">
+            <ngb-carousel *ngIf="documentCheck" [showNavigationIndicators]="false">
                 <ng-template ngbSlide *ngFor="let event of propertyDetailData.documents">
                     <img [src]="baseUrl+event.fileUrl" alt="Random slide">
                 </ng-template>
+            </ngb-carousel>
+            <ngb-carousel *ngIf="documentCheck == false" [showNavigationIndicators]="false">
+              <ng-template ngbSlide >
+                <img src="{{thumb1}}" alt="Random slide">
+              </ng-template>
             </ngb-carousel>
         </div>
     </ng-template>
