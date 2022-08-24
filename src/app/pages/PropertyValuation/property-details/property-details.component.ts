@@ -241,27 +241,35 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
     if (this.propertyDetails.value.titleDeed == "") {
       this.error = "Enter Title Deed No";
       this.showError = true;
+      return;
     } else if (this.titleDeedType == -1) {
       this.error = "Select Title Deed Type";
       this.showError = true;
+      return;
     } else if (this.propertyDetails.value.muncipality == "") {
       this.error = "Enter Muncipality/Affection No";
       this.showError = true;
+      return;
     } else if (this.propertyInsured == -1) {
       this.error = "Select Property Insurance Type";
       this.showError = true;
+      return;
     } else if (this.countryId == -1) {
       this.error = "Select Country";
       this.showError = true;
+      return;
     } else if (this.cityId == -1) {
       this.error = "Select City";
       this.showError = true;
+      return;
     } else if (this.districtId == -1) {
       this.error = "Select District";
       this.showError = true;
+      return;
     } else if ($("#searchLocation").val() == "" || !this.locationSelected) {
       this.error = "Enter Address";
       this.showError = true;
+      return;
     } else {
 
       this.getMapImage();

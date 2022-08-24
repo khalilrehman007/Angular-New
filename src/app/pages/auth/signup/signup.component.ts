@@ -14,6 +14,11 @@ import { AppService } from 'src/app/service/app.service';
   styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent implements OnInit {
+  error: any = ""
+  showError: boolean = false;
+  errorResponse(data: any) {
+    this.showError = false;
+  }
   goggle = '../../../../assets/images/btns/google-1.svg'
   apple = '../../../../assets/images/btns/apple-1.svg'
   info = '../../../../assets/images/info.svg'
@@ -66,12 +71,34 @@ export class SignupComponent implements OnInit {
 
   ProceedSignUp() {
     this.submitted = true;
-    if(this.signup.controls["Email"].invalid) {
-      alert("Please Enter a valid Email");
-      return
+    if(this.signup.value.FirstName == "") {
+      this.error = "Please Enter First Name";
+      this.showError = true;
+      return;
+    } else if (this.signup.value.LastName == "") {
+      this.error = "Please Enter Last Name";
+      this.showError = true;
+      return;
+    } else if (this.signup.value.Email == "") {
+      this.error = "Please Enter Email";
+      this.showError = true;
+      return;
+    } else if(this.signup.controls["Email"].invalid) {
+      this.error = "Please Enter a valid Email";
+      this.showError = true;
+      return;
+    } else if (this.signup.value.PhoneNumber == "") {
+      this.error = "Please Enter Phone Number";
+      this.showError = true;
+      return;
+    } else if (this.signup.value.Password == "") {
+      this.error = "Please Enter Password";
+      this.showError = true;
+      return;
     } else if(this.signup.controls["Password"].invalid) {
-      alert("Password does not meet the required pattern");
-      return
+      this.error = "Password does not meet the required pattern";
+      this.showError = true;
+      return;
     }
     if (this.signup.invalid) {
       return;

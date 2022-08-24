@@ -97,9 +97,6 @@ export class HomeComponent implements OnInit {
             buildingName:element.buildingName,
             carpetArea:element.carpetArea,
           });
-        //   element['documents'].forEach( (innerdata, i) => {
-        //     //console.log(innerdata.fileUrl);
-        //   });
       })
     });
     this.dynamicSlides1 = tempData
@@ -370,7 +367,6 @@ export class HomeComponent implements OnInit {
 
     this.service.NearPlaces(1).subscribe((result:any)=>{
       this.explorePlaces = result.data;
-      console.log(this.explorePlaces)
     })
   }
 
@@ -392,7 +388,6 @@ export class HomeComponent implements OnInit {
       })
     });
     this.transaction = tempData
-    // console.log(this.transaction)
   }
 
   ngOnInit():void {
@@ -410,7 +405,6 @@ export class HomeComponent implements OnInit {
       return;
     }
     if (this.search.valid) {
-      // console.log(this.search.value)
       this.service.ProceedSearch(this.search.value).subscribe(result => {
         if(result!=null ){
           this.responsedata=result;
