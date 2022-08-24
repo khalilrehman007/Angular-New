@@ -6,7 +6,7 @@
       <div [ngClass]="'container_1280px'">
          <div ngClass="inner-banner-heading text-center">
             <h2>Explore Destinations</h2>
-            <div ngClass="search_destinations-block">
+            <div ngClass="search_destinations-block" *ngIf="country.length > 0">
                 <form>
                     <div ngClass="row">
                         <div ngClass="col-xl-3 col-lg-3 col-md-3 col-sm-12">
@@ -14,7 +14,7 @@
                                 <div ngClass="select-design">
                                   <mat-form-field appearance="fill">
                                     <mat-label>Countries</mat-label>
-                                    <mat-select (selectionChange)="onCountrySelect($event)">
+                                    <mat-select [(value)]="selectedCountry.value" (selectionChange)="onCountrySelect($event)">
                                       <mat-option
                                         *ngFor="let list of country"
                                         [value]="list.value"

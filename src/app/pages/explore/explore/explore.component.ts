@@ -77,6 +77,7 @@ export class ExploreComponent implements OnInit {
       }
     })
     this.selectedCountry = this.selectedCountry[0];
+    console.log(this.selectedCountry);
     this.service.FindCities({ "CountryId":e.value, "Locations" : [ ] }).subscribe((result:any)=> {
       this.cityData = result.data;
       for(let i = 0; i < this.cityData.length; i++) {
@@ -91,6 +92,13 @@ export class ExploreComponent implements OnInit {
         for (let country of temp.data) {
           this.country.push({ viewValue: country.name, value: country.id , desc:country.description});
         }
+        this.selectedCountry = this.country[0];
+        this.service.FindCities({ "CountryId":this.country[0].value, "Locations" : [] }).subscribe((result:any)=> {
+          this.cityData = result.data;
+          for(let i = 0; i < this.cityData.length; i++) {
+            this.searchListExplore.push(this.cityData[i].name)
+          }
+        })
       }
     });
     this.searchfilterExplore = this.searchctrlExplore.valueChanges.pipe(
