@@ -68,7 +68,7 @@
                 *ngFor=" let list of searchListing | paginate: { itemsPerPage: 10, currentPage: page ,totalItems:totalRecord }">
                 <div ngClass="row" >
                   <div ngClass="col-xl-4 col-md-4 col-lg-4 col-sm-12" [routerLink]="['/PropertDetailsPage']" [queryParams]="{id: list.id}">
-                    <div ngClass="properties-list_slider">
+                    <div ngClass="properties-list_slider" *ngIf="list.documentsCheck">
                       <ngb-carousel>
                         <ng-template ngbSlide *ngFor="let event of list.documents">
                           <img [src]="baseUrl+event.fileUrl" alt="Random slide"
@@ -76,6 +76,11 @@
                         </ng-template>
                       </ngb-carousel>
                     </div>
+                    <div ngClass="properties-list_slider" *ngIf="list.documentsCheck == false">
+                      <img src="assets/images/placeholder.png" alt="Random slide"
+                           (click)="openVerticallyCentered(content,list.documents)">
+                    </div>
+
                   </div>
                   <div ngClass="col-xl-8 col-md-8 col-lg-8 col-sm-12">
                     <div ngClass="properties-list_cntnts position-relative">
@@ -155,18 +160,18 @@
                         <div ngClass="row align-items-center">
                           <div ngClass="col-xl-5 col-lg-12 col-md-12 col-sm-12">
                             <div ngClass="lsited-by-details d-flex">
-                              <div ngClass="list_cntnt-img">
-                                <img src="{{baseUrl+list.user.imageUrl}}">
+                              <div   ngClass="list_cntnt-img">
+                                <img src="{{list.userImage}}">
                               </div>
                               <div ngClass="list_cntnt-blcok">
-                                <h5>{{list.user.fullName}}</h5>
+                                <h5>{{list.fullName}}</h5>
                                 <p>Listed on: {{list.requestedDateFormat}}</p>
                               </div>
                             </div>
                           </div>
                           <div ngClass="col-xl-7 col-lg-12 col-md-12 col-sm-12 text-right">
                             <div ngClass="pro-contact-details">
-                              <a routerLink="/agent-details/{{list.user.id}}" ngClass="grey-bordered-btn">Details</a>
+                              <a *ngIf="userId !== null" routerLink="/agent-details/{{list.userId}}" ngClass="grey-bordered-btn">Details</a>
                               <div ngbDropdown placement="top-end" class="d-inline-block call-now_link">
                                 <button type="button" class="grey-bordered-btn" id="dropdownBasic5"
                                   (click)="callNumber(callNumberText)" ngbDropdownToggle>{{callNumberText}}</button>
