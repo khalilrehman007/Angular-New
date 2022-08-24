@@ -57,7 +57,6 @@ export class MarketTrendsBlogComponent implements OnInit {
     this.LoadBlogs();
     this.service.BlogCategorybyId(6).subscribe((result:any)=> {
       this.marketTrendsBlog = result.data;
-      console.log(this.marketTrendsBlog);
     })
   }
 
@@ -67,8 +66,6 @@ export class MarketTrendsBlogComponent implements OnInit {
     this.service.LoadBlogs().subscribe(data=>{
       this.blogs=data;
       this.blogs=this.blogs.data;
-      console.log(this.blogs);
-
     });
   }
   status: boolean = false;

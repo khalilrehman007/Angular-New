@@ -56,7 +56,6 @@ export class TipsAdviceComponent implements OnInit {
   constructor(private service:AppService) {
     this.service.BlogCategorybyId(1).subscribe((result:any)=> {
       this.tipsAndAdvice = result.data;
-      console.log(this.tipsAndAdvice);
     })
   }
 
@@ -66,7 +65,6 @@ export class TipsAdviceComponent implements OnInit {
     this.service.LoadBlogs().subscribe(data=>{
       this.blogs=data;
       this.blogs=this.blogs.data;
-      console.log(this.blogs);
 
     });
   }

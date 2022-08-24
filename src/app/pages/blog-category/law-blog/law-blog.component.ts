@@ -57,7 +57,6 @@ export class LawBlogComponent implements OnInit {
     this.LoadBlogs();
     this.service.BlogCategorybyId(5).subscribe((result:any)=> {
       this.lawBlogs = result.data;
-      console.log(this.lawBlogs);
     })
   }
 
@@ -67,8 +66,6 @@ export class LawBlogComponent implements OnInit {
     this.service.LoadBlogs().subscribe(data=>{
       this.blogs=data;
       this.blogs=this.blogs.data;
-      console.log(this.blogs);
-
     });
   }
   status: boolean = false;
