@@ -223,20 +223,33 @@ export class RentpropertiesComponent implements OnInit {
       console.log(this.listingForMap)
       this.totalRecord = response.data.totalRecord;
       response.data.propertyListings.forEach((element, i) => {
-        let image: any;
+        let documentsCheck: any = true;
         let rentTypeName = ''
         if (element.rentType != null) {
           rentTypeName = element.rentType.name
         }
+        let documents :any = []
         if (element.documents.length > 1) {
-          image = element.documents[0].fileUrl
+          documents = element.documents
+        }else{
+          documentsCheck = false
         }
+
+        let userImage = '../assets/images/user.png'
+        let fullName = ''
+        let userId = ''
+        if (element.user != null && element.user !== undefined) {
+          userImage = this.baseUrl+element.user.imageUrl
+          fullName = element.user.fullName
+          userId = element.user.id
+        }
+
         tempData.push(
           {
-            id: element.id, favorite: element.favorite,
+            id: element.id, favorite: element.favorite,userImage:userImage,fullName:fullName,userId:userId,
             StartRentPrice: element.startRentPrice, EndRentPrice: element.endRentPrice, AvgRentPrice: element.avgRentPrice, RecentRentTxns: element.recentRentTxns,
-            documents: element.documents, propertyFeatures: element.propertyFeatures, propertyType: element.propertyType, user: element.user,
-            propertyTitle: element.propertyTitle, propertyAddress: element.propertyAddress, img: this.baseUrl + image,
+            documents: documents, propertyFeatures: element.propertyFeatures, propertyType: element.propertyType,
+            propertyTitle: element.propertyTitle, propertyAddress: element.propertyAddress, documentsCheck: documentsCheck,
             buildingName: element.buildingName, bedrooms: element.bedrooms, bathrooms: element.bathrooms, carpetArea: element.carpetArea,
             unitNo: element.unitNo, totalFloorgit: element.totalFloor, floorNo: element.floorNo, propertyDescription: element.propertyDescription,
             requestedDate: element.requestedDate, furnishingType: element.furnishingType, propertyPrice: element.propertyPrice,
