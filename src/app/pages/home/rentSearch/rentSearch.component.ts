@@ -192,7 +192,7 @@ export class RentSearchComponent implements OnInit {
 
     let params :any = {queryParams:{type:'Rent',PropertyListingTypeId:1,PropertyCategoryId:this.propertyCategory,RentTypeId:this.data.rentalTypeId,PropertyTypeIds:PropertyTypeIds
         ,PropertyAddress:this.SubmitForm.value.Name,PriceStart:this.SubmitForm.value.PriceStart,PriceEnd:this.SubmitForm.value.PriceEnd
-        ,Bedrooms:'',Bathrooms:'',CurrentPage:1,DistrictsId:JSON.stringify(this.DistrictsId),DistrictsValue:JSON.stringify(this.SearchKeyword)
+        ,Bedrooms:'',Bathrooms:'',CurrentPage:1,DistrictIds:JSON.stringify(this.DistrictsId),DistrictsValue:JSON.stringify(this.SearchKeyword)
       }};
 
 
