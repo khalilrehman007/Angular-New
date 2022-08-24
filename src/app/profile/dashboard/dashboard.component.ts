@@ -18,7 +18,7 @@ import {AuthService} from "../../service/auth.service";
 export class DashboardComponent implements OnInit {
   blogs: any;
   proFrame = '../../assets/images/profile/pro-img-frame.png'
-  proAvatar: any = ''
+  proAvatar: any = '../../assets/images/user.png'
   proClose = '../../assets/images/profile/close.png'
   proImgEdit = '../../assets/images/profile/edit.png'
   proEdit = '../../assets/images/profile/create.png'
@@ -124,6 +124,7 @@ export class DashboardComponent implements OnInit {
   }
   userId :number;
   constructor(private authService:AuthService,private service: AppService, private route: Router, private notifyService: NotificationService) {
+
     this.getUser();
     this.userId = this.user.id;
     this.LoadBlogs();
@@ -150,7 +151,13 @@ export class DashboardComponent implements OnInit {
         this.professionalType = 0;
       }
       localStorage.setItem("user", JSON.stringify(this.userData));
-      this.proAvatar = this.baseUrl + this.userData.imageUrl;
+      if(this.userData.imageUrl == null ){
+        this.proAvatar = '../../assets/images/user.png';
+      }else{
+        this.proAvatar = this.baseUrl + this.userData.imageUrl;
+      }
+
+
     })
     this.service.LoadPropertyListingTypes().subscribe(e => {
       let temp: any = e;
@@ -216,7 +223,11 @@ export class DashboardComponent implements OnInit {
         const reader = new FileReader();
         reader.readAsDataURL(this.userImage[0]);
         reader.onload = () => {
-          this.proAvatar = reader.result;
+          if(reader.result == null ){
+            this.proAvatar = '../../assets/images/user.png';
+          }else{
+            this.proAvatar = reader.result;
+          }
         };
       }
     })
@@ -295,11 +306,13 @@ export class DashboardComponent implements OnInit {
           rentTypeName = element.rentType.name
         }
         if (element.documents.length > 1) {
-          image = element.documents[0].fileUrl
+          image = this.baseUrl+element.documents[0].fileUrl
+        }else{
+          image = 'assets/images/placeholder.png'
         }
         tempData.push(
           {
-            propertyTitle: element.propertyTitle, propertyAddress: element.propertyAddress, img: this.baseUrl + image,
+            propertyTitle: element.propertyTitle, propertyAddress: element.propertyAddress, img: image,
             buildingName: element.buildingName, bedrooms: element.bedrooms, bathrooms: element.bathrooms, carpetArea: element.carpetArea,
             unitNo: element.unitNo, totalFloorgit: element.totalFloor, floorNo: element.floorNo, propertyDescription: element.propertyDescription,
             requestedDate: element.requestedDate, furnishingType: element.furnishingType, propertyPrice: element.propertyPrice,
@@ -536,11 +549,13 @@ export class DashboardComponent implements OnInit {
           rentTypeName = element.rentType.name
         }
         if (element.documents.length > 1) {
-          image = element.documents[0].fileUrl
+          image = this.baseUrl + element.documents[0].fileUrl
+        }else{
+          image = 'assets/images/placeholder.png'
         }
         tempData.push(
           {
-            propertyTitle: element.propertyTitle, propertyAddress: element.propertyAddress, img: this.baseUrl + image,
+            propertyTitle: element.propertyTitle, propertyAddress: element.propertyAddress, img:image,
             buildingName: element.buildingName, bedrooms: element.bedrooms, bathrooms: element.bathrooms, carpetArea: element.carpetArea,
             unitNo: element.unitNo, totalFloor: element.totalFloor, floorNo: element.floorNo, propertyDescription: element.propertyDescription,
             requestedDate: element.requestedDate, furnishingType: element.furnishingType, propertyPrice: element.propertyPrice,
@@ -790,11 +805,13 @@ export class DashboardComponent implements OnInit {
           rentTypeName = element.rentType.name
         }
         if (element.documents.length > 1) {
-          image = element.documents[0].fileUrl
+          image = this.baseUrl+element.documents[0].fileUrl
+        }else {
+          image = 'assets/images/placeholder.png'
         }
         tempData.push(
           {
-            propertyTitle: element.propertyTitle, propertyAddress: element.propertyAddress, img: this.baseUrl + image,
+            propertyTitle: element.propertyTitle, propertyAddress: element.propertyAddress, img: image,
             buildingName: element.buildingName, bedrooms: element.bedrooms, bathrooms: element.bathrooms, carpetArea: element.carpetArea,
             unitNo: element.unitNo, totalFloor: element.totalFloor, floorNo: element.floorNo, propertyDescription: element.propertyDescription,
             requestedDate: element.requestedDate, furnishingType: element.furnishingType, propertyPrice: element.propertyPrice,
@@ -817,6 +834,8 @@ export class DashboardComponent implements OnInit {
         let image: any ;
         if (element.agentDetails.company.documents.length > 1 && element.agentDetails.company.documents !== undefined &&element.agentDetails.company.documents !== null) {
           image = element.agentDetails.company.documents[0].fileUrl
+        }else {
+          image = 'assets/images/placeholder.png'
         }
         tempData.push(
           {
@@ -828,6 +847,7 @@ export class DashboardComponent implements OnInit {
         );
       })
     });
+    console.log(tempData)
     this.myActivityAgentView = tempData;
   }
 
@@ -868,7 +888,9 @@ export class DashboardComponent implements OnInit {
 
         let image :any ='';
         if(element.documents !== null && element.documents !== undefined && element.documents.length > 0){
-          image = element.documents[0].fileUrl
+          image = this.baseUrl+element.documents[0].fileUrl
+        }else {
+          image = 'assets/images/placeholder.png'
         }
 
         let rentType :any ='';
@@ -891,7 +913,7 @@ export class DashboardComponent implements OnInit {
             favorite: element.favorite,
             id:element.id,
             alt:element.propertyTitle,
-            src:this.baseUrl+image,
+            src:image,
             bedrooms:element.bedrooms,
             propertyAddress:element.propertyAddress,
             bathrooms:element.bathrooms,
@@ -1023,7 +1045,9 @@ export class DashboardComponent implements OnInit {
 
         let image :any ='';
         if(element.documents !== null && element.documents !== undefined && element.documents.length > 0){
-          image = element.documents[0].fileUrl
+          image = this.baseUrl+element.documents[0].fileUrl
+        }else {
+          image = 'assets/images/placeholder.png'
         }
 
         let rentType :any ='';
@@ -1046,7 +1070,7 @@ export class DashboardComponent implements OnInit {
             favorite: element.favorite,
             id:element.id,
             alt:element.propertyTitle,
-            src:this.baseUrl+image,
+            src:image,
             bedrooms:element.bedrooms,
             propertyAddress:element.propertyAddress,
             bathrooms:element.bathrooms,

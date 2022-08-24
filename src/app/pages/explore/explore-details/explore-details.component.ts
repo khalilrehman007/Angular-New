@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AppService } from 'src/app/service/app.service';
 import * as mapboxgl from 'mapbox-gl';
 import { environment } from 'src/environments/environment';
+import {NotificationService} from "../../../service/notification.service";
+import {AuthService} from "../../../service/auth.service";
 
 @Component({
   selector: 'app-explore-details',
@@ -28,7 +30,9 @@ export class ExploreDetailsComponent implements OnInit {
   submitted = false;
   responsedata: any;
   dynamicSlides1: any = [];
-  dynamicSlides2: any = [];
+  // dynamicSlides2: any = [];
+  commercialdynamicSlides: any = [];
+  // commercialdynamicSlides2: any = [];
   homebanners: any = [];
   transaction: any = [];
   country: any = [];
@@ -47,12 +51,15 @@ export class ExploreDetailsComponent implements OnInit {
   propertyDetails: any;
   oldData1() {
     let tempData: Array<Object> = []
-    this.service.PropertiesListingResidentialByDistrict({ "DistictId": this.id, "PropertyListingTypeId": "1" }).subscribe(data => {
+    this.service.PropertiesListingResidentialByDistrict({ "DistictId": this.id, "PropertyListingTypeId": "1" ,"UserId":this.userId}).subscribe(data => {
       this.propertyDetails = data;
       this.propertyDetails = this.propertyDetails.data;
 
       this.propertyDetails.forEach((element, i) => {
-        let image = element.documents[0].fileUrl
+        let image = 'assets/images/placeholder.png'
+        if(element.documents.length > 1){
+          image = this.baseUrl+element.documents[0].fileUrl
+        }
         tempData.push(
           {
             title: element.propertyTitle,
@@ -61,7 +68,7 @@ export class ExploreDetailsComponent implements OnInit {
             price: element.propertyPrice,
             id: element.id,
             alt: element.propertyTitle,
-            src: this.baseUrl + image,
+            src:image,
             bedrooms: element.bedrooms,
             propertyAddress: element.propertyAddress,
             bathrooms: element.bathrooms,
@@ -74,11 +81,14 @@ export class ExploreDetailsComponent implements OnInit {
   }
   newData1() {
     let tempData: Array<Object> = []
-    this.service.PropertiesListingResidentialByDistrict({ "DistictId": this.id, "PropertyListingTypeId": "1" }).subscribe(data => {
+    this.service.PropertiesListingResidentialByDistrict({ "DistictId": this.id, "PropertyListingTypeId": "2" ,"UserId":this.userId}).subscribe(data => {
       this.propertyDetails = data;
       this.propertyDetails = this.propertyDetails.data;
       this.propertyDetails.forEach((element, i) => {
-        let image = element.documents[0].fileUrl
+        let image = 'assets/images/placeholder.png'
+        if(element.documents.length > 1){
+          image = this.baseUrl+element.documents[0].fileUrl
+        }
         tempData.push(
           {
             title: element.propertyTitle,
@@ -88,7 +98,7 @@ export class ExploreDetailsComponent implements OnInit {
             propertyAddress: element.propertyAddress,
             id: element.id,
             alt: element.propertyTitle,
-            src: this.baseUrl + image,
+            src: image,
             bedrooms: element.bedrooms,
             bathrooms: element.bathrooms,
             buildingName: element.buildingName,
@@ -102,11 +112,14 @@ export class ExploreDetailsComponent implements OnInit {
 
   oldData2() {
     let tempData: Array<Object> = []
-    this.service.PropertiesListingCommercialByDistrict({ "DistictId": this.id, "PropertyListingTypeId": "1" }).subscribe(data => {
+    this.service.PropertiesListingCommercialByDistrict({ "DistictId": this.id, "PropertyListingTypeId": "1" ,"UserId":this.userId}).subscribe(data => {
       this.propertyDetails = data;
       this.propertyDetails = this.propertyDetails.data;
       this.propertyDetails.forEach((element, i) => {
-        let image = element.documents[0].fileUrl
+        let image = 'assets/images/placeholder.png'
+        if(element.documents.length > 1){
+          image = this.baseUrl+element.documents[0].fileUrl
+        }
         tempData.push(
           {
             title: element.propertyTitle,
@@ -116,7 +129,7 @@ export class ExploreDetailsComponent implements OnInit {
             propertyAddress: element.propertyAddress,
             id: element.id,
             alt: element.propertyTitle,
-            src: this.baseUrl + image,
+            src: image,
             bedrooms: element.bedrooms,
             bathrooms: element.bathrooms,
             buildingName: element.buildingName,
@@ -124,16 +137,19 @@ export class ExploreDetailsComponent implements OnInit {
           });
       })
     });
-    this.dynamicSlides2 = tempData
+    this.commercialdynamicSlides = tempData
 
   }
   newData2() {
     let tempData: Array<Object> = []
-    this.service.PropertiesListingCommercialByDistrict({ "DistictId": this.id, "PropertyListingTypeId": "1" }).subscribe(data => {
+    this.service.PropertiesListingCommercialByDistrict({ "DistictId": this.id, "PropertyListingTypeId": "2","UserId":this.userId }).subscribe(data => {
       this.propertyDetails = data;
       this.propertyDetails = this.propertyDetails.data;
       this.propertyDetails.forEach((element, i) => {
-        let image = element.documents[0].fileUrl
+        let image = 'assets/images/placeholder.png'
+        if(element.documents.length > 1){
+          image = this.baseUrl+element.documents[0].fileUrl
+        }
         tempData.push(
           {
             title: element.propertyTitle,
@@ -143,7 +159,7 @@ export class ExploreDetailsComponent implements OnInit {
             propertyAddress: element.propertyAddress,
             id: element.id,
             alt: element.propertyTitle,
-            src: this.baseUrl + image,
+            src: image,
             bedrooms: element.bedrooms,
             bathrooms: element.bathrooms,
             buildingName: element.buildingName,
@@ -151,9 +167,9 @@ export class ExploreDetailsComponent implements OnInit {
           });
       })
     });
-    this.dynamicSlides2 = tempData
-
+    this.commercialdynamicSlides = tempData
   }
+
   customOptions: OwlOptions = {
     loop: true,
     mouseDrag: true,
@@ -179,15 +195,22 @@ export class ExploreDetailsComponent implements OnInit {
   }
   districtDetail: any = {};
   dataLoaded: boolean = false;
+  userId :any;
+  user : any
 
-  constructor(private route: ActivatedRoute, private service: AppService) {
+  constructor(private authService:AuthService,private router: Router,private route: ActivatedRoute, private service: AppService,private notifyService : NotificationService) {
     mapboxgl.accessToken = environment.mapbox.accessToken;
     this.route.params.subscribe(params => {
       this.id = params['id'];
     });
     this.oldData2();
     this.oldData1();
-    
+    this.getUser();
+    let userId = '';
+    if(this.user !== null){
+      userId = this.user.id;
+    }
+    this.userId = userId;
     this.service.ExploreDistrict(this.id).subscribe((result: any) => {
       this.dataLoaded = true;
       this.districtDetail = result.data;
@@ -235,4 +258,53 @@ export class ExploreDetailsComponent implements OnInit {
     this.status2 = false;
     this.status3 = !this.status3;
   }
+  getUser(){
+    this.user = localStorage.getItem('user');
+    if(this.user != ''){
+      this.user = JSON.parse(this.user);
+    }
+    return this.user;
+  }
+
+  wishlistStatus :any;
+  AddToFavorite(id:any,status:any,part:any) {
+    if(this.userId == ''){
+      this.notifyService.showSuccess('First you need to login', "");
+      this.router.navigate(['/login'])
+    }
+
+    if (!this.authService.isAuthenticated()) {
+      this.notifyService.showError('You not having access', "");
+      this.router.navigate(['login']);
+    }
+
+    this.service.FavoriteAddRemove(status,{"UserId":this.userId,"PropertyListingId":id}).subscribe(data => {
+      let responsedata :any = data
+      if(responsedata.message == "Favorite is Removed successfully"){
+        this.wishlistStatus = "Favorite is Removed successfully"
+        this.notifyService.showSuccess('Favorite is Removed successfully', "");
+      }else {
+        this.wishlistStatus = "Favorite is added successfully"
+        this.notifyService.showSuccess('Favorite is added successfully', "");
+      }
+    });
+    if(part == "resedential-old"){
+      setTimeout(() => {
+        this.oldData1();
+      }, 1000);
+    }else if(part == "resedential-new"){
+      setTimeout(() => {
+        this.newData1();
+      }, 1000);
+    }else if(part == "commercial-old"){
+      setTimeout(() => {
+        this.oldData2();
+      }, 1000);
+    }else if(part == "commercial-new"){
+      setTimeout(() => {
+        this.newData2();
+      }, 1000);
+    }
+  }
+
 }

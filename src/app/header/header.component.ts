@@ -197,7 +197,7 @@ export class HeaderComponent implements OnInit {
   rentCount :any;
   allCount :any;
   getWishlisting() {
-    if(this.userId == ''){
+    if(this.userId == '' || !this.authService.isAuthenticated()){
       return;
     }
     let tempData :Array<Object> = []
@@ -226,7 +226,7 @@ export class HeaderComponent implements OnInit {
   wishlistingDataRent :any = []
   wishlistingDataBuy :any = []
   getCountData(PropertyListingTypeId){
-    if(this.userId == ''){
+    if(this.userId == '' || !this.authService.isAuthenticated()){
       return;
     }
     let tempData :Array<Object> = []
