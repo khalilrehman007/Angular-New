@@ -57,7 +57,6 @@ export class LifeAtHomeBlogComponent implements OnInit {
     this.LoadBlogs();
     this.service.BlogCategorybyId(4).subscribe((result:any)=> {
       this.lifeatHome = result.data;
-      console.log(this.lifeatHome);
     })
   }
 
@@ -67,8 +66,6 @@ export class LifeAtHomeBlogComponent implements OnInit {
     this.service.LoadBlogs().subscribe(data=>{
       this.blogs=data;
       this.blogs=this.blogs.data;
-      console.log(this.blogs);
-
     });
   }
   status: boolean = false;
