@@ -160,7 +160,9 @@ export class PropertyInnerComponent implements OnInit {
   map: any;
   bounds: any = [];
   id: 1;
-
+  scroll(el: HTMLElement) {
+    el.scrollIntoView();
+  }
   constructor(private authService:AuthService,private domSanitizer: DomSanitizer,private activeRoute: ActivatedRoute,private modalService: NgbModal,private service:AppService,private route:Router,private notifyService : NotificationService) {
     mapboxgl.accessToken = environment.mapbox.accessToken;
     this.propertyId = this.activeRoute.snapshot.queryParamMap.get('id');

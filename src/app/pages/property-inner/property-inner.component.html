@@ -53,7 +53,7 @@
                                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                                 </svg>
                             </button>
-                            <button ngClass="grey-bordered-btn text-btn">Browse Near by Lisitng</button>
+                            <button ngClass="grey-bordered-btn text-btn" (click)="scroll(NearLsiting)">Browse Near by Lisitng</button>
                         </div>
                     </div>
                 </div>
@@ -359,7 +359,7 @@
             </div>
         </div>
     </section>
-    <section ngClass="similer-properties-sec">
+    <section ngClass="similer-properties-sec" #NearLsiting>
         <div [ngClass]="'container_1220px'">
             <div ngClass="section-custom-title-left">
                 <h4>Similar properties in the same area</h4>
