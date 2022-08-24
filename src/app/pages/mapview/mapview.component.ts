@@ -24,6 +24,8 @@ export class MapviewComponent implements OnInit,AfterViewInit{
   autocomplete: any;
   marker: any;
   map: any;
+  page:number = 1;
+  totalRecord:number = 0;
   @ViewChild('mapView') mapElement: any;
 
   dynamicSlides1 = [
@@ -63,8 +65,8 @@ export class MapviewComponent implements OnInit,AfterViewInit{
   constructor(service:AppService) {
     this.propertyDetails=localStorage.getItem('listingForMap');
     this.propertyDetails=JSON.parse(this.propertyDetails);
+    this.totalRecord = this.propertyDetails.length;
     console.log(this.propertyDetails);
-    
   }
 
   ngOnInit(): void {
@@ -72,7 +74,9 @@ export class MapviewComponent implements OnInit,AfterViewInit{
   ngAfterViewInit(): void {
       this.initMap(null, 6);
   }
-
+  pageChanged(value: any) {
+    this.page = value;
+  }
   initMap(e: any, zoom: any) {
     this.map = new google.maps.Map($(".mapView")[0], {
       center: { "lat": 23.4241, "lng": 53.8478 },
