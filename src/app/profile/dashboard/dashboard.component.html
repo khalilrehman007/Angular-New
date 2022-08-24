@@ -30,7 +30,7 @@
                 <div class="d-flex align-item-center">
                   <div class="form-group">
                     <label for="txtname">Address</label>
-                    <h4 class="base-info-text">{{this.userFormData.address ? this.userFormData.address : 'Empty'}}
+                    <h4 class="base-info-text">{{this.userFormData.address ? this.userFormData.address : '-'}}
                     </h4>
                   </div>
                 </div>
@@ -359,10 +359,8 @@
               </div>
 
               <div ngClass="row">
-                <!-- let blogs of Blogsec -->
                 <div ngClass="col-lg-4 col-md-6 blog-places-col" *ngFor=" let blog of blogs">
                   <a [routerLink]="['/blogs/'+blog.id]" [queryParams]="{title: blog.blogTitle}">
-                    <!-- blog.blogDocument.fileUrl -->
                     <img [src]="'https://www.ovaluate.com/'+blog.blogDocument.fileUrl"
                       ngClass="img-fluid blog-image-homepage" alt="">
                     <span ngClass="blog-tag">
@@ -370,7 +368,7 @@
                     </span>
                     <div ngClass="blog-title-content">
                       <h5>{{blog.blogTitle}}</h5>
-                      <span>{{blog.blogDate}}</span>
+                      <span>{{blog.blogDate.split("T")[0]}}</span>
                     </div>
                   </a>
                 </div>
