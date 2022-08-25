@@ -13,7 +13,7 @@
                         </a>
                     </div>
                     <div ngClass="last-updated-details">
-                        <p>Last Updated: <span ngClass="update-date">April 19, 2022</span></p>
+                        <!-- <p>Last Updated: <span ngClass="update-date">April 19, 2022</span></p> -->
                         <p>Listing ID <span ngClass="update-id">#OV-4003021</span></p>
                     </div>
                 </div>
@@ -42,7 +42,23 @@
                     </div>
                     <div ngClass="col-xl-3 col-lg-4 col-md-12 col-sm-12">
                         <div ngClass="property-action_detals text-right">
-                            <button ngClass="grey-bordered-btn"><img src="{{dots}}"></button>
+                            <div ngClass="pro-contact-details">
+                            <div ngbDropdown class="d-inline-block">
+                                <button ngClass="grey-bordered-btn" id="dropdownBasic2" ngbDropdownToggle><img
+                                    src="{{dots}}"></button>
+                                <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
+                                  <h5>Share with:</h5>
+                                  <button ngbDropdownItem><a target="_blank" href="https://dx1.in/"
+                                      ngClass="facebook"><img src="{{fb}}"> Facebook</a></button>
+                                  <button ngbDropdownItem><a target="_blank" href="https://dx1.in/"
+                                      ngClass="whatsapp"><img src="{{whatsapp}}"> WhatsAPP</a></button>
+                                  <button ngbDropdownItem><a target="_blank" href="https://dx1.in/"
+                                      ngClass="twitter"><img src="{{twitter}}"> Twitter</a></button>
+                                  <button ngbDropdownItem><a target="_blank" href="https://dx1.in/"
+                                      ngClass="qr-scan"><img src="{{qr}}"> QR Scan</a></button>
+                                </div>
+                              </div>
+                              </div>
                             <button
                                 [ngClass]="propertyDetailData.favorite == true ? 'grey-bordered-btn red-fill' : 'grey-bordered-btn'"
                                 (click)="AddToFavorite(propertyDetailData.id,propertyDetailData.favorite)">
@@ -369,7 +385,6 @@
                 <div ngClass="col-xl-3 col-lg-3 col-md-6 col-sm-12" *ngFor="let slide of similarPropertyDetails">
                     <div ngClass="property-item position-relative">
                         <img [src]="slide.src" [alt]="slide.alt" [title]="slide.title">
-                        <span [ngClass]="'popular-tag'"><img src="assets/images/tag/popular.png"></span>
                         <div ngClass="brand-logo">
                             <img src="{{slide.src}}" alt="">
                         </div>
@@ -403,6 +418,7 @@
                         </div>
                         <a href="/PropertDetailsPage?id={{slide.id}}"
                             ngClass="linK_overlay"></a>
+                            <button ngClass="tag_btn blue"><img src="{{tagicn}}"> POPULAR</button>
                     </div>
                 </div>
             </div>
