@@ -47,6 +47,10 @@ export class PropertyInnerComponent implements OnInit {
   videocall = 'assets/images/icons/video-call.svg'
   virtual = 'assets/images/icons/virtual-tour.svg'
   homeaddress = 'assets/images/icons/home-location-white.svg'
+  twitter = '../../../assets/images/icons/twiiter-share.svg'
+  qr = '../../../assets/images/icons/qr-share.svg'
+  fb = '../../../assets/images/icons/fb-share.svg'
+  tagicn= '../../../assets/images/icons/tag-icn.svg'
   user : any
   baseUrl = 'https://beta.ovaluate.com/'
 

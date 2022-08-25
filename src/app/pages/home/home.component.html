@@ -144,7 +144,6 @@
                             <ng-template carouselSlide [id]="slide.id">
                                 <div ngClass="property-item position-relative">
                                     <img [src]="slide.src" [alt]="slide.alt" [title]="slide.title" />
-                                    <span [ngClass]="'popular-tag'"><img src="assets/images/tag/popular-green-ta.png"/></span>
                                     <div ngClass="brand-logo">
                                         <img src="{{ brandimg }}" alt="" />
                                     </div>
@@ -178,7 +177,7 @@
                     </div>
                   </div>
                   <a [routerLink]="['/PropertDetailsPage']" [queryParams]="{id: slide.id}" ngClass="linK_overlay"></a>
-
+                  <button ngClass="tag_btn green"><img src="{{tagicn}}"> POPULAR</button>
                   </div>
               </ng-template>
             </ng-container>
@@ -196,9 +195,6 @@
                     [alt]="slide.alt"
                     [title]="slide.title"
                   />
-                  <span [ngClass]="'popular-tag'"
-                    ><img src="assets/images/tag/popular.png"
-                  /></span>
                   <div ngClass="brand-logo">
                     <img src="{{ brandimg }}" alt="" />
                   </div>
@@ -228,7 +224,7 @@
                     </div>
                   </div>
                   <a [routerLink]="['/PropertDetailsPage']" [queryParams]="{id: slide.id}" ngClass="linK_overlay"></a>
-
+                  <button ngClass="tag_btn green"><img src="{{tagicn}}"> POPULAR</button>
                 </div>
               </ng-template>
             </ng-container>
@@ -292,7 +288,6 @@
                                                 <ng-template carouselSlide [id]="slide.id">
                                                     <div ngClass="property-item position-relative">
                                                         <img [src]="slide.src" [alt]="slide.alt" [title]="slide.title" />
-                                                        <span [ngClass]="'popular-tag'"><img src="assets/images/tag/popular.png"/></span>
                                                         <div ngClass="brand-logo">
                                                             <img src="{{ brandimg }}" alt="" />
                                                         </div>
@@ -328,6 +323,7 @@
                     </div>
                   </div>
                     <a [routerLink]="['/PropertDetailsPage']" [queryParams]="{id: slide.id}" ngClass="linK_overlay"></a>
+                    <button ngClass="tag_btn blue"><img src="{{tagicn}}"> POPULAR</button>
                 </div>
               </ng-template>
             </ng-container>
@@ -343,9 +339,6 @@
                     [alt]="slide.alt"
                     [title]="slide.title"
                   />
-                  <span [ngClass]="'popular-tag'"
-                    ><img src="assets/images/tag/popular.png"
-                  /></span>
                   <div ngClass="brand-logo">
                     <img src="{{ brandimg }}" alt="" />
                   </div>
@@ -375,6 +368,7 @@
                     </div>
                   </div>
                   <a [routerLink]="['/PropertDetailsPage']" [queryParams]="{id: slide.id}" ngClass="linK_overlay"></a>
+                  <button ngClass="tag_btn blue"><img src="{{tagicn}}"> POPULAR</button>
                 </div>
               </ng-template>
             </ng-container>
@@ -450,7 +444,7 @@
       <div ngClass="row">
         <!-- let blogs of Blogsec -->
         <div ngClass="col-lg-4 col-md-6 blog-places-col" *ngFor="let blog of blogs">
-          <a [routerLink]="['/blogs-details/' + blog.id]">
+          <a [routerLink]="['/blogs-details/' + blog.id]" ngClass="position-relative">
             <!-- blog.blogDocument.fileUrl -->
             <img [src]="'https://www.ovaluate.com/' + blog.blogDocument.fileUrl" ngClass="img-fluid blog-image-homepage"
               alt="" />
@@ -461,6 +455,7 @@
               <h5>{{ blog.blogTitle }}</h5>
               <span>{{ blog.blogDate.split("T")[0] }}</span>
             </div>
+            <button ngClass="tag_btn blue">Market Trends</button>
           </a>
         </div>
       </div>

@@ -110,7 +110,6 @@
                     <ng-template carouselSlide [id]="slide.id">
                       <div ngClass="property-item position-relative">
                         <img [src]="slide.src" [alt]="slide.alt" [title]="slide.title" />
-                        <span [ngClass]="'popular-tag'"><img src="assets/images/tag/popular.png" /></span>
                         <div ngClass="brand-logo">
                           <img src="{{ brandimg }}" alt="" />
                         </div>
@@ -148,7 +147,7 @@
                         </div>
                         <a [routerLink]="['/PropertDetailsPage']" [queryParams]="{id: slide.id}"
                           ngClass="linK_overlay"></a>
-
+                          <button ngClass="tag_btn blue"><img src="{{tagicn}}"> POPULAR</button>
                       </div>
                     </ng-template>
                   </ng-container>
@@ -162,7 +161,6 @@
                     <ng-template carouselSlide [id]="slide.id">
                       <div ngClass="property-item position-relative">
                         <img [src]="slide.src" [alt]="slide.alt" [title]="slide.title" />
-                        <span [ngClass]="'popular-tag'"><img src="assets/images/tag/popular.png" /></span>
                         <div ngClass="brand-logo">
                           <img src="{{ brandimg }}" alt="" />
                         </div>
@@ -197,7 +195,7 @@
                         </div>
                         <a [routerLink]="['/PropertDetailsPage']" [queryParams]="{id: slide.id}"
                           ngClass="linK_overlay"></a>
-
+                          <button ngClass="tag_btn blue"><img src="{{tagicn}}"> POPULAR</button>
                       </div>
                     </ng-template>
                   </ng-container>
@@ -266,7 +264,6 @@
                     <ng-template carouselSlide [id]="slide.id">
                       <div ngClass="property-item position-relative">
                         <img [src]="slide.src" [alt]="slide.alt" [title]="slide.title" />
-                        <span [ngClass]="'popular-tag'"><img src="assets/images/tag/popular.png" /></span>
                         <div ngClass="brand-logo">
                           <img src="{{ brandimg }}" alt="" />
                         </div>
@@ -301,6 +298,7 @@
                         </div>
                         <a [routerLink]="['/PropertDetailsPage']" [queryParams]="{id: slide.id}"
                           ngClass="linK_overlay"></a>
+                          <button ngClass="tag_btn blue"><img src="{{tagicn}}"> POPULAR</button>
                       </div>
                     </ng-template>
                   </ng-container>
@@ -312,7 +310,6 @@
                     <ng-template carouselSlide [id]="slide.id">
                       <div ngClass="property-item position-relative">
                         <img [src]="slide.src" [alt]="slide.alt" [title]="slide.title" />
-                        <span [ngClass]="'popular-tag'"><img src="assets/images/tag/popular.png" /></span>
                         <div ngClass="brand-logo">
                           <img src="{{ brandimg }}" alt="" />
                         </div>
@@ -347,6 +344,7 @@
                         </div>
                         <a [routerLink]="['/PropertDetailsPage']" [queryParams]="{id: slide.id}"
                           ngClass="linK_overlay"></a>
+                          <button ngClass="tag_btn blue"><img src="{{tagicn}}"> POPULAR</button>
                       </div>
                     </ng-template>
                   </ng-container>
