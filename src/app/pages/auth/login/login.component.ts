@@ -72,7 +72,6 @@ export class LoginComponent implements OnInit {
     }
   }
   callLogin() {
-
     this.auth2.attachClickHandler(this.loginElement.nativeElement, {},
       (googleAuthUser: any) => {
         console.log(googleAuthUser.getAuthResponse());
