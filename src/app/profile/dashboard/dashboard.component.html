@@ -107,8 +107,7 @@
         <div class="tab-pane fade show active" id="pills-dashboard" role="tabpanel"
           aria-labelledby="pills-dashboard-tab">
 
-
-          <div class="free-proplisting">
+          <div class="free-proplisting" *ngIf="professionalType == 2 || professionalType == 3">
             <div class="first-title">
               <h3 class="title">FREE Property Listing</h3>
               <p>Sell or Rent Your Home</p>
@@ -119,7 +118,7 @@
               <li>Directly List your Property on Ovaluate</li>
               <li>Directly List your Property on Ovaluate</li>
             </ul>
-            <a href="#" class="btn btn-primary">List Property</a>
+            <a routerLink="/listingproperty" class="btn btn-primary">List Property</a>
           </div>
 
           <div class="statictics-wrap">
@@ -1526,7 +1525,7 @@
                   <h6>15 Days</h6>
                 </div>
                 <div ngClass="packge-item packge_renew">
-                  <button ngClass="renew-btn">Renew</button>
+                  <button ngClass="renew-btn" routerLink="/listing-packages">Renew</button>
                 </div>
               </div>
             </div>
@@ -2149,7 +2148,7 @@
       <mat-tab-group class="tab-wrap" animationDuration="0ms" style="display: none;">
         <mat-tab class="tab-item" label="Dashboard">
 
-          <div class="free-proplisting" *ngIf="professionalType == 2 || professionalType == 3">
+          <div class="free-proplisting"  *ngIf="professionalType == 2 || professionalType == 3">
             <div class="first-title">
               <h3 class="title">FREE Property Listing</h3>
               <p>Sell or Rent Your Home</p>
@@ -2160,7 +2159,7 @@
               <li>Directly List your Property on Ovaluate</li>
               <li>Directly List your Property on Ovaluate</li>
             </ul>
-            <a href="#" class="btn btn-primary">List Property</a>
+            <a routerLink="/listingproperty" class="btn btn-primary">List Property</a>
           </div>
 
           <div class="statictics-wrap">
