@@ -82,7 +82,6 @@ export class HomeComponent implements OnInit {
           });
       })
     });
-    console.log(tempData,'dedededede')
 
     this.dynamicSlides1 = tempData
   }
@@ -439,7 +438,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit():void {
-
+    console.clear();
     $(document).ready(function(){
       $('.dropdown-toggle').click(function(){
         $(this).next().toggleClass('active');
@@ -662,6 +661,4 @@ export class HomeComponent implements OnInit {
         }, 1000);
     }
   }
-
-
 }

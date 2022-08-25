@@ -653,7 +653,7 @@
                                                             ngClass="required-span">*</span></label>
                                                     <mat-form-field class="full-width input-design-2" appearance="fill">
                                                         <input matInput type="phone" placeholder="Enter Phone"
-                                                            formControlName="phone" />
+                                                            formControlName="phone" (input)="checkPhone()" />
                                                     </mat-form-field>
                                                 </div>
                                             </div>
