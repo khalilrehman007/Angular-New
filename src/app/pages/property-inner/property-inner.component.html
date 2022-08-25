@@ -322,6 +322,7 @@
                                             <input type="text" formControlName="name" matInput
                                                 placeholder="Location, Project Name">
                                         </mat-form-field>
+                                      <p style="color: red" *ngIf="nameError !=''">{{nameError}}</p>
                                     </div>
                                     <div ngClass="form-grouph input-design white-input-design">
                                         <mat-form-field class="example-full-width" appearance="fill">
@@ -329,6 +330,7 @@
                                             <input type="email" formControlName="email" matInput
                                                 placeholder="Location, Project Name">
                                         </mat-form-field>
+                                      <p style="color: red" *ngIf="emailError !=''">{{emailError}}</p>
                                     </div>
                                     <div ngClass="form-grouph input-design white-input-design">
                                         <mat-form-field class="example-full-width" appearance="fill">
@@ -336,6 +338,7 @@
                                             <input type="text" formControlName="phone" matInput
                                                 placeholder="Location, Project Name">
                                         </mat-form-field>
+                                      <p style="color: red" *ngIf="phoneError !=''">{{phoneError}}</p>
                                     </div>
                                     <div ngClass="form-grouph textarea-design white-input-design">
                                         <mat-form-field class="example-full-width" appearance="fill">
@@ -343,6 +346,7 @@
                                             <textarea matInput formControlName="message"
                                                 placeholder="I would like to inquire about the property OV - R8986. Please contact me at your earliest convenience."></textarea>
                                         </mat-form-field>
+                                      <p style="color: red" *ngIf="messageError !=''">{{messageError}}</p>
                                     </div>
                                     <div ngClass="form-grouph submit-design submit-design-email-send">
                                         <button type="button" (click)="leadProceedStore()" ngClass="btn-design-3">Send

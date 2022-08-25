@@ -42,28 +42,38 @@ export class HomeComponent implements OnInit {
   slider: any = [];
   user : any
 
-
-
   id: 1;
   propertyDetails:any;
   oldData1() {
     let tempData :Array<Object> = []
     this.service.LatestPropertiesListingResidential({"UserId":this.userId,"propertyListingTypeId":"2"}).subscribe(data=>{
-      this.propertyDetails= data;
-      this.propertyDetails = this.propertyDetails.data;
+      let response :any = data;
+      response.data.forEach((element, i) => {
+        let image :any = 'assets/images/placeholder.png'
+        if(element.documents.length > 1 && element.documents[0].fileUrl != undefined && element.documents[0].fileUrl != null){
+          image = this.baseUrl+element.documents[0].fileUrl
+        }
 
-      this.propertyDetails.forEach((element, i) => {
-        let image = element.documents[0].fileUrl
+        let rentType :any = ''
+        if(element.rentType != undefined && element.rentType.name != undefined && element.rentType.name != null){
+          rentType = element.rentType.name
+        }
+
+        let currency :any = ''
+        if(element.country !== undefined && element.country.currency != undefined && element.country.currency!= null){
+          currency = element.country.currency
+        }
+
         tempData.push(
           {
             title: element.propertyTitle,
-            rentType: element.rentType.name,
-            currency: element.country.currency,
+            rentType: rentType,
+            currency: currency,
             price: element.propertyPrice,
             favorite: element.favorite,
             id:element.id,
             alt:element.propertyTitle,
-            src:this.baseUrl+image,
+            src:image,
             bedrooms:element.bedrooms,
             propertyAddress:element.propertyAddress,
             bathrooms:element.bathrooms,
@@ -72,27 +82,40 @@ export class HomeComponent implements OnInit {
           });
       })
     });
-    this.dynamicSlides1 = tempData
+    console.log(tempData,'dedededede')
 
+    this.dynamicSlides1 = tempData
   }
   newData1() {
     let tempData :Array<Object> = []
     this.service.LatestPropertiesListingResidential({"UserId":this.userId,"propertyListingTypeId":"1"}).subscribe(data=>{
-      this.propertyDetails= data;
-      this.propertyDetails = this.propertyDetails.data;
-      this.propertyDetails.forEach((element, i) => {
-        let image = element.documents[0].fileUrl
+      let response :any = data;
+      response.data.forEach((element, i) => {
+        let image :any = 'assets/images/placeholder.png'
+        if(element.documents.length > 1 && element.documents[0].fileUrl != undefined && element.documents[0].fileUrl != null){
+          image = this.baseUrl+element.documents[0].fileUrl
+        }
+
+        let rentType :any = ''
+        if(element.rentType != undefined && element.rentType.name != undefined && element.rentType.name != null){
+          rentType = element.rentType.name
+        }
+
+        let currency :any = ''
+        if(element.country !== undefined && element.country.currency != undefined && element.country.currency!= null){
+          currency = element.country.currency
+        }
         tempData.push(
           {
             title: element.propertyTitle,
             price: element.propertyPrice,
             favorite: element.favorite,
-            rentType: element.rentType.name,
-            currency: element.country.currency,
+            rentType: rentType,
+            currency: currency,
             propertyAddress:element.propertyAddress,
             id:element.id,
             alt:element.propertyTitle,
-            src:this.baseUrl+image,
+            src:image,
             bedrooms:element.bedrooms,
             bathrooms:element.bathrooms,
             buildingName:element.buildingName,
@@ -106,21 +129,33 @@ export class HomeComponent implements OnInit {
   oldData2() {
     let tempData :Array<Object> = []
     this.service.LatestPropertiesListingCommercial({"UserId":this.userId,"propertyListingTypeId":"2"}).subscribe(data=>{
-      this.propertyDetails=data;
-      this.propertyDetails = this.propertyDetails.data;
-      this.propertyDetails.forEach((element, i) => {
-        let image = element.documents[0].fileUrl
+      let response :any = data;
+      response.data.forEach((element, i) => {
+        let image :any = 'assets/images/placeholder.png'
+        if(element.documents.length > 1 && element.documents[0].fileUrl != undefined && element.documents[0].fileUrl != null){
+          image = this.baseUrl+element.documents[0].fileUrl
+        }
+
+        let rentType :any = ''
+        if(element.rentType != undefined && element.rentType.name != undefined && element.rentType.name != null){
+          rentType = element.rentType.name
+        }
+
+        let currency :any = ''
+        if(element.country !== undefined && element.country.currency != undefined && element.country.currency!= null){
+          currency = element.country.currency
+        }
         tempData.push(
           {
             title: element.propertyTitle,
             price: element.propertyPrice,
-            rentType: element.rentType.name,
+            rentType: rentType,
             favorite: element.favorite,
-            currency: element.country.currency,
+            currency: currency,
             propertyAddress:element.propertyAddress,
             id:element.id,
             alt:element.propertyTitle,
-            src:this.baseUrl+image,
+            src:image,
             bedrooms:element.bedrooms,
             bathrooms:element.bathrooms,
             buildingName:element.buildingName,
@@ -133,21 +168,33 @@ export class HomeComponent implements OnInit {
   newData2() {
     let tempData :Array<Object> = []
     this.service.LatestPropertiesListingCommercial({"UserId":this.userId,"propertyListingTypeId":"1"}).subscribe(data=>{
-      this.propertyDetails=data;
-      this.propertyDetails = this.propertyDetails.data;
-      this.propertyDetails.forEach((element, i) => {
-        let image = element.documents[0].fileUrl
+      let response :any = data;
+      response.data.forEach((element, i) => {
+        let image :any = 'assets/images/placeholder.png'
+        if(element.documents.length > 1 && element.documents[0].fileUrl != undefined && element.documents[0].fileUrl != null){
+          image = this.baseUrl+element.documents[0].fileUrl
+        }
+
+        let rentType :any = ''
+        if(element.rentType != undefined && element.rentType.name != undefined && element.rentType.name != null){
+          rentType = element.rentType.name
+        }
+
+        let currency :any = ''
+        if(element.country !== undefined && element.country.currency != undefined && element.country.currency!= null){
+          currency = element.country.currency
+        }
         tempData.push(
           {
             title: element.propertyTitle,
             price: element.propertyPrice,
-            rentType: element.rentType.name,
+            rentType: rentType,
             favorite: element.favorite,
-            currency: element.country.currency,
+            currency: currency,
             propertyAddress:element.propertyAddress,
             id:element.id,
             alt:element.propertyTitle,
-            src:this.baseUrl+image,
+            src:image,
             bedrooms:element.bedrooms,
             bathrooms:element.bathrooms,
             buildingName:element.buildingName,

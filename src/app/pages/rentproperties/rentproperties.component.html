@@ -94,7 +94,7 @@
                               {{list.rentType}}</span>
                           </div>
                         </div>
-                        <div ngClass="property-action-hdr" [routerLink]="['/PropertDetailsPage']" [queryParams]="{id: list.id}">
+                        <div ngClass="property-action-hdr">
                           <button ngClass="ov-verified-btn"><img src="{{ovverified}}"> {{list.propertyCode}}</button>
                           <button ngClass="circle-btn"><img src="{{share}}"></button>
                           <button [ngClass]="list.favorite == true ? 'grey-bordered-btn red-fill' : 'grey-bordered-btn'" (click)="AddToFavorite(list.id,list.favorite)">

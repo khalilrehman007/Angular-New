@@ -485,10 +485,37 @@ export class PropertyInnerComponent implements OnInit {
 
   responsedata: any;
   leadData    : any = {};
+  nameError :any = '';
+  emailError :any = '';
+  phoneError :any = '';
+  messageError :any = '';
+
   leadProceedStore(){
     if (this.SubmitForm.invalid) {
+      if(this.SubmitForm.value.name == ''){
+        this.nameError = "Name required"
+      }else {
+        this.nameError = ""
+      }
+      if(this.SubmitForm.value.email == ''){
+        this.emailError = "Email required"
+      }else {
+        this.emailError = ""
+      }
+      if(this.SubmitForm.value.phone == ''){
+        this.phoneError = "Phone required"
+      }else{
+        this.phoneError = ""
+      }
+      if(this.SubmitForm.value.message == ''){
+        this.messageError = "Message required"
+      }else {
+        this.messageError = ""
+      }
       return;
     }
+
+
     // if(this.user == null ){
     //   this.route.navigate(['login'])
     //   this.notifyService.showWarning('First you need login!', "Warning");
@@ -510,6 +537,11 @@ export class PropertyInnerComponent implements OnInit {
               this.SubmitForm.controls.email.setValue('');
               this.SubmitForm.controls.phone.setValue('');
               this.SubmitForm.controls.message.setValue('');
+
+              this.nameError = ''
+              this.emailError = ''
+              this.phoneError = ''
+              this.messageError = ''
 
               this.notifyService.showSuccess(this.responsedata.message, "");
             }else{
