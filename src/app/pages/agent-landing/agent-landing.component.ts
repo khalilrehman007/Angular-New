@@ -123,7 +123,7 @@ export class AgentLandingComponent implements OnInit {
   agentData() {
     this.page = 1;
     this.featuredAgentData = {
-      heading: "Featured Real Estate Companies",
+      heading: "Featured Real Estate Agents",
       desc: "Some of our best property agents",
       list: [
         {
@@ -210,10 +210,10 @@ export class AgentLandingComponent implements OnInit {
       ],
     };
     this.agentList = {
-      heading: "Real Estate Companies Listing",
+      heading: "Real Estate Agent Listing",
       desc: "Some of our best property agents",
       tableHeadings: [
-        "Companies",
+        "Agents",
         "Location",
         "Specialities",
         "Action"
