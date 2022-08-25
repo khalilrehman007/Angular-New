@@ -393,5 +393,8 @@ export class AppService {
   Googlelogin(data:any) {
     return this.http.post(this.apiurl + 'Googlelogin', data);
   }
+  SummaryLeads(data:any) {
+    return this.http.post(this.apiurl + 'SummaryLeads', data);
+  }
 
 }
