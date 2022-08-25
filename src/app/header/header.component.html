@@ -108,7 +108,7 @@
                     <path d="M14.5835 0.597656C13.6451 0.612252 12.7272 0.874201 11.9224 1.35705C11.1177 1.8399 10.4546 2.52655 10.0001 3.34766C9.54565 2.52655 8.88257 1.8399 8.07782 1.35705C7.27307 0.874201 6.35517 0.612252 5.41679 0.597656C3.92091 0.662649 2.51155 1.31703 1.49661 2.41785C0.481677 3.51867 -0.0563307 4.97643 0.000128 6.47266C0.000128 10.2618 3.98846 14.4002 7.33346 17.206C8.0803 17.8336 9.02458 18.1777 10.0001 18.1777C10.9757 18.1777 11.9199 17.8336 12.6668 17.206C16.0118 14.4002 20.0001 10.2618 20.0001 6.47266C20.0566 4.97643 19.5186 3.51867 18.5036 2.41785C17.4887 1.31703 16.0793 0.662649 14.5835 0.597656ZM11.596 15.931C11.1493 16.3071 10.5841 16.5134 10.0001 16.5134C9.41616 16.5134 8.85097 16.3071 8.40429 15.931C4.12263 12.3385 1.66679 8.89182 1.66679 6.47266C1.60983 5.41825 1.9721 4.3841 2.6746 3.59574C3.37709 2.80738 4.36282 2.32878 5.41679 2.26432C6.47076 2.32878 7.45649 2.80738 8.15899 3.59574C8.86148 4.3841 9.22375 5.41825 9.16679 6.47266C9.16679 6.69367 9.25459 6.90563 9.41087 7.06191C9.56715 7.21819 9.77911 7.30599 10.0001 7.30599C10.2211 7.30599 10.4331 7.21819 10.5894 7.06191C10.7457 6.90563 10.8335 6.69367 10.8335 6.47266C10.7765 5.41825 11.1388 4.3841 11.8413 3.59574C12.5438 2.80738 13.5295 2.32878 14.5835 2.26432C15.6374 2.32878 16.6231 2.80738 17.3256 3.59574C18.0281 4.3841 18.3904 5.41825 18.3334 6.47266C18.3334 8.89182 15.8776 12.3385 11.596 15.9277V15.931Z" fill="#192024"/>
                     </svg>
                   </button>
-                  <div class="fav-list-dropdown" [ngClass]="status ? 'active' : 'notactive'">
+                    <div class="fav-list-dropdown" [ngClass]="status ? 'active' : 'notactive'">
                     <div ngClass="shortlisted-header d-flex justify-content-spacebw">
                       <h4>Shortlisted Projects</h4>
                       <button (click)="clickEvent()"><img src="{{close}}"></button>
@@ -116,7 +116,7 @@
                     <div ngClass="shortlisted-inner-cntnt">
                       <mat-tab-group (selectedTabChange)="getCountChange($event)">
                         <mat-tab label="All ({{allCount}})">
-                          <div ngClass="shortlisted-inner-details">
+                          <div  [ngClass]="wishlistingDataAll.length == 1 ? 'shortlisted-inner-details single-shortlisted-property' : 'shortlisted-inner-details'">
                             <form>
                               <div ngClass="shortlisted-project-cntnt position-relative" *ngFor="let list of wishlistingDataAll">
                                 <div ngClass="property-selection-div">
@@ -145,10 +145,11 @@
 <!--                                <a ngClass="compare-btn" *ngIf="wishlistingDataAll.length < 2" >Please select property atleast two.</a>-->
                               </div>
                             </form>
+                            <p *ngIf="wishlistingDataAll.length == 0">It seems you have not shortlisted any property</p>
                           </div>
                         </mat-tab>
                         <mat-tab label="Rent ({{rentCount}})">
-                          <div ngClass="shortlisted-inner-details">
+                          <div [ngClass]="wishlistingDataRent.length == 1 ? 'shortlisted-inner-details single-shortlisted-property' : 'shortlisted-inner-details'">
                             <div ngClass="shortlisted-project-cntnt position-relative" *ngFor="let list of wishlistingDataRent">
                               <div ngClass="property-selection-div">
                                 <div ngClass="selection-checkbox-selector" *ngIf="wishlistingDataRent.length > 1">
@@ -175,10 +176,12 @@
                               <a (click)="compareProceed('rent')" *ngIf="wishlistingDataRent.length > 1" ngClass="compare-btn">Compare</a>
 <!--                              <a ngClass="compare-btn" *ngIf="wishlistingDataRent.length < 2" >Please select property atleast two.</a>-->
                             </div>
+                            <p *ngIf="wishlistingDataRent.length == 0">It seems you have not shortlisted any property</p>
                           </div>
+                          <p *ngIf="wishlistingDataRent.length == 0">It seems you have not shortlisted any property</p>
                         </mat-tab>
                         <mat-tab label="Buy ({{buyCount}})">
-                          <div ngClass="shortlisted-inner-details">
+                          <div [ngClass]="wishlistingDataBuy.length == 1 ? 'shortlisted-inner-details single-shortlisted-property' : 'shortlisted-inner-details'">
                             <div ngClass="shortlisted-project-cntnt position-relative" *ngFor="let list of wishlistingDataBuy">
                               <div ngClass="property-selection-div">
                                 <div ngClass="selection-checkbox-selector" *ngIf="wishlistingDataBuy.length > 1">
@@ -205,6 +208,7 @@
                               <a (click)="compareProceed('buy')"  *ngIf="wishlistingDataBuy.length > 1" ngClass="compare-btn">Compare</a>
 <!--                              <a ngClass="compare-btn" *ngIf="wishlistingDataBuy.length < 2" >Please select property atleast two.</a>-->
                             </div>
+                            <p *ngIf="wishlistingDataBuy.length == 0">It seems you have not shortlisted any property</p>
                           </div>
                         </mat-tab>
                       </mat-tab-group>

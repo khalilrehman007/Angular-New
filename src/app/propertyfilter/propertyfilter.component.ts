@@ -60,9 +60,16 @@ export class PropertyfilterComponent implements OnInit {
   filteredFruits: Observable<string[]>;
   fruits: string[] = [];
   allFruits: string[] = [];
+  KeyWords :any = []
+  keyWordsUrlValue :any = []
+
+
   @ViewChild('fruitInput') fruitInput: ElementRef<HTMLInputElement>;
 
+  totalPropertyRecord :any;
   constructor(private activeRoute: ActivatedRoute,private service:AppService,private api: AppService,private route:Router,private modalService: NgbModal) {
+
+    this.totalPropertyRecord = localStorage.getItem('propertyListingTotalRecord');
     this.type                 = this.activeRoute.snapshot.queryParamMap.get('type');
     this.PropertyCategoryId   = this.activeRoute.snapshot.queryParamMap.get('PropertyCategoryId');
     this.RentTypeId           = this.activeRoute.snapshot.queryParamMap.get('RentTypeId');
@@ -76,16 +83,36 @@ export class PropertyfilterComponent implements OnInit {
     let DistrictsValue :any = this.activeRoute.snapshot.queryParamMap.get('DistrictsValue');
     this.DistrictsId = JSON.parse(DistrictsId)
     this.DistrictsValue = JSON.parse(DistrictsValue)
+    let KeyWords :any = this.activeRoute.snapshot.queryParamMap.get('KeyWords');
+    let PropertyFeatureIds :any = this.activeRoute.snapshot.queryParamMap.get('PropertyFeatureIds');
+    let MinCarpetArea :any = this.activeRoute.snapshot.queryParamMap.get('MinCarpetArea');
+    let MaxCarpetArea :any = this.activeRoute.snapshot.queryParamMap.get('MaxCarpetArea');
+    let FurnishingTypeId :any = this.activeRoute.snapshot.queryParamMap.get('FurnishingTypeId');
+    this.KeyWords = JSON.parse(KeyWords)
+    if(PropertyFeatureIds == null){
+      PropertyFeatureIds = []
+    }else{
+      PropertyFeatureIds = JSON.parse(PropertyFeatureIds)
+    }
+    if(this.KeyWords !== null){
+      this.KeyWords.forEach((element, i) => {
+        this.keyWordsUrlValue.push({name:element})
+      })
+    }
+
+
+    this.propertyFeatureIds = PropertyFeatureIds
+    this.minCarpet = MinCarpetArea
+    this.maxCarpet = MaxCarpetArea
+    this.furnishedType = FurnishingTypeId
+    console.log(this.propertyFeatureIds,this.KeyWords,this.minCarpet,this.minCarpet,this.furnishedType)
+
 
     this.getLoaction({"Searching":"","CountryId":"1"});
 
     if(this.DistrictsValue !== null){
       this.fruits = this.DistrictsValue
     }
-
-    console.log(this.DistrictsId)
-    console.log(this.DistrictsValue)
-
 
     this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
       startWith(null),
@@ -247,6 +274,8 @@ export class PropertyfilterComponent implements OnInit {
     Name : new FormControl(""),
     PriceStart : new FormControl(""),
     PriceEnd : new FormControl(""),
+    minCarpet : new FormControl(""),
+    maxCarpet : new FormControl(""),
   });
 
   options: Options = {
@@ -307,16 +336,25 @@ export class PropertyfilterComponent implements OnInit {
 
 
   proceedSearch(){
+
+    let keywordsData :any = [];
+    this.Keywords.forEach((element, i) => {
+      keywordsData.push(element.name)
+    })
+
     let params :any = {type:this.type,"PropertyTypeIds":[],"RentTypeId":this.RentTypeId,
       "PropertyCategoryId":this.PropertyCategoryId,PriceStart:this.SubmitForm.value.PriceStart,PriceEnd:this.SubmitForm.value.PriceEnd,
       Bedrooms:this.Bedrooms,Bathrooms:this.Bathrooms,PropertyAddress:this.SubmitForm.value.Name,
       "PropertyListingTypeId":this.PropertyListingTypeId,CurrentPage:1,DistrictIds:JSON.stringify(this.DistrictsId),
-      DistrictsValue:JSON.stringify(this.DistrictsValue)
+      DistrictsValue:JSON.stringify(this.DistrictsValue),KeyWords:JSON.stringify(keywordsData),PropertyFeatureIds:JSON.stringify(this.propertyFeatureIds),
+      MinCarpetArea:this.minCarpet,MaxCarpetArea:this.maxCarpet,FurnishingTypeId:this.furnishedType
     }
     let objects :any = {type:this.type,"PropertyTypeIds":[],"RentTypeId":this.RentTypeId,
       "PropertyCategoryId":this.PropertyCategoryId,PriceStart:this.SubmitForm.value.PriceStart,PriceEnd:this.SubmitForm.value.PriceEnd,
       Bedrooms:this.Bedrooms,Bathrooms:this.Bathrooms,PropertyAddress:this.SubmitForm.value.Name,
-      "PropertyListingTypeId":this.PropertyListingTypeId,CurrentPage:1,DistrictIds:this.DistrictsId
+      "PropertyListingTypeId":this.PropertyListingTypeId,CurrentPage:1,DistrictIds:this.DistrictsId,KeyWords:keywordsData
+      ,PropertyFeatureIds:this.propertyFeatureIds,FurnishingTypeId:this.furnishedType,
+      MinCarpetArea:this.minCarpet,MaxCarpetArea:this.maxCarpet
     }
     this.route.navigate(['/search'],{queryParams:params})
     this.childToParentDataLoad.emit(objects)
@@ -361,17 +399,21 @@ export class PropertyfilterComponent implements OnInit {
   }
   modelPropertyPictures :any=[]
   openVerticallyCentered(content) {
+    console.log(this.propertyFeatureIds)
+    this.SubmitForm.controls.minCarpet.setValue(this.minCarpet);
+    this.SubmitForm.controls.maxCarpet.setValue(this.maxCarpet);
+
+
     this.modalService.open(content, { centered: true });
   }
 
 // Keywords
-addOnBlur = true;
+  addOnBlur = true;
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
-  Keywords: KeywordString[] = [{name: 'Property'}];
+  Keywords: KeywordString[] = this.keyWordsUrlValue;
 
   add(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
-    console.log(value,'ohohoho')
     // Add our fruit
     if (value) {
       this.Keywords.push({name: value});
@@ -397,17 +439,34 @@ addOnBlur = true;
 
   propertyFeatureIds :any = [];
   propertyFeatureChange(data :any){
-    this.propertyFeatureIds.push(data)
+    let checkExists :any = true;
+    this.propertyFeatureIds.forEach((element, i) => {
+      if(element == data){
+        checkExists = false;
+      }
+    })
+
+
+    if(checkExists){
+      this.propertyFeatureIds.push(data)
+    }else{
+      const index = this.propertyFeatureIds.indexOf(data);
+      if (index >= 0) {
+        this.propertyFeatureIds.splice(index, 1);
+      }
+    }
   }
 
 
   minCarpet : any = ''
   minCarpetAreaChange(searchValue: any): void {
     this.minCarpet = searchValue
+    console.log(this.minCarpet)
   }
   maxCarpet : any = ''
   maxCarpetAreaChange(searchValue: any): void {
     this.maxCarpet = searchValue
+    console.log(this.maxCarpet)
   }
 
 }

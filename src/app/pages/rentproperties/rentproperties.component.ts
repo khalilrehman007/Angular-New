@@ -77,7 +77,11 @@ export class RentpropertiesComponent implements OnInit {
   listingForMap:any = [];
   DistrictsId:any = [];
   DistrictsValue:any = [];
-
+  KeyWords :any = []
+  PropertyFeatureIds :any = []
+  MinCarpetArea :any ;
+  MaxCarpetArea :any ;
+  FurnishingTypeId :any ;
   constructor(private authService: AuthService, private notifyService: NotificationService, private activeRoute: ActivatedRoute, private service: AppService, private api: AppService, private route: Router, private modalService: NgbModal) {
     this.type = this.activeRoute.snapshot.queryParamMap.get('type');
     this.PropertyCategoryId = this.activeRoute.snapshot.queryParamMap.get('PropertyCategoryId');
@@ -89,6 +93,19 @@ export class RentpropertiesComponent implements OnInit {
     this.PriceEnd = this.activeRoute.snapshot.queryParamMap.get('PriceEnd');
     let DistrictsId :any = this.activeRoute.snapshot.queryParamMap.get('DistrictIds');
     let DistrictsValue :any = this.activeRoute.snapshot.queryParamMap.get('DistrictsValue');
+    let KeyWords :any = this.activeRoute.snapshot.queryParamMap.get('KeyWords');
+    let PropertyFeatureIds :any = this.activeRoute.snapshot.queryParamMap.get('PropertyFeatureIds');
+    let MinCarpetArea :any = this.activeRoute.snapshot.queryParamMap.get('MinCarpetArea');
+    let MaxCarpetArea :any = this.activeRoute.snapshot.queryParamMap.get('MaxCarpetArea');
+    let FurnishingTypeId :any = this.activeRoute.snapshot.queryParamMap.get('FurnishingTypeId');
+
+    this.KeyWords = JSON.parse(KeyWords)
+    this.PropertyFeatureIds = JSON.parse(PropertyFeatureIds)
+    this.MinCarpetArea = MinCarpetArea
+    this.MaxCarpetArea = MaxCarpetArea
+    this.FurnishingTypeId = FurnishingTypeId
+    console.log(this.PropertyFeatureIds,this.KeyWords,this.MinCarpetArea,this.MaxCarpetArea,this.FurnishingTypeId)
+
     this.DistrictsId = JSON.parse(DistrictsId)
     this.DistrictsValue = JSON.parse(DistrictsValue)
 
@@ -216,6 +233,13 @@ export class RentpropertiesComponent implements OnInit {
     this.PriceStart = response.PriceStart
     this.PriceEnd = response.PriceEnd
     this.page = response.CurrentPage
+    this.KeyWords = response.KeyWords
+    this.PropertyFeatureIds = response.PropertyFeatureIds
+    this.MinCarpetArea = response.MinCarpetArea
+    this.MaxCarpetArea = response.MaxCarpetArea
+    this.FurnishingTypeId = response.FurnishingTypeId
+    console.log(this.PropertyFeatureIds,this.KeyWords,this.MinCarpetArea,this.MaxCarpetArea,this.FurnishingTypeId)
+
 
     this.selectedPropertyTypeName = null
     this.LoadPropertyCategories();
@@ -229,8 +253,8 @@ export class RentpropertiesComponent implements OnInit {
     this.service.LoadSearchListing(data).subscribe((response:any) => {
       this.listingForMap = response.data.propertyListings;
       localStorage.setItem('listingForMap',JSON.stringify(this.listingForMap))
-      console.log(this.listingForMap)
       this.totalRecord = response.data.totalRecord;
+      localStorage.setItem('propertyListingTotalRecord', this.totalRecord);
       response.data.propertyListings.forEach((element, i) => {
         let documentsCheck: any = true;
         let rentTypeName = ''
@@ -266,8 +290,8 @@ export class RentpropertiesComponent implements OnInit {
             expiredDateFormat: element.expiredDateFormat, rentType: rentTypeName, currency: element.country.currency, propertyCode: element.propertyCode
           }
         );
-        this.searchListing = tempData;
       })
+      this.searchListing = tempData;
     });
 
   }
