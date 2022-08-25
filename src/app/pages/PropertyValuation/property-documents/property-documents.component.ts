@@ -55,6 +55,16 @@ export class PropertyDocumentsComponent implements OnInit {
     phone: new FormControl("", Validators.required)
   })
 
+  checkPhone() {
+    let temp: any = this.reportForm.value.phone;
+    if (temp.toString().length > 12) {
+      // alert("Max length allowes is 12");
+      this.error = "Max length allows is 12"
+      this.reportForm.patchValue({
+        phone: temp.toString().slice(0, -1)
+      })
+    }
+  }
   paymentForm = new FormGroup({
     cardNumber: new FormControl("", Validators.required),
     expiryDate: new FormControl("", Validators.required),
