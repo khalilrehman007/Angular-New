@@ -34,7 +34,6 @@ export class AppComponent implements DoCheck, OnInit {
         (currentToken) => {
           if (currentToken) {
             localStorage.setItem("deviceToken",currentToken);
-            console.log(currentToken);
           }
         }).catch((err) => {});
   }
