@@ -5,6 +5,7 @@ import { AuthService } from 'src/app/service/auth.service';
 import { Router } from '@angular/router';
 import { NotificationService } from 'src/app/service/notification.service';
 import {Location} from '@angular/common';
+import { AppService } from 'src/app/service/app.service';
 
 @Component({
   selector: 'app-login',
@@ -25,7 +26,7 @@ export class LoginComponent implements OnInit {
   auth2: any;
   @ViewChild('loginRef', { static: true }) loginElement!: ElementRef;
 
-  constructor(private service: AuthService,private route:Router,private notifyService : NotificationService,private _location: Location) {
+  constructor(private service: AuthService,private route:Router,private notifyService : NotificationService,private _location: Location, private api: AppService) {
     localStorage.clear();
   }
   Login = new FormGroup({
@@ -53,11 +54,9 @@ export class LoginComponent implements OnInit {
         if(result!=null ){
           this.responsedata = result
           if(this.responsedata.data !== null){
-            // this.responsedata.data = this.responsedata.data;
             localStorage.setItem('token',JSON.stringify(this.responsedata.data.refreshToken))
             localStorage.setItem('user',JSON.stringify(this.responsedata.data))
             this.notifyService.showSuccess(this.responsedata.message, "");
-            // this.route.navigate([''])
             this._location.back();
           }else{
             if(this.responsedata.error.length > 0){
@@ -73,20 +72,24 @@ export class LoginComponent implements OnInit {
     }
   }
   callLogin() {
-
     this.auth2.attachClickHandler(this.loginElement.nativeElement, {},
       (googleAuthUser: any) => {
         console.log(googleAuthUser.getAuthResponse());
         //Print profile details in the console logs
         let profile = googleAuthUser.getBasicProfile();
-        console.log('access_token || ' + googleAuthUser.getAuthResponse().access_token);
-        console.log('ID: ' + profile.getId());
-        console.log('Name: ' + profile.getName());
-        console.log('Image URL: ' + profile.getImageUrl());
-        console.log('Email: ' + profile.getEmail());
-
+        let temp:any = "";
+        if(localStorage.getItem("deviceToken")) {
+          temp = localStorage.getItem("deviceToken");
+        }
+        this.api.Googlelogin({"Provider":"google","IdToken":googleAuthUser.getAuthResponse().id_token, "DeviceId": temp}).subscribe((result:any) => {
+          if(result.message == "You are successfully logged in") {
+            localStorage.setItem('token',JSON.stringify(result.data.refreshToken))
+            localStorage.setItem('user',JSON.stringify(result.data))
+            this.notifyService.showSuccess(result.message, result.message);
+            this._location.back();
+          }
+        })
       }, (error: any) => {
-        alert(JSON.stringify(error, undefined, 2));
       });
 
   }

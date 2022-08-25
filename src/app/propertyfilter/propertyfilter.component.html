@@ -273,7 +273,7 @@
                 </div>
               </div>
               <div ngClass="text-right totel_properties-btn mt-5">
-                <button (click)="proceedSearch()" ngClass="">Totel Properties Count <span ngClass="count_properties">({{totalPropertyRecord}})</span></button>
+                <button (click)="proceedSearch()" (click)="modal.dismiss('Cross click')">Totel Properties Count <span ngClass="count_properties">({{totalPropertyRecord}})</span></button>
               </div>
             </div>
           </div>

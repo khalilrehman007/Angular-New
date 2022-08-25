@@ -23,7 +23,7 @@
               <a ngClass="nav-link" data-bs-toggle="tab" href="#commertial">Commercial</a>
             </li> -->
             <li ngClass="nav-item">
-              <a ngClass="nav-link" data-bs-toggle="tab" href="#find-agents" >Find Agents</a>
+              <a ngClass="nav-link" data-bs-toggle="tab" href="#find-agents">Find Agents</a>
             </li>
           </ul>
           <!-- Tab panes -->
@@ -41,7 +41,7 @@
               <!--              <comercial-search></comercial-search>-->
             </div>
             <div id="find-agents" ngClass="tab-pane fade">
-              <find-agent-search ></find-agent-search>
+              <find-agent-search></find-agent-search>
             </div>
           </div>
         </div>
@@ -92,7 +92,7 @@
       </div>
     </div>
   </section>
-  <section ngClass="position-relative wrapper-section properties-slider residentials-property-rent-1">
+  <section ngClass="position-relative wrapper-section properties-slider residentials-property-rent-1" >
     <div ngClass="container_1220px">
       <div ngClass="section-title">
         <div ngClass="section-title-left">
@@ -137,29 +137,32 @@
         </div>
       </div>
 
-            <div ngClass="tab-content">
-                <div id="resedential-rent" class="tab-pane active">
-                    <owl-carousel-o [options]="customOptions" ngClass="slider-shadow ">
-                        <ng-container *ngFor="let slide of dynamicSlides1">
-                            <ng-template carouselSlide [id]="slide.id">
-                                <div ngClass="property-item position-relative">
-                                    <img [src]="slide.src" [alt]="slide.alt" [title]="slide.title" />
-                                    <div ngClass="brand-logo">
-                                        <img src="{{ brandimg }}" alt="" />
-                                    </div>
+      <div ngClass="tab-content">
+        <div id="resedential-rent" class="tab-pane active">
+          <owl-carousel-o [options]="customOptions" ngClass="slider-shadow ">
+            <ng-container *ngFor="let slide of dynamicSlides1">
+              <ng-template carouselSlide [id]="slide.id">
+                <div ngClass="property-item position-relative">
+                  <img [src]="slide.src" [alt]="slide.alt" [title]="slide.title" />
+                  <span [ngClass]="'popular-tag'"><img src="assets/images/tag/popular-green-ta.png" /></span>
+                  <div ngClass="brand-logo">
+                    <img src="{{ brandimg }}" alt="" />
+                  </div>
 
-                    <button   [ngClass]="slide.favorite == true ? 'property-whistlist red-fill' : 'property-whistlist'" (click)="AddToFavorite(slide.id,slide.favorite,'resedential-old')">
+                  <button [ngClass]="slide.favorite == true ? 'property-whistlist red-fill' : 'property-whistlist'"
+                    (click)="AddToFavorite(slide.id,slide.favorite,'resedential-old')">
                     <svg width="22" height="23" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path
                         d="M4.39376 6.23844C4.02517 6.63167 3.73279 7.0985 3.53331 7.61228C3.33383 8.12605 3.23116 8.67672 3.23116 9.23283C3.23116 9.78894 3.33383 10.3396 3.53331 10.8534C3.73279 11.3672 4.02517 11.834 4.39376 12.2272L11.1699 19.4563L17.946 12.2272C18.6904 11.433 19.1086 10.3559 19.1086 9.23283C19.1086 8.10972 18.6904 7.0326 17.946 6.23844C17.2016 5.44429 16.1919 4.99813 15.1392 4.99813C14.0865 4.99813 13.0768 5.44429 12.3324 6.23844L11.1699 7.47873L10.0073 6.23844C9.63871 5.84521 9.20113 5.53329 8.71954 5.32047C8.23796 5.10766 7.72179 4.99812 7.20053 4.99812C6.67926 4.99812 6.1631 5.10766 5.68152 5.32047C5.19993 5.53329 4.76235 5.84521 4.39376 6.23844V6.23844Z"
                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
                   </button>
-                      <div ngClass="property-info">
-                        <span ngClass="property-pricing"><span>{{ slide.price }} {{ slide.currency }}</span> / {{slide.rentType}}</span>
-                        <span ngClass="property-name">{{ slide.buildingName }}</span>
-                        <p ngClass="property-location">
-                      <img src="{{ homelocationsvg }}" width="14" alt=""/>{{slide.propertyAddress}}
+                  <div ngClass="property-info">
+                    <span ngClass="property-pricing"><span>{{ slide.price }} {{ slide.currency }}</span> /
+                      {{slide.rentType}}</span>
+                    <span ngClass="property-name">{{ slide.buildingName }}</span>
+                    <p ngClass="property-location">
+                      <img src="{{ homelocationsvg }}" width="14" alt="" />{{slide.propertyAddress}}
                     </p>
                     <div ngClass="property-details">
                       <span ngClass="bed">
@@ -177,8 +180,8 @@
                     </div>
                   </div>
                   <a [routerLink]="['/PropertDetailsPage']" [queryParams]="{id: slide.id}" ngClass="linK_overlay"></a>
-                  <button ngClass="tag_btn green"><img src="{{tagicn}}"> POPULAR</button>
-                  </div>
+
+                </div>
               </ng-template>
             </ng-container>
           </owl-carousel-o>
@@ -190,15 +193,13 @@
             <ng-container *ngFor="let slide of dynamicSlides1">
               <ng-template carouselSlide [id]="slide.id">
                 <div ngClass="property-item position-relative">
-                  <img
-                    [src]="slide.src"
-                    [alt]="slide.alt"
-                    [title]="slide.title"
-                  />
+                  <img [src]="slide.src" [alt]="slide.alt" [title]="slide.title" />
+                  <span [ngClass]="'popular-tag'"><img src="assets/images/tag/popular.png" /></span>
                   <div ngClass="brand-logo">
                     <img src="{{ brandimg }}" alt="" />
                   </div>
-                  <button [ngClass]="slide.favorite == true ? 'property-whistlist red-fill' : 'property-whistlist'" (click)="AddToFavorite(slide.id,slide.favorite,'resedential-new')">
+                  <button [ngClass]="slide.favorite == true ? 'property-whistlist red-fill' : 'property-whistlist'"
+                    (click)="AddToFavorite(slide.id,slide.favorite,'resedential-new')">
                     <svg width="22" height="23" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path
                         d="M4.39376 6.23844C4.02517 6.63167 3.73279 7.0985 3.53331 7.61228C3.33383 8.12605 3.23116 8.67672 3.23116 9.23283C3.23116 9.78894 3.33383 10.3396 3.53331 10.8534C3.73279 11.3672 4.02517 11.834 4.39376 12.2272L11.1699 19.4563L17.946 12.2272C18.6904 11.433 19.1086 10.3559 19.1086 9.23283C19.1086 8.10972 18.6904 7.0326 17.946 6.23844C17.2016 5.44429 16.1919 4.99813 15.1392 4.99813C14.0865 4.99813 13.0768 5.44429 12.3324 6.23844L11.1699 7.47873L10.0073 6.23844C9.63871 5.84521 9.20113 5.53329 8.71954 5.32047C8.23796 5.10766 7.72179 4.99812 7.20053 4.99812C6.67926 4.99812 6.1631 5.10766 5.68152 5.32047C5.19993 5.53329 4.76235 5.84521 4.39376 6.23844V6.23844Z"
@@ -206,7 +207,8 @@
                     </svg>
                   </button>
                   <div ngClass="property-info">
-                    <span ngClass="property-pricing"><span>{{ slide.price }} {{ slide.currency }}</span> / {{slide.rentType}}</span>
+                    <span ngClass="property-pricing"><span>{{ slide.price }} {{ slide.currency }}</span> /
+                      {{slide.rentType}}</span>
                     <span ngClass="property-name">{{slide.buildingName}}</span>
                     <p ngClass="property-location">
                       <img src="{{ homelocationsvg }}" width="14" alt="" />{{slide.propertyAddress}}
@@ -224,7 +226,7 @@
                     </div>
                   </div>
                   <a [routerLink]="['/PropertDetailsPage']" [queryParams]="{id: slide.id}" ngClass="linK_overlay"></a>
-                  <button ngClass="tag_btn green"><img src="{{tagicn}}"> POPULAR</button>
+
                 </div>
               </ng-template>
             </ng-container>
@@ -235,7 +237,7 @@
   </section>
 
   <!--  Commercial Properties for Rent in Dubai-->
-  <section ngClass="position-relative wrapper-section properties-slider residentials-property-rent-2">
+  <section ngClass="position-relative wrapper-section properties-slider residentials-property-rent-2" >
     <div ngClass="container_1220px">
       <div ngClass="section-title">
         <div ngClass="section-title-left">
@@ -276,73 +278,24 @@
                   <path d="M15.417 7.91797V12.0846" stroke="#100A55" stroke-width="2" stroke-miterlimit="10"
                     stroke-linecap="round" stroke-linejoin="round" />
                 </svg> Buy
-                                            </a>
-                                        </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div ngClass="tab-content">
-                                    <div id="resedential-rent" class="tab-pane active">
-                                        <owl-carousel-o [options]="customOptions" ngClass="slider-shadow ">
-                                            <ng-container *ngFor="let slide of dynamicSlides2">
-                                                <ng-template carouselSlide [id]="slide.id">
-                                                    <div ngClass="property-item position-relative">
-                                                        <img [src]="slide.src" [alt]="slide.alt" [title]="slide.title" />
-                                                        <div ngClass="brand-logo">
-                                                            <img src="{{ brandimg }}" alt="" />
-                                                        </div>
-                  <button [ngClass]="slide.favorite == true ? 'property-whistlist red-fill' : 'property-whistlist'" (click)="AddToFavorite(slide.id,slide.favorite,'commercial-old')">
-                    <svg
-                      width="22"
-                      height="23"
-                      viewBox="0 0 22 23"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M4.39376 6.23844C4.02517 6.63167 3.73279 7.0985 3.53331 7.61228C3.33383 8.12605 3.23116 8.67672 3.23116 9.23283C3.23116 9.78894 3.33383 10.3396 3.53331 10.8534C3.73279 11.3672 4.02517 11.834 4.39376 12.2272L11.1699 19.4563L17.946 12.2272C18.6904 11.433 19.1086 10.3559 19.1086 9.23283C19.1086 8.10972 18.6904 7.0326 17.946 6.23844C17.2016 5.44429 16.1919 4.99813 15.1392 4.99813C14.0865 4.99813 13.0768 5.44429 12.3324 6.23844L11.1699 7.47873L10.0073 6.23844C9.63871 5.84521 9.20113 5.53329 8.71954 5.32047C8.23796 5.10766 7.72179 4.99812 7.20053 4.99812C6.67926 4.99812 6.1631 5.10766 5.68152 5.32047C5.19993 5.53329 4.76235 5.84521 4.39376 6.23844V6.23844Z"
-                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-                  </button>
-                  <div ngClass="property-info">
-                  <span ngClass="property-pricing"><span>{{ slide.price }} {{ slide.currency }}</span> / {{slide.rentType}}</span>
-                    <span ngClass="property-name">{{slide.buildingName}}</span>
-                    <p ngClass="property-location">
-                      <img src="{{ homelocationsvg }}" width="14" alt="" />{{slide.propertyAddress}}
-                    </p>
-                    <div ngClass="property-details">
-                      <span ngClass="bed">
-                        <img src="{{ bedsvg }}" alt="" />{{slide.bedrooms}} Beds
-                      </span>
-                      <span ngClass="bath">
-                        <img src="{{ bathsvg }}" alt="" />{{slide.bathrooms}} Bath
-                      </span>
-                      <span ngClass="area">
-                        <img src="{{ squaremetersvg }}" alt="" />{{ slide.carpetArea }} sqft
-                      </span>
-                    </div>
-                  </div>
-                    <a [routerLink]="['/PropertDetailsPage']" [queryParams]="{id: slide.id}" ngClass="linK_overlay"></a>
-                    <button ngClass="tag_btn blue"><img src="{{tagicn}}"> POPULAR</button>
-                </div>
-              </ng-template>
-            </ng-container>
-          </owl-carousel-o>
+              </a>
+            </li>
+          </ul>
         </div>
-        <div id="resedential-buy" class="tab-pane fade">
+      </div>
+      <div ngClass="tab-content">
+        <div id="resedential-rent" class="tab-pane active">
           <owl-carousel-o [options]="customOptions" ngClass="slider-shadow ">
             <ng-container *ngFor="let slide of dynamicSlides2">
               <ng-template carouselSlide [id]="slide.id">
                 <div ngClass="property-item position-relative">
-                  <img
-                    [src]="slide.src"
-                    [alt]="slide.alt"
-                    [title]="slide.title"
-                  />
+                  <img [src]="slide.src" [alt]="slide.alt" [title]="slide.title" />
+                  <span [ngClass]="'popular-tag'"><img src="assets/images/tag/popular.png" /></span>
                   <div ngClass="brand-logo">
                     <img src="{{ brandimg }}" alt="" />
                   </div>
-                  <button [ngClass]="slide.favorite == true ? 'property-whistlist red-fill' : 'property-whistlist'" (click)="AddToFavorite(slide.id,slide.favorite,'commercial-new')">
+                  <button [ngClass]="slide.favorite == true ? 'property-whistlist red-fill' : 'property-whistlist'"
+                    (click)="AddToFavorite(slide.id,slide.favorite,'commercial-old')">
                     <svg width="22" height="23" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path
                         d="M4.39376 6.23844C4.02517 6.63167 3.73279 7.0985 3.53331 7.61228C3.33383 8.12605 3.23116 8.67672 3.23116 9.23283C3.23116 9.78894 3.33383 10.3396 3.53331 10.8534C3.73279 11.3672 4.02517 11.834 4.39376 12.2272L11.1699 19.4563L17.946 12.2272C18.6904 11.433 19.1086 10.3559 19.1086 9.23283C19.1086 8.10972 18.6904 7.0326 17.946 6.23844C17.2016 5.44429 16.1919 4.99813 15.1392 4.99813C14.0865 4.99813 13.0768 5.44429 12.3324 6.23844L11.1699 7.47873L10.0073 6.23844C9.63871 5.84521 9.20113 5.53329 8.71954 5.32047C8.23796 5.10766 7.72179 4.99812 7.20053 4.99812C6.67926 4.99812 6.1631 5.10766 5.68152 5.32047C5.19993 5.53329 4.76235 5.84521 4.39376 6.23844V6.23844Z"
@@ -350,7 +303,8 @@
                     </svg>
                   </button>
                   <div ngClass="property-info">
-                    <span ngClass="property-pricing"><span>{{ slide.price }} {{ slide.currency }}</span> / {{slide.rentType}}</span>
+                    <span ngClass="property-pricing"><span>{{ slide.price }} {{ slide.currency }}</span> /
+                      {{slide.rentType}}</span>
                     <span ngClass="property-name">{{slide.buildingName}}</span>
                     <p ngClass="property-location">
                       <img src="{{ homelocationsvg }}" width="14" alt="" />{{slide.propertyAddress}}
@@ -368,7 +322,49 @@
                     </div>
                   </div>
                   <a [routerLink]="['/PropertDetailsPage']" [queryParams]="{id: slide.id}" ngClass="linK_overlay"></a>
-                  <button ngClass="tag_btn blue"><img src="{{tagicn}}"> POPULAR</button>
+                </div>
+              </ng-template>
+            </ng-container>
+          </owl-carousel-o>
+        </div>
+        <div id="resedential-buy" class="tab-pane fade">
+          <owl-carousel-o [options]="customOptions" ngClass="slider-shadow ">
+            <ng-container *ngFor="let slide of dynamicSlides2">
+              <ng-template carouselSlide [id]="slide.id">
+                <div ngClass="property-item position-relative">
+                  <img [src]="slide.src" [alt]="slide.alt" [title]="slide.title" />
+                  <span [ngClass]="'popular-tag'"><img src="assets/images/tag/popular.png" /></span>
+                  <div ngClass="brand-logo">
+                    <img src="{{ brandimg }}" alt="" />
+                  </div>
+                  <button [ngClass]="slide.favorite == true ? 'property-whistlist red-fill' : 'property-whistlist'"
+                    (click)="AddToFavorite(slide.id,slide.favorite,'commercial-new')">
+                    <svg width="22" height="23" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M4.39376 6.23844C4.02517 6.63167 3.73279 7.0985 3.53331 7.61228C3.33383 8.12605 3.23116 8.67672 3.23116 9.23283C3.23116 9.78894 3.33383 10.3396 3.53331 10.8534C3.73279 11.3672 4.02517 11.834 4.39376 12.2272L11.1699 19.4563L17.946 12.2272C18.6904 11.433 19.1086 10.3559 19.1086 9.23283C19.1086 8.10972 18.6904 7.0326 17.946 6.23844C17.2016 5.44429 16.1919 4.99813 15.1392 4.99813C14.0865 4.99813 13.0768 5.44429 12.3324 6.23844L11.1699 7.47873L10.0073 6.23844C9.63871 5.84521 9.20113 5.53329 8.71954 5.32047C8.23796 5.10766 7.72179 4.99812 7.20053 4.99812C6.67926 4.99812 6.1631 5.10766 5.68152 5.32047C5.19993 5.53329 4.76235 5.84521 4.39376 6.23844V6.23844Z"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                  </button>
+                  <div ngClass="property-info">
+                    <span ngClass="property-pricing"><span>{{ slide.price }} {{ slide.currency }}</span> /
+                      {{slide.rentType}}</span>
+                    <span ngClass="property-name">{{slide.buildingName}}</span>
+                    <p ngClass="property-location">
+                      <img src="{{ homelocationsvg }}" width="14" alt="" />{{slide.propertyAddress}}
+                    </p>
+                    <div ngClass="property-details">
+                      <span ngClass="bed">
+                        <img src="{{ bedsvg }}" alt="" />{{slide.bedrooms}} Beds
+                      </span>
+                      <span ngClass="bath">
+                        <img src="{{ bathsvg }}" alt="" />{{slide.bathrooms}} Bath
+                      </span>
+                      <span ngClass="area">
+                        <img src="{{ squaremetersvg }}" alt="" />{{ slide.carpetArea }} sqft
+                      </span>
+                    </div>
+                  </div>
+                  <a [routerLink]="['/PropertDetailsPage']" [queryParams]="{id: slide.id}" ngClass="linK_overlay"></a>
                 </div>
               </ng-template>
             </ng-container>
@@ -395,7 +391,8 @@
                   </div>
                 </div>
                 <div ngClass="col-md-6 property-listing-slider-right">
-                  <img src="https://beta.ovaluate.com/{{ item.ovaluateOfferingDocument.fileUrl }}" ngClass="img-fluid lisitng-right-img" alt="" />
+                  <img src="https://beta.ovaluate.com/{{ item.ovaluateOfferingDocument.fileUrl }}"
+                    ngClass="img-fluid lisitng-right-img" alt="" />
                 </div>
               </div>
             </ng-template>
@@ -455,7 +452,7 @@
               <h5>{{ blog.blogTitle }}</h5>
               <span>{{ blog.blogDate.split("T")[0] }}</span>
             </div>
-            <button ngClass="tag_btn blue">Market Trends</button>
+            <button ngClass="tag_btn blue"> Market Trends</button>
           </a>
         </div>
       </div>
@@ -675,15 +672,15 @@
   </section>
   <section ngClass="position-relative wrapper-section certified_sec">
     <div ngClass="container_1220px">
-        <div ngClass="heading-32px-design text-center mb-4">
-          <h2>Approved & Certified by DLD</h2>
-          <p>Ovaluate Certificates are approved & certified by Dubai Land Department</p>
-        </div>
-        <div ngClass="certified_images-sec text-center">
-          <img src="{{rera}}">
-          <img src="{{dubaigv}}">
-          <img src="{{landdept}}">
-        </div>
+      <div ngClass="heading-32px-design text-center mb-4">
+        <h2>Approved & Certified by DLD</h2>
+        <p>Ovaluate Certificates are approved & certified by Dubai Land Department</p>
+      </div>
+      <div ngClass="certified_images-sec text-center">
+        <img src="{{rera}}">
+        <img src="{{dubaigv}}">
+        <img src="{{landdept}}">
+      </div>
     </div>
   </section>
 </section>
