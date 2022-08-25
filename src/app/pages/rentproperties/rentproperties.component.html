@@ -94,7 +94,7 @@
                               {{list.rentType}}</span>
                           </div>
                         </div>
-                        <div ngClass="property-action-hdr" [routerLink]="['/PropertDetailsPage']" [queryParams]="{id: list.id}">
+                        <div ngClass="property-action-hdr">
                           <button ngClass="ov-verified-btn"><img src="{{ovverified}}"> {{list.propertyCode}}</button>
                           <button ngClass="circle-btn"><img src="{{share}}"></button>
                           <button [ngClass]="list.favorite == true ? 'grey-bordered-btn red-fill' : 'grey-bordered-btn'" (click)="AddToFavorite(list.id,list.favorite)">
@@ -185,11 +185,11 @@
                                 <button ngClass="grren-btn grey-bordered-btn" id="dropdownBasic1"
                                   ngbDropdownToggle>Connect</button>
                                 <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                                  <button ngbDropdownItem><a routerLink="/chat-new-message"><img src="{{chat}}">
+                                  <button ngbDropdownItem><a routerLink="/chat"><img src="{{chat}}">
                                       Chat</a></button>
                                   <button ngbDropdownItem><a target="_blank" href="https://dx1.in/"><img
                                         src="{{whatsapp}}"> Whats APP</a></button>
-                                  <button ngbDropdownItem><a target="_blank" href=""><img src="{{videocall}}"> Video
+                                  <button ngbDropdownItem><a routerLink="/chat"><img src="{{videocall}}"> Video
                                       Call</a></button>
                                   <button ngbDropdownItem><a target="_blank" href=""><img src="{{virtual}}"> Virtual
                                       Tour</a></button>

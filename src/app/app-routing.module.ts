@@ -125,7 +125,7 @@ const routes: Routes = [
   { path: "explore-details/:id", component: ExploreDetailsComponent },
   { path: "data-analytics", component: DataAnalyticsComponent },
   { path: "data-analytics-search-result", component: DataAnalyticsSearchResultsComponent },
-  { path: "chat", component: ChatingComponent },
+  { path: "chat", component: ChatingComponent,canActivate: [AuthGuard] },
   { path: "chat-new-message", component: ChatNewMessageComponent },
   { path: "about-us", component: AboutusComponent },
   { path: "privacy-policy", component: PrivacyPolicyComponent },
