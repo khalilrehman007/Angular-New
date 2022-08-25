@@ -33,6 +33,8 @@ export class ChatingComponent implements OnInit {
   userID:number;
   userName:string;
   initComplete: boolean = false;
+  userData:any;
+  userLogin:boolean = false;
   toolbar: Toolbar = [
     ['image'],
     ['link'],
@@ -53,6 +55,8 @@ export class ChatingComponent implements OnInit {
     return this.form?.get('editorContent') as FormGroup;
   }
   constructor() {
+    this.userData = localStorage.getItem("user");
+    this.userData = JSON.parse(this.userData);
     this.init();
   }
   init() {
@@ -64,7 +68,7 @@ export class ChatingComponent implements OnInit {
       () => {
         console.log("Initialization completed successfully");
         this.initComplete = true;
-        this.loginUser("1");
+        this.loginUser(this.userData.id.toString());
       },
       (error) => {
         console.log("Initialization failed with error:", error);
@@ -78,6 +82,7 @@ export class ChatingComponent implements OnInit {
     CometChat.createUser(user, this.authKey).then(
       user => {
         console.log("user created", user);
+        this.loginUser(this.userData.id.toString());
       }, error => {
         console.log("error", error);
       }
@@ -86,11 +91,12 @@ export class ChatingComponent implements OnInit {
   loginUser(id:string) {
     CometChat.login(id, this.authKey).then(
       (user) => {
+        this.userLogin = true;
         console.log("Login Successful:", { user });
       },
       (error:any) => {
         if(error.message == "The UID "+ id +" does not exist, please make sure you have created a user with UID "+ id +".") {
-          this.createUser(id, "Roshaan");
+          this.createUser(id, this.userData.fullName);
         }
       }
     );
