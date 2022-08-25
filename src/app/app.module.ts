@@ -114,7 +114,7 @@ import { ErroralertComponent } from './erroralert/erroralert.component';
 import { PaymentPackagesComponent } from './pages/payment-packages/payment-packages.component';
 import { environment } from "../environments/environment";
 import { initializeApp } from "firebase/app";
-import { CometChatUI } from "../cometchat-pro-angular-ui-kit/CometChatWorkspace/src/components/CometChatUI/CometChat-Ui/cometchat-ui.module";
+import { CometChatUI } from "../cometchat/CometChatWorkspace/src/components/CometChatUI/CometChat-Ui/cometchat-ui.module";
 initializeApp(environment.firebase);
 
 
