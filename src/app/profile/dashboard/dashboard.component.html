@@ -107,8 +107,7 @@
         <div class="tab-pane fade show active" id="pills-dashboard" role="tabpanel"
           aria-labelledby="pills-dashboard-tab">
 
-
-          <div class="free-proplisting">
+          <div class="free-proplisting" *ngIf="professionalType == 2 || professionalType == 3">
             <div class="first-title">
               <h3 class="title">FREE Property Listing</h3>
               <p>Sell or Rent Your Home</p>
@@ -119,7 +118,7 @@
               <li>Directly List your Property on Ovaluate</li>
               <li>Directly List your Property on Ovaluate</li>
             </ul>
-            <a href="#" class="btn btn-primary">List Property</a>
+            <a routerLink="/listingproperty" class="btn btn-primary">List Property</a>
           </div>
 
           <div class="statictics-wrap">
@@ -391,7 +390,7 @@
                             <div class="checkbox-flex-box-auto button-same-select">
                               <div class="checkbox-design position-relative">
                                 <input type="radio" id="Furnished" name="property-types" value="All" checked>
-                                <button  class="checkbox-btn">All (03)</button>
+                                <button class="checkbox-btn">All (03)</button>
                               </div>
                               <div class="checkbox-design position-relative">
                                 <input type="radio" id="Unfurnished" name="property-types" value="Rent">
@@ -399,7 +398,7 @@
                               </div>
                               <div class="checkbox-design position-relative">
                                 <input type="radio" id="Semi-Furnished" name="property-types" value="Buy">
-                                <button  class="checkbox-btn">Buy (01)</button>
+                                <button class="checkbox-btn">Buy (01)</button>
                               </div>
                               <div class="checkbox-design position-relative">
                                 <input type="radio" id="Unfurnished" name="property-types" value="Agents">
@@ -440,19 +439,19 @@
                   <div class="type-activity-status">
                     <div ngClass="block-wrapper mb-4">
                       <div class="checkbox-flex-box-auto button-same-select">
-                        <div  (click)="myActivityViewChange('')" class="checkbox-design position-relative">
+                        <div (click)="myActivityViewChange('')" class="checkbox-design position-relative">
                           <input type="radio" id="Furnished" name="property-types" value="All" checked>
-                          <button  class="checkbox-btn">All ({{viewAllCount}})</button>
+                          <button class="checkbox-btn">All ({{viewAllCount}})</button>
                         </div>
                         <div (click)="myActivityViewChange('1')" class="checkbox-design position-relative">
                           <input type="radio" id="Unfurnished" name="property-types" value="Rent">
                           <button class="checkbox-btn">Rent ({{viewRentCount}})</button>
                         </div>
-                        <div  (click)="myActivityViewChange('2')" class="checkbox-design position-relative">
+                        <div (click)="myActivityViewChange('2')" class="checkbox-design position-relative">
                           <input type="radio" id="Semi-Furnished" name="property-types" value="Buy">
                           <button class="checkbox-btn">Buy ({{viewBuyCount}})</button>
                         </div>
-                        <div  (click)="myActivityViewChange(userId)" class="checkbox-design position-relative">
+                        <div (click)="myActivityViewChange(userId)" class="checkbox-design position-relative">
                           <input type="radio" id="Unfurnished" name="property-types" value="Agents">
                           <button class="checkbox-btn">Agents ({{viewAgentCount}})</button>
                         </div>
@@ -464,7 +463,8 @@
                     <div class="row">
                       <div class="col-lg-9 col-md-10">
                         <ul class="agent-details__property-list">
-                          <li class="agent-details__property-list-item" *ngFor=" let viewList of myActivityListingView | paginate: { itemsPerPage: 10, currentPage: page, totalItems:totalLength }">
+                          <li class="agent-details__property-list-item"
+                            *ngFor=" let viewList of myActivityListingView | paginate: { itemsPerPage: 10, currentPage: page, totalItems:totalLength }">
                             <div class="row">
                               <div class="col-lg-2">
                                 <img src="{{viewList.img}}" alt=""
@@ -473,13 +473,15 @@
                               <div class="col-lg-10">
                                 <div class="row">
                                   <div class="col-7">
-                                    <a class="agent-details__property-list-item-link">{{viewList.propertyPrice}} {{viewList.currency}}
+                                    <a class="agent-details__property-list-item-link">{{viewList.propertyPrice}}
+                                      {{viewList.currency}}
                                       <span>/{{viewList.rentType}}</span>
                                     </a>
                                   </div>
                                   <div class="col-5 text-end">
                                     <h4 class="sub-bold-text">{{viewList.propertyTitle}}</h4>
-                                    <p class="agent-details__property-list-item-date">Listed on {{viewList.requestedDateFormat}}</p>
+                                    <p class="agent-details__property-list-item-date">Listed on
+                                      {{viewList.requestedDateFormat}}</p>
                                   </div>
                                 </div>
                                 <h6>{{viewList.buildingName}}</h6>
@@ -540,7 +542,8 @@
                                   class="agent-landing-featured__property-tag">
                                 <div class="row">
                                   <div class="col-5 d-flex align-items-center">
-                                    <img src="{{agentView.img}}" alt="" class="img-fluid agent-landing-featured__property-img" >
+                                    <img src="{{agentView.img}}" alt=""
+                                      class="img-fluid agent-landing-featured__property-img">
                                   </div>
                                   <div class="col-7">
                                     <div class="agent-landing-featured__agent-right-panel">
@@ -552,7 +555,8 @@
                                       </p>
                                       <a class="agent-landing-featured__property-link" routerLink=#>View Map</a>
                                       <p class="agent-landing-featured__property-text">RERA# {{agentView.reraNo}}</p>
-                                      <p class="agent-landing-featured__property-text">Permit# {{agentView.premitNo}}</p>
+                                      <p class="agent-landing-featured__property-text">Permit# {{agentView.premitNo}}
+                                      </p>
                                       <ul class="agent-landing-featured__property-details-list">
                                         <li class="agent-landing-featured__property-details-list-item">
                                           <p class="agent-landing-featured__property-details-list-text">
@@ -607,7 +611,8 @@
                     <div class="row">
                       <div class="col-lg-12 col-md-12">
                         <ul class="agent-details__property-list">
-                          <li class="compare-action-pro-list" *ngFor="let wishData of wishlistingData | paginate: { itemsPerPage: 10, currentPage: page, totalItems:totalLength }">
+                          <li class="compare-action-pro-list"
+                            *ngFor="let wishData of wishlistingData | paginate: { itemsPerPage: 10, currentPage: page, totalItems:totalLength }">
                             <div class="agent-details__property-list-item position-relative">
                               <div class="row">
                                 <div class="col-lg-2">
@@ -617,13 +622,15 @@
                                 <div class="col-lg-10">
                                   <div class="row">
                                     <div class="col-7">
-                                      <a class="agent-details__property-list-item-link">{{wishData.price}} {{wishData.currency}}
+                                      <a class="agent-details__property-list-item-link">{{wishData.price}}
+                                        {{wishData.currency}}
                                         <span>/{{wishData.rentType}}</span>
                                       </a>
                                     </div>
                                     <div class="col-5 text-end">
                                       <h4 class="sub-bold-text">{{wishData.title}}</h4>
-                                      <p class="agent-details__property-list-item-date">Listed on {{wishData.requestedDateFormat}}</p>
+                                      <p class="agent-details__property-list-item-date">Listed on
+                                        {{wishData.requestedDateFormat}}</p>
                                     </div>
                                   </div>
                                   <h6>{{wishData.buildingName}}</h6>
@@ -661,8 +668,8 @@
                                 </div>
                               </div>
                               <div (click)="allFormCheckbox(wishData.id)" ngClass="selection-checkbox-selector">
-                                <input  type="checkbox" name="compare">
-                                <button  ngClass="cstm-selection-btn"></button>
+                                <input type="checkbox" name="compare">
+                                <button ngClass="cstm-selection-btn"></button>
                               </div>
                             </div>
                           </li>
@@ -701,28 +708,31 @@
                     <div class="row">
                       <div class="col-lg-9 col-md-10">
                         <ul class="agent-details__property-list">
-                          <li class="agent-details__property-list-item"  *ngFor="let enquiredData of enquiredlistingData | paginate: { itemsPerPage: 10, currentPage: page, totalItems:totalLength }">
+                          <li class="agent-details__property-list-item"
+                            *ngFor="let enquiredData of enquiredlistingData | paginate: { itemsPerPage: 10, currentPage: page, totalItems:totalLength }">
                             <div class="row">
                               <div class="col-lg-2">
                                 <img src="{{enquiredData.img}}" alt=""
-                                     class="img-fluid agent-details__property-list-item-img">
+                                  class="img-fluid agent-details__property-list-item-img">
                               </div>
                               <div class="col-lg-10">
                                 <div class="row">
                                   <div class="col-7">
-                                    <a class="agent-details__property-list-item-link">{{enquiredData.propertyPrice}} {{enquiredData.currency}}
+                                    <a class="agent-details__property-list-item-link">{{enquiredData.propertyPrice}}
+                                      {{enquiredData.currency}}
                                       <span>/{{enquiredData.rentType}}</span>
                                     </a>
                                   </div>
                                   <div class="col-5 text-end">
                                     <h4 class="sub-bold-text">{{enquiredData.propertyTitle}}</h4>
-                                    <p class="agent-details__property-list-item-date">Listed on {{enquiredData.requestedDateFormat}}</p>
+                                    <p class="agent-details__property-list-item-date">Listed on
+                                      {{enquiredData.requestedDateFormat}}</p>
                                   </div>
                                 </div>
                                 <h6>{{enquiredData.buildingName}}</h6>
                                 <p class="agent-details__property-list-item-text">
                                   <img src="assets/images/home-location.svg" alt=""
-                                       class="img-fluid agent-details__property-list-item-text-icon">
+                                    class="img-fluid agent-details__property-list-item-text-icon">
                                   {{enquiredData.propertyAddress}}
                                 </p>
                                 <p class="agent-details__property-list-item-type">{{enquiredData.propertyType}}</p>
@@ -1502,21 +1512,21 @@
             <h4 class="sub-title mb-4">My Packages</h4>
             <div ngClass="packages_details">
               <div ngClass="package_flex d-flex justify-content-spacebw">
-                  <div ngClass="packge-item packge_type">
-                    <p>Package Type</p>
-                    <h6>Standard</h6>
-                  </div>
-                   <div ngClass="packge-item packge_price">
-                    <p>Package Price</p>
-                    <h6>0 AED <span>inclusive of VAT</span></h6>
-                  </div>
-                  <div ngClass="packge-item packge_validity">
-                    <p>Package Validity</p>
-                    <h6>15 Days</h6>
-                  </div>
-                  <div ngClass="packge-item packge_renew">
-                    <button ngClass="renew-btn">Renew</button>
-                  </div>
+                <div ngClass="packge-item packge_type">
+                  <p>Package Type</p>
+                  <h6>Standard</h6>
+                </div>
+                <div ngClass="packge-item packge_price">
+                  <p>Package Price</p>
+                  <h6>0 AED <span>inclusive of VAT</span></h6>
+                </div>
+                <div ngClass="packge-item packge_validity">
+                  <p>Package Validity</p>
+                  <h6>15 Days</h6>
+                </div>
+                <div ngClass="packge-item packge_renew">
+                  <button ngClass="renew-btn" routerLink="/listing-packages">Renew</button>
+                </div>
               </div>
             </div>
             <div ngClass="packge-item packge_others text-center mt-5 mb-5">
@@ -1649,8 +1659,10 @@
                                     <h6 class="h6-design">Experts in</h6>
                                     <div class="inneR-border-wrap">
                                       <div class="checkbox-flex-box autoflex-layout">
-                                        <div class="checkbox-design position-relative" (change)="expertsChange($event,list.id)" *ngFor="let list of ExpertIn">
-                                          <input type="checkbox" id="{{list.name}}" name="{{list.name}}" value="{{list.id}}" >
+                                        <div class="checkbox-design position-relative"
+                                          (change)="expertsChange($event,list.id)" *ngFor="let list of ExpertIn">
+                                          <input type="checkbox" id="{{list.name}}" name="{{list.name}}"
+                                            value="{{list.id}}">
                                           <button class="checkbox-btn">{{list.name}}</button>
                                         </div>
                                       </div>
@@ -1678,8 +1690,11 @@
                                     <h6 class="h6-design">Languages</h6>
                                     <div class="inneR-border-wrap">
                                       <div class="checkbox-flex-box autoflex-layout">
-                                        <div class="checkbox-design position-relative" (change)="languagesArrayChange($event,list.id)" *ngFor="let list of SpokenLanguages">
-                                          <input type="checkbox" id="{{list.name}}" name="{{list.name}}" value="{{list.id}}" >
+                                        <div class="checkbox-design position-relative"
+                                          (change)="languagesArrayChange($event,list.id)"
+                                          *ngFor="let list of SpokenLanguages">
+                                          <input type="checkbox" id="{{list.name}}" name="{{list.name}}"
+                                            value="{{list.id}}">
                                           <button class="checkbox-btn">{{list.name}}</button>
                                         </div>
                                       </div>
@@ -1705,21 +1720,21 @@
                                       </ul>
                                     </div>
                                   </div>
-<!--                                  <div class="col-sm-12">-->
-<!--                                    <h6 class="h6-design">Area</h6>-->
-<!--                                    <div class="inneR-border-wrap">-->
-<!--                                      <div class="checkbox-flex-box autoflex-layout">-->
-<!--                                        <div class="checkbox-design position-relative">-->
-<!--                                          <input type="checkbox" id="Downtown" name="Area" value="Downtown" checked>-->
-<!--                                          <button class="checkbox-btn">Downtown Dubai</button>-->
-<!--                                        </div>-->
-<!--                                        <div class="checkbox-design position-relative">-->
-<!--                                          <input type="checkbox" id="Al Makhool" name="Area" value="Al Makhool">-->
-<!--                                          <button class="checkbox-btn">Al Makhool</button>-->
-<!--                                        </div>-->
-<!--                                      </div>-->
-<!--                                    </div>-->
-<!--                                  </div>-->
+                                  <!--                                  <div class="col-sm-12">-->
+                                  <!--                                    <h6 class="h6-design">Area</h6>-->
+                                  <!--                                    <div class="inneR-border-wrap">-->
+                                  <!--                                      <div class="checkbox-flex-box autoflex-layout">-->
+                                  <!--                                        <div class="checkbox-design position-relative">-->
+                                  <!--                                          <input type="checkbox" id="Downtown" name="Area" value="Downtown" checked>-->
+                                  <!--                                          <button class="checkbox-btn">Downtown Dubai</button>-->
+                                  <!--                                        </div>-->
+                                  <!--                                        <div class="checkbox-design position-relative">-->
+                                  <!--                                          <input type="checkbox" id="Al Makhool" name="Area" value="Al Makhool">-->
+                                  <!--                                          <button class="checkbox-btn">Al Makhool</button>-->
+                                  <!--                                        </div>-->
+                                  <!--                                      </div>-->
+                                  <!--                                    </div>-->
+                                  <!--                                  </div>-->
                                 </div>
                               </div>
                               <div ngClass="other-document-upload mt-4">
@@ -1730,12 +1745,12 @@
                                       <div ngClass="upload-files-design">
                                         <div ngClass="greybordered-btn">
                                           <input type="file" hidden #emirateInput0
-                                                 accept=".doc, .pdf, .jpg, .jpeg, .png"
-                                                 (change)='emiratesfun($any($event.target).files, 0)'>
+                                            accept=".doc, .pdf, .jpg, .jpeg, .png"
+                                            (change)='emiratesfun($any($event.target).files, 0)'>
                                           <button mat-button (click)="emirateInput0.click()"><span
-                                            ngClass="outpup-filename">{{ emirate[0] }}</span> <img
-                                            src="{{upload}}"> <span ngClass="btn-txt">Picture:
-                                                                Emirates ID (Fornt View)</span></button>
+                                              ngClass="outpup-filename">{{ emirate[0] }}</span> <img src="{{upload}}">
+                                            <span ngClass="btn-txt">Picture:
+                                              Emirates ID (Fornt View)</span></button>
                                         </div>
 
                                       </div>
@@ -1743,7 +1758,7 @@
                                   </div>
                                   <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                                     <span class="staus-emoji">
-<!--                                      <img src="{{approvedEmo}}" alt="">-->
+                                      <!--                                      <img src="{{approvedEmo}}" alt="">-->
                                     </span>
                                   </div>
                                   <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12">
@@ -1751,12 +1766,12 @@
                                       <div ngClass="upload-files-design">
                                         <div ngClass="greybordered-btn">
                                           <input type="file" hidden #emirateInput1
-                                                 accept=".doc, .pdf, .jpg, .jpeg, .png"
-                                                 (change)='emiratesfun($any($event.target).files, 1)'>
+                                            accept=".doc, .pdf, .jpg, .jpeg, .png"
+                                            (change)='emiratesfun($any($event.target).files, 1)'>
                                           <button mat-button (click)="emirateInput1.click()"><span
-                                            ngClass="outpup-filename">{{ emirate[1] }}</span> <img
-                                            src="{{upload}}"> <span ngClass="btn-txt">Picture:
-                                                                Emirates ID (Fornt View)</span></button>
+                                              ngClass="outpup-filename">{{ emirate[1] }}</span> <img src="{{upload}}">
+                                            <span ngClass="btn-txt">Picture:
+                                              Emirates ID (Fornt View)</span></button>
                                         </div>
                                       </div>
                                     </div>
@@ -1767,18 +1782,19 @@
                                       <div ngClass="upload-files-design">
                                         <div ngClass="greybordered-btn">
                                           <input type="file" hidden #emirateInput2
-                                                 accept=".doc, .pdf, .jpg, .jpeg, .png"
-                                                 (change)='emiratesfun($any($event.target).files, 2)'>
+                                            accept=".doc, .pdf, .jpg, .jpeg, .png"
+                                            (change)='emiratesfun($any($event.target).files, 2)'>
                                           <button mat-button (click)="emirateInput2.click()"><span
-                                            ngClass="outpup-filename">{{ emirate[2] }}</span> <img
-                                            src="{{upload}}"> <span ngClass="btn-txt">Picture:
-                                                                Emirates ID (Fornt View)</span></button>
-                                        </div>                                  </div>
+                                              ngClass="outpup-filename">{{ emirate[2] }}</span> <img src="{{upload}}">
+                                            <span ngClass="btn-txt">Picture:
+                                              Emirates ID (Fornt View)</span></button>
+                                        </div>
+                                      </div>
                                     </div>
                                   </div>
                                   <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                                     <span class="staus-emoji">
-<!--                                      <img src="{{penfingEmo}}" alt="">-->
+                                      <!--                                      <img src="{{penfingEmo}}" alt="">-->
                                     </span>
                                   </div>
                                 </div>
@@ -2132,7 +2148,7 @@
       <mat-tab-group class="tab-wrap" animationDuration="0ms" style="display: none;">
         <mat-tab class="tab-item" label="Dashboard">
 
-          <div class="free-proplisting">
+          <div class="free-proplisting"  *ngIf="professionalType == 2 || professionalType == 3">
             <div class="first-title">
               <h3 class="title">FREE Property Listing</h3>
               <p>Sell or Rent Your Home</p>
@@ -2143,7 +2159,7 @@
               <li>Directly List your Property on Ovaluate</li>
               <li>Directly List your Property on Ovaluate</li>
             </ul>
-            <a href="#" class="btn btn-primary">List Property</a>
+            <a routerLink="/listingproperty" class="btn btn-primary">List Property</a>
           </div>
 
           <div class="statictics-wrap">
@@ -2467,11 +2483,11 @@
                   <div class="type-activity-status">
                     <div ngClass="block-wrapper mb-4">
                       <div class="checkbox-flex-box-auto button-same-select">
-                        <div  class="checkbox-design position-relative">
+                        <div class="checkbox-design position-relative">
                           <input type="radio" id="Furnished" name="property-types" value="All" checked>
                           <button class="checkbox-btn">All (03)</button>
                         </div>
-                        <div  class="checkbox-design position-relative">
+                        <div class="checkbox-design position-relative">
                           <input type="radio" id="Unfurnished" name="property-types" value="Rent">
                           <button class="checkbox-btn">Rent (02)</button>
                         </div>
@@ -2479,7 +2495,7 @@
                           <input type="radio" id="Semi-Furnished" name="property-types" value="Buy">
                           <button class="checkbox-btn">Buy (01)</button>
                         </div>
-                        <div  class="checkbox-design position-relative">
+                        <div class="checkbox-design position-relative">
                           <input type="radio" id="Unfurnished" name="property-types" value="Agents">
                           <button class="checkbox-btn">Agents (02)</button>
                         </div>

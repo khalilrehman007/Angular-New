@@ -33,6 +33,7 @@ export class AppComponent implements DoCheck, OnInit {
       { vapidKey: environment.firebase.vapidKey }).then(
         (currentToken) => {
           if (currentToken) {
+            localStorage.setItem("deviceToken",currentToken);
             console.log(currentToken);
           }
         }).catch((err) => {});

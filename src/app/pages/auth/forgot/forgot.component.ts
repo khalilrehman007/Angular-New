@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SecondHeaderComponent } from '../../../second-header/second-header.component';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/service/auth.service';
 import { Router } from '@angular/router';
 import { NotificationService } from 'src/app/service/notification.service';
@@ -15,38 +15,56 @@ export class ForgotComponent implements OnInit {
   apple = '../../../../assets/images/btns/apple-1.svg'
   responsedata: any;
   submitted = false;
-  constructor(private service: AuthService,private route:Router,private notifyService : NotificationService) {
+  error: any = ""
+  showError: boolean = false;
+  errorResponse(data: any) {
+    this.showError = false;
+  }
+  constructor(private service: AuthService, private route: Router, private notifyService: NotificationService) {
     localStorage.clear();
   }
   forgot = new FormGroup({
-    Email: new FormControl("", Validators.required)
+    Email: new FormControl("", [Validators.required, Validators.email])
   });
-  get validate(){
+  get validate() {
     return this.forgot.controls;
   }
-  
+
   ngOnInit(): void {
   }
   ProceedForgot() {
     console.log(this.forgot.valid);
     this.submitted = true;
-    if (this.forgot.invalid) {
+    // if (this.forgot.invalid) {
+    //   this.error = "Please Enter Email ";
+    //   this.showError = true;
+    //   return;
+    // }
+    if (this.forgot.controls["Email"].invalid) {
+      this.error = "Please Enter a valid Email";
+      this.showError = true;
       return;
     }
-    console.log(JSON.stringify(this.forgot.value, null, 2));
+    if (this.forgot.invalid){
+      return;
+    }
+    // console.log(JSON.stringify(this.forgot.value, null, 2));
     if (this.forgot.valid) {
       this.service.ProceedForgot(this.forgot.value).subscribe(result => {
-        if(result!=null ){
-          this.responsedata=result;
-          this.responsedata.data =this.responsedata.data;
-          localStorage.setItem('token',this.responsedata.data.refreshToken)
-          alert(this.responsedata.message)
-          this.notifyService.showSuccess(this.responsedata.message, "");
-          this.route.navigate(['/login'])
-
-        }else{
-          alert('Unable to proceed')
-          this.notifyService.showError("Unable to proceed", ""); 
+        if (result != null) {
+          this.responsedata = result;
+          if (this.responsedata.data !== undefined) {
+            // this.responsedata.data =this.responsedata.data;
+            localStorage.setItem('token', this.responsedata.data.refreshToken)
+            // alert(this.responsedata.message)
+            this.notifyService.showSuccess(this.responsedata.message, "");
+            this.route.navigate(['/login'])
+          } else {
+            this.notifyService.showError(this.responsedata.error.value, "");
+          }
+        } else {
+          // alert('Unable to proceed')
+          this.notifyService.showError("Unable to proceed", "");
         }
         // this.route.navigate(['/login'])
       });

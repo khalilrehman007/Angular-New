@@ -194,7 +194,8 @@
                   <label class="h6-design">Furnishing Type</label>
                   <div class="checkbox-flex-box three-column button-same-select">
                     <div (click)="furnishedTypeChange(data.id)" class="checkbox-design position-relative" *ngFor="let data of furnishingType">
-                      <input type="radio"  id="Furnished" name="furnishing-types" value="Furnished">
+                      <input type="radio" *ngIf="this.furnishedType == data.id" checked id="Furnished" name="furnishing-types" value="Furnished">
+                      <input type="radio" *ngIf="this.furnishedType != data.id" id="Furnished" name="furnishing-types" value="Furnished">
                       <button class="checkbox-btn">{{data.name}}</button>
                     </div>
                     <!-- <div class="checkbox-design position-relative">
@@ -216,7 +217,7 @@
                       <div ngClass="block-wrapper mb-2">
                         <div ngClass="position-relative">
                           <mat-form-field class="full-width input-design-2" appearance="fill">
-                            <input (keypress)="minCarpetAreaChange(minCarpet.value)" #minCarpet matInput type="number" placeholder="Min. Area">
+                            <input formControlName="minCarpet" (keyup)="minCarpetAreaChange(minCarpet.value)" #minCarpet matInput type="number" placeholder="Min. Area">
                           </mat-form-field>
                           <p ngClass="input-overlay-layer">sqft.</p>
                         </div>
@@ -226,7 +227,7 @@
                       <div ngClass="block-wrapper mb-2">
                         <div ngClass="position-relative">
                           <mat-form-field class="full-width input-design-2" appearance="fill">
-                            <input (keypress)="maxCarpetAreaChange(maxCarpet.value)" #maxCarpet matInput type="number" placeholder="Max. Area">
+                            <input formControlName="maxCarpet"  (keyup)="maxCarpetAreaChange(maxCarpet.value)"  #maxCarpet matInput type="number" placeholder="Max. Area">
                           </mat-form-field>
                           <p ngClass="input-overlay-layer">sqft.</p>
                         </div>
@@ -242,7 +243,7 @@
                       <label class="h6-design">Select Amenities</label>
                       <div class="inneR-border-wrap">
                         <div class="checkbox-flex-box autoflex-layout">
-                          <div class="checkbox-design position-relative" *ngFor="let data of propertyListingFeatures">
+                          <div (click)="propertyFeatureChange(data.id)" class="checkbox-design position-relative" *ngFor="let data of propertyListingFeatures">
                             <input type="checkbox" name="Amenities" value="Central A/C">
                             <button class="checkbox-btn">{{data.featureName}}</button>
                           </div>
@@ -272,7 +273,7 @@
                 </div>
               </div>
               <div ngClass="text-right totel_properties-btn mt-5">
-                <button ngClass="">Totel Properties Count <span ngClass="count_properties">(100)</span></button>
+                <button (click)="proceedSearch()" (click)="modal.dismiss('Cross click')">Totel Properties Count <span ngClass="count_properties">({{totalPropertyRecord}})</span></button>
               </div>
             </div>
           </div>

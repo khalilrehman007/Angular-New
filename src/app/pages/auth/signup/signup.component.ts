@@ -47,7 +47,8 @@ export class SignupComponent implements OnInit {
   checkLength() {
     let temp:any = this.signup.value.PhoneNumber;
     if(temp.toString().length > 12) {
-      alert("Max length allowes is 12");
+      // alert("Max length allowes is 12");
+      this.error = "Max length allows is 12"
       this.signup.patchValue({
         PhoneNumber: temp.toString().slice(0,-1)
       })
@@ -99,7 +100,7 @@ export class SignupComponent implements OnInit {
       this.error = "Password does not meet the required pattern";
       this.showError = true;
       return;
-    }
+    } 
     if (this.signup.invalid) {
       return;
     }
