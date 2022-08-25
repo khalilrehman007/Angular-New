@@ -26,10 +26,11 @@ export class SignupComponent implements OnInit {
   responsedata: any;
   submitted = false;
   signUpPropertytype: any = [];
+  professionalCheck: boolean = false;
+  professionalTypeId: number = 0;
   auth2: any;
   @ViewChild('signupRef', { static: true }) signupElement!: ElementRef;
 
-  // emailFormControl = new FormControl('', [Validators.required, Validators.email]);
   constructor(private service: AuthService, private route: Router, private notifyService: NotificationService, private _location: Location, private response: AppService) {
     localStorage.clear();
     this.response.ProfessionalTypes().subscribe((result: any) => {
@@ -50,7 +51,6 @@ export class SignupComponent implements OnInit {
   checkLength() {
     let temp: any = this.signup.value.PhoneNumber;
     if (temp.toString().length > 12) {
-      // alert("Max length allowes is 12");
       this.error = "Max length allows is 12"
       this.signup.patchValue({
         PhoneNumber: temp.toString().slice(0, -1)
@@ -117,7 +117,12 @@ export class SignupComponent implements OnInit {
   public togglePasswordVisibility(): void {
     this.showPassword = !this.showPassword;
   }
-
+  toggleType(e: any) {
+    this.professionalCheck = e.checked;
+  }
+  getProfessionalType(e: any) {
+    this.professionalTypeId = e;
+  }
   ProceedSignUp() {
     this.submitted = true;
     if (this.signup.value.FirstName == "") {
@@ -149,7 +154,27 @@ export class SignupComponent implements OnInit {
       this.showError = true;
       return;
     } else {
-      this.service.ProceedSignUp(this.signup.value).subscribe(result => {
+      let temp: any = {};
+      temp.FirstName = this.signup.value.FirstName;
+      temp.LastName = this.signup.value.LastName;
+      temp.Email = this.signup.value.Email;
+      temp.PhoneNumber = this.signup.value.PhoneNumber;
+      temp.Password = this.signup.value.Password;
+      temp.HasProfessionalType = this.professionalCheck;
+      if (temp.HasProfessionalType == true) {
+        if (this.professionalTypeId == 0) {
+          this.error = "Select Professional Type";
+          this.showError = true;
+          return;
+        } else {
+          temp.ProfessionalTypeId = this.professionalTypeId;
+        }
+      }
+      temp.DeviceId = "";
+      if(localStorage.getItem("deviceToken")) {
+        temp.DeviceId = localStorage.getItem("deviceToken");
+      }
+      this.service.ProceedSignUp(temp).subscribe(result => {
         if (result != null) {
           this.responsedata = result;
           if (this.responsedata.data !== undefined) {
