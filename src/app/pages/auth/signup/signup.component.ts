@@ -174,8 +174,9 @@ export class SignupComponent implements OnInit {
       if(localStorage.getItem("deviceToken")) {
         temp.DeviceId = localStorage.getItem("deviceToken");
       }
-      this.service.ProceedSignUp(temp).subscribe(result => {
-        if (result != null) {
+      this.service.ProceedSignUp(temp).subscribe((result:any) => {
+        console.log(result);
+        if (result.message == "You are successfully logged in") {
           this.responsedata = result;
           if (this.responsedata.data !== undefined) {
             // this.responsedata.data = this.responsedata.data;
