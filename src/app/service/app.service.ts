@@ -390,5 +390,8 @@ export class AppService {
   PropertyTransactionTypes() {
     return this.http.get(this.apiurl + 'PropertyTransactionTypes');
   }
+  Googlelogin(data:any) {
+    return this.http.post(this.apiurl + 'Googlelogin', data);
+  }
 
 }
