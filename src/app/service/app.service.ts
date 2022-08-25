@@ -396,5 +396,7 @@ export class AppService {
   SummaryLeads(data:any) {
     return this.http.post(this.apiurl + 'SummaryLeads', data);
   }
-
+  SendDigitSms(data:any) {
+    return this.http.post(this.apiurl + 'SendDigitSms', data);
+  }
 }
