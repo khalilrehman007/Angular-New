@@ -57,6 +57,7 @@ export class DashboardComponent implements OnInit {
   totalLength: number = 0;
   page: number = 1;
   professionalType: any;
+  leadSummary: any;
 
   plus = '../../../../assets/images/plus.svg'
 
@@ -205,6 +206,10 @@ export class DashboardComponent implements OnInit {
           this.myValuationCommercial.push(this.myValuation[i]);
         }
       }
+    })
+    this.service.SummaryLeads('id').subscribe((result:any)=>{
+      this.leadSummary = result.data;
+      console.log(this.leadSummary)
     })
   }
   getImage(e: any) {
@@ -847,7 +852,6 @@ export class DashboardComponent implements OnInit {
         );
       })
     });
-    console.log(tempData)
     this.myActivityAgentView = tempData;
   }
 
@@ -956,9 +960,6 @@ export class DashboardComponent implements OnInit {
   allCheckbox :any = []
   allFormCheckbox(id:number){
     this.allCheckbox.push({'id':id})
-
-    console.log(this.allCheckbox)
-
   }
 
   // rentCheckbox :any = []
@@ -972,7 +973,6 @@ export class DashboardComponent implements OnInit {
   // }
 
   compareProceed(type:any){
-    console.log(type,'dededede')
     if(this.user.id == ''){
       this.notifyService.showSuccess('First you need to login', "");
       this.route.navigate(['/login'])
