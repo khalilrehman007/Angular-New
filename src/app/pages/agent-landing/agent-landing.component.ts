@@ -16,7 +16,7 @@ import { AuthService } from "../../service/auth.service";
   styleUrls: ['./agent-landing.component.scss']
 })
 export class AgentLandingComponent implements OnInit {
-
+  baseUrl = 'https://beta.ovaluate.com/'
   totalLength: number = 0;
   page: number = 1;
   companypage: number = 1;
@@ -81,8 +81,53 @@ export class AgentLandingComponent implements OnInit {
     this.companiesListData({ "CountryId": "1", "DistrictsId": [], "CompaniesId": [], "CurrentPage": 1 });
 
     this.service.BestAgent(1).subscribe((result: any) => {
-      this.agentDetails = result.data;
+      // this.agentDetails = result.data;
+      let tempData: Array<Object> = []
+      let response :any = result.data;
+      response.forEach((element, i) => {
+        let imageUrl :any = '../assets/images/user.png';
+        if(element.agentDetails !=undefined &&  element.agentDetails.user.imageUrl != undefined){
+          imageUrl = this.baseUrl+element.agentDetails.user.imageUrl
+        }
+        let fullName :any = '';
+        if(element.agentDetails !=undefined &&  element.agentDetails.user.fullName != undefined){
+          fullName = element.agentDetails.user.fullName
+        }
+        let id :any = '';
+        if(element.agentDetails !=undefined &&  element.agentDetails.user.id != undefined){
+          id = element.agentDetails.user.id
+        }
+        let expertIn :any = '';
+        if(element.agentDetails !=undefined &&  element.agentDetails.expertIn != undefined){
+          expertIn = element.agentDetails.expertIn
+        }
+        let reraNo :any = '';
+        if(element.agentDetails != undefined && element.agentDetails.company !=undefined &&  element.agentDetails.company.reraNo != undefined){
+          reraNo = element.agentDetails.company.reraNo
+        }
+        let premitNo :any = '';
+        if(element.agentDetails != undefined && element.agentDetails.company !=undefined &&  element.agentDetails.company.premitNo != undefined){
+          premitNo = element.agentDetails.company.premitNo
+        }
+        tempData.push(
+          {
+            id: id,
+            imageUrl: imageUrl,
+            fullName: fullName,
+            expertIn: expertIn,
+            reraNo  : reraNo,
+            premitNo: premitNo,
+            salePropertyListingCount:element.salePropertyListingCount,
+            rentPropertyListingCount:element.rentPropertyListingCount,
+            commercialPropertyListingCount:element.commercialPropertyListingCount,
+
+          }
+        );
+      })
+      this.agentDetails = tempData
     })
+
+
     this.service.BestCompanies(1).subscribe((result: any) => {
       this.bestCompanies = result.data;
     })
@@ -125,89 +170,89 @@ export class AgentLandingComponent implements OnInit {
     this.featuredAgentData = {
       heading: "Featured Real Estate Agents",
       desc: "Some of our best property agents",
-      list: [
-        {
-          tag: "assets/images/tag/featured.png",
-          img: "/assets/images/agent-image.png",
-          company: "assets/images/brand/betterhomes.png",
-          heading: "Better Homes Properties",
-          text: "P.O. Box 14781, Ground Floor, Golf Building No. GB, Al Hamra Village, Ras Al Khaimah",
-          link: {
-            text: "View Map",
-            url: ""
-          },
-          rera: "RERA# 11899",
-          permit: "Permit# 7187842740",
-          details: [
-            {
-              count: "247",
-              name: "Sale"
-            },
-            {
-              count: "247",
-              name: "Rents"
-            },
-            {
-              count: "247",
-              name: "Commercial"
-            },
-          ]
-        },
-        {
-          tag: "assets/images/tag/featured.png",
-          img: "/assets/images/agent-image.png",
-          company: "assets/images/brand/betterhomes.png",
-          heading: "Better Homes Properties",
-          text: "P.O. Box 14781, Ground Floor, Golf Building No. GB, Al Hamra Village, Ras Al Khaimah",
-          link: {
-            text: "View Map",
-            url: ""
-          },
-          rera: "RERA# 11899",
-          permit: "Permit# 7187842740",
-          details: [
-            {
-              count: "247",
-              name: "Sale"
-            },
-            {
-              count: "247",
-              name: "Rents"
-            },
-            {
-              count: "247",
-              name: "Commercial"
-            },
-          ]
-        },
-        {
-          tag: "assets/images/tag/featured.png",
-          img: "/assets/images/agent-image.png",
-          company: "assets/images/brand/betterhomes.png",
-          heading: "Better Homes Properties",
-          text: "P.O. Box 14781, Ground Floor, Golf Building No. GB, Al Hamra Village, Ras Al Khaimah",
-          link: {
-            text: "View Map",
-            url: ""
-          },
-          rera: "RERA# 11899",
-          permit: "Permit# 7187842740",
-          details: [
-            {
-              count: "247",
-              name: "Sale"
-            },
-            {
-              count: "247",
-              name: "Rents"
-            },
-            {
-              count: "247",
-              name: "Commercial"
-            },
-          ]
-        },
-      ],
+      // list: [
+      //   {
+      //     tag: "assets/images/tag/featured.png",
+      //     img: "/assets/images/agent-image.png",
+      //     company: "assets/images/brand/betterhomes.png",
+      //     heading: "Better Homes Properties",
+      //     text: "P.O. Box 14781, Ground Floor, Golf Building No. GB, Al Hamra Village, Ras Al Khaimah",
+      //     link: {
+      //       text: "View Map",
+      //       url: ""
+      //     },
+      //     rera: "RERA# 11899",
+      //     permit: "Permit# 7187842740",
+      //     details: [
+      //       {
+      //         count: "247",
+      //         name: "Sale"
+      //       },
+      //       {
+      //         count: "247",
+      //         name: "Rents"
+      //       },
+      //       {
+      //         count: "247",
+      //         name: "Commercial"
+      //       },
+      //     ]
+      //   },
+      //   {
+      //     tag: "assets/images/tag/featured.png",
+      //     img: "/assets/images/agent-image.png",
+      //     company: "assets/images/brand/betterhomes.png",
+      //     heading: "Better Homes Properties",
+      //     text: "P.O. Box 14781, Ground Floor, Golf Building No. GB, Al Hamra Village, Ras Al Khaimah",
+      //     link: {
+      //       text: "View Map",
+      //       url: ""
+      //     },
+      //     rera: "RERA# 11899",
+      //     permit: "Permit# 7187842740",
+      //     details: [
+      //       {
+      //         count: "247",
+      //         name: "Sale"
+      //       },
+      //       {
+      //         count: "247",
+      //         name: "Rents"
+      //       },
+      //       {
+      //         count: "247",
+      //         name: "Commercial"
+      //       },
+      //     ]
+      //   },
+      //   {
+      //     tag: "assets/images/tag/featured.png",
+      //     img: "/assets/images/agent-image.png",
+      //     company: "assets/images/brand/betterhomes.png",
+      //     heading: "Better Homes Properties",
+      //     text: "P.O. Box 14781, Ground Floor, Golf Building No. GB, Al Hamra Village, Ras Al Khaimah",
+      //     link: {
+      //       text: "View Map",
+      //       url: ""
+      //     },
+      //     rera: "RERA# 11899",
+      //     permit: "Permit# 7187842740",
+      //     details: [
+      //       {
+      //         count: "247",
+      //         name: "Sale"
+      //       },
+      //       {
+      //         count: "247",
+      //         name: "Rents"
+      //       },
+      //       {
+      //         count: "247",
+      //         name: "Commercial"
+      //       },
+      //     ]
+      //   },
+      // ],
     };
     this.agentList = {
       heading: "Real Estate Agent Listing",
@@ -218,250 +263,250 @@ export class AgentLandingComponent implements OnInit {
         "Specialities",
         "Action"
       ],
-      tableData: [
-        {
-          img: "assets/images/testimonial/user.png",
-          heading: "Better Homes Properties",
-          name: "Olga Pikina",
-          position: "Sales Director",
-          link: {
-            text: "+971 50 456 3423",
-            url: ""
-          },
-          location: "Dubai, UAE",
-          language: "Language: English, Hindi, Arabic, Urdu, Danish",
-          specialities: [
-            "Residential for sale",
-            "Residential for sale",
-            "Commercial for sale",
-            "Commercial for Rent/Lease",
-          ],
-          btn: {
-            img: "assets/images/icons/eye.svg",
-            text: "View Detail"
-          }
-        },
-        {
-          img: "assets/images/testimonial/user.png",
-          heading: "Better Homes Properties",
-          name: "Olga Pikina",
-          position: "Sales Director",
-          link: {
-            text: "+971 50 456 3423",
-            url: ""
-          },
-          location: "Dubai, UAE",
-          language: "Language: English, Hindi, Arabic, Urdu, Danish",
-          specialities: [
-            "Residential for sale",
-            "Residential for sale",
-            "Commercial for sale",
-            "Commercial for Rent/Lease",
-          ],
-          btn: {
-            img: "assets/images/icons/eye.svg",
-            text: "View Detail"
-          }
-        },
-        {
-          img: "assets/images/testimonial/user.png",
-          heading: "Better Homes Properties",
-          name: "Olga Pikina",
-          position: "Sales Director",
-          link: {
-            text: "+971 50 456 3423",
-            url: ""
-          },
-          location: "Dubai, UAE",
-          language: "Language: English, Hindi, Arabic, Urdu, Danish",
-          specialities: [
-            "Residential for sale",
-            "Residential for sale",
-            "Commercial for sale",
-            "Commercial for Rent/Lease",
-          ],
-          btn: {
-            img: "assets/images/icons/eye.svg",
-            text: "View Detail"
-          }
-        },
-        {
-          img: "assets/images/testimonial/user.png",
-          heading: "Better Homes Properties",
-          name: "Olga Pikina",
-          position: "Sales Director",
-          link: {
-            text: "+971 50 456 3423",
-            url: ""
-          },
-          location: "Dubai, UAE",
-          language: "Language: English, Hindi, Arabic, Urdu, Danish",
-          specialities: [
-            "Residential for sale",
-            "Residential for sale",
-            "Commercial for sale",
-            "Commercial for Rent/Lease",
-          ],
-          btn: {
-            img: "assets/images/icons/eye.svg",
-            text: "View Detail"
-          }
-        },
-        {
-          img: "assets/images/testimonial/user.png",
-          heading: "Better Homes Properties",
-          name: "Olga Pikina",
-          position: "Sales Director",
-          link: {
-            text: "+971 50 456 3423",
-            url: ""
-          },
-          location: "Dubai, UAE",
-          language: "Language: English, Hindi, Arabic, Urdu, Danish",
-          specialities: [
-            "Residential for sale",
-            "Residential for sale",
-            "Commercial for sale",
-            "Commercial for Rent/Lease",
-          ],
-          btn: {
-            img: "assets/images/icons/eye.svg",
-            text: "View Detail"
-          }
-        },
-        {
-          img: "assets/images/testimonial/user.png",
-          heading: "Better Homes Properties",
-          name: "Olga Pikina",
-          position: "Sales Director",
-          link: {
-            text: "+971 50 456 3423",
-            url: ""
-          },
-          location: "Dubai, UAE",
-          language: "Language: English, Hindi, Arabic, Urdu, Danish",
-          specialities: [
-            "Residential for sale",
-            "Residential for sale",
-            "Commercial for sale",
-            "Commercial for Rent/Lease",
-          ],
-          btn: {
-            img: "assets/images/icons/eye.svg",
-            text: "View Detail"
-          }
-        },
-        {
-          img: "assets/images/testimonial/user.png",
-          heading: "Better Homes Properties",
-          name: "Olga Pikina",
-          position: "Sales Director",
-          link: {
-            text: "+971 50 456 3423",
-            url: ""
-          },
-          location: "Dubai, UAE",
-          language: "Language: English, Hindi, Arabic, Urdu, Danish",
-          specialities: [
-            "Residential for sale",
-            "Residential for sale",
-            "Commercial for sale",
-            "Commercial for Rent/Lease",
-          ],
-          btn: {
-            img: "assets/images/icons/eye.svg",
-            text: "View Detail"
-          }
-        },
-        {
-          img: "assets/images/testimonial/user.png",
-          heading: "Better Homes Properties",
-          name: "Olga Pikina",
-          position: "Sales Director",
-          link: {
-            text: "+971 50 456 3423",
-            url: ""
-          },
-          location: "Dubai, UAE",
-          language: "Language: English, Hindi, Arabic, Urdu, Danish",
-          specialities: [
-            "Residential for sale",
-            "Residential for sale",
-            "Commercial for sale",
-            "Commercial for Rent/Lease",
-          ],
-          btn: {
-            img: "assets/images/icons/eye.svg",
-            text: "View Detail"
-          }
-        },
-        {
-          img: "assets/images/testimonial/user.png",
-          heading: "Better Homes Properties",
-          name: "Olga Pikina",
-          position: "Sales Director",
-          link: {
-            text: "+971 50 456 3423",
-            url: ""
-          },
-          location: "Dubai, UAE",
-          language: "Language: English, Hindi, Arabic, Urdu, Danish",
-          specialities: [
-            "Residential for sale",
-            "Residential for sale",
-            "Commercial for sale",
-            "Commercial for Rent/Lease",
-          ],
-          btn: {
-            img: "assets/images/icons/eye.svg",
-            text: "View Detail"
-          }
-        },
-        {
-          img: "assets/images/testimonial/user.png",
-          heading: "Better Homes Properties",
-          name: "Olga Pikina",
-          position: "Sales Director",
-          link: {
-            text: "+971 50 456 3423",
-            url: ""
-          },
-          location: "Dubai, UAE",
-          language: "Language: English, Hindi, Arabic, Urdu, Danish",
-          specialities: [
-            "Residential for sale",
-            "Residential for sale",
-            "Commercial for sale",
-            "Commercial for Rent/Lease",
-          ],
-          btn: {
-            img: "assets/images/icons/eye.svg",
-            text: "View Detail"
-          }
-        },
-        {
-          img: "assets/images/testimonial/user.png",
-          heading: "Better Homes Properties",
-          name: "Olga Pikina",
-          position: "Sales Director",
-          link: {
-            text: "+971 50 456 3423",
-            url: ""
-          },
-          location: "Dubai, UAE",
-          language: "Language: English, Hindi, Arabic, Urdu, Danish",
-          specialities: [
-            "Residential for sale",
-            "Residential for sale",
-            "Commercial for sale",
-            "Commercial for Rent/Lease",
-          ],
-          btn: {
-            img: "assets/images/icons/eye.svg",
-            text: "View Detail"
-          }
-        },
-      ]
+      // tableData: [
+      //   {
+      //     img: "assets/images/testimonial/user.png",
+      //     heading: "Better Homes Properties",
+      //     name: "Olga Pikina",
+      //     position: "Sales Director",
+      //     link: {
+      //       text: "+971 50 456 3423",
+      //       url: ""
+      //     },
+      //     location: "Dubai, UAE",
+      //     language: "Language: English, Hindi, Arabic, Urdu, Danish",
+      //     specialities: [
+      //       "Residential for sale",
+      //       "Residential for sale",
+      //       "Commercial for sale",
+      //       "Commercial for Rent/Lease",
+      //     ],
+      //     btn: {
+      //       img: "assets/images/icons/eye.svg",
+      //       text: "View Detail"
+      //     }
+      //   },
+      //   {
+      //     img: "assets/images/testimonial/user.png",
+      //     heading: "Better Homes Properties",
+      //     name: "Olga Pikina",
+      //     position: "Sales Director",
+      //     link: {
+      //       text: "+971 50 456 3423",
+      //       url: ""
+      //     },
+      //     location: "Dubai, UAE",
+      //     language: "Language: English, Hindi, Arabic, Urdu, Danish",
+      //     specialities: [
+      //       "Residential for sale",
+      //       "Residential for sale",
+      //       "Commercial for sale",
+      //       "Commercial for Rent/Lease",
+      //     ],
+      //     btn: {
+      //       img: "assets/images/icons/eye.svg",
+      //       text: "View Detail"
+      //     }
+      //   },
+      //   {
+      //     img: "assets/images/testimonial/user.png",
+      //     heading: "Better Homes Properties",
+      //     name: "Olga Pikina",
+      //     position: "Sales Director",
+      //     link: {
+      //       text: "+971 50 456 3423",
+      //       url: ""
+      //     },
+      //     location: "Dubai, UAE",
+      //     language: "Language: English, Hindi, Arabic, Urdu, Danish",
+      //     specialities: [
+      //       "Residential for sale",
+      //       "Residential for sale",
+      //       "Commercial for sale",
+      //       "Commercial for Rent/Lease",
+      //     ],
+      //     btn: {
+      //       img: "assets/images/icons/eye.svg",
+      //       text: "View Detail"
+      //     }
+      //   },
+      //   {
+      //     img: "assets/images/testimonial/user.png",
+      //     heading: "Better Homes Properties",
+      //     name: "Olga Pikina",
+      //     position: "Sales Director",
+      //     link: {
+      //       text: "+971 50 456 3423",
+      //       url: ""
+      //     },
+      //     location: "Dubai, UAE",
+      //     language: "Language: English, Hindi, Arabic, Urdu, Danish",
+      //     specialities: [
+      //       "Residential for sale",
+      //       "Residential for sale",
+      //       "Commercial for sale",
+      //       "Commercial for Rent/Lease",
+      //     ],
+      //     btn: {
+      //       img: "assets/images/icons/eye.svg",
+      //       text: "View Detail"
+      //     }
+      //   },
+      //   {
+      //     img: "assets/images/testimonial/user.png",
+      //     heading: "Better Homes Properties",
+      //     name: "Olga Pikina",
+      //     position: "Sales Director",
+      //     link: {
+      //       text: "+971 50 456 3423",
+      //       url: ""
+      //     },
+      //     location: "Dubai, UAE",
+      //     language: "Language: English, Hindi, Arabic, Urdu, Danish",
+      //     specialities: [
+      //       "Residential for sale",
+      //       "Residential for sale",
+      //       "Commercial for sale",
+      //       "Commercial for Rent/Lease",
+      //     ],
+      //     btn: {
+      //       img: "assets/images/icons/eye.svg",
+      //       text: "View Detail"
+      //     }
+      //   },
+      //   {
+      //     img: "assets/images/testimonial/user.png",
+      //     heading: "Better Homes Properties",
+      //     name: "Olga Pikina",
+      //     position: "Sales Director",
+      //     link: {
+      //       text: "+971 50 456 3423",
+      //       url: ""
+      //     },
+      //     location: "Dubai, UAE",
+      //     language: "Language: English, Hindi, Arabic, Urdu, Danish",
+      //     specialities: [
+      //       "Residential for sale",
+      //       "Residential for sale",
+      //       "Commercial for sale",
+      //       "Commercial for Rent/Lease",
+      //     ],
+      //     btn: {
+      //       img: "assets/images/icons/eye.svg",
+      //       text: "View Detail"
+      //     }
+      //   },
+      //   {
+      //     img: "assets/images/testimonial/user.png",
+      //     heading: "Better Homes Properties",
+      //     name: "Olga Pikina",
+      //     position: "Sales Director",
+      //     link: {
+      //       text: "+971 50 456 3423",
+      //       url: ""
+      //     },
+      //     location: "Dubai, UAE",
+      //     language: "Language: English, Hindi, Arabic, Urdu, Danish",
+      //     specialities: [
+      //       "Residential for sale",
+      //       "Residential for sale",
+      //       "Commercial for sale",
+      //       "Commercial for Rent/Lease",
+      //     ],
+      //     btn: {
+      //       img: "assets/images/icons/eye.svg",
+      //       text: "View Detail"
+      //     }
+      //   },
+      //   {
+      //     img: "assets/images/testimonial/user.png",
+      //     heading: "Better Homes Properties",
+      //     name: "Olga Pikina",
+      //     position: "Sales Director",
+      //     link: {
+      //       text: "+971 50 456 3423",
+      //       url: ""
+      //     },
+      //     location: "Dubai, UAE",
+      //     language: "Language: English, Hindi, Arabic, Urdu, Danish",
+      //     specialities: [
+      //       "Residential for sale",
+      //       "Residential for sale",
+      //       "Commercial for sale",
+      //       "Commercial for Rent/Lease",
+      //     ],
+      //     btn: {
+      //       img: "assets/images/icons/eye.svg",
+      //       text: "View Detail"
+      //     }
+      //   },
+      //   {
+      //     img: "assets/images/testimonial/user.png",
+      //     heading: "Better Homes Properties",
+      //     name: "Olga Pikina",
+      //     position: "Sales Director",
+      //     link: {
+      //       text: "+971 50 456 3423",
+      //       url: ""
+      //     },
+      //     location: "Dubai, UAE",
+      //     language: "Language: English, Hindi, Arabic, Urdu, Danish",
+      //     specialities: [
+      //       "Residential for sale",
+      //       "Residential for sale",
+      //       "Commercial for sale",
+      //       "Commercial for Rent/Lease",
+      //     ],
+      //     btn: {
+      //       img: "assets/images/icons/eye.svg",
+      //       text: "View Detail"
+      //     }
+      //   },
+      //   {
+      //     img: "assets/images/testimonial/user.png",
+      //     heading: "Better Homes Properties",
+      //     name: "Olga Pikina",
+      //     position: "Sales Director",
+      //     link: {
+      //       text: "+971 50 456 3423",
+      //       url: ""
+      //     },
+      //     location: "Dubai, UAE",
+      //     language: "Language: English, Hindi, Arabic, Urdu, Danish",
+      //     specialities: [
+      //       "Residential for sale",
+      //       "Residential for sale",
+      //       "Commercial for sale",
+      //       "Commercial for Rent/Lease",
+      //     ],
+      //     btn: {
+      //       img: "assets/images/icons/eye.svg",
+      //       text: "View Detail"
+      //     }
+      //   },
+      //   {
+      //     img: "assets/images/testimonial/user.png",
+      //     heading: "Better Homes Properties",
+      //     name: "Olga Pikina",
+      //     position: "Sales Director",
+      //     link: {
+      //       text: "+971 50 456 3423",
+      //       url: ""
+      //     },
+      //     location: "Dubai, UAE",
+      //     language: "Language: English, Hindi, Arabic, Urdu, Danish",
+      //     specialities: [
+      //       "Residential for sale",
+      //       "Residential for sale",
+      //       "Commercial for sale",
+      //       "Commercial for Rent/Lease",
+      //     ],
+      //     btn: {
+      //       img: "assets/images/icons/eye.svg",
+      //       text: "View Detail"
+      //     }
+      //   },
+      // ]
     };
   }
   toggleCompany(e: boolean) {
@@ -480,98 +525,98 @@ export class AgentLandingComponent implements OnInit {
     this.featuredCompaniesData = {
       heading: "Featured Real Estate Companies",
       desc: "Some of our best property agents",
-      list: [
-        {
-          tag: "assets/images/tag/featured.png",
-          img: "assets/images/brand/betterhomes.png",
-          heading: "Better Homes Properties",
-          text: "P.O. Box 14781, Ground Floor, Golf Building No. GB, Al Hamra Village, Ras Al Khaimah",
-          link: {
-            text: "View Map",
-            url: ""
-          },
-          rera: "RERA# 11899",
-          permit: "Permit# 7187842740",
-          details: [
-            {
-              count: "345",
-              name: "Agents"
-            },
-            {
-              count: "247",
-              name: "Sale"
-            },
-            {
-              count: "247",
-              name: "Rents"
-            },
-            {
-              count: "247",
-              name: "Commercial"
-            },
-          ]
-        },
-        {
-          tag: "assets/images/tag/featured.png",
-          img: "assets/images/brand/betterhomes.png",
-          heading: "Better Homes Properties",
-          text: "P.O. Box 14781, Ground Floor, Golf Building No. GB, Al Hamra Village, Ras Al Khaimah",
-          link: {
-            text: "View Map",
-            url: ""
-          },
-          rera: "RERA# 11899",
-          permit: "Permit# 7187842740",
-          details: [
-            {
-              count: "345",
-              name: "Agents"
-            },
-            {
-              count: "247",
-              name: "Sale"
-            },
-            {
-              count: "247",
-              name: "Rents"
-            },
-            {
-              count: "247",
-              name: "Commercial"
-            },
-          ]
-        },
-        {
-          tag: "assets/images/tag/featured.png",
-          img: "assets/images/brand/betterhomes.png",
-          heading: "Better Homes Properties",
-          text: "P.O. Box 14781, Ground Floor, Golf Building No. GB, Al Hamra Village, Ras Al Khaimah",
-          link: {
-            text: "View Map",
-            url: ""
-          },
-          rera: "RERA# 11899",
-          permit: "Permit# 7187842740",
-          details: [
-            {
-              count: "345",
-              name: "Agents"
-            },
-            {
-              count: "247",
-              name: "Sale"
-            },
-            {
-              count: "247",
-              name: "Rents"
-            },
-            {
-              count: "247",
-              name: "Commercial"
-            },
-          ]
-        },
-      ],
+      // list: [
+      //   {
+      //     tag: "assets/images/tag/featured.png",
+      //     img: "assets/images/brand/betterhomes.png",
+      //     heading: "Better Homes Properties",
+      //     text: "P.O. Box 14781, Ground Floor, Golf Building No. GB, Al Hamra Village, Ras Al Khaimah",
+      //     link: {
+      //       text: "View Map",
+      //       url: ""
+      //     },
+      //     rera: "RERA# 11899",
+      //     permit: "Permit# 7187842740",
+      //     details: [
+      //       {
+      //         count: "345",
+      //         name: "Agents"
+      //       },
+      //       {
+      //         count: "247",
+      //         name: "Sale"
+      //       },
+      //       {
+      //         count: "247",
+      //         name: "Rents"
+      //       },
+      //       {
+      //         count: "247",
+      //         name: "Commercial"
+      //       },
+      //     ]
+      //   },
+      //   {
+      //     tag: "assets/images/tag/featured.png",
+      //     img: "assets/images/brand/betterhomes.png",
+      //     heading: "Better Homes Properties",
+      //     text: "P.O. Box 14781, Ground Floor, Golf Building No. GB, Al Hamra Village, Ras Al Khaimah",
+      //     link: {
+      //       text: "View Map",
+      //       url: ""
+      //     },
+      //     rera: "RERA# 11899",
+      //     permit: "Permit# 7187842740",
+      //     details: [
+      //       {
+      //         count: "345",
+      //         name: "Agents"
+      //       },
+      //       {
+      //         count: "247",
+      //         name: "Sale"
+      //       },
+      //       {
+      //         count: "247",
+      //         name: "Rents"
+      //       },
+      //       {
+      //         count: "247",
+      //         name: "Commercial"
+      //       },
+      //     ]
+      //   },
+      //   {
+      //     tag: "assets/images/tag/featured.png",
+      //     img: "assets/images/brand/betterhomes.png",
+      //     heading: "Better Homes Properties",
+      //     text: "P.O. Box 14781, Ground Floor, Golf Building No. GB, Al Hamra Village, Ras Al Khaimah",
+      //     link: {
+      //       text: "View Map",
+      //       url: ""
+      //     },
+      //     rera: "RERA# 11899",
+      //     permit: "Permit# 7187842740",
+      //     details: [
+      //       {
+      //         count: "345",
+      //         name: "Agents"
+      //       },
+      //       {
+      //         count: "247",
+      //         name: "Sale"
+      //       },
+      //       {
+      //         count: "247",
+      //         name: "Rents"
+      //       },
+      //       {
+      //         count: "247",
+      //         name: "Commercial"
+      //       },
+      //     ]
+      //   },
+      // ],
     };
     this.companiesList = {
       heading: "Real Estate Companies Listing",
@@ -582,239 +627,239 @@ export class AgentLandingComponent implements OnInit {
         "Agents",
         "Action"
       ],
-      tableData: [
-        {
-          img: "assets/images/brand/betterhomes.png",
-          heading: "Better Homes Properties",
-          text: "P.O. Box 14781, Ground Floor, Golf Building No. GB, Al Hamra Village, Ras Al Khaimah",
-          link: {
-            text: "View Map",
-            url: ""
-          },
-          permit: "RERA# 11899 | Permit# 7187842740",
-          specialities: [
-            "Residential for sale",
-            "Residential for sale",
-            "Commercial for sale",
-            "Commercial for Rent/Lease",
-          ],
-          agents: "345",
-          btn: {
-            img: "assets/images/icons/eye.svg",
-            text: "View Detail"
-          }
-        },
-        {
-          img: "assets/images/brand/betterhomes.png",
-          heading: "Better Homes Properties",
-          text: "P.O. Box 14781, Ground Floor, Golf Building No. GB, Al Hamra Village, Ras Al Khaimah",
-          link: {
-            text: "View Map",
-            url: ""
-          },
-          permit: "RERA# 11899 | Permit# 7187842740",
-          specialities: [
-            "Residential for sale",
-            "Residential for sale",
-            "Commercial for sale",
-            "Commercial for Rent/Lease",
-          ],
-          agents: "345",
-          btn: {
-            img: "assets/images/icons/eye.svg",
-            text: "View Detail"
-          }
-        },
-        {
-          img: "assets/images/brand/betterhomes.png",
-          heading: "Better Homes Properties",
-          text: "P.O. Box 14781, Ground Floor, Golf Building No. GB, Al Hamra Village, Ras Al Khaimah",
-          link: {
-            text: "View Map",
-            url: ""
-          },
-          permit: "RERA# 11899 | Permit# 7187842740",
-          specialities: [
-            "Residential for sale",
-            "Residential for sale",
-            "Commercial for sale",
-            "Commercial for Rent/Lease",
-          ],
-          agents: "345",
-          btn: {
-            img: "assets/images/icons/eye.svg",
-            text: "View Detail"
-          }
-        },
-        {
-          img: "assets/images/brand/betterhomes.png",
-          heading: "Better Homes Properties",
-          text: "P.O. Box 14781, Ground Floor, Golf Building No. GB, Al Hamra Village, Ras Al Khaimah",
-          link: {
-            text: "View Map",
-            url: ""
-          },
-          permit: "RERA# 11899 | Permit# 7187842740",
-          specialities: [
-            "Residential for sale",
-            "Residential for sale",
-            "Commercial for sale",
-            "Commercial for Rent/Lease",
-          ],
-          agents: "345",
-          btn: {
-            img: "assets/images/icons/eye.svg",
-            text: "View Detail"
-          }
-        },
-        {
-          img: "assets/images/brand/betterhomes.png",
-          heading: "Better Homes Properties",
-          text: "P.O. Box 14781, Ground Floor, Golf Building No. GB, Al Hamra Village, Ras Al Khaimah",
-          link: {
-            text: "View Map",
-            url: ""
-          },
-          permit: "RERA# 11899 | Permit# 7187842740",
-          specialities: [
-            "Residential for sale",
-            "Residential for sale",
-            "Commercial for sale",
-            "Commercial for Rent/Lease",
-          ],
-          agents: "345",
-          btn: {
-            img: "assets/images/icons/eye.svg",
-            text: "View Detail"
-          }
-        },
-        {
-          img: "assets/images/brand/betterhomes.png",
-          heading: "Better Homes Properties",
-          text: "P.O. Box 14781, Ground Floor, Golf Building No. GB, Al Hamra Village, Ras Al Khaimah",
-          link: {
-            text: "View Map",
-            url: ""
-          },
-          permit: "RERA# 11899 | Permit# 7187842740",
-          specialities: [
-            "Residential for sale",
-            "Residential for sale",
-            "Commercial for sale",
-            "Commercial for Rent/Lease",
-          ],
-          agents: "345",
-          btn: {
-            img: "assets/images/icons/eye.svg",
-            text: "View Detail"
-          }
-        },
-        {
-          img: "assets/images/brand/betterhomes.png",
-          heading: "Better Homes Properties",
-          text: "P.O. Box 14781, Ground Floor, Golf Building No. GB, Al Hamra Village, Ras Al Khaimah",
-          link: {
-            text: "View Map",
-            url: ""
-          },
-          permit: "RERA# 11899 | Permit# 7187842740",
-          specialities: [
-            "Residential for sale",
-            "Residential for sale",
-            "Commercial for sale",
-            "Commercial for Rent/Lease",
-          ],
-          agents: "345",
-          btn: {
-            img: "assets/images/icons/eye.svg",
-            text: "View Detail"
-          }
-        },
-        {
-          img: "assets/images/brand/betterhomes.png",
-          heading: "Better Homes Properties",
-          text: "P.O. Box 14781, Ground Floor, Golf Building No. GB, Al Hamra Village, Ras Al Khaimah",
-          link: {
-            text: "View Map",
-            url: ""
-          },
-          permit: "RERA# 11899 | Permit# 7187842740",
-          specialities: [
-            "Residential for sale",
-            "Residential for sale",
-            "Commercial for sale",
-            "Commercial for Rent/Lease",
-          ],
-          agents: "345",
-          btn: {
-            img: "assets/images/icons/eye.svg",
-            text: "View Detail"
-          }
-        },
-        {
-          img: "assets/images/brand/betterhomes.png",
-          heading: "Better Homes Properties",
-          text: "P.O. Box 14781, Ground Floor, Golf Building No. GB, Al Hamra Village, Ras Al Khaimah",
-          link: {
-            text: "View Map",
-            url: ""
-          },
-          permit: "RERA# 11899 | Permit# 7187842740",
-          specialities: [
-            "Residential for sale",
-            "Residential for sale",
-            "Commercial for sale",
-            "Commercial for Rent/Lease",
-          ],
-          agents: "345",
-          btn: {
-            img: "assets/images/icons/eye.svg",
-            text: "View Detail"
-          }
-        },
-        {
-          img: "assets/images/brand/betterhomes.png",
-          heading: "Better Homes Properties",
-          text: "P.O. Box 14781, Ground Floor, Golf Building No. GB, Al Hamra Village, Ras Al Khaimah",
-          link: {
-            text: "View Map",
-            url: ""
-          },
-          permit: "RERA# 11899 | Permit# 7187842740",
-          specialities: [
-            "Residential for sale",
-            "Residential for sale",
-            "Commercial for sale",
-            "Commercial for Rent/Lease",
-          ],
-          agents: "345",
-          btn: {
-            img: "assets/images/icons/eye.svg",
-            text: "View Detail"
-          }
-        },
-        {
-          img: "assets/images/brand/betterhomes.png",
-          heading: "Better Homes Properties",
-          text: "P.O. Box 14781, Ground Floor, Golf Building No. GB, Al Hamra Village, Ras Al Khaimah",
-          link: {
-            text: "View Map",
-            url: ""
-          },
-          permit: "RERA# 11899 | Permit# 7187842740",
-          specialities: [
-            "Residential for sale",
-            "Residential for sale",
-            "Commercial for sale",
-            "Commercial for Rent/Lease",
-          ],
-          agents: "345",
-          btn: {
-            img: "assets/images/icons/eye.svg",
-            text: "View Detail"
-          }
-        },
-      ]
+      // tableData: [
+      //   {
+      //     img: "assets/images/brand/betterhomes.png",
+      //     heading: "Better Homes Properties",
+      //     text: "P.O. Box 14781, Ground Floor, Golf Building No. GB, Al Hamra Village, Ras Al Khaimah",
+      //     link: {
+      //       text: "View Map",
+      //       url: ""
+      //     },
+      //     permit: "RERA# 11899 | Permit# 7187842740",
+      //     specialities: [
+      //       "Residential for sale",
+      //       "Residential for sale",
+      //       "Commercial for sale",
+      //       "Commercial for Rent/Lease",
+      //     ],
+      //     agents: "345",
+      //     btn: {
+      //       img: "assets/images/icons/eye.svg",
+      //       text: "View Detail"
+      //     }
+      //   },
+      //   {
+      //     img: "assets/images/brand/betterhomes.png",
+      //     heading: "Better Homes Properties",
+      //     text: "P.O. Box 14781, Ground Floor, Golf Building No. GB, Al Hamra Village, Ras Al Khaimah",
+      //     link: {
+      //       text: "View Map",
+      //       url: ""
+      //     },
+      //     permit: "RERA# 11899 | Permit# 7187842740",
+      //     specialities: [
+      //       "Residential for sale",
+      //       "Residential for sale",
+      //       "Commercial for sale",
+      //       "Commercial for Rent/Lease",
+      //     ],
+      //     agents: "345",
+      //     btn: {
+      //       img: "assets/images/icons/eye.svg",
+      //       text: "View Detail"
+      //     }
+      //   },
+      //   {
+      //     img: "assets/images/brand/betterhomes.png",
+      //     heading: "Better Homes Properties",
+      //     text: "P.O. Box 14781, Ground Floor, Golf Building No. GB, Al Hamra Village, Ras Al Khaimah",
+      //     link: {
+      //       text: "View Map",
+      //       url: ""
+      //     },
+      //     permit: "RERA# 11899 | Permit# 7187842740",
+      //     specialities: [
+      //       "Residential for sale",
+      //       "Residential for sale",
+      //       "Commercial for sale",
+      //       "Commercial for Rent/Lease",
+      //     ],
+      //     agents: "345",
+      //     btn: {
+      //       img: "assets/images/icons/eye.svg",
+      //       text: "View Detail"
+      //     }
+      //   },
+      //   {
+      //     img: "assets/images/brand/betterhomes.png",
+      //     heading: "Better Homes Properties",
+      //     text: "P.O. Box 14781, Ground Floor, Golf Building No. GB, Al Hamra Village, Ras Al Khaimah",
+      //     link: {
+      //       text: "View Map",
+      //       url: ""
+      //     },
+      //     permit: "RERA# 11899 | Permit# 7187842740",
+      //     specialities: [
+      //       "Residential for sale",
+      //       "Residential for sale",
+      //       "Commercial for sale",
+      //       "Commercial for Rent/Lease",
+      //     ],
+      //     agents: "345",
+      //     btn: {
+      //       img: "assets/images/icons/eye.svg",
+      //       text: "View Detail"
+      //     }
+      //   },
+      //   {
+      //     img: "assets/images/brand/betterhomes.png",
+      //     heading: "Better Homes Properties",
+      //     text: "P.O. Box 14781, Ground Floor, Golf Building No. GB, Al Hamra Village, Ras Al Khaimah",
+      //     link: {
+      //       text: "View Map",
+      //       url: ""
+      //     },
+      //     permit: "RERA# 11899 | Permit# 7187842740",
+      //     specialities: [
+      //       "Residential for sale",
+      //       "Residential for sale",
+      //       "Commercial for sale",
+      //       "Commercial for Rent/Lease",
+      //     ],
+      //     agents: "345",
+      //     btn: {
+      //       img: "assets/images/icons/eye.svg",
+      //       text: "View Detail"
+      //     }
+      //   },
+      //   {
+      //     img: "assets/images/brand/betterhomes.png",
+      //     heading: "Better Homes Properties",
+      //     text: "P.O. Box 14781, Ground Floor, Golf Building No. GB, Al Hamra Village, Ras Al Khaimah",
+      //     link: {
+      //       text: "View Map",
+      //       url: ""
+      //     },
+      //     permit: "RERA# 11899 | Permit# 7187842740",
+      //     specialities: [
+      //       "Residential for sale",
+      //       "Residential for sale",
+      //       "Commercial for sale",
+      //       "Commercial for Rent/Lease",
+      //     ],
+      //     agents: "345",
+      //     btn: {
+      //       img: "assets/images/icons/eye.svg",
+      //       text: "View Detail"
+      //     }
+      //   },
+      //   {
+      //     img: "assets/images/brand/betterhomes.png",
+      //     heading: "Better Homes Properties",
+      //     text: "P.O. Box 14781, Ground Floor, Golf Building No. GB, Al Hamra Village, Ras Al Khaimah",
+      //     link: {
+      //       text: "View Map",
+      //       url: ""
+      //     },
+      //     permit: "RERA# 11899 | Permit# 7187842740",
+      //     specialities: [
+      //       "Residential for sale",
+      //       "Residential for sale",
+      //       "Commercial for sale",
+      //       "Commercial for Rent/Lease",
+      //     ],
+      //     agents: "345",
+      //     btn: {
+      //       img: "assets/images/icons/eye.svg",
+      //       text: "View Detail"
+      //     }
+      //   },
+      //   {
+      //     img: "assets/images/brand/betterhomes.png",
+      //     heading: "Better Homes Properties",
+      //     text: "P.O. Box 14781, Ground Floor, Golf Building No. GB, Al Hamra Village, Ras Al Khaimah",
+      //     link: {
+      //       text: "View Map",
+      //       url: ""
+      //     },
+      //     permit: "RERA# 11899 | Permit# 7187842740",
+      //     specialities: [
+      //       "Residential for sale",
+      //       "Residential for sale",
+      //       "Commercial for sale",
+      //       "Commercial for Rent/Lease",
+      //     ],
+      //     agents: "345",
+      //     btn: {
+      //       img: "assets/images/icons/eye.svg",
+      //       text: "View Detail"
+      //     }
+      //   },
+      //   {
+      //     img: "assets/images/brand/betterhomes.png",
+      //     heading: "Better Homes Properties",
+      //     text: "P.O. Box 14781, Ground Floor, Golf Building No. GB, Al Hamra Village, Ras Al Khaimah",
+      //     link: {
+      //       text: "View Map",
+      //       url: ""
+      //     },
+      //     permit: "RERA# 11899 | Permit# 7187842740",
+      //     specialities: [
+      //       "Residential for sale",
+      //       "Residential for sale",
+      //       "Commercial for sale",
+      //       "Commercial for Rent/Lease",
+      //     ],
+      //     agents: "345",
+      //     btn: {
+      //       img: "assets/images/icons/eye.svg",
+      //       text: "View Detail"
+      //     }
+      //   },
+      //   {
+      //     img: "assets/images/brand/betterhomes.png",
+      //     heading: "Better Homes Properties",
+      //     text: "P.O. Box 14781, Ground Floor, Golf Building No. GB, Al Hamra Village, Ras Al Khaimah",
+      //     link: {
+      //       text: "View Map",
+      //       url: ""
+      //     },
+      //     permit: "RERA# 11899 | Permit# 7187842740",
+      //     specialities: [
+      //       "Residential for sale",
+      //       "Residential for sale",
+      //       "Commercial for sale",
+      //       "Commercial for Rent/Lease",
+      //     ],
+      //     agents: "345",
+      //     btn: {
+      //       img: "assets/images/icons/eye.svg",
+      //       text: "View Detail"
+      //     }
+      //   },
+      //   {
+      //     img: "assets/images/brand/betterhomes.png",
+      //     heading: "Better Homes Properties",
+      //     text: "P.O. Box 14781, Ground Floor, Golf Building No. GB, Al Hamra Village, Ras Al Khaimah",
+      //     link: {
+      //       text: "View Map",
+      //       url: ""
+      //     },
+      //     permit: "RERA# 11899 | Permit# 7187842740",
+      //     specialities: [
+      //       "Residential for sale",
+      //       "Residential for sale",
+      //       "Commercial for sale",
+      //       "Commercial for Rent/Lease",
+      //     ],
+      //     agents: "345",
+      //     btn: {
+      //       img: "assets/images/icons/eye.svg",
+      //       text: "View Detail"
+      //     }
+      //   },
+      // ]
     };
 
   }
@@ -828,7 +873,11 @@ export class AgentLandingComponent implements OnInit {
   }
   filterCountry(id: any) {
     let temp = this.country.filter((c: any) => c.id == id)[0];
-    return temp.name;
+    let name :any = '';
+    if(temp != undefined && temp.name != undefined){
+      name = temp.name
+    }
+    return name;
   }
 
   ngOnInit(): void {
@@ -883,9 +932,56 @@ export class AgentLandingComponent implements OnInit {
   }
 
   agentListData(data: any) {
+    let tempData: Array<Object> = []
     this.service.FindAgents(data).subscribe((result: any) => {
-      this.findAgent = result.data;
-      console.log(this.findAgent);
+      let response :any = result.data
+      response.agents.forEach((element, i) => {
+        let imageUrl :any = '../assets/images/user.png';
+        if(element.user !=undefined &&  element.user.imageUrl != undefined){
+          imageUrl = this.baseUrl+element.user.imageUrl
+        }
+        let id :any = '';
+        if(element.user !=undefined &&  element.user.id != undefined){
+          id = element.user.id
+        }
+        let fullName :any = '';
+        if(element.user !=undefined &&  element.user.fullName != undefined){
+          fullName = element.user.fullName
+        }
+        let companyName :any = '';
+        if(element.company !=undefined &&  element.company.companyName != undefined){
+          companyName = element.company.companyName
+        }
+        let phoneNumber :any = '';
+        if(element.user !=undefined &&  element.user.phoneNumber != undefined){
+          phoneNumber = element.user.phoneNumber
+        }
+        let countryId :any = '';
+        if(element.user !=undefined &&  element.user.countryId != undefined){
+          countryId = element.user.countryId
+        }
+
+        let agentLanguages :any = [];
+        if(element.agentLanguages !=undefined &&  element.agentLanguages != null){
+          agentLanguages = element.agentLanguages
+        }
+        let expertIn:any =element.expertIn
+
+        tempData.push(
+          {
+            id: id,
+            imageUrl: imageUrl,
+            fullName: fullName,
+            expertIn: expertIn,
+            companyName: companyName,
+            phoneNumber: phoneNumber,
+            countryId: countryId,
+            agentLanguages: agentLanguages,
+          }
+        );
+      })
+      console.log(tempData)
+      this.findAgent = tempData;
     })
   }
   companiesListData(data: any) {

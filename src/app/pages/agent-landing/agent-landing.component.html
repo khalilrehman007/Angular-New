@@ -77,21 +77,25 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-12">
+        <div class="row ">
+            <div class="col-12 {{companies ? 'd-none' : ''}}">
                 <h4 class="agent-landing-featured__heading">{{featuredAgentData.heading}}</h4>
                 <p class="agent-landing-featured__text">{{featuredAgentData.desc}}</p>
             </div>
+          <div class="col-12 {{!companies ? 'd-none' : ''}}">
+            <h4 class="agent-landing-featured__heading">{{featuredCompaniesData.heading}}</h4>
+            <p class="agent-landing-featured__text">{{featuredCompaniesData.desc}}</p>
+          </div>
         </div>
         <div class="row {{companies ? 'd-none' : ''}}">
             <div class="col-lg-4" *ngFor="let item of agentDetails">
                 <div class="agent-landing-featured__agent">
                     <div class="agent-landing-featured__property-wrapper">
                         <img src="assets/images/tag/featured.png" alt="" class="agent-landing-featured__property-tag">
-                        <div class="row" routerLink="/agent-details/{{item.agentDetails.user.id}}">
+                        <div class="row" routerLink="/agent-details/{{item.id}}">
                             <div class="row height-100">
                                 <div class="col-5 d-flex align-items-center">
-                                    <img src="https://beta.ovaluate.com/{{item.agentDetails.user.imageUrl}}" alt=""
+                                    <img src="{{item.imageUrl}}" alt=""
                                         class="img-fluid agent-landing-featured__property-img">
                                     <img src="assets/images/brand/betterhomes.png" alt=""
                                         class="img-fluid agent-landing-featured__agent-company">
@@ -99,13 +103,13 @@
                                 <div class="col-7">
                                     <div class="agent-landing-featured__agent-right-panel">
                                         <h6 class="agent-landing-featured__property-heading">
-                                            {{item.agentDetails.user.fullName}}</h6>
+                                            {{item.fullName}}</h6>
                                         <p class="agent-landing-featured__property-text">
-                                            {{item.agentDetails.expertIn}}</p>
-                                        <p class="agent-landing-featured__property-text" *ngIf="item.agentDetails.company && item.agentDetails.company.reraNo">RERA#
-                                            {{item.agentDetails.company.reraNo}}</p>
-                                        <p class="agent-landing-featured__property-text" *ngIf="item.agentDetails.company && item.agentDetails.company.premitNo">Permits#
-                                            {{item.agentDetails.company.premitNo}}</p>
+                                            {{item.expertIn}}</p>
+                                        <p class="agent-landing-featured__property-text">RERA#
+                                            {{item.reraNo}}</p>
+                                        <p class="agent-landing-featured__property-text">Permits#
+                                            {{item.premitNo}}</p>
                                         <ul class="agent-landing-featured__property-details-list">
                                             <li class="agent-landing-featured__property-details-list-item">
                                                 <p class="agent-landing-featured__property-details-list-text">
@@ -181,27 +185,30 @@
                             </tr>
                         </thead>
                         <tbody class="agent-landing-list__table-body">
-                            <tr class="agent-landing-list__table-row" *ngFor="let data of findAgent.agents | paginate: { itemsPerPage: 10, currentPage: page, totalItems:totalLength }">
+                            <tr class="agent-landing-list__table-row" *ngFor="let data of findAgent | paginate: { itemsPerPage: 10, currentPage: page, totalItems:totalLength }">
                                 <td class="agent-landing-list__table-data">
                                     <div class="agent-landing-featured__agent-wrapper">
                                         <div class="agent-landing-featured__agent-img-outer-wrapper">
-                                            <div class="agent-landing-featured__agent-img-inner-wrapper" routerLink="/agent-details/{{data.user.id}}">
-                                                <img *ngIf="data.user.imageUrl != null" src="https://beta.ovaluate.com/{{data.user.imageUrl}}" [alt]="" class="img-fluid agent-landing-featured__agent-img">
-                                                <img *ngIf="data.user.imageUrl == null" src="assets/images/user.png" [alt]="">
+                                            <div class="agent-landing-featured__agent-img-inner-wrapper" routerLink="/agent-details/{{data.id}}">
+                                                <img *ngIf="data.imageUrl" src="{{data.imageUrl}}" [alt]="" class="img-fluid agent-landing-featured__agent-img">
                                             </div>
                                         </div>
                                         <div class="agent-landing-featured__agent-text-wrapper">
-                                            <h6 class="agent-landing-featured__property-heading" *ngIf="data.user && data.user.fullName" routerLink="/agent-details/{{data.user.id}}">{{data.user.fullName}}</h6>
-                                            <p class="agent-landing-featured__property-text" *ngIf="data.company && data.company.companyName">{{data.company.companyName}}</p>
-                                            <p class="agent-landing-featured__property-link m-0" *ngIf="data.user && data.user.phoneNumber">{{data.user.phoneNumber}}</p>
-                                            <p class="agent-landing-featured__property-text mb-3" *ngIf="data.user && data.user.countryId">{{filterCountry(data.user.countryId)}}</p>
-                                            <p class="agent-landing-featured__property-text" *ngIf="data.user && data.user.agentLanguages">Languages: {{data.agentLanguages}}</p>
+                                            <h6 class="agent-landing-featured__property-heading" routerLink="/agent-details/{{data.id}}">{{data.fullName}}</h6>
+                                            <p class="agent-landing-featured__property-text">{{data.companyName}}</p>
+                                            <p class="agent-landing-featured__property-link m-0">{{data.phoneNumber}}</p>
+                                            <p class="agent-landing-featured__property-text mb-3" *ngIf="data.countryId != ''">{{filterCountry(data.countryId)}}</p>
+                                            <p class="agent-landing-featured__property-text" >Languages:
+                                              <span *ngFor="let Language of data.agentLanguages">
+                                                 {{Language.spokenLanguage.name}},
+                                              </span>
+                                            </p>
                                         </div>
                                     </div>
                                 </td>
                                 <td class="agent-landing-list__table-data">
-                                    <h6 class="agent-landing-featured__property-heading" *ngIf="data.company && data.company.companyName">{{data.company.companyName}}</h6>
-                                    <p class="agent-landing-featured__property-text" *ngIf="data.user && data.user.phoneNumber">{{data.user.phoneNumber}}</p>
+                                    <h6 class="agent-landing-featured__property-heading" >{{data.companyName}}</h6>
+                                    <p class="agent-landing-featured__property-text">{{data.phoneNumber}}</p>
                                 </td>
                                 <td class="agent-landing-list__table-data">
                                     <div class="agent-landing-list__specialities">
@@ -211,7 +218,7 @@
                                     </div>
                                 </td>
                                 <td class="agent-landing-list__table-data">
-                                    <a class="agent-landing-list__table-btn" routerLink="/agent-details/{{data.user.id}}">
+                                    <a class="agent-landing-list__table-btn" routerLink="/agent-details/{{data.id}}">
                                         <img src="assets/images/icons/eye.svg" alt="" >"View Detail"</a>
                                 </td>
                             </tr>
