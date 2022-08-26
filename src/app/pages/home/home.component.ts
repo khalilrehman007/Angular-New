@@ -418,7 +418,6 @@ export class HomeComponent implements OnInit {
     })
     this.service.TrendTitle(1).subscribe((result:any) => {
       this.trendTitle = result.data
-      console.log(this.trendTitle);
     })
   }
   onTrendClick(typeID:any, titleID:any) {

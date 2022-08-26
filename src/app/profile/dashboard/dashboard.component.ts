@@ -207,7 +207,7 @@ export class DashboardComponent implements OnInit {
         }
       }
     })
-    this.service.SummaryLeads('id').subscribe((result:any)=>{
+    this.service.SummaryLeads({ "UserId":"335","PropertyCategoryId": "1" }).subscribe((result:any)=>{
       this.leadSummary = result.data;
       console.log(this.leadSummary)
     })

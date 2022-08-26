@@ -7,7 +7,7 @@ import { AppService } from "../../service/app.service";
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NotificationService } from "../../service/notification.service";
 import { AuthService } from "../../service/auth.service";
-import {JsonpInterceptor} from "@angular/common/http";
+import { JsonpInterceptor } from "@angular/common/http";
 
 @Component({
   selector: 'app-rentproperties',
@@ -74,14 +74,15 @@ export class RentpropertiesComponent implements OnInit {
   videoTourSorting: any;
   user: any
   userId: any;
-  listingForMap:any = [];
-  DistrictsId:any = [];
-  DistrictsValue:any = [];
-  KeyWords :any = []
-  PropertyFeatureIds :any = []
-  MinCarpetArea :any ;
-  MaxCarpetArea :any ;
-  FurnishingTypeId :any ;
+  listingForMap: any = [];
+  DistrictsId: any = [];
+  DistrictsValue: any = [];
+  KeyWords: any = []
+  PropertyFeatureIds: any = []
+  MinCarpetArea: any;
+  MaxCarpetArea: any;
+  FurnishingTypeId: any;
+  trendTitle: any = [];
   constructor(private authService: AuthService, private notifyService: NotificationService, private activeRoute: ActivatedRoute, private service: AppService, private api: AppService, private route: Router, private modalService: NgbModal) {
     this.type = this.activeRoute.snapshot.queryParamMap.get('type');
     this.PropertyCategoryId = this.activeRoute.snapshot.queryParamMap.get('PropertyCategoryId');
@@ -91,15 +92,15 @@ export class RentpropertiesComponent implements OnInit {
     this.PropertyAddress = this.activeRoute.snapshot.queryParamMap.get('PropertyAddress');
     this.PriceStart = this.activeRoute.snapshot.queryParamMap.get('PriceStart');
     this.PriceEnd = this.activeRoute.snapshot.queryParamMap.get('PriceEnd');
-    let DistrictsId :any = this.activeRoute.snapshot.queryParamMap.get('DistrictIds');
-    let DistrictsValue :any = this.activeRoute.snapshot.queryParamMap.get('DistrictsValue');
-    let KeyWords :any = this.activeRoute.snapshot.queryParamMap.get('KeyWords');
-    let PropertyFeatureIds :any = this.activeRoute.snapshot.queryParamMap.get('PropertyFeatureIds');
-    let MinCarpetArea :any = this.activeRoute.snapshot.queryParamMap.get('MinCarpetArea');
-    let MaxCarpetArea :any = this.activeRoute.snapshot.queryParamMap.get('MaxCarpetArea');
-    let FurnishingTypeId :any = this.activeRoute.snapshot.queryParamMap.get('FurnishingTypeId');
-    let cityID :any = this.activeRoute.snapshot.queryParamMap.get('cityID') ?? "";
-    let countryId :any = this.activeRoute.snapshot.queryParamMap.get('countryId') ?? "";
+    let DistrictsId: any = this.activeRoute.snapshot.queryParamMap.get('DistrictIds');
+    let DistrictsValue: any = this.activeRoute.snapshot.queryParamMap.get('DistrictsValue');
+    let KeyWords: any = this.activeRoute.snapshot.queryParamMap.get('KeyWords');
+    let PropertyFeatureIds: any = this.activeRoute.snapshot.queryParamMap.get('PropertyFeatureIds');
+    let MinCarpetArea: any = this.activeRoute.snapshot.queryParamMap.get('MinCarpetArea');
+    let MaxCarpetArea: any = this.activeRoute.snapshot.queryParamMap.get('MaxCarpetArea');
+    let FurnishingTypeId: any = this.activeRoute.snapshot.queryParamMap.get('FurnishingTypeId');
+    let cityID: any = this.activeRoute.snapshot.queryParamMap.get('cityID') ?? "";
+    let countryId: any = this.activeRoute.snapshot.queryParamMap.get('countryId') ?? "";
 
     this.KeyWords = JSON.parse(KeyWords)
     this.PropertyFeatureIds = JSON.parse(PropertyFeatureIds)
@@ -124,7 +125,7 @@ export class RentpropertiesComponent implements OnInit {
     let params: any = {
       "PropertyTypeIds": this.PropertyTypeIds, "PropertyAddress": this.PropertyAddress, "RentTypeId": this.RentTypeId,
       "PropertyCategoryId": this.PropertyCategoryId, "CityID": cityID, "CountryID": countryId, "PriceStart": this.PriceStart, "PriceEnd": this.PriceEnd,
-      "PropertyListingTypeId": this.PropertyListingTypeId, "SortedBy": this.sortedById, CurrentPage: 1,DistrictIds:this.DistrictsId
+      "PropertyListingTypeId": this.PropertyListingTypeId, "SortedBy": this.sortedById, CurrentPage: 1, DistrictIds: this.DistrictsId
     }
 
     this.LoadPropertyCategories();
@@ -139,8 +140,34 @@ export class RentpropertiesComponent implements OnInit {
     this.service.VideoTour().subscribe((result: any) => {
       this.videoTour = result.data;
     })
+    this.api.TrendTitle(1).subscribe((result: any) => {
+      this.trendTitle = result.data
+      console.log(this.trendTitle);
+    })
   }
 
+  onTrendClick(typeID: any, titleID: any) {
+    let temp: any = this.trendTitle[typeID].trendTitleDetail[titleID];
+    let type: any;
+    if (temp.propertyListingTypeId == 1) {
+      type = "Rent";
+    } else if (temp.propertyListingTypeId == 2) {
+      type = "Buy";
+    } else {
+      type = "";
+    }
+    let params: any = {
+      queryParams: {
+        type: type,
+        PropertyListingTypeId: temp.propertyListingTypeId ?? "",
+        CityID: temp.cityId ?? "",
+        CountryId: temp.countryId ?? "",
+        PropertyCategoryId: temp.propertyCategoryId ?? "",
+        PropertyTypeIds: temp.propertyTypeId ?? "",
+      }
+    }
+    this.route.navigate(['/search'], params)
+  }
   callNumberText = "Call Now"
   callNumber(text: any) {
     if (text == "Call Now") {
@@ -176,7 +203,7 @@ export class RentpropertiesComponent implements OnInit {
     let params: any = {
       "PropertyTypeIds": this.PropertyTypeIds, "PropertyAddress": this.PropertyAddress, "RentTypeId": this.RentTypeId,
       "PropertyCategoryId": this.PropertyCategoryId, "PriceStart": this.PriceStart, "PriceEnd": this.PriceEnd,
-      "PropertyListingTypeId": this.PropertyListingTypeId, "SortedBy": this.sortedById, CurrentPage: this.page,DistrictIds:this.DistrictsId
+      "PropertyListingTypeId": this.PropertyListingTypeId, "SortedBy": this.sortedById, CurrentPage: this.page, DistrictIds: this.DistrictsId
     }
 
     this.loadListingProperty(params);
@@ -187,17 +214,17 @@ export class RentpropertiesComponent implements OnInit {
     let params: any = {
       "PropertyTypeIds": this.PropertyTypeIds, "PropertyAddress": this.PropertyAddress, "RentTypeId": this.RentTypeId,
       "PropertyCategoryId": this.PropertyCategoryId, "PriceStart": this.PriceStart, "PriceEnd": this.PriceEnd,
-      "PropertyListingTypeId": this.PropertyListingTypeId, "SortedBy": this.sortedById, CurrentPage: this.page,DistrictIds:this.DistrictsId
+      "PropertyListingTypeId": this.PropertyListingTypeId, "SortedBy": this.sortedById, CurrentPage: this.page, DistrictIds: this.DistrictsId
     }
     this.loadListingProperty(params);
   }
 
-  videoSorting(event:any) {
+  videoSorting(event: any) {
     this.videoTourSorting = event.value
     let params: any = {
       "PropertyTypeIds": this.PropertyTypeIds, "PropertyAddress": this.PropertyAddress, "RentTypeId": this.RentTypeId,
       "PropertyCategoryId": this.PropertyCategoryId, "PriceStart": this.PriceStart, "PriceEnd": this.PriceEnd,
-      "PropertyListingTypeId": this.PropertyListingTypeId, "videoSorting": this.videoTourSorting, CurrentPage: this.page,DistrictIds:this.DistrictsId
+      "PropertyListingTypeId": this.PropertyListingTypeId, "videoSorting": this.videoTourSorting, CurrentPage: this.page, DistrictIds: this.DistrictsId
     }
     this.loadListingProperty(params);
   }
@@ -236,7 +263,7 @@ export class RentpropertiesComponent implements OnInit {
     this.MinCarpetArea = response.MinCarpetArea
     this.MaxCarpetArea = response.MaxCarpetArea
     this.FurnishingTypeId = response.FurnishingTypeId
-    console.log(this.PropertyFeatureIds,this.KeyWords,this.MinCarpetArea,this.MaxCarpetArea,this.FurnishingTypeId)
+    console.log(this.PropertyFeatureIds, this.KeyWords, this.MinCarpetArea, this.MaxCarpetArea, this.FurnishingTypeId)
 
 
     this.selectedPropertyTypeName = null
@@ -248,9 +275,9 @@ export class RentpropertiesComponent implements OnInit {
   totalRecord: any;
   loadListingProperty(data: any) {
     let tempData: Array<Object> = []
-    this.service.LoadSearchListing(data).subscribe((response:any) => {
+    this.service.LoadSearchListing(data).subscribe((response: any) => {
       this.listingForMap = response.data.propertyListings;
-      localStorage.setItem('listingForMap',JSON.stringify(this.listingForMap))
+      localStorage.setItem('listingForMap', JSON.stringify(this.listingForMap))
       this.totalRecord = response.data.totalRecord;
       localStorage.setItem('propertyListingTotalRecord', this.totalRecord);
       response.data.propertyListings.forEach((element, i) => {
@@ -259,10 +286,10 @@ export class RentpropertiesComponent implements OnInit {
         if (element.rentType != null) {
           rentTypeName = element.rentType.name
         }
-        let documents :any = []
+        let documents: any = []
         if (element.documents.length > 1) {
           documents = element.documents
-        }else{
+        } else {
           documentsCheck = false
         }
 
@@ -270,7 +297,7 @@ export class RentpropertiesComponent implements OnInit {
         let fullName = ''
         let userId = ''
         if (element.user != null && element.user !== undefined) {
-          userImage = this.baseUrl+element.user.imageUrl
+          userImage = this.baseUrl + element.user.imageUrl
           fullName = element.user.fullName
           userId = element.user.id
         }
@@ -278,7 +305,7 @@ export class RentpropertiesComponent implements OnInit {
         tempData.push(
           {
             buildupArea:element.buildupArea,
-            id: element.id, favorite: element.favorite,userImage:userImage,fullName:fullName,userId:userId,
+            id: element.id, favorite: element.favorite, userImage: userImage, fullName: fullName, userId: userId,
             StartRentPrice: element.startRentPrice, EndRentPrice: element.endRentPrice, AvgRentPrice: element.avgRentPrice, RecentRentTxns: element.recentRentTxns,
             documents: documents, propertyFeatures: element.propertyFeatures, propertyType: element.propertyType,
             propertyTitle: element.propertyTitle, propertyAddress: element.propertyAddress, documentsCheck: documentsCheck,
@@ -319,7 +346,7 @@ export class RentpropertiesComponent implements OnInit {
     let params: any = {
       "PropertyTypeIds": this.PropertyTypeIds, "PropertyAddress": this.PropertyAddress, "RentTypeId": this.RentTypeId,
       "PropertyCategoryId": this.PropertyCategoryId, "PriceStart": this.PriceStart, "PriceEnd": this.PriceEnd,
-      "PropertyListingTypeId": this.PropertyListingTypeId, "SortedBy": this.sortedById, CurrentPage: 1,DistrictIds:this.DistrictsId
+      "PropertyListingTypeId": this.PropertyListingTypeId, "SortedBy": this.sortedById, CurrentPage: 1, DistrictIds: this.DistrictsId
     }
     this.service.FavoriteAddRemove(status, { "UserId": this.userId, "PropertyListingId": id }).subscribe(data => {
       let responsedata: any = data

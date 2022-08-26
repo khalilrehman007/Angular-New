@@ -127,7 +127,7 @@
                 <div class="card">
                   <div class="content-area">
                     <h4 class="title">Listings Summary</h4>
-                    <p>{{lastPropertyLastingDate}}</p>
+                    <p><strong>Last Listed On</strong> {{lastPropertyLastingDate}}</p>
                     <ul class="counts-wrap">
                       <li>
                         <h3 class="count">{{ totalRestentailPropertyListing }}</h3>
@@ -148,7 +148,7 @@
                 <div class="card">
                   <div class="content-area">
                     <h4 class="title">Valuation Summary</h4>
-                    <p>{{ lastValuationDate }}</p>
+                    <p><strong>Last Listed On</strong> {{ lastValuationDate }}</p>
                     <ul class="counts-wrap">
                       <li>
                         <h3 class="count">{{ totalRestentailValuation }}</h3>
@@ -216,116 +216,40 @@
                 </div>
               </div>
               <div ngClass="tab-content">
-                <div id="resedential-rent" class="tab-pane active">
-                  <div class="lead-summ-table">
-                    <div class="table-row">
+                <div id="resedential-rent" class="tab-pane active" >
+                  <div class="lead-summ-table" >
+                    <div class="table-row" *ngFor="let data of leadSummary">
                       <div class="col photo-col">
-                        <img src="{{proAvatar}}" alt="">
+                        <!-- <img *ngIf="data.length > 0 && data.fileUrl" src="https://beta.ovaluate.com/{{data.fileUrl}}" alt="">
+                        <img *ngIf="data.length == 0" src="assets/images/user.png" alt=""> -->
+                        <img src="assets/images/user.png" alt="">
                       </div>
                       <div class="col base-info-col">
-                        <h4 class="name">Al Majhid Khwaizi Ansari</h4>
-                        <p>05 May, 2022</p>
-                        <p>Dubai, UAE</p>
+                        <h4 class="name" *ngIf="data && data.name">{{data.name}}</h4>
+                        <p *ngIf="data && data.leadDate">{{data.leadDate.split("T")[0]}}</p>
+                        <p *ngIf="data.propertyListing.city && data.propertyListing.city.name" >{{data.propertyListing.city.name}}, UAE</p>
                       </div>
                       <div class="col ">
                         <span>Property ID</span>
-                        <p>#OVRA-98967654</p>
+                        <p *ngIf="data.propertyListing && data.propertyListing.propertyId">{{data.propertyListing.propertyId}}</p>
                       </div>
                       <div class="col ">
-
+                        
                         <span>Building Type</span>
-                        <p>Residential</p>
+                        <p *ngIf="data.propertyListing.propertyCategory && data.propertyListing.propertyCategory.categoryName">{{data.propertyListing.propertyCategory.categoryName}}</p>
                       </div>
                       <div class="col ">
 
                         <span>Looking for</span>
-                        <p>Buy</p>
+                        <p *ngIf="data.propertyListing.propertyListingType && data.propertyListing.propertyListingType.name" >{{data.propertyListing.propertyListingType.name}}</p>
                       </div>
                       <div class="col contact-col">
                         <span>Contact</span>
                         <div>
-                          <p>+971 07 XXXX XXXX</p> <a href="#"><img src="{{ViewIcon}}" alt=""></a>
+                          <p *ngIf="data && data.phone" >{{data.phone}}</p> <a href="#"><img src="{{ViewIcon}}" alt=""></a>
                         </div>
                         <div>
-                          <p>aliansari@gmail.com</p> <a href="#"><img src="{{CopyIcon}}" alt=""></a>
-                        </div>
-                      </div>
-                      <div class="col">
-                        <a href="#" class="view-more">
-                          <img src="{{MoreIcon}}" alt="" class="icon">
-                        </a>
-                      </div>
-                    </div>
-
-                    <div class="table-row">
-                      <div class="col photo-col">
-                        <img src="{{proAvatar}}" alt="">
-                      </div>
-                      <div class="col base-info-col">
-                        <h4 class="name">Al Majhid Khwaizi Ansari</h4>
-                        <p>05 May, 2022</p>
-                        <p>Dubai, UAE</p>
-                      </div>
-                      <div class="col ">
-                        <span>Property ID</span>
-                        <p>#OVRA-98967654</p>
-                      </div>
-                      <div class="col ">
-
-                        <span>Building Type</span>
-                        <p>Residential</p>
-                      </div>
-                      <div class="col ">
-
-                        <span>Looking for</span>
-                        <p>Buy</p>
-                      </div>
-                      <div class="col contact-col">
-                        <span>Contact</span>
-                        <div>
-                          <p>+971 07 XXXX XXXX</p> <a href="#"><img src="{{ViewIcon}}" alt=""></a>
-                        </div>
-                        <div>
-                          <p>aliansari@gmail.com</p> <a href="#"><img src="{{CopyIcon}}" alt=""></a>
-                        </div>
-                      </div>
-                      <div class="col">
-                        <a href="#" class="view-more">
-                          <img src="{{MoreIcon}}" alt="" class="icon">
-                        </a>
-                      </div>
-                    </div>
-
-                    <div class="table-row">
-                      <div class="col photo-col">
-                        <img src="{{proAvatar}}" alt="">
-                      </div>
-                      <div class="col base-info-col">
-                        <h4 class="name">Al Majhid Khwaizi Ansari</h4>
-                        <p>05 May, 2022</p>
-                        <p>Dubai, UAE</p>
-                      </div>
-                      <div class="col ">
-                        <span>Property ID</span>
-                        <p>#OVRA-98967654</p>
-                      </div>
-                      <div class="col ">
-
-                        <span>Building Type</span>
-                        <p>Residential</p>
-                      </div>
-                      <div class="col ">
-
-                        <span>Looking for</span>
-                        <p>Buy</p>
-                      </div>
-                      <div class="col contact-col">
-                        <span>Contact</span>
-                        <div>
-                          <p>+971 07 XXXX XXXX</p> <a href="#"><img src="{{ViewIcon}}" alt=""></a>
-                        </div>
-                        <div>
-                          <p>aliansari@gmail.com</p> <a href="#"><img src="{{CopyIcon}}" alt=""></a>
+                          <p *ngIf="data && data.email" >{{data.email}}</p> <a href="#"><img src="{{CopyIcon}}" alt=""></a>
                         </div>
                       </div>
                       <div class="col">
@@ -335,9 +259,9 @@
                       </div>
                     </div>
                   </div>
-                </div>
-                <div id="resedential-buy" class="tab-pane fade">
-                  <h1>Tab 2</h1>
+                  <div id="resedential-buy" class="tab-pane fade">
+                    <h1>Tab 2</h1>
+                  </div>
                 </div>
               </div>
             </section>
@@ -353,13 +277,13 @@
                   <p>Some of our picked properties near your location.</p>
                 </div>
                 <div ngClass="section-custom-title-right">
-                  <a [routerLink]="['/blogs']">Read all</a>
+                  <a routerLink="/blogs">Read all</a>
                 </div>
               </div>
 
               <div ngClass="row">
                 <div ngClass="col-lg-4 col-md-6 blog-places-col" *ngFor=" let blog of blogs">
-                  <a [routerLink]="['/blogs/'+blog.id]" [queryParams]="{title: blog.blogTitle}">
+                  <a [routerLink]="['/blogs-details/' + blog.id]" >
                     <img [src]="'https://www.ovaluate.com/'+blog.blogDocument.fileUrl"
                       ngClass="img-fluid blog-image-homepage" alt="">
                     <span ngClass="blog-tag">
@@ -1391,7 +1315,8 @@
                       </div>
                       <div ngClass="my_valuation-inner-div payemnt"
                         *ngIf="item.valuationStatus.statusDescription == 'Payment Pending'">
-                        <a routerLink="/PropertyPayment" ngClass="payment pending">Payment Pending</a>
+                        <p ngClass="payment pending">Payment Pending</p>
+                        <a routerLink="/PropertyPayment" ngClass="pay-now-btn">Pay Now</a>
                       </div>
                       <div ngClass="my_valuation-inner-div payemnt"
                         *ngIf="item.valuationStatus.statusDescription != 'Payment Pending'">
@@ -1439,7 +1364,8 @@
                       </div>
                       <div ngClass="my_valuation-inner-div payemnt"
                         *ngIf="item.valuationStatus.statusDescription == 'Payment Pending'">
-                        <a routerLink="/PropertyPayment" ngClass="payment pending">Payment Pending</a>
+                        <p ngClass="payment pending">Payment Pending</p>
+                        <a routerLink="/PropertyPayment" ngClass="pay-now-btn">Pay Now</a>
                       </div>
                       <div ngClass="my_valuation-inner-div payemnt"
                         *ngIf="item.valuationStatus.statusDescription != 'Payment Pending'">
@@ -1487,7 +1413,8 @@
                       </div>
                       <div ngClass="my_valuation-inner-div payemnt"
                         *ngIf="item.valuationStatus.statusDescription == 'Payment Pending'">
-                        <a routerLink="/PropertyPayment" ngClass="payment pending">Payment Pending</a>
+                        <p ngClass="payment pending">Payment Pending</p>
+                        <a routerLink="/PropertyPayment" ngClass="pay-now-btn">Pay Now</a>
                       </div>
                       <div ngClass="my_valuation-inner-div payemnt"
                         *ngIf="item.valuationStatus.statusDescription != 'Payment Pending'">
@@ -2148,7 +2075,7 @@
       <mat-tab-group class="tab-wrap" animationDuration="0ms" style="display: none;">
         <mat-tab class="tab-item" label="Dashboard">
 
-          <div class="free-proplisting"  *ngIf="professionalType == 2 || professionalType == 3">
+          <div class="free-proplisting" *ngIf="professionalType == 2 || professionalType == 3">
             <div class="first-title">
               <h3 class="title">FREE Property Listing</h3>
               <p>Sell or Rent Your Home</p>
