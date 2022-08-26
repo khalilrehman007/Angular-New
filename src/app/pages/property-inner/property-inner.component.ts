@@ -527,6 +527,7 @@ export class PropertyInnerComponent implements OnInit {
       this.leadData.message = this.SubmitForm.value.message
       this.leadData.PropertyListingId = this.propertyId
       this.leadData.UserId = this.propertyDetail.user.id
+      this.leadData.LoginUserId = this.userId
 
       this.service.StoreLead(this.leadData).subscribe(result => {
         if(result!=null){
