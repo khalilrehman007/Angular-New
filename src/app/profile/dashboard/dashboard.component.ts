@@ -58,6 +58,22 @@ export class DashboardComponent implements OnInit {
   page: number = 1;
   professionalType: any;
   leadSummary: any;
+  myPackages:any;
+  // resedentialRent: boolean = true ;
+  // resedentialBuy: boolean = false;
+
+  // commercialShow() {
+
+  //   this.resedentialRent = false;
+  //   this.resedentialBuy = true;
+  //   console.log('a');
+    
+  // }
+  // resedentialRentShow(){
+  //   this.resedentialRent = true;
+  //   this.resedentialBuy = false;
+  //   console.log('b');
+  // }
 
   plus = '../../../../assets/images/plus.svg'
 
@@ -209,7 +225,11 @@ export class DashboardComponent implements OnInit {
     })
     this.service.SummaryLeads({ "UserId":"335","PropertyCategoryId": "1" }).subscribe((result:any)=>{
       this.leadSummary = result.data;
-      console.log(this.leadSummary)
+      // console.log(this.leadSummary)
+    })
+    this.service.MyPackages(335).subscribe((result:any)=>{
+      this.myPackages = result.data;
+      console.log(this.myPackages)
     })
   }
   getImage(e: any) {

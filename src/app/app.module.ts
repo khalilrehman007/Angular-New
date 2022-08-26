@@ -115,6 +115,7 @@ import { PaymentPackagesComponent } from './pages/payment-packages/payment-packa
 import { environment } from "../environments/environment";
 import { initializeApp } from "firebase/app";
 import { CometChatUI } from "../cometchat/CometChatWorkspace/src/components/CometChatUI/CometChat-Ui/cometchat-ui.module";
+import { ComingsoomComponent } from './pages/comingsoom/comingsoom.component';
 initializeApp(environment.firebase);
 
 
@@ -195,7 +196,8 @@ initializeApp(environment.firebase);
     LoaderComponent,
     SuccessAlertComponent,
     ErroralertComponent,
-    PaymentPackagesComponent
+    PaymentPackagesComponent,
+    ComingsoomComponent
   ],
   imports: [
     BrowserModule,
