@@ -461,7 +461,6 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit():void {
-    console.clear();
     $(document).ready(function(){
       $('.dropdown-toggle').click(function(){
         $(this).next().toggleClass('active');

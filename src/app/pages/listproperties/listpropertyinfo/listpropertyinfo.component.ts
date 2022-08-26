@@ -387,6 +387,12 @@ export class ListpropertyinfoComponent implements OnInit {
       return;
     }
 
+    let userData:any = localStorage.getItem("user");
+    userData = JSON.parse(userData);
+    this.data.UserId = userData.id;
+    if(userData.professionalTypeId) {
+      this.data.ProfessionalTypeId = userData.professionalTypeId;
+    }
     this.data.PropertyListingTypeId = this.listingTypeId;
     this.data.PropertyCategoryId = this.categoryID;
     if (this.selectedPropertyType.hasCarpetArea) {
@@ -434,6 +440,5 @@ export class ListpropertyinfoComponent implements OnInit {
 
     localStorage.setItem('propertyData', JSON.stringify(this.data));
     this.route.navigate(['listpropertymedia'])
-    // console.log(this.data);
   }
 }
