@@ -3171,6 +3171,9 @@ input[type=number] {
 	background-color: $background-color_3;
 	height: 100%;
 	z-index: 0;
+	border: 0.25px solid var(--stroke-color);
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
 	>img {
 		overflow: hidden;
 		position: relative;
@@ -3244,10 +3247,7 @@ input[type=number] {
 		}
 	}
 	.property-info {
-		padding: 26px 15px 0px 15px;
-		border: 0.25px solid var(--stroke-color);
-		border-bottom-left-radius: 10px;
-		border-bottom-right-radius: 10px;
+		padding: 26px 15px 45px 15px;
 		.property-pricing {
 			color: $color_30;
 			font-size: 13px;
@@ -3272,16 +3272,9 @@ input[type=number] {
 	}
 	.property-location {
 		color: $color_30;
-		overflow: hidden;
 		display: flex !important;
 		align-items: flex-start;
 		font-size: 13px;
-		overflow: hidden;
-		text-overflow: ellipsis;
-		display: -webkit-box;
-		-webkit-line-clamp: 1;
-		line-clamp: 1;
-		-webkit-box-orient: vertical;
 		margin-bottom: 10px;
 		img {
 			margin-right: 7px;
@@ -3297,6 +3290,13 @@ input[type=number] {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		width: 100%;
+		max-width: 90%;
+		margin: 0 auto;
 	}
 }
 .property-details {
@@ -9331,6 +9331,12 @@ li.agent-details__property-list-item {
 }
 .auth-wrapper .mat-form-field-invalid .mat-form-field-wrapper {
     padding-bottom: 0px !important;
+}
+.tab-nav-main .tab-wrap+.container_1280px {
+    margin-top: 60px;
+}
+.properties-slider .owl-stage {
+    display: flex;
 }
 
 
