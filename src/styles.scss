@@ -3127,10 +3127,12 @@ input[type=number] {
 			margin: 0px;
 			color: $color_30;
 			background-color: $background-color_2;
-			border: 2px solid transparent;
+			border: 0.25px solid transparent;
 			font-weight: 400;
 			padding: 7px 19px;
 			border-radius: 3px;
+			transition: all 0.5s ease-in-out;
+            height: 42px;
 			svg {
 				width: 16px;
 				margin-right: 4px;
@@ -3171,6 +3173,9 @@ input[type=number] {
 	background-color: $background-color_3;
 	height: 100%;
 	z-index: 0;
+	border: 0.25px solid var(--stroke-color);
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
 	>img {
 		overflow: hidden;
 		position: relative;
@@ -3244,10 +3249,7 @@ input[type=number] {
 		}
 	}
 	.property-info {
-		padding: 26px 15px 0px 15px;
-		border: 0.25px solid var(--stroke-color);
-		border-bottom-left-radius: 10px;
-		border-bottom-right-radius: 10px;
+		padding: 26px 15px 45px 15px;
 		.property-pricing {
 			color: $color_30;
 			font-size: 13px;
@@ -3272,16 +3274,9 @@ input[type=number] {
 	}
 	.property-location {
 		color: $color_30;
-		overflow: hidden;
 		display: flex !important;
 		align-items: flex-start;
 		font-size: 13px;
-		overflow: hidden;
-		text-overflow: ellipsis;
-		display: -webkit-box;
-		-webkit-line-clamp: 1;
-		line-clamp: 1;
-		-webkit-box-orient: vertical;
 		margin-bottom: 10px;
 		img {
 			margin-right: 7px;
@@ -3297,6 +3292,13 @@ input[type=number] {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		width: 100%;
+		max-width: 90%;
+		margin: 0 auto;
 	}
 }
 .property-details {
@@ -7053,7 +7055,7 @@ li.agent-details__property-list-item {
 	padding: 0px 15px;
 	.download-pdf {
 		border: none;
-		background: #595ad4;
+		background: #3a811d;
 		color: $color_5;
 		font-size: 12px;
 		padding: 10px 10px;
@@ -9332,7 +9334,15 @@ li.agent-details__property-list-item {
 .auth-wrapper .mat-form-field-invalid .mat-form-field-wrapper {
     padding-bottom: 0px !important;
 }
-
+.tab-nav-main .tab-wrap+.container_1280px {
+    margin-top: 20px;
+}
+.properties-slider .owl-stage {
+    display: flex;
+}
+.owl-theme .owl-nav.disabled + .owl-dots {
+    margin-top: 30px !important;
+}
 
 
 
@@ -9377,4 +9387,26 @@ li.agent-details__property-list-item {
 }
 .buy-sell-form-sec+.sell-rent-home-directly {
     margin-top: 60px;
+}
+.my_valuation-inner-div .download-pdf:hover {
+    background: #333;
+}
+.pay-now-btn {
+    border: none;
+    background: #ec3d38;
+    color: #fff;
+    font-size: 12px;
+    padding: 10px 10px;
+    border-radius: 7px;
+    min-width: 92px;
+    text-align: center;
+}
+.pay-now-btn:hover {
+    background: #333;
+    color: #fff;
+}
+.statictics-wrap .content-area p strong {
+    font-weight: 500;
+    display: block;
+    color: #000;
 }
