@@ -97,10 +97,10 @@
                     Sell or Rent Property <span ngClass="ai-tag">FREE</span>
                   </a>
                 </li>
-                <li ngClass="nav-item language-converter tm-hide">
+                <li ngClass="nav-item language-converter tm-hide demo-english-design">
                    <select>
                       <option>English</option>
-                      <option>Arabic</option>
+                      <!-- <option>Arabic</option> -->
                    </select>
                 </li>
                 <li ngClass="nav-item fav-li position-relative tm-hide">
@@ -247,14 +247,14 @@
               </li>
              <li ngClass="nav-item aed-li">
               <button class="nav-link aed-sq" (click)="clickEvent2()"><img src="{{flagsvg}}"> AED | Sqft</button>
-              <div class="country_list-dropdown" [ngClass]="status2 ? 'active' : 'notactive'">
+              <!-- <div class="country_list-dropdown" [ngClass]="status2 ? 'active' : 'notactive'">
                 <button (click)="clickEvent2()"><img src="{{close}}"></button>
                 <div ngClass="countries_dropdown-list" *ngFor="let data of headerCountries">
                   <ul ngClass="list-unstyled">
                     <li><img src="{{flagsvg}}">{{data.currency}}</li>
                   </ul>
                 </div>
-              </div>
+              </div> -->
              </li>
               </ul>
             </div>
