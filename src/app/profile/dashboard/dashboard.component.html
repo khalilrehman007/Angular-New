@@ -127,7 +127,7 @@
                 <div class="card">
                   <div class="content-area">
                     <h4 class="title">Listings Summary</h4>
-                    <p>{{lastPropertyLastingDate}}</p>
+                    <p><strong>Last Listed On</strong> {{lastPropertyLastingDate}}</p>
                     <ul class="counts-wrap">
                       <li>
                         <h3 class="count">{{ totalRestentailPropertyListing }}</h3>
@@ -148,7 +148,7 @@
                 <div class="card">
                   <div class="content-area">
                     <h4 class="title">Valuation Summary</h4>
-                    <p>{{ lastValuationDate }}</p>
+                    <p><strong>Last Listed On</strong> {{ lastValuationDate }}</p>
                     <ul class="counts-wrap">
                       <li>
                         <h3 class="count">{{ totalRestentailValuation }}</h3>
@@ -1391,7 +1391,8 @@
                       </div>
                       <div ngClass="my_valuation-inner-div payemnt"
                         *ngIf="item.valuationStatus.statusDescription == 'Payment Pending'">
-                        <a routerLink="/PropertyPayment" ngClass="payment pending">Payment Pending</a>
+                        <p ngClass="payment pending">Payment Pending</p>
+                        <a routerLink="/PropertyPayment" ngClass="pay-now-btn">Pay Now</a>
                       </div>
                       <div ngClass="my_valuation-inner-div payemnt"
                         *ngIf="item.valuationStatus.statusDescription != 'Payment Pending'">
@@ -1439,7 +1440,8 @@
                       </div>
                       <div ngClass="my_valuation-inner-div payemnt"
                         *ngIf="item.valuationStatus.statusDescription == 'Payment Pending'">
-                        <a routerLink="/PropertyPayment" ngClass="payment pending">Payment Pending</a>
+                        <p ngClass="payment pending">Payment Pending</p>
+                        <a routerLink="/PropertyPayment" ngClass="pay-now-btn">Pay Now</a>
                       </div>
                       <div ngClass="my_valuation-inner-div payemnt"
                         *ngIf="item.valuationStatus.statusDescription != 'Payment Pending'">
@@ -1487,7 +1489,8 @@
                       </div>
                       <div ngClass="my_valuation-inner-div payemnt"
                         *ngIf="item.valuationStatus.statusDescription == 'Payment Pending'">
-                        <a routerLink="/PropertyPayment" ngClass="payment pending">Payment Pending</a>
+                        <p ngClass="payment pending">Payment Pending</p>
+                        <a routerLink="/PropertyPayment" ngClass="pay-now-btn">Pay Now</a>
                       </div>
                       <div ngClass="my_valuation-inner-div payemnt"
                         *ngIf="item.valuationStatus.statusDescription != 'Payment Pending'">
