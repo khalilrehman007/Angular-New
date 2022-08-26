@@ -98,18 +98,17 @@ export class RentpropertiesComponent implements OnInit {
     let MinCarpetArea :any = this.activeRoute.snapshot.queryParamMap.get('MinCarpetArea');
     let MaxCarpetArea :any = this.activeRoute.snapshot.queryParamMap.get('MaxCarpetArea');
     let FurnishingTypeId :any = this.activeRoute.snapshot.queryParamMap.get('FurnishingTypeId');
+    let cityID :any = this.activeRoute.snapshot.queryParamMap.get('cityID') ?? "";
+    let countryId :any = this.activeRoute.snapshot.queryParamMap.get('countryId') ?? "";
 
     this.KeyWords = JSON.parse(KeyWords)
     this.PropertyFeatureIds = JSON.parse(PropertyFeatureIds)
     this.MinCarpetArea = MinCarpetArea
     this.MaxCarpetArea = MaxCarpetArea
     this.FurnishingTypeId = FurnishingTypeId
-    console.log(this.PropertyFeatureIds,this.KeyWords,this.MinCarpetArea,this.MaxCarpetArea,this.FurnishingTypeId)
 
     this.DistrictsId = JSON.parse(DistrictsId)
     this.DistrictsValue = JSON.parse(DistrictsValue)
-
-    console.log(this.DistrictsId )
 
     if (this.type == null) {
       this.activeRoute.params.subscribe(params => {
@@ -124,7 +123,7 @@ export class RentpropertiesComponent implements OnInit {
     }
     let params: any = {
       "PropertyTypeIds": this.PropertyTypeIds, "PropertyAddress": this.PropertyAddress, "RentTypeId": this.RentTypeId,
-      "PropertyCategoryId": this.PropertyCategoryId, "PriceStart": this.PriceStart, "PriceEnd": this.PriceEnd,
+      "PropertyCategoryId": this.PropertyCategoryId, "CityID": cityID, "CountryID": countryId, "PriceStart": this.PriceStart, "PriceEnd": this.PriceEnd,
       "PropertyListingTypeId": this.PropertyListingTypeId, "SortedBy": this.sortedById, CurrentPage: 1,DistrictIds:this.DistrictsId
     }
 
@@ -200,7 +199,6 @@ export class RentpropertiesComponent implements OnInit {
       "PropertyCategoryId": this.PropertyCategoryId, "PriceStart": this.PriceStart, "PriceEnd": this.PriceEnd,
       "PropertyListingTypeId": this.PropertyListingTypeId, "videoSorting": this.videoTourSorting, CurrentPage: this.page,DistrictIds:this.DistrictsId
     }
-    console.log(params);
     this.loadListingProperty(params);
   }
 

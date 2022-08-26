@@ -434,10 +434,10 @@ export class HomeComponent implements OnInit {
     let params:any = {queryParams:{
       type:type,
       PropertyListingTypeId:temp.propertyListingTypeId ?? "",
-      cityID:temp.cityId ?? "",
-      countryId:temp.countryId ?? "",
-      propertyCategoryId:temp.propertyCategoryId ?? "",
-      propertyTypeId:temp.propertyTypeId ?? "",
+      CityID:temp.cityId ?? "",
+      CountryId:temp.countryId ?? "",
+      PropertyCategoryId:temp.propertyCategoryId ?? "",
+      PropertyTypeIds:temp.propertyTypeId ?? "",
     }}
     this.route.navigate(['/search'],params)
   }
