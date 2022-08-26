@@ -238,6 +238,7 @@ export class ListpropertymediaComponent implements OnInit {
     for (let i = 0; i < temp.length; i++) {
       this.documentData.append(i + 1 + "_" + temp[i].FileName, tempDoc[i]);
     }
+    console.log(this.data);
     let token: any = localStorage.getItem("token");
     token = JSON.parse(token);
     $.ajax({

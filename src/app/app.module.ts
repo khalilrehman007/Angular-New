@@ -116,6 +116,8 @@ import { environment } from "../environments/environment";
 import { initializeApp } from "firebase/app";
 import { CometChatUI } from "../cometchat/CometChatWorkspace/src/components/CometChatUI/CometChat-Ui/cometchat-ui.module";
 import { ComingsoomComponent } from './pages/comingsoom/comingsoom.component';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 initializeApp(environment.firebase);
 
 
@@ -234,6 +236,8 @@ initializeApp(environment.firebase);
     MatAutocompleteModule,
     NgChartsModule,
     NgxPaginationModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule,
     ToastrModule.forRoot({
       timeOut: 2000,
       positionClass: 'toast-top-right'
