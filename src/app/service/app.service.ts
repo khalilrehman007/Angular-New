@@ -399,4 +399,8 @@ export class AppService {
   SendDigitSms(data:any) {
     return this.http.post(this.apiurl + 'SendDigitSms', data);
   }
+  TrendTitle(id:any) {
+    return this.http.get(this.apiurl + 'TrendTitle/' + id);
+  }
+
 }

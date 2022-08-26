@@ -99,14 +99,10 @@ export class PropertyfilterComponent implements OnInit {
         this.keyWordsUrlValue.push({name:element})
       })
     }
-
-
     this.propertyFeatureIds = PropertyFeatureIds
     this.minCarpet = MinCarpetArea
     this.maxCarpet = MaxCarpetArea
     this.furnishedType = FurnishingTypeId
-    console.log(this.propertyFeatureIds,this.KeyWords,this.minCarpet,this.minCarpet,this.furnishedType)
-
 
     this.getLoaction({"Searching":"","CountryId":"1"});
 
