@@ -46,7 +46,7 @@ export class HomeComponent implements OnInit {
   propertyDetails:any;
   oldData1() {
     let tempData :Array<Object> = []
-    this.service.LatestPropertiesListingResidential({"UserId":this.userId,"propertyListingTypeId":"2"}).subscribe(data=>{
+    this.service.LatestPropertiesListingResidential({"UserId":this.userId,"propertyListingTypeId":"1"}).subscribe(data=>{
       let response :any = data;
       response.data.forEach((element, i) => {
         let image :any = 'assets/images/placeholder.png'
@@ -87,7 +87,7 @@ export class HomeComponent implements OnInit {
   }
   newData1() {
     let tempData :Array<Object> = []
-    this.service.LatestPropertiesListingResidential({"UserId":this.userId,"propertyListingTypeId":"1"}).subscribe(data=>{
+    this.service.LatestPropertiesListingResidential({"UserId":this.userId,"propertyListingTypeId":"2"}).subscribe(data=>{
       let response :any = data;
       response.data.forEach((element, i) => {
         let image :any = 'assets/images/placeholder.png'
@@ -127,7 +127,7 @@ export class HomeComponent implements OnInit {
 
   oldData2() {
     let tempData :Array<Object> = []
-    this.service.LatestPropertiesListingCommercial({"UserId":this.userId,"propertyListingTypeId":"2"}).subscribe(data=>{
+    this.service.LatestPropertiesListingCommercial({"UserId":this.userId,"propertyListingTypeId":"1"}).subscribe(data=>{
       let response :any = data;
       response.data.forEach((element, i) => {
         let image :any = 'assets/images/placeholder.png'
@@ -166,7 +166,7 @@ export class HomeComponent implements OnInit {
   }
   newData2() {
     let tempData :Array<Object> = []
-    this.service.LatestPropertiesListingCommercial({"UserId":this.userId,"propertyListingTypeId":"1"}).subscribe(data=>{
+    this.service.LatestPropertiesListingCommercial({"UserId":this.userId,"propertyListingTypeId":"2"}).subscribe(data=>{
       let response :any = data;
       response.data.forEach((element, i) => {
         let image :any = 'assets/images/placeholder.png'
@@ -380,10 +380,10 @@ export class HomeComponent implements OnInit {
     this.service.PropertyListingTypes().subscribe(data=>{
       this.propertyType = data;
       this.propertyType = this.propertyType.data;
-      this.Sale = this.propertyType[0].name;
-      this.SaleAr = this.propertyType[0].nameAr;
-      this.Rent = this.propertyType[1].name;
-      this.RentAr = this.propertyType[1].nameAr;
+      this.Sale = this.propertyType[1].name;
+      this.SaleAr = this.propertyType[1].nameAr;
+      this.Rent = this.propertyType[0].name;
+      this.RentAr = this.propertyType[0].nameAr;
     });
 
     this.service.PropertyCategories().subscribe(data=>{
