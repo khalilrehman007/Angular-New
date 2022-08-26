@@ -261,18 +261,12 @@
                 </div>
               </div>
             </div>
-            <div ngClass="popular-searches">
+            <div ngClass="popular-searches" *ngIf="trendTitle.length > 0">
               <div ngbDropdown class="d-block">
                 <button type="button" class="btn btn-outline-primary" id="popularSearches" ngbDropdownToggle>Popular
                   Searches</button>
                 <div ngbDropdownMenu aria-labelledby="popularSearches" open="true">
-                  <button ngbDropdownItem routerLink="">Properties for rent in UAE</button>
-                  <button ngbDropdownItem routerLink="">Properties for sale in UAE</button>
-                  <button ngbDropdownItem routerLink="">Apartments for rent in UAE</button>
-                  <button ngbDropdownItem routerLink="">Apartments for rent in Dubai</button>
-                  <button ngbDropdownItem routerLink="">Properties for sale in Dubai</button>
-                  <button ngbDropdownItem routerLink="">Villas for sale in Dubai</button>
-                  <button ngbDropdownItem routerLink=""> Dubai Real Estate</button>
+                  <button ngbDropdownItem *ngFor="let item of trendTitle[0].trendTitleDetail; let i = index" (click)="onTrendClick(1,i)">{{item.detail}}</button>
                 </div>
               </div>
             </div>
