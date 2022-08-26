@@ -3127,10 +3127,12 @@ input[type=number] {
 			margin: 0px;
 			color: $color_30;
 			background-color: $background-color_2;
-			border: 2px solid transparent;
+			border: 0.25px solid transparent;
 			font-weight: 400;
 			padding: 7px 19px;
 			border-radius: 3px;
+			transition: all 0.5s ease-in-out;
+            height: 42px;
 			svg {
 				width: 16px;
 				margin-right: 4px;
@@ -9333,12 +9335,14 @@ li.agent-details__property-list-item {
     padding-bottom: 0px !important;
 }
 .tab-nav-main .tab-wrap+.container_1280px {
-    margin-top: 60px;
+    margin-top: 20px;
 }
 .properties-slider .owl-stage {
     display: flex;
 }
-
+.owl-theme .owl-nav.disabled + .owl-dots {
+    margin-top: 30px !important;
+}
 
 
 
