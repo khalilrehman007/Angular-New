@@ -257,7 +257,7 @@
                     d="M12.083 9.16797C12.7734 9.16797 13.333 8.60833 13.333 7.91797C13.333 7.22761 12.7734 6.66797 12.083 6.66797C11.3927 6.66797 10.833 7.22761 10.833 7.91797C10.833 8.60833 11.3927 9.16797 12.083 9.16797Z"
                     stroke="#595ad4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
-                Rent
+                {{ Rent }}
               </a>
             </li>
             <li ngClass="nav-item">
@@ -275,7 +275,7 @@
                     stroke-linecap="round" stroke-linejoin="round" />
                   <path d="M15.417 7.91797V12.0846" stroke="#100A55" stroke-width="2" stroke-miterlimit="10"
                     stroke-linecap="round" stroke-linejoin="round" />
-                </svg> Buy
+                </svg> {{ Sale }}
               </a>
             </li>
           </ul>
@@ -600,50 +600,13 @@
   <section ngClass="position-relative custom-wrapper-section bottom-selectionboxes">
     <div ngClass="container_1220px">
       <div ngClass="row">
-        <div ngClass="col-lg-3 col-md-6 search-col-homepage">
+        <div ngClass="col-lg-3 col-md-6 search-col-homepage" *ngFor="let item of trendTitle; let i = index">
           <div ngClass="homepage-search-section">
-            <h2>Popular Searches</h2>
+            <h2>{{item.name}}</h2>
             <ul ngClass="list-unstyled">
-              <li><a routerLink="">Apartments for rent in Dubai</a></li>
-              <li><a routerLink="">Villas for rent in Dubai</a></li>
-              <li><a routerLink="">Apartments for sale in Dubai</a></li>
-            </ul>
-          </div>
-        </div>
-        <div ngClass="col-lg-3 col-md-6 search-col-homepage">
-          <div ngClass="homepage-search-section">
-            <h2>Popular Areas</h2>
-            <ul ngClass="list-unstyled">
-              <li><a routerLink="">Popular Areas</a></li>
-              <li><a routerLink="">Popular Areas</a></li>
-              <li><a routerLink="">Popular Areas</a></li>
-            </ul>
-          </div>
-        </div>
-        <div ngClass="col-lg-3 col-md-6 search-col-homepage">
-          <div ngClass="homepage-search-section">
-            <h2>Top Real Estate Agents</h2>
-            <ul ngClass="list-unstyled">
-              <li><a routerLink="">Everose Properties</a></li>
-              <li><a routerLink="">Edifice Brokrage</a></li>
-              <li><a routerLink="">Prime Capital Real Estate Services</a></li>
-              <li><a routerLink="">Everose Properties</a></li>
-              <li><a routerLink="">Edifice Brokrage</a></li>
-              <li><a routerLink="">Prime Capital Real Estate Services</a></li>
-              <li><a routerLink="">Everose Properties</a></li>
-              <li><a routerLink="">Edifice Brokrage</a></li>
-              <li><a routerLink="">Prime Capital Real Estate Services</a></li>
-            </ul>
-          </div>
-        </div>
-        <div ngClass="col-lg-3 col-md-6 search-col-homepage">
-          <div ngClass="homepage-search-section">
-            <h2>Trending Searches</h2>
-            <ul ngClass="list-unstyled">
-              <li><a routerLink="">Villa for rent in Abu Dhabi</a></li>
-              <li><a routerLink="">Villa for rent in Abu Dhabi</a></li>
-              <li><a routerLink="">Villa for rent in Abu Dhabi</a></li>
-              <li><a routerLink="">Villa for rent in Abu Dhabi</a></li>
+              <li *ngFor="let item2 of item.trendTitleDetail; let j = index" (click)="onTrendClick(i,j)">
+                <a href="javascript:void(0)">{{item2.detail}}</a>
+              </li>
             </ul>
           </div>
         </div>
