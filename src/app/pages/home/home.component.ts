@@ -360,7 +360,8 @@ export class HomeComponent implements OnInit {
   totalSales: any;
   totalMortgages: any;
   userId :any;
-  explorePlaces: any
+  explorePlaces: any;
+  trendTitle:any = [];
   constructor(private authService:AuthService,private service:AppService,private route:Router,private notifyService : NotificationService) {
     this.LoadPropertyCategories()
     this.LoadBlogs();
@@ -415,8 +416,31 @@ export class HomeComponent implements OnInit {
     this.service.NearPlaces(1).subscribe((result:any)=>{
       this.explorePlaces = result.data;
     })
+    this.service.TrendTitle(1).subscribe((result:any) => {
+      this.trendTitle = result.data
+      console.log(this.trendTitle);
+    })
   }
-
+  onTrendClick(typeID:any, titleID:any) {
+    let temp:any = this.trendTitle[typeID].trendTitleDetail[titleID];
+    let type:any;
+    if(temp.propertyListingTypeId == 1) {
+      type = "Rent";
+    } else if(temp.propertyListingTypeId == 2) {
+      type = "Buy";
+    } else {
+      type = "";
+    }
+    let params:any = {queryParams:{
+      type:type,
+      PropertyListingTypeId:temp.propertyListingTypeId ?? "",
+      cityID:temp.cityId ?? "",
+      countryId:temp.countryId ?? "",
+      propertyCategoryId:temp.propertyCategoryId ?? "",
+      propertyTypeId:temp.propertyTypeId ?? "",
+    }}
+    this.route.navigate(['/search'],params)
+  }
   getUser(){
     this.user = localStorage.getItem('user');
     if(this.user != ''){
