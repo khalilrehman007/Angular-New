@@ -28,7 +28,6 @@ export class PropertyDownloadReportComponent implements OnInit {
       link.download = this.valuationResponse.reportNumberCode + ".pdf";
       link.click();
       this.showLoader = false;
-      this.router.navigate(['/']);
     });
   }
   ngOnInit(): void {
