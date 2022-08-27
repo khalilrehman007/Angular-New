@@ -71,15 +71,15 @@
           </li>
           <li class="nav-item" role="presentation">
             <button class="nav-link" id="pills-listing-tab" data-bs-toggle="pill" data-bs-target="#pills-listing"
-              type="button" role="tab" aria-controls="pills-listing" aria-selected="false">My Listings</button>
+              type="button" role="tab" aria-controls="pills-listing" aria-selected="false" *ngIf="professionalType == 1 || professionalType == 2 || professionalType == 3">My Listings</button>
           </li>
           <li class="nav-item" role="presentation">
             <button class="nav-link" id="pills-valuation-tab" data-bs-toggle="pill" data-bs-target="#pills-valuation"
-              type="button" role="tab" aria-controls="pills-valuation" aria-selected="false">My Valuations</button>
+              type="button" role="tab" aria-controls="pills-valuation" aria-selected="false" *ngIf="professionalType == 1 || professionalType == 2 || professionalType == 3">My Valuations</button>
           </li>
           <li class="nav-item" role="presentation">
             <button class="nav-link" id="pills-packages-tab" data-bs-toggle="pill" data-bs-target="#pills-packages"
-              type="button" role="tab" aria-controls="pills-packages" aria-selected="false">My Packages</button>
+              type="button" role="tab" aria-controls="pills-packages" aria-selected="false" *ngIf="professionalType == 1 || professionalType == 2 || professionalType == 3">My Packages</button>
           </li>
           <li class="nav-item" role="presentation">
             <!-- <button class="nav-link" id="">More</button> -->
@@ -706,7 +706,7 @@
         </div>
         <div class="tab-pane fade" id="pills-leads" role="tabpanel" aria-labelledby="pills-leads-tab">
           <div class="recent-activity">
-            <h4 class="sub-title" *ngIf="professionalType == 1 || professionalType == 2 || professionalType == 3">My Leads</h4>
+            <h4 class="sub-title" >My Leads</h4>
             <div class="sub-tab-nav">
               <mat-tab-group (selectedTabChange)="getTab($event)">
                 <mat-tab label="All">
@@ -953,7 +953,7 @@
         </div>
         <div class="tab-pane fade" id="pills-listing" role="tabpanel" aria-labelledby="pills-listing-tab">
           <div class="recent-activity">
-            <h4 class="sub-title" *ngIf="professionalType == 1 || professionalType == 2 || professionalType == 3">My Listings</h4>
+            <h4 class="sub-title">My Listings</h4>
             <div class="sub-tab-nav">
               <mat-tab-group (selectedTabChange)="parentTabsChange($event)">
                 <mat-tab label="All">
@@ -1284,7 +1284,7 @@
         </div>
         <div class="tab-pane fade" id="pills-valuation" role="tabpanel" aria-labelledby="pills-valuation-tab">
           <div class="recent-activity">
-            <h4 class="sub-title mb-4" *ngIf="professionalType == 1 || professionalType == 2 || professionalType == 3">My Valuation</h4>
+            <h4 class="sub-title mb-4" >My Valuation</h4>
             <div class="sub-tab-nav">
               <mat-tab-group>
                 <mat-tab label="All ({{myValuation.length}})">
@@ -1434,9 +1434,9 @@
             </div>
           </div>
         </div>
-        <div class="tab-pane fade" id="pills-packages" role="tabpanel" aria-labelledby="pills-valuation-tab">
-          <div class="recent-activity">
-            <h4 class="sub-title mb-4" *ngIf="professionalType == 1 || professionalType == 2 || professionalType == 3">My Packages</h4>
+        <div class="tab-pane fade" id="pills-packages" role="tabpanel" aria-labelledby="pills-valuation-tab" >
+          <div class="recent-activity" >
+            <h4 class="sub-title mb-4" >My Packages</h4>
             <div ngClass="packages_details" *ngFor="let data of myPackages">
               <div ngClass="package_flex d-flex justify-content-spacebw">
                 <div ngClass="packge-item packge_type">
