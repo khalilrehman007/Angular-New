@@ -14,22 +14,22 @@
     </div>
     <div ngClass="d-flex justify-content-spacebw otp-form-sec">
     <mat-form-field class="full-width input-design" appearance="fill">
-      <input matInput type="number" placeholder="8">
+      <input id="input1" matInput  type="text" maxlength="1" placeholder="8"  (keyup)="keytab('input1', 'input1', 'input2', $event)">
     </mat-form-field>
     <mat-form-field class="full-width input-design" appearance="fill">
-        <input matInput type="number" placeholder="8">
+        <input id="input2" matInput  type="text" maxlength="1" placeholder="8" (keyup)="keytab('input1', 'input2', 'input3', $event)">
       </mat-form-field>
       <mat-form-field class="full-width input-design" appearance="fill">
-        <input matInput type="number" placeholder="8">
+        <input id="input3" matInput  type="text" maxlength="1" placeholder="8" (keyup)="keytab('input2', 'input3', 'input4', $event)">
       </mat-form-field>
       <mat-form-field class="full-width input-design" appearance="fill">
-        <input matInput type="number" placeholder="8">
+        <input id="input4" matInput  type="text" maxlength="1" placeholder="8" (keyup)="keytab('input3', 'input4', 'input5', $event)">
       </mat-form-field>
       <mat-form-field class="full-width input-design" appearance="fill">
-        <input matInput type="number" placeholder="8">
+        <input id="input5" matInput  type="text" maxlength="1" placeholder="8" (keyup)="keytab('input4', 'input5', 'input6', $event)">
       </mat-form-field>
       <mat-form-field class="full-width input-design" appearance="fill">
-        <input matInput type="number" placeholder="8">
+        <input id="input6" matInput  type="text" maxlength="1" placeholder="8" (keyup)="keytab('input5', 'input6', 'input6', $event)">
       </mat-form-field>
     </div>
     <div ngClass="d-flex justify-content-spacebw otp-form-time">
@@ -37,7 +37,7 @@
         <button ngClass="resend-code">Resend Code</button>
     </div>
     <mat-card-actions>
-        <button mat-raised-button type="submit" ngClass="submit-btn">Verify</button>
+        <button mat-raised-button type="submit" ngClass="submit-btn" (click)="verifyCode()">Verify</button>
      </mat-card-actions>
   </form>
 </div>
