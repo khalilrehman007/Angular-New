@@ -35,11 +35,12 @@ export class HeaderComponent implements OnInit {
   bodyClass: string;
   notificationData: any = [];
   currentDate: any = new Date();
+  userData:any = "";
   constructor(private authService: AuthService, private route: Router, private notifyService: NotificationService, private modalService: NgbModal, private service: AppService, private db: AngularFireDatabase) {
     if (localStorage.getItem("user")) {
-      let temp: any = localStorage.getItem("user");
-      temp = JSON.parse(temp).firebaseId;
-      db.list("/Notifications/" + temp).snapshotChanges().pipe(
+      this.userData = localStorage.getItem("user");
+      this.userData = JSON.parse(this.userData).firebaseId;
+      db.list("/Notifications/" + this.userData).snapshotChanges().pipe(
         map(changes =>
           changes.map(c =>
             ({ key: c.payload.key, value: c.payload.val() })

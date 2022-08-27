@@ -136,8 +136,11 @@
           </ul>
         </div>
       </div>
-
-      <div ngClass="tab-content">
+      <div class="no-data-found" *ngIf="dynamicSlides1.length == 0">
+        <mat-icon>file_copy</mat-icon>
+        <p>No Data Found</p>
+      </div>
+      <div ngClass="tab-content" *ngIf="dynamicSlides1.length > 0">
         <div id="resedential-rent" class="tab-pane active">
           <owl-carousel-o [options]="customOptions" ngClass="slider-shadow ">
             <ng-container *ngFor="let slide of dynamicSlides1">
@@ -281,7 +284,11 @@
           </ul>
         </div>
       </div>
-      <div ngClass="tab-content">
+      <div class="no-data-found" *ngIf="dynamicSlides2.length == 0">
+        <mat-icon>file_copy</mat-icon>
+        <p>No Data Found</p>
+      </div>
+      <div ngClass="tab-content" *ngIf="dynamicSlides2.length > 0">
         <div id="resedential-rent" class="tab-pane active">
           <owl-carousel-o [options]="customOptions" ngClass="slider-shadow ">
             <ng-container *ngFor="let slide of dynamicSlides2">
