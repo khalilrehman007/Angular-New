@@ -71,15 +71,15 @@
           </li>
           <li class="nav-item" role="presentation">
             <button class="nav-link" id="pills-listing-tab" data-bs-toggle="pill" data-bs-target="#pills-listing"
-              type="button" role="tab" aria-controls="pills-listing" aria-selected="false">My Listings</button>
+              type="button" role="tab" aria-controls="pills-listing" aria-selected="false" *ngIf="professionalType == 1 || professionalType == 2 || professionalType == 3">My Listings</button>
           </li>
           <li class="nav-item" role="presentation">
             <button class="nav-link" id="pills-valuation-tab" data-bs-toggle="pill" data-bs-target="#pills-valuation"
-              type="button" role="tab" aria-controls="pills-valuation" aria-selected="false">My Valuations</button>
+              type="button" role="tab" aria-controls="pills-valuation" aria-selected="false" *ngIf="professionalType == 1 || professionalType == 2 || professionalType == 3">My Valuations</button>
           </li>
           <li class="nav-item" role="presentation">
             <button class="nav-link" id="pills-packages-tab" data-bs-toggle="pill" data-bs-target="#pills-packages"
-              type="button" role="tab" aria-controls="pills-packages" aria-selected="false">My Packages</button>
+              type="button" role="tab" aria-controls="pills-packages" aria-selected="false" *ngIf="professionalType == 1 || professionalType == 2 || professionalType == 3">My Packages</button>
           </li>
           <li class="nav-item" role="presentation">
             <!-- <button class="nav-link" id="">More</button> -->
@@ -107,7 +107,7 @@
         <div class="tab-pane fade show active" id="pills-dashboard" role="tabpanel"
           aria-labelledby="pills-dashboard-tab">
 
-          <div class="free-proplisting" *ngIf="professionalType == 2 || professionalType == 3">
+          <div class="free-proplisting" *ngIf="professionalType == 1 || professionalType == 2 || professionalType == 3">
             <div class="first-title">
               <h3 class="title">FREE Property Listing</h3>
               <p>Sell or Rent Your Home</p>
@@ -286,7 +286,7 @@
 
               <div ngClass="row">
                 <div ngClass="col-lg-4 col-md-6 blog-places-col" *ngFor=" let blog of blogs">
-                  <a [routerLink]="['/blogs-details/' + blog.id]" >
+                  <a [routerLink]="['/blogs-details/' + blog.id]" ngClass="position-relative">
                     <img [src]="'https://www.ovaluate.com/'+blog.blogDocument.fileUrl"
                       ngClass="img-fluid blog-image-homepage" alt="">
                     <span ngClass="blog-tag">
@@ -296,6 +296,7 @@
                       <h5>{{blog.blogTitle}}</h5>
                       <span>{{blog.blogDate.split("T")[0]}}</span>
                     </div>
+                    <button ngClass="tag_btn blue"> Market Trends</button>
                   </a>
                 </div>
               </div>
@@ -706,7 +707,7 @@
         </div>
         <div class="tab-pane fade" id="pills-leads" role="tabpanel" aria-labelledby="pills-leads-tab">
           <div class="recent-activity">
-            <h4 class="sub-title">My Leads</h4>
+            <h4 class="sub-title" >My Leads</h4>
             <div class="sub-tab-nav">
               <mat-tab-group (selectedTabChange)="getTab($event)">
                 <mat-tab label="All">
@@ -1284,7 +1285,7 @@
         </div>
         <div class="tab-pane fade" id="pills-valuation" role="tabpanel" aria-labelledby="pills-valuation-tab">
           <div class="recent-activity">
-            <h4 class="sub-title mb-4">My Valuation</h4>
+            <h4 class="sub-title mb-4" >My Valuation</h4>
             <div class="sub-tab-nav">
               <mat-tab-group>
                 <mat-tab label="All ({{myValuation.length}})">
@@ -1434,9 +1435,9 @@
             </div>
           </div>
         </div>
-        <div class="tab-pane fade" id="pills-packages" role="tabpanel" aria-labelledby="pills-valuation-tab">
-          <div class="recent-activity">
-            <h4 class="sub-title mb-4">My Packages</h4>
+        <div class="tab-pane fade" id="pills-packages" role="tabpanel" aria-labelledby="pills-valuation-tab" >
+          <div class="recent-activity" >
+            <h4 class="sub-title mb-4" >My Packages</h4>
             <div ngClass="packages_details" *ngFor="let data of myPackages">
               <div ngClass="package_flex d-flex justify-content-spacebw">
                 <div ngClass="packge-item packge_type">
@@ -1564,7 +1565,7 @@
                     </div>
                   </div>
                 </mat-tab>
-                <mat-tab label="Agent/Broker Details" *ngIf="professionalType == 2 || professionalType == 3">
+                <mat-tab label="Agent/Broker Details" *ngIf="professionalType == 1 || professionalType == 2 || professionalType == 3">
                   <div class="row">
                     <div class="col-md-9">
                       <form [formGroup]="agnetBorker">
@@ -1738,7 +1739,7 @@
                     </div>
                   </div>
                 </mat-tab>
-                <mat-tab label="Company Details" *ngIf="professionalType == 2 || professionalType == 3">
+                <mat-tab label="Company Details" *ngIf="professionalType == 1 || professionalType == 2 || professionalType == 3">
                   <div class="row">
                     <div class="col-md-9">
                       <form action="">
@@ -2328,7 +2329,7 @@
               <div ngClass="row">
                 <!-- let blogs of Blogsec -->
                 <div ngClass="col-lg-4 col-md-6 blog-places-col" *ngFor=" let blog of blogs">
-                  <a [routerLink]="['/blogs/'+blog.id]" [queryParams]="{title: blog.blogTitle}">
+                  <a [routerLink]="['/blogs/'+blog.id]" [queryParams]="{title: blog.blogTitle}" ngClass="position-relative">
                     <!-- blog.blogDocument.fileUrl -->
                     <img [src]="'https://www.ovaluate.com/'+blog.blogDocument.fileUrl"
                       ngClass="img-fluid blog-image-homepage" alt="">
@@ -2339,6 +2340,7 @@
                       <h5>{{blog.blogTitle}}</h5>
                       <span>{{blog.blogDate}}</span>
                     </div>
+                    <button ngClass="tag_btn blue"> Market Trends</button>
                   </a>
                 </div>
               </div>

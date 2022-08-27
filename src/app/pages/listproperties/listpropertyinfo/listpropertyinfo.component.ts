@@ -41,8 +41,9 @@ export class ListpropertyinfoComponent implements OnInit {
   occupancy: any;
   petPolicy: any;
   petPolicyData: any = [];
+  locatedNearData: any = [];
   rentTypes: any;
-  room: any = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, "10+"];
+  room: any = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   featuresData: any;
   featuresFormData: any = [];
   minDate = new Date();
@@ -66,7 +67,7 @@ export class ListpropertyinfoComponent implements OnInit {
   securityCheck: boolean = false;
   transactionType: any = [];
   completionStatus: any = [];
-  locatedNear: any = [{ id: 1, name: "Metro" }, { id: 2, name: "Elevator" }, { id: 3, name: "Stairs" }];
+  locatedNear: any = [];
   ownershipType: any = [{ id: 1, name: "Freehold" }, { id: 2, name: "Leasehold" }];
   showLoader: boolean = false;
 
@@ -111,6 +112,9 @@ export class ListpropertyinfoComponent implements OnInit {
     this.api.LoadOccupancy().subscribe((result: any) => {
       this.occupancy = result.data;
     });
+    this.api.LocatedNear().subscribe((result:any) => {
+      this.locatedNear = result.data;
+    })
     this.data.BedRooms = 0;
     this.data.BathRooms = 0;
     this.data.FurnishingType = 0;
@@ -233,8 +237,9 @@ export class ListpropertyinfoComponent implements OnInit {
   getCompletionStatus(e: number) {
     this.data.PropertyCompletionStatusId = e;
   }
-  getLocatedNear(e: number) {
-    this.data.LocatedNear = e;
+  getLocatedNear(e: any) {
+    this.locatedNearData = e.value;
+    // this.data.LocatedNear = e;
   }
   getOwnershipType(e: number) {
     this.data.ownershipType = e;
@@ -329,7 +334,7 @@ export class ListpropertyinfoComponent implements OnInit {
       this.error = "Enter Handover Date";
       this.showError = true;
       return;
-    } else if (this.listingTypeId == 2 && this.categoryID == 2 && !this.data.LocatedNear) {
+    } else if (this.locatedNearData.length == 0) {
       this.error = "Select Near Location";
       this.showError = true;
       return;
@@ -418,6 +423,11 @@ export class ListpropertyinfoComponent implements OnInit {
       this.data.PropertyDescription = this.SubmitForm.value.propertyDescription;
       this.data.PropertyOffer = this.SubmitForm.value.propertyOffers;
     }
+    temp = [];
+    for (let i = 0; i < this.locatedNearData.length; i++) {
+      temp.push({ "LocatedNearId": this.locatedNearData[i] });
+    }
+    this.data.PropertyListingLocatedNears = temp;
     if (this.listingTypeId == 2) {
       this.data.HandoverOn = $("#sell-residential-datepicker").val();
     }
@@ -437,8 +447,8 @@ export class ListpropertyinfoComponent implements OnInit {
       temp.push({ PropertyFeatureId: this.featuresFormData[i] });
     }
     this.data.PropertyFeatures = temp;
-
     localStorage.setItem('propertyData', JSON.stringify(this.data));
     this.route.navigate(['listpropertymedia'])
+    // console.log(this.data);
   }
 }
