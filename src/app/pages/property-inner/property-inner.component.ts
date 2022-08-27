@@ -223,7 +223,6 @@ export class PropertyInnerComponent implements OnInit {
       //       }
       //     },
       //     error: (err) => {
-      //       console.log(err);
       //     }
       //   });
       // });
@@ -240,7 +239,6 @@ export class PropertyInnerComponent implements OnInit {
   getloadDashboardData() {
     this.service.DisplayPropertyListing({"PropertyListingId":this.propertyId,"LoginUserId":this.userId}).subscribe(e => {
       let temp: any = e;
-      console.log(temp.data);
       this.propertyLat = temp.data.propertyListing.propertyLat;
       this.propertyLng = temp.data.propertyListing.propertyLong;
       this.buildingName = temp.data.propertyListing.buildingName;
@@ -267,7 +265,6 @@ export class PropertyInnerComponent implements OnInit {
         rentType = jsonParsDate.propertyListing.rentType.name
       }
 
-      // console.log(jsonParsDate.propertyListing.rentType,'dededededed')
       if(jsonParsDate.propertyListing != null){
         this.propertyDetailData.propertyPrice = (jsonParsDate.propertyListing.propertyPrice !== undefined) ? jsonParsDate.propertyListing.propertyPrice : ''
         this.propertyDetailData.currency = (jsonParsDate.propertyListing.country.currency !== undefined) ? jsonParsDate.propertyListing.country.currency : ''
@@ -315,7 +312,6 @@ export class PropertyInnerComponent implements OnInit {
         this.propertyDetailData.id = (jsonParsDate.propertyListing.id !== undefined) ? jsonParsDate.propertyListing.id : ''
         this.propertyDetailData.favorite = (jsonParsDate.propertyListing.favorite !== undefined) ? jsonParsDate.propertyListing.favorite : ''
 
-        // console.log(this.propertyDetailData.propertyLat,this.propertyDetailData.propertyLong)
         // let location ="https://maps.google.com/maps?q="+this.propertyDetailData.propertyLat+','+this.propertyDetailData.propertyLong+'&hl=es&z=14&amp;output=embed';
 
         let ree  = "https://maps.google.com/maps?q="+this.propertyDetailData.propertyLat+","+this.propertyDetailData.propertyLong+"&hl=es&z=14&amp;output=embed"
