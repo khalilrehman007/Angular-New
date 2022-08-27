@@ -107,7 +107,7 @@
         <div class="tab-pane fade show active" id="pills-dashboard" role="tabpanel"
           aria-labelledby="pills-dashboard-tab">
 
-          <div class="free-proplisting" *ngIf="professionalType == 2 || professionalType == 3">
+          <div class="free-proplisting" *ngIf="professionalType == 1 || professionalType == 2 || professionalType == 3">
             <div class="first-title">
               <h3 class="title">FREE Property Listing</h3>
               <p>Sell or Rent Your Home</p>
@@ -706,7 +706,7 @@
         </div>
         <div class="tab-pane fade" id="pills-leads" role="tabpanel" aria-labelledby="pills-leads-tab">
           <div class="recent-activity">
-            <h4 class="sub-title">My Leads</h4>
+            <h4 class="sub-title" *ngIf="professionalType == 1 || professionalType == 2 || professionalType == 3">My Leads</h4>
             <div class="sub-tab-nav">
               <mat-tab-group (selectedTabChange)="getTab($event)">
                 <mat-tab label="All">
@@ -953,7 +953,7 @@
         </div>
         <div class="tab-pane fade" id="pills-listing" role="tabpanel" aria-labelledby="pills-listing-tab">
           <div class="recent-activity">
-            <h4 class="sub-title">My Listings</h4>
+            <h4 class="sub-title" *ngIf="professionalType == 1 || professionalType == 2 || professionalType == 3">My Listings</h4>
             <div class="sub-tab-nav">
               <mat-tab-group (selectedTabChange)="parentTabsChange($event)">
                 <mat-tab label="All">
@@ -1284,7 +1284,7 @@
         </div>
         <div class="tab-pane fade" id="pills-valuation" role="tabpanel" aria-labelledby="pills-valuation-tab">
           <div class="recent-activity">
-            <h4 class="sub-title mb-4">My Valuation</h4>
+            <h4 class="sub-title mb-4" *ngIf="professionalType == 1 || professionalType == 2 || professionalType == 3">My Valuation</h4>
             <div class="sub-tab-nav">
               <mat-tab-group>
                 <mat-tab label="All ({{myValuation.length}})">
@@ -1436,7 +1436,7 @@
         </div>
         <div class="tab-pane fade" id="pills-packages" role="tabpanel" aria-labelledby="pills-valuation-tab">
           <div class="recent-activity">
-            <h4 class="sub-title mb-4">My Packages</h4>
+            <h4 class="sub-title mb-4" *ngIf="professionalType == 1 || professionalType == 2 || professionalType == 3">My Packages</h4>
             <div ngClass="packages_details" *ngFor="let data of myPackages">
               <div ngClass="package_flex d-flex justify-content-spacebw">
                 <div ngClass="packge-item packge_type">
@@ -1564,7 +1564,7 @@
                     </div>
                   </div>
                 </mat-tab>
-                <mat-tab label="Agent/Broker Details" *ngIf="professionalType == 2 || professionalType == 3">
+                <mat-tab label="Agent/Broker Details" *ngIf="professionalType == 1 || professionalType == 2 || professionalType == 3">
                   <div class="row">
                     <div class="col-md-9">
                       <form [formGroup]="agnetBorker">
@@ -1738,7 +1738,7 @@
                     </div>
                   </div>
                 </mat-tab>
-                <mat-tab label="Company Details" *ngIf="professionalType == 2 || professionalType == 3">
+                <mat-tab label="Company Details" *ngIf="professionalType == 1 || professionalType == 2 || professionalType == 3">
                   <div class="row">
                     <div class="col-md-9">
                       <form action="">
