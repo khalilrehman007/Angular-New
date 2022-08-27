@@ -78,7 +78,10 @@ export class PropertyfilterComponent implements OnInit {
     this.PriceStart            = this.activeRoute.snapshot.queryParamMap.get('PriceStart');
     this.PriceEnd              = this.activeRoute.snapshot.queryParamMap.get('PriceEnd');
     this.Bedrooms              = this.activeRoute.snapshot.queryParamMap.get('Bedrooms');
+    this.selectedBeds = this.Bedrooms;
     this.Bathrooms              = this.activeRoute.snapshot.queryParamMap.get('Bathrooms');
+    this.selectedBaths = this.Bathrooms;
+
     let DistrictsId :any = this.activeRoute.snapshot.queryParamMap.get('DistrictIds');
     let DistrictsValue :any = this.activeRoute.snapshot.queryParamMap.get('DistrictsValue');
     this.DistrictsId = JSON.parse(DistrictsId)
@@ -258,6 +261,7 @@ export class PropertyfilterComponent implements OnInit {
             if(this.selectedRentType == null){
               if(list.name.trim() == this.type.trim()){
                 this.selectedRentType = list.id;
+                this.type = list.name.trim()
               }
             }
             this.rentTypes.push({ name: list.name, id: list.id });
@@ -305,6 +309,7 @@ export class PropertyfilterComponent implements OnInit {
 
   changeType(event) {
     this.PropertyListingTypeId = event.value
+    this.selectedRentType = event.value
   }
   propertyType(event) {
     this.PropertyCategoryId = event.value
@@ -338,6 +343,7 @@ export class PropertyfilterComponent implements OnInit {
       keywordsData.push(element.name)
     })
 
+    this.loadType();
     let params :any = {type:this.type,"PropertyTypeIds":[],"RentTypeId":this.RentTypeId,
       "PropertyCategoryId":this.PropertyCategoryId,PriceStart:this.SubmitForm.value.PriceStart,PriceEnd:this.SubmitForm.value.PriceEnd,
       Bedrooms:this.Bedrooms,Bathrooms:this.Bathrooms,PropertyAddress:this.SubmitForm.value.Name,
