@@ -83,6 +83,9 @@ export class RentpropertiesComponent implements OnInit {
   MaxCarpetArea: any;
   FurnishingTypeId: any;
   trendTitle: any = [];
+  Bedrooms: any;
+  Bathrooms: any;
+  KeyWordsParams :any;
   constructor(private authService: AuthService, private notifyService: NotificationService, private activeRoute: ActivatedRoute, private service: AppService, private api: AppService, private route: Router, private modalService: NgbModal) {
     this.route.events.subscribe((e: any) => {
       if (e instanceof NavigationEnd) {
@@ -103,7 +106,10 @@ export class RentpropertiesComponent implements OnInit {
         let FurnishingTypeId: any = this.activeRoute.snapshot.queryParamMap.get('FurnishingTypeId');
         let cityID: any = this.activeRoute.snapshot.queryParamMap.get('cityID') ?? "";
         let countryId: any = this.activeRoute.snapshot.queryParamMap.get('countryId') ?? "";
+        this.Bedrooms              = this.activeRoute.snapshot.queryParamMap.get('Bedrooms');
+        this.Bathrooms              = this.activeRoute.snapshot.queryParamMap.get('Bathrooms');
 
+        this.KeyWordsParams = KeyWords;
         this.KeyWords = JSON.parse(KeyWords)
         this.PropertyFeatureIds = JSON.parse(PropertyFeatureIds)
         this.MinCarpetArea = MinCarpetArea
@@ -125,7 +131,7 @@ export class RentpropertiesComponent implements OnInit {
           });
         }
         let params: any = {
-          "PropertyTypeIds": this.PropertyTypeIds, "PropertyAddress": this.PropertyAddress, "RentTypeId": this.RentTypeId,
+          "PropertyTypeIds": this.PropertyTypeIds, "PropertyAddress": this.PropertyAddress, "RentTypeId": this.RentTypeId,Bedrooms:this.Bedrooms,Bathrooms:this.Bathrooms,
           "PropertyCategoryId": this.PropertyCategoryId, "CityID": cityID, "CountryID": countryId, "PriceStart": this.PriceStart, "PriceEnd": this.PriceEnd,
           "PropertyListingTypeId": this.PropertyListingTypeId, "SortedBy": this.sortedById, CurrentPage: 1, DistrictIds: this.DistrictsId
         }
@@ -278,10 +284,12 @@ export class RentpropertiesComponent implements OnInit {
   loadListingProperty(data: any) {
     let tempData: Array<Object> = []
     this.service.LoadSearchListing(data).subscribe((response: any) => {
-      this.listingForMap = response.data.propertyListings;
-      localStorage.setItem('listingForMap', JSON.stringify(this.listingForMap))
       this.totalRecord = response.data.totalRecord;
-      localStorage.setItem('propertyListingTotalRecord', this.totalRecord);
+      setTimeout(() => {
+        localStorage.setItem('propertyListingTotalRecord', this.totalRecord);
+        localStorage.setItem('listingForMap', JSON.stringify(data))
+      }, 1000);
+
       response.data.propertyListings.forEach((element, i) => {
         let documentsCheck: any = true;
         let rentTypeName = ''
@@ -377,4 +385,19 @@ export class RentpropertiesComponent implements OnInit {
     return this.user;
   }
 
+  viewMap(){
+
+    console.log(this.KeyWordsParams,'hbhb')
+    let params :any = {type:this.type,"PropertyTypeIds":[],"RentTypeId":this.RentTypeId,
+      "PropertyCategoryId":this.PropertyCategoryId,PriceStart:this.PriceStart,PriceEnd:this.PriceEnd,totalRecord:this.totalRecord,
+      Bedrooms:this.Bedrooms,Bathrooms:this.Bathrooms,selectedPropertyTypeName:this.selectedPropertyTypeName,
+      "PropertyListingTypeId":this.PropertyListingTypeId,CurrentPage:1,DistrictIds:JSON.stringify(this.DistrictsId),
+      DistrictsValue:JSON.stringify(this.DistrictsValue),KeyWords:this.KeyWordsParams,PropertyFeatureIds:JSON.stringify(this.PropertyFeatureIds),
+      MinCarpetArea:this.MinCarpetArea,MaxCarpetArea:this.MaxCarpetArea,FurnishingTypeId:this.FurnishingTypeId
+    }
+
+    console.log(params)
+    this.route.navigate(['/mapview'],{queryParams:params})
+
+  }
 }

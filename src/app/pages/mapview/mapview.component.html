@@ -19,7 +19,7 @@
 
               </div>
               <div ngClass="back-to-search">
-                <a routerLink="/rent-properties" ngClass="back-to-text">
+                <a  [routerLink]="['/search']" [queryParams]="{type: 'Rent',PropertyListingTypeId:1}" ngClass="back-to-text">
                   <mat-icon>keyboard_arrow_left</mat-icon> Back to List View
                 </a>
               </div>
@@ -28,41 +28,36 @@
           <div ngClass="col-xl-8 col-lg-8 col-md-12 col-sm-12">
             <div ngClass="map-view-right-listings">
               <div ngClass="heading-apragraph-design">
-                <h2>Residential Properties for Rent in UAE</h2>
-                <p>Showing 391,094 Properties for Rent in UAE</p>
+                <h2>{{selectedPropertyTypeName}} Properties for {{type}} in UAE</h2>
+                <p>Showing {{totalRecord}} Properties for Rent in UAE</p>
               </div>
               <div ngClass="properties-filtr-values d-flex justify-content-spacebw">
                 <div ngClass="properties-filtr-values-left d-flex justify-content-spacebw">
-                  <div class="checkbox-design position-relative">
+                  <div (click)="allSearch()" class="checkbox-design position-relative">
                     <input type="checkbox" id="Furnished" name="property-types" value="Furnished">
                     <button class="checkbox-btn">All</button>
                   </div>
                   <div ngClass="block-wrapper">
                     <mat-form-field appearance="fill" class="select-design">
                       <mat-label><img src="{{videotiour}}"> Video Tour</mat-label>
-                      <mat-select>
-                        <mat-option value="Yes">
-                          Yes
-                        </mat-option>
-                        <mat-option value="No">
-                          No
-                        </mat-option>
+                      <mat-select (selectionChange)="videoSorting($event)">
+                        <mat-option value="{{item.id}}" *ngFor="let item of videoTour">{{item.name}}</mat-option>
                       </mat-select>
                     </mat-form-field>
                   </div>
-                  <div ngClass="block-wrapper">
-                    <mat-form-field appearance="fill" class="select-design">
-                      <mat-label><img src="{{lsitedby}}"> Listed by</mat-label>
-                      <mat-select>
-                        <mat-option value="Residential">
-                          Residential
-                        </mat-option>
-                        <mat-option value="Commertial">
-                          Commertial
-                        </mat-option>
-                      </mat-select>
-                    </mat-form-field>
-                  </div>
+<!--                  <div ngClass="block-wrapper">-->
+<!--                    <mat-form-field appearance="fill" class="select-design">-->
+<!--                      <mat-label><img src="{{lsitedby}}"> Listed by</mat-label>-->
+<!--                      <mat-select>-->
+<!--                        <mat-option value="Residential">-->
+<!--                          Residential-->
+<!--                        </mat-option>-->
+<!--                        <mat-option value="Commertial">-->
+<!--                          Commertial-->
+<!--                        </mat-option>-->
+<!--                      </mat-select>-->
+<!--                    </mat-form-field>-->
+<!--                  </div>-->
                 </div>
                 <div ngClass="properties-filtr-values-right d-flex justify-content-spacebw">
                   <div class="checkbox-design position-relative">
@@ -72,12 +67,9 @@
                   <div ngClass="block-wrapper">
                     <mat-form-field appearance="fill" class="select-design">
                       <mat-label>Sort by</mat-label>
-                      <mat-select>
-                        <mat-option value="Latest">
-                          Latest
-                        </mat-option>
-                        <mat-option value="Old">
-                          Old
+                      <mat-select (selectionChange)="sortedBy($event)">
+                        <mat-option *ngFor="let SortBy of PropertySortBy" value="{{SortBy.id}}">
+                          {{SortBy.name}}
                         </mat-option>
                       </mat-select>
                     </mat-form-field>
@@ -85,12 +77,10 @@
                 </div>
               </div>
               <div ngClass="map-view-listin">
-                <div ngClass="row" *ngIf="propertyDetails.length > 0">
-                  <div ngClass="col-xl-4 col-lg-6 col-md-6 col-sm-12 mb-4" *ngFor="let slide of propertyDetails | paginate: { itemsPerPage: 9, currentPage: page ,totalItems:totalRecord }">
+                <div ngClass="row" *ngIf="searchListing.length > 0">
+                  <div ngClass="col-xl-4 col-lg-6 col-md-6 col-sm-12 mb-4" *ngFor="let slide of searchListing | paginate: { itemsPerPage: 10, currentPage: page ,totalItems:totalRecord }">
                     <div ngClass="property-item position-relative">
-                      <img *ngIf="slide.documents.length > 0"
-                        src="https://beta.ovaluate.com/{{slide.documents[0].fileUrl}}" [alt]="">
-                      <img *ngIf="slide.documents.length == 0" src="assets/images/placeholder.png" [alt]="">
+                      <img src="{{slide.documents}}" [alt]="">
                       <button ngClass="property-whistlist">
                         <svg width="22" height="23" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path
@@ -100,7 +90,7 @@
                       </button>
                       <div ngClass="property-info">
                         <span ngClass="property-pricing"><span>{{slide.propertyPrice}}
-                            {{slide.country.currency}}</span>/yearly</span>
+                            {{slide.currency}}</span>/yearly</span>
                         <span ngClass="property-name">{{slide.companyName}}</span>
                         <p ngClass="property-location"><img src="{{homelocationsvg}}" width="14"
                             alt="">{{slide.propertyAddress}}</p>

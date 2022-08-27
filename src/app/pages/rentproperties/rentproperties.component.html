@@ -33,9 +33,9 @@
             </div>
             <div ngClass="properties-filtr-values d-flex justify-content-spacebw">
               <div ngClass="properties-filtr-values-left d-flex justify-content-spacebw">
-                <div class="checkbox-design position-relative">
+                <div (click)="allSearch()" class="checkbox-design position-relative">
                   <input type="checkbox" id="Furnished" name="property-types" value="Furnished">
-                  <button class="checkbox-btn" (click)="allSearch()">All</button>
+                  <button class="checkbox-btn" >All</button>
                 </div>
                 <div ngClass="block-wrapper">
                   <mat-form-field appearance="fill" class="select-design">
@@ -249,7 +249,7 @@
                   <img src="{{mapview}}">
                 </div>
                 <div ngClass="see-my-lisitng">
-                  <a ngClass="see-listing-btn" routerLink="/mapview"><img src="{{loc}}"> See the Listing on Map View</a>
+                  <a ngClass="see-listing-btn" (click)="viewMap()" ><img src="{{loc}}"> See the Listing on Map View</a>
                 </div>
               </div>
             </div>
@@ -261,6 +261,10 @@
                   <button ngbDropdownItem *ngFor="let item of trendTitle[0].trendTitleDetail; let i = index" (click)="onTrendClick(1,i)">{{item.detail}}</button>
                 </div>
               </div>
+            </div>
+            <div ngClass="adds-blck-sec">
+              <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6409412786140093"
+              crossorigin="anonymous"></script>
             </div>
           </div>
         </div>
