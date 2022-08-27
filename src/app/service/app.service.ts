@@ -405,5 +405,8 @@ export class AppService {
   MyPackages(id:any) {
     return this.http.get(this.apiurl + 'MyPackages/' + id);
   }
+  LocatedNear() {
+    return this.http.get(this.apiurl + 'LocatedNear');
+  }
 
 }
