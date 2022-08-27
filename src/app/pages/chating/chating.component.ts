@@ -9,7 +9,7 @@ import { CometChat } from "@cometchat-pro/chat";
   styleUrls: ['./chating.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class ChatingComponent implements OnInit {
+export class ChatingComponent implements OnInit, OnDestroy {
   customerimg = '../../../assets/images/customers/Avatar-1.png'
   customerimg2 = '../../../assets/images/customers/Avatar-2.png'
   customerimg3 = '../../../assets/images/customers/Avatar-3.png'
@@ -58,6 +58,7 @@ export class ChatingComponent implements OnInit {
     this.userData = localStorage.getItem("user");
     this.userData = JSON.parse(this.userData);
     this.init();
+    $("html, body").css("height", "100%");
   }
   init() {
     const appSetting = new CometChat.AppSettingsBuilder()
@@ -101,6 +102,7 @@ export class ChatingComponent implements OnInit {
   }
   ngOnDestroy(): void {
     this.editor.destroy();
+    $("html, body").removeAttr("style");
   }
   status: boolean = false;
   clickEvent() {
