@@ -182,8 +182,9 @@ export class SignupComponent implements OnInit {
             // this.responsedata.data = this.responsedata.data;
             localStorage.setItem('token', JSON.stringify(this.responsedata.data.refreshToken))
             localStorage.setItem('user', JSON.stringify(this.responsedata.data))
+            localStorage.setItem('verificationData', JSON.stringify({"name":this.signup.value.FirstName, "phone":this.signup.value.PhoneNumber}))
             this.notifyService.showSuccess(this.responsedata.message, "");
-            this.route.navigate([''])
+            this.route.navigate(["/otp"])
           } else {
             this.notifyService.showError(this.responsedata.error.value, "");
           }

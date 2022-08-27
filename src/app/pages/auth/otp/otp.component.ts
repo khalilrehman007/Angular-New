@@ -11,7 +11,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./otp.component.scss']
 })
 export class OtpComponent implements OnInit {
-  code: any;
+  error: any = ""
+  showError: boolean = false;
+  errorResponse(data: any) {
+    this.showError = false;
+  }
+  code: any = -1;
   string1 : any;
   string2 : any;
   string3 : any;
@@ -19,6 +24,7 @@ export class OtpComponent implements OnInit {
   string5 : any;
   string6 : any;
   otp : any;
+  verificationData:any = {};
   
 
   keytab(prev: any, current: any, next: any, key: any) {
@@ -34,7 +40,6 @@ export class OtpComponent implements OnInit {
         $("#" + next).focus();
       }
     }
-        // $("#" + current).val(key.key);
   }
 
   verifyCode(){
@@ -48,20 +53,22 @@ export class OtpComponent implements OnInit {
     
     // console.log(this.otp);
     if(this.code.randomDigit == this.otp){
-      console.log('Verify successfully')
       this.router.navigate(['/thanku']);
     }else{
-      console.log('wrong')
-      alert("Enter right code")
-
+      this.error = "Wrong Code";
+      this.showError = true;
+      return;
     }
   }
   
   constructor(private service: AppService, private router: Router) {
-    this.service.SendDigitSms({"FirstName":"Anirban Roy" , "PhoneNumber":"+971 50 695 9158"}).subscribe((result:any)=>{
-      this.code = result.data;
-      // console.log(this.code.randomDigit)
-    })
+    if(localStorage.getItem("verificationData")) {
+      this.verificationData = localStorage.getItem("verificationData");
+      this.verificationData = JSON.parse(this.verificationData);
+      this.service.SendDigitSms({"FirstName":this.verificationData.name , "PhoneNumber":this.verificationData.phone}).subscribe((result:any)=>{
+        this.code = result.data;
+      })
+    }
 
   }
 
