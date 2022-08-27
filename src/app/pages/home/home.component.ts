@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { OwlOptions } from 'ngx-owl-carousel-o';
-import {SliderModule} from 'primeng/slider';
+import { SliderModule } from 'primeng/slider';
 import * as $ from 'jquery';
-import {NgbNav} from '@ng-bootstrap/ng-bootstrap';
+import { NgbNav } from '@ng-bootstrap/ng-bootstrap';
 
 import { HeaderComponent } from '../../header/header.component';
 import { FooterComponent } from '../../footer/footer.component';
 import { AppService } from 'src/app/service/app.service';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NotificationService } from 'src/app/service/notification.service';
 import { Router } from '@angular/router';
-import {AuthService} from "../../service/auth.service";
+import { AuthService } from "../../service/auth.service";
 
 @Component({
   selector: 'app-home',
@@ -28,39 +28,39 @@ export class HomeComponent implements OnInit {
   dubaigv = 'assets/images/goverment-of-dubai.png'
   landdept = 'assets/images/Dubai-Land-LOGO.png'
   rera = 'assets/images/rera.png'
-  tagicn= '../../../assets/images/icons/tag-icn.svg'
+  tagicn = '../../../assets/images/icons/tag-icn.svg'
   baseUrl = 'https://beta.ovaluate.com/'
   blogs: any;
   submitted = false;
   responsedata: any;
-  dynamicSlides1:any = [];
-  dynamicSlides2:any = [];
-  homebanners:any = [];
-  transaction:any = [];
-  country:any = [];
-  clientFeedback:any = [];
+  dynamicSlides1: any = [];
+  dynamicSlides2: any = [];
+  homebanners: any = [];
+  transaction: any = [];
+  country: any = [];
+  clientFeedback: any = [];
   slider: any = [];
-  user : any
+  user: any
 
   id: 1;
-  propertyDetails:any;
+  propertyDetails: any;
   oldData1() {
-    let tempData :Array<Object> = []
-    this.service.LatestPropertiesListingResidential({"UserId":this.userId,"propertyListingTypeId":"1"}).subscribe(data=>{
-      let response :any = data;
+    let tempData: Array<Object> = []
+    this.service.LatestPropertiesListingResidential({ "UserId": this.userId, "propertyListingTypeId": "1" }).subscribe(data => {
+      let response: any = data;
       response.data.forEach((element, i) => {
-        let image :any = 'assets/images/placeholder.png'
-        if(element.documents.length > 1 && element.documents[0].fileUrl != undefined && element.documents[0].fileUrl != null){
-          image = this.baseUrl+element.documents[0].fileUrl
+        let image: any = 'assets/images/placeholder.png'
+        if (element.documents.length > 1 && element.documents[0].fileUrl != undefined && element.documents[0].fileUrl != null) {
+          image = this.baseUrl + element.documents[0].fileUrl
         }
 
-        let rentType :any = ''
-        if(element.rentType != undefined && element.rentType.name != undefined && element.rentType.name != null){
+        let rentType: any = ''
+        if (element.rentType != undefined && element.rentType.name != undefined && element.rentType.name != null) {
           rentType = element.rentType.name
         }
 
-        let currency :any = ''
-        if(element.country !== undefined && element.country.currency != undefined && element.country.currency!= null){
+        let currency: any = ''
+        if (element.country !== undefined && element.country.currency != undefined && element.country.currency != null) {
           currency = element.country.currency
         }
 
@@ -71,14 +71,14 @@ export class HomeComponent implements OnInit {
             currency: currency,
             price: element.propertyPrice,
             favorite: element.favorite,
-            id:element.id,
-            alt:element.propertyTitle,
-            src:image,
-            bedrooms:element.bedrooms,
-            propertyAddress:element.propertyAddress,
-            bathrooms:element.bathrooms,
-            buildingName:element.buildingName,
-            carpetArea:element.carpetArea,
+            id: element.id,
+            alt: element.propertyTitle,
+            src: image,
+            bedrooms: element.bedrooms,
+            propertyAddress: element.propertyAddress,
+            bathrooms: element.bathrooms,
+            buildingName: element.buildingName,
+            carpetArea: element.carpetArea,
           });
       })
     });
@@ -86,22 +86,22 @@ export class HomeComponent implements OnInit {
     this.dynamicSlides1 = tempData
   }
   newData1() {
-    let tempData :Array<Object> = []
-    this.service.LatestPropertiesListingResidential({"UserId":this.userId,"propertyListingTypeId":"2"}).subscribe(data=>{
-      let response :any = data;
+    let tempData: Array<Object> = []
+    this.service.LatestPropertiesListingResidential({ "UserId": this.userId, "propertyListingTypeId": "2" }).subscribe(data => {
+      let response: any = data;
       response.data.forEach((element, i) => {
-        let image :any = 'assets/images/placeholder.png'
-        if(element.documents.length > 1 && element.documents[0].fileUrl != undefined && element.documents[0].fileUrl != null){
-          image = this.baseUrl+element.documents[0].fileUrl
+        let image: any = 'assets/images/placeholder.png'
+        if (element.documents.length > 1 && element.documents[0].fileUrl != undefined && element.documents[0].fileUrl != null) {
+          image = this.baseUrl + element.documents[0].fileUrl
         }
 
-        let rentType :any = ''
-        if(element.rentType != undefined && element.rentType.name != undefined && element.rentType.name != null){
+        let rentType: any = ''
+        if (element.rentType != undefined && element.rentType.name != undefined && element.rentType.name != null) {
           rentType = element.rentType.name
         }
 
-        let currency :any = ''
-        if(element.country !== undefined && element.country.currency != undefined && element.country.currency!= null){
+        let currency: any = ''
+        if (element.country !== undefined && element.country.currency != undefined && element.country.currency != null) {
           currency = element.country.currency
         }
         tempData.push(
@@ -111,14 +111,14 @@ export class HomeComponent implements OnInit {
             favorite: element.favorite,
             rentType: rentType,
             currency: currency,
-            propertyAddress:element.propertyAddress,
-            id:element.id,
-            alt:element.propertyTitle,
-            src:image,
-            bedrooms:element.bedrooms,
-            bathrooms:element.bathrooms,
-            buildingName:element.buildingName,
-            carpetArea:element.carpetArea,
+            propertyAddress: element.propertyAddress,
+            id: element.id,
+            alt: element.propertyTitle,
+            src: image,
+            bedrooms: element.bedrooms,
+            bathrooms: element.bathrooms,
+            buildingName: element.buildingName,
+            carpetArea: element.carpetArea,
           });
       })
     });
@@ -126,22 +126,22 @@ export class HomeComponent implements OnInit {
   }
 
   oldData2() {
-    let tempData :Array<Object> = []
-    this.service.LatestPropertiesListingCommercial({"UserId":this.userId,"propertyListingTypeId":"1"}).subscribe(data=>{
-      let response :any = data;
+    let tempData: Array<Object> = []
+    this.service.LatestPropertiesListingCommercial({ "UserId": this.userId, "propertyListingTypeId": "1" }).subscribe(data => {
+      let response: any = data;
       response.data.forEach((element, i) => {
-        let image :any = 'assets/images/placeholder.png'
-        if(element.documents.length > 1 && element.documents[0].fileUrl != undefined && element.documents[0].fileUrl != null){
-          image = this.baseUrl+element.documents[0].fileUrl
+        let image: any = 'assets/images/placeholder.png'
+        if (element.documents.length > 1 && element.documents[0].fileUrl != undefined && element.documents[0].fileUrl != null) {
+          image = this.baseUrl + element.documents[0].fileUrl
         }
 
-        let rentType :any = ''
-        if(element.rentType != undefined && element.rentType.name != undefined && element.rentType.name != null){
+        let rentType: any = ''
+        if (element.rentType != undefined && element.rentType.name != undefined && element.rentType.name != null) {
           rentType = element.rentType.name
         }
 
-        let currency :any = ''
-        if(element.country !== undefined && element.country.currency != undefined && element.country.currency!= null){
+        let currency: any = ''
+        if (element.country !== undefined && element.country.currency != undefined && element.country.currency != null) {
           currency = element.country.currency
         }
         tempData.push(
@@ -151,36 +151,36 @@ export class HomeComponent implements OnInit {
             rentType: rentType,
             favorite: element.favorite,
             currency: currency,
-            propertyAddress:element.propertyAddress,
-            id:element.id,
-            alt:element.propertyTitle,
-            src:image,
-            bedrooms:element.bedrooms,
-            bathrooms:element.bathrooms,
-            buildingName:element.buildingName,
-            carpetArea:element.carpetArea,
+            propertyAddress: element.propertyAddress,
+            id: element.id,
+            alt: element.propertyTitle,
+            src: image,
+            bedrooms: element.bedrooms,
+            bathrooms: element.bathrooms,
+            buildingName: element.buildingName,
+            carpetArea: element.carpetArea,
           });
       })
     });
     this.dynamicSlides2 = tempData
   }
   newData2() {
-    let tempData :Array<Object> = []
-    this.service.LatestPropertiesListingCommercial({"UserId":this.userId,"propertyListingTypeId":"2"}).subscribe(data=>{
-      let response :any = data;
+    let tempData: Array<Object> = []
+    this.service.LatestPropertiesListingCommercial({ "UserId": this.userId, "propertyListingTypeId": "2" }).subscribe(data => {
+      let response: any = data;
       response.data.forEach((element, i) => {
-        let image :any = 'assets/images/placeholder.png'
-        if(element.documents.length > 1 && element.documents[0].fileUrl != undefined && element.documents[0].fileUrl != null){
-          image = this.baseUrl+element.documents[0].fileUrl
+        let image: any = 'assets/images/placeholder.png'
+        if (element.documents.length > 1 && element.documents[0].fileUrl != undefined && element.documents[0].fileUrl != null) {
+          image = this.baseUrl + element.documents[0].fileUrl
         }
 
-        let rentType :any = ''
-        if(element.rentType != undefined && element.rentType.name != undefined && element.rentType.name != null){
+        let rentType: any = ''
+        if (element.rentType != undefined && element.rentType.name != undefined && element.rentType.name != null) {
           rentType = element.rentType.name
         }
 
-        let currency :any = ''
-        if(element.country !== undefined && element.country.currency != undefined && element.country.currency!= null){
+        let currency: any = ''
+        if (element.country !== undefined && element.country.currency != undefined && element.country.currency != null) {
           currency = element.country.currency
         }
         tempData.push(
@@ -190,14 +190,14 @@ export class HomeComponent implements OnInit {
             rentType: rentType,
             favorite: element.favorite,
             currency: currency,
-            propertyAddress:element.propertyAddress,
-            id:element.id,
-            alt:element.propertyTitle,
-            src:image,
-            bedrooms:element.bedrooms,
-            bathrooms:element.bathrooms,
-            buildingName:element.buildingName,
-            carpetArea:element.carpetArea,
+            propertyAddress: element.propertyAddress,
+            id: element.id,
+            alt: element.propertyTitle,
+            src: image,
+            bedrooms: element.bedrooms,
+            bathrooms: element.bathrooms,
+            buildingName: element.buildingName,
+            carpetArea: element.carpetArea,
           });
       })
     });
@@ -206,37 +206,37 @@ export class HomeComponent implements OnInit {
   tenantsslide = [
     {
       id: 'slide1',
-      src:'assets/images/icons/virtul-toor.svg',
-      heading:'Virtual home tour',
-      desc:'You can communicate directly with landlords and we provide you with virtual tour before you buy or rent the property.',
-      class:'virtual-tour'
+      src: 'assets/images/icons/virtul-toor.svg',
+      heading: 'Virtual home tour',
+      desc: 'You can communicate directly with landlords and we provide you with virtual tour before you buy or rent the property.',
+      class: 'virtual-tour'
     },
     {
       id: 'slide2',
-      src:'assets/images/icons/best-deal.svg',
-      heading:'Find the best deal',
-      desc:'Browse thousands of properties, save your favorites and set up search alerts so you don’t miss the best home deal!',
-      class:'find-best-deal'
+      src: 'assets/images/icons/best-deal.svg',
+      heading: 'Find the best deal',
+      desc: 'Browse thousands of properties, save your favorites and set up search alerts so you don’t miss the best home deal!',
+      class: 'find-best-deal'
     },
     {
       id: 'slide3',
-      src:'assets/images/icons/ready-apply.svg',
-      heading:'Get ready to apply',
-      desc:'Find your dream house? You just need to do a little to no effort and you can start move in to your new dream home!',
-      class:'get-ready-apply'
+      src: 'assets/images/icons/ready-apply.svg',
+      heading: 'Get ready to apply',
+      desc: 'Find your dream house? You just need to do a little to no effort and you can start move in to your new dream home!',
+      class: 'get-ready-apply'
     }
   ]
 
   Exploreplaces = [
     {
-      src:'assets/images/explore-places/1.jpg',
-      heading:'Al Barsha, Dubai',
-      paragraph:'Al Barsha is a safe and quiet area that offers something for everyone: be it singles looking for wallet-friendly apartments with Metro...'
+      src: 'assets/images/explore-places/1.jpg',
+      heading: 'Al Barsha, Dubai',
+      paragraph: 'Al Barsha is a safe and quiet area that offers something for everyone: be it singles looking for wallet-friendly apartments with Metro...'
     },
     {
-      src:'assets/images/explore-places/2.jpg',
-      heading:'Business Bay, Dubai',
-      paragraph:'Al Barsha is a safe and quiet area that offers something for everyone: be it singles looking for wallet-friendly apartments with Metro...'
+      src: 'assets/images/explore-places/2.jpg',
+      heading: 'Business Bay, Dubai',
+      paragraph: 'Al Barsha is a safe and quiet area that offers something for everyone: be it singles looking for wallet-friendly apartments with Metro...'
     }
   ]
 
@@ -359,10 +359,10 @@ export class HomeComponent implements OnInit {
   totalTransactions: any;
   totalSales: any;
   totalMortgages: any;
-  userId :any;
+  userId: any;
   explorePlaces: any;
-  trendTitle:any = [];
-  constructor(private authService:AuthService,private service:AppService,private route:Router,private notifyService : NotificationService) {
+  trendTitle: any = [];
+  constructor(private authService: AuthService, private service: AppService, private route: Router, private notifyService: NotificationService) {
     this.LoadPropertyCategories()
     this.LoadBlogs();
     this.LoadBanners();
@@ -372,13 +372,13 @@ export class HomeComponent implements OnInit {
     this.getOvaluateFeatures();
     this.getUser();
     let userId = '';
-    if(this.user !== null){
+    if (this.user !== null) {
       userId = this.user.id;
     }
     this.userId = userId;
     this.oldData2();
     this.oldData1();
-    this.service.PropertyListingTypes().subscribe(data=>{
+    this.service.PropertyListingTypes().subscribe(data => {
       this.propertyType = data;
       this.propertyType = this.propertyType.data;
       this.Sale = this.propertyType[1].name;
@@ -387,7 +387,7 @@ export class HomeComponent implements OnInit {
       this.RentAr = this.propertyType[0].nameAr;
     });
 
-    this.service.PropertyCategories().subscribe(data=>{
+    this.service.PropertyCategories().subscribe(data => {
       this.propertyCategory = data;
       this.propertyCategory = this.propertyCategory.data;
       this.categoryNameRes = this.propertyCategory[0].categoryName;
@@ -409,61 +409,62 @@ export class HomeComponent implements OnInit {
     //
     // });
 
-    this.service.OvaluateOfferings().subscribe((result: any=[])=>{
+    this.service.OvaluateOfferings().subscribe((result: any = []) => {
       this.slider = result.data;
     })
 
-    this.service.NearPlaces(1).subscribe((result:any)=>{
+    this.service.NearPlaces(1).subscribe((result: any) => {
       this.explorePlaces = result.data;
     })
-    this.service.TrendTitle(1).subscribe((result:any) => {
+    this.service.TrendTitle(1).subscribe((result: any) => {
       this.trendTitle = result.data
     })
   }
-  onTrendClick(typeID:any, titleID:any) {
-    let temp:any = this.trendTitle[typeID].trendTitleDetail[titleID];
-    let type:any;
-    if(temp.propertyListingTypeId == 1) {
+  onTrendClick(typeID: any, titleID: any) {
+    let temp: any = this.trendTitle[typeID].trendTitleDetail[titleID];
+    let type: any;
+    if (temp.propertyListingTypeId == 1) {
       type = "Rent";
-    } else if(temp.propertyListingTypeId == 2) {
+    } else if (temp.propertyListingTypeId == 2) {
       type = "Buy";
     } else {
       type = "";
     }
-    let params:any = {queryParams:{
-      type:type,
-      PropertyListingTypeId:temp.propertyListingTypeId ?? "",
-      CityID:temp.cityId ?? "",
-      CountryId:temp.countryId ?? "",
-      PropertyCategoryId:temp.propertyCategoryId ?? "",
-      PropertyTypeIds:temp.propertyTypeId ?? "",
-    }}
-    this.route.navigate(['/search'],params)
+    let params: any = {
+      queryParams: {
+        type: type,
+        PropertyListingTypeId: temp.propertyListingTypeId ?? "",
+        CityID: temp.cityId ?? "",
+        CountryId: temp.countryId ?? "",
+        PropertyCategoryId: temp.propertyCategoryId ?? "",
+        PropertyTypeIds: temp.propertyTypeId ?? "",
+      }
+    }
+    this.route.navigate(['/search'], params)
   }
-  getUser(){
+  getUser() {
     this.user = localStorage.getItem('user');
-    if(this.user != ''){
+    if (this.user != '') {
       this.user = JSON.parse(this.user);
     }
     return this.user;
   }
 
-  ValuationTransactions(){
-    let tempData :Array<Object> = []
-    this.service.ValuationTransactions().subscribe(data=>{
+  ValuationTransactions() {
+    let tempData: Array<Object> = []
+    this.service.ValuationTransactions().subscribe(data => {
       let response: any = data;
       response.data.forEach((element, i) => {
         tempData.push(
-          {key: element.key, value: element.value});
+          { key: element.key, value: element.value });
       })
     });
     this.transaction = tempData
   }
 
-  ngOnInit():void {
-    console.clear();
-    $(document).ready(function(){
-      $('.dropdown-toggle').click(function(){
+  ngOnInit(): void {
+    $(document).ready(function () {
+      $('.dropdown-toggle').click(function () {
         $(this).next().toggleClass('active');
       });
     });
@@ -476,13 +477,13 @@ export class HomeComponent implements OnInit {
     }
     if (this.search.valid) {
       this.service.ProceedSearch(this.search.value).subscribe(result => {
-        if(result!=null ){
-          this.responsedata=result;
-          this.responsedata.data =this.responsedata.data;
-          localStorage.setItem('token',this.responsedata.data.refreshToken)
-          localStorage.setItem('user',JSON.stringify(this.responsedata.data))
+        if (result != null) {
+          this.responsedata = result;
+          this.responsedata.data = this.responsedata.data;
+          localStorage.setItem('token', this.responsedata.data.refreshToken)
+          localStorage.setItem('user', JSON.stringify(this.responsedata.data))
           this.notifyService.showSuccess(this.responsedata.message, "");
-        }else{
+        } else {
           this.notifyService.showError("Unable to login", "");
         }
         this.route.navigate([''])
@@ -490,14 +491,14 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  LoadPropertyCategories(){
-    this.service.LoadPropertyCategories().subscribe(data=>{
-      this.categories=data;
+  LoadPropertyCategories() {
+    this.service.LoadPropertyCategories().subscribe(data => {
+      this.categories = data;
       // this.categories = this.categories.data
       //
-      this.categories = this.categories.data.filter((category:any, key:any, array:any)=>{
+      this.categories = this.categories.data.filter((category: any, key: any, array: any) => {
         category.checked = '';
-        if(key == 0){
+        if (key == 0) {
           category.checked = 'active'
         }
         return category;
@@ -506,18 +507,18 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  LoadPropertyTypes(){
-    this.service.LoadPropertyTypes().subscribe(data=>{
-      this.types=data;
+  LoadPropertyTypes() {
+    this.service.LoadPropertyTypes().subscribe(data => {
+      this.types = data;
       this.types = this.types.data
     });
   }
 
-  LoadBlogs(){
-    this.service.LoadBlogs().subscribe(data=>{
-      this.blogs=data;
-      this.blogs = this.blogs.data.filter((blog:any, key:any, array:any)=>{
-        if(key < 3){
+  LoadBlogs() {
+    this.service.LoadBlogs().subscribe(data => {
+      this.blogs = data;
+      this.blogs = this.blogs.data.filter((blog: any, key: any, array: any) => {
+        if (key < 3) {
           return blog;
         }
       })
@@ -525,14 +526,14 @@ export class HomeComponent implements OnInit {
 
   }
 
-  LoadBanners(){
-    let tempData :Array<Object> = []
-    this.service.LoadBanners().subscribe(data=>{
+  LoadBanners() {
+    let tempData: Array<Object> = []
+    this.service.LoadBanners().subscribe(data => {
       let response: any = data;
       response.data.forEach((element, i) => {
         let image = element.bannerDocument.fileUrl
         tempData.push(
-          {title: element.bannerHeader, desc: element.bannerTitle, img:this.baseUrl+image});
+          { title: element.bannerHeader, desc: element.bannerTitle, img: this.baseUrl + image });
       })
     });
     this.homebanners = tempData
@@ -550,17 +551,17 @@ export class HomeComponent implements OnInit {
   }
 
   SubmitForm = new FormGroup({
-    email : new FormControl("", Validators.required)
+    email: new FormControl("", Validators.required)
   });
 
-  proceedStore(){
+  proceedStore() {
     if (this.SubmitForm.invalid) {
       this.notifyService.showError('Wrong email', "");
       return;
     }
     if (this.SubmitForm.valid) {
       this.service.StoreAddSubscriber(this.SubmitForm.value).subscribe(result => {
-        if(result!=null){
+        if (result != null) {
           this.responsedata = result;
           this.notifyService.showSuccess(this.responsedata.message, "");
           this.SubmitForm.controls.email.setValue('');
@@ -570,7 +571,7 @@ export class HomeComponent implements OnInit {
           // }else{
           //   this.notifyService.showError(this.responsedata.error[0], "");
           // }
-        }else{
+        } else {
           this.notifyService.showError("Subscriber Failed", "");
         }
       });
@@ -578,7 +579,7 @@ export class HomeComponent implements OnInit {
 
   }
 
-  getLoadFeedback(){
+  getLoadFeedback() {
     // this.clientFeedback = [
     //   {
     //     id: 'slide1',
@@ -603,17 +604,17 @@ export class HomeComponent implements OnInit {
     //   }
     // ];
 
-    let tempData :Array<Object> = []
-    this.service.LoadFeeback().subscribe(data=>{
+    let tempData: Array<Object> = []
+    this.service.LoadFeeback().subscribe(data => {
       let response: any = data;
       response.data.forEach((element, i) => {
         let image = '../assets/images/user.png'
-        if(element.imageUrl !== null && element.imageUrl !== undefined){
-          image = this.baseUrl+element.imageUrl
+        if (element.imageUrl !== null && element.imageUrl !== undefined) {
+          image = this.baseUrl + element.imageUrl
         }
 
         tempData.push(
-          {id:element.id,heading: element.fullName, desc: element.feedback, src:image,location:element.address});
+          { id: element.id, heading: element.fullName, desc: element.feedback, src: image, location: element.address });
       })
     });
     this.clientFeedback = tempData
@@ -622,31 +623,31 @@ export class HomeComponent implements OnInit {
 
   selected = 'option1';
 
-  ovaluateFeatures :any = [];
-  getOvaluateFeatures(){
-    let tempData :Array<Object> = []
-    this.service.OvaluateFeatures().subscribe(data=>{
+  ovaluateFeatures: any = [];
+  getOvaluateFeatures() {
+    let tempData: Array<Object> = []
+    this.service.OvaluateFeatures().subscribe(data => {
       let response: any = data;
       response.data.forEach((element, i) => {
         let image = element.ovaluateFeatureDocument.fileUrl
-        let className :any
-        if(element.title == "Get ready to apply.  "){
+        let className: any
+        if (element.title == "Get ready to apply.  ") {
           className = "get-ready-apply"
-        }else if(element.title == "Virtual home tour."){
+        } else if (element.title == "Virtual home tour.") {
           className = "virtual-tour"
-        }else if(element.title == "Find the best deal.") {
+        } else if (element.title == "Find the best deal.") {
           className = "find-best-deal"
         }
         tempData.push(
-          {id:element.id,heading: element.title, desc: element.description, src:this.baseUrl+image,class:className});
+          { id: element.id, heading: element.title, desc: element.description, src: this.baseUrl + image, class: className });
       })
     });
     this.ovaluateFeatures = tempData
   }
 
-  wishlistStatus :any;
-  AddToFavorite(id:any,status:any,part:any) {
-    if(this.userId == ''){
+  wishlistStatus: any;
+  AddToFavorite(id: any, status: any, part: any) {
+    if (this.userId == '') {
       this.notifyService.showSuccess('First you need to login', "");
       this.route.navigate(['/login'])
     }
@@ -656,32 +657,32 @@ export class HomeComponent implements OnInit {
       this.route.navigate(['login']);
     }
 
-    this.service.FavoriteAddRemove(status,{"UserId":this.userId,"PropertyListingId":id}).subscribe(data => {
-      let responsedata :any = data
-      if(responsedata.message == "Favorite is Removed successfully"){
+    this.service.FavoriteAddRemove(status, { "UserId": this.userId, "PropertyListingId": id }).subscribe(data => {
+      let responsedata: any = data
+      if (responsedata.message == "Favorite is Removed successfully") {
         this.wishlistStatus = "Favorite is Removed successfully"
         this.notifyService.showSuccess('Favorite is Removed successfully', "");
-      }else {
+      } else {
         this.wishlistStatus = "Favorite is added successfully"
         this.notifyService.showSuccess('Favorite is added successfully', "");
       }
     });
-    if(part == "resedential-old"){
+    if (part == "resedential-old") {
       setTimeout(() => {
         this.oldData1();
       }, 1000);
-    }else if(part == "resedential-new"){
+    } else if (part == "resedential-new") {
       setTimeout(() => {
         this.newData1();
       }, 1000);
-    }else if(part == "commercial-old"){
+    } else if (part == "commercial-old") {
       setTimeout(() => {
         this.oldData2();
       }, 1000);
-    }else if(part == "commercial-new"){
+    } else if (part == "commercial-new") {
       setTimeout(() => {
         this.newData2();
-        }, 1000);
+      }, 1000);
     }
   }
 }

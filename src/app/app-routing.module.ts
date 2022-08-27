@@ -67,6 +67,7 @@ import { LifeAtHomeBlogComponent } from './pages/blog-category/life-at-home-blog
 import { LawBlogComponent } from './pages/blog-category/law-blog/law-blog.component';
 import { MarketTrendsBlogComponent } from './pages/blog-category/market-trends-blog/market-trends-blog.component';
 import { PaymentPackagesComponent } from './pages/payment-packages/payment-packages.component';
+import { ComingsoomComponent } from './pages/comingsoom/comingsoom.component';
 
 // import {RoleGuardService} from "./role-guard-service.service";
 
@@ -138,11 +139,12 @@ const routes: Routes = [
   { path: "investors", component: InvestorsComponent },
   { path: "buy-properties", component: BuyPropertiesComponent },
   { path: "payment", component: PaymentPackagesComponent },
+  { path: "coming-soon", component: ComingsoomComponent },
   { path: '**', pathMatch: 'full', component: PagenotfoundComponent },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes,{useHash:false})],
+  imports: [RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

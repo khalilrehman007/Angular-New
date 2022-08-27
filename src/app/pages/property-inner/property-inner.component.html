@@ -353,16 +353,16 @@
                             <div ngClass="contact-list-details">
                                 <div ngClass="row">
                                     <div ngClass="col-xl-6 col-lg-12 col-md-12 col-sm-12">
-                                        <button ngClass=""><img src="{{call}}"> Call Landlord</button>
+                                        <button ngClass="" routerLink="/chat"><img src="{{call}}"> Call Landlord</button>
                                     </div>
                                     <div ngClass="col-xl-6 col-lg-12 col-md-12 col-sm-12">
                                         <button ngClass=""><img src="{{whatsapp}}"> Whats APP</button>
                                     </div>
                                     <div ngClass="col-xl-6 col-lg-12 col-md-12 col-sm-12">
-                                        <button ngClass=""><img src="{{chat}}"> Chat with Landlord</button>
+                                        <button ngClass="" routerLink="/chat"><img src="{{chat}}"> Chat with Landlord</button>
                                     </div>
                                     <div ngClass="col-xl-6 col-lg-12 col-md-12 col-sm-12">
-                                        <button ngClass=""><img src="{{videocall}}"> Video Call</button>
+                                        <button ngClass="" routerLink="/chat"><img src="{{videocall}}"> Video Call</button>
                                     </div>
                                     <div ngClass="col-xl-6 col-lg-12 col-md-6 col-sm-12">
                                         <button ngClass=""><img src="{{virtual}}"> Virtual Tour</button>
@@ -416,7 +416,7 @@
                                 </span>
                             </div>
                         </div>
-                        <a href="/PropertDetailsPage?id={{slide.id}}"
+                        <a [routerLink]="['/PropertDetailsPage']" [queryParams]="{id: slide.id}" 
                             ngClass="linK_overlay"></a>
                             <button ngClass="tag_btn blue"><img src="{{tagicn}}"> POPULAR</button>
                     </div>

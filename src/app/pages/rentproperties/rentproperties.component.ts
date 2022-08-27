@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HeaderComponent } from '../../header/header.component';
 import { FooterComponent } from '../../footer/footer.component';
 import { PropertyfilterComponent } from '../../propertyfilter/propertyfilter.component';
-import { ActivatedRoute, Router } from "@angular/router";
+import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
 import { AppService } from "../../service/app.service";
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NotificationService } from "../../service/notification.service";
@@ -84,66 +84,69 @@ export class RentpropertiesComponent implements OnInit {
   FurnishingTypeId: any;
   trendTitle: any = [];
   constructor(private authService: AuthService, private notifyService: NotificationService, private activeRoute: ActivatedRoute, private service: AppService, private api: AppService, private route: Router, private modalService: NgbModal) {
-    this.type = this.activeRoute.snapshot.queryParamMap.get('type');
-    this.PropertyCategoryId = this.activeRoute.snapshot.queryParamMap.get('PropertyCategoryId');
-    this.RentTypeId = this.activeRoute.snapshot.queryParamMap.get('RentTypeId');
-    this.PropertyListingTypeId = this.activeRoute.snapshot.queryParamMap.get('PropertyListingTypeId');
-    this.PropertyTypeIds = this.activeRoute.snapshot.queryParamMap.get('PropertyTypeIds');
-    this.PropertyAddress = this.activeRoute.snapshot.queryParamMap.get('PropertyAddress');
-    this.PriceStart = this.activeRoute.snapshot.queryParamMap.get('PriceStart');
-    this.PriceEnd = this.activeRoute.snapshot.queryParamMap.get('PriceEnd');
-    let DistrictsId: any = this.activeRoute.snapshot.queryParamMap.get('DistrictIds');
-    let DistrictsValue: any = this.activeRoute.snapshot.queryParamMap.get('DistrictsValue');
-    let KeyWords: any = this.activeRoute.snapshot.queryParamMap.get('KeyWords');
-    let PropertyFeatureIds: any = this.activeRoute.snapshot.queryParamMap.get('PropertyFeatureIds');
-    let MinCarpetArea: any = this.activeRoute.snapshot.queryParamMap.get('MinCarpetArea');
-    let MaxCarpetArea: any = this.activeRoute.snapshot.queryParamMap.get('MaxCarpetArea');
-    let FurnishingTypeId: any = this.activeRoute.snapshot.queryParamMap.get('FurnishingTypeId');
-    let cityID: any = this.activeRoute.snapshot.queryParamMap.get('cityID') ?? "";
-    let countryId: any = this.activeRoute.snapshot.queryParamMap.get('countryId') ?? "";
+    this.route.events.subscribe((e: any) => {
+      if (e instanceof NavigationEnd) {
+        this.type = this.activeRoute.snapshot.queryParamMap.get('type');
+        this.PropertyCategoryId = this.activeRoute.snapshot.queryParamMap.get('PropertyCategoryId');
+        this.RentTypeId = this.activeRoute.snapshot.queryParamMap.get('RentTypeId');
+        this.PropertyListingTypeId = this.activeRoute.snapshot.queryParamMap.get('PropertyListingTypeId');
+        this.PropertyTypeIds = this.activeRoute.snapshot.queryParamMap.get('PropertyTypeIds');
+        this.PropertyAddress = this.activeRoute.snapshot.queryParamMap.get('PropertyAddress');
+        this.PriceStart = this.activeRoute.snapshot.queryParamMap.get('PriceStart');
+        this.PriceEnd = this.activeRoute.snapshot.queryParamMap.get('PriceEnd');
+        let DistrictsId: any = this.activeRoute.snapshot.queryParamMap.get('DistrictIds');
+        let DistrictsValue: any = this.activeRoute.snapshot.queryParamMap.get('DistrictsValue');
+        let KeyWords: any = this.activeRoute.snapshot.queryParamMap.get('KeyWords');
+        let PropertyFeatureIds: any = this.activeRoute.snapshot.queryParamMap.get('PropertyFeatureIds');
+        let MinCarpetArea: any = this.activeRoute.snapshot.queryParamMap.get('MinCarpetArea');
+        let MaxCarpetArea: any = this.activeRoute.snapshot.queryParamMap.get('MaxCarpetArea');
+        let FurnishingTypeId: any = this.activeRoute.snapshot.queryParamMap.get('FurnishingTypeId');
+        let cityID: any = this.activeRoute.snapshot.queryParamMap.get('cityID') ?? "";
+        let countryId: any = this.activeRoute.snapshot.queryParamMap.get('countryId') ?? "";
 
-    this.KeyWords = JSON.parse(KeyWords)
-    this.PropertyFeatureIds = JSON.parse(PropertyFeatureIds)
-    this.MinCarpetArea = MinCarpetArea
-    this.MaxCarpetArea = MaxCarpetArea
-    this.FurnishingTypeId = FurnishingTypeId
+        this.KeyWords = JSON.parse(KeyWords)
+        this.PropertyFeatureIds = JSON.parse(PropertyFeatureIds)
+        this.MinCarpetArea = MinCarpetArea
+        this.MaxCarpetArea = MaxCarpetArea
+        this.FurnishingTypeId = FurnishingTypeId
 
-    this.DistrictsId = JSON.parse(DistrictsId)
-    this.DistrictsValue = JSON.parse(DistrictsValue)
+        this.DistrictsId = JSON.parse(DistrictsId)
+        this.DistrictsValue = JSON.parse(DistrictsValue)
 
-    if (this.type == null) {
-      this.activeRoute.params.subscribe(params => {
-        if (params['type'] == 'Buy') {
-          this.PropertyListingTypeId = 2;
-          this.type = 'Buy'
-        } else if (params['type'] == 'Rent') {
-          this.PropertyListingTypeId = 1;
-          this.type = 'Rent';
+        if (this.type == null) {
+          this.activeRoute.params.subscribe(params => {
+            if (params['type'] == 'Buy') {
+              this.PropertyListingTypeId = 2;
+              this.type = 'Buy'
+            } else if (params['type'] == 'Rent') {
+              this.PropertyListingTypeId = 1;
+              this.type = 'Rent';
+            }
+          });
         }
-      });
-    }
-    let params: any = {
-      "PropertyTypeIds": this.PropertyTypeIds, "PropertyAddress": this.PropertyAddress, "RentTypeId": this.RentTypeId,
-      "PropertyCategoryId": this.PropertyCategoryId, "CityID": cityID, "CountryID": countryId, "PriceStart": this.PriceStart, "PriceEnd": this.PriceEnd,
-      "PropertyListingTypeId": this.PropertyListingTypeId, "SortedBy": this.sortedById, CurrentPage: 1, DistrictIds: this.DistrictsId
-    }
+        let params: any = {
+          "PropertyTypeIds": this.PropertyTypeIds, "PropertyAddress": this.PropertyAddress, "RentTypeId": this.RentTypeId,
+          "PropertyCategoryId": this.PropertyCategoryId, "CityID": cityID, "CountryID": countryId, "PriceStart": this.PriceStart, "PriceEnd": this.PriceEnd,
+          "PropertyListingTypeId": this.PropertyListingTypeId, "SortedBy": this.sortedById, CurrentPage: 1, DistrictIds: this.DistrictsId
+        }
 
-    this.LoadPropertyCategories();
-    this.loadListingProperty(params);
-    this.LoadPropertySortBy();
-    this.getUser();
-    let userId = '';
-    if (this.user !== null) {
-      userId = this.user.id;
-    }
-    this.userId = userId;
-    this.service.VideoTour().subscribe((result: any) => {
-      this.videoTour = result.data;
-    })
-    this.api.TrendTitle(1).subscribe((result: any) => {
-      this.trendTitle = result.data
-      console.log(this.trendTitle);
-    })
+        this.LoadPropertyCategories();
+        this.loadListingProperty(params);
+        this.LoadPropertySortBy();
+        this.getUser();
+        let userId = '';
+        if (this.user !== null) {
+          userId = this.user.id;
+        }
+        this.userId = userId;
+        this.service.VideoTour().subscribe((result: any) => {
+          this.videoTour = result.data;
+        })
+        this.api.TrendTitle(1).subscribe((result: any) => {
+          this.trendTitle = result.data
+        })
+      }
+    });
   }
 
   onTrendClick(typeID: any, titleID: any) {
@@ -263,7 +266,6 @@ export class RentpropertiesComponent implements OnInit {
     this.MinCarpetArea = response.MinCarpetArea
     this.MaxCarpetArea = response.MaxCarpetArea
     this.FurnishingTypeId = response.FurnishingTypeId
-    console.log(this.PropertyFeatureIds, this.KeyWords, this.MinCarpetArea, this.MaxCarpetArea, this.FurnishingTypeId)
 
 
     this.selectedPropertyTypeName = null
@@ -304,7 +306,7 @@ export class RentpropertiesComponent implements OnInit {
 
         tempData.push(
           {
-            buildupArea:element.buildupArea,
+            buildupArea: element.buildupArea,
             id: element.id, favorite: element.favorite, userImage: userImage, fullName: fullName, userId: userId,
             StartRentPrice: element.startRentPrice, EndRentPrice: element.endRentPrice, AvgRentPrice: element.avgRentPrice, RecentRentTxns: element.recentRentTxns,
             documents: documents, propertyFeatures: element.propertyFeatures, propertyType: element.propertyType,

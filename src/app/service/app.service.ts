@@ -402,5 +402,8 @@ export class AppService {
   TrendTitle(id:any) {
     return this.http.get(this.apiurl + 'TrendTitle/' + id);
   }
+  MyPackages(id:any) {
+    return this.http.get(this.apiurl + 'MyPackages/' + id);
+  }
 
 }

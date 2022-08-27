@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import * as $ from 'jquery';
-import {NotificationService} from "../service/notification.service";
+import { NotificationService } from "../service/notification.service";
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AppService } from '../service/app.service';
-import {AuthService} from "../service/auth.service";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import { AuthService } from "../service/auth.service";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database';
+import { map } from 'rxjs';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -22,27 +24,44 @@ export class HeaderComponent implements OnInit {
   trash = '../../assets/images/icons/Trash-dotted.svg'
   logoutimg = '../../assets/images/logout-popup-banner.png'
   loggedInUser = localStorage.getItem('user')
-  user : any
+  user: any
   availableClasses: string[] = ["sidebar-active", "nosidebar"];
   currentClassIdx: number = 0;
   headerCountries: any;
-  userId :any;
+  userId: any;
   baseUrl = 'https://beta.ovaluate.com/'
 
-  params :any = {};
+  params: any = {};
   bodyClass: string;
-  constructor(private authService:AuthService,private route:Router,private notifyService : NotificationService,private modalService: NgbModal, private service:AppService) {
+  notificationData: any = [];
+  currentDate: any = new Date();
+  userData:any = "";
+  constructor(private authService: AuthService, private route: Router, private notifyService: NotificationService, private modalService: NgbModal, private service: AppService, private db: AngularFireDatabase) {
+    if (localStorage.getItem("user")) {
+      this.userData = localStorage.getItem("user");
+      this.userData = JSON.parse(this.userData).firebaseId;
+      db.list("/Notifications/" + this.userData).snapshotChanges().pipe(
+        map(changes =>
+          changes.map(c =>
+            ({ key: c.payload.key, value: c.payload.val() })
+          )
+        )
+      ).subscribe(data => {
+        this.notificationData = data;
+        this.getTime(this.notificationData[6].value.NotificationDateTime);
+      });
+    }
     this.getUser();
     this.bodyClass = this.availableClasses[this.currentClassIdx];
     this.changeBodyClass();
-    this.params = {queryParams:{type:'Rent',PropertyListingTypeId:1}};
+    this.params = { queryParams: { type: 'Rent', PropertyListingTypeId: 1 } };
 
-    this.service.LoadCountries().subscribe((result:any)=>{
+    this.service.LoadCountries().subscribe((result: any) => {
       this.headerCountries = result.data;
     })
 
     let userId = '';
-    if(this.user !== null){
+    if (this.user !== null) {
       userId = this.user.id;
     }
     this.userId = userId;
@@ -96,11 +115,27 @@ export class HeaderComponent implements OnInit {
     }
   ]
 
-
-  search(name:any){
-
+  getTime(e: any) {
+    let temp: any = new Date(e).getTime()
+    let difference = this.currentDate - temp;
+    let days = Math.floor(difference / 1000 / 60 / (60 * 24));
+    let time = new Date(difference);
+    if (days > 365) {
+      return Math.floor(days / 365) + " years ago";
+    } else if (days < 365 && days > 30) {
+      return Math.floor(days / 30) + " months ago";
+    } else if (days < 30 && days > 1) {
+      return days + " days ago";
+    } else if (days == 1) {
+      return days + " day ago";
+    } else if (time.getHours() > 0) {
+      return time.getHours() + " hours ago";
+    } else if (time.getMinutes() > 0) {
+      return time.getMinutes() + " minutes ago";
+    } else if (time.getSeconds() > 0) {
+      return time.getSeconds() + " secoonds ago";
+    }
   }
-
 
   changeBodyClass() {
     // get html body element
@@ -135,24 +170,24 @@ export class HeaderComponent implements OnInit {
   }
   ngOnInit() {
   }
-  getUser(){
+  getUser() {
     this.user = localStorage.getItem('user');
-    if(this.user != ''){
+    if (this.user != '') {
       this.user = JSON.parse(this.user);
     }
     return this.user;
   }
-  logout(){
+  logout() {
     this.notifyService.showSuccess('Logout Successfully', "");
     localStorage.clear();
     this.route.navigate(['login'])
   }
   status: boolean = false;
-  clickEvent(){
+  clickEvent() {
     if (!this.authService.isAuthenticated()) {
       this.notifyService.showError('You not having access', "");
       this.route.navigate(['login']);
-    }else{
+    } else {
       this.status = !this.status;
       this.getWishlisting();
       this.getCountData('');
@@ -162,90 +197,90 @@ export class HeaderComponent implements OnInit {
     }
   }
   status1: boolean = false;
-  clickEvent1(){
-      if (!this.authService.isAuthenticated()) {
-        this.notifyService.showError('You not having access', "");
-        this.route.navigate(['login']);
-      }else{
-        this.status1 = !this.status1;
-        this.status2 = false;
-        this.status = false;
-        this.status3 = false;
-        this.getWishlisting();
-        this.getCountData('');
-      }
-  }
-  status2: boolean = false;
-  clickEvent2(){
-      this.status2 = !this.status2;
-      this.status1 = false;
+  clickEvent1() {
+    if (!this.authService.isAuthenticated()) {
+      this.notifyService.showError('You not having access', "");
+      this.route.navigate(['login']);
+    } else {
+      this.status1 = !this.status1;
+      this.status2 = false;
       this.status = false;
       this.status3 = false;
+      this.getWishlisting();
+      this.getCountData('');
+    }
+  }
+  status2: boolean = false;
+  clickEvent2() {
+    this.status2 = !this.status2;
+    this.status1 = false;
+    this.status = false;
+    this.status3 = false;
   }
   status3: boolean = false;
-  clickEvent3(){
-      this.status3 = !this.status3;
-      this.status1 = false;
-      this.status = false;
-      this.status2 = false;
+  clickEvent3() {
+    this.status3 = !this.status3;
+    this.status1 = false;
+    this.status = false;
+    this.status2 = false;
   }
   logOutPopup(content) {
     this.modalService.open(content, { centered: true });
   }
 
-  buyCount :any;
-  rentCount :any;
-  allCount :any;
+  buyCount: any;
+  rentCount: any;
+  allCount: any;
   getWishlisting() {
-    if(this.userId == '' || !this.authService.isAuthenticated()){
+    if (this.userId == '' || !this.authService.isAuthenticated()) {
       return;
     }
-    let tempData :Array<Object> = []
-    this.service.FavoriteListingCount(this.userId).subscribe(data=>{
+    let tempData: Array<Object> = []
+    this.service.FavoriteListingCount(this.userId).subscribe(data => {
       let response: any = data;
       this.allCount = response.data.all
       this.rentCount = response.data.rent
       this.buyCount = response.data.buy
     });
   }
-  getCountChange(e:any){
-    let PropertyListingTypeId :any ;
-    if(e.index == 1){
+  getCountChange(e: any) {
+    let PropertyListingTypeId: any;
+    if (e.index == 1) {
       PropertyListingTypeId = 1
-    }else if(e.index == 2){
+    } else if (e.index == 2) {
       PropertyListingTypeId = 2
-    }else{
+    } else {
       PropertyListingTypeId = '';
     }
-    this.allCheckbox  = [];
+    this.allCheckbox = [];
     this.rentCheckbox = [];
-    this.buyCheckbox  = [];
+    this.buyCheckbox = [];
     this.getCountData(PropertyListingTypeId);
   }
-  wishlistingDataAll :any = []
-  wishlistingDataRent :any = []
-  wishlistingDataBuy :any = []
-  getCountData(PropertyListingTypeId){
-    if(this.userId == '' || !this.authService.isAuthenticated()){
+  wishlistingDataAll: any = []
+  wishlistingDataRent: any = []
+  wishlistingDataBuy: any = []
+  getCountData(PropertyListingTypeId) {
+    if (this.userId == '' || !this.authService.isAuthenticated()) {
       return;
     }
-    let tempData :Array<Object> = []
-    this.service.FavoriteListing({"UserId":this.userId,"PropertyListingTypeId":PropertyListingTypeId}).subscribe(data=>{
+    let tempData: Array<Object> = []
+    this.service.FavoriteListing({ "UserId": this.userId, "PropertyListingTypeId": PropertyListingTypeId }).subscribe(data => {
       let response: any = data;
       response.data.forEach((element, i) => {
 
-        let image :any ='';
-        if(element.documents !== null && element.documents !== undefined && element.documents.length > 0){
+        let image: any = '';
+        if (element.documents !== null && element.documents !== undefined && element.documents.length > 0) {
           image = element.documents[0].fileUrl
         }
 
-        let rentType :any ='';
-        if(element.rentType !== null && element.rentType !== undefined){
+        let rentType: any = '';
+        if (element.rentType !== null && element.rentType !== undefined) {
           rentType = element.rentType.name
         }
 
-        let propertyType :any ='';
-        if(element.propertyType !== null && element.propertyType !== undefined){
+        let propertyType: any = '';
+        if (element.propertyType !== null && element.propertyType !== undefined) {
           propertyType = element.propertyType.typeDescription
         }
 
@@ -257,32 +292,32 @@ export class HeaderComponent implements OnInit {
             currency: element.country.currency,
             price: element.propertyPrice,
             favorite: element.favorite,
-            id:element.id,
-            alt:element.propertyTitle,
-            src:this.baseUrl+image,
-            bedrooms:element.bedrooms,
-            propertyAddress:element.propertyAddress,
-            bathrooms:element.bathrooms,
-            buildingName:element.buildingName,
-            carpetArea:element.carpetArea,
+            id: element.id,
+            alt: element.propertyTitle,
+            src: this.baseUrl + image,
+            bedrooms: element.bedrooms,
+            propertyAddress: element.propertyAddress,
+            bathrooms: element.bathrooms,
+            buildingName: element.buildingName,
+            carpetArea: element.carpetArea,
           });
       })
     });
 
     setTimeout(() => {
-      if(PropertyListingTypeId == 1){
+      if (PropertyListingTypeId == 1) {
         this.wishlistingDataRent = tempData
-      }else if(PropertyListingTypeId == 2){
+      } else if (PropertyListingTypeId == 2) {
         this.wishlistingDataBuy = tempData
-      }else{
+      } else {
         this.wishlistingDataAll = tempData
       }
     }, 1000);
   }
 
-  wishlistStatus :any;
-  removeFavorite(id:any) {
-    if(this.userId == ''){
+  wishlistStatus: any;
+  removeFavorite(id: any) {
+    if (this.userId == '') {
       this.notifyService.showSuccess('First you need to login', "");
       this.route.navigate(['/login'])
     }
@@ -291,8 +326,8 @@ export class HeaderComponent implements OnInit {
       this.route.navigate(['login']);
     }
 
-    this.service.FavoriteAddRemove(true,{"UserId":this.userId,"PropertyListingId":id}).subscribe(data => {
-      let responsedata :any = data
+    this.service.FavoriteAddRemove(true, { "UserId": this.userId, "PropertyListingId": id }).subscribe(data => {
+      let responsedata: any = data
       this.wishlistStatus = "Favorite is Removed successfully"
       this.notifyService.showSuccess('Favorite is Removed successfully', "");
     });
@@ -304,26 +339,23 @@ export class HeaderComponent implements OnInit {
     }, 1000);
   }
 
-  allCheckbox :any = []
-  allFormCheckbox(id:number){
-    this.allCheckbox.push({'id':id})
-    console.log(this.allCheckbox);
+  allCheckbox: any = []
+  allFormCheckbox(id: number) {
+    this.allCheckbox.push({ 'id': id })
   }
 
-  rentCheckbox :any = []
-  rentFormCheckbox(id:number){
-    this.rentCheckbox.push({'id':id})
-    console.log(this.rentCheckbox);
+  rentCheckbox: any = []
+  rentFormCheckbox(id: number) {
+    this.rentCheckbox.push({ 'id': id })
   }
 
-  buyCheckbox :any = []
-  buyFormCheckbox(id:number){
-    this.buyCheckbox.push({'id':id})
-    console.log(this.buyCheckbox);
+  buyCheckbox: any = []
+  buyFormCheckbox(id: number) {
+    this.buyCheckbox.push({ 'id': id })
   }
 
-  compareProceed(type:any){
-    if(this.userId == ''){
+  compareProceed(type: any) {
+    if (this.userId == '') {
       this.notifyService.showSuccess('First you need to login', "");
       this.route.navigate(['/login'])
     }
@@ -332,29 +364,28 @@ export class HeaderComponent implements OnInit {
       this.route.navigate(['login']);
     }
 
-    if(type == "all"){
-      console.log(this.allCheckbox.length)
-      if(this.allCheckbox.length < 2 || this.allCheckbox.length > 4){
+    if (type == "all") {
+      if (this.allCheckbox.length < 2 || this.allCheckbox.length > 4) {
         this.notifyService.showWarning('Selected property atleast less than < 4 greater than > 2 ', "");
-      }else{
+      } else {
         localStorage.removeItem("compareIds");
-        localStorage.setItem('compareIds',JSON.stringify(this.allCheckbox))
+        localStorage.setItem('compareIds', JSON.stringify(this.allCheckbox))
         this.route.navigateByUrl('/PropertyCompare');
       }
-    }else if(type == 'rent'){
-      if(this.rentCheckbox.length < 2 || this.rentCheckbox.length > 4){
+    } else if (type == 'rent') {
+      if (this.rentCheckbox.length < 2 || this.rentCheckbox.length > 4) {
         this.notifyService.showWarning('Selected property atleast less than < 4 greater than > 2 ', "");
-      }else{
+      } else {
         localStorage.removeItem("compareIds");
-        localStorage.setItem('compareIds',JSON.stringify(this.allCheckbox))
+        localStorage.setItem('compareIds', JSON.stringify(this.allCheckbox))
         this.route.navigateByUrl('/PropertyCompare');
       }
-    }else if(type == "buy"){
-      if(this.buyCheckbox.length < 2 || this.buyCheckbox.length > 4){
+    } else if (type == "buy") {
+      if (this.buyCheckbox.length < 2 || this.buyCheckbox.length > 4) {
         this.notifyService.showWarning('Selected property atleast less than < 4 greater than > 2 ', "");
-      }else{
+      } else {
         localStorage.removeItem("compareIds");
-        localStorage.setItem('compareIds',JSON.stringify(this.allCheckbox))
+        localStorage.setItem('compareIds', JSON.stringify(this.allCheckbox))
         this.route.navigateByUrl('/PropertyCompare');
       }
     }
