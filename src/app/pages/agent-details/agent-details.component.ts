@@ -33,12 +33,12 @@ export class AgentDetailsComponent implements OnInit {
     if (this.user != null) {
       this.service.DisplayAgent({ "PropertyListingId": "", "AgentUserId": this.id, "LoginUserId": this.id }).subscribe((result: any) => {
         this.agentDetail = result.data;
-
         if(result.data != null){
           this.newAgentDetail.image = (result.data.agentDetails.user.imageUrl !== undefined) ? result.data.agentDetails.user.imageUrl : ''
           this.newAgentDetail.fullName = (result.data.agentDetails.user.fullName !== undefined) ? result.data.agentDetails.user.fullName : ''
           this.newAgentDetail.expertIn = (result.data.agentDetails.expertIn !== undefined) ? result.data.agentDetails.expertIn : ''
           this.newAgentDetail.companyName = (result.data.agentDetails.company.companyName !== undefined) ? result.data.agentDetails.company.companyName : ''
+          this.newAgentDetail.companyid = (result.data.agentDetails.company.id !== undefined) ? result.data.agentDetails.company.id : ''
           this.newAgentDetail.phoneNumber = (result.data.agentDetails.user.phoneNumber !== undefined) ? result.data.agentDetails.user.phoneNumber : ''
           this.newAgentDetail.companyAdress = (result.data.agentDetails.company.companyAdress !== undefined) ? result.data.agentDetails.company.companyAdress : ''
           this.newAgentDetail.brnNo = (result.data.agentDetails.brnNo !== undefined) ? result.data.agentDetails.brnNo : ''

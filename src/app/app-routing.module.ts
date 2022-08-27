@@ -120,6 +120,7 @@ const routes: Routes = [
   { path: "search", component: RentpropertiesComponent },
   { path: "search/:type", component: RentpropertiesComponent },
   { path: "mapview", component: MapviewComponent },
+  { path: "mapview/:type", component: MapviewComponent },
   { path: "PropertyCompare", component: PropertyCompareComponent },
   { path: "explore", component: ExploreComponent },
   { path: "explore-city/:id", component: ExploreCityComponent },

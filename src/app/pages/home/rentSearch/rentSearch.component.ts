@@ -76,7 +76,7 @@ export class RentSearchComponent implements OnInit {
   Yearly: any;
   YearlyAr: any;
   minValue: number = 10;
-  maxValue: number = 50;
+  maxValue: number = 500;
   step: 10;
   enforceStep: false;
   enforceRange: false;
@@ -194,6 +194,9 @@ export class RentSearchComponent implements OnInit {
         ,PropertyAddress:this.SubmitForm.value.Name,PriceStart:this.SubmitForm.value.PriceStart,PriceEnd:this.SubmitForm.value.PriceEnd
         ,Bedrooms:'',Bathrooms:'',CurrentPage:1,DistrictIds:JSON.stringify(this.DistrictsId),DistrictsValue:JSON.stringify(this.SearchKeyword)
       }};
+
+
+    // console.log(params)
 
 
     this.route.navigate(['/search'],params)

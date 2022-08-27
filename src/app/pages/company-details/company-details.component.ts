@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms'
 import { ActivatedRoute } from '@angular/router';
 import { AppService } from 'src/app/service/app.service';
+import {NotificationService} from "../../service/notification.service";
 
 @Component({
   selector: 'app-company-details',
@@ -17,11 +18,15 @@ export class CompanyDetailsComponent implements OnInit {
   id: any;
   totalLength: number = 0;
   page: number = 1;
-  constructor(private service:AppService, private route: ActivatedRoute) {
+  user :any;
+  constructor(private service:AppService, private route: ActivatedRoute,private notifyService : NotificationService) {
     this.route.params.subscribe(params => {
       this.id = params['id'];
       this.service.id = params['id'];
-    }) 
+    })
+    this.user = localStorage.getItem("user");
+    this.user = JSON.parse(this.user);
+
     this.service.DisplayCompany(this.id).subscribe((result:any)=>{
       this.companyDetails = result.data;
       console.log(this.companyDetails)
@@ -229,5 +234,78 @@ export class CompanyDetailsComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+
+  leadData    : any = {};
+  nameError :any = '';
+  emailError :any = '';
+  phoneError :any = '';
+  messageError :any = '';
+
+  leadProceedStore(){
+    if (this.agentContact.invalid) {
+      if(this.agentContact.value.name == ''){
+        this.nameError = "Name required"
+      }else {
+        this.nameError = ""
+      }
+      if(this.agentContact.value.email == ''){
+        this.emailError = "Email required"
+      }else {
+        this.emailError = ""
+      }
+      if(this.agentContact.value.phone == ''){
+        this.phoneError = "Phone required"
+      }else{
+        this.phoneError = ""
+      }
+      if(this.agentContact.value.message == ''){
+        this.messageError = "Message required"
+      }else {
+        this.messageError = ""
+      }
+      return;
+    }
+    if (this.agentContact.valid) {
+      this.leadData.name = this.agentContact.value.name
+      this.leadData.email = this.agentContact.value.email
+      this.leadData.phone = this.agentContact.value.phone
+      this.leadData.message = this.agentContact.value.message
+      this.leadData.PropertyListingId = ''
+      this.leadData.UserId = ''
+      // this.leadData.companyId = this.id
+      if(this.user != undefined && this.user != null){
+        this.leadData.LoginUserId = this.user.id
+      }else{
+        this.leadData.LoginUserId = ''
+      }
+
+      this.service.StoreLead(this.leadData).subscribe(result => {
+        if(result!=null){
+          let responsedata :any = result;
+          if(responsedata.message == "User Lead  submitted successfully"){
+            if(responsedata.data != undefined && responsedata.error.length < 1){
+              this.agentContact.controls.name.setValue('');
+              this.agentContact.controls.email.setValue('');
+              this.agentContact.controls.phone.setValue('');
+              this.agentContact.controls.message.setValue('');
+              this.nameError = ''
+              this.emailError = ''
+              this.phoneError = ''
+              this.messageError = ''
+              this.notifyService.showSuccess(responsedata.message, "");
+            }else{
+              this.notifyService.showError(responsedata.error[0], "");
+            }
+          }
+        }else{
+          this.notifyService.showError("Submitted Failed", "");
+        }
+      });
+    }
+
+  }
+
+
 
 }

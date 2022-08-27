@@ -14,7 +14,9 @@ import { AppService } from 'src/app/service/app.service';
   styleUrls: ['./listpropertymedia.component.scss']
 })
 export class ListpropertymediaComponent implements OnInit {
-  
+  trash = '../../../../assets/images/icons/Trash.svg'
+  checkmark = '../../../../assets/images/icons/checkmark-circle.svg'
+  upload1 = '../../../../assets/images/icons/upload-1.svg'
   error: any = ""
   showError: boolean = false;
   errorResponse(data: any) {

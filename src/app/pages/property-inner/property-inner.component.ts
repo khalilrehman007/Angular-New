@@ -164,6 +164,7 @@ export class PropertyInnerComponent implements OnInit {
   map: any;
   bounds: any = [];
   id: 1;
+  userData:any = "";
   scroll(el: HTMLElement) {
     el.scrollIntoView();
   }
@@ -171,6 +172,7 @@ export class PropertyInnerComponent implements OnInit {
     this.route.events.subscribe((e: any) => {
       // If it is a NavigationEnd event re-initalise the component
       if (e instanceof NavigationEnd) {
+        $(window).scrollTop(0);
         mapboxgl.accessToken = environment.mapbox.accessToken;
         this.propertyId = this.activeRoute.snapshot.queryParamMap.get('id');
         this.getUser();
@@ -239,6 +241,7 @@ export class PropertyInnerComponent implements OnInit {
   getloadDashboardData() {
     this.service.DisplayPropertyListing({"PropertyListingId":this.propertyId,"LoginUserId":this.userId}).subscribe(e => {
       let temp: any = e;
+      this.userData = temp.data.user;
       this.propertyLat = temp.data.propertyListing.propertyLat;
       this.propertyLng = temp.data.propertyListing.propertyLong;
       this.buildingName = temp.data.propertyListing.buildingName;

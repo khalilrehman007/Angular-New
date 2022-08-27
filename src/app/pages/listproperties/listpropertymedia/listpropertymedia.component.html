@@ -53,19 +53,31 @@
                             </div>
                             <div ngClass="list-new-proerty-cntnt">
                                 <div ngClass="upload-document_div">
-                                    <h6 ngClass="h6-design">Upload Documents</h6>
-                                    <div ngClass="upload_documents d-flex">
-                                        <div ngClass="bordered-btn-design">
-                                            <div ngClass="bordered-upload-btn">
-                                                <input type="file" hidden #fileInput
+                                    <h6 ngClass="h6-design mb-4">Upload Documents</h6>
+                                    <div ngClass="blue-upload-box">
+                                        <div ngClass="blue-upload-bordered-btn">
+                                            <h6 ngClass="blue-heading">Title Deed</h6>
+                                            <div ngClass="upload-files-design">
+                                                <div ngClass="greybordered-btn">
+                                                    <input type="file" hidden #fileInput
                                                     (change)='handleChange($any($event.target).files)'>
-                                                <button mat-button (click)="fileInput.click();tittleDeedCheck=true"><img
-                                                        src="{{uploadimg}}"> Upload Title Deed</button>
-                                            </div>
-                                            <div ngClass="output-file-name">
-                                            <p ngClass="outpup-filename p-0">{{file}}</p>
+                                                    <button mat-button (click)="fileInput.click()"><img
+                                                            src="{{upload1}}"> Upload Title Deed</button>
+                                                </div>
+                                                <div ngClass="uploded-output">
+                                                    <span ngClass="outpup-filename">{{ file }}</span>
+                                                    <div ngClass="action-btns">
+                                                        <button ngClass="trash"><img src="{{trash}}"></button>
+                                                    </div>
+                                                    <p ngClass="drag-drop-text">Drag & drop file here or Browse
+                                                    </p>
+                                                    <button ngClass="succesfull-uploaded"><img
+                                                            src="{{checkmark}}"> Uploaded</button>
+                                                </div>
                                             </div>
                                         </div>
+                                        <p ngClass="accepted-file-text">Accepted File Type: .doc, .pdf, .jpg,
+                                            .jpeg, .png</p>
                                     </div>
                                 </div>
                             </div>

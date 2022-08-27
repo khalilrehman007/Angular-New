@@ -243,8 +243,8 @@
             </div>
 
             <div class="col-lg-4">
-                <div class="company-details__form-wrapper">
-                    <div class="row mb-3">
+                <div class="adds-blck-sec">
+                    <!-- <div class="row mb-3">
                         <div class="col-8 d-flex align-items-center">
                             <h6 *ngIf="companyDetails.company && companyDetails.company.companyName">Contact {{companyDetails.company.companyName}}</h6>
                         </div>
@@ -257,21 +257,21 @@
                             <label for="name" class="company-details__form-label">Name*</label>
                             <input type="text" name="name" id="name" placeholder="Enter your name"
                                 class="company-details__form-input" formControlName="name">
-                            <span style="color: red" *ngIf="name && name.invalid && name.touched">*This field is
+                            <span style="color: red" *ngIf="nameError != ''">*This field is
                                 required</span>
                         </fieldset>
                         <fieldset class="company-details__form-fieldset">
                             <label for="email" class="company-details__form-label">Email*</label>
                             <input type="text" name="email" id="email" placeholder="Enter your email"
                                 class="company-details__form-input" formControlName="email">
-                            <span style="color: red" *ngIf="email && email.invalid && email.touched">*This field is
+                            <span style="color: red" *ngIf="emailError != ''">*This field is
                                 required</span>
                         </fieldset>
                         <fieldset class="company-details__form-fieldset">
                             <label for="phone" class="company-details__form-label">Phone No.*</label>
                             <input type="text" name="phone" id="phone" placeholder="Enter your phone number"
                                 class="company-details__form-input" formControlName="phone">
-                            <span style="color: red" *ngIf="phone && phone.invalid && phone.touched">*This field is
+                            <span style="color: red" *ngIf="phoneError != ''">*This field is
                                 required</span>
                         </fieldset>
                         <fieldset class="company-details__form-fieldset">
@@ -280,8 +280,10 @@
                                 placeholder="I would like to inquire about the property OV - R8986. Please contact me at your earliest convenience."
                                 class="company-details__form-input company-details__form-textarea"
                                 formControlName="message"></textarea>
+                          <span style="color: red" *ngIf="messageError != ''">*This field is
+                                required</span>
                         </fieldset>
-                        <button type="submit" class="company-details__form-submit">Send Email</button>
+                        <button type="button" (click)="leadProceedStore()" class="company-details__form-submit">Send Email</button>
                     </form>
                     <div class="row">
                         <div class="col-xxl-6">
@@ -309,7 +311,9 @@
                                 <img src="assets/images/icons/film.svg" alt="">
                                 Virtual Tour</a>
                         </div>
-                    </div>
+                    </div> -->
+                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6409412786140093"
+     crossorigin="anonymous"></script>
                 </div>
             </div>
         </div>

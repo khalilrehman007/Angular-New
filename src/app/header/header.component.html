@@ -83,6 +83,11 @@
             <div ngClass="collapse navbar-collapse justify-content-end" id="collapsibleNavbar" [ngClass]="status1 ? 'show' : 'noshow'">
               <ul ngClass="navbar-nav">
                 <li ngClass="nav-item">
+                  <a ngClass="nav-link blue-bordered-btn" href="http://dx1.in/classified">
+                    Classified
+                  </a>
+                </li>
+                <li ngClass="nav-item">
                   <a ngClass="nav-link blue-bordered-btn" [routerLink]="['/PropertyDetail']">
                     Property Valuation <span ngClass="ai-tag">AI</span>
                   </a>
@@ -211,6 +216,7 @@
                       </mat-tab-group>
                     </div>
                   </div>
+                  <button (click)="clickEvent()" ngClass="overlay_dropdown-btn"></button>
                </li>
                <li ngClass="nav-item position-relative notification_header-list" *ngIf="userData != ''">
                 <button (click)="clickEvent3()"><mat-icon>notifications_none</mat-icon></button>
@@ -230,6 +236,7 @@
                       </ul>
                   </div>
                 </div>
+                <button (click)="clickEvent3()" ngClass="overlay_dropdown-btn"></button>
              </li>
                <li ngClass="nav-item signin-li tm-hide">
                 <div #noListItemTmpl *ngIf="user == null">
@@ -255,6 +262,7 @@
                   </ul>
                 </div>
               </div> -->
+              <button (click)="clickEvent2()" ngClass="overlay_dropdown-btn"></button>
              </li>
               </ul>
             </div>
@@ -281,3 +289,4 @@
     </div>
 </ng-template>
 </div>
+<div ngClass="overlay_counter" (click)="changeBodyClass()"></div>
