@@ -53,7 +53,7 @@
             </div>
             <div ngClass="row" *ngIf="blog && blog.blogCategory.blogs">
                 <div ngClass="col-lg-4 col-md-6 blog-places-col" *ngFor=" let item of blog.blogCategory.blogs">
-                    <a href="/blogs-details/{{item.id}}">
+                    <a routerLink="/blogs-details/{{item.id}}">
                         <img *ngIf="item.blogDocument && item.blogDocument.fileUrl"
                             src="https://beta.ovaluate.com/{{item.blogDocument.fileUrl}}"
                             ngClass="img-fluid blog-image-homepage" alt="">

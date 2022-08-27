@@ -31,18 +31,24 @@ export class BlogViewComponent implements OnInit {
       date:'March 01, 2022'
     }
   ]
-  constructor(private route: ActivatedRoute,private router: Router,private service:AppService) { 
+  constructor(private route: ActivatedRoute,private router: Router,private service:AppService) {
+    this.router.events.subscribe((e: any) => {
+      // If it is a NavigationEnd event re-initalise the component
+      if (e instanceof NavigationEnd) {
+        $(window).scrollTop(0);
+        this.route.params.subscribe(params=>{
+          this.id = params['id'];
+          this.service.id = params['id'];
+        })
+        this.service.LoadBlogById(this.id).subscribe(data=>{
+          this.blog=data;
+          this.blog=this.blog.data;
+          this.blog.blogDocument.fileUrl = 'https://www.ovaluate.com/'+this.blog.blogDocument.fileUrl;
+          $(".blog-post-content").html(this.blog.contentData);
+        });
+      }
+    }); 
     
-    this.route.params.subscribe(params=>{
-      this.id = params['id'];
-      this.service.id = params['id'];
-    })
-    this.service.LoadBlogById(this.id).subscribe(data=>{
-      this.blog=data;
-      this.blog=this.blog.data;
-      this.blog.blogDocument.fileUrl = 'https://www.ovaluate.com/'+this.blog.blogDocument.fileUrl;
-      $(".blog-post-content").html(this.blog.contentData);
-    });
   }
 
   ngOnInit(): void {
