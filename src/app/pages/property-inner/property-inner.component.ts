@@ -172,6 +172,7 @@ export class PropertyInnerComponent implements OnInit {
     this.route.events.subscribe((e: any) => {
       // If it is a NavigationEnd event re-initalise the component
       if (e instanceof NavigationEnd) {
+        $(window).scrollTop(0);
         mapboxgl.accessToken = environment.mapbox.accessToken;
         this.propertyId = this.activeRoute.snapshot.queryParamMap.get('id');
         this.getUser();
