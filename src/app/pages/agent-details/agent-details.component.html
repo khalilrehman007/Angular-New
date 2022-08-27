@@ -90,6 +90,10 @@
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="properties">
+                                <div class="no-data-found" *ngIf="myListing.length == 0">
+                                  <mat-icon>file_copy</mat-icon>
+                                  <p>No Data Found</p>
+                                </div>
                                 <div *ngIf="myListing.length > 0">
                                     <div class="agent-details__tab-content mb-3">
                                         <div class="agent-details__property-wrapper">
