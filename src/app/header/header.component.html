@@ -222,11 +222,14 @@
                     <h4>Notifications</h4>
                     <button (click)="clickEvent3()"><img src="{{close}}"></button>
                   </div>
-                  <div ngClass="notifivation-inner-cntnt">
+                  <div ngClass="notifivation-inner-cntnt" *ngIf="notificationData.length > 0">
                       <ul ngClass="list-unstyled">
-                        <li ngClass="position-relative">Message Recieved <span ngClass="notifiction_time">10 AM</span></li>
-                        <li ngClass="position-relative">Message Recieved <span ngClass="notifiction_time">10 AM</span></li>
-                        <li ngClass="position-relative">Message Recieved <span ngClass="notifiction_time">10 AM</span></li>
+                        <li ngClass="position-relative" *ngFor="let item of notificationData">
+                          <p>{{item.value.Title}}
+                            <span ngClass="notifiction_time">{{getTime(item.value.NotificationDateTime)}}</span>
+                          </p>
+                          <p>{{item.value.Body}}</p>
+                        </li>
                       </ul>
                   </div>
                 </div>

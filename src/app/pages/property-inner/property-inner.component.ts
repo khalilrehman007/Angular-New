@@ -5,7 +5,7 @@ import { BreadcrumbComponent } from '../../breadcrumb/breadcrumb.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AppService} from "../../service/app.service";
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
 import {NotificationService} from "../../service/notification.service";
 import { ChartConfiguration, ChartOptions, ChartType } from "chart.js";
 import {DomSanitizer} from "@angular/platform-browser";
@@ -168,16 +168,22 @@ export class PropertyInnerComponent implements OnInit {
     el.scrollIntoView();
   }
   constructor(private authService:AuthService,private domSanitizer: DomSanitizer,private activeRoute: ActivatedRoute,private modalService: NgbModal,private service:AppService,private route:Router,private notifyService : NotificationService) {
-    mapboxgl.accessToken = environment.mapbox.accessToken;
-    this.propertyId = this.activeRoute.snapshot.queryParamMap.get('id');
-    this.getUser();
-    let userId = '';
-    if(this.user !== null){
-      userId = this.user.id;
-    }
-    this.userId = userId;
-    this.getloadDashboardData();
-    this.LoadSimilarProperty();
+    this.route.events.subscribe((e: any) => {
+      // If it is a NavigationEnd event re-initalise the component
+      if (e instanceof NavigationEnd) {
+        mapboxgl.accessToken = environment.mapbox.accessToken;
+        this.propertyId = this.activeRoute.snapshot.queryParamMap.get('id');
+        this.getUser();
+        let userId = '';
+        if(this.user !== null){
+          userId = this.user.id;
+        }
+        this.userId = userId;
+        this.getloadDashboardData();
+        this.LoadSimilarProperty();
+      }
+    });
+    
   }
 
   openVerticallyCentered(content) {
@@ -185,7 +191,6 @@ export class PropertyInnerComponent implements OnInit {
   }
   locationAddress1 = '';
   onTabChanged(e:any) {
-    console.log(e)
     if(e.index == 5) {
       this.map = new mapboxgl.Map({
         container: 'property-near-map',
@@ -218,7 +223,6 @@ export class PropertyInnerComponent implements OnInit {
       //       }
       //     },
       //     error: (err) => {
-      //       console.log(err);
       //     }
       //   });
       // });
@@ -235,7 +239,6 @@ export class PropertyInnerComponent implements OnInit {
   getloadDashboardData() {
     this.service.DisplayPropertyListing({"PropertyListingId":this.propertyId,"LoginUserId":this.userId}).subscribe(e => {
       let temp: any = e;
-      console.log(temp.data);
       this.propertyLat = temp.data.propertyListing.propertyLat;
       this.propertyLng = temp.data.propertyListing.propertyLong;
       this.buildingName = temp.data.propertyListing.buildingName;
@@ -262,7 +265,6 @@ export class PropertyInnerComponent implements OnInit {
         rentType = jsonParsDate.propertyListing.rentType.name
       }
 
-      // console.log(jsonParsDate.propertyListing.rentType,'dededededed')
       if(jsonParsDate.propertyListing != null){
         this.propertyDetailData.propertyPrice = (jsonParsDate.propertyListing.propertyPrice !== undefined) ? jsonParsDate.propertyListing.propertyPrice : ''
         this.propertyDetailData.currency = (jsonParsDate.propertyListing.country.currency !== undefined) ? jsonParsDate.propertyListing.country.currency : ''
@@ -310,7 +312,6 @@ export class PropertyInnerComponent implements OnInit {
         this.propertyDetailData.id = (jsonParsDate.propertyListing.id !== undefined) ? jsonParsDate.propertyListing.id : ''
         this.propertyDetailData.favorite = (jsonParsDate.propertyListing.favorite !== undefined) ? jsonParsDate.propertyListing.favorite : ''
 
-        // console.log(this.propertyDetailData.propertyLat,this.propertyDetailData.propertyLong)
         // let location ="https://maps.google.com/maps?q="+this.propertyDetailData.propertyLat+','+this.propertyDetailData.propertyLong+'&hl=es&z=14&amp;output=embed';
 
         let ree  = "https://maps.google.com/maps?q="+this.propertyDetailData.propertyLat+","+this.propertyDetailData.propertyLong+"&hl=es&z=14&amp;output=embed"
