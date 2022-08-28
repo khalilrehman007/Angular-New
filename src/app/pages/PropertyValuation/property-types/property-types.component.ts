@@ -96,6 +96,7 @@ export class PropertyTypesComponent implements OnInit {
     this.loadFittingType();
     this.formDetailData = localStorage.getItem("valuationDetailData");
     this.formDetailData = JSON.parse(this.formDetailData);
+    console.log(this.formDetailData);
     this.formData.FurnishingType = 0;
     this.formData.FittingType = 0;
     this.formData.Bedrooms = 0;
@@ -448,7 +449,6 @@ export class PropertyTypesComponent implements OnInit {
     }
     this.formDetailData.PropertyFeatures = this.featuresFormName;
     this.formData.PropertyFeatures = temp;
-    // console.log(this.formData);
     localStorage.setItem('valuationDetailData', JSON.stringify(this.formDetailData));
     localStorage.setItem('propertyTypeData', JSON.stringify(this.formData));
     localStorage.setItem('valuationData', JSON.stringify(this.formData));

@@ -281,7 +281,6 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
       this.formDetailData.TitleDeedNo = this.propertyDetails.value.titleDeed;
       this.formDetailData.MunicipalityNo = this.propertyDetails.value.muncipality;
       this.formDetailData.address = $("#searchLocation").val();
-      localStorage.setItem('valuationDetailData', JSON.stringify(this.formDetailData));
 
       this.data.TitleDeedNo = this.propertyDetails.value.titleDeed;
       this.data.TitleDeedType = this.titleDeedType;
