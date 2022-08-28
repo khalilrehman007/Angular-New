@@ -28,7 +28,6 @@ export class ListpropertyinfoComponent implements OnInit {
   editdata: any;
   submitted = false;
   responsedata: any;
-  oldData: any = "";
   data: any = {};
   propertyType: any = [];
   selectedPropertyType: any = {};
@@ -69,7 +68,24 @@ export class ListpropertyinfoComponent implements OnInit {
   locatedNear: any = [];
   ownershipType: any = [{ id: 1, name: "Freehold" }, { id: 2, name: "Leasehold" }];
   showLoader: boolean = false;
-
+  SubmitForm = new FormGroup({
+    TotalFloor: new FormControl("", [Validators.required]),
+    FloorNo: new FormControl("", [Validators.required]),
+    propertyTitle: new FormControl("", [Validators.required]),
+    carpetArea: new FormControl("", [Validators.required]),
+    buildupArea: new FormControl("", [Validators.required]),
+    price: new FormControl("", [Validators.required]),
+    AED: new FormControl("",),
+    brokerageAed: new FormControl("",),
+    availablefrom: new FormControl("", [Validators.required]),
+    noticePeriod: new FormControl("", [Validators.required]),
+    lockingPeriod: new FormControl("", [Validators.required]),
+    propertyDescription: new FormControl("", [Validators.required]),
+    propertyOffers: new FormControl(""),
+  });
+  get validate() {
+    return this.SubmitForm.controls;
+  }
   constructor(private api: AppService, private service: AuthService, private route: Router, private notifyService: NotificationService) {
     this.api.PropertyListingRentBuy({ "Lat": this.data.PropertyLat, "Long": this.data.PropertyLong }).subscribe((result: any) => {
       this.propertyListingBuy = result.data.propertyListingBuy;
@@ -122,12 +138,13 @@ export class ListpropertyinfoComponent implements OnInit {
     if (localStorage.getItem("propertyData")) {
       let temp: any = localStorage.getItem("propertyData");
       this.data = JSON.parse(temp);
+
       if (localStorage.getItem("listingData")) {
         temp = localStorage.getItem("listingData");
-        this.data = this.oldData = JSON.parse(temp);
+        this.data = JSON.parse(temp);
+
         this.listingTypeId = this.data.PropertyListingTypeId;
-        this.showLoader = true;
-        this.categoryID = this.data.PropertyCategoryId;
+        
         for (let i = 0; i < this.data.PetPolicies.length; i++) {
           this.petPolicyData.push(this.data.PetPolicies[i].PetPolicyId)
         }
@@ -137,14 +154,82 @@ export class ListpropertyinfoComponent implements OnInit {
         for (let i = 0; i < this.data.PropertyFeatures.length; i++) {
           this.featuresFormData.push(this.data.PropertyFeatures[i].PropertyFeatureId)
         }
+
+        this.showLoader = true;
+        this.categoryID = this.data.PropertyCategoryId;
         this.api.LoadType(this.data.PropertyCategoryId).subscribe((result) => {
           this.propertyType = result;
           this.propertyType = this.propertyType.data
           this.showLoader = false;
           this.selectedPropertyType = this.propertyType.filter((item: any) => item.id == this.data.PropertyTypeId)[0];
           this.propertyTypeCheck = true;
+          if(this.selectedPropertyType.hasTotalFloor) {
+            this.SubmitForm.patchValue({
+              TotalFloor: this.data.TotalFloor
+            })
+          }
+          if(this.selectedPropertyType.hasFloorNo) {
+            this.SubmitForm.patchValue({
+              FloorNo: this.data.FloorNo
+            })
+          }
+          if(this.selectedPropertyType.hasCarpetArea) {
+            this.SubmitForm.patchValue({
+              carpetArea: this.data.CarpetArea
+            })
+          }
+          if(this.selectedPropertyType.hasBuildUpArea) {
+            this.SubmitForm.patchValue({
+              buildupArea: this.data.BuildupArea
+            })
+          }
+          if(this.data.SecurityDeposit == "true") {
+            this.SubmitForm.patchValue({
+              AED: this.data.SecurityDepositPrice
+            })
+          }
+          if(this.data.BrokerageCharge == "true") {
+            this.SubmitForm.patchValue({
+              brokerageAed: this.data.BrokerageChargePrice
+            })
+          }
+          if(this.data.AvailableDate) {
+            let temp:any = new Date(this.data.AvailableDate);
+            this.SubmitForm.patchValue({
+              availablefrom: temp
+            })
+          }
+          if(this.data.NoticePeriod) {
+            this.SubmitForm.patchValue({
+              noticePeriod: this.data.NoticePeriod
+            })
+          }
+          if(this.data.LockingPeriod) {
+            this.SubmitForm.patchValue({
+              lockingPeriod: this.data.LockingPeriod
+            })
+          }
+          if(this.data.PropertyTitle) {
+            this.SubmitForm.patchValue({
+              propertyTitle: this.data.PropertyTitle
+            })
+          }
+          if(this.data.PropertyDescription) {
+            this.SubmitForm.patchValue({
+              propertyDescription: this.data.PropertyDescription
+            })
+          }
+          if(this.data.PropertyOffer) {
+            this.SubmitForm.patchValue({
+              propertyOffers: this.data.PropertyOffer
+            })
+          }
+          this.SubmitForm.patchValue({
+            price: this.data.PropertyPrice
+          })
         });
-        console.log(this.oldData);
+        
+        console.log(this.data);
       }
     } else {
       this.route.navigate(['listingproperty'])
@@ -193,24 +278,6 @@ export class ListpropertyinfoComponent implements OnInit {
       this.showLoader = false;
     });
     this.clearData();
-  }
-  SubmitForm = new FormGroup({
-    TotalFloor: new FormControl("", [Validators.required]),
-    FloorNo: new FormControl("", [Validators.required]),
-    propertyTitle: new FormControl("", [Validators.required]),
-    carpetArea: new FormControl("", [Validators.required]),
-    buildupArea: new FormControl("", [Validators.required]),
-    price: new FormControl("", [Validators.required]),
-    AED: new FormControl("",),
-    brokerageAed: new FormControl("",),
-    availablefrom: new FormControl("", [Validators.required]),
-    noticePeriod: new FormControl("", [Validators.required]),
-    lockingPeriod: new FormControl("", [Validators.required]),
-    propertyDescription: new FormControl("", [Validators.required]),
-    propertyOffers: new FormControl(""),
-  });
-  get validate() {
-    return this.SubmitForm.controls;
   }
   getBedroom(e: any) {
     this.bedroomCheck = true;
@@ -475,7 +542,7 @@ export class ListpropertyinfoComponent implements OnInit {
         temp.push({ "PetPolicyId": this.petPolicyData[i] });
       }
       this.data.PetPolicies = temp;
-      this.data.AvailableDate = $("#formDate").val()
+      this.data.AvailableDate = $("#formDate").val();
       this.data.NoticePeriod = this.SubmitForm.value.noticePeriod;
       this.data.LockingPeriod = this.SubmitForm.value.lockingPeriod;
       this.data.PropertyTitle = this.SubmitForm.value.propertyTitle;
