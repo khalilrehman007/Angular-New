@@ -50,7 +50,7 @@
                       <label class="h6-design">Title Deed No. <span ngClass="required-span">*</span> <span
                           ngClass="small-label">(Insert "0" if you don't have NO)</span></label>
                       <mat-form-field class="full-width input-design-2" appearance="fill">
-                        <input matInput type="number" placeholder="Title Deed No" formControlName="titleDeed" />
+                        <input matInput type="text" placeholder="Title Deed No" formControlName="titleDeed" />
                       </mat-form-field>
                       <span style="color: #FF0000" *ngIf="
                           titleDeed && titleDeed.invalid && titleDeed.touched
@@ -58,41 +58,17 @@
                     </div>
                   </div>
                   <div ngClass="col-xl-6 col-lg-6 col-sm-12">
-                    <div ngClass="block-wrapper mb-4" *ngIf="oldData.TitleDeedType == 1">
+                    <div ngClass="block-wrapper mb-4">
                       <label class="h6-design">Title Deed Type <span ngClass="required-span">*</span></label>
                       <div class="checkbox-flex-box two-column max-240">
                         <div class="checkbox-design position-relative" (click)="toggleType(1)">
-                          <input type="radio" id="Monthly" name="titleDeed-type" value="Monthly" checked />
+                          <input type="radio" id="Monthly" name="titleDeed-type" value="Monthly" *ngIf="oldData.TitleDeedType == 1" checked />
+                          <input type="radio" id="Monthly" name="titleDeed-type" value="Monthly" *ngIf="oldData.TitleDeedType != 1" />
                           <button class="checkbox-btn">Leasehold</button>
                         </div>
                         <div class="checkbox-design position-relative" (click)="toggleType(2)">
-                          <input type="radio" id="Quaterly" name="titleDeed-type" value="Quaterly" />
-                          <button class="checkbox-btn">Freehold</button>
-                        </div>
-                      </div>
-                    </div>
-                    <div ngClass="block-wrapper mb-4" *ngIf="oldData.TitleDeedType == 2">
-                      <label class="h6-design">Title Deed Type <span ngClass="required-span">*</span></label>
-                      <div class="checkbox-flex-box two-column max-240">
-                        <div class="checkbox-design position-relative" (click)="toggleType(1)">
-                          <input type="radio" id="Monthly" name="titleDeed-type" value="Monthly" />
-                          <button class="checkbox-btn">Leasehold</button>
-                        </div>
-                        <div class="checkbox-design position-relative" (click)="toggleType(2)">
-                          <input type="radio" id="Quaterly" name="titleDeed-type" value="Quaterly" checked />
-                          <button class="checkbox-btn">Freehold</button>
-                        </div>
-                      </div>
-                    </div>
-                    <div ngClass="block-wrapper mb-4" *ngIf="oldData.TitleDeedType != 1 && oldData.TitleDeedType != 2 ">
-                      <label class="h6-design">Title Deed Type <span ngClass="required-span">*</span></label>
-                      <div class="checkbox-flex-box two-column max-240">
-                        <div class="checkbox-design position-relative" (click)="toggleType(1)">
-                          <input type="radio" id="Monthly" name="titleDeed-type" value="Monthly" />
-                          <button class="checkbox-btn">Leasehold</button>
-                        </div>
-                        <div class="checkbox-design position-relative" (click)="toggleType(2)">
-                          <input type="radio" id="Quaterly" name="titleDeed-type" value="Quaterly" />
+                          <input type="radio" id="Quaterly" name="titleDeed-type" value="Quaterly" *ngIf="oldData.TitleDeedType == 2" checked />
+                          <input type="radio" id="Quaterly" name="titleDeed-type" value="Quaterly" *ngIf="oldData.TitleDeedType != 2" />
                           <button class="checkbox-btn">Freehold</button>
                         </div>
                       </div>
@@ -107,7 +83,7 @@
                       <label class="h6-design">Muncipality/Affection No. <span ngClass="required-span">*</span> <span
                           ngClass="small-label">(Insert "0" if you don't have NO)</span></label>
                       <mat-form-field class="full-width input-design-2" appearance="fill">
-                        <input matInput type="number" placeholder="Enter the Municipality No/Affection No."
+                        <input matInput type="text" placeholder="Enter the Municipality No/Affection No."
                           formControlName="muncipality" />
                       </mat-form-field>
                       <span style="color: #FF0000;" *ngIf="
@@ -120,33 +96,15 @@
                   <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                     <div ngClass="block-wrapper mb-4">
                       <label class="h6-design">Property Insured <span ngClass="required-span">*</span></label>
-                      <div class="checkbox-flex-box two-column max-240" *ngIf="oldData.PropertyInsured == 1">
+                      <div class="checkbox-flex-box two-column max-240">
                         <div class="checkbox-design position-relative" (click)="toggleInsured(1)">
-                          <input type="radio" id="Yes" name="propertyInsured-type" value="Yes" checked />
+                          <input type="radio" id="Yes" name="propertyInsured-type" value="Yes" *ngIf="oldData.PropertyInsured == 1" checked />
+                          <input type="radio" id="Yes" name="propertyInsured-type" value="Yes" *ngIf="oldData.PropertyInsured != 1" />
                           <button class="checkbox-btn">Yes</button>
                         </div>
                         <div class="checkbox-design position-relative" (click)="toggleInsured(2)">
-                          <input type="radio" id="No" name="propertyInsured-type" value="No" />
-                          <button class="checkbox-btn">No</button>
-                        </div>
-                      </div>
-                      <div class="checkbox-flex-box two-column max-240" *ngIf="oldData.PropertyInsured == 2">
-                        <div class="checkbox-design position-relative" (click)="toggleInsured(1)">
-                          <input type="radio" id="Yes" name="propertyInsured-type" value="Yes" />
-                          <button class="checkbox-btn">Yes</button>
-                        </div>
-                        <div class="checkbox-design position-relative" (click)="toggleInsured(2)">
-                          <input type="radio" id="No" name="propertyInsured-type" value="No" checked/>
-                          <button class="checkbox-btn">No</button>
-                        </div>
-                      </div>
-                      <div class="checkbox-flex-box two-column max-240" *ngIf="oldData.PropertyInsured != 1 && oldData.PropertyInsured != 2 ">
-                        <div class="checkbox-design position-relative" (click)="toggleInsured(1)">
-                          <input type="radio" id="Yes" name="propertyInsured-type" value="Yes" />
-                          <button class="checkbox-btn">Yes</button>
-                        </div>
-                        <div class="checkbox-design position-relative" (click)="toggleInsured(2)">
-                          <input type="radio" id="No" name="propertyInsured-type" value="No" />
+                          <input type="radio" id="No" name="propertyInsured-type" value="No" *ngIf="oldData.PropertyInsured == 2" checked />
+                          <input type="radio" id="No" name="propertyInsured-type" value="No" *ngIf="oldData.PropertyInsured != 2" />
                           <button class="checkbox-btn">No</button>
                         </div>
                       </div>
@@ -201,7 +159,7 @@
                   </div>
                 </div>
               </div>
-              <div ngClass="address-sec">
+              <div ngClass="address-sec" [ngClass]="showMap ? '' : 'd-none'">
                 <div ngClass="block-wrapper-address">
                   <label class="h6-design">Pin the Location of your Property <span
                       ngClass="required-span">*</span></label>
@@ -212,7 +170,7 @@
                     <div ngClass="locate-me-sec">
                       <div ngClass="add-adrees-sec">
                         <input matInput type="text" placeholder="Search for your location" #searchLocation
-                          id="searchLocation" class="searchLocation" />
+                          id="searchLocation" class="searchLocation" formControlName="address" />
                         <div ngClass="locate-me-btn text-right">
                           <button ngClass="grey-bordered-btn" (click)="getLocation()">
                             <img src="{{ Locate }}" /> Locate Me
@@ -228,7 +186,7 @@
                   </div>
                 </div>
               </div>
-              <div ngClass="location-information">
+              <div ngClass="location-information" [ngClass]="showMap ? '' : 'd-none'">
                 <div ngClass="block-wrapper mb-4">
                   <h6 ngClass="h6-design">Location Information <span ngClass="required-span">*</span></h6>
                   <div ngClass="location-info-lists">

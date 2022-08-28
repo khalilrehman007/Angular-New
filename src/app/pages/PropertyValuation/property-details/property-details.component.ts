@@ -52,12 +52,14 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
   areabounds: any;
   options: any;
   locationSelected: boolean = false;
+  showMap: boolean = false;
 
   location = { lat: 31.5204, lng: 74.3587 };
 
   propertyDetails = new FormGroup({
     titleDeed: new FormControl("", Validators.required),
     muncipality: new FormControl("", Validators.required),
+    address: new FormControl("", Validators.required)
   })
   get titleDeed() {
     return this.propertyDetails.get("titleDeed")
@@ -68,19 +70,21 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
   
   constructor(private http: HttpClient, private service: AppService, private router: Router) {
     this.loadCountriesData();
-    this.loadOldData();
     this.options = {
       bounds: [],
       strictBounds: true,
     };
+    this.loadOldData();
   }
   loadOldData() {
     if (localStorage.getItem("valuationData")) {
+      this.showMap = true;
       this.oldData = localStorage.getItem("valuationData");
       this.oldData = JSON.parse(this.oldData);
       this.propertyDetails.patchValue({
         titleDeed: this.oldData.TitleDeedNo,
-        muncipality: this.oldData.MunicipalityNo
+        muncipality: this.oldData.MunicipalityNo,
+        address: this.oldData.PropertyAddress
       });
       this.countryId = this.oldData.CountryId;
       this.service.LoadCities(this.countryId).subscribe(e => {
@@ -126,7 +130,7 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
     this.locationInformation.country = this.countryName;
     this.locationInformation.city = this.cityName;
     this.locationInformation.address = localStorage.getItem("address");
-    localStorage.removeItem("address");
+    console.log(this.countryName);
   }
   loadCountriesData() {
     this.showLoader = true;
@@ -164,12 +168,13 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
     this.propertyInsured = e;
   }
   onCountrySelect(e: any) {
+    this.showMap = false;
+    this.city = this.district = [];
+    this.cityId = this.districtId = -1;
     this.showLoader = true;
     let temp = this.country.filter(function (c: any) {
       return c.value == e.value
     });
-    localStorage.setItem("currency" , temp[0].currency);
-    this.formDetailData.country = temp[0].viewValue;
     this.countryName = temp[0].viewValue;
     this.getLocationDetails(temp[0].viewValue, false);
     this.countryId = e.value;
@@ -178,23 +183,22 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
       let temp: any = e;
       if (temp.message == "City list fetched successfully") {
         for (let city of temp.data) {
-          this.city.push({ viewValue: city.name, value: city.id, inspectionFee: city.inspectionFee });
+          this.city.push({ viewValue: city.name, value: city.id });
         }
         this.showLoader = false;
       }
     });
   }
   onCitySelect(e: any) {
-    this.showLoader = true;
+    this.showMap = false;
+    this.district = [];
+    this.districtId = -1;
     let temp = this.city.filter(function (c: any) {
       return c.value == e.value
     })
-    localStorage.setItem("inspectionFee", temp[0].inspectionFee);
-    this.formDetailData.city = temp[0].viewValue;
     this.cityName = temp[0].viewValue;
     this.getLocationDetails(temp[0].viewValue, false);
     this.cityId = e.value;
-    this.district = [];
     this.service.LoadDistrict(e.value).subscribe(e => {
       let temp: any = e;
       if (temp.message == "District list fetched successfully") {
@@ -206,12 +210,12 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
     });
   }
   onDistrictSelect(e: any) {
+    this.showMap = true;
     this.locationSelected = false;
     $("#searchLocation").val("");
     let temp = this.district.filter(function (c: any) {
       return c.value == e.value
     })
-    this.formDetailData.district = temp[0].viewValue;
     this.getLocationDetails(temp[0].viewValue, true);
     this.districtId = e.value;
   }
@@ -287,8 +291,6 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
       this.data.PropertyInsured = this.propertyInsured;
       this.data.PropertyLat = localStorage.getItem("lat");
       this.data.PropertyLong = localStorage.getItem("lng");
-      localStorage.removeItem("lat");
-      localStorage.removeItem("lng");
       this.data.PropertyAddress = $("#searchLocation").val();
       localStorage.setItem('valuationData', JSON.stringify(this.data));
       this.router.navigate(['/PropertyType']);
@@ -299,21 +301,9 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     this.getLocation();
   }
-  initMap(e: any, zoom: any) {
-    this.map = new google.maps.Map(this.mapElement.nativeElement, {
-      center: e,
-      zoom: zoom,
-      disableDefaultUI: true,
-    })
-    this.marker = new google.maps.Marker({
-      position: e,
-      map: this.map
-    })
-    this.autocomplete = new google.maps.places.Autocomplete(this.searchElement.nativeElement);
-    this.autocomplete.addListener('place_changed', this.onPlaceChanged);
-  }
   onPlaceChanged() {
     let temp: any = document.getElementById("searchLocation");
+    console.log(temp.value);
     let address: any = temp.value;
     localStorage.setItem("address", address);
     $.ajax({
@@ -323,6 +313,7 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
         let area = res.results[0].geometry.location;
         localStorage.setItem("lat", area.lat);
         localStorage.setItem("lng", area.lng);
+        this.locationSelected = true;
         this.map = new google.maps.Map($(".property-details__map")[0], {
           center: area,
           zoom: 15,
@@ -370,7 +361,17 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
   }
   getLocation() {
     if (this.oldData == "") {
-      this.initMap(null, 8);
+      this.map = new google.maps.Map(this.mapElement.nativeElement, {
+        center: null,
+        zoom: 8,
+        disableDefaultUI: true,
+      })
+      this.marker = new google.maps.Marker({
+        position: null,
+        map: this.map
+      })
+      this.autocomplete = new google.maps.places.Autocomplete(this.searchElement.nativeElement);
+      this.autocomplete.addListener('place_changed', this.onPlaceChanged);
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
           (position: GeolocationPosition) => {
@@ -393,23 +394,21 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
       let southWest = new google.maps.LatLng(bounds.south, bounds.west);
       let areabounds = new google.maps.LatLngBounds(southWest, northEast);
       this.options.bounds = areabounds;
+      let lat: any = localStorage.getItem("lat");
+      let lng: any = localStorage.getItem("lng")
       this.map = new google.maps.Map($(".property-details__map")[0], {
-        center: { "lat": parseInt(this.oldData.PropertyLat), "lng": parseInt(this.oldData.PropertyLong) },
-        zoom: 10,
+        center: { "lat": parseFloat(lat), "lng": parseFloat(lng) },
+        zoom: 6,
         disableDefaultUI: true,
         restriction: {
           latLngBounds: bounds,
           strictBounds: true,
         },
       });
-      this.marker = new google.maps.Marker({
-        position: { "lat": parseInt(this.oldData.PropertyLat), "lng": parseInt(this.oldData.PropertyLong) },
-        map: this.map
-      });
+      this.onPlaceChanged();
       this.autocomplete = new google.maps.places.Autocomplete(this.searchElement.nativeElement, this.options);
       this.autocomplete.addListener('place_changed', this.onPlaceChanged);
       this.autocomplete.setBounds(this.bounds);
-      $("#searchLocation").val(this.oldData.PropertyAddress);
     }
   }
 }
