@@ -67,7 +67,7 @@
                                                 <div ngClass="uploded-output">
                                                     <span ngClass="outpup-filename">{{ file }}</span>
                                                     <div ngClass="action-btns">
-                                                        <button ngClass="trash"><img src="{{trash}}"></button>
+                                                        <button ngClass="trash" (click)="deleteImage()"><img src="{{trash}}"></button>
                                                     </div>
                                                     <p ngClass="drag-drop-text">Drag & drop file here or Browse
                                                     </p>

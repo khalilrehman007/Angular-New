@@ -85,6 +85,11 @@ export class ListpropertymediaComponent implements OnInit {
       alert();
     });
   }
+  deleteImage() {
+    this.titledeedUploaded = false;
+    this.file = "";
+    this.documentBase = {};
+  }
   upload(idx: number, file: File): void {
     this.progressInfos[idx] = { value: 0, fileName: file.name };
 
