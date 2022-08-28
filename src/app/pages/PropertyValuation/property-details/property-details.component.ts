@@ -53,8 +53,9 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
   options: any;
   locationSelected: boolean = false;
   showMap: boolean = false;
-
+  valuationDetailData:any = {};
   location = { lat: 31.5204, lng: 74.3587 };
+  districtName:any;
 
   propertyDetails = new FormGroup({
     titleDeed: new FormControl("", Validators.required),
@@ -130,7 +131,6 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
     this.locationInformation.country = this.countryName;
     this.locationInformation.city = this.cityName;
     this.locationInformation.address = localStorage.getItem("address");
-    console.log(this.countryName);
   }
   loadCountriesData() {
     this.showLoader = true;
@@ -217,6 +217,7 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
       return c.value == e.value
     })
     this.getLocationDetails(temp[0].viewValue, true);
+    this.districtName = temp[0].viewValue;
     this.districtId = e.value;
   }
   getMapImage() {
@@ -292,6 +293,14 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
       this.data.PropertyLat = localStorage.getItem("lat");
       this.data.PropertyLong = localStorage.getItem("lng");
       this.data.PropertyAddress = $("#searchLocation").val();
+
+      if(!localStorage.getItem("valuationDetailData")) {
+        this.valuationDetailData.country = this.countryName;
+        this.valuationDetailData.city = this.cityName;
+        this.valuationDetailData.district = this.districtName;
+        this.valuationDetailData.address = $("#searchLocation").val();
+        localStorage.setItem('valuationDetailData', JSON.stringify(this.valuationDetailData));
+      }
       localStorage.setItem('valuationData', JSON.stringify(this.data));
       this.router.navigate(['/PropertyType']);
     }
@@ -303,7 +312,6 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
   }
   onPlaceChanged() {
     let temp: any = document.getElementById("searchLocation");
-    console.log(temp.value);
     let address: any = temp.value;
     localStorage.setItem("address", address);
     $.ajax({
