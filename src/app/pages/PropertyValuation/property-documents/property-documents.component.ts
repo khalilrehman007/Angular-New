@@ -540,7 +540,6 @@ export class PropertyDocumentsComponent implements OnInit {
     this.service.ValuationDocumentTypes().subscribe((result: any) => {
       this.documentType = result.data;
     })
-    console.log(this.formData);
     this.checkPackage();
     if(this.formData.TitleDeedNo == 0) {
       this.requiredDocs--;
