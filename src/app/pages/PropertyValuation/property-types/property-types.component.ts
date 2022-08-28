@@ -376,11 +376,7 @@ export class PropertyTypesComponent implements OnInit {
       this.error = "Please Select Fitting Type";
       this.showError = true;
       return;
-    } else if (this.propertyData.hasPropertyFeature && this.featuresFormData.length == 0) {
-      this.error = "Please Select Property Features";
-      this.showError = true;
-      return;
-    } else if (this.formData.PropertyStatusId == 2 && this.propertyTypeForm.value.income == "") {
+    }else if (this.formData.PropertyStatusId == 2 && this.propertyTypeForm.value.income == "") {
       this.error = "Please Enter Total Income";
       this.showError = true;
       return;
@@ -388,7 +384,11 @@ export class PropertyTypesComponent implements OnInit {
       this.error = "Please Enter Total Expense";
       this.showError = true;
       return;
-    }
+    } else if (this.propertyData.hasPropertyFeature && this.featuresFormData.length == 0) {
+      this.error = "Please Select Property Features";
+      this.showError = true;
+      return;
+    } 
     this.formData.Bedrooms = this.bedrooms;
     this.formData.Bathrooms = this.bathrooms;
     this.formData.FurnishingType = this.furnishing;
