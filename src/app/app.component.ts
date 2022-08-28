@@ -1,4 +1,4 @@
-import { Component, DoCheck, OnInit } from '@angular/core';
+import { AfterViewInit, Component, DoCheck, OnInit } from '@angular/core';
 import { environment } from "../environments/environment";
 import { ActivatedRoute, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
@@ -13,11 +13,14 @@ import { getMessaging, getToken, onMessage } from "firebase/messaging";
 
 
 
-export class AppComponent implements DoCheck, OnInit {
+export class AppComponent implements DoCheck, OnInit, AfterViewInit {
   title = 'ovaluate';
   message: any = null;
   displaymenu = false;
   constructor(private cookie: CookieService, private route: Router, private notifyService: NotificationService) {
+  }
+  ngAfterViewInit(): void {
+    $(".main-loader-wrapper").remove()
   }
   ngOnInit(): void {
     Notification.requestPermission().then((permission) => {
