@@ -131,9 +131,9 @@ export class ListpropertyinfoComponent implements OnInit {
     this.loadOldData();
   }
   ngOnInit() {
-    $("#formDate").on("click", function () {
-      $(".mat-datepicker-toggle").click();
-    })
+  }
+  onDate() {
+    $(".mat-datepicker-toggle").click();
   }
   loadOldData() {
     if (localStorage.getItem("propertyData")) {
