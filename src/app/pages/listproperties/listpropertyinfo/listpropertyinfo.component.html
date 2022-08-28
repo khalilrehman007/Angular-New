@@ -48,106 +48,46 @@
                             </div>
                         </div>
                     </div>
-                    <form [formGroup]="SubmitForm" (ngSubmit)="onSubmit()">
+                    <form [formGroup]="SubmitForm">
                         <div class="form-border-wrapper">
                             <div class="list-property-header">
                                 <h5 class="h5-heading">Property Listing Information</h5>
                                 <p>Kindly confirm some facts about the property</p>
                             </div>
                             <div class="list-new-proerty-cntnt">
-                                <div class="row pb-4" *ngIf="data.PropertyListingTypeId == 1">
+                                <div class="row pb-4">
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                                         <h6 class="h6-design">Want to List for</h6>
                                         <div class="listing-links d-flex justify-content-between">
                                             <div class="checkbox-design w-100 position-relative me-1"
                                                 (click)="onListTypeSelect(1)">
-                                                <input type="radio" value="1" name="list-type" checked>
+                                                <input type="radio" value="1" name="list-type" *ngIf="data.PropertyListingTypeId == 1" checked>
+                                                <input type="radio" value="1" name="list-type" *ngIf="data.PropertyListingTypeId != 1">
                                                 <button class="checkbox-btn">Rent</button>
                                             </div>
                                             <div class="checkbox-design w-100 position-relative me-1"
                                                 (click)="onListTypeSelect(2)">
-                                                <input type="radio" value="2" name="list-type">
-                                                <button class="checkbox-btn">Sell</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row pb-4" *ngIf="data.PropertyListingTypeId == 2">
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                                        <h6 class="h6-design">Want to List for</h6>
-                                        <div class="listing-links d-flex justify-content-between">
-                                            <div class="checkbox-design w-100 position-relative me-1"
-                                                (click)="onListTypeSelect(1)">
-                                                <input type="radio" value="1" name="list-type">
-                                                <button class="checkbox-btn">Rent</button>
-                                            </div>
-                                            <div class="checkbox-design w-100 position-relative me-1"
-                                                (click)="onListTypeSelect(2)">
-                                                <input type="radio" value="2" name="list-type" checked>
-                                                <button class="checkbox-btn">Sell</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row pb-4" *ngIf="!data.PropertyListingTypeId">
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                                        <h6 class="h6-design">Want to List for</h6>
-                                        <div class="listing-links d-flex justify-content-between">
-                                            <div class="checkbox-design w-100 position-relative me-1"
-                                                (click)="onListTypeSelect(1)">
-                                                <input type="radio" value="1" name="list-type">
-                                                <button class="checkbox-btn">Rent</button>
-                                            </div>
-                                            <div class="checkbox-design w-100 position-relative me-1"
-                                                (click)="onListTypeSelect(2)">
-                                                <input type="radio" value="2" name="list-type">
+                                                <input type="radio" value="2" name="list-type" *ngIf="data.PropertyListingTypeId == 2" checked>
+                                                <input type="radio" value="2" name="list-type" *ngIf="data.PropertyListingTypeId != 2">
                                                 <button class="checkbox-btn">Sell</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row pb-4" *ngIf="listingTypeId != 0">
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12" *ngIf="data.PropertyCategoryId == 1">
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                                         <h6 class="h6-design">Building Type</h6>
                                         <div class="listing-links d-flex justify-content-between">
                                             <div class="checkbox-design w-100 position-relative me-1"
                                                 (click)="getCategory(1)">
-                                                <input type="radio" value="1" name="property-category" checked>
+                                                <input type="radio" value="1" name="property-category" *ngIf="data.PropertyCategoryId == 1" checked>
+                                                <input type="radio" value="1" name="property-category" *ngIf="data.PropertyCategoryId != 1">
                                                 <button class="checkbox-btn">Residential</button>
                                             </div>
                                             <div class="checkbox-design w-100 position-relative me-1"
                                                 (click)="getCategory(2)">
-                                                <input type="radio" value="2" name="property-category">
-                                                <button class="checkbox-btn">Commercial</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12" *ngIf="data.PropertyCategoryId == 2">
-                                        <h6 class="h6-design">Building Type</h6>
-                                        <div class="listing-links d-flex justify-content-between">
-                                            <div class="checkbox-design w-100 position-relative me-1"
-                                                (click)="getCategory(1)">
-                                                <input type="radio" value="1" name="property-category">
-                                                <button class="checkbox-btn">Residential</button>
-                                            </div>
-                                            <div class="checkbox-design w-100 position-relative me-1"
-                                                (click)="getCategory(2)">
-                                                <input type="radio" value="2" name="property-category" checked>
-                                                <button class="checkbox-btn">Commercial</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12" *ngIf="!data.PropertyCategoryId">
-                                        <h6 class="h6-design">Building Type</h6>
-                                        <div class="listing-links d-flex justify-content-between">
-                                            <div class="checkbox-design w-100 position-relative me-1"
-                                                (click)="getCategory(1)">
-                                                <input type="radio" value="1" name="property-category">
-                                                <button class="checkbox-btn">Residential</button>
-                                            </div>
-                                            <div class="checkbox-design w-100 position-relative me-1"
-                                                (click)="getCategory(2)">
-                                                <input type="radio" value="2" name="property-category">
+                                                <input type="radio" value="2" name="property-category" *ngIf="data.PropertyCategoryId == 2" checked>
+                                                <input type="radio" value="2" name="property-category" *ngIf="data.PropertyCategoryId != 2">
                                                 <button class="checkbox-btn">Commercial</button>
                                             </div>
                                         </div>
@@ -710,7 +650,7 @@
                                 <a routerLink="/listingproperty" class="back-btn">Back</a>
                             </mat-card-actions>
                             <mat-card-actions>
-                                <button mat-raised-button type="submit" ngClass="submit-btn">Save & Continue</button>
+                                <button mat-raised-button type="submit" ngClass="submit-btn" (click)="onSubmit()">Save & Continue</button>
                             </mat-card-actions>
                         </div>
                     </form>
