@@ -78,6 +78,7 @@ export class ListpropertyinfoComponent implements OnInit {
     AED: new FormControl("",),
     brokerageAed: new FormControl("",),
     availablefrom: new FormControl("", [Validators.required]),
+    handOverOn: new FormControl("", [Validators.required]),
     noticePeriod: new FormControl("", [Validators.required]),
     lockingPeriod: new FormControl("", [Validators.required]),
     propertyDescription: new FormControl("", [Validators.required]),
@@ -144,15 +145,30 @@ export class ListpropertyinfoComponent implements OnInit {
         this.data = JSON.parse(temp);
 
         this.listingTypeId = this.data.PropertyListingTypeId;
+        if (this.listingTypeId == 2) {
+          this.api.PropertyTransactionTypes().subscribe((result: any) => {
+            this.transactionType = result.data;
+          })
+          this.api.LoadCompletionStatus().subscribe((result: any) => {
+            this.completionStatus = result.data;
+          })
+        }
+        this.clearData();
         
-        for (let i = 0; i < this.data.PetPolicies.length; i++) {
-          this.petPolicyData.push(this.data.PetPolicies[i].PetPolicyId)
+        if(this.data.PetPolicies) {
+          for (let i = 0; i < this.data.PetPolicies.length; i++) {
+            this.petPolicyData.push(this.data.PetPolicies[i].PetPolicyId)
+          }
         }
-        for (let i = 0; i < this.data.PropertyListingLocatedNears.length; i++) {
-          this.locatedNearData.push(this.data.PropertyListingLocatedNears[i].LocatedNearId)
+        if(this.data.PropertyListingLocatedNears) {
+          for (let i = 0; i < this.data.PropertyListingLocatedNears.length; i++) {
+            this.locatedNearData.push(this.data.PropertyListingLocatedNears[i].LocatedNearId)
+          }
         }
-        for (let i = 0; i < this.data.PropertyFeatures.length; i++) {
-          this.featuresFormData.push(this.data.PropertyFeatures[i].PropertyFeatureId)
+        if(this.data.PropertyFeatures) {
+          for (let i = 0; i < this.data.PropertyFeatures.length; i++) {
+            this.featuresFormData.push(this.data.PropertyFeatures[i].PropertyFeatureId)
+          }
         }
 
         this.showLoader = true;
@@ -197,6 +213,12 @@ export class ListpropertyinfoComponent implements OnInit {
             let temp:any = new Date(this.data.AvailableDate);
             this.SubmitForm.patchValue({
               availablefrom: temp
+            })
+          }
+          if(this.data.HandoverOn) {
+            let temp:any = new Date(this.data.HandoverOn);
+            this.SubmitForm.patchValue({
+              handOverOn: temp
             })
           }
           if(this.data.NoticePeriod) {
@@ -575,7 +597,7 @@ export class ListpropertyinfoComponent implements OnInit {
     this.data.PropertyFeatures = temp;
     localStorage.setItem('propertyData', JSON.stringify(this.data));
     localStorage.setItem('listingData', JSON.stringify(this.data));
-    // this.route.navigate(['listpropertymedia'])
+    this.route.navigate(['listpropertymedia'])
     console.log(this.data);
   }
 }

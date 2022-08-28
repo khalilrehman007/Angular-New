@@ -21,6 +21,12 @@ export class ListpropertypublishComponent implements OnInit {
   gallerythumb = '../../../../assets/images/image-gallery-thumbnail.png'
   checkmark = '../../../../assets/images/icons/checkmark-green.svg'
   constructor() {
+    localStorage.removeItem("bounds");
+    localStorage.removeItem("propertyData");
+    localStorage.removeItem("lng");
+    localStorage.removeItem("address");
+    localStorage.removeItem("listingData");
+    localStorage.removeItem("lat");
   }
   ngOnInit() {
     $(document).ready(function () {
