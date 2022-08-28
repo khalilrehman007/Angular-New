@@ -268,39 +268,42 @@ export class PropertyDocumentsComponent implements OnInit {
     });
   }
   Nextshow() {
-    if (this.documentcount >= this.requiredDocs) {
-      this.documentData = [];
-      let dataUrl: any = localStorage.getItem("mapImg");
-      this.mapImage = this.dataURLtoFile(dataUrl, "map.jpg");
-      this.documentData.push({ "FileId": "1", "DocumentTypeId": this.documentType[this.documentType.length - 1].id, "FileName": "map.jpg", "Extension": "jpg", "IsScreenshot": "true" });
-      let extension: any;
-      if(this.formData.TitleDeedNo != 0) {
-        extension = this.titleDeedImage.name.split(".");
-        extension = extension[extension.length - 1];
-        this.documentData.push({ "FileId": "2", "DocumentTypeId": 1, "FileName": this.titleDeedImage.name, "Extension": extension, "IsScreenshot": "false" });
-      }
-      if(this.formData.MunicipalityNo != 0) {
-        extension = this.affectionImage.name.split(".");
-        extension = extension[extension.length - 1];
-        this.documentData.push({ "FileId": "3", "DocumentTypeId": 2, "FileName": this.affectionImage.name, "Extension": extension, "IsScreenshot": "false" });
-      }
-      extension = this.propertyImage.name.split(".");
-      extension = extension[extension.length - 1];
-      this.documentData.push({ "FileId": "4", "DocumentTypeId": 3, "FileName": this.propertyImage.name, "Extension": extension, "IsScreenshot": "false" });
-      for (let i = 0; i < this.otherImages.length; i++) {
-        extension = this.otherImages[i].file.name.split(".");
-        extension = extension[extension.length - 1];
-        this.documentData.push({ "FileId": i + 5, "DocumentTypeId": this.otherImages[i].id, "FileName": this.otherImages[i].file.name, "Extension": extension, "IsScreenshot": "false" });
-      }
-      this.formData.Documents = this.documentData;
+    this.status = !this.status;
+    this.status5 = !this.status5;
+    this.status1 = !this.status1;
+    // if (this.documentcount >= this.requiredDocs) {
+    //   this.documentData = [];
+    //   let dataUrl: any = localStorage.getItem("mapImg");
+    //   this.mapImage = this.dataURLtoFile(dataUrl, "map.jpg");
+    //   this.documentData.push({ "FileId": "1", "DocumentTypeId": this.documentType[this.documentType.length - 1].id, "FileName": "map.jpg", "Extension": "jpg", "IsScreenshot": "true" });
+    //   let extension: any;
+    //   if(this.formData.TitleDeedNo != 0) {
+    //     extension = this.titleDeedImage.name.split(".");
+    //     extension = extension[extension.length - 1];
+    //     this.documentData.push({ "FileId": "2", "DocumentTypeId": 1, "FileName": this.titleDeedImage.name, "Extension": extension, "IsScreenshot": "false" });
+    //   }
+    //   if(this.formData.MunicipalityNo != 0) {
+    //     extension = this.affectionImage.name.split(".");
+    //     extension = extension[extension.length - 1];
+    //     this.documentData.push({ "FileId": "3", "DocumentTypeId": 2, "FileName": this.affectionImage.name, "Extension": extension, "IsScreenshot": "false" });
+    //   }
+    //   extension = this.propertyImage.name.split(".");
+    //   extension = extension[extension.length - 1];
+    //   this.documentData.push({ "FileId": "4", "DocumentTypeId": 3, "FileName": this.propertyImage.name, "Extension": extension, "IsScreenshot": "false" });
+    //   for (let i = 0; i < this.otherImages.length; i++) {
+    //     extension = this.otherImages[i].file.name.split(".");
+    //     extension = extension[extension.length - 1];
+    //     this.documentData.push({ "FileId": i + 5, "DocumentTypeId": this.otherImages[i].id, "FileName": this.otherImages[i].file.name, "Extension": extension, "IsScreenshot": "false" });
+    //   }
+    //   this.formData.Documents = this.documentData;
 
-      this.status = !this.status;
-      this.status5 = !this.status5;
-      this.status1 = !this.status1;
-    } else {
-      this.error = "Please Upload the required Documents.";
-      this.showError = true;
-    }
+    //   this.status = !this.status;
+    //   this.status5 = !this.status5;
+    //   this.status1 = !this.status1;
+    // } else {
+    //   this.error = "Please Upload the required Documents.";
+    //   this.showError = true;
+    // }
   }
   Prevshow() {
     this.status1 = false;
@@ -540,6 +543,7 @@ export class PropertyDocumentsComponent implements OnInit {
     this.service.ValuationDocumentTypes().subscribe((result: any) => {
       this.documentType = result.data;
     })
+    console.log(this.formData);
     this.checkPackage();
     if(this.formData.TitleDeedNo == 0) {
       this.requiredDocs--;

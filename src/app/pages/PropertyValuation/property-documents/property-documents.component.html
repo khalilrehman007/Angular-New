@@ -370,10 +370,10 @@
                                                         </div>
                                                     </div>
                                                     <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12"
-                                                        *ngIf="userData.ConstructionAge">
+                                                        *ngIf="formData.ConstructionAge">
                                                         <div ngClass="pro-details-info-blocks">
                                                             <h6>Construction Age</h6>
-                                                            <p>{{userData.ConstructionAge}}</p>
+                                                            <p>{{formData.ConstructionAge}}</p>
                                                         </div>
                                                     </div>
                                                     <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12"
@@ -395,6 +395,34 @@
                                                         <div ngClass="pro-details-info-blocks">
                                                             <h6>Buildup Area</h6>
                                                             <p>{{userData.BuildupArea}} Sq.Ft</p>
+                                                        </div>
+                                                    </div>
+                                                    <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12"
+                                                        *ngIf="userData.Bedrooms">
+                                                        <div ngClass="pro-details-info-blocks">
+                                                            <h6>Bedrooms</h6>
+                                                            <p>{{userData.Bedrooms}}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12"
+                                                        *ngIf="userData.Bathrooms">
+                                                        <div ngClass="pro-details-info-blocks">
+                                                            <h6>Bathrooms</h6>
+                                                            <p>{{userData.Bathrooms}}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12"
+                                                        *ngIf="userData.Furnishing">
+                                                        <div ngClass="pro-details-info-blocks">
+                                                            <h6>Furnishing Type</h6>
+                                                            <p>{{userData.Furnishing}}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12"
+                                                        *ngIf="userData.Fitting">
+                                                        <div ngClass="pro-details-info-blocks">
+                                                            <h6>Fitting Type</h6>
+                                                            <p>{{userData.Fitting}}</p>
                                                         </div>
                                                     </div>
                                                 </div>
