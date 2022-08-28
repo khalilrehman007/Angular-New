@@ -173,6 +173,8 @@ export class ListpropertyinfoComponent implements OnInit {
     this.clearData();
   }
   SubmitForm = new FormGroup({
+    TotalFloor: new FormControl("", [Validators.required]),
+    FloorNo: new FormControl("", [Validators.required]),
     propertyTitle: new FormControl("", [Validators.required]),
     carpetArea: new FormControl("", [Validators.required]),
     buildupArea: new FormControl("", [Validators.required]),
@@ -197,7 +199,7 @@ export class ListpropertyinfoComponent implements OnInit {
     this.data.BathRooms = e.value;
   }
   getPropertyType(e: any) {
-    this.selectedPropertyType = this.propertyType.filter((item: any) => item.id == e.value)[0]
+    this.selectedPropertyType = this.propertyType.filter((item: any) => item.id == e.value)[0];
     this.propertyTypeCheck = true;
     this.data.PropertyTypeId = e.value;
   }
@@ -257,6 +259,28 @@ export class ListpropertyinfoComponent implements OnInit {
       this.featuresFormData = this.featuresFormData.filter((e: any) => e != id)
     }
   }
+  checkLength(type: number) {
+    if (type == 1) {
+      let temp: any = this.SubmitForm.value.TotalFloor;
+      if (temp > 200) {
+        this.error = "Max floors allowes is 200";
+        this.showError = true;
+        this.SubmitForm.patchValue({
+          TotalFloor: "200"
+        })
+      }
+    } else if(type == 2) {
+      let temp: any = this.SubmitForm.value.FloorNo;
+      let total: any = this.SubmitForm.value.TotalFloor;
+      if (temp > total) {
+        this.error = "Floor number cannot be greater than Total Floors";
+        this.showError = true;
+        this.SubmitForm.patchValue({
+          FloorNo: this.SubmitForm.value.TotalFloor
+        })
+      }
+    }
+  }
   onSubmit() {
     if (this.listingTypeId == 0) {
       this.error = "Select Listing Type";
@@ -268,6 +292,14 @@ export class ListpropertyinfoComponent implements OnInit {
       return;
     } else if (!this.data.PropertyTypeId) {
       this.error = "Select Property Type";
+      this.showError = true;
+      return;
+    } else if (this.SubmitForm.value.TotalFloor == "" && this.selectedPropertyType.hasTotalFloor) {
+      this.error = "Enter Total Floors";
+      this.showError = true;
+      return;
+    } else if (this.SubmitForm.value.FloorNo == "" && this.selectedPropertyType.hasFloorNo) {
+      this.error = "Enter Floors No.";
       this.showError = true;
       return;
     } else if (this.selectedPropertyType.hasBed && !this.data.BedRooms) {
@@ -397,6 +429,12 @@ export class ListpropertyinfoComponent implements OnInit {
     this.data.UserId = userData.id;
     if(userData.professionalTypeId) {
       this.data.ProfessionalTypeId = userData.professionalTypeId;
+    }
+    if(this.selectedPropertyType.hasTotalFloor) {
+      this.data.TotalFloor = this.SubmitForm.value.TotalFloor;
+    }
+    if(this.selectedPropertyType.hasFloorNo) {
+      this.data.FloorNo = this.SubmitForm.value.FloorNo;
     }
     this.data.PropertyListingTypeId = this.listingTypeId;
     this.data.PropertyCategoryId = this.categoryID;

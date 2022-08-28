@@ -109,6 +109,32 @@
                                 <div *ngIf="propertyTypeCheck">
                                     <div class="property-dropdowns-list">
                                         <div class="row">
+                                            <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4"
+                                                *ngIf="selectedPropertyType.hasTotalFloor">
+                                                <h6 class="h6-design">Total Floor in Building</h6>
+                                                <div class="input-flaoted-right-text">
+                                                    <div class="position-relative">
+                                                        <mat-form-field class="full-width input-design"
+                                                            appearance="fill">
+                                                            <input matInput type="number" formControlName="TotalFloor"
+                                                                placeholder="Enter Total Floors" (input)="checkLength(1)">
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4"
+                                            *ngIf="selectedPropertyType.hasFloorNo">
+                                                <h6 class="h6-design">Floor No.</h6>
+                                                <div class="input-flaoted-right-text">
+                                                    <div class="position-relative">
+                                                        <mat-form-field class="full-width input-design"
+                                                            appearance="fill">
+                                                            <input matInput type="number" formControlName="FloorNo"
+                                                                placeholder="Enter Floors No." (input)="checkLength(2)">
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4"
                                                 *ngIf="selectedPropertyType.hasBed">
                                                 <div ngClass="block-wrapper">
@@ -532,6 +558,21 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4">
+                                                <div ngClass="block-wrapper">
+                                                    <div ngClass="select-design">
+                                                        <label>Located Near</label>
+                                                        <mat-form-field appearance="fill">
+                                                            <mat-label> Select Near Locations</mat-label>
+                                                            <mat-select multiple
+                                                                (selectionChange)="getLocatedNear($event)">
+                                                                <mat-option *ngFor="let item of locatedNear"
+                                                                    value="{{item.id}}">{{item.name}}</mat-option>
+                                                            </mat-select>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <div class="col-sm-12 pb-4" *ngIf="listingTypeId == 1">
                                                 <h6 class="h6-design">Property Title</h6>
                                                 <div class="textarea-design">
@@ -562,21 +603,6 @@
                                                         <input matInput formControlName="propertyOffers" type="text"
                                                             placeholder="Example - 15 days of rent off. Only Pay 15 days of brokerage now! Free rental agreement.">
                                                     </mat-form-field>
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4">
-                                                <div ngClass="block-wrapper">
-                                                    <div ngClass="select-design">
-                                                        <label>Located Near</label>
-                                                        <mat-form-field appearance="fill">
-                                                            <mat-label> Select Near Locations</mat-label>
-                                                            <mat-select multiple
-                                                                (selectionChange)="getLocatedNear($event)">
-                                                                <mat-option *ngFor="let item of locatedNear"
-                                                                    value="{{item.id}}">{{item.name}}</mat-option>
-                                                            </mat-select>
-                                                        </mat-form-field>
-                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="col-sm-12 pb-4" *ngIf="selectedPropertyType.hasPropertyFeature">
