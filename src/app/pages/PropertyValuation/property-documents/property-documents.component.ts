@@ -541,7 +541,6 @@ export class PropertyDocumentsComponent implements OnInit {
       this.documentType = result.data;
     })
     this.checkPackage();
-    console.log(this.formData);
     if(this.formData.TitleDeedNo == 0) {
       this.requiredDocs--;
     }
