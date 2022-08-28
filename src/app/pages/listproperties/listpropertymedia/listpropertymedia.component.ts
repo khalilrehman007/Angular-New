@@ -54,7 +54,7 @@ export class ListpropertymediaComponent implements OnInit {
   btnText: string = "Publish";
   propertyListingBuy: number;
   propertyListingRent: number;
-  titledeedUploaded:boolean = false;
+  titledeedUploaded: boolean = false;
   showLoader: boolean = false;
 
 
@@ -79,6 +79,11 @@ export class ListpropertymediaComponent implements OnInit {
       });
     });
     this.imageInfos = this.uploadService.getFiles();
+    $(".upload-files-design").on('drop', function (e) {
+      e.stopPropagation();
+      e.preventDefault();
+      alert();
+    });
   }
   upload(idx: number, file: File): void {
     this.progressInfos[idx] = { value: 0, fileName: file.name };
@@ -233,14 +238,13 @@ export class ListpropertymediaComponent implements OnInit {
     start = temp.length;
     temp.push({ "FileId": start + 1, "ListingDocumentTypeId": "2", "FileName": this.documentBase.FileName, "Extension": this.documentBase.Extension });
     tempDoc.push(this.documentBase.file[0]);
-    let userData:any = localStorage.getItem("user");
+    let userData: any = localStorage.getItem("user");
     this.data.ProfessionalTypeId = JSON.parse(userData).professionalTypeId;
     this.data.Documents = temp;
     this.documentData.append("PropertyListingRequest", JSON.stringify(this.data));
     for (let i = 0; i < temp.length; i++) {
       this.documentData.append(i + 1 + "_" + temp[i].FileName, tempDoc[i]);
     }
-    // console.log(this.data);
     let token: any = localStorage.getItem("token");
     token = JSON.parse(token);
     $.ajax({

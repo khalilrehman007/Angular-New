@@ -58,8 +58,8 @@
                                         <div ngClass="blue-upload-bordered-btn">
                                             <h6 ngClass="blue-heading">Title Deed</h6>
                                             <div ngClass="upload-files-design">
-                                                <div ngClass="greybordered-btn">
-                                                    <input type="file" hidden #fileInput
+                                                <div class="greybordered-btn position-relative">
+                                                    <input type="file" #fileInput class="input-file"
                                                     (change)='handleChange($any($event.target).files)'>
                                                     <button mat-button (click)="fileInput.click()"><img
                                                             src="{{upload1}}"> Upload Title Deed</button>
@@ -88,10 +88,10 @@
                             <div ngClass="list-new-proerty-cntnt">
                                 <div ngClass="propery-pictures-sec">
                                     <h5 ngClass="h5-heading">Property Pictures</h5>
-                                    <div ngClass="inneR-border-wrap">
+                                    <div class="inneR-border-wrap position-relative">
                                         <div ngClass="div_thumb-wrapper img_upload">
-                                            <label class="btn btn-default p-0 upload-label position-relative">
-                                                <input type="file" accept=".jpg, .png, .jpeg," multiple
+                                            <label class="btn btn-default p-0 upload-label">
+                                                <input type="file" accept=".jpg, .png, .jpeg," multiple class="input-file"
                                                     (change)="selectFiles($event);imgCheck=true" />
                                                 <button ngClass="black-upload-btn"><span
                                                         ngClass="plus_icon-div">+</span> Upload Pictures</button>
@@ -112,9 +112,9 @@
                                 </div>
                                 <div ngClass="propery-videos-sec">
                                     <h5 ngClass="h5-heading">Property Videos</h5>
-                                    <div ngClass="inneR-border-wrap">
+                                    <div class="inneR-border-wrap position-relative">
                                         <div ngClass="div_thumb-wrapper img_upload">
-                                            <label class="btn btn-default p-0 upload-label position-relative">
+                                            <label class="btn btn-default p-0 upload-label">
                                                 <input type='file' accept=".mp4, .mpeg, .flv, mov, swf" multiple
                                                     (change)="onSelectFile($event);videoCheck=true" />
                                                 <button ngClass="black-upload-btn"><span
