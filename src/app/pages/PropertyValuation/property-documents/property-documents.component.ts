@@ -41,10 +41,11 @@ export class PropertyDocumentsComponent implements OnInit {
   documentType: any = [];
   valuationResponse: any = {};
   showPayment: boolean = false;
-  publishText: any = "Publish";
+  publishText: any = "Submit";
   showLoader: boolean = false;
   error: any = ""
   showError: boolean = false;
+  requiredDocs:number = 3;
   currency:any = localStorage.getItem("currency");
   errorResponse(data: any) {
     this.showError = false;
@@ -267,17 +268,22 @@ export class PropertyDocumentsComponent implements OnInit {
     });
   }
   Nextshow() {
-    if (this.documentcount >= 3) {
+    if (this.documentcount >= this.requiredDocs) {
       this.documentData = [];
       let dataUrl: any = localStorage.getItem("mapImg");
       this.mapImage = this.dataURLtoFile(dataUrl, "map.jpg");
       this.documentData.push({ "FileId": "1", "DocumentTypeId": this.documentType[this.documentType.length - 1].id, "FileName": "map.jpg", "Extension": "jpg", "IsScreenshot": "true" });
-      let extension: any = this.titleDeedImage.name.split(".");
-      extension = extension[extension.length - 1];
-      this.documentData.push({ "FileId": "2", "DocumentTypeId": 1, "FileName": this.titleDeedImage.name, "Extension": extension, "IsScreenshot": "false" });
-      extension = this.affectionImage.name.split(".");
-      extension = extension[extension.length - 1];
-      this.documentData.push({ "FileId": "3", "DocumentTypeId": 2, "FileName": this.affectionImage.name, "Extension": extension, "IsScreenshot": "false" });
+      let extension: any;
+      if(this.formData.TitleDeedNo != 0) {
+        extension = this.titleDeedImage.name.split(".");
+        extension = extension[extension.length - 1];
+        this.documentData.push({ "FileId": "2", "DocumentTypeId": 1, "FileName": this.titleDeedImage.name, "Extension": extension, "IsScreenshot": "false" });
+      }
+      if(this.formData.MunicipalityNo != 0) {
+        extension = this.affectionImage.name.split(".");
+        extension = extension[extension.length - 1];
+        this.documentData.push({ "FileId": "3", "DocumentTypeId": 2, "FileName": this.affectionImage.name, "Extension": extension, "IsScreenshot": "false" });
+      }
       extension = this.propertyImage.name.split(".");
       extension = extension[extension.length - 1];
       this.documentData.push({ "FileId": "4", "DocumentTypeId": 3, "FileName": this.propertyImage.name, "Extension": extension, "IsScreenshot": "false" });
@@ -535,6 +541,13 @@ export class PropertyDocumentsComponent implements OnInit {
       this.documentType = result.data;
     })
     this.checkPackage();
+    console.log(this.formData);
+    if(this.formData.TitleDeedNo == 0) {
+      this.requiredDocs--;
+    }
+    if(this.formData.MunicipalityNo == 0) {
+      this.requiredDocs--;
+    }
   }
 
   ngOnInit(): void {

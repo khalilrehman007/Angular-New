@@ -37,7 +37,7 @@
                                 <div ngClass="madatory-document-upload mb-4" *ngIf="documentType.length > 0">
                                     <h6 ngClass="h6-design mb-3">Mandatory Documents to upload*</h6>
                                     <div ngClass="row">
-                                        <div ngClass="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                                        <div ngClass="col-xl-4 col-lg-4 col-md-4 col-sm-12" *ngIf="formData.TitleDeedNo != 0">
                                             <div ngClass="blue-upload-box">
                                                 <div ngClass="blue-upload-bordered-btn">
                                                     <h6 ngClass="blue-heading">{{documentType[0].documentName}}</h6>
@@ -65,7 +65,7 @@
                                                     .jpeg, .png</p>
                                             </div>
                                         </div>
-                                        <div ngClass="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                                        <div ngClass="col-xl-4 col-lg-4 col-md-4 col-sm-12" *ngIf="formData.MunicipalityNo != 0">
                                             <div ngClass="blue-upload-box">
                                                 <div ngClass="blue-upload-bordered-btn">
                                                     <h6 ngClass="blue-heading">{{documentType[1].documentName}}</h6>
