@@ -448,7 +448,7 @@ export class PropertyTypesComponent implements OnInit {
     }
     this.formDetailData.PropertyFeatures = this.featuresFormName;
     this.formData.PropertyFeatures = temp;
-    console.log(this.formData);
+    // console.log(this.formData);
     localStorage.setItem('valuationDetailData', JSON.stringify(this.formDetailData));
     localStorage.setItem('propertyTypeData', JSON.stringify(this.formData));
     localStorage.setItem('valuationData', JSON.stringify(this.formData));
