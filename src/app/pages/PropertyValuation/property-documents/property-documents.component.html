@@ -755,7 +755,7 @@
                                                         </mat-form-field>
                                                     </div>
                                                     <div ngClass="block-wrapper mb-3">
-                                                        <label class="h6-design">Card Informations</label>
+                                                        <label class="h6-design">Card Number</label>
                                                         <mat-form-field class="full-width input-design-2"
                                                             appearance="fill">
                                                             <input matInput type="number"
@@ -779,6 +779,14 @@
                                                             <input matInput type="number"
                                                                 placeholder="CVV"
                                                                 formControlName="cvv" (input)="checkLength(2, false)">
+                                                        </mat-form-field>
+                                                    </div>
+                                                    <div ngClass="block-wrapper mb-3">
+                                                        <label class="h6-design">Name on Card</label>
+                                                        <mat-form-field class="full-width input-design-2"
+                                                            appearance="fill">
+                                                            <input matInput type="text"
+                                                                placeholder="Name">
                                                         </mat-form-field>
                                                     </div>
                                                 </form>
