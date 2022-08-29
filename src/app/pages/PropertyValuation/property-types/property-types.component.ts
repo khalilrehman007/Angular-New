@@ -38,12 +38,22 @@ export class PropertyTypesComponent implements OnInit {
   showLoader: boolean = false;
   mask = ["A", "A+9", "A+99", "A+A+9", "A+A+99"];
   unitHMTL: any = [];
-  error: any = ""
+  error: any = "";
+  confirmMessage:any = "";
   showError: boolean = false;
+  showConfirm: boolean = false;
   oldLength: number = 0;
   oldData: any = "";
+  proceed:boolean = false;
   errorResponse(data: any) {
     this.showError = false;
+  }
+  confirmResponse(data: any) {
+    this.showConfirm = false;
+    if(data == "Yes") {
+      this.proceed = true;
+      this.getData();
+    }
   }
 
   room = [
@@ -96,7 +106,6 @@ export class PropertyTypesComponent implements OnInit {
     this.loadFittingType();
     this.formDetailData = localStorage.getItem("valuationDetailData");
     this.formDetailData = JSON.parse(this.formDetailData);
-    console.log(this.formDetailData);
     this.formData.FurnishingType = 0;
     this.formData.FittingType = 0;
     this.formData.Bedrooms = 0;
@@ -386,9 +395,11 @@ export class PropertyTypesComponent implements OnInit {
       this.showError = true;
       return;
     } else if (this.propertyData.hasPropertyFeature && this.featuresFormData.length == 0) {
-      this.error = "Please Select Property Features";
-      this.showError = true;
-      return;
+      if(!this.proceed) {
+        this.confirmMessage = "By not selecting any of the features, your property value may result to lower than market value";
+        this.showConfirm = true;
+        return;
+      }
     } 
     this.formData.Bedrooms = this.bedrooms;
     this.formData.Bathrooms = this.bathrooms;

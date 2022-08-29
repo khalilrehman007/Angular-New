@@ -1,10 +1,11 @@
 <div class="alert_box-design">
     <div ngClass="alert-message-wrap confirmation">
         <mat-icon>info</mat-icon>
-       <p>Are You Sure You Want to done this?</p>
+       <p>{{message}}</p>
+       <p>Do you want to proceed?</p>
        <div class="d-flex justify-content-center">
-        <button ngClass="confirm-btn">Confirm</button>
-        <button ngClass="ok-btn">Cancel</button>
+        <button ngClass="confirm-btn" (click)="sendData('Yes')">Yes</button>
+        <button ngClass="ok-btn" (click)="sendData('No')">No</button>
        </div>
     </div>
   </div>
