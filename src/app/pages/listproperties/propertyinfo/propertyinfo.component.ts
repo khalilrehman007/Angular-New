@@ -58,6 +58,7 @@ export class PropertyinfoComponent implements OnInit {
   options: any;
   locationSelected: boolean = false;
   showLoader: boolean = false;
+  showMap: boolean = false;
 
   constructor(private route: Router, private notifyService: NotificationService, private service: AppService) {
     this.loadCountriesData();
@@ -69,16 +70,13 @@ export class PropertyinfoComponent implements OnInit {
   }
   loadOldData() {
     if (localStorage.getItem("propertyData")) {
+      this.showMap = true;
       this.oldData = localStorage.getItem("propertyData");
       this.oldData = JSON.parse(this.oldData);
-      localStorage.setItem("lat", this.oldData.PropertyLat);
-      localStorage.setItem("lng", this.oldData.PropertyLong);
       this.SubmitForm.patchValue({
         PropertyAge: this.oldData.PropertyAge,
         BuildingName: this.oldData.BuildingName,
         UnitNo: this.oldData.UnitNo,
-        TotalFloor: this.oldData.TotalFloor,
-        FloorNo: this.oldData.FloorNo,
         address: this.oldData.PropertyAddress
       })
       this.countryId = this.oldData.CountryId;
@@ -140,16 +138,10 @@ export class PropertyinfoComponent implements OnInit {
       }
     });
   }
-  onDistrictSelect(e: any) {
-    this.locationSelected = false;
-    $("#searchLocation").val("");
-    let temp = this.district.filter(function (c: any) {
-      return c.value == e.value
-    })
-    this.getLocationDetails(temp[0].viewValue, true);
-    this.districtId = e.value;
-  }
   onCountrySelect(e: any) {
+    this.showMap = false;
+    this.city = this.district = [];
+    this.cityId = this.districtId = -1;
     this.showLoader = true;
     let temp = this.country.filter(function (c: any) {
       return c.value == e.value
@@ -169,6 +161,9 @@ export class PropertyinfoComponent implements OnInit {
     });
   }
   onCitySelect(e: any) {
+    this.showMap = false;
+    this.district = [];
+    this.districtId = -1;
     let temp = this.city.filter(function (c: any) {
       return c.value == e.value
     })
@@ -185,56 +180,58 @@ export class PropertyinfoComponent implements OnInit {
       }
     });
   }
+  onDistrictSelect(e: any) {
+    this.showMap = true;
+    this.locationSelected = false;
+    $("#searchLocation").val("");
+    let temp = this.district.filter(function (c: any) {
+      return c.value == e.value
+    })
+    this.getLocationDetails(temp[0].viewValue, true);
+    this.districtId = e.value;
+  }
   SubmitForm = new FormGroup({
     PropertyAge: new FormControl("", Validators.required),
     BuildingName: new FormControl("", Validators.required),
     UnitNo: new FormControl("", Validators.required),
-    TotalFloor: new FormControl("", Validators.required),
-    FloorNo: new FormControl("", Validators.required),
+    // TotalFloor: new FormControl("", Validators.required),
+    // FloorNo: new FormControl("", Validators.required),
     address: new FormControl("", Validators.required),
   });
   get validate() {
     return this.SubmitForm.controls;
   }
   onSubmit() {
-    if(this.countryId == -1) {
+    if (this.countryId == -1) {
       this.error = "Select Country";
       this.showError = true;
       return;
-    } else if(this.cityId == -1) {
+    } else if (this.cityId == -1) {
       this.error = "Select City";
       this.showError = true;
       return;
-    } else if(this.districtId == -1) {
+    } else if (this.districtId == -1) {
       this.error = "Select District";
       this.showError = true;
       return;
-    } else if(this.SubmitForm.value.address == "") {
+    } else if (this.SubmitForm.value.address == "") {
       this.error = "Select Address";
       this.showError = true;
       return;
-    } else if(this.SubmitForm.value.PropertyAge == "") {
+    } else if (this.SubmitForm.value.PropertyAge == "") {
       this.error = "Enter Property Age";
       this.showError = true;
       return;
-    } else if(this.SubmitForm.value.BuildingName == "") {
+    } else if (this.SubmitForm.value.BuildingName == "") {
       this.error = "Enter Building Name";
       this.showError = true;
       return;
-    } else if(this.SubmitForm.value.UnitNo == "") {
+    } else if (this.SubmitForm.value.UnitNo == "") {
       this.error = "Enter Unit No";
       this.showError = true;
       return;
-    } else if(this.SubmitForm.value.TotalFloor == "") {
-      this.error = "Enter Total Floors";
-      this.showError = true;
-      return;
-    } else if(this.SubmitForm.value.FloorNo == "") {
-      this.error = "Enter Floor No";
-      this.showError = true;
-      return;
     }
-    
+
     this.data.CountryId = this.countryId;
     this.data.CityId = this.cityId;
     this.data.DistrictId = this.districtId;
@@ -245,48 +242,22 @@ export class PropertyinfoComponent implements OnInit {
     this.data.PropertyAge = this.SubmitForm.value.PropertyAge;
     this.data.BuildingName = this.SubmitForm.value.BuildingName;
     this.data.UnitNo = this.SubmitForm.value.UnitNo;
-    this.data.TotalFloor = this.SubmitForm.value.TotalFloor;
-    this.data.FloorNo = this.SubmitForm.value.FloorNo;
-    localStorage.removeItem("lat");
-    localStorage.removeItem("lng");
     localStorage.setItem('propertyData', JSON.stringify(this.data))
     this.route.navigate(['listpropertyinfo'])
   }
-  validateLength(type:any) {
-    if(type == 1) {
-      let temp:any = this.SubmitForm.value.PropertyAge;
-      if(temp.toString().length > 10) {
+  validateLength(type: any) {
+    if (type == 1) {
+      let temp: any = this.SubmitForm.value.PropertyAge;
+      if (temp.toString().length > 10) {
         this.SubmitForm.patchValue({
           PropertyAge: temp.toString().slice(0, -1)
         })
       }
-    } else if(type == 2) {
-      let temp:any = this.SubmitForm.value.UnitNo;
-      if(temp.toString().length > 10) {
+    } else if (type == 2) {
+      let temp: any = this.SubmitForm.value.UnitNo;
+      if (temp.toString().length > 10) {
         this.SubmitForm.patchValue({
           UnitNo: temp.toString().slice(0, -1)
-        })
-      }
-    }
-  }
-  checkLength(type: number) {
-    if (type == 1) {
-      let temp: any = this.SubmitForm.value.TotalFloor;
-      if (temp > 200) {
-        this.error = "Max floors allowes is 200";
-        this.showError = true;
-        this.SubmitForm.patchValue({
-          TotalFloor: "200"
-        })
-      }
-    } else if(type == 2) {
-      let temp: any = this.SubmitForm.value.FloorNo;
-      let total: any = this.SubmitForm.value.TotalFloor;
-      if (temp > total) {
-        this.error = "Floor number cannot be greater than Total Floors";
-        this.showError = true;
-        this.SubmitForm.patchValue({
-          FloorNo: this.SubmitForm.value.TotalFloor
         })
       }
     }
@@ -295,19 +266,6 @@ export class PropertyinfoComponent implements OnInit {
   }
   ngAfterViewInit(): void {
     this.getLocation();
-  }
-  initMap(e: any, zoom: any) {
-    this.map = new google.maps.Map(this.mapElement.nativeElement, {
-      center: e,
-      zoom: zoom,
-      disableDefaultUI: true,
-    })
-    this.marker = new google.maps.Marker({
-      position: e,
-      map: this.map
-    })
-    this.autocomplete = new google.maps.places.Autocomplete(this.searchElement.nativeElement);
-    this.autocomplete.addListener('place_changed', this.onPlaceChanged);
   }
   onPlaceChanged() {
     let temp: any = document.getElementById("searchLocation");
@@ -368,7 +326,17 @@ export class PropertyinfoComponent implements OnInit {
   }
   getLocation() {
     if (this.oldData == "") {
-      this.initMap(null, 8);
+      this.map = new google.maps.Map(this.mapElement.nativeElement, {
+        center: null,
+        zoom: 8,
+        disableDefaultUI: true,
+      })
+      this.marker = new google.maps.Marker({
+        position: null,
+        map: this.map
+      })
+      this.autocomplete = new google.maps.places.Autocomplete(this.searchElement.nativeElement);
+      this.autocomplete.addListener('place_changed', this.onPlaceChanged);
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
           (position: GeolocationPosition) => {
@@ -391,8 +359,10 @@ export class PropertyinfoComponent implements OnInit {
       let southWest = new google.maps.LatLng(bounds.south, bounds.west);
       let areabounds = new google.maps.LatLngBounds(southWest, northEast);
       this.options.bounds = areabounds;
+      let lat: any = localStorage.getItem("lat");
+      let lng: any = localStorage.getItem("lng")
       this.map = new google.maps.Map($(".property-details__map")[0], {
-        center: { "lat": parseFloat(this.oldData.PropertyLat), "lng": parseFloat(this.oldData.PropertyLong) },
+        center: { "lat": parseFloat(lat), "lng": parseFloat(lng) },
         zoom: 6,
         disableDefaultUI: true,
         restriction: {
@@ -400,10 +370,7 @@ export class PropertyinfoComponent implements OnInit {
           strictBounds: true,
         },
       });
-      this.marker = new google.maps.Marker({
-        position: { "lat": parseFloat(this.oldData.PropertyLat), "lng": parseFloat(this.oldData.PropertyLong) },
-        map: this.map
-      });
+      this.onPlaceChanged();
       this.autocomplete = new google.maps.places.Autocomplete(this.searchElement.nativeElement, this.options);
       this.autocomplete.addListener('place_changed', this.onPlaceChanged);
       this.autocomplete.setBounds(this.bounds);

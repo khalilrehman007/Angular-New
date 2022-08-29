@@ -190,14 +190,14 @@ export class RentSearchComponent implements OnInit {
     // console.log(this.data.rentalTypeId,'rentalTypeId')
     // console.log(this.SubmitForm.value)
 
-    let params :any = {queryParams:{type:'Rent',PropertyListingTypeId:1,PropertyCategoryId:this.propertyCategory,RentTypeId:this.data.rentalTypeId,PropertyTypeIds:PropertyTypeIds
+    let params :any = {queryParams:{type:'Rent',PropertyListingTypeId:1,PropertyCategoryId:this.propertyCategory,RentTypeId:this.data.rentalTypeId,
+        PropertyTypeIds:JSON.stringify(PropertyTypeIds)
         ,PropertyAddress:this.SubmitForm.value.Name,PriceStart:this.SubmitForm.value.PriceStart,PriceEnd:this.SubmitForm.value.PriceEnd
         ,Bedrooms:'',Bathrooms:'',CurrentPage:1,DistrictIds:JSON.stringify(this.DistrictsId),DistrictsValue:JSON.stringify(this.SearchKeyword)
       }};
 
 
     // console.log(params)
-
 
     this.route.navigate(['/search'],params)
   }

@@ -286,7 +286,7 @@
 
               <div ngClass="row">
                 <div ngClass="col-lg-4 col-md-6 blog-places-col" *ngFor=" let blog of blogs">
-                  <a [routerLink]="['/blogs-details/' + blog.id]" >
+                  <a [routerLink]="['/blogs-details/' + blog.id]" ngClass="position-relative">
                     <img [src]="'https://www.ovaluate.com/'+blog.blogDocument.fileUrl"
                       ngClass="img-fluid blog-image-homepage" alt="">
                     <span ngClass="blog-tag">
@@ -296,6 +296,7 @@
                       <h5>{{blog.blogTitle}}</h5>
                       <span>{{blog.blogDate.split("T")[0]}}</span>
                     </div>
+                    <button ngClass="tag_btn blue"> Market Trends</button>
                   </a>
                 </div>
               </div>
@@ -2328,7 +2329,7 @@
               <div ngClass="row">
                 <!-- let blogs of Blogsec -->
                 <div ngClass="col-lg-4 col-md-6 blog-places-col" *ngFor=" let blog of blogs">
-                  <a [routerLink]="['/blogs/'+blog.id]" [queryParams]="{title: blog.blogTitle}">
+                  <a [routerLink]="['/blogs/'+blog.id]" [queryParams]="{title: blog.blogTitle}" ngClass="position-relative">
                     <!-- blog.blogDocument.fileUrl -->
                     <img [src]="'https://www.ovaluate.com/'+blog.blogDocument.fileUrl"
                       ngClass="img-fluid blog-image-homepage" alt="">
@@ -2339,6 +2340,7 @@
                       <h5>{{blog.blogTitle}}</h5>
                       <span>{{blog.blogDate}}</span>
                     </div>
+                    <button ngClass="tag_btn blue"> Market Trends</button>
                   </a>
                 </div>
               </div>

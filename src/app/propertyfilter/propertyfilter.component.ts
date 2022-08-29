@@ -49,6 +49,11 @@ export class PropertyfilterComponent implements OnInit {
   DistrictsId:any = [];
   DistrictsValue:any = [];
 
+  residential:any;
+  residentialId:any;
+  commercial:any;
+  commercialId:any;
+
   ngOnInit(): void {
     //parent method
     // this.childToParentDataLoad.emit('hikmat')
@@ -62,6 +67,9 @@ export class PropertyfilterComponent implements OnInit {
   allFruits: string[] = [];
   KeyWords :any = []
   keyWordsUrlValue :any = []
+  propertyTypeCommercial: any;
+  propertyTypeResdential: any;
+  PropertyTypeIds: any;
 
 
   @ViewChild('fruitInput') fruitInput: ElementRef<HTMLInputElement>;
@@ -73,6 +81,7 @@ export class PropertyfilterComponent implements OnInit {
     this.type                 = this.activeRoute.snapshot.queryParamMap.get('type');
     this.PropertyCategoryId   = this.activeRoute.snapshot.queryParamMap.get('PropertyCategoryId');
     this.RentTypeId           = this.activeRoute.snapshot.queryParamMap.get('RentTypeId');
+    let  PropertyTypeIds :any  = this.activeRoute.snapshot.queryParamMap.get('PropertyTypeIds');
     this.PropertyListingTypeId = this.activeRoute.snapshot.queryParamMap.get('PropertyListingTypeId');
     this.PropertyAddress       = this.activeRoute.snapshot.queryParamMap.get('PropertyAddress');
     this.PriceStart            = this.activeRoute.snapshot.queryParamMap.get('PriceStart');
@@ -82,6 +91,7 @@ export class PropertyfilterComponent implements OnInit {
     this.Bathrooms              = this.activeRoute.snapshot.queryParamMap.get('Bathrooms');
     this.selectedBaths = this.Bathrooms;
 
+    this.PropertyTypeIds = JSON.parse(PropertyTypeIds)
     let DistrictsId :any = this.activeRoute.snapshot.queryParamMap.get('DistrictIds');
     let DistrictsValue :any = this.activeRoute.snapshot.queryParamMap.get('DistrictsValue');
     this.DistrictsId = JSON.parse(DistrictsId)
@@ -147,8 +157,6 @@ export class PropertyfilterComponent implements OnInit {
 
     this.SubmitForm.controls.Name.setValue(this.PropertyAddress);
     this.loadType();
-    this.LoadPropertyCategories();
-
     this.service.RentTypes().subscribe(data=>{
       let response: any = data;
       this.Monthly   = response.data[0].name;
@@ -157,6 +165,17 @@ export class PropertyfilterComponent implements OnInit {
     });
 
     this.rentTypeIdCheck()
+    this.CategoriesTypes();
+    this.api.LoadType(2).subscribe((result) => {
+      this.propertyTypeCommercial = result;
+      this.propertyTypeCommercial = this.propertyTypeCommercial.data
+    });
+    this.api.LoadType(1).subscribe((result) => {
+      this.propertyTypeResdential = result;
+      this.propertyTypeResdential = this.propertyTypeResdential.data
+
+    });
+
   }
 
 
@@ -261,7 +280,6 @@ export class PropertyfilterComponent implements OnInit {
             if(this.selectedRentType == null){
               if(list.name.trim() == this.type.trim()){
                 this.selectedRentType = list.id;
-                this.type = list.name.trim()
               }
             }
             this.rentTypes.push({ name: list.name, id: list.id });
@@ -310,9 +328,21 @@ export class PropertyfilterComponent implements OnInit {
   changeType(event) {
     this.PropertyListingTypeId = event.value
     this.selectedRentType = event.value
+
+    this.service.LoadPropertyListingTypes().subscribe(e => {
+      let temp: any = e;
+      if (temp.message == "Property Listing Type List fetched successfully") {
+        let temp: any = e;
+        for (let list of temp.data) {
+          if(list.id == event.value){
+            this.type = list.name;
+          }
+        }
+      }
+    });
   }
-  propertyType(event) {
-    this.PropertyCategoryId = event.value
+  propertyType(id:any) {
+    this.PropertyCategoryId = id
   }
 
   baths(event) {
@@ -342,16 +372,25 @@ export class PropertyfilterComponent implements OnInit {
     this.Keywords.forEach((element, i) => {
       keywordsData.push(element.name)
     })
+    let PropertyTypeIds :any = [];
+    if(this.propertyCategory == 1){
+      //residential
+      PropertyTypeIds = this.PropertyTypeResidentialIds
+    }else if(this.propertyCategory == 2){
+      //commercial
+      PropertyTypeIds = this.PropertyTypeCommercialIds
+    }
 
-    this.loadType();
-    let params :any = {type:this.type,"PropertyTypeIds":[],"RentTypeId":this.RentTypeId,
+    let PropertyTypeIdsParams :any = JSON.stringify(PropertyTypeIds);
+
+    let params :any = {type:this.type,"PropertyTypeIds":PropertyTypeIdsParams,"RentTypeId":this.RentTypeId,
       "PropertyCategoryId":this.PropertyCategoryId,PriceStart:this.SubmitForm.value.PriceStart,PriceEnd:this.SubmitForm.value.PriceEnd,
       Bedrooms:this.Bedrooms,Bathrooms:this.Bathrooms,PropertyAddress:this.SubmitForm.value.Name,
       "PropertyListingTypeId":this.PropertyListingTypeId,CurrentPage:1,DistrictIds:JSON.stringify(this.DistrictsId),
       DistrictsValue:JSON.stringify(this.DistrictsValue),KeyWords:JSON.stringify(keywordsData),PropertyFeatureIds:JSON.stringify(this.propertyFeatureIds),
       MinCarpetArea:this.minCarpet,MaxCarpetArea:this.maxCarpet,FurnishingTypeId:this.furnishedType
     }
-    let objects :any = {type:this.type,"PropertyTypeIds":[],"RentTypeId":this.RentTypeId,
+    let objects :any = {type:this.type,"PropertyTypeIds":PropertyTypeIds,"RentTypeId":this.RentTypeId,
       "PropertyCategoryId":this.PropertyCategoryId,PriceStart:this.SubmitForm.value.PriceStart,PriceEnd:this.SubmitForm.value.PriceEnd,
       Bedrooms:this.Bedrooms,Bathrooms:this.Bathrooms,PropertyAddress:this.SubmitForm.value.Name,
       "PropertyListingTypeId":this.PropertyListingTypeId,CurrentPage:1,DistrictIds:this.DistrictsId,KeyWords:keywordsData
@@ -386,7 +425,7 @@ export class PropertyfilterComponent implements OnInit {
     this.propertyTypes = []
     this.LoadPropertyCategories();
 
-    let params :any = {type:'',"PropertyTypeIds":[], "PropertyAddress":'',"RentTypeId":'',
+    let params :any = {type:'',"PropertyTypeIds":"[]", "PropertyAddress":'',"RentTypeId":'',
       "PropertyCategoryId":'',PriceStart:'',PriceEnd:'', Bedrooms:'',Bathrooms:'',
       "PropertyListingTypeId":'',CurrentPage:1,DistrictIds:JSON.stringify(this.DistrictsId),DistrictsValue:JSON.stringify(this.fruits)
     }
@@ -401,7 +440,6 @@ export class PropertyfilterComponent implements OnInit {
   }
   modelPropertyPictures :any=[]
   openVerticallyCentered(content) {
-    console.log(this.propertyFeatureIds)
     this.SubmitForm.controls.minCarpet.setValue(this.minCarpet);
     this.SubmitForm.controls.maxCarpet.setValue(this.maxCarpet);
 
@@ -463,12 +501,85 @@ export class PropertyfilterComponent implements OnInit {
   minCarpet : any = ''
   minCarpetAreaChange(searchValue: any): void {
     this.minCarpet = searchValue
-    console.log(this.minCarpet)
   }
   maxCarpet : any = ''
   maxCarpetAreaChange(searchValue: any): void {
     this.maxCarpet = searchValue
-    console.log(this.maxCarpet)
+  }
+
+  status1: boolean = false;
+  clickEvent1(){
+    this.status1 = !this.status1;
+    this.status = false;
+  }
+
+  propertyCategory :any = 1;
+  residentialfun(id:any){
+    this.propertyCategory = id
+    document.getElementsByClassName('residential')[0].classList.add('active');
+    document.getElementsByClassName('commertial')[0].classList.remove('active');
+    document.getElementsByClassName('residential-tabs')[0].classList.remove('hide');
+    document.getElementsByClassName('commertial-tabs')[0].classList.add('hide');
+  }
+  // sell(){
+  commertialfun(id:any){
+    this.propertyCategory = id
+    document.getElementsByClassName('residential')[0].classList.remove('active');
+    document.getElementsByClassName('commertial')[0].classList.add('active');
+    document.getElementsByClassName('residential-tabs')[0].classList.add('hide');
+    document.getElementsByClassName('commertial-tabs')[0].classList.remove('hide');
+  }
+
+  PropertyTypeResidentialIds :any = []
+  getPropertyType(e: number) {
+    // this.PropertyTypeResidentialIds.push(e)
+
+    let checkExists :any = true;
+    this.PropertyTypeResidentialIds.forEach((element, i) => {
+      if(element == e){
+        checkExists = false;
+      }
+    })
+
+    if(checkExists){
+      this.PropertyTypeResidentialIds.push(e)
+    }else{
+      const index = this.PropertyTypeResidentialIds.indexOf(e);
+      if (index >= 0) {
+        this.PropertyTypeResidentialIds.splice(index, 1);
+      }
+    }
+  }
+
+  PropertyTypeCommercialIds :any = []
+  getPropertyCommercialType(e: number) {
+    // this.PropertyTypeCommercialIds.push(e)
+    let checkExists :any = true;
+    this.PropertyTypeCommercialIds.forEach((element, i) => {
+      if(element == e){
+        checkExists = false;
+      }
+    })
+
+    if(checkExists){
+      this.PropertyTypeCommercialIds.push(e)
+    }else{
+      const index = this.PropertyTypeCommercialIds.indexOf(e);
+      if (index >= 0) {
+        this.PropertyTypeCommercialIds.splice(index, 1);
+      }
+    }
+  }
+
+
+  CategoriesTypes(){
+    this.service.PropertyCategories().subscribe(data=>{
+      let response:any = data;
+      this.residential = response.data[0].categoryName;
+      this.residentialId = response.data[0].id;
+      this.commercial = response.data[1].categoryName;
+      this.commercialId = response.data[1].id;
+    });
   }
 
 }

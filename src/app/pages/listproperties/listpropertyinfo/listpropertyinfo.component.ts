@@ -28,8 +28,6 @@ export class ListpropertyinfoComponent implements OnInit {
   editdata: any;
   submitted = false;
   responsedata: any;
-  oldData: any;
-  priviousFormCheck: any;
   data: any = {};
   propertyType: any = [];
   selectedPropertyType: any = {};
@@ -41,8 +39,9 @@ export class ListpropertyinfoComponent implements OnInit {
   occupancy: any;
   petPolicy: any;
   petPolicyData: any = [];
+  locatedNearData: any = [];
   rentTypes: any;
-  room: any = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, "10+"];
+  room: any = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   featuresData: any;
   featuresFormData: any = [];
   minDate = new Date();
@@ -66,20 +65,29 @@ export class ListpropertyinfoComponent implements OnInit {
   securityCheck: boolean = false;
   transactionType: any = [];
   completionStatus: any = [];
-  locatedNear: any = [{ id: 1, name: "Metro" }, { id: 2, name: "Elevator" }, { id: 3, name: "Stairs" }];
+  locatedNear: any = [];
   ownershipType: any = [{ id: 1, name: "Freehold" }, { id: 2, name: "Leasehold" }];
   showLoader: boolean = false;
-
+  SubmitForm = new FormGroup({
+    TotalFloor: new FormControl("", [Validators.required]),
+    FloorNo: new FormControl("", [Validators.required]),
+    propertyTitle: new FormControl("", [Validators.required]),
+    carpetArea: new FormControl("", [Validators.required]),
+    buildupArea: new FormControl("", [Validators.required]),
+    price: new FormControl("", [Validators.required]),
+    AED: new FormControl("",),
+    brokerageAed: new FormControl("",),
+    availablefrom: new FormControl("", [Validators.required]),
+    handOverOn: new FormControl("", [Validators.required]),
+    noticePeriod: new FormControl("", [Validators.required]),
+    lockingPeriod: new FormControl("", [Validators.required]),
+    propertyDescription: new FormControl("", [Validators.required]),
+    propertyOffers: new FormControl(""),
+  });
+  get validate() {
+    return this.SubmitForm.controls;
+  }
   constructor(private api: AppService, private service: AuthService, private route: Router, private notifyService: NotificationService) {
-    this.getOldFormData();
-    this.priviousFormCheck = localStorage.getItem('propertyData');
-    if (this.priviousFormCheck == '' || this.priviousFormCheck == null) {
-      this.priviousFormCheck = JSON.parse(this.priviousFormCheck);
-      this.route.navigate(['listingproperty'])
-    } else {
-      this.priviousFormCheck = JSON.parse(this.priviousFormCheck);
-      this.data = this.priviousFormCheck;
-    }
     this.api.PropertyListingRentBuy({ "Lat": this.data.PropertyLat, "Long": this.data.PropertyLong }).subscribe((result: any) => {
       this.propertyListingBuy = result.data.propertyListingBuy;
       this.propertyListingRent = result.data.propertyListingRent;
@@ -111,21 +119,147 @@ export class ListpropertyinfoComponent implements OnInit {
     this.api.LoadOccupancy().subscribe((result: any) => {
       this.occupancy = result.data;
     });
+    this.api.LocatedNear().subscribe((result: any) => {
+      this.locatedNear = result.data;
+    })
     this.data.BedRooms = 0;
     this.data.BathRooms = 0;
     this.data.FurnishingType = 0;
     this.data.FittingType = 0;
     this.data.BuildupArea = 0;
     this.data.CarpetArea = 0;
+    this.loadOldData();
   }
   ngOnInit() {
-    $("#formDate").on("click", function () {
-      $(".mat-datepicker-toggle").click();
-    })
+  }
+  onDate() {
+    $(".mat-datepicker-toggle").click();
+  }
+  loadOldData() {
+    if (localStorage.getItem("propertyData")) {
+      let temp: any = localStorage.getItem("propertyData");
+      this.data = JSON.parse(temp);
+
+      if (localStorage.getItem("listingData")) {
+        temp = localStorage.getItem("listingData");
+        this.data = JSON.parse(temp);
+
+        this.listingTypeId = this.data.PropertyListingTypeId;
+        if (this.listingTypeId == 2) {
+          this.api.PropertyTransactionTypes().subscribe((result: any) => {
+            this.transactionType = result.data;
+          })
+          this.api.LoadCompletionStatus().subscribe((result: any) => {
+            this.completionStatus = result.data;
+          })
+        }
+        this.clearData();
+        
+        if(this.data.PetPolicies) {
+          for (let i = 0; i < this.data.PetPolicies.length; i++) {
+            this.petPolicyData.push(this.data.PetPolicies[i].PetPolicyId)
+          }
+        }
+        if(this.data.PropertyListingLocatedNears) {
+          for (let i = 0; i < this.data.PropertyListingLocatedNears.length; i++) {
+            this.locatedNearData.push(this.data.PropertyListingLocatedNears[i].LocatedNearId)
+          }
+        }
+        if(this.data.PropertyFeatures) {
+          for (let i = 0; i < this.data.PropertyFeatures.length; i++) {
+            this.featuresFormData.push(this.data.PropertyFeatures[i].PropertyFeatureId)
+          }
+        }
+
+        this.showLoader = true;
+        this.categoryID = this.data.PropertyCategoryId;
+        this.api.LoadType(this.data.PropertyCategoryId).subscribe((result) => {
+          this.propertyType = result;
+          this.propertyType = this.propertyType.data
+          this.showLoader = false;
+          this.selectedPropertyType = this.propertyType.filter((item: any) => item.id == this.data.PropertyTypeId)[0];
+          this.propertyTypeCheck = true;
+          if(this.selectedPropertyType.hasTotalFloor) {
+            this.SubmitForm.patchValue({
+              TotalFloor: this.data.TotalFloor
+            })
+          }
+          if(this.selectedPropertyType.hasFloorNo) {
+            this.SubmitForm.patchValue({
+              FloorNo: this.data.FloorNo
+            })
+          }
+          if(this.selectedPropertyType.hasCarpetArea) {
+            this.SubmitForm.patchValue({
+              carpetArea: this.data.CarpetArea
+            })
+          }
+          if(this.selectedPropertyType.hasBuildUpArea) {
+            this.SubmitForm.patchValue({
+              buildupArea: this.data.BuildupArea
+            })
+          }
+          if(this.data.SecurityDeposit == "true") {
+            this.SubmitForm.patchValue({
+              AED: this.data.SecurityDepositPrice
+            })
+          }
+          if(this.data.BrokerageCharge == "true") {
+            this.SubmitForm.patchValue({
+              brokerageAed: this.data.BrokerageChargePrice
+            })
+          }
+          if(this.data.AvailableDate) {
+            let temp:any = new Date(this.data.AvailableDate);
+            this.SubmitForm.patchValue({
+              availablefrom: temp
+            })
+          }
+          if(this.data.HandoverOn) {
+            let temp:any = new Date(this.data.HandoverOn);
+            this.SubmitForm.patchValue({
+              handOverOn: temp
+            })
+          }
+          if(this.data.NoticePeriod) {
+            this.SubmitForm.patchValue({
+              noticePeriod: this.data.NoticePeriod
+            })
+          }
+          if(this.data.LockingPeriod) {
+            this.SubmitForm.patchValue({
+              lockingPeriod: this.data.LockingPeriod
+            })
+          }
+          if(this.data.PropertyTitle) {
+            this.SubmitForm.patchValue({
+              propertyTitle: this.data.PropertyTitle
+            })
+          }
+          if(this.data.PropertyDescription) {
+            this.SubmitForm.patchValue({
+              propertyDescription: this.data.PropertyDescription
+            })
+          }
+          if(this.data.PropertyOffer) {
+            this.SubmitForm.patchValue({
+              propertyOffers: this.data.PropertyOffer
+            })
+          }
+          this.SubmitForm.patchValue({
+            price: this.data.PropertyPrice
+          })
+        });
+        
+        console.log(this.data);
+      }
+    } else {
+      this.route.navigate(['listingproperty'])
+    }
   }
   onListTypeSelect(id: any) {
     this.listingTypeId = 0;
-    setTimeout(()=> {
+    setTimeout(() => {
       this.listingTypeId = id;
     }, 100)
     if (id == 2) {
@@ -137,9 +271,6 @@ export class ListpropertyinfoComponent implements OnInit {
       })
     }
     this.clearData();
-  }
-  getOldFormData() {
-    this.oldData = localStorage.getItem('listpropertyinfo_rent_residential');
   }
   clearData() {
     let temp: any = localStorage.getItem('propertyData');
@@ -161,28 +292,14 @@ export class ListpropertyinfoComponent implements OnInit {
     });
   }
   getCategory(id: any) {
+    this.showLoader = true;
     this.categoryID = id;
     this.api.LoadType(id).subscribe((result) => {
       this.propertyType = result;
       this.propertyType = this.propertyType.data
+      this.showLoader = false;
     });
     this.clearData();
-  }
-  SubmitForm = new FormGroup({
-    propertyTitle: new FormControl("", [Validators.required]),
-    carpetArea: new FormControl("", [Validators.required]),
-    buildupArea: new FormControl("", [Validators.required]),
-    price: new FormControl("", [Validators.required]),
-    AED: new FormControl("",),
-    brokerageAed: new FormControl("",),
-    availablefrom: new FormControl("", [Validators.required]),
-    noticePeriod: new FormControl("", [Validators.required]),
-    lockingPeriod: new FormControl("", [Validators.required]),
-    propertyDescription: new FormControl("", [Validators.required]),
-    propertyOffers: new FormControl(""),
-  });
-  get validate() {
-    return this.SubmitForm.controls;
   }
   getBedroom(e: any) {
     this.bedroomCheck = true;
@@ -193,7 +310,7 @@ export class ListpropertyinfoComponent implements OnInit {
     this.data.BathRooms = e.value;
   }
   getPropertyType(e: any) {
-    this.selectedPropertyType = this.propertyType.filter((item: any) => item.id == e.value)[0]
+    this.selectedPropertyType = this.propertyType.filter((item: any) => item.id == e.value)[0];
     this.propertyTypeCheck = true;
     this.data.PropertyTypeId = e.value;
   }
@@ -233,8 +350,8 @@ export class ListpropertyinfoComponent implements OnInit {
   getCompletionStatus(e: number) {
     this.data.PropertyCompletionStatusId = e;
   }
-  getLocatedNear(e: number) {
-    this.data.LocatedNear = e;
+  getLocatedNear(e: any) {
+    this.locatedNearData = e.value;
   }
   getOwnershipType(e: number) {
     this.data.ownershipType = e;
@@ -252,6 +369,28 @@ export class ListpropertyinfoComponent implements OnInit {
       this.featuresFormData = this.featuresFormData.filter((e: any) => e != id)
     }
   }
+  checkLength(type: number) {
+    if (type == 1) {
+      let temp: any = this.SubmitForm.value.TotalFloor;
+      if (temp > 200) {
+        this.error = "Max floors allowes is 200";
+        this.showError = true;
+        this.SubmitForm.patchValue({
+          TotalFloor: "200"
+        })
+      }
+    } else if (type == 2) {
+      let temp: any = this.SubmitForm.value.FloorNo;
+      let total: any = this.SubmitForm.value.TotalFloor;
+      if (temp > total) {
+        this.error = "Floor number cannot be greater than Total Floors";
+        this.showError = true;
+        this.SubmitForm.patchValue({
+          FloorNo: this.SubmitForm.value.TotalFloor
+        })
+      }
+    }
+  }
   onSubmit() {
     if (this.listingTypeId == 0) {
       this.error = "Select Listing Type";
@@ -263,6 +402,14 @@ export class ListpropertyinfoComponent implements OnInit {
       return;
     } else if (!this.data.PropertyTypeId) {
       this.error = "Select Property Type";
+      this.showError = true;
+      return;
+    } else if (this.SubmitForm.value.TotalFloor == "" && this.selectedPropertyType.hasTotalFloor) {
+      this.error = "Enter Total Floors";
+      this.showError = true;
+      return;
+    } else if (this.SubmitForm.value.FloorNo == "" && this.selectedPropertyType.hasFloorNo) {
+      this.error = "Enter Floors No.";
       this.showError = true;
       return;
     } else if (this.selectedPropertyType.hasBed && !this.data.BedRooms) {
@@ -329,7 +476,7 @@ export class ListpropertyinfoComponent implements OnInit {
       this.error = "Enter Handover Date";
       this.showError = true;
       return;
-    } else if (this.listingTypeId == 2 && this.categoryID == 2 && !this.data.LocatedNear) {
+    } else if (this.locatedNearData.length == 0) {
       this.error = "Select Near Location";
       this.showError = true;
       return;
@@ -387,11 +534,17 @@ export class ListpropertyinfoComponent implements OnInit {
       return;
     }
 
-    let userData:any = localStorage.getItem("user");
+    let userData: any = localStorage.getItem("user");
     userData = JSON.parse(userData);
     this.data.UserId = userData.id;
-    if(userData.professionalTypeId) {
+    if (userData.professionalTypeId) {
       this.data.ProfessionalTypeId = userData.professionalTypeId;
+    }
+    if (this.selectedPropertyType.hasTotalFloor) {
+      this.data.TotalFloor = this.SubmitForm.value.TotalFloor;
+    }
+    if (this.selectedPropertyType.hasFloorNo) {
+      this.data.FloorNo = this.SubmitForm.value.FloorNo;
     }
     this.data.PropertyListingTypeId = this.listingTypeId;
     this.data.PropertyCategoryId = this.categoryID;
@@ -411,13 +564,18 @@ export class ListpropertyinfoComponent implements OnInit {
         temp.push({ "PetPolicyId": this.petPolicyData[i] });
       }
       this.data.PetPolicies = temp;
-      this.data.AvailableDate = $("#formDate").val()
+      this.data.AvailableDate = $("#formDate").val();
       this.data.NoticePeriod = this.SubmitForm.value.noticePeriod;
       this.data.LockingPeriod = this.SubmitForm.value.lockingPeriod;
       this.data.PropertyTitle = this.SubmitForm.value.propertyTitle;
       this.data.PropertyDescription = this.SubmitForm.value.propertyDescription;
       this.data.PropertyOffer = this.SubmitForm.value.propertyOffers;
     }
+    temp = [];
+    for (let i = 0; i < this.locatedNearData.length; i++) {
+      temp.push({ "LocatedNearId": this.locatedNearData[i] });
+    }
+    this.data.PropertyListingLocatedNears = temp;
     if (this.listingTypeId == 2) {
       this.data.HandoverOn = $("#sell-residential-datepicker").val();
     }
@@ -437,8 +595,9 @@ export class ListpropertyinfoComponent implements OnInit {
       temp.push({ PropertyFeatureId: this.featuresFormData[i] });
     }
     this.data.PropertyFeatures = temp;
-
     localStorage.setItem('propertyData', JSON.stringify(this.data));
+    localStorage.setItem('listingData', JSON.stringify(this.data));
     this.route.navigate(['listpropertymedia'])
+    console.log(this.data);
   }
 }

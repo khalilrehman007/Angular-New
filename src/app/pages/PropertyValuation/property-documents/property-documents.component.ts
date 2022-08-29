@@ -41,10 +41,11 @@ export class PropertyDocumentsComponent implements OnInit {
   documentType: any = [];
   valuationResponse: any = {};
   showPayment: boolean = false;
-  publishText: any = "Publish";
+  publishText: any = "Submit";
   showLoader: boolean = false;
   error: any = ""
   showError: boolean = false;
+  requiredDocs:number = 3;
   currency:any = localStorage.getItem("currency");
   errorResponse(data: any) {
     this.showError = false;
@@ -68,7 +69,8 @@ export class PropertyDocumentsComponent implements OnInit {
   paymentForm = new FormGroup({
     cardNumber: new FormControl("", Validators.required),
     expiryDate: new FormControl("", Validators.required),
-    cvv: new FormControl("", Validators.required)
+    cvv: new FormControl("", Validators.required),
+    cardName: new FormControl("", Validators.required)
   })
 
   get name() {
@@ -267,17 +269,22 @@ export class PropertyDocumentsComponent implements OnInit {
     });
   }
   Nextshow() {
-    if (this.documentcount >= 3) {
+    if (this.documentcount >= this.requiredDocs) {
       this.documentData = [];
       let dataUrl: any = localStorage.getItem("mapImg");
       this.mapImage = this.dataURLtoFile(dataUrl, "map.jpg");
       this.documentData.push({ "FileId": "1", "DocumentTypeId": this.documentType[this.documentType.length - 1].id, "FileName": "map.jpg", "Extension": "jpg", "IsScreenshot": "true" });
-      let extension: any = this.titleDeedImage.name.split(".");
-      extension = extension[extension.length - 1];
-      this.documentData.push({ "FileId": "2", "DocumentTypeId": 1, "FileName": this.titleDeedImage.name, "Extension": extension, "IsScreenshot": "false" });
-      extension = this.affectionImage.name.split(".");
-      extension = extension[extension.length - 1];
-      this.documentData.push({ "FileId": "3", "DocumentTypeId": 2, "FileName": this.affectionImage.name, "Extension": extension, "IsScreenshot": "false" });
+      let extension: any;
+      if(this.formData.TitleDeedNo != 0) {
+        extension = this.titleDeedImage.name.split(".");
+        extension = extension[extension.length - 1];
+        this.documentData.push({ "FileId": "2", "DocumentTypeId": 1, "FileName": this.titleDeedImage.name, "Extension": extension, "IsScreenshot": "false" });
+      }
+      if(this.formData.MunicipalityNo != 0) {
+        extension = this.affectionImage.name.split(".");
+        extension = extension[extension.length - 1];
+        this.documentData.push({ "FileId": "3", "DocumentTypeId": 2, "FileName": this.affectionImage.name, "Extension": extension, "IsScreenshot": "false" });
+      }
       extension = this.propertyImage.name.split(".");
       extension = extension[extension.length - 1];
       this.documentData.push({ "FileId": "4", "DocumentTypeId": 3, "FileName": this.propertyImage.name, "Extension": extension, "IsScreenshot": "false" });
@@ -494,7 +501,6 @@ export class PropertyDocumentsComponent implements OnInit {
       this.showError = true;
       return;
     } else if (cvv.toString().length < 3) {
-      alert("Please Enter a valid CVV");
       this.error = "Please Enter a valid CVV";
       this.showError = true;
       return;
@@ -503,13 +509,16 @@ export class PropertyDocumentsComponent implements OnInit {
       this.showError = true;
       return;
     } else if ("20" + date.toString().split("/")[1] == currentDate[0] && date.toString().split("/")[0] < currentDate[1] || date.toString().split("/")[0] > 12) {
-      alert("Please Enter a Valid Card Expiry");
       this.error = "Please Enter a Valid Card Expiry";
+      this.showError = true;
+      return;
+    } else if (this.paymentForm.value.cardName = "") {
+      this.error = "Please Enter a Card Holder Name";
       this.showError = true;
       return;
     }
     this.showLoader = true;
-    let data: any = { "CardNumder": number,"Currency" :this.currency, "reportNumberCode": this.valuationResponse.reportNumberCode, "Month": date.toString().split("/")[0], "Year": "20" + date.toString().split("/")[1], "CVC": cvv, "Amount": this.valuationResponse.valuationPayment.totalAmount, "Email": this.valuationResponse.emailAddress, "CustomerName": this.valuationResponse.customerName, "DescriptionPayment": this.userData.propertyCategory + " " + this.userData.propertyType + " " + this.valuationResponse.reportPackage.name };
+    let data: any = { "CardNumder": number,"Currency" :this.currency, "reportNumberCode": this.valuationResponse.reportNumberCode, "Month": date.toString().split("/")[0], "Year": "20" + date.toString().split("/")[1], "CVC": cvv, "Amount": this.valuationResponse.valuationPayment.totalAmount, "Email": this.valuationResponse.emailAddress, "CustomerName": this.paymentForm.value.cardName, "DescriptionPayment": this.userData.propertyCategory + " " + this.userData.propertyType + " " + this.valuationResponse.reportPackage.name };
     this.service.ValuationPayment(data).subscribe((result: any) => {
       if (result.message == "Valuation transaction completed successfully") {
         localStorage.removeItem("bounds");
@@ -521,7 +530,8 @@ export class PropertyDocumentsComponent implements OnInit {
         this.router.navigate(['/PropertyDownloadReport']);
       } else {
         this.showLoader = false;
-        alert(result.error)
+        this.error = result.error;
+        this.showError = true;
       }
     })
   }
@@ -535,6 +545,12 @@ export class PropertyDocumentsComponent implements OnInit {
       this.documentType = result.data;
     })
     this.checkPackage();
+    if(this.formData.TitleDeedNo == 0) {
+      this.requiredDocs--;
+    }
+    if(this.formData.MunicipalityNo == 0) {
+      this.requiredDocs--;
+    }
   }
 
   ngOnInit(): void {

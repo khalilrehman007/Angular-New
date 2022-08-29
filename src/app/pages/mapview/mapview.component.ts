@@ -4,6 +4,8 @@ import { FooterComponent } from '../../footer/footer.component';
 import { PropertyfilterComponent } from '../../propertyfilter/propertyfilter.component';
 import { AppService } from 'src/app/service/app.service';
 import {ActivatedRoute, Router} from "@angular/router";
+import {NotificationService} from "../../service/notification.service";
+import {AuthService} from "../../service/auth.service";
 declare const google: any;
 
 @Component({
@@ -92,14 +94,15 @@ export class MapviewComponent implements OnInit,AfterViewInit{
   Bedrooms: any;
   Bathrooms: any;
   selectedPropertyTypeName: any;
-  constructor( private service: AppService,private activeRoute: ActivatedRoute,private route: Router) {
+  constructor( private authService: AuthService,private notifyService: NotificationService,private service: AppService,private activeRoute: ActivatedRoute,private route: Router) {
     this.totalRecord = this.activeRoute.snapshot.queryParamMap.get('totalRecord');
     this.selectedPropertyTypeName = this.activeRoute.snapshot.queryParamMap.get('selectedPropertyTypeName');
     this.type = this.activeRoute.snapshot.queryParamMap.get('type');
     this.PropertyCategoryId = this.activeRoute.snapshot.queryParamMap.get('PropertyCategoryId');
     this.RentTypeId = this.activeRoute.snapshot.queryParamMap.get('RentTypeId');
     this.PropertyListingTypeId = this.activeRoute.snapshot.queryParamMap.get('PropertyListingTypeId');
-    this.PropertyTypeIds = this.activeRoute.snapshot.queryParamMap.get('PropertyTypeIds');
+    let  PropertyTypeIds :any  = this.activeRoute.snapshot.queryParamMap.get('PropertyTypeIds');
+    this.PropertyTypeIds = JSON.parse(PropertyTypeIds)
     this.PropertyAddress = this.activeRoute.snapshot.queryParamMap.get('PropertyAddress');
     this.PriceStart = this.activeRoute.snapshot.queryParamMap.get('PriceStart');
     this.PriceEnd = this.activeRoute.snapshot.queryParamMap.get('PriceEnd');
@@ -115,8 +118,13 @@ export class MapviewComponent implements OnInit,AfterViewInit{
     this.Bedrooms   = this.activeRoute.snapshot.queryParamMap.get('Bedrooms');
     this.Bathrooms  = this.activeRoute.snapshot.queryParamMap.get('Bathrooms');
 
+    if(PropertyFeatureIds == null){
+      PropertyFeatureIds = []
+    }else{
+      PropertyFeatureIds = JSON.parse(PropertyFeatureIds)
+    }
+    this.PropertyFeatureIds = PropertyFeatureIds
     this.KeyWords = JSON.parse(KeyWords)
-    this.PropertyFeatureIds = JSON.parse(PropertyFeatureIds)
     this.MinCarpetArea = MinCarpetArea
     this.MaxCarpetArea = MaxCarpetArea
     this.FurnishingTypeId = FurnishingTypeId
@@ -126,7 +134,6 @@ export class MapviewComponent implements OnInit,AfterViewInit{
 
     let propertyParams :any =localStorage.getItem('listingForMap');
     this.propertyDetailsParams = JSON.parse(propertyParams)
-    console.log(this.propertyDetailsParams,'dededede');
     this.loadListingProperty(this.propertyDetailsParams)
 
     this.service.VideoTour().subscribe((result: any) => {
@@ -134,8 +141,22 @@ export class MapviewComponent implements OnInit,AfterViewInit{
     })
     this.LoadPropertySortBy();
 
+    this.getUser();
+    let userId = '';
+    if (this.user !== null) {
+      userId = this.user.id;
+    }
+    this.userId = userId;
+
   }
 
+  getUser() {
+    this.user = localStorage.getItem('user');
+    if (this.user != '') {
+      this.user = JSON.parse(this.user);
+    }
+    return this.user;
+  }
 
   searchListing: any = [];
   loadListingProperty(data: any) {
@@ -189,7 +210,7 @@ export class MapviewComponent implements OnInit,AfterViewInit{
   pageChanged(value: any) {
     this.page = value;
     let params: any = {
-      "PropertyTypeIds": this.PropertyTypeIds, "PropertyAddress": this.PropertyAddress, "RentTypeId": this.RentTypeId,
+      "PropertyTypeIds": this.PropertyTypeIds, "PropertyAddress": this.PropertyAddress, "RentTypeId": this.RentTypeId,"videoTour": this.videoTourSorting,
       "PropertyCategoryId": this.PropertyCategoryId, "PriceStart": this.PriceStart, "PriceEnd": this.PriceEnd,Bedrooms:this.Bedrooms,Bathrooms:this.Bathrooms,
       "PropertyListingTypeId": this.PropertyListingTypeId, "SortedBy": this.sortedById, CurrentPage: this.page, DistrictIds: this.DistrictsId
     }
@@ -208,10 +229,8 @@ export class MapviewComponent implements OnInit,AfterViewInit{
       map: this.map
     })
 
-    console.log(this.searchListing.length)
     for (let i = 0; i < this.searchListing.length; i++) {
 
-      console.log(this.searchListing[i].propertyLat,'property lat log');
       let latLng = {lat: this.searchListing[i].propertyLat, lng: this.searchListing[i].propertyLong};
       this.marker = new google.maps.Marker({
         position: latLng,
@@ -229,7 +248,7 @@ export class MapviewComponent implements OnInit,AfterViewInit{
     let params: any = {
       "PropertyTypeIds": this.PropertyTypeIds, "PropertyAddress": this.PropertyAddress, "RentTypeId": this.RentTypeId,
       "PropertyCategoryId": this.PropertyCategoryId, "PriceStart": this.PriceStart, "PriceEnd": this.PriceEnd,Bedrooms:this.Bedrooms,Bathrooms:this.Bathrooms,
-      "PropertyListingTypeId": this.PropertyListingTypeId, "videoSorting": this.videoTourSorting, CurrentPage: this.page, DistrictIds: this.DistrictsId
+      "PropertyListingTypeId": this.PropertyListingTypeId, "videoTour": this.videoTourSorting, CurrentPage: this.page, DistrictIds: this.DistrictsId
     }
     this.loadListingProperty(params);
   }
@@ -238,7 +257,7 @@ export class MapviewComponent implements OnInit,AfterViewInit{
     this.sortedById = event.value
     let params: any = {
       "PropertyTypeIds": this.PropertyTypeIds, "PropertyAddress": this.PropertyAddress, "RentTypeId": this.RentTypeId,Bedrooms:this.Bedrooms,Bathrooms:this.Bathrooms,
-      "PropertyCategoryId": this.PropertyCategoryId, "PriceStart": this.PriceStart, "PriceEnd": this.PriceEnd,
+      "PropertyCategoryId": this.PropertyCategoryId, "PriceStart": this.PriceStart, "PriceEnd": this.PriceEnd,"videoTour": this.videoTourSorting,
       "PropertyListingTypeId": this.PropertyListingTypeId, "SortedBy": this.sortedById, CurrentPage: this.page, DistrictIds: this.DistrictsId
     }
     this.loadListingProperty(params);
@@ -256,11 +275,53 @@ export class MapviewComponent implements OnInit,AfterViewInit{
 
   allSearch() {
     let params: any = {
-      type: '', "PropertyTypeIds": [], "PropertyAddress": '', "RentTypeId": '',
+      type: '', "PropertyTypeIds":"[]", "PropertyAddress": '', "RentTypeId": '',
+      "PropertyCategoryId": '', PriceStart: '', PriceEnd: '', Bedrooms: '', Bathrooms: '',
+      "PropertyListingTypeId": '', CurrentPage: 1
+    }
+    let object: any = {
+      type: '', "PropertyTypeIds":[], "PropertyAddress": '', "RentTypeId": '',
       "PropertyCategoryId": '', PriceStart: '', PriceEnd: '', Bedrooms: '', Bathrooms: '',
       "PropertyListingTypeId": '', CurrentPage: 1
     }
     this.route.navigate(['/search'], { queryParams: params })
-    this.loadListingProperty(params);
+    this.loadListingProperty(object);
   }
+
+
+  wishlistStatus: any;
+  AddToFavorite(id: any, status: any) {
+    console.log(this.userId);
+    if (this.userId == '') {
+      this.notifyService.showSuccess('First you need to login', "");
+      this.route.navigate(['/login'])
+    }
+    if (!this.authService.isAuthenticated()) {
+      this.notifyService.showError('You not having access', "");
+      this.route.navigate(['login']);
+    }
+
+    let params: any = {
+      "PropertyTypeIds": this.PropertyTypeIds, "PropertyAddress": this.PropertyAddress, "RentTypeId": this.RentTypeId,Bedrooms:this.Bedrooms,Bathrooms:this.Bathrooms,
+      "PropertyCategoryId": this.PropertyCategoryId, "PriceStart": this.PriceStart, "PriceEnd": this.PriceEnd,"videoTour": this.videoTourSorting,
+      "PropertyListingTypeId": this.PropertyListingTypeId, "SortedBy": this.sortedById, CurrentPage: this.page, DistrictIds: this.DistrictsId
+    }
+    this.service.FavoriteAddRemove(status, { "UserId": this.userId, "PropertyListingId": id }).subscribe(data => {
+      let responsedata: any = data
+      if (responsedata.message == "Favorite is Removed successfully") {
+        this.wishlistStatus = "Favorite is Removed successfully"
+        this.notifyService.showSuccess('Favorite is Removed successfully', "");
+        setTimeout(() => {
+          this.loadListingProperty(params);
+        }, 1000);
+      } else {
+        this.wishlistStatus = "Favorite is added successfully"
+        this.notifyService.showSuccess('Favorite is added successfully', "");
+        setTimeout(() => {
+          this.loadListingProperty(params);
+        }, 1000);
+      }
+    });
+  }
+
 }

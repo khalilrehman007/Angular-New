@@ -93,7 +93,7 @@ export class RentpropertiesComponent implements OnInit {
         this.PropertyCategoryId = this.activeRoute.snapshot.queryParamMap.get('PropertyCategoryId');
         this.RentTypeId = this.activeRoute.snapshot.queryParamMap.get('RentTypeId');
         this.PropertyListingTypeId = this.activeRoute.snapshot.queryParamMap.get('PropertyListingTypeId');
-        this.PropertyTypeIds = this.activeRoute.snapshot.queryParamMap.get('PropertyTypeIds');
+        let  PropertyTypeIds :any  = this.activeRoute.snapshot.queryParamMap.get('PropertyTypeIds');
         this.PropertyAddress = this.activeRoute.snapshot.queryParamMap.get('PropertyAddress');
         this.PriceStart = this.activeRoute.snapshot.queryParamMap.get('PriceStart');
         this.PriceEnd = this.activeRoute.snapshot.queryParamMap.get('PriceEnd');
@@ -108,6 +108,8 @@ export class RentpropertiesComponent implements OnInit {
         let countryId: any = this.activeRoute.snapshot.queryParamMap.get('countryId') ?? "";
         this.Bedrooms              = this.activeRoute.snapshot.queryParamMap.get('Bedrooms');
         this.Bathrooms              = this.activeRoute.snapshot.queryParamMap.get('Bathrooms');
+
+        this.PropertyTypeIds = JSON.parse(PropertyTypeIds)
 
         this.KeyWordsParams = KeyWords;
         this.KeyWords = JSON.parse(KeyWords)
@@ -210,8 +212,8 @@ export class RentpropertiesComponent implements OnInit {
   pageChanged(value: any) {
     this.page = value;
     let params: any = {
-      "PropertyTypeIds": this.PropertyTypeIds, "PropertyAddress": this.PropertyAddress, "RentTypeId": this.RentTypeId,
-      "PropertyCategoryId": this.PropertyCategoryId, "PriceStart": this.PriceStart, "PriceEnd": this.PriceEnd,
+      "PropertyTypeIds": this.PropertyTypeIds, "PropertyAddress": this.PropertyAddress, "RentTypeId": this.RentTypeId,Bedrooms:this.Bedrooms,Bathrooms:this.Bathrooms,
+      "PropertyCategoryId": this.PropertyCategoryId, "PriceStart": this.PriceStart, "PriceEnd": this.PriceEnd,"videoTour": this.videoTourSorting,
       "PropertyListingTypeId": this.PropertyListingTypeId, "SortedBy": this.sortedById, CurrentPage: this.page, DistrictIds: this.DistrictsId
     }
 
@@ -221,8 +223,8 @@ export class RentpropertiesComponent implements OnInit {
   sortedBy(event) {
     this.sortedById = event.value
     let params: any = {
-      "PropertyTypeIds": this.PropertyTypeIds, "PropertyAddress": this.PropertyAddress, "RentTypeId": this.RentTypeId,
-      "PropertyCategoryId": this.PropertyCategoryId, "PriceStart": this.PriceStart, "PriceEnd": this.PriceEnd,
+      "PropertyTypeIds": this.PropertyTypeIds, "PropertyAddress": this.PropertyAddress, "RentTypeId": this.RentTypeId,Bedrooms:this.Bedrooms,Bathrooms:this.Bathrooms,
+      "PropertyCategoryId": this.PropertyCategoryId, "PriceStart": this.PriceStart, "PriceEnd": this.PriceEnd,"videoTour": this.videoTourSorting,
       "PropertyListingTypeId": this.PropertyListingTypeId, "SortedBy": this.sortedById, CurrentPage: this.page, DistrictIds: this.DistrictsId
     }
     this.loadListingProperty(params);
@@ -232,8 +234,8 @@ export class RentpropertiesComponent implements OnInit {
     this.videoTourSorting = event.value
     let params: any = {
       "PropertyTypeIds": this.PropertyTypeIds, "PropertyAddress": this.PropertyAddress, "RentTypeId": this.RentTypeId,
-      "PropertyCategoryId": this.PropertyCategoryId, "PriceStart": this.PriceStart, "PriceEnd": this.PriceEnd,
-      "PropertyListingTypeId": this.PropertyListingTypeId, "videoSorting": this.videoTourSorting, CurrentPage: this.page, DistrictIds: this.DistrictsId
+      "PropertyCategoryId": this.PropertyCategoryId, "PriceStart": this.PriceStart, "PriceEnd": this.PriceEnd,Bedrooms:this.Bedrooms,Bathrooms:this.Bathrooms,
+      "PropertyListingTypeId": this.PropertyListingTypeId, "videoTour": this.videoTourSorting, CurrentPage: this.page, DistrictIds: this.DistrictsId
     }
     this.loadListingProperty(params);
   }
@@ -387,8 +389,8 @@ export class RentpropertiesComponent implements OnInit {
 
   viewMap(){
 
-    console.log(this.KeyWordsParams,'hbhb')
-    let params :any = {type:this.type,"PropertyTypeIds":[],"RentTypeId":this.RentTypeId,
+    let PropertyTypeIdsParams :any = JSON.stringify(this.PropertyTypeIds);
+    let params :any = {type:this.type,"PropertyTypeIds":PropertyTypeIdsParams,"RentTypeId":this.RentTypeId,
       "PropertyCategoryId":this.PropertyCategoryId,PriceStart:this.PriceStart,PriceEnd:this.PriceEnd,totalRecord:this.totalRecord,
       Bedrooms:this.Bedrooms,Bathrooms:this.Bathrooms,selectedPropertyTypeName:this.selectedPropertyTypeName,
       "PropertyListingTypeId":this.PropertyListingTypeId,CurrentPage:1,DistrictIds:JSON.stringify(this.DistrictsId),
@@ -396,7 +398,6 @@ export class RentpropertiesComponent implements OnInit {
       MinCarpetArea:this.MinCarpetArea,MaxCarpetArea:this.MaxCarpetArea,FurnishingTypeId:this.FurnishingTypeId
     }
 
-    console.log(params)
     this.route.navigate(['/mapview'],{queryParams:params})
 
   }
