@@ -150,6 +150,10 @@ export class MapviewComponent implements OnInit,AfterViewInit{
 
   }
 
+  childToParentDataLoad(data:any){
+    this.loadListingProperty(data);
+  }
+
   getUser() {
     this.user = localStorage.getItem('user');
     if (this.user != '') {
@@ -209,10 +213,17 @@ export class MapviewComponent implements OnInit,AfterViewInit{
   }
   pageChanged(value: any) {
     this.page = value;
+    // let params: any = {
+    //   "PropertyTypeIds": this.PropertyTypeIds, "PropertyAddress": this.PropertyAddress, "RentTypeId": this.RentTypeId,"videoTour": this.videoTourSorting,
+    //   "PropertyCategoryId": this.PropertyCategoryId, "PriceStart": this.PriceStart, "PriceEnd": this.PriceEnd,Bedrooms:this.Bedrooms,Bathrooms:this.Bathrooms,
+    //   "PropertyListingTypeId": this.PropertyListingTypeId, "SortedBy": this.sortedById, CurrentPage: this.page, DistrictIds: this.DistrictsId
+    // }
     let params: any = {
-      "PropertyTypeIds": this.PropertyTypeIds, "PropertyAddress": this.PropertyAddress, "RentTypeId": this.RentTypeId,"videoTour": this.videoTourSorting,
-      "PropertyCategoryId": this.PropertyCategoryId, "PriceStart": this.PriceStart, "PriceEnd": this.PriceEnd,Bedrooms:this.Bedrooms,Bathrooms:this.Bathrooms,
-      "PropertyListingTypeId": this.PropertyListingTypeId, "SortedBy": this.sortedById, CurrentPage: this.page, DistrictIds: this.DistrictsId
+      MinCarpetArea:this.MinCarpetArea,MaxCarpetArea:this.MaxCarpetArea,PropertyFeatureIds:this.PropertyFeatureIds,KeyWords:this.KeyWords,
+      FurnishingTypeId:this.FurnishingTypeId,
+      "PropertyTypeIds": this.PropertyTypeIds, "PropertyAddress": this.PropertyAddress, "RentTypeId": this.RentTypeId,Bedrooms:this.Bedrooms,Bathrooms:this.Bathrooms,
+      "PropertyCategoryId": this.PropertyCategoryId, "PriceStart": this.PriceStart, "PriceEnd": this.PriceEnd,"videoTour": this.videoTourSorting,
+      "PropertyListingTypeId": this.PropertyListingTypeId, "SortedBy": this.sortedById, CurrentPage: this.page, DistrictIds: this.DistrictsId,
     }
 
     this.loadListingProperty(params);
@@ -245,7 +256,14 @@ export class MapviewComponent implements OnInit,AfterViewInit{
 
   videoSorting(event: any) {
     this.videoTourSorting = event.value
+    // let params: any = {
+    //   "PropertyTypeIds": this.PropertyTypeIds, "PropertyAddress": this.PropertyAddress, "RentTypeId": this.RentTypeId,
+    //   "PropertyCategoryId": this.PropertyCategoryId, "PriceStart": this.PriceStart, "PriceEnd": this.PriceEnd,Bedrooms:this.Bedrooms,Bathrooms:this.Bathrooms,
+    //   "PropertyListingTypeId": this.PropertyListingTypeId, "videoTour": this.videoTourSorting, CurrentPage: this.page, DistrictIds: this.DistrictsId
+    // }
     let params: any = {
+      MinCarpetArea:this.MinCarpetArea,MaxCarpetArea:this.MaxCarpetArea,PropertyFeatureIds:this.PropertyFeatureIds,KeyWords:this.KeyWords,
+      FurnishingTypeId:this.FurnishingTypeId,
       "PropertyTypeIds": this.PropertyTypeIds, "PropertyAddress": this.PropertyAddress, "RentTypeId": this.RentTypeId,
       "PropertyCategoryId": this.PropertyCategoryId, "PriceStart": this.PriceStart, "PriceEnd": this.PriceEnd,Bedrooms:this.Bedrooms,Bathrooms:this.Bathrooms,
       "PropertyListingTypeId": this.PropertyListingTypeId, "videoTour": this.videoTourSorting, CurrentPage: this.page, DistrictIds: this.DistrictsId
@@ -255,7 +273,14 @@ export class MapviewComponent implements OnInit,AfterViewInit{
 
   sortedBy(event) {
     this.sortedById = event.value
+    // let params: any = {
+    //   "PropertyTypeIds": this.PropertyTypeIds, "PropertyAddress": this.PropertyAddress, "RentTypeId": this.RentTypeId,Bedrooms:this.Bedrooms,Bathrooms:this.Bathrooms,
+    //   "PropertyCategoryId": this.PropertyCategoryId, "PriceStart": this.PriceStart, "PriceEnd": this.PriceEnd,"videoTour": this.videoTourSorting,
+    //   "PropertyListingTypeId": this.PropertyListingTypeId, "SortedBy": this.sortedById, CurrentPage: this.page, DistrictIds: this.DistrictsId
+    // }
     let params: any = {
+      MinCarpetArea:this.MinCarpetArea,MaxCarpetArea:this.MaxCarpetArea,PropertyFeatureIds:this.PropertyFeatureIds,KeyWords:this.KeyWords,
+      FurnishingTypeId:this.FurnishingTypeId,
       "PropertyTypeIds": this.PropertyTypeIds, "PropertyAddress": this.PropertyAddress, "RentTypeId": this.RentTypeId,Bedrooms:this.Bedrooms,Bathrooms:this.Bathrooms,
       "PropertyCategoryId": this.PropertyCategoryId, "PriceStart": this.PriceStart, "PriceEnd": this.PriceEnd,"videoTour": this.videoTourSorting,
       "PropertyListingTypeId": this.PropertyListingTypeId, "SortedBy": this.sortedById, CurrentPage: this.page, DistrictIds: this.DistrictsId

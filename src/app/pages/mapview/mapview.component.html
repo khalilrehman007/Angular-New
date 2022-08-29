@@ -6,7 +6,7 @@
     <section [ngClass]="'rent-propoerties-main-sec slide-left-bar'">
       <div ngClass="properties-file-container-shadow">
         <div ngClass="properties-file-container">
-          <app-propertyfilter></app-propertyfilter>
+          <app-propertyfilter [totalRecord]="totalRecord" (childToParentDataLoad)="childToParentDataLoad($event)"></app-propertyfilter>
         </div>
       </div>
       <div [ngClass]="'container_map-view'">

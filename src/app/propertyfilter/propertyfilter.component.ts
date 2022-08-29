@@ -1,4 +1,4 @@
-import {Component, OnInit, Output, EventEmitter, ViewChild, ElementRef} from '@angular/core';
+import {Component, OnInit, Output,Input, EventEmitter, ViewChild, ElementRef} from '@angular/core';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {MatChipInputEvent} from '@angular/material/chips';
 import {ActivatedRoute, Router} from "@angular/router";
@@ -21,6 +21,7 @@ export interface KeywordString {
 export class PropertyfilterComponent implements OnInit {
 
   @Output() childToParentDataLoad:EventEmitter<any> = new EventEmitter<any>()
+  @Input() totalRecord;
 
   type :any;
   PropertyCategoryId :any;
@@ -70,6 +71,7 @@ export class PropertyfilterComponent implements OnInit {
   propertyTypeCommercial: any;
   propertyTypeResdential: any;
   PropertyTypeIds: any;
+  // videoTourSorting :any;
 
 
   @ViewChild('fruitInput') fruitInput: ElementRef<HTMLInputElement>;
@@ -77,6 +79,7 @@ export class PropertyfilterComponent implements OnInit {
   totalPropertyRecord :any;
   constructor(private activeRoute: ActivatedRoute,private service:AppService,private api: AppService,private route:Router,private modalService: NgbModal) {
 
+    // this.videoTourSorting    = this.activeRoute.snapshot.queryParamMap.get('videoTourSorting');
     this.totalPropertyRecord = localStorage.getItem('propertyListingTotalRecord');
     this.type                 = this.activeRoute.snapshot.queryParamMap.get('type');
     this.PropertyCategoryId   = this.activeRoute.snapshot.queryParamMap.get('PropertyCategoryId');
@@ -415,6 +418,10 @@ export class PropertyfilterComponent implements OnInit {
     this.selectedRentType      =''
     this.selectedBeds          =''
     this.selectedBaths         =''
+    this.minCarpet             =''
+    this.maxCarpet             =''
+    this.furnishedType         =''
+    this.propertyFeatureIds    =[]
 
     this.SubmitForm.controls.Name.setValue('');
     this.SubmitForm.controls.PriceStart.setValue('');
@@ -425,14 +432,26 @@ export class PropertyfilterComponent implements OnInit {
     this.propertyTypes = []
     this.LoadPropertyCategories();
 
-    let params :any = {type:'',"PropertyTypeIds":"[]", "PropertyAddress":'',"RentTypeId":'',
-      "PropertyCategoryId":'',PriceStart:'',PriceEnd:'', Bedrooms:'',Bathrooms:'',
-      "PropertyListingTypeId":'',CurrentPage:1,DistrictIds:JSON.stringify(this.DistrictsId),DistrictsValue:JSON.stringify(this.fruits)
+    // let params :any = {type:'',"PropertyTypeIds":"[]", "PropertyAddress":'',"RentTypeId":'',
+    //   "PropertyCategoryId":'',PriceStart:'',PriceEnd:'', Bedrooms:'',Bathrooms:'',
+    //   "PropertyListingTypeId":'',CurrentPage:1,DistrictIds:JSON.stringify([]),DistrictsValue:JSON.stringify(this.fruits)
+    // }
+
+
+    let params :any = {type:this.type,"PropertyTypeIds":JSON.stringify([]),"RentTypeId":'',
+      "PropertyCategoryId":'',PriceStart:'',PriceEnd:'',
+      Bedrooms:'',Bathrooms:'',PropertyAddress:'',
+      "PropertyListingTypeId":'',CurrentPage:1,DistrictIds:JSON.stringify([]),
+      DistrictsValue:JSON.stringify([]),KeyWords:JSON.stringify([]),PropertyFeatureIds:JSON.stringify([]),
+      MinCarpetArea:'',MaxCarpetArea:'',FurnishingTypeId:'',videoTourSorting:''
     }
 
-    let object :any = {type:'',"PropertyTypeIds":[], "PropertyAddress":'',"RentTypeId":'',
-      "PropertyCategoryId":'',PriceStart:'',PriceEnd:'', Bedrooms:'',Bathrooms:'',
-      "PropertyListingTypeId":'',CurrentPage:1,DistrictIds:[]
+    let object :any = {type:this.type,"PropertyTypeIds":[],"RentTypeId":'',
+      "PropertyCategoryId":'',PriceStart:'',PriceEnd:'',
+      Bedrooms:'',Bathrooms:'',PropertyAddress:'',
+      "PropertyListingTypeId":'',CurrentPage:1,DistrictIds:[],
+      DistrictsValue:[],KeyWords:[],PropertyFeatureIds:[],
+      MinCarpetArea:'',MaxCarpetArea:'',FurnishingTypeId:'',videoTourSorting:''
     }
 
     this.route.navigate(['/search'],{queryParams:params})
@@ -461,6 +480,8 @@ export class PropertyfilterComponent implements OnInit {
 
     // Clear the input value
     event.chipInput!.clear();
+
+    this.proceedSearch();
   }
 
   remove(fruit: KeywordString): void {
@@ -469,12 +490,18 @@ export class PropertyfilterComponent implements OnInit {
     if (index >= 0) {
       this.Keywords.splice(index, 1);
     }
+    this.proceedSearch();
   }
+
 
 
   furnishedType :any = '';
   furnishedTypeChange(data :any){
     this.furnishedType = data
+
+    this.proceedSearch()
+
+    // this.proceedSearchViewMap()
   }
 
   propertyFeatureIds :any = [];
@@ -495,16 +522,21 @@ export class PropertyfilterComponent implements OnInit {
         this.propertyFeatureIds.splice(index, 1);
       }
     }
+
+    this.proceedSearch();
+
   }
 
 
   minCarpet : any = ''
   minCarpetAreaChange(searchValue: any): void {
     this.minCarpet = searchValue
+    this.proceedSearch();
   }
   maxCarpet : any = ''
   maxCarpetAreaChange(searchValue: any): void {
     this.maxCarpet = searchValue
+    this.proceedSearch();
   }
 
   status1: boolean = false;
@@ -581,5 +613,43 @@ export class PropertyfilterComponent implements OnInit {
       this.commercialId = response.data[1].id;
     });
   }
+
+
+  proceedSearchViewMap(){
+
+    let keywordsData :any = [];
+    this.Keywords.forEach((element, i) => {
+      keywordsData.push(element.name)
+    })
+    let PropertyTypeIds :any = [];
+    if(this.propertyCategory == 1){
+      //residential
+      PropertyTypeIds = this.PropertyTypeResidentialIds
+    }else if(this.propertyCategory == 2){
+      //commercial
+      PropertyTypeIds = this.PropertyTypeCommercialIds
+    }
+
+    let PropertyTypeIdsParams :any = JSON.stringify(PropertyTypeIds);
+
+    let params :any = {type:this.type,"PropertyTypeIds":PropertyTypeIdsParams,"RentTypeId":this.RentTypeId,
+      "PropertyCategoryId":this.PropertyCategoryId,PriceStart:this.SubmitForm.value.PriceStart,PriceEnd:this.SubmitForm.value.PriceEnd,
+      Bedrooms:this.Bedrooms,Bathrooms:this.Bathrooms,PropertyAddress:this.SubmitForm.value.Name,
+      "PropertyListingTypeId":this.PropertyListingTypeId,CurrentPage:1,DistrictIds:JSON.stringify(this.DistrictsId),
+      DistrictsValue:JSON.stringify(this.DistrictsValue),KeyWords:JSON.stringify(keywordsData),PropertyFeatureIds:JSON.stringify(this.propertyFeatureIds),
+      MinCarpetArea:this.minCarpet,MaxCarpetArea:this.maxCarpet,FurnishingTypeId:this.furnishedType
+    }
+    let objects :any = {type:this.type,"PropertyTypeIds":PropertyTypeIds,"RentTypeId":this.RentTypeId,
+      "PropertyCategoryId":this.PropertyCategoryId,PriceStart:this.SubmitForm.value.PriceStart,PriceEnd:this.SubmitForm.value.PriceEnd,
+      Bedrooms:this.Bedrooms,Bathrooms:this.Bathrooms,PropertyAddress:this.SubmitForm.value.Name,
+      "PropertyListingTypeId":this.PropertyListingTypeId,CurrentPage:1,DistrictIds:this.DistrictsId,KeyWords:keywordsData
+      ,PropertyFeatureIds:this.propertyFeatureIds,FurnishingTypeId:this.furnishedType,
+      MinCarpetArea:this.minCarpet,MaxCarpetArea:this.maxCarpet
+    }
+    this.route.navigate(['/mapview'],{queryParams:params})
+    this.childToParentDataLoad.emit(objects)
+
+  }
+
 
 }

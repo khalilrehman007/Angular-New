@@ -135,7 +135,9 @@ export class RentpropertiesComponent implements OnInit {
         let params: any = {
           "PropertyTypeIds": this.PropertyTypeIds, "PropertyAddress": this.PropertyAddress, "RentTypeId": this.RentTypeId,Bedrooms:this.Bedrooms,Bathrooms:this.Bathrooms,
           "PropertyCategoryId": this.PropertyCategoryId, "CityID": cityID, "CountryID": countryId, "PriceStart": this.PriceStart, "PriceEnd": this.PriceEnd,
-          "PropertyListingTypeId": this.PropertyListingTypeId, "SortedBy": this.sortedById, CurrentPage: 1, DistrictIds: this.DistrictsId
+          "PropertyListingTypeId": this.PropertyListingTypeId, "SortedBy": this.sortedById, CurrentPage: 1, DistrictIds: this.DistrictsId,
+          FurnishingTypeId:this.FurnishingTypeId,MinCarpetArea:this.MinCarpetArea,MaxCarpetArea:this.MaxCarpetArea,
+          PropertyFeatureIds:this.PropertyFeatureIds,KeyWords:this.KeyWords
         }
 
         this.LoadPropertyCategories();
@@ -210,11 +212,14 @@ export class RentpropertiesComponent implements OnInit {
   }
 
   pageChanged(value: any) {
+
     this.page = value;
     let params: any = {
+      MinCarpetArea:this.MinCarpetArea,MaxCarpetArea:this.MaxCarpetArea,PropertyFeatureIds:this.PropertyFeatureIds,KeyWords:this.KeyWords,
+      FurnishingTypeId:this.FurnishingTypeId,
       "PropertyTypeIds": this.PropertyTypeIds, "PropertyAddress": this.PropertyAddress, "RentTypeId": this.RentTypeId,Bedrooms:this.Bedrooms,Bathrooms:this.Bathrooms,
       "PropertyCategoryId": this.PropertyCategoryId, "PriceStart": this.PriceStart, "PriceEnd": this.PriceEnd,"videoTour": this.videoTourSorting,
-      "PropertyListingTypeId": this.PropertyListingTypeId, "SortedBy": this.sortedById, CurrentPage: this.page, DistrictIds: this.DistrictsId
+      "PropertyListingTypeId": this.PropertyListingTypeId, "SortedBy": this.sortedById, CurrentPage: this.page, DistrictIds: this.DistrictsId,
     }
 
     this.loadListingProperty(params);
@@ -223,6 +228,8 @@ export class RentpropertiesComponent implements OnInit {
   sortedBy(event) {
     this.sortedById = event.value
     let params: any = {
+      MinCarpetArea:this.MinCarpetArea,MaxCarpetArea:this.MaxCarpetArea,PropertyFeatureIds:this.PropertyFeatureIds,KeyWords:this.KeyWords,
+      FurnishingTypeId:this.FurnishingTypeId,
       "PropertyTypeIds": this.PropertyTypeIds, "PropertyAddress": this.PropertyAddress, "RentTypeId": this.RentTypeId,Bedrooms:this.Bedrooms,Bathrooms:this.Bathrooms,
       "PropertyCategoryId": this.PropertyCategoryId, "PriceStart": this.PriceStart, "PriceEnd": this.PriceEnd,"videoTour": this.videoTourSorting,
       "PropertyListingTypeId": this.PropertyListingTypeId, "SortedBy": this.sortedById, CurrentPage: this.page, DistrictIds: this.DistrictsId
@@ -233,6 +240,8 @@ export class RentpropertiesComponent implements OnInit {
   videoSorting(event: any) {
     this.videoTourSorting = event.value
     let params: any = {
+      MinCarpetArea:this.MinCarpetArea,MaxCarpetArea:this.MaxCarpetArea,PropertyFeatureIds:this.PropertyFeatureIds,KeyWords:this.KeyWords,
+      FurnishingTypeId:this.FurnishingTypeId,
       "PropertyTypeIds": this.PropertyTypeIds, "PropertyAddress": this.PropertyAddress, "RentTypeId": this.RentTypeId,
       "PropertyCategoryId": this.PropertyCategoryId, "PriceStart": this.PriceStart, "PriceEnd": this.PriceEnd,Bedrooms:this.Bedrooms,Bathrooms:this.Bathrooms,
       "PropertyListingTypeId": this.PropertyListingTypeId, "videoTour": this.videoTourSorting, CurrentPage: this.page, DistrictIds: this.DistrictsId
@@ -274,11 +283,12 @@ export class RentpropertiesComponent implements OnInit {
     this.MinCarpetArea = response.MinCarpetArea
     this.MaxCarpetArea = response.MaxCarpetArea
     this.FurnishingTypeId = response.FurnishingTypeId
+    this.videoTourSorting = response.videoTourSorting
 
 
     this.selectedPropertyTypeName = null
     this.LoadPropertyCategories();
-    this.loadListingProperty(data);
+    // this.loadListingProperty(data);
   }
 
   searchListing: any = [];
@@ -288,7 +298,7 @@ export class RentpropertiesComponent implements OnInit {
     this.service.LoadSearchListing(data).subscribe((response: any) => {
       this.totalRecord = response.data.totalRecord;
       setTimeout(() => {
-        localStorage.setItem('propertyListingTotalRecord', this.totalRecord);
+        // localStorage.setItem('propertyListingTotalRecord', this.totalRecord);
         localStorage.setItem('listingForMap', JSON.stringify(data))
       }, 1000);
 

@@ -6,7 +6,7 @@
     <section [ngClass]="'rent-propoerties-main-sec slide-left-bar'">
       <div ngClass="properties-file-container-shadow">
         <div ngClass="properties-file-container">
-          <app-propertyfilter (childToParentDataLoad)="childToParentDataLoad($event)"></app-propertyfilter>
+          <app-propertyfilter [totalRecord]="totalRecord" (childToParentDataLoad)="childToParentDataLoad($event)"></app-propertyfilter>
         </div>
       </div>
       <div [ngClass]="'container_1280px'">
@@ -67,7 +67,7 @@
               <div ngClass="properties-list-block-design"
                 *ngFor=" let list of searchListing | paginate: { itemsPerPage: 10, currentPage: page ,totalItems:totalRecord }">
                 <div ngClass="row" >
-                  <div ngClass="col-xl-4 col-md-4 col-lg-4 col-sm-12" [routerLink]="['/PropertDetailsPage']" [queryParams]="{id: list.id}">
+                  <div ngClass="col-xl-4 col-md-4 col-lg-4 col-sm-12" >
                     <div ngClass="properties-list_slider" *ngIf="list.documentsCheck">
                       <ngb-carousel>
                         <ng-template ngbSlide *ngFor="let event of list.documents">
