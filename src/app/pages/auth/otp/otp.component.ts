@@ -4,6 +4,8 @@ import { FormControl, Validators } from '@angular/forms';
 import { data } from 'jquery';
 import { AppService } from 'src/app/service/app.service';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/service/auth.service';
+import { NotificationService } from 'src/app/service/notification.service';
 
 @Component({
   selector: 'app-otp',
@@ -52,8 +54,21 @@ export class OtpComponent implements OnInit {
     this.otp = this.string1 + this.string2 + this.string3 + this.string4 + this.string5 + this.string6
 
     if (this.code.randomDigit == this.otp) {
-      localStorage.removeItem("verificationData")
-      this.router.navigate(['/thanku']);
+      this.auth.ProceedSignUp(this.verificationData).subscribe((result: any) => {
+        if (result.message == "You are successfully logged in") {
+          let responsedata: any = result;
+          if (responsedata.data !== undefined) {
+            localStorage.setItem('token', JSON.stringify(responsedata.data.refreshToken))
+            localStorage.setItem('user', JSON.stringify(responsedata.data))
+            this.notifyService.showSuccess(responsedata.message, "");
+            this.router.navigate(['/thanku']);
+          } else {
+            this.notifyService.showError(responsedata.error.value, "");
+          }
+        } else {
+          this.notifyService.showError("Unable to signup", "");
+        }
+      });
     } else {
       this.error = "Wrong Code";
       this.showError = true;
@@ -61,11 +76,16 @@ export class OtpComponent implements OnInit {
     }
   }
 
-  constructor(private service: AppService, private router: Router) {
-    if (localStorage.getItem("verificationData")) {
-      this.verificationData = localStorage.getItem("verificationData");
+  constructor(private service: AppService, private router: Router, private auth: AuthService, private notifyService: NotificationService) {
+    if (localStorage.getItem("signupData")) {
+      this.verificationData = localStorage.getItem("signupData");
       this.verificationData = JSON.parse(this.verificationData);
-      this.service.SendDigitSms({ "FirstName": this.verificationData.name, "PhoneNumber": this.verificationData.phone }).subscribe((result: any) => {
+      this.service.SendDigitSms({ "FirstName": this.verificationData.FirstName, "PhoneNumber": this.verificationData.PhoneNumber }).subscribe((result: any) => {
+        if (result.message == "Phone Number is invalid") {
+          this.error = "Invalid Phone Number";
+          this.showError = true;
+          return;
+        }
         this.code = result.data;
       })
     }
