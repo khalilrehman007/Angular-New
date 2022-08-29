@@ -193,7 +193,7 @@ export class PropertyInnerComponent implements OnInit {
   }
   locationAddress1 = '';
   onTabChanged(e:any) {
-    if(e.index == 5) {
+    if(e.index == 4) {
       this.map = new mapboxgl.Map({
         container: 'property-near-map',
         style: 'mapbox://styles/mapbox/streets-v11',
