@@ -118,6 +118,7 @@ import { CometChatUI } from "../cometchat/CometChatWorkspace/src/components/Come
 import { ComingsoomComponent } from './pages/comingsoom/comingsoom.component';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
+import { ConfirmationboxComponent } from './confirmationbox/confirmationbox.component';
 initializeApp(environment.firebase);
 
 
@@ -199,7 +200,8 @@ initializeApp(environment.firebase);
     SuccessAlertComponent,
     ErroralertComponent,
     PaymentPackagesComponent,
-    ComingsoomComponent
+    ComingsoomComponent,
+    ConfirmationboxComponent
   ],
   imports: [
     BrowserModule,

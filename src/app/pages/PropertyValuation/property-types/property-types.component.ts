@@ -16,7 +16,7 @@ export class PropertyTypesComponent implements OnInit {
   plus = '../../../../assets/images/plus.svg';
   minus = '../../../../assets/images/minus.svg';
 
-  formData: any;
+  formData: any = {};
   propertyData: any;
   typeSelected: boolean = false;
   propertyType: any = [];
@@ -38,12 +38,22 @@ export class PropertyTypesComponent implements OnInit {
   showLoader: boolean = false;
   mask = ["A", "A+9", "A+99", "A+A+9", "A+A+99"];
   unitHMTL: any = [];
-  error: any = ""
+  error: any = "";
+  confirmMessage:any = "";
   showError: boolean = false;
+  showConfirm: boolean = false;
   oldLength: number = 0;
   oldData: any = "";
+  proceed:boolean = false;
   errorResponse(data: any) {
     this.showError = false;
+  }
+  confirmResponse(data: any) {
+    this.showConfirm = false;
+    if(data == "Yes") {
+      this.proceed = true;
+      this.getData();
+    }
   }
 
   room = [
@@ -110,33 +120,33 @@ export class PropertyTypesComponent implements OnInit {
   loadOldData() {
     if (localStorage.getItem("propertyTypeData")) {
       this.oldData = localStorage.getItem("propertyTypeData");
-      this.formData = this.oldData = JSON.parse(this.oldData);
-      if (this.oldData.PropertyStatusId == 2) {
+      this.formData = JSON.parse(this.oldData);
+      if (this.formData.PropertyStatusId == 2) {
         this.totalExpenseWrapper = true;
         this.propertyTypeForm.patchValue({
-          income: this.oldData.Income,
-          expense: this.oldData.Expense
+          income: this.formData.Income,
+          expense: this.formData.Expense
         })
       }
-      this.roadCount = this.oldData.NoOfRoads;
-      this.bedrooms = this.oldData.Bedrooms;
-      this.bathrooms = this.oldData.Bathrooms;
-      this.furnishing = this.oldData.FurnishingType;
-      this.fitting = this.oldData.FittingType;
-      for (let i = 0; i < this.oldData.PropertyFeatures.length; i++) {
-        this.featuresFormData.push(this.oldData.PropertyFeatures[i].PropertyFeatureId);
+      this.roadCount = this.formData.NoOfRoads;
+      this.bedrooms = this.formData.Bedrooms;
+      this.bathrooms = this.formData.Bathrooms;
+      this.furnishing = this.formData.FurnishingType;
+      this.fitting = this.formData.FittingType;
+      for (let i = 0; i < this.formData.PropertyFeatures.length; i++) {
+        this.featuresFormData.push(this.formData.PropertyFeatures[i].PropertyFeatureId);
       }
       this.propertyTypeForm.patchValue({
-        apartmentNo: this.oldData.PlotNo,
-        constructionAge: this.oldData.ConstructionAge,
-        elevation: this.oldData.Elevation,
-        apartmentSize: this.oldData.PlotSize,
-        buildupArea: this.oldData.BuildupArea
+        apartmentNo: this.formData.PlotNo,
+        constructionAge: this.formData.ConstructionAge,
+        elevation: this.formData.Elevation,
+        apartmentSize: this.formData.PlotSize,
+        buildupArea: this.formData.BuildupArea
       })
-      this.service.LoadTypebyLatLng({ id: this.oldData.PropertyCategoryId, lat: parseFloat(this.oldData.PropertyLat), lng: parseFloat(this.oldData.PropertyLong) }).subscribe((result: any) => {
+      this.service.LoadTypebyLatLng({ id: this.formData.PropertyCategoryId, lat: parseFloat(this.formData.PropertyLat), lng: parseFloat(this.formData.PropertyLong) }).subscribe((result: any) => {
         this.propertyType = result.data;
         this.showLoader = false;
-        this.propertyData = this.propertyType.filter(item => item.id == this.oldData.PropertyTypeId)[0];
+        this.propertyData = this.propertyType.filter(item => item.id == this.formData.PropertyTypeId)[0];
         this.service.ValuationPurpose().subscribe((result) => {
           this.purposeOfValuation = result;
           this.purposeOfValuation = this.purposeOfValuation.data;
@@ -174,8 +184,8 @@ export class PropertyTypesComponent implements OnInit {
     })
   }
   checkOldData(id: number) {
-    for (let i = 0; i < this.oldData.PropertyFeatures.length; i++) {
-      if (id == this.oldData.PropertyFeatures[i].PropertyFeatureId) {
+    for (let i = 0; i < this.formData.PropertyFeatures.length; i++) {
+      if (id == this.formData.PropertyFeatures[i].PropertyFeatureId) {
         return true;
       }
     }
@@ -332,7 +342,7 @@ export class PropertyTypesComponent implements OnInit {
       this.error = "Please Select Valuation Purpose";
       this.showError = true;
       return;
-    } else if (!this.formData.PropertyStatusId) {
+    } else if (!this.formData.PropertyStatusId && !this.propertyData.hasUnits) {
       this.error = "Please Select Property Status";
       this.showError = true;
       return;
@@ -345,7 +355,7 @@ export class PropertyTypesComponent implements OnInit {
       this.showError = true;
       return;
     } else if (this.propertyTypeForm.value.constructionAge == "") {
-      this.error = "Please Enter Constrution Age";
+      this.error = "Please Enter Property Age";
       this.showError = true;
       return;
     } else if (this.propertyData.hasElevation && this.propertyTypeForm.value.elevation == "") {
@@ -356,7 +366,7 @@ export class PropertyTypesComponent implements OnInit {
       this.error = "Please Enter Plot Size";
       this.showError = true;
       return;
-    } else if (this.propertyTypeForm.value.buildupArea == "" && this.formData.FurnishingType) {
+    } else if (this.propertyTypeForm.value.buildupArea == "" && this.propertyData.hasBuildUpArea) {
       this.error = "Please Enter Buildup Area";
       this.showError = true;
       return;
@@ -376,19 +386,21 @@ export class PropertyTypesComponent implements OnInit {
       this.error = "Please Select Fitting Type";
       this.showError = true;
       return;
-    } else if (this.propertyData.hasPropertyFeature && this.featuresFormData.length == 0) {
-      this.error = "Please Select Property Features";
-      this.showError = true;
-      return;
-    } else if (this.formData.PropertyStatusId == 2 && this.propertyTypeForm.value.income == "") {
+    }else if (this.formData.PropertyStatusId == 2 && this.propertyTypeForm.value.income == "") {
       this.error = "Please Enter Total Income";
       this.showError = true;
       return;
-    } else if (this.formData.PropertyStatusId == 2 && this.propertyTypeForm.value.expense == "") {
+    } else if (this.formData.PropertyStatusId == 2 && this.propertyTypeForm.value.expense == "" || this.propertyData.hasUnits && this.propertyTypeForm.value.expense == "") {
       this.error = "Please Enter Total Expense";
       this.showError = true;
       return;
-    }
+    } else if (this.propertyData.hasPropertyFeature && this.featuresFormData.length == 0) {
+      if(!this.proceed) {
+        this.confirmMessage = "By not selecting any of the features, your property value may result to lower than market value";
+        this.showConfirm = true;
+        return;
+      }
+    } 
     this.formData.Bedrooms = this.bedrooms;
     this.formData.Bathrooms = this.bathrooms;
     this.formData.FurnishingType = this.furnishing;
@@ -420,6 +432,10 @@ export class PropertyTypesComponent implements OnInit {
     } else {
       this.formData.Income = 0;
       this.formData.Expense = 0;
+    }
+    if(this.propertyData.hasUnits) {
+      this.formData.Expense = this.propertyTypeForm.value.expense;
+      this.propertyStatus(0, "-");
     }
     let temp: any = [];
     for (let i = 0; i < this.unitHMTL.length; i++) {

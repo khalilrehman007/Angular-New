@@ -2003,7 +2003,7 @@ input[type=number] {
 	}
 }
 .outpup-filename {
-	color: $color_21;
+	color: #51b67e !important;
 	font-size: 12px;
 	font-weight: 400;
 	display: inline-block;
@@ -2013,8 +2013,13 @@ input[type=number] {
 	text-overflow: ellipsis;
 	position: relative;
 	top: 6px;
+	background-image: url(./assets/images/checkmark.png);
+	background-repeat: no-repeat;
+    background-size: 12px;
+    padding-left: 22px;
+    background-position: 4px;
 	&:empty {
-		display: initial;
+		display: none;
 		+ {
 			.action-btns {
 				display: none;
@@ -7169,6 +7174,7 @@ li.agent-details__property-list-item {
 	ul {
 		list-style: none;
 		padding-left: 0px;
+		margin-bottom: 0px;
 		li {
 			font-size: 14px;
 			font-weight: 400;
@@ -9407,4 +9413,96 @@ li.agent-details__property-list-item {
 body .header-section .navbar-nav .classified .blue-bordered-btn {
     padding-right: 30px !important;
     position: relative;
+}
+.gmnoprint,.gm-fullscreen-control {
+  display: none !important;
+}
+.input-file {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0;
+    cursor: pointer;
+}
+.main-loader-wrapper {
+    background-image: url(./assets/images/dubai-art.png);
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 999;
+    background-size: contain;
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+    background-color: #595ad5;
+	background-repeat: no-repeat;
+    background-position: bottom;
+}
+.country-code-select-design .countries-select {
+    position: absolute;
+    top: 0;
+    z-index: 9;
+    height: 42px;
+    bottom: 0;
+    max-width: 70px;
+}
+.country-code-select-design .input-design-2 .mat-form-field-flex {
+    padding-left: 75px;
+}
+.country-code-select-design .countries-select .mat-form-field-flex {
+    background-color: transparent;
+    padding: 0px 7px 0px 7px;
+    height: 42px;
+    border-right: 1px solid #d3dbfc;
+    border-radius: 0px !important;
+}
+.country-code-select-design .countries-select .mat-form-field-flex>.mat-form-field-infix {
+    padding: 0px;
+    margin: 0px !important;
+    border: none !important;
+    position: relative;
+    top: 10px;
+}
+.country-code-select-design .countries-select .mat-form-field-flex .mat-select-min-line {
+    font-size: 14px;
+}
+.country-code-select-design .countries-select .mat-form-field-flex>.mat-form-field-infix .mat-select-arrow-wrapper {
+    position: relative;
+    top: 9px;
+}
+.cursor-pointer{
+	cursor: pointer; 
+}
+.main-loader-wrapper .spinner-border {
+    width: 60px;
+    height: 60px;
+}
+.spinner-wrap {
+    text-align: center;
+	margin-top: 10%;
+}
+.spinner-wrap h1 {
+    color: #fff;
+    margin-top: 20px;
+}
+.alert-message-wrap.confirmation .mat-icon {
+    color: #595ad4;
+}
+.confirmation .ok-btn {
+    background-color: red;
+}
+.alert-message-wrap.confirmation .confirm-btn {
+    border: none;
+    color: #fff;
+    padding: 6px 20px;
+    border-radius: 6px;
+    background-color: #595ad5;
+    margin-right: 10px;
+}
+.alert-message-wrap.confirmation .confirm-btn:hover {
+    background-color: #333;
 }

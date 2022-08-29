@@ -38,39 +38,19 @@
                                     <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                         <div ngClass="block-wrapper mb-4">
                                             <label class="h6-design">Property Category <span ngClass="required-span">*</span></label>
-                                            <div class="checkbox-flex-box two-column max-240" *ngIf="oldData.PropertyCategoryId == 1">
+                                            <div class="checkbox-flex-box two-column max-240">
                                                 <div class="checkbox-design position-relative" (click)="loadType(1)">
                                                     <input type="radio" id="Residential" name="property-cateogary"
-                                                        value="Residential" checked>
+                                                        value="Residential" *ngIf="formData.PropertyCategoryId == 1" checked>
+                                                    <input type="radio" id="Residential" name="property-cateogary"
+                                                        value="Residential" *ngIf="formData.PropertyCategoryId != 1">
                                                     <button class="checkbox-btn">Residential</button>
                                                 </div>
                                                 <div class="checkbox-design position-relative" (click)="loadType(2)">
                                                     <input type="radio" id="Commercial" name="property-cateogary"
-                                                        value="Commercial">
-                                                    <button class="checkbox-btn">Commercial</button>
-                                                </div>
-                                            </div>
-                                            <div class="checkbox-flex-box two-column max-240" *ngIf="oldData.PropertyCategoryId == 2">
-                                                <div class="checkbox-design position-relative" (click)="loadType(1)">
-                                                    <input type="radio" id="Residential" name="property-cateogary"
-                                                        value="Residential">
-                                                    <button class="checkbox-btn">Residential</button>
-                                                </div>
-                                                <div class="checkbox-design position-relative" (click)="loadType(2)">
+                                                        value="Commercial" *ngIf="formData.PropertyCategoryId == 2" checked>
                                                     <input type="radio" id="Commercial" name="property-cateogary"
-                                                        value="Commercial" checked>
-                                                    <button class="checkbox-btn">Commercial</button>
-                                                </div>
-                                            </div>
-                                            <div class="checkbox-flex-box two-column max-240" *ngIf="oldData.PropertyCategoryId != 1 && oldData.PropertyCategoryId != 2">
-                                                <div class="checkbox-design position-relative" (click)="loadType(1)">
-                                                    <input type="radio" id="Residential" name="property-cateogary"
-                                                        value="Residential">
-                                                    <button class="checkbox-btn">Residential</button>
-                                                </div>
-                                                <div class="checkbox-design position-relative" (click)="loadType(2)">
-                                                    <input type="radio" id="Commercial" name="property-cateogary"
-                                                        value="Commercial">
+                                                        value="Commercial" *ngIf="formData.PropertyCategoryId != 2">
                                                     <button class="checkbox-btn">Commercial</button>
                                                 </div>
                                             </div>
@@ -81,7 +61,7 @@
                                             <label class="h6-design">Type of Property <span ngClass="required-span">*</span></label>
                                             <mat-form-field appearance="fill">
                                                 <mat-label>Select Property Type</mat-label>
-                                                <mat-select [(value)]="oldData.PropertyTypeId" (selectionChange)="valuationPurpose($event)">
+                                                <mat-select [(value)]="formData.PropertyTypeId" (selectionChange)="valuationPurpose($event)">
                                                     <mat-option *ngFor="let item of propertyType" [value]="item.id">
                                                         {{item.typeDescription}}
                                                     </mat-option>
@@ -91,14 +71,14 @@
                                     </div>
                                 </div>
                             </div>
-                            <div ngClass="affection-numbers">
+                            <div *ngIf="typeSelected">
                                 <div ngClass="row">
                                     <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                         <div ngClass="block-wrapper mb-4 select-design">
                                             <label class="h6-design">Purpose of Valuation <span ngClass="required-span">*</span></label>
                                             <mat-form-field appearance="fill">
                                                 <mat-label>Select The Purpose</mat-label>
-                                                <mat-select [(value)]="oldData.ValuationPurposeId" (selectionChange)="onPurposeSelect($event)">
+                                                <mat-select [(value)]="formData.ValuationPurposeId" (selectionChange)="onPurposeSelect($event)">
                                                     <mat-option *ngFor="let item of purposeOfValuation"
                                                         [value]="item.id">
                                                         {{item.purposeDescription}}
@@ -107,95 +87,37 @@
                                             </mat-form-field>
                                         </div>
                                     </div>
-                                    <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+                                    <div ngClass="col-xl-6 col-lg-6 col-sm-12" *ngIf="!propertyData.hasUnits">
                                         <div ngClass="block-wrapper mb-4">
                                             <label class="h6-design">Property Current Status <span ngClass="required-span">*</span></label>
-                                            <div class="checkbox-flex-box three-column" *ngIf="oldData.PropertyStatusId  == 1">
+                                            <div class="checkbox-flex-box three-column">
                                                 <div class="checkbox-design position-relative"
                                                     (click)="propertyStatus(1, 'Owner Occupied')">
                                                     <input type="radio" id="Owner Occupied" name="current-status"
-                                                        value="Owner Occupied" checked>
+                                                        value="Owner Occupied" *ngIf="formData.PropertyStatusId  == 1" checked>
+                                                    <input type="radio" id="Owner Occupied" name="current-status"
+                                                        value="Owner Occupied" *ngIf="formData.PropertyStatusId  != 1">
                                                     <button class="checkbox-btn">Owner Occupied</button>
                                                 </div>
                                                 <div class="checkbox-design position-relative"
                                                     (click)="propertyStatus(2, 'Leased')">
                                                     <input type="radio" id="Leased" name="current-status"
-                                                        value="Leased">
-                                                    <button class="checkbox-btn">Leased</button>
-                                                </div>
-                                                <div class="checkbox-design position-relative"
-                                                    (click)="propertyStatus(3, 'Vacant')">
-                                                    <input type="radio" id="Vacant" name="current-status"
-                                                        value="Vacant">
-                                                    <button class="checkbox-btn">Vacant</button>
-                                                </div>
-                                            </div>
-                                            <div class="checkbox-flex-box three-column" *ngIf="oldData.PropertyStatusId  == 2">
-                                                <div class="checkbox-design position-relative"
-                                                    (click)="propertyStatus(1, 'Owner Occupied')">
-                                                    <input type="radio" id="Owner Occupied" name="current-status"
-                                                        value="Owner Occupied">
-                                                    <button class="checkbox-btn">Owner Occupied</button>
-                                                </div>
-                                                <div class="checkbox-design position-relative"
-                                                    (click)="propertyStatus(2, 'Leased')">
+                                                        value="Leased" *ngIf="formData.PropertyStatusId  == 2" checked>
                                                     <input type="radio" id="Leased" name="current-status"
-                                                        value="Leased" checked>
+                                                        value="Leased" *ngIf="formData.PropertyStatusId  != 2">
                                                     <button class="checkbox-btn">Leased</button>
                                                 </div>
                                                 <div class="checkbox-design position-relative"
                                                     (click)="propertyStatus(3, 'Vacant')">
                                                     <input type="radio" id="Vacant" name="current-status"
-                                                        value="Vacant">
-                                                    <button class="checkbox-btn">Vacant</button>
-                                                </div>
-                                            </div>
-                                            <div class="checkbox-flex-box three-column" *ngIf="oldData.PropertyStatusId  == 3">
-                                                <div class="checkbox-design position-relative"
-                                                    (click)="propertyStatus(1, 'Owner Occupied')">
-                                                    <input type="radio" id="Owner Occupied" name="current-status"
-                                                        value="Owner Occupied">
-                                                    <button class="checkbox-btn">Owner Occupied</button>
-                                                </div>
-                                                <div class="checkbox-design position-relative"
-                                                    (click)="propertyStatus(2, 'Leased')">
-                                                    <input type="radio" id="Leased" name="current-status"
-                                                        value="Leased" >
-                                                    <button class="checkbox-btn">Leased</button>
-                                                </div>
-                                                <div class="checkbox-design position-relative"
-                                                    (click)="propertyStatus(3, 'Vacant')">
+                                                        value="Vacant" *ngIf="formData.PropertyStatusId  == 3" checked>
                                                     <input type="radio" id="Vacant" name="current-status"
-                                                        value="Vacant" checked>
-                                                    <button class="checkbox-btn">Vacant</button>
-                                                </div>
-                                            </div>
-                                            <div class="checkbox-flex-box three-column" *ngIf="oldData.PropertyStatusId  != 1 && oldData.PropertyStatusId  != 2 && oldData.PropertyStatusId  != 3">
-                                                <div class="checkbox-design position-relative"
-                                                    (click)="propertyStatus(1, 'Owner Occupied')">
-                                                    <input type="radio" id="Owner Occupied" name="current-status"
-                                                        value="Owner Occupied">
-                                                    <button class="checkbox-btn">Owner Occupied</button>
-                                                </div>
-                                                <div class="checkbox-design position-relative"
-                                                    (click)="propertyStatus(2, 'Leased')">
-                                                    <input type="radio" id="Leased" name="current-status"
-                                                        value="Leased" >
-                                                    <button class="checkbox-btn">Leased</button>
-                                                </div>
-                                                <div class="checkbox-design position-relative"
-                                                    (click)="propertyStatus(3, 'Vacant')">
-                                                    <input type="radio" id="Vacant" name="current-status"
-                                                        value="Vacant" >
+                                                        value="Vacant" *ngIf="formData.PropertyStatusId  != 3">
                                                     <button class="checkbox-btn">Vacant</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div *ngIf="typeSelected">
-                                <div ngClass="row">
                                     <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                         <div ngClass="block-wrapper mb-4">
                                             <label class="h6-design">{{propertyData.numberLabel}} <span ngClass="required-span">*</span></label>
@@ -207,7 +129,7 @@
                                     <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                         <div ngClass="block-wrapper mb-4">
                                             <label class="h6-design">No. of Roads <span ngClass="required-span">*</span></label>
-                                            <div class="checkbox-flex-box flex-start six-column" *ngIf="oldData.NoOfRoads == 1">
+                                            <div class="checkbox-flex-box flex-start six-column" *ngIf="formData.NoOfRoads == 1">
                                                 <div class="checkbox-design position-relative" (click)="getRoads(1)">
                                                     <input type="radio" id="roads" name="no-of-roads" value="roads" checked>
                                                     <button class="checkbox-btn">1</button>
@@ -221,7 +143,7 @@
                                                     <button class="checkbox-btn">3</button>
                                                 </div>
                                             </div>
-                                            <div class="checkbox-flex-box flex-start six-column" *ngIf="oldData.NoOfRoads == 2">
+                                            <div class="checkbox-flex-box flex-start six-column" *ngIf="formData.NoOfRoads == 2">
                                                 <div class="checkbox-design position-relative" (click)="getRoads(1)">
                                                     <input type="radio" id="roads" name="no-of-roads" value="roads" >
                                                     <button class="checkbox-btn">1</button>
@@ -235,7 +157,7 @@
                                                     <button class="checkbox-btn">3</button>
                                                 </div>
                                             </div>
-                                            <div class="checkbox-flex-box flex-start six-column" *ngIf="oldData.NoOfRoads == 3">
+                                            <div class="checkbox-flex-box flex-start six-column" *ngIf="formData.NoOfRoads == 3">
                                                 <div class="checkbox-design position-relative" (click)="getRoads(1)">
                                                     <input type="radio" id="roads" name="no-of-roads" value="roads" >
                                                     <button class="checkbox-btn">1</button>
@@ -249,7 +171,7 @@
                                                     <button class="checkbox-btn">3</button>
                                                 </div>
                                             </div>
-                                            <div class="checkbox-flex-box flex-start six-column" *ngIf="oldData.NoOfRoads != 1 && oldData.NoOfRoads != 2 && oldData.NoOfRoads != 3">
+                                            <div class="checkbox-flex-box flex-start six-column" *ngIf="formData.NoOfRoads != 1 && formData.NoOfRoads != 2 && formData.NoOfRoads != 3">
                                                 <div class="checkbox-design position-relative" (click)="getRoads(1)">
                                                     <input type="radio" id="roads" name="no-of-roads" value="roads" >
                                                     <button class="checkbox-btn">1</button>
@@ -267,7 +189,7 @@
                                     </div>
                                     <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                         <div ngClass="block-wrapper mb-4">
-                                            <label class="h6-design">Construction Age <span ngClass="required-span">*</span></label>
+                                            <label class="h6-design">Property Age <span ngClass="required-span">*</span></label>
                                             <div ngClass="position-relative">
                                                 <mat-form-field class="full-width input-design-2" appearance="fill">
                                                     <input matInput type="number" formControlName="constructionAge" placeholder="Enter costruction age e.g. 10" (input)="getValue()">
@@ -280,7 +202,6 @@
                                         <div ngClass="block-wrapper mb-4">
                                             <label class="h6-design">Elevation <span ngClass="required-span">*</span></label>
                                             <mat-form-field class="full-width input-design-2" appearance="fill">
-                                                <!-- <input matInput type="text" placeholder="Enter plot elevation e.g. B+G+10" formControlName="elevation" [textMask]="{mask: mask}"> -->
                                                 <input matInput type="text" placeholder="Enter plot elevation e.g. B+G+10" formControlName="elevation" (keypress)="getKey($event)" (input)="getElevation(false)">
                                             </mat-form-field>
                                         </div>
@@ -314,7 +235,7 @@
                                             <label class="h6-design">Bedroom</label>
                                             <mat-form-field appearance="fill">
                                                 <mat-label>Select no. of bedroom</mat-label>
-                                                <mat-select [(value)]="oldData.Bedrooms" (selectionChange)="getBeds($event)">
+                                                <mat-select [(value)]="formData.Bedrooms" (selectionChange)="getBeds($event)">
                                                     <mat-option *ngFor="let listbedrooms of room"
                                                         [value]="listbedrooms.value">
                                                         {{listbedrooms.viewValue}}
@@ -328,7 +249,7 @@
                                             <label class="h6-design">Bathroom</label>
                                             <mat-form-field appearance="fill">
                                                 <mat-label>Select no. of bathroom</mat-label>
-                                                <mat-select [(value)]="oldData.Bathrooms" (selectionChange)="getBathroom($event)">
+                                                <mat-select [(value)]="formData.Bathrooms" (selectionChange)="getBathroom($event)">
                                                     <mat-option *ngFor="let list of room" [value]="list.value">
                                                         {{list.viewValue}}
                                                     </mat-option>
@@ -341,12 +262,12 @@
                                             <label class="h6-design">Furnishing Type</label>
                                             <div class="checkbox-flex-box three-column button-same-select">
                                                 <div *ngFor="let item of furnishingType">
-                                                    <div class="checkbox-design position-relative" *ngIf="item.id == oldData.FurnishingType" (click)="getFurnishingType(item.id,item.name)">
+                                                    <div class="checkbox-design position-relative" *ngIf="item.id == formData.FurnishingType" (click)="getFurnishingType(item.id,item.name)">
                                                         <input type="radio" id="Furnished" name="furnishing-types"
                                                             value="Furnished" checked>
                                                         <button class="checkbox-btn">{{item.name}}</button>
                                                     </div>
-                                                    <div class="checkbox-design position-relative" *ngIf="item.id != oldData.FurnishingType" (click)="getFurnishingType(item.id,item.name)">
+                                                    <div class="checkbox-design position-relative" *ngIf="item.id != formData.FurnishingType" (click)="getFurnishingType(item.id,item.name)">
                                                         <input type="radio" id="Furnished" name="furnishing-types"
                                                             value="Furnished">
                                                         <button class="checkbox-btn">{{item.name}}</button>
@@ -360,12 +281,12 @@
                                             <label class="h6-design">Fitting Type</label>
                                             <div class="checkbox-flex-box four-column button-same-select">
                                                 <div *ngFor="let item of fittingType">
-                                                    <div class="checkbox-design position-relative" *ngIf="item.id == oldData.FittingType"  (click)="getFittingType(item.id,item.name)">
+                                                    <div class="checkbox-design position-relative" *ngIf="item.id == formData.FittingType"  (click)="getFittingType(item.id,item.name)">
                                                         <input type="radio" id="Furnished" name="fitting-types"
                                                             value="Furnished" checked>
                                                         <button class="checkbox-btn">{{item.name}}</button>
                                                     </div>
-                                                    <div class="checkbox-design position-relative" *ngIf="item.id != oldData.FittingType"  (click)="getFittingType(item.id,item.name)">
+                                                    <div class="checkbox-design position-relative" *ngIf="item.id != formData.FittingType"  (click)="getFittingType(item.id,item.name)">
                                                         <input type="radio" id="Furnished" name="fitting-types"
                                                             value="Furnished" >
                                                         <button class="checkbox-btn">{{item.name}}</button>
@@ -462,7 +383,7 @@
                                                 <div class="checkbox-flex-box autoflex-layout">
                                                     <div *ngFor="let item of featuresData">
                                                         <div class="checkbox-design position-relative"
-                                                            *ngIf="oldData.PropertyFeatures && checkOldData(item.propertyFeatureId)"
+                                                            *ngIf="formData.PropertyFeatures && checkOldData(item.propertyFeatureId)"
                                                             (click)="getFeaturesData(item.propertyFeatureId, item.propertyFeature.featureName)">
                                                             <input type="checkbox" id={{item.propertyFeature.id}}
                                                                 name={{item.propertyFeature.featureName}}
@@ -471,7 +392,7 @@
                                                                 class="checkbox-btn">{{item.propertyFeature.featureName}}</button>
                                                         </div>
                                                         <div class="checkbox-design position-relative"
-                                                            *ngIf="oldData.PropertyFeatures && !checkOldData(item.propertyFeatureId)"
+                                                            *ngIf="formData.PropertyFeatures && !checkOldData(item.propertyFeatureId)"
                                                             (click)="getFeaturesData(item.propertyFeatureId, item.propertyFeature.featureName)">
                                                             <input type="checkbox" id={{item.propertyFeature.id}}
                                                                 name={{item.propertyFeature.featureName}}
@@ -480,7 +401,7 @@
                                                                 class="checkbox-btn">{{item.propertyFeature.featureName}}</button>
                                                         </div>
                                                         <div class="checkbox-design position-relative"
-                                                            *ngIf="!oldData.PropertyFeatures"
+                                                            *ngIf="!formData.PropertyFeatures"
                                                             (click)="getFeaturesData(item.propertyFeatureId, item.propertyFeature.featureName)">
                                                             <input type="checkbox" id={{item.propertyFeature.id}}
                                                                 name={{item.propertyFeature.featureName}}
@@ -494,11 +415,11 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div ngClass="totel_iccum-annum" *ngIf="totalExpenseWrapper">
+                                <div ngClass="totel_iccum-annum" *ngIf="totalExpenseWrapper || propertyData.hasUnits">
                                     <div ngClass="row">
-                                        <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+                                        <div ngClass="col-xl-6 col-lg-6 col-sm-12" *ngIf="totalExpenseWrapper || !propertyData.hasUnits">
                                             <div ngClass="block-wrapper mb-4">
-                                                <label class="h6-design">Totel Income per Annum <span ngClass="required-span">*</span></label>
+                                                <label class="h6-design">Total Income per Annum <span ngClass="required-span">*</span></label>
                                                 <mat-form-field class="full-width input-design-2" appearance="fill">
                                                     <input matInput type="number" formControlName="income" placeholder="Enter totel income eg. 5,000,000">
                                                 </mat-form-field>
@@ -532,3 +453,4 @@
 </section>
 <app-loader *ngIf="showLoader"></app-loader>
 <app-erroralert [error]="error" (errorResponse)="errorResponse($event)" *ngIf="showError"></app-erroralert>
+<app-confirmationbox [message]="confirmMessage" (confirmResponse)="confirmResponse($event)" *ngIf="showConfirm"></app-confirmationbox>
