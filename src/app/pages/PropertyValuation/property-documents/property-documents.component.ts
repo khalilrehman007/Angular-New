@@ -18,6 +18,7 @@ export class PropertyDocumentsComponent implements OnInit {
   checkmark = '../../../../assets/images/icons/checkmark-circle.svg'
   stripe = '../../../../assets/images/stripe.svg'
   reportimg = '../../../../assets/images/report-icon.png'
+  countriesList = new FormControl('UAE');
   file: string = "";
   affecton: string;
   propertys: string;

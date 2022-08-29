@@ -679,10 +679,19 @@
                                                 <div ngClass="block-wrapper mb-4">
                                                     <label class="h6-design">Enter Phone of Property Owner<span
                                                             ngClass="required-span">*</span></label>
+                                                    <div ngClass="position-relative country-code-select-design">
                                                     <mat-form-field class="full-width input-design-2" appearance="fill">
                                                         <input matInput type="phone" placeholder="Enter Phone"
                                                             formControlName="phone" (input)="checkPhone()" />
                                                     </mat-form-field>
+                                                    <mat-form-field appearance="fill" class="countries-select">
+                                                        <mat-select [formControl]="countriesList"
+                                                                    panelClass="example-panel-{{countriesList.value}}">
+                                                          <mat-option value="UAE">+971</mat-option>
+                                                          <mat-option value="India">+91</mat-option>
+                                                        </mat-select>
+                                                      </mat-form-field>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
