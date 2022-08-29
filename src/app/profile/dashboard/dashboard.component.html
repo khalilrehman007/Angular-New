@@ -67,7 +67,7 @@
           </li>
           <li class="nav-item" role="presentation">
             <button class="nav-link" id="pills-leads-tab" data-bs-toggle="pill" data-bs-target="#pills-leads"
-              type="button" role="tab" aria-controls="pills-leads" aria-selected="false">My Leads</button>
+              type="button" role="tab" aria-controls="pills-leads" aria-selected="false" *ngIf="professionalType == 1 || professionalType == 2 || professionalType == 3">My Leads</button>
           </li>
           <li class="nav-item" role="presentation">
             <button class="nav-link" id="pills-listing-tab" data-bs-toggle="pill" data-bs-target="#pills-listing"
@@ -75,7 +75,7 @@
           </li>
           <li class="nav-item" role="presentation">
             <button class="nav-link" id="pills-valuation-tab" data-bs-toggle="pill" data-bs-target="#pills-valuation"
-              type="button" role="tab" aria-controls="pills-valuation" aria-selected="false" *ngIf="professionalType == 1 || professionalType == 2 || professionalType == 3">My Valuations</button>
+              type="button" role="tab" aria-controls="pills-valuation" aria-selected="false">My Valuations</button>
           </li>
           <li class="nav-item" role="presentation">
             <button class="nav-link" id="pills-packages-tab" data-bs-toggle="pill" data-bs-target="#pills-packages"
@@ -123,7 +123,7 @@
 
           <div class="statictics-wrap">
             <div class="row">
-              <div class="col-md-6">
+              <div class="col-md-6" *ngIf="professionalType == 1 || professionalType == 2 || professionalType == 3">
                 <div class="card">
                   <div class="content-area">
                     <h4 class="title">Listings Summary</h4>
@@ -170,7 +170,7 @@
 
 
 
-          <div class="card mt-5">
+          <div class="card mt-5" *ngIf="professionalType == 1 || professionalType == 2 || professionalType == 3">
             <section ngClass="position-relative wrapper-section properties-slider residentials-property-rent-1">
               <div ngClass="section-title">
                 <div ngClass="section-title-left">
