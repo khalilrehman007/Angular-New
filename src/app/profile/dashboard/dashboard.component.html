@@ -1326,7 +1326,7 @@
                         <p ngClass="payment success">
                           <mat-icon>check_circle</mat-icon> Submitted
                         </p>
-                        <a routerLink="/PropertyDownloadReport" ngClass="download-pdf">Download Pdf</a>
+                        <a class="download-pdf cursor-pointer" (click)="downloadReport(item.reportNumberCode)">Download Pdf</a>
                       </div>
                     </div>
                   </div>
@@ -3857,3 +3857,4 @@
   </div>
 </section>
 <app-footer></app-footer>
+<app-loader *ngIf="showLoader"></app-loader>
