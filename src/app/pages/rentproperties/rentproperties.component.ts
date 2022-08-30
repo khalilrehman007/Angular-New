@@ -160,6 +160,7 @@ export class RentpropertiesComponent implements OnInit {
   }
 
   onTrendClick(typeID: any, titleID: any) {
+
     let temp: any = this.trendTitle[typeID].trendTitleDetail[titleID];
     let type: any;
     if (temp.propertyListingTypeId == 1) {
@@ -305,7 +306,7 @@ export class RentpropertiesComponent implements OnInit {
       response.data.propertyListings.forEach((element, i) => {
         let documentsCheck: any = true;
         let rentTypeName = ''
-        if (element.rentType != null) {
+        if (element.rentType != null && this.PropertyListingTypeId !=2) {
           rentTypeName = element.rentType.name
         }
         let documents: any = []

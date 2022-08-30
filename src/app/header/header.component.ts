@@ -276,7 +276,7 @@ export class HeaderComponent implements OnInit {
         }
 
         let rentType: any = '';
-        if (element.rentType !== null && element.rentType !== undefined) {
+        if (element.rentType !== null && element.rentType !== undefined && element.propertyListingTypeId != 2) {
           rentType = element.rentType.name
         }
 
@@ -287,6 +287,7 @@ export class HeaderComponent implements OnInit {
 
         tempData.push(
           {
+            propertyListingTypeId: element.propertyListingTypeId,
             title: element.propertyTitle,
             rentType: rentType,
             propertyType: propertyType,
@@ -341,8 +342,17 @@ export class HeaderComponent implements OnInit {
   }
 
   allCheckbox: any = []
-  allFormCheckbox(id: number) {
-    this.allCheckbox.push({ 'id': id })
+  allError:any =""
+  allPropertyListingTypeCheck :any ;
+  allFormCheckbox(id: number,propertyListingTypeId:number) {
+    if(this.allPropertyListingTypeCheck != propertyListingTypeId && this.allPropertyListingTypeCheck != undefined){
+      this.notifyService.showWarning("you can't compare two different types", "");
+      this.allError = "you can't compare two different types";
+    }else{
+      this.allCheckbox.push({ 'id': id })
+      this.allPropertyListingTypeCheck = propertyListingTypeId
+    }
+
   }
 
   rentCheckbox: any = []
@@ -368,7 +378,7 @@ export class HeaderComponent implements OnInit {
     if (type == "all") {
       if (this.allCheckbox.length < 2 || this.allCheckbox.length > 4) {
         this.notifyService.showWarning('Selected property atleast less than < 4 greater than > 2 ', "");
-      } else {
+      }else {
         localStorage.removeItem("compareIds");
         localStorage.setItem('compareIds', JSON.stringify(this.allCheckbox))
         this.route.navigateByUrl('/PropertyCompare');
