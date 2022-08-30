@@ -180,7 +180,8 @@ export class HeaderComponent implements OnInit {
   logout() {
     this.notifyService.showSuccess('Logout Successfully', "");
     localStorage.clear();
-    this.route.navigate(['login'])
+    this.getUser();
+    this.route.navigate([''])
   }
   status: boolean = false;
   clickEvent() {
