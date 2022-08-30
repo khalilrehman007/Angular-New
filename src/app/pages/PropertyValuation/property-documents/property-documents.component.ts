@@ -476,6 +476,9 @@ export class PropertyDocumentsComponent implements OnInit {
       }
     }
   }
+  validateName(e:any) {
+
+  }
   getPaymentData() {
     let number: any = this.paymentForm.value.cardNumber;
     let date: any = this.paymentForm.value.expiryDate;
