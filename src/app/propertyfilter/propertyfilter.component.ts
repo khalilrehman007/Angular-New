@@ -75,9 +75,13 @@ export class PropertyfilterComponent implements OnInit {
 
 
   @ViewChild('fruitInput') fruitInput: ElementRef<HTMLInputElement>;
-
+  routeCheck :any;
   totalPropertyRecord :any;
   constructor(private activeRoute: ActivatedRoute,private service:AppService,private api: AppService,private route:Router,private modalService: NgbModal) {
+
+    let url = this.route.url.replace("/", "");
+    url = this.route.url.split('?')[0];
+    this.routeCheck = url
 
     // this.videoTourSorting    = this.activeRoute.snapshot.queryParamMap.get('videoTourSorting');
     this.totalPropertyRecord = localStorage.getItem('propertyListingTotalRecord');
@@ -481,7 +485,12 @@ export class PropertyfilterComponent implements OnInit {
     // Clear the input value
     event.chipInput!.clear();
 
-    this.proceedSearch();
+    if(this.routeCheck == '/search'){
+      this.proceedSearch()
+    }else{
+      this.proceedSearchViewMap()
+    }
+
   }
 
   remove(fruit: KeywordString): void {
@@ -490,7 +499,12 @@ export class PropertyfilterComponent implements OnInit {
     if (index >= 0) {
       this.Keywords.splice(index, 1);
     }
-    this.proceedSearch();
+    if(this.routeCheck == '/search'){
+      this.proceedSearch()
+    }else{
+      this.proceedSearchViewMap()
+    }
+
   }
 
 
@@ -499,9 +513,11 @@ export class PropertyfilterComponent implements OnInit {
   furnishedTypeChange(data :any){
     this.furnishedType = data
 
-    this.proceedSearch()
-
-    // this.proceedSearchViewMap()
+    if(this.routeCheck == '/search'){
+      this.proceedSearch()
+    }else{
+      this.proceedSearchViewMap()
+    }
   }
 
   propertyFeatureIds :any = [];
@@ -523,7 +539,11 @@ export class PropertyfilterComponent implements OnInit {
       }
     }
 
-    this.proceedSearch();
+    if(this.routeCheck == '/search'){
+      this.proceedSearch()
+    }else{
+      this.proceedSearchViewMap()
+    }
 
   }
 
@@ -531,12 +551,21 @@ export class PropertyfilterComponent implements OnInit {
   minCarpet : any = ''
   minCarpetAreaChange(searchValue: any): void {
     this.minCarpet = searchValue
-    this.proceedSearch();
+    if(this.routeCheck == '/search'){
+      this.proceedSearch()
+    }else{
+      this.proceedSearchViewMap()
+    }
+
   }
   maxCarpet : any = ''
   maxCarpetAreaChange(searchValue: any): void {
     this.maxCarpet = searchValue
-    this.proceedSearch();
+    if(this.routeCheck == '/search'){
+      this.proceedSearch()
+    }else{
+      this.proceedSearchViewMap()
+    }
   }
 
   status1: boolean = false;
