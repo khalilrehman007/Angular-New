@@ -170,17 +170,28 @@ export class RentpropertiesComponent implements OnInit {
     } else {
       type = "";
     }
+    // let params: any = {
+    //   queryParams: {
+    //     type: type,
+    //     PropertyListingTypeId: temp.propertyListingTypeId ?? "",
+    //     CityID: temp.cityId ?? "",
+    //     CountryId: temp.countryId ?? "",
+    //     PropertyCategoryId: temp.propertyCategoryId ?? "",
+    //     PropertyTypeIds: temp.propertyTypeId ?? "",
+    //   }
+    // }
+
+
+    let propertyTypeId :any = [temp.propertyTypeId ?? ""]
     let params: any = {
-      queryParams: {
-        type: type,
-        PropertyListingTypeId: temp.propertyListingTypeId ?? "",
-        CityID: temp.cityId ?? "",
-        CountryId: temp.countryId ?? "",
-        PropertyCategoryId: temp.propertyCategoryId ?? "",
-        PropertyTypeIds: temp.propertyTypeId ?? "",
-      }
+      MinCarpetArea:this.MinCarpetArea,MaxCarpetArea:this.MaxCarpetArea,PropertyFeatureIds:this.PropertyFeatureIds,KeyWords:this.KeyWords,
+      FurnishingTypeId:this.FurnishingTypeId,CityID: temp.cityId ?? "",CountryId: temp.countryId ?? "",
+      "PropertyTypeIds": propertyTypeId, "PropertyAddress": this.PropertyAddress, "RentTypeId": this.RentTypeId,Bedrooms:this.Bedrooms,Bathrooms:this.Bathrooms,
+      "PropertyCategoryId": temp.propertyCategoryId ?? "", "PriceStart": this.PriceStart, "PriceEnd": this.PriceEnd,"videoTour": this.videoTourSorting,
+      "PropertyListingTypeId": temp.propertyListingTypeId ?? "", "SortedBy": this.sortedById, CurrentPage: this.page, DistrictIds: this.DistrictsId,
     }
-    this.route.navigate(['/search'], params)
+    this.loadListingProperty(params);
+    // this.route.navigate(['/search'], params)
   }
   callNumberText = "Call Now"
   callNumber(text: any) {
