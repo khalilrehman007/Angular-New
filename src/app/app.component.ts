@@ -18,6 +18,14 @@ export class AppComponent implements DoCheck, OnInit, AfterViewInit {
   message: any = null;
   displaymenu = false;
   constructor(private cookie: CookieService, private route: Router, private notifyService: NotificationService) {
+    if(localStorage.getItem("user")) {
+      let temp:any = {};
+      temp.user = localStorage.getItem("user");
+      temp.token = localStorage.getItem("token");
+      localStorage.clear();
+      localStorage.setItem("user", temp.user);
+      localStorage.setItem("token", temp.token);
+    }
   }
   ngAfterViewInit(): void {
     $(".main-loader-wrapper").remove()
