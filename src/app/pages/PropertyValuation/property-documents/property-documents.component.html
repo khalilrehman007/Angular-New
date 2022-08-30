@@ -671,7 +671,7 @@
                                                     <mat-form-field class="full-width input-design-2" appearance="fill">
                                                         <input matInput type="text"
                                                             placeholder="Enter the full name in the language of report"
-                                                            formControlName="name" />
+                                                            formControlName="name" (keypress)="validateName($event)" />
                                                     </mat-form-field>
                                                 </div>
                                             </div>
