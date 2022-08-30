@@ -408,5 +408,13 @@ export class AppService {
   LocatedNear() {
     return this.http.get(this.apiurl + 'LocatedNear');
   }
-
+  AddUpdateAgentDetails(data:any) {
+    return this.http.post(this.apiurl + 'AddUpdateAgentDetails', data);
+  }
+  AddUpdateCompany(data:any) {
+    return this.http.post(this.apiurl + 'AddUpdateCompany', data);
+  }
+  UserAgentProfile(id:any) {
+    return this.http.get(this.apiurl + 'AddUpdateCompany/' + id);
+  }
 }

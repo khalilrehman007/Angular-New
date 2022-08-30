@@ -55,7 +55,6 @@ export class PropertyTypesComponent implements OnInit {
       this.getData();
     }
   }
-
   room = [
     { viewValue: '01', value: '01' },
     { viewValue: '02', value: '02' },

@@ -272,6 +272,7 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
       this.showError = true;
       return;
     } else if ($("#searchLocation").val() == "" || !this.locationSelected) {
+      this.changeInfo();
       this.error = "Enter Address";
       this.showError = true;
       return;

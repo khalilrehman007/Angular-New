@@ -43,75 +43,6 @@
                 <h5 ngClass="h5-heading">Property Details</h5>
                 <p>Please provide your propety type for the valuation</p>
               </div>
-              <div ngClass="deed-numbers">
-                <div ngClass="row">
-                  <div ngClass="col-xl-6 col-lg-6 col-sm-12">
-                    <div ngClass="block-wrapper mb-4">
-                      <label class="h6-design">Title Deed No. <span ngClass="required-span">*</span> <span
-                          ngClass="small-label">(Insert "0" if you don't have NO)</span></label>
-                      <mat-form-field class="full-width input-design-2" appearance="fill">
-                        <input matInput type="text" placeholder="Title Deed No" formControlName="titleDeed" lang="en" />
-                      </mat-form-field>
-                      <span style="color: #FF0000" *ngIf="
-                          titleDeed && titleDeed.invalid && titleDeed.touched
-                        ">*This field is required</span>
-                    </div>
-                  </div>
-                  <div ngClass="col-xl-6 col-lg-6 col-sm-12">
-                    <div ngClass="block-wrapper mb-4">
-                      <label class="h6-design">Title Deed Type <span ngClass="required-span">*</span></label>
-                      <div class="checkbox-flex-box two-column max-240">
-                        <div class="checkbox-design position-relative" (click)="toggleType(1)">
-                          <input type="radio" id="Monthly" name="titleDeed-type" value="Monthly" *ngIf="oldData.TitleDeedType == 1" checked />
-                          <input type="radio" id="Monthly" name="titleDeed-type" value="Monthly" *ngIf="oldData.TitleDeedType != 1" />
-                          <button class="checkbox-btn">Leasehold</button>
-                        </div>
-                        <div class="checkbox-design position-relative" (click)="toggleType(2)">
-                          <input type="radio" id="Quaterly" name="titleDeed-type" value="Quaterly" *ngIf="oldData.TitleDeedType == 2" checked />
-                          <input type="radio" id="Quaterly" name="titleDeed-type" value="Quaterly" *ngIf="oldData.TitleDeedType != 2" />
-                          <button class="checkbox-btn">Freehold</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div ngClass="affection-numbers">
-                <div ngClass="row">
-                  <div ngClass="col-xl-6 col-lg-6 col-sm-12">
-                    <div ngClass="block-wrapper mb-4">
-                      <label class="h6-design">Muncipality/Affection No. <span ngClass="required-span">*</span> <span
-                          ngClass="small-label">(Insert "0" if you don't have NO)</span></label>
-                      <mat-form-field class="full-width input-design-2" appearance="fill">
-                        <input matInput type="text" placeholder="Enter the Municipality No/Affection No."
-                          formControlName="muncipality" />
-                      </mat-form-field>
-                      <span style="color: #FF0000;" *ngIf="
-                          muncipality &&
-                          muncipality.invalid &&
-                          muncipality.touched
-                        ">*This field is required</span>
-                    </div>
-                  </div>
-                  <div ngClass="col-xl-6 col-lg-6 col-sm-12">
-                    <div ngClass="block-wrapper mb-4">
-                      <label class="h6-design">Property Insured <span ngClass="required-span">*</span></label>
-                      <div class="checkbox-flex-box two-column max-240">
-                        <div class="checkbox-design position-relative" (click)="toggleInsured(1)">
-                          <input type="radio" id="Yes" name="propertyInsured-type" value="Yes" *ngIf="oldData.PropertyInsured == 1" checked />
-                          <input type="radio" id="Yes" name="propertyInsured-type" value="Yes" *ngIf="oldData.PropertyInsured != 1" />
-                          <button class="checkbox-btn">Yes</button>
-                        </div>
-                        <div class="checkbox-design position-relative" (click)="toggleInsured(2)">
-                          <input type="radio" id="No" name="propertyInsured-type" value="No" *ngIf="oldData.PropertyInsured == 2" checked />
-                          <input type="radio" id="No" name="propertyInsured-type" value="No" *ngIf="oldData.PropertyInsured != 2" />
-                          <button class="checkbox-btn">No</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
               <div ngClass="select-boxes">
                 <div ngClass="row">
                   <div ngClass="col-xl-4 col-lg-4 col-sm-12">
@@ -202,6 +133,75 @@
                         </div>
                       </mat-list-item>
                     </mat-list>
+                  </div>
+                </div>
+              </div>
+              <div ngClass="deed-numbers">
+                <div ngClass="row">
+                  <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+                    <div ngClass="block-wrapper mb-4">
+                      <label class="h6-design">Title Deed No. <span ngClass="required-span">*</span> <span
+                          ngClass="small-label">(Insert "0" if you don't have NO)</span></label>
+                      <mat-form-field class="full-width input-design-2" appearance="fill">
+                        <input matInput type="text" placeholder="Title Deed No" formControlName="titleDeed" lang="en" />
+                      </mat-form-field>
+                      <span style="color: #FF0000" *ngIf="
+                          titleDeed && titleDeed.invalid && titleDeed.touched
+                        ">*This field is required</span>
+                    </div>
+                  </div>
+                  <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+                    <div ngClass="block-wrapper mb-4">
+                      <label class="h6-design">Title Deed Type <span ngClass="required-span">*</span></label>
+                      <div class="checkbox-flex-box two-column max-240">
+                        <div class="checkbox-design position-relative" (click)="toggleType(1)">
+                          <input type="radio" id="Monthly" name="titleDeed-type" value="Monthly" *ngIf="oldData.TitleDeedType == 1" checked />
+                          <input type="radio" id="Monthly" name="titleDeed-type" value="Monthly" *ngIf="oldData.TitleDeedType != 1" />
+                          <button class="checkbox-btn">Leasehold</button>
+                        </div>
+                        <div class="checkbox-design position-relative" (click)="toggleType(2)">
+                          <input type="radio" id="Quaterly" name="titleDeed-type" value="Quaterly" *ngIf="oldData.TitleDeedType == 2" checked />
+                          <input type="radio" id="Quaterly" name="titleDeed-type" value="Quaterly" *ngIf="oldData.TitleDeedType != 2" />
+                          <button class="checkbox-btn">Freehold</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div ngClass="affection-numbers">
+                <div ngClass="row">
+                  <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+                    <div ngClass="block-wrapper mb-4">
+                      <label class="h6-design">Muncipality/Affection No. <span ngClass="required-span">*</span> <span
+                          ngClass="small-label">(Insert "0" if you don't have NO)</span></label>
+                      <mat-form-field class="full-width input-design-2" appearance="fill">
+                        <input matInput type="text" placeholder="Enter the Municipality No/Affection No."
+                          formControlName="muncipality" />
+                      </mat-form-field>
+                      <span style="color: #FF0000;" *ngIf="
+                          muncipality &&
+                          muncipality.invalid &&
+                          muncipality.touched
+                        ">*This field is required</span>
+                    </div>
+                  </div>
+                  <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+                    <div ngClass="block-wrapper mb-4">
+                      <label class="h6-design">Property Insured <span ngClass="required-span">*</span></label>
+                      <div class="checkbox-flex-box two-column max-240">
+                        <div class="checkbox-design position-relative" (click)="toggleInsured(1)">
+                          <input type="radio" id="Yes" name="propertyInsured-type" value="Yes" *ngIf="oldData.PropertyInsured == 1" checked />
+                          <input type="radio" id="Yes" name="propertyInsured-type" value="Yes" *ngIf="oldData.PropertyInsured != 1" />
+                          <button class="checkbox-btn">Yes</button>
+                        </div>
+                        <div class="checkbox-design position-relative" (click)="toggleInsured(2)">
+                          <input type="radio" id="No" name="propertyInsured-type" value="No" *ngIf="oldData.PropertyInsured == 2" checked />
+                          <input type="radio" id="No" name="propertyInsured-type" value="No" *ngIf="oldData.PropertyInsured != 2" />
+                          <button class="checkbox-btn">No</button>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>

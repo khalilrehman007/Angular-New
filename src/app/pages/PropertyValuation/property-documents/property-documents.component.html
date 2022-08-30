@@ -299,32 +299,28 @@
                                             <div ngClass="pro-details-left-column">
                                                 <h5 ngClass="h5-borderd-heading">Property Details</h5>
                                                 <div ngClass="row">
-                                                    <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12"
-                                                        *ngIf="userData.TitleDeedNo">
+                                                    <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                                                         <div ngClass="pro-details-info-blocks">
                                                             <h6>Title Deed No.</h6>
-                                                            <p>{{userData.TitleDeedNo}}</p>
+                                                            <p>{{formData.TitleDeedNo}}</p>
                                                         </div>
                                                     </div>
-                                                    <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12"
-                                                        *ngIf="userData.titleDeedType">
+                                                    <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                                                         <div ngClass="pro-details-info-blocks">
                                                             <h6>Title Dead Type.</h6>
-                                                            <p>{{userData.titleDeedType}}</p>
+                                                            <p>{{formData.TitleDeedType == 1 ? "Leasehold" : "Freehold"}}</p>
                                                         </div>
                                                     </div>
-                                                    <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12"
-                                                        *ngIf="userData.MunicipalityNo">
+                                                    <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                                                         <div ngClass="pro-details-info-blocks">
                                                             <h6>Municipality No.</h6>
-                                                            <p>{{userData.MunicipalityNo}}</p>
+                                                            <p>{{formData.MunicipalityNo}}</p>
                                                         </div>
                                                     </div>
-                                                    <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12"
-                                                        *ngIf="userData.insured">
+                                                    <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                                                         <div ngClass="pro-details-info-blocks">
                                                             <h6>Property Insured</h6>
-                                                            <p>{{userData.insured}}</p>
+                                                            <p>{{formData.PropertyInsured  == 1 ? "Yes" : "No"}}</p>
                                                         </div>
                                                     </div>
                                                     <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12"
@@ -671,7 +667,7 @@
                                                     <mat-form-field class="full-width input-design-2" appearance="fill">
                                                         <input matInput type="text"
                                                             placeholder="Enter the full name in the language of report"
-                                                            formControlName="name" (keypress)="validateName($event)" />
+                                                            formControlName="name" (keypress)="validateName($event)" (input)="removeChar()" />
                                                     </mat-form-field>
                                                 </div>
                                             </div>
@@ -681,14 +677,14 @@
                                                             ngClass="required-span">*</span></label>
                                                     <div ngClass="position-relative country-code-select-design">
                                                     <mat-form-field class="full-width input-design-2" appearance="fill">
-                                                        <input matInput type="phone" placeholder="Enter Phone"
+                                                        <input matInput type="number" placeholder="Enter Phone"
                                                             formControlName="phone" (input)="checkPhone()" />
                                                     </mat-form-field>
                                                     <mat-form-field appearance="fill" class="countries-select">
                                                         <mat-select [formControl]="countriesList"
                                                                     panelClass="example-panel-{{countriesList.value}}">
-                                                          <mat-option value="UAE">+971</mat-option>
-                                                          <mat-option value="India">+91</mat-option>
+                                                          <mat-option value="+971">+971</mat-option>
+                                                          <mat-option value="+91">+91</mat-option>
                                                         </mat-select>
                                                       </mat-form-field>
                                                     </div>

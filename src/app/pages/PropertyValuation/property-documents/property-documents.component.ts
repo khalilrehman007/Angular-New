@@ -18,7 +18,7 @@ export class PropertyDocumentsComponent implements OnInit {
   checkmark = '../../../../assets/images/icons/checkmark-circle.svg'
   stripe = '../../../../assets/images/stripe.svg'
   reportimg = '../../../../assets/images/report-icon.png'
-  countriesList = new FormControl('UAE');
+  countriesList = new FormControl('+971');
   file: string = "";
   affecton: string;
   propertys: string;
@@ -46,8 +46,8 @@ export class PropertyDocumentsComponent implements OnInit {
   showLoader: boolean = false;
   error: any = ""
   showError: boolean = false;
-  requiredDocs:number = 3;
-  currency:any = localStorage.getItem("currency");
+  requiredDocs: number = 3;
+  currency: any = localStorage.getItem("currency");
   errorResponse(data: any) {
     this.showError = false;
   }
@@ -59,9 +59,9 @@ export class PropertyDocumentsComponent implements OnInit {
 
   checkPhone() {
     let temp: any = this.reportForm.value.phone;
-    if (temp.toString().length > 12) {
-      // alert("Max length allowes is 12");
-      this.error = "Max length allows is 12"
+    if (temp.toString().length > 10) {
+      this.error = "Max length allows is 10";
+      this.showError = true;
       this.reportForm.patchValue({
         phone: temp.toString().slice(0, -1)
       })
@@ -227,8 +227,8 @@ export class PropertyDocumentsComponent implements OnInit {
   status7: boolean = false;
   status8: boolean = false;
   status9: boolean = false;
-  data:any = [];
-  selectedData:any = [];
+  data: any = [];
+  selectedData: any = [];
 
   dataURLtoFile(dataurl: any, filename: any) {
     var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
@@ -238,9 +238,9 @@ export class PropertyDocumentsComponent implements OnInit {
     }
     return new File([u8arr], filename, { type: mime });
   }
-  selectData(e:any, index:any) {
-    let temp:any = this.data[index].filter((item: any) => item.id == e);
-    if(temp.length > 0) {
+  selectData(e: any, index: any) {
+    let temp: any = this.data[index].filter((item: any) => item.id == e);
+    if (temp.length > 0) {
       this.selectedData = temp[0];
       return true;
     } else {
@@ -250,18 +250,18 @@ export class PropertyDocumentsComponent implements OnInit {
   checkPackage() {
     this.service.PropertyPackageType().subscribe((result: any) => {
       this.certificateData = result.data;
-      let temp:any = [];
-      let a:any = [];
-      for(let i = 0; i < this.certificateData.packageCategories.length ; i++) {
-        temp = this.certificateData.packageTypes[0].packageContent.filter((e:any) => {
+      let temp: any = [];
+      let a: any = [];
+      for (let i = 0; i < this.certificateData.packageCategories.length; i++) {
+        temp = this.certificateData.packageTypes[0].packageContent.filter((e: any) => {
           return e.packageCategoryId == this.certificateData.packageCategories[i].id;
         })
         a.push(temp);
       }
       this.data.push(a);
       a = temp = [];
-      for(let i = 0; i < this.certificateData.packageCategories.length ; i++) {
-        temp = this.certificateData.packageTypes[1].packageContent.filter((e:any) => {
+      for (let i = 0; i < this.certificateData.packageCategories.length; i++) {
+        temp = this.certificateData.packageTypes[1].packageContent.filter((e: any) => {
           return e.packageCategoryId == this.certificateData.packageCategories[i].id;
         })
         a.push(temp);
@@ -312,7 +312,7 @@ export class PropertyDocumentsComponent implements OnInit {
   Nextshow1() {
     let temp: any = localStorage.getItem("valuationData");
     temp = JSON.parse(temp);
-    this.service.ValuationPrices({ "PropertyTypeId":temp.PropertyTypeId,"CountryId": temp.CountryId }).subscribe((result: any) => {
+    this.service.ValuationPrices({ "PropertyTypeId": temp.PropertyTypeId, "CountryId": temp.CountryId }).subscribe((result: any) => {
       this.valuationPrices = result.data;
     })
     this.status2 = !this.status2;
@@ -353,7 +353,8 @@ export class PropertyDocumentsComponent implements OnInit {
     this.showLoader = true;
     this.publishText = "Please Wait...";
     this.formData.CustomerName = this.reportForm.value.name;
-    this.formData.PhoneNumber = this.reportForm.value.phone;
+    let temp:any = this.countriesList.value
+    this.formData.PhoneNumber = temp + this.reportForm.value.phone;
     this.formData.InspectionDate = $("#formDate").val();
 
     let userData: any = localStorage.getItem("user");
@@ -362,7 +363,7 @@ export class PropertyDocumentsComponent implements OnInit {
     this.formData.EmailAddress = userData.email;
 
     if (this.formData.InspectionRequired) {
-      let a:any = localStorage.getItem("inspectionFee");
+      let a: any = localStorage.getItem("inspectionFee");
       this.formData.ValuationPayment = { "Email": userData.email, "CustomerName": this.reportForm.value.name, "TotalAmount": parseInt(this.reportPrice) + parseInt(a), "InspectionAmount": localStorage.getItem("inspectionFee"), "ReportAmount": this.reportPrice };
     } else {
       this.formData.ValuationPayment = { "Email": userData.email, "CustomerName": this.reportForm.value.name, "TotalAmount": this.reportPrice, "InspectionAmount": 0, "ReportAmount": this.reportPrice };
@@ -413,6 +414,9 @@ export class PropertyDocumentsComponent implements OnInit {
   }
   reportLanguage(e: any) {
     this.formData.ReportLanguage = e;
+    this.reportForm.patchValue({
+      name: ""
+    })
   }
   acceptTerms(e: any) {
     this.termsAccepted = e.checked;
@@ -476,8 +480,32 @@ export class PropertyDocumentsComponent implements OnInit {
       }
     }
   }
-  validateName(e:any) {
-
+  validateName(e: any) {
+    let temp: any = this.reportForm.value.name;
+    let charCode: any = e.key.charCodeAt(0)
+    if (this.formData.ReportLanguage == 1) {
+      if (charCode >= 65 && charCode <= 90 || charCode >= 97 && charCode <= 122) {
+        this.reportForm.patchValue({
+          name: temp.toString() + e.key
+        })
+      }
+    } else if (this.formData.ReportLanguage == 2) {
+      if (!(charCode >= 65 && charCode <= 90 || charCode >= 97 && charCode <= 122)) {
+        this.reportForm.patchValue({
+          name: temp.toString() + e.key
+        })
+      }
+    } else {
+      this.error = "Select Report Language";
+      this.showError = true;
+      return;
+    }
+  }
+  removeChar() {
+    let temp: any = this.reportForm.value.name;
+    this.reportForm.patchValue({
+      name: temp.toString().slice(0, -1)
+    })
   }
   getPaymentData() {
     let number: any = this.paymentForm.value.cardNumber;
@@ -522,7 +550,7 @@ export class PropertyDocumentsComponent implements OnInit {
       return;
     }
     this.showLoader = true;
-    let data: any = { "CardNumder": number,"Currency" :this.currency, "reportNumberCode": this.valuationResponse.reportNumberCode, "Month": date.toString().split("/")[0], "Year": "20" + date.toString().split("/")[1], "CVC": cvv, "Amount": this.valuationResponse.valuationPayment.totalAmount, "Email": this.valuationResponse.emailAddress, "CustomerName": this.paymentForm.value.cardName, "DescriptionPayment": this.userData.propertyCategory + " " + this.userData.propertyType + " " + this.valuationResponse.reportPackage.name };
+    let data: any = { "CardNumder": number, "Currency": this.currency, "reportNumberCode": this.valuationResponse.reportNumberCode, "Month": date.toString().split("/")[0], "Year": "20" + date.toString().split("/")[1], "CVC": cvv, "Amount": this.valuationResponse.valuationPayment.totalAmount, "Email": this.valuationResponse.emailAddress, "CustomerName": this.paymentForm.value.cardName, "DescriptionPayment": this.userData.propertyCategory + " " + this.userData.propertyType + " " + this.valuationResponse.reportPackage.name };
     this.service.ValuationPayment(data).subscribe((result: any) => {
       if (result.message == "Valuation transaction completed successfully") {
         localStorage.removeItem("bounds");
@@ -549,18 +577,16 @@ export class PropertyDocumentsComponent implements OnInit {
       this.documentType = result.data;
     })
     this.checkPackage();
-    if(this.formData.TitleDeedNo == 0) {
+    if (this.formData.TitleDeedNo == 0) {
       this.requiredDocs--;
     }
-    if(this.formData.MunicipalityNo == 0) {
+    if (this.formData.MunicipalityNo == 0) {
       this.requiredDocs--;
     }
   }
-
   ngOnInit(): void {
     $("#formDate").on("click", function () {
       $(".mat-datepicker-toggle").click();
     })
   }
-
 }
