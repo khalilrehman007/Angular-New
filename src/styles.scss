@@ -2598,13 +2598,13 @@ input[type=number] {
 #rent {
 	.flex-row {
 		.flex-column-1 {
-			width: 57%;
+			width: 43%;
 		}
 		.flex-column-2 {
-			width: 18%;
+			width: 25%;
 		}
 		.flex-column-3 {
-			width: 18%;
+			width: 25%;
 		}
 		.flex-column-4 {
 			width: 5%;
@@ -2614,13 +2614,13 @@ input[type=number] {
 #buy {
 	.flex-row {
 		.flex-column-1 {
-			width: 57%;
+			width: 43%;
 		}
 		.flex-column-2 {
-			width: 18%;
+			width: 25%;
 		}
 		.flex-column-3 {
-			width: 18%;
+			width: 25%;
 		}
 		.flex-column-4 {
 			width: 5%;
@@ -2888,7 +2888,7 @@ input[type=number] {
 	z-index: 9;
 	.block-wrapper {
 		.cstm_dropdown-menu {
-			width: 300px;
+			width: 100%;
 			overflow: hidden;
 		}
 	}
@@ -3180,7 +3180,6 @@ input[type=number] {
 	background-color: $background-color_3;
 	height: 100%;
 	z-index: 0;
-	border: 0.25px solid var(--stroke-color);
 	border-bottom-left-radius: 10px;
 	border-bottom-right-radius: 10px;
 	box-shadow: 0px 7px 40px -22px rgb(89 90 212 / 34%) !important;
@@ -4201,6 +4200,7 @@ img {
 		font-size: 14px;
 		width: 100%;
 		position: relative;
+		text-align: left;
 		img {
 		    position: absolute;
 			top: 12px;
@@ -4549,7 +4549,7 @@ img {
 		padding-bottom: 0px !important;
 	}
 	.cstm_dropdown-menu {
-		min-width: 200px;
+		width: 100%;
 		left: initial;
 		li {
 			margin-right: 0px;
@@ -4563,7 +4563,7 @@ img {
 .searc-input-combination {
 	.mat-form-field {
 		&:first-child {
-			width: 25%;
+			width: 28%;
 			.mat-form-field-flex {
 				border-top-right-radius: 0px !important;
 				border-bottom-right-radius: 0px !important;
@@ -9530,4 +9530,39 @@ body .header-section .navbar-nav .sell-or-rent-property .blue-bordered-btn {
 }
 .btn-design-3:hover {
     background-color: #333;
+}
+.overlay_dropdown-btn {
+    position: fixed;
+    width: 100% !important;
+    height: 100%;
+    max-width: 100%;
+    margin-left: auto;
+    right: 0;
+    left: 0;
+    z-index: 9;
+    top: 0;
+    bottom: 0;
+    display: none !important;
+	cursor: initial !important;
+	background: transparent !important;
+	border: none !important;
+}
+.active+.overlay_dropdown-btn {
+    display: block !important;
+}
+p:empty {
+    display: none !important;
+}
+.agent-details__select-wrapper .mat-form-field-flex .mat-form-field-infix {
+    padding: 0px;
+    border: none;
+	position: relative;
+    top: 3px;
+}
+.agent-details__select-wrapper .mat-form-field-flex {
+    padding: 15px !important;
+}
+.agent-details__select-wrapper .mat-form-field-flex .mat-select-arrow-wrapper {
+    position: relative;
+    top: 5px;
 }

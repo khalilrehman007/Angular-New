@@ -339,22 +339,16 @@
                         <div class="recent-search-item">
                           <div class="lable">05 May, 2022</div>
                           <div ngClass="row">
-                            <div ngClass="col-xl-4 col-lg-4 col-sm-12">
+                            <div ngClass="col-xl-3 col-lg-3 col-sm-12">
                               <a href="#" class="link">Bur Dubai, Dubai <img src="{{MoreIcon}}" alt=""></a>
                             </div>
-                            <div ngClass="col-xl-4 col-lg-4 col-sm-12">
+                            <div ngClass="col-xl-3 col-lg-3 col-sm-12">
                               <a href="#" class="link">Bur Dubai, Dubai <img src="{{MoreIcon}}" alt=""></a>
                             </div>
-                            <div ngClass="col-xl-4 col-lg-4 col-sm-12">
+                            <div ngClass="col-xl-3 col-lg-3 col-sm-12">
                               <a href="#" class="link">Bur Dubai, Dubai <img src="{{MoreIcon}}" alt=""></a>
                             </div>
-                          </div>
-                        </div>
-
-                        <div class="recent-search-item">
-                          <div class="lable">05 May, 2022</div>
-                          <div ngClass="row">
-                            <div ngClass="col-xl-4 col-lg-4 col-sm-12">
+                            <div ngClass="col-xl-3 col-lg-3 col-sm-12">
                               <a href="#" class="link">Bur Dubai, Dubai <img src="{{MoreIcon}}" alt=""></a>
                             </div>
                           </div>
@@ -401,7 +395,7 @@
                               <div class="col-lg-10">
                                 <div class="row">
                                   <div class="col-7">
-                                    <a class="agent-details__property-list-item-link">{{viewList.propertyPrice}}
+                                    <a class="agent-details__property-list-item-link cursor-pointer">{{viewList.propertyPrice}}
                                       {{viewList.currency}}
                                       <span>/{{viewList.rentType}}</span>
                                     </a>
@@ -550,7 +544,7 @@
                                 <div class="col-lg-10">
                                   <div class="row">
                                     <div class="col-7">
-                                      <a class="agent-details__property-list-item-link">{{wishData.price}}
+                                      <a class="agent-details__property-list-item-link cursor-pointer">{{wishData.price}}
                                         {{wishData.currency}}
                                         <span>/{{wishData.rentType}}</span>
                                       </a>
@@ -646,7 +640,7 @@
                               <div class="col-lg-10">
                                 <div class="row">
                                   <div class="col-7">
-                                    <a class="agent-details__property-list-item-link">{{enquiredData.propertyPrice}}
+                                    <a class="agent-details__property-list-item-link cursor-pointer">{{enquiredData.propertyPrice}}
                                       {{enquiredData.currency}}
                                       <span>/{{enquiredData.rentType}}</span>
                                     </a>
@@ -993,7 +987,7 @@
                               <div class="col-lg-10">
                                 <div class="row">
                                   <div class="col-7">
-                                    <a class="agent-details__property-list-item-link">{{listing.propertyPrice}}
+                                    <a class="agent-details__property-list-item-link cursor-pointer">{{listing.propertyPrice}}
                                       {{listing.currency}}
                                       <span>/{{listing.rentType}}</span>
                                     </a>
@@ -1100,7 +1094,7 @@
                               <div class="col-lg-10">
                                 <div class="row">
                                   <div class="col-7">
-                                    <a class="agent-details__property-list-item-link">{{listing.propertyPrice}}
+                                    <a class="agent-details__property-list-item-link cursor-pointer">{{listing.propertyPrice}}
                                       {{listing.propertyTitle}}
                                       <span>/{{listing.rentType}}</span>
                                     </a>
@@ -1208,7 +1202,7 @@
                               <div class="col-lg-10">
                                 <div class="row">
                                   <div class="col-7">
-                                    <a class="agent-details__property-list-item-link">{{listing.propertyPrice}}
+                                    <a class="agent-details__property-list-item-link cursor-pointer">{{listing.propertyPrice}}
                                       {{listing.propertyTitle}}
                                       <span>/{{listing.rentType}}</span>
                                     </a>
@@ -1326,7 +1320,7 @@
                         <p ngClass="payment success">
                           <mat-icon>check_circle</mat-icon> Submitted
                         </p>
-                        <a routerLink="/PropertyDownloadReport" ngClass="download-pdf">Download Pdf</a>
+                        <a class="download-pdf cursor-pointer" (click)="downloadReport(item.reportNumberCode)">Download Pdf</a>
                       </div>
                     </div>
                   </div>
@@ -2445,7 +2439,7 @@
                               <div class="col-lg-10">
                                 <div class="row">
                                   <div class="col-7">
-                                    <a class="agent-details__property-list-item-link">85,000 AED
+                                    <a class="agent-details__property-list-item-link cursor-pointer">85,000 AED
                                       <span>/yearly</span>
                                     </a>
                                   </div>
@@ -2500,7 +2494,7 @@
                               <div class="col-lg-10">
                                 <div class="row">
                                   <div class="col-7">
-                                    <a class="agent-details__property-list-item-link">85,000 AED
+                                    <a class="agent-details__property-list-item-link cursor-pointer">85,000 AED
                                       <span>/yearly</span>
                                     </a>
                                   </div>
@@ -2555,7 +2549,7 @@
                               <div class="col-lg-10">
                                 <div class="row">
                                   <div class="col-7">
-                                    <a class="agent-details__property-list-item-link">85,000 AED
+                                    <a class="agent-details__property-list-item-link cursor-pointer">85,000 AED
                                       <span>/yearly</span>
                                     </a>
                                   </div>
@@ -2610,7 +2604,7 @@
                               <div class="col-lg-10">
                                 <div class="row">
                                   <div class="col-7">
-                                    <a class="agent-details__property-list-item-link">85,000 AED
+                                    <a class="agent-details__property-list-item-link cursor-pointer">85,000 AED
                                       <span>/yearly</span>
                                     </a>
                                   </div>
@@ -2665,7 +2659,7 @@
                               <div class="col-lg-10">
                                 <div class="row">
                                   <div class="col-7">
-                                    <a class="agent-details__property-list-item-link">85,000 AED
+                                    <a class="agent-details__property-list-item-link cursor-pointer">85,000 AED
                                       <span>/yearly</span>
                                     </a>
                                   </div>
@@ -2720,7 +2714,7 @@
                               <div class="col-lg-10">
                                 <div class="row">
                                   <div class="col-7">
-                                    <a class="agent-details__property-list-item-link">85,000 AED
+                                    <a class="agent-details__property-list-item-link cursor-pointer">85,000 AED
                                       <span>/yearly</span>
                                     </a>
                                   </div>
@@ -2909,7 +2903,7 @@
                                 <div class="col-lg-10">
                                   <div class="row">
                                     <div class="col-7">
-                                      <a class="agent-details__property-list-item-link">85,000 AED
+                                      <a class="agent-details__property-list-item-link cursor-pointer">85,000 AED
                                         <span>/yearly</span>
                                       </a>
                                     </div>
@@ -2974,7 +2968,7 @@
                                 <div class="col-lg-10">
                                   <div class="row">
                                     <div class="col-7">
-                                      <a class="agent-details__property-list-item-link">85,000 AED
+                                      <a class="agent-details__property-list-item-link cursor-pointer">85,000 AED
                                         <span>/yearly</span>
                                       </a>
                                     </div>
@@ -3038,7 +3032,7 @@
                                 <div class="col-lg-10">
                                   <div class="row">
                                     <div class="col-7">
-                                      <a class="agent-details__property-list-item-link">85,000 AED
+                                      <a class="agent-details__property-list-item-link cursor-pointer">85,000 AED
                                         <span>/yearly</span>
                                       </a>
                                     </div>
@@ -3132,7 +3126,7 @@
                               <div class="col-lg-10">
                                 <div class="row">
                                   <div class="col-7">
-                                    <a class="agent-details__property-list-item-link">85,000 AED
+                                    <a class="agent-details__property-list-item-link cursor-pointer">85,000 AED
                                       <span>/yearly</span>
                                     </a>
                                   </div>
@@ -3187,7 +3181,7 @@
                               <div class="col-lg-10">
                                 <div class="row">
                                   <div class="col-7">
-                                    <a class="agent-details__property-list-item-link">85,000 AED
+                                    <a class="agent-details__property-list-item-link cursor-pointer">85,000 AED
                                       <span>/yearly</span>
                                     </a>
                                   </div>
@@ -3242,7 +3236,7 @@
                               <div class="col-lg-10">
                                 <div class="row">
                                   <div class="col-7">
-                                    <a class="agent-details__property-list-item-link">85,000 AED
+                                    <a class="agent-details__property-list-item-link cursor-pointer">85,000 AED
                                       <span>/yearly</span>
                                     </a>
                                   </div>
@@ -3297,7 +3291,7 @@
                               <div class="col-lg-10">
                                 <div class="row">
                                   <div class="col-7">
-                                    <a class="agent-details__property-list-item-link">85,000 AED
+                                    <a class="agent-details__property-list-item-link cursor-pointer">85,000 AED
                                       <span>/yearly</span>
                                     </a>
                                   </div>
@@ -3352,7 +3346,7 @@
                               <div class="col-lg-10">
                                 <div class="row">
                                   <div class="col-7">
-                                    <a class="agent-details__property-list-item-link">85,000 AED
+                                    <a class="agent-details__property-list-item-link cursor-pointer">85,000 AED
                                       <span>/yearly</span>
                                     </a>
                                   </div>
@@ -3407,7 +3401,7 @@
                               <div class="col-lg-10">
                                 <div class="row">
                                   <div class="col-7">
-                                    <a class="agent-details__property-list-item-link">85,000 AED
+                                    <a class="agent-details__property-list-item-link cursor-pointer">85,000 AED
                                       <span>/yearly</span>
                                     </a>
                                   </div>
@@ -3677,7 +3671,7 @@
                               <div class="col-lg-10">
                                 <div class="row">
                                   <div class="col-7">
-                                    <a class="agent-details__property-list-item-link">85,000 AED
+                                    <a class="agent-details__property-list-item-link cursor-pointer">85,000 AED
                                       <span>/yearly</span>
                                     </a>
                                   </div>
@@ -3746,7 +3740,7 @@
                               <div class="col-lg-10">
                                 <div class="row">
                                   <div class="col-7">
-                                    <a class="agent-details__property-list-item-link">85,000 AED
+                                    <a class="agent-details__property-list-item-link cursor-pointer">85,000 AED
                                       <span>/yearly</span>
                                     </a>
                                   </div>
@@ -3857,3 +3851,4 @@
   </div>
 </section>
 <app-footer></app-footer>
+<app-loader *ngIf="showLoader"></app-loader>

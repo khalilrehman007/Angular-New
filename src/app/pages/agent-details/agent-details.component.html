@@ -32,7 +32,7 @@
                                 <p class="agent-details__wrapper-details-text"
                                     *ngIf="newAgentDetail.expertIn">
                                     {{newAgentDetail.expertIn}}</p>
-                                <h6 class="agent-details__wrapper-details-desc" routerLink="/company-details/{{newAgentDetail.companyid}}"
+                                <h6 class="agent-details__wrapper-details-desc cursor-pointer" routerLink="/company-details/{{newAgentDetail.companyid}}"
                                     *ngIf="newAgentDetail.companyName">
                                     {{newAgentDetail.companyName}}</h6>
                                 <p class="agent-details__wrapper-details-phone"
@@ -119,7 +119,7 @@
                                     <ul class="agent-details__property-list">
                                         <li class="agent-details__property-list-item"
                                             *ngFor="let item of myListing | paginate: { itemsPerPage: 10, currentPage: page, totalItems:totalLength }">
-                                            <div class="row" [routerLink]="['/PropertDetailsPage']"
+                                            <div class="row cursor-pointer" [routerLink]="['/PropertDetailsPage']"
                                                 [queryParams]="{id: item.id}">
                                                 <div class="col-lg-2">
                                                     <img src="{{item.image}}" [alt]="" class="img-fluid agent-details__property-list-item-img">
@@ -230,7 +230,7 @@
                     </form>
                     <div class="row">
                         <div class="col-xxl-6">
-                            <a class="agent-details__btn" routerLink="/chat">
+                            <a class="agent-details__btn cursor-pointer" routerLink="/chat">
                                 <img src="assets/images/icons/phone-call.svg" alt="">
                                 Call Landlord</a>
                         </div>
@@ -240,12 +240,12 @@
                                 Whats APP</a>
                         </div>
                         <div class="col-xxl-6">
-                            <a class="agent-details__btn" routerLink="/chat">
+                            <a class="agent-details__btn cursor-pointer" routerLink="/chat">
                                 <img src="assets/images/icons/comments.svg" alt="">
                                 Chat with Landlord</a>
                         </div>
                         <div class="col-xxl-6">
-                            <a class="agent-details__btn" routerLink="/chat">
+                            <a class="agent-details__btn cursor-pointer" routerLink="/chat">
                                 <img src="assets/images/icons/play-alt.svg" alt="">
                                 Video Call</a>
                         </div>

@@ -58,6 +58,7 @@ export class DashboardComponent implements OnInit {
   page: number = 1;
   professionalType: any;
   leadSummary: any;
+  showLoader: boolean = false;
   myPackages:any;
   // resedentialRent: boolean = true ;
   // resedentialBuy: boolean = false;
@@ -66,13 +67,11 @@ export class DashboardComponent implements OnInit {
 
   //   this.resedentialRent = false;
   //   this.resedentialBuy = true;
-  //   console.log('a');
     
   // }
   // resedentialRentShow(){
   //   this.resedentialRent = true;
   //   this.resedentialBuy = false;
-  //   console.log('b');
   // }
 
   plus = '../../../../assets/images/plus.svg'
@@ -225,12 +224,21 @@ export class DashboardComponent implements OnInit {
     })
     this.service.SummaryLeads({ "UserId":"335","PropertyCategoryId": "1" }).subscribe((result:any)=>{
       this.leadSummary = result.data;
-      // console.log(this.leadSummary)
     })
     this.service.MyPackages(335).subscribe((result:any)=>{
       this.myPackages = result.data;
-      console.log(this.myPackages)
     })
+  }
+  downloadReport(e:any) {
+    this.showLoader = true;
+    this.service.GenerateReport(e).subscribe((result: any) => {
+      var blob = new Blob([result.body]);
+      var link = document.createElement('a');
+      link.href = window.URL.createObjectURL(blob);
+      link.download = e + ".pdf";
+      link.click();
+      this.showLoader = false;
+    });
   }
   getImage(e: any) {
     let temp: any = localStorage.getItem("user");
