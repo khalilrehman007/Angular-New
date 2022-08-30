@@ -53,6 +53,46 @@ export class PropertyInnerComponent implements OnInit {
   tagicn= '../../../assets/images/icons/tag-icn.svg'
   user : any
   baseUrl = 'https://beta.ovaluate.com/'
+  status: boolean = true;
+  status1: boolean = false;
+  status2: boolean = false;
+  status3: boolean = false;
+  status4: boolean = false;
+  keyhighlight() {
+    this.status = !this.status;
+    this.status1 = false;
+    this.status2 = false;
+    this.status3 = false;
+    this.status4 = false;
+  }
+  PropertyInfo() {
+    this.status = false;
+    this.status1 = !this.status1;
+    this.status2 = false;
+    this.status3 = false;
+    this.status4 = false;
+  }
+  Amenities() {
+    this.status = false;
+    this.status1 = false;
+    this.status2 = !this.status2;
+    this.status3 = false;
+    this.status4 = false;
+  }
+  PriceTrends() {
+    this.status = false;
+    this.status1 = false;
+    this.status2 = false;
+    this.status3 = !this.status3;
+    this.status4 = false;
+  }
+  Location() {
+    this.status = false;
+    this.status1 = false;
+    this.status2 = false;
+    this.status4 = !this.status4;
+    this.status3 = false;
+  }
 
   eventlist = [
     {

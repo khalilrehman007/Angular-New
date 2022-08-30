@@ -136,20 +136,28 @@
         background-color: #ffffff;
         border: 1px solid #4A565F;
         cursor: pointer;
-        padding: 10px 0;
+        padding: 9px 10px 9px 40px;
         width: 100%;
         display: inline-block;
-        text-align: center;
+        text-align: left;
         color: #4A565F;
         font-weight: 500;
         margin-bottom: 13px;
+        font-size: 14px;
+        position: relative;
+        img{
+            position: absolute;
+            top: 12px;
+            margin-right: 3px;
+            left: 15px;
+        }
     }
 
     &__property {
 
         &-wrapper {
             background-color: #E5E7EB;
-            padding: 20px 28px;
+            padding: 15px 28px;
             border-radius: 8px;
         }
 

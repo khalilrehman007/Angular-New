@@ -341,12 +341,12 @@
         }
 
         &-btn {
-            padding: 16px;
+            padding: 6px 10px;
             border: 1px solid #595ad4;
             border-radius: 8px;
             color: #595ad4;
             cursor: pointer;
-
+            font-size: 14px;
             img {
                 margin-right: 8px;
             }
@@ -365,4 +365,12 @@
 }
 .agent-landing-featured .container>.row:last-child>div {
     margin-bottom: 40px;
+}
+.agent-landing-list__table-btn:hover{
+    background-color: #0B26AD !important;
+    border-color: #0B26AD !important;
+    color: #fff !important;
+}
+.agent-landing-list__table-btn:hover img{
+filter: brightness(0) invert(1);
 }
