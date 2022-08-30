@@ -76,7 +76,7 @@ export class RentSearchComponent implements OnInit {
   Yearly: any;
   YearlyAr: any;
   minValue: number = 10;
-  maxValue: number = 500;
+  maxValue: number = 1000000;
   step: 10;
   enforceStep: false;
   enforceRange: false;
@@ -85,8 +85,8 @@ export class RentSearchComponent implements OnInit {
   data: any = {};
 
   options: Options = {
-    floor: 0,
-    ceil: 500,
+    floor: 10,
+    ceil: 1000000,
     translate: (value: number): string => {
       return value +  'AED';
     }

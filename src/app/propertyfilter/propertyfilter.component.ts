@@ -10,6 +10,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {Observable} from "rxjs";
 import {map, startWith} from "rxjs/operators";
 import {MatAutocompleteSelectedEvent} from "@angular/material/autocomplete";
+import {remove} from "@angular/fire/database";
 export interface KeywordString {
   name: string;
 }
@@ -304,8 +305,8 @@ export class PropertyfilterComponent implements OnInit {
   });
 
   options: Options = {
-    floor: 0,
-    ceil: 500,
+    floor: 10,
+    ceil: 50000000,
     translate: (value: number): string => {
       return value +  'AED';
     }
@@ -415,8 +416,8 @@ export class PropertyfilterComponent implements OnInit {
     this.RentTypeId           = ''
     this.PropertyListingTypeId =''
     this.PropertyAddress       = ''
-    this.PriceStart            = ''
-    this.PriceEnd              =''
+    this.PriceStart            = 10
+    this.PriceEnd              = 50000000
     this.Bedrooms              = ''
     this.Bathrooms             =''
     this.selectedRentType      =''
@@ -425,11 +426,17 @@ export class PropertyfilterComponent implements OnInit {
     this.minCarpet             =''
     this.maxCarpet             =''
     this.furnishedType         =''
-    this.propertyFeatureIds    =[]
+    this.propertyFeatureIds   = []
+
+    this.keyWordsUrlValue.forEach((element, i) => {
+      setTimeout(() => {
+        this.remove(element)
+      }, 1000);
+    })
 
     this.SubmitForm.controls.Name.setValue('');
-    this.SubmitForm.controls.PriceStart.setValue('');
-    this.SubmitForm.controls.PriceEnd.setValue('');
+    this.SubmitForm.controls.PriceStart.setValue('10');
+    this.SubmitForm.controls.PriceEnd.setValue('50000000');
 
 
     this.selectedPropertyType = null

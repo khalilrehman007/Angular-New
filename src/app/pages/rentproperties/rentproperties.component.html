@@ -129,10 +129,10 @@
                       <div ngClass="topkey-highlights">
                         <h6>{{list.propertyType.typeDescription}},</h6>
                         <div ngClass="property-details-highlights">
-                          <span ngClass="bed">
+                          <span *ngIf="list.bedrooms != 0" ngClass="bed">
                             <img src="{{bedsvg}}" alt="">{{list.bedrooms}} Beds
                           </span>
-                          <span ngClass="bath">
+                          <span *ngIf="list.bathrooms != 0" ngClass="bath">
                             <img src="{{bathsvg}}" alt="">{{list.bathrooms}} Bath
                           </span>
                           <span ngClass="area">

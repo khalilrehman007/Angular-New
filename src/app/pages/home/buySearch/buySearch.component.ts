@@ -70,7 +70,7 @@ export class BuySearchComponent implements OnInit {
   Yearly: any;
   YearlyAr: any;
   minValue: number = 10;
-  maxValue: number = 50;
+  maxValue: number = 50000000;
   step: 10;
   enforceStep: false;
   enforceRange: false;
@@ -80,7 +80,7 @@ export class BuySearchComponent implements OnInit {
 
   options: Options = {
     floor: 0,
-    ceil: 500,
+    ceil: 50000000,
     translate: (value: number): string => {
       return value +  'AED';
     }
@@ -186,7 +186,12 @@ export class BuySearchComponent implements OnInit {
       PropertyTypeIds = this.PropertyTypeCommercialIds
     }
 
-    let params :any = {queryParams:{type:'Buy',PropertyListingTypeId:2,PropertyCategoryId:this.propertyCategory,RentTypeId:this.data.rentalTypeId,PropertyTypeIds:PropertyTypeIds
+    // let params :any = {queryParams:{type:'Buy',PropertyListingTypeId:2,PropertyCategoryId:this.propertyCategory,RentTypeId:this.data.rentalTypeId,PropertyTypeIds:PropertyTypeIds
+    //     ,PropertyAddress:this.SubmitForm.value.Name,PriceStart:this.SubmitForm.value.PriceStart,PriceEnd:this.SubmitForm.value.PriceEnd
+    //     ,Bedrooms:'',Bathrooms:'',CurrentPage:1,DistrictIds:JSON.stringify(this.DistrictsId),DistrictsValue:JSON.stringify(this.SearchKeyword)
+    //   }};
+    let params :any = {queryParams:{type:'Buy',PropertyListingTypeId:2,PropertyCategoryId:this.propertyCategory,RentTypeId:this.data.rentalTypeId,
+        PropertyTypeIds:JSON.stringify(PropertyTypeIds)
         ,PropertyAddress:this.SubmitForm.value.Name,PriceStart:this.SubmitForm.value.PriceStart,PriceEnd:this.SubmitForm.value.PriceEnd
         ,Bedrooms:'',Bathrooms:'',CurrentPage:1,DistrictIds:JSON.stringify(this.DistrictsId),DistrictsValue:JSON.stringify(this.SearchKeyword)
       }};

@@ -309,7 +309,7 @@ export class RentpropertiesComponent implements OnInit {
           rentTypeName = element.rentType.name
         }
         let documents: any = []
-        if (element.documents.length > 1) {
+        if (element.documents.length >= 1) {
           documents = element.documents
         } else {
           documentsCheck = false
