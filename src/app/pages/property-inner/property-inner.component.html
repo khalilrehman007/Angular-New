@@ -307,7 +307,8 @@
                                     </p>
                                     <p ngClass="rera"> RERA# 11899</p>
                                     <p ngClass="permit">Permit# 7187842740</p>
-                                    <a routerLink="/agent-details/{{userData.id}}" ngClass="properties-listed-no" *ngIf="userData != ''">47 - Active Properties Listed</a>
+                                    <a routerLink="/agent-details/{{userData.id}}" ngClass="properties-listed-no"
+                                        *ngIf="userData != ''">47 - Active Properties Listed</a>
                                 </div>
                             </div>
                             <div ngClass="contact-propertier-form">
@@ -328,14 +329,19 @@
                                         </mat-form-field>
                                         <p style="color: red" *ngIf="emailError !=''">{{emailError}}</p>
                                     </div>
+
+
                                     <div ngClass="form-grouph input-design white-input-design">
                                         <mat-form-field class="example-full-width" appearance="fill">
                                             <mat-label>Phone No.</mat-label>
-                                            <input type="text" formControlName="phone" matInput
-                                                placeholder="Location, Project Name">
+                                            <input matInput type="number" (input)="checkLength()" formControlName="phone"  required ngModel>
+                                            <!-- <input matInput type="number" (input)="checkLength()" formControlName="PhoneNumber" required ngModel> -->
                                         </mat-form-field>
                                         <p style="color: red" *ngIf="phoneError !=''">{{phoneError}}</p>
                                     </div>
+
+                                    
+
                                     <div ngClass="form-grouph textarea-design white-input-design">
                                         <mat-form-field class="example-full-width" appearance="fill">
                                             <mat-label>Message</mat-label>
@@ -369,7 +375,8 @@
                                             Call</button>
                                     </div>
                                     <div ngClass="col-xl-6 col-lg-12 col-md-6 col-sm-12">
-                                        <button ngClass=""><a href="https://www.youtube.com/watch?v=y9j-BL5ocW8" target="_blank"><img src="{{virtual}}"> Virtual Tour </a></button>
+                                        <button ngClass=""><a href="https://www.youtube.com/watch?v=y9j-BL5ocW8"
+                                                target="_blank"><img src="{{virtual}}"> Virtual Tour </a></button>
                                     </div>
                                 </div>
                             </div>
@@ -459,7 +466,8 @@
                     </div>
                     <div ngClass="col-xl-2 col-lg-2 col-md-12 col-sm-12">
                         <div ngClass="property-action_detals text-right">
-                            <button ngClass="contact-seller-btn" routerLink="/agent-details/{{userData.id}}" (click)="modal.dismiss('Cross click')">Contact Seller</button>
+                            <button ngClass="contact-seller-btn" routerLink="/agent-details/{{userData.id}}"
+                                (click)="modal.dismiss('Cross click')">Contact Seller</button>
                         </div>
                     </div>
                 </div>
