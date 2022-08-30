@@ -99,21 +99,17 @@ export class PropertyTypesComponent implements OnInit {
     return this.propertyTypeForm.get("expense");
   }
   constructor(private service: AppService, private router: Router) {
-    if(window.localStorage.getItem('valuationData')) {
-      this.formData = (window.localStorage.getItem('valuationData'));
-      this.formData = JSON.parse(this.formData);
-      this.loadFurnishingType();
-      this.loadFittingType();
-      this.formDetailData = localStorage.getItem("valuationDetailData");
-      this.formDetailData = JSON.parse(this.formDetailData);
-      this.formData.FurnishingType = 0;
-      this.formData.FittingType = 0;
-      this.formData.Bedrooms = 0;
-      this.formData.Bathrooms = 0;
-      this.loadOldData();
-    } else {
-      this.router.navigate(['']);
-    }
+    this.formData = (window.localStorage.getItem('valuationData'));
+    this.formData = JSON.parse(this.formData);
+    this.loadFurnishingType();
+    this.loadFittingType();
+    this.formDetailData = localStorage.getItem("valuationDetailData");
+    this.formDetailData = JSON.parse(this.formDetailData);
+    this.formData.FurnishingType = 0;
+    this.formData.FittingType = 0;
+    this.formData.Bedrooms = 0;
+    this.formData.Bathrooms = 0;
+    this.loadOldData();
   }
   ngOnInit(): void {
     this.service.PropertyUnitTypes().subscribe((result: any) => {
