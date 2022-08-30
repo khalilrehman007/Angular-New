@@ -78,6 +78,15 @@ export class PropertyfilterComponent implements OnInit {
   @ViewChild('fruitInput') fruitInput: ElementRef<HTMLInputElement>;
   routeCheck :any;
   totalPropertyRecord :any;
+  maxLimit :any ;
+
+  options: Options = {
+    floor: 10,
+    ceil: 50000000,
+    translate: (value: number): string => {
+      return value +  'AED';
+    }
+  };
   constructor(private activeRoute: ActivatedRoute,private service:AppService,private api: AppService,private route:Router,private modalService: NgbModal) {
 
     let url = this.route.url.replace("/", "");
@@ -184,6 +193,13 @@ export class PropertyfilterComponent implements OnInit {
 
     });
 
+    if(this.PropertyListingTypeId == 1){
+      this.maxLimit = 1000000
+      this.options.ceil =this.maxLimit
+    }else {
+      this.maxLimit = 50000000
+      this.options.ceil =this.maxLimit
+    }
   }
 
 
@@ -304,13 +320,6 @@ export class PropertyfilterComponent implements OnInit {
     maxCarpet : new FormControl(""),
   });
 
-  options: Options = {
-    floor: 10,
-    ceil: 50000000,
-    translate: (value: number): string => {
-      return value +  'AED';
-    }
-  };
 
   status: boolean = false;
   clickEvent(){

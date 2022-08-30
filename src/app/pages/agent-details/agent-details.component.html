@@ -105,11 +105,11 @@
                                                     <div class="agent-details__select-wrapper">
                                                         <mat-form-field appearance="fill">
                                                             <mat-label>Sort By</mat-label>
-                                                            <mat-select>
-                                                                <mat-option value="Location">Location</mat-option>
-                                                                <mat-option value="Area">Area</mat-option>
-                                                                <mat-option value="Size">Size</mat-option>
-                                                            </mat-select>
+                                                          <mat-select (selectionChange)="sortedBy($event)">
+                                                            <mat-option *ngFor="let SortBy of PropertySortBy" value="{{SortBy.id}}">
+                                                              {{SortBy.name}}
+                                                            </mat-option>
+                                                          </mat-select>
                                                         </mat-form-field>
                                                     </div>
                                                 </div>

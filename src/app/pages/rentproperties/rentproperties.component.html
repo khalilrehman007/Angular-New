@@ -85,7 +85,7 @@
                     <div ngClass="properties-list_cntnts position-relative">
                       <div ngClass="properties-list_hdr d-flex justify-content-spacebw">
                         <div ngClass="property-price_detals cursor-pointer" [routerLink]="['/PropertDetailsPage']" [queryParams]="{id: list.id}">
-                          <h4>{{list.propertyPrice}} {{list.currency}} <small>/{{list.rentType}}</small></h4>
+                          <h4>{{list.propertyPrice}} {{list.currency}} <small *ngIf="list.rentType != ''">/{{list.rentType}}</small></h4>
                           <div ngClass="property-tags d-flex flex-wrap">
                             <span ngClass="tags-bg-grey">Brokrage: {{list.brokerageChargePrice}}
                               {{list.rentType}}</span>

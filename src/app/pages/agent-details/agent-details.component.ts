@@ -27,6 +27,7 @@ export class AgentDetailsComponent implements OnInit {
       this.id = params['id'];
       this.service.id = params['id'];
     })
+    this.LoadPropertySortBy();
 
     this.user = localStorage.getItem("user");
     this.user = JSON.parse(this.user);
@@ -74,7 +75,11 @@ export class AgentDetailsComponent implements OnInit {
         }
       })
     }
-    this.service.MyPropertyListings(this.id).subscribe((result: any) => {
+    this.MyPropertyListings()
+  }
+
+  MyPropertyListings(){
+    this.service.MyPropertyListings({"UserId":this.id , "SortedBy":this.sortedById}).subscribe((result: any) => {
       // this.myListing = result.data;
       let response :any = result.data
       let tempData: Array<Object> = []
@@ -117,6 +122,29 @@ export class AgentDetailsComponent implements OnInit {
 
     })
   }
+
+  PropertySortBy: any = []
+  LoadPropertySortBy() {
+    this.service.PropertySortBy().subscribe(e => {
+      let temp: any = e;
+      for (let list of temp.data) {
+        this.PropertySortBy.push({ name: list.name, id: list.id });
+      }
+    });
+  }
+  sortedById :any  ='';
+  sortedBy(event) {
+    this.sortedById = event.value
+    // let params: any = {
+    //   MinCarpetArea:this.MinCarpetArea,MaxCarpetArea:this.MaxCarpetArea,PropertyFeatureIds:this.PropertyFeatureIds,KeyWords:this.KeyWords,
+    //   FurnishingTypeId:this.FurnishingTypeId,
+    //   "PropertyTypeIds": this.PropertyTypeIds, "PropertyAddress": this.PropertyAddress, "RentTypeId": this.RentTypeId,Bedrooms:this.Bedrooms,Bathrooms:this.Bathrooms,
+    //   "PropertyCategoryId": this.PropertyCategoryId, "PriceStart": this.PriceStart, "PriceEnd": this.PriceEnd,"videoTour": this.videoTourSorting,
+    //   "PropertyListingTypeId": this.PropertyListingTypeId, "SortedBy": this.sortedById, CurrentPage: this.page, DistrictIds: this.DistrictsId
+    // }
+    this.MyPropertyListings();
+  }
+
 
   pageChanged(value: any) {
     this.page = value;

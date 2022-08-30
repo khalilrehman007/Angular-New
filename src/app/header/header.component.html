@@ -125,7 +125,7 @@
                               <div ngClass="shortlisted-project-cntnt position-relative" *ngFor="let list of wishlistingDataAll">
                                 <div ngClass="property-selection-div">
                                   <div ngClass="selection-checkbox-selector" *ngIf="wishlistingDataAll.length > 1">
-                                    <input type="checkbox" value="{{list.id}}" (click)="allFormCheckbox(list.id)">
+                                    <input type="checkbox" value="{{list.id}}" (click)="allFormCheckbox(list.id,list.propertyListingTypeId)">
                                     <button ngClass="cstm-selection-btn"></button>
                                   </div>
                                   <div ngClass="shortlisted-white-box">
@@ -133,7 +133,7 @@
                                       <img src="{{list.src}}">
                                     </div>
                                     <div ngClass="short-cntnt">
-                                      <h2>{{list.price}} {{list.currency}} <small>/{{list.rentType}}</small></h2>
+                                      <h2>{{list.price}} {{list.currency}} <small *ngIf="list.rentType != ''" >/{{list.rentType}}</small></h2>
                                       <h4>{{list.title}}</h4>
                                       <p>{{list.propertyType}}</p>
                                       <address>{{list.propertyAddress}}</address>
@@ -164,7 +164,7 @@
                                     <img src="{{list.src}}">
                                   </div>
                                   <div ngClass="short-cntnt">
-                                    <h2>{{list.price}} {{list.currency}} <small>/{{list.rentType}}</small></h2>
+                                    <h2>{{list.price}} {{list.currency}} <small *ngIf="list.rentType != ''">/{{list.rentType}}</small></h2>
                                     <h4>{{list.title}}</h4>
                                     <p>{{list.propertyType}}</p>
                                     <address>{{list.propertyAddress}}</address>
@@ -195,7 +195,7 @@
                                     <img src="{{list.src}}">
                                   </div>
                                   <div ngClass="short-cntnt">
-                                    <h2>{{list.price}} {{list.currency}} <small>/{{list.rentType}}</small></h2>
+                                    <h2>{{list.price}} {{list.currency}} <small *ngIf="list.rentType != ''">/{{list.rentType}}</small></h2>
                                     <h4>{{list.title}}</h4>
                                     <p>{{list.propertyType}}</p>
                                     <address>{{list.propertyAddress}}</address>
