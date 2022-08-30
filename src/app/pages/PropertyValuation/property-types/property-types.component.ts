@@ -414,11 +414,7 @@ export class PropertyTypesComponent implements OnInit {
     }
     this.formData.ConstructionAge = this.propertyTypeForm.value.constructionAge;
     this.formDetailData.PlotSize = this.propertyTypeForm.value.apartmentSize;
-    if (this.propertyData.hasBuildUpArea) {
-      this.formDetailData.BuildupArea = this.propertyTypeForm.value.buildupArea;
-    } else {
-      this.formDetailData.BuildupArea = 0;
-    }
+    this.formDetailData.BuildupArea = 0;
 
     this.formData.PlotNo = this.propertyTypeForm.value.apartmentNo;
     this.formData.PlotSize = this.propertyTypeForm.value.apartmentSize;

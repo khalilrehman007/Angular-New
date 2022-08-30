@@ -80,12 +80,11 @@
                       <img src="assets/images/placeholder.png" alt="Random slide"
                            (click)="openVerticallyCentered(content,list.documents)">
                     </div>
-
                   </div>
                   <div ngClass="col-xl-8 col-md-8 col-lg-8 col-sm-12">
                     <div ngClass="properties-list_cntnts position-relative">
                       <div ngClass="properties-list_hdr d-flex justify-content-spacebw">
-                        <div ngClass="property-price_detals" [routerLink]="['/PropertDetailsPage']" [queryParams]="{id: list.id}">
+                        <div ngClass="property-price_detals cursor-pointer" [routerLink]="['/PropertDetailsPage']" [queryParams]="{id: list.id}">
                           <h4>{{list.propertyPrice}} {{list.currency}} <small>/{{list.rentType}}</small></h4>
                           <div ngClass="property-tags d-flex flex-wrap">
                             <span ngClass="tags-bg-grey">Brokrage: {{list.brokerageChargePrice}}
@@ -129,10 +128,10 @@
                       <div ngClass="topkey-highlights">
                         <h6>{{list.propertyType.typeDescription}},</h6>
                         <div ngClass="property-details-highlights">
-                          <span ngClass="bed">
+                          <span *ngIf="list.bedrooms != 0" ngClass="bed">
                             <img src="{{bedsvg}}" alt="">{{list.bedrooms}} Beds
                           </span>
-                          <span ngClass="bath">
+                          <span *ngIf="list.bathrooms != 0" ngClass="bath">
                             <img src="{{bathsvg}}" alt="">{{list.bathrooms}} Bath
                           </span>
                           <span ngClass="area">

@@ -92,7 +92,7 @@
                 <div class="agent-landing-featured__agent">
                     <div class="agent-landing-featured__property-wrapper">
                         <img src="assets/images/tag/featured.png" alt="" class="agent-landing-featured__property-tag">
-                        <div class="row" routerLink="/agent-details/{{item.id}}">
+                        <div class="row cursor-pointer" routerLink="/agent-details/{{item.id}}">
                             <div class="row height-100">
                                 <div class="col-5 d-flex align-items-center">
                                     <img src="{{item.imageUrl}}" alt=""
@@ -134,7 +134,7 @@
         </div>
         <div class="row {{!companies ? 'd-none' : ''}}">
             <div class="col-lg-4" *ngFor="let item of bestCompanies">
-                <div class="agent-landing-featured__property" routerLink="/company-details/{{item.company.id}}">
+                <div class="agent-landing-featured__property cursor-pointer" routerLink="/company-details/{{item.company.id}}">
                     <div class="agent-landing-featured__property-wrapper" > >
                         <img src="assets/images/tag/featured.png" alt="" class="agent-landing-featured__property-tag">
                         <div class="row">
@@ -189,12 +189,12 @@
                                 <td class="agent-landing-list__table-data">
                                     <div class="agent-landing-featured__agent-wrapper">
                                         <div class="agent-landing-featured__agent-img-outer-wrapper">
-                                            <div class="agent-landing-featured__agent-img-inner-wrapper" routerLink="/agent-details/{{data.id}}">
+                                            <div class="agent-landing-featured__agent-img-inner-wrapper cursor-pointer" routerLink="/agent-details/{{data.id}}">
                                                 <img *ngIf="data.imageUrl" src="{{data.imageUrl}}" [alt]="" class="img-fluid agent-landing-featured__agent-img">
                                             </div>
                                         </div>
                                         <div class="agent-landing-featured__agent-text-wrapper">
-                                            <h6 class="agent-landing-featured__property-heading" routerLink="/agent-details/{{data.id}}">{{data.fullName}}</h6>
+                                            <h6 class="agent-landing-featured__property-heading cursor-pointer" routerLink="/agent-details/{{data.id}}">{{data.fullName}}</h6>
                                             <p class="agent-landing-featured__property-text">{{data.companyName}}</p>
                                             <p class="agent-landing-featured__property-link m-0">{{data.phoneNumber}}</p>
                                             <p class="agent-landing-featured__property-text mb-3" *ngIf="data.countryId != ''">{{filterCountry(data.countryId)}}</p>
@@ -218,7 +218,7 @@
                                     </div>
                                 </td>
                                 <td class="agent-landing-list__table-data">
-                                    <a class="agent-landing-list__table-btn" routerLink="/agent-details/{{data.id}}">
+                                    <a class="agent-landing-list__table-btn cursor-pointer" routerLink="/agent-details/{{data.id}}">
                                         <img src="assets/images/icons/eye.svg" alt="" >"View Detail"</a>
                                 </td>
                             </tr>
@@ -273,7 +273,7 @@
                                     <p>{{data.agents.length}}<br>Agents</p>
                                 </td>
                                 <td class="agent-landing-list__table-data">
-                                    <a class="agent-landing-list__table-btn" routerLink="/company-details/{{data.id}}">
+                                    <a class="agent-landing-list__table-btn cursor-pointer" routerLink="/company-details/{{data.id}}">
                                         <img src="assets/images/icons/eye.svg" alt="">View Detail</a>
                                 </td>
                             </tr>
