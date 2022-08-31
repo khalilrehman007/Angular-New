@@ -13,10 +13,12 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { CityComponent } from './city/city.component';
 
 @NgModule({
   declarations: [
-    ExploreComponent
+    ExploreComponent,
+    CityComponent
   ],
   imports: [
     CommonModule,
