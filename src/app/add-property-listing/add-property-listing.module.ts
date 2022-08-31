@@ -14,11 +14,15 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
 import { ListpropertyinfoComponent } from './listpropertyinfo/listpropertyinfo.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { ListpropertymediaComponent } from './listpropertymedia/listpropertymedia.component';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
     PropertyinfoComponent,
-    ListpropertyinfoComponent
+    ListpropertyinfoComponent,
+    ListpropertymediaComponent
   ],
   imports: [
     CommonModule,
@@ -33,7 +37,9 @@ import { ListpropertyinfoComponent } from './listpropertyinfo/listpropertyinfo.c
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
-    MatCardModule
+    MatCardModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ]
 })
 export class AddPropertyListingModule { }
