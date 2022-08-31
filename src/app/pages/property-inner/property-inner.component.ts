@@ -208,7 +208,30 @@ export class PropertyInnerComponent implements OnInit {
   scroll(el: HTMLElement) {
     el.scrollIntoView();
   }
-  
+  chartLabel :any = []
+  chartData :any = []
+
+  public lineChartData: any = {};
+  public lineChartOptions: ChartOptions<'line'> = {
+    responsive: true,
+    maintainAspectRatio: false,
+    scales: {
+      x: {  ticks: {
+          maxRotation: 70,
+          minRotation: 70,
+        }},
+    },
+    plugins: {
+      title: {
+        display: true,
+        position: 'left',
+        align: 'center',
+        text: 'AED/Year'
+      },
+    }
+  };
+  public lineChartLegend = true;
+
   constructor(private authService:AuthService,private domSanitizer: DomSanitizer,private activeRoute: ActivatedRoute,private modalService: NgbModal,private service:AppService,private route:Router,private notifyService : NotificationService) {
     this.route.events.subscribe((e: any) => {
       // If it is a NavigationEnd event re-initalise the component
@@ -222,11 +245,11 @@ export class PropertyInnerComponent implements OnInit {
           userId = this.user.id;
         }
         this.userId = userId;
-        this.getloadDashboardData();
         this.LoadSimilarProperty();
+        this.getloadDashboardData();
+
       }
     });
-    
   }
 
   openVerticallyCentered(content) {
@@ -271,16 +294,20 @@ export class PropertyInnerComponent implements OnInit {
       // });
     }
   }
+
+
   ngOnInit(): void {
+
+
   }
+
 
   isload :any= false
   propertyDetailData :any = {}
-  chartLabel :any = []
-  chartData :any = []
+
   documentCheck :any = true
   getloadDashboardData() {
-    this.service.DisplayPropertyListing({"PropertyListingId":this.propertyId,"LoginUserId":this.userId}).subscribe(e => {
+   return this.service.DisplayPropertyListing({"PropertyListingId":this.propertyId,"LoginUserId":this.userId}).subscribe(e => {
       let temp: any = e;
       this.userData = temp.data.user;
       this.propertyLat = temp.data.propertyListing.propertyLat;
@@ -388,6 +415,7 @@ export class PropertyInnerComponent implements OnInit {
             this.chartData.push(price);
           })
         }
+
         this.getPropertyInfo();
 
       }else{
@@ -403,7 +431,28 @@ export class PropertyInnerComponent implements OnInit {
         this.propertyDetailData.userImageUrl = '../assets/images/user.png'
         this.propertyDetailData.userfullName = ''
       }
+
+     this.lineChartData = {
+       labels: this.chartLabel,
+       datasets: [
+         {
+           data: this.chartData,
+           label: 'Series A',
+           fill: false,
+           tension: 0.5,
+           borderColor: '#8dbfde',
+           pointBackgroundColor: '#fff',
+           pointBorderColor: '#8dbfde',
+           pointHoverBackgroundColor: '#fff',
+           pointHoverBorderColor: '#1B1571',
+           backgroundColor: 'rgba(255,0,0,0.3)'
+         }
+       ]
+     }
+
     });
+
+
   }
 
   getPropertyInfo(){
@@ -654,44 +703,6 @@ export class PropertyInnerComponent implements OnInit {
     return this.user;
   }
   title = 'ng2-charts-demo';
-
-  public lineChartData: ChartConfiguration<'line'>['data'] = {
-    labels: this.chartLabel,
-    datasets: [
-      {
-        data: this.chartData,
-        label: 'Series A',
-        fill: false,
-        tension: 0.5,
-        borderColor: '#8dbfde',
-        pointBackgroundColor: '#fff',
-        pointBorderColor: '#8dbfde',
-        pointHoverBackgroundColor: '#fff',
-        pointHoverBorderColor: '#1B1571',
-        backgroundColor: 'rgba(255,0,0,0.3)'
-      }
-    ]
-  };
-  public lineChartOptions: ChartOptions<'line'> = {
-    responsive: true,
-    maintainAspectRatio: false,
-    scales: {
-      x: {  ticks: {
-          maxRotation: 70,
-          minRotation: 70,
-        }},
-    },
-    plugins: {
-      title: {
-        display: true,
-        position: 'left',
-        align: 'center',
-        text: 'AED/Year'
-      },
-    }
-  };
-  public lineChartLegend = true;
-
 
   wishlistStatus :any;
   AddToFavorite(id:any,status:any) {

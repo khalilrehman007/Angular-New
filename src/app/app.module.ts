@@ -8,30 +8,30 @@ import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './pages/home/home.component';
 import { DashboardComponent } from "./profile/dashboard/dashboard.component";
 import { CarouselModule } from 'ngx-owl-carousel-o';
-import {SliderModule} from 'primeng/slider';
-import {InputTextModule} from 'primeng/inputtext';
-import {FormsModule} from '@angular/forms';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {NgbNavModule} from '@ng-bootstrap/ng-bootstrap';
+import { SliderModule } from 'primeng/slider';
+import { InputTextModule } from 'primeng/inputtext';
+import { FormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxPaginationModule } from 'ngx-pagination';
 // import { HashLocationStrategy, LocationStrategy  } from '@angular/common';
 import { SellrentpropertyComponent } from './pages/sellrentproperty/sellrentproperty.component';
 import { MatSliderModule } from '@angular/material/slider';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatSelectModule} from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
 import { FooterComponent } from './footer/footer.component';
-import {MatIconModule} from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
-import {MatExpansionModule} from '@angular/material/expansion';
-import {MatTooltipModule} from '@angular/material/tooltip';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgChartsModule } from 'ng2-charts';
 import { CustomerComponent } from './customer/customer.component';
 import { ListingComponent } from './listing/listing.component';
 import { AddnewComponent } from './addnew/addnew.component';
-import {ReactiveFormsModule} from '@angular/forms';
-import {CookieService} from 'ngx-cookie-service';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CookieService } from 'ngx-cookie-service';
 import { TokenInterceptorService } from './service/token-interceptor.service';
 import { BlogsComponent } from './pages/blogs/blogs.component';
 import { BlogViewComponent } from './pages/blog-view/blog-view.component';
@@ -41,20 +41,20 @@ import { LoginComponent } from './pages/auth/login/login.component';
 import { SignupComponent } from './pages/auth/signup/signup.component';
 import { OtpComponent } from './pages/auth/otp/otp.component';
 import { ThankyouComponent } from './pages/auth/thankyou/thankyou.component';
-import {MatInputModule} from '@angular/material/input';
-import {MatCardModule} from '@angular/material/card';
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ForgotComponent } from './pages/auth/forgot/forgot.component';
 import { PropertyinfoComponent } from './pages/listproperties/propertyinfo/propertyinfo.component';
-import {MatListModule} from '@angular/material/list';
+import { MatListModule } from '@angular/material/list';
 import { ListpropertyinfoComponent } from './pages/listproperties/listpropertyinfo/listpropertyinfo.component';
 import { ListpropertymediaComponent } from './pages/listproperties/listpropertymedia/listpropertymedia.component';
 import { ListpropertyverifyComponent } from './pages/listproperties/listpropertyverify/listpropertyverify.component';
 import { ListpropertypublishComponent } from './pages/listproperties/listpropertypublish/listpropertypublish.component';
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { ToastrModule } from 'ngx-toastr';
-import {MatTabsModule} from '@angular/material/tabs';
+import { MatTabsModule } from '@angular/material/tabs';
 import { RentCommertialComponent } from './pages/listproperties/components/rent-commertial/rent-commertial.component';
 import { SellCommertialComponent } from './pages/listproperties/components/sell-commertial/sell-commertial.component';
 import { SellResidentialComponent } from './pages/listproperties/components/sell-residential/sell-residential.component';
@@ -72,7 +72,7 @@ import { RentSearchComponent } from "./pages/home/rentSearch/rentSearch.componen
 import { BuySearchComponent } from "./pages/home/buySearch/buySearch.component";
 import { LandSearchComponent } from "./pages/home/landSearch/landSearch.component";
 import { ComercialSearchComponent } from "./pages/home/comercialSearch/comercialSearch.component";
-import {FindAgentSearchComponent} from "./pages/home/findagentSearch/findAgentSearch.component";
+import { FindAgentSearchComponent } from "./pages/home/findagentSearch/findAgentSearch.component";
 import { AgentLandingComponent } from './pages/agent-landing/agent-landing.component';
 import { ListingpackagesComponent } from './pages/listingpackages/listingpackages.component';
 import { RentpropertiesComponent } from './pages/rentproperties/rentproperties.component';
@@ -87,7 +87,7 @@ import { DataAnalyticsComponent } from './pages/data-analytics/data-analytics/da
 import { DataAnalyticsSearchResultsComponent } from './pages/data-analytics/data-analytics-search-results/data-analytics-search-results.component';
 import { ChatingComponent } from './pages/chating/chating.component';
 import { NgxEditorModule } from "ngx-editor";
-import {ScrollingModule} from '@angular/cdk/scrolling';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 import { ChatNewMessageComponent } from './pages/chat-new-message/chat-new-message.component';
 import { PagenotfoundComponent } from './pages/pagenotfound/pagenotfound.component';
 import { AboutusComponent } from './pages/aboutus/aboutus.component';
@@ -100,8 +100,8 @@ import { HelpCenterComponent } from './pages/help-center/help-center.component';
 import { HowItWorksComponent } from './pages/how-it-works/how-it-works.component';
 import { InvestorsComponent } from './pages/investors/investors.component';
 import { BuyPropertiesComponent } from './pages/buy-properties/buy-properties.component';
-import {MatChipsModule} from '@angular/material/chips';
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { TipsAdviceComponent } from './pages/blog-category/tips-advice/tips-advice.component';
 import { NewsBlogComponent } from './pages/blog-category/news-blog/news-blog.component';
 import { ExploreBlogComponent } from './pages/blog-category/explore-blog/explore-blog.component';
@@ -223,7 +223,7 @@ initializeApp(environment.firebase);
     MatExpansionModule,
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,AppRoutingModule,HttpClientModule,ReactiveFormsModule,
+    HttpClientModule, AppRoutingModule, HttpClientModule, ReactiveFormsModule,
     MatInputModule,
     MatCardModule,
     MatCheckboxModule,
@@ -250,7 +250,7 @@ initializeApp(environment.firebase);
     })
   ],
   providers: [
-    CookieService,{provide:HTTP_INTERCEPTORS,useClass:TokenInterceptorService,multi:true}
+    CookieService, { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true }
     // {provide : LocationStrategy , useClass: HashLocationStrategy}
   ],
   bootstrap: [AppComponent]
