@@ -1,39 +1,37 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { SignupRoutingModule } from './signup-routing.module';
-import { SignupComponent } from './signup/signup.component';
+import { AddPropertyListingRoutingModule } from './add-property-listing-routing.module';
+import { PropertyinfoComponent } from './propertyinfo/propertyinfo.component';
 import { Header2Module } from '../header2/header2.module';
 import { AlertsModule } from '../alerts/alerts.module';
+import { LoaderModule } from '../loader/loader.module';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatListModule } from '@angular/material/list';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
-import { MatIconModule } from '@angular/material/icon';
-import { OtpComponent } from './otp/otp.component';
-import { ThankYouComponent } from './thank-you/thank-you.component';
 
 @NgModule({
   declarations: [
-    SignupComponent,
-    OtpComponent,
-    ThankYouComponent
+    PropertyinfoComponent
   ],
   imports: [
     CommonModule,
-    SignupRoutingModule,
+    AddPropertyListingRoutingModule,
     Header2Module,
     AlertsModule,
+    LoaderModule,
 
     FormsModule,
     ReactiveFormsModule,
+    MatListModule,
     MatFormFieldModule,
     MatInputModule,
-    MatCheckboxModule,
-    MatCardModule,
-    MatIconModule
+    MatSelectModule,
+    MatCardModule
   ]
 })
-export class SignupModule { }
+export class AddPropertyListingModule { }

@@ -82,13 +82,13 @@ export class HeaderComponent implements OnInit {
       src: '../../../assets/images/icons/ioi.svg',
       class: 'nav-items buy',
       text: 'Buy',
-      link: '/search/Buy',
+      link: '/property/search/Buy',
     },
     {
       src: '../../../assets/images/icons/rent-icon.svg',
       class: 'nav-items buy',
       text: 'Rent',
-      link: '/search/Rent',
+      link: '/property/search/Rent',
     },
     {
       src: '../../../assets/images/icons/sell.svg',

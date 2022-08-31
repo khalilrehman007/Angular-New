@@ -439,7 +439,7 @@
 
             <div ngClass="row">
                 <div ngClass="col-md-6 explore-places-col" *ngFor="let data of explorePlaces">
-                    <a routerLink="/explore-details/{{data.id}}">
+                    <a routerLink="/explore/details/{{data.id}}">
                         <img src="https://beta.ovaluate.com/{{ data.document.fileUrl}}" ngClass="img-fluid" alt="" />
                         <div ngClass="explore-place-content">
                             <h5>{{ data.name }}</h5>
