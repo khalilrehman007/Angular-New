@@ -18,7 +18,7 @@
 
                             </div>
                             <div ngClass="back-to-search">
-                                <a [routerLink]="['/search']" [queryParams]="{type: 'Rent',PropertyListingTypeId:1}"
+                                <a [routerLink]="['/property/search']" [queryParams]="{type: 'Rent',PropertyListingTypeId:1}"
                                     ngClass="back-to-text">
                                     <mat-icon>keyboard_arrow_left</mat-icon> Back to List View
                                 </a>
@@ -112,7 +112,7 @@
                                                     </span>
                                                 </div>
                                             </div>
-                                            <a [routerLink]="['/PropertDetailsPage']" [queryParams]="{id: slide.id}"
+                                            <a [routerLink]="['/property/detail']" [queryParams]="{id: slide.id}"
                                                 ngClass="linK_overlay"></a>
                                         </div>
                                     </div>
