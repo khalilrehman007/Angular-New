@@ -10,6 +10,7 @@ const routes: Routes = [
   {path:"property", loadChildren:()=>import('./property/property.module').then(module => module.PropertyModule)},
   {path:"explore", loadChildren:()=>import('./explore/explore.module').then(module => module.ExploreModule)},
   {path:"sellrent", loadChildren:()=>import('./sell/sell.module').then(module => module.SellModule)},
+  {path:"listingproperty", loadChildren:()=>import('./add-property-listing/add-property-listing.module').then(module => module.AddPropertyListingModule)},
 ];
 
 @NgModule({
