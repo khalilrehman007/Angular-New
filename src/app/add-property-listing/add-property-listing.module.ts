@@ -17,12 +17,14 @@ import { ListpropertyinfoComponent } from './listpropertyinfo/listpropertyinfo.c
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { ListpropertymediaComponent } from './listpropertymedia/listpropertymedia.component';
 import { MatNativeDateModule } from '@angular/material/core';
+import { ListpropertypublishComponent } from './listpropertypublish/listpropertypublish.component';
 
 @NgModule({
   declarations: [
     PropertyinfoComponent,
     ListpropertyinfoComponent,
-    ListpropertymediaComponent
+    ListpropertymediaComponent,
+    ListpropertypublishComponent
   ],
   imports: [
     CommonModule,

@@ -264,7 +264,7 @@ export class ListpropertymediaComponent implements OnInit {
       success: (res) => {
         if (res.message == "Property Listing request completed successfully") {
           localStorage.removeItem("propertyData");
-          this.route.navigate(['listpropertypublish'])
+          this.route.navigate(['/add-property/listpropertypublish'])
         }
       },
       error: (err) => {
