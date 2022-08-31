@@ -33,14 +33,25 @@
             <div *ngIf="submitted && validate['Email'].errors" class="alert alert-danger">
                 <div *ngIf="validate['Email'].errors['required']">Email is required</div>
             </div>
-            <div *ngIf="submitted && validate['PhoneNumber'].errors" class="alert-indicators">
-            </div>
-            <mat-form-field class="full-width input-design" appearance="fill">
-                <mat-label>Phone</mat-label>
-                <input matInput type="number" (input)="checkLength()" formControlName="PhoneNumber" required ngModel>
-            </mat-form-field>
-            <div *ngIf="submitted && validate['PhoneNumber'].errors" class="alert alert-danger">
-                <div *ngIf="validate['PhoneNumber'].errors['required']">Phone Number is required</div>
+            <div ngClass="block-wrapper mb-4">
+                <label class="h6-design">Enter Phone of Property Owner<span
+                        ngClass="required-span">*</span></label>
+                <div ngClass="position-relative country-code-select-design">
+                    <div *ngIf="submitted && validate['PhoneNumber'].errors" class="alert-indicators">
+                    </div>
+                    <mat-form-field class="full-width input-design-2" appearance="fill">
+                        <input matInput type="number" (input)="checkLength()" formControlName="PhoneNumber" required ngModel placeholder="Phone Number">
+                    </mat-form-field>
+                    <div *ngIf="submitted && validate['PhoneNumber'].errors" class="alert alert-danger">
+                        <div *ngIf="validate['PhoneNumber'].errors['required']">Phone Number is required</div>
+                    </div>
+                    <mat-form-field appearance="fill" class="countries-select">
+                        <mat-select>
+                            <mat-option value="+971">+971</mat-option>
+                            <mat-option value="+91">+91</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
             </div>
             <div *ngIf="submitted && validate['Password'].errors" class="alert-indicators">
             </div>
