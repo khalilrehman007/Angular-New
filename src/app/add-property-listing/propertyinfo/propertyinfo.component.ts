@@ -242,7 +242,7 @@ export class PropertyinfoComponent implements OnInit {
     this.data.BuildingName = this.SubmitForm.value.BuildingName;
     this.data.UnitNo = this.SubmitForm.value.UnitNo;
     localStorage.setItem('propertyData', JSON.stringify(this.data))
-    this.route.navigate(['listpropertyinfo'])
+    this.route.navigate(['/add-property/listpropertyinfo'])
   }
   validateLength(type: any) {
     if (type == 1) {
