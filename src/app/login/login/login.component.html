@@ -6,6 +6,8 @@
                 <h2>Welcome to Ovaluate</h2>
                 <p>Welcome back! Please enter your details.</p>
             </div>
+            <div *ngIf="submitted && validate['Email'].errors" class="alert-indicators">
+            </div>
             <mat-form-field class="full-width input-design" appearance="fill">
                 <mat-label>Email</mat-label>
                 <input matInput type="email" formControlName="Email" placeholder="Email" required ngModel>
@@ -14,7 +16,8 @@
             <div *ngIf="submitted && validate['Email'].errors" class="alert alert-danger">
                 <div *ngIf="validate['Email'].errors['required']">Email is required</div>
             </div>
-
+            <div *ngIf="submitted && validate['Password'].errors" class="alert-indicators">
+            </div>
             <mat-form-field class="full-width input-design padd-b-0" appearance="fill">
                 <mat-label>Password</mat-label>
                 <input matInput [type]="showPassword ? 'text' : 'password'" formControlName="Password" required
