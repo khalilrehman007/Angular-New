@@ -13,10 +13,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
+import { ListpropertyinfoComponent } from './listpropertyinfo/listpropertyinfo.component';
 
 @NgModule({
   declarations: [
-    PropertyinfoComponent
+    PropertyinfoComponent,
+    ListpropertyinfoComponent
   ],
   imports: [
     CommonModule,
