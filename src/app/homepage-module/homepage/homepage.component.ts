@@ -438,7 +438,7 @@ export class HomepageComponent implements OnInit {
         PropertyTypeIds: temp.propertyTypeId ?? "",
       }
     }
-    this.route.navigate(['/search'], params)
+    this.route.navigate(['/property/search'], params)
   }
   getUser() {
     this.user = localStorage.getItem('user');
