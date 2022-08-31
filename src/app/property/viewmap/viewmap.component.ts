@@ -286,7 +286,7 @@ export class ViewmapComponent implements OnInit {
       "PropertyCategoryId": '', PriceStart: '', PriceEnd: '', Bedrooms: '', Bathrooms: '',
       "PropertyListingTypeId": '', CurrentPage: 1
     }
-    this.route.navigate(['/search'], { queryParams: params })
+    this.route.navigate(['/property/search'], { queryParams: params })
     this.loadListingProperty(object);
   }
   wishlistStatus: any;

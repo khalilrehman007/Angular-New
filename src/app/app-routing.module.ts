@@ -9,6 +9,8 @@ const routes: Routes = [
   {path:"valuation", loadChildren:()=>import('./property-valuation/property-valuation.module').then(module => module.PropertyValuationModule),canActivate: [AuthGuard]},
   {path:"property", loadChildren:()=>import('./property/property.module').then(module => module.PropertyModule)},
   {path:"explore", loadChildren:()=>import('./explore/explore.module').then(module => module.ExploreModule)},
+  {path:"sellrent", loadChildren:()=>import('./sell/sell.module').then(module => module.SellModule)},
+  {path:"add-property", loadChildren:()=>import('./add-property-listing/add-property-listing.module').then(module => module.AddPropertyListingModule)},
   {path:"blog", loadChildren:()=>import('./blog/blog.module').then(module => module.BlogModule)}
 ];
 

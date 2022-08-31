@@ -415,7 +415,7 @@ export class PropertyfilterComponent implements OnInit {
       ,PropertyFeatureIds:this.propertyFeatureIds,FurnishingTypeId:this.furnishedType,
       MinCarpetArea:this.minCarpet,MaxCarpetArea:this.maxCarpet
     }
-    this.route.navigate(['/search'],{queryParams:params})
+    this.route.navigate(['/property/search'],{queryParams:params})
     this.childToParentDataLoad.emit(objects)
 
   }
@@ -475,7 +475,7 @@ export class PropertyfilterComponent implements OnInit {
       MinCarpetArea:'',MaxCarpetArea:'',FurnishingTypeId:'',videoTourSorting:''
     }
 
-    this.route.navigate(['/search'],{queryParams:params})
+    this.route.navigate(['/property/search'],{queryParams:params})
     this.childToParentDataLoad.emit(object)
   }
   modelPropertyPictures :any=[]
@@ -502,7 +502,7 @@ export class PropertyfilterComponent implements OnInit {
     // Clear the input value
     event.chipInput!.clear();
 
-    if(this.routeCheck == '/search'){
+    if(this.routeCheck == '/property/search'){
       this.proceedSearch()
     }else{
       this.proceedSearchViewMap()
@@ -516,7 +516,7 @@ export class PropertyfilterComponent implements OnInit {
     if (index >= 0) {
       this.Keywords.splice(index, 1);
     }
-    if(this.routeCheck == '/search'){
+    if(this.routeCheck == '/property/search'){
       this.proceedSearch()
     }else{
       this.proceedSearchViewMap()
@@ -530,7 +530,7 @@ export class PropertyfilterComponent implements OnInit {
   furnishedTypeChange(data :any){
     this.furnishedType = data
 
-    if(this.routeCheck == '/search'){
+    if(this.routeCheck == '/property/search'){
       this.proceedSearch()
     }else{
       this.proceedSearchViewMap()
@@ -556,7 +556,7 @@ export class PropertyfilterComponent implements OnInit {
       }
     }
 
-    if(this.routeCheck == '/search'){
+    if(this.routeCheck == '/property/search'){
       this.proceedSearch()
     }else{
       this.proceedSearchViewMap()
@@ -568,7 +568,7 @@ export class PropertyfilterComponent implements OnInit {
   minCarpet : any = ''
   minCarpetAreaChange(searchValue: any): void {
     this.minCarpet = searchValue
-    if(this.routeCheck == '/search'){
+    if(this.routeCheck == '/property/search'){
       this.proceedSearch()
     }else{
       this.proceedSearchViewMap()
@@ -578,7 +578,7 @@ export class PropertyfilterComponent implements OnInit {
   maxCarpet : any = ''
   maxCarpetAreaChange(searchValue: any): void {
     this.maxCarpet = searchValue
-    if(this.routeCheck == '/search'){
+    if(this.routeCheck == '/property/search'){
       this.proceedSearch()
     }else{
       this.proceedSearchViewMap()
