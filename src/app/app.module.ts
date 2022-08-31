@@ -16,6 +16,9 @@ import { initializeApp } from "firebase/app";
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { environment } from 'src/environments/environment';
+import {MatSelectModule} from '@angular/material/select';
+import { NgChartsModule } from 'ng2-charts';
+import {MatInputModule} from '@angular/material/input';
 initializeApp(environment.firebase);
 
 @NgModule({
@@ -32,6 +35,9 @@ initializeApp(environment.firebase);
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     RouterModule,
+    MatSelectModule,
+    NgChartsModule,
+    MatInputModule,
     ToastrModule.forRoot({
       timeOut: 2000,
       positionClass: 'toast-top-right'
