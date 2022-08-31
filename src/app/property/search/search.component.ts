@@ -369,7 +369,7 @@ export class SearchComponent implements OnInit {
       this.route.navigate(['/login'])
     }
     if (!this.authService.isAuthenticated()) {
-      this.notifyService.showError('You not having access', "");
+      this.notifyService.showError("you don't have access", "");
       this.route.navigate(['login']);
     }
 

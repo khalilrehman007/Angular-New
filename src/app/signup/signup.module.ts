@@ -11,6 +11,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
 import { OtpComponent } from './otp/otp.component';
 import { ThankYouComponent } from './thank-you/thank-you.component';
 
@@ -31,7 +32,8 @@ import { ThankYouComponent } from './thank-you/thank-you.component';
     MatFormFieldModule,
     MatInputModule,
     MatCheckboxModule,
-    MatCardModule
+    MatCardModule,
+    MatIconModule
   ]
 })
 export class SignupModule { }
