@@ -20,7 +20,7 @@ export class DashboardHeaderComponent implements OnInit {
   property = '../../assets/images/shortlisted-img.png'
   trash = '../../assets/images/icons/Trash-dotted.svg'
   logoutimg = '../../assets/images/logout-popup-banner.png'
-  profileicon= '../../assets/images/icons/profile-icon.png'
+  profileicon = '../../assets/images/icons/profile-icon.png'
   loggedInUser = localStorage.getItem('user')
   user: any
   availableClasses: string[] = ["sidebar-active", "nosidebar"];
@@ -33,7 +33,7 @@ export class DashboardHeaderComponent implements OnInit {
   bodyClass: string;
   notificationData: any = [];
   currentDate: any = new Date();
-  userData:any = "";
+  userData: any = "";
   constructor(private route: Router, private modalService: NgbModal, private db: AngularFireDatabase) {
     this.bodyClass = this.availableClasses[this.currentClassIdx];
     this.changeBodyClass();
@@ -41,7 +41,7 @@ export class DashboardHeaderComponent implements OnInit {
 
     let userId = '';
     if (this.user !== null) {
-      userId = this.user.id;
+      // userId = this.user.id;
     }
     this.userId = userId;
   }
@@ -124,4 +124,3 @@ export class DashboardHeaderComponent implements OnInit {
   ngOnInit() {
   }
 }
-

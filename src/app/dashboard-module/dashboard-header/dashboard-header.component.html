@@ -1,50 +1,52 @@
 <div id="sidebar">
-    <ul ngClass="nav-tabs list-unstyled">
-        <li ngClass="toggle-li" >
-            <button ngClass="sidebar-toggle" (click)="changeBodyClass()">
-              <img src={{togglesvg}} ngClass="icon toggle_icn" alt="">
-              <img src={{close}} ngClass="icon close_icn hide" alt="">
-            </button>
-        </li>
-        <li ngClass={{side.class}} *ngFor="let side of sidebar">
-          <a routerLink="/{{side.link}}">
-            <img src={{side.src}} ngClass="icon" alt="">
-            <span ngClass="side-nav-text">{{side.text}}</span>
-        </a>
-        </li>
-      </ul>
+  <ul ngClass="nav-tabs list-unstyled">
+    <li ngClass="toggle-li">
+      <button ngClass="sidebar-toggle" (click)="changeBodyClass()">
+        <img src={{togglesvg}} ngClass="icon toggle_icn" alt="">
+        <img src={{close}} ngClass="icon close_icn hide" alt="">
+      </button>
+    </li>
+    <li ngClass={{side.class}} *ngFor="let side of sidebar">
+      <a routerLink="/{{side.link}}">
+        <img src={{side.src}} ngClass="icon" alt="">
+        <span ngClass="side-nav-text">{{side.text}}</span>
+      </a>
+    </li>
+  </ul>
 </div>
 <div class="container_1280px">
   <div class="white-header-wrap">
-  <div class="d-flex justify-content-spacebw align-items-center">
-    <div class="dashboard-header-left">
+    <div class="d-flex justify-content-spacebw align-items-center">
+      <div class="dashboard-header-left">
         <div class="logo-wrapper">
-        <a ngClass="navbar-brand" routerLink=""><img src="{{logo}}"></a>
+          <a ngClass="navbar-brand" routerLink=""><img src="{{logo}}"></a>
         </div>
-    </div>
-    <div class="dashboard-header-right">
+      </div>
+      <div class="dashboard-header-right">
         <div class="dash-header-box">
-             <ul class="list-unstyled d-flex align-items-center">
-                <li><a routerLink="">Reports</a></li>
-                <li>
-                    <div ngbDropdown class="d-inline-block">
-                        <button type="button" class="btn" id="dropdownBasic1" ngbDropdownToggle>
-                          <span class="profile-name">Hi, Adam</span>
-                          <img src="{{profileicon}}" class="rounded-circle">
-                        </button>
-                        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                          <button ngbDropdownItem><a routerLink="">Dashboard</a></button>
-                          <button ngbDropdownItem><a routerLink="">Settings</a></button>
-                          <button ngbDropdownItem><a routerLink="">Profile</a></button>
-                          <button ngbDropdownItem><hr class="dropdown-divider"></button>
-                          <button ngbDropdownItem><a routerLink="">Log out</a></button>
-                        </div>
-                      </div>
-                </li>
-             </ul>
+          <ul class="list-unstyled d-flex align-items-center">
+            <li><a routerLink="">Reports</a></li>
+            <li>
+              <div ngbDropdown class="d-inline-block">
+                <button type="button" class="btn" id="dropdownBasic1" ngbDropdownToggle>
+                  <span class="profile-name">Hi, Adam</span>
+                  <img src="{{profileicon}}" class="rounded-circle">
+                </button>
+                <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                  <button ngbDropdownItem><a routerLink="">Dashboard</a></button>
+                  <button ngbDropdownItem><a routerLink="">Settings</a></button>
+                  <button ngbDropdownItem><a routerLink="">Profile</a></button>
+                  <button ngbDropdownItem>
+                    <hr class="dropdown-divider">
+                  </button>
+                  <button ngbDropdownItem><a routerLink="">Log out</a></button>
+                </div>
+              </div>
+            </li>
+          </ul>
         </div>
+      </div>
     </div>
-  </div>
   </div>
 </div>
 <div ngClass="overlay_counter" (click)="changeBodyClass()"></div>
