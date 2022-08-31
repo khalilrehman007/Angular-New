@@ -58,7 +58,8 @@ export class BlogComponent implements OnInit {
   featureBlogs: any;
   categoryBlogs: any;
   mainBlog: any = {};
-  constructor(private service:AppService) { 
+  constructor(private service:AppService) {
+    $(window).scrollTop(0); 
     this.LoadBlogs();
     this.service.BlogLatestNews().subscribe((result:any)=> {
       this.latestNews.push(result.data[0]);
