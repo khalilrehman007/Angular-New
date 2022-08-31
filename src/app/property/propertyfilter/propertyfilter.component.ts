@@ -81,13 +81,9 @@ export class PropertyfilterComponent implements OnInit {
   totalPropertyRecord :any;
   maxLimit :any ;
 
-  options: Options = {
-    floor: 10,
-    ceil: 50000000,
-    translate: (value: number): string => {
-      return value +  'AED';
-    }
-  };
+  options: any = {};
+  propertyFeatureIds :any = [];
+
   constructor(private activeRoute: ActivatedRoute,private service:AppService,private api: AppService,private route:Router,private modalService: NgbModal) {
 
     let url = this.route.url.replace("/", "");
@@ -120,6 +116,7 @@ export class PropertyfilterComponent implements OnInit {
     let MaxCarpetArea :any = this.activeRoute.snapshot.queryParamMap.get('MaxCarpetArea');
     let FurnishingTypeId :any = this.activeRoute.snapshot.queryParamMap.get('FurnishingTypeId');
     this.KeyWords = JSON.parse(KeyWords)
+
     if(PropertyFeatureIds == null){
       PropertyFeatureIds = []
     }else{
@@ -195,11 +192,23 @@ export class PropertyfilterComponent implements OnInit {
     });
 
     if(this.PropertyListingTypeId == 1){
-      this.maxLimit = 1000000
-      this.options.ceil =this.maxLimit
+      // this.maxLimit = 1000000
+      this.options ={
+        floor: 10,
+        ceil: 1000000,
+        translate: (value: number): string => {
+          return value +  'AED';
+        }
+      }
     }else {
-      this.maxLimit = 50000000
-      this.options.ceil =this.maxLimit
+      // this.maxLimit = 50000000
+      this.options ={
+        floor: 10,
+        ceil: 50000000,
+        translate: (value: number): string => {
+          return value +  'AED';
+        }
+      }
     }
   }
 
@@ -358,6 +367,26 @@ export class PropertyfilterComponent implements OnInit {
         }
       }
     });
+
+      if(event.value == 1){
+        // this.maxLimit = 1000000
+        this.options ={
+          floor: 10,
+          ceil: 1000000,
+          translate: (value: number): string => {
+            return value +  'AED';
+          }
+        }
+      }else {
+        // this.maxLimit = 50000000
+        this.options ={
+          floor: 10,
+          ceil: 50000000,
+          translate: (value: number): string => {
+            return value +  'AED';
+          }
+        }
+      }
   }
   propertyType(id:any) {
     this.PropertyCategoryId = id
@@ -415,9 +444,13 @@ export class PropertyfilterComponent implements OnInit {
       ,PropertyFeatureIds:this.propertyFeatureIds,FurnishingTypeId:this.furnishedType,
       MinCarpetArea:this.minCarpet,MaxCarpetArea:this.maxCarpet
     }
-    this.route.navigate(['/property/search'],{queryParams:params})
-    this.childToParentDataLoad.emit(objects)
-
+    if(this.routeCheck == '/property/search'){
+      this.route.navigate(['/property/search'],{queryParams:params})
+      this.childToParentDataLoad.emit(objects)
+      // this.proceedSearch()
+    }else{
+      this.proceedSearchViewMap()
+    }
   }
 
   clearSearch(){
@@ -460,7 +493,7 @@ export class PropertyfilterComponent implements OnInit {
 
 
     let params :any = {type:this.type,"PropertyTypeIds":JSON.stringify([]),"RentTypeId":'',
-      "PropertyCategoryId":'',PriceStart:'',PriceEnd:'',
+      "PropertyCategoryId":'',PriceStart:this.PriceStart,PriceEnd:this.PriceEnd,
       Bedrooms:'',Bathrooms:'',PropertyAddress:'',
       "PropertyListingTypeId":'',CurrentPage:1,DistrictIds:JSON.stringify([]),
       DistrictsValue:JSON.stringify([]),KeyWords:JSON.stringify([]),PropertyFeatureIds:JSON.stringify([]),
@@ -468,15 +501,22 @@ export class PropertyfilterComponent implements OnInit {
     }
 
     let object :any = {type:this.type,"PropertyTypeIds":[],"RentTypeId":'',
-      "PropertyCategoryId":'',PriceStart:'',PriceEnd:'',
+      "PropertyCategoryId":'',PriceStart:this.PriceStart,PriceEnd:this.PriceEnd,
       Bedrooms:'',Bathrooms:'',PropertyAddress:'',
       "PropertyListingTypeId":'',CurrentPage:1,DistrictIds:[],
       DistrictsValue:[],KeyWords:[],PropertyFeatureIds:[],
       MinCarpetArea:'',MaxCarpetArea:'',FurnishingTypeId:'',videoTourSorting:''
     }
 
-    this.route.navigate(['/property/search'],{queryParams:params})
-    this.childToParentDataLoad.emit(object)
+
+    if(this.routeCheck == '/property/search'){
+      this.route.navigate(['/property/search'],{queryParams:params})
+      this.childToParentDataLoad.emit(object)
+      // this.proceedSearch()
+    }else{
+      this.proceedSearchViewMap()
+    }
+
   }
   modelPropertyPictures :any=[]
   openVerticallyCentered(content:any) {
@@ -529,7 +569,6 @@ export class PropertyfilterComponent implements OnInit {
   furnishedType :any = '';
   furnishedTypeChange(data :any){
     this.furnishedType = data
-
     if(this.routeCheck == '/property/search'){
       this.proceedSearch()
     }else{
@@ -537,9 +576,11 @@ export class PropertyfilterComponent implements OnInit {
     }
   }
 
-  propertyFeatureIds :any = [];
   propertyFeatureChange(data :any){
     let checkExists :any = true;
+    if(this.propertyFeatureIds == null){
+      this.propertyFeatureIds = []
+    }
     this.propertyFeatureIds.forEach((element:any, i:any) => {
       if(element == data){
         checkExists = false;
@@ -682,7 +723,7 @@ export class PropertyfilterComponent implements OnInit {
       ,PropertyFeatureIds:this.propertyFeatureIds,FurnishingTypeId:this.furnishedType,
       MinCarpetArea:this.minCarpet,MaxCarpetArea:this.maxCarpet
     }
-    this.route.navigate(['/mapview'],{queryParams:params})
+    this.route.navigate(['/property/mapview'],{queryParams:params})
     this.childToParentDataLoad.emit(objects)
 
   }

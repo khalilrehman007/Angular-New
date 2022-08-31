@@ -20,6 +20,7 @@ import { NgxSliderModule } from "@angular-slider/ngx-slider";
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { PropertyDetailComponent } from './property-detail/property-detail.component';
 import { ViewmapComponent } from './viewmap/viewmap.component';
+import {NgChartsModule} from "ng2-charts";
 
 @NgModule({
   declarations: [
@@ -33,7 +34,7 @@ import { ViewmapComponent } from './viewmap/viewmap.component';
     PropertyRoutingModule,
     CommonFilesModule,
     BreadcrumbsModule,
-
+    NgChartsModule,
     FormsModule,
     ReactiveFormsModule,
     MatFormFieldModule,

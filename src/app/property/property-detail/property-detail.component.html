@@ -125,10 +125,10 @@
                             <div ngClass="topkey-highlights">
                                 <h6>{{propertyDetailData.typeDescription}}</h6>
                                 <div ngClass="property-details-highlights">
-                                    <span ngClass="bed">
+                                    <span ngClass="bed" *ngIf="propertyDetailData.bedrooms != 0">
                                         <img src="{{bedsvg}}" alt="">{{propertyDetailData.bedrooms}} Beds
                                     </span>
-                                    <span ngClass="bath">
+                                    <span ngClass="bath" *ngIf="propertyDetailData.bathrooms != 0">
                                         <img src="{{bathsvg}}" alt="">{{propertyDetailData.bathrooms}} Bath
                                     </span>
                                     <span ngClass="area">
@@ -202,11 +202,11 @@
                                         <mat-icon>trending_up</mat-icon>
                                     </span> 40%</p>
                             </div>
-                            <!-- <div ngClass="price-chart-trends">
-                                <canvas baseChart width="400" height="400" [type]="'line'" [data]="lineChartData"
-                                    [options]="lineChartOptions" [legend]="false">
+                            <div ngClass="price-chart-trends">
+                                <canvas baseChart width="400" height="400" [type]="'line'"
+                                        [data]="lineChartData" [options]="lineChartOptions" [legend]="false">
                                 </canvas>
-                            </div> -->
+                            </div>
                             <div ngClass="property_like-dislikes">
                                 <div ngClass="row">
                                     <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12">

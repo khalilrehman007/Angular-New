@@ -207,17 +207,33 @@ export class PropertyDetailComponent implements OnInit {
   chartLabel: any = []
   chartData: any = []
 
-  public lineChartData: any = {};
+
+  public lineChartData: any = {
+    labels: this.chartLabel,
+    datasets: [
+      {
+        data: this.chartData,
+        label: 'Series A',
+        fill: false,
+        tension: 0.5,
+        borderColor: '#8dbfde',
+        pointBackgroundColor: '#fff',
+        pointBorderColor: '#8dbfde',
+        pointHoverBackgroundColor: '#fff',
+        pointHoverBorderColor: '#1B1571',
+        backgroundColor: 'rgba(255,0,0,0.3)'
+      }
+    ]
+  }
+
   public lineChartOptions: ChartOptions<'line'> = {
     responsive: true,
     maintainAspectRatio: false,
     scales: {
-      x: {
-        ticks: {
+      x: {  ticks: {
           maxRotation: 70,
           minRotation: 70,
-        }
-      },
+        }},
     },
     plugins: {
       title: {
@@ -274,7 +290,7 @@ export class PropertyDetailComponent implements OnInit {
       let jsonParsDate: any = JSON.parse(jsonData);
       this.propertyDetail = jsonParsDate
       this.isload = true
-      
+
       this.map = new mapboxgl.Map({
         accessToken:  environment.mapbox.accessToken,
         container: 'property-near-map',

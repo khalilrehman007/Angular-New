@@ -141,6 +141,27 @@ export class ViewmapComponent implements OnInit {
     this.userId = userId;
   }
   childToParentDataLoad(data: any) {
+    let response: any = data
+    console.log(response)
+    this.type = response.type
+    this.PropertyCategoryId = response.PropertyCategoryId
+    this.Bedrooms = response.Bedrooms
+    this.Bathrooms = response.Bathrooms
+    this.RentTypeId = response.RentTypeId
+    this.PropertyListingTypeId = response.PropertyListingTypeId
+    this.PropertyTypeIds = response.PropertyTypeIds
+    this.PropertyAddress = response.PropertyAddress
+    this.PriceStart = response.PriceStart
+    this.PriceEnd = response.PriceEnd
+    this.page = response.CurrentPage
+    this.KeyWords = response.KeyWords
+    this.PropertyFeatureIds = response.PropertyFeatureIds
+    this.MinCarpetArea = response.MinCarpetArea
+    this.MaxCarpetArea = response.MaxCarpetArea
+    this.FurnishingTypeId = response.FurnishingTypeId
+    this.videoTourSorting = response.videoTourSorting
+
+    this.selectedPropertyTypeName = null
     this.loadListingProperty(data);
   }
   getUser() {
@@ -264,6 +285,7 @@ export class ViewmapComponent implements OnInit {
       "PropertyCategoryId": this.PropertyCategoryId, "PriceStart": this.PriceStart, "PriceEnd": this.PriceEnd, "videoTour": this.videoTourSorting,
       "PropertyListingTypeId": this.PropertyListingTypeId, "SortedBy": this.sortedById, CurrentPage: this.page, DistrictIds: this.DistrictsId
     }
+    // console.log(params)
     this.loadListingProperty(params);
   }
   PropertySortBy: any = []
@@ -286,7 +308,8 @@ export class ViewmapComponent implements OnInit {
       "PropertyCategoryId": '', PriceStart: '', PriceEnd: '', Bedrooms: '', Bathrooms: '',
       "PropertyListingTypeId": '', CurrentPage: 1
     }
-    this.route.navigate(['/property/search'], { queryParams: params })
+
+    this.route.navigate(['/property/mapview'], { queryParams: params })
     this.loadListingProperty(object);
   }
   wishlistStatus: any;
