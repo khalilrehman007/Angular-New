@@ -428,6 +428,19 @@ export class HomepageComponent implements OnInit {
     } else {
       type = "";
     }
+
+    // let params: any = {
+    //   queryParams: {
+    //     type: type,
+    //     PropertyListingTypeId: temp.propertyListingTypeId ?? "",
+    //     CityID: temp.cityId ?? "",
+    //     CountryId: temp.countryId ?? "",
+    //     PropertyCategoryId: temp.propertyCategoryId ?? "",
+    //     PropertyTypeIds: temp.propertyTypeId ?? "",
+    //   }
+    // }
+    let propertyTypeId: any = [temp.propertyTypeId] ?? []
+
     let params: any = {
       queryParams: {
         type: type,
@@ -435,9 +448,9 @@ export class HomepageComponent implements OnInit {
         CityID: temp.cityId ?? "",
         CountryId: temp.countryId ?? "",
         PropertyCategoryId: temp.propertyCategoryId ?? "",
-        PropertyTypeIds: temp.propertyTypeId ?? "",
+        PropertyTypeIds: JSON.stringify(propertyTypeId)
       }
-    }
+    };
     this.route.navigate(['/property/search'], params)
   }
   getUser() {
