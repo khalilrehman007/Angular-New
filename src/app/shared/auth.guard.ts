@@ -17,7 +17,7 @@ import {Location} from "@angular/common";
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-  previousUrl: string;
+  previousUrl: any;
   routeChange :any;
   constructor(public appService :AppService ,private service:AuthService,private route:Router,private notifyService : NotificationService){
 

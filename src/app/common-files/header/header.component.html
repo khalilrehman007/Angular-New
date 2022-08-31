@@ -1,0 +1,347 @@
+<header>
+    <div id="sidebar">
+        <ul ngClass="nav-tabs list-unstyled">
+            <li ngClass="toggle-li">
+                <button ngClass="sidebar-toggle" (click)="changeBodyClass()">
+                    <img src={{togglesvg}} ngClass="icon toggle_icn" alt="">
+                    <img src={{close}} ngClass="icon close_icn hide" alt="">
+                </button>
+            </li>
+            <li ngClass={{side.class}} *ngFor="let side of sidebar">
+                <a routerLink="/{{side.link}}">
+                    <img src={{side.src}} ngClass="icon" alt="">
+                    <span ngClass="side-nav-text">{{side.text}}</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div id="main-header" ngClass="slide-left-bar">
+        <div ngClass="header-section">
+            <nav ngClass="navbar navbar-expand-xl">
+                <div ngClass="container-fluid">
+                    <a ngClass="navbar-brand" [routerLink]="['']"><img src="{{logo}}"></a>
+                    <button ngClass="navbar-toggler" type="button" (click)="clickEvent1()">
+                        <span ngClass="navbar-linebars"></span>
+                        <span ngClass="navbar-linebars"></span>
+                        <span ngClass="navbar-linebars"></span>
+                    </button>
+                    <div ngClass="mobile-abs-items d-hide">
+                        <ul>
+                            <li ngClass="nav-item language-converter d-hide demo-english-desig">
+                                <select>
+                                    <option>English</option>
+                                </select>
+                            </li>
+                            <li ngClass="nav-item fav-li position-relative d-hide">
+                                <button (click)="clickEvent()"><svg width="20" height="19" viewBox="0 0 20 19"
+                                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M14.5835 0.597656C13.6451 0.612252 12.7272 0.874201 11.9224 1.35705C11.1177 1.8399 10.4546 2.52655 10.0001 3.34766C9.54565 2.52655 8.88257 1.8399 8.07782 1.35705C7.27307 0.874201 6.35517 0.612252 5.41679 0.597656C3.92091 0.662649 2.51155 1.31703 1.49661 2.41785C0.481677 3.51867 -0.0563307 4.97643 0.000128 6.47266C0.000128 10.2618 3.98846 14.4002 7.33346 17.206C8.0803 17.8336 9.02458 18.1777 10.0001 18.1777C10.9757 18.1777 11.9199 17.8336 12.6668 17.206C16.0118 14.4002 20.0001 10.2618 20.0001 6.47266C20.0566 4.97643 19.5186 3.51867 18.5036 2.41785C17.4887 1.31703 16.0793 0.662649 14.5835 0.597656ZM11.596 15.931C11.1493 16.3071 10.5841 16.5134 10.0001 16.5134C9.41616 16.5134 8.85097 16.3071 8.40429 15.931C4.12263 12.3385 1.66679 8.89182 1.66679 6.47266C1.60983 5.41825 1.9721 4.3841 2.6746 3.59574C3.37709 2.80738 4.36282 2.32878 5.41679 2.26432C6.47076 2.32878 7.45649 2.80738 8.15899 3.59574C8.86148 4.3841 9.22375 5.41825 9.16679 6.47266C9.16679 6.69367 9.25459 6.90563 9.41087 7.06191C9.56715 7.21819 9.77911 7.30599 10.0001 7.30599C10.2211 7.30599 10.4331 7.21819 10.5894 7.06191C10.7457 6.90563 10.8335 6.69367 10.8335 6.47266C10.7765 5.41825 11.1388 4.3841 11.8413 3.59574C12.5438 2.80738 13.5295 2.32878 14.5835 2.26432C15.6374 2.32878 16.6231 2.80738 17.3256 3.59574C18.0281 4.3841 18.3904 5.41825 18.3334 6.47266C18.3334 8.89182 15.8776 12.3385 11.596 15.9277V15.931Z"
+                                            fill="#192024" />
+                                    </svg>
+                                </button>
+                                <div class="fav-list-dropdown" [ngClass]="status ? 'active' : 'notactive'">
+                                    <div ngClass="shortlisted-header d-flex justify-content-spacebw">
+                                        <h4>Shortlisted Projects</h4>
+                                        <button (click)="clickEvent()"><img src="{{close}}"></button>
+                                    </div>
+                                    <div ngClass="shortlisted-inner-cntnt">
+                                        <mat-tab-group>
+                                            <mat-tab label="All ({{allCount}})">
+                                                <div ngClass="shortlisted-inner-details">
+                                                    <div ngClass="compare-btn-design">
+                                                        <a routerLink="/PropertyCompare"
+                                                            ngClass="compare-btn">Compare</a>
+                                                    </div>
+                                                </div>
+                                            </mat-tab>
+                                            <mat-tab label="Buy ({{buyCount}})">
+                                                <div ngClass="shortlisted-inner-details">
+                                                    <div ngClass="compare-btn-design">
+                                                        <a routerLink="/PropertyCompare"
+                                                            ngClass="compare-btn">Compare</a>
+                                                    </div>
+                                                </div>
+                                            </mat-tab>
+                                            <mat-tab label="Rent ({{rentCount}})">
+                                                <div ngClass="shortlisted-inner-details">
+                                                    <div ngClass="compare-btn-design">
+                                                        <a routerLink="/PropertyCompare"
+                                                            ngClass="compare-btn">Compare</a>
+                                                    </div>
+                                                </div>
+                                            </mat-tab>
+                                        </mat-tab-group>
+                                    </div>
+                                </div>
+                            </li>
+                            <li ngClass="nav-item signin-li d-hide">
+                                <div #noListItemTmpl *ngIf="user == null">
+                                    <a ngClass="nav-link" [routerLink]="['/login']"><img src="{{signinsvg}}"></a>
+                                </div>
+                                <div #noListItemTmpl *ngIf="user !== null">
+                                    <a ngClass="nav-link mat-profile-face" [routerLink]="['/profile']">
+                                        <mat-icon>face</mat-icon>
+                                    </a>
+                                </div>
+                                <!-- <a ngClass="nav-link" routerLink="/login"><img src="{{signinsvg}}"> Sign in</a> -->
+                            </li>
+                        </ul>
+                    </div>
+                    <div ngClass="collapse navbar-collapse justify-content-end" id="collapsibleNavbar"
+                        [ngClass]="status1 ? 'show' : 'noshow'">
+                        <ul ngClass="navbar-nav">
+                            <li ngClass="nav-item">
+                                <a ngClass="nav-link blue-bordered-btn" routerLink="/valuation">
+                                    Property Valuation <span ngClass="ai-tag">AI</span>
+                                </a>
+                            </li>
+                            <li ngClass="nav-item sell-or-rent-property">
+                                <a ngClass="nav-link blue-bordered-btn" [routerLink]="['/sellrent']">
+                                    Sell or Rent Property <mat-icon>verified_user</mat-icon>
+                                </a>
+                            </li>
+                            <li ngClass="nav-item">
+                                <a ngClass="nav-link blue-bordered-btn"
+                                    href="https://dx1.in/data-Intelligence/dashboard/">
+                                    <span ngClass="ai-tag">AI</span> Data Intelligence <span ngClass="icon-di"><img
+                                            src="{{chartsvg}}"></span>
+                                </a>
+                            </li>
+                            <li ngClass="nav-item classified">
+                                <a ngClass="nav-link blue-bordered-btn" href="http://dx1.in/classified">
+                                    Classified <mat-icon>home</mat-icon>
+                                </a>
+                            </li>
+                            <li ngClass="nav-item language-converter tm-hide demo-english-design">
+                                <select>
+                                    <option>English</option>
+                                    <!-- <option>Arabic</option> -->
+                                </select>
+                            </li>
+                            <li ngClass="nav-item fav-li position-relative tm-hide" *ngIf="userData != ''">
+                                <button (click)="clickEvent()"><svg width="20" height="19" viewBox="0 0 20 19"
+                                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M14.5835 0.597656C13.6451 0.612252 12.7272 0.874201 11.9224 1.35705C11.1177 1.8399 10.4546 2.52655 10.0001 3.34766C9.54565 2.52655 8.88257 1.8399 8.07782 1.35705C7.27307 0.874201 6.35517 0.612252 5.41679 0.597656C3.92091 0.662649 2.51155 1.31703 1.49661 2.41785C0.481677 3.51867 -0.0563307 4.97643 0.000128 6.47266C0.000128 10.2618 3.98846 14.4002 7.33346 17.206C8.0803 17.8336 9.02458 18.1777 10.0001 18.1777C10.9757 18.1777 11.9199 17.8336 12.6668 17.206C16.0118 14.4002 20.0001 10.2618 20.0001 6.47266C20.0566 4.97643 19.5186 3.51867 18.5036 2.41785C17.4887 1.31703 16.0793 0.662649 14.5835 0.597656ZM11.596 15.931C11.1493 16.3071 10.5841 16.5134 10.0001 16.5134C9.41616 16.5134 8.85097 16.3071 8.40429 15.931C4.12263 12.3385 1.66679 8.89182 1.66679 6.47266C1.60983 5.41825 1.9721 4.3841 2.6746 3.59574C3.37709 2.80738 4.36282 2.32878 5.41679 2.26432C6.47076 2.32878 7.45649 2.80738 8.15899 3.59574C8.86148 4.3841 9.22375 5.41825 9.16679 6.47266C9.16679 6.69367 9.25459 6.90563 9.41087 7.06191C9.56715 7.21819 9.77911 7.30599 10.0001 7.30599C10.2211 7.30599 10.4331 7.21819 10.5894 7.06191C10.7457 6.90563 10.8335 6.69367 10.8335 6.47266C10.7765 5.41825 11.1388 4.3841 11.8413 3.59574C12.5438 2.80738 13.5295 2.32878 14.5835 2.26432C15.6374 2.32878 16.6231 2.80738 17.3256 3.59574C18.0281 4.3841 18.3904 5.41825 18.3334 6.47266C18.3334 8.89182 15.8776 12.3385 11.596 15.9277V15.931Z"
+                                            fill="#192024" />
+                                    </svg>
+                                </button>
+                                <div class="fav-list-dropdown" [ngClass]="status ? 'active' : 'notactive'">
+                                    <div ngClass="shortlisted-header d-flex justify-content-spacebw">
+                                        <h4>Shortlisted Projects</h4>
+                                        <button (click)="clickEvent()"><img src="{{close}}"></button>
+                                    </div>
+                                    <div ngClass="shortlisted-inner-cntnt">
+                                        <mat-tab-group (selectedTabChange)="getCountChange($event)">
+                                            <mat-tab label="All ({{allCount}})">
+                                                <div
+                                                    [ngClass]="wishlistingDataAll.length == 1 ? 'shortlisted-inner-details single-shortlisted-property' : 'shortlisted-inner-details'">
+                                                    <form>
+                                                        <div ngClass="shortlisted-project-cntnt position-relative"
+                                                            *ngFor="let list of wishlistingDataAll">
+                                                            <div ngClass="property-selection-div">
+                                                                <div ngClass="selection-checkbox-selector"
+                                                                    *ngIf="wishlistingDataAll.length > 1">
+                                                                    <input type="checkbox" value="{{list.id}}"
+                                                                        (click)="allFormCheckbox(list.id,list.propertyListingTypeId)">
+                                                                    <button ngClass="cstm-selection-btn"></button>
+                                                                </div>
+                                                                <div ngClass="shortlisted-white-box">
+                                                                    <div ngClass="short-img">
+                                                                        <img src="{{list.src}}">
+                                                                    </div>
+                                                                    <div ngClass="short-cntnt">
+                                                                        <h2>{{list.price}} {{list.currency}} <small
+                                                                                *ngIf="list.rentType != ''">/{{list.rentType}}</small>
+                                                                        </h2>
+                                                                        <h4>{{list.title}}</h4>
+                                                                        <p>{{list.propertyType}}</p>
+                                                                        <address>{{list.propertyAddress}}</address>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div ngClass="delete-property-div">
+                                                                <button ngClass="delete-btn"
+                                                                    (click)="removeFavorite(list.id)"><img
+                                                                        src="{{trash}}"></button>
+                                                            </div>
+                                                        </div>
+                                                        <div ngClass="compare-btn-design">
+                                                            <a (click)="compareProceed('all')"
+                                                                *ngIf="wishlistingDataAll.length > 1"
+                                                                ngClass="compare-btn">Compare</a>
+                                                        </div>
+                                                    </form>
+                                                    <p *ngIf="wishlistingDataAll.length == 0">It seems you have not
+                                                        shortlisted any property</p>
+                                                </div>
+                                            </mat-tab>
+                                            <mat-tab label="Rent ({{rentCount}})">
+                                                <div
+                                                    [ngClass]="wishlistingDataRent.length == 1 ? 'shortlisted-inner-details single-shortlisted-property' : 'shortlisted-inner-details'">
+                                                    <div ngClass="shortlisted-project-cntnt position-relative"
+                                                        *ngFor="let list of wishlistingDataRent">
+                                                        <div ngClass="property-selection-div">
+                                                            <div ngClass="selection-checkbox-selector"
+                                                                *ngIf="wishlistingDataRent.length > 1">
+                                                                <input type="checkbox" value="{{list.id}}"
+                                                                    (click)="rentFormCheckbox(list.id)">
+                                                                <button ngClass="cstm-selection-btn"></button>
+                                                            </div>
+                                                            <div ngClass="shortlisted-white-box">
+                                                                <div ngClass="short-img">
+                                                                    <img src="{{list.src}}">
+                                                                </div>
+                                                                <div ngClass="short-cntnt">
+                                                                    <h2>{{list.price}} {{list.currency}} <small
+                                                                            *ngIf="list.rentType != ''">/{{list.rentType}}</small>
+                                                                    </h2>
+                                                                    <h4>{{list.title}}</h4>
+                                                                    <p>{{list.propertyType}}</p>
+                                                                    <address>{{list.propertyAddress}}</address>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div ngClass="delete-property-div">
+                                                            <button ngClass="delete-btn"
+                                                                (click)="removeFavorite(list.id)"><img
+                                                                    src="{{trash}}"></button>
+                                                        </div>
+                                                    </div>
+                                                    <div ngClass="compare-btn-design">
+                                                        <a (click)="compareProceed('rent')"
+                                                            *ngIf="wishlistingDataRent.length > 1"
+                                                            ngClass="compare-btn">Compare</a>
+                                                    </div>
+                                                    <p *ngIf="wishlistingDataRent.length == 0">It seems you have not
+                                                        shortlisted any property</p>
+                                                </div>
+                                                <p *ngIf="wishlistingDataRent.length == 0">It seems you have not
+                                                    shortlisted any property</p>
+                                            </mat-tab>
+                                            <mat-tab label="Buy ({{buyCount}})">
+                                                <div
+                                                    [ngClass]="wishlistingDataBuy.length == 1 ? 'shortlisted-inner-details single-shortlisted-property' : 'shortlisted-inner-details'">
+                                                    <div ngClass="shortlisted-project-cntnt position-relative"
+                                                        *ngFor="let list of wishlistingDataBuy">
+                                                        <div ngClass="property-selection-div">
+                                                            <div ngClass="selection-checkbox-selector"
+                                                                *ngIf="wishlistingDataBuy.length > 1">
+                                                                <input type="checkbox" value="{{list.id}}"
+                                                                    (click)="buyFormCheckbox(list.id)">
+                                                                <button ngClass="cstm-selection-btn"></button>
+                                                            </div>
+                                                            <div ngClass="shortlisted-white-box">
+                                                                <div ngClass="short-img">
+                                                                    <img src="{{list.src}}">
+                                                                </div>
+                                                                <div ngClass="short-cntnt">
+                                                                    <h2>{{list.price}} {{list.currency}} <small
+                                                                            *ngIf="list.rentType != ''">/{{list.rentType}}</small>
+                                                                    </h2>
+                                                                    <h4>{{list.title}}</h4>
+                                                                    <p>{{list.propertyType}}</p>
+                                                                    <address>{{list.propertyAddress}}</address>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div ngClass="delete-property-div">
+                                                            <button ngClass="delete-btn"
+                                                                (click)="removeFavorite(list.id)"><img
+                                                                    src="{{trash}}"></button>
+                                                        </div>
+                                                    </div>
+                                                    <div ngClass="compare-btn-design">
+                                                        <a (click)="compareProceed('buy')"
+                                                            *ngIf="wishlistingDataBuy.length > 1"
+                                                            ngClass="compare-btn">Compare</a>
+                                                    </div>
+                                                    <p *ngIf="wishlistingDataBuy.length == 0">It seems you have not
+                                                        shortlisted any property</p>
+                                                </div>
+                                            </mat-tab>
+                                        </mat-tab-group>
+                                    </div>
+                                </div>
+                                <button (click)="clickEvent()" ngClass="overlay_dropdown-btn"></button>
+                            </li>
+                            <li ngClass="nav-item position-relative notification_header-list" *ngIf="userData != ''">
+                                <button (click)="clickEvent3()">
+                                    <mat-icon>notifications_none</mat-icon>
+                                </button>
+                                <div class="notifivation-list-dropdown" [ngClass]="status3 ? 'active' : 'notactive'">
+                                    <div ngClass="shortlisted-header d-flex justify-content-spacebw">
+                                        <h4>Notifications</h4>
+                                        <button (click)="clickEvent3()"><img src="{{close}}"></button>
+                                    </div>
+                                    <div ngClass="notifivation-inner-cntnt" *ngIf="notificationData.length > 0">
+                                        <ul ngClass="list-unstyled">
+                                            <li ngClass="position-relative" *ngFor="let item of notificationData">
+                                                <p>{{item.value.Title}}
+                                                    <span
+                                                        ngClass="notifiction_time">{{getTime(item.value.NotificationDateTime)}}</span>
+                                                </p>
+                                                <p>{{item.value.Body}}</p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <button (click)="clickEvent3()" ngClass="overlay_dropdown-btn"></button>
+                            </li>
+                            <li ngClass="nav-item signin-li tm-hide">
+                                <div #noListItemTmpl *ngIf="user == null">
+                                    <a ngClass="nav-link" [routerLink]="['/login']"><img src="{{signinsvg}}"> Sign in
+                                    </a>
+                                </div>
+                                <div #noListItemTmpl *ngIf="user !== null">
+                                    <a ngClass="nav-link" [routerLink]="['/profile']">{{user.fullName}} </a>
+                                </div>
+                                <!-- <a ngClass="nav-link" routerLink="/login"><img src="{{signinsvg}}"> Sign in</a> -->
+                            </li>
+                            <li ngClass="nav-item signin-li logout">
+                                <div #noListItemTmpl *ngIf="user !== null">
+                                    <a ngClass="nav-link" (click)="logOutPopup(content)"> Logout </a>
+                                </div>
+                            </li>
+                            <li ngClass="nav-item aed-li">
+                                <button class="nav-link aed-sq" (click)="clickEvent2()"><img src="{{flagsvg}}"> AED |
+                                    Sqft</button>
+                                <!-- <div class="country_list-dropdown" [ngClass]="status2 ? 'active' : 'notactive'">
+                    <button (click)="clickEvent2()"><img src="{{close}}"></button>
+                    <div ngClass="countries_dropdown-list" *ngFor="let data of headerCountries">
+                      <ul ngClass="list-unstyled">
+                        <li><img src="{{flagsvg}}">{{data.currency}}</li>
+                      </ul>
+                    </div>
+                  </div> -->
+                                <button (click)="clickEvent2()" ngClass="overlay_dropdown-btn"></button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <div ngClass="logout-modal">
+        <ng-template #content let-modal>
+            <div class="modal-body logout-modal-design">
+                <div ngClass="logout-banner-popup">
+                    <img src="{{logoutimg}}">
+                </div>
+                <div ngClass="logout-banner-cntnt text-center">
+                    <h4>Are you sure you want to log out?</h4>
+                    <p>We will miss you come back soon!</p>
+                </div>
+                <div ngClass="logout-banner-footer">
+                    <button type="button" class="btn-cancel" aria-label="Close"
+                        (click)="modal.dismiss('Cross click')">Cancel</button>
+                    <button #noListItemTmpl *ngIf="user !== null" (click)="modal.dismiss('Cross click')">
+                        <a ngClass="nav-link" (click)="logout()"> Logout </a>
+                    </button>
+                </div>
+            </div>
+        </ng-template>
+    </div>
+    <div ngClass="overlay_counter" (click)="changeBodyClass()"></div>
+</header>

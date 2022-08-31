@@ -63,10 +63,10 @@ export class AppService {
   OvaluateFeatures() {
     return this.http.get(this.apiurl + 'OvaluateFeatures');
   }
-  LoadDashboardData(id) {
+  LoadDashboardData(id:any) {
     return this.http.get(this.apiurl + 'Dashboard/' + id, { headers: this.headers });
   }
-  LoadListing(data) {
+  LoadListing(data:any) {
     return this.http.post(this.apiurl + 'MyListings', data, { headers: this.headers });
   }
   LoadCities(id: number) {
@@ -138,10 +138,10 @@ export class AppService {
   LoadPropertyListingTypes() {
     return this.http.get(this.apiurl + 'PropertyListingTypes');
   }
-  LoadListingDashboard(data) {
+  LoadListingDashboard(data:any) {
     return this.http.post(this.apiurl + 'ListingDashboard/', data, { headers: this.headers });
   }
-  valuationDashboard(id) {
+  valuationDashboard(id:any) {
     return this.http.get(this.apiurl + 'ValuationDashboard/' + id, { headers: this.headers });
   }
   LoadValuationListing(data: any) {
@@ -150,7 +150,7 @@ export class AppService {
   LoadPropertyListingStatus() {
     return this.http.get(this.apiurl + 'PropertyListingStatus');
   }
-  LoadProfessionalAndListingType(professionalTypeId, listingTypeId) {
+  LoadProfessionalAndListingType(professionalTypeId:any, listingTypeId:any) {
     return this.http.get(this.apiurl + 'PropertyListingPackagesByProfessionalAndListingType?professionalTypeId=' + professionalTypeId + '&listingTypeId=' + listingTypeId);
   }
   LoadTenantTypes() {
@@ -305,19 +305,19 @@ export class AppService {
   NearPlaces(id: any) {
     return this.http.get(this.apiurl + 'NearPlaces/' + id);
   }
-  FindCompanies(data) {
+  FindCompanies(data:any) {
     return this.http.post(this.apiurl + 'FindCompanies', data);
   }
-  DisplayAgent(data) {
+  DisplayAgent(data:any) {
     return this.http.post(this.apiurl + 'DisplayAgent', data);
   }
-  // DisplayCompany(data) {
+  // DisplayCompany(data:any) {
   //   return this.http.post(this.apiurl + 'DisplayCompany', data);
   // }
   DisplayCompany(id: any) {
     return this.http.get(this.apiurl + 'DisplayCompany?companyId=' + id);
   }
-  AgentAutoCompleteSearch(data) {
+  AgentAutoCompleteSearch(data:any) {
     return this.http.post(this.apiurl + 'AgentAutoCompleteSearch', data);
   }
   CompanyLocationAutoCompleteSearch(data: any) {
@@ -375,16 +375,16 @@ export class AppService {
     return this.http.get(this.apiurl + 'MyActivityPropertyListingViewCount?UserId=' + id,{ headers: this.headers });
   }
 
-  MyActivityPropertyListingView(data) {
+  MyActivityPropertyListingView(data:any) {
     return this.http.post(this.apiurl + 'MyActivityPropertyListingView', data, { headers: this.headers });
   }
-  MyActivityAgentView(data) {
+  MyActivityAgentView(data:any) {
     return this.http.post(this.apiurl + 'MyActivityAgentView', data, { headers: this.headers });
   }
   MyActivityEnquiredCount(id: any) {
     return this.http.get(this.apiurl + 'MyActivityEnquiredCount?loginUserId=' + id,{ headers: this.headers });
   }
-  MyActivityEnquired(data) {
+  MyActivityEnquired(data:any) {
     return this.http.post(this.apiurl + 'MyActivityEnquired', data, { headers: this.headers });
   }
   PropertyTransactionTypes() {

@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { NotificationService } from './service/notification.service'
 import { getMessaging, getToken, onMessage } from "firebase/messaging";
+import { data } from 'jquery';
 
 @Component({
   selector: 'app-root',

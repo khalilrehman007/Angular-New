@@ -15,11 +15,11 @@ export class NotificationService {
   showError(message:any, title:any){
       this.toastr.error(message, title);
   }
-  showInfo(message, title){
+  showInfo(message:any, title:any){
     this.toastr.info(message, title)
   }
 
-  showWarning(message, title){
+  showWarning(message:any, title:any){
     this.toastr.warning(message, title)
   }
 }

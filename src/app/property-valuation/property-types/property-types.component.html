@@ -1,0 +1,504 @@
+<app-header2></app-header2>
+<section ngClass="property-valuation-sec">
+    <div ngClass="listing-container full-width">
+        <div ngClass="heading-title-sec text-center">
+            <h2>Property Valuation</h2>
+            <p>Make sure you filled in all the necessary fields and have uploaded all the required files.</p>
+        </div>
+        <div ngClass="listing-property-form-sec">
+            <div ngClass="listing-property-ul">
+                <mat-list>
+                    <mat-list-item ngClass="active"> <a routerLink=""><span ngClass="">1</span> Details</a>
+                    </mat-list-item>
+                    <mat-list-item ngClass="active"><a routerLink=""><span ngClass="">2</span> Type</a></mat-list-item>
+                    <mat-list-item ngClass="disabled"> <a routerLink=""><span ngClass="">3</span> Documents</a>
+                    </mat-list-item>
+                    <mat-list-item ngClass="disabled"> <a routerLink=""><span ngClass="">4</span> Review</a>
+                    </mat-list-item>
+                    <mat-list-item ngClass="disabled"> <a routerLink=""><span ngClass="">5</span> Certificate Type</a>
+                    </mat-list-item>
+                    <mat-list-item ngClass="disabled"> <a routerLink=""><span ngClass="">6</span> Payment</a>
+                    </mat-list-item>
+                    <mat-list-item ngClass="disabled"> <a routerLink=""><span ngClass="">7</span> Download Report</a>
+                    </mat-list-item>
+                </mat-list>
+            </div>
+            <div ngClass="list-property-content">
+                <div ngClass="list-property-body">
+                    <form [formGroup]="propertyTypeForm">
+                        <div ngClass="form-border-wrapper">
+                            <div ngClass="list-property-header">
+                                <h5 ngClass="h5-heading">Property Type</h5>
+                                <p>Please provide your propety type for the valuation</p>
+                            </div>
+                            <div ngClass="deed-numbers">
+                                <div ngClass="row">
+                                    <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+                                        <div ngClass="block-wrapper mb-4">
+                                            <label class="h6-design">Property Category <span
+                                                    ngClass="required-span">*</span></label>
+                                            <div class="checkbox-flex-box two-column max-240">
+                                                <div class="checkbox-design position-relative" (click)="loadType(1)">
+                                                    <input type="radio" id="Residential" name="property-cateogary"
+                                                        value="Residential" *ngIf="formData.PropertyCategoryId == 1"
+                                                        checked>
+                                                    <input type="radio" id="Residential" name="property-cateogary"
+                                                        value="Residential" *ngIf="formData.PropertyCategoryId != 1">
+                                                    <button class="checkbox-btn">Residential</button>
+                                                </div>
+                                                <div class="checkbox-design position-relative" (click)="loadType(2)">
+                                                    <input type="radio" id="Commercial" name="property-cateogary"
+                                                        value="Commercial" *ngIf="formData.PropertyCategoryId == 2"
+                                                        checked>
+                                                    <input type="radio" id="Commercial" name="property-cateogary"
+                                                        value="Commercial" *ngIf="formData.PropertyCategoryId != 2">
+                                                    <button class="checkbox-btn">Commercial</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+                                        <div ngClass="block-wrapper mb-4 select-design">
+                                            <label class="h6-design">Type of Property <span
+                                                    ngClass="required-span">*</span></label>
+                                            <mat-form-field appearance="fill">
+                                                <mat-label>Select Property Type</mat-label>
+                                                <mat-select [(value)]="formData.PropertyTypeId"
+                                                    (selectionChange)="valuationPurpose($event)">
+                                                    <mat-option *ngFor="let item of propertyType" [value]="item.id">
+                                                        {{item.typeDescription}}
+                                                    </mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div *ngIf="typeSelected">
+                                <div ngClass="row">
+                                    <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+                                        <div ngClass="block-wrapper mb-4 select-design">
+                                            <label class="h6-design">Purpose of Valuation <span
+                                                    ngClass="required-span">*</span></label>
+                                            <mat-form-field appearance="fill">
+                                                <mat-label>Select The Purpose</mat-label>
+                                                <mat-select [(value)]="formData.ValuationPurposeId"
+                                                    (selectionChange)="onPurposeSelect($event)">
+                                                    <mat-option *ngFor="let item of purposeOfValuation"
+                                                        [value]="item.id">
+                                                        {{item.purposeDescription}}
+                                                    </mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                    <div ngClass="col-xl-6 col-lg-6 col-sm-12" *ngIf="!propertyData.hasUnits">
+                                        <div ngClass="block-wrapper mb-4">
+                                            <label class="h6-design">Property Current Status <span
+                                                    ngClass="required-span">*</span></label>
+                                            <div class="checkbox-flex-box three-column">
+                                                <div class="checkbox-design position-relative"
+                                                    (click)="propertyStatus(1, 'Owner Occupied')">
+                                                    <input type="radio" id="Owner Occupied" name="current-status"
+                                                        value="Owner Occupied" *ngIf="formData.PropertyStatusId  == 1"
+                                                        checked>
+                                                    <input type="radio" id="Owner Occupied" name="current-status"
+                                                        value="Owner Occupied" *ngIf="formData.PropertyStatusId  != 1">
+                                                    <button class="checkbox-btn">Owner Occupied</button>
+                                                </div>
+                                                <div class="checkbox-design position-relative"
+                                                    (click)="propertyStatus(2, 'Leased')">
+                                                    <input type="radio" id="Leased" name="current-status" value="Leased"
+                                                        *ngIf="formData.PropertyStatusId  == 2" checked>
+                                                    <input type="radio" id="Leased" name="current-status" value="Leased"
+                                                        *ngIf="formData.PropertyStatusId  != 2">
+                                                    <button class="checkbox-btn">Leased</button>
+                                                </div>
+                                                <div class="checkbox-design position-relative"
+                                                    (click)="propertyStatus(3, 'Vacant')">
+                                                    <input type="radio" id="Vacant" name="current-status" value="Vacant"
+                                                        *ngIf="formData.PropertyStatusId  == 3" checked>
+                                                    <input type="radio" id="Vacant" name="current-status" value="Vacant"
+                                                        *ngIf="formData.PropertyStatusId  != 3">
+                                                    <button class="checkbox-btn">Vacant</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+                                        <div ngClass="block-wrapper mb-4">
+                                            <label class="h6-design">{{propertyData.numberLabel}} <span
+                                                    ngClass="required-span">*</span></label>
+                                            <mat-form-field class="full-width input-design-2" appearance="fill">
+                                                <input matInput type="number"
+                                                    placeholder="Enter {{propertyData.numberLabel}} no e.g. 999"
+                                                    formControlName="apartmentNo">
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                    <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+                                        <div ngClass="block-wrapper mb-4">
+                                            <label class="h6-design">No. of Roads <span
+                                                    ngClass="required-span">*</span></label>
+                                            <div class="checkbox-flex-box flex-start six-column"
+                                                *ngIf="formData.NoOfRoads == 1">
+                                                <div class="checkbox-design position-relative" (click)="getRoads(1)">
+                                                    <input type="radio" id="roads" name="no-of-roads" value="roads"
+                                                        checked>
+                                                    <button class="checkbox-btn">1</button>
+                                                </div>
+                                                <div class="checkbox-design position-relative" (click)="getRoads(2)">
+                                                    <input type="radio" id="roads" name="no-of-roads" value="roads">
+                                                    <button class="checkbox-btn">2</button>
+                                                </div>
+                                                <div class="checkbox-design position-relative" (click)="getRoads(3)">
+                                                    <input type="radio" id="roads" name="no-of-roads" value="roads">
+                                                    <button class="checkbox-btn">3</button>
+                                                </div>
+                                            </div>
+                                            <div class="checkbox-flex-box flex-start six-column"
+                                                *ngIf="formData.NoOfRoads == 2">
+                                                <div class="checkbox-design position-relative" (click)="getRoads(1)">
+                                                    <input type="radio" id="roads" name="no-of-roads" value="roads">
+                                                    <button class="checkbox-btn">1</button>
+                                                </div>
+                                                <div class="checkbox-design position-relative" (click)="getRoads(2)">
+                                                    <input type="radio" id="roads" name="no-of-roads" value="roads"
+                                                        checked>
+                                                    <button class="checkbox-btn">2</button>
+                                                </div>
+                                                <div class="checkbox-design position-relative" (click)="getRoads(3)">
+                                                    <input type="radio" id="roads" name="no-of-roads" value="roads">
+                                                    <button class="checkbox-btn">3</button>
+                                                </div>
+                                            </div>
+                                            <div class="checkbox-flex-box flex-start six-column"
+                                                *ngIf="formData.NoOfRoads == 3">
+                                                <div class="checkbox-design position-relative" (click)="getRoads(1)">
+                                                    <input type="radio" id="roads" name="no-of-roads" value="roads">
+                                                    <button class="checkbox-btn">1</button>
+                                                </div>
+                                                <div class="checkbox-design position-relative" (click)="getRoads(2)">
+                                                    <input type="radio" id="roads" name="no-of-roads" value="roads">
+                                                    <button class="checkbox-btn">2</button>
+                                                </div>
+                                                <div class="checkbox-design position-relative" (click)="getRoads(3)">
+                                                    <input type="radio" id="roads" name="no-of-roads" value="roads"
+                                                        checked>
+                                                    <button class="checkbox-btn">3</button>
+                                                </div>
+                                            </div>
+                                            <div class="checkbox-flex-box flex-start six-column"
+                                                *ngIf="formData.NoOfRoads != 1 && formData.NoOfRoads != 2 && formData.NoOfRoads != 3">
+                                                <div class="checkbox-design position-relative" (click)="getRoads(1)">
+                                                    <input type="radio" id="roads" name="no-of-roads" value="roads">
+                                                    <button class="checkbox-btn">1</button>
+                                                </div>
+                                                <div class="checkbox-design position-relative" (click)="getRoads(2)">
+                                                    <input type="radio" id="roads" name="no-of-roads" value="roads">
+                                                    <button class="checkbox-btn">2</button>
+                                                </div>
+                                                <div class="checkbox-design position-relative" (click)="getRoads(3)">
+                                                    <input type="radio" id="roads" name="no-of-roads" value="roads">
+                                                    <button class="checkbox-btn">3</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+                                        <div ngClass="block-wrapper mb-4">
+                                            <label class="h6-design">Property Age <span
+                                                    ngClass="required-span">*</span></label>
+                                            <div ngClass="position-relative">
+                                                <mat-form-field class="full-width input-design-2" appearance="fill">
+                                                    <input matInput type="number" formControlName="constructionAge"
+                                                        placeholder="Enter costruction age e.g. 10"
+                                                        (input)="getValue()">
+                                                </mat-form-field>
+                                                <p ngClass="input-overlay-layer">Yrs.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div ngClass="col-xl-6 col-lg-6 col-sm-12" *ngIf="propertyData.hasElevation">
+                                        <div ngClass="block-wrapper mb-4">
+                                            <label class="h6-design">Elevation <span
+                                                    ngClass="required-span">*</span></label>
+                                            <mat-form-field class="full-width input-design-2" appearance="fill">
+                                                <input matInput type="text"
+                                                    placeholder="Enter plot elevation e.g. B+G+10"
+                                                    formControlName="elevation" (keypress)="getKey($event)"
+                                                    (input)="getElevation(false)">
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                    <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+                                        <div ngClass="block-wrapper mb-4">
+                                            <label class="h6-design">{{propertyData.typeDescription}} Size in Sq.Ft.
+                                                <span ngClass="required-span">*</span></label>
+                                            <div ngClass="position-relative">
+                                                <mat-form-field class="full-width input-design-2" appearance="fill">
+                                                    <input matInput type="number" formControlName="apartmentSize"
+                                                        placeholder="{{propertyData.typeDescription}} Size in Sq.Ft.">
+                                                </mat-form-field>
+                                                <p ngClass="input-overlay-layer">Sq. Ft.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div ngClass="col-xl-6 col-lg-6 col-sm-12" *ngIf="propertyData.hasBuildUpArea">
+                                        <div ngClass="block-wrapper mb-4">
+                                            <label class="h6-design">Buildup Area in Sq.
+                                                Ft. <span ngClass="required-span">*</span></label>
+                                            <div ngClass="position-relative">
+                                                <mat-form-field class="full-width input-design-2" appearance="fill">
+                                                    <input matInput type="number" formControlName="buildupArea"
+                                                        placeholder="Enter buildup area e.g. 9,000">
+                                                </mat-form-field>
+                                                <p ngClass="input-overlay-layer">Sq. Ft.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div ngClass="col-xl-6 col-lg-6 col-sm-12" *ngIf="propertyData.hasBed">
+                                        <div ngClass="block-wrapper mb-4 select-design">
+                                            <label class="h6-design">Bedroom</label>
+                                            <mat-form-field appearance="fill">
+                                                <mat-label>Select no. of bedroom</mat-label>
+                                                <mat-select [(value)]="formData.Bedrooms"
+                                                    (selectionChange)="getBeds($event)">
+                                                    <mat-option *ngFor="let listbedrooms of room"
+                                                        [value]="listbedrooms.value">
+                                                        {{listbedrooms.viewValue}}
+                                                    </mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                    <div ngClass="col-xl-6 col-lg-6 col-sm-12" *ngIf="propertyData.hasBath">
+                                        <div ngClass="block-wrapper mb-4 select-design">
+                                            <label class="h6-design">Bathroom</label>
+                                            <mat-form-field appearance="fill">
+                                                <mat-label>Select no. of bathroom</mat-label>
+                                                <mat-select [(value)]="formData.Bathrooms"
+                                                    (selectionChange)="getBathroom($event)">
+                                                    <mat-option *ngFor="let list of room" [value]="list.value">
+                                                        {{list.viewValue}}
+                                                    </mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12"
+                                        *ngIf="propertyData.hasFurnishing">
+                                        <div ngClass="block-wrapper mb-4">
+                                            <label class="h6-design">Furnishing Type</label>
+                                            <div class="checkbox-flex-box three-column button-same-select">
+                                                <div *ngFor="let item of furnishingType">
+                                                    <div class="checkbox-design position-relative"
+                                                        *ngIf="item.id == formData.FurnishingType"
+                                                        (click)="getFurnishingType(item.id,item.name)">
+                                                        <input type="radio" id="Furnished" name="furnishing-types"
+                                                            value="Furnished" checked>
+                                                        <button class="checkbox-btn">{{item.name}}</button>
+                                                    </div>
+                                                    <div class="checkbox-design position-relative"
+                                                        *ngIf="item.id != formData.FurnishingType"
+                                                        (click)="getFurnishingType(item.id,item.name)">
+                                                        <input type="radio" id="Furnished" name="furnishing-types"
+                                                            value="Furnished">
+                                                        <button class="checkbox-btn">{{item.name}}</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12" *ngIf="propertyData.hasFitting">
+                                        <div ngClass="block-wrapper mb-4">
+                                            <label class="h6-design">Fitting Type</label>
+                                            <div class="checkbox-flex-box four-column button-same-select">
+                                                <div *ngFor="let item of fittingType">
+                                                    <div class="checkbox-design position-relative"
+                                                        *ngIf="item.id == formData.FittingType"
+                                                        (click)="getFittingType(item.id,item.name)">
+                                                        <input type="radio" id="Furnished" name="fitting-types"
+                                                            value="Furnished" checked>
+                                                        <button class="checkbox-btn">{{item.name}}</button>
+                                                    </div>
+                                                    <div class="checkbox-design position-relative"
+                                                        *ngIf="item.id != formData.FittingType"
+                                                        (click)="getFittingType(item.id,item.name)">
+                                                        <input type="radio" id="Furnished" name="fitting-types"
+                                                            value="Furnished">
+                                                        <button class="checkbox-btn">{{item.name}}</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div ngClass="unit_types-sec-wrap" *ngIf="propertyData.hasUnits">
+                                    <div *ngFor="let item of unitHMTL">
+                                        <div ngClass="row" id="unit-wrapper-{{item.id}}" *ngIf="item.show">
+                                            <div ngClass="col-xl-3 col-lg-3 col-sm-12">
+                                                <div ngClass="block-wrapper mb-4 select-design">
+                                                    <label class="h6-design">UNIT TYPE <span
+                                                            ngClass="required">*</span></label>
+                                                    <mat-form-field appearance="fill">
+                                                        <mat-label>UNIT TYPE</mat-label>
+                                                        <mat-select>
+                                                            <mat-option *ngFor="let item of propertyUnits"
+                                                                [value]="item.id">
+                                                                {{item.name}}
+                                                            </mat-option>
+                                                        </mat-select>
+                                                    </mat-form-field>
+                                                </div>
+                                            </div>
+                                            <div ngClass="col-xl-3 col-lg-3 col-sm-12">
+                                                <div ngClass="block-wrapper mb-4">
+                                                    <label class="h6-design">NUMBER OF UNITS <span
+                                                            ngClass="required">*</span></label>
+                                                    <mat-form-field class="full-width input-design-2" appearance="fill">
+                                                        <input class="no-of-units" matInput type="number"
+                                                            placeholder="Eg. 9999999">
+                                                    </mat-form-field>
+                                                </div>
+                                            </div>
+                                            <div ngClass="col-xl-3 col-lg-3 col-sm-12">
+                                                <div ngClass="block-wrapper mb-4">
+                                                    <label class="h6-design">VACANT <span
+                                                            ngClass="required">*</span></label>
+                                                    <mat-form-field class="full-width input-design-2" appearance="fill">
+                                                        <input class="vacant" matInput type="number"
+                                                            placeholder="Eg. 9999999">
+                                                    </mat-form-field>
+                                                </div>
+                                            </div>
+                                            <div ngClass="col-xl-3 col-lg-3 col-sm-12">
+                                                <div ngClass="block-wrapper mb-4">
+                                                    <label class="h6-design">UNIT SIZE PER SQ.FT <span
+                                                            ngClass="required">*</span></label>
+                                                    <mat-form-field class="full-width input-design-2" appearance="fill">
+                                                        <input class="size-sq-ft" matInput type="number"
+                                                            placeholder="Eg. 9999999">
+                                                    </mat-form-field>
+                                                </div>
+                                            </div>
+                                            <div ngClass="col-xl-3 col-lg-3 col-sm-12">
+                                                <div ngClass="block-wrapper mb-4">
+                                                    <label class="h6-design">BEDROOM <span
+                                                            ngClass="required">*</span></label>
+                                                    <mat-form-field class="full-width input-design-2" appearance="fill">
+                                                        <input class="bedroom" matInput type="number"
+                                                            placeholder="Eg. 9999999">
+                                                    </mat-form-field>
+                                                </div>
+                                            </div>
+                                            <div ngClass="col-xl-3 col-lg-3 col-sm-12">
+                                                <div ngClass="block-wrapper mb-4">
+                                                    <label class="h6-design">RENT VALUE PER YEAR<span
+                                                            ngClass="required">*</span></label>
+                                                    <mat-form-field class="full-width input-design-2" appearance="fill">
+                                                        <input class="rent-value" matInput type="number"
+                                                            placeholder="Eg. 9999999">
+                                                    </mat-form-field>
+                                                </div>
+                                            </div>
+                                            <div ngClass="col-xl-3 col-lg-3 col-sm-12">
+                                                <div ngClass="unit_add-more" (click)="addUnits()">
+                                                    <button ngClass="add_unit-btn"><img src="{{plus}}">Add More
+                                                        Unit</button>
+                                                </div>
+                                            </div>
+                                            <div ngClass="col-xl-3 col-lg-3 col-sm-12" *ngIf="item.id != 1">
+                                                <div ngClass="unit_add-more" (click)="removeUnits(item.id)">
+                                                    <button ngClass="add_unit-btn"><img src="{{minus}}">Remove
+                                                        Unit</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="select-features mb-4" *ngIf="propertyData.hasPropertyFeature">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <label class="h6-design">Select Features</label>
+                                            <div class="inneR-border-wrap">
+                                                <div class="checkbox-flex-box autoflex-layout">
+                                                    <div *ngFor="let item of featuresData">
+                                                        <div class="checkbox-design position-relative"
+                                                            *ngIf="formData.PropertyFeatures && checkOldData(item.propertyFeatureId)"
+                                                            (click)="getFeaturesData(item.propertyFeatureId, item.propertyFeature.featureName)">
+                                                            <input type="checkbox" id={{item.propertyFeature.id}}
+                                                                name={{item.propertyFeature.featureName}}
+                                                                value={{item.propertyFeature.featureName}} checked>
+                                                            <button
+                                                                class="checkbox-btn">{{item.propertyFeature.featureName}}</button>
+                                                        </div>
+                                                        <div class="checkbox-design position-relative"
+                                                            *ngIf="formData.PropertyFeatures && !checkOldData(item.propertyFeatureId)"
+                                                            (click)="getFeaturesData(item.propertyFeatureId, item.propertyFeature.featureName)">
+                                                            <input type="checkbox" id={{item.propertyFeature.id}}
+                                                                name={{item.propertyFeature.featureName}}
+                                                                value={{item.propertyFeature.featureName}}>
+                                                            <button
+                                                                class="checkbox-btn">{{item.propertyFeature.featureName}}</button>
+                                                        </div>
+                                                        <div class="checkbox-design position-relative"
+                                                            *ngIf="!formData.PropertyFeatures"
+                                                            (click)="getFeaturesData(item.propertyFeatureId, item.propertyFeature.featureName)">
+                                                            <input type="checkbox" id={{item.propertyFeature.id}}
+                                                                name={{item.propertyFeature.featureName}}
+                                                                value={{item.propertyFeature.featureName}}>
+                                                            <button
+                                                                class="checkbox-btn">{{item.propertyFeature.featureName}}</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div ngClass="totel_iccum-annum" *ngIf="totalExpenseWrapper || propertyData.hasUnits">
+                                    <div ngClass="row">
+                                        <div ngClass="col-xl-6 col-lg-6 col-sm-12"
+                                            *ngIf="totalExpenseWrapper || !propertyData.hasUnits">
+                                            <div ngClass="block-wrapper mb-4">
+                                                <label class="h6-design">Total Income per Annum <span
+                                                        ngClass="required-span">*</span></label>
+                                                <mat-form-field class="full-width input-design-2" appearance="fill">
+                                                    <input matInput type="number" formControlName="income"
+                                                        placeholder="Enter totel income eg. 5,000,000">
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                        <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+                                            <div ngClass="block-wrapper mb-4">
+                                                <label class="h6-design">Totel Expense per Annum <span
+                                                        ngClass="required-span">*</span></label>
+                                                <mat-form-field class="full-width input-design-2" appearance="fill">
+                                                    <input matInput type="number" formControlName="expense"
+                                                        placeholder="Enter totel expense eg. 3,500,000">
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-right save-continue-sec">
+                                <mat-card-actions>
+                                    <a routerLink="/valuation/property-detail" class="back-btn">Back</a>
+                                </mat-card-actions>
+                                <mat-card-actions (click)="getData()">
+                                    <a class="save-continue-btn">Save & Continue</a>
+                                </mat-card-actions>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<app-loader *ngIf="showLoader"></app-loader>
+<app-erroralert [error]="error" (errorResponse)="errorResponse($event)" *ngIf="showError"></app-erroralert>
+<app-confirmationbox [message]="confirmMessage" (confirmResponse)="confirmResponse($event)" *ngIf="showConfirm">
+</app-confirmationbox>
