@@ -19,12 +19,14 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { NgxSliderModule } from "@angular-slider/ngx-slider";
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { PropertyDetailComponent } from './property-detail/property-detail.component';
+import { ViewmapComponent } from './viewmap/viewmap.component';
 
 @NgModule({
   declarations: [
     SearchComponent,
     PropertyfilterComponent,
-    PropertyDetailComponent
+    PropertyDetailComponent,
+    ViewmapComponent
   ],
   imports: [
     CommonModule,
