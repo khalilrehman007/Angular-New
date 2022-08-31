@@ -6,12 +6,16 @@
                 <h2>Welcome to Ovaluate</h2>
                 <p>Welcome back! Please enter your details.</p>
             </div>
+            <div *ngIf="submitted && validate['FirstName'].errors" class="alert-indicators">
+            </div>
             <mat-form-field class="full-width input-design" appearance="fill">
                 <mat-label>First Name</mat-label>
                 <input matInput type="text" formControlName="FirstName" placeholder="First Last" required ngModel>
             </mat-form-field>
             <div *ngIf="submitted && validate['FirstName'].errors" class="alert alert-danger">
                 <div *ngIf="validate['FirstName'].errors['required']">FirstName is required</div>
+            </div>
+            <div *ngIf="submitted && validate['LastName'].errors" class="alert-indicators">
             </div>
             <mat-form-field class="full-width input-design" appearance="fill">
                 <mat-label>Last Name</mat-label>
@@ -20,12 +24,16 @@
             <div *ngIf="submitted && validate['LastName'].errors" class="alert alert-danger">
                 <div *ngIf="validate['LastName'].errors['required']">Last Name is required</div>
             </div>
+            <div *ngIf="submitted && validate['Email'].errors" class="alert-indicators">
+            </div>
             <mat-form-field class="full-width input-design" appearance="fill">
                 <mat-label>Email</mat-label>
                 <input matInput type="email" formControlName="Email" required ngModel>
             </mat-form-field>
             <div *ngIf="submitted && validate['Email'].errors" class="alert alert-danger">
                 <div *ngIf="validate['Email'].errors['required']">Email is required</div>
+            </div>
+            <div *ngIf="submitted && validate['PhoneNumber'].errors" class="alert-indicators">
             </div>
             <mat-form-field class="full-width input-design" appearance="fill">
                 <mat-label>Phone</mat-label>
@@ -34,7 +42,8 @@
             <div *ngIf="submitted && validate['PhoneNumber'].errors" class="alert alert-danger">
                 <div *ngIf="validate['PhoneNumber'].errors['required']">Phone Number is required</div>
             </div>
-
+            <div *ngIf="submitted && validate['Password'].errors" class="alert-indicators">
+            </div>
             <mat-form-field class="full-width input-design padd-b-0" appearance="fill">
                 <mat-label>Password</mat-label>
                 <input matInput [type]="showPassword ? 'text' : 'password'" formControlName="Password" required ngModel>
