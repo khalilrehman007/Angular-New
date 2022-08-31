@@ -68,6 +68,7 @@ import { LawBlogComponent } from './pages/blog-category/law-blog/law-blog.compon
 import { MarketTrendsBlogComponent } from './pages/blog-category/market-trends-blog/market-trends-blog.component';
 import { PaymentPackagesComponent } from './pages/payment-packages/payment-packages.component';
 import { ComingsoomComponent } from './pages/comingsoom/comingsoom.component';
+import { DashboardReportsComponent } from './pages/dashboard-reports/dashboard-reports.component';
 
 // import {RoleGuardService} from "./role-guard-service.service";
 
@@ -141,6 +142,7 @@ const routes: Routes = [
   { path: "buy-properties", component: BuyPropertiesComponent },
   { path: "payment", component: PaymentPackagesComponent },
   { path: "coming-soon", component: ComingsoomComponent },
+  { path: "dashboard-reports", component: DashboardReportsComponent },
   { path: '**', pathMatch: 'full', component: PagenotfoundComponent },
 ];
 

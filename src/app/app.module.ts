@@ -119,6 +119,8 @@ import { ComingsoomComponent } from './pages/comingsoom/comingsoom.component';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { ConfirmationboxComponent } from './confirmationbox/confirmationbox.component';
+import { DashboardHeaderComponent } from './dashboard-header/dashboard-header.component';
+import { DashboardReportsComponent } from './pages/dashboard-reports/dashboard-reports.component';
 initializeApp(environment.firebase);
 
 
@@ -201,7 +203,9 @@ initializeApp(environment.firebase);
     ErroralertComponent,
     PaymentPackagesComponent,
     ComingsoomComponent,
-    ConfirmationboxComponent
+    ConfirmationboxComponent,
+    DashboardHeaderComponent,
+    DashboardReportsComponent
   ],
   imports: [
     BrowserModule,
