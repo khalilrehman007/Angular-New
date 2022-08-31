@@ -198,7 +198,7 @@ export class BuySearchComponent implements OnInit {
         , Bedrooms: '', Bathrooms: '', CurrentPage: 1, DistrictIds: JSON.stringify(this.DistrictsId), DistrictsValue: JSON.stringify(this.SearchKeyword)
       }
     };
-    this.route.navigate(['/search'], params)
+    this.route.navigate(['/property/search'], params)
 
   }
   // Search Code
