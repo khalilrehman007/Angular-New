@@ -13,10 +13,15 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { CityComponent } from './city/city.component';
+import { DetailsComponent } from './details/details.component';
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 @NgModule({
   declarations: [
-    ExploreComponent
+    ExploreComponent,
+    CityComponent,
+    DetailsComponent
   ],
   imports: [
     CommonModule,
@@ -30,7 +35,8 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     FormsModule,
     ReactiveFormsModule,
     MatAutocompleteModule,
-    BreadcrumbsModule
+    BreadcrumbsModule,
+    CarouselModule
   ]
 })
 export class ExploreModule { }

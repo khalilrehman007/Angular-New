@@ -9,7 +9,6 @@ const routes: Routes = [
   {path:"valuation", loadChildren:()=>import('./property-valuation/property-valuation.module').then(module => module.PropertyValuationModule),canActivate: [AuthGuard]},
   {path:"property", loadChildren:()=>import('./property/property.module').then(module => module.PropertyModule)},
   {path:"explore", loadChildren:()=>import('./explore/explore.module').then(module => module.ExploreModule)},
-  {path:"blog", loadChildren:()=>import('./blog/blog.module').then(module => module.BlogModule)}
 ];
 
 @NgModule({
