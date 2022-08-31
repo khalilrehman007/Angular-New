@@ -9,11 +9,13 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatTabsModule } from '@angular/material/tabs';
 import { BreadcrumbsModule } from '../breadcrumbs/breadcrumbs.module';
+import { BlogViewComponent } from './blog-view/blog-view.component';
 
 
 @NgModule({
   declarations: [
     BlogComponent,
+    BlogViewComponent
   ],
   imports: [
     CommonModule,
