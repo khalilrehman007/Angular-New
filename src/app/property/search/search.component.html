@@ -4,7 +4,7 @@
         <section [ngClass]="'rent-propoerties-main-sec slide-left-bar'">
             <div ngClass="properties-file-container-shadow">
                 <div ngClass="properties-file-container">
-                    <!-- <app-propertyfilter [totalRecord]="totalRecord" (childToParentDataLoad)="childToParentDataLoad($event)"></app-propertyfilter> -->
+                    <app-propertyfilter [totalRecord]="totalRecord" (childToParentDataLoad)="childToParentDataLoad($event)"></app-propertyfilter>
                 </div>
             </div>
             <div [ngClass]="'container_1280px'">
@@ -85,7 +85,7 @@
                                         <div ngClass="properties-list_cntnts position-relative">
                                             <div ngClass="properties-list_hdr d-flex justify-content-spacebw">
                                                 <div ngClass="property-price_detals cursor-pointer"
-                                                    [routerLink]="['/PropertDetailsPage']"
+                                                    [routerLink]="['/property/detail']"
                                                     [queryParams]="{id: list.id}">
                                                     <h4>{{list.propertyPrice}} {{list.currency}} <small
                                                             *ngIf="list.rentType != ''">/{{list.rentType}}</small></h4>
@@ -136,7 +136,7 @@
                                                 </div>
                                             </div>
 
-                                            <div ngClass="property-name_detals" [routerLink]="['/PropertDetailsPage']"
+                                            <div ngClass="property-name_detals" [routerLink]="['/property/detail']"
                                                 [queryParams]="{id: list.id}">
                                                 <h4>{{list.buildingName}}</h4>
                                                 <div ngClass="property-addresss">
