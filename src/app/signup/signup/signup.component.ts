@@ -19,6 +19,7 @@ export class SignupComponent implements OnInit {
   errorResponse(data: any) {
     this.showError = false;
   }
+  countriesList = new FormControl('+971');
   goggle = '../../../../assets/images/btns/google-1.svg'
   apple = '../../../../assets/images/btns/apple-1.svg'
   info = '../../../../assets/images/info.svg'
@@ -49,15 +50,14 @@ export class SignupComponent implements OnInit {
   public showPassword: boolean = false;
   checkLength() {
     let temp: any = this.signup.value.PhoneNumber;
-    if (temp.toString().length > 12) {
-      this.error = "Max length allows is 12"
+    if (temp.toString().length > 10) {
+      this.error = "Max length allows is 10"
       this.signup.patchValue({
         PhoneNumber: temp.toString().slice(0, -1)
       })
     }
   }
   callLogin() {
-
     this.auth2.attachClickHandler(this.signupElement.nativeElement, {},
       (googleAuthUser: any) => {
         console.log(googleAuthUser.getAuthResponse());
@@ -157,7 +157,8 @@ export class SignupComponent implements OnInit {
       temp.FirstName = this.signup.value.FirstName;
       temp.LastName = this.signup.value.LastName;
       temp.Email = this.signup.value.Email;
-      temp.PhoneNumber = this.signup.value.PhoneNumber;
+      let code:any = this.countriesList.value;
+      temp.PhoneNumber = code + this.signup.value.PhoneNumber;
       temp.Password = this.signup.value.Password;
       temp.HasProfessionalType = this.professionalCheck;
       if (temp.HasProfessionalType == true) {

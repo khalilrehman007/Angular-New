@@ -34,7 +34,7 @@
                 <div *ngIf="validate['Email'].errors['required']">Email is required</div>
             </div>
             <div ngClass="block-wrapper mb-4">
-                <label class="h6-design">Enter Phone of Property Owner<span
+                <label class="h6-design">Phone Number<span
                         ngClass="required-span">*</span></label>
                 <div ngClass="position-relative country-code-select-design">
                     <div *ngIf="submitted && validate['PhoneNumber'].errors" class="alert-indicators">
@@ -46,7 +46,7 @@
                         <div *ngIf="validate['PhoneNumber'].errors['required']">Phone Number is required</div>
                     </div>
                     <mat-form-field appearance="fill" class="countries-select">
-                        <mat-select>
+                        <mat-select [formControl]="countriesList">
                             <mat-option value="+971">+971</mat-option>
                             <mat-option value="+91">+91</mat-option>
                         </mat-select>
