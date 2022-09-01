@@ -298,6 +298,22 @@ export class ViewmapComponent implements OnInit {
     });
   }
   allSearch() {
+    this.type                 = ''
+    this.PropertyCategoryId   = ''
+    this.RentTypeId           = ''
+    this.PropertyListingTypeId =''
+    this.PropertyAddress       = ''
+    this.PriceStart            = 10
+    this.PriceEnd              = 50000000
+    this.Bedrooms              = ''
+    this.Bathrooms             =''
+    this.MinCarpetArea         =''
+    this.MaxCarpetArea        =''
+    this.FurnishingTypeId     =''
+    this.KeyWords             = []
+    this.PropertyTypeIds        = []
+    this.PropertyFeatureIds   = []
+
     let params: any = {
       type: '', "PropertyTypeIds": "[]", "PropertyAddress": '', "RentTypeId": '',
       "PropertyCategoryId": '', PriceStart: '', PriceEnd: '', Bedrooms: '', Bathrooms: '',
