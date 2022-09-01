@@ -1,7 +1,8 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import DatalabelsPlugin from 'chartjs-plugin-datalabels';
-import { ChartConfiguration, ChartData, ChartEvent, ChartType } from 'chart.js';
+import { ChartConfiguration, ChartData, ChartEvent, ChartType,Chart } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
+import {default as Annotation} from 'chartjs-plugin-annotation';
 
 @Component({
   selector: 'app-dashboard-reports',
@@ -10,11 +11,67 @@ import { BaseChartDirective } from 'ng2-charts';
 })
 export class DashboardReportsComponent implements OnInit {
   downloadreport = '../../../assets/images/icons/download-svg.svg'
+  togglesvg = '../../../assets/images/icons/toggle.svg'
+  logo = '../../../assets/images/logo.svg'
+  chartsvg = '../../../assets/images/Charts-nav.svg'
+  signinsvg = '../../../assets/images/user.svg'
+  flagsvg = '../../../assets/images/aed-fg.svg'
+  close = '../../../assets/images/icons/close.svg'
+  property = '../../../assets/images/shortlisted-img.png'
+  trash = '../../../assets/images/icons/Trash-dotted.svg'
+  logoutimg = '../../../assets/images/logout-popup-banner.png'
   @ViewChild(BaseChartDirective) chart: BaseChartDirective | undefined;
-  constructor() { }
+  constructor() {
+    Chart.register(Annotation)
+   }
 
   ngOnInit(): void {
   }
+  navdata = [
+    {
+      src: '../../assets/images/icons/login.svg',
+      class: 'nav-items sign-in',
+      text: 'Sign in',
+      link: '',
+    },
+    {
+      src: '../../assets/images/icons/ioi.svg',
+      class: 'nav-items buy',
+      text: 'Buy',
+      link: '/search/Buy',
+    },
+    {
+      src: '../../assets/images/icons/rent-icon.svg',
+      class: 'nav-items buy',
+      text: 'Rent',
+      link: '/search/Rent',
+    },
+    {
+      src: '../../assets/images/icons/sell.svg',
+      class: 'nav-items sell',
+      text: 'Sell',
+      link: '/sellrent',
+    },
+    {
+      src: '../../assets/images/icons/find-agents.svg',
+      class: 'nav-items find-agents',
+      text: 'Find Agents',
+      link: '/find-agent',
+    },
+    {
+      src: '../../assets/images/icons/world.svg',
+      class: 'nav-items guide',
+      text: 'Guide',
+      link: 'explore',
+    },
+    {
+      src: '../../assets/images/icons/book.svg',
+      class: 'nav-items blog',
+      text: 'Blog',
+      link: 'blogs',
+    }
+  ]
+
 
   // Pie
   public pieChartOptions: ChartConfiguration['options'] = {
@@ -232,6 +289,22 @@ export class DashboardReportsComponent implements OnInit {
   // Residential Supply Trend of the City by Year chart
 
   public RstyChartOptions: ChartConfiguration['options'] = {
+    scales: {
+      x: {
+        ticks: {
+          font: {
+            size: 10,
+          }
+        }
+      },
+      y: {
+        ticks: {
+          font: {
+            size: 10,
+          }
+        }
+      },
+    },
     indexAxis: 'y',
     interaction: {
       intersect: false
@@ -243,6 +316,9 @@ export class DashboardReportsComponent implements OnInit {
         display: true,
         text: 'No of Units',
         position: 'left',
+        font: {
+          size: 10,
+        }
       },
       legend: {
         position: 'right',
@@ -284,5 +360,209 @@ export class DashboardReportsComponent implements OnInit {
       },
     ]
   };
+    // Average Service Charges of the City
+    public AservicebarChartOptions: ChartConfiguration['options'] = {
+      scales: {
+        x: {
+          ticks: {
+            font: {
+              size: 10,
+            }
+          }
+        },
+        y: {
+          ticks: {
+            font: {
+              size: 10,
+            }
+          }
+        },
+      },
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: {
+        intersect: false
+      },
+      plugins: {
+        legend: {
+          position: 'bottom',
+        },
+        datalabels: {
+          display: false,
+        },
+      },
+    };
+    public AservicebarChartType: ChartType = 'bar';
+    public AservicebarChartPlugins = [
+      DatalabelsPlugin
+    ];
+  
+    public AservicebarChartData: ChartData<'bar'> = {
+      labels: ["2016", "2017", "2018", "2019", "2020", "2021"],
+      datasets: [{
+        label: 'Villa',
+        data: [3.58, 3.59, 3.74, 3.55, 2.85, 2.94],
+        borderRadius: 5,
+        barPercentage: 0.9,
+        minBarLength: 10,
+        backgroundColor: "rgb(211, 219, 255)",
+        hoverBackgroundColor: [
+          "rgb(211, 219, 255)"
+        ]
+      }, {
+        label: 'Apartment',
+        data: [12.39, 12.61, 12.89, 13.00, 12.81, 13.39, 7],
+        borderRadius: 5,
+        barPercentage: 0.9,
+        minBarLength: 10,
+        backgroundColor: "rgb(89, 90, 212)",
+        hoverBackgroundColor: [
+          "rgb(89, 90, 212)"
+        ]
+      }]
+    };
 
+
+        // Average Occupancy Rate of the City
+        public AoccupacybarChartOptions: ChartConfiguration['options'] = {
+          scales: {
+            x: {
+              type: 'linear',
+              ticks: {
+                font: {
+                  size: 10,
+                }
+              }
+            },
+            y: {
+              ticks: {
+                font: {
+                  size: 10,
+                }
+              }
+            },
+          },
+          interaction: {
+            intersect: false
+          },
+          
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'right',
+            },
+            datalabels: {
+              display: false,
+            },
+          },
+        };
+        public AoccupacybarChartType: ChartType = 'bar';
+        public AoccupacybarChartPlugins = [
+          DatalabelsPlugin
+        ];
+      
+        public AoccupacybarChartData: ChartData<'bar'> = {
+          labels: ["2016", "2017", "2018", "2019", "2020", "2021", "2022"],
+          datasets: [{
+            label: 'Apartment',
+            data: [91.1, 90.1, 88.7, 85.5, 83.0, 84.6, 86.8],
+            borderRadius: 20,
+            barPercentage: 0.9,
+            minBarLength: 10,
+            backgroundColor: "rgb(89, 90, 212)",
+            hoverBackgroundColor: [
+              "rgb(89, 90, 212)"
+            ]
+          }]
+        };
+
+
+        // Average Occupancy Rate of the City
+        
+        public priceRadiolineChartData: ChartConfiguration['data'] = {
+          labels: ["0", "500", "1000", "1500", "2000", "2500",],
+          datasets: [{
+                  label: 'Apartment',
+                  backgroundColor: "rgb(89, 90, 212)",
+                  borderColor: '#595ad4',
+                  pointBorderColor: '#595ad4',
+                  pointBackgroundColor: '#595ad4',
+                  pointHoverBackgroundColor: '#595ad4',
+                  pointHoverBorderColor: '#595ad4',
+                  pointBorderWidth: 3,
+                  pointHoverRadius: 3,
+                  pointHoverBorderWidth: 1,
+                  pointRadius: 3,
+                  fill: false,
+                  borderWidth: 4,
+                  data: [4, 8, 6, 10, 8, 10],
+          }, {
+                  label: 'Villa',
+                  backgroundColor: "rgb(211, 219, 255)",
+                  pointBorderColor: "rgb(211, 219, 255)",
+                  pointBackgroundColor: "rgb(211, 219, 255)",
+                  pointHoverBackgroundColor: '#595ad4',
+                  pointHoverBorderColor: '#595ad4',
+                  pointBorderWidth: 3,
+                  pointHoverRadius: 3,
+                  pointHoverBorderWidth: 1,
+                  pointRadius: 3,
+                  fill: false,
+                  borderWidth: 4,
+                  data: [4, 8, 6, 10, 8, 10],
+          }, {
+                  label: 'Residential - General',
+                  backgroundColor: "rgb(140, 144, 221)",
+                  pointBorderColor: "rgb(140, 144, 221)",
+                  pointBackgroundColor: "rgb(140, 144, 221)",
+                  pointHoverBackgroundColor: '#595ad4',
+                  pointHoverBorderColor: '#595ad4',
+                  pointBorderWidth: 3,
+                  pointHoverRadius: 3,
+                  pointHoverBorderWidth: 1,
+                  pointRadius: 3,
+                  fill: false,
+                  borderWidth: 4,
+                  data: [4, 8, 6, 10, 8, 10],
+          }]
+        };
+        public priceRadiolineChartOptions: ChartConfiguration['options'] = {
+          scales: {
+            x: {
+              type: 'linear',
+              ticks: {
+                font: {
+                  size: 10,
+                }
+              }
+            },
+            y: {
+              ticks: {
+                font: {
+                  size: 10,
+                }
+              }
+            },
+          },
+          maintainAspectRatio: false,
+          responsive: true,
+          plugins: {
+            legend: {
+              position: 'bottom',
+            },
+            datalabels: {
+              display: false,
+            },
+          }
+}
+public priceRadiolineChartType: ChartType = 'line';
+status: boolean = false;
+clickEvent() {
+    this.status = !this.status;
+  }
+  status2: boolean = false;
+clickEvent2() {
+    this.status2 = !this.status2;
+  }
 }

@@ -1,4 +1,69 @@
-<app-dashboard-header></app-dashboard-header>
+<div class="light-theme">
+<div class="dashboard-header-wrap slide-left-bar">
+<div id="sidebar" [class]="status ? 'active' : 'notactive'">
+    <ul ngClass="nav-tabs list-unstyled">
+      <li ngClass="toggle-li">
+          <button ngClass="sidebar-toggle" (click)="clickEvent()">
+              <img src="{{togglesvg}}" ngClass="icon toggle_icn" alt="">
+              <img src="{{close}}" ngClass="icon close_icn hide" alt="">
+          </button>
+      </li>
+      <li *ngFor="let data of navdata" class="{{data.class}}">
+          <a routerLink="/{{data.link}}">
+              <img src={{data.src}} ngClass="icon" alt="">
+              <span ngClass="side-nav-text">{{data.text}}</span>
+          </a>
+      </li>
+  </ul>
+  </div>
+  <div class="container_1280px">
+    <div class="white-header-wrap">
+    <div class="d-flex justify-content-spacebw align-items-center">
+      <div class="dashboard-header-left">
+          <div class="logo-wrapper">
+          <a ngClass="navbar-brand" routerLink=""><img src="{{logo}}"></a>
+          </div>
+      </div>
+      <div class="dashboard-header-right">
+          <div class="dash-header-box">
+               <ul class="list-unstyled d-flex align-items-center">
+                  <li><a routerLink="">Reports</a></li>
+                  <li>
+                      <!-- <div ngbDropdown class="d-inline-block">
+                          <button type="button" class="btn" id="dropdownBasic1" ngbDropdownToggle>
+                            <span class="profile-name">Hi, Adam</span>
+                            <img src="" class="rounded-circle">
+                          </button>
+                          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                            <button ngbDropdownItem><a routerLink="">Dashboard</a></button>
+                            <button ngbDropdownItem><a routerLink="">Settings</a></button>
+                            <button ngbDropdownItem><a routerLink="">Profile</a></button>
+                            <button ngbDropdownItem><hr class="dropdown-divider"></button>
+                            <button ngbDropdownItem><a routerLink="">Log out</a></button>
+                          </div>
+                        </div> -->
+                        <div class="dropdown">
+                            <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" (click)="clickEvent2()">
+                                <span class="profile-name">Hi, Adam</span>
+                            <img src="../../../assets/images/icons/profile-icon.png" alt="mdo" width="32" height="32" class="rounded-circle">
+                            </a>
+                            <ul class="dropdown-menu text-small" [class]="status2 ? 'active' : 'notactive'">
+                            <li><a class="dropdown-item" href="#">Dashboard</a></li>
+                            <li><a class="dropdown-item" href="#">Settings</a></li>
+                            <li><a class="dropdown-item" href="#">Profile</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#">Log out</a></li>
+                            </ul>
+                        </div>
+                  </li>
+               </ul>
+          </div>
+      </div>
+    </div>
+    </div>
+  </div>
+  <div ngClass="overlay_counter"></div>
+  </div>
 <div class="dashboard-reports-inner-wrapper slide-left-bar">
     <div class="container_1280px">
         <div class="row">
@@ -11,10 +76,8 @@
                                     <h6>Date</h6>
                                 </div>
                                 <div class="card-body">
-                                    <div ngClass="block-wrapper input-design-four">
-                                        <mat-form-field class="example-full-width" appearance="fill">
-                                            <input type="date" matInput placeholder="DD/MM/YYYY" value="date">
-                                        </mat-form-field>
+                                    <div class="flatpickr mt-2">
+                                        <input type="date" name="" id="" class="form-control date-select" placeholder="DD/MM/YYYY">
                                     </div>
                                 </div>
                             </div>
@@ -24,21 +87,14 @@
                                 <div class="card-header">
                                     <h6>City</h6>
                                 </div>
-                                <!-- <div class="card-body">
-                                    <div ngClass="block-wrapper select-design-four">
-                                        <mat-form-field appearance="fill" class="select-design">
-                                            <mat-label>Select</mat-label>
-                                            <mat-select>
-                                                <mat-option value="Dubai">
-                                                    Dubai
-                                                </mat-option>
-                                                <mat-option value="Abu Dhabi">
-                                                    Abu Dhabi
-                                                </mat-option>
-                                            </mat-select>
-                                        </mat-form-field>
-                                    </div>
-                                </div> -->
+                                <div class="card-body">
+                                    <select class="nice-select form-control mt-2">
+                                        <option value="Dubai">Dubai</option>
+                                        <option value="Abu Dhabi">Abu Dhabi</option>
+                                        <option value="Ajman">Ajman</option>
+                                        <option value="Fujairah">Fujairah</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                         <div class="col-xl-4 mb-4">
@@ -47,19 +103,10 @@
                                     <h6>Type</h6>
                                 </div>
                                 <div class="card-body">
-                                    <div ngClass="block-wrapper select-design-four">
-                                        <mat-form-field appearance="fill" class="select-design">
-                                            <mat-label>All</mat-label>
-                                            <!-- <mat-select>
-                                                <mat-option value="Residential">
-                                                    Residential
-                                                </mat-option>
-                                                <mat-option value="Commercial">
-                                                    Commercial
-                                                </mat-option>
-                                            </mat-select> -->
-                                        </mat-form-field>
-                                    </div>
+                                    <select class="nice-select form-control mt-2">
+                                        <option value="Residential">Residential</option>
+                                        <option value="Commercial">Commercial</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -251,12 +298,6 @@
                     </div>
                     <div class="card-body">
 
-                        <div
-                            style="position: relative; height:20vh;overflow: hidden;margin: auto;display: flex;flex-direction: row;justify-content: center;align-items: center;">
-                            <div class="range-slider">
-                                <input class="range-slider__range" type="range">
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -272,9 +313,10 @@
                         </button>
                     </div>
                     <div class="card-body">
-
-                        <div style="position: relative; height:30vh; overflow: hidden;">
-                            <canvas id="service_chart_city"></canvas>
+                        <div class="chart average-service-chart">
+                            <canvas baseChart [data]="AservicebarChartData" [options]="AservicebarChartOptions"
+                                [plugins]="AservicebarChartPlugins" [type]="AservicebarChartType">
+                            </canvas>
                         </div>
                     </div>
                 </div>
@@ -288,8 +330,10 @@
                         </button>
                     </div>
                     <div class="card-body">
-                        <div style="position: relative; height:30vh; overflow: hidden;">
-                            <canvas id="appartment_occupancy"></canvas>
+                        <div class="chart average-occupacy-chart">
+                            <canvas baseChart [data]="AoccupacybarChartData" [options]="AoccupacybarChartOptions"
+                                [plugins]="AoccupacybarChartPlugins" [type]="AoccupacybarChartType">
+                            </canvas>
                         </div>
                     </div>
                 </div>
@@ -306,9 +350,12 @@
                         </button>
                     </div>
                     <div class="card-body">
-
-                        <div style="position: relative; height:30vh; overflow: hidden;">
-                            <canvas id="price_rent_ratio"></canvas>
+                        <div class="chart price-average-charts">
+                            <canvas baseChart
+                                [data]="priceRadiolineChartData"
+                                [options]="priceRadiolineChartOptions"
+                                [type]="priceRadiolineChartType">
+                            </canvas>
                         </div>
                     </div>
                 </div>
@@ -322,8 +369,12 @@
                         </button>
                     </div>
                     <div class="card-body">
-                        <div style="position: relative; height:30vh; overflow: hidden;">
-                            <canvas id="gross_rental_rate_city"></canvas>
+                        <div class="chart price-average-charts">
+                            <canvas baseChart
+                                [data]="priceRadiolineChartData"
+                                [options]="priceRadiolineChartOptions"
+                                [type]="priceRadiolineChartType">
+                            </canvas>
                         </div>
                     </div>
                 </div>
@@ -340,9 +391,12 @@
                         </button>
                     </div>
                     <div class="card-body">
-
-                        <div style="position: relative; height:30vh; overflow: hidden;">
-                            <canvas id="rent_price_city_trend"></canvas>
+                        <div class="chart price-average-charts">
+                            <canvas baseChart
+                                [data]="priceRadiolineChartData"
+                                [options]="priceRadiolineChartOptions"
+                                [type]="priceRadiolineChartType">
+                            </canvas>
                         </div>
                     </div>
                 </div>
@@ -356,12 +410,25 @@
                         </button>
                     </div>
                     <div class="card-body">
-                        <div style="position: relative; height:30vh; overflow: hidden;">
-                            <canvas id="sales_price_city_trend"></canvas>
+                        <div class="chart price-average-charts">
+                            <canvas baseChart
+                                [data]="priceRadiolineChartData"
+                                [options]="priceRadiolineChartOptions"
+                                [type]="priceRadiolineChartType">
+                            </canvas>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <div>
+        <footer class="py-3">
+            <p class="text-center text-muted mb-0">Copyright &#169; <a href="#">Ovaluate</a></p>
+        </footer>
+    </div>
+    <div id="goto_top">
+        <i class='bx bx-chevron-up'></i>
+      </div>
+</div>
 </div>
