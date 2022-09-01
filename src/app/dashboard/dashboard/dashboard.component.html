@@ -1150,7 +1150,7 @@
                                                                     class="img-fluid agent-details__property-list-item-img">
                                                             </div>
                                                             <div class="col-lg-10">
-                                                                <div class="row">
+                                                                <div class="row" [routerLink]="['/property/detail']" [queryParams]="{id: listing.id}">
                                                                     <div class="col-7">
                                                                         <a
                                                                             class="agent-details__property-list-item-link cursor-pointer">{{listing.propertyPrice}}
