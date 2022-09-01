@@ -470,6 +470,9 @@ export class PropertyfilterComponent implements OnInit {
     this.maxCarpet             =''
     this.furnishedType         =''
     this.propertyFeatureIds   = []
+    this.PropertyTypeIds      = []
+    this.PropertyTypeResidentialIds = []
+    this.PropertyTypeCommercialIds  = []
 
     this.keyWordsUrlValue.forEach((element:any, i:any) => {
       setTimeout(() => {
