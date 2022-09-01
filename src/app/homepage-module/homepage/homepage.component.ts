@@ -528,7 +528,6 @@ export class HomepageComponent implements OnInit {
   LoadBlogs() {
     this.service.LoadBlogs().subscribe(data => {
       this.blogs = data;
-      console.log(this.blogs);
       this.blogs = this.blogs.data.filter((blog: any, key: any, array: any) => {
         if (key < 3) {
           return blog;
