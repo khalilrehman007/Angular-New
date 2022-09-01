@@ -20,7 +20,7 @@
                   </div> -->
                             </div>
                         </div>
-                        <div ngClass="heading-apragraph-design">
+                        <div ngClass="heading-apragraph-design mt-4">
                             <h2>{{selectedPropertyTypeName}} Properties for {{type}} in UAE</h2>
                             <p>Showing {{totalRecord}} Properties for {{type}} in UAE</p>
                             <!--   <p>{{selectedPropertyTypeDiscription}} <button ngClass="read-more-btn"></button></p>-->
@@ -298,7 +298,7 @@
                                 <button type="button" class="btn btn-outline-primary" id="popularSearches"
                                     ngbDropdownToggle>Popular
                                     Searches</button>
-                                <div ngbDropdownMenu aria-labelledby="popularSearches" open="true">
+                                <div ngbDropdownMenu aria-labelledby="popularSearches" open="true" class="show">
                                     <button ngbDropdownItem
                                         *ngFor="let item of trendTitle[0].trendTitleDetail; let i = index"
                                         (click)="onTrendClick(1,i)">{{item.detail}}</button>
@@ -331,4 +331,3 @@
         <app-footer></app-footer>
     </footer>
 </div>
-<app-footer></app-footer>
