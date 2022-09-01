@@ -339,7 +339,7 @@
                     <button type="button" class="btn-cancel" aria-label="Close"
                         (click)="modal.dismiss('Cross click')">Cancel</button>
                     <button #noListItemTmpl *ngIf="user !== null" (click)="modal.dismiss('Cross click')">
-                        <a ngClass="nav-link" (click)="logout()"> Logout </a>
+                        <a ngClass="nav-link" (click)="logout();modal.dismiss('Cross click')"> Logout </a>
                     </button>
                 </div>
             </div>
