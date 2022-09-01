@@ -41,7 +41,7 @@ export class BlogViewComponent implements OnInit {
           this.id = params['id'];
           this.service.id = params['id'];
         })
-        this.service.LoadBlogById(this.id).subscribe(data=>{
+        this.service.BlogBySlug(this.id).subscribe(data=>{
           this.blog=data;
           this.blog=this.blog.data;
           this.blog.blogDocument.fileUrl = 'https://www.ovaluate.com/'+this.blog.blogDocument.fileUrl;

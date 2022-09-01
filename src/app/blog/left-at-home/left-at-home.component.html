@@ -19,7 +19,7 @@
                         <div ngClass="row" *ngIf="lifeatHome.blogs.length > 0">
                             <!-- let blogs of Blogsec -->
                             <div ngClass="col-lg-6 col-md-6 blog-places-col" *ngFor=" let blog of lifeatHome.blogs">
-                                <a routerLink="/blog/details/{{blog.id}}">
+                                <a routerLink="/blog/details/{{blog.slugName}}">
                                     <!-- blog.blogDocument.fileUrl -->
                                     <img src="https://beta.ovaluate.com/{{blog.blogDocument.fileUrl}}"
                                         ngClass="img-fluid blog-image-homepage" alt="">

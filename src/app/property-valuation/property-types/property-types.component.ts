@@ -2,11 +2,13 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms'
 import { AppService } from 'src/app/service/app.service';
 import { Router } from '@angular/router';
+import { MaskService, NgxMaskModule } from 'ngx-mask';
 
 @Component({
   selector: 'app-property-types',
   templateUrl: './property-types.component.html',
-  styleUrls: ['./property-types.component.scss']
+  styleUrls: ['./property-types.component.scss'],
+  providers: [MaskService]
 })
 export class PropertyTypesComponent implements OnInit {
   selected = 'option1';
@@ -44,6 +46,7 @@ export class PropertyTypesComponent implements OnInit {
   oldLength: number = 0;
   oldData: any = "";
   proceed: boolean = false;
+  elevationValue:any;
   errorResponse(data: any) {
     this.showError = false;
   }
@@ -97,7 +100,7 @@ export class PropertyTypesComponent implements OnInit {
   get expense() {
     return this.propertyTypeForm.get("expense");
   }
-  constructor(private service: AppService, private router: Router) {
+  constructor(private service: AppService, private router: Router, private maskService: MaskService) {
     this.formData = (window.localStorage.getItem('valuationData'));
     this.formData = JSON.parse(this.formData);
     this.loadFurnishingType();
@@ -284,49 +287,6 @@ export class PropertyTypesComponent implements OnInit {
       this.showError = true;
     }
   }
-  getKey(e: any) {
-    let temp: any = this.propertyTypeForm.value.elevation;
-    if (temp.toString().length == 0) {
-      if (e.key >= 0 && e.key <= 9) {
-        this.propertyTypeForm.patchValue({
-          elevation: ""
-        })
-      } else {
-        this.propertyTypeForm.patchValue({
-          elevation: e.key.toString().toUpperCase() + "+"
-        })
-      }
-    } else if (temp.toString().length == 2) {
-      this.propertyTypeForm.patchValue({
-        elevation: temp + e.key.toString().toUpperCase() + "+"
-      })
-    } else {
-      if (e.key >= 0 && e.key <= 9 && temp.toString().length < 6) {
-        this.propertyTypeForm.patchValue({
-          elevation: temp + e.key.toString()
-        })
-      }
-    }
-  }
-  getElevation(type: boolean) {
-    let temp: any = this.propertyTypeForm.value.elevation;
-    if (temp.toString().length >= this.oldLength) {
-      this.propertyTypeForm.patchValue({
-        elevation: temp.toString().slice(0, -1)
-      })
-      temp = this.propertyTypeForm.value.elevation;
-      this.oldLength = temp.toString().length;
-    } else if (temp.toString().length == 1 || temp.toString().length == 3) {
-      this.propertyTypeForm.patchValue({
-        elevation: temp.toString().slice(0, -1)
-      })
-      temp = this.propertyTypeForm.value.elevation;
-      this.oldLength = temp.toString().length;
-    } else {
-      temp = this.propertyTypeForm.value.elevation;
-      this.oldLength = temp.toString().length;
-    }
-  }
   getData() {
     if (!this.formData.PropertyCategoryId) {
       this.error = "Please Select Property Category";
@@ -404,9 +364,8 @@ export class PropertyTypesComponent implements OnInit {
     this.formData.FurnishingType = this.furnishing;
     this.formData.FittingType = this.fitting;
     this.formDetailData.PlotNo = this.propertyTypeForm.value.apartmentNo;
-    this.formDetailData.PlotNo = this.propertyTypeForm.value.elevation;
     if (this.propertyData.hasElevation) {
-      this.formDetailData.elevation = this.propertyTypeForm.value.elevation;
+      this.formDetailData.elevation = $(".elevation-input").val();
     } else {
       this.formDetailData.elevation = 0;
     }

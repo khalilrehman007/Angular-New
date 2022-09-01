@@ -587,7 +587,7 @@ export class DashboardComponent implements OnInit {
         }
         tempData.push(
           {
-            propertyTitle: element.propertyTitle, propertyAddress: element.propertyAddress, img: image,
+            id:element.id,propertyTitle: element.propertyTitle, propertyAddress: element.propertyAddress, img: image,
             buildingName: element.buildingName, bedrooms: element.bedrooms, bathrooms: element.bathrooms, carpetArea: element.carpetArea,
             unitNo: element.unitNo, totalFloor: element.totalFloor, floorNo: element.floorNo, propertyDescription: element.propertyDescription,
             requestedDate: element.requestedDate, furnishingType: element.furnishingType, propertyPrice: element.propertyPrice,
@@ -597,8 +597,8 @@ export class DashboardComponent implements OnInit {
         );
       })
     });
-
     this.listingAll = tempData
+
   }
   pageChanged(value: any) {
     this.page = value;
