@@ -231,6 +231,12 @@ export class SearchComponent implements OnInit {
     }
 
     this.loadListingProperty(params);
+
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
   }
 
   sortedBy(event:any) {
@@ -326,7 +332,7 @@ export class SearchComponent implements OnInit {
         let userImage = '../assets/images/user.png'
         let fullName = ''
         let userId = ''
-        if (element.user != null && element.user !== undefined) {
+        if (element.user != null && element.user !== undefined && element.user.imageUrl != null) {
           userImage = this.baseUrl + element.user.imageUrl
           fullName = element.user.fullName
           userId = element.user.id
