@@ -9,6 +9,7 @@ import { PropertyValuationRoutingModule } from './property-valuation-routing.mod
 import { PropertyDetailsComponent } from './property-details/property-details.component';
 import { PropertyTypesComponent } from './property-types/property-types.component';
 import { PropertyDocumentsComponent } from './property-documents/property-documents.component';
+import { PropertyDownloadReportComponent } from './property-download-report/property-download-report.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatListModule } from '@angular/material/list';
@@ -17,7 +18,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { PropertyDownloadReportComponent } from './property-download-report/property-download-report.component';
+import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { PropertyDownloadReportComponent } from './property-download-report/prop
     MatSelectModule,
     MatCardModule,
     MatCheckboxModule,
+    NgxMaskModule.forRoot()
   ]
 })
 export class PropertyValuationModule { }
