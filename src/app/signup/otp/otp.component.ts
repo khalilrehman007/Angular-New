@@ -53,6 +53,7 @@ export class OtpComponent implements OnInit {
 
     if (this.code.randomDigit == this.otp) {
       this.auth.ProceedSignUp(this.verificationData).subscribe((result: any) => {
+        console.log(result.message);
         if (result.message == "You are successfully logged in") {
           let responsedata: any = result;
           if (responsedata.data !== undefined) {
@@ -79,10 +80,11 @@ export class OtpComponent implements OnInit {
       this.verificationData = JSON.parse(this.verificationData);
       this.service.SendDigitSms({ "FirstName": this.verificationData.FirstName, "PhoneNumber": this.verificationData.PhoneNumber }).subscribe((result: any) => {
         if (result.message == "Phone Number is invalid") {
-          this.error = "Invalid Phone Number";
-          this.showError = true;
+          // this.error = "Invalid Phone Number";
+          // this.showError = true;
           return;
         }
+        console.log(result.data);
         this.code = result.data;
       })
     }
