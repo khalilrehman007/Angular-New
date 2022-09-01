@@ -63,10 +63,10 @@ export class AppService {
   OvaluateFeatures() {
     return this.http.get(this.apiurl + 'OvaluateFeatures');
   }
-  LoadDashboardData(id:any) {
+  LoadDashboardData(id: any) {
     return this.http.get(this.apiurl + 'Dashboard/' + id, { headers: this.headers });
   }
-  LoadListing(data:any) {
+  LoadListing(data: any) {
     return this.http.post(this.apiurl + 'MyListings', data, { headers: this.headers });
   }
   LoadCities(id: number) {
@@ -138,10 +138,10 @@ export class AppService {
   LoadPropertyListingTypes() {
     return this.http.get(this.apiurl + 'PropertyListingTypes');
   }
-  LoadListingDashboard(data:any) {
+  LoadListingDashboard(data: any) {
     return this.http.post(this.apiurl + 'ListingDashboard/', data, { headers: this.headers });
   }
-  valuationDashboard(id:any) {
+  valuationDashboard(id: any) {
     return this.http.get(this.apiurl + 'ValuationDashboard/' + id, { headers: this.headers });
   }
   LoadValuationListing(data: any) {
@@ -150,7 +150,7 @@ export class AppService {
   LoadPropertyListingStatus() {
     return this.http.get(this.apiurl + 'PropertyListingStatus');
   }
-  LoadProfessionalAndListingType(professionalTypeId:any, listingTypeId:any) {
+  LoadProfessionalAndListingType(professionalTypeId: any, listingTypeId: any) {
     return this.http.get(this.apiurl + 'PropertyListingPackagesByProfessionalAndListingType?professionalTypeId=' + professionalTypeId + '&listingTypeId=' + listingTypeId);
   }
   LoadTenantTypes() {
@@ -305,10 +305,10 @@ export class AppService {
   NearPlaces(id: any) {
     return this.http.get(this.apiurl + 'NearPlaces/' + id);
   }
-  FindCompanies(data:any) {
+  FindCompanies(data: any) {
     return this.http.post(this.apiurl + 'FindCompanies', data);
   }
-  DisplayAgent(data:any) {
+  DisplayAgent(data: any) {
     return this.http.post(this.apiurl + 'DisplayAgent', data);
   }
   // DisplayCompany(data:any) {
@@ -317,7 +317,7 @@ export class AppService {
   DisplayCompany(id: any) {
     return this.http.get(this.apiurl + 'DisplayCompany?companyId=' + id);
   }
-  AgentAutoCompleteSearch(data:any) {
+  AgentAutoCompleteSearch(data: any) {
     return this.http.post(this.apiurl + 'AgentAutoCompleteSearch', data);
   }
   CompanyLocationAutoCompleteSearch(data: any) {
@@ -359,62 +359,65 @@ export class AppService {
   }
 
   FavoriteListingCount(id: any) {
-    return this.http.get(this.apiurl + 'FavoriteListingCount?UserId=' + id,{ headers: this.headers });
+    return this.http.get(this.apiurl + 'FavoriteListingCount?UserId=' + id, { headers: this.headers });
   }
   FavoriteListing(data: any) {
-    return this.http.post(this.apiurl + 'FavoriteListing' ,data,{ headers: this.headers });
+    return this.http.post(this.apiurl + 'FavoriteListing', data, { headers: this.headers });
   }
   MyPropertyListings(data: any) {
-    return this.http.post(this.apiurl + 'MyPropertyListings',data,{ headers: this.headers });
+    return this.http.post(this.apiurl + 'MyPropertyListings', data, { headers: this.headers });
   }
   ComparableProperties(data: any) {
-    return this.http.post(this.apiurl + 'ComparableProperties',data,{ headers: this.headers });
+    return this.http.post(this.apiurl + 'ComparableProperties', data, { headers: this.headers });
   }
 
   MyActivityViewCount(id: any) {
-    return this.http.get(this.apiurl + 'MyActivityPropertyListingViewCount?UserId=' + id,{ headers: this.headers });
+    return this.http.get(this.apiurl + 'MyActivityPropertyListingViewCount?UserId=' + id, { headers: this.headers });
   }
 
-  MyActivityPropertyListingView(data:any) {
+  MyActivityPropertyListingView(data: any) {
     return this.http.post(this.apiurl + 'MyActivityPropertyListingView', data, { headers: this.headers });
   }
-  MyActivityAgentView(data:any) {
+  MyActivityAgentView(data: any) {
     return this.http.post(this.apiurl + 'MyActivityAgentView', data, { headers: this.headers });
   }
   MyActivityEnquiredCount(id: any) {
-    return this.http.get(this.apiurl + 'MyActivityEnquiredCount?loginUserId=' + id,{ headers: this.headers });
+    return this.http.get(this.apiurl + 'MyActivityEnquiredCount?loginUserId=' + id, { headers: this.headers });
   }
-  MyActivityEnquired(data:any) {
+  MyActivityEnquired(data: any) {
     return this.http.post(this.apiurl + 'MyActivityEnquired', data, { headers: this.headers });
   }
   PropertyTransactionTypes() {
     return this.http.get(this.apiurl + 'PropertyTransactionTypes');
   }
-  Googlelogin(data:any) {
+  Googlelogin(data: any) {
     return this.http.post(this.apiurl + 'Googlelogin', data);
   }
-  SummaryLeads(data:any) {
+  SummaryLeads(data: any) {
     return this.http.post(this.apiurl + 'SummaryLeads', data);
   }
-  SendDigitSms(data:any) {
+  SendDigitSms(data: any) {
     return this.http.post(this.apiurl + 'SendDigitSms', data);
   }
-  TrendTitle(id:any) {
+  TrendTitle(id: any) {
     return this.http.get(this.apiurl + 'TrendTitle/' + id);
   }
-  MyPackages(id:any) {
+  MyPackages(id: any) {
     return this.http.get(this.apiurl + 'MyPackages/' + id);
   }
   LocatedNear() {
     return this.http.get(this.apiurl + 'LocatedNear');
   }
-  AddUpdateAgentDetails(data:any) {
+  AddUpdateAgentDetails(data: any) {
     return this.http.post(this.apiurl + 'AddUpdateAgentDetails', data);
   }
-  AddUpdateCompany(data:any) {
+  AddUpdateCompany(data: any) {
     return this.http.post(this.apiurl + 'AddUpdateCompany', data);
   }
-  UserAgentProfile(id:any) {
+  UserAgentProfile(id: any) {
     return this.http.get(this.apiurl + 'AddUpdateCompany/' + id);
+  }
+  BlogBySlug(id: any) {
+    return this.http.get(this.apiurl + 'BlogBySlug/' + id);
   }
 }

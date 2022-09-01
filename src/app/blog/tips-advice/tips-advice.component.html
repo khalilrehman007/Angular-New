@@ -18,7 +18,7 @@
                     <div ngClass="col-xl-8 col-lg-8 col-sm-12" *ngIf="tipsAndAdvice && tipsAndAdvice.blogs.length">
                         <div ngClass="row" *ngIf="tipsAndAdvice.blogs.length > 0">
                             <div ngClass="col-lg-6 col-md-6 blog-places-col" *ngFor=" let item of tipsAndAdvice.blogs">
-                                <a routerLink="/blog/details/{{item.id}}">
+                                <a routerLink="/blog/details/{{item.slugName}}">
                                     <img src="https://beta.ovaluate.com/{{item.blogDocument.fileUrl}}"
                                         ngClass="img-fluid blog-image-homepage" alt="">
                                     <div ngClass="blog-title-content">
