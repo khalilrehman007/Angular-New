@@ -199,6 +199,23 @@ export class SearchComponent implements OnInit {
   }
 
   allSearch() {
+
+    this.type                 = ''
+    this.PropertyCategoryId   = ''
+    this.RentTypeId           = ''
+    this.PropertyListingTypeId =''
+    this.PropertyAddress       = ''
+    this.PriceStart            = 10
+    this.PriceEnd              = 50000000
+    this.Bedrooms              = ''
+    this.Bathrooms             =''
+    this.MinCarpetArea         =''
+    this.MaxCarpetArea        =''
+    this.FurnishingTypeId     =''
+    this.KeyWords             = []
+    this.propertyTypes        = []
+    this.PropertyFeatureIds   = []
+
     let params: any = {
       type: '', "PropertyTypeIds": [], "PropertyAddress": '', "RentTypeId": '',
       "PropertyCategoryId": '', PriceStart: '', PriceEnd: '', Bedrooms: '', Bathrooms: '',
@@ -248,6 +265,7 @@ export class SearchComponent implements OnInit {
       "PropertyCategoryId": this.PropertyCategoryId, "PriceStart": this.PriceStart, "PriceEnd": this.PriceEnd, "videoTour": this.videoTourSorting,
       "PropertyListingTypeId": this.PropertyListingTypeId, "SortedBy": this.sortedById, CurrentPage: this.page, DistrictIds: this.DistrictsId
     }
+
     this.loadListingProperty(params);
   }
 
