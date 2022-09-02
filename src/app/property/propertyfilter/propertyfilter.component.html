@@ -192,11 +192,11 @@
                                     <ngx-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options">
                                     </ngx-slider>
                                 </div>
-                                <div ngClass="rentle_type-hding">
+                                <div ngClass="rentle_type-hding" *ngIf="PropertyListingTypeId != 2">
                                     <h5 ngClass="h5-design">Rental Type</h5>
                                 </div>
                             </div>
-                            <mat-tab-group [(selectedIndex)]="RentTypeIndexId"
+                            <mat-tab-group *ngIf="PropertyListingTypeId != 2" [(selectedIndex)]="RentTypeIndexId"
                                 (selectedTabChange)="getRentalType($event)">
                                 <mat-tab label="{{Monthly}}">
                                 </mat-tab>

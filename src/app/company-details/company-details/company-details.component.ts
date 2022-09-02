@@ -29,14 +29,32 @@ export class CompanyDetailsComponent implements OnInit {
     this.user = JSON.parse(this.user);
 
    this.DisplayCompany();
+   this.LoadPropertySortBy();
   }
 
   DisplayCompany(){
-    this.service.DisplayCompany({"companyId":"2", "SortedBy":"1" }).subscribe((result: any) => {
+    this.service.DisplayCompany({"companyId": this.id, "SortedBy": this.sortedById}).subscribe((result: any) => {
       this.companyDetails = result.data;
       console.log(this.companyDetails)
     })
   }
+
+  PropertySortBy: any = []
+  LoadPropertySortBy() {
+    this.service.PropertySortBy().subscribe(e => {
+      let temp: any = e;
+      for (let list of temp.data) {
+        this.PropertySortBy.push({ name: list.name, id: list.id });
+      }
+    });
+  }
+
+  sortedById: any = '';
+  sortedBy(event:any) {
+    this.sortedById = event.value
+    this.DisplayCompany();
+  }
+
 
   pageChanged(value: any) {
     this.page = value;
