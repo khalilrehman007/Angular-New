@@ -2,8 +2,8 @@
 <section [ngClass]="'inner-cntnt-wrapper'">
     <section [ngClass]="'buy-sell-form-sec slide-left-bar'">
         <div [ngClass]="'container_1280px'">
-            <div [ngClass]="'blue-heading text-center'">
-                <h2>Buy, Rent, Sell & Valuate Your Property</h2>
+            <div [ngClass]="'blue-heading text-left'">
+                <h2>Explore, discover and <br> make smart decisions</h2>
             </div>
             <div ngClass="buy-sell-wrapepr-forms">
                 <div ngClass="form_tabs">
@@ -38,53 +38,9 @@
                     </div>
                 </div>
             </div>
-            <div ngClass="property-valuation-sec">
-                <div ngClass="row">
-                    <div ngClass="col-sm-12">
-                        <div ngClass="home-slider-sec">
-                            <div ngClass="home-slider-sec">
-                                <ngb-carousel [showNavigationArrows]="false">
-                                    <ng-template ngbSlide *ngFor="let event of homebanners">
-                                        {{event.id}}
-                                        <div ngClass="home-slider_img">
-                                            <img [src]="event.img" alt="Random slide">
-                                        </div>
-                                        <div ngClass="home-slider_cntnt">
-                                            <h2>{{event.title}}</h2>
-                                            <p>{{event.desc}}</p>
-                                            <a routerLink="/valuation/property-detail">Start Valuation</a>
-                                        </div>
-                                    </ng-template>
-                                </ngb-carousel>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div ngClass="row">
-                    <div ngClass="col-xl-6 col-lg-6 col-sm-6 col-sm-12">
-                        <div ngClass="pro-evaluations-blocks-div">
-                            <img src="assets/images/residentials-icon.svg" />
-                            <h4>{{categoryNameRes}}</h4>
-                            <p>
-                                {{categoryDetailRes}}
-                                <!-- We offer our customer property protection of liability coverage and insurance for their better life. -->
-                            </p>
-                        </div>
-                    </div>
-                    <div ngClass="col-xl-6 col-lg-6 col-sm-6 col-sm-12">
-                        <div ngClass="pro-evaluations-blocks-div">
-                            <img src="assets/images/commertials.svg" />
-                            <h4>{{categoryNameCom}}</h4>
-                            <p>
-                                {{categoryDetailCom}}
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
-    <section ngClass="position-relative wrapper-section properties-slider residentials-property-rent-1">
+    <section ngClass="wrapper-section properties-slider residentials-property-rent-1">
         <div ngClass="container_1220px">
             <div ngClass="section-title">
                 <div ngClass="section-title-left">
@@ -243,7 +199,7 @@
     </section>
 
     <!--  Commercial Properties for Rent in Dubai-->
-    <section ngClass="position-relative wrapper-section properties-slider residentials-property-rent-2">
+    <section ngClass="wrapper-section properties-slider residentials-property-rent-2">
         <div ngClass="container_1220px">
             <div ngClass="section-title">
                 <div ngClass="section-title-left">
@@ -397,7 +353,7 @@
         </div>
     </section>
 
-    <section ngClass="position-relative wrapper-section sell-rent-home-directly">
+    <section ngClass="wrapper-section sell-rent-home-directly">
         <div ngClass="container_1220px">
             <div [ngClass]="'listing-slider-area'">
                 <owl-carousel-o [options]="sellrentproperty">
@@ -425,7 +381,7 @@
             </div>
         </div>
     </section>
-    <section ngClass="position-relative wrapper-section explore-place-sec">
+    <section ngClass="wrapper-section explore-place-sec">
         <div ngClass="container_1220px">
             <div ngClass="section-title">
                 <div ngClass="section-custom-title-left">
@@ -450,7 +406,7 @@
             </div>
         </div>
     </section>
-    <section ngClass="position-relative wrapper-section blogs_sec">
+    <section ngClass="wrapper-section blogs_sec">
         <div ngClass="container_1220px">
             <div ngClass="section-title">
                 <div ngClass="section-custom-title-left">
@@ -483,7 +439,7 @@
         </div>
     </section>
     <!-- <app-blogs></app-blogs> -->
-    <section ngClass="position-relative wrapper-section bg-primary-color easy-tenants-landlords-sec">
+    <section ngClass="wrapper-section bg-primary-color easy-tenants-landlords-sec">
         <div ngClass="container_1220px">
             <div ngClass="section-title responsive-section-title tenanats-landlord_Sec">
                 <div ngClass="section-title-left">
@@ -545,7 +501,7 @@
             <img src="assets/images/background/tree.png" alt="" />
         </div>
     </section>
-    <section ngClass="position-relative wrapper-section real-hub-sec"
+    <section ngClass="wrapper-section real-hub-sec"
         style="background: url('assets/images/background/bg-1.png')">
         <div ngClass="container_1220px">
             <div [ngClass]="'mockup-conatiner position-relative'">
@@ -626,7 +582,7 @@
             </div>
         </div>
     </section>
-    <section ngClass="position-relative custom-wrapper-section bottom-selectionboxes">
+    <section ngClass="custom-wrapper-section bottom-selectionboxes">
         <div ngClass="container_1220px">
             <div ngClass="row">
                 <div ngClass="col-lg-3 col-md-6 search-col-homepage" *ngFor="let item of trendTitle; let i = index">
@@ -642,22 +598,30 @@
             </div>
         </div>
     </section>
-    <section ngClass="position-relative wrapper-section bg-primary-color span-promises-sec">
+    <section ngClass="wrapper-section">
         <div ngClass="container_1220px">
-            <div ngClass="newsletter-section text-center">
-                <h5>No Spam Promise</h5>
-                <h1>Are you a landlord or real estate proffessional?</h1>
-                <h6>
-                    Discover ways to increase your home's value and get listed. No Spam.
-                </h6>
-                <form [formGroup]="SubmitForm" (ngSubmit)="proceedStore()" ngClass="news-letter-form position-relative">
-                    <input type="email" ngModel email="true" formControlName="email"
-                        placeholder="Enter your email address" />
-                    <input type="submit" value="Submit" />
-                </form>
-                <p>
-                    Join <span>10,000+</span> other landlords in our estatery community.
-                </p>
+            <div ngClass="property-valuation-sec">
+                <div ngClass="row">
+                    <div ngClass="col-sm-12">
+                        <div ngClass="home-slider-sec">
+                            <div ngClass="home-slider-sec">
+                                <ngb-carousel [showNavigationArrows]="false">
+                                    <ng-template ngbSlide *ngFor="let event of homebanners">
+                                        {{event.id}}
+                                        <div ngClass="home-slider_img">
+                                            <img [src]="event.img" alt="Random slide">
+                                        </div>
+                                        <div ngClass="home-slider_cntnt">
+                                            <h2>{{event.title}}</h2>
+                                            <p>{{event.desc}}</p>
+                                            <a routerLink="/valuation/property-detail">Start Valuation</a>
+                                        </div>
+                                    </ng-template>
+                                </ngb-carousel>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>

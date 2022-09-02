@@ -90,31 +90,7 @@
                     </div>
                     <div ngClass="collapse navbar-collapse justify-content-end" id="collapsibleNavbar"
                         [ngClass]="status1 ? 'show' : 'noshow'">
-                        <ul ngClass="navbar-nav">
-                            <li ngClass="nav-item">
-                                <a ngClass="nav-link blue-bordered-btn" routerLink="/valuation">
-                                    Property Valuation <span ngClass="ai-tag">AI</span>
-                                </a>
-                            </li>
-                            <li ngClass="nav-item sell-or-rent-property">
-                                <a ngClass="nav-link blue-bordered-btn" [routerLink]="['/sellrent']">
-                                    Sell or Rent Property <mat-icon>verified_user</mat-icon>
-                                </a>
-                            </li>
-                            <li ngClass="nav-item">
-                                <a ngClass="nav-link blue-bordered-btn"
-                                    routerLink="/dashboard-reports">
-                                <!-- <a ngClass="nav-link blue-bordered-btn"
-                                    href="https://dx1.in/data-Intelligence/dashboard/"> -->
-                                    <span ngClass="ai-tag">AI</span> Data Intelligence <span ngClass="icon-di"><img
-                                            src="{{chartsvg}}"></span>
-                                </a>
-                            </li>
-                            <li ngClass="nav-item classified">
-                                <a ngClass="nav-link blue-bordered-btn" href="http://dx1.in/classified">
-                                    Classified <mat-icon>home</mat-icon>
-                                </a>
-                            </li>
+                        <ul ngClass="navbar-nav sub-header">
                             <li ngClass="nav-item language-converter tm-hide demo-english-design">
                                 <select>
                                     <option>English</option>
@@ -280,10 +256,10 @@
                                     <div ngClass="notifivation-inner-cntnt" *ngIf="notificationData.length > 0">
                                         <ul ngClass="list-unstyled">
                                             <li ngClass="position-relative" *ngFor="let item of notificationData">
-                                                <p>{{item.value.Title}}
+                                                <h4>{{item.value.Title}}
                                                     <span
                                                         ngClass="notifiction_time">{{getTime(item.value.NotificationDateTime)}}</span>
-                                                </p>
+                                                </h4>
                                                 <p>{{item.value.Body}}</p>
                                             </li>
                                         </ul>
@@ -310,14 +286,98 @@
                                 <button class="nav-link aed-sq" (click)="clickEvent2()"><img src="{{flagsvg}}"> AED |
                                     Sqft</button>
                                 <!-- <div class="country_list-dropdown" [ngClass]="status2 ? 'active' : 'notactive'">
-                    <button (click)="clickEvent2()"><img src="{{close}}"></button>
-                    <div ngClass="countries_dropdown-list" *ngFor="let data of headerCountries">
-                      <ul ngClass="list-unstyled">
-                        <li><img src="{{flagsvg}}">{{data.currency}}</li>
-                      </ul>
-                    </div>
-                  </div> -->
+                                    <button (click)="clickEvent2()"><img src="{{close}}"></button>
+                                    <div ngClass="countries_dropdown-list" *ngFor="let data of headerCountries">
+                                    <ul ngClass="list-unstyled">
+                                        <li><img src="{{flagsvg}}">{{data.currency}}</li>
+                                    </ul>
+                                    </div>
+                                </div> -->
                                 <button (click)="clickEvent2()" ngClass="overlay_dropdown-btn"></button>
+                            </li>
+                        </ul>
+                        <ul ngClass="navbar-nav">
+                            <li ngClass="nav-item link-li">
+                                <a ngClass="nav-link" routerLink="/property/search/Buy">
+                                    Buy
+                                </a>
+                            </li>
+                            <li ngClass="nav-item link-li">
+                                <a ngClass="nav-link" routerLink="/property/search/Rent">
+                                    Rent
+                                </a>
+                            </li>
+                            <li ngClass="nav-item link-li">
+                                <a ngClass="nav-link" routerLink="/blogs">
+                                    Blog
+                                </a>
+                            </li>
+                            <li ngClass="nav-item link-li">
+                                <a ngClass="nav-link" routerLink="/explore">
+                                    Areas
+                                </a>
+                            </li>
+                            <li ngClass="nav-item hover-block-header">
+                                <div ngbDropdown class="d-inline-block">
+                                    <button type="button" class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Projects</button>
+                                    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                                      <button ngbDropdownItem><a routerLink="">All projects</a></button>
+                                      <button ngbDropdownItem><a routerLink="">Luxury projects</a></button>
+                                      <button ngbDropdownItem><a routerLink="">Ultra Luxury projects</a></button>
+                                      <button ngbDropdownItem><a routerLink="">Projects scores</a></button>
+                                    </div>
+                                  </div>
+                            </li>
+                            <li ngClass="nav-item hover-block-header">
+                                <div ngbDropdown class="d-inline-block">
+                                    <button type="button" class="btn btn-outline-primary" id="dropdownBasic2" ngbDropdownToggle>Trends</button>
+                                    <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
+                                      <button ngbDropdownItem><a routerLink="">Market performance 2022</a></button>
+                                      <button ngbDropdownItem><a routerLink="">Dubai property prices 2022</a></button>
+                                      <button ngbDropdownItem><a routerLink="">Sold properties</a></button>
+                                      <button ngbDropdownItem><a routerLink="">Property supply</a></button>
+                                      <button ngbDropdownItem><a routerLink="">Property price index</a></button>
+                                      <button ngbDropdownItem><a routerLink="">Projects status</a></button>
+                                      <button ngbDropdownItem><a routerLink="">Dubai in numbers</a></button>
+                                    </div>
+                                  </div>
+                            </li>
+                            <li ngClass="nav-item hover-block-header">
+                                <div ngbDropdown class="d-inline-block">
+                                    <button type="button" class="btn btn-outline-primary" id="dropdownBasic3" ngbDropdownToggle>New Homes</button>
+                                    <div ngbDropdownMenu aria-labelledby="dropdownBasic3">
+                                      <button ngbDropdownItem><a routerLink="">New projects in Dubai</a></button>
+                                      <button ngbDropdownItem><a routerLink="">Off-plan properties location map</a></button>
+                                      <button ngbDropdownItem><a routerLink="">Buy off-plan apartments in Dubai</a></button>
+                                      <button ngbDropdownItem><a routerLink="">Buy off-plan townhouses in Dubai</a></button>
+                                      <button ngbDropdownItem><a routerLink="">Buy off-plan townhouses in Dubai</a></button>
+                                      <button ngbDropdownItem><a routerLink="">Properties with payment plan</a></button>
+                                    </div>
+                                  </div>
+                            </li>
+                            <li ngClass="nav-item">
+                                <a ngClass="nav-link blue-bordered-btn red-fill-btn" routerLink="/valuation">
+                                    Valuation <span ngClass="ai-tag">AI</span>
+                                </a>
+                            </li>
+                            <li ngClass="nav-item sell-or-rent-property">
+                                <a ngClass="nav-link blue-bordered-btn" [routerLink]="['/sellrent']">
+                                    Sell/Rent Property <mat-icon>verified_user</mat-icon>
+                                </a>
+                            </li>
+                            <li ngClass="nav-item">
+                                <a ngClass="nav-link blue-bordered-btn"
+                                    routerLink="/dashboard-reports">
+                                <!-- <a ngClass="nav-link blue-bordered-btn"
+                                    href="https://dx1.in/data-Intelligence/dashboard/"> -->
+                                    <span ngClass="ai-tag">AI</span> Data Intelligence <span ngClass="icon-di"><img
+                                            src="{{chartsvg}}"></span>
+                                </a>
+                            </li>
+                            <li ngClass="nav-item classified">
+                                <a ngClass="nav-link blue-bordered-btn" href="http://dx1.in/classified">
+                                    Classified <mat-icon>home</mat-icon>
+                                </a>
                             </li>
                         </ul>
                     </div>

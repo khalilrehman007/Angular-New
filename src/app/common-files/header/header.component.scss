@@ -356,27 +356,34 @@ header {
 		}
 	}
 	.blue-bordered-btn {
-		border: 0.25px solid #595ad4;
-		color: $color_4;
+		border: 0.05px solid #000;
+		color: #000;
 		font-size: 12px;
 		font-weight: 500;
 		border-radius: 6px;
 		padding: 6px 7px !important;
 		text-align: center;
+		&:hover{
+			color: #595ad5;
+			.ai-tag{
+				background-color: #595ad5;
+			}
+			.mat-icon{
+				color: #595ad5;
+			}
+		}
 	}
 	.navbar-nav {
 		align-items: center;
 		>.nav-item {
-			margin-right: 14px;
+			margin-right: 10px;
 		}
 		>.nav-item.fav-li {
 			margin-left: 5px;
-			padding-right: 8px;
+			padding-right: 4px;
 		}
 	}
 	.nav-item.language-converter {
-		padding-left: 14px;
-		border-left: 1px solid rgba(0, 0, 0, 0.2);
 		select {
 			border: none;
 			appearance: none;
@@ -695,7 +702,7 @@ span.irs-max {
 .ai-tag {
 	border-radius: 3px;
 	color: $color_9;
-	background-color: $btncolor;
+	background-color: #000;
 	padding: 2px 8px;
 	font-size: 10px;
 	margin: 0px 2px;
@@ -739,7 +746,7 @@ textarea {
 		font-size: 12px;
 		font-weight: 600;
 		color: $color_5;
-		padding: 11px 17px !important;
+		padding: 8px 15px !important;
 		cursor: pointer;
 		>img {
 			width: 18px;
@@ -879,10 +886,11 @@ textarea {
     background-color: #fff;
     border-radius: 7px;
     width: 412px;
-    top: 47px;
+    top: 38px;
     overflow: hidden;
-	height: 500px;
+	max-height: 500px;
 	z-index: 99;
+	border: 0.5px solid #F0EFFB;
 }
 .fav-li>button {
     background: transparent;
@@ -1128,25 +1136,26 @@ textarea {
     background-color: #fff;
     border-radius: 7px;
     width: 412px;
-    top: 47px;
+    top: 38px;
     overflow: auto;
     height: auto;
 	max-height: 500px;
 	z-index: 99;
+	border: 0.5px solid #F0EFFB;
 }
 .notification_header-list>button {
     border: none;
     background: transparent;
     display: flex;
     color: #192024;
-	width: 40px;
+	width: 30px;
 }
 .notification_header-list>button .mat-icon {
     font-size: 26px;
     opacity: 0.8;
 }
 .notifivation-inner-cntnt ul li {
-    padding: 10px 50px 10px 15px;
+    padding: 10px 90px 10px 15px;
     font-size: 14px;
     border-bottom: 1px solid #F0EFFB;
 }
@@ -1155,7 +1164,69 @@ textarea {
     right: 20px;
     font-size: 12px;
     top: 12px;
+	font-weight: 400;
 }
 .notifivation-list-dropdown.notactive {
     display: none;
+}
+ul.navbar-nav.sub-header {
+    justify-content: flex-end;
+    margin-bottom: 5px;
+}
+#main-header .header-section .blue-bordered-btn.red-fill-btn {
+    background: #e9222f;
+    border-color: #e9222f;
+    color: #fff;
+	.ai-tag {
+		background: #fff;
+		color: #e9222f;
+	}
+	&:hover{
+		background: #f63441;
+	}
+}
+.header-section .hover-block-header .btn {
+    border: none;
+    padding: 0px;
+    color: #000;
+    font-size: 14px;
+    background: transparent !important;
+}
+.header-section .hover-block-header .btn::after {
+    margin-left: 7px;
+    vertical-align: middle;
+}
+.header-section .hover-block-header .dropdown {
+    margin-right: 10px;
+}
+.header-section .nav-item.link-li>.nav-link {
+    color: #000;
+    font-size: 14px;
+    padding: 5px 10px;
+    position: relative;
+    line-height: 24px;
+    display: block;
+    position: relative;
+    top: 1px;
+}
+.hover-block-header .dropdown-menu {
+    background-color: #fff;
+    border-radius: 7px;
+    overflow: auto;
+    height: auto;
+    border: 0.5px solid #F0EFFB;
+}
+.hover-block-header .dropdown-menu a {
+    font-size: 13px;
+    color: #000;
+}
+.notifivation-inner-cntnt.ng-star-inserted ul li h4 {
+    font-size: 14px;
+    font-weight: 700;
+}
+.notifivation-inner-cntnt.ng-star-inserted ul li p {
+  margin-bottom: 0px;
+}
+.header-section .nav-item.link-li>.nav-link:hover,.hover-block-header .dropdown-menu a:hover,.header-section .hover-block-header .btn:hover{
+	color: #595ad4;
 }
