@@ -129,8 +129,9 @@ $color_1: #4A4A4A;
 	left: 0;
 	z-index: 999;
 	display: none;
+	top: 0;
+    bottom: 0;
 }
-
 .dash-header-box {
 	background: rgba(211, 219, 255, 0.34);
 	padding: 10px 30px;
@@ -185,6 +186,7 @@ $color_1: #4A4A4A;
 	align-items: center;
 	padding: 0px;
 	position: relative;
+	border: none;
 }
 
 .dash-header-box>ul {
@@ -225,4 +227,31 @@ $color_1: #4A4A4A;
 
 .dashboard-header-right .dropdown-menu .dropdown-item:hover {
 	background-color: var(--primary-color);
+}
+#sidebar.active {
+	width: 250px !important;
+	z-index: 999 !important;
+  }
+  #sidebar.active .sidebar-toggle {
+	justify-content: flex-start !important;
+	padding-left: 10px;
+  }
+  #sidebar.active .nav-items a {
+	justify-content: flex-start !important;
+	padding-left: 10px;
+  }
+  #sidebar.active .side-nav-text {
+	display: block !important;
+  }
+  #sidebar.active .sidebar-toggle .toggle_icn {
+	display: none !important;
+  }
+  #sidebar.active .sidebar-toggle .icon.close_icn.hide {
+	display: block !important;
+  }
+  #sidebar.active ~ .overlay_counter {
+    display: block;
+}
+.pointer-events-none{
+	pointer-events: none;
 }

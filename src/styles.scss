@@ -9584,3 +9584,37 @@ p:empty {
     position: relative;
     top: 8px;
 }
+.date-range-slider {
+  height: 150px;
+  display: flex;
+  align-items: center;
+  .ngx-slider-pointer-min,.ngx-slider-pointer-max {
+    width: 15px !important;
+    height: 15px !important;
+    border: 4px solid #595AD4;
+    background-color: #D3DBFF !important;
+    border-radius: 50% !important;
+    margin-top: 8px;
+}
+.ngx-slider-pointer-min::after,.ngx-slider-pointer-max::after{
+	display: none !important;
+}
+.ngx-slider-selection {
+    background: #595ad4 !important;
+}
+.ngx-slider-model-value, .ngx-slider-model-high, .ngx-slider-limit {
+    color: #000 !important;
+    font-size: 18px !important;
+	padding-bottom: 10px !important;
+}
+.ngx-slider-model-value, .ngx-slider-model-high{
+	background: url('./assets/images/icons/range-arrow.svg');
+	background-repeat: no-repeat;
+    background-position: center bottom;
+}
+}
+#goto_top .goto-top-icn .mat-icon {
+    color: #fff;
+    font-size: 30px;
+    width: 40px;
+}

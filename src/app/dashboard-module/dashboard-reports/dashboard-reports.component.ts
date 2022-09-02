@@ -1,15 +1,26 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit,HostListener } from '@angular/core';
 import DatalabelsPlugin from 'chartjs-plugin-datalabels';
 import { ChartConfiguration, ChartData, ChartEvent, ChartType,Chart } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 import {default as Annotation} from 'chartjs-plugin-annotation';
-
+import { Options } from '@angular-slider/ngx-slider';
 @Component({
   selector: 'app-dashboard-reports',
   templateUrl: './dashboard-reports.component.html',
   styleUrls: ['./dashboard-reports.component.scss']
 })
 export class DashboardReportsComponent implements OnInit {
+
+  // Range Slider
+
+   minValue: number = 1993;
+  maxValue: number = 2007;
+  optionsRange: Options = {
+    floor: 1973,
+    ceil: 2025,
+    step: 1
+  };
+    
   downloadreport = '../../../assets/images/icons/download-svg.svg'
   togglesvg = '../../../assets/images/icons/toggle.svg'
   logo = '../../../assets/images/logo.svg'
@@ -25,53 +36,33 @@ export class DashboardReportsComponent implements OnInit {
     Chart.register(Annotation)
    }
 
+
+
+  // Scroll To Top
+
+  isShow: any;
+  topPosToStartShowing = 100;
+
+  @HostListener('window:scroll')
+  checkScroll() {
+    const scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    if (scrollPosition >= this.topPosToStartShowing) {
+      this.isShow = true;
+    } else {
+      this.isShow = false;
+    }
+  }
+  // TODO: Cross browsing
+  gotoTop() {
+    window.scroll({ 
+      top: 0, 
+      left: 0, 
+      behavior: 'smooth' 
+    });
+  }
+
   ngOnInit(): void {
   }
-  navdata = [
-    {
-      src: '../../assets/images/icons/login.svg',
-      class: 'nav-items sign-in',
-      text: 'Sign in',
-      link: '',
-    },
-    {
-      src: '../../assets/images/icons/ioi.svg',
-      class: 'nav-items buy',
-      text: 'Buy',
-      link: '/search/Buy',
-    },
-    {
-      src: '../../assets/images/icons/rent-icon.svg',
-      class: 'nav-items buy',
-      text: 'Rent',
-      link: '/search/Rent',
-    },
-    {
-      src: '../../assets/images/icons/sell.svg',
-      class: 'nav-items sell',
-      text: 'Sell',
-      link: '/sellrent',
-    },
-    {
-      src: '../../assets/images/icons/find-agents.svg',
-      class: 'nav-items find-agents',
-      text: 'Find Agents',
-      link: '/find-agent',
-    },
-    {
-      src: '../../assets/images/icons/world.svg',
-      class: 'nav-items guide',
-      text: 'Guide',
-      link: 'explore',
-    },
-    {
-      src: '../../assets/images/icons/book.svg',
-      class: 'nav-items blog',
-      text: 'Blog',
-      link: 'blogs',
-    }
-  ]
-
 
   // Pie
   public pieChartOptions: ChartConfiguration['options'] = {
@@ -237,13 +228,13 @@ export class DashboardReportsComponent implements OnInit {
   };
 
   // Gender Pie
-  public GenderpieChartOptions: ChartConfiguration['options'] = {
+  public options:any= {
     maintainAspectRatio: false,
     interaction: {
       intersect: false
     },
-    // circumference: 180,
-    // rotation: -90,
+    circumference: 180,
+    rotation: -90,
     plugins: {
       legend: {
         display: true,
