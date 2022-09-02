@@ -9618,3 +9618,16 @@ p:empty {
     font-size: 30px;
     width: 40px;
 }
+
+.blink {
+    position: relative;
+    &::before {
+        content: "";
+        width: calc(100% + 4px);
+        height: calc(100% + 4px);
+        position: absolute;
+        border: 2px solid red;
+        border-radius: 10px;
+        transform: translate(-2px, -2px);
+    }
+}

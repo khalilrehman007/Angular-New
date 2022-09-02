@@ -251,9 +251,6 @@ export class PropertyDetailsComponent implements OnInit {
       $("." + this.currentField).removeClass("blink");
       this.currentField = "";
     })
-    // setTimeout(()=> {
-    //   $("." + this.currentField).removeClass("blink");
-    // },4000);
     $(window).scrollTop(temp);
   }
   getData() {
