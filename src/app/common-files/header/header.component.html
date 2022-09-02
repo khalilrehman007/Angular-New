@@ -256,10 +256,10 @@
                                     <div ngClass="notifivation-inner-cntnt" *ngIf="notificationData.length > 0">
                                         <ul ngClass="list-unstyled">
                                             <li ngClass="position-relative" *ngFor="let item of notificationData">
-                                                <p>{{item.value.Title}}
+                                                <h4>{{item.value.Title}}
                                                     <span
                                                         ngClass="notifiction_time">{{getTime(item.value.NotificationDateTime)}}</span>
-                                                </p>
+                                                </h4>
                                                 <p>{{item.value.Body}}</p>
                                             </li>
                                         </ul>
@@ -297,22 +297,22 @@
                             </li>
                         </ul>
                         <ul ngClass="navbar-nav">
-                            <li ngClass="nav-item">
+                            <li ngClass="nav-item link-li">
                                 <a ngClass="nav-link" routerLink="/property/search/Buy">
                                     Buy
                                 </a>
                             </li>
-                            <li ngClass="nav-item">
+                            <li ngClass="nav-item link-li">
                                 <a ngClass="nav-link" routerLink="/property/search/Rent">
                                     Rent
                                 </a>
                             </li>
-                            <li ngClass="nav-item">
+                            <li ngClass="nav-item link-li">
                                 <a ngClass="nav-link" routerLink="/blogs">
                                     Blog
                                 </a>
                             </li>
-                            <li ngClass="nav-item">
+                            <li ngClass="nav-item link-li">
                                 <a ngClass="nav-link" routerLink="/explore">
                                     Areas
                                 </a>
@@ -330,8 +330,8 @@
                             </li>
                             <li ngClass="nav-item hover-block-header">
                                 <div ngbDropdown class="d-inline-block">
-                                    <button type="button" class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Trends</button>
-                                    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                                    <button type="button" class="btn btn-outline-primary" id="dropdownBasic2" ngbDropdownToggle>Trends</button>
+                                    <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
                                       <button ngbDropdownItem><a routerLink="">Market performance 2022</a></button>
                                       <button ngbDropdownItem><a routerLink="">Dubai property prices 2022</a></button>
                                       <button ngbDropdownItem><a routerLink="">Sold properties</a></button>
@@ -344,8 +344,8 @@
                             </li>
                             <li ngClass="nav-item hover-block-header">
                                 <div ngbDropdown class="d-inline-block">
-                                    <button type="button" class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>New Homes</button>
-                                    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                                    <button type="button" class="btn btn-outline-primary" id="dropdownBasic3" ngbDropdownToggle>New Homes</button>
+                                    <div ngbDropdownMenu aria-labelledby="dropdownBasic3">
                                       <button ngbDropdownItem><a routerLink="">New projects in Dubai</a></button>
                                       <button ngbDropdownItem><a routerLink="">Off-plan properties location map</a></button>
                                       <button ngbDropdownItem><a routerLink="">Buy off-plan apartments in Dubai</a></button>

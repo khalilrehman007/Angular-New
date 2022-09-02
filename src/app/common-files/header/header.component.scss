@@ -1155,7 +1155,7 @@ textarea {
     opacity: 0.8;
 }
 .notifivation-inner-cntnt ul li {
-    padding: 10px 50px 10px 15px;
+    padding: 10px 90px 10px 15px;
     font-size: 14px;
     border-bottom: 1px solid #F0EFFB;
 }
@@ -1164,6 +1164,7 @@ textarea {
     right: 20px;
     font-size: 12px;
     top: 12px;
+	font-weight: 400;
 }
 .notifivation-list-dropdown.notactive {
     display: none;
@@ -1197,4 +1198,35 @@ ul.navbar-nav.sub-header {
 }
 .header-section .hover-block-header .dropdown {
     margin-right: 10px;
+}
+.header-section .nav-item.link-li>.nav-link {
+    color: #000;
+    font-size: 14px;
+    padding: 5px 10px;
+    position: relative;
+    line-height: 24px;
+    display: block;
+    position: relative;
+    top: 1px;
+}
+.hover-block-header .dropdown-menu {
+    background-color: #fff;
+    border-radius: 7px;
+    overflow: auto;
+    height: auto;
+    border: 0.5px solid #F0EFFB;
+}
+.hover-block-header .dropdown-menu a {
+    font-size: 13px;
+    color: #000;
+}
+.notifivation-inner-cntnt.ng-star-inserted ul li h4 {
+    font-size: 14px;
+    font-weight: 700;
+}
+.notifivation-inner-cntnt.ng-star-inserted ul li p {
+  margin-bottom: 0px;
+}
+.header-section .nav-item.link-li>.nav-link:hover,.hover-block-header .dropdown-menu a:hover,.header-section .hover-block-header .btn:hover{
+	color: #595ad4;
 }

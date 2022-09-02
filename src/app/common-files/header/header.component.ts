@@ -82,25 +82,25 @@ export class HeaderComponent implements OnInit {
       src: '../../../assets/images/icons/ioi.svg',
       class: 'nav-items buy',
       text: 'Buy',
-      link: '/property/search/Buy',
+      link: 'property/search/Buy',
     },
     {
       src: '../../../assets/images/icons/rent-icon.svg',
       class: 'nav-items buy',
       text: 'Rent',
-      link: '/property/search/Rent',
+      link: 'property/search/Rent',
     },
     {
       src: '../../../assets/images/icons/sell.svg',
       class: 'nav-items sell',
       text: 'Sell',
-      link: '/sellrent',
+      link: 'sellrent',
     },
     {
       src: '../../../assets/images/icons/find-agents.svg',
       class: 'nav-items find-agents',
       text: 'Find Agents',
-      link: '/find-agent',
+      link: 'find-agent',
     },
     {
       src: '../../../assets/images/icons/world.svg',
@@ -113,6 +113,30 @@ export class HeaderComponent implements OnInit {
       class: 'nav-items blog',
       text: 'Blog',
       link: 'blogs',
+    },
+    {
+      src: '../../../assets/images/icons/building.svg',
+      class: 'nav-items valuation',
+      text: 'Property Valuation',
+      link: 'valuation',
+    },
+    {
+      src: '../../../assets/images/icons/sell-property-tab.svg',
+      class: 'nav-items sellrentproperty',
+      text: 'Sell/Rent Property',
+      link: 'sellrent',
+    },
+    {
+      src: '../../../assets/images/icons/data-intelligence.svg',
+      class: 'nav-items data-intelligence',
+      text: 'Data Intelligence',
+      link: 'dashboard-reports',
+    },
+    {
+      src: '../../../assets/images/icons/classified.svg',
+      class: 'nav-items classified',
+      text: 'Classified',
+      link: '',
     }
   ]
 
