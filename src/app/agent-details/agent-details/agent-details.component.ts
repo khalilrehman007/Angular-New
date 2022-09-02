@@ -90,7 +90,7 @@ export class AgentDetailsComponent implements OnInit {
           rentTypeName = element.rentType.name
         }
         let image: any = 'assets/images/placeholder.png'
-        if (element.documents.length > 1) {
+        if (element.documents.length >= 1) {
           image = element.documents[0].fileUrl
         }
 

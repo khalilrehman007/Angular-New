@@ -28,11 +28,14 @@ export class CompanyDetailsComponent implements OnInit {
     this.user = localStorage.getItem("user");
     this.user = JSON.parse(this.user);
 
-    this.service.DisplayCompany(this.id).subscribe((result: any) => {
+   this.DisplayCompany();
+  }
+
+  DisplayCompany(){
+    this.service.DisplayCompany({"companyId":"2", "SortedBy":"1" }).subscribe((result: any) => {
       this.companyDetails = result.data;
       console.log(this.companyDetails)
     })
-
   }
 
   pageChanged(value: any) {
