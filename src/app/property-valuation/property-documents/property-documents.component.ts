@@ -46,9 +46,11 @@ export class PropertyDocumentsComponent implements OnInit {
   error: any = ""
   showError: boolean = false;
   requiredDocs: number = 3;
+  currentField: any;
   currency: any = localStorage.getItem("currency");
   errorResponse(data: any) {
     this.showError = false;
+    this.animate();
   }
 
   reportForm = new FormGroup({
@@ -246,6 +248,15 @@ export class PropertyDocumentsComponent implements OnInit {
       return false;
     }
   }
+  animate() {
+    let temp: any = $("." + this.currentField).offset()?.top;
+    $("." + this.currentField).addClass("blink");
+    $("." + this.currentField).on("click", () => {
+      $("." + this.currentField).removeClass("blink");
+      this.currentField = "";
+    })
+    $(window).scrollTop(temp);
+  }
   checkPackage() {
     this.service.PropertyPackageType().subscribe((result: any) => {
       this.certificateData = result.data;
@@ -299,6 +310,7 @@ export class PropertyDocumentsComponent implements OnInit {
       this.status5 = !this.status5;
       this.status1 = !this.status1;
     } else {
+      this.currentField = "required-docs";
       this.error = "Please Upload the required Documents.";
       this.showError = true;
     }
@@ -325,22 +337,27 @@ export class PropertyDocumentsComponent implements OnInit {
   }
   Nextshow2() {
     if (!this.formData.ReportPackageId) {
+      this.currentField = "package-type-input";
       this.error = "Select Package Type";
       this.showError = true;
       return;
     } else if (!this.formData.ReportLanguage) {
+      this.currentField = "language-input";
       this.error = "Select Report Language";
       this.showError = true;
       return;
     } else if (this.reportForm.value.name == "") {
+      this.currentField = "name-input";
       this.error = "Please Enter Owner Name";
       this.showError = true;
       return;
     } else if (this.reportForm.value.phone == "") {
-      this.error = "Please Enter Owner Email";
+      this.currentField = "phone-input";
+      this.error = "Please Enter Owner Phone Number";
       this.showError = true;
       return;
     } else if (!this.termsAccepted) {
+      this.currentField = "accept-terms-input";
       this.error = "Please Accept Terms and Conditions";
       this.showError = true;
       return;
@@ -512,38 +529,47 @@ export class PropertyDocumentsComponent implements OnInit {
     let cvv: any = this.paymentForm.value.cvv;
     let currentDate: any = this.datePipe.transform(this.minDate, 'yyyy-MM-dd')?.split("-");
     if (this.paymentForm.value.cardNumber == "") {
+      this.currentField = "card-number-input";
       this.error = "Please Enter Card Number";
       this.showError = true;
       return;
     } else if (number.toString().length < 16) {
+      this.currentField = "card-number-input";
       this.error = "Please Enter a Valid Card Number";
       this.showError = true;
       return;
     } else if (this.paymentForm.value.expiryDate == "") {
+      this.currentField = "expiry-input";
       this.error = "Please Enter Card Expiry";
       this.showError = true;
       return;
     } else if (date.toString().length < 5) {
+      this.currentField = "expiry-input";
       this.error = "Please Enter a Valid Card Expiry";
       this.showError = true;
       return;
     } else if (this.paymentForm.value.cvv == "") {
+      this.currentField = "cvv-input";
       this.error = "Please Enter CVV";
       this.showError = true;
       return;
     } else if (cvv.toString().length < 3) {
+      this.currentField = "cvv-input";
       this.error = "Please Enter a valid CVV";
       this.showError = true;
       return;
     } else if ("20" + date.toString().split("/")[1] < currentDate[0]) {
+      this.currentField = "expiry-input";
       this.error = "Please Enter a Valid Card Expiry";
       this.showError = true;
       return;
     } else if ("20" + date.toString().split("/")[1] == currentDate[0] && date.toString().split("/")[0] < currentDate[1] || date.toString().split("/")[0] > 12) {
+      this.currentField = "expiry-input";
       this.error = "Please Enter a Valid Card Expiry";
       this.showError = true;
       return;
     } else if (this.paymentForm.value.cardName = "") {
+      this.currentField = "card-name-input";
       this.error = "Please Enter a Card Holder Name";
       this.showError = true;
       return;
