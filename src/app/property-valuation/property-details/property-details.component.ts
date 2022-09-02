@@ -19,6 +19,7 @@ export class PropertyDetailsComponent implements OnInit {
   showError: boolean = false;
   errorResponse(data: any) {
     this.showError = false;
+    this.animate();
   }
 
   map: any;
@@ -56,6 +57,7 @@ export class PropertyDetailsComponent implements OnInit {
   valuationDetailData: any = {};
   location = { lat: 31.5204, lng: 74.3587 };
   districtName: any;
+  currentField: any;
 
   propertyDetails = new FormGroup({
     titleDeed: new FormControl("", Validators.required),
@@ -228,7 +230,7 @@ export class PropertyDetailsComponent implements OnInit {
     staticMapUrl += "&maptype=" + this.map.mapTypeId;
     staticMapUrl += "&markers=color:red|" + localStorage.getItem("lat") + "," + localStorage.getItem("lng");
 
-    const toDataURL = (url:any) => fetch(url)
+    const toDataURL = (url: any) => fetch(url)
       .then(response => response.blob())
       .then(blob => new Promise((resolve, reject) => {
         const reader = new FileReader()
@@ -242,38 +244,58 @@ export class PropertyDetailsComponent implements OnInit {
         localStorage.setItem("mapImg", a);
       })
   }
+  animate() {
+    let temp: any = $("." + this.currentField).offset()?.top;
+    $("." + this.currentField).addClass("blink");
+    $("." + this.currentField).on("click", () => {
+      $("." + this.currentField).removeClass("blink");
+      this.currentField = "";
+    })
+    // setTimeout(()=> {
+    //   $("." + this.currentField).removeClass("blink");
+    // },4000);
+    $(window).scrollTop(temp);
+  }
   getData() {
-    if (this.propertyDetails.value.titleDeed == "") {
-      this.error = "Enter Title Deed No";
-      this.showError = true;
-      return;
-    } else if (this.titleDeedType == -1) {
-      this.error = "Select Title Deed Type";
-      this.showError = true;
-      return;
-    } else if (this.propertyDetails.value.muncipality == "") {
-      this.error = "Enter Muncipality/Affection No";
-      this.showError = true;
-      return;
-    } else if (this.propertyInsured == -1) {
-      this.error = "Select Property Insurance Type";
-      this.showError = true;
-      return;
-    } else if (this.countryId == -1) {
+    if (this.countryId == -1) {
+      this.currentField = "country-input";
       this.error = "Select Country";
       this.showError = true;
       return;
     } else if (this.cityId == -1) {
+      this.currentField = "city-input";
       this.error = "Select City";
       this.showError = true;
       return;
     } else if (this.districtId == -1) {
+      this.currentField = "district-input";
       this.error = "Select District";
       this.showError = true;
       return;
     } else if ($("#searchLocation").val() == "" || !this.locationSelected) {
+      this.currentField = "input-wrapper";
       this.changeInfo();
       this.error = "Enter Address";
+      this.showError = true;
+      return;
+    } else if (this.propertyDetails.value.titleDeed == "") {
+      this.currentField = "title-deed-input";
+      this.error = "Enter Title Deed No";
+      this.showError = true;
+      return;
+    } else if (this.titleDeedType == -1) {
+      this.currentField = "title-deed-type-input";
+      this.error = "Select Title Deed Type";
+      this.showError = true;
+      return;
+    } else if (this.propertyDetails.value.muncipality == "") {
+      this.currentField = "municipality-input";
+      this.error = "Enter Muncipality/Affection No";
+      this.showError = true;
+      return;
+    } else if (this.propertyInsured == -1) {
+      this.currentField = "property-insured-input";
+      this.error = "Select Property Insurance Type";
       this.showError = true;
       return;
     } else {
