@@ -314,8 +314,8 @@ export class AppService {
   // DisplayCompany(data:any) {
   //   return this.http.post(this.apiurl + 'DisplayCompany', data);
   // }
-  DisplayCompany(id: any) {
-    return this.http.get(this.apiurl + 'DisplayCompany?companyId=' + id);
+  DisplayCompany(data: any) {
+    return this.http.post(this.apiurl + 'DisplayCompany', data);
   }
   AgentAutoCompleteSearch(data: any) {
     return this.http.post(this.apiurl + 'AgentAutoCompleteSearch', data);
