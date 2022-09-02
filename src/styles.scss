@@ -6777,8 +6777,12 @@ li.agent-details__property-list-item {
 		}
 		.col {
 			p {
-				margin-bottom: 0;
 				font-size: 14px;
+				width: 100%;
+				max-width: 100%;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+				overflow: hidden;
 			}
 			span {
 				font-size: 14px;
@@ -9617,4 +9621,7 @@ p:empty {
     color: #fff;
     font-size: 30px;
     width: 40px;
+}
+.lead-summ-table .table-row > .col:last-child {
+    text-align: right;
 }

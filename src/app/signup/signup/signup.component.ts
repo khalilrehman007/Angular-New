@@ -6,7 +6,9 @@ import { Router } from '@angular/router';
 import { NotificationService } from 'src/app/service/notification.service';
 import { AppService } from 'src/app/service/app.service';
 import { Location } from '@angular/common';
-
+import { SearchCountryField, CountryISO, PhoneNumberFormat } from 'ngx-intl-tel-input';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import * as i5 from "ngx-bootstrap/dropdown";
 
 @Component({
   selector: 'app-signup',
@@ -178,4 +180,21 @@ export class SignupComponent implements OnInit {
       this.route.navigate(["/signup/otp"])
     }
   }
+
+// Phone number List
+  
+	separateDialCode = false;
+	SearchCountryField = SearchCountryField;
+	CountryISO = CountryISO;
+  PhoneNumberFormat = PhoneNumberFormat;
+	preferredCountries: CountryISO[] = [CountryISO.UnitedStates, CountryISO.UnitedKingdom];
+	phoneForm = new FormGroup({
+		phone: new FormControl(undefined, [Validators.required])
+	});
+
+	changePreferredCountries() {
+		this.preferredCountries = [CountryISO.India, CountryISO.Canada];
+	}
+  
+//End Phone number List
 }

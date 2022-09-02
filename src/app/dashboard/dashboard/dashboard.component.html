@@ -290,11 +290,11 @@
                                                             src="{{CopyIcon}}" alt=""></a> -->
                                                 </div>
                                             </div>
-                                            <!-- <div class="col">
+                                           <div class="col">
                                                 <a href="#" class="view-more">
                                                     <img src="{{MoreIcon}}" alt="" class="icon">
                                                 </a>
-                                            </div> -->
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -380,20 +380,20 @@
 
                                                 <div class="recent-search-item">
                                                     <div class="lable">05 May, 2022</div>
-                                                    <div ngClass="row">
-                                                        <div ngClass="col-xl-3 col-lg-3 col-sm-12">
+                                                    <div ngClass="flex-wrap d-flex">
+                                                        <div ngClass="flex-auto-items">
                                                             <a href="#" class="link">Bur Dubai, Dubai <img
                                                                     src="{{MoreIcon}}" alt=""></a>
                                                         </div>
-                                                        <div ngClass="col-xl-3 col-lg-3 col-sm-12">
+                                                        <div ngClass="flex-auto-items">
                                                             <a href="#" class="link">Bur Dubai, Dubai <img
                                                                     src="{{MoreIcon}}" alt=""></a>
                                                         </div>
-                                                        <div ngClass="col-xl-3 col-lg-3 col-sm-12">
+                                                        <div ngClass="flex-auto-items">
                                                             <a href="#" class="link">Bur Dubai, Dubai <img
                                                                     src="{{MoreIcon}}" alt=""></a>
                                                         </div>
-                                                        <div ngClass="col-xl-3 col-lg-3 col-sm-12">
+                                                        <div ngClass="flex-auto-items">
                                                             <a href="#" class="link">Bur Dubai, Dubai <img
                                                                     src="{{MoreIcon}}" alt=""></a>
                                                         </div>
@@ -842,7 +842,7 @@
                                                 <div class="checkbox-design position-relative"
                                                     (click)="LoadLeads('','')">
                                                     <input type="radio" id="Furnished" name="property-types" value="All"
-                                                        checked>
+                                                    checked>
                                                     <button class="checkbox-btn">All</button>
                                                 </div>
                                                 <div class="checkbox-design position-relative"
@@ -1558,8 +1558,8 @@
                                             </div>
                                             <div ngClass="my_valuation-inner-div payemnt"
                                                 *ngIf="item.valuationStatus.statusDescription == 'Payment Pending'">
-                                                <a routerLink="/PropertyPayment" ngClass="payment pending">Payment
-                                                    Pending</a>
+                                                <p ngClass="payment pending">Payment Pending</p>
+                                                <a class="pay-now-btn cursor-pointer" routerLink="/PropertyPayment">Pay Now</a>
                                             </div>
                                             <div ngClass="my_valuation-inner-div payemnt"
                                                 *ngIf="item.valuationStatus.statusDescription != 'Payment Pending'">
