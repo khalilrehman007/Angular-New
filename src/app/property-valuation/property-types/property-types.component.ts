@@ -47,8 +47,10 @@ export class PropertyTypesComponent implements OnInit {
   oldData: any = "";
   proceed: boolean = false;
   elevationValue:any;
+  currentField: any;
   errorResponse(data: any) {
     this.showError = false;
+    this.animate();
   }
   confirmResponse(data: any) {
     this.showConfirm = false;
@@ -287,68 +289,93 @@ export class PropertyTypesComponent implements OnInit {
       this.showError = true;
     }
   }
+  animate() {
+    let temp: any = $("." + this.currentField).offset()?.top;
+    $("." + this.currentField).addClass("blink");
+    $("." + this.currentField).on("click", () => {
+      $("." + this.currentField).removeClass("blink");
+      this.currentField = "";
+    })
+    $(window).scrollTop(temp);
+  }
   getData() {
     if (!this.formData.PropertyCategoryId) {
+      this.currentField = "property-cateogary-input";
       this.error = "Please Select Property Category";
       this.showError = true;
       return;
     } else if (!this.formData.PropertyTypeId) {
+      this.currentField = "property-type-input";
       this.error = "Please Select Property Type";
       this.showError = true;
       return;
     } else if (!this.formData.ValuationPurposeId) {
+      this.currentField = "valuation-purpose-input";
       this.error = "Please Select Valuation Purpose";
       this.showError = true;
       return;
     } else if (!this.formData.PropertyStatusId && !this.propertyData.hasUnits) {
+      this.currentField = "property-status-input";
       this.error = "Please Select Property Status";
       this.showError = true;
       return;
     } else if (this.propertyTypeForm.value.apartmentNo == "") {
+      this.currentField = "apartment-no-input";
       this.error = "Please Enter Apartment No";
       this.showError = true;
       return;
     } else if (this.roadCount == 0) {
+      this.currentField = "roads-input";
       this.error = "Please Select Number of Road";
       this.showError = true;
       return;
     } else if (this.propertyTypeForm.value.constructionAge == "") {
+      this.currentField = "constructionAge-input";
       this.error = "Please Enter Property Age";
       this.showError = true;
       return;
     } else if (this.propertyData.hasElevation && this.propertyTypeForm.value.elevation == "") {
+      this.currentField = "elevation-input";
       this.error = "Please Enter Elevation";
       this.showError = true;
       return;
     } else if (this.propertyTypeForm.value.apartmentSize == "") {
+      this.currentField = "apartment-size-input";
       this.error = "Please Enter Plot Size";
       this.showError = true;
       return;
     } else if (this.propertyTypeForm.value.buildupArea == "" && this.propertyData.hasBuildUpArea) {
+      this.currentField = "buildup-area-input";
       this.error = "Please Enter Buildup Area";
       this.showError = true;
       return;
     } else if (this.bedrooms == 0 && this.propertyData.hasBed) {
+      this.currentField = "bedrooms-input";
       this.error = "Please Select Bedrooms";
       this.showError = true;
       return;
     } else if (this.bathrooms == 0 && this.propertyData.hasBath) {
+      this.currentField = "bathroom-input";
       this.error = "Please Select Bathrooms";
       this.showError = true;
       return;
     } else if (this.propertyData.hasFurnishing && this.furnishing == 0) {
+      this.currentField = "furnishing-input";
       this.error = "Please Select Furnishing Type";
       this.showError = true;
       return;
     } else if (this.propertyData.hasFitting && this.fitting == 0) {
+      this.currentField = "fitting-input";
       this.error = "Please Select Fitting Type";
       this.showError = true;
       return;
     } else if (this.formData.PropertyStatusId == 2 && this.propertyTypeForm.value.income == "") {
+      this.currentField = "income-input";
       this.error = "Please Enter Total Income";
       this.showError = true;
       return;
     } else if (this.formData.PropertyStatusId == 2 && this.propertyTypeForm.value.expense == "" || this.propertyData.hasUnits && this.propertyTypeForm.value.expense == "") {
+      this.currentField = "expense-input";
       this.error = "Please Enter Total Expense";
       this.showError = true;
       return;
