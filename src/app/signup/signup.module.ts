@@ -15,6 +15,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { OtpComponent } from './otp/otp.component';
 import { ThankYouComponent } from './thank-you/thank-you.component';
+import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { ThankYouComponent } from './thank-you/thank-you.component';
     MatCheckboxModule,
     MatCardModule,
     MatIconModule,
-    MatSelectModule
+    MatSelectModule,
+    NgxIntlTelInputModule,
+    
   ]
 })
 export class SignupModule { }

@@ -14,15 +14,17 @@ import { map } from 'rxjs';
   styleUrls: ['./dashboard-header.component.scss']
 })
 export class DashboardHeaderComponent implements OnInit {
-  togglesvg = '../../assets/images/icons/toggle.svg'
-  logo = '../../assets/images/logo.svg'
-  chartsvg = '../../assets/images/Charts-nav.svg'
-  signinsvg = '../../assets/images/user.svg'
-  flagsvg = '../../assets/images/aed-fg.svg'
-  close = '../../assets/images/icons/close.svg'
-  property = '../../assets/images/shortlisted-img.png'
-  trash = '../../assets/images/icons/Trash-dotted.svg'
-  logoutimg = '../../assets/images/logout-popup-banner.png'
+  downloadreport = '../../../assets/images/icons/download-svg.svg'
+  togglesvg = '../../../assets/images/icons/toggle.svg'
+  logo = '../../../assets/images/logo.svg'
+  chartsvg = '../../../assets/images/Charts-nav.svg'
+  signinsvg = '../../../assets/images/user.svg'
+  flagsvg = '../../../assets/images/aed-fg.svg'
+  close = '../../../assets/images/icons/close.svg'
+  property = '../../../assets/images/shortlisted-img.png'
+  trash = '../../../assets/images/icons/Trash-dotted.svg'
+  logoutimg = '../../../assets/images/logout-popup-banner.png'
+  profileimg = '../../../assets/images/icons/profile-icon.png'
 
   constructor() {
   
@@ -74,6 +76,13 @@ export class DashboardHeaderComponent implements OnInit {
     }
   ]
 
-
+  status: boolean = false;
+  clickEvent() {
+      this.status = !this.status;
+    }
+    status2: boolean = false;
+  clickEvent2() {
+      this.status2 = !this.status2;
+    }
 
 }
