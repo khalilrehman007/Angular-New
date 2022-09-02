@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgxSliderModule } from '@angular-slider/ngx-slider';
+import { BrowserModule } from "@angular/platform-browser";
 import { MatSelectModule } from '@angular/material/select';
 import { NgChartsModule } from 'ng2-charts';
 import { MatInputModule } from '@angular/material/input';
@@ -13,6 +15,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatIconModule} from '@angular/material/icon';
 
 
 @NgModule({
@@ -32,7 +36,12 @@ import { MatMenuModule } from '@angular/material/menu';
     FormsModule,
     ReactiveFormsModule,
     MatAutocompleteModule,
-    MatDialogModule
+    MatDialogModule,
+    MatDatepickerModule,
+    MatMenuModule,
+    NgxSliderModule,
+    BrowserModule,
+    MatIconModule
   ]
 })
 export class DashboardModuleModule { }
