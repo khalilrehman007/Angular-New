@@ -37,20 +37,23 @@
                 <label class="h6-design">Phone Number<span
                         ngClass="required-span">*</span></label>
                 <div ngClass="position-relative country-code-select-design">
-                    <div *ngIf="submitted && validate['PhoneNumber'].errors" class="alert-indicators">
-                    </div>
-                    <mat-form-field class="full-width input-design-2" appearance="fill">
-                        <input matInput type="number" (input)="checkLength()" formControlName="PhoneNumber" required ngModel placeholder="Phone Number">
-                    </mat-form-field>
-                    <div *ngIf="submitted && validate['PhoneNumber'].errors" class="alert alert-danger">
-                        <div *ngIf="validate['PhoneNumber'].errors['required']">Phone Number is required</div>
-                    </div>
-                    <mat-form-field appearance="fill" class="countries-select">
-                        <mat-select [formControl]="countriesList">
-                            <mat-option value="+971">+971</mat-option>
-                            <mat-option value="+91">+91</mat-option>
-                        </mat-select>
-                    </mat-form-field>
+                    <ngx-intl-tel-input
+                    [cssClass]="'custom'"
+                    [preferredCountries]="preferredCountries"
+                    [enableAutoCountrySelect]="true"
+                    [enablePlaceholder]="true"
+                    [searchCountryFlag]="true"
+                    [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
+                    [selectFirstCountry]="false"
+                    [selectedCountryISO]="CountryISO.India"
+                    [maxLength]="15"
+                    [phoneValidation]="true"
+                    [separateDialCode]="separateDialCode"
+                    [numberFormat]="PhoneNumberFormat.National"
+                    name="phone"
+                    formControlName="phone"
+                  >
+                  </ngx-intl-tel-input>
                 </div>
             </div>
             <div *ngIf="submitted && validate['Password'].errors" class="alert-indicators">
