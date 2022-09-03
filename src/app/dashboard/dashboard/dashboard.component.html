@@ -79,8 +79,7 @@
                         <button class="nav-link" id="pills-listing-tab" data-bs-toggle="pill"
                             data-bs-target="#pills-listing" type="button" role="tab" aria-controls="pills-listing"
                             aria-selected="false"
-                            *ngIf="professionalType == 1 || professionalType == 2 || professionalType == 3">My
-                            Listings</button>
+                            *ngIf="professionalType == 1 || professionalType == 2 || professionalType == 3">My Listings</button>
                     </li>
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="pills-valuation-tab" data-bs-toggle="pill"
@@ -280,17 +279,17 @@
                                             <div class="col contact-col">
                                                 <span>Contact</span>
                                                 <div>
-                                                    <p *ngIf="data && data.phone">{{data.phone}}</p> 
+                                                    <p *ngIf="data && data.phone">{{data.phone}}</p>
                                                     <!-- <a href="#"><img
                                                             src="{{ViewIcon}}" alt=""></a> -->
                                                 </div>
                                                 <div>
                                                     <p *ngIf="data && data.email">{{data.email}}</p>
-                                                     <!-- <a href="#"><img
+                                                    <!-- <a href="#"><img
                                                             src="{{CopyIcon}}" alt=""></a> -->
                                                 </div>
                                             </div>
-                                           <div class="col">
+                                            <div class="col">
                                                 <a href="#" class="view-more">
                                                     <img src="{{MoreIcon}}" alt="" class="icon">
                                                 </a>
@@ -350,7 +349,6 @@
                                     <div ngClass="list-property-content">
                                         <div ngClass="list-property-body">
                                             <form>
-
                                                 <div class="type-activity-status">
                                                     <div ngClass="block-wrapper mb-4">
                                                         <div class="checkbox-flex-box-auto button-same-select">
@@ -842,7 +840,7 @@
                                                 <div class="checkbox-design position-relative"
                                                     (click)="LoadLeads('','')">
                                                     <input type="radio" id="Furnished" name="property-types" value="All"
-                                                    checked>
+                                                        checked>
                                                     <button class="checkbox-btn">All</button>
                                                 </div>
                                                 <div class="checkbox-design position-relative"
@@ -1150,12 +1148,13 @@
                                                                     class="img-fluid agent-details__property-list-item-img">
                                                             </div>
                                                             <div class="col-lg-10">
-                                                                <div class="row" [routerLink]="['/property/detail']" [queryParams]="{id: listing.id}">
+                                                                <div class="row" [routerLink]="['/property/detail']"
+                                                                    [queryParams]="{id: listing.id}">
                                                                     <div class="col-7">
                                                                         <a
                                                                             class="agent-details__property-list-item-link cursor-pointer">{{listing.propertyPrice}}
-                                                                            {{listing.currency}}
-                                                                            <span>/{{listing.rentType}}</span>
+                                                                            {{listing.currency}}<small
+                                                                            *ngIf="listing.rentType != ''">/{{listing.rentType}}</small>
                                                                         </a>
                                                                     </div>
                                                                     <div class="col-5 text-end">
@@ -1609,8 +1608,8 @@
                                             </div>
                                             <div ngClass="my_valuation-inner-div payemnt"
                                                 *ngIf="item.valuationStatus.statusDescription == 'Payment Pending'">
-                                                <a routerLink="/PropertyPayment" ngClass="payment pending">Payment
-                                                    Pending</a>
+                                                <p ngClass="payment pending">Payment Pending</p>
+                                                <a class="pay-now-btn cursor-pointer" routerLink="/PropertyPayment">Pay Now</a>
                                             </div>
                                             <div ngClass="my_valuation-inner-div payemnt"
                                                 *ngIf="item.valuationStatus.statusDescription != 'Payment Pending'">
@@ -1660,8 +1659,8 @@
                                             </div>
                                             <div ngClass="my_valuation-inner-div payemnt"
                                                 *ngIf="item.valuationStatus.statusDescription == 'Payment Pending'">
-                                                <a routerLink="/PropertyPayment" ngClass="payment pending">Payment
-                                                    Pending</a>
+                                                <p ngClass="payment pending">Payment Pending</p>
+                                                <a class="pay-now-btn cursor-pointer" routerLink="/PropertyPayment">Pay Now</a>
                                             </div>
                                             <div ngClass="my_valuation-inner-div payemnt"
                                                 *ngIf="item.valuationStatus.statusDescription != 'Payment Pending'">

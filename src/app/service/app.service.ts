@@ -420,4 +420,7 @@ export class AppService {
   BlogBySlug(id: any) {
     return this.http.get(this.apiurl + 'BlogBySlug/' + id);
   }
+  MyActivitySavedSearchProperty(data: any) {
+    return this.http.post(this.apiurl + 'MyActivitySavedSearchProperty', data);
+  }
 }
