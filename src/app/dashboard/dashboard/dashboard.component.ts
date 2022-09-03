@@ -59,6 +59,7 @@ export class DashboardComponent implements OnInit {
   leadSummary: any;
   showLoader: boolean = false;
   myPackages: any;
+  activitySavedSearch: any;
   // resedentialRent: boolean = true ;
   // resedentialBuy: boolean = false;
 
@@ -227,6 +228,10 @@ export class DashboardComponent implements OnInit {
     this.service.MyPackages(335).subscribe((result: any) => {
       this.myPackages = result.data;
     })
+    this.service.MyActivitySavedSearchProperty({"UserId":"335","PropertyListingTypeId":""}).subscribe((result: any) => {
+      this.activitySavedSearch = result.data;
+      console.log(this.activitySavedSearch)
+    })
   }
   downloadReport(e: any) {
     this.showLoader = true;
@@ -331,7 +336,7 @@ export class DashboardComponent implements OnInit {
     let tempData: Array<Object> = []
     this.service.LoadValuationListing({ "UserId": this.user.id, "PropertyCategoryId": "" }).subscribe(data => {
       let response: any = data;
-      response.data.forEach((element:any, i:any) => {
+      response.data.forEach((element: any, i: any) => {
         let image: any;
         let rentTypeName = ''
         if (element.rentType != null) {
@@ -378,7 +383,7 @@ export class DashboardComponent implements OnInit {
 
 
   childTabId: any;
-  public childTabsChange(id:any) {
+  public childTabsChange(id: any) {
     this.childTabId = id
     this.getTabCount();
     this.getLoadListing();
@@ -400,7 +405,7 @@ export class DashboardComponent implements OnInit {
     let tempData: Array<Object> = []
     this.service.LoadPropertyListingStatus().subscribe(data => {
       let response: any = data;
-      response.data.forEach((element:any, i:any) => {
+      response.data.forEach((element: any, i: any) => {
         let name = element.statusDescription
         let count: number = 0;
         if (name == "all") {
@@ -574,7 +579,7 @@ export class DashboardComponent implements OnInit {
     let tempData: Array<Object> = []
     this.service.LoadListing({ "UserId": this.user.id, "PropertyListingTypeId": this.parentTabId, "PropertyListingStatusId": this.childTabId }).subscribe(data => {
       let response: any = data;
-      response.data.forEach((element:any, i:any) => {
+      response.data.forEach((element: any, i: any) => {
         let image: any;
         let rentTypeName = ''
         if (element.rentType != null) {
@@ -587,7 +592,7 @@ export class DashboardComponent implements OnInit {
         }
         tempData.push(
           {
-            id:element.id,propertyTitle: element.propertyTitle, propertyAddress: element.propertyAddress, img: image,
+            id: element.id, propertyTitle: element.propertyTitle, propertyAddress: element.propertyAddress, img: image,
             buildingName: element.buildingName, bedrooms: element.bedrooms, bathrooms: element.bathrooms, carpetArea: element.carpetArea,
             unitNo: element.unitNo, totalFloor: element.totalFloor, floorNo: element.floorNo, propertyDescription: element.propertyDescription,
             requestedDate: element.requestedDate, furnishingType: element.furnishingType, propertyPrice: element.propertyPrice,
@@ -614,7 +619,7 @@ export class DashboardComponent implements OnInit {
     let tempData: Array<Object> = []
     this.service.LoadExpertIn().subscribe(data => {
       let response: any = data;
-      response.data.forEach((element:any, i:any) => {
+      response.data.forEach((element: any, i: any) => {
         tempData.push(
           { id: element.id, name: element.name });
       })
@@ -626,7 +631,7 @@ export class DashboardComponent implements OnInit {
     let tempData: Array<Object> = []
     this.service.LoadSpokenLanguages().subscribe(data => {
       let response: any = data;
-      response.data.forEach((element:any, i:any) => {
+      response.data.forEach((element: any, i: any) => {
         tempData.push(
           { id: element.id, name: element.name });
       })
@@ -640,7 +645,7 @@ export class DashboardComponent implements OnInit {
     let tempData: Array<Object> = []
     this.service.LoadNationality().subscribe(data => {
       let response: any = data;
-      response.data.forEach((element:any, i:any) => {
+      response.data.forEach((element: any, i: any) => {
         tempData.push(
           { id: element.id, name: element.name });
       })
@@ -651,7 +656,7 @@ export class DashboardComponent implements OnInit {
   expertArray: any = [];
   expertsChange(e: any, value: any): void {
     let exists = true;
-    this.expertArray.forEach((element:any, i:any) => {
+    this.expertArray.forEach((element: any, i: any) => {
       if (element == value) {
         exists = false
       }
@@ -659,7 +664,7 @@ export class DashboardComponent implements OnInit {
     if (exists) {
       this.expertArray.push(value)
     } else {
-      this.expertArray.forEach((element:any, index:any) => {
+      this.expertArray.forEach((element: any, index: any) => {
         if (element == value) delete this.expertArray[index];
       });
     }
@@ -668,7 +673,7 @@ export class DashboardComponent implements OnInit {
   languagesArray: any = [];
   languagesArrayChange(e: any, value: any): void {
     let exists = true;
-    this.languagesArray.forEach((element:any, i:any) => {
+    this.languagesArray.forEach((element: any, i: any) => {
       if (element == value) {
         exists = false
       }
@@ -676,7 +681,7 @@ export class DashboardComponent implements OnInit {
     if (exists) {
       this.languagesArray.push(value)
     } else {
-      this.languagesArray.forEach((element:any, index:any) => {
+      this.languagesArray.forEach((element: any, index: any) => {
         if (element == value) delete this.languagesArray[index];
       });
     }
@@ -687,7 +692,7 @@ export class DashboardComponent implements OnInit {
     let tempData: Array<Object> = []
     this.service.LoadDistrict(1).subscribe(data => {
       let response: any = data;
-      response.data.forEach((element:any, i:any) => {
+      response.data.forEach((element: any, i: any) => {
         tempData.push(
           { id: element.id, name: element.name });
       })
@@ -701,7 +706,7 @@ export class DashboardComponent implements OnInit {
   }
 
   NationalityId: any;
-  onChangeNationality(event:any) {
+  onChangeNationality(event: any) {
     this.NationalityId = event.value;
   }
 
@@ -710,7 +715,7 @@ export class DashboardComponent implements OnInit {
 
   finalBrokerDocments: any = []
   documentsObject() {
-    this.uploadedDocuments.forEach((element:any, i:any) => {
+    this.uploadedDocuments.forEach((element: any, i: any) => {
       let extension: any = element.fileName.split(".");
       this.finalBrokerDocments.push({ "FileId": i, "RegistrationDocumentTypeId": i.toString(), "FileName": element.fileName, "Extension": extension[1] });
     })
@@ -726,17 +731,17 @@ export class DashboardComponent implements OnInit {
       this.notifyService.showError('Please Select All File', "Error");
     } else {
       let expertObject: any = []
-      this.expertArray.forEach((element:any, i:any) => {
+      this.expertArray.forEach((element: any, i: any) => {
         expertObject.push({ "ExpertIn": element })
       })
 
       let langObject: any = []
-      this.languagesArray.forEach((element:any, i:any) => {
+      this.languagesArray.forEach((element: any, i: any) => {
         langObject.push({ SpokenLanguageId: element })
       })
 
       let districtsIdsObject: any = []
-      this.districtsIds.forEach((element:any, i:any) => {
+      this.districtsIds.forEach((element: any, i: any) => {
         districtsIdsObject.push({ DistrictId: element })
       })
 
@@ -830,7 +835,7 @@ export class DashboardComponent implements OnInit {
     let tempData: Array<Object> = []
     this.service.MyActivityPropertyListingView({ "UserId": this.user.id, "PropertyListingTypeId": this.viewChangeId }).subscribe(data => {
       let response: any = data;
-      response.data.forEach((element:any, i:any) => {
+      response.data.forEach((element: any, i: any) => {
         let image: any;
         let rentTypeName = ''
         if (element.rentType != null) {
@@ -862,7 +867,7 @@ export class DashboardComponent implements OnInit {
     let tempData: Array<Object> = []
     this.service.MyActivityAgentView({ "UserId": this.user.id }).subscribe(data => {
       let response: any = data;
-      response.data.forEach((element:any, i:any) => {
+      response.data.forEach((element: any, i: any) => {
         let image: any;
         if (element.agentDetails.company.documents.length > 1 && element.agentDetails.company.documents !== undefined && element.agentDetails.company.documents !== null) {
           image = element.agentDetails.company.documents[0].fileUrl
@@ -911,11 +916,11 @@ export class DashboardComponent implements OnInit {
     this.getCountData(PropertyListingTypeId);
   }
   wishlistingData: any = []
-  getCountData(PropertyListingTypeId:any) {
+  getCountData(PropertyListingTypeId: any) {
     let tempData: Array<Object> = []
     this.service.FavoriteListing({ "UserId": this.user.id, "PropertyListingTypeId": PropertyListingTypeId }).subscribe(data => {
       let response: any = data;
-      response.data.forEach((element:any, i:any) => {
+      response.data.forEach((element: any, i: any) => {
 
         let image: any = '';
         if (element.documents !== null && element.documents !== undefined && element.documents.length > 0) {
@@ -1064,11 +1069,11 @@ export class DashboardComponent implements OnInit {
   }
 
   enquiredlistingData: any = []
-  getEnquiredListingData(PropertyListingTypeId:any) {
+  getEnquiredListingData(PropertyListingTypeId: any) {
     let tempData: Array<Object> = []
     this.service.MyActivityEnquired({ "UserId": this.user.id, "PropertyListingTypeId": PropertyListingTypeId }).subscribe(data => {
       let response: any = data;
-      response.data.forEach((element:any, i:any) => {
+      response.data.forEach((element: any, i: any) => {
 
         let image: any = '';
         if (element.documents !== null && element.documents !== undefined && element.documents.length > 0) {
