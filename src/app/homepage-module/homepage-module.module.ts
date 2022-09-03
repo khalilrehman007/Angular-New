@@ -8,7 +8,9 @@ import { CommonFilesModule } from '../common-files/common-files.module';
 import { RentSearchModule } from '../rent-search/rent-search.module';
 import { BuySearchModule } from '../buy-search/buy-search.module';
 import { FindAgentSearchModule } from '../find-agent-search/find-agent-search.module';
-
+import { MotorModuleModule } from '../motor-module/motor-module.module';
+import { ServiceSearchModuleModule } from '../service-search-module/service-search-module.module';
+import { CommunitySearchModuleModule } from '../community-search-module/community-search-module.module';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
@@ -24,7 +26,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     RentSearchModule,
     BuySearchModule,
     FindAgentSearchModule,
-
+    MotorModuleModule,
+    ServiceSearchModuleModule,
+    CommunitySearchModuleModule,
     CommonModule,
     HomepageModuleRoutingModule,
     CarouselModule,

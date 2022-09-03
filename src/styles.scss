@@ -2894,7 +2894,7 @@ input[type=number] {
 		position: relative;
 		z-index: 9;
 		width: 100%;
-		max-width: 310px;
+		max-width: 650px;
 		margin: 0 auto 15px auto;
 
 		.nav-link {
@@ -11364,4 +11364,33 @@ p:empty {
 	background-color: #0B26AD;
 	color: #fff;
 	border-color: #0B26AD;
+}
+.country-code-select-design .iti {
+    width: 100%;
+}
+.country-code-select-design .iti input {
+    background: #fff;
+    border: 1px solid #D3DBFF;
+    border-radius: 8px !important;
+    width: 100%;
+    padding-top: 17px;
+    padding-bottom: 17px;
+    font-size: 14px;
+    color: rgba(0, 22, 25, 0.7);
+    font-weight: 400;
+    font-family: "Cairo", sans-serif;
+}
+.country-code-select-design .iti .country-dropdown {
+    width: 376px !important;
+}
+.country-code-select-design .iti .country-dropdown .iti__country-list {
+    width: 100% !important;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+.country-code-select-design ngx-intl-tel-input .iti .country-dropdown .search-container input {
+    border-radius: 0px !important;
+}
+.country-code-select-design .iti input:focus{
+	outline: none !important;
 }
