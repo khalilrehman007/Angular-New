@@ -8,8 +8,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatChipsModule } from '@angular/material/chips';
 import { NgxSliderModule } from "@angular-slider/ngx-slider";
 import { MatFormFieldModule } from '@angular/material/form-field';
-
-
+import {MatInputModule} from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -24,7 +23,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatAutocompleteModule,
     MatChipsModule,
     MatFormFieldModule,
-    NgxSliderModule
+    NgxSliderModule,
+    MatInputModule
+  ],
+  exports: [
+    MotorComponentComponent
   ]
 })
 export class MotorModuleModule { }

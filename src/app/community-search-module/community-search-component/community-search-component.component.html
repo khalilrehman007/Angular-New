@@ -1,1 +1,161 @@
-<p>community-search-component works!</p>
+<!--<div id="rent" ngClass="tab-pane active">-->
+    <div id="rentform" ngClass="tab-form-sec community-search-form-design search-layout-design">
+        <!--  <form  [formGroup]="SubmitForm" (ngSubmit)="search()">-->
+        <form [formGroup]="SubmitForm">
+            <div ngClass="flex-row flex-wrap">
+                <div ngClass="flex-column flex-column-11 mb-2">
+                    <div ngClass="block-wrapper">
+                        <mat-form-field class="example-chip-list input-design searh_input-design" appearance="fill">
+                            <mat-label>Search Location</mat-label>
+                            <mat-chip-list #chipList aria-label="Search selection">
+                                <mat-chip *ngFor="let SearchValue of SearchKeyword" (removed)="remove(SearchValue)">
+                                    {{SearchValue}}
+                                    <button matChipRemove>
+                                        <mat-icon>cancel</mat-icon>
+                                    </button>
+                                </mat-chip>
+                                <input placeholder="Location, Project Name" #SearchInput [formControl]="searchctrl"
+                                    [matAutocomplete]="auto" [matChipInputFor]="chipList"
+                                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                    (matChipInputTokenEnd)="add($event)">
+                            </mat-chip-list>
+                            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+                                <mat-option *ngFor="let SearchValue of searchfilter | async" [value]="SearchValue">
+                                    {{SearchValue}}
+                                </mat-option>
+                            </mat-autocomplete>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div ngClass="flex-column flex-column-12 mb-2">
+                    <div ngClass="block-wrapper">
+                        <div ngClass="cstm_dropdown-list dropdown-design-2 position-relative drodown_with-img">
+                            <button ngClass="drop-down_btn" (click)="clickEvent()">Select Category</button>
+                            <div class="cstm_dropdown-menu" [ngClass]="status ? 'active' : 'notactive'">
+                                <h4 ngClass="drop_label">Select Category</h4>
+                                <div ngClass="search-dropdown_list">
+                                    <ul ngClass="list-unstyled residentails-unit-list category-search-list">
+                                        <li ngClass="d-flex">
+                                            <div ngClass="position-relative">
+                                                <input type="radio" name="SearchCategory" value="Motors">
+                                                <span ngClass="property_sel"></span>
+                                            </div>
+                                            <div ngClass="proprty_name">
+                                                <p>Motors</p>
+                                            </div>
+                                        </li>
+                                        <li ngClass="d-flex">
+                                            <div ngClass="position-relative">
+                                                <input type="radio" name="SearchCategory" value="Services">
+                                                <span ngClass="property_sel"></span>
+                                            </div>
+                                            <div ngClass="proprty_name">
+                                                <p>Services</p>
+                                            </div>
+                                        </li>
+                                        <li ngClass="d-flex">
+                                            <div ngClass="position-relative">
+                                                <input type="radio" name="SearchCategory" value="PropertyForRent">
+                                                <span ngClass="property_sel"></span>
+                                            </div>
+                                            <div ngClass="proprty_name">
+                                                <p>Property For Rent</p>
+                                            </div>
+                                        </li>
+                                        <li ngClass="d-flex">
+                                            <div ngClass="position-relative">
+                                                <input type="radio" name="SearchCategory" value="PropertyForSale">
+                                                <span ngClass="property_sel"></span>
+                                            </div>
+                                            <div ngClass="proprty_name">
+                                                <p>Property For Sale</p>
+                                            </div>
+                                        </li>
+                                        <li ngClass="d-flex">
+                                            <div ngClass="position-relative">
+                                                <input type="radio" name="SearchCategory" value="Jobs">
+                                                <span ngClass="property_sel"></span>
+                                            </div>
+                                            <div ngClass="proprty_name">
+                                                <p>Jobs</p>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <button (click)="clickEvent()" ngClass="overlay_dropdown-btn"></button>
+                        </div>
+                    </div>
+                </div>
+                <div ngClass="flex-column flex-column-13 mb-2">
+                    <div ngClass="block-wrapper">
+                        <div ngClass="cstm_dropdown-list dropdown-design-2 position-relative drodown_with-img">
+                            <button ngClass="drop-down_btn" (click)="clickEvent1()">Select Sub Category</button>
+                            <div class="cstm_dropdown-menu" [ngClass]="status1 ? 'active' : 'notactive'">
+                                <h4 ngClass="drop_label">Select Sub Category</h4>
+                                <div ngClass="search-dropdown_list">
+                                    <ul ngClass="list-unstyled residentails-unit-list category-search-list">
+                                        <li ngClass="d-flex">
+                                            <div ngClass="position-relative">
+                                                <input type="radio" name="SearchsubCategory" value="carsale">
+                                                <span ngClass="property_sel"></span>
+                                            </div>
+                                            <div ngClass="proprty_name">
+                                                <p>Used Cars for Sale</p>
+                                            </div>
+                                        </li>
+                                        <li ngClass="d-flex">
+                                            <div ngClass="position-relative">
+                                                <input type="radio" name="SearchsubCategory" value="Motocycles">
+                                                <span ngClass="property_sel"></span>
+                                            </div>
+                                            <div ngClass="proprty_name">
+                                                <p>Motocycles</p>
+                                            </div>
+                                        </li>
+                                        <li ngClass="d-flex">
+                                            <div ngClass="position-relative">
+                                                <input type="radio" name="SearchsubCategory" value="autoaccessoriespart">
+                                                <span ngClass="property_sel"></span>
+                                            </div>
+                                            <div ngClass="proprty_name">
+                                                <p>Auto Accessories Parts</p>
+                                            </div>
+                                        </li>
+                                        <li ngClass="d-flex">
+                                            <div ngClass="position-relative">
+                                                <input type="radio" name="SearchsubCategory" value="Heavy-Vehicles">
+                                                <span ngClass="property_sel"></span>
+                                            </div>
+                                            <div ngClass="proprty_name">
+                                                <p>Heavy Vehicles</p>
+                                            </div>
+                                        </li>
+                                        <li ngClass="d-flex">
+                                            <div ngClass="position-relative">
+                                                <input type="radio" name="SearchsubCategory" value="Boats">
+                                                <span ngClass="property_sel"></span>
+                                            </div>
+                                            <div ngClass="proprty_name">
+                                                <p>Boats</p>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <button (click)="clickEvent1()" ngClass="overlay_dropdown-btn"></button>
+                        </div>
+                    </div>
+                </div>
+                <div ngClass="flex-column flex-column-14">
+                    <mat-form-field class="example-full-width input-design-3" appearance="fill">
+                        <input matInput placeholder="Search For Anything">
+                     </mat-form-field>
+                </div>
+                <div ngClass="flex-column flex-column-15">
+                    <button (click)="proceedSearch()" ngClass="search-btn"><img src="assets/images/search.svg"></button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!--</div>-->
