@@ -41,6 +41,13 @@ input:-webkit-autofill:active {
 	-webkit-box-shadow: 0 0 0 30px white inset !important;
 	padding-right: 0px !important;
 }
+.input-design-3 .mat-form-field-wrapper .mat-form-field-flex input:-webkit-autofill,
+.input-design-3 .mat-form-field-wrapper .mat-form-field-flex input:-webkit-autofill:hover,
+.input-design-3 .mat-form-field-wrapper .mat-form-field-flex input:-webkit-autofill:focus,
+.input-design-3 .mat-form-field-wrapper .mat-form-field-flex input:-webkit-autofill:active {
+	-webkit-box-shadow: 0 0 0 30px #f0f3f5 inset !important;
+	padding-right: 0px !important;
+}
 
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
@@ -2894,7 +2901,7 @@ input[type=number] {
 		position: relative;
 		z-index: 9;
 		width: 100%;
-		max-width: 310px;
+		max-width: 650px;
 		margin: 0 auto 15px auto;
 
 		.nav-link {
@@ -11364,4 +11371,76 @@ p:empty {
 	background-color: #0B26AD;
 	color: #fff;
 	border-color: #0B26AD;
+}
+.country-code-select-design .iti {
+    width: 100%;
+}
+.country-code-select-design .iti input {
+    background: #fff;
+    border: 1px solid #D3DBFF;
+    border-radius: 8px !important;
+    width: 100%;
+    padding-top: 17px;
+    padding-bottom: 17px;
+    font-size: 14px;
+    color: rgba(0, 22, 25, 0.7);
+    font-weight: 400;
+    font-family: "Cairo", sans-serif;
+}
+.country-code-select-design .iti .country-dropdown {
+    width: 376px !important;
+}
+.country-code-select-design .iti .country-dropdown .iti__country-list {
+    width: 100% !important;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+.country-code-select-design ngx-intl-tel-input .iti .country-dropdown .search-container input {
+    border-radius: 0px !important;
+}
+.country-code-select-design .iti input:focus{
+	outline: none !important;
+}
+
+.search-layout-design .flex-row>.flex-column-11, .search-layout-design .flex-row>.flex-column-12, .search-layout-design .flex-row>.flex-column-13 {
+    width: 32.8%;
+}
+.search-layout-design .flex-row>.flex-column-14 {
+    width: 94%;
+}
+.search-layout-design .flex-row>.flex-column-15 {
+    width: 5%;
+}
+.input-design-3 .mat-form-field-wrapper {
+    padding-bottom: 0px;
+}
+.input-design-3 .mat-form-field-wrapper .mat-form-field-flex {
+    border: none !important;
+    background: #f0f3f5;
+    padding-top: 13.5px !important;
+    padding-bottom: 13.5px !important;
+    height: 100%;
+    border-radius: 8px;
+}
+.input-design-3 .mat-form-field-wrapper .mat-form-field-flex .mat-form-field-infix {
+    padding: 0px;
+    margin: 0px;
+    border: none;
+}
+.searh_input-design .mat-form-field-flex label.mat-form-field-label mat-label {
+    color: #000929;
+    font-weight: 600;
+}
+.input-design-3 .mat-form-field-wrapper .mat-form-field-flex input {
+    font-size: 14px;
+    color: #000929;
+    font-weight: 600;
+}
+.input-design-3 .mat-form-field-wrapper .mat-form-field-flex input::placeholder {
+    font-size: 14px;
+    color: #000929;
+    font-weight: 600;
+}
+.search-layout-design .drop-down_btn {
+    background-position: 95%;
 }

@@ -73,6 +73,30 @@ export class DashboardHeaderComponent implements OnInit {
       class: 'nav-items blog',
       text: 'Blog',
       link: 'blogs',
+    },
+    {
+      src: '../../../assets/images/icons/building.svg',
+      class: 'nav-items valuation',
+      text: 'Property Valuation',
+      link: 'valuation',
+    },
+    {
+      src: '../../../assets/images/icons/sell-property-tab.svg',
+      class: 'nav-items sellrentproperty',
+      text: 'Sell/Rent Property',
+      link: 'sellrent',
+    },
+    {
+      src: '../../../assets/images/icons/data-intelligence.svg',
+      class: 'nav-items data-intelligence',
+      text: 'Data Intelligence',
+      link: 'dashboard-reports',
+    },
+    {
+      src: '../../../assets/images/icons/classified.svg',
+      class: 'nav-items classified',
+      text: 'Classified',
+      link: '',
     }
   ]
 
