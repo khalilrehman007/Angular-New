@@ -62,6 +62,7 @@ export class DashboardComponent implements OnInit {
   activitySavedSearch: any;
   leadsResidentialSummary:any = [];
   leadsCommercialSummary:any = [];
+
   plus = '../../../../assets/images/plus.svg'
 
   bedrooms = [
@@ -225,6 +226,7 @@ export class DashboardComponent implements OnInit {
     })
     this.service.MyActivitySavedSearchProperty({"UserId":"335","PropertyListingTypeId":""}).subscribe((result: any) => {
       this.activitySavedSearch = result.data;
+      console.log(this.activitySavedSearch)
     })
   }
   downloadReport(e: any) {
