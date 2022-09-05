@@ -201,7 +201,7 @@
                                                 <div class="row">
                                                     <div class="col-7">
                                                         <a class="company-details__property-list-item-link">{{item.propertyPrice}}
-                                                            <span>/yearly</span>
+                                                            <span *ngIf="item.rentType && item.rentType.length > 0">/{{item.rentType.name}}</span>
                                                         </a>
                                                     </div>
                                                     <div class="col-5 text-end">
@@ -220,11 +220,11 @@
                                                 <div class="row">
                                                     <div class="col-md-10">
                                                         <ul class="company-details__property-detail-list">
-                                                            <li class="company-details__property-detail-list-item">
+                                                            <li class="company-details__property-detail-list-item" *ngIf="item.bedrooms != 0 && item.bedrooms != null">
                                                                 <img src="{{bedsvg}}" alt="">
                                                                 {{item.bedrooms}}
                                                             </li>
-                                                            <li class="company-details__property-detail-list-item">
+                                                            <li class="company-details__property-detail-list-item" *ngIf="item.bedrooms != 0 && item.bathrooms != null">
                                                                 <img src="{{bathsvg}}" alt="">
                                                                 {{item.bathrooms}}
                                                             </li>
