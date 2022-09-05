@@ -32,18 +32,28 @@
                                     <option>English</option>
                                 </select>
                             </li>
-                            <li ngClass="nav-item aed-li">
-                                <button class="nav-link aed-sq" (click)="clickEvent2()"><img src="{{flagsvg}}"> AED |
-                                    Sqft</button>
-                                <!-- <div class="country_list-dropdown" [ngClass]="status2 ? 'active' : 'notactive'">
-                                    <button (click)="clickEvent2()"><img src="{{close}}"></button>
-                                    <div ngClass="countries_dropdown-list" *ngFor="let data of headerCountries">
-                                    <ul ngClass="list-unstyled">
-                                        <li><img src="{{flagsvg}}">{{data.currency}}</li>
-                                    </ul>
+                            <li ngClass="nav-item position-relative d-hide notification_header-list" *ngIf="userData != ''">
+                                <button (click)="clickEvent3()">
+                                    <mat-icon>notifications_none</mat-icon>
+                                </button>
+                                <div class="notifivation-list-dropdown" [ngClass]="status3 ? 'active' : 'notactive'">
+                                    <div ngClass="shortlisted-header d-flex justify-content-spacebw">
+                                        <h4>Notifications</h4>
+                                        <button (click)="clickEvent3()"><img src="{{close}}"></button>
                                     </div>
-                                </div> -->
-                                <button (click)="clickEvent2()" ngClass="overlay_dropdown-btn"></button>
+                                    <div ngClass="notifivation-inner-cntnt" *ngIf="notificationData.length > 0">
+                                        <ul ngClass="list-unstyled">
+                                            <li ngClass="position-relative" *ngFor="let item of notificationData">
+                                                <h4>{{item.value.Title}}
+                                                    <span
+                                                        ngClass="notifiction_time">{{getTime(item.value.NotificationDateTime)}}</span>
+                                                </h4>
+                                                <p>{{item.value.Body}}</p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <button (click)="clickEvent3()" ngClass="overlay_dropdown-btn"></button>
                             </li>
                             <li ngClass="nav-item fav-li position-relative d-hide">
                                 <button (click)="clickEvent()"><svg width="20" height="19" viewBox="0 0 20 19"
@@ -388,9 +398,22 @@
                                 </a>
                             </li>
                             <li ngClass="nav-item classified">
-                                <a ngClass="nav-link blue-bordered-btn" href="http://dx1.in/classified">
+                                <a ngClass="nav-link blue-bordered-btn" [routerLink]="['/classified']">
                                     Classified <mat-icon>home</mat-icon>
                                 </a>
+                            </li>
+                            <li ngClass="nav-item aed-li d-hide">
+                                <button class="nav-link aed-sq" (click)="clickEvent2()"><img src="{{flagsvg}}"> AED |
+                                    Sqft</button>
+                                <!-- <div class="country_list-dropdown" [ngClass]="status2 ? 'active' : 'notactive'">
+                                    <button (click)="clickEvent2()"><img src="{{close}}"></button>
+                                    <div ngClass="countries_dropdown-list" *ngFor="let data of headerCountries">
+                                    <ul ngClass="list-unstyled">
+                                        <li><img src="{{flagsvg}}">{{data.currency}}</li>
+                                    </ul>
+                                    </div>
+                                </div> -->
+                                <button (click)="clickEvent2()" ngClass="overlay_dropdown-btn"></button>
                             </li>
                         </ul>
                         <div ngClass="overlay_counter" (click)="clickEvent4()"></div>

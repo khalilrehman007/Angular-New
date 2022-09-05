@@ -136,7 +136,7 @@ export class HeaderComponent implements OnInit {
       src: '../../../assets/images/icons/classified.svg',
       class: 'nav-items classified',
       text: 'Classified',
-      link: '',
+      link: 'classified',
     }
   ]
 

@@ -1,3 +1,26 @@
+<app-header></app-header>
+<section [ngClass]="'slide-left-bar classified-page-sec'">
+<section class="classified-search-sec">
+    <div class="container_1280px">
+        <div class="classified-banner-img"  style="background-image: url('../../../assets/images/banner2.png')">
+            <div class="classified-header-banner">
+                <h4>The best place to buy your house, sell your car or find a job in Dubai.</h4>
+            </div>
+            <div class="classified_tabs-component">
+                <mat-tab-group>
+                    <mat-tab label="Searching in"></mat-tab>
+                    <mat-tab label="All"><app-all-search></app-all-search></mat-tab>
+                    <mat-tab label="Motors"><app-motor-component></app-motor-component></mat-tab>
+                    <mat-tab label="Services"><app-service-search-component></app-service-search-component></mat-tab>
+                    <mat-tab label="Property for Rent"></mat-tab>
+                    <mat-tab label="Property for Sale"></mat-tab>
+                    <mat-tab label="Jobs"><app-job-search></app-job-search></mat-tab>
+                    <mat-tab label="Community"> <app-community-search-component></app-community-search-component></mat-tab>
+                  </mat-tab-group>
+            </div>
+        </div>
+    </div>
+</section>
 <section class="services-main-sec">
     <div ngClass="container_1280px">
         <div ngClass="h4_design">
@@ -5,7 +28,7 @@
         </div>
         <div class="services-block-wrap">
             <div class="row">
-                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12" *ngFor="let serviceList of serviceTs">
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12 mb-4" *ngFor="let serviceList of serviceTs">
                     <div class="services-block-shadow position-relative">
                         <div class="services-block-img">
                             <img src="{{serviceList.src}}">
@@ -95,20 +118,20 @@
         </div>
         <div class="popular-residential-searches slider-shoecase-design">
             <owl-carousel-o [options]="customOptions">
-                <ng-container *ngFor="let cars of CarsList">
+                <ng-container *ngFor="let furniture of FurnitureList">
                     <ng-template carouselSlide>
                         <div ngClass="property-item position-relative">
                             <div class="property__img">
-                            <img src="{{cars.src}}">
+                            <img src="{{furniture.src}}">
                             </div>
                             <div ngClass="property-info">
-                                <span ngClass="property-pricing"><span>{{cars.price}}</span></span>
-                                <span ngClass="property-name">{{cars.PropertyName}}</span>
+                                <span ngClass="property-pricing"><span>{{furniture.price}}</span></span>
+                                <span ngClass="property-name">{{furniture.PropertyName}}</span>
                                 <p ngClass="property-location">
-                                    <img src="{{ homelocationsvg }}" width="14" alt="" />{{cars.address}}
+                                    <img src="{{ homelocationsvg }}" width="14" alt="" />{{furniture.address}}
                                 </p>
                             </div>
-                            <a routerLink="/{{cars.link}}" ngClass="linK_overlay"></a>
+                            <a routerLink="/{{furniture.link}}" ngClass="linK_overlay"></a>
                         </div>
                     </ng-template>
                 </ng-container>
@@ -218,7 +241,7 @@
     </div>
     <div class="classified-catogary-sec">
         <div class="row">
-            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-5">
                 <div class="category_block-design">
                     <h2><img src="{{propertyrent}}"> Property for Rent <span class="">(186)</span></h2>
                     <ul class="list-unstyled">
@@ -234,7 +257,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-5">
                 <div class="category_block-design">
                     <h2><img src="{{propertysale}}"> Property for Sale <span class="">(186)</span></h2>
                     <ul class="list-unstyled">
@@ -251,7 +274,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-5">
                 <div class="category_block-design">
                     <h2><img src="{{motors}}"> Motors <span class="">(186)</span></h2>
                     <ul class="list-unstyled">
@@ -267,7 +290,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-5">
                 <div class="category_block-design">
                     <h2><img src="{{services}}"> Services <span class="">(186)</span></h2>
                     <ul class="list-unstyled">
@@ -283,7 +306,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-5">
                 <div class="category_block-design">
                     <h2><img src="{{mobilephone}}"> Mobiles Phones <span class="">(186)</span></h2>
                     <ul class="list-unstyled">
@@ -299,7 +322,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-5">
                 <div class="category_block-design">
                     <h2><img src="{{homeappliances}}">Home Appliances <span class="">(186)</span></h2>
                     <ul class="list-unstyled">
@@ -323,7 +346,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-5">
                 <div class="category_block-design">
                     <h2><img src="{{furnituregarden}}">Furniture & Garden <span class="">(186)</span></h2>
                     <ul class="list-unstyled">
@@ -347,7 +370,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-5">
                 <div class="category_block-design">
                     <h2><img src="{{community}}">Community <span class="">(186)</span></h2>
                     <ul class="list-unstyled">
@@ -408,5 +431,6 @@
             <img src="{{landdept}}">
         </div>
     </div>
+</section>
 </section>
 <app-footer></app-footer>
