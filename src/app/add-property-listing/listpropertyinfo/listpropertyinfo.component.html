@@ -56,7 +56,7 @@
                                 <div class="row pb-4">
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                                         <h6 class="h6-design">Want to List for</h6>
-                                        <div class="listing-links d-flex justify-content-between">
+                                        <div class="listing-links d-flex justify-content-between listing-type-input">
                                             <div class="checkbox-design w-100 position-relative me-1"
                                                 (click)="onListTypeSelect(1)">
                                                 <input type="radio" value="1" name="list-type"
@@ -79,7 +79,7 @@
                                 <div class="row pb-4" *ngIf="listingTypeId != 0">
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                                         <h6 class="h6-design">Building Type</h6>
-                                        <div class="listing-links d-flex justify-content-between">
+                                        <div class="listing-links d-flex justify-content-between category-input">
                                             <div class="checkbox-design w-100 position-relative me-1"
                                                 (click)="getCategory(1)">
                                                 <input type="radio" value="1" name="property-category"
@@ -102,16 +102,18 @@
                                         <div ngClass="block-wrapper">
                                             <div ngClass="select-design">
                                                 <label>Type of Property</label>
-                                                <mat-form-field appearance="fill">
-                                                    <mat-label>Select type of property</mat-label>
-                                                    <mat-select [(value)]="data.PropertyTypeId"
-                                                        (selectionChange)="getPropertyType($event)">
-                                                        <mat-option *ngFor="let item of propertyType"
-                                                            value="{{item.id}}">
-                                                            {{item.typeDescription}}
-                                                        </mat-option>
-                                                    </mat-select>
-                                                </mat-form-field>
+                                                <div class="type-input">
+                                                    <mat-form-field appearance="fill">
+                                                        <mat-label>Select type of property</mat-label>
+                                                        <mat-select [(value)]="data.PropertyTypeId"
+                                                            (selectionChange)="getPropertyType($event)">
+                                                            <mat-option *ngFor="let item of propertyType"
+                                                                value="{{item.id}}">
+                                                                {{item.typeDescription}}
+                                                            </mat-option>
+                                                        </mat-select>
+                                                    </mat-form-field>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -123,7 +125,7 @@
                                                 *ngIf="selectedPropertyType.hasTotalFloor">
                                                 <h6 class="h6-design">Total Floor in Building</h6>
                                                 <div class="input-flaoted-right-text">
-                                                    <div class="position-relative">
+                                                    <div class="position-relative total-floors-input">
                                                         <mat-form-field class="full-width input-design"
                                                             appearance="fill">
                                                             <input matInput type="number" formControlName="TotalFloor"
@@ -137,7 +139,7 @@
                                                 *ngIf="selectedPropertyType.hasFloorNo">
                                                 <h6 class="h6-design">Floor No.</h6>
                                                 <div class="input-flaoted-right-text">
-                                                    <div class="position-relative">
+                                                    <div class="position-relative floor-no-input">
                                                         <mat-form-field class="full-width input-design"
                                                             appearance="fill">
                                                             <input matInput type="number" formControlName="FloorNo"
@@ -151,15 +153,17 @@
                                                 <div ngClass="block-wrapper">
                                                     <div ngClass="select-design">
                                                         <label>Bedroom</label>
-                                                        <mat-form-field appearance="fill">
-                                                            <mat-label>Select Number Of Bedrooms</mat-label>
-                                                            <mat-select [(value)]="data.BedRooms"
-                                                                (selectionChange)="getBedroom($event)">
-                                                                <mat-option *ngFor="let item of room" value="{{item}}">
-                                                                    {{item}}
-                                                                </mat-option>
-                                                            </mat-select>
-                                                        </mat-form-field>
+                                                        <div class="bedroom-input">
+                                                            <mat-form-field appearance="fill">
+                                                                <mat-label>Select Number Of Bedrooms</mat-label>
+                                                                <mat-select [(value)]="data.BedRooms"
+                                                                    (selectionChange)="getBedroom($event)">
+                                                                    <mat-option *ngFor="let item of room" value="{{item}}">
+                                                                        {{item}}
+                                                                    </mat-option>
+                                                                </mat-select>
+                                                            </mat-form-field>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -168,22 +172,24 @@
                                                 <div ngClass="block-wrapper">
                                                     <div ngClass="select-design">
                                                         <label>Bathroom</label>
-                                                        <mat-form-field appearance="fill">
-                                                            <mat-label>Select Number Of Bathrooms</mat-label>
-                                                            <mat-select [(value)]="data.BathRooms"
-                                                                (selectionChange)="getBathroom($event)">
-                                                                <mat-option *ngFor="let item of room" value="{{item}}">
-                                                                    {{item}}
-                                                                </mat-option>
-                                                            </mat-select>
-                                                        </mat-form-field>
+                                                        <div class="bathroom-input">
+                                                            <mat-form-field appearance="fill">
+                                                                <mat-label>Select Number Of Bathrooms</mat-label>
+                                                                <mat-select [(value)]="data.BathRooms"
+                                                                    (selectionChange)="getBathroom($event)">
+                                                                    <mat-option *ngFor="let item of room" value="{{item}}">
+                                                                        {{item}}
+                                                                    </mat-option>
+                                                                </mat-select>
+                                                            </mat-form-field>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4"
                                                 *ngIf="selectedPropertyType.hasFurnishing">
                                                 <h6 class="h6-design">Furnishing Type</h6>
-                                                <div class="checkbox-flex-box three-column button-same-select">
+                                                <div class="checkbox-flex-box three-column button-same-select furnishing-input">
                                                     <div class="checkbox-design position-relative"
                                                         *ngFor="let item of furnishingType"
                                                         (click)="getFurnishingType(item.id);furnishTypeCheck=true">
@@ -198,7 +204,7 @@
                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4"
                                                 *ngIf="selectedPropertyType.hasFitting">
                                                 <h6 class="h6-design">Fitting Type</h6>
-                                                <div class="checkbox-flex-box four-column button-same-select">
+                                                <div class="checkbox-flex-box four-column button-same-select fitting-input">
                                                     <div class="checkbox-design position-relative"
                                                         *ngFor="let item of fittingType"
                                                         (click)="getFittingType(item.id);fittingCheck=true">
@@ -214,7 +220,7 @@
                                                 *ngIf="selectedPropertyType.hasCarpetArea">
                                                 <h6 class="h6-design">Carpet Area</h6>
                                                 <div class="input-flaoted-right-text">
-                                                    <div class="position-relative">
+                                                    <div class="position-relative carpet-input">
                                                         <mat-form-field class="full-width input-design"
                                                             appearance="fill">
                                                             <input matInput type="number" formControlName="carpetArea">
@@ -227,7 +233,7 @@
                                                 *ngIf="selectedPropertyType.hasBuildUpArea">
                                                 <h6 class="h6-design">Buildup Area</h6>
                                                 <div class="input-flaoted-right-text">
-                                                    <div class="position-relative">
+                                                    <div class="position-relative buildup-input">
                                                         <mat-form-field class="full-width input-design"
                                                             appearance="fill">
                                                             <input matInput type="number" formControlName="buildupArea">
@@ -239,7 +245,7 @@
                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4"
                                                 *ngIf="listingTypeId == 1">
                                                 <h6 class="h6-design">Preferred Tenant Type</h6>
-                                                <div class="checkbox-flex-box three-column button-same-select">
+                                                <div class="checkbox-flex-box three-column button-same-select tenant-input">
                                                     <div class="checkbox-design position-relative"
                                                         *ngFor="let item of tenantType"
                                                         (click)="getTenantType(item.id); tenantCheck=true">
@@ -256,7 +262,7 @@
                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4"
                                                 *ngIf="listingTypeId == 1">
                                                 <h6 class="h6-design">Preferred Gender Type</h6>
-                                                <div class="checkbox-flex-box three-column button-same-select">
+                                                <div class="checkbox-flex-box three-column button-same-select gender-input">
                                                     <div class="checkbox-design position-relative"
                                                         *ngFor="let item of genders"
                                                         (click)="getGender(item.id); genderCheck=true">
@@ -271,7 +277,7 @@
                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4"
                                                 *ngIf="listingTypeId == 1">
                                                 <h6 class="h6-design">Property Managed by </h6>
-                                                <div class="checkbox-flex-box three-column button-same-select">
+                                                <div class="checkbox-flex-box three-column button-same-select property-manage-input">
                                                     <div class="checkbox-design position-relative"
                                                         *ngFor="let item of propertyManages"
                                                         (click)="getPropertyManages(item.id);managedCheck=true">
@@ -288,7 +294,7 @@
                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4"
                                                 *ngIf="listingTypeId == 1">
                                                 <h6 class="h6-design">Occupancy Status</h6>
-                                                <div class="checkbox-flex-box two-column button-same-select max-240">
+                                                <div class="checkbox-flex-box two-column button-same-select max-240 occupanycy-input">
                                                     <div class="checkbox-design position-relative"
                                                         *ngFor="let item of occupancy"
                                                         (click)="getOccupancy(item.id);occupancyCheck=true">
@@ -305,7 +311,7 @@
                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4"
                                                 *ngIf="categoryID == 1">
                                                 <h6 class="h6-design">Balcony</h6>
-                                                <div class="checkbox-flex-box six-column button-same-select">
+                                                <div class="checkbox-flex-box six-column button-same-select balcony-input">
                                                     <div class="checkbox-design position-relative"
                                                         (click)="getBalcony('0')">
                                                         <input type="radio" value="0" name="balcony"
@@ -359,7 +365,7 @@
                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4"
                                                 *ngIf="categoryID == 1">
                                                 <h6 class="h6-design">Available Parking </h6>
-                                                <div class="checkbox-flex-box six-column button-same-select">
+                                                <div class="checkbox-flex-box six-column button-same-select parking-input">
                                                     <div class="checkbox-design position-relative"
                                                         (click)="getParking('0')">
                                                         <input type="radio" id="parking" value="0"
@@ -413,7 +419,7 @@
                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4"
                                                 *ngIf="listingTypeId == 2">
                                                 <h6 class="h6-design">Transaction Type</h6>
-                                                <div class="checkbox-flex-box two-column button-same-select max-240">
+                                                <div class="checkbox-flex-box two-column button-same-select max-240 transaction-type-input">
                                                     <div class="checkbox-design position-relative"
                                                         *ngFor="let item of transactionType"
                                                         (click)="getTransactionType(item.id)">
@@ -430,7 +436,7 @@
                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4"
                                                 *ngIf="listingTypeId == 2">
                                                 <h6 class="h6-design">Completion Status</h6>
-                                                <div class="checkbox-flex-box two-column button-same-select max-240">
+                                                <div class="checkbox-flex-box two-column button-same-select max-240 completion-status-input">
                                                     <div class="checkbox-design position-relative"
                                                         *ngFor="let item of completionStatus"
                                                         (click)="getCompletionStatus(item.id)">
@@ -449,21 +455,23 @@
                                                 <div ngClass="block-wrapper">
                                                     <div ngClass="select-design">
                                                         <label>Pet Policy</label>
-                                                        <mat-form-field appearance="fill">
-                                                            <mat-label> Select the pet policy</mat-label>
-                                                            <mat-select multiple [(value)]="petPolicyData"
-                                                                (selectionChange)="getPetPolicy($event)">
-                                                                <mat-option *ngFor="let item of petPolicy"
-                                                                    value="{{item.id}}">{{item.name}}</mat-option>
-                                                            </mat-select>
-                                                        </mat-form-field>
+                                                        <div class="pet-policy-input">
+                                                            <mat-form-field appearance="fill">
+                                                                <mat-label> Select the pet policy</mat-label>
+                                                                <mat-select multiple [(value)]="petPolicyData"
+                                                                    (selectionChange)="getPetPolicy($event)">
+                                                                    <mat-option *ngFor="let item of petPolicy"
+                                                                        value="{{item.id}}">{{item.name}}</mat-option>
+                                                                </mat-select>
+                                                            </mat-form-field>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4"
                                                 *ngIf="listingTypeId == 2">
                                                 <h6 class="h6-design">Handover On</h6>
-                                                <div class="input-date-picker input-design" (click)="onDate()">
+                                                <div class="input-date-picker input-design handover-on-input" (click)="onDate()">
                                                     <mat-form-field appearance="fill">
                                                         <input matInput [matDatepicker]="picker" [min]="minDate"
                                                             id="sell-residential-datepicker"
@@ -477,7 +485,7 @@
                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4"
                                                 *ngIf="listingTypeId == 2 && categoryID == 2">
                                                 <h6 class="h6-design">Ownership Type</h6>
-                                                <div class="checkbox-flex-box two-column button-same-select max-240">
+                                                <div class="checkbox-flex-box two-column button-same-select max-240 ownership-input">
                                                     <div class="checkbox-design position-relative"
                                                         *ngFor="let item of ownershipType">
                                                         <input type="radio" id="Freehold"
@@ -494,7 +502,7 @@
                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4">
                                                 <h6 class="h6-design">Price </h6>
                                                 <div class="input-flaoted-left-text">
-                                                    <div class="position-relative">
+                                                    <div class="position-relative price-input">
                                                         <mat-form-field class="full-width input-design"
                                                             appearance="fill">
                                                             <input matInput type="number" formControlName="price">
@@ -506,7 +514,7 @@
                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4"
                                                 *ngIf="listingTypeId == 1">
                                                 <h6 class="h6-design">Rent Type</h6>
-                                                <div class="checkbox-flex-box three-column button-same-select">
+                                                <div class="checkbox-flex-box three-column button-same-select rent-type-input">
                                                     <div class="checkbox-design position-relative"
                                                         *ngFor="let item of rentTypes" (click)="getRentTypes(item.id)">
                                                         <input type="radio" value="{{item.name}}" name="rent_types"
@@ -520,7 +528,7 @@
                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4"
                                                 *ngIf="listingTypeId == 1">
                                                 <h6 class="h6-design">Do you take Security deposit?</h6>
-                                                <div class="checkbox-flex-box two-column button-same-select">
+                                                <div class="checkbox-flex-box two-column button-same-select security-deposit-input">
                                                     <div class="checkbox-design position-relative"
                                                         (click)="getSecurityDeposit('true')">
                                                         <input type="radio" id="Yes" value="Yes" name="Security-deposit"
@@ -530,7 +538,7 @@
                                                         <button class="checkbox-btn">Yes</button>
                                                         <div class="deposit-yes hide">
                                                             <div class="input-flaoted-left-text">
-                                                                <div class="position-relative">
+                                                                <div class="position-relative security-price-input">
                                                                     <mat-form-field class="full-width input-design"
                                                                         appearance="fill">
                                                                         <input matInput type="number"
@@ -565,7 +573,7 @@
                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4"
                                                 *ngIf="listingTypeId == 1">
                                                 <h6 class="h6-design">Do you charge brokerage?</h6>
-                                                <div class="checkbox-flex-box two-column button-same-select">
+                                                <div class="checkbox-flex-box two-column button-same-select brokage-type-input">
                                                     <div class="checkbox-design position-relative"
                                                         (click)="getBrokageDeposit('true')">
                                                         <input type="radio" id="Yes" value="Yes" name="charge-brokerage"
@@ -575,7 +583,7 @@
                                                         <button class="checkbox-btn">Yes</button>
                                                         <div class="deposit-yes hide">
                                                             <div class="input-flaoted-left-text">
-                                                                <div class="position-relative">
+                                                                <div class="position-relative brokage-price-input">
                                                                     <mat-form-field class="full-width input-design"
                                                                         appearance="fill">
                                                                         <input matInput type="number"
@@ -610,7 +618,7 @@
                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4"
                                                 *ngIf="listingTypeId == 1">
                                                 <h6 class="h6-design">Available from</h6>
-                                                <div class="input-date-picker input-design" (click)="onDate()">
+                                                <div class="input-date-picker input-design available-input" (click)="onDate()">
                                                     <mat-form-field appearance="fill">
                                                         <input matInput [matDatepicker]="picker" [min]="minDate"
                                                             id="formDate" formControlName="availablefrom">
@@ -624,7 +632,7 @@
                                                 *ngIf="listingTypeId == 1">
                                                 <h6 class="h6-design">Notice Period</h6>
                                                 <div class="input-flaoted-right-text">
-                                                    <div class="position-relative">
+                                                    <div class="position-relative notice-input">
                                                         <mat-form-field class="full-width input-design"
                                                             appearance="fill">
                                                             <input matInput type="number"
@@ -638,7 +646,7 @@
                                                 *ngIf="listingTypeId == 1">
                                                 <h6 class="h6-design">Locking Period</h6>
                                                 <div class="input-flaoted-right-text">
-                                                    <div class="position-relative">
+                                                    <div class="position-relative locking-input">
                                                         <mat-form-field class="full-width input-design"
                                                             appearance="fill">
                                                             <input matInput type="number"
@@ -652,20 +660,22 @@
                                                 <div ngClass="block-wrapper">
                                                     <div ngClass="select-design">
                                                         <label>Located Near</label>
-                                                        <mat-form-field appearance="fill">
-                                                            <mat-label> Select Near Locations</mat-label>
-                                                            <mat-select multiple [(value)]="locatedNearData"
-                                                                (selectionChange)="getLocatedNear($event)">
-                                                                <mat-option *ngFor="let item of locatedNear"
-                                                                    value="{{item.id}}">{{item.name}}</mat-option>
-                                                            </mat-select>
-                                                        </mat-form-field>
+                                                        <div class="located-near-input">
+                                                            <mat-form-field appearance="fill">
+                                                                <mat-label> Select Near Locations</mat-label>
+                                                                <mat-select multiple [(value)]="locatedNearData"
+                                                                    (selectionChange)="getLocatedNear($event)">
+                                                                    <mat-option *ngFor="let item of locatedNear"
+                                                                        value="{{item.id}}">{{item.name}}</mat-option>
+                                                                </mat-select>
+                                                            </mat-form-field>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-sm-12 pb-4" *ngIf="listingTypeId == 1">
                                                 <h6 class="h6-design">Property Title</h6>
-                                                <div class="textarea-design">
+                                                <div class="textarea-design title-input">
                                                     <mat-form-field class="full-width input-design" appearance="fill">
                                                         <mat-label>Name Of the Property</mat-label>
                                                         <input matInput formControlName="propertyTitle" type="text"
@@ -675,7 +685,7 @@
                                             </div>
                                             <div class="col-sm-12 pb-4" *ngIf="listingTypeId == 1">
                                                 <h6 class="h6-design">Property Description</h6>
-                                                <div class="textarea-design">
+                                                <div class="textarea-design desc-input">
                                                     <mat-form-field class="example-full-width" appearance="fill">
                                                         <mat-label>Property Description</mat-label>
                                                         <textarea formControlName="propertyDescription" matInput
@@ -698,7 +708,7 @@
                                             <div class="col-sm-12 pb-4" *ngIf="selectedPropertyType.hasPropertyFeature">
                                                 <h6 class="h6-design">Select Features</h6>
                                                 <div class="inneR-border-wrap">
-                                                    <div class="checkbox-flex-box autoflex-layout">
+                                                    <div class="checkbox-flex-box autoflex-layout feature-input">
                                                         <div class="checkbox-design position-relative"
                                                             *ngFor="let item of featuresData"
                                                             (click)="getFeaturesData(item.propertyFeature.id)">
