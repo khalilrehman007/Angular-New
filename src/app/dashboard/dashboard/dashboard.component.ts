@@ -44,8 +44,8 @@ export class DashboardComponent implements OnInit {
   deleteimg = '../../../../assets/images/icons/delteicn.png'
   editimg = '../../../../assets/images/icons/editimg.png'
   loggedInUser = localStorage.getItem('user')
-  user: any
-  greet: any
+  user: any;
+  greet: any;
   country: any = [];
   city: any = [];
   countryId: number = -1;
@@ -161,8 +161,23 @@ export class DashboardComponent implements OnInit {
       } else {
         this.proAvatar = this.baseUrl + this.userData.imageUrl;
       }
-
-
+      this.service.SummaryLeads({ "UserId": this.userData.id, "PropertyCategoryId": "1" }).subscribe((result: any) => {
+        this.leadSummary = result.data;
+        for (let i = 0; i < this.leadSummary.length; i++) {
+          if(this.leadSummary[i].propertyListing.propertyCategory.categoryName == "Residential") {
+            this.leadsResidentialSummary.push(this.leadSummary[i]);
+          } else {
+            this.leadsCommercialSummary.push(this.leadSummary[i])
+          }
+        }
+      })
+      this.service.MyPackages(this.userData.id).subscribe((result: any) => {
+        this.myPackages = result.data;
+      })
+      this.service.MyActivitySavedSearchProperty({"UserId":this.userData.id,"PropertyListingTypeId":""}).subscribe((result: any) => {
+        this.activitySavedSearch = result.data;
+        console.log(this.activitySavedSearch)
+      })
     })
     this.service.LoadPropertyListingTypes().subscribe(e => {
       let temp: any = e;
@@ -210,23 +225,6 @@ export class DashboardComponent implements OnInit {
           this.myValuationCommercial.push(this.myValuation[i]);
         }
       }
-    })
-    this.service.SummaryLeads({ "UserId": "335", "PropertyCategoryId": "1" }).subscribe((result: any) => {
-      this.leadSummary = result.data;
-      for (let i = 0; i < this.leadSummary.length; i++) {
-        if(this.leadSummary[i].propertyListing.propertyCategory.categoryName == "Residential") {
-          this.leadsResidentialSummary.push(this.leadSummary[i]);
-        } else {
-          this.leadsCommercialSummary.push(this.leadSummary[i])
-        }
-      }
-    })
-    this.service.MyPackages(335).subscribe((result: any) => {
-      this.myPackages = result.data;
-    })
-    this.service.MyActivitySavedSearchProperty({"UserId":"335","PropertyListingTypeId":""}).subscribe((result: any) => {
-      this.activitySavedSearch = result.data;
-      console.log(this.activitySavedSearch)
     })
   }
   downloadReport(e: any) {

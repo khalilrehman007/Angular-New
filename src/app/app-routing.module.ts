@@ -21,6 +21,7 @@ const routes: Routes = [
   {path:"agent-details/:id", loadChildren:()=>import('./agent-details/agent-details.module').then(module => module.AgentDetailsModule)},
   {path:"company-details/:id", loadChildren:()=>import('./company-details/company-details.module').then(module => module.CompanyDetailsModule)},
   {path:"chat", loadChildren:()=>import('./chat/chat.module').then(module => module.ChatModule),canActivate: [AuthGuard]},
+  {path:"forgot", loadChildren:()=>import('./forget/forget.module').then(module => module.ForgetModule)},
 ];
 
 @NgModule({
