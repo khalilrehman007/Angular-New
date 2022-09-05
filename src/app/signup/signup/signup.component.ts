@@ -142,7 +142,7 @@ export class SignupComponent implements OnInit {
       this.error = "Please Enter a valid Email";
       this.showError = true;
       return;
-    } else if (this.signup.value.PhoneNumber == "") {
+    } else if (this.signup.value.PhoneNumber == null) {
       this.error = "Please Enter Phone Number";
       this.showError = true;
       return;
@@ -159,8 +159,8 @@ export class SignupComponent implements OnInit {
       temp.FirstName = this.signup.value.FirstName;
       temp.LastName = this.signup.value.LastName;
       temp.Email = this.signup.value.Email;
-      let code:any = this.countriesList.value;
-      temp.PhoneNumber = code + this.signup.value.PhoneNumber;
+      let a:any = this.signup.value.PhoneNumber
+      temp.PhoneNumber = a.e164Number;
       temp.Password = this.signup.value.Password;
       temp.HasProfessionalType = this.professionalCheck;
       if (temp.HasProfessionalType == true) {
