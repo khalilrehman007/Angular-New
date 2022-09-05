@@ -250,6 +250,13 @@ export class HeaderComponent implements OnInit {
     this.status = false;
     this.status2 = false;
   }
+  status4: boolean = false;
+  clickEvent4() {
+    this.status4 = !this.status4;
+    this.status1 = false;
+    this.status = false;
+    this.status2 = false;
+  }
   logOutPopup(content:any) {
     this.modalService.open(content, { centered: true });
   }

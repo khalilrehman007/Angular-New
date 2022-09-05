@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ChatComponent } from './chat/chat.component';
+// import { ChatComponent } from './chat/chat.component';
 import { AuthGuard } from './shared/auth.guard';
 
 const routes: Routes = [
@@ -20,7 +20,8 @@ const routes: Routes = [
   {path:"find-agent", loadChildren:()=>import('./agent-and-companies/agent-and-companies.module').then(module => module.AgentAndCompaniesModule)},
   {path:"agent-details/:id", loadChildren:()=>import('./agent-details/agent-details.module').then(module => module.AgentDetailsModule)},
   {path:"company-details/:id", loadChildren:()=>import('./company-details/company-details.module').then(module => module.CompanyDetailsModule)},
-  {path:"chat", component: ChatComponent},
+  {path:"chat", loadChildren:()=>import('./chat/chat.module').then(module => module.ChatModule),canActivate: [AuthGuard]},
+  {path:"forgot", loadChildren:()=>import('./forget/forget.module').then(module => module.ForgetModule)},
 ];
 
 @NgModule({

@@ -802,7 +802,57 @@ textarea {
 		overflow: auto;
 		background-color: $background-color_10;
 		border-right: 2px solid var(--sidebar-border-color);
-		padding: 30px;
+		padding: 20px;
+	}
+	#main-header .header-section .dropdown {
+		display: block !important;
+		margin-right: 0px;
+		text-align: left;
+	}
+	.header-section .hover-block-header .btn {
+		width: 100%;
+		text-align: left;
+	}
+	#main-header .header-section .hover-block-header {
+		margin-bottom: 15px !important;
+	}
+	.header-section .hover-block-header .btn::after {
+		right: 0;
+		position: absolute;
+		top: 12px;
+	}
+	#main-header .header-section .dropdown .dropdown-menu {
+		position: relative !important;
+		border: none !important;
+		background: #F0EFFB !important;
+		transform: none !important;
+		margin-top: 10px !important;
+		margin-bottom: 10px !important;
+		transition: all 0.5s ease-in-out;
+	}
+	#main-header .header-section .dropdown .dropdown-menu button a {
+		display: block;
+		white-space: pre-wrap;
+	}
+	#main-header .header-section .nav-item.link-li> .nav-link {
+		padding-left: 0px;
+		padding-right: 0px;
+	}
+	.mobile-abs-items .nav-item.aed-li>.aed-sq {
+		margin-right: 0px !important;
+		margin-left: auto;
+	}
+	.header-section {
+		padding-left: 7px !important;
+		padding-right: 7px !important;
+	}
+	.mobile-abs-items .nav-item.aed-li {
+		background: transparent !important;
+		padding: 0px 5px 0px 12px !important;
+		width: auto !important;
+	}
+	#main-header .sub-header {
+		display: none;
 	}
 	#collapsibleNavbar.show {
 		left: 0 !important;
@@ -827,7 +877,7 @@ textarea {
 		.navbar-nav {
 			.nav-item {
 				margin-right: 0px !important;
-				margin-bottom: 15px;
+				margin-bottom: 5px;
 				svg{
 					path {
 						fill: #fff;
@@ -855,6 +905,7 @@ textarea {
 		}
 		.navbar-toggler{
 			padding: 0px !important;
+			border: none;
 		}
 	}
 	.navbar-nav {
@@ -1229,4 +1280,9 @@ ul.navbar-nav.sub-header {
 }
 .header-section .nav-item.link-li>.nav-link:hover,.hover-block-header .dropdown-menu a:hover,.header-section .hover-block-header .btn:hover{
 	color: #595ad4;
+}
+#collapsibleNavbar.show .overlay_counter {
+    display: block;
+    background-color: rgba(0,0,0,0.5);
+    max-width: calc(100% - 240px);
 }
