@@ -294,7 +294,7 @@
                                                 </div>
                                             </div>
                                             <div class="col">
-                                                <a href="#" class="view-more">
+                                                <a [routerLink]="['/property/detail']" [queryParams]="{id: data.propertyListingId}" class="view-more">
                                                     <img src="{{MoreIcon}}" alt="" class="icon">
                                                 </a>
                                             </div>
@@ -352,7 +352,7 @@
                                                 </div>
                                             </div>
                                             <div class="col">
-                                                <a href="#" class="view-more">
+                                                <a [routerLink]="['/property/detail']" [queryParams]="{id: data.propertyListingId}" class="view-more">
                                                     <img src="{{MoreIcon}}" alt="" class="icon">
                                                 </a>
                                             </div>
@@ -362,9 +362,6 @@
                             </div>
                         </section>
                     </div>
-
-
-
                     <section ngClass="position-relative wrapper-section blogs_sec mt-5">
                         <div ngClass="container_1220px">
                             <div ngClass="section-title">
@@ -960,7 +957,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="col">
-                                                            <a href="#" class="view-more">
+                                                            <a [routerLink]="['/property/detail']" [queryParams]="{id: item.propertyListingId}" class="view-more">
                                                                 <img src="{{MoreIcon}}" alt="" class="icon">
                                                             </a>
                                                         </div>

@@ -219,8 +219,6 @@ export class DashboardComponent implements OnInit {
           this.leadsCommercialSummary.push(this.leadSummary[i])
         }
       }
-      console.log(this.leadsResidentialSummary);
-      console.log(this.leadsCommercialSummary);
     })
     this.service.MyPackages(335).subscribe((result: any) => {
       this.myPackages = result.data;
