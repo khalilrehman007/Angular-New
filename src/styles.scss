@@ -3692,9 +3692,9 @@ input[type=number] {
 	z-index: 0;
 	border-bottom-left-radius: 10px;
 	border-bottom-right-radius: 10px;
-	box-shadow: 0px 7px 40px -22px rgb(89 90 212 / 34%) !important;
-	-webkit-box-shadow: 0px 7px 40px -22px rgb(89 90 212 / 34%) !important;
-	-moz-box-shadow: 0px 7px 40px -22px rgb(89 90 212 / 34%) !important;
+	box-shadow: 0px 0px 10px 0 rgb(89 90 212 / 34%) !important;
+	-webkit-box-shadow: 0px 0px 10px 0 rgb(89 90 212 / 34%) !important;
+	-moz-box-shadow: 0px 0px 10px 0 rgb(89 90 212 / 34%) !important;
 
 	>img {
 		overflow: hidden;
@@ -10476,7 +10476,6 @@ li.agent-details__property-list-item {
 	}
 
 	.pro-contact-details {
-		margin-top: 10px;
 		text-align: left;
 	}
 
@@ -11448,4 +11447,43 @@ p:empty {
 
 .inner-cntnt-wrapper .blue-heading h2 {
     color: #000;
+}
+.classified_tabs-component .mat-tab-label {
+    color: #fff;
+    font-size: 12px;
+    font-weight: 500;
+    border: none;
+    padding: 10px 24px;
+    position: relative;
+    z-index: 0;
+    transition: 0.2s all ease-in-out;
+    min-width: auto;
+    opacity: 1;
+	height: auto;
+	border-radius: 50px;
+	margin-right: 10px;
+}
+.classified_tabs-component .mat-tab-label.mat-tab-label-active {
+    background-color: #595ad4;
+}
+.classified_tabs-component .mat-tab-label:hover{
+	background-color: #595ad4;
+}
+.classified_tabs-component {
+    background: rgba(0,0,0,0.3);
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 1px 2px 81px -36px #000929;
+}
+.classified_tabs-component .mat-tab-body-wrapper {
+    padding: 15px 27px 0px;
+}
+.classified_tabs-component .mat-ink-bar {
+    display: none;
+}
+.classified_tabs-component .mat-tab-header {
+    border: none;
+}
+.classified_tabs-component .mat-tab-label:first-child {
+    pointer-events: none;
 }
