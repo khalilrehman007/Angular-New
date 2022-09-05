@@ -244,11 +244,15 @@
                             </div>
                             <div ngClass="tab-content">
                                 <div id="resedential-rent" class="tab-pane active">
-                                    <div class="lead-summ-table">
-                                        <div class="table-row" *ngFor="let data of leadSummary">
+                                    <div class="no-data-found" *ngIf="leadsResidentialSummary.length == 0">
+                                        <mat-icon>file_copy</mat-icon>
+                                        <p>No Data Found</p>
+                                    </div>
+                                    <div class="lead-summ-table" *ngIf="leadsResidentialSummary.length > 0">
+                                        <div class="table-row" *ngFor="let data of leadsResidentialSummary">
                                             <div class="col photo-col">
                                                 <!-- <img *ngIf="data.length > 0 && data.fileUrl" src="https://beta.ovaluate.com/{{data.fileUrl}}" alt="">
-                        <img *ngIf="data.length == 0" src="assets/images/user.png" alt=""> -->
+                                                <img *ngIf="data.length == 0" src="assets/images/user.png" alt=""> -->
                                                 <img src="assets/images/user.png" alt="">
                                             </div>
                                             <div class="col base-info-col">
@@ -290,7 +294,7 @@
                                                 </div>
                                             </div>
                                             <div class="col">
-                                                <a href="#" class="view-more">
+                                                <a [routerLink]="['/property/detail']" [queryParams]="{id: data.propertyListingId}" class="view-more">
                                                     <img src="{{MoreIcon}}" alt="" class="icon">
                                                 </a>
                                             </div>
@@ -298,15 +302,66 @@
                                     </div>
                                 </div>
                                 <div id="resedential-buy" class="tab-pane">
-                                    <div class="no-data-found">
+                                    <div class="no-data-found" *ngIf="leadsCommercialSummary.length == 0">
                                         <mat-icon>file_copy</mat-icon>
                                         <p>No Data Found</p>
+                                    </div>
+                                    <div class="lead-summ-table" *ngIf="leadsCommercialSummary.length > 0">
+                                        <div class="table-row" *ngFor="let data of leadsCommercialSummary">
+                                            <div class="col photo-col">
+                                                <!-- <img *ngIf="data.length > 0 && data.fileUrl" src="https://beta.ovaluate.com/{{data.fileUrl}}" alt="">
+                                                <img *ngIf="data.length == 0" src="assets/images/user.png" alt=""> -->
+                                                <img src="assets/images/user.png" alt="">
+                                            </div>
+                                            <div class="col base-info-col">
+                                                <h4 class="name" *ngIf="data && data.name">{{data.name}}</h4>
+                                                <p *ngIf="data && data.leadDate">{{data.leadDate.split("T")[0]}}</p>
+                                                <p *ngIf="data.propertyListing.city && data.propertyListing.city.name">
+                                                    {{data.propertyListing.city.name}}, UAE</p>
+                                            </div>
+                                            <div class="col ">
+                                                <span>Property ID</span>
+                                                <p *ngIf="data.propertyListing && data.propertyListing.propertyId">
+                                                    {{data.propertyListing.propertyId}}</p>
+                                            </div>
+                                            <div class="col ">
+
+                                                <span>Building Type</span>
+                                                <p
+                                                    *ngIf="data.propertyListing.propertyCategory && data.propertyListing.propertyCategory.categoryName">
+                                                    {{data.propertyListing.propertyCategory.categoryName}}</p>
+                                            </div>
+                                            <div class="col ">
+
+                                                <span>Looking for</span>
+                                                <p
+                                                    *ngIf="data.propertyListing.propertyListingType && data.propertyListing.propertyListingType.name">
+                                                    {{data.propertyListing.propertyListingType.name}}</p>
+                                            </div>
+                                            <div class="col contact-col">
+                                                <span>Contact</span>
+                                                <div>
+                                                    <p *ngIf="data && data.phone">{{data.phone}}</p>
+                                                    <!-- <a href="#"><img
+                                                            src="{{ViewIcon}}" alt=""></a> -->
+                                                </div>
+                                                <div>
+                                                    <p *ngIf="data && data.email">{{data.email}}</p>
+                                                    <!-- <a href="#"><img
+                                                            src="{{CopyIcon}}" alt=""></a> -->
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <a [routerLink]="['/property/detail']" [queryParams]="{id: data.propertyListingId}" class="view-more">
+                                                    <img src="{{MoreIcon}}" alt="" class="icon">
+                                                </a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </section>
                     </div>
-
                     <section ngClass="position-relative wrapper-section blogs_sec mt-5">
                         <div ngClass="container_1220px">
                             <div ngClass="section-title">
@@ -902,7 +957,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="col">
-                                                            <a href="#" class="view-more">
+                                                            <a [routerLink]="['/property/detail']" [queryParams]="{id: item.propertyListingId}" class="view-more">
                                                                 <img src="{{MoreIcon}}" alt="" class="icon">
                                                             </a>
                                                         </div>
