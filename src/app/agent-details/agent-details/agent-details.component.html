@@ -54,10 +54,6 @@
                                             {{newAgentDetail.rentPropertyListingCount}} <br> Rent</p>
                                     </li>
                                     <li class="agent-details__wrapper-details-list-item">
-                                      <p class="agent-details__wrapper-details-list-text">
-                                        0 <br> Residential</p>
-                                    </li>
-                                    <li class="agent-details__wrapper-details-list-item">
                                         <p class="agent-details__wrapper-details-list-text">
                                             {{newAgentDetail.commercialPropertyListingCount}} <br> Commercial</p>
                                     </li>
@@ -114,9 +110,9 @@
                                     <ul class="agent-details__property-list">
                                         <li class="agent-details__property-list-item"
                                             *ngFor="let item of myListing | paginate: { itemsPerPage: 10, currentPage: page, totalItems:totalLength }">
-                                            <div class="row cursor-pointer" [routerLink]="['/PropertDetailsPage']"
+                                            <div class="row cursor-pointer" [routerLink]="['/property/detail']"
                                                 [queryParams]="{id: item.id}">
-                                                <div class="col-lg-2">
+                                                <div class="col-lg-2" >
                                                     <img src="{{item.image}}" [alt]=""
                                                         class="img-fluid agent-details__property-list-item-img">
                                                 </div>
@@ -125,7 +121,7 @@
                                                         <div class="col-7">
                                                             <a class="agent-details__property-list-item-link">{{item.propertyPrice}}
                                                                 {{item.currency}}
-                                                                <span>/{{item.rentType}}</span>
+                                                                <span *ngIf="item.rentType && item.rentType.length > 0 ">/{{item.rentType.name}}</span>
                                                             </a>
                                                         </div>
                                                         <div class="col-5 text-end">
@@ -145,11 +141,11 @@
                                                     <div class="row">
                                                         <div class="col-md-10">
                                                             <ul class="agent-details__property-detail-list">
-                                                                <li class="agent-details__property-detail-list-item">
+                                                                <li class="agent-details__property-detail-list-item" *ngIf="item.bedrooms != 0 && item.bedrooms != null">
                                                                     <img src="{{bedsvg}}" alt="">
                                                                     {{item.bedrooms}} Beds
                                                                 </li>
-                                                                <li class="agent-details__property-detail-list-item">
+                                                                <li class="agent-details__property-detail-list-item" *ngIf="item.bathrooms != 0 && item.bathrooms != null">
                                                                     <img src="{{bathsvg}}" alt="">
                                                                     {{item.bathrooms}} Bath
                                                                 </li>
