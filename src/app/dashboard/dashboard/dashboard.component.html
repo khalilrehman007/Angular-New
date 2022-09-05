@@ -445,7 +445,7 @@
                                                                     src="{{MoreIcon}}" alt=""></a> -->
                                                         </div>
                                                         <div ngClass="flex-auto-items" *ngIf="data.bathrooms != null">
-                                                            <!-- <a href="#" class="link" *ngIf="data && data.bathrooms" >{{data.bathrooms}}<img
+                                                            <!-- <a href="#" class="link" *ngIf="data && data.bathroomfs" >{{data.bathrooms}}<img
                                                                     src="{{MoreIcon}}" alt=""></a> -->
                                                         </div>
                                                         <div ngClass="flex-auto-items" *ngIf="data.rentTypeId != null">
@@ -1773,12 +1773,12 @@
                                     <h6>{{data.propertyListingPackage.validDays}} Days</h6>
                                 </div>
                                 <div ngClass="packge-item packge_renew">
-                                    <button ngClass="renew-btn" routerLink="/listing-packages">Renew</button>
+                                    <button ngClass="renew-btn" routerLink="/payment-packages">Renew</button>
                                 </div>
                             </div>
                         </div>
                         <div ngClass="packge-item packge_others text-center mt-5 mb-5">
-                            <button ngClass="other-packages_btn" routerLink="/listing-packages">Other Packages</button>
+                            <button ngClass="other-packages_btn" routerLink="/payment-packages">Other Packages</button>
                         </div>
                     </div>
                 </div>
