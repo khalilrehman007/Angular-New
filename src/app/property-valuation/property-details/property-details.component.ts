@@ -251,7 +251,7 @@ export class PropertyDetailsComponent implements OnInit {
       $("." + this.currentField).removeClass("blink");
       this.currentField = "";
     })
-    $(window).scrollTop(temp);
+    $(window).scrollTop(temp - 100);
   }
   getData() {
     if (this.countryId == -1) {

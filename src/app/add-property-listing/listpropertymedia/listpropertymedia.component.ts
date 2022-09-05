@@ -20,8 +20,8 @@ export class ListpropertymediaComponent implements OnInit {
   showError: boolean = false;
   errorResponse(data: any) {
     this.showError = false;
+    this.animate();
   }
-
   uploadimg = '../../../../assets/images/icons/upload-icon.svg'
   geolocation = '../../../../assets/images/icons/geo-location.svg'
   awayproperty = '../../../../assets/images/icons/away-property.svg'
@@ -55,7 +55,7 @@ export class ListpropertymediaComponent implements OnInit {
   propertyListingRent: any;
   titledeedUploaded: boolean = false;
   showLoader: boolean = false;
-
+  currentField: any;
 
   constructor(private api: AppService, private uploadService: FileUploadService, private route: Router) {
     this.priviousFormCheck = localStorage.getItem('propertyData');
@@ -83,6 +83,15 @@ export class ListpropertymediaComponent implements OnInit {
       e.preventDefault();
       alert();
     });
+  }
+  animate() {
+    let temp: any = $("." + this.currentField).offset()?.top;
+    $("." + this.currentField).addClass("blink");
+    $("." + this.currentField).on("click", () => {
+      $("." + this.currentField).removeClass("blink");
+      this.currentField = "";
+    })
+    $(window).scrollTop(temp - 100);
   }
   deleteImage() {
     this.titledeedUploaded = false;
@@ -221,6 +230,7 @@ export class ListpropertymediaComponent implements OnInit {
   videoCheck: boolean = false;
   onSubmit() {
     if (!this.titledeedUploaded) {
+      this.currentField = "title-deed-image-input";
       this.error = "Plese Upload Title Deed Image";
       this.showError = true;
       return;
