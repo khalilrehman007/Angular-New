@@ -31,6 +31,7 @@ export class CompanyDetailsComponent implements OnInit {
    this.DisplayCompany();
    this.LoadPropertySortBy();
   }
+  baseUrl :any='https://beta.ovaluate.com/'
 
   DisplayCompany(){
     this.service.DisplayCompany({"companyId": this.id, "SortedBy": this.sortedById}).subscribe((result: any) => {
@@ -234,6 +235,7 @@ export class CompanyDetailsComponent implements OnInit {
       },
     ],
   };
+
   agentContact = new FormGroup({
     name: new FormControl("", Validators.required),
     email: new FormControl("", Validators.compose([Validators.required, Validators.email])),

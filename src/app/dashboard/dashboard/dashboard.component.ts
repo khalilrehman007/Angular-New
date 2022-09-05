@@ -60,19 +60,8 @@ export class DashboardComponent implements OnInit {
   showLoader: boolean = false;
   myPackages: any;
   activitySavedSearch: any;
-  // resedentialRent: boolean = true ;
-  // resedentialBuy: boolean = false;
-
-  // commercialShow() {
-
-  //   this.resedentialRent = false;
-  //   this.resedentialBuy = true;
-
-  // }
-  // resedentialRentShow(){
-  //   this.resedentialRent = true;
-  //   this.resedentialBuy = false;
-  // }
+  leadsResidentialSummary:any = [];
+  leadsCommercialSummary:any = [];
 
   plus = '../../../../assets/images/plus.svg'
 
@@ -224,6 +213,13 @@ export class DashboardComponent implements OnInit {
     })
     this.service.SummaryLeads({ "UserId": "335", "PropertyCategoryId": "1" }).subscribe((result: any) => {
       this.leadSummary = result.data;
+      for (let i = 0; i < this.leadSummary.length; i++) {
+        if(this.leadSummary[i].propertyListing.propertyCategory.categoryName == "Residential") {
+          this.leadsResidentialSummary.push(this.leadSummary[i]);
+        } else {
+          this.leadsCommercialSummary.push(this.leadSummary[i])
+        }
+      }
     })
     this.service.MyPackages(335).subscribe((result: any) => {
       this.myPackages = result.data;

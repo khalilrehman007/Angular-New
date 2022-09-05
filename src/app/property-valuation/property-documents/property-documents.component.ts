@@ -255,7 +255,7 @@ export class PropertyDocumentsComponent implements OnInit {
       $("." + this.currentField).removeClass("blink");
       this.currentField = "";
     })
-    $(window).scrollTop(temp);
+    $(window).scrollTop(temp - 100);
   }
   checkPackage() {
     this.service.PropertyPackageType().subscribe((result: any) => {

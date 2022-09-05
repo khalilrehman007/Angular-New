@@ -32,45 +32,53 @@
                                     <div ngClass="block-wrapper mb-4">
                                         <div ngClass="select-design">
                                             <label>Country <span ngClass="required-span">*</span></label>
-                                            <mat-form-field appearance="fill">
-                                                <mat-label>Select the Country</mat-label>
-                                                <mat-select [(value)]="countryId"
-                                                    (selectionChange)="onCountrySelect($event)">
-                                                    <mat-option *ngFor="let list of country" [value]="list.value">
-                                                        {{ list.viewValue }}
-                                                    </mat-option>
-                                                </mat-select>
-                                            </mat-form-field>
+                                            <div class="country-input">
+                                                <mat-form-field appearance="fill">
+                                                    <mat-label>Select the Country</mat-label>
+                                                    <mat-select [(value)]="countryId"
+                                                        (selectionChange)="onCountrySelect($event)">
+                                                        <mat-option *ngFor="let list of country" [value]="list.value">
+                                                            {{ list.viewValue }}
+                                                        </mat-option>
+                                                    </mat-select>
+                                                </mat-form-field>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div ngClass="col-xl-4 col-lg-4 col-sm-12">
-                                    <div ngClass="select-design">
-                                        <label ngClass="h6-design">City <span ngClass="required-span">*</span></label>
-                                        <mat-form-field appearance="fill">
-                                            <mat-label>Select the City</mat-label>
-                                            <mat-select [(value)]="cityId" (selectionChange)="onCitySelect($event)">
-                                                <mat-option *ngFor="let listcity of city" [value]="listcity.value">
-                                                    {{ listcity.viewValue }}
-                                                </mat-option>
-                                            </mat-select>
-                                        </mat-form-field>
+                                    <div ngClass="block-wrapper mb-4">
+                                        <div ngClass="select-design">
+                                            <label>City <span ngClass="required-span">*</span></label>
+                                            <div class="city-input">
+                                                <mat-form-field appearance="fill">
+                                                    <mat-label>Select the City</mat-label>
+                                                    <mat-select [(value)]="cityId" (selectionChange)="onCitySelect($event)">
+                                                        <mat-option *ngFor="let listcity of city" [value]="listcity.value">
+                                                            {{ listcity.viewValue }}
+                                                        </mat-option>
+                                                    </mat-select>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div ngClass="col-xl-4 col-lg-4 col-sm-12">
                                     <div ngClass="block-wrapper mb-4">
                                         <div ngClass="select-design">
                                             <label>District <span ngClass="required-span">*</span></label>
-                                            <mat-form-field appearance="fill">
-                                                <mat-label>Select the District</mat-label>
-                                                <mat-select [(value)]="districtId"
-                                                    (selectionChange)="onDistrictSelect($event)">
-                                                    <mat-option *ngFor="let listdistrict of district"
-                                                        [value]="listdistrict.value">
-                                                        {{ listdistrict.viewValue }}
-                                                    </mat-option>
-                                                </mat-select>
-                                            </mat-form-field>
+                                            <div class="district-input">
+                                                <mat-form-field appearance="fill">
+                                                    <mat-label>Select the District</mat-label>
+                                                    <mat-select [(value)]="districtId"
+                                                        (selectionChange)="onDistrictSelect($event)">
+                                                        <mat-option *ngFor="let listdistrict of district"
+                                                            [value]="listdistrict.value">
+                                                            {{ listdistrict.viewValue }}
+                                                        </mat-option>
+                                                    </mat-select>
+                                                </mat-form-field>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -84,8 +92,8 @@
                                             <div ngClass="locate-me-sec">
                                                 <div ngClass="add-adrees-sec">
                                                     <input matInput type="text" formControlName="address"
-                                                        placeholder="Search Location" #searchLocation id="searchLocation"
-                                                        class="searchLocation" />
+                                                        placeholder="Search Location" #searchLocation
+                                                        id="searchLocation" class="searchLocation" />
                                                     <!-- <div ngClass="locate-me-btn text-right">
                                                         <button ngClass="grey-bordered-btn" (click)="getLocation()">
                                                             <img src="{{ Locate }}" /> Locate Me
@@ -121,31 +129,38 @@
                                         </div>
                                     </div>
                                 </div>
-
-
-
                                 <div ngClass="unit-info-sec">
                                     <h6 ngClass="h6-design">Tower / Unit Information</h6>
                                     <div ngClass="unit-info-form">
                                         <div ngClass="row">
                                             <div ngClass="col-xl-4 col-lg-4 col-sm-12">
-                                                <mat-form-field class="full-width input-design" appearance="fill">
-                                                    <mat-label>Property Age</mat-label>
-                                                    <input matInput formControlName="PropertyAge" type="number" placeholder="Please mention the Yrs." (input)="validateLength(1)">
-                                                </mat-form-field>
+                                                <div class="age-input">
+                                                    <mat-form-field class="full-width input-design" appearance="fill">
+                                                        <mat-label>Property Age</mat-label>
+                                                        <input matInput formControlName="PropertyAge" type="number"
+                                                            placeholder="Please mention the Yrs."
+                                                            (input)="validateLength(1)">
+                                                    </mat-form-field>
+                                                </div>
                                             </div>
                                             <div ngClass="col-xl-4 col-lg-4 col-sm-12">
-                                                <mat-form-field class="full-width input-design" appearance="fill">
-                                                    <mat-label>Building Name / Project Name</mat-label>
-                                                    <input matInput formControlName="BuildingName" type="text"
-                                                        placeholder="Please mention the name">
-                                                </mat-form-field>
+                                                <div class="name-input">
+                                                    <mat-form-field class="full-width input-design" appearance="fill">
+                                                        <mat-label>Building Name / Project Name</mat-label>
+                                                        <input matInput formControlName="BuildingName" type="text"
+                                                            placeholder="Please mention the name">
+                                                    </mat-form-field>
+                                                </div>
                                             </div>
                                             <div ngClass="col-xl-4 col-lg-4 col-sm-12">
-                                                <mat-form-field class="full-width input-design" appearance="fill">
-                                                    <mat-label>Unit No.</mat-label>
-                                                    <input matInput formControlName="UnitNo" type="number" placeholder="Please mention unit no" (input)="validateLength(2)">
-                                                </mat-form-field>
+                                                <div class="unit-no-input">
+                                                    <mat-form-field class="full-width input-design" appearance="fill">
+                                                        <mat-label>Unit No.</mat-label>
+                                                        <input matInput formControlName="UnitNo" type="number"
+                                                            placeholder="Please mention unit no"
+                                                            (input)="validateLength(2)">
+                                                    </mat-form-field>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

@@ -59,10 +59,6 @@
                                             0 <br> Rent</p>
                                     </li>
                                     <li class="company-details__wrapper-details-list-item">
-                                      <p class="company-details__wrapper-details-list-text">
-                                        0 <br> Residential</p>
-                                    </li>
-                                    <li class="company-details__wrapper-details-list-item">
                                         <p class="company-details__wrapper-details-list-text"
                                             *ngIf="companyDetails.statistics && companyDetails.statistics.commercialPropertyListingCount">
                                             {{companyDetails.statistics.commercialPropertyListingCount}} <br> Commercial
@@ -104,52 +100,47 @@
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="agent"
-                                *ngIf="companyDetails.company && companyDetails.company.agents.length > 0">
+                                *ngIf="companyDetails.agentsViewModel && companyDetails.agentsViewModel.length > 0">
                                 <div class="row">
-                                    <div class="col-lg-6" *ngFor="let item of companyDetails.company.agents">
+                                    <div class="col-lg-6" *ngFor="let item of companyDetails.agentsViewModel">
                                         <div class="company-details__agent"
-                                            routerLink="/agent-details/{{item.user.id}}">
+                                            routerLink="/agent-details/{{item.agentDetails.user.id}}">
                                             <div class="company-details__agent-wrapper">
                                                 <div class="row">
                                                     <div class="col-xl-5 col-lg-5 col-md-5 col-sm-12 d-flex align-items-center"
-                                                        *ngIf="item.user && item.user.imageUrl">
-                                                        <img src="https://beta.ovaluate.com/{{item.user.imageUrl}}"
+                                                        *ngIf="item.agentDetails.user && item.agentDetails.user.imageUrl">
+                                                        <img src="https://beta.ovaluate.com/{{item.agentDetails.user.imageUrl}}"
                                                             alt="" class="img-fluid company-details__agent-img">
                                                     </div>
                                                     <div class="col-xl-7 col-lg-7 col-md-7 col-sm-12">
                                                         <div class="company-details__agent-right-panel">
                                                             <h6 class="company-details__agent-heading"
-                                                                *ngIf="item.user && item.user.fullName">
-                                                                {{item.user.fullName}}</h6>
+                                                                *ngIf="item.agentDetails.user && item.agentDetails.user.fullName">
+                                                                {{item.agentDetails.user.fullName}}</h6>
                                                             <p class="company-details__agent-text"
-                                                                *ngIf="item && item.expertIn">{{item.expertIn}}</p>
+                                                                *ngIf="item && item.agentDetails.expertIn">{{item.agentDetails.expertIn}}</p>
                                                             <a class="company-details__agent-text company-details__agent-link"
-                                                                *ngIf="item.user && item.user.phoneNumber">{{item.user.phoneNumber}}</a>
+                                                                *ngIf="item.agentDetails.user && item.agentDetails.user.phoneNumber">{{item.agentDetails.user.phoneNumber}}</a>
                                                             <p class="company-details__agent-text mb-3"
-                                                                *ngIf="item.user && item.user.location">Location:
-                                                                {{item.user.location}}</p>
+                                                                *ngIf="item.agentDetails.user && item.agentDetails.user.location">Location:
+                                                                {{item.agentDetails.user.location}}</p>
                                                             <p class="company-details__agent-text"
-                                                                *ngIf="item.agents && item.agents.agentLanguages">
-                                                                Language: {{item.agents.agentLanguages}}</p>
+                                                                *ngIf="item.agentDetails.agents && item.agentDetails.agents.agentLanguages">
+                                                                Language: {{item.agentDetails.agents.agentLanguages}}</p>
                                                             <ul class="company-details__agent-details-list">
                                                                 <li class="company-details__agent-details-list-item">
                                                                     <p class="company-details__agent-details-list-text">
-                                                                        {{companyDetails.statistics.salePropertyListingCount}}<br>Sale
+                                                                        {{item.salePropertyListingCount}}<br>Sale
                                                                     </p>
                                                                 </li>
                                                                 <li class="company-details__agent-details-list-item">
                                                                     <p class="company-details__agent-details-list-text">
-                                                                        {{companyDetails.statistics.rentPropertyListingCount}}<br>Rents
+                                                                        {{item.rentPropertyListingCount}}<br>Rents
                                                                     </p>
                                                                 </li>
-                                                              <li class="company-details__agent-details-list-item">
-                                                                <p class="company-details__agent-details-list-text">
-                                                                  0<br>Residential
-                                                                </p>
-                                                              </li>
                                                                 <li class="company-details__agent-details-list-item">
                                                                     <p class="company-details__agent-details-list-text">
-                                                                        {{companyDetails.statistics.commercialPropertyListingCount}}<br>Commercial
+                                                                        {{item.commercialPropertyListingCount}}<br>Commercial
                                                                     </p>
                                                                 </li>
                                                             </ul>
@@ -187,17 +178,22 @@
                                 <ul class="company-details__property-list" *ngIf="companyDetails.properties">
                                     <li class="company-details__property-list-item"
                                         *ngFor="let item of companyDetails.properties | paginate: { itemsPerPage: 10, currentPage: page, totalItems:totalLength }">
-                                        <div class="row" [routerLink]="['/PropertDetailsPage']"
-                                            [queryParams]="{id: item.id}">
-                                            <div class="col-lg-2">
-                                                <img src="assets/images/placeholder.png" alt=""
+                                        <div class="row"
+                                             [routerLink]="['/property/detail']"
+                                             [queryParams]="{id: item.id}">
+                                            <div class="col-lg-2" *ngIf="item.documents && item.documents.length > 0">
+                                                <img src="{{baseUrl+item.documents[0].fileUrl}}" alt=""
                                                     class="img-fluid company-details__property-list-item-img">
+                                            </div>
+                                            <div class="col-lg-2" *ngIf="item.documents && item.documents.length == 0">
+                                              <img src="assets/images/placeholder.png" alt=""
+                                                   class="img-fluid company-details__property-list-item-img">
                                             </div>
                                             <div class="col-lg-10">
                                                 <div class="row">
                                                     <div class="col-7">
                                                         <a class="company-details__property-list-item-link">{{item.propertyPrice}}
-                                                            <span>/yearly</span>
+                                                            <span *ngIf="item.rentType && item.rentType.length > 0">/{{item.rentType.name}}</span>
                                                         </a>
                                                     </div>
                                                     <div class="col-5 text-end">
@@ -216,11 +212,11 @@
                                                 <div class="row">
                                                     <div class="col-md-10">
                                                         <ul class="company-details__property-detail-list">
-                                                            <li class="company-details__property-detail-list-item">
+                                                            <li class="company-details__property-detail-list-item" *ngIf="item.bedrooms != 0 && item.bedrooms != null">
                                                                 <img src="{{bedsvg}}" alt="">
                                                                 {{item.bedrooms}}
                                                             </li>
-                                                            <li class="company-details__property-detail-list-item">
+                                                            <li class="company-details__property-detail-list-item" *ngIf="item.bedrooms != 0 && item.bathrooms != null">
                                                                 <img src="{{bathsvg}}" alt="">
                                                                 {{item.bathrooms}}
                                                             </li>

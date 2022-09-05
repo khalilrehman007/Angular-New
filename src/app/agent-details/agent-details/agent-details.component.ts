@@ -91,7 +91,7 @@ export class AgentDetailsComponent implements OnInit {
         }
         let image: any = 'assets/images/placeholder.png'
         if (element.documents.length >= 1) {
-          image = element.documents[0].fileUrl
+          image = this.baseUrl+element.documents[0].fileUrl
         }
 
         let userImage = '../assets/images/user.png'
