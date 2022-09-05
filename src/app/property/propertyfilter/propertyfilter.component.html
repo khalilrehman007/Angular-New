@@ -1,0 +1,355 @@
+<form [formGroup]="SubmitForm">
+    <div ngClass="property-filter-wrap d-flex justify-content-spacebw">
+        <div ngClass="block-item first-block">
+            <div ngClass="block-wrapper mb-4 position-relative d-flex searc-input-combination">
+                <mat-form-field appearance="fill" class="select-design">
+                    <mat-label>Type</mat-label>
+                    <mat-select [(value)]="selectedRentType" (selectionChange)="changeType($event)">
+                        <mat-option *ngFor="let option of rentTypes" [value]="option.id">{{ option.name }}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="example-chip-list input-design searh_input-design" appearance="fill">
+                    <mat-label>Locations...</mat-label>
+                    <mat-chip-list #chipList aria-label="Fruit selection">
+                        <mat-chip *ngFor="let fruit of fruits" (removed)="remove1(fruit)">
+                            {{fruit}}
+                            <button matChipRemove>
+                                <mat-icon>cancel</mat-icon>
+                            </button>
+                        </mat-chip>
+                        <input placeholder="New Location.." #fruitInput [formControl]="fruitCtrl"
+                            [matAutocomplete]="auto1" [matChipInputFor]="chipList"
+                            [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="add1($event)">
+                    </mat-chip-list>
+                    <mat-autocomplete #auto1="matAutocomplete" (optionSelected)="selected($event)">
+                        <mat-option *ngFor="let fruit of filteredFruits | async" [value]="fruit">
+                            {{fruit}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+            </div>
+        </div>
+        <div ngClass="block-item scnd-block">
+            <div ngClass="block-wrapper">
+                <div ngClass="cstm_dropdown-list dropdown-design-2 position-relative drodown_with-img">
+                    <button ngClass="drop-down_btn" (click)="clickEvent1()">Property Type</button>
+                    <div class="cstm_dropdown-menu" [ngClass]="status1 ? 'active' : 'notactive'">
+                        <h4 ngClass="drop_label">Property Type</h4>
+                        <div ngClass="property-types-heading">
+                            <ul ngClass="nav nav-tabs" role="tablist">
+                                <li ngClass="nav-item" (click)="propertyType(residentialId)">
+                                    <a [ngClass]="PropertyCategoryId == residentialId ? 'nav-link residential active' : 'nav-link residential'"
+                                        (click)="residentialfun(residentialId)"><span
+                                            ngClass="circle-celection"></span>{{ residential }}</a>
+                                </li>
+                                <li ngClass="nav-item" (click)="propertyType(commercialId)">
+                                    <a [ngClass]="PropertyCategoryId == commercialId ? 'nav-link commertial active' : 'nav-link commertial'"
+                                        (click)="commertialfun(commercialId)"><span ngClass="circle-celection"></span>{{
+                                        commercial }}</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div ngClass="property-types-cntnts">
+                            <div id="Residentials"
+                                [ngClass]="PropertyCategoryId == residentialId ? 'residential-tabs' : 'hide residential-tabs'">
+                                <h5 ngClass="h5-heading">Residential Unit Type</h5>
+                                <ul ngClass="list-unstyled residentails-unit-list">
+                                    <li ngClass="d-flex" *ngFor="let item of propertyTypeResdential">
+                                        <div ngClass="position-relative">
+                                            <input type="checkbox" (click)="getPropertyType(item.id)">
+                                            <span ngClass="property_sel"></span>
+                                        </div>
+                                        <div ngClass="proprty_name">
+                                            <p>{{item.typeDescription}}</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div id="Commercial"
+                                [ngClass]="PropertyCategoryId == commercialId ? 'commertial-tabs' : 'hide commertial-tabs'">
+                                <h5 ngClass="h5-heading">Commercial Unit Type</h5>
+                                <ul ngClass="list-unstyled residentails-unit-list">
+                                    <li ngClass="d-flex" *ngFor="let item of propertyTypeCommercial">
+                                        <div ngClass="position-relative">
+                                            <input type="checkbox" (click)="getPropertyCommercialType(item.id)">
+                                            <span ngClass="property_sel"></span>
+                                        </div>
+                                        <div ngClass="proprty_name">
+                                            <p>{{item.typeDescription}}</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <button (click)="clickEvent1()" ngClass="overlay_dropdown-btn"></button>
+                </div>
+            </div>
+        </div>
+
+        <div ngClass="block-item scnd2-block">
+            <div ngClass="block-wrapper mb-4">
+                <mat-form-field appearance="fill" class="select-design">
+                    <mat-label>Beds</mat-label>
+                    <mat-select [(value)]="selectedBeds" (selectionChange)="beds($event)">
+                        <mat-option value="">
+                            0
+                        </mat-option>
+                        <mat-option value="1">
+                            1
+                        </mat-option>
+                        <mat-option value="2">
+                            2
+                        </mat-option>
+                        <mat-option value="3">
+                            3
+                        </mat-option>
+                        <mat-option value="4">
+                            4
+                        </mat-option>
+                        <mat-option value="5">
+                            5
+                        </mat-option>
+                        <mat-option value="6">
+                            6
+                        </mat-option>
+                        <mat-option value="7">
+                            7
+                        </mat-option>
+                        <mat-option value="8">
+                            8
+                        </mat-option>
+                        <mat-option value="9">
+                            9
+                        </mat-option>
+                        <mat-option value="10">
+                            10
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+        <div ngClass="block-item third-block">
+            <div ngClass="block-wrapper mb-4">
+                <mat-form-field appearance="fill" class="select-design">
+                    <mat-label>Baths</mat-label>
+                    <mat-select [(value)]="selectedBaths" (selectionChange)="baths($event)">
+                        <mat-option value="">
+                            0
+                        </mat-option>
+                        <mat-option value="1">
+                            1
+                        </mat-option>
+                        <mat-option value="2">
+                            2
+                        </mat-option>
+                        <mat-option value="3">
+                            3
+                        </mat-option>
+                        <mat-option value="4">
+                            4
+                        </mat-option>
+                        <mat-option value="5">
+                            5
+                        </mat-option>
+                        <mat-option value="6">
+                            6
+                        </mat-option>
+                        <mat-option value="7">
+                            7
+                        </mat-option>
+                        <mat-option value="8">
+                            8
+                        </mat-option>
+                        <mat-option value="9">
+                            9
+                        </mat-option>
+                        <mat-option value="10">
+                            10
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+        <div ngClass="block-item four-block">
+            <div ngClass="block-wrapper">
+                <div ngClass="cstm_dropdown-list dropdown-design-2 position-relative drodown_with-img">
+                    <button ngClass="drop-down_btn" (click)="clickEvent()">Budget</button>
+                    <div class="cstm_dropdown-menu" [ngClass]="status ? 'active' : 'notactive'">
+                        <h4 ngClass="drop_label">Price Range</h4>
+                        <div ngClass="rental-type-tabs-sec">
+                            <div ngClass="price-range_sec">
+                                <div ngClass="extra-controls form-inline">
+                                    <div ngClass="form-group">
+                                        <input type="number" formControlName="PriceStart" [(ngModel)]="minValue"
+                                            placeholder="100,000">
+                                        <input type="number" formControlName="PriceEnd" [(ngModel)]="maxValue"
+                                            placeholder="Any">
+                                    </div>
+                                </div>
+                                <div ngClass="range-slider">
+                                    <ngx-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options">
+                                    </ngx-slider>
+                                </div>
+                                <div ngClass="rentle_type-hding" *ngIf="PropertyListingTypeId != 2">
+                                    <h5 ngClass="h5-design">Rental Type</h5>
+                                </div>
+                            </div>
+                            <mat-tab-group *ngIf="PropertyListingTypeId != 2" [(selectedIndex)]="RentTypeIndexId"
+                                (selectedTabChange)="getRentalType($event)">
+                                <mat-tab label="{{Monthly}}">
+                                </mat-tab>
+                                <mat-tab label="{{Quarterly}}">
+                                </mat-tab>
+                                <mat-tab label="{{Yearly}}">
+                                </mat-tab>
+                            </mat-tab-group>
+                        </div>
+                    </div>
+                    <button (click)="clickEvent()" ngClass="overlay_dropdown-btn"></button>
+                </div>
+            </div>
+        </div>
+        <div ngClass="block-item five-block">
+            <div ngClass="block-wrapper mb-4">
+                <mat-form-field appearance="fill" class="select-design">
+                    <mat-label>Posted by</mat-label>
+                    <mat-select (selectionChange)="postedBy($event)">
+                        <mat-option value="Dealer" *ngFor="let data of postedByOption">{{data.name}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+        <div ngClass="block-item six-block">
+            <div ngClass="block-wrapper more-filter_btn-wrapper">
+                <button ngClass="more-filter-button" (click)="openVerticallyCentered(content)">More Filters</button>
+            </div>
+            <div ngClass="gallery-modal-design more_filters-modal">
+                <ng-template #content let-modal>
+                    <button type="button" class="btn-close" aria-label="Close"
+                        (click)="modal.dismiss('Cross click')"></button>
+                    <div class="modal-body more-filter-form-design">
+                        <div ngClass="row">
+                            <div ngClass="col-xl-12 col-lg-12 col-sm-12">
+                                <div ngClass="form_heading mb-4">
+                                    <h4 ngClass="h4-design">More Filters</h4>
+                                </div>
+                            </div>
+                            <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+                                <div ngClass="block-wrapper mb-4">
+                                    <label class="h6-design">Furnishing Type</label>
+                                    <div class="checkbox-flex-box three-column button-same-select">
+                                        <div (click)="furnishedTypeChange(data.id)"
+                                            class="checkbox-design position-relative"
+                                            *ngFor="let data of furnishingType">
+                                            <input type="radio" *ngIf="this.furnishedType == data.id" checked
+                                                id="Furnished" name="furnishing-types" value="Furnished">
+                                            <input type="radio" *ngIf="this.furnishedType != data.id" id="Furnished"
+                                                name="furnishing-types" value="Furnished">
+                                            <button class="checkbox-btn">{{data.name}}</button>
+                                        </div>
+                                        <!-- <div class="checkbox-design position-relative">
+                        <input type="radio" id="Unfurnished" name="furnishing-types" value="Unfurnished">
+                        <button class="checkbox-btn">Unfurnished</button>
+                      </div>
+                      <div class="checkbox-design position-relative">
+                        <input type="radio" id="Semi Furnished" name="furnishing-types" value="Semi Furnished">
+                        <button class="checkbox-btn">Semi Furnished</button>
+                      </div> -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+                                <div ngClass="block-wrapper mb-2">
+                                    <label class="h6-design">Property Area (sqft)</label>
+                                    <div ngClass="row">
+                                        <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+                                            <div ngClass="block-wrapper mb-2">
+                                                <div ngClass="position-relative">
+                                                    <mat-form-field class="full-width input-design-2" appearance="fill">
+                                                        <input formControlName="minCarpet"
+                                                            (keyup)="minCarpetAreaChange(minCarpet.value)" #minCarpet
+                                                            matInput type="number" placeholder="Min. Area">
+                                                    </mat-form-field>
+                                                    <p ngClass="input-overlay-layer">sqft.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+                                            <div ngClass="block-wrapper mb-2">
+                                                <div ngClass="position-relative">
+                                                    <mat-form-field class="full-width input-design-2" appearance="fill">
+                                                        <input formControlName="maxCarpet"
+                                                            (keyup)="maxCarpetAreaChange(maxCarpet.value)" #maxCarpet
+                                                            matInput type="number" placeholder="Max. Area">
+                                                    </mat-form-field>
+                                                    <p ngClass="input-overlay-layer">sqft.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ngClass="col-xl-12 col-lg-12 col-sm-12">
+                                <div class="select-features mb-3">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <label class="h6-design">Select Amenities</label>
+                                            <div class="inneR-border-wrap">
+                                                <div class="checkbox-flex-box autoflex-layout">
+                                                    <div (click)="propertyFeatureChange(data.id)"
+                                                        class="checkbox-design position-relative"
+                                                        *ngFor="let data of propertyListingFeatures">
+                                                        <input type="checkbox" name="Amenities" value="Central A/C">
+                                                        <button class="checkbox-btn">{{data.featureName}}</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ngClass="col-xl-12 col-lg-12 col-sm-12">
+                                <div ngClass="block-wrapper keywords_design-input">
+                                    <label class="h6-design">Keywords</label>
+                                    <mat-form-field class="example-chip-list" appearance="fill">
+                                        <mat-label>Add Keywords</mat-label>
+                                        <mat-chip-list #chipList aria-label="Keyword selection">
+                                            <mat-chip *ngFor="let KeywordName of Keywords"
+                                                (removed)="remove(KeywordName)">
+                                                {{KeywordName.name}}
+                                                <button matChipRemove>
+                                                    <mat-icon>cancel</mat-icon>
+                                                </button>
+                                            </mat-chip>
+                                            <input placeholder="Keywords..." [matChipInputFor]="chipList"
+                                                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                                [matChipInputAddOnBlur]="addOnBlur"
+                                                (matChipInputTokenEnd)="add($event)">
+                                        </mat-chip-list>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div ngClass="text-right totel_properties-btn mt-5">
+                                <!--                <app-loader></app-loader>-->
+                                <button (click)="proceedSearch()" (click)="modal.dismiss('Cross click')">Totel
+                                    Properties Count <span ngClass="count_properties">({{totalRecord}})</span></button>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+        <div ngClass="block-item seven-block">
+            <div ngClass="block-wrapper">
+                <button ngClass="clear-btn" (click)="clearSearch()">Clear</button>
+            </div>
+        </div>
+        <div ngClass="block-item eight-block">
+            <div ngClass="block-wrapper">
+                <button ngClass="search-btn" (click)="proceedSearch()"><img src="assets/images/search.svg"></button>
+            </div>
+        </div>
+    </div>
+</form>

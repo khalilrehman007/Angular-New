@@ -1,0 +1,124 @@
+<app-header2></app-header2>
+<section ngClass="auth-wrapper">
+    <div ngClass="form-design signup-page">
+        <form class="auth-form" [formGroup]="signup">
+            <div ngClass="wecome-message">
+                <h2>Welcome to Ovaluate</h2>
+                <p>Welcome back! Please enter your details.</p>
+            </div>
+            <div *ngIf="submitted && validate['FirstName'].errors" class="alert-indicators">
+            </div>
+            <mat-form-field class="full-width input-design" appearance="fill">
+                <mat-label>First Name</mat-label>
+                <input matInput type="text" formControlName="FirstName" placeholder="First Last" required ngModel>
+            </mat-form-field>
+            <div *ngIf="submitted && validate['FirstName'].errors" class="alert alert-danger">
+                <div *ngIf="validate['FirstName'].errors['required']">FirstName is required</div>
+            </div>
+            <div *ngIf="submitted && validate['LastName'].errors" class="alert-indicators">
+            </div>
+            <mat-form-field class="full-width input-design" appearance="fill">
+                <mat-label>Last Name</mat-label>
+                <input matInput type="text" formControlName="LastName" placeholder="Last Name" required ngModel>
+            </mat-form-field>
+            <div *ngIf="submitted && validate['LastName'].errors" class="alert alert-danger">
+                <div *ngIf="validate['LastName'].errors['required']">Last Name is required</div>
+            </div>
+            <div *ngIf="submitted && validate['Email'].errors" class="alert-indicators">
+            </div>
+            <mat-form-field class="full-width input-design" appearance="fill">
+                <mat-label>Email</mat-label>
+                <input matInput type="email" formControlName="Email" required ngModel>
+            </mat-form-field>
+            <div *ngIf="submitted && validate['Email'].errors" class="alert alert-danger">
+                <div *ngIf="validate['Email'].errors['required']">Email is required</div>
+            </div>
+            <div ngClass="block-wrapper mb-4">
+                <!-- <label class="h6-design">Phone Number<span
+                        ngClass="required-span">*</span></label> -->
+                <div ngClass="position-relative country-code-select-design">
+                    <ngx-intl-tel-input
+                    [cssClass]="'custom'"
+                    [preferredCountries]="preferredCountries"
+                    [enableAutoCountrySelect]="true"
+                    [enablePlaceholder]="true"
+                    [searchCountryFlag]="true"
+                    [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
+                    [selectFirstCountry]="false"
+                    [selectedCountryISO]="CountryISO.India"
+                    [maxLength]="15"
+                    [phoneValidation]="true"
+                    [separateDialCode]="separateDialCode"
+                    [numberFormat]="PhoneNumberFormat.National"
+                    name="phone"
+                    formControlName="phone"
+                  >
+                  </ngx-intl-tel-input>
+                </div>
+            </div>
+            <div *ngIf="submitted && validate['Password'].errors" class="alert-indicators">
+            </div>
+            <mat-form-field class="full-width input-design padd-b-0" appearance="fill">
+                <mat-label>Password</mat-label>
+                <input matInput [type]="showPassword ? 'text' : 'password'" formControlName="Password" required ngModel>
+
+                <mat-icon matSuffix (click)="togglePasswordVisibility()">
+                    {{showPassword?'visibility_off':'visibility'}}
+                </mat-icon>
+            </mat-form-field>
+
+            <div *ngIf="submitted && validate['Password'].errors" class="alert alert-danger">
+                <div *ngIf="validate['Password'].errors['required']">Password is required</div>
+            </div>
+            <div ngClass="hint-text">
+                <p>At least 8 characters</p>
+                <p>Mix of letters and numbers</p>
+                <p>At least 1 special character</p>
+                <p>At least 1 lowercase letter and 1 uppercase letter</p>
+            </div>
+            <div ngClass="landlord-checkbox-sec checkbox-design">
+                <mat-checkbox class="example-margin" (change)="toggleType($event)">I am a landlord or industry
+                    professional</mat-checkbox>
+                <div ngClass="dropdown hide">
+                    <button type="button" ngClass="btn dropdown-toggle" data-bs-toggle="dropdown">
+                        Professional Type
+                    </button>
+                    <div ngClass="dropdown-menu" id="property-type-sec">
+                        <h5 ngClass="h5-heading">Professional Type</h5>
+                        <div ngClass="property-types-heading">
+                            <ul ngClass="nav nav-tabs">
+                                <li ngClass="nav-item" *ngFor="let data of signUpPropertytype">
+                                    <div class="checkbox-design-2 d-flex position-relative"
+                                        (click)="getProfessionalType(data.id)">
+                                        <input type="radio" id="{{data.name}}" name="Professional Type"
+                                            value="{{data.name}}">
+                                        <span ngClass="circle-celection"></span>
+                                        <p class="checkbox-text">{{data.name}}</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <mat-card-actions (click)="ProceedSignUp()">
+                <button mat-raised-button type="submit" ngClass="submit-btn">SignUp</button>
+            </mat-card-actions>
+            <div ngClass="terms-text">
+                <p>By submitting, I accept Ovaluate’s <a routerLink="/term-condition">terms & conditions</a></p>
+            </div>
+            <div ngClass="or-connect">
+                <p>Or connect with</p>
+            </div>
+            <div class="continue-btns">
+                <button ngClass="google-btn" #signupRef (click)="callLogin()"><img src="{{goggle}}"> Continue with
+                    Google</button>
+                <!-- <button ngClass="apple-btn"><img src="{{apple}}"> Continue with Apple</button> -->
+            </div>
+            <div ngClass="dont-have-account text-center">
+                <p>Already have an account? <a href="/login">Signin here</a></p>
+            </div>
+        </form>
+    </div>
+</section>
+<app-erroralert [error]="error" (errorResponse)="errorResponse($event)" *ngIf="showError"></app-erroralert>

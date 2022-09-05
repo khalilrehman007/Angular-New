@@ -1,0 +1,333 @@
+<app-header></app-header>
+<div ngClass="light-bg-body">
+    <section [ngClass]="'inner-cntnt-wrapper'">
+        <section [ngClass]="'rent-propoerties-main-sec slide-left-bar'">
+            <div ngClass="properties-file-container-shadow">
+                <div ngClass="properties-file-container">
+                    <app-propertyfilter [totalRecord]="totalRecord" (childToParentDataLoad)="childToParentDataLoad($event)"></app-propertyfilter>
+                </div>
+            </div>
+            <div [ngClass]="'container_1280px'">
+                <div ngClass="row">
+                    <div ngClass="col-xl-9 col-lg-9 col-md-12 col-sm-12">
+                        <div ngClass="property-details-header">
+                            <div ngClass="d-flex justify-content-spacebw">
+                                <div ngClass="black-text-breadcrumb">
+                                    <!--    <app-breadcrumb></app-breadcrumb>-->
+                                </div>
+                                <!-- <div ngClass="last-updated-details">
+                    <p>Last Updated: <span ngClass="update-date">April 19, 2022</span></p>
+                  </div> -->
+                            </div>
+                        </div>
+                        <div ngClass="heading-apragraph-design mt-4">
+                            <h2>{{selectedPropertyTypeName}} Properties for {{type}} in UAE</h2>
+                            <p>Showing {{totalRecord}} Properties for {{type}} in UAE</p>
+                            <!--   <p>{{selectedPropertyTypeDiscription}} <button ngClass="read-more-btn"></button></p>-->
+                            <p>Properties For {{type}} in UAE. Verified Listings. Your Perfect Home is on Property
+                                Finder! Property
+                                Finder: Real Estate...
+                                <!--    <button ngClass="read-more-btn">Read more</button>-->
+                            </p>
+                        </div>
+                        <div ngClass="properties-filtr-values d-flex justify-content-spacebw">
+                            <div ngClass="properties-filtr-values-left d-flex justify-content-spacebw">
+                                <div (click)="allSearch()" class="checkbox-design position-relative">
+                                    <input type="checkbox" id="Furnished" name="property-types" value="Furnished">
+                                    <button class="checkbox-btn">All</button>
+                                </div>
+                                <div ngClass="block-wrapper">
+                                    <mat-form-field appearance="fill" class="select-design">
+                                        <mat-label><img src="{{videotiour}}"> Video Tour</mat-label>
+                                        <mat-select (selectionChange)="videoSorting($event)">
+                                            <mat-option value="{{item.id}}" *ngFor="let item of videoTour">{{item.name}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div ngClass="properties-filtr-values-right d-flex justify-content-spacebw">
+                                <div class="checkbox-design position-relative">
+                                    <input type="checkbox" id="OV-Verified" name="property-types" value="OV-Verified">
+                                    <button class="checkbox-btn"><img src="{{ovverified}}"> OV-Verified</button>
+                                </div>
+                                <div ngClass="block-wrapper">
+                                    <mat-form-field appearance="fill" class="select-design">
+                                        <mat-label>Sort by</mat-label>
+                                        <mat-select (selectionChange)="sortedBy($event)">
+                                            <mat-option *ngFor="let SortBy of PropertySortBy" value="{{SortBy.id}}">
+                                                {{SortBy.name}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                        <div ngClass="properties-list-design">
+                            <div ngClass="properties-list-block-design"
+                                *ngFor=" let list of searchListing | paginate: { itemsPerPage: 10, currentPage: page ,totalItems:totalRecord }">
+                                <div ngClass="row">
+                                    <div ngClass="col-xl-4 col-md-4 col-lg-4 col-sm-12">
+                                        <div ngClass="properties-list_slider" *ngIf="list.documentsCheck">
+                                            <ngb-carousel>
+                                                <ng-template ngbSlide *ngFor="let event of list.documents">
+                                                    <img [src]="baseUrl+event.fileUrl" alt="Random slide"
+                                                        (click)="openVerticallyCentered(content,list.documents)">
+                                                </ng-template>
+                                            </ngb-carousel>
+                                        </div>
+                                        <div ngClass="properties-list_slider" *ngIf="list.documentsCheck == false">
+                                            <img src="assets/images/placeholder.png" alt="Random slide"
+                                                (click)="openVerticallyCentered(content,list.documents)">
+                                        </div>
+                                    </div>
+                                    <div ngClass="col-xl-8 col-md-8 col-lg-8 col-sm-12">
+                                        <div ngClass="properties-list_cntnts position-relative">
+                                            <div ngClass="properties-list_hdr d-flex justify-content-spacebw">
+                                                <div ngClass="property-price_detals cursor-pointer"
+                                                    [routerLink]="['/property/detail']"
+                                                    [queryParams]="{id: list.id}">
+                                                    <h4>{{list.propertyPrice}} {{list.currency}} <small
+                                                            *ngIf="list.rentType != ''">/{{list.rentType}}</small></h4>
+                                                    <div ngClass="property-tags d-flex flex-wrap">
+                                                        <span ngClass="tags-bg-grey">Brokrage:
+                                                            {{list.brokerageChargePrice}}
+                                                            {{list.rentType}}</span>
+                                                        <span ngClass="tags-bg-grey">Security deposit:
+                                                            {{list.securityDepositPrice}}
+                                                            {{list.rentType}}</span>
+                                                    </div>
+                                                </div>
+                                                <div ngClass="property-action-hdr">
+                                                    <button ngClass="ov-verified-btn"><img src="{{ovverified}}">
+                                                        {{list.propertyCode}}</button>
+                                                    <div ngClass="pro-contact-details">
+                                                        <div ngbDropdown class="d-inline-block">
+                                                            <button ngClass="circle-btn" id="dropdownBasic21"
+                                                                ngbDropdownToggle><img src="{{share}}"></button>
+                                                            <div ngbDropdownMenu aria-labelledby="dropdownBasic21">
+                                                                <h5>Share with:</h5>
+                                                                <button ngbDropdownItem><a target="_blank"
+                                                                        href="https://facebook.com"
+                                                                        ngClass="facebook"><img src="{{fb}}">
+                                                                        Facebook</a></button>
+                                                                <button ngbDropdownItem><a target="_blank"
+                                                                        href="https://web.whatsapp.com/"
+                                                                        ngClass="whatsapp"><img src="{{whatsapp}}">
+                                                                        WhatsAPP</a></button>
+                                                                <button ngbDropdownItem><a target="_blank"
+                                                                        href="https://twitter.com/"
+                                                                        ngClass="twitter"><img src="{{twitter}}">
+                                                                        Twitter</a></button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <button
+                                                        [ngClass]="list.favorite == true ? 'grey-bordered-btn red-fill' : 'grey-bordered-btn'"
+                                                        (click)="AddToFavorite(list.id,list.favorite)">
+                                                        <svg width="22" height="23" viewBox="0 0 22 23" fill="#595ad4"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <path
+                                                                d="M4.39376 6.23844C4.02517 6.63167 3.73279 7.0985 3.53331 7.61228C3.33383 8.12605 3.23116 8.67672 3.23116 9.23283C3.23116 9.78894 3.33383 10.3396 3.53331 10.8534C3.73279 11.3672 4.02517 11.834 4.39376 12.2272L11.1699 19.4563L17.946 12.2272C18.6904 11.433 19.1086 10.3559 19.1086 9.23283C19.1086 8.10972 18.6904 7.0326 17.946 6.23844C17.2016 5.44429 16.1919 4.99813 15.1392 4.99813C14.0865 4.99813 13.0768 5.44429 12.3324 6.23844L11.1699 7.47873L10.0073 6.23844C9.63871 5.84521 9.20113 5.53329 8.71954 5.32047C8.23796 5.10766 7.72179 4.99812 7.20053 4.99812C6.67926 4.99812 6.1631 5.10766 5.68152 5.32047C5.19993 5.53329 4.76235 5.84521 4.39376 6.23844V6.23844Z"
+                                                                stroke-width="2" stroke-linecap="round"
+                                                                stroke-linejoin="round" />
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                            </div>
+
+                                            <div ngClass="property-name_detals" [routerLink]="['/property/detail']"
+                                                [queryParams]="{id: list.id}">
+                                                <h4>{{list.buildingName}}</h4>
+                                                <div ngClass="property-addresss">
+                                                    <p><img src="{{homelocationsvg}}"> {{list.propertyAddress}}</p>
+                                                </div>
+                                            </div>
+                                            <div ngClass="topkey-highlights">
+                                                <h6>{{list.propertyType.typeDescription}},</h6>
+                                                <div ngClass="property-details-highlights">
+                                                    <span *ngIf="list.bedrooms != 0" ngClass="bed">
+                                                        <img src="{{bedsvg}}" alt="">{{list.bedrooms}} Beds
+                                                    </span>
+                                                    <span *ngIf="list.bathrooms != 0" ngClass="bath">
+                                                        <img src="{{bathsvg}}" alt="">{{list.bathrooms}} Bath
+                                                    </span>
+                                                    <span ngClass="area">
+                                                        <img src="{{squaremetersvg}}" alt="">{{list.buildupArea}} sqft
+                                                    </span>
+                                                    <span ngClass="furnishing">
+                                                        <img src="{{furnishing}}" alt="">{{list.furnishingType}}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div ngClass="key-tags">
+                                                <span *ngFor="let features of list.propertyFeatures">
+                                                    {{features.propertyFeature.featureName}}
+                                                </span>
+                                            </div>
+                                            <div ngClass="data-inteligence-text">
+                                                <h6>OV Data Intelligence - Corniche Road, Abu Dhabi </h6>
+                                                <div ngClass="property-range-bar d-flex">
+                                                    <div ngClass="pro-range-whie-box">
+                                                        <p>Recent Rent Txns</p>
+                                                        <h6>{{list.RecentRentTxns}} in last 1 year</h6>
+                                                    </div>
+                                                    <div ngClass="pro-range-whie-box">
+                                                        <p>Rent Price Range</p>
+                                                        <h6>{{list.StartRentPrice}} {{list.currency}} -
+                                                            {{list.EndRentPrice}} {{list.currency}}</h6>
+                                                    </div>
+                                                    <div ngClass="pro-range-whie-box">
+                                                        <p>Avg. Rent/ Sq. Ft.</p>
+                                                        <h6>{{list.AvgRentPrice}} {{list.currency}}</h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div ngClass="property-footer-block">
+                                                <div ngClass="row align-items-center">
+                                                    <div ngClass="col-xl-5 col-lg-12 col-md-12 col-sm-12">
+                                                        <div ngClass="lsited-by-details d-flex">
+                                                            <div ngClass="list_cntnt-img">
+                                                                <img src="{{list.userImage}}">
+                                                            </div>
+                                                            <div ngClass="list_cntnt-blcok">
+                                                                <h5>{{list.fullName}}</h5>
+                                                                <p>Listed on: {{list.requestedDateFormat}}</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div ngClass="col-xl-7 col-lg-12 col-md-12 col-sm-12 text-right">
+                                                        <div ngClass="pro-contact-details">
+                                                            <a *ngIf="userId !== null"
+                                                                routerLink="/agent-details/{{list.userId}}"
+                                                                ngClass="grey-bordered-btn">Details</a>
+                                                            <div ngbDropdown placement="top-end"
+                                                                class="d-inline-block call-now_link">
+                                                                <button type="button" class="grey-bordered-btn"
+                                                                    id="dropdownBasic5"
+                                                                    (click)="callNumber(callNumberText)"
+                                                                    ngbDropdownToggle>{{callNumberText}}</button>
+                                                                <div ngbDropdownMenu aria-labelledby="dropdownBasic5">
+                                                                    <p ngClass="mention_ref">Mention the reference</p>
+                                                                    <p ngClass="oval_finder-red">"Ovaluate Finder" <span
+                                                                            ngClass="ref_id">{{list.propertyCode}}</span>
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                            <div ngbDropdown class="d-inline-block">
+                                                                <button ngClass="grren-btn grey-bordered-btn"
+                                                                    id="dropdownBasic1"
+                                                                    ngbDropdownToggle>Connect</button>
+                                                                <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                                                                    <button ngbDropdownItem><a routerLink="/chat"><img
+                                                                                src="{{chat}}">
+                                                                            Chat</a></button>
+                                                                    <button ngbDropdownItem><a target="_blank"
+                                                                            href="https://web.whatsapp.com/"><img
+                                                                                src="{{whatsapp}}"> Whats
+                                                                            APP</a></button>
+                                                                    <button ngbDropdownItem><a routerLink="/chat"><img
+                                                                                src="{{videocall}}"> Video
+                                                                            Call</a></button>
+                                                                    <button ngbDropdownItem><a target="_blank"
+                                                                            href="https://www.youtube.com/watch?v=y9j-BL5ocW8"><img
+                                                                                src="{{virtual}}"> Virtual
+                                                                            Tour</a></button>
+                                                                    <button ngbDropdownItem><a target="_blank"
+                                                                            href="mailto:info@ovaluate.com"><img
+                                                                                src="{{email}}"> Email</a></button>
+                                                                </div>
+                                                            </div>
+                                                            <div ngbDropdown class="d-inline-block">
+                                                                <button ngClass="grey-bordered-btn" id="dropdownBasic2"
+                                                                    ngbDropdownToggle><img src="{{dots}}"></button>
+                                                                <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
+                                                                    <h5>Share with:</h5>
+                                                                    <button ngbDropdownItem><a target="_blank"
+                                                                            href="https://facebook.com"
+                                                                            ngClass="facebook"><img src="{{fb}}">
+                                                                            Facebook</a></button>
+                                                                    <button ngbDropdownItem><a target="_blank"
+                                                                            href="https://web.whatsapp.com/"
+                                                                            ngClass="whatsapp"><img src="{{whatsapp}}">
+                                                                            WhatsAPP</a></button>
+                                                                    <button ngbDropdownItem><a target="_blank"
+                                                                            href="https://twitter.com/"
+                                                                            ngClass="twitter"><img src="{{twitter}}">
+                                                                            Twitter</a></button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--                      <div ngClass="last-contaceted-on">-->
+                                            <!--                        <p>-->
+                                            <!--                          <mat-icon> phone</mat-icon> Last contacted on: 9 Aug 2022-->
+                                            <!--                        </p>-->
+                                            <!--                      </div>-->
+                                            <p ngClass="premium-tag">PREMIUM</p>
+                                        </div>
+                                        <div ngClass="popular-tag-abs">
+                                            <img src="{{populardark}}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <section class="agent-pagination-wrapper">
+                                <pagination-controls (pageChange)="pageChanged($event)"
+                                    class="text-center my-pagination">
+                                </pagination-controls>
+                            </section>
+                        </div>
+                    </div>
+                    <div ngClass="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+                        <div ngClass="properties-list-sidebar">
+                            <div ngClass="lisitng-map-view">
+                                <div ngClass="listing-view-map-frame">
+                                    <img src="{{mapview}}">
+                                </div>
+                                <div ngClass="see-my-lisitng">
+                                    <a ngClass="see-listing-btn" (click)="viewMap()"><img src="{{loc}}"> See the Listing
+                                        on Map View</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div ngClass="popular-searches" *ngIf="trendTitle.length > 0">
+                            <div ngbDropdown class="d-block">
+                                <button type="button" class="btn btn-outline-primary" id="popularSearches"
+                                    ngbDropdownToggle>Popular
+                                    Searches</button>
+                                <div ngbDropdownMenu aria-labelledby="popularSearches" open="true" class="show">
+                                    <button ngbDropdownItem
+                                        *ngFor="let item of trendTitle[0].trendTitleDetail; let i = index"
+                                        (click)="onTrendClick(1,i)">{{item.detail}}</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div ngClass="adds-blck-sec">
+                            <script async
+                                src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6409412786140093"
+                                crossorigin="anonymous"></script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+    <div ngClass="gallery-modal-design">
+        <ng-template #content let-modal>
+            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+            <div class="modal-body gallery-design">
+                <ngb-carousel>
+                    <ng-template ngbSlide *ngFor="let event of modelPropertyPictures">
+                        <img [src]="baseUrl+event.fileUrl" alt="Random slide">
+                    </ng-template>
+                </ngb-carousel>
+            </div>
+        </ng-template>
+    </div>
+    <footer ngClass="footer-sec">
+        <app-footer></app-footer>
+    </footer>
+</div>
