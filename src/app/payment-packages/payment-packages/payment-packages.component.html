@@ -1,106 +1,80 @@
 <app-header></app-header>
 <section [ngClass]="'inner-cntnt-wrapper slide-left-bar'">
-    <section [ngClass]="'list-payment-sec position-relative'">
-        <div [ngClass]="'container_1280px'">
-            <div class="valuation-cstm_tabs property_payment">
-            <div ngClass="form-border-wrapper">
-                <div ngClass="list-property-header mb-4">
-                    <h5 ngClass="h5-heading">Payment</h5>
-                    <p>Please provide your propety type for the valuation</p>
-                </div>
-                <div ngClass="payment-main-sec">
-                    <div ngClass="row">
-                        <div ngClass="col-xl-6 col-lg-6 col-sm-12">
-                            <div ngClass="payment-left-form-sec position-relative">
-                                <div ngClass="payment-price-box">
-                                    <p>Pay Ovaluate Real Estate Valuation Services LLC</p>
-                                    <h3 ngClass="price">AED 2500</h3>
-                                </div>
-                                <div ngClass="payment-another-info">
-                                    <div ngClass="detail-box d-flex justify-content-spacebw">
-                                        <div ngClass="pay-heading-block">
-                                            <h6>Detail Report</h6>
-                                            <p>Residential - Apartment Valuation Report</p>
-                                        </div>
-                                        <p ngClass="price">AED
-                                            1,500</p>
-                                    </div>
-                                    <div ngClass="Inspection-box d-flex justify-content-spacebw">
-                                        <div ngClass="pay-heading-block">
-                                            <h6>Inspection</h6>
-                                        </div>
-                                        <p ngClass="price">AED
-                                            1,000</p>
-                                    </div>
-                                    <div ngClass="tax-box d-flex justify-content-spacebw">
-                                        <div ngClass="pay-heading-block">
-                                            <h6>Tax</h6>
-                                        </div>
-                                        <p ngClass="tax-cost">Included</p>
-                                    </div>
-                                    <div ngClass="totel-due-box d-flex justify-content-spacebw">
-                                        <div ngClass="pay-heading-block">
-                                            <h6>Total Due</h6>
-                                        </div>
-                                        <p ngClass="price">AED
-                                            2,500</p>
-                                    </div>
-                                </div>
-                                <div ngClass="strip-btn-div">
-                                    <button ngClass="stripr-btn"><img src="{{stripe}}"></button>
-                                </div>
-                            </div>
-                        </div>
-                        <div ngClass="col-xl-6 col-lg-6 col-sm-12">
-                            <div ngClass="payment-right-form-sec">
-                                <form>
-                                    <div ngClass="block-wrapper mb-3">
-                                        <label class="h6-design">Email</label>
-                                        <mat-form-field class="full-width input-design-2 grey-input-bg"
-                                            appearance="fill">
-                                            <input matInput type="email"
-                                                placeholder="omran.yusef@gmail.com"
-                                                disabled>
-                                        </mat-form-field>
-                                    </div>
-                                    <div ngClass="block-wrapper mb-3">
-                                        <label class="h6-design">Card Informations</label>
-                                        <mat-form-field class="full-width input-design-2"
-                                            appearance="fill">
-                                            <input matInput type="number"
-                                                placeholder="1234 1234 1234 1234">
-                                        </mat-form-field>
-                                    </div>
-                                    <div ngClass="block-wrapper mb-3">
-                                        <label class="h6-design">Expiry</label>
-                                        <mat-form-field class="full-width input-design-2"
-                                            appearance="fill">
-                                            <input matInput type="text"
-                                                placeholder="MM/YY">
-                                        </mat-form-field>
-                                    </div>
-                                    <div ngClass="block-wrapper mb-3">
-                                        <label class="h6-design">CVV</label>
-                                        <mat-form-field class="full-width input-design-2"
-                                            appearance="fill">
-                                            <input matInput type="number"
-                                                placeholder="CVV"
-                                                formControlName="cvv">
-                                        </mat-form-field>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="text-right save-continue-sec justify-content-end">
-                <mat-card-actions>
-                    <a class="save-continue-btn">Proceed to Pay</a>
-                </mat-card-actions>
-            </div>
+    <section [ngClass]="'list-package-banner-sec position-relative'"
+      style="background-image: url('assets/images/package-banner.png')">
+      <div [ngClass]="'container_1280px'">
+        <app-breadcrumbs></app-breadcrumbs>
+        <div ngClass="inner-banner-heading text-center">
+          <h2>Ovaluate Premium Listing Packages</h2>
+          <p>First time on ovaluate and want to sell or rent your property really fast, simply subscibe to one of our paid
+            packages and get super benefits.</p>
         </div>
-        </div>
+      </div>
     </section>
-</section>
+    <section ngClass="listinpackages-wrapper">
+      <div ngClass="container_1280px">
+        <div ngClass="row">
+          <div ngClass="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+            <div ngClass="listing-packages-tabs">
+              <mat-tab-group (selectedTabChange)="loadProfessionalAndListingType($event)">
+                <div  *ngFor="let professionalType of professionalTypes">
+                  <mat-tab *ngIf="professionalType.id == professionalTypeTab.professionalTypeId || professionalType.id == professionalTypeTab.professionalTypeId" id="{{professionalType.id}}"
+                    label="{{professionalType.name}}">
+                    <div class="package-listing-tab-content-title text-center">
+                      <h2>Ovaluate Listing Packages for Landlords/Owners</h2>
+                      <p>Some of our picked properties near your location.</p>
+                    </div>
+                    <input type="hidden" name="professionalTypeId" id="professionalTypeId"
+                      value="{{professionalType.id}}">
+                    <div ngClass="pricing-container-sec">
+                      <mat-tab-group (selectedTabChange)="loadProfessionalAndListingType($event)">
+                        <mat-tab label="{{list.name}}" *ngFor="let list of propertyListingTypes">
+                          <div class="row justify-content-center">
+  
+                            <div class="col-lg-4 col-md-6" *ngFor="let list of professionalAndListingType; let i = index">
+                              <div *ngIf="i < 3"
+                                [ngClass]="{'featured-listing': list.name === 'Standurd', 'standard-listing' : list.name !== 'Standurd' }">
+                                <span class="recomended-bar" *ngIf="list.name == 'Standurd'">Recommended</span>
+                                <div class="listing-table-heading text-center">
+                                  <h3>{{list.name}}</h3>
+                                </div>
+  
+                                <div class="listing-table-pricing text-center" *ngIf="list.name != 'free'">
+                                  <h4>{{list.price}} AED</h4>
+                                  <span>inclusive of VAT</span>
+                                  <h6>You Save: {{list.price}} AED / {{list.discountPercentage}}% Off</h6>
+                                </div>
+                                <div class="listing-table-pricing text-center" *ngIf="list.name == 'free'">
+                                  <h4>{{list.name}}</h4>
+                                </div>
+  
+                                <div class="listing-table-btn text-center">
+                                  <a routerLink="">Buy Now!</a>
+                                </div>
+                                <hr>
+                                <ul class="package-listing-details">
+                                  <li *ngFor="let childList of list.propertyListingPackageFeatures">
+                                    <img src="{{rightarrow}}">
+                                    {{childList.detail}}
+                                  </li>
+                                  <ul class="package-listing-details-inner"
+                                    *ngFor="let subFeatures of list.propertyListingPackageSubFeatures">
+                                  </ul>
+                                </ul>
+                              </div>
+                            </div>
+  
+                          </div>
+                        </mat-tab>
+                      </mat-tab-group>
+                    </div>
+                  </mat-tab>
+                </div>
+              </mat-tab-group>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
 <app-footer></app-footer>

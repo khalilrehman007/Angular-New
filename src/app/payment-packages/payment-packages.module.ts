@@ -7,6 +7,10 @@ import { PaymentPackagesComponent } from './payment-packages/payment-packages.co
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
 import { CommonFilesModule } from '../common-files/common-files.module';
+import { BreadcrumbsModule } from '../breadcrumbs/breadcrumbs.module';
+import { MatTabsModule } from '@angular/material/tabs';
+
+
 
 @NgModule({
   declarations: [
@@ -17,7 +21,9 @@ import { CommonFilesModule } from '../common-files/common-files.module';
     PaymentPackagesRoutingModule,
     MatFormFieldModule,
     MatCardModule,
-    CommonFilesModule
+    CommonFilesModule,
+    BreadcrumbsModule,
+    MatTabsModule
   ]
 })
 export class PaymentPackagesModule { }
