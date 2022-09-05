@@ -1,0 +1,40 @@
+<app-header2></app-header2>
+<section ngClass="auth-wrapper">
+    <div ngClass="form-design login-page">
+        <form class="auth-form" [formGroup]="forgot" (ngSubmit)="ProceedForgot()">
+            <div ngClass="wecome-message">
+                <h2>Welcome to Ovaluate</h2>
+                <p>Welcome back! Please enter your details.</p>
+            </div>
+            <!-- <mat-form-field class="full-width input-design" appearance="fill">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" formControlName="Email" placeholder="Email">
+        </mat-form-field> -->
+            <mat-form-field class="full-width input-design" appearance="fill">
+                <mat-label>Email</mat-label>
+                <input matInput type="email" formControlName="Email" required ngModel>
+            </mat-form-field>
+
+            <!-- <div *ngIf="submitted && validate['Email'].errors" class="alert alert-danger">
+          <div *ngIf="validate['Email'].errors['required']">Email is required</div>
+        </div> -->
+            <div *ngIf="submitted && validate['Email'].errors" class="alert alert-danger">
+                <div *ngIf="validate['Email'].errors['required']">Email is required</div>
+            </div>
+            <mat-card-actions>
+                <button mat-raised-button type="submit" Class="submit-btn mt-4">Send</button>
+            </mat-card-actions>
+            <div ngClass="or-connect">
+                <p>Or connect with</p>
+            </div>
+            <div class="continue-btns">
+                <button ngClass="google-btn"><img src="{{goggle}}"> Continue with Google</button>
+                <!-- <button ngClass="apple-btn"><img src="{{apple}}"> Continue with Apple</button> -->
+            </div>
+            <div ngClass="dont-have-account text-center">
+                <p>Don’t have an account? <a routerLink="/signup">Sign up for free</a></p>
+            </div>
+        </form>
+    </div>
+</section>
+<app-erroralert [error]="error" (errorResponse)="errorResponse($event)" *ngIf="showError"></app-erroralert>
