@@ -19,6 +19,7 @@ export class PropertyinfoComponent implements OnInit {
   showError: boolean = false;
   errorResponse(data: any) {
     this.showError = false;
+    this.animate();
   }
   map: any;
   @ViewChild('propertyDetails__map') mapElement: any;
@@ -58,6 +59,7 @@ export class PropertyinfoComponent implements OnInit {
   locationSelected: boolean = false;
   showLoader: boolean = false;
   showMap: boolean = false;
+  currentField: any;
 
   constructor(private route: Router, private notifyService: NotificationService, private service: AppService) {
     this.loadCountriesData();
@@ -202,30 +204,37 @@ export class PropertyinfoComponent implements OnInit {
   }
   onSubmit() {
     if (this.countryId == -1) {
+      this.currentField = "country-input";
       this.error = "Select Country";
       this.showError = true;
       return;
     } else if (this.cityId == -1) {
+      this.currentField = "city-input";
       this.error = "Select City";
       this.showError = true;
       return;
     } else if (this.districtId == -1) {
+      this.currentField = "district-input";
       this.error = "Select District";
       this.showError = true;
       return;
     } else if (this.SubmitForm.value.address == "") {
+      this.currentField = "add-adrees-sec";
       this.error = "Select Address";
       this.showError = true;
       return;
     } else if (this.SubmitForm.value.PropertyAge == "") {
+      this.currentField = "age-input";
       this.error = "Enter Property Age";
       this.showError = true;
       return;
     } else if (this.SubmitForm.value.BuildingName == "") {
+      this.currentField = "name-input";
       this.error = "Enter Building Name";
       this.showError = true;
       return;
     } else if (this.SubmitForm.value.UnitNo == "") {
+      this.currentField = "unit-no-input";
       this.error = "Enter Unit No";
       this.showError = true;
       return;
@@ -243,6 +252,15 @@ export class PropertyinfoComponent implements OnInit {
     this.data.UnitNo = this.SubmitForm.value.UnitNo;
     localStorage.setItem('propertyData', JSON.stringify(this.data))
     this.route.navigate(['/add-property/listpropertyinfo'])
+  }
+  animate() {
+    let temp: any = $("." + this.currentField).offset()?.top;
+    $("." + this.currentField).addClass("blink");
+    $("." + this.currentField).on("click", () => {
+      $("." + this.currentField).removeClass("blink");
+      this.currentField = "";
+    })
+    $(window).scrollTop(temp);
   }
   validateLength(type: any) {
     if (type == 1) {
