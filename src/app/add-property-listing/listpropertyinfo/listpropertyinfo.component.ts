@@ -312,7 +312,7 @@ export class ListpropertyinfoComponent implements OnInit {
       $("." + this.currentField).removeClass("blink");
       this.currentField = "";
     })
-    $(window).scrollTop(temp);
+    $(window).scrollTop(temp - 100);
   }
   getBathroom(e: any) {
     this.bathroomCheck = true;

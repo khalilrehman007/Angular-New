@@ -260,7 +260,7 @@ export class PropertyinfoComponent implements OnInit {
       $("." + this.currentField).removeClass("blink");
       this.currentField = "";
     })
-    $(window).scrollTop(temp);
+    $(window).scrollTop(temp - 100);
   }
   validateLength(type: any) {
     if (type == 1) {
