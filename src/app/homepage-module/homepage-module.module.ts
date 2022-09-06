@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { HomepageModuleRoutingModule } from './homepage-module-routing.module';
+import { FindcompaniesSearchModule } from '../findcompanies-search/findcompanies-search.module';
 import { HomepageComponent } from './homepage/homepage.component';
-import { ClassifiedModuleModule } from '../classified-module/classified-module.module';
 import { CommonFilesModule } from '../common-files/common-files.module';
 import { RentSearchModule } from '../rent-search/rent-search.module';
 import { BuySearchModule } from '../buy-search/buy-search.module';
@@ -37,7 +37,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatIconModule,
     FormsModule,
     ReactiveFormsModule,
-    ClassifiedModuleModule
+    FindcompaniesSearchModule
   ]
 })
 export class HomepageModuleModule { }

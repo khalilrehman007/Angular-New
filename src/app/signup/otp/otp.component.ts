@@ -25,6 +25,10 @@ export class OtpComponent implements OnInit {
   string6: any;
   otp: any;
   verificationData: any = {};
+  minutes: number = 1;
+  seconds: number = 30;
+  resendDisable: boolean = true;
+
 
 
   keytab(prev: any, current: any, next: any, key: any) {
@@ -78,18 +82,43 @@ export class OtpComponent implements OnInit {
     if (localStorage.getItem("signupData")) {
       this.verificationData = localStorage.getItem("signupData");
       this.verificationData = JSON.parse(this.verificationData);
-      this.service.SendDigitSms({ "FirstName": this.verificationData.FirstName, "PhoneNumber": this.verificationData.PhoneNumber }).subscribe((result: any) => {
-        if (result.message == "Phone Number is invalid") {
-          // this.error = "Invalid Phone Number";
-          // this.showError = true;
-          return;
-        }
-        console.log(result.data);
-        this.code = result.data;
-      })
+      this.getCode();
     }
 
   }
+  getCode() {
+    this.service.SendDigitSms({ "FirstName": this.verificationData.FirstName, "PhoneNumber": this.verificationData.PhoneNumber }).subscribe((result: any) => {
+      if (result.message == "Phone Number is invalid") {
+        // this.error = "Invalid Phone Number";
+        // this.showError = true;
+        return;
+      }
+      console.log(result.data);
+      this.code = result.data;
+    });
+  }
+  resendCode() {
+    this.getCode();
+    this.minutes = 1;
+    this.seconds = 30;
+    this.startInternal();
+    this.resendDisable = true;
+  }
+  startInternal() {
+    let a: any = setInterval(() => {
+      if (this.minutes == 0 && this.seconds == 1) {
+        clearInterval(a);
+        this.resendDisable = false;
+      }
+      if (this.seconds == 0) {
+        this.minutes--;
+        this.seconds = 59;
+      } else {
+        this.seconds--;
+      }
+    }, 1000)
+  }
   ngOnInit(): void {
+    this.startInternal();
   }
 }
