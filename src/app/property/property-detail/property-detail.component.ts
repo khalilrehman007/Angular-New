@@ -317,14 +317,14 @@ export class PropertyDetailComponent implements OnInit {
         propertyManage = jsonParsDate.propertyListing.propertyManage.name
       }
       let rentType: any = '';
-      if (jsonParsDate.propertyListing.rentType !== null && jsonParsDate.propertyListing.rentType.name !== null && jsonParsDate.propertyListing.rentType.name !== undefined) {
+      if (jsonParsDate.propertyListing.rentType !== null && jsonParsDate.propertyListing.rentType.name !== null && jsonParsDate.propertyListing.rentType.name !== undefined && jsonData.propertyListing.propertyListingTypeId != 2) {
         rentType = jsonParsDate.propertyListing.rentType.name
       }
 
       if (jsonParsDate.propertyListing != null) {
         this.propertyDetailData.propertyPrice = (jsonParsDate.propertyListing.propertyPrice !== undefined) ? jsonParsDate.propertyListing.propertyPrice : ''
         this.propertyDetailData.currency = (jsonParsDate.propertyListing.country.currency !== undefined) ? jsonParsDate.propertyListing.country.currency : ''
-        this.propertyDetailData.rentType = (jsonParsDate.propertyListing.rentType !== undefined) ? jsonParsDate.propertyListing.rentType : ''
+        // this.propertyDetailData.rentType = (jsonParsDate.propertyListing.rentType !== undefined) ? jsonParsDate.propertyListing.rentType : ''
         this.propertyDetailData.securityDepositPrice = (jsonParsDate.propertyListing.securityDepositPrice !== undefined) ? jsonParsDate.propertyListing.securityDepositPrice : ''
         this.propertyDetailData.brokerageChargePrice = (jsonParsDate.propertyListing.brokerageChargePrice !== undefined) ? jsonParsDate.propertyListing.brokerageChargePrice : ''
         this.propertyDetailData.buildingName = (jsonParsDate.propertyListing.buildingName !== undefined) ? jsonParsDate.propertyListing.buildingName : ''

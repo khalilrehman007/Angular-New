@@ -61,10 +61,14 @@ export class DetailsComponent implements OnInit {
         if (element.documents.length > 1) {
           image = this.baseUrl + element.documents[0].fileUrl
         }
+        let rentType: any = ''
+        if (element.rentType != undefined && element.rentType.name != undefined && element.rentType.name != null) {
+          rentType = '/ '+element.rentType.name
+        }
         tempData.push(
           {
             title: element.propertyTitle,
-            rentType: element.rentType.name,
+            rentType: rentType,
             currency: element.country.currency,
             price: element.propertyPrice,
             id: element.id,
@@ -77,8 +81,8 @@ export class DetailsComponent implements OnInit {
             carpetArea: element.carpetArea,
           });
       })
+      this.dynamicSlides1 = tempData
     });
-    this.dynamicSlides1 = tempData
   }
   newData1() {
     let tempData: Array<Object> = []
@@ -90,11 +94,15 @@ export class DetailsComponent implements OnInit {
         if (element.documents.length > 1) {
           image = this.baseUrl + element.documents[0].fileUrl
         }
+        let rentType: any = ''
+        // if (element.rentType != undefined && element.rentType.name != undefined && element.rentType.name != null) {
+        //   rentType = '/ '+element.rentType.name
+        // }
         tempData.push(
           {
             title: element.propertyTitle,
             price: element.propertyPrice,
-            rentType: element.rentType.name,
+            rentType: rentType,
             currency: element.country.currency,
             propertyAddress: element.propertyAddress,
             id: element.id,
@@ -106,9 +114,8 @@ export class DetailsComponent implements OnInit {
             carpetArea: element.carpetArea,
           });
       })
+      this.dynamicSlides1 = tempData
     });
-    this.dynamicSlides1 = tempData
-
   }
 
   oldData2() {
@@ -121,11 +128,15 @@ export class DetailsComponent implements OnInit {
         if (element.documents.length > 1) {
           image = this.baseUrl + element.documents[0].fileUrl
         }
+        let rentType: any = ''
+        if (element.rentType != undefined && element.rentType.name != undefined && element.rentType.name != null) {
+          rentType = '/ '+element.rentType.name
+        }
         tempData.push(
           {
             title: element.propertyTitle,
             price: element.propertyPrice,
-            rentType: element.rentType.name,
+            rentType: rentType,
             currency: element.country.currency,
             propertyAddress: element.propertyAddress,
             id: element.id,
@@ -137,9 +148,8 @@ export class DetailsComponent implements OnInit {
             carpetArea: element.carpetArea,
           });
       })
+      this.commercialdynamicSlides = tempData
     });
-    this.commercialdynamicSlides = tempData
-
   }
   newData2() {
     let tempData: Array<Object> = []
@@ -151,11 +161,15 @@ export class DetailsComponent implements OnInit {
         if (element.documents.length > 1) {
           image = this.baseUrl + element.documents[0].fileUrl
         }
+        let rentType: any = ''
+        // if (element.rentType != undefined && element.rentType.name != undefined && element.rentType.name != null) {
+        //   rentType = '/ '+element.rentType.name
+        // }
         tempData.push(
           {
             title: element.propertyTitle,
             price: element.propertyPrice,
-            rentType: element.rentType.name,
+            rentType: rentType,
             currency: element.country.currency,
             propertyAddress: element.propertyAddress,
             id: element.id,
@@ -167,8 +181,8 @@ export class DetailsComponent implements OnInit {
             carpetArea: element.carpetArea,
           });
       })
+      this.commercialdynamicSlides = tempData
     });
-    this.commercialdynamicSlides = tempData
   }
 
   customOptions: OwlOptions = {
