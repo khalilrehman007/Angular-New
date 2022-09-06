@@ -21,6 +21,7 @@ export class CompanyDetailsComponent implements OnInit {
   page: number = 1;
   user: any;
   constructor(private service: AppService, private route: ActivatedRoute, private notifyService: NotificationService) {
+    $(window).scrollTop(0);
     this.route.params.subscribe(params => {
       this.id = params['id'];
       this.service.id = params['id'];

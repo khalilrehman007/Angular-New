@@ -39,6 +39,7 @@ export class LandingComponent implements OnInit {
   locationId: any = [];
 
   constructor(private activeRoute: ActivatedRoute, private authService: AuthService, private router: Router, private service: AppService) {
+    $(window).scrollTop(0);
     this.agentData();
     this.companyData();
     this.getCompany({ "Searching": '', "CountryId": "1" });

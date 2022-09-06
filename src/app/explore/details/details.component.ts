@@ -200,6 +200,7 @@ export class DetailsComponent implements OnInit {
   user: any
 
   constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute, private service: AppService, private notifyService: NotificationService) {
+    $(window).scrollTop(0);
     this.route.params.subscribe(params => {
       this.id = params['id'];
     });
