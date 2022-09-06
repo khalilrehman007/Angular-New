@@ -93,9 +93,9 @@ export class HomepageComponent implements OnInit {
         }
 
         let rentType: any = ''
-        if (element.rentType != undefined && element.rentType.name != undefined && element.rentType.name != null) {
-          rentType = element.rentType.name
-        }
+        // if (element.rentType != undefined && element.rentType.name != undefined && element.rentType.name != null) {
+        //   rentType = element.rentType.name
+        // }
 
         let currency: any = ''
         if (element.country !== undefined && element.country.currency != undefined && element.country.currency != null) {
@@ -172,9 +172,9 @@ export class HomepageComponent implements OnInit {
         }
 
         let rentType: any = ''
-        if (element.rentType != undefined && element.rentType.name != undefined && element.rentType.name != null) {
-          rentType = element.rentType.name
-        }
+        // if (element.rentType != undefined && element.rentType.name != undefined && element.rentType.name != null) {
+        //   rentType = element.rentType.name
+        // }
 
         let currency: any = ''
         if (element.country !== undefined && element.country.currency != undefined && element.country.currency != null) {
