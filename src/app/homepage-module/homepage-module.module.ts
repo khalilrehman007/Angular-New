@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { HomepageModuleRoutingModule } from './homepage-module-routing.module';
 import { HomepageComponent } from './homepage/homepage.component';
-
+import { ClassifiedModuleModule } from '../classified-module/classified-module.module';
 import { CommonFilesModule } from '../common-files/common-files.module';
 import { RentSearchModule } from '../rent-search/rent-search.module';
 import { BuySearchModule } from '../buy-search/buy-search.module';
@@ -36,7 +36,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NgbNavModule,
     MatIconModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ClassifiedModuleModule
   ]
 })
 export class HomepageModuleModule { }

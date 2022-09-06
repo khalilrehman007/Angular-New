@@ -33,8 +33,9 @@
                                 </select>
                             </li>
                             <li ngClass="nav-item position-relative d-hide notification_header-list" *ngIf="userData != ''">
-                                <button (click)="clickEvent3()">
+                                <button (click)="clickEvent3()" class="position-relative">
                                     <mat-icon>notifications_none</mat-icon>
+                                    <span class="notification-indicator">05</span>
                                 </button>
                                 <div class="notifivation-list-dropdown" [ngClass]="status3 ? 'active' : 'notactive'">
                                     <div ngClass="shortlisted-header d-flex justify-content-spacebw">
@@ -268,8 +269,9 @@
                                 <button (click)="clickEvent()" ngClass="overlay_dropdown-btn"></button>
                             </li>
                             <li ngClass="nav-item position-relative notification_header-list" *ngIf="userData != ''">
-                                <button (click)="clickEvent3()">
+                                <button (click)="clickEvent3()" class="position-relative">
                                     <mat-icon>notifications_none</mat-icon>
+                                    <span class="notification-indicator">05</span>
                                 </button>
                                 <div class="notifivation-list-dropdown" [ngClass]="status3 ? 'active' : 'notactive'">
                                     <div ngClass="shortlisted-header d-flex justify-content-spacebw">

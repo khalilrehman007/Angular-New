@@ -14,13 +14,14 @@
 }
 .classified_tabs-component {
     background: rgba(0,0,0,0.5);
-    padding: 10px 10px 30px 10px;
+    padding: 15px 37px 10px 37px;
     border-radius: 10px;
     box-shadow: 1px 2px 81px -36px #000929;
 	width: 100%;
     max-width: 1066px;
     margin: 0 auto;
     overflow: hidden;
+    position: relative;
 }
 .classified-search-sec {
     padding: 60px 0px;
@@ -144,10 +145,21 @@
 .stroe-icons-link>a:first-child {
     margin-right: 15px;
 }
+.classified_tabs-component .tab-inline-heading {
+    color: #fff;
+    font-size: 12px;
+    margin-bottom: 15px;
+    display: block;
+}
 
 
 @media (min-width: 1200px){
     .amazing_details-text {
         padding-left: 30px;
+    }
+    .classified_tabs-component .tab-inline-heading {
+        position: absolute;
+        margin-bottom: 0px;
+        top: 25px;
     }
 }
