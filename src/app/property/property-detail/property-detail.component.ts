@@ -299,7 +299,7 @@ export class PropertyDetailComponent implements OnInit {
         zoom: 11,
       })
       let marker = new mapboxgl.Marker({ color: "#FF0000", draggable: false }).setLngLat([this.propertyLng, this.propertyLat]).addTo(this.map).setPopup(
-        new mapboxgl.Popup({ offset: 25 }) // add popups
+        new mapboxgl.Popup({ offset: 25, focusAfterOpen: false }) // add popups
           .setHTML(this.buildingName)
       ).togglePopup();
 
