@@ -52,11 +52,11 @@ export class DashboardComponent implements OnInit {
   cityId: number = -1;
   dashboard: any;
   leadsData: any = [];
-  userData: any = {};
+  userData: any = "";
   totalLength: number = 0;
   page: number = 1;
   professionalType: any;
-  leadSummary: any;
+  leadSummary: any = "";
   showLoader: boolean = false;
   myPackages: any;
   activitySavedSearch: any;
