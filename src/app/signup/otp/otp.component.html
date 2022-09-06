@@ -37,8 +37,8 @@
                 </mat-form-field>
             </div>
             <div ngClass="d-flex justify-content-spacebw otp-form-time">
-                <p ngClass="time">1m 30s</p>
-                <button ngClass="resend-code">Resend Code</button>
+                <p ngClass="time"><span>{{minutes}}</span>m <span>{{seconds}}</span>s</p>
+                <button ngClass="resend-code" [disabled]="resendDisable" (click)="resendCode()">Resend Code</button>
             </div>
             <mat-card-actions>
                 <button mat-raised-button type="submit" ngClass="submit-btn" (click)="verifyCode()">Verify</button>
