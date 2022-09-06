@@ -55,7 +55,7 @@ export class OtpComponent implements OnInit {
     this.string6 = $('#input6').val();
     this.otp = this.string1 + this.string2 + this.string3 + this.string4 + this.string5 + this.string6
 
-    if (this.code.randomDigit == this.otp) {
+    if (this.code == this.otp) {
       this.auth.ProceedSignUp(this.verificationData).subscribe((result: any) => {
         console.log(result.message);
         if (result.message == "You are successfully logged in") {
@@ -82,19 +82,13 @@ export class OtpComponent implements OnInit {
     if (localStorage.getItem("signupData")) {
       this.verificationData = localStorage.getItem("signupData");
       this.verificationData = JSON.parse(this.verificationData);
-      this.getCode();
+      this.code = this.verificationData.code;
     }
 
   }
   getCode() {
     this.service.SendDigitSms({ "FirstName": this.verificationData.FirstName, "PhoneNumber": this.verificationData.PhoneNumber }).subscribe((result: any) => {
-      if (result.message == "Phone Number is invalid") {
-        // this.error = "Invalid Phone Number";
-        // this.showError = true;
-        return;
-      }
-      console.log(result.data);
-      this.code = result.data;
+      this.code = result.data.randomDigit;
     });
   }
   resendCode() {

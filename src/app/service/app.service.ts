@@ -423,4 +423,7 @@ export class AppService {
   MyActivitySavedSearchProperty(data: any) {
     return this.http.post(this.apiurl + 'MyActivitySavedSearchProperty', data);
   }
+  DuplicateEmailPhoneNumber(data: any) {
+    return this.http.post(this.apiurl + 'DuplicateEmailPhoneNumber', data);
+  }
 }

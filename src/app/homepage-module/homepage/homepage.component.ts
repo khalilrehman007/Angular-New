@@ -54,7 +54,7 @@ export class HomepageComponent implements OnInit {
 
         let rentType: any = ''
         if (element.rentType != undefined && element.rentType.name != undefined && element.rentType.name != null) {
-          rentType = element.rentType.name
+          rentType = '/ '+element.rentType.name
         }
 
         let currency: any = ''
@@ -134,7 +134,7 @@ export class HomepageComponent implements OnInit {
 
         let rentType: any = ''
         if (element.rentType != undefined && element.rentType.name != undefined && element.rentType.name != null) {
-          rentType = element.rentType.name
+          rentType = '/ '+element.rentType.name
         }
 
         let currency: any = ''
