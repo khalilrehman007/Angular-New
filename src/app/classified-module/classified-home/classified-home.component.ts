@@ -327,7 +327,9 @@ export class ClassifiedHomeComponent implements OnInit {
     },
     nav: false
   }
-  constructor() { }
+  constructor() {
+    $(window).scrollTop(0);
+  }
 
   ngOnInit(): void {
   }

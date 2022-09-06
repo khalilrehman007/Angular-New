@@ -20,6 +20,7 @@ export class ForgetComponent implements OnInit {
     this.showError = false;
   }
   constructor(private service: AuthService, private route: Router, private notifyService: NotificationService) {
+    $(window).scrollTop(0);
     localStorage.clear();
   }
   forgot = new FormGroup({

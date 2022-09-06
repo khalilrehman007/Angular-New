@@ -361,6 +361,7 @@ export class HomepageComponent implements OnInit {
   explorePlaces: any;
   trendTitle: any = [];
   constructor(private authService: AuthService, private service: AppService, private route: Router, private notifyService: NotificationService) {
+    $(window).scrollTop(0);
     this.LoadPropertyCategories()
     this.LoadBlogs();
     this.LoadBanners();

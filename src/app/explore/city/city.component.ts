@@ -29,6 +29,7 @@ export class CityComponent implements OnInit {
   SearchKeyword: string[] = [];
   searchList: string[] = [];
   constructor(private route: ActivatedRoute, private service: AppService) {
+    $(window).scrollTop(0);
     this.route.params.subscribe(params => {
       this.id = params['id'];
     });

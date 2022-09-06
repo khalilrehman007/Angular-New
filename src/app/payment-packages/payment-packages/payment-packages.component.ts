@@ -23,6 +23,7 @@ export class PaymentPackagesComponent implements OnInit {
 
 
   constructor(private service: AppService) {
+    $(window).scrollTop(0);
     this.loadProfessionalTypes();
     this.loadPropertyListingTypes();
     this.professionalTypeTab = localStorage.getItem('user');

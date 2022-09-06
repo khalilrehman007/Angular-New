@@ -92,6 +92,7 @@ export class ViewmapComponent implements OnInit {
   Bathrooms: any;
   selectedPropertyTypeName: any;
   constructor(private authService: AuthService, private notifyService: NotificationService, private service: AppService, private activeRoute: ActivatedRoute, private route: Router) {
+    $(window).scrollTop(0);
     this.totalRecord = this.activeRoute.snapshot.queryParamMap.get('totalRecord');
     this.selectedPropertyTypeName = this.activeRoute.snapshot.queryParamMap.get('selectedPropertyTypeName');
     this.type = this.activeRoute.snapshot.queryParamMap.get('type');

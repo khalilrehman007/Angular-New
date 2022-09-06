@@ -129,7 +129,7 @@ export class DashboardComponent implements OnInit {
   }
   userId: number;
   constructor(private authService: AuthService, private service: AppService, private route: Router, private notifyService: NotificationService) {
-
+    $(window).scrollTop(0);
     this.getUser();
     this.userId = this.user.id;
     this.LoadBlogs();
