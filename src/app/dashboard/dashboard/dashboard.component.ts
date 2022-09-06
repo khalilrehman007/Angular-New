@@ -162,13 +162,17 @@ export class DashboardComponent implements OnInit {
         this.proAvatar = this.baseUrl + this.userData.imageUrl;
       }
       this.service.SummaryLeads({ "UserId": this.userData.id, "PropertyCategoryId": "1" }).subscribe((result: any) => {
-        this.leadSummary = result.data;
-        for (let i = 0; i < this.leadSummary.length; i++) {
-          if(this.leadSummary[i].propertyListing.propertyCategory.categoryName == "Residential") {
-            this.leadsResidentialSummary.push(this.leadSummary[i]);
-          } else {
-            this.leadsCommercialSummary.push(this.leadSummary[i])
+        if(result.data.length > 0) {
+          this.leadSummary = result.data;
+          for (let i = 0; i < this.leadSummary.length; i++) {
+            if(this.leadSummary[i].propertyListing.propertyCategory.categoryName == "Residential") {
+              this.leadsResidentialSummary.push(this.leadSummary[i]);
+            } else {
+              this.leadsCommercialSummary.push(this.leadSummary[i])
+            }
           }
+        } else {
+          this.leadSummary = "temp";
         }
       })
       this.service.MyPackages(this.userData.id).subscribe((result: any) => {
