@@ -17,6 +17,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatIconModule} from '@angular/material/icon';
+import { CommonFilesModule } from '../common-files/common-files.module';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import {MatIconModule} from '@angular/material/icon';
     MatMenuModule,
     NgxSliderModule,
     BrowserModule,
-    MatIconModule
+    MatIconModule,
+    CommonFilesModule
   ]
 })
 export class DashboardModuleModule { }

@@ -2900,7 +2900,7 @@ input[type=number] {
 		position: relative;
 		z-index: 9;
 		width: 100%;
-		max-width: 650px;
+		max-width: 780px;
 		margin: 0 auto 15px auto;
 
 		.nav-link {
@@ -5068,6 +5068,8 @@ img {
 		img {
 			width: 100%;
 			height: auto;
+			max-height: 450px;
+			object-fit: cover;
 		}
 	}
 }
@@ -11476,7 +11478,7 @@ p:empty {
     box-shadow: 1px 2px 81px -36px #000929;
 }
 .classified_tabs-component .mat-tab-body-wrapper {
-    padding: 15px 27px 0px;
+    padding: 15px 0px;
 }
 .classified_tabs-component .mat-ink-bar {
     display: none;
@@ -11484,6 +11486,10 @@ p:empty {
 .classified_tabs-component .mat-tab-header {
     border: none;
 }
-.classified_tabs-component .mat-tab-label:first-child {
-    pointer-events: none;
+
+
+@media (min-width: 1200px){
+	.classified_tabs-component .mat-tab-header {
+        padding-left: 90px;
+    }
 }
