@@ -159,7 +159,7 @@ export class SignupComponent implements OnInit {
       temp.FirstName = this.signup.value.FirstName;
       temp.LastName = this.signup.value.LastName;
       temp.Email = this.signup.value.Email;
-      let a:any = this.signup.value.PhoneNumber
+      let a: any = this.signup.value.PhoneNumber;
       temp.PhoneNumber = a.e164Number;
       temp.Password = this.signup.value.Password;
       temp.HasProfessionalType = this.professionalCheck;
@@ -173,28 +173,44 @@ export class SignupComponent implements OnInit {
         }
       }
       temp.DeviceId = "";
-      if(localStorage.getItem("deviceToken")) {
+      if (localStorage.getItem("deviceToken")) {
         temp.DeviceId = localStorage.getItem("deviceToken");
       }
-      localStorage.setItem("signupData", JSON.stringify(temp));
-      this.route.navigate(["/signup/otp"])
+      this.response.DuplicateEmailPhoneNumber({ "Email": this.signup.value.Email, "PhoneNumber": a.e164Number }).subscribe((response: any) => {
+        if (response.message == "Email and Password is  verfied successfully") {
+          this.response.SendDigitSms({ "FirstName": this.signup.value.FirstName, "PhoneNumber": a.e164Number }).subscribe((result: any) => {
+            if (result.message == "Phone Number is invalid") {
+              this.error = "Invalid Phone Number";
+              this.showError = true;
+              return;
+            }
+            temp.code = result.data.randomDigit
+            localStorage.setItem("signupData", JSON.stringify(temp));
+            this.route.navigate(["/signup/otp"])
+          });
+        } else {
+          this.error = response.error[0];
+          this.showError = true;
+          return;
+        }
+      })
     }
   }
 
-// Phone number List
-  
-	separateDialCode = false;
-	SearchCountryField = SearchCountryField;
-	CountryISO = CountryISO;
-  PhoneNumberFormat = PhoneNumberFormat;
-	preferredCountries: CountryISO[] = [CountryISO.UnitedStates, CountryISO.UnitedKingdom];
-	phoneForm = new FormGroup({
-		phone: new FormControl(undefined, [Validators.required])
-	});
+  // Phone number List
 
-	changePreferredCountries() {
-		this.preferredCountries = [CountryISO.India, CountryISO.Canada];
-	}
-  
-//End Phone number List
+  separateDialCode = false;
+  SearchCountryField = SearchCountryField;
+  CountryISO = CountryISO;
+  PhoneNumberFormat = PhoneNumberFormat;
+  preferredCountries: CountryISO[] = [CountryISO.UnitedStates, CountryISO.UnitedKingdom];
+  phoneForm = new FormGroup({
+    phone: new FormControl(undefined, [Validators.required])
+  });
+
+  changePreferredCountries() {
+    this.preferredCountries = [CountryISO.India, CountryISO.Canada];
+  }
+
+  //End Phone number List
 }
