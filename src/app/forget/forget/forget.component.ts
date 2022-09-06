@@ -31,7 +31,6 @@ export class ForgetComponent implements OnInit {
   ngOnInit(): void {
   }
   ProceedForgot() {
-    console.log(this.forgot.valid);
     this.submitted = true;
     // if (this.forgot.invalid) {
     //   this.error = "Please Enter Email ";
@@ -51,14 +50,11 @@ export class ForgetComponent implements OnInit {
       this.service.ProceedForgot(this.forgot.value).subscribe(result => {
         if (result != null) {
           this.responsedata = result;
-          if (this.responsedata.data !== undefined) {
-            // this.responsedata.data =this.responsedata.data;
-            localStorage.setItem('token', this.responsedata.data.refreshToken)
-            // alert(this.responsedata.message)
+          if (this.responsedata.data != undefined &&  this.responsedata.data != null ) {
             this.notifyService.showSuccess(this.responsedata.message, "");
             this.route.navigate(['/login'])
           } else {
-            this.notifyService.showError(this.responsedata.error.value, "");
+            this.notifyService.showError(this.responsedata.error[0], "");
           }
         } else {
           // alert('Unable to proceed')
