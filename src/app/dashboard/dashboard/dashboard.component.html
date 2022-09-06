@@ -2009,41 +2009,20 @@
                                                             <div class="highlight-sec mt-4">
                                                                 <div class="row">
                                                                     <div class="col-sm-12">
-                                                                        <div id="Residentials"
-                                                                            ngClass="residential-tabs1">
-                                                                            <h5 ngClass="h5-heading">Area</h5>
-                                                                            <ul
-                                                                                ngClass="list-unstyled residentails-unit-list">
-                                                                                <li ngClass="d-flex"
-                                                                                    *ngFor="let item of districts">
-                                                                                    <div ngClass="position-relative">
-                                                                                        <input type="checkbox"
-                                                                                            (click)="getDistrictsIds(item.id)">
-                                                                                        <span
-                                                                                            ngClass="property_sel"></span>
-                                                                                    </div>
-                                                                                    <div ngClass="proprty_name">
-                                                                                        <p>{{item.name}}</p>
-                                                                                    </div>
-                                                                                </li>
-                                                                            </ul>
+                                                                        <div ngClass="block-wrapper">
+                                                                            <div ngClass="select-design">
+                                                                                <label>Area</label>
+                                                                                <div class="pet-policy-input">
+                                                                                    <mat-form-field appearance="fill">
+                                                                                        <mat-label> Select the Areas</mat-label>
+                                                                                        <mat-select multiple>
+                                                                                            <mat-option *ngFor="let item of districts" value="{{item.id}}">{{item.name}}</mat-option>
+                                                                                        </mat-select>
+                                                                                    </mat-form-field>
+                                                                                </div>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
-                                                                    <!--                                  <div class="col-sm-12">-->
-                                                                    <!--                                    <h6 class="h6-design">Area</h6>-->
-                                                                    <!--                                    <div class="inneR-border-wrap">-->
-                                                                    <!--                                      <div class="checkbox-flex-box autoflex-layout">-->
-                                                                    <!--                                        <div class="checkbox-design position-relative">-->
-                                                                    <!--                                          <input type="checkbox" id="Downtown" name="Area" value="Downtown" checked>-->
-                                                                    <!--                                          <button class="checkbox-btn">Downtown Dubai</button>-->
-                                                                    <!--                                        </div>-->
-                                                                    <!--                                        <div class="checkbox-design position-relative">-->
-                                                                    <!--                                          <input type="checkbox" id="Al Makhool" name="Area" value="Al Makhool">-->
-                                                                    <!--                                          <button class="checkbox-btn">Al Makhool</button>-->
-                                                                    <!--                                        </div>-->
-                                                                    <!--                                      </div>-->
-                                                                    <!--                                    </div>-->
-                                                                    <!--                                  </div>-->
                                                                 </div>
                                                             </div>
                                                             <div ngClass="other-document-upload mt-4">
