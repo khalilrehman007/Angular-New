@@ -55,6 +55,7 @@ export class ExploreblogComponent implements OnInit {
   blogs: any;
   exploreBlog: any;
   constructor(private service: AppService) {
+    $(window).scrollTop(0);
     this.LoadBlogs();
     this.service.BlogCategorybyId(3).subscribe((result: any) => {
       this.exploreBlog = result.data;

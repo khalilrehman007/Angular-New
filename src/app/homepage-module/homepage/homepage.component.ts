@@ -79,9 +79,8 @@ export class HomepageComponent implements OnInit {
             carpetArea: element.carpetArea,
           });
       })
+      this.dynamicSlides1 = tempData
     });
-
-    this.dynamicSlides1 = tempData
   }
   newData1() {
     let tempData: Array<Object> = []
@@ -119,8 +118,8 @@ export class HomepageComponent implements OnInit {
             carpetArea: element.carpetArea,
           });
       })
+      this.dynamicSlides1 = tempData
     });
-    this.dynamicSlides1 = tempData
   }
 
   oldData2() {
@@ -159,8 +158,8 @@ export class HomepageComponent implements OnInit {
             carpetArea: element.carpetArea,
           });
       })
+      this.dynamicSlides2 = tempData
     });
-    this.dynamicSlides2 = tempData
   }
   newData2() {
     let tempData: Array<Object> = []
@@ -198,8 +197,8 @@ export class HomepageComponent implements OnInit {
             carpetArea: element.carpetArea,
           });
       })
+      this.dynamicSlides2 = tempData
     });
-    this.dynamicSlides2 = tempData
   }
   tenantsslide = [
     {
@@ -361,6 +360,7 @@ export class HomepageComponent implements OnInit {
   explorePlaces: any;
   trendTitle: any = [];
   constructor(private authService: AuthService, private service: AppService, private route: Router, private notifyService: NotificationService) {
+    $(window).scrollTop(0);
     this.LoadPropertyCategories()
     this.LoadBlogs();
     this.LoadBanners();

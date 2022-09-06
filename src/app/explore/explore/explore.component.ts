@@ -86,6 +86,7 @@ export class ExploreComponent implements OnInit {
     })
   }
   constructor(private service: AppService) {
+    $(window).scrollTop(0);
     this.service.LoadCountries().subscribe(e => {
       let temp: any = e;
       if (temp.message == "Country list fetched successfully") {

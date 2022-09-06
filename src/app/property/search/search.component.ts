@@ -83,6 +83,7 @@ export class SearchComponent implements OnInit {
   Bathrooms: any;
   KeyWordsParams: any;
   constructor(private authService: AuthService, private notifyService: NotificationService, private activeRoute: ActivatedRoute, private service: AppService, private api: AppService, private route: Router, private modalService: NgbModal) {
+    $(window).scrollTop(0);
     this.route.events.subscribe((e: any) => {
       if (e instanceof NavigationEnd) {
         this.type = this.activeRoute.snapshot.queryParamMap.get('type');

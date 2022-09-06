@@ -56,6 +56,7 @@ export class LeftAtHomeComponent implements OnInit {
   blogs: any;
   lifeatHome: any;
   constructor(private service: AppService) {
+    $(window).scrollTop(0);
     this.LoadBlogs();
     this.service.BlogCategorybyId(4).subscribe((result: any) => {
       this.lifeatHome = result.data;

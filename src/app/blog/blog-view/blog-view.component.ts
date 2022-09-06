@@ -33,6 +33,7 @@ export class BlogViewComponent implements OnInit {
     }
   ]
   constructor(private route: ActivatedRoute,private router: Router,private service:AppService) {
+    $(window).scrollTop(0);
     this.router.events.subscribe((e: any) => {
       // If it is a NavigationEnd event re-initalise the component
       if (e instanceof NavigationEnd) {

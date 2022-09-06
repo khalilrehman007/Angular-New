@@ -33,6 +33,7 @@ export class DashboardReportsComponent implements OnInit {
   logoutimg = '../../../assets/images/logout-popup-banner.png'
   @ViewChild(BaseChartDirective) chart: BaseChartDirective | undefined;
   constructor() {
+    $(window).scrollTop(0);
     Chart.register(Annotation)
    }
 

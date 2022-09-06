@@ -55,6 +55,7 @@ export class MarketTrendsComponent implements OnInit {
   blogs: any;
   marketTrendsBlog: any;
   constructor(private service: AppService) {
+    $(window).scrollTop(0);
     this.LoadBlogs();
     this.service.BlogCategorybyId(6).subscribe((result: any) => {
       this.marketTrendsBlog = result.data;

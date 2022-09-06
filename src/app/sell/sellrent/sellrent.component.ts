@@ -52,6 +52,7 @@ export class SellrentComponent implements OnInit {
   howitworks: any = [];
   faqsec: any = [];
   constructor(private api: AppService) {
+    $(window).scrollTop(0);
     this.api.HowWorkOvaluate().subscribe((result: any) => {
       this.heading = result.data.pageCaptionHelight;
       this.subHead = result.data.pageCaptionText;
