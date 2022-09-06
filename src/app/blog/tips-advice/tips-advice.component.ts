@@ -55,6 +55,7 @@ export class TipsAdviceComponent implements OnInit {
   blogs: any;
   tipsAndAdvice: any;
   constructor(private service:AppService) {
+    $(window).scrollTop(0);
     this.service.BlogCategorybyId(1).subscribe((result:any)=> {
       this.tipsAndAdvice = result.data;
     })

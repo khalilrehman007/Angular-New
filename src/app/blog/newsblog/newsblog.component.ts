@@ -13,6 +13,7 @@ export class NewsblogComponent implements OnInit {
   blogs: any;
   newsBlog: any;
   constructor(private service:AppService) {
+    $(window).scrollTop(0);
     this.service.BlogCategorybyId(2).subscribe((result:any)=> {
       this.newsBlog = result.data;
     })

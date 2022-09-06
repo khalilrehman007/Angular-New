@@ -55,6 +55,7 @@ export class LawblogComponent implements OnInit {
   blogs: any;
   lawBlogs: any;
   constructor(private service: AppService) {
+    $(window).scrollTop(0);
     this.LoadBlogs();
     this.service.BlogCategorybyId(5).subscribe((result: any) => {
       this.lawBlogs = result.data;
