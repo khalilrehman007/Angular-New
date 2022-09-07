@@ -24,7 +24,7 @@ $border-color_1: transparent;
 $btncolor: #0B26AD;
 
 #sidebar {
-	position: absolute;
+	position: fixed;
 	top: 0;
 	left: 0;
 	height: 100vh;
@@ -1300,8 +1300,11 @@ ul.navbar-nav.sub-header {
 }
 #collapsibleNavbar.show .overlay_counter {
     display: block;
-    background-color: rgba(0,0,0,0.5);
+}
+#collapsibleNavbar .overlay_counter {
+    // background-color: rgba(0,0,0,0.5);
     max-width: calc(100% - 240px);
+	transition: all 0.5s ease-in-out;
 }
 .notification-indicator {
     position: absolute;

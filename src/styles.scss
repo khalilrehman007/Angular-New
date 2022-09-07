@@ -671,7 +671,10 @@ textarea {
 
 .auth-wrapper {
 	background: linear-gradient(180deg, #FFFFFF 0%, #F4F6FF 50%, #FFFFFF 100%);
-	padding: 130px 0px;
+	padding: 50px 0px;
+    min-height: calc(100vh - 285px);
+    display: flex;
+    align-items: center;
 }
 
 .form-design {
@@ -11493,6 +11496,12 @@ p:empty {
 .profile_dashboard-sec .select-form.input-design-2 .mat-form-field-flex .mat-select-arrow-wrapper {
     position: relative;
     top: 3px;
+}
+.modal-dialog {
+    margin: 60px auto !important;
+}
+.modal-content .btn-close {
+    opacity: 1;
 }
 
 
