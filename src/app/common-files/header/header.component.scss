@@ -797,7 +797,7 @@ textarea {
 		transition: all 0.5s ease-in-out;
 		z-index: 999999999;
 		width: 100%;
-		max-width: 240px;
+		max-width: 265px;
 		height: 100vh;
 		overflow: auto;
 		background-color: $background-color_10;
@@ -840,12 +840,12 @@ textarea {
 	}
 	#main-header .header-section .dropdown .dropdown-menu {
 		position: relative !important;
-		border: none !important;
-		background: #F0EFFB !important;
-		transform: none !important;
-		margin-top: 10px !important;
-		margin-bottom: 10px !important;
-		transition: all 0.5s ease-in-out;
+    border: none !important;
+    transform: none !important;
+    transition: all 0.5s ease-in-out;
+	.dropdown-item {
+		padding-left: 10px;
+	}
 	}
 	#main-header .header-section .dropdown .dropdown-menu button a {
 		display: block;
@@ -1303,7 +1303,7 @@ ul.navbar-nav.sub-header {
 }
 #collapsibleNavbar .overlay_counter {
     // background-color: rgba(0,0,0,0.5);
-    max-width: calc(100% - 240px);
+    max-width: calc(100% - 265px);
 	transition: all 0.5s ease-in-out;
 }
 .notification-indicator {

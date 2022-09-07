@@ -8817,13 +8817,15 @@ li.agent-details__property-list-item {
 					width: 50%;
 
 					svg {
-						margin-right: 0px !important;
-						margin: 0px auto !important;
+						margin-right: 15px !important;
 					}
 
 					>a {
 						padding: 5px !important;
 						font-size: 13px;
+						display: flex;
+						align-items: center;
+						justify-content: center;
 					}
 				}
 
@@ -11497,16 +11499,41 @@ p:empty {
     position: relative;
     top: 3px;
 }
-.modal-dialog {
-    margin: 60px auto !important;
+.dropdown-item:active{
+background: transparent !important;
 }
-.modal-content .btn-close {
-    opacity: 1;
-}
-
-
 @media (min-width: 1200px){
 	.classified_tabs-component .mat-tab-header {
         padding-left: 90px;
     }
+}
+@media (max-width: 991px){
+	.property_info-row .row > div {
+		padding-bottom: 8px;
+		margin-bottom: 8px;
+	}
+	.property_info-text h6 {
+		margin-bottom: 0px;
+	}
+}
+@media (max-width: 1200px){
+	.modal-content .btn-close {
+		opacity: 1;
+		background-color: #0B26AD;
+		padding: 7px;
+		font-size: 14px;
+		width: 30px;
+		height: 30px;
+		box-sizing: border-box;
+		background-size: 25px;
+		background-repeat: no-repeat;
+	}
+	.modal-content .btn-close {
+		position: absolute;
+		top: -40px;
+		right: 12px;
+	}
+	.modal-dialog {
+		margin: 60px auto !important;
+	}
 }

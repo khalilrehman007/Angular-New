@@ -19,6 +19,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { NgxMaskModule } from 'ngx-mask';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+
 
 @NgModule({
   declarations: [
@@ -42,6 +44,7 @@ import { NgxMaskModule } from 'ngx-mask';
     MatSelectModule,
     MatCardModule,
     MatCheckboxModule,
+    MatAutocompleteModule,
     NgxMaskModule.forRoot()
   ]
 })
