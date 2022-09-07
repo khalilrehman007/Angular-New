@@ -57,7 +57,7 @@ export class DashboardComponent implements OnInit {
   page: number = 1;
   professionalType: any;
   leadSummary: any = "";
-  showLoader: boolean = false;
+  showLoader: boolean = true;
   myPackages: any;
   activitySavedSearch: any;
   leadsResidentialSummary:any = [];
@@ -174,6 +174,7 @@ export class DashboardComponent implements OnInit {
         } else {
           this.leadSummary = "temp";
         }
+        this.showLoader = false;
       })
       this.service.MyPackages(this.userData.id).subscribe((result: any) => {
         this.myPackages = result.data;
