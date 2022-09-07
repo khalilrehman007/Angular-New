@@ -281,17 +281,18 @@ export class PropertyDocumentsComponent implements OnInit {
   }
   Nextshow() {
     if (this.documentcount >= this.requiredDocs) {
+      $(window).scrollTop(0);
       this.documentData = [];
       let dataUrl: any = localStorage.getItem("mapImg");
       this.mapImage = this.dataURLtoFile(dataUrl, "map.jpg");
       this.documentData.push({ "FileId": "1", "DocumentTypeId": this.documentType[this.documentType.length - 1].id, "FileName": "map.jpg", "Extension": "jpg", "IsScreenshot": "true" });
       let extension: any;
-      if(this.formData.TitleDeedNo != 0) {
+      if (this.formData.TitleDeedNo != 0) {
         extension = this.titleDeedImage.name.split(".");
         extension = extension[extension.length - 1];
         this.documentData.push({ "FileId": "2", "DocumentTypeId": 1, "FileName": this.titleDeedImage.name, "Extension": extension, "IsScreenshot": "false" });
       }
-      if(this.formData.MunicipalityNo != 0) {
+      if (this.formData.MunicipalityNo != 0) {
         extension = this.affectionImage.name.split(".");
         extension = extension[extension.length - 1];
         this.documentData.push({ "FileId": "3", "DocumentTypeId": 2, "FileName": this.affectionImage.name, "Extension": extension, "IsScreenshot": "false" });
@@ -319,8 +320,10 @@ export class PropertyDocumentsComponent implements OnInit {
     this.status1 = false;
     this.status5 = false;
     this.status = !this.status;
+    $(window).scrollTop(0);
   }
   Nextshow1() {
+    $(window).scrollTop(0);
     let temp: any = localStorage.getItem("valuationData");
     temp = JSON.parse(temp);
     this.service.ValuationPrices({ "PropertyTypeId": temp.PropertyTypeId, "CountryId": temp.CountryId }).subscribe((result: any) => {
@@ -331,6 +334,7 @@ export class PropertyDocumentsComponent implements OnInit {
     this.status1 = !this.status1;
   }
   Prevshow1() {
+    $(window).scrollTop(0);
     this.status2 = false;
     this.status6 = false;
     this.status1 = !this.status1;
@@ -369,7 +373,7 @@ export class PropertyDocumentsComponent implements OnInit {
     this.showLoader = true;
     this.publishText = "Please Wait...";
     this.formData.CustomerName = this.reportForm.value.name;
-    let temp:any = this.countriesList.value
+    let temp: any = this.countriesList.value
     this.formData.PhoneNumber = temp + this.reportForm.value.phone;
     this.formData.InspectionDate = $("#formDate").val();
 
@@ -414,6 +418,7 @@ export class PropertyDocumentsComponent implements OnInit {
           this.status7 = !this.status7;
           this.status2 = !this.status2;
           this.showLoader = false;
+          $(window).scrollTop(0);
         } else {
           console.log(res);
         }
@@ -427,6 +432,7 @@ export class PropertyDocumentsComponent implements OnInit {
     this.status3 = false;
     this.status7 = false;
     this.status2 = !this.status2;
+    $(window).scrollTop(0);
   }
   reportLanguage(e: any) {
     this.formData.ReportLanguage = e;
