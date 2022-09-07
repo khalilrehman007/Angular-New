@@ -35,9 +35,23 @@ export class HeaderComponent implements OnInit {
   bodyClass: any;
   notificationData: any = [];
   currentDate: any = new Date();
+  currentTime:any;
   userData: any = "";
 
   constructor(private authService: AuthService, private route: Router, private notifyService: NotificationService, private modalService: NgbModal, private service: AppService, private db: AngularFireDatabase) {
+    let a:any = this.currentDate;
+    a = a.toString().split(" ")[5].split("T")[1];
+    let sign = a.split('')[0];
+    let hours:any = parseInt(a.split('')[1] + a.split('')[2]);
+    let minutes:any = parseInt(a.split('')[3] + a.split('')[4]);
+    if(sign ==  "-") {
+      this.currentDate.setHours(this.currentDate.getHours() + hours);
+      this.currentDate.setMinutes(this.currentDate.getMinutes() + minutes);
+    } else {
+      this.currentDate.setHours(this.currentDate.getHours() - hours);
+      this.currentDate.setMinutes(this.currentDate.getMinutes() - minutes);
+    }
+    this.currentTime = this.currentDate.getTime();
     if (localStorage.getItem("user")) {
       this.userData = localStorage.getItem("user");
       this.userData = JSON.parse(this.userData).firebaseId;
@@ -142,7 +156,7 @@ export class HeaderComponent implements OnInit {
 
   getTime(e: any) {
     let temp: any = new Date(e).getTime()
-    let difference:any = this.currentDate - temp;
+    let difference:any = this.currentTime - temp;
     let days:any = Math.floor(difference / 1000 / 60 / (60 * 24));
     let time:any = new Date(difference);
     if (days > 365) {
