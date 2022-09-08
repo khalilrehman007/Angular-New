@@ -316,8 +316,9 @@ export class PropertyDetailComponent implements OnInit {
       if (jsonParsDate.propertyListing.propertyManage !== null && jsonParsDate.propertyListing.propertyManage.name !== null && jsonParsDate.propertyListing.propertyManage.name !== undefined) {
         propertyManage = jsonParsDate.propertyListing.propertyManage.name
       }
+
       let rentType: any = '';
-      if (jsonParsDate.propertyListing.rentType !== null && jsonParsDate.propertyListing.rentType.name !== null && jsonParsDate.propertyListing.rentType.name !== undefined && jsonData.propertyListing.propertyListingTypeId != 2) {
+      if (jsonParsDate.propertyListing.rentType !== null && jsonParsDate.propertyListing.rentType.name !== null && jsonParsDate.propertyListing.rentType.name !== undefined && jsonParsDate.propertyListing.propertyListingTypeId != 2) {
         rentType = jsonParsDate.propertyListing.rentType.name
       }
 
