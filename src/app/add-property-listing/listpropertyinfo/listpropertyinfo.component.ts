@@ -296,7 +296,7 @@ export class ListpropertyinfoComponent implements OnInit {
     this.categoryID = id;
     this.api.LoadType(id).subscribe((result) => {
       this.propertyType = result;
-      this.propertyType = this.propertyType.data
+      this.propertyType = this.propertyType.data;
       this.showLoader = false;
     });
     this.clearData();

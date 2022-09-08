@@ -167,6 +167,7 @@ export class PropertyTypesComponent implements OnInit {
     this.status = !this.status;
   }
   loadType(e: number) {
+    this.clearData();
     this.showLoader = true;
     if (e == 1) {
       this.formDetailData.propertyCategory = "Residential";
@@ -195,6 +196,9 @@ export class PropertyTypesComponent implements OnInit {
     return false;
   }
   valuationPurpose(e: any) {
+    let temp:any = this.formData.PropertyCategoryId
+    this.clearData();
+    this.formData.PropertyCategoryId = temp;
     this.showLoader = true;
     this.formDetailData.propertyType = this.propertyType.filter((item:any) => item.id == e.value)[0].typeDescription;
     this.formData.PropertyTypeId = e.value;
@@ -297,6 +301,20 @@ export class PropertyTypesComponent implements OnInit {
       this.currentField = "";
     })
     $(window).scrollTop(temp - 100);
+  }
+  clearData() {
+    this.formData = {};
+    this.formData = (window.localStorage.getItem('valuationData'));
+    this.formData = JSON.parse(this.formData);
+    this.propertyTypeForm.patchValue({
+      apartmentNo:"",
+      constructionAge:"",
+      elevation:"",
+      apartmentSize:"",
+      buildupArea:"",
+      income:"",
+      expense:""
+    })
   }
   getData() {
     if (!this.formData.PropertyCategoryId) {

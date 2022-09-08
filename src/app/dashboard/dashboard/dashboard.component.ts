@@ -377,9 +377,8 @@ export class DashboardComponent implements OnInit {
           }
         );
       })
+      this.myValuationlistingAll = tempData
     });
-
-    this.myValuationlistingAll = tempData
 
   }
 
@@ -403,6 +402,7 @@ export class DashboardComponent implements OnInit {
 
   childTabId: any;
   public childTabsChange(id: any) {
+    this.page = 1;
     this.childTabId = id
     this.getTabCount();
     this.getLoadListing();
@@ -601,8 +601,8 @@ export class DashboardComponent implements OnInit {
       response.data.forEach((element: any, i: any) => {
         let image: any;
         let rentTypeName = ''
-        if (element.rentType != null) {
-          rentTypeName = element.rentType.name
+        if (element.rentType != null && element.rentType != undefined && element.rentType.name != undefined && element.rentType.name != null && element.propertyListingTypeId != 2) {
+          rentTypeName = '/'+element.rentType.name
         }
         if (element.documents.length > 1) {
           image = this.baseUrl + element.documents[0].fileUrl
@@ -620,8 +620,8 @@ export class DashboardComponent implements OnInit {
           }
         );
       })
+      this.listingAll = tempData
     });
-    this.listingAll = tempData
 
   }
   pageChanged(value: any) {
@@ -642,8 +642,8 @@ export class DashboardComponent implements OnInit {
         tempData.push(
           { id: element.id, name: element.name });
       })
+      this.ExpertIn = tempData
     });
-    this.ExpertIn = tempData
   }
   SpokenLanguages: any = [];
   getSpokenLanguages() {
@@ -654,8 +654,8 @@ export class DashboardComponent implements OnInit {
         tempData.push(
           { id: element.id, name: element.name });
       })
+      this.SpokenLanguages = tempData
     });
-    this.SpokenLanguages = tempData
   }
 
 
@@ -847,6 +847,7 @@ export class DashboardComponent implements OnInit {
 
   viewChangeId: any;
   myActivityViewChange(e: any) {
+    this.page = 1;
     this.viewChangeId = e;
     this.lordMyActivityListingView();
   }
@@ -859,8 +860,8 @@ export class DashboardComponent implements OnInit {
       response.data.forEach((element: any, i: any) => {
         let image: any;
         let rentTypeName = ''
-        if (element.rentType != null) {
-          rentTypeName = element.rentType.name
+        if (element.rentType != null && element.rentType != undefined && element.rentType.name != undefined && element.rentType.name != null && element.propertyListingTypeId != 2) {
+            rentTypeName = '/'+element.rentType.name
         }
         if (element.documents.length > 1) {
           image = this.baseUrl + element.documents[0].fileUrl
@@ -878,8 +879,8 @@ export class DashboardComponent implements OnInit {
           }
         );
       })
+      this.myActivityListingView = tempData;
     });
-    this.myActivityListingView = tempData;
   }
 
 
@@ -903,9 +904,9 @@ export class DashboardComponent implements OnInit {
             reraNo: element.agentDetails.company.reraNo, id: element.agentDetails.user.id
           }
         );
+      });
+      this.myActivityAgentView = tempData;
       })
-    });
-    this.myActivityAgentView = tempData;
   }
 
 
@@ -951,8 +952,8 @@ export class DashboardComponent implements OnInit {
         }
 
         let rentType: any = '';
-        if (element.rentType !== null && element.rentType !== undefined) {
-          rentType = element.rentType.name
+        if (element.rentType != null && element.rentType != undefined && element.rentType.name != undefined && element.rentType.name != null && element.propertyListingTypeId != 2) {
+          rentType = '/'+element.rentType.name
         }
 
         let propertyType: any = '';
@@ -1103,8 +1104,8 @@ export class DashboardComponent implements OnInit {
           image = 'assets/images/placeholder.png'
         }
         let rentType: any = '';
-        if (element.rentType !== null && element.rentType !== undefined) {
-          rentType = element.rentType.name
+        if (element.rentType != null && element.rentType != undefined && element.rentType.name != undefined && element.rentType.name != null && element.propertyListingTypeId != 2) {
+          rentType = '/'+element.rentType.name
         }
 
         let propertyType: any = '';

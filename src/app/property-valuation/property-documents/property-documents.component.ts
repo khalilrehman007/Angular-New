@@ -412,7 +412,15 @@ export class PropertyDocumentsComponent implements OnInit {
       success: (res) => {
         if (res.message == "valuation request completed successfully") {
           this.valuationResponse = res.data;
-          localStorage.setItem("valuationResponse", JSON.stringify(res.data));
+          let tempUser:any = localStorage.getItem("user");
+          let tempToken:any = localStorage.getItem("token");
+          localStorage.clear();
+          localStorage.setItem("user", tempUser);
+          localStorage.setItem("token", tempToken);
+          let temp:any = {};
+          temp.reportNumberCode = this.valuationResponse.reportNumberCode;
+          temp.emailAddress = this.valuationResponse.emailAddress;
+          localStorage.setItem("valuationResponse", JSON.stringify(temp));
           this.showPayment = true;
           this.status3 = !this.status3;
           this.status7 = !this.status7;
