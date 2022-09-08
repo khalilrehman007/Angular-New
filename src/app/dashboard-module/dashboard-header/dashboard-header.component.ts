@@ -31,5 +31,32 @@ export class DashboardHeaderComponent implements OnInit {
   }
   ngOnInit(): void {
   }
-
+  status1: boolean = true;
+  clickEvent1() {
+    this.status1 = true;
+    this.status2 = false;
+    this.status3 = false;
+    this.status4 = false;
+  }
+  status2: boolean = false;
+  clickEvent2() {
+    this.status2 = true;
+    this.status1 = false;
+    this.status3 = false;
+    this.status4 = false;
+  }
+  status3: boolean = false;
+  clickEvent3() {
+    this.status3 = true;
+    this.status2 = false;
+    this.status1 = false;
+    this.status4 = false;
+  }
+  status4: boolean = false;
+  clickEvent4() {
+    this.status4 = true;
+    this.status2 = false;
+    this.status3 = false;
+    this.status1 = false;
+  }
 }

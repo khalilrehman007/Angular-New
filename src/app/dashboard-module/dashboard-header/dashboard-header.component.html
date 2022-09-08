@@ -1,33 +1,331 @@
-<div class="container_1280px">
+<div class="container-fluid">
   <div class="white-header-wrap">
-  <div class="d-flex justify-content-spacebw align-items-center">
+  <div class="d-flex justify-content-center align-items-center">
     <div class="dashboard-header-left">
-        <div class="logo-wrapper">
+        <!-- <div class="logo-wrapper">
         <a ngClass="navbar-brand" routerLink=""><img src="{{logo}}"></a>
-        </div>
-    </div>
-    <div class="dashboard-header-right">
-        <div class="dash-header-box">
-             <ul class="list-unstyled d-flex align-items-center">
-                <li><a routerLink="">Reports</a></li>
-                <li>
-                   <div ngbDropdown class="d-inline-block">
-                        <button type="button" class="btn" id="dropdownBasic1" ngbDropdownToggle>
-                          <span class="profile-name">Hi, Adam</span>
-                          <img src="{{profileimg}}" class="rounded-circle">
-                        </button>
-                        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                          <button ngbDropdownItem><a routerLink="">Dashboard</a></button>
-                          <button ngbDropdownItem><a routerLink="">Settings</a></button>
-                          <button ngbDropdownItem><a routerLink="">Profile</a></button>
-                          <button ngbDropdownItem class="pointer-events-none"><hr class="dropdown-divider"></button>
-                          <button ngbDropdownItem><a routerLink="">Log out</a></button>
-                        </div>
-                      </div> 
-                </li>
-             </ul>
+        </div> -->
+        <div class="dashboard-dat-left-box d-flex align-items-center">
+          <ul class="list-unstyled d-flex">
+            <li (click)="clickEvent1()" [ngClass]="status1 ? 'active' : 'notactive'">DATA</li>
+            <li (click)="clickEvent2()" [ngClass]="status2 ? 'active' : 'notactive'">REPORTS</li>
+            <li (click)="clickEvent3()" [ngClass]="status3 ? 'active' : 'notactive'">RANKINGS</li>
+            <li (click)="clickEvent4()" [ngClass]="status4 ? 'active' : 'notactive'">TRENDS</li>
+          </ul>
         </div>
     </div>
   </div>
   </div>
+</div>
+<div class="dashboard-data-side-bar">
+ <div class="dashboard-data-side-header">
+  <h2>DATA INTELLEGENT DASHBOARD</h2>
+ </div>
+ <div class="dashboard-data-side-lists">
+  <div class="dashboard-data-side-links data" [ngClass]="status1 ? 'show' : 'hide'">
+   <div class="dashboard-data-side-subheader">
+    <h4>DATA</h4>
+   </div>
+   <ul class="list-unstyled">
+    <li class="mt-4 mb-4"><a routerLink="">RESIDENTIAL</a></li>
+    <li>
+      <div ngbDropdown>
+        <button type="button" class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>TRANSACTION DATA</button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+          <button ngbDropdownItem><a routerLink="">Rent Data</a></button>
+          <button ngbDropdownItem><a routerLink="">UNIT TRANSACTION HISTORY</a></button>
+        </div>
+      </div>
+    </li>
+    <li>
+      <div ngbDropdown>
+        <button type="button" class="btn btn-outline-primary" id="dropdownBasic2" ngbDropdownToggle>TRANSACTION ANALYSIS</button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
+          <button ngbDropdownItem><a routerLink="">MONTHLY ANALYSIS</a></button>
+          <button ngbDropdownItem><a routerLink="">QUARTERLY ANALYSIS</a></button>
+          <button ngbDropdownItem><a routerLink="">YEARLY ANALYSIS</a></button>
+        </div>
+      </div>
+    </li>
+    <li>
+      <div ngbDropdown>
+        <button type="button" class="btn btn-outline-primary" id="dropdownBasic3" ngbDropdownToggle>LISTING DATA</button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic3">
+          <button ngbDropdownItem><a routerLink="">LISTING MONITOR</a></button>
+          <button ngbDropdownItem><a routerLink="">LISTING DATA</a></button>
+        </div>
+      </div>
+    </li>
+    <li><a routerLink="">SUPPLY DATA</a></li>
+    <li><a routerLink="">SERVICE CHARGES DATA</a></li>
+    <li><a routerLink="">SERVICE CHARGES DATA</a></li>
+    <li class="mt-4 mb-4"><a routerLink="">COMMERCIAL</a></li>
+    <li>
+      <div ngbDropdown>
+        <button type="button" class="btn btn-outline-primary" id="dropdownBasic4" ngbDropdownToggle>TRANSACTION DATA</button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic4">
+          <button ngbDropdownItem><a routerLink="">RENT DATA</a></button>
+          <button ngbDropdownItem><a routerLink="">UNIT TRANSACTION HISTORY</a></button>
+        </div>
+      </div>
+    </li>
+    <li>
+      <div ngbDropdown>
+        <button type="button" class="btn btn-outline-primary" id="dropdownBasic5" ngbDropdownToggle>TRANSACTION ANALYSIS</button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic5">
+          <button ngbDropdownItem><a routerLink="">MONTHLY ANALYSIS</a></button>
+          <button ngbDropdownItem><a routerLink="">QUARTERLY ANALYSIS</a></button>
+          <button ngbDropdownItem><a routerLink="">YEARLY ANALYSIS</a></button>
+        </div>
+      </div>
+    </li>
+    <li>
+      <div ngbDropdown>
+        <button type="button" class="btn btn-outline-primary" id="dropdownBasic6" ngbDropdownToggle>LISTING DATA</button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic6">
+          <button ngbDropdownItem><a routerLink="">LISTING MONITOR</a></button>
+          <button ngbDropdownItem><a routerLink="">LISTING DATA</a></button>
+        </div>
+      </div>
+    </li>
+    <li>
+      <div ngbDropdown>
+        <button type="button" class="btn btn-outline-primary" id="dropdownBasic7" ngbDropdownToggle>SUPPLY DATA</button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic7">
+          <button ngbDropdownItem><a routerLink="">OFFICE SUPPLY</a></button>
+          <button ngbDropdownItem><a routerLink="">RETAIL SUPPLY</a></button>
+        </div>
+      </div>
+    </li>
+    <li><a routerLink="">OCCUPANCY RATE DATA</a></li>
+    <li><a routerLink="">SERVICE CHARGES DATA</a></li>
+   </ul>
+   </div>
+   <div class="dashboard-data-side-links reports" [ngClass]="status2 ? 'show' : 'hide'">
+    <div class="dashboard-data-side-subheader">
+     <h4>REPORTS</h4>
+    </div>
+    <ul class="list-unstyled">
+     <li class="mt-4 mb-4"><a routerLink="">RESIDENTIAL</a></li>
+     <li><a routerLink="">CITY REPORT</a></li>
+     <li><a routerLink="">AREA REPORT</a></li>
+     <li><a routerLink="">PROPERTY REPORT</a></li>
+     <li><a routerLink="">DEVELOPER REPORT</a></li>
+     <li>
+       <div ngbDropdown>
+         <button type="button" class="btn btn-outline-primary" id="dropdownBasic8" ngbDropdownToggle>MARKET REPORTS</button>
+         <div ngbDropdownMenu aria-labelledby="dropdownBasic8">
+           <button ngbDropdownItem><a routerLink="">PRICE REPORT</a></button>
+           <button ngbDropdownItem><a routerLink="">OCCUPANCY REPORTS</a></button>
+           <button ngbDropdownItem><a routerLink="">SERVICE CHARGES REPORT</a></button>
+         </div>
+       </div>
+     </li>
+     <li>
+       <div ngbDropdown>
+         <button type="button" class="btn btn-outline-primary" id="dropdownBasic9" ngbDropdownToggle>OFF PLAN REPORTS</button>
+         <div ngbDropdownMenu aria-labelledby="dropdownBasic9">
+           <button ngbDropdownItem><a routerLink="">OFF PLAN PRICE REPORTS </a></button>
+           <button ngbDropdownItem><a routerLink="">SUPPLY REPORT</a></button>
+           <button ngbDropdownItem><a routerLink="">CONSTRUCTION STATUS REPORT</a></button>
+           <button ngbDropdownItem><a routerLink="">PAYMENT PLANS REPORT </a></button>
+         </div>
+       </div>
+     </li>
+     <li class="mt-4 mb-4"><a routerLink="">COMMERCIAL</a></li>
+     <li>
+       <div ngbDropdown>
+         <button type="button" class="btn btn-outline-primary" id="dropdownBasic10" ngbDropdownToggle>OFFICE MARKET</button>
+         <div ngbDropdownMenu aria-labelledby="dropdownBasic10">
+           <button ngbDropdownItem><a routerLink="">AREA REPORT</a></button>
+           <button ngbDropdownItem><a routerLink="">PROPERTY REPORT</a></button>
+           <button ngbDropdownItem><a routerLink="">MARKET REPORT</a></button>
+         </div>
+       </div>
+     </li>
+     <li><a routerLink="">RETAIL MARKET</a></li>
+     <li><a routerLink="">HOTEL MARKET</a></li>
+     <li><a routerLink="">LAND MARKET</a></li>
+     <li><a routerLink="">INDUSTRIAL MARKET</a></li>
+     <li><a routerLink="">LABOR CAMPS</a></li>
+     <li><a routerLink="">SERVICE CHARGES REPORT</a></li>
+     <li>
+       <div ngbDropdown>
+         <button type="button" class="btn btn-outline-primary" id="dropdownBasic11" ngbDropdownToggle>ECONOMY REPORTS</button>
+         <div ngbDropdownMenu aria-labelledby="dropdownBasic11">
+           <button ngbDropdownItem><a routerLink="">DEMOGRAPHICS</a></button>
+         </div>
+       </div>
+     </li>
+     <li>
+       <div ngbDropdown>
+         <button type="button" class="btn btn-outline-primary" id="dropdownBasic12" ngbDropdownToggle>FINANCE</button>
+         <div ngbDropdownMenu aria-labelledby="dropdownBasic12">
+           <button ngbDropdownItem><a routerLink="">MORTGAGE RATES</a></button>
+         </div>
+       </div>
+     </li>
+     <li><a routerLink="">PRICES</a></li>
+    </ul>
+    </div>
+    <div class="dashboard-data-side-links rankings" [ngClass]="status3 ? 'show' : 'hide'">
+      <div class="dashboard-data-side-subheader">
+       <h4>RANKINGS</h4>
+      </div>
+      <ul class="list-unstyled">
+       <li class="mt-4 mb-4"><a routerLink="">RESIDENTIAL</a></li>
+       <li>
+         <div ngbDropdown>
+           <button type="button" class="btn btn-outline-primary" id="dropdownBasic13" ngbDropdownToggle>AREA RANKINGS</button>
+           <div ngbDropdownMenu aria-labelledby="dropdownBasic13">
+             <button ngbDropdownItem><a routerLink="">SALES</a></button>
+             <button ngbDropdownItem><a routerLink="">RENTAL YIELDS</a></button>
+             <button ngbDropdownItem><a routerLink="">RESIDENTIAL SUPPLY</a></button>
+             <button ngbDropdownItem><a routerLink="">OCCUPANCY RATES</a></button>
+             <button ngbDropdownItem><a routerLink="">SERVICE CHARGES</a></button>
+           </div>
+         </div>
+       </li>
+       <li>
+         <div ngbDropdown>
+           <button type="button" class="btn btn-outline-primary" id="dropdownBasic14" ngbDropdownToggle>PROPERTY RANKINGS</button>
+           <div ngbDropdownMenu aria-labelledby="dropdownBasic14">
+             <button ngbDropdownItem><a routerLink="">SALES</a></button>
+             <button ngbDropdownItem><a routerLink="">RENTAL YIELDS</a></button>
+             <button ngbDropdownItem><a routerLink="">RESIDENTIAL SUPPLY</a></button>
+             <button ngbDropdownItem><a routerLink="">OCCUPANCY RATES</a></button>
+             <button ngbDropdownItem><a routerLink="">SERVICE CHARGES</a></button>
+           </div>
+         </div>
+       </li>
+       <li><a routerLink="">COMMERCIAL</a></li>
+       <li>
+         <div ngbDropdown>
+           <button type="button" class="btn btn-outline-primary" id="dropdownBasic15" ngbDropdownToggle>BROKERAGE RANKINGS</button>
+           <div ngbDropdownMenu aria-labelledby="dropdownBasic15">
+             <button ngbDropdownItem><a routerLink="">BROKERAGE RANKINGS</a></button>
+             <button ngbDropdownItem><a routerLink="">BROKERAGES ANALYTICS</a></button>
+           </div>
+         </div>
+       </li>
+       <li class="mt-4 mb-4"><a routerLink="">COMMERCIAL</a></li>
+       <li>
+         <div ngbDropdown>
+           <button type="button" class="btn btn-outline-primary" id="dropdownBasic16" ngbDropdownToggle>OFFICE</button>
+           <div ngbDropdownMenu aria-labelledby="dropdownBasic16">
+             <button ngbDropdownItem><a routerLink="">AREA RANKINGS</a></button>
+             <button ngbDropdownItem><a routerLink="">SALES</a></button>
+             <button ngbDropdownItem><a routerLink="">RENT</a></button>
+             <button ngbDropdownItem><a routerLink="">OFFICE SUPPLY</a></button>
+             <button ngbDropdownItem><a routerLink="">OCCUPANCY RATES</a></button>
+             <button ngbDropdownItem><a routerLink="">SERVICE CHARGES</a></button>
+           </div>
+         </div>
+       </li>
+       <li>
+         <div ngbDropdown>
+           <button type="button" class="btn btn-outline-primary" id="dropdownBasic17" ngbDropdownToggle>PROPERTY RANKINGSS</button>
+           <div ngbDropdownMenu aria-labelledby="dropdownBasic17">
+             <button ngbDropdownItem><a routerLink="">SALES</a></button>
+             <button ngbDropdownItem><a routerLink="">RENTAL</a></button>
+             <button ngbDropdownItem><a routerLink="">OFFICE SUPPLY</a></button>
+             <button ngbDropdownItem><a routerLink="">OCCUPANCY RATES</a></button>
+             <button ngbDropdownItem><a routerLink=""> SERVICE CHARGES</a></button>
+           </div>
+         </div>
+       </li>
+       <li>
+        <div ngbDropdown>
+          <button type="button" class="btn btn-outline-primary" id="dropdownBasic18" ngbDropdownToggle>BROKERAGE RANKINGS</button>
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic18">
+            <button ngbDropdownItem><a routerLink="">BROKERAGE RANKINGS</a></button>
+            <button ngbDropdownItem><a routerLink="">BROKERAGE ANALYTICS</a></button>
+          </div>
+        </div>
+      </li>
+      </ul>
+    </div>
+    <div class="dashboard-data-side-links trends" [ngClass]="status4 ? 'show' : 'hide'">
+      <div class="dashboard-data-side-subheader">
+       <h4>TRENDS</h4>
+      </div>
+      <ul class="list-unstyled">
+       <li class="mt-4 mb-4"><a routerLink="">RESIDENTIAL</a></li>
+       <li><a routerLink="">TRENDS</a></li>
+       <li>
+         <div ngbDropdown>
+           <button type="button" class="btn btn-outline-primary" id="dropdownBasic19" ngbDropdownToggle>SALES PRICE TRENDS</button>
+           <div ngbDropdownMenu aria-labelledby="dropdownBasic19">
+             <button ngbDropdownItem><a routerLink="">RESIDENTIAL SALES</a></button>
+             <button ngbDropdownItem><a routerLink="">SERVICED/HOTEL APT SALES</a></button>
+           </div>
+         </div>
+       </li>
+       <li><a routerLink="">RENT PRICE TRENDS</a></li>
+       <li><a routerLink="">RENTAL YIELDS</a></li>
+       <li><a routerLink="">SUPPLY TRENDS</a></li>
+       <li><a routerLink="">INDICES</a></li>
+       <li>
+         <div ngbDropdown>
+           <button type="button" class="btn btn-outline-primary" id="dropdownBasic20" ngbDropdownToggle>SALES PRICE INDICES</button>
+           <div ngbDropdownMenu aria-labelledby="dropdownBasic20">
+             <button ngbDropdownItem><a routerLink="">RESIDENTIAL SALES</a></button>
+             <button ngbDropdownItem><a routerLink="">PRIME RESIDENTIAL SALES</a></button>
+             <button ngbDropdownItem><a routerLink="">OFF - PLAN SLE PRICES</a></button>
+             <button ngbDropdownItem><a routerLink="">SERVICED/HOTEL APT SALES</a></button>
+           </div>
+         </div>
+       </li>
+       <li>
+         <div ngbDropdown>
+           <button type="button" class="btn btn-outline-primary" id="dropdownBasic21" ngbDropdownToggle>RENT PRICE INDICES</button>
+           <div ngbDropdownMenu aria-labelledby="dropdownBasic21">
+             <button ngbDropdownItem><a routerLink="">RESIDNTIAL RENT</a></button>
+             <button ngbDropdownItem><a routerLink="">PRIME RESIDENTIAL RENT</a></button>
+           </div>
+         </div>
+       </li>
+       <li><a routerLink="">HOUSING & RENTAL AFFORDIBILTY</a></li>
+       <li><a routerLink="">BUILDING SCORES</a></li>
+       <li class="mt-4 mb-4"><a routerLink="">COMMERCIAL</a></li>
+       <li><a routerLink="">OFFICE</a></li>
+       <li><a routerLink="">TRENDS</a></li>
+       <li><a routerLink="">RENT PRICE TRENDS</a></li>
+       <li><a routerLink="">SUPPLY TRENDS</a></li>
+       <li>
+         <div ngbDropdown>
+           <button type="button" class="btn btn-outline-primary" id="dropdownBasic22" ngbDropdownToggle>INDICES</button>
+           <div ngbDropdownMenu aria-labelledby="dropdownBasic22">
+             <button ngbDropdownItem><a routerLink="">RENT PRICE INDICES</a></button>
+           </div>
+         </div>
+       </li>
+       <li>
+         <div ngbDropdown>
+           <button type="button" class="btn btn-outline-primary" id="dropdownBasic23" ngbDropdownToggle>RETAIL</button>
+           <div ngbDropdownMenu aria-labelledby="dropdownBasic23">
+             <button ngbDropdownItem><a routerLink="">SUPPLY TRENDS </a></button>
+           </div>
+         </div>
+       </li>
+       <li>
+        <div ngbDropdown>
+          <button type="button" class="btn btn-outline-primary" id="dropdownBasic24" ngbDropdownToggle>LAND</button>
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic24">
+            <button ngbDropdownItem><a routerLink="">TRENDS</a></button>
+            <button ngbDropdownItem><a routerLink="">SALES PRICE TREND</a></button>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div ngbDropdown>
+          <button type="button" class="btn btn-outline-primary" id="dropdownBasic25" ngbDropdownToggle>INDICES</button>
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic25">
+            <button ngbDropdownItem><a routerLink="">SALES PRICE INDEX</a></button>
+          </div>
+        </div>
+      </li>
+      </ul>
+    </div>
+ </div>
 </div>
