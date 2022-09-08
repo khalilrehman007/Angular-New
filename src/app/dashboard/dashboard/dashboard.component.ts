@@ -136,6 +136,8 @@ export class DashboardComponent implements OnInit {
     return this.agentDetailForm.get("agentbrnNo");
   }
   userId: number;
+  parentTabId: any = "";
+  childTabId: any  = "";
   constructor(private authService: AuthService, private service: AppService, private route: Router, private notifyService: NotificationService) {
     $(window).scrollTop(0);
     this.getUser();
@@ -382,7 +384,7 @@ export class DashboardComponent implements OnInit {
 
   }
 
-  parentTabId: any;
+
   public parentTabsChange(e: any) {
     //allId nuLL
     let parentTabId: any = '';
@@ -400,11 +402,11 @@ export class DashboardComponent implements OnInit {
   }
 
 
-  childTabId: any;
+
   public childTabsChange(id: any) {
     this.page = 1;
     this.childTabId = id
-    this.getTabCount();
+    // this.getTabCount();
     this.getLoadListing();
   }
 
@@ -624,6 +626,7 @@ export class DashboardComponent implements OnInit {
           }
         );
       })
+      this.totalLength = tempData.length
       this.listingAll = tempData
     });
 
@@ -882,6 +885,7 @@ export class DashboardComponent implements OnInit {
           }
         );
       })
+      this.totalLength = tempData.length
       this.myActivityListingView = tempData;
     });
   }

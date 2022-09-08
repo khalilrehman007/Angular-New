@@ -1422,8 +1422,8 @@
                                     </div>
                                     <div class="agent-details__tabs">
                                         <div class="row">
-                                            <div class="col-lg-9 col-md-10">
-                                                <ul class="agent-details__property-list">
+                                            <div class="col-lg-9 col-md-10" >
+                                                <ul class="agent-details__property-list" >
                                                     <li class="agent-details__property-list-item"
                                                         *ngFor="let listing of listingAll | paginate: { itemsPerPage: 10, currentPage: page, totalItems:totalLength }">
                                                         <div class="row">
@@ -1520,16 +1520,17 @@
                                                             </div>
                                                         </div>
                                                     </li>
-                                                    <section class="agent-pagination-wrapper">
-                                                        <pagination-controls (pageChange)="page = $event"
-                                                            class="text-center my-pagination">
-                                                        </pagination-controls>
-                                                    </section>
                                                 </ul>
+                                              <section class="agent-pagination-wrapper">
+                                                <pagination-controls (pageChange)="pageChanged($event)"
+                                                                     class="text-center my-pagination">
+                                                </pagination-controls>
+                                              </section>
                                             </div>
                                         </div>
                                     </div>
                                 </mat-tab>
+
                                 <mat-tab label="{{ rent }}">
                                     <div class="type-activity-status">
                                         <div ngClass="block-wrapper mb-4">
