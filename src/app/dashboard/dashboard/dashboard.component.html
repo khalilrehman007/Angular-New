@@ -403,7 +403,7 @@
                         <div class="sub-tab-nav">
                             <mat-tab-group>
                                 <mat-tab label="Searches">
-                                    <div ngClass="list-property-content">
+                                    <div ngClass="list-property-content" *ngIf="activitySavedSearch.length > 0">
                                         <div ngClass="list-property-body">
                                             <form>
                                                 <div class="type-activity-status">
@@ -476,7 +476,7 @@
                                                                     </section>
                                                                 </div>
                                                             </div>
-                                                            <div class="checkbox-design position-relative">
+                                                            <div class="checkbox-design position-relative" *ngIf="activitySavedSearch.length > 0">
                                                                 <input type="radio" id="Unfurnished"
                                                                     name="property-types" value="Rent">
                                                                 <button class="checkbox-btn">Rent (02)</button>
