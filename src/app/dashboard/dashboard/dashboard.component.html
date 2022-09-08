@@ -2209,7 +2209,8 @@
                                                                                     <mat-form-field appearance="fill">
                                                                                         <mat-label> Select the Areas
                                                                                         </mat-label>
-                                                                                        <mat-select multiple>
+                                                                                        <mat-select multiple [(value)]="areaData"
+                                                                                        (selectionChange)="getAreaData($event)">
                                                                                             <mat-option
                                                                                                 *ngFor="let item of districts"
                                                                                                 value="{{item.id}}">

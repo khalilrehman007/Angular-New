@@ -60,8 +60,9 @@ export class DashboardComponent implements OnInit {
   showLoader: boolean = true;
   myPackages: any;
   activitySavedSearch: any;
-  leadsResidentialSummary:any = [];
-  leadsCommercialSummary:any = [];
+  leadsResidentialSummary: any = [];
+  leadsCommercialSummary: any = [];
+  areaData: any = [];
 
   plus = '../../../../assets/images/plus.svg'
 
@@ -91,8 +92,12 @@ export class DashboardComponent implements OnInit {
     location: new FormControl(""),
     dob: new FormControl("")
   });
+  agentDetailForm = new FormGroup({
+    agentBrnNo: new FormGroup("")
+  })
   data: any = {};
   userFormData: any;
+  agentDetailsFormData: any;
   userImage: any;
   changePasswordForm = new FormGroup({
     currentPassword: new FormControl(""),
@@ -126,6 +131,9 @@ export class DashboardComponent implements OnInit {
   }
   get newPassword() {
     return this.changePasswordForm.get("newPassword");
+  }
+  get agentBrnNo() {
+    return this.agentDetailForm.get("agentbrnNo");
   }
   userId: number;
   constructor(private authService: AuthService, private service: AppService, private route: Router, private notifyService: NotificationService) {
@@ -162,10 +170,10 @@ export class DashboardComponent implements OnInit {
         this.proAvatar = this.baseUrl + this.userData.imageUrl;
       }
       this.service.SummaryLeads({ "UserId": this.userData.id, "PropertyCategoryId": "1" }).subscribe((result: any) => {
-        if(result.data.length > 0) {
+        if (result.data.length > 0) {
           this.leadSummary = result.data;
           for (let i = 0; i < this.leadSummary.length; i++) {
-            if(this.leadSummary[i].propertyListing.propertyCategory.categoryName == "Residential") {
+            if (this.leadSummary[i].propertyListing.propertyCategory.categoryName == "Residential") {
               this.leadsResidentialSummary.push(this.leadSummary[i]);
             } else {
               this.leadsCommercialSummary.push(this.leadSummary[i])
@@ -179,7 +187,7 @@ export class DashboardComponent implements OnInit {
       this.service.MyPackages(this.userData.id).subscribe((result: any) => {
         this.myPackages = result.data;
       })
-      this.service.MyActivitySavedSearchProperty({"UserId":this.userData.id,"PropertyListingTypeId":""}).subscribe((result: any) => {
+      this.service.MyActivitySavedSearchProperty({ "UserId": this.userData.id, "PropertyListingTypeId": "" }).subscribe((result: any) => {
         this.activitySavedSearch = result.data;
         console.log(this.activitySavedSearch)
       })
@@ -212,6 +220,8 @@ export class DashboardComponent implements OnInit {
       this.totalCommValuation = this.dashboard.totalCommValuation
 
     });
+
+
     this.LoadLeads("", "");
     this.userFormData = localStorage.getItem("user");
     this.userFormData = JSON.parse(this.userFormData);
@@ -292,6 +302,11 @@ export class DashboardComponent implements OnInit {
       alert("Enter all the fields");
       return;
     }
+
+    if (this.agentDetailForm.value.agentBrnNo == "") {
+      alert("Enter BRN No");
+      return;
+    }
     let temp: any = localStorage.getItem("user");
     temp = JSON.parse(temp);
     this.data.Id = temp.id;
@@ -310,7 +325,9 @@ export class DashboardComponent implements OnInit {
         alert("Something went wrong");
       }
     });
+    this.data.BRNNo = this.agentDetailsFormData.value.agentBrnNo;
   }
+
   LoadvaluationDashboard() {
     this.service.valuationDashboard(this.user.id).subscribe(e => {
       let temp: any = e;
@@ -328,6 +345,9 @@ export class DashboardComponent implements OnInit {
       this.residential = response.data[0].categoryName;
       this.commercial = response.data[1].categoryName;
     });
+  }
+  getAreaData(e: any) {
+    this.areaData = e.value;
   }
 
   myValuationlistingAll: any = [];
@@ -739,13 +759,16 @@ export class DashboardComponent implements OnInit {
         langObject.push({ SpokenLanguageId: element })
       })
 
+      let temp: any = [];
+      for (let i = 0; i < this.areaData.length; i++) {
+        temp.push({ "DistrictId": this.areaData[i] });
+      }
+
+
       let districtsIdsObject: any = []
       this.districtsIds.forEach((element: any, i: any) => {
         districtsIdsObject.push({ DistrictId: element })
       })
-
-
-      this.agentFormData.BRNNo = this.agnetBorker.value.BRNNo;
 
       let userData: any = localStorage.getItem("user");
       userData = JSON.parse(userData);
@@ -757,29 +780,27 @@ export class DashboardComponent implements OnInit {
         this.agentFormData.Id = this.agentBrokerId.toString();
       }
 
+      this.agentFormData.BRNNo = this.agnetBorker.value.BRNNo;
       this.agentFormData.NationalityId = this.NationalityId.toString();
       this.agentFormData.AgentLanguages = langObject;
-      this.agentFormData.AgentAreas = districtsIdsObject;
-      // this.agentFormData.ExpertIn   = expertObject;
+      // this.agentFormData.AgentAreas = temp;
+      this.agentFormData.ExpertIn = expertObject;
+      this.agentFormData.AreaData = temp;
       this.documentsObject();
       this.agentFormData.Documents = this.finalBrokerDocments
       this.uploadedDocuments = [];
       this.finalBrokerDocments = [];
 
       let valuationData = new FormData();
-      valuationData.delete('AgentRequest')
       valuationData.append("AgentRequest", JSON.stringify(this.agentFormData));
 
-      for (let i = 0; i < this.imageObject.length; i++) {
-        valuationData.delete(this.imageObject[i])
-      }
-
       for (let i = 0; i < 3; i++) {
-        this.imageObject.push()
+        // this.imageObject.push()
         valuationData.append(i + "_" + this.otherImages[i].file.name, this.otherImages[i].file);
       }
       let token: any = localStorage.getItem("token");
       token = JSON.parse(token);
+      console.log(this.agentFormData)
       $.ajax({
         url: "https://beta.ovaluate.com/api/AddUpdateAgentDetails",
         method: "post",
@@ -791,6 +812,7 @@ export class DashboardComponent implements OnInit {
         },
         dataType: "json",
         success: (res) => {
+          console.log(res)
           this.agentBrokerId = res.data.id;
           this.notifyService.showSuccess(res.message, "");
           // if(res.message == "Property Listing request completed successfully") {
