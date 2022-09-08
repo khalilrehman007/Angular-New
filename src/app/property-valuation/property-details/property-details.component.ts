@@ -177,7 +177,9 @@ export class PropertyDetailsComponent implements OnInit {
     let temp = this.country.filter(function (c: any) {
       return c.value == e.value
     });
+    console.log(temp);
     this.countryName = temp[0].viewValue;
+    localStorage.setItem("currency", temp[0].currency)
     this.getLocationDetails(temp[0].viewValue, false);
     this.countryId = e.value;
     this.city = [];

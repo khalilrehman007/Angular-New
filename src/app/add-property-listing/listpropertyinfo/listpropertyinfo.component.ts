@@ -296,7 +296,7 @@ export class ListpropertyinfoComponent implements OnInit {
     this.categoryID = id;
     this.api.LoadType(id).subscribe((result) => {
       this.propertyType = result;
-      this.propertyType = this.propertyType.data
+      this.propertyType = this.propertyType.data;
       this.showLoader = false;
     });
     this.clearData();
@@ -461,7 +461,7 @@ export class ListpropertyinfoComponent implements OnInit {
       this.error = "Select Tenant Type";
       this.showError = true;
       return;
-    } else if (!this.data.Gender && this.listingTypeId == 1) {
+    } else if (!this.data.Gender && this.listingTypeId == 1 && this.data.TenantTypeId == 2) {
       this.currentField = "gender-input";
       this.error = "Select Gender";
       this.showError = true;

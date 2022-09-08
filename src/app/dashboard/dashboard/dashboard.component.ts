@@ -59,9 +59,10 @@ export class DashboardComponent implements OnInit {
   leadSummary: any = "";
   showLoader: boolean = true;
   myPackages: any;
-  activitySavedSearch: any;
-  leadsResidentialSummary:any = [];
-  leadsCommercialSummary:any = [];
+  activitySavedSearch: any = [];
+  leadsResidentialSummary: any = [];
+  leadsCommercialSummary: any = [];
+  areaData: any = [];
 
   plus = '../../../../assets/images/plus.svg'
 
@@ -91,8 +92,12 @@ export class DashboardComponent implements OnInit {
     location: new FormControl(""),
     dob: new FormControl("")
   });
+  agentDetailForm = new FormGroup({
+    agentBrnNo: new FormGroup("")
+  })
   data: any = {};
   userFormData: any;
+  agentDetailsFormData: any;
   userImage: any;
   changePasswordForm = new FormGroup({
     currentPassword: new FormControl(""),
@@ -127,7 +132,12 @@ export class DashboardComponent implements OnInit {
   get newPassword() {
     return this.changePasswordForm.get("newPassword");
   }
+  get agentBrnNo() {
+    return this.agentDetailForm.get("agentbrnNo");
+  }
   userId: number;
+  parentTabId: any = "";
+  childTabId: any  = "";
   constructor(private authService: AuthService, private service: AppService, private route: Router, private notifyService: NotificationService) {
     $(window).scrollTop(0);
     this.getUser();
@@ -162,10 +172,10 @@ export class DashboardComponent implements OnInit {
         this.proAvatar = this.baseUrl + this.userData.imageUrl;
       }
       this.service.SummaryLeads({ "UserId": this.userData.id, "PropertyCategoryId": "1" }).subscribe((result: any) => {
-        if(result.data.length > 0) {
+        if (result.data.length > 0) {
           this.leadSummary = result.data;
           for (let i = 0; i < this.leadSummary.length; i++) {
-            if(this.leadSummary[i].propertyListing.propertyCategory.categoryName == "Residential") {
+            if (this.leadSummary[i].propertyListing.propertyCategory.categoryName == "Residential") {
               this.leadsResidentialSummary.push(this.leadSummary[i]);
             } else {
               this.leadsCommercialSummary.push(this.leadSummary[i])
@@ -179,7 +189,7 @@ export class DashboardComponent implements OnInit {
       this.service.MyPackages(this.userData.id).subscribe((result: any) => {
         this.myPackages = result.data;
       })
-      this.service.MyActivitySavedSearchProperty({"UserId":this.userData.id,"PropertyListingTypeId":""}).subscribe((result: any) => {
+      this.service.MyActivitySavedSearchProperty({ "UserId": this.userData.id, "PropertyListingTypeId": "" }).subscribe((result: any) => {
         this.activitySavedSearch = result.data;
         console.log(this.activitySavedSearch)
       })
@@ -212,6 +222,8 @@ export class DashboardComponent implements OnInit {
       this.totalCommValuation = this.dashboard.totalCommValuation
 
     });
+
+
     this.LoadLeads("", "");
     this.userFormData = localStorage.getItem("user");
     this.userFormData = JSON.parse(this.userFormData);
@@ -292,6 +304,11 @@ export class DashboardComponent implements OnInit {
       alert("Enter all the fields");
       return;
     }
+
+    if (this.agentDetailForm.value.agentBrnNo == "") {
+      alert("Enter BRN No");
+      return;
+    }
     let temp: any = localStorage.getItem("user");
     temp = JSON.parse(temp);
     this.data.Id = temp.id;
@@ -310,7 +327,9 @@ export class DashboardComponent implements OnInit {
         alert("Something went wrong");
       }
     });
+    this.data.BRNNo = this.agentDetailsFormData.value.agentBrnNo;
   }
+
   LoadvaluationDashboard() {
     this.service.valuationDashboard(this.user.id).subscribe(e => {
       let temp: any = e;
@@ -328,6 +347,9 @@ export class DashboardComponent implements OnInit {
       this.residential = response.data[0].categoryName;
       this.commercial = response.data[1].categoryName;
     });
+  }
+  getAreaData(e: any) {
+    this.areaData = e.value;
   }
 
   myValuationlistingAll: any = [];
@@ -357,13 +379,12 @@ export class DashboardComponent implements OnInit {
           }
         );
       })
+      this.myValuationlistingAll = tempData
     });
-
-    this.myValuationlistingAll = tempData
 
   }
 
-  parentTabId: any;
+
   public parentTabsChange(e: any) {
     //allId nuLL
     let parentTabId: any = '';
@@ -381,10 +402,11 @@ export class DashboardComponent implements OnInit {
   }
 
 
-  childTabId: any;
+
   public childTabsChange(id: any) {
+    this.page = 1;
     this.childTabId = id
-    this.getTabCount();
+    // this.getTabCount();
     this.getLoadListing();
   }
 
@@ -447,15 +469,19 @@ export class DashboardComponent implements OnInit {
     temp = JSON.parse(temp).id;
     this.service.MyLeads({ "UserId": temp, "PropertyCategoryId": CategoryId, "PropertyListingTypeId": TypeId }).subscribe((result: any) => {
       this.leadsData = result.data;
-      for (let i = 0; i < this.leadsData.length; i++) {
-        if (this.leadsData[i].propertyListing.propertyCategoryId == 1) {
-          this.leadsData[i].propertyCategory = "Residential"
-        } else {
-          this.leadsData[i].propertyCategory = "Commercial"
+      if(this.leadsData.length > 0) {
+        for (let i = 0; i < this.leadsData.length; i++) {
+          if (this.leadsData[i].propertyListing.propertyCategoryId == 1) {
+            this.leadsData[i].propertyCategory = "Residential"
+          } else {
+            this.leadsData[i].propertyCategory = "Commercial"
+          }
         }
-      }
-      for (let i = 0; i < this.leadsData.length; i++) {
-        this.leadsData[i].leadDate = this.leadsData[i].leadDate.split("T")[0];
+        for (let i = 0; i < this.leadsData.length; i++) {
+          if(this.leadsData[i].leadDate != null) {
+            this.leadsData[i].leadDate = this.leadsData[i].leadDate.split("T")[0];
+          }
+        }
       }
     })
   }
@@ -581,8 +607,8 @@ export class DashboardComponent implements OnInit {
       response.data.forEach((element: any, i: any) => {
         let image: any;
         let rentTypeName = ''
-        if (element.rentType != null) {
-          rentTypeName = element.rentType.name
+        if (element.rentType != null && element.rentType != undefined && element.rentType.name != undefined && element.rentType.name != null && element.propertyListingTypeId != 2) {
+          rentTypeName = '/'+element.rentType.name
         }
         if (element.documents.length > 1) {
           image = this.baseUrl + element.documents[0].fileUrl
@@ -600,8 +626,9 @@ export class DashboardComponent implements OnInit {
           }
         );
       })
+      this.totalLength = tempData.length
+      this.listingAll = tempData
     });
-    this.listingAll = tempData
 
   }
   pageChanged(value: any) {
@@ -622,8 +649,8 @@ export class DashboardComponent implements OnInit {
         tempData.push(
           { id: element.id, name: element.name });
       })
+      this.ExpertIn = tempData
     });
-    this.ExpertIn = tempData
   }
   SpokenLanguages: any = [];
   getSpokenLanguages() {
@@ -634,8 +661,8 @@ export class DashboardComponent implements OnInit {
         tempData.push(
           { id: element.id, name: element.name });
       })
+      this.SpokenLanguages = tempData
     });
-    this.SpokenLanguages = tempData
   }
 
 
@@ -739,13 +766,16 @@ export class DashboardComponent implements OnInit {
         langObject.push({ SpokenLanguageId: element })
       })
 
+      let temp: any = [];
+      for (let i = 0; i < this.areaData.length; i++) {
+        temp.push({ "DistrictId": this.areaData[i] });
+      }
+
+
       let districtsIdsObject: any = []
       this.districtsIds.forEach((element: any, i: any) => {
         districtsIdsObject.push({ DistrictId: element })
       })
-
-
-      this.agentFormData.BRNNo = this.agnetBorker.value.BRNNo;
 
       let userData: any = localStorage.getItem("user");
       userData = JSON.parse(userData);
@@ -757,26 +787,23 @@ export class DashboardComponent implements OnInit {
         this.agentFormData.Id = this.agentBrokerId.toString();
       }
 
+      this.agentFormData.BRNNo = this.agnetBorker.value.BRNNo;
       this.agentFormData.NationalityId = this.NationalityId.toString();
       this.agentFormData.AgentLanguages = langObject;
-      this.agentFormData.AgentAreas = districtsIdsObject;
-      // this.agentFormData.ExpertIn   = expertObject;
+      // this.agentFormData.AgentAreas = temp;
+      this.agentFormData.ExpertIn = expertObject;
+      this.agentFormData.AreaData = temp;
       this.documentsObject();
       this.agentFormData.Documents = this.finalBrokerDocments
       this.uploadedDocuments = [];
       this.finalBrokerDocments = [];
 
       let valuationData = new FormData();
-      valuationData.delete('AgentRequest')
       valuationData.append("AgentRequest", JSON.stringify(this.agentFormData));
 
-      for (let i = 0; i < this.imageObject.length; i++) {
-        valuationData.delete(this.imageObject[i])
-      }
-
       for (let i = 0; i < 3; i++) {
-        this.imageObject.push()
-        valuationData.append(i + "_" + this.otherImages[i].file.name, this.otherImages[i].file);
+        console.log(this.otherImages[i])
+        valuationData.append(i+1 + "_" + this.otherImages[i].file.name, this.otherImages[i].file);
       }
       let token: any = localStorage.getItem("token");
       token = JSON.parse(token);
@@ -791,6 +818,7 @@ export class DashboardComponent implements OnInit {
         },
         dataType: "json",
         success: (res) => {
+          console.log(res)
           this.agentBrokerId = res.data.id;
           this.notifyService.showSuccess(res.message, "");
           // if(res.message == "Property Listing request completed successfully") {
@@ -825,6 +853,7 @@ export class DashboardComponent implements OnInit {
 
   viewChangeId: any;
   myActivityViewChange(e: any) {
+    this.page = 1;
     this.viewChangeId = e;
     this.lordMyActivityListingView();
   }
@@ -837,8 +866,8 @@ export class DashboardComponent implements OnInit {
       response.data.forEach((element: any, i: any) => {
         let image: any;
         let rentTypeName = ''
-        if (element.rentType != null) {
-          rentTypeName = element.rentType.name
+        if (element.rentType != null && element.rentType != undefined && element.rentType.name != undefined && element.rentType.name != null && element.propertyListingTypeId != 2) {
+            rentTypeName = '/'+element.rentType.name
         }
         if (element.documents.length > 1) {
           image = this.baseUrl + element.documents[0].fileUrl
@@ -856,8 +885,9 @@ export class DashboardComponent implements OnInit {
           }
         );
       })
+      this.totalLength = tempData.length
+      this.myActivityListingView = tempData;
     });
-    this.myActivityListingView = tempData;
   }
 
 
@@ -881,9 +911,9 @@ export class DashboardComponent implements OnInit {
             reraNo: element.agentDetails.company.reraNo, id: element.agentDetails.user.id
           }
         );
+      });
+      this.myActivityAgentView = tempData;
       })
-    });
-    this.myActivityAgentView = tempData;
   }
 
 
@@ -929,8 +959,8 @@ export class DashboardComponent implements OnInit {
         }
 
         let rentType: any = '';
-        if (element.rentType !== null && element.rentType !== undefined) {
-          rentType = element.rentType.name
+        if (element.rentType != null && element.rentType != undefined && element.rentType.name != undefined && element.rentType.name != null && element.propertyListingTypeId != 2) {
+          rentType = '/'+element.rentType.name
         }
 
         let propertyType: any = '';
@@ -1081,8 +1111,8 @@ export class DashboardComponent implements OnInit {
           image = 'assets/images/placeholder.png'
         }
         let rentType: any = '';
-        if (element.rentType !== null && element.rentType !== undefined) {
-          rentType = element.rentType.name
+        if (element.rentType != null && element.rentType != undefined && element.rentType.name != undefined && element.rentType.name != null && element.propertyListingTypeId != 2) {
+          rentType = '/'+element.rentType.name
         }
 
         let propertyType: any = '';
