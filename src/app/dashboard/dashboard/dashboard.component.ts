@@ -59,7 +59,7 @@ export class DashboardComponent implements OnInit {
   leadSummary: any = "";
   showLoader: boolean = true;
   myPackages: any;
-  activitySavedSearch: any;
+  activitySavedSearch: any = [];
   leadsResidentialSummary: any = [];
   leadsCommercialSummary: any = [];
   areaData: any = [];
@@ -467,15 +467,19 @@ export class DashboardComponent implements OnInit {
     temp = JSON.parse(temp).id;
     this.service.MyLeads({ "UserId": temp, "PropertyCategoryId": CategoryId, "PropertyListingTypeId": TypeId }).subscribe((result: any) => {
       this.leadsData = result.data;
-      for (let i = 0; i < this.leadsData.length; i++) {
-        if (this.leadsData[i].propertyListing.propertyCategoryId == 1) {
-          this.leadsData[i].propertyCategory = "Residential"
-        } else {
-          this.leadsData[i].propertyCategory = "Commercial"
+      if(this.leadsData.length > 0) {
+        for (let i = 0; i < this.leadsData.length; i++) {
+          if (this.leadsData[i].propertyListing.propertyCategoryId == 1) {
+            this.leadsData[i].propertyCategory = "Residential"
+          } else {
+            this.leadsData[i].propertyCategory = "Commercial"
+          }
         }
-      }
-      for (let i = 0; i < this.leadsData.length; i++) {
-        this.leadsData[i].leadDate = this.leadsData[i].leadDate.split("T")[0];
+        for (let i = 0; i < this.leadsData.length; i++) {
+          if(this.leadsData[i].leadDate != null) {
+            this.leadsData[i].leadDate = this.leadsData[i].leadDate.split("T")[0];
+          }
+        }
       }
     })
   }
@@ -795,12 +799,11 @@ export class DashboardComponent implements OnInit {
       valuationData.append("AgentRequest", JSON.stringify(this.agentFormData));
 
       for (let i = 0; i < 3; i++) {
-        // this.imageObject.push()
-        valuationData.append(i + "_" + this.otherImages[i].file.name, this.otherImages[i].file);
+        console.log(this.otherImages[i])
+        valuationData.append(i+1 + "_" + this.otherImages[i].file.name, this.otherImages[i].file);
       }
       let token: any = localStorage.getItem("token");
       token = JSON.parse(token);
-      console.log(this.agentFormData)
       $.ajax({
         url: "https://beta.ovaluate.com/api/AddUpdateAgentDetails",
         method: "post",
