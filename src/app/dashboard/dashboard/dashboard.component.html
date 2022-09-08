@@ -732,7 +732,7 @@
                                                                         <a
                                                                             class="agent-details__property-list-item-link cursor-pointer">{{viewList.propertyPrice}}
                                                                             {{viewList.currency}}
-                                                                            <span>/{{viewList.rentType}}</span>
+                                                                            <span>{{viewList.rentType}}</span>
                                                                         </a>
                                                                     </div>
                                                                     <div class="col-5 text-end">
@@ -920,7 +920,7 @@
                                                                             <a
                                                                                 class="agent-details__property-list-item-link cursor-pointer">{{wishData.price}}
                                                                                 {{wishData.currency}}
-                                                                                <span>/{{wishData.rentType}}</span>
+                                                                                <span>{{wishData.rentType}}</span>
                                                                             </a>
                                                                         </div>
                                                                         <div class="col-5 text-end">
@@ -1040,7 +1040,7 @@
                                                                         <a
                                                                             class="agent-details__property-list-item-link cursor-pointer">{{enquiredData.propertyPrice}}
                                                                             {{enquiredData.currency}}
-                                                                            <span>/{{enquiredData.rentType}}</span>
+                                                                            <span>{{enquiredData.rentType}}</span>
                                                                         </a>
                                                                     </div>
                                                                     <div class="col-5 text-end">
@@ -1438,7 +1438,7 @@
                                                                         <a
                                                                             class="agent-details__property-list-item-link cursor-pointer">{{listing.propertyPrice}}
                                                                             {{listing.currency}}<small
-                                                                                *ngIf="listing.rentType != ''">/{{listing.rentType}}</small>
+                                                                                *ngIf="listing.rentType != ''">{{listing.rentType}}</small>
                                                                         </a>
                                                                     </div>
                                                                     <div class="col-5 text-end">
@@ -1572,8 +1572,8 @@
                                                                     <div class="col-7">
                                                                         <a
                                                                             class="agent-details__property-list-item-link cursor-pointer">{{listing.propertyPrice}}
-                                                                            {{listing.propertyTitle}}
-                                                                            <span>/{{listing.rentType}}</span>
+                                                                            {{listing.currency}}
+                                                                            <span>{{listing.rentType}}</span>
                                                                         </a>
                                                                     </div>
                                                                     <div class="col-5 text-end">
@@ -1708,8 +1708,8 @@
                                                                     <div class="col-7">
                                                                         <a
                                                                             class="agent-details__property-list-item-link cursor-pointer">{{listing.propertyPrice}}
-                                                                            {{listing.propertyTitle}}
-                                                                            <span>/{{listing.rentType}}</span>
+                                                                            {{listing.currency}}
+                                                                            <span>{{listing.rentType}}</span>
                                                                         </a>
                                                                     </div>
                                                                     <div class="col-5 text-end">
