@@ -2125,11 +2125,21 @@
                                     *ngIf="professionalType == 1 || professionalType == 2 || professionalType == 3">
                                     <div class="row">
                                         <div class="col-md-9">
-                                            <form [formGroup]="agnetBorker">
+                                            <form [formGroup]="agentBroker">
                                                 <div class="">
                                                     <div class="list-new-proerty-cntnt">
                                                         <div ngClass="deed-numbers">
                                                             <div ngClass="row">
+                                                                <div ngClass="col-xl-12 col-lg-12 col-sm-12">
+                                                                    <div ngClass="block-wrapper mb-4">
+                                                                        <label class="h6-design">About Me</label>
+                                                                        <mat-form-field
+                                                                            class="example-full-width textarea-design"
+                                                                            appearance="fill">
+                                                                            <textarea matInput formControlName="agentAboutMe"></textarea>
+                                                                        </mat-form-field>
+                                                                    </div>
+                                                                </div>
                                                                 <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                                                     <div ngClass="block-wrapper mb-4">
                                                                         <label class="h6-design">BRN No.#</label>

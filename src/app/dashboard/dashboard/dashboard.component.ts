@@ -93,7 +93,8 @@ export class DashboardComponent implements OnInit {
     dob: new FormControl("")
   });
   agentDetailForm = new FormGroup({
-    agentBrnNo: new FormGroup("")
+    agentBrnNo: new FormGroup(""),
+    agentAboutMe: new FormGroup("")
   })
   data: any = {};
   userFormData: any;
@@ -134,6 +135,9 @@ export class DashboardComponent implements OnInit {
   }
   get agentBrnNo() {
     return this.agentDetailForm.get("agentbrnNo");
+  }
+  get agentAboutMe() {
+    return this.agentDetailForm.get("agentAboutMe");
   }
   userId: number;
   parentTabId: any = "";
@@ -191,7 +195,7 @@ export class DashboardComponent implements OnInit {
       })
       this.service.MyActivitySavedSearchProperty({ "UserId": this.userData.id, "PropertyListingTypeId": "" }).subscribe((result: any) => {
         this.activitySavedSearch = result.data;
-        console.log(this.activitySavedSearch)
+        // console.log(this.activitySavedSearch)
       })
     })
     this.service.LoadPropertyListingTypes().subscribe(e => {
@@ -309,6 +313,10 @@ export class DashboardComponent implements OnInit {
       alert("Enter BRN No");
       return;
     }
+    if (this.agentDetailForm.value.agentAboutMe == "") {
+      alert("Enter About Me");
+      return;
+    }
     let temp: any = localStorage.getItem("user");
     temp = JSON.parse(temp);
     this.data.Id = temp.id;
@@ -328,6 +336,7 @@ export class DashboardComponent implements OnInit {
       }
     });
     this.data.BRNNo = this.agentDetailsFormData.value.agentBrnNo;
+    this.data.agentAboutMe = this.agentDetailsFormData.value.agentAboutMe;
   }
 
   LoadvaluationDashboard() {
@@ -404,7 +413,6 @@ export class DashboardComponent implements OnInit {
 
 
   public childTabsChange(id: any) {
-    // this.totalLength = 0;
     this.page = 1;
     this.childTabId = id
     // this.getTabCount();
@@ -602,7 +610,6 @@ export class DashboardComponent implements OnInit {
 
   listingAll: any = [];
   getLoadListing() {
-    this.totalLength = 0
     let tempData: Array<Object> = []
     this.service.LoadListing({ "UserId": this.user.id, "PropertyListingTypeId": this.parentTabId, "PropertyListingStatusId": this.childTabId }).subscribe(data => {
       let response: any = data;
@@ -638,8 +645,9 @@ export class DashboardComponent implements OnInit {
   }
 
 
-  agnetBorker = new FormGroup({
+  agentBroker = new FormGroup({
     BRNNo: new FormControl(""),
+    agentAboutMe: new FormControl("")
   });
 
   ExpertIn: any = [];
@@ -782,14 +790,14 @@ export class DashboardComponent implements OnInit {
       let userData: any = localStorage.getItem("user");
       userData = JSON.parse(userData);
       this.agentFormData.UserId = userData.id.toString();
-      this.agentFormData.AboutMe = 'test';
       if (this.agentBrokerId == null) {
         this.agentFormData.Id = "0";
       } else {
         this.agentFormData.Id = this.agentBrokerId.toString();
       }
-
-      this.agentFormData.BRNNo = this.agnetBorker.value.BRNNo;
+      
+      this.agentFormData.AboutMe = this.agentBroker.value.agentAboutMe;
+      this.agentFormData.BRNNo = this.agentBroker.value.BRNNo;
       this.agentFormData.NationalityId = this.NationalityId.toString();
       this.agentFormData.AgentLanguages = langObject;
       // this.agentFormData.AgentAreas = temp;
@@ -802,9 +810,10 @@ export class DashboardComponent implements OnInit {
 
       let valuationData = new FormData();
       valuationData.append("AgentRequest", JSON.stringify(this.agentFormData));
+      console.log(this.agentFormData)
 
       for (let i = 0; i < 3; i++) {
-        console.log(this.otherImages[i])
+        // console.log(this.otherImages[i])
         valuationData.append(i+1 + "_" + this.otherImages[i].file.name, this.otherImages[i].file);
       }
       let token: any = localStorage.getItem("token");
