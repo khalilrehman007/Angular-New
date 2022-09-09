@@ -106,11 +106,17 @@
      <h4>REPORTS</h4>
     </div>
     <ul class="list-unstyled">
-     <li class="mt-4 mb-4"><a routerLink="">RESIDENTIAL</a></li>
-     <li><a routerLink="">CITY REPORT</a></li>
-     <li><a routerLink="">AREA REPORT</a></li>
-     <li><a routerLink="">PROPERTY REPORT</a></li>
-     <li><a routerLink="">DEVELOPER REPORT</a></li>
+     <li class="mt-4">
+      <div ngbDropdown>
+        <button type="button" class="btn btn-outline-primary" id="dropdownBasic81" ngbDropdownToggle>RESIDENTIAL</button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic81">
+          <button ngbDropdownItem><a routerLink="">CITY REPORT</a></button>
+          <button ngbDropdownItem><a routerLink="">AREA REPORT</a></button>
+          <button ngbDropdownItem><a routerLink="">PROPERTY REPORT</a></button>
+          <button ngbDropdownItem><a routerLink="">DEVELOPER REPORT</a></button>
+        </div>
+      </div>
+    </li>
      <li>
        <div ngbDropdown>
          <button type="button" class="btn btn-outline-primary" id="dropdownBasic8" ngbDropdownToggle>MARKET REPORTS</button>
