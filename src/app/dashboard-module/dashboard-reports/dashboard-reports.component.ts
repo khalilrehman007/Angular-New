@@ -65,8 +65,8 @@ export class DashboardReportsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  // Pie
-  public pieChartOptions: ChartConfiguration['options'] = {
+  // Total Residential Suuply Of the City First
+  public TrsFirstOptions: ChartConfiguration['options'] = {
     responsive: true,
     maintainAspectRatio: false,
     plugins: {
@@ -85,7 +85,7 @@ export class DashboardReportsComponent implements OnInit {
 
     }
   };
-  public pieChartData: ChartData<'pie', number[], string | string[]> = {
+  public TrsFirstData: ChartData<'pie', number[], string | string[]> = {
     labels: [
       "Under Construction",
       "Completed"
@@ -97,7 +97,7 @@ export class DashboardReportsComponent implements OnInit {
           "rgb(89, 90, 212)",
           "rgb(211, 219, 255)"
         ],
-        borderRadius: 10,
+        borderRadius: 5,
         borderWidth: 0,
         offset: 20,
         hoverBackgroundColor: [
@@ -106,13 +106,102 @@ export class DashboardReportsComponent implements OnInit {
         ]
       }]
   };
-  public pieChartType: ChartType = 'pie';
-  public pieChartPlugins = [DatalabelsPlugin];
+  public TrsFirstType: ChartType = 'pie';
+  public TrsFirstPlugins = [DatalabelsPlugin];
 
+
+    // Total Residential Suuply Of the City Second
+    public TrsSecondOptions: ChartConfiguration['options'] = {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          display: true,
+          position: 'bottom',
+          labels: {
+            font: {
+              size: 10,
+            }
+          }
+        },
+        datalabels: {
+          display: false,
+        },
+  
+      }
+    };
+    public TrsSecondData: ChartData<'pie', number[], string | string[]> = {
+      labels: [
+        "Under Construction",
+        "Completed"
+      ],
+      datasets: [
+        {
+          data: [75, 25],
+          backgroundColor: [
+            "rgb(89, 90, 212)",
+            "rgb(211, 219, 255)"
+          ],
+          borderRadius: 5,
+          borderWidth: 0,
+          offset: 20,
+          hoverBackgroundColor: [
+            "rgb(89, 90, 212)",
+            "rgb(211, 219, 255)"
+          ]
+        }]
+    };
+    public TrsSecondType: ChartType = 'pie';
+    public TrsSecondPlugins = [DatalabelsPlugin];
+
+
+    // Total Residential Suuply Of the City Third
+    public TrsThirdOptions: ChartConfiguration['options'] = {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          display: true,
+          position: 'bottom',
+          labels: {
+            font: {
+              size: 10,
+            }
+          }
+        },
+        datalabels: {
+          display: false,
+        },
+  
+      }
+    };
+    public TrsThirdData: ChartData<'pie', number[], string | string[]> = {
+      labels: [
+        "Under Construction",
+        "Completed"
+      ],
+      datasets: [
+        {
+          data: [75, 25],
+          backgroundColor: [
+            "rgb(89, 90, 212)",
+            "rgb(211, 219, 255)"
+          ],
+          borderRadius: 5,
+          borderWidth: 0,
+          offset: 20,
+          hoverBackgroundColor: [
+            "rgb(89, 90, 212)",
+            "rgb(211, 219, 255)"
+          ]
+        }]
+    };
+    public TrsThirdType: ChartType = 'pie';
+    public TrsThirdPlugins = [DatalabelsPlugin];
 
 
   // Population Chart
-  public barChartOptions: ChartConfiguration['options'] = {
+  public PoppulationTrendsOptions: ChartConfiguration['options'] = {
     responsive: true,
     maintainAspectRatio: false,
     scales: {
@@ -137,9 +226,7 @@ export class DashboardReportsComponent implements OnInit {
         display: false,
       },
       title: {
-        display: true,
-        text: 'No of units',
-        position: 'left',
+        display: false,
         font: {
           size: 10
         }
@@ -149,32 +236,29 @@ export class DashboardReportsComponent implements OnInit {
       },
     }
   };
-  public barChartType: ChartType = 'bar';
-  public barChartPlugins = [
+  public PoppulationTrendsType: ChartType = 'bar';
+  public PoppulationTrendsPlugins = [
     DatalabelsPlugin
   ];
 
-  public barChartData: ChartData<'bar'> = {
+  public PoppulationTrendsData: ChartData<'bar'> = {
     labels: ["2017", "2018", "2017", "2018", "2018"],
     datasets: [{
       data: [500000, 3500600, 100000, 3503500, 3500000],
-      borderRadius: 5,
-      backgroundColor: "rgb(211, 219, 255)",
+      borderRadius: 20,
+      backgroundColor: "#595AD4",
       barPercentage: 0.9,
       minBarLength: 10,
       hoverBackgroundColor: [
-        "rgb(211, 219, 255)"
+        "#595AD4"
       ]
     }]
   };
 
 
-
-
   // Supply Chart
   public SupplybarChartOptions: ChartConfiguration['options'] = {
     responsive: true,
-    maintainAspectRatio: false,
     scales: {
       x: {
         ticks: {
@@ -218,7 +302,7 @@ export class DashboardReportsComponent implements OnInit {
     labels: ["0 (Studio)", "1 Bedroom", "2 Bedrooms", "3 Bedrooms", "4 Bedrooms", "5 Bedrooms", "5+ Bedrooms", "Unknown"],
     datasets: [{
       data: [20637, 28421, 18598, 12733, 5764, 1528, 667, 26054],
-      borderRadius: 5,
+      borderRadius: 50,
       backgroundColor: "rgb(89, 90, 212)",
       barPercentage: 0.9,
       minBarLength: 10,
@@ -352,7 +436,7 @@ export class DashboardReportsComponent implements OnInit {
       },
     ]
   };
-    // Average Service Charges of the City
+    // Average Service Charges of the City First
     public AservicebarChartOptions: ChartConfiguration['options'] = {
       scales: {
         x: {
@@ -394,7 +478,7 @@ export class DashboardReportsComponent implements OnInit {
       datasets: [{
         label: 'Villa',
         data: [3.58, 3.59, 3.74, 3.55, 2.85, 2.94],
-        borderRadius: 5,
+        borderRadius: 50,
         barPercentage: 0.9,
         minBarLength: 10,
         backgroundColor: "rgb(211, 219, 255)",
@@ -404,7 +488,7 @@ export class DashboardReportsComponent implements OnInit {
       }, {
         label: 'Apartment',
         data: [12.39, 12.61, 12.89, 13.00, 12.81, 13.39, 7],
-        borderRadius: 5,
+        borderRadius: 50,
         barPercentage: 0.9,
         minBarLength: 10,
         backgroundColor: "rgb(89, 90, 212)",
@@ -415,11 +499,10 @@ export class DashboardReportsComponent implements OnInit {
     };
 
 
-        // Average Occupancy Rate of the City
-        public AoccupacybarChartOptions: ChartConfiguration['options'] = {
+        // Average Service Charges of the City First
+        public AservicebarSecondChartOptions: ChartConfiguration['options'] = {
           scales: {
             x: {
-              type: 'linear',
               ticks: {
                 font: {
                   size: 10,
@@ -434,32 +517,41 @@ export class DashboardReportsComponent implements OnInit {
               }
             },
           },
+          responsive: true,
+          maintainAspectRatio: false,
           interaction: {
             intersect: false
           },
-          
-          responsive: true,
-          maintainAspectRatio: false,
           plugins: {
             legend: {
-              position: 'right',
+              position: 'bottom',
             },
             datalabels: {
               display: false,
             },
           },
         };
-        public AoccupacybarChartType: ChartType = 'bar';
-        public AoccupacybarChartPlugins = [
+        public AservicebarSecondChartType: ChartType = 'bar';
+        public AservicebarSecondChartPlugins = [
           DatalabelsPlugin
         ];
       
-        public AoccupacybarChartData: ChartData<'bar'> = {
-          labels: ["2016", "2017", "2018", "2019", "2020", "2021", "2022"],
+        public AservicebarSecondChartData: ChartData<'bar'> = {
+          labels: ["2016", "2017", "2018", "2019", "2020", "2021"],
           datasets: [{
+            label: 'Villa',
+            data: [3.58, 3.59, 3.74, 3.55, 2.85, 2.94],
+            borderRadius: 50,
+            barPercentage: 0.9,
+            minBarLength: 10,
+            backgroundColor: "rgb(211, 219, 255)",
+            hoverBackgroundColor: [
+              "rgb(211, 219, 255)"
+            ]
+          }, {
             label: 'Apartment',
-            data: [91.1, 90.1, 88.7, 85.5, 83.0, 84.6, 86.8],
-            borderRadius: 20,
+            data: [12.39, 12.61, 12.89, 13.00, 12.81, 13.39, 7],
+            borderRadius: 50,
             barPercentage: 0.9,
             minBarLength: 10,
             backgroundColor: "rgb(89, 90, 212)",
@@ -472,6 +564,62 @@ export class DashboardReportsComponent implements OnInit {
 
         // Average Occupancy Rate of the City
         
+        // public AoccupacybarChartOptions: ChartConfiguration['options'] = {
+        //   scales: {
+        //     x: {
+        //       type: 'linear',
+        //       ticks: {
+        //         font: {
+        //           size: 10,
+        //         }
+        //       }
+        //     },
+        //     y: {
+        //       ticks: {
+        //         font: {
+        //           size: 10,
+        //         }
+        //       }
+        //     },
+        //   },
+        //   interaction: {
+        //     intersect: false
+        //   },
+          
+        //   responsive: true,
+        //   maintainAspectRatio: false,
+        //   plugins: {
+        //     legend: {
+        //       position: 'right',
+        //     },
+        //     datalabels: {
+        //       display: false,
+        //     },
+        //   },
+        // };
+        // public AoccupacybarChartType: ChartType = 'bar';
+        // public AoccupacybarChartPlugins = [
+        //   DatalabelsPlugin
+        // ];
+      
+        // public AoccupacybarChartData: ChartData<'bar'> = {
+        //   labels: ["2016", "2017", "2018", "2019", "2020", "2021", "2022"],
+        //   datasets: [{
+        //     label: 'Apartment',
+        //     data: [91.1, 90.1, 88.7, 85.5, 83.0, 84.6, 86.8],
+        //     borderRadius: 20,
+        //     barPercentage: 0.9,
+        //     minBarLength: 10,
+        //     backgroundColor: "rgb(89, 90, 212)",
+        //     hoverBackgroundColor: [
+        //       "rgb(89, 90, 212)"
+        //     ]
+        //   }]
+        // };
+
+
+        // Price to Rent Ratio of the City First
+        
         public priceRadiolineChartData: ChartConfiguration['data'] = {
           labels: ["0", "500", "1000", "1500", "2000", "2500",],
           datasets: [{
@@ -479,44 +627,44 @@ export class DashboardReportsComponent implements OnInit {
                   backgroundColor: "rgb(89, 90, 212)",
                   borderColor: '#595ad4',
                   pointBorderColor: '#595ad4',
-                  pointBackgroundColor: '#595ad4',
-                  pointHoverBackgroundColor: '#595ad4',
-                  pointHoverBorderColor: '#595ad4',
+                  pointBackgroundColor: 'rgba(89,90,212)',
+                  pointHoverBackgroundColor: 'rgba(89,90,212)',
+                  pointHoverBorderColor: 'rgba(89,90,212)',
                   pointBorderWidth: 3,
                   pointHoverRadius: 3,
                   pointHoverBorderWidth: 1,
                   pointRadius: 3,
                   fill: false,
                   borderWidth: 4,
-                  data: [4, 8, 6, 10, 8, 10],
+                  data: [4, 8, 6],
           }, {
                   label: 'Villa',
                   backgroundColor: "rgb(211, 219, 255)",
                   pointBorderColor: "rgb(211, 219, 255)",
-                  pointBackgroundColor: "rgb(211, 219, 255)",
-                  pointHoverBackgroundColor: '#595ad4',
-                  pointHoverBorderColor: '#595ad4',
+                  pointBackgroundColor: "rgba(89,90,212,0.7)",
+                  pointHoverBackgroundColor: 'rgba(89,90,212,0.7)',
+                  pointHoverBorderColor: 'rgba(89,90,212,0.7)',
                   pointBorderWidth: 3,
                   pointHoverRadius: 3,
                   pointHoverBorderWidth: 1,
                   pointRadius: 3,
                   fill: false,
                   borderWidth: 4,
-                  data: [4, 8, 6, 10, 8, 10],
+                  data: [4, 8, 6, 8, 10],
           }, {
                   label: 'Residential - General',
                   backgroundColor: "rgb(140, 144, 221)",
                   pointBorderColor: "rgb(140, 144, 221)",
                   pointBackgroundColor: "rgb(140, 144, 221)",
-                  pointHoverBackgroundColor: '#595ad4',
-                  pointHoverBorderColor: '#595ad4',
+                  pointHoverBackgroundColor: 'rgba(89,90,212,0.3)',
+                  pointHoverBorderColor: 'rgba(89,90,212,0.3)',
                   pointBorderWidth: 3,
                   pointHoverRadius: 3,
                   pointHoverBorderWidth: 1,
                   pointRadius: 3,
                   fill: false,
                   borderWidth: 4,
-                  data: [4, 8, 6, 10, 8, 10],
+                  data: [4, 8, 6, 8, 10, 12,14],
           }]
         };
         public priceRadiolineChartOptions: ChartConfiguration['options'] = {
@@ -549,6 +697,168 @@ export class DashboardReportsComponent implements OnInit {
           }
 }
 public priceRadiolineChartType: ChartType = 'line';
+
+
+        // Price to Rent Ratio of the City Second
+        
+        public priceRatiosecondlineChartData: ChartConfiguration['data'] = {
+          labels: ["0", "500", "1000", "1500", "2000", "2500",],
+          datasets: [{
+                  label: 'Apartment',
+                  backgroundColor: "rgb(89, 90, 212)",
+                  borderColor: '#595ad4',
+                  pointBorderColor: '#595ad4',
+                  pointBackgroundColor: 'rgba(89,90,212)',
+                  pointHoverBackgroundColor: 'rgba(89,90,212)',
+                  pointHoverBorderColor: 'rgba(89,90,212)',
+                  pointBorderWidth: 3,
+                  pointHoverRadius: 3,
+                  pointHoverBorderWidth: 1,
+                  pointRadius: 3,
+                  fill: false,
+                  borderWidth: 4,
+                  data: [4, 8, 6],
+          }, {
+                  label: 'Villa',
+                  backgroundColor: "rgb(211, 219, 255)",
+                  pointBorderColor: "rgb(211, 219, 255)",
+                  pointBackgroundColor: "rgba(89,90,212,0.7)",
+                  pointHoverBackgroundColor: 'rgba(89,90,212,0.7)',
+                  pointHoverBorderColor: 'rgba(89,90,212,0.7)',
+                  pointBorderWidth: 3,
+                  pointHoverRadius: 3,
+                  pointHoverBorderWidth: 1,
+                  pointRadius: 3,
+                  fill: false,
+                  borderWidth: 4,
+                  data: [4, 8, 6, 8, 10],
+          }, {
+                  label: 'Residential - General',
+                  backgroundColor: "rgb(140, 144, 221)",
+                  pointBorderColor: "rgb(140, 144, 221)",
+                  pointBackgroundColor: "rgb(140, 144, 221)",
+                  pointHoverBackgroundColor: 'rgba(89,90,212,0.3)',
+                  pointHoverBorderColor: 'rgba(89,90,212,0.3)',
+                  pointBorderWidth: 3,
+                  pointHoverRadius: 3,
+                  pointHoverBorderWidth: 1,
+                  pointRadius: 3,
+                  fill: false,
+                  borderWidth: 4,
+                  data: [4, 8, 6, 8, 10, 12,14],
+          }]
+        };
+        public priceRatiosecondChartOptions: ChartConfiguration['options'] = {
+          scales: {
+            x: {
+              type: 'linear',
+              ticks: {
+                font: {
+                  size: 10,
+                }
+              }
+            },
+            y: {
+              ticks: {
+                font: {
+                  size: 10,
+                }
+              }
+            },
+          },
+          maintainAspectRatio: false,
+          responsive: true,
+          plugins: {
+            legend: {
+              position: 'bottom',
+            },
+            datalabels: {
+              display: false,
+            },
+          }
+}
+public priceRatiosecondChartType: ChartType = 'line';
+
+      // Price to Rent Ratio of the City Third
+        
+      public priceRatioThirdlineChartData: ChartConfiguration['data'] = {
+        labels: ["0", "500", "1000", "1500", "2000", "2500",],
+        datasets: [{
+                label: 'Apartment',
+                backgroundColor: "rgb(89, 90, 212)",
+                borderColor: '#595ad4',
+                pointBorderColor: '#595ad4',
+                pointBackgroundColor: 'rgba(89,90,212)',
+                pointHoverBackgroundColor: 'rgba(89,90,212)',
+                pointHoverBorderColor: 'rgba(89,90,212)',
+                pointBorderWidth: 3,
+                pointHoverRadius: 3,
+                pointHoverBorderWidth: 1,
+                pointRadius: 3,
+                fill: false,
+                borderWidth: 4,
+                data: [4, 8, 6],
+        }, {
+                label: 'Villa',
+                backgroundColor: "rgb(211, 219, 255)",
+                pointBorderColor: "rgb(211, 219, 255)",
+                pointBackgroundColor: "rgba(89,90,212,0.7)",
+                pointHoverBackgroundColor: 'rgba(89,90,212,0.7)',
+                pointHoverBorderColor: 'rgba(89,90,212,0.7)',
+                pointBorderWidth: 3,
+                pointHoverRadius: 3,
+                pointHoverBorderWidth: 1,
+                pointRadius: 3,
+                fill: false,
+                borderWidth: 4,
+                data: [4, 8, 6, 8, 10],
+        }, {
+                label: 'Residential - General',
+                backgroundColor: "rgb(140, 144, 221)",
+                pointBorderColor: "rgb(140, 144, 221)",
+                pointBackgroundColor: "rgb(140, 144, 221)",
+                pointHoverBackgroundColor: 'rgba(89,90,212,0.3)',
+                pointHoverBorderColor: 'rgba(89,90,212,0.3)',
+                pointBorderWidth: 3,
+                pointHoverRadius: 3,
+                pointHoverBorderWidth: 1,
+                pointRadius: 3,
+                fill: false,
+                borderWidth: 4,
+                data: [4, 8, 6, 8, 10, 12,14],
+        }]
+      };
+      public priceRatioThirdChartOptions: ChartConfiguration['options'] = {
+        scales: {
+          x: {
+            type: 'linear',
+            ticks: {
+              font: {
+                size: 10,
+              }
+            }
+          },
+          y: {
+            ticks: {
+              font: {
+                size: 10,
+              }
+            }
+          },
+        },
+        maintainAspectRatio: false,
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'bottom',
+          },
+          datalabels: {
+            display: false,
+          },
+        }
+}
+public priceRatioThirdChartType: ChartType = 'line';
+
 status: boolean = false;
 clickEvent() {
     this.status = !this.status;

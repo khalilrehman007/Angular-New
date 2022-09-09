@@ -50,10 +50,11 @@ body.dark .home-section .home-content .bx-menu, body.dark .home-section .home-co
 }
 
 .card .text-small{
-  font-size: 16px;
+  font-size: 20px;
   color: #fff;
-  font-weight: 600;
-  margin-bottom: 10px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  min-height: 48px;
 }
 .custom-box span{
   padding: 18px 15px;
@@ -193,6 +194,7 @@ body.dark::after{
     padding: 20px 15px;
     border-radius: 2rem;
     border: 0;
+    height: 100%;
 }
 
 .card-header{
@@ -216,10 +218,6 @@ body.dark::after{
 .card-margin-5{
     margin: 0px 5px;
 }
-.chart.average-service-chart canvas,.average-occupacy-chart canvas,.price-average-charts canvas {
-  min-height: 250px;
-}
-
 #goto_top {
   width: 60px;
   height: 60px;
@@ -282,14 +280,6 @@ footer p a{
 	border-radius: 2.2rem;
 	background: var(--header-color-bg);
 	box-shadow: 0 4px 24px 0 rgb(34 41 47 / 10%);
-}
-.form-control {
-    width: 100%;
-    height: 30px;
-    font-size: 12px;
-    border-radius: 50rem;
-    background: #d8ddf9;
-    line-height: 1.2;
 }
 .dash-header-box {
 	background: rgba(211, 219, 255, 0.34);
@@ -386,9 +376,6 @@ footer p a{
 .dashboard-header-right .dropdown-menu .dropdown-item:hover {
 	background-color: var(--primary-color);
 }
-.population-trnd-chart canvas, .supply-chart canvas, .poppulation-gender-chart canvas {
-  height: 200px !important;
-}
 .dashbpard-reports-inof-blocks .card {
   height: 100%;
 }
@@ -403,5 +390,34 @@ select.nice-select{
   padding-bottom: 50px;
 }
 .dashboard-reports-inner-wrapper {
-  padding-top: 30px;
+  width: 100%;
+  max-width: calc(100% - 260px);
+  margin-left: auto;
+  padding: 90px 15px 0px 15px;
+}
+.dashboard-dat-filter-box label {
+  font-size: 13px;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 7px;
+}
+.dashboard-data-input-box input {
+  background-color: #e8e8f9;
+  border: none;
+  font-size: 14px;
+  padding: 10px 15px;
+}
+.dashboard-data-select-box select {
+  background-color: #e8e8f9;
+  border: none;
+  font-size: 14px;
+  padding: 10px 15px;
+}
+input:focus,select:focus{
+  outline: none !important;
+  box-shadow: none !important;
+}
+.height-chart-200 canvas {
+    width: 100% !important;
+    height: 200px !important;
 }
