@@ -323,12 +323,14 @@
                         </ul>
                         <ul ngClass="navbar-nav">
                             <li ngClass="nav-item link-li">
-                                <a ngClass="nav-link" routerLink="/property/search/Buy">
+                                <a ngClass="nav-link" [routerLink]="['/property/search']"
+                                   [queryParams]="{type:'Buy',PropertyListingTypeId: 2}">
                                     Buy
                                 </a>
                             </li>
                             <li ngClass="nav-item link-li">
-                                <a ngClass="nav-link" routerLink="/property/search/Rent">
+                                <a ngClass="nav-link" [routerLink]="['/property/search']"
+                                   [queryParams]="{type:'Rent',PropertyListingTypeId: 1}">
                                     Rent
                                 </a>
                             </li>

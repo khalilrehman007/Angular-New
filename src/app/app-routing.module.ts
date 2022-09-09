@@ -14,7 +14,7 @@ const routes: Routes = [
   {path:"sellrent", loadChildren:()=>import('./sell/sell.module').then(module => module.SellModule)},
   {path:"add-property", loadChildren:()=>import('./add-property-listing/add-property-listing.module').then(module => module.AddPropertyListingModule),canActivate: [AuthGuard]},
   {path:"blog", loadChildren:()=>import('./blog/blog.module').then(module => module.BlogModule)},
-  {path:"profile", loadChildren:()=>import('./dashboard/dashboard.module').then(module => module.DashboardModule)},
+  {path:"profile", loadChildren:()=>import('./dashboard/dashboard.module').then(module => module.DashboardModule),canActivate: [AuthGuard]},
   {path:"dashboard-reports", loadChildren:()=>import('./dashboard-module/dashboard-module.module').then(module => module.DashboardModuleModule)},
   {path:"classified", loadChildren:()=>import('./classified-module/classified-module.module').then(module => module.ClassifiedModuleModule)},
   {path:"find-agent", loadChildren:()=>import('./agent-and-companies/agent-and-companies.module').then(module => module.AgentAndCompaniesModule)},

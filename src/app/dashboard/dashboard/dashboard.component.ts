@@ -862,6 +862,7 @@ export class DashboardComponent implements OnInit {
 
   myActivityListingView: any = []
   lordMyActivityListingView() {
+    this.totalLength = 0
     let tempData: Array<Object> = []
     this.service.MyActivityPropertyListingView({ "UserId": this.user.id, "PropertyListingTypeId": this.viewChangeId }).subscribe(data => {
       let response: any = data;
