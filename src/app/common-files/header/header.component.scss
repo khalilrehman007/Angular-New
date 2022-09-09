@@ -467,7 +467,7 @@ header {
 	height: 10px;
 	top: 33px;
 	width: 14px;
-	border: 1px solid #428bca;
+	border: 0.5px solid #428bca;
 	border-right: 0;
 	background: #428bca;
 	background: linear-gradient(to top, #428bca 0%, #7fc3e8 100%);
@@ -494,7 +494,7 @@ header {
 	top: 23px;
 	width: 22px;
 	height: 22px;
-	border: 2px solid #595ad4;
+	border: 1px solid #595ad4;
 	background: #fff;
 	border-radius: 50%;
 	-moz-border-radius: 27px;
@@ -787,6 +787,13 @@ textarea {
 		z-index: 999;
 	}
 }
+.red-fill-btn:hover {
+    background: #0f2ead !important;
+    border-color: #0f2ead !important;
+}
+.red-fill-btn:hover .ai-tag{
+	color: #0f2ead !important;
+}
 @media (max-width: 1199px) {
 	#collapsibleNavbar {
 		position: fixed;
@@ -815,7 +822,7 @@ textarea {
 		width: 100% !important;
 		right: 0px !important;
 		top: 65px !important;
-		border: 1px solid #e0e0e0;
+		border: 0.5px solid #e0e0e0;
 		position: fixed !important;
 		left: 0 !important;
 		max-width: 95%;
@@ -934,7 +941,7 @@ textarea {
 		width: 100% !important;
     right: 0px !important;
     top: 65px !important;
-    border: 1px solid #e0e0e0;
+    border: 0.5px solid #e0e0e0;
     position: fixed !important;
     left: 0 !important;
     max-width: 95%;

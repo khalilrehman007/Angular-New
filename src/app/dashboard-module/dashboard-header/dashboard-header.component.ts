@@ -8,6 +8,8 @@ import { AuthService } from "../../service/auth.service";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database';
 import { map } from 'rxjs';
+import {NgbDropdownConfig} from '@ng-bootstrap/ng-bootstrap';
+
 @Component({
   selector: 'app-dashboard-header',
   templateUrl: './dashboard-header.component.html',
@@ -26,8 +28,8 @@ export class DashboardHeaderComponent implements OnInit {
   logoutimg = '../../../assets/images/logout-popup-banner.png'
   profileimg = '../../../assets/images/icons/profile-icon.png'
 
-  constructor() {
-  
+  constructor(config: NgbDropdownConfig) {
+    config.autoClose = false;
   }
   ngOnInit(): void {
   }
