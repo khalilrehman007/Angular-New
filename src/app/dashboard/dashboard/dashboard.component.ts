@@ -404,6 +404,7 @@ export class DashboardComponent implements OnInit {
 
 
   public childTabsChange(id: any) {
+    // this.totalLength = 0;
     this.page = 1;
     this.childTabId = id
     // this.getTabCount();
@@ -601,6 +602,7 @@ export class DashboardComponent implements OnInit {
 
   listingAll: any = [];
   getLoadListing() {
+    this.totalLength = 0
     let tempData: Array<Object> = []
     this.service.LoadListing({ "UserId": this.user.id, "PropertyListingTypeId": this.parentTabId, "PropertyListingStatusId": this.childTabId }).subscribe(data => {
       let response: any = data;
