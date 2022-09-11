@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="white-header-wrap">
-    <button class="dashboard-data-bars d-hide">
+    <button class="dashboard-data-bars d-hide" (click)="clickEvent5()">
      More Filters
     </button>
   <div class="d-flex justify-content-center align-items-center">
@@ -20,7 +20,7 @@
   </div>
   </div>
 </div>
-<div class="dashboard-data-side-bar">
+<div class="dashboard-data-side-bar" [ngClass]="status5 ? 'active' : 'notactive'">
  <div class="dashboard-data-side-header">
   <h2>DATA INTELLEGENT DASHBOARD</h2>
  </div>
@@ -338,3 +338,4 @@
     </div>
  </div>
 </div>
+<div ngClass="overlay_counter" (click)="clickEvent5()"></div>

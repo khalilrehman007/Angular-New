@@ -278,7 +278,7 @@ $color_1: #4A4A4A;
     max-width: 260px;
     padding: 22px;
     border-radius: 8px;
-    background-color: rgba(211, 219, 255, 0.34);
+    background-color: rgb(237 240 254);
     z-index: 999;
     bottom: 0;
     height: calc(100vh - 90px);
@@ -371,7 +371,24 @@ $color_1: #4A4A4A;
 .font-weight-bold{
 	font-weight: 700 !important;
 }
-
+.dashboard-data-side-bar.active {
+    left: 0 !important;
+}
+.dashboard-data-side-bar.active+.overlay_counter{
+	display: block !important;
+}
+.dashboard-data-bars {
+    background-color: #595ad5;
+    border: none;
+    color: #fff;
+    width: 100%;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px 15px;
+    margin-bottom: 25px;
+    border-radius: 50px;
+}
 
 
 @media (max-width: 1199px){
