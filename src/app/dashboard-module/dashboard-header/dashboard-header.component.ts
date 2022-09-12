@@ -8,6 +8,8 @@ import { AuthService } from "../../service/auth.service";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database';
 import { map } from 'rxjs';
+import {NgbDropdownConfig} from '@ng-bootstrap/ng-bootstrap';
+
 @Component({
   selector: 'app-dashboard-header',
   templateUrl: './dashboard-header.component.html',
@@ -26,8 +28,8 @@ export class DashboardHeaderComponent implements OnInit {
   logoutimg = '../../../assets/images/logout-popup-banner.png'
   profileimg = '../../../assets/images/icons/profile-icon.png'
 
-  constructor() {
-  
+  constructor(config: NgbDropdownConfig) {
+    config.autoClose = false;
   }
   ngOnInit(): void {
   }
@@ -37,6 +39,7 @@ export class DashboardHeaderComponent implements OnInit {
     this.status2 = false;
     this.status3 = false;
     this.status4 = false;
+    this.status5 = true;
   }
   status2: boolean = false;
   clickEvent2() {
@@ -44,6 +47,7 @@ export class DashboardHeaderComponent implements OnInit {
     this.status1 = false;
     this.status3 = false;
     this.status4 = false;
+    this.status5 = true;
   }
   status3: boolean = false;
   clickEvent3() {
@@ -51,6 +55,7 @@ export class DashboardHeaderComponent implements OnInit {
     this.status2 = false;
     this.status1 = false;
     this.status4 = false;
+    this.status5 = true;
   }
   status4: boolean = false;
   clickEvent4() {
@@ -58,5 +63,10 @@ export class DashboardHeaderComponent implements OnInit {
     this.status2 = false;
     this.status3 = false;
     this.status1 = false;
+    this.status5 = true;
+  }
+  status5: boolean = false;
+  clickEvent5() {
+    this.status5 = !this.status5;
   }
 }

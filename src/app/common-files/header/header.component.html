@@ -323,12 +323,14 @@
                         </ul>
                         <ul ngClass="navbar-nav">
                             <li ngClass="nav-item link-li">
-                                <a ngClass="nav-link" routerLink="/property/search/Buy">
+                                <a ngClass="nav-link" [routerLink]="['/property/search']"
+                                   [queryParams]="{type:'Buy',PropertyListingTypeId: 2}">
                                     Buy
                                 </a>
                             </li>
                             <li ngClass="nav-item link-li">
-                                <a ngClass="nav-link" routerLink="/property/search/Rent">
+                                <a ngClass="nav-link" [routerLink]="['/property/search']"
+                                   [queryParams]="{type:'Rent',PropertyListingTypeId: 1}">
                                     Rent
                                 </a>
                             </li>
@@ -380,9 +382,9 @@
                                     </div>
                                   </div>
                             </li>
-                            <li ngClass="nav-item">
-                                <a ngClass="nav-link blue-bordered-btn red-fill-btn" routerLink="/valuation">
-                                    Valuation <span ngClass="ai-tag">AI</span>
+                            <li ngClass="nav-item classified">
+                                <a ngClass="nav-link blue-bordered-btn" [routerLink]="['/classified']">
+                                    Classified <mat-icon>home</mat-icon>
                                 </a>
                             </li>
                             <li ngClass="nav-item sell-or-rent-property">
@@ -391,7 +393,12 @@
                                 </a>
                             </li>
                             <li ngClass="nav-item">
-                                <a ngClass="nav-link blue-bordered-btn"
+                                <a ngClass="nav-link blue-bordered-btn red-fill-btn" routerLink="/valuation">
+                                    Valuation <span ngClass="ai-tag">AI</span>
+                                </a>
+                            </li>
+                            <li ngClass="nav-item">
+                                <a ngClass="nav-link blue-bordered-btn red-fill-btn"
                                     routerLink="/dashboard-reports">
                                 <!-- <a ngClass="nav-link blue-bordered-btn"
                                     href="https://dx1.in/data-Intelligence/dashboard/"> -->
@@ -399,14 +406,8 @@
                                             src="{{chartsvg}}"></span>
                                 </a>
                             </li>
-                            <li ngClass="nav-item classified">
-                                <a ngClass="nav-link blue-bordered-btn" [routerLink]="['/classified']">
-                                    Classified <mat-icon>home</mat-icon>
-                                </a>
-                            </li>
                             <li ngClass="nav-item aed-li d-hide">
-                                <button class="nav-link aed-sq" (click)="clickEvent2()"><img src="{{flagsvg}}"> AED |
-                                    Sqft</button>
+                                <button class="nav-link aed-sq" (click)="clickEvent2()"><img src="{{flagsvg}}"> AED | Sqft</button>
                                 <!-- <div class="country_list-dropdown" [ngClass]="status2 ? 'active' : 'notactive'">
                                     <button (click)="clickEvent2()"><img src="{{close}}"></button>
                                     <div ngClass="countries_dropdown-list" *ngFor="let data of headerCountries">

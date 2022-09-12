@@ -192,7 +192,7 @@ body.dark::after{
 
 .card{
     padding: 20px 15px;
-    border-radius: 2rem;
+    border-radius: 20px;
     border: 0;
     height: 100%;
 }
@@ -400,15 +400,16 @@ select.nice-select{
   font-weight: 700;
   display: block;
   margin-bottom: 7px;
+  text-transform: uppercase;
 }
 .dashboard-data-input-box input {
-  background-color: #e8e8f9;
+  background-color: rgba(181,178,191,0.15);
   border: none;
   font-size: 14px;
   padding: 10px 15px;
 }
 .dashboard-data-select-box select {
-  background-color: #e8e8f9;
+  background-color: rgba(181,178,191,15%);
   border: none;
   font-size: 14px;
   padding: 10px 15px;
@@ -420,4 +421,19 @@ input:focus,select:focus{
 .height-chart-200 canvas {
     width: 100% !important;
     height: 200px !important;
+}
+.dashboard-data-bars {
+  border: none;
+  background-color: #595ad5;
+  color: #fff;
+  width: 100%;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 1199px){
+  .dashboard-reports-inner-wrapper {
+    max-width: 100% !important;
+}
 }
