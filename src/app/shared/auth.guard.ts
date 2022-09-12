@@ -32,7 +32,7 @@ export class AuthGuard implements CanActivate {
     // }
 
     if (!this.service.isAuthenticated()) {
-      this.notifyService.showError("You don't have access ", "");
+      this.notifyService.showError("You need to register/login", "");
       this.route.navigate(['login']);
       return false;
     }
