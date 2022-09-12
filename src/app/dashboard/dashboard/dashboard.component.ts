@@ -80,11 +80,13 @@ export class DashboardComponent implements OnInit {
   all: any;
   rent: any;
   buy: any;
+  error: any = ""
+  showError: boolean = false;
   residential: any;
-  commercial: any
-  totalValuation: any
-  totalRestentailValuation: any
-  totalCommercialValuation: any
+  commercial: any;
+  totalValuation: any;
+  totalRestentailValuation: any;
+  totalCommercialValuation: any;
   detailForm = new FormGroup({
     firstName: new FormControl(""),
     lastName: new FormControl(""),
@@ -95,6 +97,14 @@ export class DashboardComponent implements OnInit {
   agentDetailForm = new FormGroup({
     agentBrnNo: new FormGroup(""),
     agentAboutMe: new FormGroup("")
+  })
+  companyDetailsForm = new FormGroup({
+    companyName: new FormGroup(""),
+    tradeLicenceNo: new FormGroup(""),
+    permitNo: new FormGroup(""),
+    ornNo: new FormGroup(""),
+    reraNo: new FormGroup(""),
+    companyAddress: new FormGroup("")
   })
   data: any = {};
   userFormData: any;
@@ -139,6 +149,24 @@ export class DashboardComponent implements OnInit {
   }
   get agentAboutMe() {
     return this.agentDetailForm.get("agentAboutMe");
+  }
+  get companyName() {
+    return this.companyDetailsForm.get("companyName");
+  }
+  get tradeLicenseNo() {
+    return this.companyDetailsForm.get("tradeLicenseNo");
+  }
+  get permitNo() {
+    return this.companyDetailsForm.get("permitNo");
+  }
+  get ornNo() {
+    return this.companyDetailsForm.get("ornNo");
+  }
+  get reraNo() {
+    return this.companyDetailsForm.get("reraNo");
+  }
+  get companyAddress() {
+    return this.companyDetailsForm.get("companyAddress");
   }
   userId: number;
   parentTabId: any = "";
@@ -774,6 +802,61 @@ export class DashboardComponent implements OnInit {
     })
   }
 
+  getCompanyData(){
+    if (!this.companyDetailsFormData.CompanyName) {
+      this.error = "Enter Company Name";
+      this.showError = true;
+      return;
+    } else if (!this.companyDetailsFormData.TradeLicenseNo) {
+      this.error = "Enter Trade License No";
+      this.showError = true;
+      return;
+    } else if (!this.companyDetailsFormData.PermitNo) {
+      this.error = "Enter Permit No";
+      this.showError = true;
+      return;
+    } else if (!this.companyDetailsFormData.ORNNo) {
+      this.error = "Enter ORN no";
+      this.showError = true;
+      return;
+    } else if (!this.companyDetailsFormData.RERANo) {
+      this.error = "Enter RERA no";
+      this.showError = true;
+      return;
+    } else if (!this.companyDetailsFormData.CompanyAddress) {
+      this.error = "Enter Company Address";
+      this.showError = true;
+      return;
+    }
+    // if ( this.data.CompanyName = this.companyDetailsFormData.value.companyName )
+    let token: any = localStorage.getItem("token");
+      token = JSON.parse(token);
+      $.ajax({
+        url: "https://beta.ovaluate.com/api/AddUpdateAgentDetails",
+        method: "post",
+        contentType: false,
+        processData: false,
+        headers: {
+          "Authorization": 'bearer ' + token
+        },
+        dataType: "json",
+        success: (res) => {
+          console.log(res)
+          this.companyDetailsFormData = res.data.id;
+          this.notifyService.showSuccess(res.message, "Company details updated successfully");
+          // if(res.message == "Property Listing request completed successfully") {
+          //   localStorage.removeItem("propertyData");
+          //   this.route.navigate(['listpropertypublish'])
+          // }
+        },
+        error: (err) => {
+          this.notifyService.showError(err, "");
+
+        }
+      })
+
+  }
+
   agentBrokerId: any;
   imageObject: any = []
   getAgentData() {
@@ -861,37 +944,6 @@ export class DashboardComponent implements OnInit {
       });
     }
   }
-
-  getCompanyData(){
-    // if ( this.data.CompanyName = this.companyDetailsFormData.value.companyName )
-    let token: any = localStorage.getItem("token");
-      token = JSON.parse(token);
-      $.ajax({
-        url: "https://beta.ovaluate.com/api/AddUpdateAgentDetails",
-        method: "post",
-        contentType: false,
-        processData: false,
-        headers: {
-          "Authorization": 'bearer ' + token
-        },
-        dataType: "json",
-        success: (res) => {
-          console.log(res)
-          this.companyDetailsFormData = res.data.id;
-          this.notifyService.showSuccess(res.message, "Comapny details updated successfully");
-          // if(res.message == "Property Listing request completed successfully") {
-          //   localStorage.removeItem("propertyData");
-          //   this.route.navigate(['listpropertypublish'])
-          // }
-        },
-        error: (err) => {
-          this.notifyService.showError(err, "");
-
-        }
-      })
-
-  }
-
 
   viewBuyCount: any;
   viewRentCount: any;
