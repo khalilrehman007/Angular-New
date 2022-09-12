@@ -23,6 +23,7 @@ const routes: Routes = [
   {path:"chat", loadChildren:()=>import('./chat/chat.module').then(module => module.ChatModule),canActivate: [AuthGuard]},
   {path:"forgot", loadChildren:()=>import('./forget/forget.module').then(module => module.ForgetModule)},
   {path:"payment-packages", loadChildren:()=>import('./payment-packages/payment-packages.module').then(module => module.PaymentPackagesModule)},
+  {path:"PropertyCompare", loadChildren:()=>import('./property-compare/property-compare.module').then(module => module.PropertyCompareModule)},
 ];
 
 @NgModule({
