@@ -803,31 +803,34 @@ export class DashboardComponent implements OnInit {
   }
 
   getCompanyData(){
-    if (!this.companyDetailsFormData.companyName) {
-      this.error = "Enter Company Name";
-      this.showError = true;
-      return;
-    } else if (!this.companyDetailsFormData.tradeLicenseNo) {
-      this.error = "Enter Trade License No";
-      this.showError = true;
-      return;
-    } else if (!this.companyDetailsFormData.permitNo) {
-      this.error = "Enter Permit No";
-      this.showError = true;
-      return;
-    } else if (!this.companyDetailsFormData.ornNo) {
-      this.error = "Enter ORN no";
-      this.showError = true;
-      return;
-    } else if (!this.companyDetailsFormData.reraNo) {
-      this.error = "Enter RERA no";
-      this.showError = true;
-      return;
-    } else if (!this.companyDetailsFormData.companyAddress) {
-      this.error = "Enter Company Address";
-      this.showError = true;
-      return;
-    }
+    // if (this.companyDetailsFormData.companyName) {
+    //   this.error = "Enter Company Name";
+    //   this.showError = true;
+    //   return;
+    // } else if (this.companyDetailsFormData.tradeLicenseNo) {
+    //   this.error = "Enter Trade License No";
+    //   this.showError = true;
+    //   return;
+    // } else if (this.companyDetailsFormData.permitNo) {
+    //   this.error = "Enter Permit No";
+    //   this.showError = true;
+    //   return;
+    // } else if (this.companyDetailsFormData.ornNo) {
+    //   this.error = "Enter ORN no";
+    //   this.showError = true;
+    //   return;
+    // } else if (this.companyDetailsFormData.reraNo) {
+    //   this.error = "Enter RERA no";
+    //   this.showError = true;
+    //   return;
+    // } else if (this.companyDetailsFormData.companyAddress) {
+    //   this.error = "Enter Company Address";
+    //   this.showError = true;
+    //   return;
+    // }
+
+    
+
     // if ( this.data.CompanyName = this.companyDetailsFormData.value.companyName )
     let token: any = localStorage.getItem("token");
       token = JSON.parse(token);
@@ -842,7 +845,7 @@ export class DashboardComponent implements OnInit {
         dataType: "json",
         success: (res) => {
           console.log(res)
-          this.companyDetailsFormData = res.data.id;
+          this.companyDetail = res.data.id;
           this.notifyService.showSuccess(res.message, "Company details updated successfully");
           // if(res.message == "Property Listing request completed successfully") {
           //   localStorage.removeItem("propertyData");
