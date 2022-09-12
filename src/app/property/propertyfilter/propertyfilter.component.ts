@@ -267,6 +267,9 @@ export class PropertyfilterComponent implements OnInit {
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
+    if(this.DistrictsId == null){
+      this.DistrictsId = []
+    }
     this.locationOnSearchData.forEach((element:any, i:any) => {
       if(element.value == event.option.viewValue){
         this.DistrictsId.push(element.id)
