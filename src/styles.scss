@@ -5096,13 +5096,14 @@ img {
 
 .modal-content {
 	.btn-close {
-		position: fixed;
-		right: 25px;
-		top: 20px;
-		color: $color_5  !important;
+		position: absolute;
+		right: 0;
+		top: 0;
+		color: #fff !important;
 		background: url('./assets/images/close.svg');
 		background-size: 40px;
 		background-position: center;
+		opacity: 1;
 	}
 }
 
@@ -11549,9 +11550,14 @@ background: transparent !important;
     top: 0;
     z-index: 999;
 }
-
+.properties-list_hdr .property-action-hdr .dropdown-menu {
+    z-index: 99999;
+}
 .security-deposit-input .input-flaoted-left-text .mat-form-field-flex .mat-form-field-infix input,.brokage-type-input .input-flaoted-left-text .mat-form-field-flex .mat-form-field-infix input {
     height: 100%;
     max-width: 100%;
     box-sizing: border-box;
+}
+.nav-active {
+    color: #595ad5 !important;
 }

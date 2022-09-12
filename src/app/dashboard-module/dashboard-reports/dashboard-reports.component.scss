@@ -9,7 +9,6 @@
     --sidebar-text-color: #3A3A3A;
     --sidebar-hover-color: #f0f3f5;
     --header-color-bg: #fff;
-    background-color: var(--body-color);
     --tran-03: all 0.2s ease;
     --tran-03: all 0.3s ease;
     --tran-04: all 0.3s ease;
@@ -17,12 +16,7 @@
     min-height: 100vh;
 }
 .bg-1{
-    background: rgba(211,219,255,0.34);
-}
-.bg-1-shadow{
-  --webkit-box-shadow: 0px 0px 15px 5px rgb(211 219 255 / 96%);
-  -moz-box-shadow: 0px 0px 15px 5px rgb(211 219 255 / 96%);
-  box-shadow: 0px 0px 15px 5px rgb(211 219 255 / 96%);
+    background: #f6f4f2;
 }
 .bg-2{
   background: #777DE0;
@@ -195,6 +189,7 @@ body.dark::after{
     border-radius: 20px;
     border: 0;
     height: 100%;
+    box-shadow: 0px 0px 17px -8px grey;
 }
 
 .card-header{
