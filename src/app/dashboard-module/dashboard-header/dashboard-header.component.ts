@@ -13,7 +13,8 @@ import {NgbDropdownConfig} from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-dashboard-header',
   templateUrl: './dashboard-header.component.html',
-  styleUrls: ['./dashboard-header.component.scss']
+  styleUrls: ['./dashboard-header.component.scss'],
+  providers: [NgbDropdownConfig]
 })
 export class DashboardHeaderComponent implements OnInit {
   downloadreport = '../../../assets/images/icons/download-svg.svg'

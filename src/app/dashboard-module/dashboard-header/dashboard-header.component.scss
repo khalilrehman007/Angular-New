@@ -270,15 +270,13 @@ $color_1: #4A4A4A;
 	cursor: pointer;
 }
 .dashboard-data-side-bar {
-	--webkit-box-shadow: 0px 14px 15px 5px rgb(211 219 255 / 96%);
-    box-shadow: 0px 14px 15px 5px rgb(211 219 255 / 96%);
     width: 100%;
     position: fixed;
     left: 0px;
     max-width: 260px;
     padding: 22px;
     border-radius: 8px;
-    background-color: rgb(237 240 254);
+    background-color: #f6f4f2;
     z-index: 999;
     bottom: 0;
     height: calc(100vh - 90px);
@@ -374,9 +372,6 @@ $color_1: #4A4A4A;
 .dashboard-data-side-bar.active {
     left: 0 !important;
 }
-.dashboard-data-side-bar.active+.overlay_counter{
-	display: block !important;
-}
 .dashboard-data-bars {
     background-color: #595ad5;
     border: none;
@@ -399,6 +394,9 @@ $color_1: #4A4A4A;
 	}
 	.white-header-wrap {
 		position: relative;
+	}
+	.dashboard-data-side-bar.active+.overlay_counter{
+		display: block !important;
 	}
 }
 @media (max-width: 767px){
