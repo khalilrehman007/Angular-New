@@ -803,27 +803,27 @@ export class DashboardComponent implements OnInit {
   }
 
   getCompanyData(){
-    if (!this.companyDetailsFormData.CompanyName) {
+    if (!this.companyDetailsFormData.companyName) {
       this.error = "Enter Company Name";
       this.showError = true;
       return;
-    } else if (!this.companyDetailsFormData.TradeLicenseNo) {
+    } else if (!this.companyDetailsFormData.tradeLicenseNo) {
       this.error = "Enter Trade License No";
       this.showError = true;
       return;
-    } else if (!this.companyDetailsFormData.PermitNo) {
+    } else if (!this.companyDetailsFormData.permitNo) {
       this.error = "Enter Permit No";
       this.showError = true;
       return;
-    } else if (!this.companyDetailsFormData.ORNNo) {
+    } else if (!this.companyDetailsFormData.ornNo) {
       this.error = "Enter ORN no";
       this.showError = true;
       return;
-    } else if (!this.companyDetailsFormData.RERANo) {
+    } else if (!this.companyDetailsFormData.reraNo) {
       this.error = "Enter RERA no";
       this.showError = true;
       return;
-    } else if (!this.companyDetailsFormData.CompanyAddress) {
+    } else if (!this.companyDetailsFormData.companyAddress) {
       this.error = "Enter Company Address";
       this.showError = true;
       return;
@@ -832,7 +832,7 @@ export class DashboardComponent implements OnInit {
     let token: any = localStorage.getItem("token");
       token = JSON.parse(token);
       $.ajax({
-        url: "https://beta.ovaluate.com/api/AddUpdateAgentDetails",
+        url: "https://beta.ovaluate.com/api/AddUpdateCompany",
         method: "post",
         contentType: false,
         processData: false,
