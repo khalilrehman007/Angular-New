@@ -2332,7 +2332,7 @@
                                     *ngIf="professionalType == 1 || professionalType == 2 || professionalType == 3">
                                     <div class="row">
                                         <div class="col-md-9">
-                                            <form action="">
+                                            <form [formGroup]="companyDetail">
                                                 <div class="">
                                                     <div class="list-new-proerty-cntnt">
                                                         <div ngClass="deed-numbers">
@@ -2513,7 +2513,7 @@
                                                                                             Picture: Permit No
                                                                                             Document</span>
                                                                                         <img src="{{upload}}"> <span -->
-                                                                                            <span>ngClass="btn-txt">Picture:
+                                                                                            <span>Picture:
                                                                                             Emirates ID (Fornt
                                                                                             View)</span></button>
                                                                                 </div>
