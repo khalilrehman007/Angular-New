@@ -2325,6 +2325,9 @@
                                         </div>
                                     </div>
                                 </mat-tab>
+
+                                <!-- Profile Dashboard/Company Details -->
+
                                 <mat-tab label="Company Details"
                                     *ngIf="professionalType == 1 || professionalType == 2 || professionalType == 3">
                                     <div class="row">
@@ -2398,17 +2401,25 @@
                                                                         <mat-form-field appearance="fill"
                                                                             class="full-width select-form input-design-2">
                                                                             <mat-label>Select City</mat-label>
-                                                                            <mat-select>
-                                                                                <mat-option [value]="city">
-                                                                                    City 1
-                                                                                </mat-option>
-                                                                                <mat-option [value]="city">
-                                                                                    City 1
-                                                                                </mat-option>
-                                                                                <mat-option [value]="city">
-                                                                                    City 1
+                                                                            <mat-select
+                                                                                (selectionChange)="onCitySelect($event);">
+                                                                                <mat-option
+                                                                                    *ngFor="let listcity of city"
+                                                                                    [value]="listcity.value">
+                                                                                    {{ listcity.viewValue }}
                                                                                 </mat-option>
                                                                             </mat-select>
+                                                                            <!-- <mat-select>
+                                                                                <mat-option [value]="city">
+                                                                                    City 1
+                                                                                </mat-option>
+                                                                                <mat-option [value]="city">
+                                                                                    City 1
+                                                                                </mat-option>
+                                                                                <mat-option [value]="city">
+                                                                                    City 1
+                                                                                </mat-option>
+                                                                            </mat-select> -->
                                                                         </mat-form-field>
 
                                                                     </div>
@@ -2421,17 +2432,24 @@
                                                                         <mat-form-field appearance="fill"
                                                                             class="full-width select-form input-design-2">
                                                                             <mat-label>Select Country</mat-label>
-                                                                            <mat-select>
-                                                                                <mat-option>
-                                                                                    Country 1
-                                                                                </mat-option>
-                                                                                <mat-option>
-                                                                                    Country 1
-                                                                                </mat-option>
-                                                                                <mat-option>
-                                                                                    Country 1
+                                                                            <mat-select
+                                                                                (selectionChange)="onCountrySelect($event);">
+                                                                                <mat-option *ngFor="let list of country"
+                                                                                    [value]="list.value">
+                                                                                    {{ list.viewValue }}
                                                                                 </mat-option>
                                                                             </mat-select>
+                                                                            <!-- <mat-select>
+                                                                                <mat-option>
+                                                                                    Country 1
+                                                                                </mat-option>
+                                                                                <mat-option>
+                                                                                    Country 1
+                                                                                </mat-option>
+                                                                                <mat-option>
+                                                                                    Country 1
+                                                                                </mat-option>
+                                                                            </mat-select> -->
                                                                         </mat-form-field>
 
                                                                     </div>
@@ -2534,7 +2552,7 @@
                                                             </div>
 
                                                             <div class="save-continue-sec">
-                                                                <mat-card-actions>
+                                                                <mat-card-actions (click)="getCompanyData()">
                                                                     <a class="save-continue-btn">Save</a>
                                                                 </mat-card-actions>
                                                             </div>

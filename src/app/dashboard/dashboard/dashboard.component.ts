@@ -99,6 +99,7 @@ export class DashboardComponent implements OnInit {
   data: any = {};
   userFormData: any;
   agentDetailsFormData: any;
+  companyDetailsFormData: any;
   userImage: any;
   changePasswordForm = new FormGroup({
     currentPassword: new FormControl(""),
@@ -337,6 +338,12 @@ export class DashboardComponent implements OnInit {
     });
     this.data.BRNNo = this.agentDetailsFormData.value.agentBrnNo;
     this.data.agentAboutMe = this.agentDetailsFormData.value.agentAboutMe;
+    this.data.CompanyName = this.companyDetailsFormData.value.companyName;
+    this.data.TradeLicenseNo = this.companyDetailsFormData.value.tradeLicenseNo;
+    this.data.PermitNo = this.companyDetailsFormData.value.permitNo;
+    this.data.ORNNo = this.companyDetailsFormData.value.ornNo;
+    this.data.RERANo = this.companyDetailsFormData.value.reraNo;
+    this.data.CompanyAddress = this.companyDetailsFormData.value.companyAddress;
   }
 
   LoadvaluationDashboard() {
@@ -650,6 +657,15 @@ export class DashboardComponent implements OnInit {
     agentAboutMe: new FormControl("")
   });
 
+  companyDetail = new FormGroup({
+    companyName: new FormControl(""),
+    tradeLicenseNo: new FormControl(""),
+    permitNo: new FormControl(""),
+    ornNo: new FormControl(""),
+    reraNo: new FormControl(""),
+    companyAddress: new FormControl("")
+  })
+
   ExpertIn: any = [];
   getExpertIn() {
     let tempData: Array<Object> = []
@@ -747,6 +763,7 @@ export class DashboardComponent implements OnInit {
   }
 
   agentFormData: any = {};
+  companyFormData: any={};
 
 
   finalBrokerDocments: any = []
@@ -761,7 +778,7 @@ export class DashboardComponent implements OnInit {
   imageObject: any = []
   getAgentData() {
     if (this.NationalityId == null || this.NationalityId == undefined) {
-      this.notifyService.showError('Please Nationality', "Error");
+      this.notifyService.showError('Please select Nationality', "Error");
     }
     if (this.otherImages.length < 3) {
       this.notifyService.showError('Please Select All File', "Error");
@@ -802,7 +819,7 @@ export class DashboardComponent implements OnInit {
       this.agentFormData.AgentLanguages = langObject;
       // this.agentFormData.AgentAreas = temp;
       this.agentFormData.ExpertIn = expertObject;
-      this.agentFormData.AreaData = temp;
+      this.agentFormData.AgentAreas = temp;
       this.documentsObject();
       this.agentFormData.Documents = this.finalBrokerDocments
       this.uploadedDocuments = [];
@@ -810,7 +827,7 @@ export class DashboardComponent implements OnInit {
 
       let valuationData = new FormData();
       valuationData.append("AgentRequest", JSON.stringify(this.agentFormData));
-      console.log(this.agentFormData)
+      // console.log(this.agentFormData)
 
       for (let i = 0; i < 3; i++) {
         // console.log(this.otherImages[i])
@@ -831,7 +848,7 @@ export class DashboardComponent implements OnInit {
         success: (res) => {
           console.log(res)
           this.agentBrokerId = res.data.id;
-          this.notifyService.showSuccess(res.message, "");
+          this.notifyService.showSuccess(res.message, "Agent details updated successfully");
           // if(res.message == "Property Listing request completed successfully") {
           //   localStorage.removeItem("propertyData");
           //   this.route.navigate(['listpropertypublish'])
@@ -843,6 +860,36 @@ export class DashboardComponent implements OnInit {
         }
       });
     }
+  }
+
+  getCompanyData(){
+    // if ( this.data.CompanyName = this.companyDetailsFormData.value.companyName )
+    let token: any = localStorage.getItem("token");
+      token = JSON.parse(token);
+      $.ajax({
+        url: "https://beta.ovaluate.com/api/AddUpdateAgentDetails",
+        method: "post",
+        contentType: false,
+        processData: false,
+        headers: {
+          "Authorization": 'bearer ' + token
+        },
+        dataType: "json",
+        success: (res) => {
+          console.log(res)
+          this.companyDetailsFormData = res.data.id;
+          this.notifyService.showSuccess(res.message, "Comapny details updated successfully");
+          // if(res.message == "Property Listing request completed successfully") {
+          //   localStorage.removeItem("propertyData");
+          //   this.route.navigate(['listpropertypublish'])
+          // }
+        },
+        error: (err) => {
+          this.notifyService.showError(err, "");
+
+        }
+      })
+
   }
 
 
