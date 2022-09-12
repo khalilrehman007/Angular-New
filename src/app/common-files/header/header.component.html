@@ -322,29 +322,34 @@
                             </li>
                         </ul>
                         <ul ngClass="navbar-nav">
-                            <li ngClass="nav-item link-li">
-                                <a ngClass="nav-link" [routerLink]="['/property/search']"
+                            <li ngClass="nav-item link-li" (click)="checkActiveTab('buy')">
+                                <a [ngClass]="activeTabBuy ? 'nav-active' : 'nav-link'"
+                                   [routerLink]="['/property/search']"
                                    [queryParams]="{type:'Buy',PropertyListingTypeId: 2}">
                                     Buy
                                 </a>
                             </li>
-                            <li ngClass="nav-item link-li">
-                                <a ngClass="nav-link" [routerLink]="['/property/search']"
+                            <li ngClass="nav-item link-li" (click)="checkActiveTab('rent')">
+                                <a
+                                   [ngClass]="activeTabRent ? 'nav-active' : 'nav-link'"
+                                   [routerLink]="['/property/search']"
                                    [queryParams]="{type:'Rent',PropertyListingTypeId: 1}">
                                     Rent
                                 </a>
                             </li>
-                            <li ngClass="nav-item link-li">
-                                <a ngClass="nav-link" routerLink="/blog">
+                            <li ngClass="nav-item link-li" (click)="checkActiveTab('blog')">
+                                <a  [ngClass]="activeTabBlog ? 'nav-active' : 'nav-link'"
+                                   routerLink="/blog">
                                     Blog
                                 </a>
                             </li>
-                            <li ngClass="nav-item link-li">
-                                <a ngClass="nav-link" routerLink="/explore">
+                            <li ngClass="nav-item link-li" (click)="checkActiveTab('areas')">
+                                <a [ngClass]="activeTabArea ? 'nav-active' : 'nav-link'"
+                                   routerLink="/explore">
                                     Areas
                                 </a>
                             </li>
-                            <li ngClass="nav-item hover-block-header">
+                            <li ngClass="nav-item hover-block-header" >
                                 <div ngbDropdown class="d-inline-block">
                                     <button type="button" class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Projects</button>
                                     <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
@@ -355,7 +360,7 @@
                                     </div>
                                   </div>
                             </li>
-                            <li ngClass="nav-item hover-block-header">
+                            <li ngClass="nav-item hover-block-header" >
                                 <div ngbDropdown class="d-inline-block">
                                     <button type="button" class="btn btn-outline-primary" id="dropdownBasic2" ngbDropdownToggle>Trends</button>
                                     <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
@@ -369,7 +374,7 @@
                                     </div>
                                   </div>
                             </li>
-                            <li ngClass="nav-item hover-block-header">
+                            <li ngClass="nav-item hover-block-header " >
                                 <div ngbDropdown class="d-inline-block">
                                     <button type="button" class="btn btn-outline-primary" id="dropdownBasic3" ngbDropdownToggle>New Homes</button>
                                     <div ngbDropdownMenu aria-labelledby="dropdownBasic3">

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import * as $ from 'jquery';
 import { NotificationService } from "../../service/notification.service";
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -38,7 +38,11 @@ export class HeaderComponent implements OnInit {
   currentTime:any;
   userData: any = "";
 
-  constructor(private authService: AuthService, private route: Router, private notifyService: NotificationService, private modalService: NgbModal, private service: AppService, private db: AngularFireDatabase) {
+  activeTabBuy :any = false;
+  activeTabRent :any = false;
+  activeTabBlog :any = false;
+  activeTabArea :any = false;
+  constructor(private router: Router,private activeRoute: ActivatedRoute,private authService: AuthService, private route: Router, private notifyService: NotificationService, private modalService: NgbModal, private service: AppService, private db: AngularFireDatabase) {
     let a:any = this.currentDate;
     a = a.toString().split(" ")[5].split("T")[1];
     let sign = a.split('')[0];
@@ -83,6 +87,40 @@ export class HeaderComponent implements OnInit {
 
     this.getWishlisting();
     this.getCountData('');
+
+
+   let type :any=  this.activeRoute.snapshot.queryParamMap.get('type');
+    let url = this.router.url.replace("/", "");
+    url = url.split('?')[0];
+
+   if(type == "Rent"){
+     this.activeTabRent = true;
+     this.activeTabBuy  = false;
+     this.activeTabBlog  = false;
+     this.activeTabArea  = false;
+   }else if(type == "Buy"){
+     this.activeTabBuy = true;
+     this.activeTabRent = false;
+     this.activeTabBlog  = false;
+     this.activeTabArea  = false;
+   }
+
+    if(url == 'blog'){
+      this.activeTabBuy = false;
+      this.activeTabRent = false;
+      this.activeTabBlog  = true;
+      this.activeTabArea  = false;
+    }else if(url == 'explore'){
+      this.activeTabBuy = false;
+      this.activeTabRent = false;
+      this.activeTabBlog  = false;
+      this.activeTabArea  = true;
+    }
+
+
+
+
+
   }
 
   sidebar = [
@@ -446,6 +484,36 @@ export class HeaderComponent implements OnInit {
         this.route.navigateByUrl('/PropertyCompare');
       }
     }
+
+  }
+
+
+  checkActiveTab(data:any){
+
+    if(data == 'buy'){
+      this.activeTabBuy  = true;
+      this.activeTabRent = false;
+      this.activeTabBlog  = false;
+      this.activeTabArea  = false;
+    }else if(data == 'rent'){
+      this.activeTabRent  = true;
+      this.activeTabBuy = false;
+      this.activeTabBlog  = false;
+      this.activeTabArea  = false;
+    }else if(data == 'blog'){
+      this.activeTabBlog  = true;
+      this.activeTabRent  = false;
+      this.activeTabBuy = false;
+      this.activeTabArea  = false;
+    }else if(data == 'areas'){
+      this.activeTabArea  = true;
+      this.activeTabBlog  = false;
+      this.activeTabRent  = false;
+      this.activeTabBuy = false;
+    }
+
+
+
 
   }
 
