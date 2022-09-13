@@ -869,7 +869,6 @@
                                     </section>
                                 </mat-tab>
                                 <mat-tab label="Shortlisted">
-
                                     <div class="type-activity-status">
                                         <div ngClass="block-wrapper mb-4 d-flex justify-content-spacebw">
                                             <div class="checkbox-flex-box-auto button-same-select">
@@ -892,7 +891,7 @@
                                                     <button class="checkbox-btn">Buy ({{buyCount}})</button>
                                                 </div>
                                             </div>
-                                            <div ngClass="compare_hdr-btn">
+                                            <div ngClass="compare_hdr-btn" *ngIf="wishlistingData.length > 1">
                                                 <button (click)="compareProceed('all')"
                                                     ngClass="compare-btn btn">Compare</button>
                                             </div>
@@ -901,7 +900,7 @@
 
 
                                     <div class="agent-details__tabs shortlisted-tabs_list">
-                                        <div class="row">
+                                        <div class="row" *ngIf="wishlistingData.length > 1">
                                             <div class="col-lg-12 col-md-12">
                                                 <ul class="agent-details__property-list">
                                                     <li class="compare-action-pro-list"
@@ -991,6 +990,10 @@
                                                     class="text-center my-pagination">
                                                 </pagination-controls>
                                             </section>
+                                        </div>
+                                        <div class="no-data-found" *ngIf="wishlistingData.length == 0">
+                                            <mat-icon>file_copy</mat-icon>
+                                            <p>No Data Found</p>
                                         </div>
                                     </div>
 
