@@ -325,7 +325,7 @@
                             <div ngClass="contact-list-details">
                                 <div ngClass="row">
                                     <div ngClass="col-xl-6 col-lg-12 col-md-12 col-sm-12">
-                                        <button ngClass="" routerLink="/chat"><img src="{{call}}"> Call
+                                        <button ngClass="" (click)="loadChat()"><img src="{{call}}"> Call
                                             Landlord</button>
                                     </div>
                                     <div ngClass="col-xl-6 col-lg-12 col-md-12 col-sm-12">
@@ -333,11 +333,11 @@
                                                     src="{{whatsapp}}"> Whats APP </a></button>
                                     </div>
                                     <div ngClass="col-xl-6 col-lg-12 col-md-12 col-sm-12">
-                                        <button ngClass="" routerLink="/chat"><img src="{{chat}}"> Chat with
+                                        <button ngClass="" (click)="loadChat()"><img src="{{chat}}"> Chat with
                                             Landlord</button>
                                     </div>
                                     <div ngClass="col-xl-6 col-lg-12 col-md-12 col-sm-12">
-                                        <button ngClass="" routerLink="/chat"><img src="{{videocall}}"> Video
+                                        <button ngClass="" (click)="loadChat()"><img src="{{videocall}}"> Video
                                             Call</button>
                                     </div>
                                     <div ngClass="col-xl-6 col-lg-12 col-md-6 col-sm-12">

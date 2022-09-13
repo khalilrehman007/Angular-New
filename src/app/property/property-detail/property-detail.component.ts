@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {AppService} from "../../service/app.service";
-import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
-import {NotificationService} from "../../service/notification.service";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { AppService } from "../../service/app.service";
+import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
+import { NotificationService } from "../../service/notification.service";
 import { ChartConfiguration, ChartOptions, ChartType } from "chart.js";
-import {DomSanitizer} from "@angular/platform-browser";
-import {AuthService} from "../../service/auth.service";
+import { DomSanitizer } from "@angular/platform-browser";
+import { AuthService } from "../../service/auth.service";
 import * as mapboxgl from 'mapbox-gl';
 import { environment } from 'src/environments/environment';
 
@@ -199,7 +199,7 @@ export class PropertyDetailComponent implements OnInit {
   buildingName: any;
   map: any;
   bounds: any = [];
-  id:number = 1;
+  id: number = 1;
   userData: any = "";
   scroll(el: HTMLElement) {
     el.scrollIntoView();
@@ -230,10 +230,12 @@ export class PropertyDetailComponent implements OnInit {
     responsive: true,
     maintainAspectRatio: false,
     scales: {
-      x: {  ticks: {
+      x: {
+        ticks: {
           maxRotation: 70,
           minRotation: 70,
-        }},
+        }
+      },
     },
     plugins: {
       title: {
@@ -264,7 +266,7 @@ export class PropertyDetailComponent implements OnInit {
     });
   }
 
-  openVerticallyCentered(content:any) {
+  openVerticallyCentered(content: any) {
     this.modalService.open(content, { centered: true });
   }
   locationAddress1 = '';
@@ -292,7 +294,7 @@ export class PropertyDetailComponent implements OnInit {
       this.isload = true
 
       this.map = new mapboxgl.Map({
-        accessToken:  environment.mapbox.accessToken,
+        accessToken: environment.mapbox.accessToken,
         container: 'property-near-map',
         style: 'mapbox://styles/mapbox/streets-v11',
         center: [this.propertyLng, this.propertyLat],
@@ -394,7 +396,7 @@ export class PropertyDetailComponent implements OnInit {
         }
 
         if (jsonParsDate.detailsChart != null) {
-          jsonParsDate.detailsChart.chart.forEach((element:any, i:any) => {
+          jsonParsDate.detailsChart.chart.forEach((element: any, i: any) => {
             let date: any = element.date
             let price: any = element.price
             this.chartLabel.push(date);
@@ -555,7 +557,9 @@ export class PropertyDetailComponent implements OnInit {
     ]
 
   }
-
+  loadChat() {
+    window.open("/chat", "_blank")
+  }
   SubmitForm = new FormGroup({
     name: new FormControl("", Validators.required),
     email: new FormControl("", [Validators.required, Validators.email]),
@@ -654,7 +658,7 @@ export class PropertyDetailComponent implements OnInit {
     let tempData: Array<Object> = []
     this.service.LoadSimilarProperty({ "UserId": this.userId, "PropertyListingId": this.propertyId }).subscribe(data => {
       let response: any = data;
-      response.data.forEach((element:any, i:any) => {
+      response.data.forEach((element: any, i: any) => {
         let image = 'assets/images/placeholder.png'
         if (element.documents.length > 1) {
           image = this.baseUrl + element.documents[0].fileUrl
