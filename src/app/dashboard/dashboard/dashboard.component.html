@@ -106,12 +106,11 @@
                                         type="button" role="tab" aria-controls="pills-profile"
                                         aria-selected="false"><img src="{{profile}}"> My
                                         Profile</a></button>
-                                <button ngbDropdownItem><a target="_blank" routerLink="/chat"><img src="{{shareicon}}"> My Messages</a></button>
+                                <button ngbDropdownItem><a target="_blank" routerLink="/chat"><img src="{{shareicon}}">
+                                        My Messages</a></button>
                                 <button ngbDropdownItem><a href=""><img src="{{acsetting}}"> Account
                                         Settings</a></button>
-                                <button ngbDropdownItem><a href="" class="logout-link" (click)="logout()"><img
-                                            src="{{aclogout}}">
-                                        Logout</a></button>
+                                <button ngbDropdownItem *ngIf="user !== null"><a class="logout-link" (click)="logout()"><img src="{{aclogout}}"> Logout</a></button>
                             </div>
                         </div>
                     </li>
@@ -476,7 +475,8 @@
                                                                     </section>
                                                                 </div>
                                                             </div>
-                                                            <div class="checkbox-design position-relative" *ngIf="activitySavedSearch.length > 0">
+                                                            <div class="checkbox-design position-relative"
+                                                                *ngIf="activitySavedSearch.length > 0">
                                                                 <input type="radio" id="Unfurnished"
                                                                     name="property-types" value="Rent">
                                                                 <button class="checkbox-btn">Rent (02)</button>
@@ -1421,8 +1421,8 @@
                                     </div>
                                     <div class="agent-details__tabs">
                                         <div class="row">
-                                            <div class="col-lg-9 col-md-10" >
-                                                <ul class="agent-details__property-list" >
+                                            <div class="col-lg-9 col-md-10">
+                                                <ul class="agent-details__property-list">
                                                     <li class="agent-details__property-list-item"
                                                         *ngFor="let listing of listingAll | paginate: { itemsPerPage: 10, currentPage: page, totalItems:totalLength }">
                                                         <div class="row">
@@ -1520,11 +1520,11 @@
                                                         </div>
                                                     </li>
                                                 </ul>
-                                              <section class="agent-pagination-wrapper">
-                                                <pagination-controls (pageChange)="pageChanged($event)"
-                                                                     class="text-center my-pagination">
-                                                </pagination-controls>
-                                              </section>
+                                                <section class="agent-pagination-wrapper">
+                                                    <pagination-controls (pageChange)="pageChanged($event)"
+                                                        class="text-center my-pagination">
+                                                    </pagination-controls>
+                                                </section>
                                             </div>
                                         </div>
                                     </div>
@@ -2135,7 +2135,8 @@
                                                                         <mat-form-field
                                                                             class="example-full-width textarea-design"
                                                                             appearance="fill">
-                                                                            <textarea matInput formControlName="agentAboutMe"></textarea>
+                                                                            <textarea matInput
+                                                                                formControlName="agentAboutMe"></textarea>
                                                                         </mat-form-field>
                                                                     </div>
                                                                 </div>
@@ -2219,8 +2220,9 @@
                                                                                     <mat-form-field appearance="fill">
                                                                                         <mat-label> Select the Areas
                                                                                         </mat-label>
-                                                                                        <mat-select multiple [(value)]="areaData"
-                                                                                        (selectionChange)="getAreaData($event)">
+                                                                                        <mat-select multiple
+                                                                                            [(value)]="areaData"
+                                                                                            (selectionChange)="getAreaData($event)">
                                                                                             <mat-option
                                                                                                 *ngFor="let item of districts"
                                                                                                 value="{{item.id}}">
@@ -2341,7 +2343,8 @@
                                                                         <label class="h6-design">Company Name</label>
                                                                         <mat-form-field appearance="fill"
                                                                             class="full-width input-design-2">
-                                                                            <input matInput formControlName="companyName">
+                                                                            <input matInput
+                                                                                formControlName="companyName">
                                                                         </mat-form-field>
                                                                     </div>
                                                                 </div>
@@ -2351,7 +2354,8 @@
                                                                             No.#</label>
                                                                         <mat-form-field appearance="fill"
                                                                             class="full-width input-design-2">
-                                                                            <input matInput formControlName="tradeLicenseNo">
+                                                                            <input matInput
+                                                                                formControlName="tradeLicenseNo">
                                                                         </mat-form-field>
                                                                     </div>
                                                                 </div>
@@ -2388,7 +2392,8 @@
                                                                         <label class="h6-design">Company Address</label>
                                                                         <mat-form-field appearance="fill"
                                                                             class="full-width input-design-2">
-                                                                            <input matInput formControlName="companyAddress">
+                                                                            <input matInput
+                                                                                formControlName="companyAddress">
                                                                         </mat-form-field>
                                                                     </div>
                                                                 </div>
@@ -2472,7 +2477,7 @@
                                                                                             ngClass="outpup-filename">{{
                                                                                             emirate[0] }}</span> <img
                                                                                             src="{{upload}}">
-                                                                                    <!-- <input type="file" hidden
+                                                                                        <!-- <input type="file" hidden
                                                                                         #emirateInput>
                                                                                     <button mat-button><span
                                                                                             ngClass="outpup-filename">
@@ -2480,7 +2485,9 @@
                                                                                             Document </span>
                                                                                         <img src="{{upload}}"> -->
                                                                                         <span ngClass="btn-txt">Picture:
-                                                                                            Trade License Document</span></button>
+                                                                                            Trade License
+                                                                                            Document</span>
+                                                                                    </button>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -2503,15 +2510,16 @@
                                                                                             ngClass="outpup-filename">{{
                                                                                             emirate[1] }}</span> <img
                                                                                             src="{{upload}}">
-                                                                                    <!-- <input type="file" hidden
+                                                                                        <!-- <input type="file" hidden
                                                                                         #emirateInput>
                                                                                     <button mat-button><span
                                                                                             ngClass="outpup-filename">
                                                                                             Picture: Permit No
                                                                                             Document</span>
                                                                                         <img src="{{upload}}"> <span -->
-                                                                                            <span ngClass="btn-txt">Picture:
-                                                                                            Permit No Document</span></button>
+                                                                                        <span ngClass="btn-txt">Picture:
+                                                                                            Permit No Document</span>
+                                                                                    </button>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -2531,14 +2539,15 @@
                                                                                             ngClass="outpup-filename">{{
                                                                                             emirate[2] }}</span> <img
                                                                                             src="{{upload}}">
-                                                                                    <!-- <input type="file" hidden
+                                                                                        <!-- <input type="file" hidden
                                                                                         #emirateInput>
                                                                                     <button mat-button><span
                                                                                             ngClass="outpup-filename">
                                                                                             Picture: ORN Document
                                                                                         </span> <img src="{{upload}}"> -->
                                                                                         <span ngClass="btn-txt">Picture:
-                                                                                            ORN Document</span></button>
+                                                                                            ORN Document</span>
+                                                                                    </button>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -2561,14 +2570,15 @@
                                                                                             ngClass="outpup-filename">{{
                                                                                             emirate[3] }}</span> <img
                                                                                             src="{{upload}}">
-                                                                                    <!-- <input type="file" hidden
+                                                                                        <!-- <input type="file" hidden
                                                                                         #emirateInput>
                                                                                     <button mat-button><span
                                                                                             ngClass="outpup-filename">
                                                                                             Picture: REREA Document
                                                                                         </span> <img src="{{upload}}"> -->
                                                                                         <span ngClass="btn-txt">Picture:
-                                                                                            RERA Document</span></button>
+                                                                                            RERA Document</span>
+                                                                                    </button>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -4866,7 +4876,8 @@
                                 <!-- <h5>Share with:</h5> -->
                                 <button ngbDropdownItem><a href=""><img src="{{web}}"> Go to Ovaluate</a></button>
                                 <button ngbDropdownItem><a href=""><img src="{{profile}}"> My Profile</a></button>
-                                <button ngbDropdownItem><a target="_blank" routerLink="/chat"><img src="{{shareicon}}"> My Messages</a></button>
+                                <button ngbDropdownItem><a target="_blank" routerLink="/chat"><img src="{{shareicon}}">
+                                        My Messages</a></button>
                                 <button ngbDropdownItem><a href=""><img src="{{acsetting}}"> Account
                                         Settings</a></button>
                                 <button ngbDropdownItem><a href="" class="logout-link"><img src="{{aclogout}}">
