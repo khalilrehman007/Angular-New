@@ -624,22 +624,6 @@ export class DashboardComponent implements OnInit {
         this.otherImages[found].file = files[0];
       }
       this.emirate[index] = files[0].name;
-      const reader = new FileReader();
-      reader.readAsDataURL(files[0]);
-      reader.onload = () => {
-        found = -1;
-        for (let i = 0; i < this.uploadedDocuments.length; i++) {
-          if (this.uploadedDocuments[i].index == index) {
-            found = i;
-          }
-        }
-        if (found == -1) {
-          this.uploadedDocuments.push({ index: index, documentName: "Other Documents", fileName: files[0].name, imgsrc: reader.result });
-        } else {
-          this.uploadedDocuments[found].fileName = files[0].name;
-          this.uploadedDocuments[found].imgsrc = reader.result;
-        }
-      };
     }
   }
 
@@ -734,20 +718,8 @@ export class DashboardComponent implements OnInit {
   }
 
   expertArray: any = [];
-  expertsChange(e: any, value: any): void {
-    let exists = true;
-    this.expertArray.forEach((element: any, i: any) => {
-      if (element == value) {
-        exists = false
-      }
-    })
-    if (exists) {
-      this.expertArray.push(value)
-    } else {
-      this.expertArray.forEach((element: any, index: any) => {
-        if (element == value) delete this.expertArray[index];
-      });
-    }
+  expertsChange(e: any): void {
+    this.agentFormData.ExpertIn = e;
   }
 
   languagesArray: any = [];
@@ -881,10 +853,6 @@ export class DashboardComponent implements OnInit {
     if (this.otherImages.length < 3) {
       this.notifyService.showError('Please enter all data', "Error");
     } else {
-      let expertObject: any = []
-      this.expertArray.forEach((element: any, i: any) => {
-        expertObject.push({ "ExpertIn": element })
-      })
       
       if (this.NationalityId == null || this.NationalityId == undefined) {
         // this.notifyService.showError('Please select Nationality', "Error");
@@ -919,7 +887,6 @@ export class DashboardComponent implements OnInit {
       this.agentFormData.NationalityId = this.NationalityId.toString();
       this.agentFormData.AgentLanguages = langObject;
       // this.agentFormData.AgentAreas = temp;
-      this.agentFormData.ExpertIn = expertObject;
       this.agentFormData.AgentAreas = temp;
       this.documentsObject();
       this.agentFormData.Documents = this.finalBrokerDocments
@@ -928,14 +895,13 @@ export class DashboardComponent implements OnInit {
 
       let valuationData = new FormData();
       valuationData.append("AgentRequest", JSON.stringify(this.agentFormData));
-      // console.log(this.agentFormData)
 
       for (let i = 0; i < 3; i++) {
-        // console.log(this.otherImages[i])
         valuationData.append(i+1 + "_" + this.otherImages[i].file.name, this.otherImages[i].file);
       }
       let token: any = localStorage.getItem("token");
       token = JSON.parse(token);
+      console.log(JSON.stringify(this.agentFormData))
       $.ajax({
         url: "https://beta.ovaluate.com/api/AddUpdateAgentDetails",
         method: "post",
@@ -946,10 +912,12 @@ export class DashboardComponent implements OnInit {
           "Authorization": 'bearer ' + token
         },
         dataType: "json",
-        success: (res) => {
+        success: (res:any) => {
           console.log(res)
           this.agentBrokerId = res.data.id;
-          this.notifyService.showSuccess(res.message, "Agent details updated successfully");
+          if(res.message == "agent request completed successfully") {
+            this.notifyService.showSuccess(res.message, "Agent details updated successfully");
+          }
           // if(res.message == "Property Listing request completed successfully") {
           //   localStorage.removeItem("propertyData");
           //   this.route.navigate(['listpropertypublish'])

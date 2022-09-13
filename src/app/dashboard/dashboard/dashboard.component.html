@@ -2157,7 +2157,7 @@
                                                                             <div
                                                                                 class="checkbox-flex-box autoflex-layout">
                                                                                 <div class="checkbox-design position-relative"
-                                                                                    (change)="expertsChange($event,list.id)"
+                                                                                    (change)="expertsChange(list.id)"
                                                                                     *ngFor="let list of ExpertIn">
                                                                                     <input type="checkbox"
                                                                                         id="{{list.name}}"
@@ -2245,11 +2245,11 @@
                                                                                     <input type="file" hidden
                                                                                         #emirateInput0
                                                                                         accept=".doc, .pdf, .jpg, .jpeg, .png"
-                                                                                        (change)='emiratesfun($any($event.target).files, 0)'>
+                                                                                        (change)='emiratesfun($any($event.target).files, 1)'>
                                                                                     <button mat-button
                                                                                         (click)="emirateInput0.click()"><span
                                                                                             ngClass="outpup-filename">{{
-                                                                                            emirate[0] }}</span> <img
+                                                                                            emirate[1] }}</span> <img
                                                                                             src="{{upload}}">
                                                                                         <span ngClass="btn-txt">Picture:
                                                                                             Emirates ID (Fornt
@@ -2271,11 +2271,11 @@
                                                                                     <input type="file" hidden
                                                                                         #emirateInput1
                                                                                         accept=".doc, .pdf, .jpg, .jpeg, .png"
-                                                                                        (change)='emiratesfun($any($event.target).files, 1)'>
+                                                                                        (change)='emiratesfun($any($event.target).files, 2)'>
                                                                                     <button mat-button
                                                                                         (click)="emirateInput1.click()"><span
                                                                                             ngClass="outpup-filename">{{
-                                                                                            emirate[1] }}</span> <img
+                                                                                            emirate[2] }}</span> <img
                                                                                             src="{{upload}}">
                                                                                         <span ngClass="btn-txt">Picture:
                                                                                             Emirates ID (Fornt
@@ -2293,11 +2293,11 @@
                                                                                     <input type="file" hidden
                                                                                         #emirateInput2
                                                                                         accept=".doc, .pdf, .jpg, .jpeg, .png"
-                                                                                        (change)='emiratesfun($any($event.target).files, 2)'>
+                                                                                        (change)='emiratesfun($any($event.target).files, 3)'>
                                                                                     <button mat-button
                                                                                         (click)="emirateInput2.click()"><span
                                                                                             ngClass="outpup-filename">{{
-                                                                                            emirate[2] }}</span> <img
+                                                                                            emirate[3] }}</span> <img
                                                                                             src="{{upload}}">
                                                                                         <span ngClass="btn-txt">Picture:
                                                                                             Emirates ID (Fornt
