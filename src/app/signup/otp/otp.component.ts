@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { data } from 'jquery';
 import { AppService } from 'src/app/service/app.service';
@@ -10,7 +10,7 @@ import { NotificationService } from 'src/app/service/notification.service';
   templateUrl: './otp.component.html',
   styleUrls: ['./otp.component.scss']
 })
-export class OtpComponent implements OnInit {
+export class OtpComponent implements OnInit, AfterViewInit {
   error: any = ""
   showError: boolean = false;
   errorResponse(data: any) {
@@ -85,6 +85,11 @@ export class OtpComponent implements OnInit {
       this.code = this.verificationData.code;
     }
 
+  }
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      $("#input1").focus();
+    }, 100);
   }
   getCode() {
     this.service.SendDigitSms({ "FirstName": this.verificationData.FirstName, "PhoneNumber": this.verificationData.PhoneNumber }).subscribe((result: any) => {

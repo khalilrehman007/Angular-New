@@ -13,7 +13,7 @@
             <div ngClass="d-flex justify-content-spacebw otp-form-sec">
                 <mat-form-field class="full-width input-design" appearance="fill">
                     <input id="input1" matInput type="text" maxlength="1" placeholder="8"
-                        (keyup)="keytab('input1', 'input1', 'input2', $event)">
+                        (keyup)="keytab('input1', 'input1', 'input2', $event)" cdkFocusInitial>
                 </mat-form-field>
                 <mat-form-field class="full-width input-design" appearance="fill">
                     <input id="input2" matInput type="text" maxlength="1" placeholder="8"
