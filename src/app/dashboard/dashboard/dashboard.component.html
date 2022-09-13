@@ -729,8 +729,7 @@
                                                             <div class="col-lg-10">
                                                                 <div class="row">
                                                                     <div class="col-7">
-                                                                        <a
-                                                                            class="agent-details__property-list-item-link cursor-pointer">{{viewList.propertyPrice}}
+                                                                        <a routerLink="/property/detail" [queryParams]="{id: viewList.id}" class="agent-details__property-list-item-link cursor-pointer">{{viewList.propertyPrice}}
                                                                             {{viewList.currency}}
                                                                             <span>{{viewList.rentType}}</span>
                                                                         </a>
