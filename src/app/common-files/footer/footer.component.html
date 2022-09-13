@@ -26,8 +26,8 @@
                     <div ngClass="footer-menu-heading">
                         <h5>Property Valuation</h5>
                         <ul>
-                            <li><a routerLink="/PropertyDetail">Residential </a></li>
-                            <li><a routerLink="/PropertyDetail">Commercial </a></li>
+                            <li><a (click)="goToValuation(1)" class="cursor-pointer">Residential </a></li>
+                            <li><a (click)="goToValuation(2)" class="cursor-pointer">Commercial </a></li>
                         </ul>
                     </div>
                     <div ngClass="footer-secondary-menu-heading">

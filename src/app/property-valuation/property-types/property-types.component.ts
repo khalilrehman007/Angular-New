@@ -114,6 +114,11 @@ export class PropertyTypesComponent implements OnInit {
     this.formData.Bedrooms = 0;
     this.formData.Bathrooms = 0;
     this.loadOldData();
+    if(localStorage.getItem("valuationFromFooter")) {
+      let temp:any = localStorage.getItem("valuationFromFooter");
+      this.formData.PropertyCategoryId = temp;
+      this.loadType(temp);
+    }
   }
   ngOnInit(): void {
     this.service.PropertyUnitTypes().subscribe((result: any) => {
@@ -461,6 +466,7 @@ export class PropertyTypesComponent implements OnInit {
     localStorage.setItem('valuationDetailData', JSON.stringify(this.formDetailData));
     localStorage.setItem('propertyTypeData', JSON.stringify(this.formData));
     localStorage.setItem('valuationData', JSON.stringify(this.formData));
+    localStorage.removeItem("valuationFromFooter");
     this.router.navigate(['/valuation/PropertyDocument']);
   }
 }
