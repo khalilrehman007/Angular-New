@@ -2157,7 +2157,7 @@
                                                                             <div
                                                                                 class="checkbox-flex-box autoflex-layout">
                                                                                 <div class="checkbox-design position-relative"
-                                                                                    (change)="expertsChange($event,list.id)"
+                                                                                    (change)="expertsChange(list.id)"
                                                                                     *ngFor="let list of ExpertIn">
                                                                                     <input type="checkbox"
                                                                                         id="{{list.name}}"
@@ -2245,11 +2245,11 @@
                                                                                     <input type="file" hidden
                                                                                         #emirateInput0
                                                                                         accept=".doc, .pdf, .jpg, .jpeg, .png"
-                                                                                        (change)='emiratesfun($any($event.target).files, 0)'>
+                                                                                        (change)='emiratesfun($any($event.target).files, 1)'>
                                                                                     <button mat-button
                                                                                         (click)="emirateInput0.click()"><span
                                                                                             ngClass="outpup-filename">{{
-                                                                                            emirate[0] }}</span> <img
+                                                                                            emirate[1] }}</span> <img
                                                                                             src="{{upload}}">
                                                                                         <span ngClass="btn-txt">Picture:
                                                                                             Emirates ID (Fornt
@@ -2271,11 +2271,11 @@
                                                                                     <input type="file" hidden
                                                                                         #emirateInput1
                                                                                         accept=".doc, .pdf, .jpg, .jpeg, .png"
-                                                                                        (change)='emiratesfun($any($event.target).files, 1)'>
+                                                                                        (change)='emiratesfun($any($event.target).files, 2)'>
                                                                                     <button mat-button
                                                                                         (click)="emirateInput1.click()"><span
                                                                                             ngClass="outpup-filename">{{
-                                                                                            emirate[1] }}</span> <img
+                                                                                            emirate[2] }}</span> <img
                                                                                             src="{{upload}}">
                                                                                         <span ngClass="btn-txt">Picture:
                                                                                             Emirates ID (Fornt
@@ -2293,11 +2293,11 @@
                                                                                     <input type="file" hidden
                                                                                         #emirateInput2
                                                                                         accept=".doc, .pdf, .jpg, .jpeg, .png"
-                                                                                        (change)='emiratesfun($any($event.target).files, 2)'>
+                                                                                        (change)='emiratesfun($any($event.target).files, 3)'>
                                                                                     <button mat-button
                                                                                         (click)="emirateInput2.click()"><span
                                                                                             ngClass="outpup-filename">{{
-                                                                                            emirate[2] }}</span> <img
+                                                                                            emirate[3] }}</span> <img
                                                                                             src="{{upload}}">
                                                                                         <span ngClass="btn-txt">Picture:
                                                                                             Emirates ID (Fornt
@@ -2396,37 +2396,6 @@
 
                                                                 <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                                                     <div ngClass="block-wrapper mb-4">
-                                                                        <label class="h6-design">City</label>
-
-                                                                        <mat-form-field appearance="fill"
-                                                                            class="full-width select-form input-design-2">
-                                                                            <mat-label>Select City</mat-label>
-                                                                            <mat-select
-                                                                                (selectionChange)="onCitySelect($event);">
-                                                                                <mat-option
-                                                                                    *ngFor="let listcity of city"
-                                                                                    [value]="listcity.value">
-                                                                                    {{ listcity.viewValue }}
-                                                                                </mat-option>
-                                                                            </mat-select>
-                                                                            <!-- <mat-select>
-                                                                                <mat-option [value]="city">
-                                                                                    City 1
-                                                                                </mat-option>
-                                                                                <mat-option [value]="city">
-                                                                                    City 1
-                                                                                </mat-option>
-                                                                                <mat-option [value]="city">
-                                                                                    City 1
-                                                                                </mat-option>
-                                                                            </mat-select> -->
-                                                                        </mat-form-field>
-
-                                                                    </div>
-                                                                </div>
-
-                                                                <div ngClass="col-xl-6 col-lg-6 col-sm-12">
-                                                                    <div ngClass="block-wrapper mb-4">
                                                                         <label class="h6-design">Country</label>
 
                                                                         <mat-form-field appearance="fill"
@@ -2455,6 +2424,36 @@
                                                                     </div>
                                                                 </div>
 
+                                                                <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+                                                                    <div ngClass="block-wrapper mb-4">
+                                                                        <label class="h6-design">City</label>
+
+                                                                        <mat-form-field appearance="fill"
+                                                                            class="full-width select-form input-design-2">
+                                                                            <mat-label>Select City</mat-label>
+                                                                            <mat-select
+                                                                                (selectionChange)="onCitySelect($event);">
+                                                                                <mat-option
+                                                                                    *ngFor="let listcity of city"
+                                                                                    [value]="listcity.value">
+                                                                                    {{ listcity.viewValue }}
+                                                                                </mat-option>
+                                                                            </mat-select>
+                                                                            <!-- <mat-select>
+                                                                                <mat-option [value]="city">
+                                                                                    City 1
+                                                                                </mat-option>
+                                                                                <mat-option [value]="city">
+                                                                                    City 1
+                                                                                </mat-option>
+                                                                                <mat-option [value]="city">
+                                                                                    City 1
+                                                                                </mat-option>
+                                                                            </mat-select> -->
+                                                                        </mat-form-field>
+
+                                                                    </div>
+                                                                </div>
                                                             </div>
 
 
@@ -2466,13 +2465,13 @@
                                                                             <div ngClass="upload-files-design">
                                                                                 <div ngClass="greybordered-btn">
                                                                                     <input type="file" hidden
-                                                                                        #emirateInput1
+                                                                                        #emirateInput0
                                                                                         accept=".doc, .pdf, .jpg, .jpeg, .png"
-                                                                                        (change)='emiratesfun($any($event.target).files, 1)'>
+                                                                                        (change)='emiratesfun($any($event.target).files, 0)'>
                                                                                     <button mat-button
-                                                                                        (click)="emirateInput1.click()"><span
+                                                                                        (click)="emirateInput0.click()"><span
                                                                                             ngClass="outpup-filename">{{
-                                                                                            emirate[1] }}</span> <img
+                                                                                            emirate[0] }}</span> <img
                                                                                             src="{{upload}}">
                                                                                     <!-- <input type="file" hidden
                                                                                         #emirateInput>
@@ -2482,16 +2481,15 @@
                                                                                             Document </span>
                                                                                         <img src="{{upload}}"> -->
                                                                                         <span ngClass="btn-txt">Picture:
-                                                                                            Emirates ID (Fornt
-                                                                                            View)</span></button>
+                                                                                            Trade License Document</span></button>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                     <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                                                                        <span class="staus-emoji">
+                                                                        <!-- <span class="staus-emoji">
                                                                             <img src="{{approvedEmo}}" alt="">
-                                                                        </span>
+                                                                        </span> -->
                                                                     </div>
                                                                     <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                                                                         <div ngClass="blue-upload-box">
@@ -2513,9 +2511,8 @@
                                                                                             Picture: Permit No
                                                                                             Document</span>
                                                                                         <img src="{{upload}}"> <span -->
-                                                                                            <span>Picture:
-                                                                                            Emirates ID (Fornt
-                                                                                            View)</span></button>
+                                                                                            <span ngClass="btn-txt">Picture:
+                                                                                            Permit No Document</span></button>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -2527,13 +2524,13 @@
                                                                             <div ngClass="upload-files-design">
                                                                                 <div ngClass="greybordered-btn">
                                                                                     <input type="file" hidden
-                                                                                        #emirateInput1
+                                                                                        #emirateInput2
                                                                                         accept=".doc, .pdf, .jpg, .jpeg, .png"
-                                                                                        (change)='emiratesfun($any($event.target).files, 1)'>
+                                                                                        (change)='emiratesfun($any($event.target).files, 2)'>
                                                                                     <button mat-button
-                                                                                        (click)="emirateInput1.click()"><span
+                                                                                        (click)="emirateInput2.click()"><span
                                                                                             ngClass="outpup-filename">{{
-                                                                                            emirate[1] }}</span> <img
+                                                                                            emirate[2] }}</span> <img
                                                                                             src="{{upload}}">
                                                                                     <!-- <input type="file" hidden
                                                                                         #emirateInput>
@@ -2542,29 +2539,28 @@
                                                                                             Picture: ORN Document
                                                                                         </span> <img src="{{upload}}"> -->
                                                                                         <span ngClass="btn-txt">Picture:
-                                                                                            Emirates ID (Fornt
-                                                                                            View)</span></button>
+                                                                                            ORN Document</span></button>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                     <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                                                                        <span class="staus-emoji">
+                                                                        <!-- <span class="staus-emoji">
                                                                             <img src="{{penfingEmo}}" alt="">
-                                                                        </span>
+                                                                        </span> -->
                                                                     </div>
                                                                     <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                                                                         <div ngClass="blue-upload-box">
                                                                             <div ngClass="upload-files-design">
                                                                                 <div ngClass="greybordered-btn">
                                                                                     <input type="file" hidden
-                                                                                        #emirateInput1
+                                                                                        #emirateInput3
                                                                                         accept=".doc, .pdf, .jpg, .jpeg, .png"
-                                                                                        (change)='emiratesfun($any($event.target).files, 1)'>
+                                                                                        (change)='emiratesfun($any($event.target).files, 3)'>
                                                                                     <button mat-button
-                                                                                        (click)="emirateInput1.click()"><span
+                                                                                        (click)="emirateInput3.click()"><span
                                                                                             ngClass="outpup-filename">{{
-                                                                                            emirate[1] }}</span> <img
+                                                                                            emirate[3] }}</span> <img
                                                                                             src="{{upload}}">
                                                                                     <!-- <input type="file" hidden
                                                                                         #emirateInput>
@@ -2573,16 +2569,15 @@
                                                                                             Picture: REREA Document
                                                                                         </span> <img src="{{upload}}"> -->
                                                                                         <span ngClass="btn-txt">Picture:
-                                                                                            Emirates ID (Fornt
-                                                                                            View)</span></button>
+                                                                                            RERA Document</span></button>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                     <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                                                                        <span class="staus-emoji">
+                                                                        <!-- <span class="staus-emoji">
                                                                             <img src="{{penfingEmo}}" alt="">
-                                                                        </span>
+                                                                        </span> -->
                                                                     </div>
                                                                 </div>
                                                             </div>

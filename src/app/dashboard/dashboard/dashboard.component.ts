@@ -364,14 +364,14 @@ export class DashboardComponent implements OnInit {
         alert("Something went wrong");
       }
     });
-    this.data.BRNNo = this.agentDetailsFormData.value.agentBrnNo;
-    this.data.agentAboutMe = this.agentDetailsFormData.value.agentAboutMe;
-    this.data.CompanyName = this.companyDetailsFormData.value.companyName;
-    this.data.TradeLicenseNo = this.companyDetailsFormData.value.tradeLicenseNo;
-    this.data.PermitNo = this.companyDetailsFormData.value.permitNo;
-    this.data.ORNNo = this.companyDetailsFormData.value.ornNo;
-    this.data.RERANo = this.companyDetailsFormData.value.reraNo;
-    this.data.CompanyAddress = this.companyDetailsFormData.value.companyAddress;
+    // this.data.BRNNo = this.agentDetailsFormData.value.agentBrnNo;
+    // this.data.agentAboutMe = this.agentDetailsFormData.value.agentAboutMe;
+    // this.data.CompanyName = this.companyDetailsFormData.value.companyName;
+    // this.data.TradeLicenseNo = this.companyDetailsFormData.value.tradeLicenseNo;
+    // this.data.PermitNo = this.companyDetailsFormData.value.permitNo;
+    // this.data.ORNNo = this.companyDetailsFormData.value.ornNo;
+    // this.data.RERANo = this.companyDetailsFormData.value.reraNo;
+    // this.data.CompanyAddress = this.companyDetailsFormData.value.companyAddress;
   }
 
   LoadvaluationDashboard() {
@@ -624,22 +624,6 @@ export class DashboardComponent implements OnInit {
         this.otherImages[found].file = files[0];
       }
       this.emirate[index] = files[0].name;
-      const reader = new FileReader();
-      reader.readAsDataURL(files[0]);
-      reader.onload = () => {
-        found = -1;
-        for (let i = 0; i < this.uploadedDocuments.length; i++) {
-          if (this.uploadedDocuments[i].index == index) {
-            found = i;
-          }
-        }
-        if (found == -1) {
-          this.uploadedDocuments.push({ index: index, documentName: "Other Documents", fileName: files[0].name, imgsrc: reader.result });
-        } else {
-          this.uploadedDocuments[found].fileName = files[0].name;
-          this.uploadedDocuments[found].imgsrc = reader.result;
-        }
-      };
     }
   }
 
@@ -734,20 +718,8 @@ export class DashboardComponent implements OnInit {
   }
 
   expertArray: any = [];
-  expertsChange(e: any, value: any): void {
-    let exists = true;
-    this.expertArray.forEach((element: any, i: any) => {
-      if (element == value) {
-        exists = false
-      }
-    })
-    if (exists) {
-      this.expertArray.push(value)
-    } else {
-      this.expertArray.forEach((element: any, index: any) => {
-        if (element == value) delete this.expertArray[index];
-      });
-    }
+  expertsChange(e: any): void {
+    this.agentFormData.ExpertIn = e;
   }
 
   languagesArray: any = [];
@@ -803,77 +775,88 @@ export class DashboardComponent implements OnInit {
   }
 
   getCompanyData(){
-    // if (this.companyDetailsFormData.companyName) {
-    //   this.error = "Enter Company Name";
-    //   this.showError = true;
-    //   return;
-    // } else if (this.companyDetailsFormData.tradeLicenseNo) {
-    //   this.error = "Enter Trade License No";
-    //   this.showError = true;
-    //   return;
-    // } else if (this.companyDetailsFormData.permitNo) {
-    //   this.error = "Enter Permit No";
-    //   this.showError = true;
-    //   return;
-    // } else if (this.companyDetailsFormData.ornNo) {
-    //   this.error = "Enter ORN no";
-    //   this.showError = true;
-    //   return;
-    // } else if (this.companyDetailsFormData.reraNo) {
-    //   this.error = "Enter RERA no";
-    //   this.showError = true;
-    //   return;
-    // } else if (this.companyDetailsFormData.companyAddress) {
-    //   this.error = "Enter Company Address";
-    //   this.showError = true;
-    //   return;
-    // }
+    if (this.companyFormData.companyName) {
+      this.error = "Enter Company Name";
+      this.showError = true;
+      return;
+    } else if (this.companyFormData.tradeLicenseNo) {
+      this.error = "Enter Trade License No";
+      this.showError = true;
+      return;
+    } else if (this.companyFormData.premitNo) {
+      this.error = "Enter Permit No";
+      this.showError = true;
+      return;
+    } else if (this.companyFormData.ornNo) {
+      this.error = "Enter ORN no";
+      this.showError = true;
+      return;
+    } else if (this.companyFormData.reraNo) {
+      this.error = "Enter RERA no";
+      this.showError = true;
+      return;
+    } else if (this.companyFormData.companyAdress) {
+      this.error = "Enter Company Address";
+      this.showError = true;
+      return;
+    } else if (this.otherImages.length < 4) {
+      this.notifyService.showError('Please select all images', "Error");
+      return;
+    } 
 
+    this.companyFormData.CompanyName = this.companyDetail.value.companyName;
+    this.companyFormData.TradeLicenseNo = this.companyDetail.value.tradeLicenseNo;
+    this.companyFormData.PremitNo = this.companyDetail.value.permitNo;
+    this.companyFormData.ORNNo = this.companyDetail.value.ornNo;
+    this.companyFormData.RERANo = this.companyDetail.value.reraNo;
+    this.companyFormData.CompanyAdress = this.companyDetail.value.companyAddress;
+
+    let valuationData = new FormData();
+      valuationData.append("CompanyRequest", JSON.stringify(this.companyFormData));
+      // console.log(this.agentFormData)
+
+      for (let i = 0; i < 4; i++) {
+        // console.log(this.otherImages[i])
+        valuationData.append(i+1 + "_" + this.otherImages[i].file.name, this.otherImages[i].file);
+      }
     
 
     // if ( this.data.CompanyName = this.companyDetailsFormData.value.companyName )
     let token: any = localStorage.getItem("token");
-      token = JSON.parse(token);
-      $.ajax({
-        url: "https://beta.ovaluate.com/api/AddUpdateCompany",
-        method: "post",
-        contentType: false,
-        processData: false,
-        headers: {
-          "Authorization": 'bearer ' + token
-        },
-        dataType: "json",
-        success: (res) => {
-          console.log(res)
-          this.companyDetail = res.data.id;
-          this.notifyService.showSuccess(res.message, "Company details updated successfully");
-          // if(res.message == "Property Listing request completed successfully") {
-          //   localStorage.removeItem("propertyData");
-          //   this.route.navigate(['listpropertypublish'])
-          // }
-        },
-        error: (err) => {
-          this.notifyService.showError(err, "");
+    console.log(this.companyFormData)
+      // token = JSON.parse(token);
+      // $.ajax({
+      //   url: "https://beta.ovaluate.com/api/AddUpdateCompany",
+      //   method: "post",
+      //   contentType: false,
+      //   processData: false,
+      //   headers: {
+      //     "Authorization": 'bearer ' + token
+      //   },
+      //   dataType: "json",
+      //   success: (res) => {
+      //     console.log(res)
+      //     this.companyDetailsFormData = res.data.id;
+      //     this.notifyService.showSuccess(res.message, "Company details updated successfully");
+      //   },
+      //   error: (err) => {
+      //     this.notifyService.showError(err, "");
 
-        }
-      })
+      //   }
+      // })
 
   }
 
   agentBrokerId: any;
   imageObject: any = []
   getAgentData() {
-    if (this.NationalityId == null || this.NationalityId == undefined) {
-      this.notifyService.showError('Please select Nationality', "Error");
-    }
     if (this.otherImages.length < 3) {
-      this.notifyService.showError('Please Select All File', "Error");
+      this.notifyService.showError('Please enter all data', "Error");
     } else {
-      let expertObject: any = []
-      this.expertArray.forEach((element: any, i: any) => {
-        expertObject.push({ "ExpertIn": element })
-      })
-
+      
+      if (this.NationalityId == null || this.NationalityId == undefined) {
+        // this.notifyService.showError('Please select Nationality', "Error");
+      }
       let langObject: any = []
       this.languagesArray.forEach((element: any, i: any) => {
         langObject.push({ SpokenLanguageId: element })
@@ -904,7 +887,6 @@ export class DashboardComponent implements OnInit {
       this.agentFormData.NationalityId = this.NationalityId.toString();
       this.agentFormData.AgentLanguages = langObject;
       // this.agentFormData.AgentAreas = temp;
-      this.agentFormData.ExpertIn = expertObject;
       this.agentFormData.AgentAreas = temp;
       this.documentsObject();
       this.agentFormData.Documents = this.finalBrokerDocments
@@ -913,14 +895,13 @@ export class DashboardComponent implements OnInit {
 
       let valuationData = new FormData();
       valuationData.append("AgentRequest", JSON.stringify(this.agentFormData));
-      // console.log(this.agentFormData)
 
       for (let i = 0; i < 3; i++) {
-        // console.log(this.otherImages[i])
         valuationData.append(i+1 + "_" + this.otherImages[i].file.name, this.otherImages[i].file);
       }
       let token: any = localStorage.getItem("token");
       token = JSON.parse(token);
+      console.log(JSON.stringify(this.agentFormData))
       $.ajax({
         url: "https://beta.ovaluate.com/api/AddUpdateAgentDetails",
         method: "post",
@@ -931,10 +912,12 @@ export class DashboardComponent implements OnInit {
           "Authorization": 'bearer ' + token
         },
         dataType: "json",
-        success: (res) => {
+        success: (res:any) => {
           console.log(res)
           this.agentBrokerId = res.data.id;
-          this.notifyService.showSuccess(res.message, "Agent details updated successfully");
+          if(res.message == "agent request completed successfully") {
+            this.notifyService.showSuccess(res.message, "Agent details updated successfully");
+          }
           // if(res.message == "Property Listing request completed successfully") {
           //   localStorage.removeItem("propertyData");
           //   this.route.navigate(['listpropertypublish'])
