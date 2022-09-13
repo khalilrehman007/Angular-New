@@ -200,7 +200,7 @@ export class MotorComponentComponent implements OnInit {
 
     // console.log(params)
 
-    this.route.navigate(['/property/search'], params)
+    this.route.navigate(['/classified'], params)
   }
 
 

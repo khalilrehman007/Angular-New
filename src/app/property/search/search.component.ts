@@ -82,6 +82,7 @@ export class SearchComponent implements OnInit {
   Bedrooms: any;
   Bathrooms: any;
   KeyWordsParams: any;
+  headingPropertyType: any = "Properties";
   constructor(private authService: AuthService, private notifyService: NotificationService, private activeRoute: ActivatedRoute, private service: AppService, private api: AppService, private route: Router, private modalService: NgbModal) {
     $(window).scrollTop(0);
     this.route.events.subscribe((e: any) => {
