@@ -4537,19 +4537,17 @@ img {
 
 .agent-pagination-wrapper {
 	margin: 80px 0;
+}
+.ngx-pagination {
+	li {
+		margin: 0 8px;
+	}
 
-	.ngx-pagination {
-		li {
-			margin: 0 8px;
-		}
-
-		.current {
-			background: #F0F3F5 !important;
-			color: $color_10;
-		}
+	.current {
+		background: #F0F3F5 !important;
+		color: $color_10 !important;
 	}
 }
-
 .property-tabs-content {
 	padding-bottom: 60px;
 	padding-top: 20px;
@@ -4936,12 +4934,6 @@ img {
 
 .white-circle-outline {
 	background: #FFFFFF;
-	box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.05);
-	border-radius: 50px;
-	width: 93px;
-	height: 93px;
-	overflow: hidden;
-	background: #FFFFFF;
 	box-shadow: 0px 21px 49px rgba(0, 0, 0, 0.25);
 	border-radius: 50px;
 	width: 93px;
@@ -4953,7 +4945,7 @@ img {
 	img {
 		width: 100%;
 		height: 100%;
-		object-fit: contain;
+		object-fit: cover;
 	}
 }
 
@@ -6829,9 +6821,8 @@ img {
 
 .blogs-header-bars {
 	border-bottom: 0.25px solid #F0EFFB;
-	padding-top: 10px;
-	padding-bottom: 10px;
-
+	padding-top: 25px;
+    padding-bottom: 16px;
 	.blogs-seach-blog {
 		margin-top: 25px;
 
@@ -11566,7 +11557,7 @@ background: transparent !important;
     position: relative;
     top: 1px;
     color: #000;
-    font-weight: 700;
+	text-shadow: 0.5px 0px 0px #000;
 }
 .nav-active::after {
     content: '';
@@ -11578,4 +11569,16 @@ background: transparent !important;
     height: 2px;
     bottom: -8px;
 }
-
+.mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
+    background-color: #595ad5;
+}
+.mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
+    background-color: rgba(88,88,213,0.4);
+}
+.setting-logout .sub-title {
+    display: block;
+	cursor: pointer;
+}
+.setting-logout .sub-title>img {
+    margin-right: 10px;
+}

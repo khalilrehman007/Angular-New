@@ -110,7 +110,9 @@
                                         My Messages</a></button>
                                 <button ngbDropdownItem><a href=""><img src="{{acsetting}}"> Account
                                         Settings</a></button>
-                                <button ngbDropdownItem *ngIf="user !== null"><a class="logout-link" (click)="logout()"><img src="{{aclogout}}"> Logout</a></button>
+                                <button ngbDropdownItem>
+                                    <a ngClass="logout-link logout-popup" (click)="logOutPopup(content)"><img src="{{aclogout}}"> Logout </a>
+                                </button>
                             </div>
                         </div>
                     </li>
@@ -2679,13 +2681,12 @@
 
                                                                 <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                                                     <div ngClass="block-wrapper mb-4">
-                                                                        <h3 class="sub-title">Language Settings</h3>
                                                                         <div class="d-flex justify-content-between">
+                                                                            <div>
+                                                                            <h3 class="sub-title">Language Settings</h3>
                                                                             <label class="h6-design">Set your preferred
                                                                                 language</label>
-                                                                            <!-- <mat-form-field appearance="fill"  class="full-width input-design-2">
-                            <input matInput>
-                          </mat-form-field> -->
+                                                                            </div>
                                                                             <mat-form-field appearance="fill"
                                                                                 class="select-form input-design-2">
                                                                                 <mat-label>Select Language</mat-label>
@@ -2707,50 +2708,39 @@
                                                                 <div ngClass="col-xl-6 col-lg-6 col-sm-12"></div>
                                                                 <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                                                     <div ngClass="block-wrapper mb-4">
-                                                                        <h3 class="sub-title">Push Notification Settings
-                                                                        </h3>
                                                                         <div class="d-flex justify-content-between">
+                                                                            <div>
+                                                                            <h3 class="sub-title">Push Notification Settings</h3>
                                                                             <label class="h6-design">Get notifications
                                                                                 from estatery to stay
                                                                                 up-to-date.</label>
-                                                                            <!-- <mat-slide-toggle>Slide me!</mat-slide-toggle> -->
-                                                                            <div class="form-check form-switch">
-                                                                                <input class="form-check-input"
-                                                                                    type="checkbox" role="switch"
-                                                                                    id="flexSwitchCheckChecked" checked>
                                                                             </div>
-
+                                                                            <div class="form-check form-switch">
+                                                                                <mat-slide-toggle></mat-slide-toggle>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                                 <div ngClass="col-xl-6 col-lg-6 col-sm-12"></div>
                                                                 <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                                                     <div ngClass="block-wrapper mb-4">
-                                                                        <h3 class="sub-title">Delete Account</h3>
                                                                         <div class="d-flex justify-content-between">
+                                                                            <div>
+                                                                            <h3 class="sub-title">Delete Account</h3>
                                                                             <label class="h6-design">Delete your account
                                                                                 and all the data</label>
-                                                                            <!-- <mat-form-field appearance="fill"  class="full-width input-design-2">
-                            <input matInput>
-                          </mat-form-field> -->
-                                                                            <a href="#"
-                                                                                class="btn btn-delete-act">Delete
-                                                                                Account</a>
+                                                                            </div>
+                                                                            <a href="#" class="btn btn-delete-act">Delete Account</a>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-
                                                                 <div ngClass="col-xl-6 col-lg-6 col-sm-12"></div>
                                                                 <div ngClass="col-xl-6 col-lg-6 col-sm-12">
-                                                                    <div ngClass="block-wrapper mb-4">
-                                                                        <a href="" class="sub-title"><img
-                                                                                src="{{logoutIcon}}" alt=""> Log Out</a>
+                                                                    <div ngClass="block-wrapper mb-4 setting-logout">
+                                                                        <a ngClass="sub-title" (click)="logOutPopup(content)"><img src="{{logoutIcon}}"> Logout </a>
                                                                     </div>
                                                                 </div>
-
                                                             </div>
-
-
                                                         </div>
                                                     </div>
                                                 </div>
@@ -4883,8 +4873,9 @@
                                         My Messages</a></button>
                                 <button ngbDropdownItem><a href=""><img src="{{acsetting}}"> Account
                                         Settings</a></button>
-                                <button ngbDropdownItem><a href="" class="logout-link"><img src="{{aclogout}}">
-                                        Logout</a></button>
+                                <button ngbDropdownItem>
+                                        <a ngClass="logout-link" (click)="logOutPopup(content)"><img src="{{aclogout}}"> Logout </a>
+                                    </button>
                             </div>
                         </div>
                         <!-- <button mat-icon-button>
@@ -4907,5 +4898,25 @@
         </div>
     </div>
 </section>
+<div ngClass="logout-modal">
+    <ng-template #content let-modal>
+        <div class="modal-body logout-modal-design">
+            <div ngClass="logout-banner-popup">
+                <img src="{{logoutimg}}">
+            </div>
+            <div ngClass="logout-banner-cntnt text-center">
+                <h4>Are you sure you want to log out?</h4>
+                <p>We will miss you come back soon!</p>
+            </div>
+            <div ngClass="logout-banner-footer">
+                <button type="button" class="btn-cancel" aria-label="Close"
+                    (click)="modal.dismiss('Cross click')">Cancel</button>
+                <button #noListItemTmpl *ngIf="user !== null" (click)="modal.dismiss('Cross click')">
+                    <a ngClass="nav-link" (click)="logout();modal.dismiss('Cross click')"> Logout </a>
+                </button>
+            </div>
+        </div>
+    </ng-template>
+</div>
 <app-footer></app-footer>
 <app-loader *ngIf="showLoader"></app-loader>

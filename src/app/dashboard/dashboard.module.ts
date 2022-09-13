@@ -5,7 +5,7 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CommonFilesModule } from '../common-files/common-files.module';
 import { LoaderModule } from '../loader/loader.module';
-
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -39,7 +39,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MatNativeDateModule,
     NgxPaginationModule,
     MatIconModule,
-    NgbModule
+    NgbModule,
+    MatSlideToggleModule
   ]
 })
 export class DashboardModule { }

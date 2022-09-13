@@ -1,6 +1,6 @@
 import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import * as $ from 'jquery';
 import { NgbNav } from '@ng-bootstrap/ng-bootstrap';
 import { NotificationService } from "../../service/notification.service";
@@ -17,6 +17,7 @@ import { AuthService } from "../../service/auth.service";
 export class DashboardComponent implements OnInit {
   blogs: any;
   proFrame = '../../assets/images/profile/pro-img-frame.png'
+  logoutimg = '../../assets/images/logout-popup-banner.png'
   proAvatar: any = '../../assets/images/user.png'
   proClose = '../../assets/images/profile/close.png'
   proImgEdit = '../../assets/images/profile/edit.png'
@@ -171,7 +172,7 @@ export class DashboardComponent implements OnInit {
   userId: number;
   parentTabId: any = "";
   childTabId: any  = "";
-  constructor(private authService: AuthService, private service: AppService, private route: Router, private notifyService: NotificationService) {
+  constructor(private authService: AuthService, private service: AppService, private route: Router, private notifyService: NotificationService,private modalService: NgbModal) {
     $(window).scrollTop(0);
     this.getUser();
     this.userId = this.user.id;
@@ -1013,7 +1014,9 @@ export class DashboardComponent implements OnInit {
       })
   }
 
-
+  logOutPopup(content:any) {
+    this.modalService.open(content, { centered: true });
+  }
 
   buyCount: any;
   rentCount: any;
