@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { ActivatedRoute, Router } from "@angular/router";
 import { AppService } from 'src/app/service/app.service';
@@ -15,7 +15,7 @@ import { AuthService } from "../../service/auth.service";
   templateUrl: './landing.component.html',
   styleUrls: ['./landing.component.scss']
 })
-export class LandingComponent implements OnInit, AfterViewInit {
+export class LandingComponent implements OnInit {
   baseUrl = 'https://beta.ovaluate.com/'
   totalLength: number = 0;
   page: number = 1;
@@ -65,7 +65,7 @@ export class LandingComponent implements OnInit, AfterViewInit {
     let url = this.router.url.replace("/", "");
     url = this.router.url.split('?')[0];
 
-    if (url == 'find-companies') {
+    if (url == '/find-companies') {
       this.companiesCheck = true;
       this.companies = true;
       this.companyData();
@@ -147,11 +147,6 @@ export class LandingComponent implements OnInit, AfterViewInit {
       }
     });
   }
-  ngAfterViewInit(): void {
-    // console.log("a");
-    $("#pills-companies-tab").click();
-  }
-
   companyOnSearchData: any = []
   getCompany(data: any) {
     let tempData: any = []
