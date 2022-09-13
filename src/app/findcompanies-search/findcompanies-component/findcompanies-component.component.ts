@@ -62,7 +62,7 @@ export class FindcompaniesComponentComponent implements OnInit {
     let url = this.router.url.replace("/", "");
     url = this.router.url.split('?')[0];
 
-    if (url == 'find-companies') {
+    if (url == '/find-companies') {
       this.companiesCheck = true;
       this.companies = true;
       this.companyData();
@@ -1005,7 +1005,7 @@ export class FindcompaniesComponentComponent implements OnInit {
   }
   proceedCompanySearch() {
     let params: any = { "CountryId": "1", "DistrictsId": [], "CompaniesId": this.companyIds, "CurrentPage": 1 }
-    this.router.navigate(['/find-agent'], { queryParams: params })
+    this.router.navigate(['/find-companies'], { queryParams: params })
     this.companiesListData(params);
 
   }
