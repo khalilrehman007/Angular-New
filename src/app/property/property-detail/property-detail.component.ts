@@ -155,40 +155,25 @@ export class PropertyDetailComponent implements OnInit {
       btnvalue: '+23 more Amenities',
     },
   ]
-  dynamicSlides1 = [
-    {
-      id: 'slide1',
-      src: 'assets/images/property/1.png',
-      alt: 'Side 1',
-      title: 'Side 1',
-      price: "250,000AED",
-      link: 'PropertDetailsPage'
-    },
-    {
-      id: 'slide2',
-      src: 'assets/images/property/1.png',
-      alt: 'Side 2',
-      title: 'Side 2',
-      price: "250,000AED",
-      link: 'PropertDetailsPage'
-    },
-    {
-      id: 'slide3',
-      src: 'assets/images/property/1.png',
-      alt: 'Side 3',
-      title: 'Side 3',
-      price: "250,000AED",
-      link: 'PropertDetailsPage'
-    },
-    {
-      id: 'slide4',
-      src: 'assets/images/property/1.png',
-      alt: 'Side 4',
-      title: 'Side 4',
-      price: "250,000AED",
-      link: 'PropertDetailsPage'
-    }
-  ]
+imageObject = [{
+    image: 'assets/images/slider.png',
+    thumbImage: 'assets/images/slider.png'
+}, {
+    image: 'assets/images/slider.png',
+    thumbImage: 'assets/images/slider.png'
+}, {
+    image: 'assets/images/slider.png',
+    thumbImage: 'assets/images/slider.png'
+},{
+    image: 'assets/images/slider.png',
+    thumbImage: 'assets/images/slider.png'
+}, {
+    image: 'assets/images/slider.png',
+    thumbImage: 'assets/images/slider.png'
+}, {
+    image: 'assets/images/slider.png',
+    thumbImage: 'assets/images/slider.png'
+}];
   propertyinfo: any = [];
   closeResult: string = "";
   propertyDetail: any;
