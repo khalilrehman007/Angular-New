@@ -4,6 +4,7 @@ import { AppService } from 'src/app/service/app.service';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs';
+import { Select2 } from 'select2';
 
 declare const google: any;
 
@@ -330,6 +331,7 @@ export class PropertyDetailsComponent implements OnInit {
   }
   ngAfterViewInit(): void {
     this.getLocation();
+    $('.select2').select2();
   }
   onPlaceChanged() {
     let temp: any = document.getElementById("searchLocation");
