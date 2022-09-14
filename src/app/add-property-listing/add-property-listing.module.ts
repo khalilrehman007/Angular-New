@@ -6,7 +6,7 @@ import { PropertyinfoComponent } from './propertyinfo/propertyinfo.component';
 import { Header2Module } from '../header2/header2.module';
 import { AlertsModule } from '../alerts/alerts.module';
 import { LoaderModule } from '../loader/loader.module';
-
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatListModule } from '@angular/material/list';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -41,7 +41,8 @@ import { ListpropertypublishComponent } from './listpropertypublish/listproperty
     MatSelectModule,
     MatCardModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatAutocompleteModule
   ]
 })
 export class AddPropertyListingModule { }

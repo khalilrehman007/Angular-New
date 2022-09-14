@@ -42,45 +42,6 @@
         </div>
     </div>
 </section>
-<section class="properties-slider popular-residential_properties slider-shadow">
-    <div ngClass="container_1280px">
-        <div ngClass="h4_design">
-            <h4>Popular in Residential for Rent</h4>
-        </div>
-        <div class="slider-shoecase-design">
-            <owl-carousel-o [options]="customOptions">
-                <ng-container *ngFor="let popularslide of PopularResidential">
-                    <ng-template carouselSlide>
-                        <div ngClass="property-item position-relative">
-                            <div class="property__img">
-                            <img src="{{popularslide.src}}">
-                            </div>
-                            <div ngClass="property-info">
-                                <span ngClass="property-pricing"><span>{{popularslide.price}}</span></span>
-                                <span ngClass="property-name">{{popularslide.PropertyName}}</span>
-                                <p ngClass="property-location">
-                                    <img src="{{ homelocationsvg }}" width="14" alt="" />{{popularslide.address}}
-                                </p>
-                                <div ngClass="property-details">
-                                    <span ngClass="bed">
-                                        <img src="{{ bedsvg }}" alt="" />{{popularslide.bedrooms}} Beds
-                                    </span>
-                                    <span ngClass="bath">
-                                        <img src="{{ bathsvg }}" alt="" />{{popularslide.bathrooms}} Bath
-                                    </span>
-                                    <span ngClass="area">
-                                        <img src="{{ squaremetersvg }}" alt="" />{{ popularslide.carpetArea }} sqft
-                                    </span>
-                                </div>
-                            </div>
-                            <a routerLink="/{{popularslide.link}}" ngClass="linK_overlay"></a>
-                        </div>
-                    </ng-template>
-                </ng-container>
-            </owl-carousel-o>
-        </div>
-    </div>
-</section>
 <section class="properties-slider slider-shadow cars_slider">
     <div ngClass="container_1280px">
         <div ngClass="h4_design">
@@ -165,45 +126,6 @@
         </div>
     </div>
 </section>
-<section class="properties-slider popular-residential_properties-sale slider-shadow">
-    <div ngClass="container_1280px">
-        <div ngClass="h4_design">
-            <h4>Popular in Residential for Sale</h4>
-        </div>
-        <div class="slider-shoecase-design">
-            <owl-carousel-o [options]="customOptions">
-                <ng-container *ngFor="let popularslide of PopularResidential">
-                    <ng-template carouselSlide>
-                        <div ngClass="property-item position-relative">
-                            <div class="property__img">
-                            <img src="{{popularslide.src}}">
-                            </div>
-                            <div ngClass="property-info">
-                                <span ngClass="property-pricing"><span>{{popularslide.price}}</span></span>
-                                <span ngClass="property-name">{{popularslide.PropertyName}}</span>
-                                <p ngClass="property-location">
-                                    <img src="{{ homelocationsvg }}" width="14" alt="" />{{popularslide.address}}
-                                </p>
-                                <div ngClass="property-details">
-                                    <span ngClass="bed">
-                                        <img src="{{ bedsvg }}" alt="" />{{popularslide.bedrooms}} Beds
-                                    </span>
-                                    <span ngClass="bath">
-                                        <img src="{{ bathsvg }}" alt="" />{{popularslide.bathrooms}} Bath
-                                    </span>
-                                    <span ngClass="area">
-                                        <img src="{{ squaremetersvg }}" alt="" />{{ popularslide.carpetArea }} sqft
-                                    </span>
-                                </div>
-                            </div>
-                            <a routerLink="/{{popularslide.link}}" ngClass="linK_overlay"></a>
-                        </div>
-                    </ng-template>
-                </ng-container>
-            </owl-carousel-o>
-        </div>
-    </div>
-</section>
 <section class="properties-slider phone-tablet_slider slider-shadow">
     <div ngClass="container_1280px">
         <div ngClass="h4_design">
@@ -239,39 +161,6 @@
     </div>
     <div class="classified-catogary-sec">
         <div class="row">
-            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-5">
-                <div class="category_block-design">
-                    <h2><img src="{{propertyrent}}"> Property for Rent <span class="">(186)</span></h2>
-                    <ul class="list-unstyled">
-                        <li><a routerLink="">Residential Units for Rent</a></li>
-                        <li><a routerLink="">Rooms for rent (Flatmates)</a></li>
-                        <li><a routerLink="">Short Term (Monthly)</a></li>
-                        <li><a routerLink="">Commercial for Rent</a></li>
-                    </ul>
-                    <div class="view-all-category">
-                        <a routerLink="">All in Property for Rent
-                            <svg class="svg-inline--fa fa-arrow-right" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M438.6 278.6l-160 160C272.4 444.9 264.2 448 256 448s-16.38-3.125-22.62-9.375c-12.5-12.5-12.5-32.75 0-45.25L338.8 288H32C14.33 288 .0016 273.7 .0016 256S14.33 224 32 224h306.8l-105.4-105.4c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l160 160C451.1 245.9 451.1 266.1 438.6 278.6z"></path></svg>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-5">
-                <div class="category_block-design">
-                    <h2><img src="{{propertysale}}"> Property for Sale <span class="">(186)</span></h2>
-                    <ul class="list-unstyled">
-                        <li><a routerLink="">Apartment for Sale</a></li>
-                        <li><a routerLink="">Villa/House for Sale</a></li>
-                        <li><a routerLink="">Commercial for Sale</a></li>
-                        <li><a routerLink="">Land for Sale</a></li>
-                        <li><a routerLink="">All in Property for Sale</a></li>
-                    </ul>
-                    <div class="view-all-category">
-                        <a routerLink="">All in Property for Sale 
-                            <svg class="svg-inline--fa fa-arrow-right" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M438.6 278.6l-160 160C272.4 444.9 264.2 448 256 448s-16.38-3.125-22.62-9.375c-12.5-12.5-12.5-32.75 0-45.25L338.8 288H32C14.33 288 .0016 273.7 .0016 256S14.33 224 32 224h306.8l-105.4-105.4c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l160 160C451.1 245.9 451.1 266.1 438.6 278.6z"></path></svg>
-                        </a>
-                    </div>
-                </div>
-            </div>
             <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-5">
                 <div class="category_block-design">
                     <h2><img src="{{motors}}"> Motors <span class="">(186)</span></h2>
