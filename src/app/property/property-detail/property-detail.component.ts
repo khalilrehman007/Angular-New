@@ -47,6 +47,7 @@ export class PropertyDetailComponent implements OnInit {
   qr = '../../../assets/images/icons/qr-share.svg'
   fb = '../../../assets/images/icons/fb-share.svg'
   tagicn = '../../../assets/images/icons/tag-icn.svg'
+  homeLoc = '../../../assets/images/home-location.svg'
   user: any
   baseUrl = 'https://beta.ovaluate.com/'
   status: boolean = true;
