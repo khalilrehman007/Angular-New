@@ -9,6 +9,10 @@ import { DomSanitizer } from "@angular/platform-browser";
 import { AuthService } from "../../service/auth.service";
 import * as mapboxgl from 'mapbox-gl';
 import { environment } from 'src/environments/environment';
+import {NgxGalleryOptions} from '@kolkov/ngx-gallery';
+import {NgxGalleryImage} from '@kolkov/ngx-gallery';
+import {NgxGalleryAnimation} from '@kolkov/ngx-gallery';
+
 
 declare const google: any;
 
@@ -155,25 +159,6 @@ export class PropertyDetailComponent implements OnInit {
       btnvalue: '+23 more Amenities',
     },
   ]
-imageObject = [{
-    image: 'assets/images/slider.png',
-    thumbImage: 'assets/images/slider.png'
-}, {
-    image: 'assets/images/slider.png',
-    thumbImage: 'assets/images/slider.png'
-}, {
-    image: 'assets/images/slider.png',
-    thumbImage: 'assets/images/slider.png'
-},{
-    image: 'assets/images/slider.png',
-    thumbImage: 'assets/images/slider.png'
-}, {
-    image: 'assets/images/slider.png',
-    thumbImage: 'assets/images/slider.png'
-}, {
-    image: 'assets/images/slider.png',
-    thumbImage: 'assets/images/slider.png'
-}];
   propertyinfo: any = [];
   closeResult: string = "";
   propertyDetail: any;
@@ -258,16 +243,67 @@ imageObject = [{
         this.getloadDashboardData();
       }
     });
+    this.galleryOptions = [];
+    this.galleryImages = [];
   }
 
   openVerticallyCentered(content: any) {
     this.modalService.open(content, { centered: true });
   }
   locationAddress1 = '';
+  galleryOptions: NgxGalleryOptions[];
+  galleryImages: NgxGalleryImage[];
+  ngOnInit() {
+    this.galleryOptions = [
+      {
+        width: '600px',
+        height: '400px',
+        thumbnailsColumns: 4,
+        imageAnimation: NgxGalleryAnimation.Slide
+      },
+      // max-width 800
+      {
+        breakpoint: 800,
+        width: '100%',
+        height: '600px',
+        imagePercent: 80,
+        thumbnailsPercent: 20,
+        thumbnailsMargin: 20,
+        thumbnailMargin: 20
+      },
+      // max-width 400
+      {
+        breakpoint: 400,
+        preview: false
+      }
+    ];
 
-  ngOnInit(): void {
-
-
+    this.galleryImages = [
+      {
+        small: 'assets/images/slider.png',
+        medium: 'assets/images/slider.png',
+        big: 'assets/images/slider.png'
+      },
+      {
+        small: 'assets/img/gallery/2-small.jpeg',
+        medium: 'assets/img/gallery/2-medium.jpeg',
+        big: 'assets/img/gallery/2-big.jpeg'
+      },
+      {
+        small: 'assets/img/gallery/3-small.jpeg',
+        medium: 'assets/img/gallery/3-medium.jpeg',
+        big: 'assets/img/gallery/3-big.jpeg'
+      },{
+        small: 'assets/img/gallery/4-small.jpeg',
+        medium: 'assets/img/gallery/4-medium.jpeg',
+        big: 'assets/img/gallery/4-big.jpeg'
+      },
+      {
+        small: 'assets/img/gallery/5-small.jpeg',
+        medium: 'assets/img/gallery/5-medium.jpeg',
+        big: 'assets/img/gallery/5-big.jpeg'
+      }
+    ];
   }
 
 

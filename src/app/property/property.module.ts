@@ -21,7 +21,10 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { PropertyDetailComponent } from './property-detail/property-detail.component';
 import { ViewmapComponent } from './viewmap/viewmap.component';
 import {NgChartsModule} from "ng2-charts";
-import { NgImageSliderModule } from 'ng-image-slider';
+import { NgxGalleryModule } from '@kolkov/ngx-gallery';
+import { HttpClientModule} from '@angular/common/http';
+
+
 
 @NgModule({
   declarations: [
@@ -48,7 +51,8 @@ import { NgImageSliderModule } from 'ng-image-slider';
     MatTabsModule,
     NgxSliderModule,
     MatAutocompleteModule,
-    NgImageSliderModule
+    NgxGalleryModule,
+    HttpClientModule
   ]
 })
 export class PropertyModule { }
