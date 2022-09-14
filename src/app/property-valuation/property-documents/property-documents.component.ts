@@ -370,7 +370,7 @@ export class PropertyDocumentsComponent implements OnInit {
       this.showError = true;
       return;
     }
-    this.showLoader = true;
+    // this.showLoader = true;
     this.publishText = "Please Wait...";
     this.formData.CustomerName = this.reportForm.value.name;
     let temp: any = this.countriesList.value
@@ -399,6 +399,7 @@ export class PropertyDocumentsComponent implements OnInit {
     }
     let token: any = localStorage.getItem("token");
     token = JSON.parse(token);
+    console.clear();
     console.log(this.formData);
     $.ajax({
       url: "https://beta.ovaluate.com/api/AddValuation",
