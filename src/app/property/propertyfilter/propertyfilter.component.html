@@ -9,24 +9,35 @@
                     </mat-select>
                 </mat-form-field>
 
-                <mat-form-field class="example-chip-list input-design searh_input-design" appearance="fill">
+                <mat-form-field class="example-chip-list input-design searh_input-design mat-inner-chip-design" appearance="fill">
                     <mat-label>Locations...</mat-label>
                     <mat-chip-list #chipList aria-label="Fruit selection">
+                        <div ngClass="mat-chip-input-limited">
+                            <mat-chip *ngFor="let fruit of fruits" (removed)="remove1(fruit)">
+                                <span ngClass="text-mat-length">{{fruit}}</span>
+                                <button matChipRemove>
+                                    <mat-icon>cancel</mat-icon>
+                                </button>
+                            </mat-chip>
+                            </div>
+                        <input placeholder="Add Location.." #fruitInput [formControl]="fruitCtrl"
+                            [matAutocomplete]="auto1" [matChipInputFor]="chipList"
+                            [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="add1($event)">
+                    </mat-chip-list>
+                    <mat-autocomplete #auto1="matAutocomplete" (optionSelected)="selected($event)">
+                        <div ngClass="mat-chip-inner-container">
                         <mat-chip *ngFor="let fruit of fruits" (removed)="remove1(fruit)">
                             {{fruit}}
                             <button matChipRemove>
                                 <mat-icon>cancel</mat-icon>
                             </button>
                         </mat-chip>
-                        <input placeholder="New Location.." #fruitInput [formControl]="fruitCtrl"
-                            [matAutocomplete]="auto1" [matChipInputFor]="chipList"
-                            [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="add1($event)">
-                    </mat-chip-list>
-                    <mat-autocomplete #auto1="matAutocomplete" (optionSelected)="selected($event)">
+                        </div>
                         <mat-option *ngFor="let fruit of filteredFruits | async" [value]="fruit">
                             {{fruit}}
                         </mat-option>
                     </mat-autocomplete>
+                    <span ngClass="mat_indicators-counts">01</span>
                 </mat-form-field>
             </div>
         </div>
@@ -239,7 +250,7 @@
                             <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                 <div ngClass="block-wrapper mb-4">
                                     <label class="h6-design">Furnishing Type</label>
-                                    <div class="checkbox-flex-box three-column button-same-select">
+                                    <div class="checkbox-flex-box four-column button-same-select">
                                         <div (click)="furnishedTypeChange(data.id)"
                                             class="checkbox-design position-relative"
                                             *ngFor="let data of furnishingType">

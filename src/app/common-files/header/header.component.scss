@@ -701,8 +701,6 @@ span.irs-max {
 }
 .ai-tag {
 	border-radius: 3px;
-	color: $color_9;
-	background-color: #000;
 	padding: 2px 8px;
 	font-size: 10px;
 	margin: 0px 2px;
@@ -793,6 +791,25 @@ textarea {
 }
 .red-fill-btn:hover .ai-tag{
 	color: #0f2ead !important;
+}
+.blue-fill-btn{
+	background: #0f2ead !important;
+    border-color: #0f2ead !important;
+}
+.blue-fill-btn .ai-tag{
+	color: #0f2ead;
+}
+.blue-fill-btn {
+    color: #fff !important;
+}
+.blue-fill-btn .ai-tag {
+    background-color: #fff !important;
+}
+.blue-fill-btn:hover {
+    background-color: #000 !important;
+}
+.blue-fill-btn:hover .ai-tag{
+	color: #000 !important;
 }
 @media (max-width: 1199px) {
 	#collapsibleNavbar {
