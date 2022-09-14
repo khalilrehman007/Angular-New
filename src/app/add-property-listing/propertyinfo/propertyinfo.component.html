@@ -53,8 +53,10 @@
                                             <div class="city-input">
                                                 <mat-form-field appearance="fill">
                                                     <mat-label>Select the City</mat-label>
-                                                    <mat-select [(value)]="cityId" (selectionChange)="onCitySelect($event)">
-                                                        <mat-option *ngFor="let listcity of city" [value]="listcity.value">
+                                                    <mat-select [(value)]="cityId"
+                                                        (selectionChange)="onCitySelect($event)">
+                                                        <mat-option *ngFor="let listcity of city"
+                                                            [value]="listcity.value">
                                                             {{ listcity.viewValue }}
                                                         </mat-option>
                                                     </mat-select>

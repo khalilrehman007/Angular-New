@@ -55,6 +55,7 @@ export class PropertyDetailComponent implements OnInit {
   status2: boolean = false;
   status3: boolean = false;
   status4: boolean = false;
+  shareURL:any = "";
   keyhighlight() {
     this.status = !this.status;
     this.status1 = false;
@@ -250,6 +251,13 @@ export class PropertyDetailComponent implements OnInit {
   public lineChartLegend = true;
 
   constructor(private authService: AuthService, private domSanitizer: DomSanitizer, private activeRoute: ActivatedRoute, private modalService: NgbModal, private service: AppService, private route: Router, private notifyService: NotificationService) {
+    let temp:any = window.location.href;
+    temp = temp.split("/");
+    temp[1] = "//";
+    temp[2] = temp[2] + "/";
+    temp[3] = temp[3] + "/";
+    temp.pop().toString().replaceAll(",","");
+    this.shareURL = temp.toString().replaceAll(",","");
     this.route.events.subscribe((e: any) => {
       // If it is a NavigationEnd event re-initalise the component
       if (e instanceof NavigationEnd) {
@@ -283,7 +291,7 @@ export class PropertyDetailComponent implements OnInit {
 
   documentCheck: any = true
   getloadDashboardData() {
-    return this.service.DisplayPropertyListing({ "PropertyListingId": this.propertyId, "LoginUserId": this.userId }).subscribe(e => {
+    return this.service.DisplayPropertyListing({ "PropertyListingId": this.propertyId, "LoginUserId": this.userId }).subscribe((e:any) => {
       let temp: any = e;
       this.userData = temp.data.user;
       this.propertyLat = temp.data.propertyListing.propertyLat;
@@ -371,6 +379,11 @@ export class PropertyDetailComponent implements OnInit {
         this.propertyDetailData.propertyLong = (jsonParsDate.propertyListing.propertyLong !== undefined) ? jsonParsDate.propertyListing.propertyLong : ''
         this.propertyDetailData.id = (jsonParsDate.propertyListing.id !== undefined) ? jsonParsDate.propertyListing.id : ''
         this.propertyDetailData.favorite = (jsonParsDate.propertyListing.favorite !== undefined) ? jsonParsDate.propertyListing.favorite : ''
+
+        // share url concatination
+
+        this.shareURL += this.propertyDetailData.id;
+        console.log(this.shareURL);
 
         // let location ="https://maps.google.com/maps?q="+this.propertyDetailData.propertyLat+','+this.propertyDetailData.propertyLong+'&hl=es&z=14&amp;output=embed';
 
