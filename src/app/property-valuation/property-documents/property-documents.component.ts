@@ -399,6 +399,7 @@ export class PropertyDocumentsComponent implements OnInit {
     }
     let token: any = localStorage.getItem("token");
     token = JSON.parse(token);
+    console.log(this.formData);
     $.ajax({
       url: "https://beta.ovaluate.com/api/AddValuation",
       method: "post",
