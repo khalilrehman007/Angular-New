@@ -90,6 +90,13 @@ export class PropertyDetailsComponent implements OnInit {
         muncipality: this.oldData.MunicipalityNo,
         address: this.oldData.PropertyAddress
       });
+      let a: any = setInterval(() => {
+        if (this.country.length > 0) {
+          $(".country-item-" + this.oldData.CountryId).attr("selected", "selected");
+          $(".country-select").select2();
+          clearInterval(a);
+        }
+      }, 100)
       this.countryId = this.oldData.CountryId;
       this.service.LoadCities(this.countryId).subscribe(e => {
         let temp: any = e;
@@ -98,6 +105,13 @@ export class PropertyDetailsComponent implements OnInit {
             this.city.push({ viewValue: city.name, value: city.id });
           }
           this.showLoader = false;
+          let interval: any = setInterval(() => {
+            if (this.country.length > 0) {
+              $(".city-item-" + this.oldData.CityId).attr("selected", "selected");
+              $(".city-select").select2();
+              clearInterval(interval);
+            }
+          }, 100)
           this.cityId = this.oldData.CityId;
           let id = this.cityId;
           let a = this.city.filter(function (c: any) {
@@ -111,6 +125,13 @@ export class PropertyDetailsComponent implements OnInit {
                 this.district.push({ viewValue: district.name, value: district.id });
               }
               this.showLoader = false;
+              let interval: any = setInterval(() => {
+                if (this.country.length > 0) {
+                  $(".district-item-" + this.oldData.CityId).attr("selected", "selected");
+                  $(".district-select").select2();
+                  clearInterval(interval);
+                }
+              }, 100)
             }
           });
           this.districtId = this.oldData.DistrictId;
@@ -331,7 +352,9 @@ export class PropertyDetailsComponent implements OnInit {
   }
   ngAfterViewInit(): void {
     this.getLocation();
-    $('.select2').select2();
+    if (this.oldData == "") {
+      $('.select2').select2();
+    }
     $(".country-select").on("change", () => {
       console.log($(".country-select").val());
       this.onCountrySelect($(".country-select").val());
