@@ -257,18 +257,18 @@ export class PropertyDetailsComponent implements OnInit {
     $(window).scrollTop(temp - 100);
   }
   getData() {
-    if (this.countryId == -1) {
-      this.currentField = "country-input";
+    if ($(".country-select").val() == 0) {
+      this.currentField = "country-select + .select2";
       this.error = "Select Country";
       this.showError = true;
       return;
-    } else if (this.cityId == -1) {
-      this.currentField = "city-input";
+    } else if ($(".city-select").val() == 0) {
+      this.currentField = "city-select + .select2";
       this.error = "Select City";
       this.showError = true;
       return;
-    } else if (this.districtId == -1) {
-      this.currentField = "district-input";
+    } else if ($(".district-select").val() == 0) {
+      this.currentField = "district-select + .select2";
       this.error = "Select District";
       this.showError = true;
       return;
