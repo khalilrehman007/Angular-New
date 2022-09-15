@@ -27,7 +27,7 @@ export class LandingComponent implements OnInit {
   findCompanies: any = [];
   separatorKeysCodes: number[] = [ENTER, COMMA];
   searchctrl = new FormControl('');
-  searchfilter: Observable<string[]>;
+  searchfilter: any;
   SearchKeyword: string[] = [];
   searchList: any = [];
   agentObject: any = { "CountryId": "1", "DistrictsId": [], "CompaniesId": [], "UserId": "0", "EpertInId": "0", "LanguageId": "0", "CurrentPage": 1 };
@@ -153,6 +153,11 @@ export class LandingComponent implements OnInit {
     let tempCompleteData: any = []
     this.service.CompanyLocationAutoCompleteSearch(data).subscribe(data => {
       let response: any = data;
+      console.log(response)
+      response.data.locationAutoComplete.forEach((element:any, i:any) => {
+        tempData.push(element.item2);
+        tempCompleteData.push({ 'id': element.key, 'value': element.item2 })
+      })
       response.data.companyAutoComplete.forEach((element:any, i:any) => {
         tempData.push(element.value);
         tempCompleteData.push({ 'id': element.key, 'value': element.value })
