@@ -111,7 +111,7 @@ export class PropertyDetailsComponent implements OnInit {
               $(".city-select").select2();
               clearInterval(interval);
             }
-          }, 100)
+          }, 100);
           this.cityId = this.oldData.CityId;
           let id = this.cityId;
           let a = this.city.filter(function (c: any) {
@@ -131,7 +131,7 @@ export class PropertyDetailsComponent implements OnInit {
                   $(".district-select").select2();
                   clearInterval(interval);
                 }
-              }, 100)
+              }, 100);
             }
           });
           this.districtId = this.oldData.DistrictId;

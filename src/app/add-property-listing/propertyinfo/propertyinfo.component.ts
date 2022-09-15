@@ -81,6 +81,13 @@ export class PropertyinfoComponent implements OnInit {
         UnitNo: this.oldData.UnitNo,
         address: this.oldData.PropertyAddress
       })
+      let a: any = setInterval(() => {
+        if (this.country.length > 0) {
+          $(".country-item-" + this.oldData.CountryId).attr("selected", "selected");
+          $(".country-select").select2();
+          clearInterval(a);
+        }
+      }, 100)
       this.countryId = this.oldData.CountryId;
       this.cityId = this.oldData.CityId;
       this.districtId = this.oldData.DistrictId
@@ -90,6 +97,13 @@ export class PropertyinfoComponent implements OnInit {
           for (let city of temp.data) {
             this.city.push({ viewValue: city.name, value: city.id });
           }
+          let interval: any = setInterval(() => {
+            if (this.country.length > 0) {
+              $(".city-item-" + this.oldData.CityId).attr("selected", "selected");
+              $(".city-select").select2();
+              clearInterval(interval);
+            }
+          }, 100)
           let id = this.cityId;
           let a = this.city.filter(function (c: any) {
             return c.value == id;
@@ -102,6 +116,13 @@ export class PropertyinfoComponent implements OnInit {
                 this.district.push({ viewValue: district.name, value: district.id });
               }
               this.showLoader = false;
+              let interval: any = setInterval(() => {
+                if (this.country.length > 0) {
+                  $(".district-item-" + this.oldData.CityId).attr("selected", "selected");
+                  $(".district-select").select2();
+                  clearInterval(interval);
+                }
+              }, 100);
             }
           });
         }
@@ -146,13 +167,13 @@ export class PropertyinfoComponent implements OnInit {
     this.cityId = this.districtId = -1;
     this.showLoader = true;
     let temp = this.country.filter(function (c: any) {
-      return c.value == e.value
+      return c.value == e;
     });
     this.countryName = temp[0].viewValue;
     this.getLocationDetails(temp[0].viewValue, false);
-    this.countryId = e.value;
+    this.countryId = e;
     this.city = [];
-    this.service.LoadCities(e.value).subscribe(e => {
+    this.service.LoadCities(e).subscribe(e => {
       let temp: any = e;
       if (temp.message == "City list fetched successfully") {
         for (let city of temp.data) {
@@ -167,12 +188,12 @@ export class PropertyinfoComponent implements OnInit {
     this.district = [];
     this.districtId = -1;
     let temp = this.city.filter(function (c: any) {
-      return c.value == e.value
+      return c.value == e;
     })
     this.cityName = temp[0].viewValue;
     this.getLocationDetails(temp[0].viewValue, false);
-    this.cityId = e.value;
-    this.service.LoadDistrict(e.value).subscribe(e => {
+    this.cityId = e;
+    this.service.LoadDistrict(e).subscribe(e => {
       let temp: any = e;
       if (temp.message == "District list fetched successfully") {
         for (let district of temp.data) {
@@ -187,10 +208,10 @@ export class PropertyinfoComponent implements OnInit {
     this.locationSelected = false;
     $("#searchLocation").val("");
     let temp = this.district.filter(function (c: any) {
-      return c.value == e.value
+      return c.value == e;
     })
     this.getLocationDetails(temp[0].viewValue, true);
-    this.districtId = e.value;
+    this.districtId = e;
   }
   SubmitForm = new FormGroup({
     PropertyAge: new FormControl("", Validators.required),
@@ -204,18 +225,18 @@ export class PropertyinfoComponent implements OnInit {
     return this.SubmitForm.controls;
   }
   onSubmit() {
-    if (this.countryId == -1) {
-      this.currentField = "country-input";
+    if ($(".country-select").val() == 0) {
+      this.currentField = "country-select + .select2";
       this.error = "Select Country";
       this.showError = true;
       return;
-    } else if (this.cityId == -1) {
-      this.currentField = "city-input";
+    } else if ($(".city-select").val() == 0) {
+      this.currentField = "city-select + .select2";
       this.error = "Select City";
       this.showError = true;
       return;
-    } else if (this.districtId == -1) {
-      this.currentField = "district-input";
+    } else if ($(".district-select").val() == 0) {
+      this.currentField = "district-select + .select2";
       this.error = "Select District";
       this.showError = true;
       return;
@@ -284,7 +305,19 @@ export class PropertyinfoComponent implements OnInit {
   }
   ngAfterViewInit(): void {
     this.getLocation();
-    $('.select2').select2();
+    if (this.oldData == "") {
+      $('.select2').select2();
+    }
+    $(".country-select").on("change", () => {
+      console.log($(".country-select").val());
+      this.onCountrySelect($(".country-select").val());
+    });
+    $(".city-select").on("change", () => {
+      this.onCitySelect($(".city-select").val());
+    });
+    $(".district-select").on("change", () => {
+      this.onDistrictSelect($(".district-select").val());
+    });
   }
   onPlaceChanged() {
     let temp: any = document.getElementById("searchLocation");

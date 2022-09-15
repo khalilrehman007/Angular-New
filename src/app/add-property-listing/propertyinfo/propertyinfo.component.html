@@ -32,52 +32,30 @@
                                     <div ngClass="block-wrapper mb-4">
                                         <div ngClass="select-design select2-design">
                                             <label>Country <span ngClass="required-span">*</span></label>
-                                            <select class="select2" (selectionChange)="onCountrySelect($event)">
-                                                <option *ngFor="let list of country" [value]="list.value"> {{ list.viewValue }}</option>
+                                            <select class="select2 country-select" *ngIf="oldData == '' || country.length > 0">
+                                                <option value="0"> Select Country</option>
+                                                <option class="country-item-{{list.value}}" *ngFor="let list of country" [value]="list.value"> {{ list.viewValue }}</option>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
                                 <div ngClass="col-xl-4 col-lg-4 col-sm-12">
-                                    <div ngClass="block-wrapper mb-4">
-                                        <div ngClass="select-design select2-design">
-                                            <label>City <span ngClass="required-span">*</span></label>
-                                            <!-- <div class="city-input">
-                                                <mat-form-field appearance="fill">
-                                                    <mat-label>Select the City</mat-label>
-                                                    <mat-select [(value)]="cityId"
-                                                        (selectionChange)="onCitySelect($event)">
-                                                        <mat-option *ngFor="let listcity of city"
-                                                            [value]="listcity.value">
-                                                            
-                                                        </mat-option>
-                                                    </mat-select>
-                                                </mat-form-field>
-                                            </div> -->
-                                            <select class="select2" (selectionChange)="onCitySelect($event)">
-                                                <option *ngFor="let listcity of city" [value]="listcity.value"> {{ listcity.viewValue }}</option>
-                                            </select>
-                                        </div>
+                                    <div ngClass="select-design mb-4 select2-design">
+                                        <label ngClass="h6-design">City <span
+                                                ngClass="required-span">*</span></label>
+                                        <select class="select2 city-select" *ngIf="oldData == '' || city.length > 0">
+                                                <option value="0"> Select City</option>
+                                                <option class="city-item-{{listcity.value}}" *ngFor="let listcity of city" [value]="listcity.value"> {{ listcity.viewValue }}</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div ngClass="col-xl-4 col-lg-4 col-sm-12">
                                     <div ngClass="block-wrapper mb-4">
                                         <div ngClass="select-design select2-design">
                                             <label>District <span ngClass="required-span">*</span></label>
-                                            <!-- <div class="district-input">
-                                                <mat-form-field appearance="fill">
-                                                    <mat-label>Select the District</mat-label>
-                                                    <mat-select [(value)]="districtId"
-                                                        (selectionChange)="onDistrictSelect($event)">
-                                                        <mat-option *ngFor="let listdistrict of district"
-                                                            [value]="listdistrict.value">
-                                                            {{ listdistrict.viewValue }}
-                                                        </mat-option>
-                                                    </mat-select>
-                                                </mat-form-field>
-                                            </div> -->
-                                            <select class="select2" (selectionChange)="onDistrictSelect($event)">
-                                                <option *ngFor="let listdistrict of district" [value]="listdistrict.value">{{ listdistrict.viewValue }}</option>
+                                            <select class="select2 district-select" *ngIf="oldData == '' || district.length > 0">
+                                                <option value="0"> Select District</option>
+                                                <option class="district-item-{{listdistrict.value}}" *ngFor="let listdistrict of district" [value]="listdistrict.value">{{ listdistrict.viewValue }}</option>
                                             </select>
                                         </div>
                                     </div>
