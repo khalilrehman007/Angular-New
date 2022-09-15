@@ -11710,10 +11710,89 @@ background: transparent !important;
 .property-gallery-main-slider .ng-image-slider {
     height: 600px !important;
 }
-.ngx-gallery { display: inline-block; margin-bottom: 20px; }
+.ngx-gallery {
+    display: block;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
 .listing-property-form-sec {
     padding-bottom: 60px;
 }
 .checkbox-flex-box.autoflex-layout > div:first-child {
     padding-left: 0px;
+}
+.ngx-gallery-image {
+    border-radius: 15px;
+}
+.ngx-gallery-thumbnails .ngx-gallery-thumbnail {
+    border: none !important;
+    height: 100px !important;
+    border-radius: 8px;
+    filter: brightness(0.7);
+}
+.ngx-gallery-thumbnails .ngx-gallery-thumbnail.ngx-gallery-active {
+    filter: brightness(1) !important;
+}
+.ngx-gallery-arrow .fa.fa-arrow-circle-left::before {
+    content: '\f053' !important;
+    position: relative;
+    bottom: 4px;
+    left: -1px;
+	    font-size: 14px;
+}
+.ngx-gallery-arrow .fa.fa-arrow-circle-right::before {
+    content: "\f054" !important;
+	position: relative;
+    bottom: 4px;
+    left: 2px;
+	font-size: 14px;
+}
+.ngx-gallery-icon {
+    background-color: #0f2ead;
+    padding: 0px;
+    border-radius: 9px;
+    width: 40px;
+    height: 40px;
+	display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+}
+.ngx-gallery-layout.thumbnails-bottom ngx-gallery-thumbnails {
+    max-height: 110px !important;
+}
+.ngx-gallery-active .ngx-gallery-icon .ngx-gallery-icon-content.fa-arrow-circle-right::before,.ngx-gallery-active .ngx-gallery-icon .ngx-gallery-icon-content.fa-arrow-circle-left::before {
+    position: relative;
+    bottom: 12px;
+}
+.modal-body.gallery-design .carousel-control-prev-icon {
+    background-image: none !important;
+	position: relative;
+}
+.modal-body.gallery-design .carousel-control-next-icon {
+    background-image: none !important;
+	position: relative;
+}
+.modal-body.gallery-design .carousel-control-prev-icon::before {
+    content: '';
+    position: absolute;
+    right: 0;
+    width: 15px;
+    height: 15px;
+    border-right: 1px solid #000;
+    border-top: 1px solid #000;
+    transform: rotate(-133deg);
+    left: 12px;
+    top: 9px;
+}
+.modal-body.gallery-design .carousel-control-next-icon::before {
+    content: '';
+    position: absolute;
+    right: 0;
+    width: 15px;
+    height: 15px;
+    border-right: 1px solid #000;
+    border-top: 1px solid #000;
+    transform: rotate(45deg);
+    left: 12px;
+    top: 9px;
 }
