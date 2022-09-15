@@ -270,18 +270,6 @@ export class PropertyTypesComponent implements OnInit {
     this.formDetailData.Fitting = name;
     this.fitting = id;
   }
-  getFeaturesData(id: number, name: any) {
-    if (this.featuresFormData.indexOf(id) == -1) {
-      this.featuresFormData.push(id);
-    } else {
-      this.featuresFormData = this.featuresFormData.filter((e: any) => e != id)
-    }
-    if (this.featuresFormName.indexOf(name) == -1) {
-      this.featuresFormName.push(name);
-    } else {
-      this.featuresFormName = this.featuresFormName.filter((e: any) => e != name)
-    }
-  }
   addUnits() {
     this.unitHMTL.push({ show: true, id: this.unitHMTL[this.unitHMTL.length - 1].id + 1 });
   }
@@ -326,6 +314,7 @@ export class PropertyTypesComponent implements OnInit {
     })
   }
   getData() {
+    this.featuresFormData = $(".features-select").val();
     if (!this.formData.PropertyCategoryId) {
       this.currentField = "property-cateogary-input";
       this.error = "Please Select Property Category";

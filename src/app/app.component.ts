@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, DoCheck, OnInit } from '@angular/core';
 import { environment } from "../environments/environment";
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { NotificationService } from './service/notification.service'
 import { getMessaging, getToken, onMessage } from "firebase/messaging";
@@ -12,13 +12,21 @@ import { data } from 'jquery';
   styleUrls: ['./app.component.scss']
 })
 
-
-
 export class AppComponent implements DoCheck, OnInit, AfterViewInit {
   title = 'ovaluate';
   message: any = null;
   displaymenu = false;
   constructor(private cookie: CookieService, private route: Router, private notifyService: NotificationService) {
+    this.route.events.subscribe((val:any) => {
+      if (val instanceof NavigationEnd) {
+        let temp:any = val.url.split("/");
+        if(temp[1] == "ar") {
+          $("html").attr("dir","rtl");
+        } else {
+          $("html").removeAttr("dir");
+        }
+    }
+    })
   }
   ngAfterViewInit(): void {
     $(".main-loader-wrapper").remove()
@@ -37,9 +45,9 @@ export class AppComponent implements DoCheck, OnInit, AfterViewInit {
       { vapidKey: environment.firebase.vapidKey }).then(
         (currentToken) => {
           if (currentToken) {
-            localStorage.setItem("deviceToken",currentToken);
+            localStorage.setItem("deviceToken", currentToken);
           }
-        }).catch((err) => {});
+        }).catch((err) => { });
   }
   listen() {
     const messaging = getMessaging();

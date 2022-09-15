@@ -20,7 +20,6 @@ export class PropertyDownloadReportComponent implements OnInit {
   downloadReport() {
     this.showLoader = true;
     this.service.GenerateReport(this.valuationResponse.reportNumberCode).subscribe((result: any) => {
-      console.log(result.body);
       var blob = new Blob([result.body]);
       var link = document.createElement('a');
       link.href = window.URL.createObjectURL(blob);
