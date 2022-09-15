@@ -12,6 +12,7 @@ import { environment } from 'src/environments/environment';
 import {NgxGalleryOptions} from '@kolkov/ngx-gallery';
 import {NgxGalleryImage} from '@kolkov/ngx-gallery';
 import {NgxGalleryAnimation} from '@kolkov/ngx-gallery';
+import 'hammerjs';
 
 
 declare const google: any;
@@ -256,20 +257,24 @@ export class PropertyDetailComponent implements OnInit {
   ngOnInit() {
     this.galleryOptions = [
       {
-        width: '600px',
-        height: '400px',
-        thumbnailsColumns: 4,
+        width: '100%',
+        height: '700px',
+        imagePercent: 100,
+        thumbnailsColumns: 8,
+        thumbnailsMargin: 5,
+        thumbnailsSwipe: true,
+        thumbnailsArrows: false,
         imageAnimation: NgxGalleryAnimation.Slide
       },
       // max-width 800
       {
         breakpoint: 800,
         width: '100%',
-        height: '600px',
-        imagePercent: 80,
-        thumbnailsPercent: 20,
-        thumbnailsMargin: 20,
-        thumbnailMargin: 20
+        height: '700px',
+        imagePercent: 100,
+        thumbnailsColumns: 5,
+        thumbnailsMargin: 5,
+        thumbnailsArrows: false,
       },
       // max-width 400
       {
@@ -285,23 +290,43 @@ export class PropertyDetailComponent implements OnInit {
         big: 'assets/images/slider.png'
       },
       {
-        small: 'assets/img/gallery/2-small.jpeg',
-        medium: 'assets/img/gallery/2-medium.jpeg',
-        big: 'assets/img/gallery/2-big.jpeg'
+        small: 'assets/images/slider.png',
+        medium: 'assets/images/slider.png',
+        big: 'assets/images/slider.png'
       },
       {
-        small: 'assets/img/gallery/3-small.jpeg',
-        medium: 'assets/img/gallery/3-medium.jpeg',
-        big: 'assets/img/gallery/3-big.jpeg'
+        small: 'assets/images/slider.png',
+        medium: 'assets/images/slider.png',
+        big: 'assets/images/slider.png'
       },{
-        small: 'assets/img/gallery/4-small.jpeg',
-        medium: 'assets/img/gallery/4-medium.jpeg',
-        big: 'assets/img/gallery/4-big.jpeg'
+        small: 'assets/images/slider.png',
+        medium: 'assets/images/slider.png',
+        big: 'assets/images/slider.png'
       },
       {
-        small: 'assets/img/gallery/5-small.jpeg',
-        medium: 'assets/img/gallery/5-medium.jpeg',
-        big: 'assets/img/gallery/5-big.jpeg'
+        small: 'assets/images/slider.png',
+        medium: 'assets/images/slider.png',
+        big: 'assets/images/slider.png'
+      },
+      {
+        small: 'assets/images/slider.png',
+        medium: 'assets/images/slider.png',
+        big: 'assets/images/slider.png'
+      },
+      {
+        small: 'assets/images/slider.png',
+        medium: 'assets/images/slider.png',
+        big: 'assets/images/slider.png'
+      },
+      {
+        small: 'assets/images/slider.png',
+        medium: 'assets/images/slider.png',
+        big: 'assets/images/slider.png'
+      },
+      {
+        small: 'assets/images/slider.png',
+        medium: 'assets/images/slider.png',
+        big: 'assets/images/slider.png'
       }
     ];
   }
