@@ -25,7 +25,6 @@ export class AppComponent implements DoCheck, OnInit, AfterViewInit {
         } else {
           $("html").removeAttr("dir");
         }
-        console.log(temp);
     }
     })
   }

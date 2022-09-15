@@ -469,9 +469,8 @@
                                                     </div>
                                                 </div>
                                             </div> -->
-                                            <select class="select2 city-select" multiple="multiple">
-                                                <option value="0">Select Features</option>
-                                                <option *ngFor="let item of featuresData" [value]="item.propertyFeature.featureName"> {{item.propertyFeature.featureName}}</option>
+                                            <select class="select2 features-select" multiple="multiple">
+                                                <option *ngFor="let item of featuresData" [value]="item.propertyFeature.id"> {{item.propertyFeature.featureName}}</option>
                                             </select>
                                             </div>
                                         </div>

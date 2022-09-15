@@ -370,7 +370,7 @@ export class PropertyDocumentsComponent implements OnInit {
       this.showError = true;
       return;
     }
-    // this.showLoader = true;
+    this.showLoader = true;
     this.publishText = "Please Wait...";
     this.formData.CustomerName = this.reportForm.value.name;
     let temp: any = this.countriesList.value
