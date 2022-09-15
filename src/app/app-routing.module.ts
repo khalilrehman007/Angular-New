@@ -25,6 +25,9 @@ const routes: Routes = [
   {path:"forgot", loadChildren:()=>import('./forget/forget.module').then(module => module.ForgetModule)},
   {path:"payment-packages", loadChildren:()=>import('./payment-packages/payment-packages.module').then(module => module.PaymentPackagesModule)},
   {path:"PropertyCompare", loadChildren:()=>import('./property-compare/property-compare.module').then(module => module.PropertyCompareModule)},
+
+  {path:"ar", loadChildren:()=>import('./ar/ar.module').then(module => module.ArModuleModule)},
+
 ];
 
 @NgModule({
