@@ -238,11 +238,12 @@ export class HomepageComponent implements OnInit {
   ]
 
   customOptions: OwlOptions = {
-    loop: false,
+    loop: true,
     mouseDrag: true,
     touchDrag: true,
     pullDrag: true,
     dots: true,
+    navText: ['<i class="fa fa-chevron-left" aria-hidden="true"></i>', '<i class="fa fa-chevron-right" aria-hidden="true"></i>'],
     navSpeed: 700,
     responsive: {
       0: {
@@ -258,7 +259,7 @@ export class HomepageComponent implements OnInit {
         items: 4
       }
     },
-    nav: false
+    nav: true
   }
   easyslider: OwlOptions = {
     loop: true,
