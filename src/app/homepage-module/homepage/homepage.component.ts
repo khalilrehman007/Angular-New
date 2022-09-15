@@ -238,9 +238,10 @@ export class HomepageComponent implements OnInit {
   ]
 
   customOptions: OwlOptions = {
-    loop: true,
+    loop: false,
     mouseDrag: true,
     touchDrag: true,
+    autoWidth:false,
     pullDrag: true,
     dots: true,
     navText: ['<i class="fa fa-chevron-left" aria-hidden="true"></i>', '<i class="fa fa-chevron-right" aria-hidden="true"></i>'],

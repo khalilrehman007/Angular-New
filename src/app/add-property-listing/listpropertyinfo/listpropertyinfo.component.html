@@ -56,7 +56,7 @@
                                 <div class="row pb-4">
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                                         <h6 class="h6-design">Want to List for</h6>
-                                        <div class="listing-links d-flex justify-content-between listing-type-input">
+                                        <div class="listing-links d-flex justify-content-between listing-type-input max-240">
                                             <div class="checkbox-design w-100 position-relative me-1"
                                                 (click)="onListTypeSelect(1)">
                                                 <input type="radio" value="1" name="list-type"
@@ -79,7 +79,7 @@
                                 <div class="row pb-4" *ngIf="listingTypeId != 0">
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                                         <h6 class="h6-design">Building Type</h6>
-                                        <div class="listing-links d-flex justify-content-between category-input">
+                                        <div class="listing-links d-flex justify-content-between category-input max-240">
                                             <div class="checkbox-design w-100 position-relative me-1"
                                                 (click)="getCategory(1)">
                                                 <input type="radio" value="1" name="property-category"
@@ -229,11 +229,11 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4"
+                                            <div class="col-xl-12 col-lg-12 col-md-6 col-sm-12 pb-4"
                                                 *ngIf="selectedPropertyType.hasFurnishing">
                                                 <h6 class="h6-design">Furnishing Type</h6>
                                                 <div
-                                                    class="checkbox-flex-box three-column button-same-select furnishing-input">
+                                                    class="checkbox-flex-box four-column button-same-select furnishing-input">
                                                     <div class="checkbox-design position-relative"
                                                         *ngFor="let item of furnishingType"
                                                         (click)="getFurnishingType(item.id);furnishTypeCheck=true">
@@ -570,7 +570,7 @@
                                                 *ngIf="listingTypeId == 1">
                                                 <h6 class="h6-design">Rent Type</h6>
                                                 <div
-                                                    class="checkbox-flex-box three-column button-same-select rent-type-input">
+                                                    class="checkbox-flex-box four-column button-same-select rent-type-input">
                                                     <div class="checkbox-design position-relative"
                                                         *ngFor="let item of rentTypes" (click)="getRentTypes(item.id)">
                                                         <input type="radio" value="{{item.name}}" name="rent_types"
@@ -765,8 +765,9 @@
                                                 </div>
                                             </div>
                                             <div class="col-sm-12 pb-4" *ngIf="selectedPropertyType.hasPropertyFeature">
+                                                <div ngClass="select-design select2-design select2-design-full">
                                                 <h6 class="h6-design">Select Features</h6>
-                                                <div class="inneR-border-wrap">
+                                                <!-- <div class="inneR-border-wrap">
                                                     <div class="checkbox-flex-box autoflex-layout feature-input">
                                                         <div class="checkbox-design position-relative"
                                                             *ngFor="let item of featuresData"
@@ -784,6 +785,11 @@
                                                                 class="checkbox-btn">{{item.propertyFeature.featureName}}</button>
                                                         </div>
                                                     </div>
+                                                </div> -->
+                                                <select class="select2 city-select" multiple="multiple">
+                                                    <option value="0">Select Features</option>
+                                                    <option *ngFor="let item of featuresData" [value]="item.propertyFeature.featureName"> {{item.propertyFeature.featureName}}</option>
+                                                </select>
                                                 </div>
                                             </div>
                                         </div>

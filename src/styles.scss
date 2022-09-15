@@ -5313,11 +5313,7 @@ img {
 	.mat-form-field {
 		&:first-child {
 			width: 28%;
-
-			.mat-form-field-flex {
-				border-top-right-radius: 0px !important;
-				border-bottom-right-radius: 0px !important;
-			}
+			margin-right: 8px;
 		}
 
 		&:last-child {
@@ -5326,11 +5322,8 @@ img {
 			.mat-form-field-flex {
 				border: none !important;
 				background: #f0f3f5;
-				border-top-left-radius: 0px !important;
-				border-bottom-left-radius: 0px !important;
 				height: 48px;
 				padding-top: 14px !important;
-				padding-left: 0px !important;
 
 				input {
 					font-weight: 600;
@@ -11874,4 +11867,23 @@ background: transparent !important;
 .select2-container--default .select2-selection--multiple .select2-selection__choice .select2-selection__choice__remove:hover {
     color: #0f2ead !important;
 }
-
+.cdk-overlay-pane  { 
+	position:absolute;
+	pointer-events:auto;
+	box-sizing:border-box;
+	z-index:1000;
+	display:flex;
+	max-width:100%;
+	max-height:100%;
+	transform:none !important; 
+	margin-top:22px;
+	margin-left: -9px !important;
+  }
+  .mat-select-panel .mat-option {
+    max-height: 35px;
+}
+.select2-container--default .select2-search--inline .select2-search__field {
+    margin-top: 0px !important;
+    position: relative;
+    bottom: 6px;
+}
