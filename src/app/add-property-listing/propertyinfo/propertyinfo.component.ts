@@ -76,9 +76,6 @@ export class PropertyinfoComponent implements OnInit {
       this.oldData = localStorage.getItem("propertyData");
       this.oldData = JSON.parse(this.oldData);
       this.SubmitForm.patchValue({
-        PropertyAge: this.oldData.PropertyAge,
-        BuildingName: this.oldData.BuildingName,
-        UnitNo: this.oldData.UnitNo,
         address: this.oldData.PropertyAddress
       })
       let a: any = setInterval(() => {
@@ -214,11 +211,6 @@ export class PropertyinfoComponent implements OnInit {
     this.districtId = e;
   }
   SubmitForm = new FormGroup({
-    PropertyAge: new FormControl("", Validators.required),
-    BuildingName: new FormControl("", Validators.required),
-    UnitNo: new FormControl("", Validators.required),
-    // TotalFloor: new FormControl("", Validators.required),
-    // FloorNo: new FormControl("", Validators.required),
     address: new FormControl("", Validators.required),
   });
   get validate() {
@@ -245,21 +237,6 @@ export class PropertyinfoComponent implements OnInit {
       this.error = "Select Address";
       this.showError = true;
       return;
-    } else if (this.SubmitForm.value.PropertyAge == "") {
-      this.currentField = "age-input";
-      this.error = "Enter Property Age";
-      this.showError = true;
-      return;
-    } else if (this.SubmitForm.value.BuildingName == "") {
-      this.currentField = "name-input";
-      this.error = "Enter Building Name";
-      this.showError = true;
-      return;
-    } else if (this.SubmitForm.value.UnitNo == "") {
-      this.currentField = "unit-no-input";
-      this.error = "Enter Unit No";
-      this.showError = true;
-      return;
     }
 
     this.data.CountryId = this.countryId;
@@ -269,9 +246,6 @@ export class PropertyinfoComponent implements OnInit {
     this.data.PropertyAddress = temp.value;
     this.data.PropertyLat = localStorage.getItem("lat");
     this.data.PropertyLong = localStorage.getItem("lng");
-    this.data.PropertyAge = this.SubmitForm.value.PropertyAge;
-    this.data.BuildingName = this.SubmitForm.value.BuildingName;
-    this.data.UnitNo = this.SubmitForm.value.UnitNo;
     localStorage.setItem('propertyData', JSON.stringify(this.data))
     this.route.navigate(['/add-property/listpropertyinfo'])
   }
@@ -283,23 +257,6 @@ export class PropertyinfoComponent implements OnInit {
       this.currentField = "";
     })
     $(window).scrollTop(temp - 100);
-  }
-  validateLength(type: any) {
-    if (type == 1) {
-      let temp: any = this.SubmitForm.value.PropertyAge;
-      if (temp.toString().length > 10) {
-        this.SubmitForm.patchValue({
-          PropertyAge: temp.toString().slice(0, -1)
-        })
-      }
-    } else if (type == 2) {
-      let temp: any = this.SubmitForm.value.UnitNo;
-      if (temp.toString().length > 10) {
-        this.SubmitForm.patchValue({
-          UnitNo: temp.toString().slice(0, -1)
-        })
-      }
-    }
   }
   ngOnInit(): void {
   }

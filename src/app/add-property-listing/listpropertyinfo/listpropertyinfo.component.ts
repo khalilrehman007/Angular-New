@@ -69,6 +69,9 @@ export class ListpropertyinfoComponent implements OnInit {
   currentField: any;
   showLoader: boolean = false;
   SubmitForm = new FormGroup({
+    PropertyAge: new FormControl("", [Validators.required]),
+    BuildingName: new FormControl("", [Validators.required]),
+    UnitNo: new FormControl("", [Validators.required]),
     TotalFloor: new FormControl("", [Validators.required]),
     FloorNo: new FormControl("", [Validators.required]),
     propertyTitle: new FormControl("", [Validators.required]),
@@ -257,6 +260,23 @@ export class ListpropertyinfoComponent implements OnInit {
       this.route.navigate(['/add-property/listingproperty'])
     }
   }
+  validateLength(type: any) {
+    if (type == 1) {
+      let temp: any = this.SubmitForm.value.PropertyAge;
+      if (temp.toString().length > 10) {
+        this.SubmitForm.patchValue({
+          PropertyAge: temp.toString().slice(0, -1)
+        })
+      }
+    } else if (type == 2) {
+      let temp: any = this.SubmitForm.value.UnitNo;
+      if (temp.toString().length > 10) {
+        this.SubmitForm.patchValue({
+          UnitNo: temp.toString().slice(0, -1)
+        })
+      }
+    }
+  }
   onListTypeSelect(id: any) {
     this.listingTypeId = 0;
     setTimeout(() => {
@@ -414,6 +434,21 @@ export class ListpropertyinfoComponent implements OnInit {
     } else if (!this.data.PropertyTypeId) {
       this.currentField = "type-input";
       this.error = "Select Property Type";
+      this.showError = true;
+      return;
+    } else if (this.SubmitForm.value.PropertyAge == "") {
+      this.currentField = "age-input";
+      this.error = "Enter Property Age";
+      this.showError = true;
+      return;
+    } else if (this.SubmitForm.value.BuildingName == "") {
+      this.currentField = "name-input";
+      this.error = "Enter Building Name";
+      this.showError = true;
+      return;
+    } else if (this.SubmitForm.value.UnitNo == "") {
+      this.currentField = "unit-no-input";
+      this.error = "Enter Unit No";
       this.showError = true;
       return;
     } else if (this.SubmitForm.value.TotalFloor == "" && this.selectedPropertyType.hasTotalFloor) {
