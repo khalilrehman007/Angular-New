@@ -176,15 +176,15 @@ export class PropertyDetailsComponent implements OnInit {
     this.cityId = this.districtId = -1;
     this.showLoader = true;
     let temp = this.country.filter(function (c: any) {
-      return c.value == e.value
+      return c.value == e
     });
     console.log(temp);
     this.countryName = temp[0].viewValue;
     localStorage.setItem("currency", temp[0].currency)
     this.getLocationDetails(temp[0].viewValue, false);
-    this.countryId = e.value;
+    this.countryId = e;
     this.city = [];
-    this.service.LoadCities(e.value).subscribe(e => {
+    this.service.LoadCities(e).subscribe(e => {
       let temp: any = e;
       if (temp.message == "City list fetched successfully") {
         for (let city of temp.data) {
@@ -199,12 +199,12 @@ export class PropertyDetailsComponent implements OnInit {
     this.district = [];
     this.districtId = -1;
     let temp = this.city.filter(function (c: any) {
-      return c.value == e.value
+      return c.value == e
     })
     this.cityName = temp[0].viewValue;
     this.getLocationDetails(temp[0].viewValue, false);
-    this.cityId = e.value;
-    this.service.LoadDistrict(e.value).subscribe(e => {
+    this.cityId = e;
+    this.service.LoadDistrict(e).subscribe(e => {
       let temp: any = e;
       if (temp.message == "District list fetched successfully") {
         for (let district of temp.data) {
@@ -219,11 +219,11 @@ export class PropertyDetailsComponent implements OnInit {
     this.locationSelected = false;
     $("#searchLocation").val("");
     let temp = this.district.filter(function (c: any) {
-      return c.value == e.value
+      return c.value == e
     })
     this.getLocationDetails(temp[0].viewValue, true);
     this.districtName = temp[0].viewValue;
-    this.districtId = e.value;
+    this.districtId = e;
   }
   getMapImage() {
     let staticMapUrl: any = "https://maps.googleapis.com/maps/api/staticmap";
@@ -332,6 +332,16 @@ export class PropertyDetailsComponent implements OnInit {
   ngAfterViewInit(): void {
     this.getLocation();
     $('.select2').select2();
+    $(".country-select").on("change", () => {
+      console.log($(".country-select").val());
+      this.onCountrySelect($(".country-select").val());
+    });
+    $(".city-select").on("change", () => {
+      this.onCitySelect($(".city-select").val());
+    });
+    $(".district-select").on("change", () => {
+      this.onDistrictSelect($(".district-select").val());
+    });
   }
   onPlaceChanged() {
     let temp: any = document.getElementById("searchLocation");

@@ -56,7 +56,8 @@
                                                         </mat-option>
                                                     </mat-select>
                                                 </mat-form-field> -->
-                                                <select class="select2" (selectionChange)="onCountrySelect($event)">
+                                                <select class="select2 country-select">
+                                                    <option value="0"> Select Country</option>
                                                     <option *ngFor="let list of country" [value]="list.value"> {{ list.viewValue }}</option>
                                                 </select>
                                             </div>
@@ -74,8 +75,9 @@
                                                     </mat-option>
                                                 </mat-select>
                                             </mat-form-field> -->
-                                            <select class="select2" (selectionChange)="onCitySelect($event)">
-                                                <option *ngFor="let listcity of city" [value]="listcity.value"> {{ listcity.viewValue }}</option>
+                                            <select class="select2 city-select">
+                                                    <option value="0"> Select City</option>
+                                                    <option *ngFor="let listcity of city" [value]="listcity.value"> {{ listcity.viewValue }}</option>
                                             </select>
                                         </div>
                                     </div>
@@ -93,7 +95,8 @@
                                                         </mat-option>
                                                     </mat-select>
                                                 </mat-form-field> -->
-                                                <select class="select2" (selectionChange)="onDistrictSelect($event)">
+                                                <select class="select2 district-select" (selectionChange)="onDistrictSelect($event)">
+                                                    <option value="0"> Select District</option>
                                                     <option *ngFor="let listdistrict of district" [value]="listdistrict.value">{{ listdistrict.viewValue }}</option>
                                                 </select>
                                             </div>
