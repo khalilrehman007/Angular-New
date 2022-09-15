@@ -300,11 +300,11 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12"
+                                    <div class="col-xl-12 col-lg-12 col-md-6 col-sm-12"
                                         *ngIf="propertyData.hasFurnishing">
                                         <div ngClass="block-wrapper mb-4">
                                             <label class="h6-design">Furnishing Type</label>
-                                            <div class="checkbox-flex-box three-column button-same-select furnishing-input">
+                                            <div class="checkbox-flex-box autoflex-layout button-same-select furnishing-input">
                                                 <div *ngFor="let item of furnishingType">
                                                     <div class="checkbox-design position-relative"
                                                         *ngIf="item.id == formData.FurnishingType"
@@ -434,8 +434,9 @@
                                 <div class="select-features mb-4" *ngIf="propertyData.hasPropertyFeature">
                                     <div class="row">
                                         <div class="col-sm-12">
+                                            <div ngClass="select-design select2-design select2-design-full">
                                             <label class="h6-design">Select Features</label>
-                                            <div class="inneR-border-wrap">
+                                            <!-- <div class="inneR-border-wrap">
                                                 <div class="checkbox-flex-box autoflex-layout">
                                                     <div *ngFor="let item of featuresData">
                                                         <div class="checkbox-design position-relative"
@@ -467,6 +468,11 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                            </div> -->
+                                            <select class="select2 city-select">
+                                                <option value="0">Select Features</option>
+                                                <option *ngFor="let item of featuresData" [value]="item.propertyFeature.featureName"> {{item.propertyFeature.featureName}}</option>
+                                            </select>
                                             </div>
                                         </div>
                                     </div>

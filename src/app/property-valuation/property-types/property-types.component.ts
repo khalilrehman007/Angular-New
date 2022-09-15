@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms'
 import { AppService } from 'src/app/service/app.service';
 import { Router } from '@angular/router';
 import { MaskService, NgxMaskModule } from 'ngx-mask';
+import { Select2 } from 'select2';
 
 @Component({
   selector: 'app-property-types',
@@ -125,6 +126,8 @@ export class PropertyTypesComponent implements OnInit {
       this.propertyUnits = result.data;
     })
   }
+  ngAfterViewInit(): void {
+  }
   loadOldData() {
     if (localStorage.getItem("propertyTypeData")) {
       this.oldData = localStorage.getItem("propertyTypeData");
@@ -220,6 +223,7 @@ export class PropertyTypesComponent implements OnInit {
     this.service.PropertyFeatures(this.propertyData.id).subscribe((result: any) => {
       this.featuresData = result.data;
       this.showLoader = false;
+      $('.select2').select2();
     })
     this.typeSelected = true;
   }

@@ -284,7 +284,7 @@ export class PropertyinfoComponent implements OnInit {
   }
   ngAfterViewInit(): void {
     this.getLocation();
-    // $('.select2').select2();
+     $('.select2').select2();
   }
   onPlaceChanged() {
     let temp: any = document.getElementById("searchLocation");
