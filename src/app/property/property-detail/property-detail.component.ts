@@ -440,8 +440,6 @@ export class PropertyDetailComponent implements OnInit {
           });
         }
 
-        // let location ="https://maps.google.com/maps?q="+this.propertyDetailData.propertyLat+','+this.propertyDetailData.propertyLong+'&hl=es&z=14&amp;output=embed';
-
         let ree = "https://maps.google.com/maps?q=" + this.propertyDetailData.propertyLat + "," + this.propertyDetailData.propertyLong + "&hl=es&z=14&amp;output=embed"
         let resp: any = this.domSanitizer.bypassSecurityTrustUrl(ree);
         this.locationAddress1 = resp
@@ -450,12 +448,6 @@ export class PropertyDetailComponent implements OnInit {
         if (this.propertyDetail.propertyListing.documents.length == 0) {
           this.documentCheck = false;
         }
-
-        // // var url = location.replace("watch?v=", "v/");
-
-        // https://maps.google.com/maps?q=24.10148903316392,53.09649093869425&hl=es&z=14&amp;output=embed
-        // this.locationAddress = "https://maps.google.com/maps?q=24.10148903316392,53.09649093869425&hl=es&z=14&amp;output=embed";
-
 
         if (this.propertyDetail.propertyListing.documents[0].fileUrl != null && this.propertyDetail.propertyListing.documents[0].fileUrl !== undefined) {
           this.thumb1 = this.baseUrl + this.propertyDetail.propertyListing.documents[0].fileUrl;
@@ -508,12 +500,8 @@ export class PropertyDetailComponent implements OnInit {
       }
 
     });
-
-
   }
-
   getPropertyInfo() {
-
     this.propertyinfo = [
       {
         label: 'Listed on',
