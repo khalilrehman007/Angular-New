@@ -19,7 +19,7 @@ export class HeaderComponent implements OnInit {
   chartsvg = '../../../assets/images/Charts-nav.svg'
   signinsvg = '../../../assets/images/user.svg'
   flagsvg = '../../../assets/images/aed-fg.svg'
-  close = '../../../assets/images/icons/close.svg'
+  close = '../../../assets/images/icons/close-colored.svg'
   property = '../../../assets/images/shortlisted-img.png'
   trash = '../../../assets/images/icons/Trash-dotted.svg'
   logoutimg = '../../../assets/images/logout-popup-banner.png'

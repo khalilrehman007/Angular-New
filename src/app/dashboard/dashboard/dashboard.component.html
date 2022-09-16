@@ -87,12 +87,22 @@
                             data-bs-target="#pills-valuation" type="button" role="tab" aria-controls="pills-valuation"
                             aria-selected="false">My Valuations</button>
                     </li>
-                    <li class="nav-item" role="presentation">
+                    <!-- <li class="nav-item" role="presentation">
                         <button class="nav-link" id="pills-packages-tab" data-bs-toggle="pill"
                             data-bs-target="#pills-packages" type="button" role="tab" aria-controls="pills-packages"
                             aria-selected="false"
                             *ngIf="professionalType == 1 || professionalType == 2 || professionalType == 3">My
                             Packages</button>
+                    </li> -->
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="pills-valuation-tab" data-bs-toggle="pill"
+                            data-bs-target="#pills-wallet" type="button" role="tab" aria-controls="pills-wallet"
+                            aria-selected="false">My Wallet</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="pills-valuation-tab" data-bs-toggle="pill"
+                            data-bs-target="#pills-code" type="button" role="tab" aria-controls="pills-code"
+                            aria-selected="false">My Referral Code</button>
                     </li>
                     <li class="nav-item" role="presentation">
                         <!-- <button class="nav-link" id="">More</button> -->
@@ -1974,7 +1984,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="pills-packages" role="tabpanel" aria-labelledby="pills-valuation-tab">
+                <!-- <div class="tab-pane fade" id="pills-packages" role="tabpanel" aria-labelledby="pills-valuation-tab">
                     <div class="recent-activity">
                         <h4 class="sub-title mb-4">My Packages</h4>
                         <div ngClass="packages_details" *ngFor="let data of myPackages">
@@ -2000,7 +2010,60 @@
                             <button ngClass="other-packages_btn" routerLink="/payment-packages">Other Packages</button>
                         </div>
                     </div>
+                </div> -->
+                <div class="tab-pane fade" id="pills-wallet" role="tabpanel" aria-labelledby="pills-valuation-tab">
+                    <div clss="tab-iiner-content-sec">
+                        <div class="sub-dash-heading mb-4">
+                            <h4 class="sub-title">My Wallet</h4>
+                        </div>
+                        <div class="sub-tab-nav">
+                            <mat-tab-group>
+                                <mat-tab label="My Wallet">
+                                    <div ngClass="my-valuation-list-wrapper">
+                                        <div class="row">
+                                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                                        <div ngClass="my-wallet-list-design">
+                                            <div ngClass="my_valuation-inner-div category">
+                                                <h6>Existing Amount</h6>
+                                                <p>100 AED</p>
+                                            </div>
+                                            <div ngClass="my_valuation-inner-div payemnt">
+                                                <a class="download-pdf cursor-pointer">Recharge Now</a>
+                                            </div>
+                                        </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </mat-tab>
+                                <mat-tab label="My Transactions">
+                                    <div ngClass="my-valuation-list-wrapper">
+                                        <div ngClass="my-valuation-list-design d-flex">
+                                            <div ngClass="my_valuation-inner-div valuation_property-name">
+                                                <div ngClass="valuation_property-name-first d-flex align-items-center">
+                                                    <span ngClass="val_pro-number">1</span>
+                                                    <p>Transaction Detail</p>
+                                                </div>
+                                            </div>
+                                            <div ngClass="my_valuation-inner-div category">
+                                                <h6>Transaction Number</h6>
+                                                <p>123</p>
+                                            </div>
+                                            <div ngClass="my_valuation-inner-div place">
+                                                <h6>Transaction Date</h6>
+                                                <p>16 Sep 2022</p>
+                                            </div>
+                                            <div ngClass="my_valuation-inner-div property_type">
+                                                <h6>Transaction Time</h6>
+                                                <p>4:07 PM</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </mat-tab>
+                            </mat-tab-group>
+                        </div>
+                    </div>
                 </div>
+                
                 <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
                     <div class="recent-activity profile-tab-wrap">
                         <h4 class="sub-title">My Profiles</h4>
@@ -2753,6 +2816,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
 
 

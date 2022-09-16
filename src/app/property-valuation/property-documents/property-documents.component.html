@@ -689,7 +689,7 @@
                                             </div>
                                             <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                                 <div ngClass="block-wrapper mb-4">
-                                                    <label class="h6-design">Enter Phone of Property Owner<span
+                                                    <label class="h6-design">Enter Phone Number of Property Owner<span
                                                             ngClass="required-span">*</span></label>
                                                     <div class="phone-input">
                                                         <div ngClass="position-relative country-code-select-design">
@@ -707,6 +707,19 @@
                                                             </mat-form-field>
                                                         </div>
                                                     </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div ngClass="row">
+                                            <div ngClass="col-sm-12">
+                                                <div
+                                                    ngClass="block-wrapper mb-4 inspection-required-block input-date-picker input-design-2">
+                                                    <mat-checkbox class="example-margin"
+                                                        (change)="onInspectionSelect($event)">Do you have Referral Code
+                                                    </mat-checkbox>
+                                                    <mat-form-field class="full-width hide" appearance="fill">
+                                                        <input matInput type="text" placeholder="Enter Referral Code" />
+                                                    </mat-form-field>
                                                 </div>
                                             </div>
                                         </div>
@@ -745,6 +758,7 @@
                                 </mat-card-actions>
                             </div>
                         </div>
+                        
                         <div class="valuation-cstm_tabs property_payment" *ngIf="showPayment"
                             [ngClass]="status3 ? 'active' : 'hide'">
                             <div ngClass="form-border-wrapper">

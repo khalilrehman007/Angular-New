@@ -349,6 +349,11 @@
                                     Areas
                                 </a>
                             </li>
+                            <li ngClass="nav-item link-li" (click)="checkActiveTab('areas')">
+                                <a [ngClass]="'nav-link'" routerLink="">
+                                    Short-Term Rent
+                                </a>
+                            </li>
                             <li ngClass="nav-item hover-block-header" >
                                 <div ngbDropdown class="d-inline-block">
                                     <button type="button" class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Projects</button>
