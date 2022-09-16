@@ -37,7 +37,7 @@
                             {{fruit}}
                         </mat-option>
                     </mat-autocomplete>
-                    <span ngClass="mat_indicators-counts">01</span>
+                    <span ngClass="mat_indicators-counts" *ngIf="fruits.length > 0">{{fruits.length}}</span>
                 </mat-form-field>
             </div>
         </div>
