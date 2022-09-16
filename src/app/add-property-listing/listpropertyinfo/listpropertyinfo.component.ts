@@ -7,6 +7,7 @@ import { NotificationService } from "../../service/notification.service";
 import { disableDebugTools } from "@angular/platform-browser";
 import { AppService } from 'src/app/service/app.service';
 import { F } from '@angular/cdk/keycodes';
+import { Select2 } from 'select2';
 @Component({
   selector: 'app-listpropertyinfo',
   templateUrl: './listpropertyinfo.component.html',
@@ -118,6 +119,7 @@ export class ListpropertyinfoComponent implements OnInit {
     });
     this.api.PropertyFeatures(1).subscribe((result: any) => {
       this.featuresData = result.data;
+      $('.select2').select2();
     });
     this.api.LoadOccupancy().subscribe((result: any) => {
       this.occupancy = result.data;
