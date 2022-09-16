@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import * as $ from 'jquery';
 import { AuthService } from "../../service/auth.service";
 import { Router } from "@angular/router";
 import { NotificationService } from "../../service/notification.service";
@@ -13,7 +12,7 @@ import { Select2 } from 'select2';
   templateUrl: './listpropertyinfo.component.html',
   styleUrls: ['./listpropertyinfo.component.scss']
 })
-export class ListpropertyinfoComponent implements OnInit {
+export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
 
   error: any = ""
   showError: boolean = false;
@@ -117,10 +116,6 @@ export class ListpropertyinfoComponent implements OnInit {
     this.api.LoadRentTypes().subscribe((result: any) => {
       this.rentTypes = result.data;
     });
-    this.api.PropertyFeatures(1).subscribe((result: any) => {
-      this.featuresData = result.data;
-      $('.select2').select2();
-    });
     this.api.LoadOccupancy().subscribe((result: any) => {
       this.occupancy = result.data;
     });
@@ -134,6 +129,8 @@ export class ListpropertyinfoComponent implements OnInit {
     this.data.BuildupArea = 0;
     this.data.CarpetArea = 0;
     this.loadOldData();
+  }
+  ngAfterViewInit(): void {
   }
   ngOnInit() {
   }
@@ -344,6 +341,15 @@ export class ListpropertyinfoComponent implements OnInit {
     this.selectedPropertyType = this.propertyType.filter((item: any) => item.id == e.value)[0];
     this.propertyTypeCheck = true;
     this.data.PropertyTypeId = e.value;
+    this.api.PropertyFeatures(1).subscribe((result: any) => {
+      this.featuresData = result.data;
+      let a = setInterval(() => {
+        if(this.featuresData.length > 0) {
+          $('.select2').select2();
+          clearInterval(a);
+        }
+      },50);
+    });
   }
   getFurnishingType(e: number) {
     this.data.FurnishingType = e;
@@ -588,7 +594,7 @@ export class ListpropertyinfoComponent implements OnInit {
       this.error = "Enter Available Date";
       this.showError = true;
       return;
-    }  else if (this.listingTypeId == 1 && this.SubmitForm.value.noticePeriod == "") {
+    } else if (this.listingTypeId == 1 && this.SubmitForm.value.noticePeriod == "") {
       this.currentField = "notice-input";
       this.error = "Enter Notice Days";
       this.showError = true;
