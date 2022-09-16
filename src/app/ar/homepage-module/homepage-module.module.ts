@@ -10,6 +10,8 @@ import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { RentSearchModule } from '../../rent-search/rent-search.module';
+
 
 @NgModule({
   declarations: [
@@ -25,6 +27,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatIconModule,
     FormsModule,
     ReactiveFormsModule,
+    RentSearchModule,
   ]
 })
 export class HomepageModuleModule { }
