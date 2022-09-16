@@ -524,8 +524,7 @@
                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4"
                                                 *ngIf="listingTypeId == 2">
                                                 <h6 class="h6-design">Handover On</h6>
-                                                <div class="input-date-picker input-design handover-on-input"
-                                                    (click)="onDate()">
+                                                <div class="input-date-picker input-design handover-on-input">
                                                     <mat-form-field appearance="fill">
                                                         <input matInput [matDatepicker]="picker" [min]="minDate"
                                                             id="sell-residential-datepicker"
@@ -579,6 +578,32 @@
                                                             *ngIf="data.RentTypeId != item.id">
                                                         <button class="checkbox-btn">{{item.name}}</button>
                                                     </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4"
+                                                *ngIf="data.RentTypeId == 1">
+                                                <h6 class="h6-design">Start Date</h6>
+                                                <div class="input-date-picker input-design start-date-input">
+                                                    <mat-form-field appearance="fill">
+                                                        <input matInput [matDatepicker]="picker" [min]="minDate"
+                                                            id="startDate">
+                                                        <mat-datepicker-toggle matSuffix [for]="picker">
+                                                        </mat-datepicker-toggle>
+                                                        <mat-datepicker #picker></mat-datepicker>
+                                                    </mat-form-field>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4"
+                                                *ngIf="data.RentTypeId == 1">
+                                                <h6 class="h6-design">End Date</h6>
+                                                <div class="input-date-picker input-design available-input">
+                                                    <mat-form-field appearance="fill">
+                                                        <input matInput [matDatepicker]="picker" [min]="minDate"
+                                                            id="endDate">
+                                                        <mat-datepicker-toggle matSuffix [for]="picker">
+                                                        </mat-datepicker-toggle>
+                                                        <mat-datepicker #picker></mat-datepicker>
+                                                    </mat-form-field>
                                                 </div>
                                             </div>
                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4"
@@ -676,8 +701,7 @@
                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4"
                                                 *ngIf="listingTypeId == 1">
                                                 <h6 class="h6-design">Available from</h6>
-                                                <div class="input-date-picker input-design available-input"
-                                                    (click)="onDate()">
+                                                <div class="input-date-picker input-design available-input">
                                                     <mat-form-field appearance="fill">
                                                         <input matInput [matDatepicker]="picker" [min]="minDate"
                                                             id="formDate" formControlName="availablefrom">
@@ -786,10 +810,12 @@
                                                         </div>
                                                     </div>
                                                 </div> -->
-                                                <select class="select2 city-select" multiple="multiple">
-                                                    <option value="0">Select Features</option>
-                                                    <option *ngFor="let item of featuresData" [value]="item.propertyFeature.featureName"> {{item.propertyFeature.featureName}}</option>
-                                                </select>
+                                                <div class="features-select-wrapper">
+                                                    <select class="select2 features-select" multiple="multiple">
+                                                        <option value="0">Select Features</option>
+                                                        <option *ngFor="let item of featuresData" [value]="item.propertyFeature.id"> {{item.propertyFeature.featureName}}</option>
+                                                    </select>
+                                                </div>
                                                 </div>
                                             </div>
                                         </div>
