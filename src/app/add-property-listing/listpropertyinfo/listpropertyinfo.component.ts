@@ -133,9 +133,10 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
   }
   ngOnInit() {
-  }
-  onDate() {
-    $(".mat-datepicker-toggle").click();
+    $(".start-date-input").on("click", function() {
+      console.log($(this).find(".mat-datepicker-toggle"));
+      $(this).find(".mat-datepicker-toggle").click();
+    })
   }
   loadOldData() {
     if (localStorage.getItem("propertyData")) {
@@ -252,8 +253,6 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
             price: this.data.PropertyPrice
           })
         });
-
-        console.log(this.data);
       }
     } else {
       this.route.navigate(['/add-property/listingproperty'])
@@ -428,7 +427,11 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
       }
     }
   }
+  tempFunction() {
+    console.log($(".features-select").val());
+  }
   onSubmit() {
+    this.featuresFormData = $(".features-select").val();
     if (this.listingTypeId == 0) {
       this.currentField = "listing-type-input";
       this.error = "Select Listing Type";
@@ -585,11 +588,6 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
       this.showError = true;
       return;
     } else if (this.listingTypeId == 1 && this.SubmitForm.value.availablefrom == "") {
-      this.currentField = "brokage-price-input";
-      this.error = "Enter Available Date";
-      this.showError = true;
-      return;
-    } else if (this.listingTypeId == 1 && $("#formDate").val() == "") {
       this.currentField = "available-input";
       this.error = "Enter Available Date";
       this.showError = true;
@@ -619,14 +617,20 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
       this.showError = true;
       return;
     } else if (this.selectedPropertyType.hasPropertyFeature && this.featuresFormData.length == 0) {
-      this.currentField = "feature-input";
+      this.currentField = "features-select-wrapper";
       this.error = "Select Property Features";
       this.showError = true;
       return;
     }
-
+    this.data.PropertyAge = this.SubmitForm.value.PropertyAge;
+    this.data.BuildingName = this.SubmitForm.value.BuildingName;
+    this.data.UnitNo = this.SubmitForm.value.UnitNo;
     let userData: any = localStorage.getItem("user");
     userData = JSON.parse(userData);
+    if(this.data.RentTypeId == 1) {
+      this.data.StartDate = $("#startDate").val();
+      this.data.EndDate = $("#endDate").val();
+    }
     this.data.UserId = userData.id;
     if (userData.professionalTypeId) {
       this.data.ProfessionalTypeId = userData.professionalTypeId;
