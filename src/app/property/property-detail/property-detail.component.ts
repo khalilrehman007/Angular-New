@@ -9,9 +9,9 @@ import { DomSanitizer } from "@angular/platform-browser";
 import { AuthService } from "../../service/auth.service";
 import * as mapboxgl from 'mapbox-gl';
 import { environment } from 'src/environments/environment';
-import {NgxGalleryOptions} from '@kolkov/ngx-gallery';
-import {NgxGalleryImage} from '@kolkov/ngx-gallery';
-import {NgxGalleryAnimation} from '@kolkov/ngx-gallery';
+import { NgxGalleryOptions } from '@kolkov/ngx-gallery';
+import { NgxGalleryImage } from '@kolkov/ngx-gallery';
+import { NgxGalleryAnimation } from '@kolkov/ngx-gallery';
 import 'hammerjs';
 
 
@@ -60,7 +60,7 @@ export class PropertyDetailComponent implements OnInit {
   status2: boolean = false;
   status3: boolean = false;
   status4: boolean = false;
-  shareURL:any = "";
+  shareURL: any = "";
   keyhighlight() {
     this.status = !this.status;
     this.status1 = false;
@@ -222,13 +222,13 @@ export class PropertyDetailComponent implements OnInit {
   public lineChartLegend = true;
 
   constructor(private authService: AuthService, private domSanitizer: DomSanitizer, private activeRoute: ActivatedRoute, private modalService: NgbModal, private service: AppService, private route: Router, private notifyService: NotificationService) {
-    let temp:any = window.location.href;
+    let temp: any = window.location.href;
     temp = temp.split("/");
     temp[1] = "//";
     temp[2] = temp[2] + "/";
     temp[3] = temp[3] + "/";
-    temp.pop().toString().replaceAll(",","");
-    this.shareURL = temp.toString().replaceAll(",","");
+    temp.pop().toString().replaceAll(",", "");
+    this.shareURL = temp.toString().replaceAll(",", "");
     this.route.events.subscribe((e: any) => {
       // If it is a NavigationEnd event re-initalise the component
       if (e instanceof NavigationEnd) {
@@ -283,52 +283,52 @@ export class PropertyDetailComponent implements OnInit {
       }
     ];
 
-    this.galleryImages = [
-      {
-        small: 'assets/images/slider.png',
-        medium: 'assets/images/slider.png',
-        big: 'assets/images/slider.png'
-      },
-      {
-        small: 'assets/images/slider.png',
-        medium: 'assets/images/slider.png',
-        big: 'assets/images/slider.png'
-      },
-      {
-        small: 'assets/images/slider.png',
-        medium: 'assets/images/slider.png',
-        big: 'assets/images/slider.png'
-      },{
-        small: 'assets/images/slider.png',
-        medium: 'assets/images/slider.png',
-        big: 'assets/images/slider.png'
-      },
-      {
-        small: 'assets/images/slider.png',
-        medium: 'assets/images/slider.png',
-        big: 'assets/images/slider.png'
-      },
-      {
-        small: 'assets/images/slider.png',
-        medium: 'assets/images/slider.png',
-        big: 'assets/images/slider.png'
-      },
-      {
-        small: 'assets/images/slider.png',
-        medium: 'assets/images/slider.png',
-        big: 'assets/images/slider.png'
-      },
-      {
-        small: 'assets/images/slider.png',
-        medium: 'assets/images/slider.png',
-        big: 'assets/images/slider.png'
-      },
-      {
-        small: 'assets/images/slider.png',
-        medium: 'assets/images/slider.png',
-        big: 'assets/images/slider.png'
-      }
-    ];
+    // this.galleryImages = [
+    //   {
+    //     small: 'assets/images/slider.png',
+    //     medium: 'assets/images/slider.png',
+    //     big: 'assets/images/slider.png'
+    //   },
+    //   {
+    //     small: 'assets/images/slider.png',
+    //     medium: 'assets/images/slider.png',
+    //     big: 'assets/images/slider.png'
+    //   },
+    //   {
+    //     small: 'assets/images/slider.png',
+    //     medium: 'assets/images/slider.png',
+    //     big: 'assets/images/slider.png'
+    //   },{
+    //     small: 'assets/images/slider.png',
+    //     medium: 'assets/images/slider.png',
+    //     big: 'assets/images/slider.png'
+    //   },
+    //   {
+    //     small: 'assets/images/slider.png',
+    //     medium: 'assets/images/slider.png',
+    //     big: 'assets/images/slider.png'
+    //   },
+    //   {
+    //     small: 'assets/images/slider.png',
+    //     medium: 'assets/images/slider.png',
+    //     big: 'assets/images/slider.png'
+    //   },
+    //   {
+    //     small: 'assets/images/slider.png',
+    //     medium: 'assets/images/slider.png',
+    //     big: 'assets/images/slider.png'
+    //   },
+    //   {
+    //     small: 'assets/images/slider.png',
+    //     medium: 'assets/images/slider.png',
+    //     big: 'assets/images/slider.png'
+    //   },
+    //   {
+    //     small: 'assets/images/slider.png',
+    //     medium: 'assets/images/slider.png',
+    //     big: 'assets/images/slider.png'
+    //   }
+    // ];
   }
 
 
@@ -337,7 +337,7 @@ export class PropertyDetailComponent implements OnInit {
 
   documentCheck: any = true
   getloadDashboardData() {
-    return this.service.DisplayPropertyListing({ "PropertyListingId": this.propertyId, "LoginUserId": this.userId }).subscribe((e:any) => {
+    return this.service.DisplayPropertyListing({ "PropertyListingId": this.propertyId, "LoginUserId": this.userId }).subscribe((e: any) => {
       let temp: any = e;
       this.userData = temp.data.user;
       this.propertyLat = temp.data.propertyListing.propertyLat;
@@ -430,6 +430,15 @@ export class PropertyDetailComponent implements OnInit {
 
         this.shareURL += this.propertyDetailData.id;
         console.log(this.shareURL);
+
+        //gallery images
+        for (let i = 0; i < this.propertyDetailData.documents.length; i++) {
+          this.galleryImages.push({
+            small: this.baseUrl + this.propertyDetailData.documents[i].fileUrl.replaceAll("\\","/"),
+            medium: this.baseUrl + this.propertyDetailData.documents[i].fileUrl.replaceAll("\\","/"),
+            big: this.baseUrl + this.propertyDetailData.documents[i].fileUrl.replaceAll("\\","/")
+          });
+        }
 
         // let location ="https://maps.google.com/maps?q="+this.propertyDetailData.propertyLat+','+this.propertyDetailData.propertyLong+'&hl=es&z=14&amp;output=embed';
 
