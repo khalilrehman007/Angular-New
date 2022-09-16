@@ -437,12 +437,12 @@ export class ListpropertyinfoComponent implements OnInit {
       this.showError = true;
       return;
     } else if (this.SubmitForm.value.PropertyAge == "") {
-      this.currentField = "age-input";
+      this.currentField = "property-age-input";
       this.error = "Enter Property Age";
       this.showError = true;
       return;
     } else if (this.SubmitForm.value.BuildingName == "") {
-      this.currentField = "name-input";
+      this.currentField = "building-name-input";
       this.error = "Enter Building Name";
       this.showError = true;
       return;
@@ -504,11 +504,6 @@ export class ListpropertyinfoComponent implements OnInit {
     } else if (!this.data.PropertyManageId && this.listingTypeId == 1) {
       this.currentField = "property-manage-input";
       this.error = "Select Property Manager";
-      this.showError = true;
-      return;
-    } else if (!this.data.OccupancyStatusId && this.listingTypeId == 1) {
-      this.currentField = "property-manage-input";
-      this.error = "Select Occupancy Status";
       this.showError = true;
       return;
     } else if (this.listingTypeId == 1 && !this.data.OccupancyStatusId) {
