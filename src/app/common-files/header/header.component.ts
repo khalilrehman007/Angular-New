@@ -14,7 +14,7 @@ import { map } from 'rxjs';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  togglesvg = '../../../assets/images/icons/toggle.svg'
+  togglesvg = '../../../assets/images/icons/toggle-colored.svg'
   logo = '../../../assets/images/logo.svg'
   chartsvg = '../../../assets/images/Charts-nav.svg'
   signinsvg = '../../../assets/images/user.svg'
@@ -125,49 +125,49 @@ export class HeaderComponent implements OnInit {
 
   sidebar = [
     {
-      src: '../../../assets/images/icons/login.svg',
+      src: '../../../assets/images/icons/user-icon-colored.svg',
       class: 'nav-items sign-in',
       text: this.loggedInUser == null ? 'Sign in' : JSON.parse(this.loggedInUser).fullName,
       link: this.loggedInUser == null ? 'login' : 'profile',
     },
     {
-      src: '../../../assets/images/icons/ioi.svg',
+      src: '../../../assets/images/icons/ioi-colored.svg',
       class: 'nav-items buy',
       text: 'Buy',
       link: 'property/search/Buy',
     },
     {
-      src: '../../../assets/images/icons/rent-icon.svg',
+      src: '../../../assets/images/icons/rent-icon-colored.svg',
       class: 'nav-items buy',
       text: 'Rent',
       link: 'property/search/Rent',
     },
     {
-      src: '../../../assets/images/icons/sell.svg',
+      src: '../../../assets/images/icons/sell-colored.svg',
       class: 'nav-items sell',
       text: 'Sell',
       link: 'sellrent',
     },
     {
-      src: '../../../assets/images/icons/find-agents.svg',
+      src: '../../../assets/images/icons/find-agent-colored.svg',
       class: 'nav-items find-agents',
       text: 'Find Agents',
       link: 'find-agent',
     },
     {
-      src: '../../../assets/images/icons/world.svg',
+      src: '../../../assets/images/icons/word-colored.svg',
       class: 'nav-items guide',
       text: 'Guide',
       link: 'explore',
     },
     {
-      src: '../../../assets/images/icons/book.svg',
+      src: '../../../assets/images/icons/book-colored.svg',
       class: 'nav-items blog',
       text: 'Blog',
       link: 'blog',
     },
     {
-      src: '../../../assets/images/icons/building.svg',
+      src: '../../../assets/images/icons/building-colored.svg',
       class: 'nav-items valuation',
       text: 'Property Valuation',
       link: 'valuation',
@@ -185,7 +185,7 @@ export class HeaderComponent implements OnInit {
       link: 'dashboard-reports',
     },
     {
-      src: '../../../assets/images/icons/classified.svg',
+      src: '../../../assets/images/icons/classified-colored.svg',
       class: 'nav-items classified',
       text: 'Classified',
       link: 'classified',
