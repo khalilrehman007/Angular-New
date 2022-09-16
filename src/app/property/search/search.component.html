@@ -65,14 +65,13 @@
                                         <div ngClass="properties-list_slider" *ngIf="list.documentsCheck">
                                             <ngb-carousel>
                                                 <ng-template ngbSlide *ngFor="let event of list.documents">
-                                                    <img [src]="baseUrl+event.fileUrl" alt="Random slide"
-                                                        (click)="openVerticallyCentered(content,list.documents)">
+                                                    <img [src]="baseUrl+event.fileUrl" [routerLink]="['/property/detail']"
+                                                    [queryParams]="{id: list.id}">
                                                 </ng-template>
                                             </ngb-carousel>
                                         </div>
                                         <div ngClass="properties-list_slider" *ngIf="list.documentsCheck == false">
-                                            <img src="assets/images/placeholder.png" alt="Random slide"
-                                                (click)="openVerticallyCentered(content,list.documents)">
+                                            <img src="assets/images/placeholder.png">
                                         </div>
                                     </div>
                                     <div ngClass="col-xl-8 col-md-8 col-lg-8 col-sm-12">
@@ -309,18 +308,6 @@
             </div>
         </section>
     </section>
-    <div ngClass="gallery-modal-design">
-        <ng-template #content let-modal>
-            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
-            <div class="modal-body gallery-design">
-                <ngb-carousel>
-                    <ng-template ngbSlide *ngFor="let event of modelPropertyPictures">
-                        <img [src]="baseUrl+event.fileUrl" alt="Random slide">
-                    </ng-template>
-                </ngb-carousel>
-            </div>
-        </ng-template>
-    </div>
     <footer ngClass="footer-sec">
         <app-footer></app-footer>
     </footer>

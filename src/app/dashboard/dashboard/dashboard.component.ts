@@ -44,6 +44,12 @@ export class DashboardComponent implements OnInit {
   shareimg = '../../../../assets/images/icons/share-icn.png'
   deleteimg = '../../../../assets/images/icons/delteicn.png'
   editimg = '../../../../assets/images/icons/editimg.png'
+  wallet = '../../../../assets/images/wallet-img.png'
+  twitter = '../../../assets/images/icons/twiiter-share.svg'
+  fb = '../../../assets/images/icons/fb-share.svg'
+  whatsapp = '../../../assets/images/icons/whatsapp.svg'
+  share = '../../../assets/images/icons/share-1.png'
+  refrell = '../../../assets/images/refrell-code.png'
   loggedInUser = localStorage.getItem('user')
   user: any;
   greet: any;

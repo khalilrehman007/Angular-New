@@ -8234,7 +8234,7 @@ li.agent-details__property-list-item {
 }
 
 .my-valuation-list-design {
-	background: #F6F6F6;
+	background: #F0F3F5;
 	align-items: center;
 	border-radius: 6px;
 	padding: 15px;
@@ -11886,4 +11886,26 @@ background: transparent !important;
     margin-top: 0px !important;
     position: relative;
     bottom: 6px;
+}
+.inspection-required-block.input-design-2 .mat-form-field-infix input {
+    font-size: 14px !important;
+}
+.inspection-required-block.input-design-2 .mat-form-field-infix {
+    bottom: -1px !important;
+}
+.property-action-hdr > button:last-child {
+    margin-right: 0px;
+}
+
+
+@media (min-width: 1200px){
+	.properties-list_hdr>.property-price_detals {
+		width: 55%;
+	}
+	.properties-list_hdr>.property-action-hdr {
+		width: 45%;
+	}
+	.properties-list_hdr {
+		justify-content: space-between;
+	}
 }
