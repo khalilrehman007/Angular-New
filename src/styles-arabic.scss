@@ -1,0 +1,168 @@
+html[dir="rtl"]{
+	.header-section .hover-block-header .btn::after{
+		margin-left: 0px;
+		margin-right: 7px;
+	}
+	#sidebar {
+		left: initial;
+		right: 0;
+		border-right: none;
+		border-left: 1px solid #F0F3F5;
+	}
+	.slide-left-bar {
+		margin-left: initial;
+		margin-right: auto;
+	}
+	.overlay_counter {
+		@extend .slide-left-bar;
+	}
+	#sidebar ul>li .side-nav-text{
+		margin-left: 0px;
+		margin-right: 14px;
+	}
+	owl-carousel-o {
+		direction: ltr;
+	}
+	.property-item {
+		direction: rtl;
+		.property-whistlist {
+			right: initial;
+			left: 10px;
+		}
+		.property-location {
+			img {
+				margin-right: 0px;
+				margin-left: 7px;
+			}
+		}
+		.brand-logo {
+			right: 11px;
+			left: initial;
+		}
+	}
+	.section-title-right {
+		li.nav-item {
+			.nav-link {
+				svg {
+					margin-right: 0px;
+					margin-left: 4px;
+				}
+			}
+		}
+	}
+	.property-details {
+		span {
+			img {
+				margin-right: 0px;
+				margin-left: 5px;
+			}
+		}
+	}
+	.tag_btn {
+		left: initial;
+		right: -8px;
+		&::before {
+			left: initial;
+			right: 3px;
+		}
+	}
+	.listing-slider-area .row {
+		direction: rtl;
+	}
+	.property-listing-slider-left ul {
+		padding-left: 0px;
+		padding-right: 1.2rem;
+	}
+	.tenants-sec-wrapper .owl-item>div {
+		direction: rtl;
+	}
+	.get-ready-apply img {
+		margin-right: 0px;
+		margin-left: 20px;
+	}
+	.virtual-tour img {
+		margin-right: 0px;
+		margin-left: 20px;
+	}
+	.find-best-deal img {
+		margin-right: 0px;
+		margin-left: 20px;
+	}
+	.real-hub-sec .mockup-right {
+		left: -8%;
+		right: initial;
+	}
+	.testimonial-content {
+		direction: rtl;
+	}
+	.testimonial-info .client-info {
+		padding-left: 0px;
+		padding-right: 25px;
+	}
+	.testimonial-section .owl-carousel > .owl-dots {
+		right: initial;
+		left: 0;
+	}
+	.testimonial-icon {
+		left: initial;
+		right: 39px;
+	}
+	.proprty_name p {
+		padding-left: 0px;
+		padding-right: 20px;
+	}
+	.residentails-unit-list .d-flex > .position-relative {
+		padding-left: 0px;
+		padding-right: 6px;
+	}
+	.dropdown-design-2 .drop-down_btn {
+		text-align: right;
+	}
+	.dropdown-design-2 .drop-down_btn {
+		text-align: right;
+		background-position: 5% center;
+	}
+	.notifivation-list-dropdown {
+		right: initial;
+		left: 0;
+	}
+	.fav-list-dropdown {
+		@extend .notifivation-list-dropdown;
+	}
+	.notifivation-inner-cntnt ul li .notifiction_time {
+		right: initial !important;
+		left: 20px;
+	}
+	.notifivation-inner-cntnt ul li {
+		padding: 10px 15px 10px 90px !important;
+	}
+	.shortlisted-white-box {
+		margin-left: initial !important;
+		margin-right: auto;
+	}
+	.short-cntnt {
+		padding-left: 0px !important;
+		padding-right: 15px;
+	}
+	.delete-property-div {
+		right: initial !important;
+		left: 10px;
+	}
+	.selection-checkbox-selector {
+		left: initial !important;
+		right: 5px !important;
+	}
+	
+
+
+
+
+
+
+	@media (max-width: 1199px){
+		#collapsibleNavbar{
+			right: -100%;
+			left: initial;
+		}
+	}
+}

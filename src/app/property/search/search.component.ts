@@ -39,6 +39,8 @@ export class SearchComponent implements OnInit {
   qr = '../../../assets/images/icons/qr-share.svg'
   fb = '../../../assets/images/icons/fb-share.svg'
   share = '../../../assets/images/icons/share-1.png'
+  emailhome = '../../../assets/images/icons/email-home.png'
+  logo = '../../../assets/images/logo.svg'
   eventlist = [
     {
       img: '../../../assets/images/slider.png',
@@ -379,8 +381,7 @@ export class SearchComponent implements OnInit {
   }
 
   modelPropertyPictures: any = []
-  openVerticallyCentered(content:any, data:any) {
-    this.modelPropertyPictures = data
+  openVerticallyCentered(content: any) {
     this.modalService.open(content, { centered: true });
   }
 
