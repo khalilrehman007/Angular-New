@@ -18,13 +18,15 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { ListpropertymediaComponent } from './listpropertymedia/listpropertymedia.component';
 import { MatNativeDateModule } from '@angular/material/core';
 import { ListpropertypublishComponent } from './listpropertypublish/listpropertypublish.component';
+import { EditComponent } from './edit/edit.component';
 
 @NgModule({
   declarations: [
     PropertyinfoComponent,
     ListpropertyinfoComponent,
     ListpropertymediaComponent,
-    ListpropertypublishComponent
+    ListpropertypublishComponent,
+    EditComponent
   ],
   imports: [
     CommonModule,
