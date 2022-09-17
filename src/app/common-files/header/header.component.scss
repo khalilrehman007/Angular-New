@@ -58,7 +58,7 @@ $btncolor: #0B26AD;
 				display: none;
 				margin-left: 14px;
 				font-size: 14px;
-				color: $color_1;
+				color: #000;
 				font-weight: 500;
 			}
 		}
@@ -854,9 +854,6 @@ textarea {
 		width: 100%;
 		text-align: left;
 	}
-	#main-header .header-section .hover-block-header {
-		margin-bottom: 15px !important;
-	}
 	.header-section .hover-block-header .btn::after {
 		right: 0;
 		position: absolute;
@@ -918,7 +915,7 @@ textarea {
 		.navbar-nav {
 			.nav-item {
 				margin-right: 0px !important;
-				margin-bottom: 5px;
+				margin-bottom: 10px;
 				svg{
 					path {
 						fill: #fff;
@@ -1344,4 +1341,32 @@ ul.navbar-nav.sub-header {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+
+@media (max-width: 1199px){
+	.nav-active::after{
+		display: none !important;
+	}
+	#main-header .navbar-nav .nav-item.link-li>a {
+		border-bottom: 1px solid #F0F3F5;
+		padding-bottom: 10px;
+		padding-top: 10px;
+	}
+	#main-header .navbar-nav .nav-item.link-li{
+		margin-bottom: 0px;
+	}
+	.nav-active {
+		padding-left: 0px !important;
+		padding-right: 0px !important;
+	}
+	#main-header .navbar-nav .nav-item.hover-block-header {
+		border-bottom: 1px solid #F0F3F5;
+		padding-bottom: 10px;
+		padding-top: 10px;
+		margin-bottom: 0px;
+	}
+	#main-header .navbar-nav .nav-item.classified {
+		margin-top: 15px;
+	}
 }

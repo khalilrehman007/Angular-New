@@ -273,6 +273,19 @@
                                 </pagination-controls>
                             </section>
                         </div>
+                        <div ngClass="notification-box">
+                            <div ngClass="d-flex align-items-center">
+                                <div ngClass="email-home-icons">
+                                    <img src="{{emailhome}}">
+                                </div>
+                                <div ngClass="email-home-cntnt">
+                                    <h4>Get Notofied when new property match your search criteria</h4>
+                                </div>
+                                <div ngClass="email-alert-btn">
+                                    <button ngClass="alert_btn" (click)="openVerticallyCentered(content)"><mat-icon>notifications_active</mat-icon> Get an alert</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div ngClass="col-xl-3 col-lg-3 col-md-12 col-sm-12">
                         <div ngClass="properties-list-sidebar">
@@ -311,4 +324,34 @@
     <footer ngClass="footer-sec">
         <app-footer></app-footer>
     </footer>
+    <div ngClass="gallery-modal-design alert-email-box-wrapper">
+        <ng-template #content let-modal>
+            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+            <div class="modal-body alert-email-box">
+               <div ngClass="alert-logo-div">
+               <a routerLink=""><img src="{{logo}}"></a>
+               </div>
+               <div ngClass="alert-logo-content">
+                  <h5>Sign in or register to save your favorite homes and search results</h5>
+                  <div ngClass="alert_form-box">
+                    <form>
+                        <div ngClass="form-group input-design-3">
+                            <input type="email" placeholder="Enter your email address">
+                        </div>
+                        <div ngClass="form-group submit-design-3">
+                            <input type="submit" value="Continue">
+                        </div>
+                        <div ngClass="form-group terms-contioning">
+                         <p>By continuing, you agree to houza's <a routerLink="/term-condition">Term and Conditions</a> & <a routerLink="/privacy-policy">Privacy Policy</a></p>
+                        </div>
+                    </form>
+                  </div>
+               </div>
+               <div ngClass="alert-modal-footer">
+                  <h4>Are you an agent?</h4>
+                  <p>Log in to the Ovaluate hub here: <a routerLink="/login">Agent log in</a></p>
+               </div>
+            </div>
+        </ng-template>
+    </div>
 </div>
