@@ -66,23 +66,23 @@ export class EditComponent implements OnInit {
 
   constructor(private router: ActivatedRoute, private route: Router, private notifyService: NotificationService, private service: AppService) {
     this.userData = JSON.parse(this.userData);
-    this.router.params.subscribe(params => {
-      this.id = params['id'];
-      this.service.id = params['id'];
+    this.router.params.subscribe((params:any) => {
+      this.id = params.id;
+      this.service.id = params.id;
+      this.service.DisplayPropertyListing({ "PropertyListingId": this.id, "LoginUserId": this.userData.id }).subscribe((result: any) => {
+        if (result.data.user.id != this.userData.id) {
+          this.route.navigate(["/"]);
+        } else {
+          this.listingData = result.data.propertyListing;
+          console.log(this.listingData);
+          this.setData();
+        }
+      })
+      this.options = {
+        bounds: [],
+        strictBounds: true,
+      };
     })
-    this.service.DisplayPropertyListing({ "PropertyListingId": this.id, "LoginUserId": this.userData.id }).subscribe((result: any) => {
-      if (result.data.user.id != this.userData.id) {
-        this.route.navigate(["/"]);
-      } else {
-        this.listingData = result.data.propertyListing;
-        console.log(this.listingData);
-        this.setData();
-      }
-    })
-    this.options = {
-      bounds: [],
-      strictBounds: true,
-    };
   }
   setData() {
     this.SubmitForm.patchValue({

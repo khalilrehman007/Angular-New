@@ -12,7 +12,7 @@ const routes: Routes = [
   {path: "listpropertyinfo", component: ListpropertyinfoComponent},
   {path: "listpropertymedia", component: ListpropertymediaComponent},
   {path: "listpropertypublish", component: ListpropertypublishComponent},
-  {path: "edit/:id", component: EditComponent},
+  {path: "edit/:id/listingproperty", component: EditComponent},
 ];
 
 @NgModule({
