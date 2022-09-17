@@ -29,11 +29,13 @@ $btncolor: #0B26AD;
 	left: 0;
 	height: 100vh;
 	padding: 10px 14px;
-	background: #0f2ead;
+	background: #fff;
 	transition: all 0.3s ease;
+	border-right: 1px solid #F0F3F5;
 	overflow: auto;
 	width: 64px;
 	z-index: 99;
+	border-bottom: 1px solid #F0F3F5;
 	ul {
 		>.nav-items {
 			margin-bottom: 10px;
@@ -46,7 +48,7 @@ $btncolor: #0B26AD;
 				border-radius: 6px;
 				cursor: pointer;
 				&:hover {
-					background: rgba(255,255,255,0.1);
+					background: #F0F3F5;
 				}
 			}
 		}
@@ -56,7 +58,7 @@ $btncolor: #0B26AD;
 				display: none;
 				margin-left: 14px;
 				font-size: 14px;
-				color: #fff;
+				color: $color_1;
 				font-weight: 500;
 			}
 		}
@@ -65,12 +67,12 @@ $btncolor: #0B26AD;
 		margin-bottom: 25px;
 	}
 	.nav-items.sign-in {
-		border-bottom: 1px solid rgba(255,255,255,0.2);
+		border-bottom: 1px solid #F0F3F5;
 		padding-bottom: 22px;
 		margin-bottom: 20px !important;
 	}
 	.nav-items.guide {
-		border-top: 1px solid rgba(255,255,255,0.2);
+		border-top: 1px solid #F0F3F5;
 		padding-top: 22px;
 		margin-top: 20px;
 	}
@@ -97,7 +99,7 @@ $btncolor: #0B26AD;
 	border: none;
 	padding: 0px;
 	&:hover {
-		background: rgba(255,255,255,0.1);
+		background: #F0F3F5;
 	}
 	.icon {
 		width: 20px;

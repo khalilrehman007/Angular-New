@@ -14,12 +14,12 @@ import { map } from 'rxjs';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  togglesvg = '../../../assets/images/icons/toggle-colored.svg'
+  togglesvg = '../../../assets/images/icons/toggle.svg'
   logo = '../../../assets/images/logo.svg'
   chartsvg = '../../../assets/images/Charts-nav.svg'
   signinsvg = '../../../assets/images/user.svg'
   flagsvg = '../../../assets/images/aed-fg.svg'
-  close = '../../../assets/images/icons/close-colored.svg'
+  close = '../../../assets/images/icons/close.svg'
   property = '../../../assets/images/shortlisted-img.png'
   trash = '../../../assets/images/icons/Trash-dotted.svg'
   logoutimg = '../../../assets/images/logout-popup-banner.png'
@@ -125,49 +125,49 @@ export class HeaderComponent implements OnInit {
 
   sidebar = [
     {
-      src: '../../../assets/images/icons/user-icon-colored.svg',
+      src: '../../../assets/images/icons/login.svg',
       class: 'nav-items sign-in',
       text: this.loggedInUser == null ? 'Sign in' : JSON.parse(this.loggedInUser).fullName,
       link: this.loggedInUser == null ? 'login' : 'profile',
     },
     {
-      src: '../../../assets/images/icons/ioi-colored.svg',
+      src: '../../../assets/images/icons/ioi.svg',
       class: 'nav-items buy',
       text: 'Buy',
       link: 'property/search/Buy',
     },
     {
-      src: '../../../assets/images/icons/rent-icon-colored.svg',
+      src: '../../../assets/images/icons/rent-icon.svg',
       class: 'nav-items buy',
       text: 'Rent',
       link: 'property/search/Rent',
     },
     {
-      src: '../../../assets/images/icons/sell-colored.svg',
+      src: '../../../assets/images/icons/sell.svg',
       class: 'nav-items sell',
       text: 'Sell',
       link: 'sellrent',
     },
     {
-      src: '../../../assets/images/icons/find-agent-colored.svg',
+      src: '../../../assets/images/icons/find-agents.svg',
       class: 'nav-items find-agents',
       text: 'Find Agents',
       link: 'find-agent',
     },
     {
-      src: '../../../assets/images/icons/word-colored.svg',
+      src: '../../../assets/images/icons/world.svg',
       class: 'nav-items guide',
       text: 'Guide',
       link: 'explore',
     },
     {
-      src: '../../../assets/images/icons/book-colored.svg',
+      src: '../../../assets/images/icons/book.svg',
       class: 'nav-items blog',
       text: 'Blog',
       link: 'blog',
     },
     {
-      src: '../../../assets/images/icons/building-colored.svg',
+      src: '../../../assets/images/icons/building.svg',
       class: 'nav-items valuation',
       text: 'Property Valuation',
       link: 'valuation',
