@@ -1,1 +1,48 @@
-<p>aboutus works!</p>
+<app-header></app-header>
+<section [ngClass]="'inner-cntnt-wrapper slide-left-bar cms-inner about-page-wrapper'">
+    <section [ngClass]="'inner-page-banner-sec position-relative'">
+        <div [ngClass]="'container_1280px'">
+            <div ngClass="inner-banner-heading text-center">
+                <h2>{{title}}</h2>
+                <p></p>
+            </div>
+        </div>
+    </section>
+    <section ngClass="our-mission-sec">
+        <div [ngClass]="'container_1280px'">
+            <div ngClass="cms_content-paragraph text-center">
+            </div>
+        </div>
+    </section>
+    <section ngClass="our-vision-sec">
+        <div [ngClass]="'container_1280px'">
+            <div ngClass="cms_content-paragraph-2 text-center">
+            </div>
+        </div>
+    </section>
+<section ngClass="our_team-sec">
+    <div [ngClass]="'container_1220px'">
+        <div ngClass="heading-32px-design text-center mb-5">
+            <h2>فريق العمل</h2>
+            <p>يحدد فريقنا المتفاني نجاحنا في اوفالويت. نحن موطن لشبكة من المتخصصين في الصناعة متحدين معًا للذهاب إلى أبعد الحدود وخدمة عملائنا. فريقنا المتحمس هو سبب نجاحنا وقد ساعدنا على حصد إنجازات مذهلة على مر السنين.</p>
+        </div>
+        <div ngClass="team_row-divs">
+            <div ngClass="row">
+                <div ngClass="col-xl-3 col-lg-3 col-md-12 col-sm-12" *ngFor="let item of team">
+                    <div ngClass="team-list-div-design">
+                        <div ngClass="team_img">
+                            <img src="https://beta.ovaluate.com/{{item.fileUrl}}">
+                        </div>
+                        <div ngClass="team_cntnt">
+                            <h4>{{item.nameAr}}</h4>
+                            <h6>{{item.designation.designationNameAr}}</h6>
+                            <p>{{item.descriptionAr}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</section>
+<app-footer></app-footer>
