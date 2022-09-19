@@ -27,9 +27,10 @@
                     </button>
                     <div ngClass="mobile-abs-items d-hide">
                         <ul>
-                            <li ngClass="nav-item language-converter d-hide demo-english-desig">
+                            <li ngClass="nav-item language-converter d-hide">
                                 <select>
                                     <option>English</option>
+                                    <option>Arabic</option>
                                 </select>
                             </li>
                             <li ngClass="nav-item position-relative d-hide notification_header-list" *ngIf="userData != ''">
@@ -115,10 +116,10 @@
                     <div ngClass="collapse navbar-collapse justify-content-end" id="collapsibleNavbar"
                         [ngClass]="status4 ? 'show' : 'noshow'">
                         <ul ngClass="navbar-nav sub-header">
-                            <li ngClass="nav-item language-converter tm-hide demo-english-design">
+                            <li ngClass="nav-item language-converter tm-hide">
                                 <select>
                                     <option>English</option>
-                                    <!-- <option>Arabic</option> -->
+                                    <option>Arabic</option>
                                 </select>
                             </li>
                             <li ngClass="nav-item fav-li position-relative tm-hide" *ngIf="userData != ''">
@@ -350,7 +351,7 @@
                                 </a>
                             </li>
                             <li ngClass="nav-item link-li" (click)="checkActiveTab('areas')">
-                                <a [ngClass]="'nav-link'" routerLink="">
+                                <a [ngClass]="activeShortterm ? 'nav-active' : 'nav-link'" routerLink="/property/short-term-rent">
                                     Short-Term Rent
                                 </a>
                             </li>
