@@ -58,6 +58,31 @@
             </div>
         </div>
     </section>
+    <section ngClass="wrapper-section">
+            <div ngClass="property-valuation-sec">
+                <div ngClass="row">
+                    <div ngClass="col-sm-12">
+                        <div ngClass="home-slider-sec">
+                            <div ngClass="home-slider-sec">
+                                <ngb-carousel [showNavigationArrows]="false" data-interval="false">
+                                    <ng-template ngbSlide *ngFor="let event of homebanners">
+                                        {{event.id}}
+                                        <div ngClass="home-slider_img">
+                                            <img [src]="event.img" alt="Random slide">
+                                        </div>
+                                        <div ngClass="home-slider_cntnt">
+                                            <h2>{{event.title}}</h2>
+                                            <p>{{event.desc}}</p>
+                                            <a routerLink="/valuation/property-detail">Start Valuation</a>
+                                        </div>
+                                    </ng-template>
+                                </ngb-carousel>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
     <section ngClass="wrapper-section properties-slider residentials-property-rent-1">
         <div ngClass="container_1220px">
             <div ngClass="section-title">
@@ -616,33 +641,6 @@
             </div>
         </div>
     </section>
-    <!-- <section ngClass="wrapper-section">
-        <div ngClass="container_1220px">
-            <div ngClass="property-valuation-sec">
-                <div ngClass="row">
-                    <div ngClass="col-sm-12">
-                        <div ngClass="home-slider-sec">
-                            <div ngClass="home-slider-sec">
-                                <ngb-carousel [showNavigationArrows]="false">
-                                    <ng-template ngbSlide *ngFor="let event of homebanners">
-                                        {{event.id}}
-                                        <div ngClass="home-slider_img">
-                                            <img [src]="event.img" alt="Random slide">
-                                        </div>
-                                        <div ngClass="home-slider_cntnt">
-                                            <h2>{{event.title}}</h2>
-                                            <p>{{event.desc}}</p>
-                                            <a routerLink="/valuation/property-detail">Start Valuation</a>
-                                        </div>
-                                    </ng-template>
-                                </ngb-carousel>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> -->
     <section ngClass="position-relative wrapper-section certified_sec">
         <div ngClass="container_1220px">
             <div ngClass="heading-32px-design text-center mb-4">

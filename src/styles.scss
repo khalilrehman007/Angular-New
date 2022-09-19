@@ -11909,6 +11909,9 @@ background: transparent !important;
 .div_thumb-wrapper label {
     border: none !important;
 }
+.easy-tenants-landlords-sec {
+    position: relative;
+}
 
 
 @media (min-width: 1200px){
@@ -11927,3 +11930,63 @@ background: transparent !important;
         height: 300px;
     }
 }
+
+
+
+.home-slider-sec .carousel-inner .carousel-item {
+    margin-right: 0px !important;
+    float: none !important;
+    display: block !important;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+	z-index: -1;
+	transform: none !important;
+	visibility: hidden;
+	transition: visibility 0s linear;
+}
+.home-slider-sec .carousel-inner {
+    height: 600px;
+	position: relative;
+	z-index: 0;
+}
+.home-slider-sec .carousel-inner .carousel-item.active {
+    z-index: 9 !important;
+	animation: fadeIn 5s;
+	visibility: visible;
+}
+
+@keyframes fadeIn {
+	0% { opacity: 0.3; }
+	25% { opacity: 0.5; }
+	50% { opacity: 0.7; }
+	75% { opacity: 0.9; }
+	100% { opacity: 1; }
+  }
+
+  @-moz-keyframes fadeIn {
+	0% { opacity: 0.3; }
+	25% { opacity: 0.5; }
+	50% { opacity: 0.7; }
+	75% { opacity: 0.9; }
+	100% { opacity: 1; }
+  }
+  
+  @-webkit-keyframes fadeIn {
+	0% { opacity: 0.3; }
+	25% { opacity: 0.5; }
+	50% { opacity: 0.7; }
+	75% { opacity: 0.9; }
+	100% { opacity: 1; }
+  }
+  
+  @-o-keyframes fadeIn {
+	0% { opacity: 0.3; }
+	25% { opacity: 0.5; }
+	50% { opacity: 0.7; }
+	75% { opacity: 0.9; }
+	100% { opacity: 1; }
+  }
