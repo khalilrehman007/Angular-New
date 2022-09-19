@@ -63,6 +63,7 @@ export class EditComponent implements OnInit {
   id: any;
   userData: any = localStorage.getItem("user");
   listingData: any = "";
+  propertyData:any = {};
 
   constructor(private router: ActivatedRoute, private route: Router, private notifyService: NotificationService, private service: AppService) {
     this.userData = JSON.parse(this.userData);
@@ -76,6 +77,7 @@ export class EditComponent implements OnInit {
           this.listingData = result.data.propertyListing;
           console.log(this.listingData);
           this.setData();
+          this.createFormData();
         }
       })
       this.options = {
@@ -83,6 +85,49 @@ export class EditComponent implements OnInit {
         strictBounds: true,
       };
     })
+  }
+  createFormData() {
+    this.propertyData.CountryId = this.listingData.countryId;
+    this.propertyData.CityId = this.listingData.cityId;
+    this.propertyData.CityId = this.listingData.cityId;
+    this.propertyData.DistrictId = this.listingData.districtId;
+    this.propertyData.PropertyAddress = this.listingData.propertyAddress;
+    this.propertyData.PropertyLat = this.listingData.propertyLat;
+    this.propertyData.PropertyLong = this.listingData.propertyLong;
+    this.propertyData.PropertyTypeId = this.listingData.propertyTypeId;
+    this.propertyData.BedRooms = this.listingData.bedrooms;
+    this.propertyData.BathRooms = this.listingData.bathrooms;
+    this.propertyData.BathRooms = this.listingData.bathrooms;
+    this.propertyData.FurnishingType = this.listingData.furnishingType;
+    this.propertyData.TenantTypeId = this.listingData.tenantTypeId;
+    this.propertyData.PropertyManageId = this.listingData.propertyManageId;
+    this.propertyData.OccupancyStatusId = this.listingData.occupancyStatus.id;
+    this.propertyData.Parkings = this.listingData.parkings;
+    this.propertyData.RentTypeId = this.listingData.rentTypeId;
+    this.propertyData.SecurityDeposit = this.listingData.securityDeposit;
+    this.propertyData.BrokerageCharge = this.listingData.brokerageCharge;
+    this.propertyData.Balcony = this.listingData.balcony;
+    this.propertyData.PropertyAge = this.listingData.propertyAge;
+    this.propertyData.BuildingName = this.listingData.buildingName;
+    this.propertyData.UnitNo = this.listingData.unitNo;
+    this.propertyData.UserId = this.listingData.userId;
+    this.propertyData.FloorNo = this.listingData.floorNo;
+    this.propertyData.PropertyListingTypeId = this.listingData.propertyListingTypeId;
+    this.propertyData.PropertyCategoryId = this.listingData.propertyCategoryId;
+    this.propertyData.CarpetArea = this.listingData.carpetArea;
+    this.propertyData.BuildupArea = this.listingData.buildupArea;
+    this.propertyData.PetPolicies = [];
+    for(let i = 0; i < this.listingData.petPolicies.length; i++) {
+      this.propertyData.PetPolicies.push({"PetPolicyId": this.listingData.petPolicies[i].petPolicyId});
+    }
+    this.propertyData.AvailableDate = this.listingData.availableDate;
+    this.propertyData.NoticePeriod = this.listingData.noticePeriod;
+    this.propertyData.LockingPeriod = this.listingData.lockingPeriod;
+    this.propertyData.PropertyTitle = this.listingData.propertyTitle;
+    this.propertyData.PropertyDescription = this.listingData.propertyDescription;
+    this.propertyData.PropertyOffer = this.listingData.propertyOffer;
+
+    console.log(this.propertyData);
   }
   setData() {
     this.SubmitForm.patchValue({
