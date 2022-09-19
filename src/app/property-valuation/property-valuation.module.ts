@@ -20,6 +20,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { NgxMaskModule } from 'ngx-mask';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
+    MatIconModule,
     MatCardModule,
     MatCheckboxModule,
     MatAutocompleteModule,

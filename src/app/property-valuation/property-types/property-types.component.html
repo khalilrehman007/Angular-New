@@ -431,46 +431,13 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="select-features mb-4" *ngIf="propertyData.hasPropertyFeature">
+                                <div class="select-features mb-4" *ngIf="propertyData.hasPropertyFeature && featuresData.length > 0">
                                     <div class="row">
                                         <div class="col-sm-12">
                                             <div ngClass="select-design select2-design select2-design-full">
                                             <label class="h6-design">Select Features</label>
-                                            <!-- <div class="inneR-border-wrap">
-                                                <div class="checkbox-flex-box autoflex-layout">
-                                                    <div *ngFor="let item of featuresData">
-                                                        <div class="checkbox-design position-relative"
-                                                            *ngIf="formData.PropertyFeatures && checkOldData(item.propertyFeatureId)"
-                                                            (click)="getFeaturesData(item.propertyFeatureId, item.propertyFeature.featureName)">
-                                                            <input type="checkbox" id={{item.propertyFeature.id}}
-                                                                name={{item.propertyFeature.featureName}}
-                                                                value={{item.propertyFeature.featureName}} checked>
-                                                            <button
-                                                                class="checkbox-btn">{{item.propertyFeature.featureName}}</button>
-                                                        </div>
-                                                        <div class="checkbox-design position-relative"
-                                                            *ngIf="formData.PropertyFeatures && !checkOldData(item.propertyFeatureId)"
-                                                            (click)="getFeaturesData(item.propertyFeatureId, item.propertyFeature.featureName)">
-                                                            <input type="checkbox" id={{item.propertyFeature.id}}
-                                                                name={{item.propertyFeature.featureName}}
-                                                                value={{item.propertyFeature.featureName}}>
-                                                            <button
-                                                                class="checkbox-btn">{{item.propertyFeature.featureName}}</button>
-                                                        </div>
-                                                        <div class="checkbox-design position-relative"
-                                                            *ngIf="!formData.PropertyFeatures"
-                                                            (click)="getFeaturesData(item.propertyFeatureId, item.propertyFeature.featureName)">
-                                                            <input type="checkbox" id={{item.propertyFeature.id}}
-                                                                name={{item.propertyFeature.featureName}}
-                                                                value={{item.propertyFeature.featureName}}>
-                                                            <button
-                                                                class="checkbox-btn">{{item.propertyFeature.featureName}}</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div> -->
                                             <select class="select2 features-select" multiple="multiple">
-                                                <option *ngFor="let item of featuresData" [value]="item.propertyFeature.id"> {{item.propertyFeature.featureName}}</option>
+                                                <option *ngFor="let item of featuresData" [value]="item.propertyFeature.id" class="features-item-{{item.propertyFeatureId}}"> {{item.propertyFeature.featureName}}</option>
                                             </select>
                                             </div>
                                         </div>

@@ -248,6 +248,9 @@ export class PropertyDocumentsComponent implements OnInit {
       return false;
     }
   }
+  openCamera() {
+      $(".camera-image").click();
+  }
   animate() {
     let temp: any = $("." + this.currentField).offset()?.top;
     $("." + this.currentField).addClass("blink");

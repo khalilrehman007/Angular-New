@@ -111,7 +111,7 @@
                                 <div ngClass="block-wrapper mb-4">
                                     <h6 ngClass="h6-design">Location Information <span ngClass="required-span">*</span>
                                     </h6>
-                                    <div ngClass="location-info-lists">
+                                    <div ngClass="location-info-lists" *ngIf="locationInformation.city">
                                         <mat-list>
                                             <mat-list-item ngClass="d-flex justify-content-spacebw">
                                                 <div ngClass="location-div-block">

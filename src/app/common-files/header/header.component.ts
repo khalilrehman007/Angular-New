@@ -42,6 +42,7 @@ export class HeaderComponent implements OnInit {
   activeTabRent :any = false;
   activeTabBlog :any = false;
   activeTabArea :any = false;
+  activeShortterm :any = false;
   constructor(private router: Router,private activeRoute: ActivatedRoute,private authService: AuthService, private route: Router, private notifyService: NotificationService, private modalService: NgbModal, private service: AppService, private db: AngularFireDatabase) {
     let a:any = this.currentDate;
     a = a.toString().split(" ")[5].split("T")[1];
@@ -98,11 +99,13 @@ export class HeaderComponent implements OnInit {
      this.activeTabBuy  = false;
      this.activeTabBlog  = false;
      this.activeTabArea  = false;
+     this.activeShortterm = false;
    }else if(type == "Buy"){
      this.activeTabBuy = true;
      this.activeTabRent = false;
      this.activeTabBlog  = false;
      this.activeTabArea  = false;
+     this.activeShortterm = false;
    }
 
     if(url == 'blog'){
@@ -110,17 +113,14 @@ export class HeaderComponent implements OnInit {
       this.activeTabRent = false;
       this.activeTabBlog  = true;
       this.activeTabArea  = false;
+      this.activeShortterm = false;
     }else if(url == 'explore'){
       this.activeTabBuy = false;
       this.activeTabRent = false;
       this.activeTabBlog  = false;
       this.activeTabArea  = true;
+      this.activeShortterm = false;
     }
-
-
-
-
-
   }
 
   sidebar = [
@@ -189,6 +189,12 @@ export class HeaderComponent implements OnInit {
       class: 'nav-items classified',
       text: 'Classified',
       link: 'classified',
+    },
+    {
+      src: '../../../assets/images/icons/wallet.svg',
+      class: 'nav-items my-wallet',
+      text: 'My Wallet',
+      link: 'profile',
     }
   ]
 
