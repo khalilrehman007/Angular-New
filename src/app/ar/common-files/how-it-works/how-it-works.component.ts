@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AppService } from 'src/app/service/app.service';
+
 
 @Component({
   selector: 'app-how-it-works',
@@ -6,8 +8,32 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./how-it-works.component.scss']
 })
 export class HowItWorksComponent implements OnInit {
+  heading: string= "";
+  subHead: string = "";
+  title: string = "";
+  text: string = "";
 
-  constructor() { }
+  howitworks: any = [];
+  faqsec: any = [];
+  constructor(private api: AppService) {
+    $(window).scrollTop(0);
+    this.api.HowWorkOvaluate().subscribe((result: any) => {
+      this.heading = result.data.pageCaptionHelightAr;
+      this.subHead = result.data.pageCaptionTextAr;
+      this.howitworks = result.data.howWorkOvaluateDetails;
+    })
+    this.api.FAQ().subscribe((result: any) => {
+      this.title = result.data.pageCaptionHelightAr;
+      this.text = result.data.pageCaptionTextAr;
+      $(".faq__text").append(this.text);
+      this.faqsec = result.data.faqDetails;
+      setTimeout(function () {
+        $(".faq__accordion-text").each(function (e) {
+          $(this).html($(this).text());
+        })
+      }, 100);
+    })
+  }
 
   ngOnInit(): void {
   }
