@@ -690,8 +690,9 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
       temp.push({ PropertyFeatureId: this.featuresFormData[i] });
     }
     this.data.PropertyFeatures = temp;
-    localStorage.setItem('propertyData', JSON.stringify(this.data));
-    localStorage.setItem('listingData', JSON.stringify(this.data));
-    this.route.navigate(['/add-property/listpropertymedia'])
+    console.log(this.data);
+    // localStorage.setItem('propertyData', JSON.stringify(this.data));
+    // localStorage.setItem('listingData', JSON.stringify(this.data));
+    // this.route.navigate(['/add-property/listpropertymedia'])
   }
 }
