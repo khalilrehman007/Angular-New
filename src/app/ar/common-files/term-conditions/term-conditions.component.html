@@ -1,1 +1,20 @@
-<p>term-conditions works!</p>
+<app-header></app-header>
+<section [ngClass]="'inner-cntnt-wrapper slide-left-bar cms-inner'">
+    <section [ngClass]="'inner-page-banner-sec position-relative'">
+        <div [ngClass]="'container_1280px'">
+            <div ngClass="inner-banner-heading text-center">
+                <h2>{{title}}</h2>
+                <p></p>
+            </div>
+        </div>
+    </section>
+    <section ngClass="cms-content-wrapper">
+        <div [ngClass]="'container_1280px'">
+            <div ngClass="cms_content-paragraph">
+                <h1>الشروط والأحكام</h1>
+            </div>
+        </div>
+    </section>
+</section>
+<footer ngClass="footer-sec">
+    <app-footer></app-footer>
