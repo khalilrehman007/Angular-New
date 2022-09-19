@@ -204,7 +204,7 @@ export class HomepageComponent implements OnInit {
     {
       id: 'slide1',
       src: 'assets/images/icons/virtul-toor.svg',
-      heading: 'Virtual home tour, No aracbic available in excel sheet',
+      heading: 'Virtual home tour',
       desc: 'You can communicate directly with landlords and we provide you with virtual tour before you buy or rent the property.',
       class: 'virtual-tour'
     },
