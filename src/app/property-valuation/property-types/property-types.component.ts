@@ -24,7 +24,7 @@ export class PropertyTypesComponent implements OnInit {
   propertyType: any = [];
   purposeOfValuation: any = [];
   statusData: number = 0;
-  featuresData: any;
+  featuresData: any = [];
   propertyUnits: any;
   furnishingType: any;
   fittingType: any;
@@ -47,7 +47,7 @@ export class PropertyTypesComponent implements OnInit {
   oldLength: number = 0;
   oldData: any = "";
   proceed: boolean = false;
-  elevationValue:any;
+  elevationValue: any;
   currentField: any;
   errorResponse(data: any) {
     this.showError = false;
@@ -115,8 +115,8 @@ export class PropertyTypesComponent implements OnInit {
     this.formData.Bedrooms = 0;
     this.formData.Bathrooms = 0;
     this.loadOldData();
-    if(localStorage.getItem("valuationFromFooter")) {
-      let temp:any = localStorage.getItem("valuationFromFooter");
+    if (localStorage.getItem("valuationFromFooter")) {
+      let temp: any = localStorage.getItem("valuationFromFooter");
       this.formData.PropertyCategoryId = temp;
       this.loadType(temp);
     }
@@ -157,7 +157,7 @@ export class PropertyTypesComponent implements OnInit {
       this.service.LoadTypebyLatLng({ id: this.formData.PropertyCategoryId, lat: parseFloat(this.formData.PropertyLat), lng: parseFloat(this.formData.PropertyLong) }).subscribe((result: any) => {
         this.propertyType = result.data;
         this.showLoader = false;
-        this.propertyData = this.propertyType.filter((item:any) => item.id == this.formData.PropertyTypeId)[0];
+        this.propertyData = this.propertyType.filter((item: any) => item.id == this.formData.PropertyTypeId)[0];
         this.service.ValuationPurpose().subscribe((result) => {
           this.purposeOfValuation = result;
           this.purposeOfValuation = this.purposeOfValuation.data;
@@ -165,6 +165,17 @@ export class PropertyTypesComponent implements OnInit {
         this.service.PropertyFeatures(this.propertyData.id).subscribe((result: any) => {
           this.featuresData = result.data;
           this.showLoader = false;
+          // console.log(this.featuresData);
+          let interval: any = setInterval(() => {
+            if (this.featuresData.length > 0) {
+              for(let i = 0; i < this.formData.PropertyFeatures.length; i++) {
+                console.log(".features-item-" + this.formData.PropertyFeatures[i].PropertyFeatureId);
+                $(".features-item-" + this.formData.PropertyFeatures[i].PropertyFeatureId).attr("selected", "selected");
+              }
+              $('.select2').select2({ placeholder: "Click here to add more" });
+              clearInterval(interval);
+            }
+          }, 100);
         })
         this.typeSelected = true;
       })
@@ -204,15 +215,15 @@ export class PropertyTypesComponent implements OnInit {
     return false;
   }
   valuationPurpose(e: any) {
-    let temp:any = this.formData.PropertyCategoryId
+    let temp: any = this.formData.PropertyCategoryId
     this.clearData();
     this.formData.PropertyCategoryId = temp;
     this.showLoader = true;
-    this.formDetailData.propertyType = this.propertyType.filter((item:any) => item.id == e.value)[0].typeDescription;
+    this.formDetailData.propertyType = this.propertyType.filter((item: any) => item.id == e.value)[0].typeDescription;
     this.formData.PropertyTypeId = e.value;
     this.purposeOfValuation = [];
     this.featuresData = [];
-    this.propertyData = this.propertyType.filter((item:any) => item.id == e.value)[0];
+    this.propertyData = this.propertyType.filter((item: any) => item.id == e.value)[0];
     if (this.propertyData.hasUnits) {
       this.unitHMTL = [{ show: true, id: 1 }];
     }
@@ -223,7 +234,7 @@ export class PropertyTypesComponent implements OnInit {
     this.service.PropertyFeatures(this.propertyData.id).subscribe((result: any) => {
       this.featuresData = result.data;
       this.showLoader = false;
-      $('.select2').select2({placeholder: "Click here to add more"});
+      $('.select2').select2({ placeholder: "Click here to add more" });
     })
     this.typeSelected = true;
   }
@@ -247,7 +258,7 @@ export class PropertyTypesComponent implements OnInit {
     this.formData.PropertyStatusId = id;
   }
   onPurposeSelect(e: any) {
-    this.formDetailData.ValuationPurpose = this.purposeOfValuation.filter((item:any) => item.id == e.value)[0].purposeDescription;
+    this.formDetailData.ValuationPurpose = this.purposeOfValuation.filter((item: any) => item.id == e.value)[0].purposeDescription;
     this.formData.ValuationPurposeId = e.value;
   }
   getRoads(id: any) {
@@ -304,13 +315,13 @@ export class PropertyTypesComponent implements OnInit {
     this.formData = (window.localStorage.getItem('valuationData'));
     this.formData = JSON.parse(this.formData);
     this.propertyTypeForm.patchValue({
-      apartmentNo:"",
-      constructionAge:"",
-      elevation:"",
-      apartmentSize:"",
-      buildupArea:"",
-      income:"",
-      expense:""
+      apartmentNo: "",
+      constructionAge: "",
+      elevation: "",
+      apartmentSize: "",
+      buildupArea: "",
+      income: "",
+      expense: ""
     })
   }
   getData() {
