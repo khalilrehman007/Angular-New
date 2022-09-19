@@ -295,7 +295,7 @@
                             </li>
                             <li ngClass="nav-item signin-li tm-hide">
                                 <div #noListItemTmpl *ngIf="user == null">
-                                    <a ngClass="nav-link" [routerLink]="['/login']"><img src="{{signinsvg}}"> Sign in
+                                    <a ngClass="nav-link" [routerLink]="['/login']"><img src="{{signinsvg}}"> تسجيل الدخول
                                     </a>
                                 </div>
                                 <div #noListItemTmpl *ngIf="user !== null">
@@ -305,12 +305,12 @@
                             </li>
                             <li ngClass="nav-item signin-li logout">
                                 <div #noListItemTmpl *ngIf="user !== null">
-                                    <a ngClass="nav-link" (click)="logOutPopup(content)"> Logout </a>
+                                    <a ngClass="nav-link" (click)="logOutPopup(content)"> تسجيل خروج </a>
                                 </div>
                             </li>
                             <li ngClass="nav-item aed-li">
-                                <button class="nav-link aed-sq" (click)="clickEvent2()"><img src="{{flagsvg}}"> AED |
-                                    Sqft</button>
+                                <button class="nav-link aed-sq" (click)="clickEvent2()"><img src="{{flagsvg}}"> درهم  |
+                                    قدم مربع</button>
                                 <!-- <div class="country_list-dropdown" [ngClass]="status2 ? 'active' : 'notactive'">
                                     <button (click)="clickEvent2()"><img src="{{close}}"></button>
                                     <div ngClass="countries_dropdown-list" *ngFor="let data of headerCountries">
@@ -327,7 +327,7 @@
                                 <a [ngClass]="activeTabBuy ? 'nav-active' : 'nav-link'"
                                    [routerLink]="['/property/search']"
                                    [queryParams]="{type:'Buy',PropertyListingTypeId: 2}">
-                                    Buy
+                                   شراء
                                 </a>
                             </li>
                             <li ngClass="nav-item link-li" (click)="checkActiveTab('rent')">
@@ -335,19 +335,19 @@
                                    [ngClass]="activeTabRent ? 'nav-active' : 'nav-link'"
                                    [routerLink]="['/property/search']"
                                    [queryParams]="{type:'Rent',PropertyListingTypeId: 1}">
-                                    Rent
+                                   إيجار
                                 </a>
                             </li>
                             <li ngClass="nav-item link-li" (click)="checkActiveTab('blog')">
                                 <a  [ngClass]="activeTabBlog ? 'nav-active' : 'nav-link'"
                                    routerLink="/blog">
-                                    Blog
+                                   المدونة
                                 </a>
                             </li>
                             <li ngClass="nav-item link-li" (click)="checkActiveTab('areas')">
                                 <a [ngClass]="activeTabArea ? 'nav-active' : 'nav-link'"
                                    routerLink="/explore">
-                                    Areas
+                                   المناطق
                                 </a>
                             </li>
                             <li ngClass="nav-item link-li" (click)="checkActiveTab('areas')">
@@ -357,7 +357,7 @@
                             </li>
                             <li ngClass="nav-item hover-block-header" >
                                 <div ngbDropdown class="d-inline-block">
-                                    <button type="button" class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Projects</button>
+                                    <button type="button" class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>المشاريع</button>
                                     <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
                                       <button ngbDropdownItem><a routerLink="">All projects</a></button>
                                       <button ngbDropdownItem><a routerLink="">Luxury projects</a></button>
@@ -368,7 +368,7 @@
                             </li>
                             <li ngClass="nav-item hover-block-header" >
                                 <div ngbDropdown class="d-inline-block">
-                                    <button type="button" class="btn btn-outline-primary" id="dropdownBasic2" ngbDropdownToggle>Trends</button>
+                                    <button type="button" class="btn btn-outline-primary" id="dropdownBasic2" ngbDropdownToggle>اتجاهات</button>
                                     <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
                                       <button ngbDropdownItem><a routerLink="">Market performance 2022</a></button>
                                       <button ngbDropdownItem><a routerLink="">Dubai property prices 2022</a></button>
@@ -395,17 +395,17 @@
                             </li>
                             <li ngClass="nav-item classified">
                                 <a ngClass="nav-link blue-bordered-btn" [routerLink]="['/classified']">
-                                    Classified <mat-icon>home</mat-icon>
+                                    مبوب <mat-icon>home</mat-icon>
                                 </a>
                             </li>
                             <li ngClass="nav-item sell-or-rent-property">
                                 <a ngClass="nav-link blue-bordered-btn" [routerLink]="['/sellrent']">
-                                    Sell/Rent Property <mat-icon>verified_user</mat-icon>
+                                    بيع/إيجار العقارات <mat-icon>verified_user</mat-icon>
                                 </a>
                             </li>
                             <li ngClass="nav-item">
                                 <a ngClass="nav-link blue-bordered-btn red-fill-btn" routerLink="/valuation">
-                                    Valuation <span ngClass="ai-tag">AI</span>
+                                    تقييم <span ngClass="ai-tag">AI</span>
                                 </a>
                             </li>
                             <li ngClass="nav-item">
@@ -413,12 +413,12 @@
                                     routerLink="/dashboard-reports">
                                 <!-- <a ngClass="nav-link blue-bordered-btn"
                                     href="https://dx1.in/data-Intelligence/dashboard/"> -->
-                                    <span ngClass="ai-tag">AI</span> Data Intelligence <span ngClass="icon-di"><img
+                                    <span ngClass="ai-tag">AI</span> ذكاء البيانات <span ngClass="icon-di"><img
                                             src="{{chartsvg}}"></span>
                                 </a>
                             </li>
                             <li ngClass="nav-item aed-li d-hide">
-                                <button class="nav-link aed-sq" (click)="clickEvent2()"><img src="{{flagsvg}}"> AED | Sqft</button>
+                                <button class="nav-link aed-sq" (click)="clickEvent2()"><img src="{{flagsvg}}"> درهم | قدم مربع</button>
                                 <!-- <div class="country_list-dropdown" [ngClass]="status2 ? 'active' : 'notactive'">
                                     <button (click)="clickEvent2()"><img src="{{close}}"></button>
                                     <div ngClass="countries_dropdown-list" *ngFor="let data of headerCountries">
@@ -448,9 +448,9 @@
                 </div>
                 <div ngClass="logout-banner-footer">
                     <button type="button" class="btn-cancel" aria-label="Close"
-                        (click)="modal.dismiss('Cross click')">Cancel</button>
+                        (click)="modal.dismiss('Cross click')">إلغاء</button>
                     <button #noListItemTmpl *ngIf="user !== null" (click)="modal.dismiss('Cross click')">
-                        <a ngClass="nav-link" (click)="logout();modal.dismiss('Cross click')"> Logout </a>
+                        <a ngClass="nav-link" (click)="logout();modal.dismiss('Cross click')"> تسجيل خروج </a>
                     </button>
                 </div>
             </div>

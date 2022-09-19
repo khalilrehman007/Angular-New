@@ -204,7 +204,7 @@ export class HomepageComponent implements OnInit {
     {
       id: 'slide1',
       src: 'assets/images/icons/virtul-toor.svg',
-      heading: 'Virtual home tour',
+      heading: 'Virtual home tour, No aracbic available in excel sheet',
       desc: 'You can communicate directly with landlords and we provide you with virtual tour before you buy or rent the property.',
       class: 'virtual-tour'
     },
@@ -468,7 +468,7 @@ export class HomepageComponent implements OnInit {
       let response: any = data;
       response.data.forEach((element: any, i: any) => {
         tempData.push(
-          { key: element.key, value: element.value });
+          { keyAr: element.keyAr, valueAr: element.valueAr });
       })
     });
     this.transaction = tempData

@@ -3,31 +3,31 @@
     <section [ngClass]="'buy-sell-form-sec'">
         <div [ngClass]="'container_1220px'">
             <div [ngClass]="'blue-heading text-left'">
-                <h2>Explore, discover and <br> make smart decisions</h2>
+                <h2>Explore, discover and <br> make smart decisions "Not in excel sheet"</h2>
             </div>
             <div ngClass="buy-sell-wrapepr-forms">
                 <div ngClass="form_tabs">
                     <ul ngClass="nav nav-tabs" role="tablist">
                         <li ngClass="nav-item">
-                            <a ngClass="nav-link active" data-bs-toggle="tab" href="#rent">Rent</a>
+                            <a ngClass="nav-link active" data-bs-toggle="tab" href="#rent">إيجار</a>
                         </li>
                         <li ngClass="nav-item">
-                            <a ngClass="nav-link" data-bs-toggle="tab" href="#buy">Buy</a>
+                            <a ngClass="nav-link" data-bs-toggle="tab" href="#buy">شراء</a>
                         </li>
                         <li ngClass="nav-item">
-                            <a ngClass="nav-link" data-bs-toggle="tab" href="#find-agents">Find Agents</a>
+                            <a ngClass="nav-link" data-bs-toggle="tab" href="#find-agents">ابحث عن وكيل</a>
                         </li>
                         <li ngClass="nav-item">
-                            <a ngClass="nav-link" data-bs-toggle="tab" href="#find-companies">Find Companies</a>
+                            <a ngClass="nav-link" data-bs-toggle="tab" href="#find-companies">ابحث الشركات</a>
                         </li>
                         <li ngClass="nav-item">
-                            <a ngClass="nav-link" data-bs-toggle="tab" href="#motors">Motors</a>
+                            <a ngClass="nav-link" data-bs-toggle="tab" href="#motors">المحركات</a>
                         </li>
                         <li ngClass="nav-item">
-                            <a ngClass="nav-link" data-bs-toggle="tab" href="#services">Services</a>
+                            <a ngClass="nav-link" data-bs-toggle="tab" href="#services">خدمات</a>
                         </li>
                         <li ngClass="nav-item">
-                            <a ngClass="nav-link" data-bs-toggle="tab" href="#community">Community</a>
+                            <a ngClass="nav-link" data-bs-toggle="tab" href="#community">تواصل اجتماعي</a>
                         </li>
                     </ul>
                     <!-- Tab panes -->
@@ -42,7 +42,7 @@
                             <app-find-agent-search></app-find-agent-search>
                         </div>
                         <div id="find-companies" ngClass="tab-pane fade">
-                           <app-findcompanies-component></app-findcompanies-component>
+                            <app-findcompanies-component></app-findcompanies-component>
                         </div>
                         <div id="motors" ngClass="tab-pane fade">
                             <app-motor-component></app-motor-component>
@@ -62,8 +62,8 @@
         <div ngClass="container_1220px">
             <div ngClass="section-title">
                 <div ngClass="section-title-left">
-                    <h4>Residential Properties for Rent in Dubai</h4>
-                    <p>Some of our picked properties near your location.</p>
+                    <h4>عقارات سكني للايجار في دبي</h4>
+                    <p>بعض العقارات المختارة بالقرب من موقعك.</p>
                 </div>
                 <div ngClass="section-title-right">
                     <ul ngClass="nav nav-tabs" role="tablist">
@@ -142,21 +142,21 @@
                                         <div ngClass="property-details">
                                             <span ngClass="bed">
                                                 <img src="{{ bedsvg }}" alt="" />{{ slide.bedrooms }}
-                                                Beds
+                                                غرفة نوم
                                             </span>
                                             <span ngClass="bath">
                                                 <img src="{{ bathsvg }}" alt="" />{{ slide.bathrooms }}
-                                                Bath
+                                                دوره المياه
                                             </span>
                                             <span ngClass="area">
                                                 <img src="{{ squaremetersvg }}" alt="" />{{slide.carpetArea}}
-                                                Sqft
+                                                قدم مربع
                                             </span>
                                         </div>
                                     </div>
                                     <a [routerLink]="['/property/detail']" [queryParams]="{id: slide.id}"
                                         ngClass="linK_overlay"></a>
-                                    <button ngClass="tag_btn green"><img src="{{tagicn}}"> PREMIUM</button>
+                                    <button ngClass="tag_btn green"><img src="{{tagicn}}"> الممتازة</button>
                                 </div>
                             </ng-template>
                         </ng-container>
@@ -194,19 +194,22 @@
                                         </p>
                                         <div ngClass="property-details">
                                             <span ngClass="bed">
-                                                <img src="{{ bedsvg }}" alt="" />{{ slide.bedrooms }} Beds
+                                                <img src="{{ bedsvg }}" alt="" />{{ slide.bedrooms }}
+                                                غرفة نوم
                                             </span>
                                             <span ngClass="bath">
-                                                <img src="{{ bathsvg }}" alt="" />{{ slide.bathrooms }} Bath
+                                                <img src="{{ bathsvg }}" alt="" />{{ slide.bathrooms }}
+                                                دوره المياه
                                             </span>
                                             <span ngClass="area">
-                                                <img src="{{ squaremetersvg }}" alt="" />{{slide.carpetArea}} sqft
+                                                <img src="{{ squaremetersvg }}" alt="" />{{slide.carpetArea}}
+                                                قدم مربع
                                             </span>
                                         </div>
                                     </div>
                                     <a [routerLink]="['/property/detail']" [queryParams]="{id: slide.id}"
                                         ngClass="linK_overlay"></a>
-                                    <button ngClass="tag_btn green"><img src="{{tagicn}}"> PREMIUM</button>
+                                    <button ngClass="tag_btn green"><img src="{{tagicn}}"> الممتازة</button>
                                 </div>
                             </ng-template>
                         </ng-container>
@@ -221,8 +224,8 @@
         <div ngClass="container_1220px">
             <div ngClass="section-title">
                 <div ngClass="section-title-left">
-                    <h4>Commercial Properties for Rent in Dubai</h4>
-                    <p>Some of our picked properties near your location.</p>
+                    <h4>عقارات تجارية للايجار في دبي</h4>
+                    <p>.بعض العقارات المختارة بالقرب من موقعك</p>
                 </div>
                 <div ngClass="section-title-right">
                     <ul ngClass="nav nav-tabs" role="tablist">
@@ -301,19 +304,19 @@
                                         </p>
                                         <div ngClass="property-details">
                                             <span ngClass="bed">
-                                                <img src="{{ bedsvg }}" alt="" />{{slide.bedrooms}} Beds
+                                                <img src="{{ bedsvg }}" alt="" />{{slide.bedrooms}} قدم مربع
                                             </span>
                                             <span ngClass="bath">
-                                                <img src="{{ bathsvg }}" alt="" />{{slide.bathrooms}} Bath
+                                                <img src="{{ bathsvg }}" alt="" />{{slide.bathrooms}} دوره المياه
                                             </span>
                                             <span ngClass="area">
-                                                <img src="{{ squaremetersvg }}" alt="" />{{ slide.carpetArea }} sqft
+                                                <img src="{{ squaremetersvg }}" alt="" />{{ slide.carpetArea }} غرفة نوم
                                             </span>
                                         </div>
                                     </div>
                                     <a [routerLink]="['/property/detail']" [queryParams]="{id: slide.id}"
                                         ngClass="linK_overlay"></a>
-                                    <button ngClass="tag_btn blue"><img src="{{tagicn}}"> PREMIUM</button>
+                                    <button ngClass="tag_btn blue"><img src="{{tagicn}}"> الممتازة</button>
                                 </div>
                             </ng-template>
                         </ng-container>
@@ -349,19 +352,19 @@
                                         </p>
                                         <div ngClass="property-details">
                                             <span ngClass="bed">
-                                                <img src="{{ bedsvg }}" alt="" />{{slide.bedrooms}} Beds
+                                                <img src="{{ bedsvg }}" alt="" />{{slide.bedrooms}} قدم مربع
                                             </span>
                                             <span ngClass="bath">
-                                                <img src="{{ bathsvg }}" alt="" />{{slide.bathrooms}} Bath
+                                                <img src="{{ bathsvg }}" alt="" />{{slide.bathrooms}} دوره المياه
                                             </span>
                                             <span ngClass="area">
-                                                <img src="{{ squaremetersvg }}" alt="" />{{ slide.carpetArea }} sqft
+                                                <img src="{{ squaremetersvg }}" alt="" />{{ slide.carpetArea }} غرفة نوم
                                             </span>
                                         </div>
                                     </div>
                                     <a [routerLink]="['/property/detail']" [queryParams]="{id: slide.id}"
                                         ngClass="linK_overlay"></a>
-                                    <button ngClass="tag_btn green"><img src="{{tagicn}}"> PREMIUM</button>
+                                    <button ngClass="tag_btn green"><img src="{{tagicn}}"> الممتازة</button>
                                 </div>
                             </ng-template>
                         </ng-container>
@@ -379,13 +382,13 @@
                         <ng-template carouselSlide *ngFor="let item of slider">
                             <div ngClass="row">
                                 <div ngClass="col-md-6 property-listing-slider-left">
-                                    <h2>{{item.title}}</h2>
+                                    <h2>{{item.titleAr}} section is null in api</h2>
                                     <ul>
-                                        <li *ngFor="let list of item.ovaluateOfferingDetails">{{list.description}}</li>
+                                        <li *ngFor="let list of item.ovaluateOfferingDetails">{{list.descriptionAr}} section is null in api </li>
                                     </ul>
                                     <div ngClass="listing-btn">
-                                        <a [routerLink]="['/add-property/listingproperty']" ngClass="custom-btn-primary">List Your
-                                            Property</a>
+                                        <a [routerLink]="['/add-property/listingproperty']"
+                                            ngClass="custom-btn-primary">List Your Property, not in excel sheet</a>
                                     </div>
                                 </div>
                                 <div ngClass="col-md-6 property-listing-slider-right">
@@ -403,8 +406,8 @@
         <div ngClass="container_1220px">
             <div ngClass="section-title">
                 <div ngClass="section-custom-title-left">
-                    <h4>Explore Places</h4>
-                    <p>Some of our picked properties near your location.</p>
+                    <h4>Explore Places, not in excel sheet</h4>
+                    <p>.بعض العقارات المختارة بالقرب من موقعك</p>
                 </div>
                 <div ngClass="section-custom-title-right">
                     <a routerLink="/explore">Read all</a>
@@ -416,8 +419,8 @@
                     <a routerLink="/explore/details/{{data.id}}">
                         <img src="https://beta.ovaluate.com/{{ data.document.fileUrl}}" ngClass="img-fluid" alt="" />
                         <div ngClass="explore-place-content">
-                            <h5>{{ data.name }}</h5>
-                            <p>{{ data.details }}</p>
+                            <h5>{{ data.nameAr }}</h5>
+                            <p>{{ data.detailsAr }}</p>
                         </div>
                     </a>
                 </div>
@@ -428,8 +431,8 @@
         <div ngClass="container_1220px">
             <div ngClass="section-title">
                 <div ngClass="section-custom-title-left">
-                    <h4>Blogs</h4>
-                    <p>Some of our picked properties near your location.</p>
+                    <h4>مقالات</h4>
+                    <p>.بعض العقارات المختارة بالقرب من موقعك</p>
                 </div>
                 <div ngClass="section-custom-title-right">
                     <a routerLink="/blog">Read all</a>
@@ -439,7 +442,7 @@
             <div ngClass="row">
                 <!-- let blogs of Blogsec -->
                 <div ngClass="col-lg-4 col-md-6 blog-places-col" *ngFor="let blog of blogs">
-                    <a routerLink="/blog/details/{{blog.slugName}}" ngClass="position-relative">
+                    <a routerLink="/blog/details/{{blog.slugNameAr}}" ngClass="position-relative">
                         <!-- blog.blogDocument.fileUrl -->
                         <img [src]="'https://www.ovaluate.com/' + blog.blogDocument.fileUrl"
                             ngClass="img-fluid blog-image-homepage" alt="" />
@@ -447,10 +450,10 @@
                             <img [src]="blog.src2" ngClass="img-fluid" alt="" />
                         </span>
                         <div ngClass="blog-title-content">
-                            <h5>{{ blog.blogTitle }}</h5>
+                            <h5>{{ blog.blogTitleAr }}</h5>
                             <span>{{ blog.blogDate.split("T")[0] }}</span>
                         </div>
-                        <button ngClass="tag_btn blue">{{blog.blogCategory.categoryName}}</button>
+                        <button ngClass="tag_btn blue">{{blog.blogCategory.categoryNameAr}}</button>
                     </a>
                 </div>
             </div>
@@ -462,16 +465,12 @@
             <div ngClass="section-title responsive-section-title tenanats-landlord_Sec">
                 <div ngClass="section-title-left">
                     <h2>
-                        We make it easy for <br />
-                        <span>tenants</span> and <span>landlords</span>.
+                        نحن نجعلها سهلة ل <br />
+                        <span>المستأجرين</span> و <span>.الملاك</span>.
                     </h2>
                 </div>
                 <div ngClass="section-custom-title-right wd-30">
-                    <p>
-                        Whether it’s selling your current home, getting financing, or buying a new home, we make it easy
-                        and
-                        efficient. The best part? you’ll save a bunch of money and time with our services.
-                    </p>
+                    <p>سواء كان الأمر يتعلق ببيع منزلك الحالي أو الحصول على تمويل أو شراء منزل جديد ، فإننا نجعل الأمر سهلاً وفعالاً. أفضل جزء؟ ستوفر الكثير من المال والوقت مع خدماتنا.</p>
                 </div>
             </div>
         </div>
@@ -496,10 +495,8 @@
 
         <div ngClass="container_1220px">
             <div ngClass="recent-data-realestate text-center">
-                <h2>Recent Real Estate Transactions of UAE</h2>
-                <p>
-                    A snapshot of recent property transactions in dubai, as captured by the DLD.
-                </p>
+                <h2>المعاملات العقارية الحديثة لدولة الإمارات العربية المتحدة</h2>
+                <p>.لقطة من المعاملات العقارية الأخيرة في دبي ، كما التقطتها دائرة الأراضي والأملاك في دبي</p>
             </div>
         </div>
 
@@ -507,9 +504,9 @@
             <div ngClass="row">
                 <div ngClass="col-md-3 col-sm-12" *ngFor="let list of transaction">
                     <div ngClass="total-transaction">
-                        <p ngClass="text-center">AED</p>
-                        <h2 ngClass="text-center">{{list.value}}</h2>
-                        <p ngClass="text-center">{{list.key}}</p>
+                        <p ngClass="text-center">درهم</p>
+                        <h2 ngClass="text-center">{{list.valueAr}}</h2>
+                        <p ngClass="text-center">{{list.keyAr}}</p>
                     </div>
                 </div>
             </div>
@@ -519,20 +516,19 @@
             <img src="assets/images/background/tree.png" alt="" />
         </div>
     </section>
-    <section ngClass="wrapper-section real-hub-sec"
-        style="background: url('assets/images/background/bg-1.png')">
+    <section ngClass="wrapper-section real-hub-sec" style="background: url('assets/images/background/bg-1.png')">
         <div ngClass="container_1220px">
             <div [ngClass]="'mockup-conatiner position-relative'">
                 <div ngClass="row">
                     <div ngClass="col-md-6 col-sm-12">
                         <div ngClass="mockup-left">
-                            <h1>Real Hub</h1>
-                            <h4>on your hand</h4>
+                            <h1>المحور الحقيقي</h1>
+                            <h4> على يدك</h4>
                             <ul>
-                                <li>AI-Driven Property Valuation in Few Seconds</li>
-                                <li>Buy, Sell & Rent Residential & Commercial Properties</li>
-                                <li>Find Verified Properties near you</li>
-                                <li>Look for Verified Real Estate Agents</li>
+                                <li>تقييم الممتلكات المدفوع بالذكاء الاصطناعي في ثوانٍ قليلة</li>
+                                <li> شراء وبيع وتأجير العقارات السكنية والتجارية</li>
+                                <li>ابحث عن العقارات التي تم التحقق منها بالقرب منك</li>
+                                <li> ابحث عن وكلاء عقارات تم التحقق منهم</li>
                             </ul>
                             <div ngClass="download-btns">
                                 <a [routerLink]="['#']">
@@ -559,16 +555,10 @@
                     <div ngClass="col-md-6 col-sm-12">
                         <div ngClass="testimonial-title">
                             <h2>
-                                What customer say <br /> about <span>Ovaluate</span>
+                                ماذا يقول العميل <br /> حول <span>البيضاوي</span>
                             </h2>
-                            <p>
-                                Whether it’s selling your current home, getting financing, or buying a new home, we make
-                                it easy and
-                                efficient.
-                            </p>
-                            <p>
-                                The best part? you’ll save a bunch of money and time with our services.
-                            </p>
+                            <p>.سواء كان الأمر يتعلق ببيع منزلك الحالي أو الحصول على تمويل أو شراء منزل جديد ، فإننا نجعل الأمر سهلاً وفعالاً</p>
+                            <p>أفضل جزء؟ ستوفر الكثير من المال والوقت مع خدماتنا</p>
                         </div>
                     </div>
                     <div ngClass="col-md-6 col-sm-12">
@@ -579,7 +569,7 @@
                                 <ng-container *ngFor="let slide of clientFeedback">
                                     <ng-template carouselSlide [id]="slide.id">
                                         <div ngClass="testimonial-content">
-                                            <p>{{ slide.desc }}</p>
+                                            <p> no arabic data in api    {{ slide.desc }} </p>
                                             <div ngClass="testimonial-info d-flex align-items-center">
                                                 <div ngClass="client_img">
                                                     <img [src]="slide.src!= null ? slide.src : 'assets/images/testimonial/user.png'"
@@ -605,10 +595,10 @@
             <div ngClass="row">
                 <div ngClass="col-lg-3 col-md-6 search-col-homepage" *ngFor="let item of trendTitle; let i = index">
                     <div ngClass="homepage-search-section">
-                        <h2>{{item.name}}</h2>
+                        <h2>{{item.nameAr}}</h2>
                         <ul ngClass="list-unstyled">
                             <li *ngFor="let item2 of item.trendTitleDetail; let j = index" (click)="onTrendClick(i,j)">
-                                <a href="javascript:void(0)">{{item2.detail}}</a>
+                                <a href="javascript:void(0)">{{item2.detailAr}} section is null in api</a>
                             </li>
                         </ul>
                     </div>
@@ -646,8 +636,8 @@
     <section ngClass="position-relative wrapper-section certified_sec">
         <div ngClass="container_1220px">
             <div ngClass="heading-32px-design text-center mb-4">
-                <h2>Approved & Certified by DLD</h2>
-                <p>Ovaluate Certificates are approved & certified by Dubai Land Department</p>
+                <h2>معتمد ومعتمد من دائرة الأراضي والأملاك في دبي</h2>
+                <p>شهادات اوفاليت معتمدة ومصدقة من دائرة الأراضي والأملاك في دبي</p>
             </div>
             <div ngClass="certified_images-sec text-center">
                 <img src="{{rera}}">

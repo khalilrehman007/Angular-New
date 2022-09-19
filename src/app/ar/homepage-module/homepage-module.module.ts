@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { HomepageModuleRoutingModule } from './homepage-module-routing.module';
 import { HomepageComponent } from './homepage/homepage.component';
-import { CommonFilesModule } from '../../common-files/common-files.module';
+import { CommonFilesModule } from '../common-files/common-files.module';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
