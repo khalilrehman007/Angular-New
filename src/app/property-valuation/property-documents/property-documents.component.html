@@ -104,7 +104,8 @@
                                                 <div ngClass="blue-upload-bordered-btn">
                                                     <div ngClass="d-flex align-items-center justify-content-spacebw">
                                                     <h6 ngClass="blue-heading">{{documentType[2].documentName}}</h6>
-                                                    <button ngClass="camera-bitton"><mat-icon>camera_alt</mat-icon></button>
+                                                    <button ngClass="camera-bitton" (click)="openCamera()"><mat-icon>camera_alt</mat-icon></button>
+                                                    <input type="file" accept="image/*" capture="environment" class="camera-image d-none" (change)='property($any($event.target).files, 12)'>
                                                     </div>
                                                     <div ngClass="upload-files-design">
                                                         <div ngClass="greybordered-btn position-relative">
