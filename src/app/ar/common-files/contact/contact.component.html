@@ -1,0 +1,106 @@
+<app-header></app-header>
+<section [ngClass]="'inner-cntnt-wrapper slide-left-bar cms-inner'">
+    <section [ngClass]="'inner-page-banner-sec position-relative'">
+        <div [ngClass]="'container_1280px'">
+           <div ngClass="inner-banner-heading text-center">
+              <h2>{{title}}</h2>
+              <p></p>
+           </div>
+        </div>
+    </section>
+    <section ngClass="cms-content-wrapper">
+      <div [ngClass]="'container_1280px'">
+          <div ngClass="cms_content-paragraph text-center mb-4">
+              <h2>هل لديك بعض الأسئلة؟</h2>
+          </div>
+          <div ngClass="have-questions-form">
+            <form [formGroup]="Form" (ngSubmit)="onSubmit()">
+              <div ngClass="row">
+                      <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+                          <div ngClass="block-wrapper mb-3">
+                              <label class="h6-design">الاسم <span ngClass="required-span">*</span></label>
+                              <mat-form-field
+                                class="full-width input-design-2"
+                                appearance="fill"
+                              >
+                                <input
+                                  matInput
+                                  formControlName="Name"
+                                  type="text"
+                                  placeholder="الرجاء ادخال الاسم"
+                                />
+                              </mat-form-field>
+                            </div>
+                      </div>
+                      <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+                          <div ngClass="block-wrapper mb-3">
+                              <label class="h6-design">هاتف <span ngClass="required-span">*</span></label>
+                              <mat-form-field
+                                class="full-width input-design-2"
+                                appearance="fill"
+                              >
+                                <input
+                                  matInput
+                                  formControlName="Phone"
+                                  type="number"
+                                  placeholder="الرجاء إدخال رقمك"
+                                />
+                              </mat-form-field>
+                            </div>
+                      </div>
+                      <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+                          <div ngClass="block-wrapper mb-3">
+                              <label class="h6-design">البريد الإلكتروني <span ngClass="required-span">*</span></label>
+                              <mat-form-field
+                                class="full-width input-design-2"
+                                appearance="fill"
+                              >
+                                <input
+                                  matInput
+                                  formControlName="Email"
+                                  type="email"
+                                  placeholder="الرجاء ادخال البريد الالكتروني الخاص بك"
+                                />
+                              </mat-form-field>
+                            </div>
+                      </div>
+                      <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+                          <div ngClass="block-wrapper mb-3">
+                              <div ngClass="select-design">
+                                  <label class="h6-design">ارغب بإجراء: <span ngClass="required-span">*</span></label>
+                                <mat-form-field appearance="fill">
+                                  <mat-label>ارغب بإجراء:</mat-label>
+                                  <mat-select (selectionChange)="onQuerySelect($event)">
+                                    <mat-option
+                                      *ngFor="let list of conductList"
+                                      [value]="list.value"
+                                    >
+                                      {{ list.text }}
+                                    </mat-option>
+                                  </mat-select>
+                                </mat-form-field>
+                              </div>
+                            </div>
+                      </div>
+                      <div ngClass="col-sm-12 mt-4">
+                          <div ngClass="block-wrapper text-center">
+                              <button type="submit" ngClass="enquire_btn">استفسر الان</button>
+                          </div>
+                      </div>
+                  </div>
+              </form>
+          </div>
+      </div>
+    </section>
+    <section ngClass="contact-address-sec">
+      <div [ngClass]="'container_1280px'">
+          <div ngClass="cms_content-paragraph text-center">
+              <h2 ngClass="mb-4">شركة اوفالويت لخدمات التقييم العقاري – شركة ذات مسؤولية محدودة</h2>
+              <address>برج برجمان للأعمال ، الطابق 18 ، # 1801 <br> دبي ، الإمارات العربية المتحدة ، ص. ب 296360</address>
+              <a href="tel:+971 52 836 6668">+971 52 836 6668</a>
+              <a href="mailto: info@ovaluate.com">info@ovaluate.com</a>
+          </div>
+      </div>
+    </section>
+  </section>
+<app-footer></app-footer>
