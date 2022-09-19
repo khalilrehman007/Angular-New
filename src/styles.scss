@@ -7476,7 +7476,7 @@ li.agent-details__property-list-item {
 }
 
 .home-slider-sec {
-	border-radius: 15px;
+	border-radius: 0px;
 	overflow: hidden;
 	margin-bottom: 30px;
 
@@ -11955,8 +11955,11 @@ background: transparent !important;
 }
 .home-slider-sec .carousel-inner .carousel-item.active {
     z-index: 9 !important;
-	animation: fadeIn 5s;
+	animation-name: fadeIn;
 	visibility: visible;
+	animation-duration: 3s;
+    animation-direction: normal;
+    animation-fill-mode: both;
 }
 
 @keyframes fadeIn {
