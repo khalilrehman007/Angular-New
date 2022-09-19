@@ -33,7 +33,8 @@
                                     <option>Arabic</option>
                                 </select>
                             </li>
-                            <li ngClass="nav-item position-relative d-hide notification_header-list" *ngIf="userData != ''">
+                            <li ngClass="nav-item position-relative d-hide notification_header-list"
+                                *ngIf="userData != ''">
                                 <button (click)="clickEvent3()" class="position-relative">
                                     <mat-icon>notifications_none</mat-icon>
                                     <span class="notification-indicator">{{notificationData.length}}</span>
@@ -117,9 +118,9 @@
                         [ngClass]="status4 ? 'show' : 'noshow'">
                         <ul ngClass="navbar-nav sub-header">
                             <li ngClass="nav-item language-converter tm-hide">
-                                <select>
+                                <select class="language-select">
                                     <option>English</option>
-                                  <option>Arabic</option>
+                                    <option selected>Arabic</option>
                                 </select>
                             </li>
                             <li ngClass="nav-item fav-li position-relative tm-hide" *ngIf="userData != ''">
@@ -295,7 +296,8 @@
                             </li>
                             <li ngClass="nav-item signin-li tm-hide">
                                 <div #noListItemTmpl *ngIf="user == null">
-                                    <a ngClass="nav-link" [routerLink]="['/login']"><img src="{{signinsvg}}"> تسجيل الدخول
+                                    <a ngClass="nav-link" [routerLink]="['/login']"><img src="{{signinsvg}}"> تسجيل
+                                        الدخول
                                     </a>
                                 </div>
                                 <div #noListItemTmpl *ngIf="user !== null">
@@ -309,7 +311,7 @@
                                 </div>
                             </li>
                             <li ngClass="nav-item aed-li">
-                                <button class="nav-link aed-sq" (click)="clickEvent2()"><img src="{{flagsvg}}"> درهم  |
+                                <button class="nav-link aed-sq" (click)="clickEvent2()"><img src="{{flagsvg}}"> درهم |
                                     قدم مربع</button>
                                 <!-- <div class="country_list-dropdown" [ngClass]="status2 ? 'active' : 'notactive'">
                                     <button (click)="clickEvent2()"><img src="{{close}}"></button>
@@ -325,73 +327,79 @@
                         <ul ngClass="navbar-nav">
                             <li ngClass="nav-item link-li" (click)="checkActiveTab('buy')">
                                 <a [ngClass]="activeTabBuy ? 'nav-active' : 'nav-link'"
-                                   [routerLink]="['/property/search']"
-                                   [queryParams]="{type:'Buy',PropertyListingTypeId: 2}">
-                                   شراء
+                                    [routerLink]="['/property/search']"
+                                    [queryParams]="{type:'Buy',PropertyListingTypeId: 2}">
+                                    شراء
                                 </a>
                             </li>
                             <li ngClass="nav-item link-li" (click)="checkActiveTab('rent')">
-                                <a
-                                   [ngClass]="activeTabRent ? 'nav-active' : 'nav-link'"
-                                   [routerLink]="['/property/search']"
-                                   [queryParams]="{type:'Rent',PropertyListingTypeId: 1}">
-                                   إيجار
+                                <a [ngClass]="activeTabRent ? 'nav-active' : 'nav-link'"
+                                    [routerLink]="['/property/search']"
+                                    [queryParams]="{type:'Rent',PropertyListingTypeId: 1}">
+                                    إيجار
                                 </a>
                             </li>
                             <li ngClass="nav-item link-li" (click)="checkActiveTab('blog')">
-                                <a  [ngClass]="activeTabBlog ? 'nav-active' : 'nav-link'"
-                                   routerLink="/blog">
-                                   المدونة
+                                <a [ngClass]="activeTabBlog ? 'nav-active' : 'nav-link'" routerLink="/blog">
+                                    المدونة
                                 </a>
                             </li>
                             <li ngClass="nav-item link-li" (click)="checkActiveTab('areas')">
-                                <a [ngClass]="activeTabArea ? 'nav-active' : 'nav-link'"
-                                   routerLink="/explore">
-                                   المناطق
+                                <a [ngClass]="activeTabArea ? 'nav-active' : 'nav-link'" routerLink="/explore">
+                                    المناطق
                                 </a>
                             </li>
                             <li ngClass="nav-item link-li" (click)="checkActiveTab('areas')">
-                                <a [ngClass]="activeShortterm ? 'nav-active' : 'nav-link'" routerLink="/property/short-term-rent">
+                                <a [ngClass]="activeShortterm ? 'nav-active' : 'nav-link'"
+                                    routerLink="/property/short-term-rent">
                                     Short-Term Rent
                                 </a>
                             </li>
-                            <li ngClass="nav-item hover-block-header" >
+                            <li ngClass="nav-item hover-block-header">
                                 <div ngbDropdown class="d-inline-block">
-                                    <button type="button" class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>المشاريع</button>
+                                    <button type="button" class="btn btn-outline-primary" id="dropdownBasic1"
+                                        ngbDropdownToggle>المشاريع</button>
                                     <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                                      <button ngbDropdownItem><a routerLink="">All projects</a></button>
-                                      <button ngbDropdownItem><a routerLink="">Luxury projects</a></button>
-                                      <button ngbDropdownItem><a routerLink="">Ultra Luxury projects</a></button>
-                                      <button ngbDropdownItem><a routerLink="">Projects scores</a></button>
+                                        <button ngbDropdownItem><a routerLink="">All projects</a></button>
+                                        <button ngbDropdownItem><a routerLink="">Luxury projects</a></button>
+                                        <button ngbDropdownItem><a routerLink="">Ultra Luxury projects</a></button>
+                                        <button ngbDropdownItem><a routerLink="">Projects scores</a></button>
                                     </div>
-                                  </div>
+                                </div>
                             </li>
-                            <li ngClass="nav-item hover-block-header" >
+                            <li ngClass="nav-item hover-block-header">
                                 <div ngbDropdown class="d-inline-block">
-                                    <button type="button" class="btn btn-outline-primary" id="dropdownBasic2" ngbDropdownToggle>اتجاهات</button>
+                                    <button type="button" class="btn btn-outline-primary" id="dropdownBasic2"
+                                        ngbDropdownToggle>اتجاهات</button>
                                     <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
-                                      <button ngbDropdownItem><a routerLink="">Market performance 2022</a></button>
-                                      <button ngbDropdownItem><a routerLink="">Dubai property prices 2022</a></button>
-                                      <button ngbDropdownItem><a routerLink="">Sold properties</a></button>
-                                      <button ngbDropdownItem><a routerLink="">Property supply</a></button>
-                                      <button ngbDropdownItem><a routerLink="">Property price index</a></button>
-                                      <button ngbDropdownItem><a routerLink="">Projects status</a></button>
-                                      <button ngbDropdownItem><a routerLink="">Dubai in numbers</a></button>
+                                        <button ngbDropdownItem><a routerLink="">Market performance 2022</a></button>
+                                        <button ngbDropdownItem><a routerLink="">Dubai property prices 2022</a></button>
+                                        <button ngbDropdownItem><a routerLink="">Sold properties</a></button>
+                                        <button ngbDropdownItem><a routerLink="">Property supply</a></button>
+                                        <button ngbDropdownItem><a routerLink="">Property price index</a></button>
+                                        <button ngbDropdownItem><a routerLink="">Projects status</a></button>
+                                        <button ngbDropdownItem><a routerLink="">Dubai in numbers</a></button>
                                     </div>
-                                  </div>
+                                </div>
                             </li>
-                            <li ngClass="nav-item hover-block-header " >
+                            <li ngClass="nav-item hover-block-header ">
                                 <div ngbDropdown class="d-inline-block">
-                                    <button type="button" class="btn btn-outline-primary" id="dropdownBasic3" ngbDropdownToggle>New Homes</button>
+                                    <button type="button" class="btn btn-outline-primary" id="dropdownBasic3"
+                                        ngbDropdownToggle>New Homes</button>
                                     <div ngbDropdownMenu aria-labelledby="dropdownBasic3">
-                                      <button ngbDropdownItem><a routerLink="">New projects in Dubai</a></button>
-                                      <button ngbDropdownItem><a routerLink="">Off-plan properties location map</a></button>
-                                      <button ngbDropdownItem><a routerLink="">Buy off-plan apartments in Dubai</a></button>
-                                      <button ngbDropdownItem><a routerLink="">Buy off-plan townhouses in Dubai</a></button>
-                                      <button ngbDropdownItem><a routerLink="">Buy off-plan townhouses in Dubai</a></button>
-                                      <button ngbDropdownItem><a routerLink="">Properties with payment plan</a></button>
+                                        <button ngbDropdownItem><a routerLink="">New projects in Dubai</a></button>
+                                        <button ngbDropdownItem><a routerLink="">Off-plan properties location
+                                                map</a></button>
+                                        <button ngbDropdownItem><a routerLink="">Buy off-plan apartments in
+                                                Dubai</a></button>
+                                        <button ngbDropdownItem><a routerLink="">Buy off-plan townhouses in
+                                                Dubai</a></button>
+                                        <button ngbDropdownItem><a routerLink="">Buy off-plan townhouses in
+                                                Dubai</a></button>
+                                        <button ngbDropdownItem><a routerLink="">Properties with payment
+                                                plan</a></button>
                                     </div>
-                                  </div>
+                                </div>
                             </li>
                             <li ngClass="nav-item classified">
                                 <a ngClass="nav-link blue-bordered-btn" [routerLink]="['/classified']">
@@ -409,16 +417,16 @@
                                 </a>
                             </li>
                             <li ngClass="nav-item">
-                                <a ngClass="nav-link blue-bordered-btn blue-fill-btn"
-                                    routerLink="/dashboard-reports">
-                                <!-- <a ngClass="nav-link blue-bordered-btn"
+                                <a ngClass="nav-link blue-bordered-btn blue-fill-btn" routerLink="/dashboard-reports">
+                                    <!-- <a ngClass="nav-link blue-bordered-btn"
                                     href="https://dx1.in/data-Intelligence/dashboard/"> -->
                                     <span ngClass="ai-tag">AI</span> ذكاء البيانات <span ngClass="icon-di"><img
                                             src="{{chartsvg}}"></span>
                                 </a>
                             </li>
                             <li ngClass="nav-item aed-li d-hide">
-                                <button class="nav-link aed-sq" (click)="clickEvent2()"><img src="{{flagsvg}}"> درهم | قدم مربع</button>
+                                <button class="nav-link aed-sq" (click)="clickEvent2()"><img src="{{flagsvg}}"> درهم |
+                                    قدم مربع</button>
                                 <!-- <div class="country_list-dropdown" [ngClass]="status2 ? 'active' : 'notactive'">
                                     <button (click)="clickEvent2()"><img src="{{close}}"></button>
                                     <div ngClass="countries_dropdown-list" *ngFor="let data of headerCountries">

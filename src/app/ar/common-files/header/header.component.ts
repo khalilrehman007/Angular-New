@@ -44,7 +44,7 @@ export class HeaderComponent implements OnInit {
   activeTabRent: any = false;
   activeTabBlog: any = false;
   activeTabArea: any = false;
-  activeShortterm :any = false;
+  activeShortterm: any = false;
   constructor(private router: Router, private activeRoute: ActivatedRoute, private authService: AuthService, private route: Router, private notifyService: NotificationService, private modalService: NgbModal, private service: AppService, private db: AngularFireDatabase) {
     let a: any = this.currentDate;
     a = a.toString().split(" ")[5].split("T")[1];
@@ -255,6 +255,11 @@ export class HeaderComponent implements OnInit {
       : this.currentClassIdx + 1;
   }
   ngOnInit() {
+    $(".language-select").on("change", () => {
+      if ($(".language-select").val() == "English") {
+        this.route.navigate(["/"])
+      }
+    })
   }
   getUser() {
     this.user = localStorage.getItem('user');

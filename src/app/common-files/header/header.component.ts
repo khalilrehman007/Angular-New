@@ -252,6 +252,11 @@ export class HeaderComponent implements OnInit {
       : this.currentClassIdx + 1;
   }
   ngOnInit() {
+    $(".language-select").on("change", () => {
+      if($(".language-select").val() == "Arabic") {
+        this.route.navigate(["/ar"])
+      }
+    })
   }
   getUser() {
     this.user = localStorage.getItem('user');
