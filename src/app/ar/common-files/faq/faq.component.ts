@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppService } from 'src/app/service/app.service';
 
 @Component({
   selector: 'app-faq',
@@ -7,7 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FaqComponent implements OnInit {
 
-  constructor() { }
+  title: string = "";
+  text: string = "";
+  faqsec: any = [];
+  constructor(private api: AppService) {
+    $(window).scrollTop(0);
+    this.api.FAQ().subscribe((result: any) => {
+      this.title = result.data.pageCaptionHelightAr;
+      this.text = result.data.pageCaptionTextAr;
+      $(".faq__text").append(this.text);
+      this.faqsec = result.data.faqDetails;
+      setTimeout(function () {
+        $(".faq__accordion-text").each(function (e) {
+          $(this).html($(this).text());
+        })
+      }, 100);
+    })
+  }
 
   ngOnInit(): void {
   }
