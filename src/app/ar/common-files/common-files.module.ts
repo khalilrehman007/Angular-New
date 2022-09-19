@@ -31,6 +31,10 @@ import { AboutusComponent } from './aboutus/aboutus.component';
     MatFormFieldModule,
     MatSelectModule,
     MatInputModule,
-  ]
+  ],
+  exports: [
+    HeaderComponent,
+    FooterComponent
+  ],
 })
 export class CommonFilesModule { }
