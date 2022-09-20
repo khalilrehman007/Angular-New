@@ -272,7 +272,7 @@
                             <li ngClass="nav-item position-relative notification_header-list" *ngIf="userData != ''">
                                 <button (click)="clickEvent3()" class="position-relative">
                                     <mat-icon>notifications_none</mat-icon>
-                                    <span class="notification-indicator">{{notificationData.length}}</span>
+                                    <span class="notification-indicator" *ngIf="notificationcount != 0">{{notificationcount}}</span>
                                 </button>
                                 <div class="notifivation-list-dropdown" [ngClass]="status3 ? 'active' : 'notactive'">
                                     <div ngClass="shortlisted-header d-flex justify-content-spacebw">
@@ -281,7 +281,7 @@
                                     </div>
                                     <div ngClass="notifivation-inner-cntnt" *ngIf="notificationData.length > 0">
                                         <ul ngClass="list-unstyled">
-                                            <li ngClass="position-relative" *ngFor="let item of notificationData">
+                                            <li class="position-relative" *ngFor="let item of notificationData" [ngClass]="item.HasSeen? 'notification-seen' : 'notification-unseen'">
                                                 <h4>{{item.value.Title}}
                                                     <span
                                                         ngClass="notifiction_time">{{getTime(item.value.NotificationDateTime)}}</span>

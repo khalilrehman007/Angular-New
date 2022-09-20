@@ -8,6 +8,7 @@ import { AuthService } from "../../service/auth.service";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database';
 import { map } from 'rxjs';
+import { getDatabase, ref, child, push, update } from 'firebase/database';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -43,7 +44,8 @@ export class HeaderComponent implements OnInit {
   activeTabBlog: any = false;
   activeTabArea: any = false;
   activeShortterm: any = false;
-  constructor(private router: Router, private activeRoute: ActivatedRoute, private authService: AuthService, private route: Router, private notifyService: NotificationService, private modalService: NgbModal, private service: AppService, private db: AngularFireDatabase) {
+  notificationcount:number = 0;
+  constructor(private activeRoute: ActivatedRoute, private authService: AuthService, private route: Router, private notifyService: NotificationService, private modalService: NgbModal, private service: AppService, private db: AngularFireDatabase) {
     let a: any = this.currentDate;
     a = a.toString().split(" ")[5].split("T")[1];
     let sign = a.split('')[0];
@@ -68,7 +70,7 @@ export class HeaderComponent implements OnInit {
         )
       ).subscribe(data => {
         this.notificationData = data;
-        this.getTime(this.notificationData[6].value.NotificationDateTime);
+        this.getNotificationCount();
       });
     }
     this.getUser();
@@ -91,11 +93,9 @@ export class HeaderComponent implements OnInit {
 
 
     let type: any = this.activeRoute.snapshot.queryParamMap.get('type');
-    let url = this.router.url.replace("/", "");
+    let url = this.route.url.replace("/", "");
     url = url.split('?')[0];
 
-    console.log(type);
-    
     if (url == 'blog') {
       this.activeTabBuy = false;
       this.activeTabRent = false;
@@ -120,7 +120,7 @@ export class HeaderComponent implements OnInit {
       this.activeTabBlog = false;
       this.activeTabArea = false;
       this.activeShortterm = false;
-    } else {
+    } else if (url == "property/short-term-rent") {
       this.activeTabBuy = false;
       this.activeTabRent = false;
       this.activeTabBlog = false;
@@ -128,7 +128,15 @@ export class HeaderComponent implements OnInit {
       this.activeShortterm = true;
     }
   }
-
+  getNotificationCount() {
+    let count:any = 0;
+    for (let i = 0; i < this.notificationData.length; i++) {
+      if(!this.notificationData[i].value.HasSeen) {
+        count++;
+      }
+    }
+    this.notificationcount = count;
+  }
   sidebar = [
     {
       src: '../../../assets/images/icons/login.svg',
@@ -314,6 +322,23 @@ export class HeaderComponent implements OnInit {
   }
   status3: boolean = false;
   clickEvent3() {
+    // if (!this.status3) {
+    //   let updates: any = {};
+    //   let temp: any = {};
+    //   let database: any = getDatabase();
+    //   for (let i = 0; i < this.notificationData.length; i++) {
+    //     if (!this.notificationData[i].value.HasSeen) {
+    //       temp = this.notificationData[i].value;
+    //       temp.HasSeen = true;
+    //       updates["/Notifications/" + this.userData + "/" + this.notificationData[i].key] = temp;
+    //     }
+    //     update(ref(database), updates).then(() => {
+    //       this.notificationcount = 0;
+    //     })
+    //       .catch((error) => {
+    //       });
+    //   }
+    // }
     this.status3 = !this.status3;
     this.status1 = false;
     this.status = false;
