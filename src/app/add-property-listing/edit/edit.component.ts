@@ -75,7 +75,7 @@ export class EditComponent implements OnInit {
           this.route.navigate(["/"]);
         } else {
           this.listingData = result.data.propertyListing;
-          console.log(this.listingData);
+          // console.log(this.listingData);
           this.setData();
           this.createFormData();
         }
@@ -140,7 +140,7 @@ export class EditComponent implements OnInit {
       this.propertyData.PropertyFeatures.push({"PropertyFeatureId": this.listingData.propertyFeatures[i].propertyFeatureId});
     }
 
-    console.log(this.propertyData);
+    // console.log(this.propertyData);
   }
   setData() {
     this.SubmitForm.patchValue({
@@ -303,15 +303,16 @@ export class EditComponent implements OnInit {
       return;
     }
 
-    this.data.CountryId = this.countryId;
-    this.data.CityId = this.cityId;
-    this.data.DistrictId = this.districtId;
+    this.propertyData.CountryId = this.countryId;
+    this.propertyData.CityId = this.cityId;
+    this.propertyData.DistrictId = this.districtId;
     let temp: any = document.getElementById("searchLocation");
-    this.data.PropertyAddress = temp.value;
-    this.data.PropertyLat = localStorage.getItem("lat");
-    this.data.PropertyLong = localStorage.getItem("lng");
-    localStorage.setItem('propertyData', JSON.stringify(this.data))
-    this.route.navigate(['/add-property/listpropertyinfo'])
+    this.propertyData.PropertyAddress = temp.value;
+    this.propertyData.PropertyLat = localStorage.getItem("lat");
+    this.propertyData.PropertyLong = localStorage.getItem("lng");
+    localStorage.setItem('propertyData', JSON.stringify(this.propertyData));
+    localStorage.setItem('listingData', JSON.stringify(this.propertyData));
+    this.route.navigate(['/add-property/edit/' + this.id + '/listpropertyinfo'])
   }
   animate() {
     let temp: any = $("." + this.currentField).offset()?.top;
@@ -326,7 +327,6 @@ export class EditComponent implements OnInit {
   }
   ngAfterViewInit(): void {
     $(".country-select").on("change", () => {
-      console.log($(".country-select").val());
       this.onCountrySelect($(".country-select").val());
     });
     $(".city-select").on("change", () => {

@@ -63,6 +63,10 @@ export class PropertyinfoComponent implements OnInit {
   currentField: any;
 
   constructor(private route: Router, private notifyService: NotificationService, private service: AppService) {
+    if(!localStorage.getItem("user")) {
+      this.notifyService.showError("You need to register/login", "");
+      this.route.navigate(["/login"]);
+    }
     this.loadCountriesData();
     this.options = {
       bounds: [],
