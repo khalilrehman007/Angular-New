@@ -3806,7 +3806,7 @@ input[type=number] {
 			text-decoration: none;
 			display: block;
 			font-size: 14px;
-			font-weight: 600;
+			font-weight: 700;
 			margin-top: 0px;
 		}
 	}
@@ -3817,7 +3817,7 @@ input[type=number] {
 		align-items: flex-start;
 		font-size: 13.5px;
 		margin-bottom: 10px;
-		font-weight: 500;
+		font-weight: 400;
 
 		img {
 			margin-right: 7px;
@@ -5843,12 +5843,21 @@ img {
 			font-size: 16px;
 			font-weight: 600;
 			padding: 0px;
+			background-color: $background-color_2  !important;
+			position: relative;
+		}
+		>button::before {
+			content: '';
 			background-image: url(./assets/images/drop-arrow.svg);
-			background-size: 15px;
+			background-size: 12px;
 			background-repeat: no-repeat;
 			background-position: right;
 			filter: brightness(0.2);
-			background-color: $background-color_2  !important;
+			position: absolute;
+			right: 0;
+			width: 12px;
+			height: 12px;
+			top: 6px;
 		}
 	}
 
@@ -7372,9 +7381,9 @@ img {
 		}
 
 		>.mat-tab-label.mat-tab-label-active {
-			border-color: $border-color_2;
-			background: #D3DBFF;
-			color: $color_2;
+			border-color: #4A565F;
+			background: #4A565F;
+			color: #fff;
 			opacity: 1;
 		}
 	}
@@ -11944,63 +11953,9 @@ background: transparent !important;
 .cstm_dropdown-menu .mat-tab-header-pagination.mat-tab-header-pagination-after{
     margin-left: 5px;
 }
-// .home-slider-sec .carousel-inner .carousel-item {
-//     margin-right: 0px !important;
-//     float: none !important;
-//     display: block !important;
-//     position: absolute;
-//     left: 0;
-//     right: 0;
-//     top: 0;
-//     bottom: 0;
-//     height: 100%;
-// 	z-index: -1;
-// 	transform: none !important;
-// 	visibility: hidden;
-// 	transition: visibility 0s linear;
-// }
-// .home-slider-sec .carousel-inner {
-//     height: 600px;
-// 	position: relative;
-// 	z-index: 0;
-// }
-// .home-slider-sec .carousel-inner .carousel-item.active {
-//     z-index: 9 !important;
-// 	animation-name: fadeIn;
-// 	visibility: visible;
-// 	animation-duration: 3s;
-//     animation-direction: normal;
-//     animation-fill-mode: both;
-// }
-
-// @keyframes fadeIn {
-// 	0% { opacity: 0.3; }
-// 	25% { opacity: 0.5; }
-// 	50% { opacity: 0.7; }
-// 	75% { opacity: 0.9; }
-// 	100% { opacity: 1; }
-//   }
-
-//   @-moz-keyframes fadeIn {
-// 	0% { opacity: 0.3; }
-// 	25% { opacity: 0.5; }
-// 	50% { opacity: 0.7; }
-// 	75% { opacity: 0.9; }
-// 	100% { opacity: 1; }
-//   }
-  
-//   @-webkit-keyframes fadeIn {
-// 	0% { opacity: 0.3; }
-// 	25% { opacity: 0.5; }
-// 	50% { opacity: 0.7; }
-// 	75% { opacity: 0.9; }
-// 	100% { opacity: 1; }
-//   }
-  
-//   @-o-keyframes fadeIn {
-// 	0% { opacity: 0.3; }
-// 	25% { opacity: 0.5; }
-// 	50% { opacity: 0.7; }
-// 	75% { opacity: 0.9; }
-// 	100% { opacity: 1; }
-//   }
+.popular-searches .dropdown.notshow > button::before{
+	transform: rotate(0deg);
+}
+.popular-searches .dropdown.show > button::before{
+	transform: rotate(180deg);
+}
