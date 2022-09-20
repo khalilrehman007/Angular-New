@@ -431,18 +431,18 @@
         <div ngClass="container_1220px">
             <div ngClass="section-title">
                 <div ngClass="section-custom-title-left">
-                    <h4>مقالات</h4>
-                    <p>.بعض العقارات المختارة بالقرب من موقعك</p>
+                    <h4>Blogs</h4>
+                    <p>Some of our picked properties near your location.</p>
                 </div>
                 <div ngClass="section-custom-title-right">
-                    <a routerLink="/ar/blog">اقرأ كل شيء</a>
+                    <a routerLink="/ar/blog">Read all</a>
                 </div>
             </div>
 
             <div ngClass="row">
                 <!-- let blogs of Blogsec -->
                 <div ngClass="col-lg-4 col-md-6 blog-places-col" *ngFor="let blog of blogs">
-                    <a routerLink="/ar/blog/details/{{blog.slugNameAr}}" ngClass="position-relative">
+                    <a routerLink="/ar/blog/details/{{blog.slugName}}" ngClass="position-relative">
                         <!-- blog.blogDocument.fileUrl -->
                         <img [src]="'https://www.ovaluate.com/' + blog.blogDocument.fileUrl"
                             ngClass="img-fluid blog-image-homepage" alt="" />
@@ -450,10 +450,10 @@
                             <img [src]="blog.src2" ngClass="img-fluid" alt="" />
                         </span>
                         <div ngClass="blog-title-content">
-                            <h5>{{ blog.blogTitleAr }}</h5>
+                            <h5>{{ blog.blogTitle }}</h5>
                             <span>{{ blog.blogDate.split("T")[0] }}</span>
                         </div>
-                        <button ngClass="tag_btn blue">{{blog.blogCategory.categoryNameAr}}</button>
+                        <button ngClass="tag_btn blue">{{blog.blogCategory.categoryName}}</button>
                     </a>
                 </div>
             </div>

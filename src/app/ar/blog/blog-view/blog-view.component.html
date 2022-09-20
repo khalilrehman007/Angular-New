@@ -1,1 +1,66 @@
-<p>blog-view works!</p>
+<app-header></app-header>
+<section [ngClass]="'inner-cntnt-wrapper slide-left-bar blogs_sec padd-0'">
+    <section ngClass="blog_inner-banner-blocks">
+        <div ngClass="container_1280px">
+            <div ngClass="exploredetails-breadcrumb-wrapper black-text-breadcrumb mt-3">
+                <app-breadcrumbs></app-breadcrumbs>
+            </div>
+            <div ngClass="blogs-details-hdr">
+                <div ngClass="heading-32px-design mb-3">
+                    <h2 *ngIf="blog && blog.blogTitle">{{blog.blogTitleAr}}</h2>
+                    <p *ngIf="blog && blog.blogDate">بواسطة <a routerLink="">اوفاليوت</a> · <span
+                            ngClass="date">{{blog.blogDate.split("T")[0]}}</span> <a routerLink="/ar/blog-category">· نصائح وإرشادات</a></p>
+                </div>
+                <div ngClass="key-take-ways-sec">
+                    <h5>المأخذ الرئيسية</h5>
+                    <ul *ngIf="blog && blog.blogDetails">
+                        <li *ngFor="let item of blog.blogDetails">{{item.keyTakeAwayAr}}</li>
+                    </ul>
+                </div>
+                <div ngClass="blog_details-img mb-4">
+                    <img *ngIf="blog && blog.blogDocument.fileUrl" src="{{blog.blogDocument.fileUrl}}">
+                </div>
+                <div class="blog-post-content">
+                </div>
+            </div>
+        </div>
+    </section>
+    <section ngClass="about-ovalute_blog-cntnt">
+        <div ngClass="container_1280px">
+            <div ngClass="about_ovalute-headings">
+                <h5>نبذة عن اوفاليويت</h5>
+                <p>تقدم منصة أوڨالويت تقييمًا عالميًا للممتلكات وخدمات الأعمال للعملاء في جميع أنحاء العالم ، بأعلى مستوى من الاحتراف والشغف.</p>
+            </div>
+        </div>
+    </section>
+    <section ngClass="position-relative blogs_sec">
+        <div ngClass="container_1280px">
+            <div ngClass="section-title">
+                <div ngClass="section-custom-title-left">
+                    <h4>المدونات ذات الصلة</h4>
+                    <p>بعض العقارات المختارة بالقرب من موقعك.</p>
+                </div>
+                <div ngClass="section-custom-title-right">
+                    <a [routerLink]="['/ar/blog-category']">اقرأ كل شيء</a>
+                </div>
+            </div>
+            <div ngClass="row" *ngIf="blog && blog.blogCategory.blogs">
+                <div ngClass="col-lg-4 col-md-6 blog-places-col" *ngFor=" let item of blog.blogCategory.blogs">
+                    <a routerLink="/ar/blogs-details/{{item.id}}">
+                        <img *ngIf="item.blogDocument && item.blogDocument.fileUrl"
+                            src="https://beta.ovaluate.com/{{item.blogDocument.fileUrl}}"
+                            ngClass="img-fluid blog-image-homepage" alt="">
+                        <!-- <span ngClass="blog-tag">
+                            <img [src]="item.src2" ngClass="img-fluid" alt="">
+                        </span> -->
+                        <div ngClass="blog-title-content">
+                            <h5 *ngIf="item && item.blogTitle">{{item.blogTitleAr}}</h5>
+                            <span *ngIf="item && item.blogData">{{item.blogDate.split("T")[0]}}</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>
+<app-footer></app-footer>
