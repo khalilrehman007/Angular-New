@@ -157,7 +157,7 @@ export class HeaderComponent implements OnInit {
     {
       src: '../../../assets/images/icons/world.svg',
       class: 'nav-items guide',
-      text: 'Guide',
+      text: 'Areas',
       link: 'explore',
     },
     {
