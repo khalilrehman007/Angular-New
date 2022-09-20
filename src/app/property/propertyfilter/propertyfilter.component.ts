@@ -56,6 +56,7 @@ export class PropertyfilterComponent implements OnInit {
   residentialId:any;
   commercial:any;
   commercialId:any;
+  rentType:any = []
 
   ngOnInit(): void {
     //parent method
@@ -172,11 +173,8 @@ export class PropertyfilterComponent implements OnInit {
 
     this.SubmitForm.controls.Name.setValue(this.PropertyAddress);
     this.loadType();
-    this.service.RentTypes().subscribe(data=>{
-      let response: any = data;
-      this.Monthly   = response.data[0].name;
-      this.Quarterly = response.data[1].name;
-      this.Yearly    = response.data[2].name;
+    this.service.RentTypes().subscribe((data:any) => {
+      this.rentType = data.data;
     });
 
     this.rentTypeIdCheck()
@@ -405,13 +403,11 @@ export class PropertyfilterComponent implements OnInit {
     this.postedById = event.value
   }
 
-  getRentalType(e:any){
-    if(e.tab.textLabel == "Monthly"){
-      this.RentTypeId = 1;
-    }else if(e.tab.textLabel == "Quarterly"){
-      this.RentTypeId = 2;
-    }else if(e.tab.textLabel == "Yearly"){
-      this.RentTypeId = 3;
+  getRentalType(e: any) {
+    for(let i = 0; i < this.rentType.length; i++) {
+      if(this.rentType[i].name == e.tab.textLabel) {
+        this.RentTypeId = this.rentType[i].id;
+      }
     }
   }
 
