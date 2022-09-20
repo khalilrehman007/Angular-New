@@ -1,1 +1,68 @@
-<p>tips-advice works!</p>
+<app-header></app-header>
+<section [ngClass]="'inner-cntnt-wrapper slide-left-bar blogs_sec padd-0'">
+    <section ngClass="blog_inner-banner-blocks">
+        <div ngClass="container_1280px">
+            <div ngClass="exploredetails-breadcrumb-wrapper black-text-breadcrumb mt-3">
+                <app-breadcrumbs></app-breadcrumbs>
+            </div>
+            <div ngClass="heading-32px-design mb-3">
+                <h2>نصائح وإرشادات</h2>
+                <p>بعض العقارات المختارة بالقرب من موقعك.</p>
+            </div>
+        </div>
+    </section>
+    <section ngClass="position-relative wrapper-section blogs_sec category_blog-sec">
+        <div ngClass="container_1280px">
+            <div ngClass="catogries-blog_row">
+                <div ngClass="row">
+                    <div ngClass="col-xl-8 col-lg-8 col-sm-12" *ngIf="tipsAndAdvice && tipsAndAdvice.blogs.length">
+                        <div ngClass="row" *ngIf="tipsAndAdvice.blogs.length > 0">
+                            <div ngClass="col-lg-6 col-md-6 blog-places-col" *ngFor=" let item of tipsAndAdvice.blogs">
+                                <a routerLink="/ar/blog/details/{{item.slugNameAr}}">
+                                    <img src="https://beta.ovaluate.com/{{item.blogDocument.fileUrl}}"
+                                        ngClass="img-fluid blog-image-homepage" alt="">
+                                    <div ngClass="blog-title-content">
+                                        <h5>{{item.blogTitleAr}}</h5>
+                                        <span>{{item.blogDate.split("T")[0]}}</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div ngClass="col-xl-4 col-lg-4 col-sm-12">
+                        <div ngClass="heading-24px-design mb-4">
+                            <h2>حول اوفاليوت</h2>
+                            <p>تعتبر اتجاهات السوق ومعاملات المبيعات وأداء المبيعات وتحليل السوق هي ركائز رؤى السوق.
+                                إنهم ينقلون كيف يتغير السوق وأين تظهر الفرص الجديدة في الوقت الفعلي ، مما يساعد على
+                                تقديم تجارب مخصصة بناءً على عمليات التقاط البيانات التفصيلية.</p>
+                        </div>
+                        <!-- <div ngClass="heading-24px-design recent_designs-posts mb-4">
+                            <h2>Recent Posts</h2>
+                            <ul ngClass="list-unstyled">
+                                <li><a routerLink="">What makes Gurgaon the best place to Invest in Real Estate?</a>
+                                </li>
+                                <li><a routerLink="">6 Tips to Find the Best Real Estate Consultant in Gurgaon</a></li>
+                                <li><a routerLink="">Modern Rules of Buying a Residential Property in Gurgaon</a></li>
+                                <li><a routerLink="">What made Dwarka Expressway a Special Location for Property
+                                        Investors?</a></li>
+                                <li><a routerLink="">Top 5 Real Estate Projects in Dwarka Expressway</a></li>
+                            </ul>
+                        </div> -->
+                        <div ngClass="heading-24px-design category_designs-list mb-4">
+                            <h2>Categories</h2>
+                            <ul ngClass="list-unstyled">
+                                <li><a routerLink="/ar/blog/tips-advice">نصائح وإرشادات</a></li>
+                                <li><a routerLink="/ar/blog/newsblog">الاخبار</a></li>
+                                <li><a routerLink="/ar/blog/exploreblog">يكتشف</a></li>
+                                <li><a routerLink="/ar/blog/left-at-home">الحياة في المنزل</a></li>
+                                <li><a routerLink="/ar/blog/lawblog">القوانين</a></li>
+                                <li><a routerLink="/ar/blog/market-trends">اتجاهات السوق</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>
+<app-footer></app-footer>
