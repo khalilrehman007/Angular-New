@@ -431,11 +431,11 @@
         <div ngClass="container_1220px">
             <div ngClass="section-title">
                 <div ngClass="section-custom-title-left">
-                    <h4>Blogs</h4>
-                    <p>Some of our picked properties near your location.</p>
+                    <h4>مقالات</h4>
+                    <p> بعض العقارات المختارة بالقرب من موقعك.</p>
                 </div>
                 <div ngClass="section-custom-title-right">
-                    <a routerLink="/ar/blog">Read all</a>
+                    <a routerLink="/ar/blog">اقرأ كل شيء</a>
                 </div>
             </div>
 
@@ -450,10 +450,10 @@
                             <img [src]="blog.src2" ngClass="img-fluid" alt="" />
                         </span>
                         <div ngClass="blog-title-content">
-                            <h5>{{ blog.blogTitle }}</h5>
+                            <h5>{{ blog.blogTitleAr }}</h5>
                             <span>{{ blog.blogDate.split("T")[0] }}</span>
                         </div>
-                        <button ngClass="tag_btn blue">{{blog.blogCategory.categoryName}}</button>
+                        <button ngClass="tag_btn blue">{{blog.blogCategory.categoryNameAr}}</button>
                     </a>
                 </div>
             </div>

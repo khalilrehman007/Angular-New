@@ -13,8 +13,8 @@ import { map, startWith } from 'rxjs/operators';
   styleUrls: ['./explore.component.scss']
 })
 export class ExploreComponent implements OnInit {
-  uaeflag = '../../../../assets/images/flags/uae.svg'
-  search = '../../../../assets/images/search.svg'
+  uaeflag = '../../../../../assets/images/flags/uae.svg'
+  search = '../../../../../assets/images/search.svg'
   citylocations = [
     {
       src: '../../../../assets/images/location-img.png',
@@ -77,6 +77,7 @@ export class ExploreComponent implements OnInit {
       }
     })
     this.selectedCountry = this.selectedCountry[0];
+    console.log(this.selectedCountry);
     this.service.FindCities({ "CountryId": e.value, "Locations": [] }).subscribe((result: any) => {
       this.cityData = result.data;
       for (let i = 0; i < this.cityData.length; i++) {
@@ -96,7 +97,7 @@ export class ExploreComponent implements OnInit {
         this.service.FindCities({ "CountryId": this.country[0].value, "Locations": [] }).subscribe((result: any) => {
           this.cityData = result.data;
           for (let i = 0; i < this.cityData.length; i++) {
-            this.searchListExplore.push(this.cityData[i].nameAr)
+            this.searchListExplore.push(this.cityData[i].name)
           }
         })
       }
