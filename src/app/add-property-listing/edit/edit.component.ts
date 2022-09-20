@@ -126,6 +126,19 @@ export class EditComponent implements OnInit {
     this.propertyData.PropertyTitle = this.listingData.propertyTitle;
     this.propertyData.PropertyDescription = this.listingData.propertyDescription;
     this.propertyData.PropertyOffer = this.listingData.propertyOffer;
+    if(this.listingData.propertyListingLocatedNears) {
+      this.propertyData.PropertyListingLocatedNears = [];
+      for(let i = 0; i < this.listingData.propertyListingLocatedNears.length; i++) {
+        this.propertyData.PropertyListingLocatedNears.push({"LocatedNearId": this.listingData.propertyListingLocatedNears[i].LocatedNearId});
+      }
+    }
+    this.propertyData.PropertyPrice = this.listingData.propertyPrice;
+    this.propertyData.SecurityDepositPrice = this.listingData.securityDepositPrice;
+    this.propertyData.BrokerageChargePrice = this.listingData.brokerageChargePrice;
+    this.propertyData.PropertyFeatures = [];
+    for(let i = 0; i < this.listingData.propertyFeatures.length; i++) {
+      this.propertyData.PropertyFeatures.push({"PropertyFeatureId": this.listingData.propertyFeatures[i].propertyFeatureId});
+    }
 
     console.log(this.propertyData);
   }
