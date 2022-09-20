@@ -87,12 +87,12 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div ngClass="location-information" [ngClass]="showMap ? '' : 'd-none'">
+                                <div ngClass="location-information" *ngIf="locationInformation.city">
                                     <div ngClass="block-wrapper mb-4">
                                         <h6 ngClass="h6-design">Location Information</h6>
                                         <div ngClass="location-info-lists">
                                             <mat-list>
-                                                <mat-list-item ngClass="d-flex justify-content-spacebw">
+                                                <mat-list-item ngClass="d-flex justify-content-spacebw" if>
                                                     <div ngClass="location-div-block">
                                                         <h4 ngClass="loc-heading">{{locationInformation.city}},
                                                             {{locationInformation.country}}</h4>
