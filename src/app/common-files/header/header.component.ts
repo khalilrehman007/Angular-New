@@ -8,6 +8,7 @@ import { AuthService } from "../../service/auth.service";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database';
 import { map } from 'rxjs';
+import { getDatabase, ref, child, push, update } from 'firebase/database';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -93,7 +94,9 @@ export class HeaderComponent implements OnInit {
     let type: any = this.activeRoute.snapshot.queryParamMap.get('type');
     let url = this.route.url.replace("/", "");
     url = url.split('?')[0];
-    console.log(url)
+
+    console.log(type);
+
     if (url == 'blog') {
       this.activeTabBuy = false;
       this.activeTabRent = false;
@@ -118,7 +121,7 @@ export class HeaderComponent implements OnInit {
       this.activeTabBlog = false;
       this.activeTabArea = false;
       this.activeShortterm = false;
-    } else if(url == "property/short-term-rent") {
+    } else if (url == "property/short-term-rent") {
       this.activeTabBuy = false;
       this.activeTabRent = false;
       this.activeTabBlog = false;
@@ -312,6 +315,22 @@ export class HeaderComponent implements OnInit {
   }
   status3: boolean = false;
   clickEvent3() {
+    if (!this.status3) {
+      let updates: any = {};
+      let temp: any = {};
+      let database: any = getDatabase();
+      for (let i = 0; i < this.notificationData.length; i++) {
+        if (!this.notificationData[i].value.HasSeen) {
+          temp = this.notificationData[i].value;
+          temp.HasSeen = true;
+          updates["/Notifications/" + this.userData + "/" + this.notificationData[i].key] = temp;
+        }
+        update(ref(database), updates).then(() => {
+        })
+        .catch((error) => {
+        });
+      }
+    }
     this.status3 = !this.status3;
     this.status1 = false;
     this.status = false;
