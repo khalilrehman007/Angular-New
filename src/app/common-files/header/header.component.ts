@@ -69,7 +69,6 @@ export class HeaderComponent implements OnInit {
         )
       ).subscribe(data => {
         this.notificationData = data;
-        this.getTime(this.notificationData[6].value.NotificationDateTime);
       });
     }
     this.getUser();
