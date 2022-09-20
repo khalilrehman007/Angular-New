@@ -234,7 +234,12 @@ export class PropertyTypesComponent implements OnInit {
     this.service.PropertyFeatures(this.propertyData.id).subscribe((result: any) => {
       this.featuresData = result.data;
       this.showLoader = false;
-      $('.select2').select2({ placeholder: "Click here to add more" });
+      let interval: any = setInterval(() => {
+        if (this.featuresData.length > 0) {
+          $('.select2').select2({ placeholder: "Click here to add more" });
+          clearInterval(interval);
+        }
+      }, 100);
     })
     this.typeSelected = true;
   }
