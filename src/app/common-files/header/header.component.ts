@@ -43,7 +43,7 @@ export class HeaderComponent implements OnInit {
   activeTabBlog: any = false;
   activeTabArea: any = false;
   activeShortterm: any = false;
-  constructor(private router: Router, private activeRoute: ActivatedRoute, private authService: AuthService, private route: Router, private notifyService: NotificationService, private modalService: NgbModal, private service: AppService, private db: AngularFireDatabase) {
+  constructor(private activeRoute: ActivatedRoute, private authService: AuthService, private route: Router, private notifyService: NotificationService, private modalService: NgbModal, private service: AppService, private db: AngularFireDatabase) {
     let a: any = this.currentDate;
     a = a.toString().split(" ")[5].split("T")[1];
     let sign = a.split('')[0];
@@ -91,11 +91,9 @@ export class HeaderComponent implements OnInit {
 
 
     let type: any = this.activeRoute.snapshot.queryParamMap.get('type');
-    let url = this.router.url.replace("/", "");
+    let url = this.route.url.replace("/", "");
     url = url.split('?')[0];
-
-    console.log(type);
-    
+    console.log(url)
     if (url == 'blog') {
       this.activeTabBuy = false;
       this.activeTabRent = false;
@@ -120,7 +118,7 @@ export class HeaderComponent implements OnInit {
       this.activeTabBlog = false;
       this.activeTabArea = false;
       this.activeShortterm = false;
-    } else {
+    } else if(url == "property/short-term-rent") {
       this.activeTabBuy = false;
       this.activeTabRent = false;
       this.activeTabBlog = false;
