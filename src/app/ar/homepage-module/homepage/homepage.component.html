@@ -416,7 +416,7 @@
 
             <div ngClass="row">
                 <div ngClass="col-md-6 explore-places-col" *ngFor="let data of explorePlaces">
-                    <a routerLink="/explore/details/{{data.id}}">
+                    <a routerLink="/ar/explore/details/{{data.id}}">
                         <img src="https://beta.ovaluate.com/{{ data.document.fileUrl}}" ngClass="img-fluid" alt="" />
                         <div ngClass="explore-place-content">
                             <h5>{{ data.nameAr }}</h5>
@@ -435,14 +435,14 @@
                     <p>.بعض العقارات المختارة بالقرب من موقعك</p>
                 </div>
                 <div ngClass="section-custom-title-right">
-                    <a routerLink="/blog">اقرأ كل شيء</a>
+                    <a routerLink="/ar/blog">اقرأ كل شيء</a>
                 </div>
             </div>
 
             <div ngClass="row">
                 <!-- let blogs of Blogsec -->
                 <div ngClass="col-lg-4 col-md-6 blog-places-col" *ngFor="let blog of blogs">
-                    <a routerLink="/blog/details/{{blog.slugNameAr}}" ngClass="position-relative">
+                    <a routerLink="/ar/blog/details/{{blog.slugNameAr}}" ngClass="position-relative">
                         <!-- blog.blogDocument.fileUrl -->
                         <img [src]="'https://www.ovaluate.com/' + blog.blogDocument.fileUrl"
                             ngClass="img-fluid blog-image-homepage" alt="" />
