@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import * as $ from 'jquery';
 import { NotificationService } from "../../service/notification.service";
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -35,21 +35,21 @@ export class HeaderComponent implements OnInit {
   bodyClass: any;
   notificationData: any = [];
   currentDate: any = new Date();
-  currentTime:any;
+  currentTime: any;
   userData: any = "";
 
-  activeTabBuy :any = false;
-  activeTabRent :any = false;
-  activeTabBlog :any = false;
-  activeTabArea :any = false;
-  activeShortterm :any = false;
-  constructor(private router: Router,private activeRoute: ActivatedRoute,private authService: AuthService, private route: Router, private notifyService: NotificationService, private modalService: NgbModal, private service: AppService, private db: AngularFireDatabase) {
-    let a:any = this.currentDate;
+  activeTabBuy: any = false;
+  activeTabRent: any = false;
+  activeTabBlog: any = false;
+  activeTabArea: any = false;
+  activeShortterm: any = false;
+  constructor(private router: Router, private activeRoute: ActivatedRoute, private authService: AuthService, private route: Router, private notifyService: NotificationService, private modalService: NgbModal, private service: AppService, private db: AngularFireDatabase) {
+    let a: any = this.currentDate;
     a = a.toString().split(" ")[5].split("T")[1];
     let sign = a.split('')[0];
-    let hours:any = parseInt(a.split('')[1] + a.split('')[2]);
-    let minutes:any = parseInt(a.split('')[3] + a.split('')[4]);
-    if(sign ==  "-") {
+    let hours: any = parseInt(a.split('')[1] + a.split('')[2]);
+    let minutes: any = parseInt(a.split('')[3] + a.split('')[4]);
+    if (sign == "-") {
       this.currentDate.setHours(this.currentDate.getHours() + hours);
       this.currentDate.setMinutes(this.currentDate.getMinutes() + minutes);
     } else {
@@ -90,36 +90,42 @@ export class HeaderComponent implements OnInit {
     this.getCountData('');
 
 
-   let type :any=  this.activeRoute.snapshot.queryParamMap.get('type');
+    let type: any = this.activeRoute.snapshot.queryParamMap.get('type');
     let url = this.router.url.replace("/", "");
     url = url.split('?')[0];
 
-   if(type == "Rent"){
-     this.activeTabRent = true;
-     this.activeTabBuy  = false;
-     this.activeTabBlog  = false;
-     this.activeTabArea  = false;
-     this.activeShortterm = false;
-   }else if(type == "Buy"){
-     this.activeTabBuy = true;
-     this.activeTabRent = false;
-     this.activeTabBlog  = false;
-     this.activeTabArea  = false;
-     this.activeShortterm = false;
-   }
-
-    if(url == 'blog'){
+    console.log(type);
+    
+    if (url == 'blog') {
       this.activeTabBuy = false;
       this.activeTabRent = false;
-      this.activeTabBlog  = true;
-      this.activeTabArea  = false;
+      this.activeTabBlog = true;
+      this.activeTabArea = false;
       this.activeShortterm = false;
-    }else if(url == 'explore'){
+    } else if (url == 'explore') {
       this.activeTabBuy = false;
       this.activeTabRent = false;
-      this.activeTabBlog  = false;
-      this.activeTabArea  = true;
+      this.activeTabBlog = false;
+      this.activeTabArea = true;
       this.activeShortterm = false;
+    } else if (type == "Rent") {
+      this.activeTabRent = true;
+      this.activeTabBuy = false;
+      this.activeTabBlog = false;
+      this.activeTabArea = false;
+      this.activeShortterm = false;
+    } else if (type == "Buy") {
+      this.activeTabBuy = true;
+      this.activeTabRent = false;
+      this.activeTabBlog = false;
+      this.activeTabArea = false;
+      this.activeShortterm = false;
+    } else {
+      this.activeTabBuy = false;
+      this.activeTabRent = false;
+      this.activeTabBlog = false;
+      this.activeTabArea = false;
+      this.activeShortterm = true;
     }
   }
 
@@ -200,9 +206,9 @@ export class HeaderComponent implements OnInit {
 
   getTime(e: any) {
     let temp: any = new Date(e).getTime()
-    let difference:any = this.currentTime - temp;
-    let days:any = Math.floor(difference / 1000 / 60 / (60 * 24));
-    let time:any = new Date(difference);
+    let difference: any = this.currentTime - temp;
+    let days: any = Math.floor(difference / 1000 / 60 / (60 * 24));
+    let time: any = new Date(difference);
     if (days > 365) {
       return Math.floor(days / 365) + " years ago";
     } else if (days < 365 && days > 30) {
@@ -253,7 +259,7 @@ export class HeaderComponent implements OnInit {
   }
   ngOnInit() {
     $(".language-select").on("change", () => {
-      if($(".language-select").val() == "Arabic") {
+      if ($(".language-select").val() == "Arabic") {
         this.route.navigate(["/ar"])
       }
     })
@@ -320,7 +326,7 @@ export class HeaderComponent implements OnInit {
     this.status = false;
     this.status2 = false;
   }
-  logOutPopup(content:any) {
+  logOutPopup(content: any) {
     this.modalService.open(content, { centered: true });
   }
 
@@ -356,14 +362,14 @@ export class HeaderComponent implements OnInit {
   wishlistingDataAll: any = []
   wishlistingDataRent: any = []
   wishlistingDataBuy: any = []
-  getCountData(PropertyListingTypeId:any) {
+  getCountData(PropertyListingTypeId: any) {
     if (this.userId == '' || !this.authService.isAuthenticated()) {
       return;
     }
     let tempData: Array<Object> = []
     this.service.FavoriteListing({ "UserId": this.userId, "PropertyListingTypeId": PropertyListingTypeId }).subscribe(data => {
       let response: any = data;
-      response.data.forEach((element:any, i:any) => {
+      response.data.forEach((element: any, i: any) => {
 
         let image: any = '';
         if (element.documents !== null && element.documents !== undefined && element.documents.length > 0) {
@@ -499,33 +505,39 @@ export class HeaderComponent implements OnInit {
   }
 
 
-  checkActiveTab(data:any){
+  checkActiveTab(data: any) {
 
-    if(data == 'buy'){
-      this.activeTabBuy  = true;
+    if (data == 'buy') {
+      this.activeTabBuy = true;
       this.activeTabRent = false;
-      this.activeTabBlog  = false;
-      this.activeTabArea  = false;
-    }else if(data == 'rent'){
-      this.activeTabRent  = true;
+      this.activeTabBlog = false;
+      this.activeTabArea = false;
+      this.activeShortterm = false;
+    } else if (data == 'rent') {
+      this.activeTabRent = true;
       this.activeTabBuy = false;
-      this.activeTabBlog  = false;
-      this.activeTabArea  = false;
-    }else if(data == 'blog'){
-      this.activeTabBlog  = true;
-      this.activeTabRent  = false;
+      this.activeTabBlog = false;
+      this.activeTabArea = false;
+      this.activeShortterm = false;
+    } else if (data == 'blog') {
+      this.activeTabBlog = true;
+      this.activeTabRent = false;
       this.activeTabBuy = false;
-      this.activeTabArea  = false;
-    }else if(data == 'areas'){
-      this.activeTabArea  = true;
-      this.activeTabBlog  = false;
-      this.activeTabRent  = false;
+      this.activeTabArea = false;
+      this.activeShortterm = false;
+    } else if (data == 'areas') {
+      this.activeTabArea = true;
+      this.activeTabBlog = false;
+      this.activeTabRent = false;
+      this.activeTabBuy = false;
+      this.activeShortterm = false;
+    } else if (data == 'shorttermrent') {
+      this.activeShortterm = true;
+      this.activeTabArea = false;
+      this.activeTabBlog = false;
+      this.activeTabRent = false;
       this.activeTabBuy = false;
     }
-
-
-
-
   }
 
 }
