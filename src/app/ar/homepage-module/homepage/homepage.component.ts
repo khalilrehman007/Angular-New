@@ -204,22 +204,22 @@ export class HomepageComponent implements OnInit {
     {
       id: 'slide1',
       src: 'assets/images/icons/virtul-toor.svg',
-      heading: 'Virtual home tour',
-      desc: 'You can communicate directly with landlords and we provide you with virtual tour before you buy or rent the property.',
+      heading: 'جولة منزلية افتراضية',
+      desc: 'يمكنك التواصل مباشرة مع الملاك ونوفر لك جولة افتراضية قبل أن تشتري أو تستأجر العقار.',
       class: 'virtual-tour'
     },
     {
       id: 'slide2',
       src: 'assets/images/icons/best-deal.svg',
-      heading: 'Find the best deal',
-      desc: 'Browse thousands of properties, save your favorites and set up search alerts so you don’t miss the best home deal!',
+      heading: 'اعثر على أفضل صفقة',
+      desc: 'تصفح آلاف العقارات واحفظ مفضلاتك وقم بإعداد تنبيهات البحث حتى لا تفوتك أفضل صفقة شراء للمنزل!',
       class: 'find-best-deal'
     },
     {
       id: 'slide3',
       src: 'assets/images/icons/ready-apply.svg',
-      heading: 'Get ready to apply',
-      desc: 'Find your dream house? You just need to do a little to no effort and you can start move in to your new dream home!',
+      heading: 'احصل على استعداد للتقديم',
+      desc: 'ابحث عن منزل أحلامك؟ ما عليك سوى بذل القليل من الجهد أو بدون جهد ويمكنك البدء في الانتقال إلى منزل أحلامك الجديد!',
       class: 'get-ready-apply'
     }
   ]
