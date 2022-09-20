@@ -44,6 +44,7 @@ export class HeaderComponent implements OnInit {
   activeTabBlog: any = false;
   activeTabArea: any = false;
   activeShortterm: any = false;
+  notificationcount:number = 0;
   constructor(private activeRoute: ActivatedRoute, private authService: AuthService, private route: Router, private notifyService: NotificationService, private modalService: NgbModal, private service: AppService, private db: AngularFireDatabase) {
     let a: any = this.currentDate;
     a = a.toString().split(" ")[5].split("T")[1];
@@ -69,6 +70,7 @@ export class HeaderComponent implements OnInit {
         )
       ).subscribe(data => {
         this.notificationData = data;
+        this.getNotificationCount();
       });
     }
     this.getUser();
@@ -93,8 +95,6 @@ export class HeaderComponent implements OnInit {
     let type: any = this.activeRoute.snapshot.queryParamMap.get('type');
     let url = this.route.url.replace("/", "");
     url = url.split('?')[0];
-
-    console.log(type);
 
     if (url == 'blog') {
       this.activeTabBuy = false;
@@ -128,7 +128,15 @@ export class HeaderComponent implements OnInit {
       this.activeShortterm = true;
     }
   }
-
+  getNotificationCount() {
+    let count:any = 0;
+    for (let i = 0; i < this.notificationData.length; i++) {
+      if(!this.notificationData[i].value.HasSeen) {
+        count++;
+      }
+    }
+    this.notificationcount = count;
+  }
   sidebar = [
     {
       src: '../../../assets/images/icons/login.svg',
@@ -325,9 +333,10 @@ export class HeaderComponent implements OnInit {
           updates["/Notifications/" + this.userData + "/" + this.notificationData[i].key] = temp;
         }
         update(ref(database), updates).then(() => {
+          this.notificationcount = 0;
         })
-        .catch((error) => {
-        });
+          .catch((error) => {
+          });
       }
     }
     this.status3 = !this.status3;
