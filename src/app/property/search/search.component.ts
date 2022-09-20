@@ -447,4 +447,8 @@ export class SearchComponent implements OnInit {
     this.route.navigate(['/property/mapview'], { queryParams: params })
 
   }
+  status2: boolean = false;
+  clickEvent2() {
+    this.status2 = !this.status2;
+  }
 }

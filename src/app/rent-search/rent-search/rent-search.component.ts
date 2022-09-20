@@ -20,6 +20,7 @@ export class RentSearchComponent implements OnInit {
   searchfilter: any;
   SearchKeyword: string[] = [];
   searchList: string[] = [];
+  rentType:any = []
 
   constructor(private activeRoute: ActivatedRoute, private service: AppService, private api: AppService, private route: Router) {
     this.data.rentalTypeId = 1
@@ -29,14 +30,8 @@ export class RentSearchComponent implements OnInit {
     });
     this.LoadPropertyCategories();
     this.getLoaction({ "Searching": "", "CountryId": "1" });
-    this.service.RentTypes().subscribe(data => {
-      let response: any = data;
-      this.Monthly = response.data[0].name;
-      // this.MonthlyAr  = response.data[0].nameAr;
-      this.Quarterly = response.data[1].name;
-      // this.QuarterlyAr  = response.data[1].nameAr;
-      this.Yearly = response.data[2].name;
-      // this.YearlyAr  = response.data[3].nameAr;
+    this.service.RentTypes().subscribe((data:any) => {
+      this.rentType = data.data;
     });
 
     this.api.LoadType(2).subscribe((result) => {
@@ -152,12 +147,10 @@ export class RentSearchComponent implements OnInit {
   }
 
   getRentalType(e: any) {
-    if (e.tab.textLabel == "Monthly") {
-      this.data.rentalTypeId = 1;
-    } else if (e.tab.textLabel == "Quarterly") {
-      this.data.rentalTypeId = 2;
-    } else if (e.tab.textLabel == "Yearly") {
-      this.data.rentalTypeId = 3;
+    for(let i = 0; i < this.rentType.length; i++) {
+      if(this.rentType[i].name == e.tab.textLabel) {
+        this.data.rentalTypeId = this.rentType[i].id;
+      }
     }
   }
 

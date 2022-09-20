@@ -300,12 +300,10 @@
                             </div>
                         </div>
                         <div ngClass="popular-searches" *ngIf="trendTitle.length > 0">
-                            <div ngbDropdown class="d-block">
-                                <button type="button" class="btn btn-outline-primary" id="popularSearches"
-                                    ngbDropdownToggle>Popular
-                                    Searches</button>
-                                <div ngbDropdownMenu aria-labelledby="popularSearches" open="true" class="show">
-                                    <button ngbDropdownItem
+                            <div class="d-block dropdown" [ngClass]="status2 ? 'notshow' : 'show'">
+                                <button type="button" class="btn btn-outline-primary" id="popularSearches" (click)="clickEvent2()">Popular Searches</button>
+                                <div class="dropdown-menu" [ngClass]="status2 ? 'notshow' : 'show'">
+                                    <button class="dropdown-item"
                                         *ngFor="let item of trendTitle[0].trendTitleDetail; let i = index"
                                         (click)="onTrendClick(1,i)">{{item.detail}}</button>
                                 </div>
