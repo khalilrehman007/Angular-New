@@ -7,12 +7,13 @@ import { disableDebugTools } from "@angular/platform-browser";
 import { AppService } from 'src/app/service/app.service';
 import { F } from '@angular/cdk/keycodes';
 import { Select2 } from 'select2';
+
 @Component({
-  selector: 'app-listpropertyinfo',
-  templateUrl: './listpropertyinfo.component.html',
-  styleUrls: ['./listpropertyinfo.component.scss']
+  selector: 'app-edit-list-info',
+  templateUrl: './edit-list-info.component.html',
+  styleUrls: ['./edit-list-info.component.scss']
 })
-export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
+export class EditListInfoComponent implements OnInit {
 
   error: any = ""
   showError: boolean = false;
@@ -138,11 +139,12 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
       $(this).find(".mat-datepicker-toggle").click();
     })
   }
+  temp:any = 1;
   loadOldData() {
     if (localStorage.getItem("propertyData")) {
       let temp: any = localStorage.getItem("propertyData");
       this.data = JSON.parse(temp);
-
+      console.log(this.data);
       if (localStorage.getItem("listingData")) {
         temp = localStorage.getItem("listingData");
         this.data = JSON.parse(temp);
@@ -176,11 +178,11 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
 
         this.showLoader = true;
         this.categoryID = this.data.PropertyCategoryId;
-        this.api.LoadType(this.data.PropertyCategoryId).subscribe((result) => {
-          this.propertyType = result;
-          this.propertyType = this.propertyType.data
+        this.api.LoadType(this.data.PropertyCategoryId).subscribe((result:any) => {
+          this.propertyType = result.data;
           this.showLoader = false;
           this.selectedPropertyType = this.propertyType.filter((item: any) => item.id == this.data.PropertyTypeId)[0];
+          console.log(this.selectedPropertyType)
           this.propertyTypeCheck = true;
           if (this.selectedPropertyType.hasTotalFloor) {
             this.SubmitForm.patchValue({

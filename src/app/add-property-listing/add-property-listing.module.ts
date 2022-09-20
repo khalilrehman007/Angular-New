@@ -19,6 +19,7 @@ import { ListpropertymediaComponent } from './listpropertymedia/listpropertymedi
 import { MatNativeDateModule } from '@angular/material/core';
 import { ListpropertypublishComponent } from './listpropertypublish/listpropertypublish.component';
 import { EditComponent } from './edit/edit.component';
+import { EditListInfoComponent } from './edit-list-info/edit-list-info.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { EditComponent } from './edit/edit.component';
     ListpropertyinfoComponent,
     ListpropertymediaComponent,
     ListpropertypublishComponent,
-    EditComponent
+    EditComponent,
+    EditListInfoComponent
   ],
   imports: [
     CommonModule,
