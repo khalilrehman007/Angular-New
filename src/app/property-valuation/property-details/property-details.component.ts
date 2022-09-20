@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs';
 import { Select2 } from 'select2';
+import { NotificationService } from 'src/app/service/notification.service';
 
 declare const google: any;
 
@@ -72,7 +73,11 @@ export class PropertyDetailsComponent implements OnInit {
     return this.propertyDetails.get("muncipality")
   }
 
-  constructor(private http: HttpClient, private service: AppService, private router: Router) {
+  constructor(private http: HttpClient, private notifyService: NotificationService, private service: AppService, private router: Router) {
+    if(!localStorage.getItem("user")) {
+      this.notifyService.showError("You need to register/login", "");
+      this.router.navigate(["/login"]);
+    }
     this.loadCountriesData();
     this.options = {
       bounds: [],
