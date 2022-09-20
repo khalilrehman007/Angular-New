@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { EditListInfoComponent } from './edit-list-info/edit-list-info.component';
 import { EditComponent } from './edit/edit.component';
 import { ListpropertyinfoComponent } from './listpropertyinfo/listpropertyinfo.component';
 import { ListpropertymediaComponent } from './listpropertymedia/listpropertymedia.component';
@@ -13,6 +14,7 @@ const routes: Routes = [
   {path: "listpropertymedia", component: ListpropertymediaComponent},
   {path: "listpropertypublish", component: ListpropertypublishComponent},
   {path: "edit/:id/listingproperty", component: EditComponent},
+  {path: "edit/:id/listpropertyinfo", component: EditListInfoComponent},
 ];
 
 @NgModule({
