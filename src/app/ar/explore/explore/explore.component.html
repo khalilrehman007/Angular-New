@@ -26,7 +26,7 @@
                   <div ngClass="block-wrapper height-100">
                     <mat-form-field class="example-chip-list input-design searh_input-design height-100"
                       appearance="fill">
-                      <mat-label>Search</mat-label>
+                      <mat-label>البحث</mat-label>
                       <mat-chip-list #chipList aria-label="Search selection">
                         <mat-chip *ngFor="let SearchValue of SearchKeywordExplore" (removed)="remove(SearchValue)">
                           {{SearchValue}}
@@ -85,11 +85,11 @@
                     <div ngClass="loc-img-cntnt">
                       <div ngClass="d-flex justify-content-spacebw align-items-center">
                         <div ngClass="hp-design white">
-                          <h4 ngClass="city-name">{{item.name}}</h4>
-                          <p ngClass="country-name">{{item.country.name}}</p>
+                          <h4 ngClass="city-name">{{item.nameAr}}</h4>
+                          <p ngClass="country-name">{{item.country.nameAr}}</p>
                         </div>
                         <div ngClass="explore-link">
-                          <a routerLink="/ar/explore/city/{{item.id}}">Explore <mat-icon>keyboard_arrow_right</mat-icon></a>
+                          <a routerLink="/ar/explore/city/{{item.id}}">استكشف <mat-icon>keyboard_arrow_right</mat-icon></a>
                         </div>
                       </div>
                     </div>
@@ -100,7 +100,7 @@
           </div>
           <div ngClass="explore-description_sec mt-4 mb-5" *ngIf="selectedCountry">
             <div ngClass="hp-design hp-explore-spacing">
-              <h4>Explore {{selectedCountry.viewValue}}</h4>
+              <h4>استكشف {{selectedCountry.viewValue}}</h4>
               <p>{{selectedCountry.desc}}.</p>
             </div>
           </div>
