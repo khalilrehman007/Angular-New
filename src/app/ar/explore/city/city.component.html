@@ -6,7 +6,7 @@
                 <app-breadcrumbs></app-breadcrumbs>
             </div>
             <div ngClass="hp-design mb-4">
-                <h4>{{cityData.name}} Area Guide</h4>
+                <h4>{{cityData.nameAr}} Area Guide</h4>
             </div>
             <div ngClass="search_destinations-block">
                 <form>
@@ -15,7 +15,7 @@
                             <div ngClass="block-wrapper height-100">
                                 <mat-form-field class="example-chip-list input-design searh_input-design height-100"
                                     appearance="fill">
-                                    <mat-label>Search</mat-label>
+                                    <mat-label>البحث</mat-label>
                                     <mat-chip-list #chipList aria-label="Search selection">
                                         <mat-chip *ngFor="let SearchValue of SearchKeyword"
                                             (removed)="remove(SearchValue)">
@@ -49,7 +49,7 @@
             </div>
             <div ngClass="citites-guide-block-design">
                 <div class="citites-guide-block-div" *ngFor="let item of districtData"
-                    [ngClass]="checkDistrict(item.name) ? 'd-none' : ''">
+                    [ngClass]="checkDistrict(item.nameAr) ? 'd-none' : ''">
                     <div ngClass="row">
                         <div ngClass="col-xl-2 col-lg-2 col-md-3 col-sm-12">
                             <div ngClass="city_img">
@@ -58,9 +58,9 @@
                         </div>
                         <div ngClass="col-xl-10 col-lg-10 col-md-9 col-sm-12">
                             <div ngClass="city_cntnt">
-                                <h4>{{item.name}}</h4>
-                                <p>{{item.details}}</p>
-                                <a routerLink="/ar/explore/details/{{item.id}}">Explore <mat-icon>keyboard_arrow_right
+                                <h4>{{item.nameAr}}</h4>
+                                <p>{{item.detailsAr}}</p>
+                                <a routerLink="/ar/explore/details/{{item.id}}">استكشف <mat-icon>keyboard_arrow_right
                                     </mat-icon></a>
                             </div>
                         </div>
@@ -69,8 +69,8 @@
             </div>
             <div ngClass="explore-description_sec mt-4 mb-5">
                 <div ngClass="hp-design hp-explore-spacing">
-                    <h4>Explore {{cityData.name}}</h4>
-                    <p>{{cityData.description}}</p>
+                    <h4>استكشف {{cityData.nameAr}}</h4>
+                    <p>{{cityData.descriptionAr}}</p>
                 </div>
             </div>
         </div>
