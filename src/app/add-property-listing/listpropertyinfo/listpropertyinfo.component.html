@@ -99,7 +99,7 @@
                                         </div>
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                                        <div ngClass="block-wrapper">
+                                        <!-- <div ngClass="block-wrapper">
                                             <div ngClass="select-design">
                                                 <label>Type of Property</label>
                                                 <div class="type-input">
@@ -114,6 +114,15 @@
                                                         </mat-select>
                                                     </mat-form-field>
                                                 </div>
+                                            </div>
+                                        </div> -->
+                                        <div ngClass="block-wrapper">
+                                            <div ngClass="select-design select2-design">
+                                                <label>Type of Property</label>
+                                                <select class="select2 country-select" (selectionChange)="getPropertyType($event)">
+                                                    <option value="0"> Select Country</option>
+                                                    <option class="country-item-{{item.id}}"  *ngFor="let item of propertyType" value="{{item.id}}">{{item.typeDescription}}</option>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>

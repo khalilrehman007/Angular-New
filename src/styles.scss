@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import '@angular/material/prebuilt-themes/deeppurple-amber.css';
 @import 'https://fonts.googleapis.com/icon?family=Material+Icons';
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900&display=swap');
+@import url('../src/assets/scss/font-english.scss');
 
 :root {
 	--body-color: #fff;
@@ -69,7 +69,7 @@ $color_2: #595ad4;
 $color_3: #192024;
 $color_4: var(--body-color);
 $color_5: #fff;
-$color_6: rgba(0, 0, 0, 0.2);
+$color_6: #333;
 $color_7: #4A565F;
 $color_8: #000929;
 $color_9: rgba(0, 9, 41, 0.5);
@@ -120,7 +120,7 @@ $color_53: #A8A8A8;
 $color_54: #5A5A5A;
 $color_55: green;
 $color_56: #c1bdbd;
-$font-family_1: 'Cairo', sans-serif;
+$font-family_1: 'Gotham';
 $background-color_1: var(--body-color);
 $background-color_2: transparent;
 $background-color_3: #fff;
@@ -7614,6 +7614,7 @@ li.agent-details__property-list-item {
 		font-size: 36px;
 		font-weight: 700;
 		margin-bottom: 15px;
+		color: #000;
 	}
 
 	h2 {
@@ -11966,4 +11967,10 @@ background: transparent !important;
 }
 .grey-bordered-btn:hover img {
     filter: brightness(0) invert(1);
+}
+.notifivation-inner-cntnt ul li.notification-seen {
+    opacity: 0.5;
+}
+.our-mission-sec {
+    padding-top: 60px;
 }
