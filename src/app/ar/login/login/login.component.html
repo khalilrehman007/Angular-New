@@ -1,0 +1,53 @@
+<app-header2></app-header2>
+<section ngClass="auth-wrapper">
+    <div ngClass="form-design login-page">
+        <form class="auth-form" [formGroup]="Login">
+            <div ngClass="wecome-message">
+                <h2>مرحبا بكم في أوڨالويت</h2>
+                <p>Welcome back! Please enter your details.</p>
+            </div>
+            <div *ngIf="submitted && validate['Email'].errors" class="alert-indicators">
+            </div>
+            <mat-form-field class="full-width input-design" appearance="fill">
+                <mat-label>البريد الألكتروني</mat-label>
+                <input matInput type="email" formControlName="Email" placeholder="البريد الألكتروني" required ngModel>
+
+            </mat-form-field>
+            <div *ngIf="submitted && validate['Email'].errors" class="alert alert-danger">
+                <div *ngIf="validate['Email'].errors['required']">البريد الإلكتروني مطلوب.</div>
+            </div>
+            <div *ngIf="submitted && validate['Password'].errors" class="alert-indicators">
+            </div>
+            <mat-form-field class="full-width input-design padd-b-0" appearance="fill">
+                <mat-label>أدخل كلمة المرور</mat-label>
+                <input matInput [type]="showPassword ? 'text' : 'password'" formControlName="Password" required
+                    placeholder="أدخل كلمة المرور" ngModel>
+                <mat-icon matSuffix (click)="togglePasswordVisibility()">
+                    {{showPassword?'visibility_off':'visibility'}}
+                </mat-icon>
+            </mat-form-field>
+            <div *ngIf="submitted && validate['Password'].errors" class="alert alert-danger">
+                <div *ngIf="validate['Password'].errors['required']">الرقم السري مطلوب</div>
+            </div>
+            <div ngClass="forgot-password text-right">
+                <a routerLink="/forgot">هل نسيت كلمة السر</a>
+            </div>
+            <div ngClass="terms-text">
+                <p>بالضغط على زر متابعة<br>أقبل<a routerLink="/term-condition">البنود و الظروف</a> اوفاليويت.</p>
+            </div>
+            <mat-card-actions (click)="ProceedLogin()">
+                <button mat-raised-button type="submit" ngClass="submit-btn">تسجيل الدخول</button>
+            </mat-card-actions>
+            <div ngClass="or-connect">
+                <p>Or connect with</p>
+            </div>
+            <div class="continue-btns">
+                <button ngClass="google-btn" #loginRef><img src="{{goggle}}"> Continue with Google</button>
+                <button ngClass="apple-btn"><img src="{{apple}}"> Continue with Apple</button>
+            </div>
+            <div ngClass="dont-have-account text-center">
+                <p>ليس لديك حساب؟ <a routerLink="/ar/signup">سجل الان.</a></p>
+            </div>
+        </form>
+    </div>
+</section>

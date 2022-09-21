@@ -103,10 +103,10 @@
                             </li>
                             <li ngClass="nav-item signin-li d-hide">
                                 <div #noListItemTmpl *ngIf="user == null">
-                                    <a ngClass="nav-link" [routerLink]="['/login']"><img src="{{signinsvg}}"></a>
+                                    <a ngClass="nav-link" [routerLink]="['/ar/login']"><img src="{{signinsvg}}"></a>
                                 </div>
                                 <div #noListItemTmpl *ngIf="user !== null">
-                                    <a ngClass="nav-link mat-profile-face" [routerLink]="['/profile']">
+                                    <a ngClass="nav-link mat-profile-face" [routerLink]="['/ar/profile']">
                                         <mat-icon>face</mat-icon>
                                     </a>
                                 </div>
@@ -292,12 +292,12 @@
                             </li>
                             <li ngClass="nav-item signin-li tm-hide">
                                 <div #noListItemTmpl *ngIf="user == null">
-                                    <a ngClass="nav-link" [routerLink]="['/login']"><img src="{{signinsvg}}"> تسجيل
+                                    <a ngClass="nav-link" [routerLink]="['/ar/login']"><img src="{{signinsvg}}"> تسجيل
                                         الدخول
                                     </a>
                                 </div>
                                 <div #noListItemTmpl *ngIf="user !== null">
-                                    <a ngClass="nav-link" [routerLink]="['/profile']">{{user.fullName}} </a>
+                                    <a ngClass="nav-link" [routerLink]="['/ar/profile']">{{user.fullName}} </a>
                                 </div>
                                 <!-- <a ngClass="nav-link" routerLink="/login"><img src="{{signinsvg}}"> Sign in</a> -->
                             </li>
