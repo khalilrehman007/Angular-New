@@ -70,6 +70,11 @@ export class HeaderComponent implements OnInit {
         )
       ).subscribe(data => {
         this.notificationData = data;
+        let temp:any = [];
+        for(let i = this.notificationData.length-1; i >=0; i--) {
+          temp.push(this.notificationData[i]);
+        }
+        this.notificationData = temp;
         this.getNotificationCount();
       });
     }
