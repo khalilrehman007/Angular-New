@@ -43,7 +43,7 @@ export class CityComponent implements OnInit {
     this.service.FindDistricts({ "CityId": this.id, "Locations": [] }).subscribe((result: any) => {
       this.districtData = result.data;
       for (let i = 0; i < this.districtData.length; i++) {
-        this.searchList.push(this.districtData[i].name)
+        this.searchList.push(this.districtData[i].nameAr)
       }
     })
   }

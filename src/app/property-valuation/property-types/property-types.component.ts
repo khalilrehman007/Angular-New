@@ -330,7 +330,9 @@ export class PropertyTypesComponent implements OnInit {
     })
   }
   getData() {
-    this.featuresFormData = $(".features-select").val();
+    if(this.propertyData.hasPropertyFeature && this.featuresData.length > 0) {
+      this.featuresFormData = $(".features-select").val();
+    }
     if (!this.formData.PropertyCategoryId) {
       this.currentField = "property-cateogary-input";
       this.error = "Please Select Property Category";

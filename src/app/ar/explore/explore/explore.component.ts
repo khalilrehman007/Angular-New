@@ -77,11 +77,11 @@ export class ExploreComponent implements OnInit {
       }
     })
     this.selectedCountry = this.selectedCountry[0];
-    console.log(this.selectedCountry);
+    // console.log(this.selectedCountry);
     this.service.FindCities({ "CountryId": e.value, "Locations": [] }).subscribe((result: any) => {
       this.cityData = result.data;
       for (let i = 0; i < this.cityData.length; i++) {
-        this.searchListExplore.push(this.cityData[i].name)
+        this.searchListExplore.push(this.cityData[i].nameAr)
       }
     })
   }
@@ -91,13 +91,13 @@ export class ExploreComponent implements OnInit {
       let temp: any = e;
       if (temp.message == "Country list fetched successfully") {
         for (let country of temp.data) {
-          this.country.push({ viewValue: country.name, value: country.id, desc: country.description });
+          this.country.push({ viewValue: country.nameAr, value: country.id, desc: country.descriptionAr });
         }
         this.selectedCountry = this.country[0];
         this.service.FindCities({ "CountryId": this.country[0].value, "Locations": [] }).subscribe((result: any) => {
           this.cityData = result.data;
           for (let i = 0; i < this.cityData.length; i++) {
-            this.searchListExplore.push(this.cityData[i].name)
+            this.searchListExplore.push(this.cityData[i].nameAr)
           }
         })
       }
