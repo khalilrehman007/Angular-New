@@ -281,7 +281,7 @@
                                     </div>
                                     <div ngClass="notifivation-inner-cntnt" *ngIf="notificationData.length > 0">
                                         <ul ngClass="list-unstyled">
-                                            <li class="position-relative" *ngFor="let item of notificationData" [ngClass]="item.HasSeen? 'notification-seen' : 'notification-unseen'">
+                                            <li class="position-relative" *ngFor="let item of notificationData" [ngClass]="item.value.HasSeen? 'notification-seen' : 'notification-unseen'">
                                                 <h4>{{item.value.Title}}
                                                     <span
                                                         ngClass="notifiction_time">{{getTime(item.value.NotificationDateTime)}}</span>

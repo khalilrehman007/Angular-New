@@ -519,7 +519,7 @@ export class PropertyDocumentsComponent implements OnInit {
     let temp: any = this.reportForm.value.name;
     let charCode: any = e.key.charCodeAt(0)
     if (this.formData.ReportLanguage == 1) {
-      if (charCode >= 65 && charCode <= 90 || charCode >= 97 && charCode <= 122) {
+      if (charCode == 32 || charCode >= 65 && charCode <= 90 || charCode >= 97 && charCode <= 122) {
         this.reportForm.patchValue({
           name: temp.toString() + e.key
         })
