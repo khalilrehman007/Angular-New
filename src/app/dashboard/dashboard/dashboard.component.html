@@ -414,288 +414,6 @@
                         <div class="sub-tab-nav">
                             <mat-tab-group>
                                 <mat-tab label="Searches">
-                                    <div ngClass="list-property-content" *ngIf="activitySavedSearch.length > 0">
-                                        <div ngClass="list-property-body">
-                                            <form>
-                                                <div class="type-activity-status">
-                                                    <div ngClass="block-wrapper mb-4">
-                                                        <div class="checkbox-flex-box-auto button-same-select">
-                                                            <div class="checkbox-design position-relative">
-                                                                <input type="radio" id="Furnished" name="property-types"
-                                                                    value="All" checked>
-                                                                <button class="checkbox-btn">All
-                                                                    {{activitySavedSearch.length}}</button>
-                                                                <div class="recent-search-item hide mt-3"
-                                                                    *ngFor="let data of activitySavedSearch | paginate: { itemsPerPage: 10, currentPage: page, totalItems:totalLength }">
-                                                                    <div class="lable">{{data.searchDate.split("T")[0]}}
-                                                                    </div>
-                                                                    <div ngClass="flex-wrap d-flex">
-                                                                        <div ngClass="flex-auto-items"
-                                                                            *ngIf="data.propertyListingTypeId != null">
-                                                                            <a href="#" class="link"
-                                                                                *ngIf="data.propertyListingType && data.propertyListingType.name">{{data.propertyListingType.name}}<img
-                                                                                    src="{{MoreIcon}}" alt=""></a>
-                                                                        </div>
-                                                                        <div ngClass="flex-auto-items"
-                                                                            *ngIf="data.propertyCategoryId != null">
-                                                                            <a href="#" class="link"
-                                                                                *ngIf="data.propertyCategory && data.propertyCategory.categoryName">{{data.propertyCategory.categoryName}}<img
-                                                                                    src="{{MoreIcon}}" alt=""></a>
-                                                                        </div>
-                                                                        <div ngClass="flex-auto-items"
-                                                                            *ngIf="data.bedrooms != null">
-                                                                            <!-- <a href="#" class="link" *ngIf="data && data.bedrooms" >{{data.bedrooms}}<img
-                                                                    src="{{MoreIcon}}" alt=""></a> -->
-                                                                        </div>
-                                                                        <div ngClass="flex-auto-items"
-                                                                            *ngIf="data.bathrooms != null">
-                                                                            <!-- <a href="#" class="link" *ngIf="data && data.bathroomfs" >{{data.bathrooms}}<img
-                                                                    src="{{MoreIcon}}" alt=""></a> -->
-                                                                        </div>
-                                                                        <div ngClass="flex-auto-items"
-                                                                            *ngIf="data.rentTypeId != null">
-                                                                            <a href="#" class="link"
-                                                                                *ngIf=" data.rentType && data.rentType.name">{{data.rentType.name}}<img
-                                                                                    src="{{MoreIcon}}" alt=""></a>
-                                                                        </div>
-                                                                        <div ngClass="flex-auto-items"
-                                                                            *ngIf="data.countryId != null">
-                                                                            <!-- <a href="#" class="link" *ngIf=" data.countryId && data.countryId.name" >{{data.country.name}}<img
-                                                                    src="{{MoreIcon}}" alt=""></a> -->
-                                                                        </div>
-                                                                        <div ngClass="flex-auto-items"
-                                                                            *ngIf="data.cityId != null">
-                                                                            <!-- <a href="#" class="link" *ngIf=" data.cityId && data.cityId.name" >{{data.city.name}}<img
-                                                                    src="{{MoreIcon}}" alt=""></a> -->
-                                                                        </div>
-                                                                        <div ngClass="flex-auto-items"
-                                                                            *ngIf="data.professionalTypeId != null">
-                                                                            <!-- <a href="#" class="link" *ngIf="data.professionalType && data.professionalType.name" >{{data.professionalType.name}}<img
-                                                                    src="{{MoreIcon}}" alt=""></a> -->
-                                                                        </div>
-                                                                        <div ngClass="flex-auto-items"
-                                                                            *ngIf="data.furnishingTypeId != null">
-                                                                            <!-- <a href="#" class="link" *ngIf="data.furnishingTypeId && data.furnishingTypeId.name" >{{data.furnishingType.name}}<img
-                                                                    src="{{MoreIcon}}" alt=""></a> -->
-                                                                        </div>
-                                                                    </div>
-                                                                    <section class="agent-pagination-wrapper">
-                                                                        <pagination-controls
-                                                                            (pageChange)="page = $event"
-                                                                            class="text-center my-pagination">
-                                                                        </pagination-controls>
-                                                                    </section>
-                                                                </div>
-                                                            </div>
-                                                            <div class="checkbox-design position-relative"
-                                                                *ngIf="activitySavedSearch.length > 0">
-                                                                <input type="radio" id="Unfurnished"
-                                                                    name="property-types" value="Rent">
-                                                                <button class="checkbox-btn">Rent (02)</button>
-                                                                <div class="recent-search-item hide mt-3"
-                                                                    *ngFor="let data of activitySavedSearch | paginate: { itemsPerPage: 10, currentPage: page, totalItems:totalLength }">
-                                                                    <div class="lable">{{data.searchDate.split("T")[0]}}
-                                                                    </div>
-                                                                    <div ngClass="flex-wrap d-flex">
-                                                                        <div ngClass="flex-auto-items"
-                                                                            *ngIf="data.propertyListingTypeId != null">
-                                                                            <a href="#" class="link"
-                                                                                *ngIf="data.propertyListingType && data.propertyListingType.name">{{data.propertyListingType.name}}<img
-                                                                                    src="{{MoreIcon}}" alt=""></a>
-                                                                        </div>
-                                                                        <div ngClass="flex-auto-items"
-                                                                            *ngIf="data.propertyCategoryId != null">
-                                                                            <a href="#" class="link"
-                                                                                *ngIf="data.propertyCategory && data.propertyCategory.categoryName">{{data.propertyCategory.categoryName}}<img
-                                                                                    src="{{MoreIcon}}" alt=""></a>
-                                                                        </div>
-                                                                        <div ngClass="flex-auto-items"
-                                                                            *ngIf="data.bedrooms != null">
-                                                                            <!-- <a href="#" class="link" *ngIf="data && data.bedrooms" >{{data.bedrooms}}<img
-                                                                    src="{{MoreIcon}}" alt=""></a> -->
-                                                                        </div>
-                                                                        <div ngClass="flex-auto-items"
-                                                                            *ngIf="data.bathrooms != null">
-                                                                            <!-- <a href="#" class="link" *ngIf="data && data.bathroomfs" >{{data.bathrooms}}<img
-                                                                    src="{{MoreIcon}}" alt=""></a> -->
-                                                                        </div>
-                                                                        <div ngClass="flex-auto-items"
-                                                                            *ngIf="data.rentTypeId != null">
-                                                                            <a href="#" class="link"
-                                                                                *ngIf=" data.rentType && data.rentType.name">{{data.rentType.name}}<img
-                                                                                    src="{{MoreIcon}}" alt=""></a>
-                                                                        </div>
-                                                                        <div ngClass="flex-auto-items"
-                                                                            *ngIf="data.countryId != null">
-                                                                            <!-- <a href="#" class="link" *ngIf=" data.countryId && data.countryId.name" >{{data.country.name}}<img
-                                                                    src="{{MoreIcon}}" alt=""></a> -->
-                                                                        </div>
-                                                                        <div ngClass="flex-auto-items"
-                                                                            *ngIf="data.cityId != null">
-                                                                            <!-- <a href="#" class="link" *ngIf=" data.cityId && data.cityId.name" >{{data.city.name}}<img
-                                                                    src="{{MoreIcon}}" alt=""></a> -->
-                                                                        </div>
-                                                                        <div ngClass="flex-auto-items"
-                                                                            *ngIf="data.professionalTypeId != null">
-                                                                            <!-- <a href="#" class="link" *ngIf="data.professionalType && data.professionalType.name" >{{data.professionalType.name}}<img
-                                                                    src="{{MoreIcon}}" alt=""></a> -->
-                                                                        </div>
-                                                                        <div ngClass="flex-auto-items"
-                                                                            *ngIf="data.furnishingTypeId != null">
-                                                                            <!-- <a href="#" class="link" *ngIf="data.furnishingTypeId && data.furnishingTypeId.name" >{{data.furnishingType.name}}<img
-                                                                    src="{{MoreIcon}}" alt=""></a> -->
-                                                                        </div>
-                                                                    </div>
-                                                                    <section class="agent-pagination-wrapper">
-                                                                        <pagination-controls
-                                                                            (pageChange)="page = $event"
-                                                                            class="text-center my-pagination">
-                                                                        </pagination-controls>
-                                                                    </section>
-                                                                </div>
-                                                            </div>
-                                                            <div class="checkbox-design position-relative">
-                                                                <input type="radio" id="Semi-Furnished"
-                                                                    name="property-types" value="Buy">
-                                                                <button class="checkbox-btn">Buy (01)</button>
-                                                                <div class="recent-search-item hide mt-3"
-                                                                    *ngFor="let data of activitySavedSearch | paginate: { itemsPerPage: 10, currentPage: page, totalItems:totalLength }">
-                                                                    <div class="lable">{{data.searchDate.split("T")[0]}}
-                                                                    </div>
-                                                                    <div ngClass="flex-wrap d-flex">
-                                                                        <div ngClass="flex-auto-items"
-                                                                            *ngIf="data.propertyListingTypeId != null">
-                                                                            <a href="#" class="link"
-                                                                                *ngIf="data.propertyListingType && data.propertyListingType.name">{{data.propertyListingType.name}}<img
-                                                                                    src="{{MoreIcon}}" alt=""></a>
-                                                                        </div>
-                                                                        <div ngClass="flex-auto-items"
-                                                                            *ngIf="data.propertyCategoryId != null">
-                                                                            <a href="#" class="link"
-                                                                                *ngIf="data.propertyCategory && data.propertyCategory.categoryName">{{data.propertyCategory.categoryName}}<img
-                                                                                    src="{{MoreIcon}}" alt=""></a>
-                                                                        </div>
-                                                                        <div ngClass="flex-auto-items"
-                                                                            *ngIf="data.bedrooms != null">
-                                                                            <!-- <a href="#" class="link" *ngIf="data && data.bedrooms" >{{data.bedrooms}}<img
-                                                                    src="{{MoreIcon}}" alt=""></a> -->
-                                                                        </div>
-                                                                        <div ngClass="flex-auto-items"
-                                                                            *ngIf="data.bathrooms != null">
-                                                                            <!-- <a href="#" class="link" *ngIf="data && data.bathroomfs" >{{data.bathrooms}}<img
-                                                                    src="{{MoreIcon}}" alt=""></a> -->
-                                                                        </div>
-                                                                        <div ngClass="flex-auto-items"
-                                                                            *ngIf="data.rentTypeId != null">
-                                                                            <a href="#" class="link"
-                                                                                *ngIf=" data.rentType && data.rentType.name">{{data.rentType.name}}<img
-                                                                                    src="{{MoreIcon}}" alt=""></a>
-                                                                        </div>
-                                                                        <div ngClass="flex-auto-items"
-                                                                            *ngIf="data.countryId != null">
-                                                                            <!-- <a href="#" class="link" *ngIf=" data.countryId && data.countryId.name" >{{data.country.name}}<img
-                                                                    src="{{MoreIcon}}" alt=""></a> -->
-                                                                        </div>
-                                                                        <div ngClass="flex-auto-items"
-                                                                            *ngIf="data.cityId != null">
-                                                                            <!-- <a href="#" class="link" *ngIf=" data.cityId && data.cityId.name" >{{data.city.name}}<img
-                                                                    src="{{MoreIcon}}" alt=""></a> -->
-                                                                        </div>
-                                                                        <div ngClass="flex-auto-items"
-                                                                            *ngIf="data.professionalTypeId != null">
-                                                                            <!-- <a href="#" class="link" *ngIf="data.professionalType && data.professionalType.name" >{{data.professionalType.name}}<img
-                                                                    src="{{MoreIcon}}" alt=""></a> -->
-                                                                        </div>
-                                                                        <div ngClass="flex-auto-items"
-                                                                            *ngIf="data.furnishingTypeId != null">
-                                                                            <!-- <a href="#" class="link" *ngIf="data.furnishingTypeId && data.furnishingTypeId.name" >{{data.furnishingType.name}}<img
-                                                                    src="{{MoreIcon}}" alt=""></a> -->
-                                                                        </div>
-                                                                    </div>
-                                                                    <section class="agent-pagination-wrapper">
-                                                                        <pagination-controls
-                                                                            (pageChange)="page = $event"
-                                                                            class="text-center my-pagination">
-                                                                        </pagination-controls>
-                                                                    </section>
-                                                                </div>
-                                                            </div>
-                                                            <div class="checkbox-design position-relative">
-                                                                <input type="radio" id="Unfurnished"
-                                                                    name="property-types" value="Agents">
-                                                                <button class="checkbox-btn">Agents (02)</button>
-                                                                <div class="recent-search-item hide mt-3"
-                                                                    *ngFor="let data of activitySavedSearch | paginate: { itemsPerPage: 10, currentPage: page, totalItems:totalLength }">
-                                                                    <div class="lable">{{data.searchDate.split("T")[0]}}
-                                                                    </div>
-                                                                    <div ngClass="flex-wrap d-flex">
-                                                                        <div ngClass="flex-auto-items"
-                                                                            *ngIf="data.propertyListingTypeId != null">
-                                                                            <a href="#" class="link"
-                                                                                *ngIf="data.propertyListingType && data.propertyListingType.name">{{data.propertyListingType.name}}<img
-                                                                                    src="{{MoreIcon}}" alt=""></a>
-                                                                        </div>
-                                                                        <div ngClass="flex-auto-items"
-                                                                            *ngIf="data.propertyCategoryId != null">
-                                                                            <a href="#" class="link"
-                                                                                *ngIf="data.propertyCategory && data.propertyCategory.categoryName">{{data.propertyCategory.categoryName}}<img
-                                                                                    src="{{MoreIcon}}" alt=""></a>
-                                                                        </div>
-                                                                        <div ngClass="flex-auto-items"
-                                                                            *ngIf="data.bedrooms != null">
-                                                                            <!-- <a href="#" class="link" *ngIf="data && data.bedrooms" >{{data.bedrooms}}<img
-                                                                    src="{{MoreIcon}}" alt=""></a> -->
-                                                                        </div>
-                                                                        <div ngClass="flex-auto-items"
-                                                                            *ngIf="data.bathrooms != null">
-                                                                            <!-- <a href="#" class="link" *ngIf="data && data.bathroomfs" >{{data.bathrooms}}<img
-                                                                    src="{{MoreIcon}}" alt=""></a> -->
-                                                                        </div>
-                                                                        <div ngClass="flex-auto-items"
-                                                                            *ngIf="data.rentTypeId != null">
-                                                                            <a href="#" class="link"
-                                                                                *ngIf=" data.rentType && data.rentType.name">{{data.rentType.name}}<img
-                                                                                    src="{{MoreIcon}}" alt=""></a>
-                                                                        </div>
-                                                                        <div ngClass="flex-auto-items"
-                                                                            *ngIf="data.countryId != null">
-                                                                            <!-- <a href="#" class="link" *ngIf=" data.countryId && data.countryId.name" >{{data.country.name}}<img
-                                                                    src="{{MoreIcon}}" alt=""></a> -->
-                                                                        </div>
-                                                                        <div ngClass="flex-auto-items"
-                                                                            *ngIf="data.cityId != null">
-                                                                            <!-- <a href="#" class="link" *ngIf=" data.cityId && data.cityId.name" >{{data.city.name}}<img
-                                                                    src="{{MoreIcon}}" alt=""></a> -->
-                                                                        </div>
-                                                                        <div ngClass="flex-auto-items"
-                                                                            *ngIf="data.professionalTypeId != null">
-                                                                            <!-- <a href="#" class="link" *ngIf="data.professionalType && data.professionalType.name" >{{data.professionalType.name}}<img
-                                                                    src="{{MoreIcon}}" alt=""></a> -->
-                                                                        </div>
-                                                                        <div ngClass="flex-auto-items"
-                                                                            *ngIf="data.furnishingTypeId != null">
-                                                                            <!-- <a href="#" class="link" *ngIf="data.furnishingTypeId && data.furnishingTypeId.name" >{{data.furnishingType.name}}<img
-                                                                    src="{{MoreIcon}}" alt=""></a> -->
-                                                                        </div>
-                                                                    </div>
-                                                                    <section class="agent-pagination-wrapper">
-                                                                        <pagination-controls
-                                                                            (pageChange)="page = $event"
-                                                                            class="text-center my-pagination">
-                                                                        </pagination-controls>
-                                                                    </section>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-
-                                            </form>
-                                        </div>
-                                    </div>
-                                </mat-tab>
-                                <mat-tab label="Views">
                                     <div class="type-activity-status">
                                         <div ngClass="block-wrapper mb-4">
                                             <div class="checkbox-flex-box-auto button-same-select">
@@ -726,7 +444,6 @@
                                             </div>
                                         </div>
                                     </div>
-
                                     <div class="agent-details__tabs">
                                         <div class="row">
                                             <div class="col-lg-9 col-md-10">
@@ -808,9 +525,187 @@
                                             </pagination-controls>
                                         </section>
                                     </div>
+                                    <section class="agent-landing-featured">
 
-
-
+                                        <div class="row">
+                                            <div class="col-lg-9 col-md-10">
+                                                <div class="row">
+                                                    <div class="col-lg-6" *ngFor="let agentView of myActivityAgentView">
+                                                        <div class="agent-landing-featured__agent">
+                                                            <div class="agent-landing-featured__property-wrapper">
+                                                                <img src="assets/images/tag/featured.png" alt=""
+                                                                    class="agent-landing-featured__property-tag">
+                                                                <div class="row">
+                                                                    <div class="col-5 d-flex align-items-center">
+                                                                        <img src="{{agentView.img}}" alt=""
+                                                                            class="img-fluid agent-landing-featured__property-img">
+                                                                    </div>
+                                                                    <div class="col-7">
+                                                                        <div
+                                                                            class="agent-landing-featured__agent-right-panel">
+                                                                            <h6 class="agent-landing-featured__property-heading"
+                                                                                routerLink="/agent-details/1">
+                                                                                {{agentView.company}}</h6>
+                                                                            <p
+                                                                                class="agent-landing-featured__property-text">
+                                                                                {{agentView.aboutCompany}}
+                                                                            </p>
+                                                                            <a class="agent-landing-featured__property-link"
+                                                                                routerLink=#>View Map</a>
+                                                                            <p
+                                                                                class="agent-landing-featured__property-text">
+                                                                                RERA# {{agentView.reraNo}}</p>
+                                                                            <p
+                                                                                class="agent-landing-featured__property-text">
+                                                                                Permit# {{agentView.premitNo}}
+                                                                            </p>
+                                                                            <ul
+                                                                                class="agent-landing-featured__property-details-list">
+                                                                                <li
+                                                                                    class="agent-landing-featured__property-details-list-item">
+                                                                                    <p
+                                                                                        class="agent-landing-featured__property-details-list-text">
+                                                                                        {{agentView.salePropertyListingCount}}<br>Sale
+                                                                                    </p>
+                                                                                </li>
+                                                                                <li
+                                                                                    class="agent-landing-featured__property-details-list-item">
+                                                                                    <p
+                                                                                        class="agent-landing-featured__property-details-list-text">
+                                                                                        {{agentView.rentPropertyListingCount}}<br>Rents
+                                                                                    </p>
+                                                                                </li>
+                                                                                <li
+                                                                                    class="agent-landing-featured__property-details-list-item">
+                                                                                    <p
+                                                                                        class="agent-landing-featured__property-details-list-text">
+                                                                                        {{agentView.commercialPropertyListingCount}}<br>Commercial
+                                                                                    </p>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </mat-tab>
+                                <mat-tab label="Views">
+                                    <div class="type-activity-status">
+                                        <div ngClass="block-wrapper mb-4">
+                                            <div class="checkbox-flex-box-auto button-same-select">
+                                                <div (click)="myActivityViewChange('')"
+                                                    class="checkbox-design position-relative">
+                                                    <input type="radio" id="Furnished" name="property-types" value="All"
+                                                        checked>
+                                                    <button class="checkbox-btn">All ({{viewAllCount}})</button>
+                                                </div>
+                                                <div (click)="myActivityViewChange('1')"
+                                                    class="checkbox-design position-relative">
+                                                    <input type="radio" id="Unfurnished" name="property-types"
+                                                        value="Rent">
+                                                    <button class="checkbox-btn">Rent ({{viewRentCount}})</button>
+                                                </div>
+                                                <div (click)="myActivityViewChange('2')"
+                                                    class="checkbox-design position-relative">
+                                                    <input type="radio" id="Semi-Furnished" name="property-types"
+                                                        value="Buy">
+                                                    <button class="checkbox-btn">Buy ({{viewBuyCount}})</button>
+                                                </div>
+                                                <div (click)="myActivityViewChange(userId)"
+                                                    class="checkbox-design position-relative">
+                                                    <input type="radio" id="Unfurnished" name="property-types"
+                                                        value="Agents">
+                                                    <button class="checkbox-btn">Agents ({{viewAgentCount}})</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="agent-details__tabs">
+                                        <div class="row">
+                                            <div class="col-lg-9 col-md-10">
+                                                <ul class="agent-details__property-list">
+                                                    <li class="agent-details__property-list-item"
+                                                        *ngFor=" let viewList of activityViewData | paginate: { itemsPerPage: 10, currentPage: page, totalItems:activityViewData.length }">
+                                                        <div class="row">
+                                                            <div class="col-lg-2">
+                                                                <img *ngIf="viewList.documents.length > 0" src="https://beta.ovaluate.com/{{viewList.documents[0].fileUrl}}" alt=""
+                                                                    class="img-fluid agent-details__property-list-item-img">
+                                                                <img *ngIf="viewList.documents.length == 0" src="assets/images/placeholder.png" alt=""
+                                                                    class="img-fluid agent-details__property-list-item-img">
+                                                            </div>
+                                                            <div class="col-lg-10">
+                                                                <div class="row">
+                                                                    <div class="col-7">
+                                                                        <a routerLink="/property/detail" [queryParams]="{id: viewList.id}" class="agent-details__property-list-item-link cursor-pointer">{{viewList.propertyPrice}}
+                                                                            {{viewList.country.currency}}
+                                                                            <span *ngIf="viewList.rentType">/{{viewList.rentType.name}}</span>
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="col-5 text-end">
+                                                                        <h4 class="sub-bold-text">{{viewList.propertyTitle}}</h4>
+                                                                        <p class="agent-details__property-list-item-date">Listed on: <span class="value_span">{{viewList.requestedDateFormat}}</span></p>
+                                                                        <p class="agent-details__property-list-item-date">Shortlisted By: <span class="value_span">{{viewList.numberOfUsershortListedProperty}} Persons</span></p>
+                                                                        <p class="agent-details__property-list-item-date">Viewed By: <span class="value_span">{{viewList.numberOfUserSeeingProperty}} Persons</span></p>
+                                                                    </div>
+                                                                </div>
+                                                                <h6>{{viewList.buildingName}}</h6>
+                                                                <p class="agent-details__property-list-item-text">
+                                                                    <img src="assets/images/home-location.svg" alt=""
+                                                                        class="img-fluid agent-details__property-list-item-text-icon">
+                                                                    {{viewList.propertyAddress}}
+                                                                </p>
+                                                                <p class="agent-details__property-list-item-type">
+                                                                    {{viewList.propertyType.typeDescription}}</p>
+                                                                <div class="row">
+                                                                    <div class="col-md-10">
+                                                                        <ul class="agent-details__property-detail-list">
+                                                                            <li
+                                                                                class="agent-details__property-detail-list-item">
+                                                                                <img src="assets/images/icons/Bed.svg"
+                                                                                    alt="">
+                                                                                {{viewList.bedrooms}} Beds
+                                                                            </li>
+                                                                            <li
+                                                                                class="agent-details__property-detail-list-item">
+                                                                                <img src="assets/images/icons/Bed.svg"
+                                                                                    alt="">
+                                                                                {{viewList.bathrooms}} Bath
+                                                                            </li>
+                                                                            <li
+                                                                                class="agent-details__property-detail-list-item">
+                                                                                <img src="assets/images/icons/Bed.svg"
+                                                                                    alt="">
+                                                                                {{viewList.carpetArea}} Sq.Ft.
+                                                                            </li>
+                                                                            <li
+                                                                                class="agent-details__property-detail-list-item">
+                                                                                <img src="assets/images/icons/Bed.svg"
+                                                                                    alt="">
+                                                                                {{viewList.furnishingType}}
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                    <div class="col-md-2">
+                                                                        <img src="assets/images/better-home.svg" alt="">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <section class="agent-pagination-wrapper">
+                                            <pagination-controls (pageChange)="pageChanged($event)"
+                                                class="text-center my-pagination">
+                                            </pagination-controls>
+                                        </section>
+                                    </div>
                                     <section class="agent-landing-featured">
 
                                         <div class="row">
@@ -3682,7 +3577,6 @@
 
 
                                     <section class="agent-landing-featured">
-
                                         <div class="row">
                                             <div class="col-lg-9 col-md-10">
                                                 <div class="row">
