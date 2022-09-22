@@ -8,7 +8,7 @@
                 </button>
             </li>
             <li ngClass={{side.class}} *ngFor="let side of sidebar">
-                <a routerLink="/{{side.link}}">
+                <a routerLink="/ar/{{side.link}}">
                     <img src={{side.src}} ngClass="icon" alt="">
                     <span ngClass="side-nav-text">{{side.text}}</span>
                 </a>
@@ -76,7 +76,7 @@
                                             <mat-tab label="All ({{allCount}})">
                                                 <div ngClass="shortlisted-inner-details">
                                                     <div ngClass="compare-btn-design">
-                                                        <a routerLink="/PropertyCompare"
+                                                        <a routerLink="//arPropertyCompare"
                                                             ngClass="compare-btn">قارن</a>
                                                     </div>
                                                 </div>
@@ -84,7 +84,7 @@
                                             <mat-tab label="Buy ({{buyCount}})">
                                                 <div ngClass="shortlisted-inner-details">
                                                     <div ngClass="compare-btn-design">
-                                                        <a routerLink="/PropertyCompare"
+                                                        <a routerLink="/ar/PropertyCompare"
                                                             ngClass="compare-btn">قارن</a>
                                                     </div>
                                                 </div>
@@ -92,7 +92,7 @@
                                             <mat-tab label="Rent ({{rentCount}})">
                                                 <div ngClass="shortlisted-inner-details">
                                                     <div ngClass="compare-btn-design">
-                                                        <a routerLink="/PropertyCompare"
+                                                        <a routerLink="/ar/PropertyCompare"
                                                             ngClass="compare-btn">قارن</a>
                                                     </div>
                                                 </div>
@@ -323,31 +323,31 @@
                         <ul ngClass="navbar-nav">
                             <li ngClass="nav-item link-li" (click)="checkActiveTab('buy')">
                                 <a [ngClass]="activeTabBuy ? 'nav-active' : 'nav-link'"
-                                    [routerLink]="['/property/search']"
+                                    [routerLink]="['/ar/property/search']"
                                     [queryParams]="{type:'Buy',PropertyListingTypeId: 2}">
                                     شراء
                                 </a>
                             </li>
                             <li ngClass="nav-item link-li" (click)="checkActiveTab('rent')">
                                 <a [ngClass]="activeTabRent ? 'nav-active' : 'nav-link'"
-                                    [routerLink]="['/property/search']"
+                                    [routerLink]="['/ar/property/search']"
                                     [queryParams]="{type:'Rent',PropertyListingTypeId: 1}">
                                     إيجار
                                 </a>
                             </li>
                             <li ngClass="nav-item link-li" (click)="checkActiveTab('blog')">
-                                <a [ngClass]="activeTabBlog ? 'nav-active' : 'nav-link'" routerLink="/blog">
+                                <a [ngClass]="activeTabBlog ? 'nav-active' : 'nav-link'" routerLink="/ar/blog">
                                     المدونة
                                 </a>
                             </li>
                             <li ngClass="nav-item link-li" (click)="checkActiveTab('areas')">
-                                <a [ngClass]="activeTabArea ? 'nav-active' : 'nav-link'" routerLink="/explore">
+                                <a [ngClass]="activeTabArea ? 'nav-active' : 'nav-link'" routerLink="/ar/explore">
                                     المناطق
                                 </a>
                             </li>
                             <li ngClass="nav-item link-li" (click)="checkActiveTab('areas')">
                                 <a [ngClass]="activeShortterm ? 'nav-active' : 'nav-link'"
-                                    routerLink="/property/short-term-rent">
+                                    routerLink="/ar/property/short-term-rent">
                                     إيجار قصير الأجل
                                 </a>
                             </li>
@@ -392,22 +392,22 @@
                                 </div>
                             </li>
                             <li ngClass="nav-item classified">
-                                <a ngClass="nav-link blue-bordered-btn" [routerLink]="['/classified']">
+                                <a ngClass="nav-link blue-bordered-btn" [routerLink]="['/ar/classified']">
                                     مبوب <mat-icon>home</mat-icon>
                                 </a>
                             </li>
                             <li ngClass="nav-item sell-or-rent-property">
-                                <a ngClass="nav-link blue-bordered-btn" [routerLink]="['/sellrent']">
+                                <a ngClass="nav-link blue-bordered-btn" [routerLink]="['/ar/sellrent']">
                                     بيع/إيجار العقارات <mat-icon>verified_user</mat-icon>
                                 </a>
                             </li>
                             <li ngClass="nav-item">
-                                <a ngClass="nav-link blue-bordered-btn red-fill-btn" routerLink="/valuation">
+                                <a ngClass="nav-link blue-bordered-btn red-fill-btn" routerLink="/ar/valuation">
                                     AI <span ngClass="ai-tag">AI</span>
                                 </a>
                             </li>
                             <li ngClass="nav-item">
-                                <a ngClass="nav-link blue-bordered-btn blue-fill-btn" routerLink="/dashboard-reports">
+                                <a ngClass="nav-link blue-bordered-btn blue-fill-btn" routerLink="/ar/dashboard-reports">
                                     <!-- <a ngClass="nav-link blue-bordered-btn"
                                     href="https://dx1.in/data-Intelligence/dashboard/"> -->
                                     <span ngClass="ai-tag">AI</span> ذكاء البيانات <span ngClass="icon-di"><img

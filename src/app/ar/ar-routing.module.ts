@@ -9,6 +9,7 @@ const routes: Routes = [
   {path:"blog", loadChildren:()=>import('./blog/blog.module').then(module => module.BlogModule)},
   {path:"explore", loadChildren:()=>import('./explore/explore.module').then(module => module.ExploreModule)},
   {path:"property", loadChildren:()=>import('./property/property.module').then(module => module.PropertyModule)},
+  {path:"sellrent", loadChildren:()=>import('./sell/sell.module').then(module => module.SellModule)},
 ];
 
 @NgModule({
