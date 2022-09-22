@@ -6,8 +6,7 @@ const routes: Routes = [
   {path:"login", loadChildren:()=>import('./login/login.module').then(module => module.LoginModule)},
   {path:"blog", loadChildren:()=>import('./blog/blog.module').then(module => module.BlogModule)},
   {path:"explore", loadChildren:()=>import('./explore/explore.module').then(module => module.ExploreModule)},
-
-
+  {path:"property", loadChildren:()=>import('./property/property.module').then(module => module.PropertyModule)},
 ];
 
 @NgModule({
