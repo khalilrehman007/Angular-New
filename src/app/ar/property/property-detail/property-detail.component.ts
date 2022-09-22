@@ -173,7 +173,7 @@ export class PropertyDetailComponent implements OnInit {
   map: any;
   bounds: any = [];
   id: number = 1;
-  propertyData:any = "";
+  propertyData: any = "";
   userData: any = "";
   scroll(el: HTMLElement) {
     el.scrollIntoView();
@@ -437,9 +437,9 @@ export class PropertyDetailComponent implements OnInit {
         //gallery images
         for (let i = 0; i < this.propertyDetailData.documents.length; i++) {
           this.galleryImages.push({
-            small: this.baseUrl + this.propertyDetailData.documents[i].fileUrl.replaceAll("\\","/"),
-            medium: this.baseUrl + this.propertyDetailData.documents[i].fileUrl.replaceAll("\\","/"),
-            big: this.baseUrl + this.propertyDetailData.documents[i].fileUrl.replaceAll("\\","/")
+            small: this.baseUrl + this.propertyDetailData.documents[i].fileUrl.replaceAll("\\", "/"),
+            medium: this.baseUrl + this.propertyDetailData.documents[i].fileUrl.replaceAll("\\", "/"),
+            big: this.baseUrl + this.propertyDetailData.documents[i].fileUrl.replaceAll("\\", "/")
           });
         }
 
@@ -515,12 +515,12 @@ export class PropertyDetailComponent implements OnInit {
         value: this.propertyDetailData.requestedDateFormat,
       },
       {
-        label: 'Building Type',
-        value: this.propertyDetailData.buildingType,
+        label: 'نوع البناية',
+        value: this.propertyData.propertyCategory.categoryNameAr,
       },
       {
-        label: 'Property Type',
-        value: this.propertyDetailData.propertyType,
+        label: 'نوع الملكية',
+        value: this.propertyData.propertyType.typeDescriptionAr,
       },
       {
         label: 'Tower No. / Building Name',
@@ -531,7 +531,7 @@ export class PropertyDetailComponent implements OnInit {
         value: this.propertyDetailData.totalFloor,
       },
       {
-        label: 'Floor No.',
+        label: 'رقم الطابق',
         value: this.propertyDetailData.floorNo,
       },
       {
@@ -539,36 +539,36 @@ export class PropertyDetailComponent implements OnInit {
         value: this.propertyDetailData.unitNo,
       },
       {
-        label: 'Bedroom',
+        label: 'غرفة نوم',
         value: this.propertyDetailData.bedrooms,
       },
       {
-        label: 'Bathroom',
+        label: 'دوره المياه',
         value: this.propertyDetailData.bathrooms,
       },
       {
-        label: 'Furnishing Type',
+        label: 'نوع التأثيث',
         value: this.propertyDetailData.furnishingType,
       },
       {
-        label: 'Fitting Type',
+        label: 'نوع المناسب',
         value: this.propertyDetailData.fittingType,
       },
       {
-        label: 'Preferred Tenant Type',
-        value: this.propertyDetailData.tenantType,
+        label: 'نوع المستأجر المفضل',
+        value: this.propertyData.tenantType.nameAr,
       },
       {
-        label: 'Preferred Gender Type',
+        label: 'نوع الجنس المفضل',
         value: this.propertyDetailData.gender,
       },
       {
-        label: 'Available Parking',
+        label: 'المواقف المتاحة',
         value: this.propertyDetailData.parkings,
       },
       {
-        label: 'Pet Policy',
-        value: 'empty',
+        label: 'سياسة الحيوانات الأليفة',
+        value: "-",
       },
       {
         label: 'Carpet Area',
@@ -580,41 +580,50 @@ export class PropertyDetailComponent implements OnInit {
       },
       {
         label: 'Current Occupancy Status',
-        value: this.propertyDetailData.occupancyStatus,
+        value: this.propertyData.occupancyStatus.nameAr,
       },
       {
-        label: 'Property Managed by',
-        value: this.propertyDetailData.propertyManage,
+        label: 'الملكية تدار من قبل',
+        value: this.propertyData.propertyManage.nameAr,
       },
       {
-        label: 'Price',
-        value: this.propertyDetailData.propertyPrice + ' ' + this.propertyDetailData.currency,
+        label: 'سعر',
+        value: this.propertyDetailData.propertyPrice + ' ' + this.propertyData.country.currencyAr,
       },
       {
-        label: 'Rent Type',
-        value: this.propertyDetailData.propertyPrice + ' ' + this.propertyDetailData.currency,
+        label: 'نوع الإيجار',
+        value: this.propertyDetailData.propertyPrice + ' ' + this.propertyData.country.currencyAr,
       },
       {
         label: 'Security Deposit',
-        value: this.propertyDetailData.securityDepositPrice + ' ' + this.propertyDetailData.currency,
+        value: this.propertyDetailData.securityDepositPrice + ' ' + this.propertyData.country.currencyAr,
       },
       {
         label: 'Brokerage Deposit',
-        value: this.propertyDetailData.brokerageChargePrice + ' ' + this.propertyDetailData.currency,
+        value: this.propertyDetailData.brokerageChargePrice + ' ' + this.propertyData.country.currencyAr,
       },
       {
-        label: 'Available From',
-        value: this.propertyDetailData.availableDate,
+        label: 'متاح من',
+        value: this.propertyDetailData.availableDate.split("T")[0],
       },
       {
-        label: 'Notice Period',
+        label: 'فترة إشعار',
         value: this.propertyDetailData.noticePeriod,
       },
       {
-        label: 'Locking Period',
+        label: 'فترة القفل',
         value: this.propertyDetailData.lockingPeriod,
       },
     ]
+    if (this.propertyData.petPolicies.length == 0) {
+      this.propertyinfo[15].value = "-";
+    } else {
+      let temp: any = "";
+      for (let i = 0; i < this.propertyData.petPolicies.length; i++) {
+        temp += "-";
+      }
+      this.propertyinfo[15].value = "-";
+    }
 
   }
   loadChat() {
