@@ -1,1 +1,49 @@
-<p>otp works!</p>
+<app-header2></app-header2>
+<section ngClass="auth-wrapper">
+    <div ngClass="form-design otp-page">
+        <form class="auth-form">
+            <div ngClass="wecome-message">
+                <h2>مرحبا بكم في اوفاليويت</h2>
+                <p>Welcome back! Please enter your details.</p>
+            </div>
+            <div ngClass="otp-info-sec text-center">
+                <p ngClass="otp-Txt">Enter OTP Sent to you at</p>
+                <h6 ngClass="otp-number">{{verificationData.PhoneNumber}}</h6>
+            </div>
+            <div ngClass="d-flex justify-content-spacebw otp-form-sec">
+                <mat-form-field class="full-width input-design" appearance="fill">
+                    <input id="input1" matInput type="text" maxlength="1" placeholder="8"
+                        (keyup)="keytab('input1', 'input1', 'input2', $event)" cdkFocusInitial>
+                </mat-form-field>
+                <mat-form-field class="full-width input-design" appearance="fill">
+                    <input id="input2" matInput type="text" maxlength="1" placeholder="8"
+                        (keyup)="keytab('input1', 'input2', 'input3', $event)">
+                </mat-form-field>
+                <mat-form-field class="full-width input-design" appearance="fill">
+                    <input id="input3" matInput type="text" maxlength="1" placeholder="8"
+                        (keyup)="keytab('input2', 'input3', 'input4', $event)">
+                </mat-form-field>
+                <mat-form-field class="full-width input-design" appearance="fill">
+                    <input id="input4" matInput type="text" maxlength="1" placeholder="8"
+                        (keyup)="keytab('input3', 'input4', 'input5', $event)">
+                </mat-form-field>
+                <mat-form-field class="full-width input-design" appearance="fill">
+                    <input id="input5" matInput type="text" maxlength="1" placeholder="8"
+                        (keyup)="keytab('input4', 'input5', 'input6', $event)">
+                </mat-form-field>
+                <mat-form-field class="full-width input-design" appearance="fill">
+                    <input id="input6" matInput type="text" maxlength="1" placeholder="8"
+                        (keyup)="keytab('input5', 'input6', 'input6', $event)">
+                </mat-form-field>
+            </div>
+            <div ngClass="d-flex justify-content-spacebw otp-form-time">
+                <p ngClass="time"><span>{{minutes}}</span>m <span>{{seconds}}</span>s</p>
+                <button ngClass="resend-code" [disabled]="resendDisable" (click)="resendCode()">أعد إرسال الرمز</button>
+            </div>
+            <mat-card-actions>
+                <button mat-raised-button type="submit" ngClass="submit-btn" (click)="verifyCode()">Verify</button>
+            </mat-card-actions>
+        </form>
+    </div>
+</section>
+<app-erroralert [error]="error" (errorResponse)="errorResponse($event)" *ngIf="showError"></app-erroralert>
