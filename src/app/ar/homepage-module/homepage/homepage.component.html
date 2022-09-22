@@ -61,24 +61,24 @@
     <section ngClass="home-slider-mainsec">
         <div ngClass="property-valuation-sec">
             <div [ngClass]="'container_1220px'">
-                        <div ngClass="home-slider-sec">
-                            <ngb-carousel [showNavigationArrows]="false">
-                                <ng-template ngbSlide *ngFor="let event of homebanners">
-                                    {{event.id}}
-                                    <div ngClass="home-slider_img">
-                                        <img [src]="event.img" alt="Random slide">
-                                    </div>
-                                    <div ngClass="home-slider_cntnt">
-                                        <h2>{{event.title}}</h2>
-                                        <p>{{event.desc}}</p>
-                                        <a routerLink="/valuation/property-detail">Start Valuation</a>
-                                    </div>
-                                </ng-template>
-                            </ngb-carousel>
-                        </div>
+                <div ngClass="home-slider-sec">
+                    <ngb-carousel [showNavigationArrows]="false">
+                        <ng-template ngbSlide *ngFor="let event of homebanners">
+                            {{event.id}}
+                            <div ngClass="home-slider_img">
+                                <img [src]="event.img" alt="Random slide">
+                            </div>
+                            <div ngClass="home-slider_cntnt">
+                                <h2>{{event.title}}</h2>
+                                <p>{{event.desc}}</p>
+                                <a routerLink="/valuation/property-detail">ابدأ التقييم</a>
+                            </div>
+                        </ng-template>
+                    </ngb-carousel>
+                </div>
             </div>
         </div>
-</section>
+    </section>
     <section ngClass="wrapper-section properties-slider residentials-property-rent-1">
         <div ngClass="container_1220px">
             <div ngClass="section-title">
@@ -405,7 +405,8 @@
                                 <div ngClass="col-md-6 property-listing-slider-left">
                                     <h2>{{item.titleAr}} section is null in api</h2>
                                     <ul>
-                                        <li *ngFor="let list of item.ovaluateOfferingDetails">{{list.descriptionAr}} section is null in api </li>
+                                        <li *ngFor="let list of item.ovaluateOfferingDetails">{{list.descriptionAr}}
+                                            section is null in api </li>
                                     </ul>
                                     <div ngClass="listing-btn">
                                         <a [routerLink]="['/add-property/listingproperty']"
@@ -491,7 +492,8 @@
                     </h2>
                 </div>
                 <div ngClass="section-custom-title-right wd-30">
-                    <p>سواء كان الأمر يتعلق ببيع منزلك الحالي أو الحصول على تمويل أو شراء منزل جديد ، فإننا نجعل الأمر سهلاً وفعالاً. أفضل جزء؟ ستوفر الكثير من المال والوقت مع خدماتنا.</p>
+                    <p>سواء كان الأمر يتعلق ببيع منزلك الحالي أو الحصول على تمويل أو شراء منزل جديد ، فإننا نجعل الأمر
+                        سهلاً وفعالاً. أفضل جزء؟ ستوفر الكثير من المال والوقت مع خدماتنا.</p>
                 </div>
             </div>
         </div>
@@ -578,7 +580,8 @@
                             <h2>
                                 ماذا يقول العميل <br /> حول <span>البيضاوي</span>
                             </h2>
-                            <p>.سواء كان الأمر يتعلق ببيع منزلك الحالي أو الحصول على تمويل أو شراء منزل جديد ، فإننا نجعل الأمر سهلاً وفعالاً</p>
+                            <p>.سواء كان الأمر يتعلق ببيع منزلك الحالي أو الحصول على تمويل أو شراء منزل جديد ، فإننا
+                                نجعل الأمر سهلاً وفعالاً</p>
                             <p>أفضل جزء؟ ستوفر الكثير من المال والوقت مع خدماتنا</p>
                         </div>
                     </div>
@@ -590,7 +593,7 @@
                                 <ng-container *ngFor="let slide of clientFeedback">
                                     <ng-template carouselSlide [id]="slide.id">
                                         <div ngClass="testimonial-content">
-                                            <p> no arabic data in api    {{ slide.desc }} </p>
+                                            <p> no arabic data in api {{ slide.desc }} </p>
                                             <div ngClass="testimonial-info d-flex align-items-center">
                                                 <div ngClass="client_img">
                                                     <img [src]="slide.src!= null ? slide.src : 'assets/images/testimonial/user.png'"

@@ -545,7 +545,7 @@ export class HomepageComponent implements OnInit {
       response.data.forEach((element: any, i: any) => {
         let image = element.bannerDocument.fileUrl
         tempData.push(
-          { title: element.bannerHeader, desc: element.bannerTitle, img: this.baseUrl + image });
+          { title: element.bannerHeaderAr, desc: element.bannerTitleAr, img: this.baseUrl + image });
       })
     });
     this.homebanners = tempData
