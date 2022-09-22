@@ -426,4 +426,7 @@ export class AppService {
   DuplicateEmailPhoneNumber(data: any) {
     return this.http.post(this.apiurl + 'DuplicateEmailPhoneNumber', data);
   }
+  MyActivityPropertyListingViewForAgent(data: any) {
+    return this.http.post(this.apiurl + 'MyActivityPropertyListingViewForAgent', data);
+  }
 }

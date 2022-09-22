@@ -70,6 +70,7 @@ export class DashboardComponent implements OnInit {
   leadsResidentialSummary: any = [];
   leadsCommercialSummary: any = [];
   areaData: any = [];
+  activityViewData:any = [];
 
   plus = '../../../../assets/images/plus.svg'
 
@@ -211,6 +212,10 @@ export class DashboardComponent implements OnInit {
       } else {
         this.proAvatar = this.baseUrl + this.userData.imageUrl;
       }
+      this.service.MyActivityPropertyListingViewForAgent({ "UserId": this.userData.id, "PropertyCategoryId": "" }).subscribe((result:any) => {
+        this.activityViewData = result.data;
+        console.log(this.activityViewData);
+      })
       this.service.SummaryLeads({ "UserId": this.userData.id, "PropertyCategoryId": "1" }).subscribe((result: any) => {
         if (result.data.length > 0) {
           this.leadSummary = result.data;
