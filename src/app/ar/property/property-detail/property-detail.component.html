@@ -21,12 +21,12 @@
                     <div ngClass="col-xl-4 col-lg-4 col-md-12 col-sm-12">
                         <div ngClass="property-price_detals">
                             <h4>{{propertyDetailData.propertyPrice}}
-                                {{propertyDetailData.currency}}<small *ngIf="propertyDetailData.rentType != ''">/{{propertyData.rentType.nameAr}}</small></h4>
+                                {{propertyData.country.currencyAr}}<small *ngIf="propertyDetailData.rentType != ''">/{{propertyData.rentType.nameAr}}</small></h4>
                             <div ngClass="property-tags d-flex flex-wrap">
                                 <span ngClass="tags-bg-grey">Brokrage: {{propertyDetailData.brokerageChargePrice}}
-                                    {{propertyDetailData.currency}}</span>
+                                    {{propertyData.country.currencyAr}}</span>
                                 <span ngClass="tags-bg-grey">Security deposit:
-                                    {{propertyDetailData.securityDepositPrice}} {{propertyDetailData.currency}}</span>
+                                    {{propertyDetailData.securityDepositPrice}} {{propertyData.country.currencyAr}}</span>
                             </div>
                         </div>
                     </div>
