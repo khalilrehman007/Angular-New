@@ -30,10 +30,10 @@
                 <div *ngIf="validate['Password'].errors['required']">الرقم السري مطلوب</div>
             </div>
             <div ngClass="forgot-password text-right">
-                <a routerLink="/forgot">هل نسيت كلمة السر</a>
+                <a routerLink="/ar/forgot">هل نسيت كلمة السر</a>
             </div>
             <div ngClass="terms-text">
-                <p>بالضغط على زر متابعة<br>أقبل<a routerLink="/term-condition">البنود و الظروف</a> اوفاليويت.</p>
+                <p>بالضغط على زر متابعة<br>أقبل<a routerLink="/ar/term-condition">البنود و الظروف</a> اوفاليويت.</p>
             </div>
             <mat-card-actions (click)="ProceedLogin()">
                 <button mat-raised-button type="submit" ngClass="submit-btn">تسجيل الدخول</button>
@@ -42,8 +42,8 @@
                 <p>Or connect with</p>
             </div>
             <div class="continue-btns">
-                <button ngClass="google-btn" #loginRef><img src="{{goggle}}"> Continue with Google</button>
-                <button ngClass="apple-btn"><img src="{{apple}}"> Continue with Apple</button>
+                <button ngClass="google-btn" #loginRef><img src="{{goggle}}"> الدخول مع جوجل</button>
+                <button ngClass="apple-btn"><img src="{{apple}}"> تسجيل الدخول مع التفاح</button>
             </div>
             <div ngClass="dont-have-account text-center">
                 <p>ليس لديك حساب؟ <a routerLink="/ar/signup">سجل الان.</a></p>
