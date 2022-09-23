@@ -1269,12 +1269,13 @@ ul.navbar-nav.sub-header {
     margin-bottom: 5px;
 }
 #main-header .header-section .blue-bordered-btn.red-fill-btn {
-    background: #e9222f;
-    border-color: #e9222f;
+	background: linear-gradient(to bottom right, #bb0ed2, #8d209c);
+    border-color: #bb0ed2;
     color: #fff;
+    background-color: #8e1e9a;
 	.ai-tag {
 		background: #fff;
-		color: #e9222f;
+		color: #bb0ed2;
 	}
 	&:hover{
 		background: #f63441;
@@ -1348,7 +1349,13 @@ ul.navbar-nav.sub-header {
     align-items: center;
     justify-content: center;
 }
-
+.property_not-found img {
+    max-width: 200px;
+}
+.property_not-found {
+    text-align: center;
+    padding-top: 50px;
+}
 
 @media (max-width: 1199px){
 	.nav-active::after{
