@@ -8,7 +8,10 @@ import { AuthService } from 'src/app/service/auth.service';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database';
 import { map } from 'rxjs';
-
+interface LanguagesList {
+  value: string;
+  viewValue: string;
+}
 
 @Component({
   selector: 'app-header',
@@ -531,6 +534,10 @@ export class HeaderComponent implements OnInit {
 
 
   }
-
+  language: LanguagesList[] = [
+    {value: 'english', viewValue: 'English'},
+    {value: 'arabic', viewValue: 'Arabic'}
+  ];
+  selectedLanguage = this.language[0].value;
 }
 
