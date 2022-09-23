@@ -85,6 +85,7 @@ export class SearchComponent implements OnInit {
   Bathrooms: any;
   KeyWordsParams: any;
   headingPropertyType: any = "Properties";
+  searchData:any = [];
   constructor(private authService: AuthService, private notifyService: NotificationService, private activeRoute: ActivatedRoute, private service: AppService, private api: AppService, private route: Router, private modalService: NgbModal) {
     $(window).scrollTop(0);
     this.route.events.subscribe((e: any) => {
@@ -337,7 +338,8 @@ export class SearchComponent implements OnInit {
         // localStorage.setItem('propertyListingTotalRecord', this.totalRecord);
         localStorage.setItem('listingForMap', JSON.stringify(data))
       }, 1000);
-
+      this.searchData = response.data.propertyListings;
+      console.log(response.data.propertyListings);
       response.data.propertyListings.forEach((element:any, i:any) => {
         let documentsCheck: any = true;
         let rentTypeName = ''
