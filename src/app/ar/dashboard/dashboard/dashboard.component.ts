@@ -1160,7 +1160,7 @@ blogs: any;
       } else {
         localStorage.removeItem("compareIds");
         localStorage.setItem('compareIds', JSON.stringify(this.allCheckbox))
-        this.route.navigateByUrl('/PropertyCompare');
+        this.route.navigateByUrl('/ar/PropertyCompare');
       }
     }
     // else if(type == 'rent'){
