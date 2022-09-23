@@ -133,7 +133,7 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
   }
   ngOnInit() {
-    $(".start-date-input").on("click", function() {
+    $(".start-date-input").on("click", function () {
       console.log($(this).find(".mat-datepicker-toggle"));
       $(this).find(".mat-datepicker-toggle").click();
     })
@@ -283,6 +283,8 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
     if (id == 2) {
       this.api.PropertyTransactionTypes().subscribe((result: any) => {
         this.transactionType = result.data;
+        let a = setInterval(()=> {
+        },50);
       })
       this.api.LoadCompletionStatus().subscribe((result: any) => {
         this.completionStatus = result.data;
@@ -343,11 +345,11 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
     this.api.PropertyFeatures(1).subscribe((result: any) => {
       this.featuresData = result.data;
       let a = setInterval(() => {
-        if(this.featuresData.length > 0) {
+        if (this.featuresData.length > 0) {
           $('.select2').select2();
           clearInterval(a);
         }
-      },50);
+      }, 50);
     });
   }
   getFurnishingType(e: number) {
@@ -627,7 +629,7 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
     this.data.UnitNo = this.SubmitForm.value.UnitNo;
     let userData: any = localStorage.getItem("user");
     userData = JSON.parse(userData);
-    if(this.data.RentTypeId == 1) {
+    if (this.data.RentTypeId == 1) {
       this.data.StartDate = $("#startDate").val();
       this.data.EndDate = $("#endDate").val();
     }
