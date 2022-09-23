@@ -27,6 +27,9 @@ import { MatInputModule } from '@angular/material/input';
     MatFormFieldModule,
     NgxSliderModule,
     MatInputModule
+  ],
+  exports: [
+    CommunitySearchModuleComponent
   ]
 })
 export class CommunitySearchModuleModule { }

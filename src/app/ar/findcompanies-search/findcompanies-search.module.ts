@@ -26,6 +26,9 @@ import { MatIconModule } from '@angular/material/icon';
     MatInputModule,
     MatChipsModule,
     MatIconModule
+  ],
+  exports: [
+    FindcompaniesSearchComponent
   ]
 })
 export class FindcompaniesSearchModule { }

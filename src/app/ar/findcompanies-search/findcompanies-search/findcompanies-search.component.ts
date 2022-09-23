@@ -1006,7 +1006,7 @@ export class FindcompaniesSearchComponent implements OnInit {
   }
   proceedCompanySearch() {
     let params: any = { "CountryId": "1", "DistrictsId": [], "CompaniesId": this.companyIds, "CurrentPage": 1 }
-    this.router.navigate(['/find-companies'], { queryParams: params })
+    this.router.navigate(['/ar/find-companies'], { queryParams: params })
     this.companiesListData(params);
 
   }

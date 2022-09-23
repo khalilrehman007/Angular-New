@@ -200,7 +200,7 @@ export class RentSearchComponent implements OnInit {
 
     // console.log(params)
 
-    this.route.navigate(['/property/search'], params)
+    this.route.navigate(['/ar/property/search'], params)
   }
 
 

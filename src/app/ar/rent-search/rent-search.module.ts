@@ -26,6 +26,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatChipsModule,
     MatFormFieldModule,
     NgxSliderModule
+  ],
+  exports: [
+    RentSearchComponent
   ]
 })
 export class RentSearchModule { }
