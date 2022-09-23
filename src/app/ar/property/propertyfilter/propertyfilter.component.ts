@@ -66,7 +66,7 @@ export class PropertyfilterComponent implements OnInit {
 
   separatorKeysCodes1: number[] = [ENTER, COMMA];
   fruitCtrl = new FormControl('');
-  filteredFruits: Observable<string[]>;
+  filteredFruits: any;
   fruits: string[] = [];
   allFruits: string[] = [];
   KeyWords :any = []
@@ -143,7 +143,6 @@ export class PropertyfilterComponent implements OnInit {
       startWith(null),
       map((fruit: string | null) => (fruit ? this._filter(fruit) : this.allFruits.slice())),
     );
-
     this.minValue = this.PriceStart;
     this.maxValue = this.PriceEnd;
 
@@ -186,7 +185,6 @@ export class PropertyfilterComponent implements OnInit {
     this.api.LoadType(1).subscribe((result) => {
       this.propertyTypeResdential = result;
       this.propertyTypeResdential = this.propertyTypeResdential.data
-
     });
 
     if(this.PropertyListingTypeId == 1){
@@ -317,7 +315,7 @@ export class PropertyfilterComponent implements OnInit {
                 this.selectedRentType = list.id;
               }
             }
-            this.rentTypes.push({ name: list.name, id: list.id });
+            this.rentTypes.push({ name: list.nameAr, id: list.id });
           }
       }
     });
@@ -691,9 +689,9 @@ export class PropertyfilterComponent implements OnInit {
   CategoriesTypes(){
     this.service.PropertyCategories().subscribe(data=>{
       let response:any = data;
-      this.residential = response.data[0].categoryName;
+      this.residential = response.data[0].categoryNameAr;
       this.residentialId = response.data[0].id;
-      this.commercial = response.data[1].categoryName;
+      this.commercial = response.data[1].categoryNameAr;
       this.commercialId = response.data[1].id;
     });
   }
