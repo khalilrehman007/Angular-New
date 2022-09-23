@@ -341,7 +341,7 @@ export class PropertyDetailComponent implements OnInit {
     return this.service.DisplayPropertyListing({ "PropertyListingId": this.propertyId, "LoginUserId": this.userId }).subscribe((e: any) => {
       let temp: any = e;
       this.propertyData = e.data.propertyListing;
-      console.log(this.propertyData);
+      // console.log(this.propertyData);
       this.userData = temp.data.user;
       this.propertyLat = temp.data.propertyListing.propertyLat;
       this.propertyLng = temp.data.propertyListing.propertyLong;
@@ -727,6 +727,8 @@ export class PropertyDetailComponent implements OnInit {
     let tempData: Array<Object> = []
     this.service.LoadSimilarProperty({ "UserId": this.userId, "PropertyListingId": this.propertyId }).subscribe(data => {
       let response: any = data;
+      this.similarPropertyDetails = response.data;
+      console.log(response.data)
       response.data.forEach((element: any, i: any) => {
         let image = 'assets/images/placeholder.png'
         if (element.documents.length > 1) {
@@ -751,7 +753,7 @@ export class PropertyDetailComponent implements OnInit {
           });
       })
     });
-    this.similarPropertyDetails = tempData
+    // this.similarPropertyDetails = tempData
   }
 
   getUser() {

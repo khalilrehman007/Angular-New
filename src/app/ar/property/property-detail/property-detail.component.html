@@ -161,7 +161,7 @@
                                             <div ngClass="amenties_info-text">
                                                 <img height="40px" width="40px"
                                                     src="{{baseUrl+amenities.propertyFeature.document.fileUrl}}">
-                                                <p>{{amenities.propertyFeature.featureName}}</p>
+                                                <p>{{amenities.propertyFeature.featureNameAr}}</p>
                                                 <button ngClass="see-more-amenties">{{amenities.btnvalue}}</button>
                                             </div>
                                         </div>
@@ -221,7 +221,7 @@
                         </div>
                         <div class="locarions_wrapper mt-5" #locationScroll>
                             <div ngClass="tabs-heading-div">
-                                <h5>Location</h5>
+                                <h5>المواقع</h5>
                             </div>
                             <div class="property-near-map" id="property-near-map" style="width: 100%; height: 400px;">
                             </div>
@@ -336,9 +336,9 @@
             <div ngClass="row">
                 <div ngClass="col-xl-3 col-lg-3 col-md-6 col-sm-12" *ngFor="let slide of similarPropertyDetails">
                     <div ngClass="property-item position-relative">
-                        <img [src]="slide.src" [alt]="slide.alt" [title]="slide.title">
+                        <img src="https://beta.ovaluate.com/{{slide.documents[0].fileUrl}}" [alt]="slide.alt" [title]="slide.title">
                         <div ngClass="brand-logo">
-                            <img src="{{slide.src}}" alt="">
+                            <img src="https://beta.ovaluate.com/{{slide.documents[0].fileUrl}}" alt="">
                         </div>
                         <button
                             [ngClass]="slide.favorite == true ? 'property-whistlist red-fill' : 'property-whistlist'"
@@ -351,24 +351,24 @@
                             </svg>
                         </button>
                         <div ngClass="property-info">
-                            <span ngClass="property-pricing"><span>{{ slide.price }} {{ slide.currency }}</span> /
-                                {{slide.rentType}}</span>
+                            <span ngClass="property-pricing"><span>{{ slide.propertyPrice }} {{ slide.country.currencyAr }}</span> /
+                                {{slide.rentType.nameAr}}</span>
                             <span ngClass="property-name">{{slide.buildingName}}</span>
                             <p ngClass="property-location"><img src="{{homelocationsvg}}" width="14"
                                     alt="">{{slide.propertyAddress}} </p>
                             <div ngClass="property-details">
                                 <span ngClass="bed">
-                                    <img src="{{bedsvg}}" alt="">{{slide.bedrooms}} Beds
+                                    <img src="{{bedsvg}}" alt="">{{slide.bedrooms}} غرف نوم
                                 </span>
                                 <span ngClass="bath">
-                                    <img src="{{bathsvg}}" alt="">{{slide.bathrooms}} Bath
+                                    <img src="{{bathsvg}}" alt="">{{slide.bathrooms}} الحمامات
                                 </span>
                                 <span ngClass="area">
                                     <img src="{{squaremetersvg}}" alt="">{{slide.carpetArea}} sqft
                                 </span>
                             </div>
                         </div>
-                        <a [routerLink]="['/property/detail']" [queryParams]="{id: slide.id}"
+                        <a [routerLink]="['/ar/property/detail']" [queryParams]="{id: slide.id}"
                             ngClass="linK_overlay"></a>
                         <button ngClass="tag_btn blue"><img src="{{tagicn}}"> POPULAR</button>
                     </div>
