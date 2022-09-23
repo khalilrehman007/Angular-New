@@ -67,7 +67,7 @@
                                 </button>
                                 <div class="fav-list-dropdown" [ngClass]="status ? 'active' : 'notactive'">
                                     <div ngClass="shortlisted-header d-flex justify-content-spacebw">
-                                        <h4>Shortlisted Projects</h4>
+                                        <h4>Favourite Projects</h4>
                                         <button (click)="clickEvent()"><img src="{{close}}"></button>
                                     </div>
                                     <div ngClass="shortlisted-inner-cntnt">
@@ -132,7 +132,7 @@
                                 </button>
                                 <div class="fav-list-dropdown" [ngClass]="status ? 'active' : 'notactive'">
                                     <div ngClass="shortlisted-header d-flex justify-content-spacebw">
-                                        <h4>Shortlisted Projects</h4>
+                                        <h4>Favourite Projects</h4>
                                         <button (click)="clickEvent()"><img src="{{close}}"></button>
                                     </div>
                                     <div ngClass="shortlisted-inner-cntnt">
@@ -144,12 +144,12 @@
                                                         <div ngClass="shortlisted-project-cntnt position-relative"
                                                             *ngFor="let list of wishlistingDataAll">
                                                             <div ngClass="property-selection-div">
-                                                                <div ngClass="selection-checkbox-selector"
+                                                                <!-- <div ngClass="selection-checkbox-selector"
                                                                     *ngIf="wishlistingDataAll.length > 1">
                                                                     <input type="checkbox" value="{{list.id}}"
                                                                         (click)="allFormCheckbox(list.id,list.propertyListingTypeId)">
                                                                     <button ngClass="cstm-selection-btn"></button>
-                                                                </div>
+                                                                </div> -->
                                                                 <div ngClass="shortlisted-white-box">
                                                                     <div ngClass="short-img">
                                                                         <img src="{{list.src}}">
@@ -170,14 +170,16 @@
                                                                         src="{{trash}}"></button>
                                                             </div>
                                                         </div>
-                                                        <div ngClass="compare-btn-design">
+                                                        <!-- <div ngClass="compare-btn-design">
                                                             <a (click)="compareProceed('all')"
                                                                 *ngIf="wishlistingDataAll.length > 1"
                                                                 ngClass="compare-btn">Compare</a>
-                                                        </div>
+                                                        </div> -->
                                                     </form>
-                                                    <p *ngIf="wishlistingDataAll.length == 0">It seems you have not
-                                                        shortlisted any property</p>
+                                                    <div *ngIf="wishlistingDataAll.length == 0" ngClass="property_not-found">
+                                                        <img src="{{propertynotFound}}">
+                                                        <p>It seems you have not shortlisted any property</p>
+                                                    </div>
                                                 </div>
                                             </mat-tab>
                                             <mat-tab label="Rent ({{rentCount}})">
@@ -186,12 +188,6 @@
                                                     <div ngClass="shortlisted-project-cntnt position-relative"
                                                         *ngFor="let list of wishlistingDataRent">
                                                         <div ngClass="property-selection-div">
-                                                            <div ngClass="selection-checkbox-selector"
-                                                                *ngIf="wishlistingDataRent.length > 1">
-                                                                <input type="checkbox" value="{{list.id}}"
-                                                                    (click)="rentFormCheckbox(list.id)">
-                                                                <button ngClass="cstm-selection-btn"></button>
-                                                            </div>
                                                             <div ngClass="shortlisted-white-box">
                                                                 <div ngClass="short-img">
                                                                     <img src="{{list.src}}">
@@ -212,16 +208,11 @@
                                                                     src="{{trash}}"></button>
                                                         </div>
                                                     </div>
-                                                    <div ngClass="compare-btn-design">
-                                                        <a (click)="compareProceed('rent')"
-                                                            *ngIf="wishlistingDataRent.length > 1"
-                                                            ngClass="compare-btn">Compare</a>
-                                                    </div>
-                                                    <p *ngIf="wishlistingDataRent.length == 0">It seems you have not
-                                                        shortlisted any property</p>
+                                                        <div *ngIf="wishlistingDataRent.length == 0" ngClass="property_not-found">
+                                                            <img src="{{propertynotFound}}">
+                                                            <p>It seems you have not shortlisted any property</p>
+                                                        </div>
                                                 </div>
-                                                <p *ngIf="wishlistingDataRent.length == 0">It seems you have not
-                                                    shortlisted any property</p>
                                             </mat-tab>
                                             <mat-tab label="Buy ({{buyCount}})">
                                                 <div
@@ -229,12 +220,6 @@
                                                     <div ngClass="shortlisted-project-cntnt position-relative"
                                                         *ngFor="let list of wishlistingDataBuy">
                                                         <div ngClass="property-selection-div">
-                                                            <div ngClass="selection-checkbox-selector"
-                                                                *ngIf="wishlistingDataBuy.length > 1">
-                                                                <input type="checkbox" value="{{list.id}}"
-                                                                    (click)="buyFormCheckbox(list.id)">
-                                                                <button ngClass="cstm-selection-btn"></button>
-                                                            </div>
                                                             <div ngClass="shortlisted-white-box">
                                                                 <div ngClass="short-img">
                                                                     <img src="{{list.src}}">
@@ -255,13 +240,10 @@
                                                                     src="{{trash}}"></button>
                                                         </div>
                                                     </div>
-                                                    <div ngClass="compare-btn-design">
-                                                        <a (click)="compareProceed('buy')"
-                                                            *ngIf="wishlistingDataBuy.length > 1"
-                                                            ngClass="compare-btn">Compare</a>
-                                                    </div>
-                                                    <p *ngIf="wishlistingDataBuy.length == 0">It seems you have not
-                                                        shortlisted any property</p>
+                                                        <div *ngIf="wishlistingDataBuy.length == 0" ngClass="property_not-found">
+                                                            <img src="{{propertynotFound}}">
+                                                            <p>It seems you have not shortlisted any property</p>
+                                                        </div>
                                                 </div>
                                             </mat-tab>
                                         </mat-tab-group>
