@@ -9,6 +9,10 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database';
 import { map } from 'rxjs';
 import { getDatabase, ref, child, push, update } from 'firebase/database';
+interface LanguagesList {
+  value: string;
+  viewValue: string;
+}
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -570,5 +574,12 @@ export class HeaderComponent implements OnInit {
       this.activeTabBuy = false;
     }
   }
-
+  language: LanguagesList[] = [
+    {value: 'english', viewValue: 'English'},
+    {value: 'arabic', viewValue: 'Arabic'}
+  ];
+  selectedLanguage = this.language[0].value;
+  changeLanguage() {
+    this.route.navigate(["/ar"]);
+  }
 }

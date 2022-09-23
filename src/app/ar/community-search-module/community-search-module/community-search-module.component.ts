@@ -200,7 +200,7 @@ export class CommunitySearchModuleComponent implements OnInit {
 
     // console.log(params)
 
-    this.route.navigate(['/classified'], params)
+    this.route.navigate(['/ar/classified'], params)
   }
 
 

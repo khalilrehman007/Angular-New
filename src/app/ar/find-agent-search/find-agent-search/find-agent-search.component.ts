@@ -321,7 +321,7 @@ export class FindAgentSearchComponent implements OnInit {
 
     this.childParentDataLoad.emit(agentObject)
 
-    this.route.navigate(['/find-agent'], params)
+    this.route.navigate(['/ar/find-agent'], params)
 
   }
 }

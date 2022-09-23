@@ -28,6 +28,9 @@ import {MatInputModule} from '@angular/material/input';
     MatFormFieldModule,
     NgxSliderModule,
     MatInputModule
+  ],
+  exports: [
+    ServiceSearchModuleComponent
   ]
 })
 export class ServiceSearchModuleModule { }

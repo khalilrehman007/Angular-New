@@ -28,13 +28,13 @@
                             <div ngClass="properties-filtr-values-left d-flex justify-content-spacebw">
                                 <div (click)="allSearch()" class="checkbox-design position-relative">
                                     <input type="checkbox" id="Furnished" name="property-types" value="Furnished">
-                                    <button class="checkbox-btn">All</button>
+                                    <button class="checkbox-btn">الجميع</button>
                                 </div>
                                 <div ngClass="block-wrapper">
                                     <mat-form-field appearance="fill" class="select-design">
-                                        <mat-label><img src="{{videotiour}}"> Video Tour</mat-label>
+                                        <mat-label><img src="{{videotiour}}">Video Tour</mat-label>
                                         <mat-select (selectionChange)="videoSorting($event)">
-                                            <mat-option value="{{item.id}}" *ngFor="let item of videoTour">{{item.name}}
+                                            <mat-option value="{{item.id}}" *ngFor="let item of videoTour">{{item.nameAr}}
                                             </mat-option>
                                         </mat-select>
                                     </mat-form-field>
@@ -43,7 +43,7 @@
                             <div ngClass="properties-filtr-values-right d-flex justify-content-spacebw">
                                 <div class="checkbox-design position-relative">
                                     <input type="checkbox" id="OV-Verified" name="property-types" value="OV-Verified">
-                                    <button class="checkbox-btn"><img src="{{ovverified}}"> OV-Verified</button>
+                                    <button class="checkbox-btn"><img src="{{ovverified}}">OV-Verified</button>
                                 </div>
                                 <div ngClass="block-wrapper">
                                     <mat-form-field appearance="fill" class="select-design">
@@ -57,20 +57,20 @@
                                 </div>
                             </div>
                         </div>
-                        <div ngClass="properties-list-design">
+                        <div ngClass="properties-list-design" *ngIf="searchData.length > 0">
                             <div ngClass="properties-list-block-design"
-                                *ngFor=" let list of searchListing | paginate: { itemsPerPage: 10, currentPage: page ,totalItems:totalRecord }">
+                                *ngFor=" let list of searchData | paginate: { itemsPerPage: 10, currentPage: page ,totalItems:totalRecord }">
                                 <div ngClass="row">
                                     <div ngClass="col-xl-4 col-md-4 col-lg-4 col-sm-12">
-                                        <div ngClass="properties-list_slider" *ngIf="list.documentsCheck">
+                                        <div ngClass="properties-list_slider" *ngIf="list.documents.length > 0">
                                             <ngb-carousel>
                                                 <ng-template ngbSlide *ngFor="let event of list.documents">
-                                                    <img [src]="baseUrl+event.fileUrl" [routerLink]="['/property/detail']"
+                                                    <img [src]="baseUrl+event.fileUrl" [routerLink]="['/ar/property/detail']"
                                                     [queryParams]="{id: list.id}">
                                                 </ng-template>
                                             </ngb-carousel>
                                         </div>
-                                        <div ngClass="properties-list_slider" *ngIf="list.documentsCheck == false">
+                                        <div ngClass="properties-list_slider" *ngIf="list.documents.length == 0">
                                             <img src="assets/images/placeholder.png">
                                         </div>
                                     </div>
@@ -78,17 +78,15 @@
                                         <div ngClass="properties-list_cntnts position-relative">
                                             <div ngClass="properties-list_hdr d-flex justify-content-spacebw">
                                                 <div ngClass="property-price_detals cursor-pointer"
-                                                    [routerLink]="['/property/detail']"
+                                                    [routerLink]="['/ar/property/detail']"
                                                     [queryParams]="{id: list.id}">
-                                                    <h4>{{list.propertyPrice}} {{list.currency}} <small
-                                                            *ngIf="list.rentType != ''">/{{list.rentType}}</small></h4>
+                                                    <h4>{{list.propertyPrice}} {{list.country.currencyAr}} <small
+                                                            *ngIf="list.rentType != ''">/{{list.rentType.nameAr}}</small></h4>
                                                     <div ngClass="property-tags d-flex flex-wrap">
                                                         <span ngClass="tags-bg-grey">Brokrage:
-                                                            {{list.brokerageChargePrice}}
-                                                            {{list.rentType}}</span>
+                                                            {{list.brokerageChargePrice}}</span>
                                                         <span ngClass="tags-bg-grey">Security deposit:
-                                                            {{list.securityDepositPrice}}
-                                                            {{list.rentType}}</span>
+                                                            {{list.securityDepositPrice}}</span>
                                                     </div>
                                                 </div>
                                                 <div ngClass="property-action-hdr">
@@ -129,7 +127,7 @@
                                                 </div>
                                             </div>
 
-                                            <div ngClass="property-name_detals" [routerLink]="['/property/detail']"
+                                            <div ngClass="property-name_detals" [routerLink]="['/ar/property/detail']"
                                                 [queryParams]="{id: list.id}">
                                                 <h4>{{list.buildingName}}</h4>
                                                 <div ngClass="property-addresss">
@@ -137,13 +135,13 @@
                                                 </div>
                                             </div>
                                             <div ngClass="topkey-highlights">
-                                                <h6>{{list.propertyType.typeDescription}},</h6>
+                                                <h6>{{list.propertyType.typeDescriptionAr}}</h6>
                                                 <div ngClass="property-details-highlights">
                                                     <span *ngIf="list.bedrooms != 0" ngClass="bed">
-                                                        <img src="{{bedsvg}}" alt="">{{list.bedrooms}} Beds
+                                                        <img src="{{bedsvg}}" alt="">{{list.bedrooms}} غرف نوم
                                                     </span>
                                                     <span *ngIf="list.bathrooms != 0" ngClass="bath">
-                                                        <img src="{{bathsvg}}" alt="">{{list.bathrooms}} Bath
+                                                        <img src="{{bathsvg}}" alt="">{{list.bathrooms}} الحمامات
                                                     </span>
                                                     <span ngClass="area">
                                                         <img src="{{squaremetersvg}}" alt="">{{list.buildupArea}} sqft
@@ -155,24 +153,24 @@
                                             </div>
                                             <div ngClass="key-tags">
                                                 <span *ngFor="let features of list.propertyFeatures">
-                                                    {{features.propertyFeature.featureName}}
+                                                    {{features.propertyFeature.featureNameAr}}
                                                 </span>
                                             </div>
                                             <div ngClass="data-inteligence-text">
-                                                <h6>OV Data Intelligence - Corniche Road, Abu Dhabi </h6>
+                                                <h6>OV Data Intelligence - Corniche Road, Abu Dhabi</h6>
                                                 <div ngClass="property-range-bar d-flex">
                                                     <div ngClass="pro-range-whie-box">
                                                         <p>Recent Rent Txns</p>
-                                                        <h6>{{list.RecentRentTxns}} in last 1 year</h6>
+                                                        <h6>{{list.recentRentTxns}} in last 1 year</h6>
                                                     </div>
                                                     <div ngClass="pro-range-whie-box">
                                                         <p>Rent Price Range</p>
-                                                        <h6>{{list.StartRentPrice}} {{list.currency}} -
-                                                            {{list.EndRentPrice}} {{list.currency}}</h6>
+                                                        <h6>{{list.startRentPrice}} {{list.country.currencyAr}} -
+                                                            {{list.endRentPrice}} {{list.country.currencyAr}}</h6>
                                                     </div>
                                                     <div ngClass="pro-range-whie-box">
                                                         <p>Avg. Rent/ Sq. Ft.</p>
-                                                        <h6>{{list.AvgRentPrice}} {{list.currency}}</h6>
+                                                        <h6>{{list.avgRentPrice}} {{list.country.currencyAr}}</h6>
                                                     </div>
                                                 </div>
                                             </div>
@@ -181,7 +179,7 @@
                                                     <div ngClass="col-xl-5 col-lg-12 col-md-12 col-sm-12">
                                                         <div ngClass="lsited-by-details d-flex">
                                                             <div ngClass="list_cntnt-img">
-                                                                <img src="{{list.userImage}}">
+                                                                <img src="{{baseUrl + list.user.imageUrl}}">
                                                             </div>
                                                             <div ngClass="list_cntnt-blcok">
                                                                 <h5>{{list.fullName}}</h5>
@@ -193,7 +191,7 @@
                                                         <div ngClass="pro-contact-details">
                                                             <a *ngIf="userId !== null"
                                                                 routerLink="/agent-details/{{list.userId}}"
-                                                                ngClass="grey-bordered-btn">Details</a>
+                                                                ngClass="grey-bordered-btn">التفاصيل</a>
                                                             <div ngbDropdown placement="top-end"
                                                                 class="d-inline-block call-now_link">
                                                                 <button type="button" class="grey-bordered-btn"
