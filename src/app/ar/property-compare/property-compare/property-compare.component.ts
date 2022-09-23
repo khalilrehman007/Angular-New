@@ -47,7 +47,6 @@ export class PropertyCompareComponent implements OnInit {
     let tempData :Array<Object> = []
     this.service.ComparableProperties(this.compareIds).subscribe(data => {
       let responsedata :any = data
-      console.log(responsedata.data);
       responsedata.data.forEach((element:any, i:any) => {
 
         let alreadyExists = true;
