@@ -71,7 +71,7 @@
                             <div ngClass="home-slider_cntnt">
                                 <h2>{{event.title}}</h2>
                                 <p>{{event.desc}}</p>
-                                <a routerLink="/valuation/property-detail">ابدأ التقييم</a>
+                                <a routerLink="/ar/valuation/property-detail">ابدأ التقييم</a>
                             </div>
                         </ng-template>
                     </ngb-carousel>
@@ -175,7 +175,7 @@
                                             </span>
                                         </div>
                                     </div>
-                                    <a [routerLink]="['/property/detail']" [queryParams]="{id: slide.id}"
+                                    <a [routerLink]="['/ar/property/detail']" [queryParams]="{id: slide.id}"
                                         ngClass="linK_overlay"></a>
                                     <button ngClass="tag_btn green"><img src="{{tagicn}}"> الممتازة</button>
                                 </div>
@@ -228,7 +228,7 @@
                                             </span>
                                         </div>
                                     </div>
-                                    <a [routerLink]="['/property/detail']" [queryParams]="{id: slide.id}"
+                                    <a [routerLink]="['/ar/property/detail']" [queryParams]="{id: slide.id}"
                                         ngClass="linK_overlay"></a>
                                     <button ngClass="tag_btn green"><img src="{{tagicn}}"> الممتازة</button>
                                 </div>
@@ -335,7 +335,7 @@
                                             </span>
                                         </div>
                                     </div>
-                                    <a [routerLink]="['/property/detail']" [queryParams]="{id: slide.id}"
+                                    <a [routerLink]="['/ar/property/detail']" [queryParams]="{id: slide.id}"
                                         ngClass="linK_overlay"></a>
                                     <button ngClass="tag_btn blue"><img src="{{tagicn}}"> الممتازة</button>
                                 </div>
@@ -383,7 +383,7 @@
                                             </span>
                                         </div>
                                     </div>
-                                    <a [routerLink]="['/property/detail']" [queryParams]="{id: slide.id}"
+                                    <a [routerLink]="['/ar/property/detail']" [queryParams]="{id: slide.id}"
                                         ngClass="linK_overlay"></a>
                                     <button ngClass="tag_btn green"><img src="{{tagicn}}"> الممتازة</button>
                                 </div>
@@ -409,7 +409,7 @@
                                             section is null in api </li>
                                     </ul>
                                     <div ngClass="listing-btn">
-                                        <a [routerLink]="['/add-property/listingproperty']"
+                                        <a [routerLink]="['/ar/add-property/listingproperty']"
                                             ngClass="custom-btn-primary">List Your Property, not in excel sheet</a>
                                     </div>
                                 </div>
