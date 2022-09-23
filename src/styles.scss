@@ -1469,9 +1469,13 @@ input[type=number] {
 		&:checked {
 			+ {
 				.checkbox-btn {
-					border-color: $border-color_1;
-					background: #F5F7FF;
-					color: $color_2;
+					border-color: #4A565F;
+					background: #4A565F;
+					color: #fff;
+					opacity: 1;
+					img{
+						filter: brightness(0) invert(1);
+					}
 				}
 			}
 
@@ -1485,9 +1489,13 @@ input[type=number] {
 		&:hover {
 			+ {
 				.checkbox-btn {
-					border-color: $border-color_1;
-					background: #F5F7FF;
-					color: $color_2;
+					border-color: #4A565F;
+					background: #4A565F;
+					color: #fff;
+					opacity: 1;
+					img{
+						filter: brightness(0) invert(1);
+					}
 				}
 			}
 		}
@@ -2298,7 +2306,7 @@ input[type=number] {
 	top: 0;
 	right: 0;
 	bottom: 0;
-	height: 42px;
+	height: 41px;
 	display: flex;
 	align-items: center;
 	color: $color_6;
@@ -2313,6 +2321,7 @@ input[type=number] {
 	justify-content: center;
 	font-size: 14px;
 	font-weight: 500;
+	border-bottom: 0px;
 }
 
 .grey-input-bg {
@@ -5569,11 +5578,15 @@ img {
 		background: #fff;
 		width: 30px;
 		height: 30px;
-		border: 0.5px solid #E8E6F9;
+		border: 0.5px solid #4a565f;
 		border-radius: 50%;
 
 		&:hover {
-			background: #F4F6FF;
+		    background: #4a565f;
+            border-color: #4a565f;
+			img {
+				filter: brightness(0) invert(1);
+			}
 		}
 	}
 
@@ -11971,4 +11984,18 @@ background: transparent !important;
 }
 .our-mission-sec {
     padding-top: 60px;
+}
+.grey-bordered-btn:hover path {
+    fill: #fff;
+}
+.grey-bordered-btn.red-fill:hover {
+    background-color: #ed3833 !important;
+    border-color: #ed3833 !important;
+}
+.grey-bordered-btn.red-fill:hover svg {
+    fill: #fff;
+}
+.grey-bordered-btn.red-fill:hover svg path {
+    stroke: #fff;
+    fill: #fff;
 }

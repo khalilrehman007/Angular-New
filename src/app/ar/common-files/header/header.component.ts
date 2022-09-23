@@ -25,6 +25,7 @@ export class HeaderComponent implements OnInit {
   property = '../../../assets/images/shortlisted-img.png'
   trash = '../../../assets/images/icons/Trash-dotted.svg'
   logoutimg = '../../../assets/images/logout-popup-banner.png'
+  propertynotFound= '../../../assets/images/icons/property-not-found.svg'
   loggedInUser = localStorage.getItem('user')
   user: any
   availableClasses: string[] = ["sidebar-active", "nosidebar"];
