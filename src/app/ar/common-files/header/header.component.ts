@@ -49,6 +49,7 @@ export class HeaderComponent implements OnInit {
   activeTabBlog: any = false;
   activeTabArea: any = false;
   activeShortterm: any = false;
+  notificationcount:number = 0;
   constructor(private router: Router, private activeRoute: ActivatedRoute, private authService: AuthService, private route: Router, private notifyService: NotificationService, private modalService: NgbModal, private service: AppService, private db: AngularFireDatabase) {
     let a: any = this.currentDate;
     a = a.toString().split(" ")[5].split("T")[1];
@@ -74,7 +75,12 @@ export class HeaderComponent implements OnInit {
         )
       ).subscribe(data => {
         this.notificationData = data;
-        this.getTime(this.notificationData[6].value.NotificationDateTime);
+        let temp:any = [];
+        for(let i = this.notificationData.length-1; i >=0; i--) {
+          temp.push(this.notificationData[i]);
+        }
+        this.notificationData = temp;
+        this.getNotificationCount();
       });
     }
     this.getUser();
@@ -130,6 +136,15 @@ export class HeaderComponent implements OnInit {
 
   }
 
+  getNotificationCount() {
+    let count:any = 0;
+    for (let i = 0; i < this.notificationData.length; i++) {
+      if(!this.notificationData[i].value.HasSeen) {
+        count++;
+      }
+    }
+    this.notificationcount = count;
+  }
   sidebar = [
     {
       src: '../../../assets/images/icons/login.svg',
@@ -259,11 +274,6 @@ export class HeaderComponent implements OnInit {
       : this.currentClassIdx + 1;
   }
   ngOnInit() {
-    $(".language-select").on("change", () => {
-      if ($(".language-select").val() == "English") {
-        this.route.navigate(["/"])
-      }
-    })
   }
   getUser() {
     this.user = localStorage.getItem('user');
@@ -538,6 +548,9 @@ export class HeaderComponent implements OnInit {
     {value: 'english', viewValue: 'English'},
     {value: 'arabic', viewValue: 'Arabic'}
   ];
-  selectedLanguage = this.language[0].value;
+  selectedLanguage = this.language[1].value;
+  changeLanguage() {
+    this.route.navigate(["/"]);
+  }
 }
 

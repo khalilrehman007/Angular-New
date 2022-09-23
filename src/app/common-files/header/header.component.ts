@@ -579,4 +579,7 @@ export class HeaderComponent implements OnInit {
     {value: 'arabic', viewValue: 'Arabic'}
   ];
   selectedLanguage = this.language[0].value;
+  changeLanguage() {
+    this.route.navigate(["/ar"]);
+  }
 }

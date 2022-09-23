@@ -29,7 +29,7 @@
                         <ul>
                             <li ngClass="nav-item select-design-language d-hide">
                                 <mat-form-field appearance="fill">
-                                    <mat-select [(value)]="selectedLanguage">
+                                    <mat-select [(value)]="selectedLanguage" (selectionChange)="changeLanguage()">
                                         <mat-option [value]="option.value" *ngFor="let option of language">{{ option.viewValue }}</mat-option>
                                     </mat-select>
                                 </mat-form-field>
@@ -119,7 +119,7 @@
                         <ul ngClass="navbar-nav sub-header">
                             <li ngClass="nav-item select-design-language tm-hide">
                                 <mat-form-field appearance="fill">
-                                    <mat-select [(value)]="selectedLanguage">
+                                    <mat-select [(value)]="selectedLanguage" (selectionChange)="changeLanguage()">
                                         <mat-option [value]="option.value" *ngFor="let option of language">{{ option.viewValue }}</mat-option>
                                     </mat-select>
                                 </mat-form-field>
