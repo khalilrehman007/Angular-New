@@ -341,7 +341,6 @@ export class PropertyDetailComponent implements OnInit {
     return this.service.DisplayPropertyListing({ "PropertyListingId": this.propertyId, "LoginUserId": this.userId }).subscribe((e: any) => {
       let temp: any = e;
       this.propertyData = e.data.propertyListing;
-      // console.log(this.propertyData);
       this.userData = temp.data.user;
       this.propertyLat = temp.data.propertyListing.propertyLat;
       this.propertyLng = temp.data.propertyListing.propertyLong;
@@ -432,7 +431,6 @@ export class PropertyDetailComponent implements OnInit {
         // share url concatination
 
         this.shareURL += this.propertyDetailData.id;
-        // console.log(this.shareURL);
 
         //gallery images
         for (let i = 0; i < this.propertyDetailData.documents.length; i++) {
@@ -728,29 +726,11 @@ export class PropertyDetailComponent implements OnInit {
     this.service.LoadSimilarProperty({ "UserId": this.userId, "PropertyListingId": this.propertyId }).subscribe(data => {
       let response: any = data;
       this.similarPropertyDetails = response.data;
-      console.log(response.data)
       response.data.forEach((element: any, i: any) => {
         let image = 'assets/images/placeholder.png'
         if (element.documents.length > 1) {
           image = this.baseUrl + element.documents[0].fileUrl
         }
-
-        tempData.push(
-          {
-            title: element.propertyTitle,
-            price: element.propertyPrice,
-            rentType: element.rentType.name,
-            currency: element.country.currency,
-            favorite: element.favorite,
-            propertyAddress: element.propertyAddress,
-            id: element.id,
-            alt: element.propertyTitle,
-            src: image,
-            bedrooms: element.bedrooms,
-            bathrooms: element.bathrooms,
-            buildingName: element.buildingName,
-            carpetArea: element.carpetArea,
-          });
       })
     });
     // this.similarPropertyDetails = tempData
