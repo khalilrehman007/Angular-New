@@ -12,14 +12,14 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="txtname">Account Email</label>
+                                    <label for="txtname">حساب البريد الإلكتروني</label>
                                     <h4 class="base-info-text">{{this.user.email}}</h4>
                                     <!-- <input type="text" id="txtname" class="form-control" value="omranabc@gmail.com" placeholder="Enter the User Name"   autocomplete="off"  /> -->
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="txtname">Phone</label>
+                                    <label for="txtname">هاتف</label>
                                     <h4 class="base-info-text"><a
                                             href="tel:{{this.user.phoneNumber ? this.user.phoneNumber : 'Empty'}}">{{this.user.phoneNumber
                                             ?
@@ -30,7 +30,7 @@
                             <div class="col-md-4">
                                 <div class="d-flex align-item-center">
                                     <div class="form-group">
-                                        <label for="txtname">Address</label>
+                                        <label for="txtname">تبوك</label>
                                         <h4 class="base-info-text">{{this.userFormData.address ?
                                             this.userFormData.address : '-'}}
                                         </h4>
@@ -61,31 +61,29 @@
                     <li class="nav-item" role="presentation">
                         <button class="nav-link active" id="pills-dashboard-tab" data-bs-toggle="pill"
                             data-bs-target="#pills-dashboard" type="button" role="tab" aria-controls="pills-dashboard"
-                            aria-selected="true">Dashboard</button>
+                            aria-selected="true">لوحة القيادة</button>
                     </li>
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="pills-activities-tab" data-bs-toggle="pill"
                             data-bs-target="#pills-activities" type="button" role="tab" aria-controls="pills-activities"
-                            aria-selected="false">My Activities</button>
+                            aria-selected="false">نشاطاتي</button>
                     </li>
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="pills-leads-tab" data-bs-toggle="pill"
                             data-bs-target="#pills-leads" type="button" role="tab" aria-controls="pills-leads"
                             aria-selected="false"
-                            *ngIf="professionalType == 1 || professionalType == 2 || professionalType == 3">My
-                            Leads</button>
+                            *ngIf="professionalType == 1 || professionalType == 2 || professionalType == 3">My Leads</button>
                     </li>
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="pills-listing-tab" data-bs-toggle="pill"
                             data-bs-target="#pills-listing" type="button" role="tab" aria-controls="pills-listing"
                             aria-selected="false"
-                            *ngIf="professionalType == 1 || professionalType == 2 || professionalType == 3">My
-                            Listings</button>
+                            *ngIf="professionalType == 1 || professionalType == 2 || professionalType == 3">My Listings</button>
                     </li>
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="pills-valuation-tab" data-bs-toggle="pill"
                             data-bs-target="#pills-valuation" type="button" role="tab" aria-controls="pills-valuation"
-                            aria-selected="false">My Valuations</button>
+                            aria-selected="false">تقييماتي</button>
                     </li>
                     <!-- <li class="nav-item" role="presentation">
                         <button class="nav-link" id="pills-packages-tab" data-bs-toggle="pill"
@@ -107,21 +105,19 @@
                     <li class="nav-item" role="presentation">
                         <!-- <button class="nav-link" id="">More</button> -->
                         <div ngbDropdown class="d-inline-block">
-                            <button mat-icon-button ngClass="action-btn" id="dropdownBasic1" ngbDropdownToggle>
-                                More</button>
+                            <button mat-icon-button ngClass="action-btn" id="dropdownBasic1" ngbDropdownToggle>أكثر</button>
                             <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
                                 <!-- <h5>Share with:</h5> -->
-                                <button ngbDropdownItem><a href=""><img src="{{web}}"> Go to Ovaluate</a></button>
+                                <button ngbDropdownItem><a href=""><img src="{{web}}"> اذهب إلى Ovaluate</a></button>
                                 <button ngbDropdownItem><a href="" data-bs-toggle="pill" data-bs-target="#pills-profile"
                                         type="button" role="tab" aria-controls="pills-profile"
-                                        aria-selected="false"><img src="{{profile}}"> My
-                                        Profile</a></button>
+                                        aria-selected="false"><img src="{{profile}}"> ملفي</a></button>
                                 <button ngbDropdownItem><a target="_blank" routerLink="/chat"><img src="{{shareicon}}">
-                                        My Messages</a></button>
+                                        رسائلي</a></button>
                                 <!-- <button ngbDropdownItem><a href=""><img src="{{acsetting}}"> Account
                                         Settings</a></button> -->
                                 <button ngbDropdownItem>
-                                    <a ngClass="logout-link logout-popup" (click)="logOutPopup(content)"><img src="{{aclogout}}"> Logout </a>
+                                    <a ngClass="logout-link logout-popup" (click)="logOutPopup(content)"><img src="{{aclogout}}"> تسجيل خروج </a>
                                 </button>
                             </div>
                         </div>
@@ -147,7 +143,7 @@
                             <li>Directly List your Property on Ovaluate</li>
                             <li>Directly List your Property on Ovaluate</li>
                         </ul>
-                        <a routerLink="/add-property/listingproperty" class="btn btn-primary">List Property</a>
+                        <a routerLink="/add-property/listingproperty" class="btn btn-primary"> قائمة الممتلكات</a>
                     </div>
 
                     <div class="statictics-wrap">
@@ -161,11 +157,11 @@
                                         <ul class="counts-wrap">
                                             <li>
                                                 <h3 class="count">{{ totalRestentailPropertyListing }}</h3>
-                                                <p>Residential</p>
+                                                <p>سكني</p>
                                             </li>
                                             <li>
                                                 <h3 class="count">{{ totalCommercialPropertyListing }}</h3>
-                                                <p>Commercial</p>
+                                                <p>تجاري</p>
                                             </li>
                                         </ul>
                                     </div>
@@ -177,16 +173,16 @@
                             <div class="col-md-6">
                                 <div class="card">
                                     <div class="content-area">
-                                        <h4 class="title">Valuation Summary</h4>
+                                        <h4 class="title">مراجعة التفاصيل</h4>
                                         <p>{{ lastValuationDate }}</p>
                                         <ul class="counts-wrap">
                                             <li>
                                                 <h3 class="count">{{ totalRestentailValuation }}</h3>
-                                                <p>Residential</p>
+                                                <p>سكني</p>
                                             </li>
                                             <li>
                                                 <h3 class="count">{{ totalCommercialValuation }}</h3>
-                                                <p>Commercial</p>
+                                                <p>تجاري</p>
                                             </li>
                                         </ul>
                                     </div>
@@ -228,7 +224,7 @@
                                                         stroke="#595ad4" stroke-width="2" stroke-linecap="round"
                                                         stroke-linejoin="round" />
                                                 </svg>
-                                                Residential</a>
+                                                سكني</a>
                                         </li>
                                         <li ngClass="nav-item">
                                             <a ngClass="nav-link" data-bs-toggle="tab"
@@ -250,7 +246,7 @@
                                                         stroke-miterlimit="10" stroke-linecap="round"
                                                         stroke-linejoin="round" />
                                                 </svg>
-                                                Commercial</a>
+                                                تجاري</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -269,7 +265,7 @@
                                                 <img src="assets/images/user.png" alt="">
                                             </div>
                                             <div class="col base-info-col">
-                                                <h4 class="name" *ngIf="data && data.name">{{data.name}}</h4>
+                                                <h4 class="name" *ngIf="data && data.name">{{data.nameAr}}</h4>
                                                 <p *ngIf="data && data.leadDate">{{data.leadDate.split("T")[0]}}</p>
                                                 <p *ngIf="data.propertyListing.city && data.propertyListing.city.name">
                                                     {{data.propertyListing.city.name}}, UAE</p>
@@ -281,7 +277,7 @@
                                             </div>
                                             <div class="col ">
 
-                                                <span>Building Type</span>
+                                                <span>نوع البناية</span>
                                                 <p
                                                     *ngIf="data.propertyListing.propertyCategory && data.propertyListing.propertyCategory.categoryName">
                                                     {{data.propertyListing.propertyCategory.categoryName}}</p>
@@ -294,7 +290,7 @@
                                                     {{data.propertyListing.propertyListingType.name}}</p>
                                             </div>
                                             <div class="col contact-col">
-                                                <span>Contact</span>
+                                                <span>اتصال</span>
                                                 <div>
                                                     <p *ngIf="data && data.phone">{{data.phone}}</p>
                                                     <!-- <a href="#"><img
@@ -340,7 +336,7 @@
                                             </div>
                                             <div class="col ">
 
-                                                <span>Building Type</span>
+                                                <span>نوع البناية Type</span>
                                                 <p
                                                     *ngIf="data.propertyListing.propertyCategory && data.propertyListing.propertyCategory.categoryName">
                                                     {{data.propertyListing.propertyCategory.categoryName}}</p>
@@ -353,7 +349,7 @@
                                                     {{data.propertyListing.propertyListingType.name}}</p>
                                             </div>
                                             <div class="col contact-col">
-                                                <span>Contact</span>
+                                                <span>اتصال</span>
                                                 <div>
                                                     <p *ngIf="data && data.phone">{{data.phone}}</p>
                                                     <!-- <a href="#"><img
@@ -381,11 +377,11 @@
                         <div ngClass="container_1220px">
                             <div ngClass="section-title">
                                 <div ngClass="section-custom-title-left">
-                                    <h4>Blogs</h4>
-                                    <p>Some of our picked properties near your location.</p>
+                                    <h4>مقالات</h4>
+                                    <p>بعض العقارات المختارة بالقرب من موقعك.</p>
                                 </div>
                                 <div ngClass="section-custom-title-right">
-                                    <a routerLink="/blog">Read all</a>
+                                    <a routerLink="/blog">اقرأ كل شيء</a>
                                 </div>
                             </div>
 
@@ -398,10 +394,10 @@
                                             <img [src]="blog.src2" ngClass="img-fluid" alt="">
                                         </span>
                                         <div ngClass="blog-title-content">
-                                            <h5>{{blog.blogTitle}}</h5>
+                                            <h5>{{blog.blogTitleAr}}</h5>
                                             <span>{{blog.blogDate.split("T")[0]}}</span>
                                         </div>
-                                        <button ngClass="tag_btn blue"> Market Trends</button>
+                                        <button ngClass="tag_btn blue">{{blog.blogCategory.categoryNameAr}}</button>
                                     </a>
                                 </div>
                             </div>
@@ -410,7 +406,7 @@
                 </div>
                 <div class="tab-pane fade" id="pills-activities" role="tabpanel" aria-labelledby="pills-activities-tab">
                     <div class="recent-activity">
-                        <h4 class="sub-title">Recent Activities</h4>
+                        <h4 class="sub-title">أنشطة حالية</h4>
                         <div class="sub-tab-nav">
                             <mat-tab-group>
                                 <mat-tab label="Searches">
@@ -421,25 +417,25 @@
                                                     class="checkbox-design position-relative">
                                                     <input type="radio" id="Furnished" name="property-types" value="All"
                                                         checked>
-                                                    <button class="checkbox-btn">All ({{viewAllCount}})</button>
+                                                    <button class="checkbox-btn">الجميع ({{viewAllCount}})</button>
                                                 </div>
                                                 <div (click)="myActivityViewChange('1')"
                                                     class="checkbox-design position-relative">
                                                     <input type="radio" id="Unfurnished" name="property-types"
                                                         value="Rent">
-                                                    <button class="checkbox-btn">Rent ({{viewRentCount}})</button>
+                                                    <button class="checkbox-btn">استئجار({{viewRentCount}})</button>
                                                 </div>
                                                 <div (click)="myActivityViewChange('2')"
                                                     class="checkbox-design position-relative">
                                                     <input type="radio" id="Semi-Furnished" name="property-types"
                                                         value="Buy">
-                                                    <button class="checkbox-btn">Buy ({{viewBuyCount}})</button>
+                                                    <button class="checkbox-btn">شراء({{viewBuyCount}})</button>
                                                 </div>
                                                 <div (click)="myActivityViewChange(userId)"
                                                     class="checkbox-design position-relative">
                                                     <input type="radio" id="Unfurnished" name="property-types"
                                                         value="Agents">
-                                                    <button class="checkbox-btn">Agents ({{viewAgentCount}})</button>
+                                                    <button class="checkbox-btn">الوكلاء({{viewAgentCount}})</button>
                                                 </div>
                                             </div>
                                         </div>
