@@ -4,7 +4,7 @@
             <div ngClass="flex-column flex-column-14">
                 <div ngClass="block-wrapper" *ngIf="searchList.length > 0">
                     <mat-form-field class="example-chip-list input-design searh_input-design" appearance="fill">
-                        <mat-label>Search</mat-label>
+                        <mat-label>البحث</mat-label>
                         <mat-chip-list #chipList aria-label="Search selection">
                             <mat-chip *ngFor="let SearchValue of SearchKeyword" (removed)="remove(SearchValue)">
                                 {{SearchValue}}

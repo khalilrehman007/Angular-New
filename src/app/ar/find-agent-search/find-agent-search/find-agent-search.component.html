@@ -4,7 +4,7 @@
             <div ngClass="flex-column flex-column-1">
                 <div ngClass="block-wrapper">
                     <mat-form-field class="example-chip-list input-design searh_input-design" appearance="fill">
-                        <mat-label>Locations</mat-label>
+                        <mat-label>المواقع</mat-label>
                         <mat-chip-list #chipList aria-label="Fruit selection">
                             <mat-chip *ngFor="let fruit of fruits" (removed)="remove(fruit)">
                                 {{fruit}}
@@ -28,7 +28,7 @@
             <div ngClass="flex-column flex-column-2">
                 <div ngClass="block-wrapper">
                     <mat-form-field class="example-chip-list input-design searh_input-design" appearance="fill">
-                        <mat-label>Agents</mat-label>
+                        <mat-label>الوكلاء</mat-label>
                         <input type="text" placeholder="Select Agents" aria-label="Number" matInput
                             [formControl]="myControl1" [matAutocomplete]="auto1">
                         <mat-autocomplete autoActiveFirstOption #auto1="matAutocomplete">
