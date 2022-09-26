@@ -9,11 +9,11 @@
             <div class="classified_tabs-component">
                 <span class="tab-inline-heading">Searching in</span>
                 <mat-tab-group>
-                    <mat-tab label="All"><app-all-search></app-all-search></mat-tab>
-                    <mat-tab label="Motors"><app-motor-module></app-motor-module></mat-tab>
-                    <mat-tab label="Services"><app-service-search-module></app-service-search-module></mat-tab>
-                    <mat-tab label="Jobs"><app-job-search></app-job-search></mat-tab>
-                    <mat-tab label="Community"> <app-community-search-module></app-community-search-module></mat-tab>
+                    <mat-tab label="الجميع"><app-all-search></app-all-search></mat-tab>
+                    <mat-tab label="المحركات"><app-motor-module></app-motor-module></mat-tab>
+                    <mat-tab label="خدمات"><app-service-search-module></app-service-search-module></mat-tab>
+                    <mat-tab label="وظائف"><app-job-search></app-job-search></mat-tab>
+                    <mat-tab label="تواصل اجتماعي"> <app-community-search-module></app-community-search-module></mat-tab>
                   </mat-tab-group>
             </div>
         </div>
@@ -22,7 +22,7 @@
 <section class="services-main-sec">
     <div ngClass="container_1280px">
         <div ngClass="h4_design">
-            <h4>Popular Services</h4>
+            <h4>الخدمات الشعبية</h4>
         </div>
         <div class="services-block-wrap">
             <div class="row">
@@ -45,7 +45,7 @@
 <section class="properties-slider slider-shadow cars_slider">
     <div ngClass="container_1280px">
         <div ngClass="h4_design">
-            <h4>Popular in Used Cars for Sale</h4>
+            <h4>شعبية في سيارات مستعملة للبيع</h4>
         </div>
         <div class="popular-residential-searches slider-shoecase-design">
             <owl-carousel-o [options]="customOptions">
@@ -73,7 +73,7 @@
 <section class="properties-slider furniture-slider slider-shadow">
     <div ngClass="container_1280px">
         <div ngClass="h4_design">
-            <h4>Popular in Furniture & Garden</h4>
+            <h4>شعبية في الأثاث والحدائق</h4>
         </div>
         <div class="popular-residential-searches slider-shoecase-design">
             <owl-carousel-o [options]="customOptions">
@@ -101,7 +101,7 @@
 <section class="properties-slider sports-slider slider-shadow">
     <div ngClass="container_1280px">
         <div ngClass="h4_design">
-            <h4>Popular in Sports Equipment</h4>
+            <h4>شعبية في المعدات الرياضية</h4>
         </div>
         <div class="popular-residential-searches slider-shoecase-design">
             <owl-carousel-o [options]="customOptions">
@@ -129,7 +129,7 @@
 <section class="properties-slider phone-tablet_slider slider-shadow">
     <div ngClass="container_1280px">
         <div ngClass="h4_design">
-            <h4>Popular in Mobile Phones & Tablets</h4>
+            <h4>شعبية في الهواتف المحمولة والأجهزة اللوحية</h4>
         </div>
         <div class="slider-shoecase-design">
             <owl-carousel-o [options]="customOptions">
@@ -157,21 +157,21 @@
 <section class="popular-cateogary-sec">
   <div class="container_1280px">
     <div ngClass="h4_design">
-        <h4>Popular Categories</h4>
+        <h4>الفئات الشعبية</h4>
     </div>
     <div class="classified-catogary-sec">
         <div class="row">
             <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-5">
                 <div class="category_block-design">
-                    <h2><img src="{{motors}}"> Motors <span class="">(186)</span></h2>
+                    <h2><img src="{{motors}}"> المحركات <span class="">(186)</span></h2>
                     <ul class="list-unstyled">
-                        <li><a routerLink="">Used Cars for Sale</a></li>
-                        <li><a routerLink="">Motorcycles</a></li>
-                        <li><a routerLink="">Auto Accessories & Parts</a></li>
-                        <li><a routerLink="">All in Motors</a></li>
+                        <li><a routerLink="">السيارات المستعملة للبيع</a></li>
+                        <li><a routerLink="">دراجات نارية</a></li>
+                        <li><a routerLink="">اكسسوارات وقطع غيار السيارات</a></li>
+                        <li><a routerLink="">الكل في المحركات</a></li>
                     </ul>
                     <div class="view-all-category">
-                        <a routerLink="">All in Motors
+                        <a routerLink="">الكل في المحركات
                             <svg class="svg-inline--fa fa-arrow-right" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M438.6 278.6l-160 160C272.4 444.9 264.2 448 256 448s-16.38-3.125-22.62-9.375c-12.5-12.5-12.5-32.75 0-45.25L338.8 288H32C14.33 288 .0016 273.7 .0016 256S14.33 224 32 224h306.8l-105.4-105.4c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l160 160C451.1 245.9 451.1 266.1 438.6 278.6z"></path></svg>
                         </a>
                     </div>
@@ -179,15 +179,15 @@
             </div>
             <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-5">
                 <div class="category_block-design">
-                    <h2><img src="{{services}}"> Services <span class="">(186)</span></h2>
+                    <h2><img src="{{services}}"> خدما <span class="">(186)</span></h2>
                     <ul class="list-unstyled">
-                        <li><a routerLink="">Handyman</a></li>
-                        <li><a routerLink="">Heavy Lifting</a></li>
-                        <li><a routerLink="">Personal Assistant</a></li>
-                        <li><a routerLink="">General Cleaning</a></li>
+                        <li><a routerLink="">عامل يدوي</a></li>
+                        <li><a routerLink="">رفع الأوزان الثقيلة</a></li>
+                        <li><a routerLink="">مساعد شخصي</a></li>
+                        <li><a routerLink="">تنظيف بشكل عام</a></li>
                     </ul>
                     <div class="view-all-category">
-                        <a routerLink="">All in Classified 
+                        <a routerLink="">كل ما في مبوب 
                             <svg class="svg-inline--fa fa-arrow-right" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M438.6 278.6l-160 160C272.4 444.9 264.2 448 256 448s-16.38-3.125-22.62-9.375c-12.5-12.5-12.5-32.75 0-45.25L338.8 288H32C14.33 288 .0016 273.7 .0016 256S14.33 224 32 224h306.8l-105.4-105.4c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l160 160C451.1 245.9 451.1 266.1 438.6 278.6z"></path></svg>
                         </a>
                     </div>
@@ -195,15 +195,15 @@
             </div>
             <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-5">
                 <div class="category_block-design">
-                    <h2><img src="{{mobilephone}}"> Mobiles Phones <span class="">(186)</span></h2>
+                    <h2><img src="{{mobilephone}}">الهواتف المحمولة <span class="">(186)</span></h2>
                     <ul class="list-unstyled">
-                        <li><a routerLink="">Mobiles Phones</a></li>
-                        <li><a routerLink="">Tablets</a></li>
-                        <li><a routerLink="">Other Mobile Phones & Tablets</a></li>
-                        <li><a routerLink="">Mobile Phone & Tablet Accessories</a></li>
+                        <li><a routerLink="">الهواتف المحمولة</a></li>
+                        <li><a routerLink="">أجهزة لوحية</a></li>
+                        <li><a routerLink="">الهواتف المحمولة والأجهزة اللوحية الأخرى</a></li>
+                        <li><a routerLink="">ملحقات الهاتف المحمول والكمبيوتر اللوحي</a></li>
                     </ul>
                     <div class="view-all-category">
-                        <a routerLink="">All in Mobiles Phones 
+                        <a routerLink="">جميع الهواتف المحمولة 
                             <svg class="svg-inline--fa fa-arrow-right" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M438.6 278.6l-160 160C272.4 444.9 264.2 448 256 448s-16.38-3.125-22.62-9.375c-12.5-12.5-12.5-32.75 0-45.25L338.8 288H32C14.33 288 .0016 273.7 .0016 256S14.33 224 32 224h306.8l-105.4-105.4c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l160 160C451.1 245.9 451.1 266.1 438.6 278.6z"></path></svg>
                         </a>
                     </div>
@@ -211,23 +211,23 @@
             </div>
             <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-5">
                 <div class="category_block-design">
-                    <h2><img src="{{homeappliances}}">Home Appliances <span class="">(186)</span></h2>
+                    <h2><img src="{{homeappliances}}">أجهزة منزلية <span class="">(186)</span></h2>
                     <ul class="list-unstyled">
                         <li>
-                            <a routerLink="">Large Appliances / White Goods</a>
+                            <a routerLink="">الأجهزة الكبيرة / السلع البيضاء</a>
                         </li>
                         <li>
-                            <a routerLink="">Small Kitchen Appliances</a>
+                            <a routerLink="">أجهزة مطبخ صغيرة</a>
                         </li>
                         <li>
-                            <a routerLink="">Outdoor Appliances</a>
+                            <a routerLink="">الأجهزة الخارجية</a>
                         </li>
                         <li>
-                            <a routerLink="">Small Bathroom Appliances</a>
+                            <a routerLink="">أجهزة حمام صغيرة</a>
                         </li>
                     </ul>
                     <div class="view-all-category">
-                        <a routerLink="">All in Home Appliances 
+                        <a routerLink="">كل ما في الأجهزة المنزلية
                             <svg class="svg-inline--fa fa-arrow-right" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M438.6 278.6l-160 160C272.4 444.9 264.2 448 256 448s-16.38-3.125-22.62-9.375c-12.5-12.5-12.5-32.75 0-45.25L338.8 288H32C14.33 288 .0016 273.7 .0016 256S14.33 224 32 224h306.8l-105.4-105.4c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l160 160C451.1 245.9 451.1 266.1 438.6 278.6z"></path></svg>
                         </a>
                     </div>
@@ -235,23 +235,23 @@
             </div>
             <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-5">
                 <div class="category_block-design">
-                    <h2><img src="{{furnituregarden}}">Furniture & Garden <span class="">(186)</span></h2>
+                    <h2><img src="{{furnituregarden}}">أثاث وحدائق <span class="">(186)</span></h2>
                     <ul class="list-unstyled">
                         <li>
-                            <a routerLink="">Furniture</a>
+                            <a routerLink="">أثاث</a>
                         </li>
                         <li>
-                            <a routerLink="">Home accessories</a>
+                            <a routerLink="">الإكسسوارات المنزلية</a>
                         </li>
                         <li>
-                            <a routerLink="">Garden & Outdoor</a>
+                            <a routerLink="">حديقة وخارجية</a>
                         </li>
                         <li>
-                            <a routerLink="">Rug & Carpets</a>
+                            <a routerLink="">البساط والسجاد</a>
                         </li>
                     </ul>
                     <div class="view-all-category">
-                        <a routerLink="">All in Furniture & Garden 
+                        <a routerLink="">كل ما في الأثاث والحدائق 
                             <svg class="svg-inline--fa fa-arrow-right" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M438.6 278.6l-160 160C272.4 444.9 264.2 448 256 448s-16.38-3.125-22.62-9.375c-12.5-12.5-12.5-32.75 0-45.25L338.8 288H32C14.33 288 .0016 273.7 .0016 256S14.33 224 32 224h306.8l-105.4-105.4c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l160 160C451.1 245.9 451.1 266.1 438.6 278.6z"></path></svg>
                         </a>
                     </div>
@@ -259,23 +259,23 @@
             </div>
             <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-5">
                 <div class="category_block-design">
-                    <h2><img src="{{community}}">Community <span class="">(186)</span></h2>
+                    <h2><img src="{{community}}">تواصل اجتماعي <span class="">(186)</span></h2>
                     <ul class="list-unstyled">
                         <li>
-                            <a routerLink="">Home Maintenance</a>
+                            <a routerLink="">صيانة المنزل</a>
                         </li>
                         <li>
-                            <a routerLink="">Tutors & Classes</a>
+                            <a routerLink="">مدرسين وفصول</a>
                         </li>
                         <li>
-                            <a routerLink="">Other Services</a>
+                            <a routerLink="">خدمات أخرى</a>
                         </li>
                         <li>
-                            <a routerLink="">Freelancers</a>
+                            <a routerLink="">لحسابهم الخاص</a>
                         </li>
                     </ul>
                     <div class="view-all-category">
-                        <a routerLink="">All in Community 
+                        <a routerLink="">كل شيء في المجتمع
                             <svg class="svg-inline--fa fa-arrow-right" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M438.6 278.6l-160 160C272.4 444.9 264.2 448 256 448s-16.38-3.125-22.62-9.375c-12.5-12.5-12.5-32.75 0-45.25L338.8 288H32C14.33 288 .0016 273.7 .0016 256S14.33 224 32 224h306.8l-105.4-105.4c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l160 160C451.1 245.9 451.1 266.1 438.6 278.6z"></path></svg>
                         </a>
                     </div>
@@ -309,8 +309,8 @@
 <section ngClass="position-relative wrapper-section certified_sec">
     <div ngClass="container_1280px">
         <div ngClass="heading-32px-design text-center mb-4">
-            <h2>Approved & Certified by DLD</h2>
-            <p>Ovaluate Certificates are approved & certified by Dubai Land Department</p>
+            <h2>معتمد ومعتمد من دائرة الأراضي والأملاك في دبي</h2>
+            <p>شهادات اوفاليت معتمدة ومصدقة من دائرة الأراضي والأملاك في دبي</p>
         </div>
         <div ngClass="certified_images-sec text-center">
             <img src="{{rera}}">
