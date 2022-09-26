@@ -550,7 +550,9 @@ export class HeaderComponent implements OnInit {
   ];
   selectedLanguage = this.language[1].value;
   changeLanguage() {
-    this.route.navigate(["/"]);
+    let temp = this.route.url.split("/");
+    temp.splice(0,2);
+    this.route.navigate(["/" + temp]);
   }
 }
 
