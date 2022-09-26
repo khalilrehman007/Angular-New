@@ -6,19 +6,13 @@
                 <app-breadcrumbs></app-breadcrumbs>
             </div>
             <div ngClass="blogs-details-hdr">
-                <div ngClass="heading-32px-design mb-3">
-                    <h2 *ngIf="blog && blog.blogTitle">{{blog.blogTitleAr}}</h2>
-                    <p *ngIf="blog && blog.blogDate">بواسطة <a routerLink="">اوفاليوت</a> · <span
-                            ngClass="date">{{blog.blogDate.split("T")[0]}}</span> <a routerLink="/ar/blog-category">· نصائح وإرشادات</a></p>
-                </div>
-                <div ngClass="key-take-ways-sec">
-                    <h5>المأخذ الرئيسية</h5>
-                    <ul *ngIf="blog && blog.blogDetails">
-                        <li *ngFor="let item of blog.blogDetails">{{item.keyTakeAwayAr}}</li>
-                    </ul>
-                </div>
                 <div ngClass="blog_details-img mb-4">
                     <img *ngIf="blog && blog.blogDocument.fileUrl" src="{{blog.blogDocument.fileUrl}}">
+                </div>
+                <div ngClass="heading-32px-design mb-3">
+                    <h2 *ngIf="blog && blog.blogTitle">{{blog.blogTitleAr}}</h2>
+                    <!-- <p *ngIf="blog && blog.blogDate">بواسطة <a routerLink="">اوفاليوت</a> · <span
+                            ngClass="date">{{blog.blogDate.split("T")[0]}}</span> <a routerLink="/ar/blog-category">· نصائح وإرشادات</a></p> -->
                 </div>
                 <div class="blog-post-content">
                 </div>
@@ -30,6 +24,12 @@
             <div ngClass="about_ovalute-headings">
                 <h5>نبذة عن اوفاليويت</h5>
                 <p>تقدم منصة أوڨالويت تقييمًا عالميًا للممتلكات وخدمات الأعمال للعملاء في جميع أنحاء العالم ، بأعلى مستوى من الاحتراف والشغف.</p>
+            </div>
+            <div ngClass="key-take-ways-sec">
+                <h5>المأخذ الرئيسية</h5>
+                <ul *ngIf="blog && blog.blogDetails">
+                    <li *ngFor="let item of blog.blogDetails">{{item.keyTakeAwayAr}}</li>
+                </ul>
             </div>
         </div>
     </section>

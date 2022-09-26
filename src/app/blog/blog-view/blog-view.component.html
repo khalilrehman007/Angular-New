@@ -6,20 +6,14 @@
                 <app-breadcrumbs></app-breadcrumbs>
             </div>
             <div ngClass="blogs-details-hdr">
-                <div ngClass="heading-32px-design mb-3">
-                    <h2 *ngIf="blog && blog.blogTitle">{{blog.blogTitle}}</h2>
-                    <p *ngIf="blog && blog.blogDate">By <a routerLink="">Ovalaute</a> · <span
-                            ngClass="date">{{blog.blogDate.split("T")[0]}}</span> <a routerLink="/blog-category">· Tips
-                            & Advice</a></p>
-                </div>
-                <div ngClass="key-take-ways-sec">
-                    <h5>Key Takeaways</h5>
-                    <ul *ngIf="blog && blog.blogDetails">
-                        <li *ngFor="let item of blog.blogDetails">{{item.keyTakeAway}}</li>
-                    </ul>
-                </div>
                 <div ngClass="blog_details-img mb-4">
                     <img *ngIf="blog && blog.blogDocument.fileUrl" src="{{blog.blogDocument.fileUrl}}">
+                </div>
+                <div ngClass="heading-32px-design mb-3">
+                    <h2 *ngIf="blog && blog.blogTitle">{{blog.blogTitle}}</h2>
+                    <!-- <p *ngIf="blog && blog.blogDate">By <a routerLink="">Ovalaute</a> · <span
+                            ngClass="date">{{blog.blogDate.split("T")[0]}}</span> <a routerLink="/blog-category">· Tips
+                            & Advice</a></p> -->
                 </div>
                 <div class="blog-post-content">
                 </div>
@@ -35,6 +29,12 @@
                     valuation and real estate business service, matching technology-driven solutions with the
                     professionalism and dedication of an expert team.Ovaluate is a global property valuation and real
                     estate.</p>
+            </div>
+            <div ngClass="key-take-ways-sec">
+                <h5>Key Takeaways</h5>
+                <ul *ngIf="blog && blog.blogDetails">
+                    <li *ngFor="let item of blog.blogDetails">{{item.keyTakeAway}}</li>
+                </ul>
             </div>
         </div>
     </section>
