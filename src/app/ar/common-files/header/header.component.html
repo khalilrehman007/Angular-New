@@ -27,19 +27,19 @@
                     </button>
                     <div ngClass="mobile-abs-items d-hide">
                         <ul>
-                            <!-- <li ngClass="nav-item select-design-language d-hide">
+                            <li ngClass="nav-item select-design-language d-hide">
                                 <mat-form-field appearance="fill">
                                     <mat-select [(value)]="selectedLanguage" (selectionChange)="changeLanguage()">
                                         <mat-option [value]="option.value" *ngFor="let option of language">{{ option.viewValue }}</mat-option>
                                     </mat-select>
                                 </mat-form-field>
-                            </li> -->
-                            <li ngClass="nav-item language-converter d-hide">
+                            </li>
+                            <!-- <li ngClass="nav-item language-converter d-hide">
                                 <select>
                                     <option>English</option>
                                     <option>Arabic</option>
                                 </select>
-                            </li>
+                            </li> -->
 
                             <li ngClass="nav-item position-relative d-hide notification_header-list"
                                 *ngIf="userData != ''">
@@ -125,19 +125,19 @@
                     <div ngClass="collapse navbar-collapse justify-content-end" id="collapsibleNavbar"
                         [ngClass]="status4 ? 'show' : 'noshow'">
                         <ul ngClass="navbar-nav sub-header">
-                            <!-- <li ngClass="nav-item select-design-language tm-hide">
+                            <li ngClass="nav-item select-design-language tm-hide">
                                 <mat-form-field appearance="fill">
                                     <mat-select [(value)]="selectedLanguage" (selectionChange)="changeLanguage()">
                                         <mat-option [value]="option.value" *ngFor="let option of language">{{ option.viewValue }}</mat-option>
                                     </mat-select>
                                 </mat-form-field>
-                            </li> -->
-                            <li ngClass="nav-item language-converter tm-hide">
+                            </li>
+                            <!-- <li ngClass="nav-item language-converter tm-hide">
                                 <select>
                                     <option>English</option>
                                     <option>Arabic</option>
                                 </select>
-                            </li>
+                            </li> -->
 
                             <li ngClass="nav-item fav-li position-relative tm-hide" *ngIf="userData != ''">
                                 <button (click)="clickEvent()"><svg width="20" height="19" viewBox="0 0 20 19"

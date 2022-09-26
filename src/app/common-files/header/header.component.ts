@@ -16,7 +16,7 @@ interface LanguagesList {
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
   togglesvg = '../../../assets/images/icons/toggle.svg'
@@ -277,9 +277,10 @@ export class HeaderComponent implements OnInit {
   }
   ngOnInit() {
     $(".language-select").on("change", () => {
-      if ($(".language-select").val() == "Arabic") {
-        this.route.navigate(["/ar"])
-      }
+      console.log($(".language-select").val())
+      // if ($(".language-select").val() == "Arabic") {
+      //   this.route.navigate(["/ar"])
+      // }
     })
   }
   getUser() {
