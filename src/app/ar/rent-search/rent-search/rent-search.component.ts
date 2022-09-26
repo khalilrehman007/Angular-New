@@ -31,11 +31,11 @@ export class RentSearchComponent implements OnInit {
     this.getLoaction({ "Searching": "", "CountryId": "1" });
     this.service.RentTypes().subscribe(data => {
       let response: any = data;
-      this.Monthly = response.data[0].name;
+      this.Monthly = response.data[0].nameAr;
       // this.MonthlyAr  = response.data[0].nameAr;
-      this.Quarterly = response.data[1].name;
+      this.Quarterly = response.data[1].nameAr;
       // this.QuarterlyAr  = response.data[1].nameAr;
-      this.Yearly = response.data[2].name;
+      this.Yearly = response.data[2].nameAr;
       // this.YearlyAr  = response.data[3].nameAr;
     });
 

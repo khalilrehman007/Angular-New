@@ -5,7 +5,7 @@
             <div ngClass="flex-column flex-column-1">
                 <div ngClass="block-wrapper">
                     <mat-form-field class="example-chip-list input-design searh_input-design" appearance="fill">
-                        <mat-label>Search</mat-label>
+                        <mat-label>البحث</mat-label>
                         <mat-chip-list #chipList aria-label="Search selection">
                             <mat-chip *ngFor="let SearchValue of SearchKeyword" (removed)="remove(SearchValue)">
                                 {{SearchValue}}
@@ -31,7 +31,7 @@
                     <div ngClass="cstm_dropdown-list dropdown-design-2 position-relative drodown_with-img">
                         <button ngClass="drop-down_btn" (click)="clickEvent()">Budget</button>
                         <div class="cstm_dropdown-menu" [ngClass]="status ? 'active' : 'notactive'">
-                            <h4 ngClass="drop_label">Price Range</h4>
+                            <h4 ngClass="drop_label">نطاق السعر</h4>
                             <div ngClass="rental-type-tabs-sec">
 
                                 <div ngClass="price-range_sec">
@@ -69,9 +69,9 @@
             <div ngClass="flex-column flex-column-3">
                 <div ngClass="block-wrapper">
                     <div ngClass="cstm_dropdown-list dropdown-design-2 position-relative drodown_with-img">
-                        <button ngClass="drop-down_btn" (click)="clickEvent1()">Property Type</button>
+                        <button ngClass="drop-down_btn" (click)="clickEvent1()">نوع الملكية</button>
                         <div class="cstm_dropdown-menu" [ngClass]="status1 ? 'active' : 'notactive'">
-                            <h4 ngClass="drop_label">Property Type</h4>
+                            <h4 ngClass="drop_label">نوع الملكية</h4>
                             <div ngClass="property-types-heading">
                                 <ul ngClass="nav nav-tabs" role="tablist">
                                     <li ngClass="nav-item">

@@ -88,6 +88,7 @@ export class LandingComponent implements OnInit {
       // this.agentDetails = result.data;
       let tempData: Array<Object> = []
       let response: any = result.data;
+      console.log(tempData)
       response.forEach((element:any, i:any) => {
         let imageUrl: any = '../assets/images/user.png';
         if (element.agentDetails != undefined && element.agentDetails.user.imageUrl != undefined) {
@@ -183,8 +184,8 @@ export class LandingComponent implements OnInit {
       heading: "Real Estate Agent Listing",
       desc: "Some of our best property agents",
       tableHeadings: [
-        "Agents",
-        "Location",
+        "الوكلاء",
+        "موقعك",
         "Specialities",
         "Action"
       ],
@@ -211,9 +212,9 @@ export class LandingComponent implements OnInit {
       heading: "Real Estate Companies Listing",
       desc: "Some of our best property agents",
       tableHeadings: [
-        "Companies",
+        "الشركات",
         "Specialities",
-        "Agents",
+        "الوكلاء",
         "Action"
       ],
     };
