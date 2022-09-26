@@ -179,7 +179,10 @@ export class DashboardComponent implements OnInit {
   userId: number;
   parentTabId: any = "";
   childTabId: any  = "";
+  url:any = "";
+
   constructor(private authService: AuthService, private service: AppService, private route: Router, private notifyService: NotificationService,private modalService: NgbModal) {
+    this.url = this.route.url.split("/");
     $(window).scrollTop(0);
     this.getUser();
     this.userId = this.user.id;
@@ -214,7 +217,6 @@ export class DashboardComponent implements OnInit {
       }
       this.service.MyActivityPropertyListingViewForAgent({ "UserId": this.userData.id, "PropertyCategoryId": "" }).subscribe((result:any) => {
         this.activityViewData = result.data;
-        console.log(this.activityViewData);
       })
       this.service.SummaryLeads({ "UserId": this.userData.id, "PropertyCategoryId": "1" }).subscribe((result: any) => {
         if (result.data.length > 0) {
@@ -229,6 +231,13 @@ export class DashboardComponent implements OnInit {
         } else {
           this.leadSummary = "temp";
         }
+        setTimeout(() => {
+          if(this.url[2] == "wallet") {
+            $(".dashboard-tabs .wallet-btn").click();
+          } else if(this.url[2] == "my-listing") {
+            $(".dashboard-tabs .my-listing-btn").click();
+          }
+        },500);
         this.showLoader = false;
       })
       this.service.MyPackages(this.userData.id).subscribe((result: any) => {
