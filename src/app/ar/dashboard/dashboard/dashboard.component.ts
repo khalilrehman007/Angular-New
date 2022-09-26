@@ -214,7 +214,7 @@ blogs: any;
       }
       this.service.MyActivityPropertyListingViewForAgent({ "UserId": this.userData.id, "PropertyCategoryId": "" }).subscribe((result:any) => {
         this.activityViewData = result.data;
-        console.log(this.activityViewData);
+        // console.log(this.activityViewData);
       })
       this.service.SummaryLeads({ "UserId": this.userData.id, "PropertyCategoryId": "1" }).subscribe((result: any) => {
         if (result.data.length > 0) {
@@ -835,7 +835,7 @@ blogs: any;
 
     // if ( this.data.CompanyName = this.companyDetailsFormData.value.companyName )
     let token: any = localStorage.getItem("token");
-    console.log(this.companyFormData)
+    // console.log(this.companyFormData)
       // token = JSON.parse(token);
       // $.ajax({
       //   url: "https://beta.ovaluate.com/api/AddUpdateCompany",
@@ -913,7 +913,7 @@ blogs: any;
       }
       let token: any = localStorage.getItem("token");
       token = JSON.parse(token);
-      console.log(JSON.stringify(this.agentFormData))
+      // console.log(JSON.stringify(this.agentFormData))
       $.ajax({
         url: "https://beta.ovaluate.com/api/AddUpdateAgentDetails",
         method: "post",
@@ -925,7 +925,7 @@ blogs: any;
         },
         dataType: "json",
         success: (res:any) => {
-          console.log(res)
+          // console.log(res)
           this.agentBrokerId = res.data.id;
           if(res.message == "agent request completed successfully") {
             this.notifyService.showSuccess(res.message, "Agent details updated successfully");
