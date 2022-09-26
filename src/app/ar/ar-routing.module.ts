@@ -17,6 +17,7 @@ const routes: Routes = [
   // { path: "agent-details/:id", loadChildren: () => import('./agent-details/agent-details.module').then(module => module.AgentDetailsModule) },
   // { path: "company-details/:id", loadChildren: () => import('./company-details/company-details.module').then(module => module.CompanyDetailsModule) },
   {path:"PropertyCompare", loadChildren:()=>import('./property-compare/property-compare.module').then(module => module.PropertyCompareModule)},
+  {path:"classified", loadChildren:()=>import('./classified-module/classified-module.module').then(module => module.ClassifiedModuleModule)},
 ];
 
 @NgModule({
