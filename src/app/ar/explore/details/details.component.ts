@@ -308,12 +308,12 @@ export class DetailsComponent implements OnInit {
   AddToFavorite(id: any, status: any, part: any) {
     if (this.userId == '') {
       this.notifyService.showSuccess('First you need to login', "");
-      this.router.navigate(['/login'])
+      this.router.navigate(['/ar/login'])
     }
 
     if (!this.authService.isAuthenticated()) {
       this.notifyService.showError('You not having access', "");
-      this.router.navigate(['login']);
+      this.router.navigate(['/ar/login']);
     }
 
     this.service.FavoriteAddRemove(status, { "UserId": this.userId, "PropertyListingId": id }).subscribe(data => {

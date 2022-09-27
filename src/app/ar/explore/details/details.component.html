@@ -24,8 +24,8 @@
                                 <ul ngClass="list-unstyled d-flex justify-content-start">
                                     <li [ngClass]="status ? 'tactive' : 'thide'"><a (click)="Overview()">نظرة عامة</a></li>
                                     <li [ngClass]="status1 ? 'tactive' : 'thide'"><a (click)="NearBy()">موقع</a></li>
-                                    <li [ngClass]="status2 ? 'tactive' : 'thide'"><a (click)="ResPro()">Residential Properties</a></li>
-                                    <li [ngClass]="status3 ? 'tactive' : 'thide'"><a (click)="ComPro()">Commercial Properties</a></li>
+                                    <li [ngClass]="status2 ? 'tactive' : 'thide'"><a (click)="ResPro()">العقارات السكنية</a></li>
+                                    <li [ngClass]="status3 ? 'tactive' : 'thide'"><a (click)="ComPro()">العقارات التجارية</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -38,9 +38,9 @@
                 </div>
             </div>
             <div class="nearBy-wrapper" [ngClass]="status1 ? 'Showactive' : 'ExDetailhide'">
-                <div ngClass="tabs-heading-div">
-                    <h5>Nearby Al Barsha</h5>
-                </div>
+                <!-- <div ngClass="tabs-heading-div">
+                    <h5>بالقرب من البرشاء</h5>
+                </div> -->
                 <!-- <div ngClass="explore-near-by-buttons">
                       <button ngClass="explore-btn-design">All</button>
                       <button ngClass="explore-btn-design active"><img src="{{restaurant}}"> Restaurants</button>
@@ -105,7 +105,7 @@
                         </div>
                         <div class="no-data-found" *ngIf="dynamicSlides1.length == 0">
                             <mat-icon>file_copy</mat-icon>
-                            <p>No Data Found</p>
+                            <p>لاتوجد بيانات</p>
                         </div>
                         <div ngClass="tab-content">
                             <div id="resedential-rent" class="tab-pane active">
@@ -150,7 +150,7 @@
                                                         </span>
                                                     </div>
                                                 </div>
-                                                <a [routerLink]="['/property/detail']" [queryParams]="{id: slide.id}"
+                                                <a [routerLink]="['/ar/property/detail']" [queryParams]="{id: slide.id}"
                                                     ngClass="linK_overlay"></a>
                                                 <button ngClass="tag_btn blue"><img src="{{tagicn}}"> الشائعة</button>
                                             </div>
@@ -202,7 +202,7 @@
                                                         </span>
                                                     </div>
                                                 </div>
-                                                <a [routerLink]="['/property/detail']" [queryParams]="{id: slide.id}"
+                                                <a [routerLink]="['/ar/property/detail']" [queryParams]="{id: slide.id}"
                                                     ngClass="linK_overlay"></a>
                                                 <button ngClass="tag_btn blue"><img src="{{tagicn}}"> الشائعة</button>
                                             </div>
@@ -270,7 +270,7 @@
                         </div>
                         <div class="no-data-found" *ngIf="commercialdynamicSlides.length == 0">
                             <mat-icon>file_copy</mat-icon>
-                            <p>No Data Found</p>
+                            <p>لاتوجد بيانات</p>
                         </div>
                         <div ngClass="tab-content">
                             <div id="resedential-rent" class="tab-pane active">
@@ -295,7 +295,7 @@
                                                 </button>
                                                 <div ngClass="property-info">
                                                     <span ngClass="property-pricing"><span>{{ slide.price }} {{
-                                                            slide.currency }}33</span>
+                                                            slide.currency }}</span>
                                                         {{slide.rentType}}</span>
                                                     <span ngClass="property-name">{{slide.buildingName}}</span>
                                                     <p ngClass="property-location">
@@ -314,7 +314,7 @@
                                                         </span>
                                                     </div>
                                                 </div>
-                                                <a [routerLink]="['/property/detail']" [queryParams]="{id: slide.id}"
+                                                <a [routerLink]="['/ar/property/detail']" [queryParams]="{id: slide.id}"
                                                     ngClass="linK_overlay"></a>
                                                 <button ngClass="tag_btn blue"><img src="{{tagicn}}"> الشائعة</button>
                                             </div>
@@ -344,7 +344,7 @@
                                                 </button>
                                                 <div ngClass="property-info">
                                                     <span ngClass="property-pricing"><span>{{ slide.price }} {{
-                                                            slide.currency }}44</span>
+                                                            slide.currency }}</span>
                                                         {{slide.rentType}}</span>
                                                     <span ngClass="property-name">{{slide.buildingName}}</span>
                                                     <p ngClass="property-location">
@@ -363,7 +363,7 @@
                                                         </span>
                                                     </div>
                                                 </div>
-                                                <a [routerLink]="['/property/detail']" [queryParams]="{id: slide.id}"
+                                                <a [routerLink]="['/ar/property/detail']" [queryParams]="{id: slide.id}"
                                                     ngClass="linK_overlay"></a>
                                                 <button ngClass="tag_btn blue"><img src="{{tagicn}}"> الشائعة</button>
                                             </div>
