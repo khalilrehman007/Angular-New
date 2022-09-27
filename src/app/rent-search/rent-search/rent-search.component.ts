@@ -23,7 +23,7 @@ export class RentSearchComponent implements OnInit {
   rentType:any = []
 
   constructor(private activeRoute: ActivatedRoute, private service: AppService, private api: AppService, private route: Router) {
-    this.data.rentalTypeId = 1
+    this.data.rentalTypeId = 2
     this.api.LoadType(1).subscribe((result) => {
       this.propertyType = result;
       this.propertyType = this.propertyType.data
@@ -175,12 +175,6 @@ export class RentSearchComponent implements OnInit {
       //commercial
       PropertyTypeIds = this.PropertyTypeCommercialIds
     }
-
-    // console.log(PropertyTypeIds,'PropertyTypeIds')
-    // console.log(this.propertyCategory,'CategoryId')
-    // console.log(this.data.rentalTypeId,'rentalTypeId')
-    // console.log(this.SubmitForm.value)
-
     let params: any = {
       queryParams: {
         type: 'Rent', PropertyListingTypeId: 1, PropertyCategoryId: this.propertyCategory, RentTypeId: this.data.rentalTypeId,
