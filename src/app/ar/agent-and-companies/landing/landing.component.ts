@@ -177,17 +177,17 @@ export class LandingComponent implements OnInit {
   agentData() {
     this.page = 1;
     this.featuredAgentData = {
-      heading: "Featured Real Estate Agents",
-      desc: "Some of our best property agents",
+      heading: "وكلاء العقارات المميزون",
+      desc: "بعض من أفضل وكلاء العقارات لدينا",
     };
     this.agentList = {
-      heading: "Real Estate Agent Listing",
-      desc: "Some of our best property agents",
+      heading: "قائمة الوكيل العقاري",
+      desc: "بعض من أفضل وكلاء العقارات لدينا",
       tableHeadings: [
         "الوكلاء",
         "موقعك",
-        "Specialities",
-        "Action"
+        "التخصصات",
+        "عمل"
       ],
     };
   }
@@ -205,17 +205,17 @@ export class LandingComponent implements OnInit {
   companyData() {
     this.page = 1;
     this.featuredCompaniesData = {
-      heading: "Featured Real Estate Companies",
-      desc: "Some of our best property agents",
+      heading: "الشركات العقارية المميزة",
+      desc: "بعض من أفضل وكلاء العقارات لدينا",
     };
     this.companiesList = {
-      heading: "Real Estate Companies Listing",
-      desc: "Some of our best property agents",
+      heading: "قائمة الشركات العقارية",
+      desc: "بعض من أفضل وكلاء العقارات لدينا",
       tableHeadings: [
         "الشركات",
-        "Specialities",
+        "التخصصات",
         "الوكلاء",
-        "Action"
+        "عمل"
       ],
     };
 
