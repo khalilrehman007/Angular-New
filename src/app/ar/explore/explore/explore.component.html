@@ -4,7 +4,7 @@
       style="background-image: url('assets/images/explore-bg.png')">
       <div [ngClass]="'container_1280px'">
         <div ngClass="inner-banner-heading text-center">
-          <h2>Explore Destinations</h2>
+          <h2>اكتشف الوجهات</h2>
           <div ngClass="search_destinations-block" *ngIf="country.length > 0">
             <form>
               <div ngClass="row">
@@ -12,7 +12,7 @@
                   <div ngClass="block-wrapper">
                     <div ngClass="select-design">
                       <mat-form-field appearance="fill">
-                        <mat-label>Countries</mat-label>
+                        <mat-label>بلدان</mat-label>
                         <mat-select [(value)]="selectedCountry.value" (selectionChange)="onCountrySelect($event)">
                           <mat-option *ngFor="let list of country" [value]="list.value">
                             {{ list.viewValue }}
@@ -34,7 +34,7 @@
                             <mat-icon>cancel</mat-icon>
                           </button>
                         </mat-chip>
-                        <input placeholder="Location, Project Name" #SearchInput [formControl]="searchctrlExplore"
+                        <input placeholder="الموقع ، اسم المشروع" #SearchInput [formControl]="searchctrlExplore"
                           [matAutocomplete]="auto" [matChipInputFor]="chipList"
                           [matChipInputSeparatorKeyCodes]="separatorKeysCodesExplore"
                           (matChipInputTokenEnd)="add($event)">
@@ -66,8 +66,8 @@
         <div ngClass="explore-word-sec" *ngIf="selectedCountry">
           <div ngClass="d-flex justify-content-spacebw mb-4">
             <div ngClass="hp-design">
-              <h4>Explore World</h4>
-              <p>Destination that has attracted people from all over the world</p>
+              <h4>اكتشف العالم</h4>
+              <p>الوجهة التي جذبت الناس من جميع أنحاء العالم</p>
             </div>
           </div>
           <div ngClass="explore-locations-block-designs">
