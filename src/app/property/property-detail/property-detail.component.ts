@@ -62,6 +62,7 @@ export class PropertyDetailComponent implements OnInit {
   status3: boolean = false;
   status4: boolean = false;
   shareURL: any = "";
+  propertyValidationData: any = "";
   keyhighlight() {
     this.status = !this.status;
     this.status1 = false;
@@ -432,7 +433,6 @@ export class PropertyDetailComponent implements OnInit {
         // share url concatination
 
         this.shareURL += this.propertyDetailData.id;
-        console.log(this.shareURL);
 
         //gallery images
         for (let i = 0; i < this.propertyDetailData.documents.length; i++) {
@@ -455,9 +455,6 @@ export class PropertyDetailComponent implements OnInit {
         if (this.propertyDetail.propertyListing.documents[0].fileUrl != null && this.propertyDetail.propertyListing.documents[0].fileUrl !== undefined) {
           this.thumb1 = this.baseUrl + this.propertyDetail.propertyListing.documents[0].fileUrl;
         }
-        if (this.propertyDetail.propertyListing.documents.length > 0 && this.propertyDetail.propertyListing.documents[1].fileUrl !== undefined) {
-          this.thumb2 = this.baseUrl + this.propertyDetail.propertyListing.documents[1].fileUrl;
-        }
 
         if (jsonParsDate.detailsChart != null) {
           jsonParsDate.detailsChart.chart.forEach((element: any, i: any) => {
@@ -468,6 +465,8 @@ export class PropertyDetailComponent implements OnInit {
           })
         }
 
+        console.clear();
+        this.propertyValidationData = e.data.propertyListing.propertyType;
         this.getPropertyInfo();
 
       } else {
@@ -507,110 +506,137 @@ export class PropertyDetailComponent implements OnInit {
   getPropertyInfo() {
     this.propertyinfo = [
       {
+        show: true,
         label: 'Listed on',
         value: 'empty',
       },
       {
+        show: true,
         label: 'OV-Verified On',
         value: this.propertyDetailData.requestedDateFormat,
       },
       {
+        show: true,
         label: 'Building Type',
         value: this.propertyDetailData.buildingType,
       },
       {
+        show: true,
         label: 'Property Type',
         value: this.propertyDetailData.propertyType,
       },
       {
+        show: true,
         label: 'Tower No. / Building Name',
         value: this.propertyDetailData.buildingName,
       },
       {
+        show: this.propertyValidationData.hasTotalFloor,
         label: 'Total Floors in Building',
         value: this.propertyDetailData.totalFloor,
       },
       {
+        show: this.propertyValidationData.hasFloorNo,
         label: 'Floor No.',
         value: this.propertyDetailData.floorNo,
       },
       {
+        show: true,
         label: 'Unit No.',
         value: this.propertyDetailData.unitNo,
       },
       {
+        show: this.propertyValidationData.hasBed,
         label: 'Bedroom',
         value: this.propertyDetailData.bedrooms,
       },
       {
+        show: this.propertyValidationData.hasBath,
         label: 'Bathroom',
         value: this.propertyDetailData.bathrooms,
       },
       {
+        show: this.propertyValidationData.hasFurnishing,
         label: 'Furnishing Type',
         value: this.propertyDetailData.furnishingType,
       },
       {
+        show: this.propertyValidationData.hasFitting,
         label: 'Fitting Type',
         value: this.propertyDetailData.fittingType,
       },
       {
+        show: this.propertyValidationData.hasTenantType,
         label: 'Preferred Tenant Type',
         value: this.propertyDetailData.tenantType,
       },
       {
+        show: this.propertyValidationData.hasGenderType,
         label: 'Preferred Gender Type',
         value: this.propertyDetailData.gender,
       },
       {
+        show: this.propertyValidationData.hasParking,
         label: 'Available Parking',
         value: this.propertyDetailData.parkings,
       },
       {
+        show: this.propertyValidationData.hasPetPolicy,
         label: 'Pet Policy',
         value: 'empty',
       },
       {
         label: 'Carpet Area',
+        show: this.propertyValidationData.hasCarpetArea,
         value: this.propertyDetailData.carpetArea,
       },
       {
+        show: this.propertyValidationData.hasBuildUpArea,
         label: 'Build-up Area',
         value: this.propertyDetailData.buildupArea,
       },
       {
+        show: true,
         label: 'Current Occupancy Status',
         value: this.propertyDetailData.occupancyStatus,
       },
       {
+        show: this.propertyValidationData.hasPropertyManaged,
         label: 'Property Managed by',
         value: this.propertyDetailData.propertyManage,
       },
       {
+        show: true,
         label: 'Price',
         value: this.propertyDetailData.propertyPrice + ' ' + this.propertyDetailData.currency,
       },
       {
+        show: true,
         label: 'Rent Type',
         value: this.propertyDetailData.propertyPrice + ' ' + this.propertyDetailData.currency,
       },
       {
+        show: true,
         label: 'Security Deposit',
         value: this.propertyDetailData.securityDepositPrice + ' ' + this.propertyDetailData.currency,
       },
       {
+        show: true,
         label: 'Brokerage Deposit',
         value: this.propertyDetailData.brokerageChargePrice + ' ' + this.propertyDetailData.currency,
       },
       {
+        show: true,
         label: 'Available From',
         value: this.propertyDetailData.availableDate,
       },
       {
+        show: true,
         label: 'Notice Period',
         value: this.propertyDetailData.noticePeriod,
       },
       {
+        show: true,
         label: 'Locking Period',
         value: this.propertyDetailData.lockingPeriod,
       },
