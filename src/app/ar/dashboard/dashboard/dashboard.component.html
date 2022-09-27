@@ -463,9 +463,7 @@
                                                                         <h4 class="sub-bold-text">
                                                                             {{viewList.propertyTitle}}</h4>
                                                                         <p
-                                                                            class="agent-details__property-list-item-date">
-                                                                            Listed on
-                                                                            {{viewList.requestedDateFormat}}</p>
+                                                                            class="agent-details__property-list-item-date">Listed on{{viewList.requestedDateFormat}}</p>
                                                                     </div>
                                                                 </div>
                                                                 <h6>{{viewList.buildingName}}</h6>
@@ -483,19 +481,19 @@
                                                                                 class="agent-details__property-detail-list-item">
                                                                                 <img src="assets/images/icons/Bed.svg"
                                                                                     alt="">
-                                                                                {{viewList.bedrooms}} Beds
+                                                                                {{viewList.bedrooms}} غرفة نوم
                                                                             </li>
                                                                             <li
                                                                                 class="agent-details__property-detail-list-item">
                                                                                 <img src="assets/images/icons/Bed.svg"
                                                                                     alt="">
-                                                                                {{viewList.bathrooms}} Bath
+                                                                                {{viewList.bathrooms}} دوره المياه
                                                                             </li>
                                                                             <li
                                                                                 class="agent-details__property-detail-list-item">
                                                                                 <img src="assets/images/icons/Bed.svg"
                                                                                     alt="">
-                                                                                {{viewList.carpetArea}} Sq.Ft.
+                                                                                {{viewList.carpetArea}} قدم مربع
                                                                             </li>
                                                                             <li
                                                                                 class="agent-details__property-detail-list-item">
@@ -561,21 +559,21 @@
                                                                                     class="agent-landing-featured__property-details-list-item">
                                                                                     <p
                                                                                         class="agent-landing-featured__property-details-list-text">
-                                                                                        {{agentView.salePropertyListingCount}}<br>Sale
+                                                                                        {{agentView.salePropertyListingCount}}<br>بيع
                                                                                     </p>
                                                                                 </li>
                                                                                 <li
                                                                                     class="agent-landing-featured__property-details-list-item">
                                                                                     <p
                                                                                         class="agent-landing-featured__property-details-list-text">
-                                                                                        {{agentView.rentPropertyListingCount}}<br>Rents
+                                                                                        {{agentView.rentPropertyListingCount}}<br>إيجار
                                                                                     </p>
                                                                                 </li>
                                                                                 <li
                                                                                     class="agent-landing-featured__property-details-list-item">
                                                                                     <p
                                                                                         class="agent-landing-featured__property-details-list-text">
-                                                                                        {{agentView.commercialPropertyListingCount}}<br>Commercial
+                                                                                        {{agentView.commercialPropertyListingCount}}<br>تجارية
                                                                                     </p>
                                                                                 </li>
                                                                             </ul>
@@ -598,25 +596,25 @@
                                                     class="checkbox-design position-relative">
                                                     <input type="radio" id="Furnished" name="property-types" value="All"
                                                         checked>
-                                                    <button class="checkbox-btn">All ({{viewAllCount}})</button>
+                                                    <button class="checkbox-btn">الجميع ({{viewAllCount}})</button>
                                                 </div>
                                                 <div (click)="myActivityViewChange('1')"
                                                     class="checkbox-design position-relative">
                                                     <input type="radio" id="Unfurnished" name="property-types"
                                                         value="Rent">
-                                                    <button class="checkbox-btn">Rent ({{viewRentCount}})</button>
+                                                    <button class="checkbox-btn">استئجار ({{viewRentCount}})</button>
                                                 </div>
                                                 <div (click)="myActivityViewChange('2')"
                                                     class="checkbox-design position-relative">
                                                     <input type="radio" id="Semi-Furnished" name="property-types"
                                                         value="Buy">
-                                                    <button class="checkbox-btn">Buy ({{viewBuyCount}})</button>
+                                                    <button class="checkbox-btn">شراء ({{viewBuyCount}})</button>
                                                 </div>
                                                 <div (click)="myActivityViewChange(userId)"
                                                     class="checkbox-design position-relative">
                                                     <input type="radio" id="Unfurnished" name="property-types"
                                                         value="Agents">
-                                                    <button class="checkbox-btn">Agents ({{viewAgentCount}})</button>
+                                                    <button class="checkbox-btn">الوكلاء ({{viewAgentCount}})</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -664,19 +662,19 @@
                                                                                 class="agent-details__property-detail-list-item">
                                                                                 <img src="assets/images/icons/Bed.svg"
                                                                                     alt="">
-                                                                                {{viewList.bedrooms}} Beds
+                                                                                {{viewList.bedrooms}}غرفة نوم
                                                                             </li>
                                                                             <li
                                                                                 class="agent-details__property-detail-list-item">
                                                                                 <img src="assets/images/icons/Bed.svg"
                                                                                     alt="">
-                                                                                {{viewList.bathrooms}} Bath
+                                                                                {{viewList.bathrooms}}دوره المياه
                                                                             </li>
                                                                             <li
                                                                                 class="agent-details__property-detail-list-item">
                                                                                 <img src="assets/images/icons/Bed.svg"
                                                                                     alt="">
-                                                                                {{viewList.carpetArea}} Sq.Ft.
+                                                                                {{viewList.carpetArea}} قدم المربع
                                                                             </li>
                                                                             <li
                                                                                 class="agent-details__property-detail-list-item">
@@ -779,19 +777,19 @@
                                                     class="checkbox-design position-relative">
                                                     <input type="radio" id="Furnished" name="property-types" value="All"
                                                         checked>
-                                                    <button class="checkbox-btn">All ({{allCount}})</button>
+                                                    <button class="checkbox-btn">الجميع ({{allCount}})</button>
                                                 </div>
                                                 <div (click)="getCountChange(1)"
                                                     class="checkbox-design position-relative">
                                                     <input type="radio" id="Unfurnished" name="property-types"
                                                         value="Rent">
-                                                    <button class="checkbox-btn">Rent ({{rentCount}})</button>
+                                                    <button class="checkbox-btn">استئجار ({{rentCount}})</button>
                                                 </div>
                                                 <div (click)="getCountChange(2)"
                                                     class="checkbox-design position-relative">
                                                     <input type="radio" id="Semi-Furnished" name="property-types"
                                                         value="Buy">
-                                                    <button class="checkbox-btn">Buy ({{buyCount}})</button>
+                                                    <button class="checkbox-btn">شراء ({{buyCount}})</button>
                                                 </div>
                                             </div>
                                             <div ngClass="compare_hdr-btn" *ngIf="wishlistingData.length > 1">
@@ -910,19 +908,19 @@
                                                     class="checkbox-design position-relative">
                                                     <input type="radio" id="Furnished" name="property-types" value="All"
                                                         checked>
-                                                    <button class="checkbox-btn">All ({{enquiredAllCount}})</button>
+                                                    <button class="checkbox-btn">الجميع ({{enquiredAllCount}})</button>
                                                 </div>
                                                 <div (click)="getEnquiredCountChange(1)"
                                                     class="checkbox-design position-relative">
                                                     <input type="radio" id="Unfurnished" name="property-types"
                                                         value="Rent">
-                                                    <button class="checkbox-btn">Rent ({{enquiredRentCount}})</button>
+                                                    <button class="checkbox-btn">استئجار ({{enquiredRentCount}})</button>
                                                 </div>
                                                 <div (click)="getEnquiredCountChange(2)"
                                                     class="checkbox-design position-relative">
                                                     <input type="radio" id="Semi-Furnished" name="property-types"
                                                         value="Buy">
-                                                    <button class="checkbox-btn">Buy ({{enquiredBuyCount}})</button>
+                                                    <button class="checkbox-btn">شراء ({{enquiredBuyCount}})</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -1028,19 +1026,19 @@
                                                     (click)="LoadLeads('','')">
                                                     <input type="radio" id="Furnished" name="property-types" value="All"
                                                         checked>
-                                                    <button class="checkbox-btn">All</button>
+                                                    <button class="checkbox-btn">الجميع</button>
                                                 </div>
                                                 <div class="checkbox-design position-relative"
                                                     (click)="LoadLeads('','2')">
                                                     <input type="radio" id="Semi-Furnished" name="property-types"
                                                         value="Buy">
-                                                    <button class="checkbox-btn">Buy</button>
+                                                    <button class="checkbox-btn">شراء</button>
                                                 </div>
                                                 <div class="checkbox-design position-relative"
                                                     (click)="LoadLeads('','1')">
                                                     <input type="radio" id="Unfurnished" name="property-types"
                                                         value="Rent">
-                                                    <button class="checkbox-btn">Rent</button>
+                                                    <button class="checkbox-btn">استئجار</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -1120,19 +1118,19 @@
                                                     (click)="LoadLeads('1','')">
                                                     <input type="radio" id="Furnished" name="property-types" value="All"
                                                         checked>
-                                                    <button class="checkbox-btn">All</button>
+                                                    <button class="checkbox-btn">الجميع</button>
                                                 </div>
                                                 <div class="checkbox-design position-relative"
                                                     (click)="LoadLeads('1','2')">
                                                     <input type="radio" id="Semi-Furnished" name="property-types"
                                                         value="Buy">
-                                                    <button class="checkbox-btn">Buy</button>
+                                                    <button class="checkbox-btn">شراء</button>
                                                 </div>
                                                 <div class="checkbox-design position-relative"
                                                     (click)="LoadLeads('1','1')">
                                                     <input type="radio" id="Unfurnished" name="property-types"
                                                         value="Rent">
-                                                    <button class="checkbox-btn">Rent</button>
+                                                    <button class="checkbox-btn">استئجار</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -1209,19 +1207,19 @@
                                                     (click)="LoadLeads('2','')">
                                                     <input type="radio" id="Furnished" name="property-types" value="All"
                                                         checked>
-                                                    <button class="checkbox-btn">All</button>
+                                                    <button class="checkbox-btn">الجميع</button>
                                                 </div>
                                                 <div class="checkbox-design position-relative"
                                                     (click)="LoadLeads('2','2')">
                                                     <input type="radio" id="Semi-Furnished" name="property-types"
                                                         value="Buy">
-                                                    <button class="checkbox-btn">Buy</button>
+                                                    <button class="checkbox-btn">شراء</button>
                                                 </div>
                                                 <div class="checkbox-design position-relative"
                                                     (click)="LoadLeads('2','1')">
                                                     <input type="radio" id="Unfurnished" name="property-types"
                                                         value="Rent">
-                                                    <button class="checkbox-btn">Rent</button>
+                                                    <button class="checkbox-btn">استئجار</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -1307,7 +1305,7 @@
                                                 <div class="checkbox-design position-relative">
                                                     <input type="radio" id="Furnished" (click)="childTabsChange('')"
                                                         name="property-types" value="All" checked>
-                                                    <button class="checkbox-btn">All
+                                                    <button class="checkbox-btn">الجميع
                                                         ({{this.tabCounts.totalPropertyListing}})</button>
                                                 </div>
                                                 <div class="checkbox-design position-relative"
@@ -1444,7 +1442,7 @@
                                                 <div class="checkbox-design position-relative">
                                                     <input type="radio" id="Furnished" (click)="childTabsChange('')"
                                                         name="property-types" value="All" checked>
-                                                    <button class="checkbox-btn">All
+                                                    <button class="checkbox-btn">الجميع
                                                         ({{this.tabCounts.totalPropertyListing}})</button>
                                                 </div>
                                                 <div class="checkbox-design position-relative"
@@ -1580,7 +1578,7 @@
                                                 <div class="checkbox-design position-relative">
                                                     <input type="radio" id="Furnished" (click)="childTabsChange('')"
                                                         name="property-types" value="All" checked>
-                                                    <button class="checkbox-btn">All
+                                                    <button class="checkbox-btn">الجميع
                                                         ({{this.tabCounts.totalPropertyListing}})</button>
                                                 </div>
                                                 <div class="checkbox-design position-relative"
