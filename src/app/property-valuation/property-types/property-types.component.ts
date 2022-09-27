@@ -49,6 +49,7 @@ export class PropertyTypesComponent implements OnInit {
   proceed: boolean = false;
   elevationValue: any;
   currentField: any;
+  propertyStatusData: any = [];
   errorResponse(data: any) {
     this.showError = false;
     this.animate();
@@ -138,6 +139,10 @@ export class PropertyTypesComponent implements OnInit {
           expense: this.formData.Expense
         })
       }
+      this.service.PropertyStatuses().subscribe((result: any) => {
+        this.propertyStatusData = result.data
+      })
+      console.log(this.formData);
       this.roadCount = this.formData.NoOfRoads;
       this.bedrooms = this.formData.Bedrooms;
       this.bathrooms = this.formData.Bathrooms;
@@ -164,11 +169,9 @@ export class PropertyTypesComponent implements OnInit {
         this.service.PropertyFeatures(this.propertyData.id).subscribe((result: any) => {
           this.featuresData = result.data;
           this.showLoader = false;
-          // console.log(this.featuresData);
           let interval: any = setInterval(() => {
             if (this.featuresData.length > 0) {
-              for(let i = 0; i < this.formData.PropertyFeatures.length; i++) {
-                console.log(".features-item-" + this.formData.PropertyFeatures[i].PropertyFeatureId);
+              for (let i = 0; i < this.formData.PropertyFeatures.length; i++) {
                 $(".features-item-" + this.formData.PropertyFeatures[i].PropertyFeatureId).attr("selected", "selected");
               }
               $('.select2').select2({ placeholder: "Click here to add more" });
@@ -181,9 +184,6 @@ export class PropertyTypesComponent implements OnInit {
     }
   }
   status: boolean = false;
-  addamenties() {
-    this.status = !this.status;
-  }
   loadType(e: number) {
     this.clearData();
     this.showLoader = true;
@@ -230,6 +230,9 @@ export class PropertyTypesComponent implements OnInit {
       this.purposeOfValuation = result;
       this.purposeOfValuation = this.purposeOfValuation.data;
     });
+    this.service.PropertyStatuses().subscribe((result: any) => {
+      this.propertyStatusData = result.data
+    })
     this.loadFurnishingType();
     this.service.PropertyFeatures(this.propertyData.id).subscribe((result: any) => {
       this.featuresData = result.data;
@@ -246,10 +249,10 @@ export class PropertyTypesComponent implements OnInit {
   loadFurnishingType() {
     this.service.FurnishingTypes().subscribe((result: any) => {
       this.furnishingType = result.data;
-      if(this.formData.PropertyTypeId != 29) {
-        let temp:any = [];
-        for(let i = 0; i < this.furnishingType.length; i++) {
-          if(this.furnishingType[i].name != "ShellAndCore") {
+      if (this.formData.PropertyTypeId != 29) {
+        let temp: any = [];
+        for (let i = 0; i < this.furnishingType.length; i++) {
+          if (this.furnishingType[i].name != "ShellAndCore") {
             temp.push(this.furnishingType[i]);
           }
         }
@@ -339,7 +342,7 @@ export class PropertyTypesComponent implements OnInit {
     })
   }
   getData() {
-    if(this.propertyData.hasPropertyFeature && this.featuresData.length > 0) {
+    if (this.propertyData.hasPropertyFeature && this.featuresData.length > 0) {
       this.featuresFormData = $(".features-select").val();
     }
     if (!this.formData.PropertyCategoryId) {
