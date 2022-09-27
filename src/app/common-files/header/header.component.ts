@@ -581,6 +581,11 @@ export class HeaderComponent implements OnInit {
   ];
   selectedLanguage = this.language[0].value;
   changeLanguage() {
-    this.route.navigate(["/ar/" + this.route.url]);
+    if(this.route.url.split("?").length == 1) {
+      this.route.navigate(["/ar/" + this.route.url]);
+    } else {
+      let url:any = "/ar" + this.route.url;
+      window.location.href = url;
+    }
   }
 }
