@@ -43,65 +43,24 @@ export class HomepageComponent implements OnInit {
   id: any = 1;
   propertyDetails: any;
   oldData1() {
-    this.service.LatestPropertiesListingResidential({ "UserId": this.userId, "propertyListingTypeId": "1" }).subscribe(data => {
-      let response: any = data;
+    this.service.LatestPropertiesListingResidential({ "UserId": this.userId, "propertyListingTypeId": "1" }).subscribe((response:any) => {
       this.dynamicSlides1 = response.data;
     });
   }
   newData1() {
-    let tempData: Array<Object> = []
-    this.service.LatestPropertiesListingResidential({ "UserId": this.userId, "propertyListingTypeId": "2" }).subscribe(data => {
-      let response: any = data;
+    this.service.LatestPropertiesListingResidential({ "UserId": this.userId, "propertyListingTypeId": "2" }).subscribe((response:any) => {
       this.dynamicSlides1 = response.data;
     });
   }
 
   oldData2() {
-    let tempData: Array<Object> = []
-    this.service.LatestPropertiesListingCommercial({ "UserId": this.userId, "propertyListingTypeId": "1" }).subscribe(data => {
-      let response: any = data;
+    this.service.LatestPropertiesListingCommercial({ "UserId": this.userId, "propertyListingTypeId": "1" }).subscribe((response:any) => {
       this.dynamicSlides2 = response.data;
     });
   }
   newData2() {
-    let tempData: Array<Object> = []
-    this.service.LatestPropertiesListingCommercial({ "UserId": this.userId, "propertyListingTypeId": "2" }).subscribe(data => {
-      let response: any = data;
+    this.service.LatestPropertiesListingCommercial({ "UserId": this.userId, "propertyListingTypeId": "2" }).subscribe((response:any) => {
       this.dynamicSlides2 = response.data;
-      console.log(this.dynamicSlides2);
-      response.data.forEach((element: any, i: any) => {
-        let image: any = 'assets/images/placeholder.png'
-        if (element.documents.length > 1 && element.documents[0].fileUrl != undefined && element.documents[0].fileUrl != null) {
-          image = this.baseUrl + element.documents[0].fileUrl
-        }
-
-        let rentType: any = ''
-        // if (element.rentType != undefined && element.rentType.name != undefined && element.rentType.name != null) {
-        //   rentType = element.rentType.name
-        // }
-
-        let currency: any = ''
-        if (element.country !== undefined && element.country.currency != undefined && element.country.currency != null) {
-          currency = element.country.currency
-        }
-        tempData.push(
-          {
-            title: element.propertyTitle,
-            price: element.propertyPrice,
-            rentType: rentType,
-            favorite: element.favorite,
-            currency: currency,
-            propertyAddress: element.propertyAddress,
-            id: element.id,
-            alt: element.propertyTitle,
-            src: image,
-            bedrooms: element.bedrooms,
-            bathrooms: element.bathrooms,
-            buildingName: element.buildingName,
-            carpetArea: element.carpetArea,
-          });
-      })
-      // this.dynamicSlides2 = tempData
     });
   }
   tenantsslide = [
