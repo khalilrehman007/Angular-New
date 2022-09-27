@@ -42,7 +42,7 @@
             <div ngClass="flex-column flex-column-3">
                 <div ngClass="block-wrapper">
                     <div ngClass="cstm_dropdown-list dropdown-design-2 position-relative drodown_with-img">
-                        <button ngClass="drop-down_btn" (click)="clickEvent()">Specialties</button>
+                        <button ngClass="drop-down_btn" (click)="clickEvent()">التخصصات</button>
                         <div class="cstm_dropdown-menu" [ngClass]="status ? 'active' : 'notactive'">
                             <ul ngClass="list-unstyled residentails-unit-list">
                                 <li ngClass="d-flex" ngbSlide *ngFor="let list of ExpertIn">
@@ -66,9 +66,9 @@
             <div ngClass="flex-column flex-column-4">
                 <div ngClass="block-wrapper">
                     <div ngClass="cstm_dropdown-list dropdown-design-2 position-relative drodown_with-img">
-                        <button ngClass="drop-down_btn" (click)="clickEvent1()">Languages</button>
+                        <button ngClass="drop-down_btn" (click)="clickEvent1()">اللغات</button>
                         <div class="cstm_dropdown-menu" [ngClass]="status1 ? 'active' : 'notactive'">
-                            <h4 ngClass="drop_label">Languages</h4>
+                            <h4 ngClass="drop_label">اللغات</h4>
                             <ul ngClass="list-unstyled residentails-unit-list">
                                 <li ngClass="d-flex" ngbSlide *ngFor="let list of SpokenLanguages">
                                     <div *ngIf="getUrllanguageIds !== null" (click)="getLanguageId(list.id)"

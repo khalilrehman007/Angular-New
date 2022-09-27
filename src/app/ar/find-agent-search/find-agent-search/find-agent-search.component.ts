@@ -212,7 +212,7 @@ export class FindAgentSearchComponent implements OnInit {
       let response: any = data;
       response.data.forEach((element: any, i: any) => {
         tempData.push(
-          { id: element.id, name: element.name });
+          { id: element.id, name: element.nameAR });
       })
     });
     this.ExpertIn = tempData
@@ -224,7 +224,7 @@ export class FindAgentSearchComponent implements OnInit {
       let response: any = data;
       response.data.forEach((element: any, i: any) => {
         tempData.push(
-          { id: element.id, name: element.name });
+          { id: element.id, name: element.nameAr });
       })
     });
     this.SpokenLanguages = tempData
