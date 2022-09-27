@@ -22,23 +22,16 @@ export class RentSearchComponent implements OnInit {
   searchList: string[] = [];
 
   constructor(private activeRoute: ActivatedRoute, private service: AppService, private api: AppService, private route: Router) {
-    this.data.rentalTypeId = 1
+    this.data.rentalTypeId = 2;
     this.api.LoadType(1).subscribe((result) => {
       this.propertyType = result;
       this.propertyType = this.propertyType.data
     });
     this.LoadPropertyCategories();
     this.getLoaction({ "Searching": "", "CountryId": "1" });
-    this.service.RentTypes().subscribe(data => {
-      let response: any = data;
-      this.Monthly = response.data[0].nameAr;
-      // this.MonthlyAr  = response.data[0].nameAr;
-      this.Quarterly = response.data[1].nameAr;
-      // this.QuarterlyAr  = response.data[1].nameAr;
-      this.Yearly = response.data[2].nameAr;
-      // this.YearlyAr  = response.data[3].nameAr;
+    this.service.RentTypes().subscribe((data:any) => {
+      this.rentType = data.data;
     });
-
     this.api.LoadType(2).subscribe((result) => {
       this.propertyTypeCommercial = result;
       this.propertyTypeCommercial = this.propertyTypeCommercial.data
@@ -99,6 +92,7 @@ export class RentSearchComponent implements OnInit {
   residentialId: any;
   commercial: any;
   commercialId: any;
+  rentType:any = []
 
   clickEvent() {
     this.status = !this.status;
@@ -144,23 +138,20 @@ export class RentSearchComponent implements OnInit {
   LoadPropertyCategories() {
     this.service.PropertyCategories().subscribe(data => {
       let response: any = data;
-      this.residential = response.data[0].categoryName;
+      this.residential = response.data[0].categoryNameAr;
       this.residentialId = response.data[0].id;
-      this.commercial = response.data[1].categoryName;
+      this.commercial = response.data[1].categoryNameAr;
       this.commercialId = response.data[1].id;
     });
   }
 
   getRentalType(e: any) {
-    if (e.tab.textLabel == "Monthly") {
-      this.data.rentalTypeId = 1;
-    } else if (e.tab.textLabel == "Quarterly") {
-      this.data.rentalTypeId = 2;
-    } else if (e.tab.textLabel == "Yearly") {
-      this.data.rentalTypeId = 3;
+    for(let i = 0; i < this.rentType.length; i++) {
+      if(this.rentType[i].name == e.tab.textLabel) {
+        this.data.rentalTypeId = this.rentType[i].id;
+      }
     }
   }
-
   min: any;
   max: any;
 
@@ -171,8 +162,6 @@ export class RentSearchComponent implements OnInit {
   });
 
   proceedSearch() {
-    // this.SubmitForm.value.Name
-    // this.data.rentalTypeId
 
     let PropertyTypeIds: any = [];
     if (this.propertyCategory == 1) {
@@ -182,12 +171,6 @@ export class RentSearchComponent implements OnInit {
       //commercial
       PropertyTypeIds = this.PropertyTypeCommercialIds
     }
-
-    // console.log(PropertyTypeIds,'PropertyTypeIds')
-    // console.log(this.propertyCategory,'CategoryId')
-    // console.log(this.data.rentalTypeId,'rentalTypeId')
-    // console.log(this.SubmitForm.value)
-
     let params: any = {
       queryParams: {
         type: 'Rent', PropertyListingTypeId: 1, PropertyCategoryId: this.propertyCategory, RentTypeId: this.data.rentalTypeId,
@@ -196,9 +179,6 @@ export class RentSearchComponent implements OnInit {
         , Bedrooms: '', Bathrooms: '', CurrentPage: 1, DistrictIds: JSON.stringify(this.DistrictsId), DistrictsValue: JSON.stringify(this.SearchKeyword)
       }
     };
-
-
-    // console.log(params)
 
     this.route.navigate(['/ar/property/search'], params)
   }

@@ -215,7 +215,7 @@ export class HeaderComponent implements OnInit {
     {
       src: '../../../assets/images/icons/wallet.svg',
       class: 'nav-items my-wallet',
-      text: 'My Wallet',
+      text: 'محفظتى',
       link: 'profile',
     }
   ]
@@ -550,9 +550,25 @@ export class HeaderComponent implements OnInit {
   ];
   selectedLanguage = this.language[1].value;
   changeLanguage() {
-    let temp = this.route.url.split("/");
-    temp.splice(0,2);
-    this.route.navigate(["/" + temp]);
+    if(this.route.url.split("?").length == 1) {
+      let temp = this.route.url.split("/");
+      temp.splice(0,2);
+      let url = "";
+      for(let i = 0; i < temp.length; i++) {
+        url += "/" + temp[i];
+      }
+      console.log(url);
+      this.route.navigate([url]);
+    } else {
+      let temp = this.route.url.split("?")[0].split("/");
+      temp.splice(0,2);
+      let url:any = "";
+      for(let i = 0; i < temp.length; i++) {
+        url += "/" + temp[i];
+      }
+      url += "?" + this.route.url.split("?")[1];
+      window.location.href = url;
+    }
   }
 }
 

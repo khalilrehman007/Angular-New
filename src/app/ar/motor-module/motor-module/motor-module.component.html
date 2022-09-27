@@ -6,7 +6,7 @@
             <div ngClass="flex-column flex-column-11 mb-2">
                 <div ngClass="block-wrapper">
                     <mat-form-field class="example-chip-list input-design searh_input-design" appearance="fill">
-                        <mat-label>Search Location</mat-label>
+                        <mat-label>موقع البحث</mat-label>
                         <mat-chip-list #chipList aria-label="Search selection">
                             <mat-chip *ngFor="let SearchValue of SearchKeyword" (removed)="remove(SearchValue)">
                                 {{SearchValue}}
@@ -30,9 +30,9 @@
             <div ngClass="flex-column flex-column-12 mb-2">
                 <div ngClass="block-wrapper">
                     <div ngClass="cstm_dropdown-list dropdown-design-2 position-relative drodown_with-img">
-                        <button ngClass="drop-down_btn" (click)="clickEvent()">Select Category</button>
+                        <button ngClass="drop-down_btn" (click)="clickEvent()">اختر الفئة</button>
                         <div class="cstm_dropdown-menu" [ngClass]="status ? 'active' : 'notactive'">
-                            <h4 ngClass="drop_label">Select Category</h4>
+                            <h4 ngClass="drop_label">اختر الفئة</h4>
                             <div ngClass="search-dropdown_list">
                                 <ul ngClass="list-unstyled residentails-unit-list category-search-list">
                                     <li ngClass="d-flex">
@@ -41,7 +41,7 @@
                                             <span ngClass="property_sel"></span>
                                         </div>
                                         <div ngClass="proprty_name">
-                                            <p>Motors</p>
+                                            <p>المحركات</p>
                                         </div>
                                     </li>
                                     <li ngClass="d-flex">
@@ -50,7 +50,7 @@
                                             <span ngClass="property_sel"></span>
                                         </div>
                                         <div ngClass="proprty_name">
-                                            <p>Services</p>
+                                            <p>خدمات</p>
                                         </div>
                                     </li>
                                     <li ngClass="d-flex">
@@ -90,9 +90,9 @@
             <div ngClass="flex-column flex-column-13 mb-2">
                 <div ngClass="block-wrapper">
                     <div ngClass="cstm_dropdown-list dropdown-design-2 position-relative drodown_with-img">
-                        <button ngClass="drop-down_btn" (click)="clickEvent1()">Select Sub Category</button>
+                        <button ngClass="drop-down_btn" (click)="clickEvent1()">حدد الفئة الفرعية</button>
                         <div class="cstm_dropdown-menu" [ngClass]="status1 ? 'active' : 'notactive'">
-                            <h4 ngClass="drop_label">Select Sub Category</h4>
+                            <h4 ngClass="drop_label">حدد الفئة الفرعية</h4>
                             <div ngClass="search-dropdown_list">
                                 <ul ngClass="list-unstyled residentails-unit-list category-search-list">
                                     <li ngClass="d-flex">
@@ -128,7 +128,7 @@
                                             <span ngClass="property_sel"></span>
                                         </div>
                                         <div ngClass="proprty_name">
-                                            <p>Heavy Vehicles</p>
+                                            <p>المركبات الثقيلة</p>
                                         </div>
                                     </li>
                                     <li ngClass="d-flex">
@@ -137,7 +137,7 @@
                                             <span ngClass="property_sel"></span>
                                         </div>
                                         <div ngClass="proprty_name">
-                                            <p>Boats</p>
+                                            <p>القوارب</p>
                                         </div>
                                     </li>
                                 </ul>
@@ -149,7 +149,7 @@
             </div>
             <div ngClass="flex-column flex-column-14">
                 <mat-form-field class="example-full-width input-design-3" appearance="fill">
-                    <input matInput placeholder="Search For Anything">
+                    <input matInput placeholder="عمليات البحث">
                 </mat-form-field>
             </div>
             <div ngClass="flex-column flex-column-15">

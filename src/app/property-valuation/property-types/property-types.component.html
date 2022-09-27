@@ -104,29 +104,13 @@
                                                     ngClass="required-span">*</span></label>
                                             <div class="checkbox-flex-box three-column property-status-input">
                                                 <div class="checkbox-design position-relative"
-                                                    (click)="propertyStatus(1, 'Owner Occupied')">
-                                                    <input type="radio" id="Owner Occupied" name="current-status"
-                                                        value="Owner Occupied" *ngIf="formData.PropertyStatusId  == 1"
-                                                        checked>
-                                                    <input type="radio" id="Owner Occupied" name="current-status"
-                                                        value="Owner Occupied" *ngIf="formData.PropertyStatusId  != 1">
-                                                    <button class="checkbox-btn">Owner Occupied</button>
-                                                </div>
-                                                <div class="checkbox-design position-relative"
-                                                    (click)="propertyStatus(2, 'Leased')">
-                                                    <input type="radio" id="Leased" name="current-status" value="Leased"
-                                                        *ngIf="formData.PropertyStatusId  == 2" checked>
-                                                    <input type="radio" id="Leased" name="current-status" value="Leased"
-                                                        *ngIf="formData.PropertyStatusId  != 2">
-                                                    <button class="checkbox-btn">Leased</button>
-                                                </div>
-                                                <div class="checkbox-design position-relative"
-                                                    (click)="propertyStatus(3, 'Vacant')">
-                                                    <input type="radio" id="Vacant" name="current-status" value="Vacant"
-                                                        *ngIf="formData.PropertyStatusId  == 3" checked>
-                                                    <input type="radio" id="Vacant" name="current-status" value="Vacant"
-                                                        *ngIf="formData.PropertyStatusId  != 3">
-                                                    <button class="checkbox-btn">Vacant</button>
+                                                    *ngFor="let item of propertyStatusData;"
+                                                    (click)="propertyStatus(item.id, item.statusDescription)">
+                                                    <input type="radio" id="{{item.statusDescription}}" name="current-status"
+                                                        value="{{item.statusDescription}}" *ngIf="formData.PropertyStatusId == item.id" checked>
+                                                    <input type="radio" id="{{item.statusDescription}}" name="current-status"
+                                                        value="{{item.statusDescription}}" *ngIf="formData.PropertyStatusId != item.id">
+                                                    <button class="checkbox-btn">{{item.statusDescription}}</button>
                                                 </div>
                                             </div>
                                         </div>

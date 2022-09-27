@@ -429,4 +429,7 @@ export class AppService {
   MyActivityPropertyListingViewForAgent(data: any) {
     return this.http.post(this.apiurl + 'MyActivityPropertyListingViewForAgent', data);
   }
+  PropertyStatuses() {
+    return this.http.get(this.apiurl + 'PropertyStatuses');
+  }
 }
