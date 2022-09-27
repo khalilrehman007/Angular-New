@@ -106,7 +106,6 @@ export class PropertyTypesComponent implements OnInit {
   constructor(private service: AppService, private router: Router, private maskService: MaskService) {
     this.formData = (window.localStorage.getItem('valuationData'));
     this.formData = JSON.parse(this.formData);
-    this.loadFurnishingType();
     this.loadFittingType();
     this.formDetailData = localStorage.getItem("valuationDetailData");
     this.formDetailData = JSON.parse(this.formDetailData);
@@ -231,6 +230,7 @@ export class PropertyTypesComponent implements OnInit {
       this.purposeOfValuation = result;
       this.purposeOfValuation = this.purposeOfValuation.data;
     });
+    this.loadFurnishingType();
     this.service.PropertyFeatures(this.propertyData.id).subscribe((result: any) => {
       this.featuresData = result.data;
       this.showLoader = false;
@@ -246,6 +246,15 @@ export class PropertyTypesComponent implements OnInit {
   loadFurnishingType() {
     this.service.FurnishingTypes().subscribe((result: any) => {
       this.furnishingType = result.data;
+      if(this.formData.PropertyTypeId != 29) {
+        let temp:any = [];
+        for(let i = 0; i < this.furnishingType.length; i++) {
+          if(this.furnishingType[i].name != "ShellAndCore") {
+            temp.push(this.furnishingType[i]);
+          }
+        }
+        this.furnishingType = temp;
+      }
     })
   }
   loadFittingType() {

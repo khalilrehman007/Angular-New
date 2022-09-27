@@ -12,6 +12,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSelectModule } from '@angular/material/select';
 import { initializeApp } from "firebase/app";
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
@@ -28,6 +29,7 @@ initializeApp(environment.firebase);
   ],
   imports: [
     BrowserModule,
+    MatSelectModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     MatTabsModule,

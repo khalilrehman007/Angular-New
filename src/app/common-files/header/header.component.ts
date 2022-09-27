@@ -16,7 +16,7 @@ interface LanguagesList {
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
   togglesvg = '../../../assets/images/icons/toggle.svg'
@@ -218,7 +218,7 @@ export class HeaderComponent implements OnInit {
       src: '../../../assets/images/icons/wallet.svg',
       class: 'nav-items my-wallet',
       text: 'My Wallet',
-      link: 'profile',
+      link: 'profile/wallet',
     }
   ]
 
@@ -277,9 +277,10 @@ export class HeaderComponent implements OnInit {
   }
   ngOnInit() {
     $(".language-select").on("change", () => {
-      if ($(".language-select").val() == "Arabic") {
-        this.route.navigate(["/ar"])
-      }
+      console.log($(".language-select").val())
+      // if ($(".language-select").val() == "Arabic") {
+      //   this.route.navigate(["/ar"])
+      // }
     })
   }
   getUser() {
@@ -580,6 +581,11 @@ export class HeaderComponent implements OnInit {
   ];
   selectedLanguage = this.language[0].value;
   changeLanguage() {
-    this.route.navigate(["/ar"]);
+    if(this.route.url.split("?").length == 1) {
+      this.route.navigate(["/ar/" + this.route.url]);
+    } else {
+      let url:any = "/ar" + this.route.url;
+      window.location.href = url;
+    }
   }
 }

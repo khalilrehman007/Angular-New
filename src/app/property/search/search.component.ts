@@ -85,6 +85,7 @@ export class SearchComponent implements OnInit {
   Bathrooms: any;
   KeyWordsParams: any;
   headingPropertyType: any = "Properties";
+  halfList:any = 0;
   constructor(private authService: AuthService, private notifyService: NotificationService, private activeRoute: ActivatedRoute, private service: AppService, private api: AppService, private route: Router, private modalService: NgbModal) {
     $(window).scrollTop(0);
     this.route.events.subscribe((e: any) => {
@@ -376,6 +377,7 @@ export class SearchComponent implements OnInit {
         );
       })
       this.searchListing = tempData;
+      this.halfList = Math.floor(this.searchListing.length / 2);
     });
 
   }
