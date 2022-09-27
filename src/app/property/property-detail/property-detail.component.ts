@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { AppService } from "../../service/app.service";
@@ -221,7 +222,7 @@ export class PropertyDetailComponent implements OnInit {
   };
   public lineChartLegend = true;
 
-  constructor(private authService: AuthService, private domSanitizer: DomSanitizer, private activeRoute: ActivatedRoute, private modalService: NgbModal, private service: AppService, private route: Router, private notifyService: NotificationService) {
+  constructor(private location: Location, private authService: AuthService, private domSanitizer: DomSanitizer, private activeRoute: ActivatedRoute, private modalService: NgbModal, private service: AppService, private route: Router, private notifyService: NotificationService) {
     let temp: any = window.location.href;
     temp = temp.split("/");
     temp[1] = "//";
@@ -247,7 +248,9 @@ export class PropertyDetailComponent implements OnInit {
     this.galleryOptions = [];
     this.galleryImages = [];
   }
-
+  goBack() {
+    this.location.back();
+  }
   openVerticallyCentered(content: any) {
     this.modalService.open(content, { centered: true });
   }
@@ -434,9 +437,9 @@ export class PropertyDetailComponent implements OnInit {
         //gallery images
         for (let i = 0; i < this.propertyDetailData.documents.length; i++) {
           this.galleryImages.push({
-            small: this.baseUrl + this.propertyDetailData.documents[i].fileUrl.replaceAll("\\","/"),
-            medium: this.baseUrl + this.propertyDetailData.documents[i].fileUrl.replaceAll("\\","/"),
-            big: this.baseUrl + this.propertyDetailData.documents[i].fileUrl.replaceAll("\\","/")
+            small: this.baseUrl + this.propertyDetailData.documents[i].fileUrl.replaceAll("\\", "/"),
+            medium: this.baseUrl + this.propertyDetailData.documents[i].fileUrl.replaceAll("\\", "/"),
+            big: this.baseUrl + this.propertyDetailData.documents[i].fileUrl.replaceAll("\\", "/")
           });
         }
 

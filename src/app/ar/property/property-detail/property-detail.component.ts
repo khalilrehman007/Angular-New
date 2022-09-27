@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { AppService } from "../../../service/app.service";
@@ -222,7 +223,7 @@ export class PropertyDetailComponent implements OnInit {
   };
   public lineChartLegend = true;
 
-  constructor(private authService: AuthService, private domSanitizer: DomSanitizer, private activeRoute: ActivatedRoute, private modalService: NgbModal, private service: AppService, private route: Router, private notifyService: NotificationService) {
+  constructor(private location: Location, private authService: AuthService, private domSanitizer: DomSanitizer, private activeRoute: ActivatedRoute, private modalService: NgbModal, private service: AppService, private route: Router, private notifyService: NotificationService) {
     let temp: any = window.location.href;
     temp = temp.split("/");
     temp[1] = "//";
@@ -247,6 +248,9 @@ export class PropertyDetailComponent implements OnInit {
     });
     this.galleryOptions = [];
     this.galleryImages = [];
+  }
+  goBack() {
+    this.location.back();
   }
 
   openVerticallyCentered(content: any) {
