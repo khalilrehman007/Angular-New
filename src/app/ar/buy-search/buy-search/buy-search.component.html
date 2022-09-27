@@ -29,7 +29,7 @@
             <div ngClass="flex-column flex-column-2">
                 <div ngClass="block-wrapper">
                     <div ngClass="cstm_dropdown-list dropdown-design-2 position-relative drodown_with-img">
-                        <button ngClass="drop-down_btn" (click)="clickEvent()">Budget</button>
+                        <button ngClass="drop-down_btn" (click)="clickEvent()">ميزانية</button>
                         <div class="cstm_dropdown-menu" [ngClass]="status ? 'active' : 'notactive'">
                             <h4 ngClass="drop_label">نطاق السعر</h4>
                             <div ngClass="rental-type-tabs-sec">
@@ -85,7 +85,7 @@
                             </div>
                             <div ngClass="property-types-cntnts">
                                 <div id="Residentials" ngClass="residential-tabs1">
-                                    <h5 ngClass="h5-heading">Residential Unit Type</h5>
+                                    <h5 ngClass="h5-heading">نوع الوحدة السكنية</h5>
                                     <ul ngClass="list-unstyled residentails-unit-list">
                                         <li ngClass="d-flex" *ngFor="let item of propertyType">
                                             <div ngClass="position-relative">
@@ -93,13 +93,13 @@
                                                 <span ngClass="property_sel"></span>
                                             </div>
                                             <div ngClass="proprty_name">
-                                                <p>{{item.typeDescription}}</p>
+                                                <p>{{item.typeDescriptionAr}}</p>
                                             </div>
                                         </li>
                                     </ul>
                                 </div>
                                 <div id="Commercial" ngClass="hide commertial-tabs1">
-                                    <h5 ngClass="h5-heading">Commercial Unit Type</h5>
+                                    <h5 ngClass="h5-heading">نوع الوحدة التجارية</h5>
                                     <ul ngClass="list-unstyled residentails-unit-list">
                                         <li ngClass="d-flex" *ngFor="let item of propertyTypeCommercial">
                                             <div ngClass="position-relative">
@@ -107,7 +107,7 @@
                                                 <span ngClass="property_sel"></span>
                                             </div>
                                             <div ngClass="proprty_name">
-                                                <p>{{item.typeDescription}}</p>
+                                                <p>{{item.typeDescriptionAr}}</p>
                                             </div>
                                         </li>
                                     </ul>
