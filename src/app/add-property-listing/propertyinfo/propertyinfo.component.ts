@@ -248,6 +248,7 @@ export class PropertyinfoComponent implements OnInit {
     this.data.DistrictId = this.districtId;
     let temp: any = document.getElementById("searchLocation");
     this.data.PropertyAddress = temp.value;
+    this.data.PropertyAddressArabic = localStorage.getItem("arabicAddress");
     this.data.PropertyLat = localStorage.getItem("lat");
     this.data.PropertyLong = localStorage.getItem("lng");
     localStorage.setItem('propertyData', JSON.stringify(this.data))
@@ -285,12 +286,13 @@ export class PropertyinfoComponent implements OnInit {
     let address: any = temp.value;
     localStorage.setItem("address", address);
     $.ajax({
-      url: "https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyBPSEz52-AfPEVbmV_3yuGUGol_KiLb3GU",
+      url: "https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyBPSEz52-AfPEVbmV_3yuGUGol_KiLb3GU&language=ar",
       method: "get",
       success: (res) => {
         let area = res.results[0].geometry.location;
         localStorage.setItem("lat", area.lat);
         localStorage.setItem("lng", area.lng);
+        localStorage.setItem("arabicAddress", res.results[0].formatted_address);
         this.locationSelected = true;
         this.map = new google.maps.Map($(".property-details__map")[0], {
           center: area,
