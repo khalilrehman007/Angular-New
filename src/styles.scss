@@ -4256,6 +4256,10 @@ input[type=number] {
 
 .news-letter-form {
 	margin: 27px 0px 20px;
+	width: 100%;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
 
 	input[type=email] {
 		height: 75px;
@@ -4272,10 +4276,10 @@ input[type=number] {
 		background: $btncolor;
 		color: $color_5;
 		border: 0;
-		margin-left: -120px;
 		position: absolute;
 		margin-top: 15px;
 		border-radius: 5px;
+		right: 15px;
 
 		&:hover {
 			background: #3c51bd;
@@ -5332,7 +5336,7 @@ img {
 				padding-top: 14px !important;
 
 				input {
-					font-weight: 600;
+					font-weight: 400;
 
 					&::placeholder {
 						color: $color_11  !important;
@@ -5437,10 +5441,11 @@ img {
 			mat-label {
 				color: $color_3;
 				font-size: 14px;
-				font-weight: 600;
+				font-weight: 400;
 
 				img {
 					margin-right: 4px;
+					width: 18px;
 				}
 			}
 		}
@@ -11149,7 +11154,7 @@ li.agent-details__property-list-item {
 	color: #fff;
 	font-size: 12px;
 	text-transform: uppercase;
-	font-weight: 600;
+	font-weight: 500;
 	letter-spacing: 1px;
 	padding: 6px 13px;
 	border-radius: 8px 8px 8px 0px;
@@ -12050,6 +12055,9 @@ background: transparent !important;
 }
 .mrg-0{
 	margin: 0px !important;
+}
+.signin-li .nav-link:hover img {
+    filter: brightness(0) invert(1);
 }
 @media (min-width: 1200px){
 .padd-l-0{
