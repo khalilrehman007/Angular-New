@@ -22,8 +22,10 @@ export class AppComponent implements DoCheck, OnInit, AfterViewInit {
         let temp:any = val.url.split("/");
         if(temp[1] == "ar") {
           $("html").attr("dir","rtl");
+          $("title").text("OV- المتجر");
         } else {
           $("html").removeAttr("dir");
+          $("title").text("OV - Marketplace");
         }
     }
     })
