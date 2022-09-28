@@ -4,10 +4,10 @@
         <form class="auth-form">
             <div ngClass="wecome-message">
                 <h2>مرحبا بكم في اوفاليويت</h2>
-                <p>Welcome back! Please enter your details.</p>
+                <p>مرحبًا بعودتك! الرجاء إدخال التفاصيل الخاصة بك.</p>
             </div>
             <div ngClass="otp-info-sec text-center">
-                <p ngClass="otp-Txt">Enter OTP Sent to you at</p>
+                <p ngClass="otp-Txt">أدخل OTP المرسل إليك في</p>
                 <h6 ngClass="otp-number">{{verificationData.PhoneNumber}}</h6>
             </div>
             <div ngClass="d-flex justify-content-spacebw otp-form-sec">
@@ -41,7 +41,7 @@
                 <button ngClass="resend-code" [disabled]="resendDisable" (click)="resendCode()">أعد إرسال الرمز</button>
             </div>
             <mat-card-actions>
-                <button mat-raised-button type="submit" ngClass="submit-btn" (click)="verifyCode()">Verify</button>
+                <button mat-raised-button type="submit" ngClass="submit-btn" (click)="verifyCode()">يؤكد</button>
             </mat-card-actions>
         </form>
     </div>
