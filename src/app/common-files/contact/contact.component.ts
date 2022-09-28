@@ -15,7 +15,11 @@ export class ContactComponent implements OnInit {
   image:any;
   title:any;
   subHeading:any;
-
+  error: any = ""
+  showError: boolean = false;
+  errorResponse(data: any) {
+    this.showError = false;
+  }
   conductList = [
     {
       value: 'Summary valuation  Certificate report',
@@ -62,8 +66,17 @@ export class ContactComponent implements OnInit {
   }
 
   onSubmit() {
-    if(this.conductReport == "" || this.Form.invalid) {
-      alert("Please select all required Fields");
+    if(this.Form.value.Name == "") {
+      this.error = "Name Field is required";
+      this.showError = true;
+      return;
+    } else if (this.Form.value.Phone == "") {
+      this.error = "Phone Field is required";
+      this.showError = true;
+      return;
+    } else if(this.Form.value.Email == "") {
+      this.error = "Email Field is required";
+      this.showError = true;
       return;
     }
     let temp:any = {"Name": this.Form.value.Name, "Phone":this.Form.value.Phone,"Email": this.Form.value.Phone, "Query": this.conductReport};
