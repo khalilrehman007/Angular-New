@@ -56,7 +56,6 @@ export class HomepageComponent implements OnInit {
   oldData2() {
     this.service.LatestPropertiesListingCommercial({ "UserId": this.userId, "propertyListingTypeId": "1" }).subscribe((response:any) => {
       this.dynamicSlides2 = response.data;
-      console.log(this.dynamicSlides2)
     });
   }
   newData2() {
