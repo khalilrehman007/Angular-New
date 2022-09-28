@@ -553,11 +553,11 @@ blogs: any;
     var hrs = myDate.getHours();
     var greet;
     if (hrs < 12)
-      greet = '🌅 GOOD MORNING';
+      greet = '🌅 صباح الخير';
     else if (hrs >= 12 && hrs <= 17)
       greet = '🌞 طاب مسائك!';
     else if (hrs >= 17 && hrs <= 24)
-      greet = '🌇 GOOD EVENING';
+      greet = '🌇 مساء الخير';
 
     this.greet = greet
   }
@@ -573,7 +573,7 @@ blogs: any;
   logout() {
     this.notifyService.showSuccess('Logout Successfully', "");
     localStorage.clear();
-    this.route.navigate(['login'])
+    this.route.navigate(['/ar/login'])
   }
 
   LoadBlogs() {
