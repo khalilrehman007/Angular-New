@@ -2728,7 +2728,2125 @@
             </div>
 
             <!-- code remove from line 2739 to 4867 -->
-            
+            <mat-tab-group class="tab-wrap" animationDuration="0ms" style="display: none;">
+                <mat-tab class="tab-item" label="Dashboard">
+
+                    <div class="free-proplisting" *ngIf="professionalType == 2 || professionalType == 3">
+                        <div class="first-title">
+                            <h3 class="title">FREE Property Listing</h3>
+                            <p>Sell or Rent Your Home</p>
+                        </div>
+                        <ul>
+                            <li>Directly List your Property on Ovaluate</li>
+                            <li>Directly List your Property on Ovaluate</li>
+                            <li>Directly List your Property on Ovaluate</li>
+                            <li>Directly List your Property on Ovaluate</li>
+                        </ul>
+                        <a routerLink="/ar/listingproperty" class="btn btn-primary">List Property</a>
+                    </div>
+
+                    <div class="statictics-wrap mt-5">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <div class="content-area">
+                                        <h4 class="title">Listings Summary</h4>
+                                        <p>Last Listed 05th May 2022</p>
+                                        <ul class="counts-wrap">
+                                            <li>
+                                                <h3 class="count">028</h3>
+                                                <p>Residential</p>
+                                            </li>
+                                            <li>
+                                                <h3 class="count">000</h3>
+                                                <p>Commercial</p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="image-area">
+                                        <img src="{{ListingVect}}" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <div class="content-area">
+                                        <h4 class="title">Valuation Summary</h4>
+                                        <p>Last Listed 05th May 2022</p>
+                                        <ul class="counts-wrap">
+                                            <li>
+                                                <h3 class="count">028</h3>
+                                                <p>Residential</p>
+                                            </li>
+                                            <li>
+                                                <h3 class="count">000</h3>
+                                                <p>Commercial</p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="image-area">
+                                        <img src="{{ValuationVect}}" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="card mt-5">
+                        <section
+                            ngClass="position-relative wrapper-section properties-slider residentials-property-rent-1">
+                            <div ngClass="section-title">
+                                <div ngClass="section-title-left">
+                                    <h4>Leads Summary</h4>
+                                    <p>is interested in your inventory and tried contacting you</p>
+                                </div>
+                                <div ngClass="section-title-right">
+                                    <ul ngClass="nav nav-tabs" role="tablist">
+                                        <li ngClass="nav-item">
+                                            <a ngClass="nav-link active" data-bs-toggle="tab"
+                                                data-bs-target="#resedential-rent">
+                                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M16.4912 12.4406C14.7746 14.149 12.3162 14.674 10.1579 13.999L6.23289 17.9156C5.94955 18.2073 5.39122 18.3823 4.99122 18.324L3.17455 18.074C2.57455 17.9906 2.01622 17.424 1.92455 16.824L1.67455 15.0073C1.61622 14.6073 1.80789 14.049 2.08289 13.7656L5.99955 9.84896C5.33289 7.68229 5.84955 5.22396 7.56622 3.51563C10.0246 1.05729 14.0162 1.05729 16.4829 3.51563C18.9496 5.97396 18.9496 9.98229 16.4912 12.4406Z"
+                                                        stroke="#595ad4" stroke-width="2" stroke-miterlimit="10"
+                                                        stroke-linecap="round" stroke-linejoin="round" />
+                                                    <path d="M5.74121 14.5742L7.65788 16.4909" stroke="#595ad4"
+                                                        stroke-width="2" stroke-miterlimit="10" stroke-linecap="round"
+                                                        stroke-linejoin="round" />
+                                                    <path
+                                                        d="M12.083 9.16797C12.7734 9.16797 13.333 8.60833 13.333 7.91797C13.333 7.22761 12.7734 6.66797 12.083 6.66797C11.3927 6.66797 10.833 7.22761 10.833 7.91797C10.833 8.60833 11.3927 9.16797 12.083 9.16797Z"
+                                                        stroke="#595ad4" stroke-width="2" stroke-linecap="round"
+                                                        stroke-linejoin="round" />
+                                                </svg>
+                                                Residential</a>
+                                        </li>
+                                        <li ngClass="nav-item">
+                                            <a ngClass="nav-link" data-bs-toggle="tab"
+                                                data-bs-target="#resedential-buy">
+                                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M14.167 17.0846H5.83366C3.33366 17.0846 1.66699 15.8346 1.66699 12.918V7.08464C1.66699 4.16797 3.33366 2.91797 5.83366 2.91797H14.167C16.667 2.91797 18.3337 4.16797 18.3337 7.08464V12.918C18.3337 15.8346 16.667 17.0846 14.167 17.0846Z"
+                                                        stroke="#100A55" stroke-width="2" stroke-miterlimit="10"
+                                                        stroke-linecap="round" stroke-linejoin="round" />
+                                                    <path
+                                                        d="M10 12.5C11.3807 12.5 12.5 11.3807 12.5 10C12.5 8.61929 11.3807 7.5 10 7.5C8.61929 7.5 7.5 8.61929 7.5 10C7.5 11.3807 8.61929 12.5 10 12.5Z"
+                                                        stroke="#100A55" stroke-width="2" stroke-miterlimit="10"
+                                                        stroke-linecap="round" stroke-linejoin="round" />
+                                                    <path d="M4.58301 7.91797V12.0846" stroke="#100A55" stroke-width="2"
+                                                        stroke-miterlimit="10" stroke-linecap="round"
+                                                        stroke-linejoin="round" />
+                                                    <path d="M15.417 7.91797V12.0846" stroke="#100A55" stroke-width="2"
+                                                        stroke-miterlimit="10" stroke-linecap="round"
+                                                        stroke-linejoin="round" />
+                                                </svg>
+                                                Commercial</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div ngClass="tab-content">
+                                <div id="resedential-rent" class="tab-pane active">
+                                    <div class="lead-summ-table">
+                                        <div class="table-row">
+                                            <div class="col photo-col">
+                                                <img src="{{proAvatar}}" alt="">
+                                            </div>
+                                            <div class="col base-info-col">
+                                                <h4 class="name">Al Majhid Khwaizi Ansari</h4>
+                                                <p>05 May, 2022</p>
+                                                <p>Dubai, UAE</p>
+                                            </div>
+                                            <div class="col ">
+                                                <span>Property ID</span>
+                                                <p>#OVRA-98967654</p>
+                                            </div>
+                                            <div class="col ">
+
+                                                <span>Building Type</span>
+                                                <p>Residential</p>
+                                            </div>
+                                            <div class="col ">
+
+                                                <span>Looking for</span>
+                                                <p>Buy</p>
+                                            </div>
+                                            <div class="col contact-col">
+                                                <span>Contact</span>
+                                                <div>
+                                                    <p>+971 07 XXXX XXXX</p> <a href="#"><img src="{{ViewIcon}}"
+                                                            alt=""></a>
+                                                </div>
+                                                <div>
+                                                    <p>aliansari@gmail.com</p> <a href="#"><img src="{{CopyIcon}}"
+                                                            alt=""></a>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <a href="#" class="view-more">
+                                                    <img src="{{MoreIcon}}" alt="" class="icon">
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                        <div class="table-row">
+                                            <div class="col photo-col">
+                                                <img src="{{proAvatar}}" alt="">
+                                            </div>
+                                            <div class="col base-info-col">
+                                                <h4 class="name">Al Majhid Khwaizi Ansari</h4>
+                                                <p>05 May, 2022</p>
+                                                <p>Dubai, UAE</p>
+                                            </div>
+                                            <div class="col ">
+                                                <span>Property ID</span>
+                                                <p>#OVRA-98967654</p>
+                                            </div>
+                                            <div class="col ">
+
+                                                <span>Building Type</span>
+                                                <p>Residential</p>
+                                            </div>
+                                            <div class="col ">
+
+                                                <span>Looking for</span>
+                                                <p>Buy</p>
+                                            </div>
+                                            <div class="col contact-col">
+                                                <span>Contact</span>
+                                                <div>
+                                                    <p>+971 07 XXXX XXXX</p> <a href="#"><img src="{{ViewIcon}}"
+                                                            alt=""></a>
+                                                </div>
+                                                <div>
+                                                    <p>aliansari@gmail.com</p> <a href="#"><img src="{{CopyIcon}}"
+                                                            alt=""></a>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <a href="#" class="view-more">
+                                                    <img src="{{MoreIcon}}" alt="" class="icon">
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                        <div class="table-row">
+                                            <div class="col photo-col">
+                                                <img src="{{proAvatar}}" alt="">
+                                            </div>
+                                            <div class="col base-info-col">
+                                                <h4 class="name">Al Majhid Khwaizi Ansari</h4>
+                                                <p>05 May, 2022</p>
+                                                <p>Dubai, UAE</p>
+                                            </div>
+                                            <div class="col ">
+                                                <span>Property ID</span>
+                                                <p>#OVRA-98967654</p>
+                                            </div>
+                                            <div class="col ">
+
+                                                <span>Building Type</span>
+                                                <p>Residential</p>
+                                            </div>
+                                            <div class="col ">
+
+                                                <span>Looking for</span>
+                                                <p>Buy</p>
+                                            </div>
+                                            <div class="col contact-col">
+                                                <span>Contact</span>
+                                                <div>
+                                                    <p>+971 07 XXXX XXXX</p> <a href="#"><img src="{{ViewIcon}}"
+                                                            alt=""></a>
+                                                </div>
+                                                <div>
+                                                    <p>aliansari@gmail.com</p> <a href="#"><img src="{{CopyIcon}}"
+                                                            alt=""></a>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <a href="#" class="view-more">
+                                                    <img src="{{MoreIcon}}" alt="" class="icon">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="resedential-buy" class="tab-pane fade">
+                                    <h1>Tab 2</h1>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+
+
+
+                    <section ngClass="position-relative wrapper-section blogs_sec mt-5">
+                        <div ngClass="container_1220px">
+                            <div ngClass="section-title">
+                                <div ngClass="section-custom-title-left">
+                                    <h4>Blogs</h4>
+                                    <p>Some of our picked properties near your location.</p>
+                                </div>
+                                <div ngClass="section-custom-title-right">
+                                    <a [routerLink]="['/ar/blogs']">Read all</a>
+                                </div>
+                            </div>
+
+                            <div ngClass="row">
+                                <div ngClass="col-lg-4 col-md-6 blog-places-col" *ngFor=" let blog of blogs">
+                                    <a [routerLink]="['/ar/blogs/'+blog.id]" [queryParams]="{title: blog.blogTitle}"
+                                        ngClass="position-relative">
+                                        <img [src]="'https://www.ovaluate.com/'+blog.blogDocument.fileUrl"
+                                            ngClass="img-fluid blog-image-homepage" alt="">
+                                        <span ngClass="blog-tag">
+                                            <img [src]="blog.src2" ngClass="img-fluid" alt="">
+                                        </span>
+                                        <div ngClass="blog-title-content">
+                                            <h5>{{blog.blogTitle}}</h5>
+                                            <span>{{blog.blogDate}}</span>
+                                        </div>
+                                        <button ngClass="tag_btn blue"> Market Trends</button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                </mat-tab>
+                <mat-tab class="tab-item" label="My Activities">
+                    <div class="recent-activity">
+                        <h4 class="sub-title">Recent Activities</h4>
+                        <div class="sub-tab-nav">
+                            <mat-tab-group>
+                                <mat-tab label="Searches">
+                                    <div ngClass="list-property-content">
+                                        <div ngClass="list-property-body">
+                                            <form>
+
+                                                <div class="type-activity-status">
+                                                    <div ngClass="block-wrapper mb-4">
+                                                        <div class="checkbox-flex-box-auto button-same-select">
+                                                            <div class="checkbox-design position-relative">
+                                                                <input type="radio" id="Furnished" name="property-types"
+                                                                    value="All" checked>
+                                                                <button class="checkbox-btn">All (03)</button>
+                                                            </div>
+                                                            <div class="checkbox-design position-relative">
+                                                                <input type="radio" id="Semi-Furnished"
+                                                                    name="property-types" value="Buy">
+                                                                <button class="checkbox-btn">Buy (01)</button>
+                                                            </div>
+                                                            <div class="checkbox-design position-relative">
+                                                                <input type="radio" id="Unfurnished"
+                                                                    name="property-types" value="Rent">
+                                                                <button class="checkbox-btn">Rent (02)</button>
+                                                            </div>
+                                                            <div class="checkbox-design position-relative">
+                                                                <input type="radio" id="Unfurnished"
+                                                                    name="property-types" value="Agents">
+                                                                <button class="checkbox-btn">Agents (02)</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="recent-search-item">
+                                                    <div class="lable">05 May, 2022</div>
+                                                    <div ngClass="row">
+                                                        <div ngClass="col-xl-4 col-lg-4 col-sm-12">
+                                                            <a href="#" class="link">Bur Dubai, Dubai <img
+                                                                    src="{{MoreIcon}}" alt=""></a>
+                                                        </div>
+                                                        <div ngClass="col-xl-4 col-lg-4 col-sm-12">
+                                                            <a href="#" class="link">Bur Dubai, Dubai <img
+                                                                    src="{{MoreIcon}}" alt=""></a>
+                                                        </div>
+                                                        <div ngClass="col-xl-4 col-lg-4 col-sm-12">
+                                                            <a href="#" class="link">Bur Dubai, Dubai <img
+                                                                    src="{{MoreIcon}}" alt=""></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="recent-search-item">
+                                                    <div class="lable">05 May, 2022</div>
+                                                    <div ngClass="row">
+                                                        <div ngClass="col-xl-4 col-lg-4 col-sm-12">
+                                                            <a href="#" class="link">Bur Dubai, Dubai <img
+                                                                    src="{{MoreIcon}}" alt=""></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </mat-tab>
+                                <mat-tab label="Views (02)">
+                                    <div class="type-activity-status">
+                                        <div ngClass="block-wrapper mb-4">
+                                            <div class="checkbox-flex-box-auto button-same-select">
+                                                <div class="checkbox-design position-relative">
+                                                    <input type="radio" id="Furnished" name="property-types" value="All"
+                                                        checked>
+                                                    <button class="checkbox-btn">All (03)</button>
+                                                </div>
+                                                <div class="checkbox-design position-relative">
+                                                    <input type="radio" id="Unfurnished" name="property-types"
+                                                        value="Rent">
+                                                    <button class="checkbox-btn">Rent (02)</button>
+                                                </div>
+                                                <div class="checkbox-design position-relative">
+                                                    <input type="radio" id="Semi-Furnished" name="property-types"
+                                                        value="Buy">
+                                                    <button class="checkbox-btn">Buy (01)</button>
+                                                </div>
+                                                <div class="checkbox-design position-relative">
+                                                    <input type="radio" id="Unfurnished" name="property-types"
+                                                        value="Agents">
+                                                    <button class="checkbox-btn">Agents (02)</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="agent-details__tabs">
+                                        <div class="row">
+                                            <div class="col-lg-9 col-md-10">
+                                                <ul class="agent-details__property-list">
+                                                    <li class="agent-details__property-list-item">
+                                                        <div class="row">
+                                                            <div class="col-lg-2">
+                                                                <img src="assets/images/explore-places/1.jpg" alt=""
+                                                                    class="img-fluid agent-details__property-list-item-img">
+                                                            </div>
+                                                            <div class="col-lg-10">
+                                                                <div class="row">
+                                                                    <div class="col-7">
+                                                                        <a
+                                                                            class="agent-details__property-list-item-link cursor-pointer">85,000
+                                                                            AED
+                                                                            <span>/yearly</span>
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="col-5 text-end">
+                                                                        <h4 class="sub-bold-text">Olga Pikina</h4>
+                                                                        <p
+                                                                            class="agent-details__property-list-item-date">
+                                                                            Listed on 05
+                                                                            May, 2022</p>
+                                                                    </div>
+                                                                </div>
+                                                                <h6>Blue Wave Tower</h6>
+                                                                <p class="agent-details__property-list-item-text">
+                                                                    <img src="assets/images/home-location.svg" alt=""
+                                                                        class="img-fluid agent-details__property-list-item-text-icon">
+                                                                    Etihad Tower 4, Etihad Towers, Corniche Road, Abu
+                                                                    Dhabi
+                                                                </p>
+                                                                <p class="agent-details__property-list-item-type">Hotel
+                                                                    & Hotel
+                                                                    Apartment</p>
+                                                                <div class="row">
+                                                                    <div class="col-md-10">
+                                                                        <ul class="agent-details__property-detail-list">
+                                                                            <li
+                                                                                class="agent-details__property-detail-list-item">
+                                                                                <img src="assets/images/icons/Bed.svg"
+                                                                                    alt="">
+                                                                                3 Beds
+                                                                            </li>
+                                                                            <li
+                                                                                class="agent-details__property-detail-list-item">
+                                                                                <img src="assets/images/icons/Bed.svg"
+                                                                                    alt="">
+                                                                                2 Bath
+                                                                            </li>
+                                                                            <li
+                                                                                class="agent-details__property-detail-list-item">
+                                                                                <img src="assets/images/icons/Bed.svg"
+                                                                                    alt="">
+                                                                                8000 Sq.Ft.
+                                                                            </li>
+                                                                            <li
+                                                                                class="agent-details__property-detail-list-item">
+                                                                                <img src="assets/images/icons/Bed.svg"
+                                                                                    alt="">
+                                                                                Furnished
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                    <div class="col-md-2">
+                                                                        <img src="assets/images/better-home.svg" alt="">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="agent-details__property-list-item">
+                                                        <div class="row">
+                                                            <div class="col-lg-2">
+                                                                <img src="assets/images/explore-places/1.jpg" alt=""
+                                                                    class="img-fluid agent-details__property-list-item-img">
+                                                            </div>
+                                                            <div class="col-lg-10">
+                                                                <div class="row">
+                                                                    <div class="col-7">
+                                                                        <a
+                                                                            class="agent-details__property-list-item-link cursor-pointer">85,000
+                                                                            AED
+                                                                            <span>/yearly</span>
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="col-5 text-end">
+                                                                        <h4 class="sub-bold-text">Olga Pikina</h4>
+                                                                        <p
+                                                                            class="agent-details__property-list-item-date">
+                                                                            Listed on 05
+                                                                            May, 2022</p>
+                                                                    </div>
+                                                                </div>
+                                                                <h6>Blue Wave Tower</h6>
+                                                                <p class="agent-details__property-list-item-text">
+                                                                    <img src="assets/images/home-location.svg" alt=""
+                                                                        class="img-fluid agent-details__property-list-item-text-icon">
+                                                                    Etihad Tower 4, Etihad Towers, Corniche Road, Abu
+                                                                    Dhabi
+                                                                </p>
+                                                                <p class="agent-details__property-list-item-type">Hotel
+                                                                    & Hotel
+                                                                    Apartment</p>
+                                                                <div class="row">
+                                                                    <div class="col-md-10">
+                                                                        <ul class="agent-details__property-detail-list">
+                                                                            <li
+                                                                                class="agent-details__property-detail-list-item">
+                                                                                <img src="assets/images/icons/Bed.svg"
+                                                                                    alt="">
+                                                                                3 Beds
+                                                                            </li>
+                                                                            <li
+                                                                                class="agent-details__property-detail-list-item">
+                                                                                <img src="assets/images/icons/Bed.svg"
+                                                                                    alt="">
+                                                                                2 Bath
+                                                                            </li>
+                                                                            <li
+                                                                                class="agent-details__property-detail-list-item">
+                                                                                <img src="assets/images/icons/Bed.svg"
+                                                                                    alt="">
+                                                                                8000 Sq.Ft.
+                                                                            </li>
+                                                                            <li
+                                                                                class="agent-details__property-detail-list-item">
+                                                                                <img src="assets/images/icons/Bed.svg"
+                                                                                    alt="">
+                                                                                Furnished
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                    <div class="col-md-2">
+                                                                        <img src="assets/images/better-home.svg" alt="">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="agent-details__property-list-item">
+                                                        <div class="row">
+                                                            <div class="col-lg-2">
+                                                                <img src="assets/images/explore-places/1.jpg" alt=""
+                                                                    class="img-fluid agent-details__property-list-item-img">
+                                                            </div>
+                                                            <div class="col-lg-10">
+                                                                <div class="row">
+                                                                    <div class="col-7">
+                                                                        <a
+                                                                            class="agent-details__property-list-item-link cursor-pointer">85,000
+                                                                            AED
+                                                                            <span>/yearly</span>
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="col-5 text-end">
+                                                                        <h4 class="sub-bold-text">Olga Pikina</h4>
+                                                                        <p
+                                                                            class="agent-details__property-list-item-date">
+                                                                            Listed on 05
+                                                                            May, 2022</p>
+                                                                    </div>
+                                                                </div>
+                                                                <h6>Blue Wave Tower</h6>
+                                                                <p class="agent-details__property-list-item-text">
+                                                                    <img src="assets/images/home-location.svg" alt=""
+                                                                        class="img-fluid agent-details__property-list-item-text-icon">
+                                                                    Etihad Tower 4, Etihad Towers, Corniche Road, Abu
+                                                                    Dhabi
+                                                                </p>
+                                                                <p class="agent-details__property-list-item-type">Hotel
+                                                                    & Hotel
+                                                                    Apartment</p>
+                                                                <div class="row">
+                                                                    <div class="col-md-10">
+                                                                        <ul class="agent-details__property-detail-list">
+                                                                            <li
+                                                                                class="agent-details__property-detail-list-item">
+                                                                                <img src="assets/images/icons/Bed.svg"
+                                                                                    alt="">
+                                                                                3 Beds
+                                                                            </li>
+                                                                            <li
+                                                                                class="agent-details__property-detail-list-item">
+                                                                                <img src="assets/images/icons/Bed.svg"
+                                                                                    alt="">
+                                                                                2 Bath
+                                                                            </li>
+                                                                            <li
+                                                                                class="agent-details__property-detail-list-item">
+                                                                                <img src="assets/images/icons/Bed.svg"
+                                                                                    alt="">
+                                                                                8000 Sq.Ft.
+                                                                            </li>
+                                                                            <li
+                                                                                class="agent-details__property-detail-list-item">
+                                                                                <img src="assets/images/icons/Bed.svg"
+                                                                                    alt="">
+                                                                                Furnished
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                    <div class="col-md-2">
+                                                                        <img src="assets/images/better-home.svg" alt="">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="agent-details__property-list-item">
+                                                        <div class="row">
+                                                            <div class="col-lg-2">
+                                                                <img src="assets/images/explore-places/1.jpg" alt=""
+                                                                    class="img-fluid agent-details__property-list-item-img">
+                                                            </div>
+                                                            <div class="col-lg-10">
+                                                                <div class="row">
+                                                                    <div class="col-7">
+                                                                        <a
+                                                                            class="agent-details__property-list-item-link cursor-pointer">85,000
+                                                                            AED
+                                                                            <span>/yearly</span>
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="col-5 text-end">
+                                                                        <h4 class="sub-bold-text">Olga Pikina</h4>
+                                                                        <p
+                                                                            class="agent-details__property-list-item-date">
+                                                                            Listed on 05
+                                                                            May, 2022</p>
+                                                                    </div>
+                                                                </div>
+                                                                <h6>Blue Wave Tower</h6>
+                                                                <p class="agent-details__property-list-item-text">
+                                                                    <img src="assets/images/home-location.svg" alt=""
+                                                                        class="img-fluid agent-details__property-list-item-text-icon">
+                                                                    Etihad Tower 4, Etihad Towers, Corniche Road, Abu
+                                                                    Dhabi
+                                                                </p>
+                                                                <p class="agent-details__property-list-item-type">Hotel
+                                                                    & Hotel
+                                                                    Apartment</p>
+                                                                <div class="row">
+                                                                    <div class="col-md-10">
+                                                                        <ul class="agent-details__property-detail-list">
+                                                                            <li
+                                                                                class="agent-details__property-detail-list-item">
+                                                                                <img src="assets/images/icons/Bed.svg"
+                                                                                    alt="">
+                                                                                3 Beds
+                                                                            </li>
+                                                                            <li
+                                                                                class="agent-details__property-detail-list-item">
+                                                                                <img src="assets/images/icons/Bed.svg"
+                                                                                    alt="">
+                                                                                2 Bath
+                                                                            </li>
+                                                                            <li
+                                                                                class="agent-details__property-detail-list-item">
+                                                                                <img src="assets/images/icons/Bed.svg"
+                                                                                    alt="">
+                                                                                8000 Sq.Ft.
+                                                                            </li>
+                                                                            <li
+                                                                                class="agent-details__property-detail-list-item">
+                                                                                <img src="assets/images/icons/Bed.svg"
+                                                                                    alt="">
+                                                                                Furnished
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                    <div class="col-md-2">
+                                                                        <img src="assets/images/better-home.svg" alt="">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="agent-details__property-list-item">
+                                                        <div class="row">
+                                                            <div class="col-lg-2">
+                                                                <img src="assets/images/explore-places/1.jpg" alt=""
+                                                                    class="img-fluid agent-details__property-list-item-img">
+                                                            </div>
+                                                            <div class="col-lg-10">
+                                                                <div class="row">
+                                                                    <div class="col-7">
+                                                                        <a
+                                                                            class="agent-details__property-list-item-link cursor-pointer">85,000
+                                                                            AED
+                                                                            <span>/yearly</span>
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="col-5 text-end">
+                                                                        <h4 class="sub-bold-text">Olga Pikina</h4>
+                                                                        <p
+                                                                            class="agent-details__property-list-item-date">
+                                                                            Listed on 05
+                                                                            May, 2022</p>
+                                                                    </div>
+                                                                </div>
+                                                                <h6>Blue Wave Tower</h6>
+                                                                <p class="agent-details__property-list-item-text">
+                                                                    <img src="assets/images/home-location.svg" alt=""
+                                                                        class="img-fluid agent-details__property-list-item-text-icon">
+                                                                    Etihad Tower 4, Etihad Towers, Corniche Road, Abu
+                                                                    Dhabi
+                                                                </p>
+                                                                <p class="agent-details__property-list-item-type">Hotel
+                                                                    & Hotel
+                                                                    Apartment</p>
+                                                                <div class="row">
+                                                                    <div class="col-md-10">
+                                                                        <ul class="agent-details__property-detail-list">
+                                                                            <li
+                                                                                class="agent-details__property-detail-list-item">
+                                                                                <img src="assets/images/icons/Bed.svg"
+                                                                                    alt="">
+                                                                                3 Beds
+                                                                            </li>
+                                                                            <li
+                                                                                class="agent-details__property-detail-list-item">
+                                                                                <img src="assets/images/icons/Bed.svg"
+                                                                                    alt="">
+                                                                                2 Bath
+                                                                            </li>
+                                                                            <li
+                                                                                class="agent-details__property-detail-list-item">
+                                                                                <img src="assets/images/icons/Bed.svg"
+                                                                                    alt="">
+                                                                                8000 Sq.Ft.
+                                                                            </li>
+                                                                            <li
+                                                                                class="agent-details__property-detail-list-item">
+                                                                                <img src="assets/images/icons/Bed.svg"
+                                                                                    alt="">
+                                                                                Furnished
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                    <div class="col-md-2">
+                                                                        <img src="assets/images/better-home.svg" alt="">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="agent-details__property-list-item">
+                                                        <div class="row">
+                                                            <div class="col-lg-2">
+                                                                <img src="assets/images/explore-places/1.jpg" alt=""
+                                                                    class="img-fluid agent-details__property-list-item-img">
+                                                            </div>
+                                                            <div class="col-lg-10">
+                                                                <div class="row">
+                                                                    <div class="col-7">
+                                                                        <a
+                                                                            class="agent-details__property-list-item-link cursor-pointer">85,000
+                                                                            AED
+                                                                            <span>/yearly</span>
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="col-5 text-end">
+                                                                        <h4 class="sub-bold-text">Olga Pikina</h4>
+                                                                        <p
+                                                                            class="agent-details__property-list-item-date">
+                                                                            Listed on 05
+                                                                            May, 2022</p>
+                                                                    </div>
+                                                                </div>
+                                                                <h6>Blue Wave Tower</h6>
+                                                                <p class="agent-details__property-list-item-text">
+                                                                    <img src="assets/images/home-location.svg" alt=""
+                                                                        class="img-fluid agent-details__property-list-item-text-icon">
+                                                                    Etihad Tower 4, Etihad Towers, Corniche Road, Abu
+                                                                    Dhabi
+                                                                </p>
+                                                                <p class="agent-details__property-list-item-type">Hotel
+                                                                    & Hotel
+                                                                    Apartment</p>
+                                                                <div class="row">
+                                                                    <div class="col-md-10">
+                                                                        <ul class="agent-details__property-detail-list">
+                                                                            <li
+                                                                                class="agent-details__property-detail-list-item">
+                                                                                <img src="assets/images/icons/Bed.svg"
+                                                                                    alt="">
+                                                                                3 Beds
+                                                                            </li>
+                                                                            <li
+                                                                                class="agent-details__property-detail-list-item">
+                                                                                <img src="assets/images/icons/Bed.svg"
+                                                                                    alt="">
+                                                                                2 Bath
+                                                                            </li>
+                                                                            <li
+                                                                                class="agent-details__property-detail-list-item">
+                                                                                <img src="assets/images/icons/Bed.svg"
+                                                                                    alt="">
+                                                                                8000 Sq.Ft.
+                                                                            </li>
+                                                                            <li
+                                                                                class="agent-details__property-detail-list-item">
+                                                                                <img src="assets/images/icons/Bed.svg"
+                                                                                    alt="">
+                                                                                Furnished
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                    <div class="col-md-2">
+                                                                        <img src="assets/images/better-home.svg" alt="">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                    <section class="agent-landing-featured">
+                                        <div class="row">
+                                            <div class="col-lg-9 col-md-10">
+                                                <div class="row">
+                                                    <div class="col-lg-6">
+                                                        <div class="agent-landing-featured__agent">
+                                                            <div class="agent-landing-featured__property-wrapper">
+                                                                <img src="assets/images/tag/featured.png" alt=""
+                                                                    class="agent-landing-featured__property-tag">
+                                                                <div class="row">
+                                                                    <div class="col-5 d-flex align-items-center">
+                                                                        <img src="/assets/images/agent-image.png" alt=""
+                                                                            class="img-fluid agent-landing-featured__property-img">
+                                                                        <img src="assets/images/brand/betterhomes.png"
+                                                                            alt=""
+                                                                            class="img-fluid agent-landing-featured__agent-company">
+                                                                    </div>
+                                                                    <div class="col-7">
+                                                                        <div
+                                                                            class="agent-landing-featured__agent-right-panel">
+                                                                            <h6 class="agent-landing-featured__property-heading"
+                                                                                routerLink="/ar/agent-details/1">
+                                                                                Better Homes Properties</h6>
+                                                                            <p
+                                                                                class="agent-landing-featured__property-text">
+                                                                                P.O. Box 14781, Ground Floor,
+                                                                                Golf
+                                                                                Building No. GB, Al Hamra Village, Ras
+                                                                                Al Khaimah
+
+                                                                            </p>
+                                                                            <a class="agent-landing-featured__property-link"
+                                                                                routerLink=#>View Map</a>
+                                                                            <p
+                                                                                class="agent-landing-featured__property-text">
+                                                                                RERA# 11899</p>
+                                                                            <p
+                                                                                class="agent-landing-featured__property-text">
+                                                                                Permit# 7187842740</p>
+                                                                            <ul
+                                                                                class="agent-landing-featured__property-details-list">
+                                                                                <li
+                                                                                    class="agent-landing-featured__property-details-list-item">
+                                                                                    <p
+                                                                                        class="agent-landing-featured__property-details-list-text">
+                                                                                        247<br>Sale</p>
+                                                                                </li>
+                                                                                <li
+                                                                                    class="agent-landing-featured__property-details-list-item">
+                                                                                    <p
+                                                                                        class="agent-landing-featured__property-details-list-text">
+                                                                                        247<br>Rents</p>
+                                                                                </li>
+                                                                                <li
+                                                                                    class="agent-landing-featured__property-details-list-item">
+                                                                                    <p
+                                                                                        class="agent-landing-featured__property-details-list-text">
+                                                                                        247<br>Commercial</p>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <div class="agent-landing-featured__agent">
+                                                            <div class="agent-landing-featured__property-wrapper">
+                                                                <img src="assets/images/tag/featured.png" alt=""
+                                                                    class="agent-landing-featured__property-tag">
+                                                                <div class="row">
+                                                                    <div class="col-5 d-flex align-items-center">
+                                                                        <img src="/assets/images/agent-image.png" alt=""
+                                                                            class="img-fluid agent-landing-featured__property-img">
+                                                                        <img src="assets/images/brand/betterhomes.png"
+                                                                            alt=""
+                                                                            class="img-fluid agent-landing-featured__agent-company">
+                                                                    </div>
+                                                                    <div class="col-7">
+                                                                        <div
+                                                                            class="agent-landing-featured__agent-right-panel">
+                                                                            <h6 class="agent-landing-featured__property-heading"
+                                                                                routerLink="/ar/agent-details/1">
+                                                                                Better Homes Properties</h6>
+                                                                            <p
+                                                                                class="agent-landing-featured__property-text">
+                                                                                P.O. Box 14781, Ground Floor,
+                                                                                Golf
+                                                                                Building No. GB, Al Hamra Village, Ras
+                                                                                Al Khaimah
+
+                                                                            </p>
+                                                                            <a class="agent-landing-featured__property-link"
+                                                                                routerLink=#>View Map</a>
+                                                                            <p
+                                                                                class="agent-landing-featured__property-text">
+                                                                                RERA# 11899</p>
+                                                                            <p
+                                                                                class="agent-landing-featured__property-text">
+                                                                                Permit# 7187842740</p>
+                                                                            <ul
+                                                                                class="agent-landing-featured__property-details-list">
+                                                                                <li
+                                                                                    class="agent-landing-featured__property-details-list-item">
+                                                                                    <p
+                                                                                        class="agent-landing-featured__property-details-list-text">
+                                                                                        247<br>Sale</p>
+                                                                                </li>
+                                                                                <li
+                                                                                    class="agent-landing-featured__property-details-list-item">
+                                                                                    <p
+                                                                                        class="agent-landing-featured__property-details-list-text">
+                                                                                        247<br>Rents</p>
+                                                                                </li>
+                                                                                <li
+                                                                                    class="agent-landing-featured__property-details-list-item">
+                                                                                    <p
+                                                                                        class="agent-landing-featured__property-details-list-text">
+                                                                                        247<br>Commercial</p>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </mat-tab>
+                                <mat-tab label="Shortlisted (02)">
+
+                                    <div class="type-activity-status">
+                                        <div ngClass="block-wrapper mb-4">
+                                            <div class="checkbox-flex-box-auto button-same-select">
+                                                <div class="checkbox-design position-relative">
+                                                    <input type="radio" id="Furnished" name="property-types" value="All"
+                                                        checked>
+                                                    <button class="checkbox-btn">All (03)</button>
+                                                </div>
+                                                <div class="checkbox-design position-relative">
+                                                    <input type="radio" id="Semi-Furnished" name="property-types"
+                                                        value="Buy">
+                                                    <button class="checkbox-btn">Buy (01)</button>
+                                                </div>
+                                                <div class="checkbox-design position-relative">
+                                                    <input type="radio" id="Unfurnished" name="property-types"
+                                                        value="Rent">
+                                                    <button class="checkbox-btn">Rent (02)</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="agent-details__tabs">
+                                        <div class="row">
+                                            <div class="col-lg-10 col-md-11">
+                                                <ul class="agent-details__property-list">
+                                                    <li class="compare-action-pro-list">
+                                                        <div class="agent-details__property-list-item">
+                                                            <div class="row">
+                                                                <div class="col-lg-2">
+                                                                    <img src="assets/images/explore-places/1.jpg" alt=""
+                                                                        class="img-fluid agent-details__property-list-item-img">
+                                                                </div>
+                                                                <div class="col-lg-10">
+                                                                    <div class="row">
+                                                                        <div class="col-7">
+                                                                            <a
+                                                                                class="agent-details__property-list-item-link cursor-pointer">85,000
+                                                                                AED
+                                                                                <span>/yearly</span>
+                                                                            </a>
+                                                                        </div>
+                                                                        <div class="col-5 text-end">
+                                                                            <h4 class="sub-bold-text">Olga Pikina</h4>
+                                                                            <p
+                                                                                class="agent-details__property-list-item-date">
+                                                                                Listed on 05
+                                                                                May, 2022</p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <h6>Blue Wave Tower</h6>
+                                                                    <p class="agent-details__property-list-item-text">
+                                                                        <img src="assets/images/home-location.svg"
+                                                                            alt=""
+                                                                            class="img-fluid agent-details__property-list-item-text-icon">
+                                                                        Etihad Tower 4, Etihad Towers, Corniche Road,
+                                                                        Abu Dhabi
+                                                                    </p>
+                                                                    <p class="agent-details__property-list-item-type">
+                                                                        Hotel & Hotel
+                                                                        Apartment</p>
+                                                                    <div class="row">
+                                                                        <div class="col-md-10">
+                                                                            <ul
+                                                                                class="agent-details__property-detail-list">
+                                                                                <li
+                                                                                    class="agent-details__property-detail-list-item">
+                                                                                    <img src="assets/images/icons/Bed.svg"
+                                                                                        alt="">
+                                                                                    3 Beds
+                                                                                </li>
+                                                                                <li
+                                                                                    class="agent-details__property-detail-list-item">
+                                                                                    <img src="assets/images/icons/Bed.svg"
+                                                                                        alt="">
+                                                                                    2 Bath
+                                                                                </li>
+                                                                                <li
+                                                                                    class="agent-details__property-detail-list-item">
+                                                                                    <img src="assets/images/icons/Bed.svg"
+                                                                                        alt="">
+                                                                                    8000 Sq.Ft.
+                                                                                </li>
+                                                                                <li
+                                                                                    class="agent-details__property-detail-list-item">
+                                                                                    <img src="assets/images/icons/Bed.svg"
+                                                                                        alt="">
+                                                                                    Furnished
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                        <div class="col-md-2">
+                                                                            <img src="assets/images/better-home.svg"
+                                                                                alt="">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="compare-action">
+                                                            <label for="">
+                                                                <input type="radio" name="">
+                                                                Compare
+                                                            </label>
+                                                            <button class="compare-btn btn">Compare</button>
+                                                        </div>
+                                                    </li>
+                                                    <li class="compare-action-pro-list">
+                                                        <div class="agent-details__property-list-item">
+                                                            <div class="row">
+                                                                <div class="col-lg-2">
+                                                                    <img src="assets/images/explore-places/1.jpg" alt=""
+                                                                        class="img-fluid agent-details__property-list-item-img">
+                                                                </div>
+                                                                <div class="col-lg-10">
+                                                                    <div class="row">
+                                                                        <div class="col-7">
+                                                                            <a
+                                                                                class="agent-details__property-list-item-link cursor-pointer">85,000
+                                                                                AED
+                                                                                <span>/yearly</span>
+                                                                            </a>
+                                                                        </div>
+                                                                        <div class="col-5 text-end">
+                                                                            <h4 class="sub-bold-text">Olga Pikina</h4>
+                                                                            <p
+                                                                                class="agent-details__property-list-item-date">
+                                                                                Listed on 05
+                                                                                May, 2022</p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <h6>Blue Wave Tower</h6>
+                                                                    <p class="agent-details__property-list-item-text">
+                                                                        <img src="assets/images/home-location.svg"
+                                                                            alt=""
+                                                                            class="img-fluid agent-details__property-list-item-text-icon">
+                                                                        Etihad Tower 4, Etihad Towers, Corniche Road,
+                                                                        Abu Dhabi
+                                                                    </p>
+                                                                    <p class="agent-details__property-list-item-type">
+                                                                        Hotel & Hotel
+                                                                        Apartment</p>
+                                                                    <div class="row">
+                                                                        <div class="col-md-10">
+                                                                            <ul
+                                                                                class="agent-details__property-detail-list">
+                                                                                <li
+                                                                                    class="agent-details__property-detail-list-item">
+                                                                                    <img src="assets/images/icons/Bed.svg"
+                                                                                        alt="">
+                                                                                    3 Beds
+                                                                                </li>
+                                                                                <li
+                                                                                    class="agent-details__property-detail-list-item">
+                                                                                    <img src="assets/images/icons/Bed.svg"
+                                                                                        alt="">
+                                                                                    2 Bath
+                                                                                </li>
+                                                                                <li
+                                                                                    class="agent-details__property-detail-list-item">
+                                                                                    <img src="assets/images/icons/Bed.svg"
+                                                                                        alt="">
+                                                                                    8000 Sq.Ft.
+                                                                                </li>
+                                                                                <li
+                                                                                    class="agent-details__property-detail-list-item">
+                                                                                    <img src="assets/images/icons/Bed.svg"
+                                                                                        alt="">
+                                                                                    Furnished
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                        <div class="col-md-2">
+                                                                            <img src="assets/images/better-home.svg"
+                                                                                alt="">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="compare-action">
+                                                            <label for="">
+                                                                <input type="radio" name="">
+                                                                Compare
+                                                            </label>
+                                                            <button class="compare-btn btn">Compare</button>
+                                                        </div>
+                                                    </li>
+                                                    <li class="compare-action-pro-list">
+                                                        <div class="agent-details__property-list-item">
+                                                            <div class="row">
+                                                                <div class="col-lg-2">
+                                                                    <img src="assets/images/explore-places/1.jpg" alt=""
+                                                                        class="img-fluid agent-details__property-list-item-img">
+                                                                </div>
+                                                                <div class="col-lg-10">
+                                                                    <div class="row">
+                                                                        <div class="col-7">
+                                                                            <a
+                                                                                class="agent-details__property-list-item-link cursor-pointer">85,000
+                                                                                AED
+                                                                                <span>/yearly</span>
+                                                                            </a>
+                                                                        </div>
+                                                                        <div class="col-5 text-end">
+                                                                            <h4 class="sub-bold-text">Olga Pikina</h4>
+                                                                            <p
+                                                                                class="agent-details__property-list-item-date">
+                                                                                Listed on 05
+                                                                                May, 2022</p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <h6>Blue Wave Tower</h6>
+                                                                    <p class="agent-details__property-list-item-text">
+                                                                        <img src="assets/images/home-location.svg"
+                                                                            alt=""
+                                                                            class="img-fluid agent-details__property-list-item-text-icon">
+                                                                        Etihad Tower 4, Etihad Towers, Corniche Road,
+                                                                        Abu Dhabi
+                                                                    </p>
+                                                                    <p class="agent-details__property-list-item-type">
+                                                                        Hotel & Hotel
+                                                                        Apartment</p>
+                                                                    <div class="row">
+                                                                        <div class="col-md-10">
+                                                                            <ul
+                                                                                class="agent-details__property-detail-list">
+                                                                                <li
+                                                                                    class="agent-details__property-detail-list-item">
+                                                                                    <img src="assets/images/icons/Bed.svg"
+                                                                                        alt="">
+                                                                                    3 Beds
+                                                                                </li>
+                                                                                <li
+                                                                                    class="agent-details__property-detail-list-item">
+                                                                                    <img src="assets/images/icons/Bed.svg"
+                                                                                        alt="">
+                                                                                    2 Bath
+                                                                                </li>
+                                                                                <li
+                                                                                    class="agent-details__property-detail-list-item">
+                                                                                    <img src="assets/images/icons/Bed.svg"
+                                                                                        alt="">
+                                                                                    8000 Sq.Ft.
+                                                                                </li>
+                                                                                <li
+                                                                                    class="agent-details__property-detail-list-item">
+                                                                                    <img src="assets/images/icons/Bed.svg"
+                                                                                        alt="">
+                                                                                    Furnished
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                        <div class="col-md-2">
+                                                                            <img src="assets/images/better-home.svg"
+                                                                                alt="">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="compare-action">
+                                                            <label for="">
+                                                                <input type="radio" name="">
+                                                                Compare
+                                                            </label>
+                                                            <button class="compare-btn btn">Compare</button>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </mat-tab>
+                                <mat-tab label="Enquired (0)">
+
+                                    <div class="type-activity-status">
+                                        <div ngClass="block-wrapper mb-4">
+                                            <div class="checkbox-flex-box-auto button-same-select">
+                                                <div class="checkbox-design position-relative">
+                                                    <input type="radio" id="Furnished" name="property-types" value="All"
+                                                        checked>
+                                                    <button class="checkbox-btn">All (03)</button>
+                                                </div>
+                                                <div class="checkbox-design position-relative">
+                                                    <input type="radio" id="Semi-Furnished" name="property-types"
+                                                        value="Buy">
+                                                    <button class="checkbox-btn">Buy (01)</button>
+                                                </div>
+                                                <div class="checkbox-design position-relative">
+                                                    <input type="radio" id="Unfurnished" name="property-types"
+                                                        value="Rent">
+                                                    <button class="checkbox-btn">Rent (02)</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="agent-details__tabs">
+                                        <div class="row">
+                                            <div class="col-lg-9 col-md-10">
+                                                <ul class="agent-details__property-list">
+                                                    <li class="agent-details__property-list-item">
+                                                        <div class="row">
+                                                            <div class="col-lg-2">
+                                                                <img src="assets/images/explore-places/1.jpg" alt=""
+                                                                    class="img-fluid agent-details__property-list-item-img">
+                                                            </div>
+                                                            <div class="col-lg-10">
+                                                                <div class="row">
+                                                                    <div class="col-7">
+                                                                        <a
+                                                                            class="agent-details__property-list-item-link cursor-pointer">85,000
+                                                                            AED
+                                                                            <span>/yearly</span>
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="col-5 text-end">
+                                                                        <h4 class="sub-bold-text">Olga Pikina</h4>
+                                                                        <p
+                                                                            class="agent-details__property-list-item-date">
+                                                                            Listed on 05
+                                                                            May, 2022</p>
+                                                                    </div>
+                                                                </div>
+                                                                <h6>Blue Wave Tower</h6>
+                                                                <p class="agent-details__property-list-item-text">
+                                                                    <img src="assets/images/home-location.svg" alt=""
+                                                                        class="img-fluid agent-details__property-list-item-text-icon">
+                                                                    Etihad Tower 4, Etihad Towers, Corniche Road, Abu
+                                                                    Dhabi
+                                                                </p>
+                                                                <p class="agent-details__property-list-item-type">Hotel
+                                                                    & Hotel
+                                                                    Apartment</p>
+                                                                <div class="row">
+                                                                    <div class="col-md-10">
+                                                                        <ul class="agent-details__property-detail-list">
+                                                                            <li
+                                                                                class="agent-details__property-detail-list-item">
+                                                                                <img src="assets/images/icons/Bed.svg"
+                                                                                    alt="">
+                                                                                3 Beds
+                                                                            </li>
+                                                                            <li
+                                                                                class="agent-details__property-detail-list-item">
+                                                                                <img src="assets/images/icons/Bed.svg"
+                                                                                    alt="">
+                                                                                2 Bath
+                                                                            </li>
+                                                                            <li
+                                                                                class="agent-details__property-detail-list-item">
+                                                                                <img src="assets/images/icons/Bed.svg"
+                                                                                    alt="">
+                                                                                8000 Sq.Ft.
+                                                                            </li>
+                                                                            <li
+                                                                                class="agent-details__property-detail-list-item">
+                                                                                <img src="assets/images/icons/Bed.svg"
+                                                                                    alt="">
+                                                                                Furnished
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                    <div class="col-md-2">
+                                                                        <img src="assets/images/better-home.svg" alt="">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="agent-details__property-list-item">
+                                                        <div class="row">
+                                                            <div class="col-lg-2">
+                                                                <img src="assets/images/explore-places/1.jpg" alt=""
+                                                                    class="img-fluid agent-details__property-list-item-img">
+                                                            </div>
+                                                            <div class="col-lg-10">
+                                                                <div class="row">
+                                                                    <div class="col-7">
+                                                                        <a
+                                                                            class="agent-details__property-list-item-link cursor-pointer">85,000
+                                                                            AED
+                                                                            <span>/yearly</span>
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="col-5 text-end">
+                                                                        <h4 class="sub-bold-text">Olga Pikina</h4>
+                                                                        <p
+                                                                            class="agent-details__property-list-item-date">
+                                                                            Listed on 05
+                                                                            May, 2022</p>
+                                                                    </div>
+                                                                </div>
+                                                                <h6>Blue Wave Tower</h6>
+                                                                <p class="agent-details__property-list-item-text">
+                                                                    <img src="assets/images/home-location.svg" alt=""
+                                                                        class="img-fluid agent-details__property-list-item-text-icon">
+                                                                    Etihad Tower 4, Etihad Towers, Corniche Road, Abu
+                                                                    Dhabi
+                                                                </p>
+                                                                <p class="agent-details__property-list-item-type">Hotel
+                                                                    & Hotel
+                                                                    Apartment</p>
+                                                                <div class="row">
+                                                                    <div class="col-md-10">
+                                                                        <ul class="agent-details__property-detail-list">
+                                                                            <li
+                                                                                class="agent-details__property-detail-list-item">
+                                                                                <img src="assets/images/icons/Bed.svg"
+                                                                                    alt="">
+                                                                                3 Beds
+                                                                            </li>
+                                                                            <li
+                                                                                class="agent-details__property-detail-list-item">
+                                                                                <img src="assets/images/icons/Bed.svg"
+                                                                                    alt="">
+                                                                                2 Bath
+                                                                            </li>
+                                                                            <li
+                                                                                class="agent-details__property-detail-list-item">
+                                                                                <img src="assets/images/icons/Bed.svg"
+                                                                                    alt="">
+                                                                                8000 Sq.Ft.
+                                                                            </li>
+                                                                            <li
+                                                                                class="agent-details__property-detail-list-item">
+                                                                                <img src="assets/images/icons/Bed.svg"
+                                                                                    alt="">
+                                                                                Furnished
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                    <div class="col-md-2">
+                                                                        <img src="assets/images/better-home.svg" alt="">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="agent-details__property-list-item">
+                                                        <div class="row">
+                                                            <div class="col-lg-2">
+                                                                <img src="assets/images/explore-places/1.jpg" alt=""
+                                                                    class="img-fluid agent-details__property-list-item-img">
+                                                            </div>
+                                                            <div class="col-lg-10">
+                                                                <div class="row">
+                                                                    <div class="col-7">
+                                                                        <a
+                                                                            class="agent-details__property-list-item-link cursor-pointer">85,000
+                                                                            AED
+                                                                            <span>/yearly</span>
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="col-5 text-end">
+                                                                        <h4 class="sub-bold-text">Olga Pikina</h4>
+                                                                        <p
+                                                                            class="agent-details__property-list-item-date">
+                                                                            Listed on 05
+                                                                            May, 2022</p>
+                                                                    </div>
+                                                                </div>
+                                                                <h6>Blue Wave Tower</h6>
+                                                                <p class="agent-details__property-list-item-text">
+                                                                    <img src="assets/images/home-location.svg" alt=""
+                                                                        class="img-fluid agent-details__property-list-item-text-icon">
+                                                                    Etihad Tower 4, Etihad Towers, Corniche Road, Abu
+                                                                    Dhabi
+                                                                </p>
+                                                                <p class="agent-details__property-list-item-type">Hotel
+                                                                    & Hotel
+                                                                    Apartment</p>
+                                                                <div class="row">
+                                                                    <div class="col-md-10">
+                                                                        <ul class="agent-details__property-detail-list">
+                                                                            <li
+                                                                                class="agent-details__property-detail-list-item">
+                                                                                <img src="assets/images/icons/Bed.svg"
+                                                                                    alt="">
+                                                                                3 Beds
+                                                                            </li>
+                                                                            <li
+                                                                                class="agent-details__property-detail-list-item">
+                                                                                <img src="assets/images/icons/Bed.svg"
+                                                                                    alt="">
+                                                                                2 Bath
+                                                                            </li>
+                                                                            <li
+                                                                                class="agent-details__property-detail-list-item">
+                                                                                <img src="assets/images/icons/Bed.svg"
+                                                                                    alt="">
+                                                                                8000 Sq.Ft.
+                                                                            </li>
+                                                                            <li
+                                                                                class="agent-details__property-detail-list-item">
+                                                                                <img src="assets/images/icons/Bed.svg"
+                                                                                    alt="">
+                                                                                Furnished
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                    <div class="col-md-2">
+                                                                        <img src="assets/images/better-home.svg" alt="">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="agent-details__property-list-item">
+                                                        <div class="row">
+                                                            <div class="col-lg-2">
+                                                                <img src="assets/images/explore-places/1.jpg" alt=""
+                                                                    class="img-fluid agent-details__property-list-item-img">
+                                                            </div>
+                                                            <div class="col-lg-10">
+                                                                <div class="row">
+                                                                    <div class="col-7">
+                                                                        <a
+                                                                            class="agent-details__property-list-item-link cursor-pointer">85,000
+                                                                            AED
+                                                                            <span>/yearly</span>
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="col-5 text-end">
+                                                                        <h4 class="sub-bold-text">Olga Pikina</h4>
+                                                                        <p
+                                                                            class="agent-details__property-list-item-date">
+                                                                            Listed on 05
+                                                                            May, 2022</p>
+                                                                    </div>
+                                                                </div>
+                                                                <h6>Blue Wave Tower</h6>
+                                                                <p class="agent-details__property-list-item-text">
+                                                                    <img src="assets/images/home-location.svg" alt=""
+                                                                        class="img-fluid agent-details__property-list-item-text-icon">
+                                                                    Etihad Tower 4, Etihad Towers, Corniche Road, Abu
+                                                                    Dhabi
+                                                                </p>
+                                                                <p class="agent-details__property-list-item-type">Hotel
+                                                                    & Hotel
+                                                                    Apartment</p>
+                                                                <div class="row">
+                                                                    <div class="col-md-10">
+                                                                        <ul class="agent-details__property-detail-list">
+                                                                            <li
+                                                                                class="agent-details__property-detail-list-item">
+                                                                                <img src="assets/images/icons/Bed.svg"
+                                                                                    alt="">
+                                                                                3 Beds
+                                                                            </li>
+                                                                            <li
+                                                                                class="agent-details__property-detail-list-item">
+                                                                                <img src="assets/images/icons/Bed.svg"
+                                                                                    alt="">
+                                                                                2 Bath
+                                                                            </li>
+                                                                            <li
+                                                                                class="agent-details__property-detail-list-item">
+                                                                                <img src="assets/images/icons/Bed.svg"
+                                                                                    alt="">
+                                                                                8000 Sq.Ft.
+                                                                            </li>
+                                                                            <li
+                                                                                class="agent-details__property-detail-list-item">
+                                                                                <img src="assets/images/icons/Bed.svg"
+                                                                                    alt="">
+                                                                                Furnished
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                    <div class="col-md-2">
+                                                                        <img src="assets/images/better-home.svg" alt="">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="agent-details__property-list-item">
+                                                        <div class="row">
+                                                            <div class="col-lg-2">
+                                                                <img src="assets/images/explore-places/1.jpg" alt=""
+                                                                    class="img-fluid agent-details__property-list-item-img">
+                                                            </div>
+                                                            <div class="col-lg-10">
+                                                                <div class="row">
+                                                                    <div class="col-7">
+                                                                        <a
+                                                                            class="agent-details__property-list-item-link cursor-pointer">85,000
+                                                                            AED
+                                                                            <span>/yearly</span>
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="col-5 text-end">
+                                                                        <h4 class="sub-bold-text">Olga Pikina</h4>
+                                                                        <p
+                                                                            class="agent-details__property-list-item-date">
+                                                                            Listed on 05
+                                                                            May, 2022</p>
+                                                                    </div>
+                                                                </div>
+                                                                <h6>Blue Wave Tower</h6>
+                                                                <p class="agent-details__property-list-item-text">
+                                                                    <img src="assets/images/home-location.svg" alt=""
+                                                                        class="img-fluid agent-details__property-list-item-text-icon">
+                                                                    Etihad Tower 4, Etihad Towers, Corniche Road, Abu
+                                                                    Dhabi
+                                                                </p>
+                                                                <p class="agent-details__property-list-item-type">Hotel
+                                                                    & Hotel
+                                                                    Apartment</p>
+                                                                <div class="row">
+                                                                    <div class="col-md-10">
+                                                                        <ul class="agent-details__property-detail-list">
+                                                                            <li
+                                                                                class="agent-details__property-detail-list-item">
+                                                                                <img src="assets/images/icons/Bed.svg"
+                                                                                    alt="">
+                                                                                3 Beds
+                                                                            </li>
+                                                                            <li
+                                                                                class="agent-details__property-detail-list-item">
+                                                                                <img src="assets/images/icons/Bed.svg"
+                                                                                    alt="">
+                                                                                2 Bath
+                                                                            </li>
+                                                                            <li
+                                                                                class="agent-details__property-detail-list-item">
+                                                                                <img src="assets/images/icons/Bed.svg"
+                                                                                    alt="">
+                                                                                8000 Sq.Ft.
+                                                                            </li>
+                                                                            <li
+                                                                                class="agent-details__property-detail-list-item">
+                                                                                <img src="assets/images/icons/Bed.svg"
+                                                                                    alt="">
+                                                                                Furnished
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                    <div class="col-md-2">
+                                                                        <img src="assets/images/better-home.svg" alt="">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="agent-details__property-list-item">
+                                                        <div class="row">
+                                                            <div class="col-lg-2">
+                                                                <img src="assets/images/explore-places/1.jpg" alt=""
+                                                                    class="img-fluid agent-details__property-list-item-img">
+                                                            </div>
+                                                            <div class="col-lg-10">
+                                                                <div class="row">
+                                                                    <div class="col-7">
+                                                                        <a
+                                                                            class="agent-details__property-list-item-link cursor-pointer">85,000
+                                                                            AED
+                                                                            <span>/yearly</span>
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="col-5 text-end">
+                                                                        <h4 class="sub-bold-text">Olga Pikina</h4>
+                                                                        <p
+                                                                            class="agent-details__property-list-item-date">
+                                                                            Listed on 05
+                                                                            May, 2022</p>
+                                                                    </div>
+                                                                </div>
+                                                                <h6>Blue Wave Tower</h6>
+                                                                <p class="agent-details__property-list-item-text">
+                                                                    <img src="assets/images/home-location.svg" alt=""
+                                                                        class="img-fluid agent-details__property-list-item-text-icon">
+                                                                    Etihad Tower 4, Etihad Towers, Corniche Road, Abu
+                                                                    Dhabi
+                                                                </p>
+                                                                <p class="agent-details__property-list-item-type">Hotel
+                                                                    & Hotel
+                                                                    Apartment</p>
+                                                                <div class="row">
+                                                                    <div class="col-md-10">
+                                                                        <ul class="agent-details__property-detail-list">
+                                                                            <li
+                                                                                class="agent-details__property-detail-list-item">
+                                                                                <img src="assets/images/icons/Bed.svg"
+                                                                                    alt="">
+                                                                                3 Beds
+                                                                            </li>
+                                                                            <li
+                                                                                class="agent-details__property-detail-list-item">
+                                                                                <img src="assets/images/icons/Bed.svg"
+                                                                                    alt="">
+                                                                                2 Bath
+                                                                            </li>
+                                                                            <li
+                                                                                class="agent-details__property-detail-list-item">
+                                                                                <img src="assets/images/icons/Bed.svg"
+                                                                                    alt="">
+                                                                                8000 Sq.Ft.
+                                                                            </li>
+                                                                            <li
+                                                                                class="agent-details__property-detail-list-item">
+                                                                                <img src="assets/images/icons/Bed.svg"
+                                                                                    alt="">
+                                                                                Furnished
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                    <div class="col-md-2">
+                                                                        <img src="assets/images/better-home.svg" alt="">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </mat-tab>
+                            </mat-tab-group>
+                        </div>
+                    </div>
+                </mat-tab>
+
+                <mat-tab class="tab-item" label="My Leads">
+                    <div class="recent-activity">
+                        <h4 class="sub-title">My Leads</h4>
+                        <div class="sub-tab-nav">
+                            <mat-tab-group>
+                                <mat-tab label="All (02)">
+                                    <div class="type-activity-status">
+                                        <div ngClass="block-wrapper mb-4">
+                                            <div class="checkbox-flex-box-auto button-same-select">
+                                                <div class="checkbox-design position-relative">
+                                                    <input type="radio" id="Furnished" name="property-types" value="All"
+                                                        checked>
+                                                    <button class="checkbox-btn">All (03)</button>
+                                                </div>
+                                                <div class="checkbox-design position-relative">
+                                                    <input type="radio" id="Semi-Furnished" name="property-types"
+                                                        value="Buy">
+                                                    <button class="checkbox-btn">Buy (01)</button>
+                                                </div>
+                                                <div class="checkbox-design position-relative">
+                                                    <input type="radio" id="Unfurnished" name="property-types"
+                                                        value="Rent">
+                                                    <button class="checkbox-btn">Rent (02)</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <section
+                                        ngClass="my-lead-listing-wrap position-relative wrapper-section properties-slider residentials-property-rent-1">
+                                        <div ngClass="tab-content">
+                                            <div id="resedential-rent" class="tab-pane active">
+                                                <div class="lead-summ-table">
+                                                    <div class="table-row">
+                                                        <div class="col photo-col">
+                                                            <img src="{{proAvatar}}" alt="">
+                                                        </div>
+                                                        <div class="col base-info-col">
+                                                            <h4 class="name">Al Majhid Khwaizi Ansari</h4>
+                                                            <p>05 May, 2022</p>
+                                                            <p>Dubai, UAE</p>
+                                                        </div>
+                                                        <div class="col ">
+                                                            <span>Property ID</span>
+                                                            <p>#OVRA-98967654</p>
+                                                        </div>
+                                                        <div class="col ">
+
+                                                            <span>Building Type</span>
+                                                            <p>Residential</p>
+                                                        </div>
+                                                        <div class="col ">
+
+                                                            <span>Looking for</span>
+                                                            <p>Buy</p>
+                                                        </div>
+                                                        <div class="col contact-col">
+                                                            <span>Contact</span>
+                                                            <div>
+                                                                <p>+971 07 XXXX XXXX</p> <a href="#"><img
+                                                                        src="{{ViewIcon}}" alt=""></a>
+                                                            </div>
+                                                            <div>
+                                                                <p>aliansari@gmail.com</p> <a href="#"><img
+                                                                        src="{{CopyIcon}}" alt=""></a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col">
+                                                            <a href="#" class="view-more">
+                                                                <img src="{{MoreIcon}}" alt="" class="icon">
+                                                            </a>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="table-row">
+                                                        <div class="col photo-col">
+                                                            <img src="{{proAvatar}}" alt="">
+                                                        </div>
+                                                        <div class="col base-info-col">
+                                                            <h4 class="name">Al Majhid Khwaizi Ansari</h4>
+                                                            <p>05 May, 2022</p>
+                                                            <p>Dubai, UAE</p>
+                                                        </div>
+                                                        <div class="col ">
+                                                            <span>Property ID</span>
+                                                            <p>#OVRA-98967654</p>
+                                                        </div>
+                                                        <div class="col ">
+
+                                                            <span>Building Type</span>
+                                                            <p>Residential</p>
+                                                        </div>
+                                                        <div class="col ">
+
+                                                            <span>Looking for</span>
+                                                            <p>Buy</p>
+                                                        </div>
+                                                        <div class="col contact-col">
+                                                            <span>Contact</span>
+                                                            <div>
+                                                                <p>+971 07 XXXX XXXX</p> <a href="#"><img
+                                                                        src="{{ViewIcon}}" alt=""></a>
+                                                            </div>
+                                                            <div>
+                                                                <p>aliansari@gmail.com</p> <a href="#"><img
+                                                                        src="{{CopyIcon}}" alt=""></a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col">
+                                                            <a href="#" class="view-more">
+                                                                <img src="{{MoreIcon}}" alt="" class="icon">
+                                                            </a>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="table-row">
+                                                        <div class="col photo-col">
+                                                            <img src="{{proAvatar}}" alt="">
+                                                        </div>
+                                                        <div class="col base-info-col">
+                                                            <h4 class="name">Al Majhid Khwaizi Ansari</h4>
+                                                            <p>05 May, 2022</p>
+                                                            <p>Dubai, UAE</p>
+                                                        </div>
+                                                        <div class="col ">
+                                                            <span>Property ID</span>
+                                                            <p>#OVRA-98967654</p>
+                                                        </div>
+                                                        <div class="col ">
+
+                                                            <span>Building Type</span>
+                                                            <p>Residential</p>
+                                                        </div>
+                                                        <div class="col ">
+
+                                                            <span>Looking for</span>
+                                                            <p>Buy</p>
+                                                        </div>
+                                                        <div class="col contact-col">
+                                                            <span>Contact</span>
+                                                            <div>
+                                                                <p>+971 07 XXXX XXXX</p> <a href="#"><img
+                                                                        src="{{ViewIcon}}" alt=""></a>
+                                                            </div>
+                                                            <div>
+                                                                <p>aliansari@gmail.com</p> <a href="#"><img
+                                                                        src="{{CopyIcon}}" alt=""></a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col">
+                                                            <a href="#" class="view-more">
+                                                                <img src="{{MoreIcon}}" alt="" class="icon">
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="resedential-buy" class="tab-pane fade">
+                                                <h1>Tab 2</h1>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </mat-tab>
+                                <mat-tab label="Residential (02)"> Residential</mat-tab>
+                                <mat-tab label="Commercial (02)"> Commercial</mat-tab>
+                            </mat-tab-group>
+                        </div>
+                    </div>
+                </mat-tab>
+
+                <mat-tab class="tab-item" label="My Listings">
+                    <div class="recent-activity">
+                        <h4 class="sub-title">My Listings</h4>
+                        <div class="sub-tab-nav">
+                            <mat-tab-group>
+                                <mat-tab label="All (02)">
+                                    <div class="type-activity-status">
+                                        <div ngClass="block-wrapper mb-4">
+                                            <div class="checkbox-flex-box-auto button-same-select">
+                                                <div class="checkbox-design position-relative">
+                                                    <input type="radio" id="Furnished" name="property-types" value="All"
+                                                        checked>
+                                                    <button class="checkbox-btn">All (03)</button>
+                                                </div>
+                                                <div class="checkbox-design position-relative">
+                                                    <input type="radio" id="Semi-Furnished" name="property-types"
+                                                        value="Buy">
+                                                    <button class="checkbox-btn">Active (1)</button>
+                                                </div>
+                                                <div class="checkbox-design position-relative">
+                                                    <input type="radio" id="Unfurnished" name="property-types"
+                                                        value="Rent">
+                                                    <button class="checkbox-btn">Expired (1)</button>
+                                                </div>
+                                                <div class="checkbox-design position-relative">
+                                                    <input type="radio" id="Unfurnished" name="property-types"
+                                                        value="Rent">
+                                                    <button class="checkbox-btn">Under Review (1)</button>
+                                                </div>
+                                                <div class="checkbox-design position-relative">
+                                                    <input type="radio" id="Unfurnished" name="property-types"
+                                                        value="Rent">
+                                                    <button class="checkbox-btn">Rejected (1)</button>
+                                                </div>
+                                                <div class="checkbox-design position-relative">
+                                                    <input type="radio" id="Unfurnished" name="property-types"
+                                                        value="Rent">
+                                                    <button class="checkbox-btn">Deleted (1)</button>
+                                                </div>
+                                                <div class="checkbox-design position-relative">
+                                                    <input type="radio" id="Unfurnished" name="property-types"
+                                                        value="Rent">
+                                                    <button class="checkbox-btn">Expiring Soon (1)</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="agent-details__tabs">
+                                        <div class="row">
+                                            <div class="col-lg-9 col-md-10">
+                                                <ul class="agent-details__property-list">
+                                                    <li class="agent-details__property-list-item">
+                                                        <div class="row">
+                                                            <div class="col-lg-2">
+                                                                <img src="assets/images/explore-places/1.jpg" alt=""
+                                                                    class="img-fluid agent-details__property-list-item-img">
+                                                            </div>
+                                                            <div class="col-lg-10">
+                                                                <div class="row">
+                                                                    <div class="col-7">
+                                                                        <a
+                                                                            class="agent-details__property-list-item-link cursor-pointer">85,000
+                                                                            AED
+                                                                            <span>/yearly</span>
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="col-5 text-end">
+                                                                        <p
+                                                                            class="agent-details__property-list-item-date mb-0">
+                                                                            Posted on: March 09, 2022</p>
+                                                                        <p
+                                                                            class="agent-details__property-list-item-date">
+                                                                            Expired on: June 22, 2022</p>
+                                                                    </div>
+                                                                </div>
+                                                                <h6>Blue Wave Tower</h6>
+                                                                <p class="agent-details__property-list-item-text">
+                                                                    <img src="assets/images/home-location.svg" alt=""
+                                                                        class="img-fluid agent-details__property-list-item-text-icon">
+                                                                    Etihad Tower 4, Etihad Towers, Corniche Road, Abu
+                                                                    Dhabi
+                                                                </p>
+                                                                <p class="agent-details__property-list-item-type">Hotel
+                                                                    & Hotel
+                                                                    Apartment</p>
+                                                                <div class="row">
+                                                                    <div class="col-md-10">
+                                                                        <ul class="agent-details__property-detail-list">
+                                                                            <li
+                                                                                class="agent-details__property-detail-list-item">
+                                                                                <img src="assets/images/icons/Bed.svg"
+                                                                                    alt="">
+                                                                                3 Beds
+                                                                            </li>
+                                                                            <li
+                                                                                class="agent-details__property-detail-list-item">
+                                                                                <img src="assets/images/icons/Bed.svg"
+                                                                                    alt="">
+                                                                                2 Bath
+                                                                            </li>
+                                                                            <li
+                                                                                class="agent-details__property-detail-list-item">
+                                                                                <img src="assets/images/icons/Bed.svg"
+                                                                                    alt="">
+                                                                                8000 Sq.Ft.
+                                                                            </li>
+                                                                            <li
+                                                                                class="agent-details__property-detail-list-item">
+                                                                                <img src="assets/images/icons/Bed.svg"
+                                                                                    alt="">
+                                                                                Furnished
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                    <div class="col-md-2 text-right">
+
+                                                                        <div ngbDropdown class="d-inline-block">
+                                                                            <button
+                                                                                ngClass="grey-bordered-btn action-btn"
+                                                                                id="dropdownBasic2" ngbDropdownToggle>
+                                                                                <img src="{{menuDots}}" alt=""></button>
+                                                                            <div ngbDropdownMenu
+                                                                                aria-labelledby="dropdownBasic2">
+                                                                                <button ngbDropdownItem><a href=""><img
+                                                                                            src="{{profile}}"> View
+                                                                                        Leads</a></button>
+                                                                                <button ngbDropdownItem><a href=""><img
+                                                                                            src="{{shareimg}}">
+                                                                                        Share</a></button>
+                                                                                <button ngbDropdownItem><a href=""><img
+                                                                                            src="{{deleteimg}}">
+                                                                                        Delete</a></button>
+                                                                                <button ngbDropdownItem><a href=""><img
+                                                                                            src="{{editimg}}">
+                                                                                        Edit</a></button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="agent-details__property-list-item">
+                                                        <div class="row">
+                                                            <div class="col-lg-2">
+                                                                <img src="assets/images/explore-places/1.jpg" alt=""
+                                                                    class="img-fluid agent-details__property-list-item-img">
+                                                            </div>
+                                                            <div class="col-lg-10">
+                                                                <div class="row">
+                                                                    <div class="col-7">
+                                                                        <a
+                                                                            class="agent-details__property-list-item-link cursor-pointer">85,000
+                                                                            AED
+                                                                            <span>/yearly</span>
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="col-5 text-end">
+                                                                        <span class="badge-img"><img
+                                                                                src="assets/images/profile/active.png"
+                                                                                alt=""></span>
+                                                                        <p
+                                                                            class="agent-details__property-list-item-date mb-0">
+                                                                            Posted on: March 09, 2022</p>
+                                                                        <p
+                                                                            class="agent-details__property-list-item-date">
+                                                                            Expired on: June 22, 2022</p>
+                                                                    </div>
+                                                                </div>
+                                                                <h6>Blue Wave Tower</h6>
+                                                                <p class="agent-details__property-list-item-text">
+                                                                    <img src="assets/images/home-location.svg" alt=""
+                                                                        class="img-fluid agent-details__property-list-item-text-icon">
+                                                                    Etihad Tower 4, Etihad Towers, Corniche Road, Abu
+                                                                    Dhabi
+                                                                </p>
+                                                                <p class="agent-details__property-list-item-type">Hotel
+                                                                    & Hotel
+                                                                    Apartment</p>
+                                                                <div class="row">
+                                                                    <div class="col-md-10">
+                                                                        <ul class="agent-details__property-detail-list">
+                                                                            <li
+                                                                                class="agent-details__property-detail-list-item">
+                                                                                <img src="assets/images/icons/Bed.svg"
+                                                                                    alt="">
+                                                                                3 Beds
+                                                                            </li>
+                                                                            <li
+                                                                                class="agent-details__property-detail-list-item">
+                                                                                <img src="assets/images/icons/Bed.svg"
+                                                                                    alt="">
+                                                                                2 Bath
+                                                                            </li>
+                                                                            <li
+                                                                                class="agent-details__property-detail-list-item">
+                                                                                <img src="assets/images/icons/Bed.svg"
+                                                                                    alt="">
+                                                                                8000 Sq.Ft.
+                                                                            </li>
+                                                                            <li
+                                                                                class="agent-details__property-detail-list-item">
+                                                                                <img src="assets/images/icons/Bed.svg"
+                                                                                    alt="">
+                                                                                Furnished
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                    <div class="col-md-2 text-right">
+                                                                        <div ngbDropdown class="d-inline-block">
+                                                                            <button
+                                                                                ngClass="grey-bordered-btn action-btn"
+                                                                                id="dropdownBasic2" ngbDropdownToggle>
+                                                                                <img src="{{menuDots}}" alt=""></button>
+                                                                            <div ngbDropdownMenu
+                                                                                aria-labelledby="dropdownBasic2">
+                                                                                <button ngbDropdownItem><a href=""><img
+                                                                                            src="{{profile}}"> View
+                                                                                        Leads</a></button>
+                                                                                <button ngbDropdownItem><a href=""><img
+                                                                                            src="{{shareimg}}">
+                                                                                        Share</a></button>
+                                                                                <button ngbDropdownItem><a href=""><img
+                                                                                            src="{{deleteimg}}">
+                                                                                        Delete</a></button>
+                                                                                <button ngbDropdownItem><a href=""><img
+                                                                                            src="{{editimg}}">
+                                                                                        Edit</a></button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </mat-tab>
+                                <mat-tab label="Residential (02)"> Residential</mat-tab>
+                                <mat-tab label="Commercial (02)"> Commercial</mat-tab>
+                            </mat-tab-group>
+                        </div>
+                    </div>
+                </mat-tab>
+                <mat-tab class="tab-item" label="My Valuations">
+                    <div class="recent-activity">
+                        <h4 class="sub-title">My Valuatedcfvgbhions</h4>
+                    </div>
+                </mat-tab>
+                <mat-tab ngClass="grey-bordered-btn more-drop-btn tab-item" label="More >" disabled>
+                    <ng-template mat-tab-label>
+
+                        <div ngbDropdown class="d-inline-block">
+                            <button mat-icon-button ngClass="action-btn" id="dropdownBasic1" ngbDropdownToggle>
+                                More</button>
+                            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                                <!-- <h5>Share with:</h5> -->
+                                <button ngbDropdownItem><a href=""><img src="{{web}}"> Go to Ovaluate</a></button>
+                                <button ngbDropdownItem><a href=""><img src="{{profile}}"> My Profile</a></button>
+                                <button ngbDropdownItem><a target="_blank" routerLink="/chat"><img src="{{shareicon}}">
+                                        My Messages</a></button>
+                                <button ngbDropdownItem><a href=""><img src="{{acsetting}}"> Account
+                                        Settings</a></button>
+                                <button ngbDropdownItem>
+                                        <a ngClass="logout-link" (click)="logOutPopup(content)"><img src="{{aclogout}}"> Logout </a>
+                                    </button>
+                            </div>
+                        </div>
+                        <!-- <button mat-icon-button>
+            <mat-icon>add_circle</mat-icon>
+        </button> -->
+                    </ng-template>
+                </mat-tab>
+            </mat-tab-group>
             
             <!-- <div ngbDropdown class="d-inline-block">
   <button ngClass="grey-bordered-btn action-btn" id="dropdownBasic1" ngbDropdownToggle>

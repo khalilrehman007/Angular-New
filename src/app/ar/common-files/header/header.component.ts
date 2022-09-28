@@ -149,7 +149,7 @@ export class HeaderComponent implements OnInit {
     {
       src: '../../../assets/images/icons/login.svg',
       class: 'nav-items sign-in',
-      text: this.loggedInUser == null ? 'Sign in' : JSON.parse(this.loggedInUser).fullName,
+      text: this.loggedInUser == null ? 'تسجيل الدخول' : JSON.parse(this.loggedInUser).fullName,
       link: this.loggedInUser == null ? 'login' : 'profile',
     },
     {
