@@ -81,15 +81,7 @@
                                     </div>
                                     <div ngClass="shortlisted-inner-cntnt">
                                         <mat-tab-group>
-                                            <mat-tab label="All ({{allCount}})">
-                                                <div ngClass="shortlisted-inner-details">
-                                                    <div ngClass="compare-btn-design">
-                                                        <a routerLink="//arPropertyCompare"
-                                                            ngClass="compare-btn">قارن</a>
-                                                    </div>
-                                                </div>
-                                            </mat-tab>
-                                            <mat-tab label="Buy ({{buyCount}})">
+                                            <mat-tab label="كل ({{allCount}})">
                                                 <div ngClass="shortlisted-inner-details">
                                                     <div ngClass="compare-btn-design">
                                                         <a routerLink="/ar/PropertyCompare"
@@ -97,7 +89,15 @@
                                                     </div>
                                                 </div>
                                             </mat-tab>
-                                            <mat-tab label="Rent ({{rentCount}})">
+                                            <mat-tab label="شراء ({{buyCount}})">
+                                                <div ngClass="shortlisted-inner-details">
+                                                    <div ngClass="compare-btn-design">
+                                                        <a routerLink="/ar/PropertyCompare"
+                                                            ngClass="compare-btn">قارن</a>
+                                                    </div>
+                                                </div>
+                                            </mat-tab>
+                                            <mat-tab label="الإيجار ({{rentCount}})">
                                                 <div ngClass="shortlisted-inner-details">
                                                     <div ngClass="compare-btn-design">
                                                         <a routerLink="/ar/PropertyCompare"
@@ -154,7 +154,7 @@
                                     </div>
                                     <div ngClass="shortlisted-inner-cntnt">
                                         <mat-tab-group (selectedTabChange)="getCountChange($event)">
-                                            <mat-tab label="All ({{allCount}})">
+                                            <mat-tab label="كل ({{allCount}})">
                                                 <div
                                                     [ngClass]="wishlistingDataAll.length == 1 ? 'shortlisted-inner-details single-shortlisted-property' : 'shortlisted-inner-details'">
                                                     <form>
@@ -199,7 +199,7 @@
                                                     </div>
                                                 </div>
                                             </mat-tab>
-                                            <mat-tab label="Rent ({{rentCount}})">
+                                            <mat-tab label="الإيجار ({{rentCount}})">
                                                 <div
                                                     [ngClass]="wishlistingDataRent.length == 1 ? 'shortlisted-inner-details single-shortlisted-property' : 'shortlisted-inner-details'">
                                                     <div ngClass="shortlisted-project-cntnt position-relative"
@@ -231,7 +231,7 @@
                                                     </div>
                                                 </div>
                                             </mat-tab>
-                                            <mat-tab label="Buy ({{buyCount}})">
+                                            <mat-tab label="شراء ({{buyCount}})">
                                                 <div
                                                     [ngClass]="wishlistingDataBuy.length == 1 ? 'shortlisted-inner-details single-shortlisted-property' : 'shortlisted-inner-details'">
                                                     <div ngClass="shortlisted-project-cntnt position-relative"
