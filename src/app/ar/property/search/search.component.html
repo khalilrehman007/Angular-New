@@ -57,7 +57,7 @@
                         </div>
                         <div ngClass="properties-list-design" *ngIf="searchData.length > 0">
                             <div ngClass="properties-list-block-design"
-                                *ngFor=" let list of searchData | paginate: { itemsPerPage: 10, currentPage: page ,totalItems:totalRecord }">
+                                *ngFor=" let list of searchData | paginate: { itemsPerPage: 10, currentPage: page ,totalItems:totalRecord }; let i = index">
                                 <div ngClass="row">
                                     <div ngClass="col-xl-4 col-md-4 col-lg-4 col-sm-12">
                                         <div ngClass="properties-list_slider" *ngIf="list.documents.length > 0">
@@ -82,9 +82,9 @@
                                                             *ngIf="list.rentType != ''">/{{list.rentType.nameAr}}</small></h4>
                                                     <div ngClass="property-tags d-flex flex-wrap">
                                                         <span ngClass="tags-bg-grey">الوساطة:
-                                                            {{list.brokerageChargePrice}}</span>
+                                                            {{list.brokerageChargePrice}} {{currency}}</span>
                                                         <span ngClass="tags-bg-grey">مبلغ التأمين:
-                                                            {{list.securityDepositPrice}}</span>
+                                                            {{list.securityDepositPrice}} {{currency}}</span>
                                                     </div>
                                                 </div>
                                                 <div ngClass="property-action-hdr">
@@ -176,8 +176,11 @@
                                                 <div ngClass="row align-items-center">
                                                     <div ngClass="col-xl-5 col-lg-12 col-md-12 col-sm-12">
                                                         <div ngClass="lsited-by-details d-flex">
-                                                            <div ngClass="list_cntnt-img">
+                                                            <div ngClass="list_cntnt-img" *ngIf="list.user.imageUrl != null">
                                                                 <img src="{{baseUrl + list.user.imageUrl}}">
+                                                            </div>
+                                                            <div ngClass="list_cntnt-img" *ngIf="list.user.imageUrl == null">
+                                                                <img src="assets/images/user.png">
                                                             </div>
                                                             <div ngClass="list_cntnt-blcok">
                                                                 <h5>{{list.fullName}}</h5>
@@ -260,25 +263,27 @@
                                         <button _ngcontent-ekm-c201="" ngclass="tag_btn blue" ng-reflect-ng-class="tag_btn blue" class="tag_btn blue"><img _ngcontent-ekm-c201="" src="../../../assets/images/icons/tag-icn.svg"> الممتازة</button>
                                     </div>
                                 </div>
+                                <div ngClass="notification-box mt-5" *ngIf="i == halfList">
+                                    <div ngClass="d-flex align-items-center">
+                                        <div ngClass="email-home-icons">
+                                            <img src="{{emailhome}}">
+                                        </div>
+                                        <div ngClass="email-home-cntnt">
+                                            <h4>Get Notofied when new property match your search criteria</h4>
+                                        </div>
+                                        <div ngClass="email-alert-btn">
+                                            <button ngClass="alert_btn" (click)="openVerticallyCentered(content)">
+                                                <mat-icon>notifications_active</mat-icon> Get an alert
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <section class="agent-pagination-wrapper">
                                 <pagination-controls (pageChange)="pageChanged($event)"
                                     class="text-center my-pagination">
                                 </pagination-controls>
                             </section>
-                        </div>
-                        <div ngClass="notification-box">
-                            <div ngClass="d-flex align-items-center">
-                                <div ngClass="email-home-icons">
-                                    <img src="{{emailhome}}">
-                                </div>
-                                <div ngClass="email-home-cntnt">
-                                    <h4>Get Notofied when new property match your search criteria</h4>
-                                </div>
-                                <div ngClass="email-alert-btn">
-                                    <button ngClass="alert_btn" (click)="openVerticallyCentered(content)"><mat-icon>notifications_active</mat-icon> Get an alert</button>
-                                </div>
-                            </div>
                         </div>
                     </div>
                     <div ngClass="col-xl-3 col-lg-3 col-md-12 col-sm-12">
