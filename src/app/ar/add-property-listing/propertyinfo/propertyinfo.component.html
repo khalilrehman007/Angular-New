@@ -1,0 +1,118 @@
+<app-header2></app-header2>
+<section ngClass="list-properties-sec">
+    <div ngClass="listing-container">
+        <div ngClass="heading-title-sec text-center">
+            <h2>List New Property</h2>
+            <p>تأكد من ملء جميع الحقول اللازمة وتحميل جميع الملفات المطلوبة.</p>
+        </div>
+        <div ngClass="listing-property-form-sec">
+            <div ngClass="listing-property-ul">
+                <mat-list>
+                    <mat-list-item ngClass="active"> <a routerLink="/listingproperty"><span ngClass="">1</span>معلومات الملكية</a>
+                    </mat-list-item>
+                    <mat-list-item ngClass="disabled"><a routerLink=""><span ngClass="">2</span> Listing Info</a>
+                    </mat-list-item>
+                    <mat-list-item ngClass="disabled"> <a routerLink=""><span ngClass="">3</span> Media</a>
+                    </mat-list-item>
+                    <mat-list-item ngClass="disabled"> <a routerLink=""><span ngClass="">4</span> Publish</a>
+                    </mat-list-item>
+                </mat-list>
+            </div>
+            <div ngClass="list-property-content">
+                <div ngClass="list-property-header">
+                    <h5 ngClass="h5-heading">Property Address</h5>
+                    <p>Search for your location and confirm the exact location to track</p>
+                </div>
+                <div ngClass="list-property-body">
+                    <form [formGroup]="SubmitForm">
+                        <div ngClass="form-border-wrapper">
+                            <div ngClass="row">
+                                <div ngClass="col-xl-4 col-lg-4 col-sm-12">
+                                    <div ngClass="block-wrapper mb-4">
+                                        <div ngClass="select-design select2-design">
+                                            <label>الدولة <span ngClass="required-span">*</span></label>
+                                            <select class="select2 country-select" *ngIf="oldData == '' || country.length > 0">
+                                                <option value="0">Select Country</option>
+                                                <option class="country-item-{{list.value}}" *ngFor="let list of country" [value]="list.value"> {{ list.viewValue }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div ngClass="col-xl-4 col-lg-4 col-sm-12">
+                                    <div ngClass="select-design mb-4 select2-design">
+                                        <label ngClass="h6-design">المدينة <span
+                                                ngClass="required-span">*</span></label>
+                                        <select class="select2 city-select" *ngIf="oldData == '' || city.length > 0">
+                                                <option value="0">Select City</option>
+                                                <option class="city-item-{{listcity.value}}" *ngFor="let listcity of city" [value]="listcity.value"> {{ listcity.viewValue }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div ngClass="col-xl-4 col-lg-4 col-sm-12">
+                                    <div ngClass="block-wrapper mb-4">
+                                        <div ngClass="select-design select2-design">
+                                            <label>المنطقة<span ngClass="required-span">*</span></label>
+                                            <select class="select2 district-select" *ngIf="oldData == '' || district.length > 0">
+                                                <option value="0">Select District</option>
+                                                <option class="district-item-{{listdistrict.value}}" *ngFor="let listdistrict of district" [value]="listdistrict.value">{{ listdistrict.viewValue }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div ngClass="address-sec" [ngClass]="showMap ? '' : 'd-none'">
+                                    <div ngClass="block-wrapper-address">
+                                        <label class="h6-design"></label>
+                                        <div ngClass="position-relative">
+                                            <div style="width: 100%">
+                                                <div #propertyDetails__map class="property-details__map"></div>
+                                            </div>
+                                            <div ngClass="locate-me-sec">
+                                                <div ngClass="add-adrees-sec">
+                                                    <input matInput type="text" formControlName="address"
+                                                        placeholder="موقع البحث" #searchLocation
+                                                        id="searchLocation" class="searchLocation" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div ngClass="confirm-location-sec text-right" (click)="confirmLocation()">
+                                            <button ngClass="confirm-location-btn">
+                                                Confirm Location
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div ngClass="location-information" *ngIf="locationInformation.city">
+                                    <div ngClass="block-wrapper mb-4">
+                                        <h6 ngClass="h6-design">Location Information</h6>
+                                        <div ngClass="location-info-lists">
+                                            <mat-list>
+                                                <mat-list-item ngClass="d-flex justify-content-spacebw" if>
+                                                    <div ngClass="location-div-block">
+                                                        <h4 ngClass="loc-heading">{{locationInformation.city}},
+                                                            {{locationInformation.country}}</h4>
+                                                        <p>{{locationInformation.address}}</p>
+                                                        <img src="../../../../assets/images/MapPin.svg" />
+                                                    </div>
+                                                    <div ngClass="change-btn-block" (click)="changeInfo()">
+                                                        <button ngClass="change-btn">Change</button>
+                                                    </div>
+                                                </mat-list-item>
+                                            </mat-list>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div ngClass="text-right save-continue-sec justify-content-end" (click)="onSubmit()">
+                            <mat-card-actions>
+                                <button mat-raised-button type="submit" ngClass="submit-btn">حفظ ومتابعة</button>
+                            </mat-card-actions>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<app-loader *ngIf="showLoader"></app-loader>
+<app-erroralert [error]="error" (errorResponse)="errorResponse($event)" *ngIf="showError"></app-erroralert>
