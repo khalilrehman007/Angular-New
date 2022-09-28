@@ -1046,13 +1046,13 @@ blogs: any;
         }
 
         let rentType: any = '';
-        if (element.rentType != null && element.rentType != undefined && element.rentType.name != undefined && element.rentType.name != null && element.propertyListingTypeId != 2) {
-          rentType = '/'+element.rentType.name
+        if (element.rentType != null && element.rentType != undefined && element.rentType.nameAr != undefined && element.rentType.nameAr != null && element.propertyListingTypeId != 2) {
+          rentType = '/'+element.rentType.nameAr
         }
 
         let propertyType: any = '';
         if (element.propertyType !== null && element.propertyType !== undefined) {
-          propertyType = element.propertyType.typeDescription
+          propertyType = element.propertyType.typeDescriptionAr
         }
 
         tempData.push(
@@ -1060,14 +1060,14 @@ blogs: any;
             title: element.propertyTitle,
             rentType: rentType,
             propertyType: propertyType,
-            currency: element.country.currency,
+            currency: element.country.currencyAr,
             price: element.propertyPrice,
             favorite: element.favorite,
             id: element.id,
             alt: element.propertyTitle,
             src: image,
             bedrooms: element.bedrooms,
-            propertyAddress: element.propertyAddress,
+            propertyAddress: element.propertyAddressArabic,
             bathrooms: element.bathrooms,
             buildingName: element.buildingName,
             carpetArea: element.carpetArea,
