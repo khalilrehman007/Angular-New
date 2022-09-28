@@ -17,11 +17,9 @@
                             </div>
                         </div>
                         <div ngClass="heading-apragraph-design mt-4">
-                            <h2>{{selectedPropertyTypeName}} {{headingPropertyType}} for {{type}} in UAE</h2>
-                            <p>Showing {{totalRecord}} {{headingPropertyType}} for {{type}} in UAE</p>
-                            <p>Properties For {{type}} in UAE. Verified Listings. Your Perfect Home is on Property
-                                Finder! Property
-                                Finder: Real Estate...
+                            <h2>{{selectedPropertyTypeName}} {{headingPropertyType}} للإي {{type}} في الإمارات</h2>
+                            <p>عرض {{totalRecord}} {{headingPropertyType}} للإي {{type}} في الإمارات</p>
+                            <p>عقارات ل {{type}} في الإمارات.  القوائم التي تم التحقق منها. منزلك المثالي موجود على Property Finder! مكتشف الملكية: عقارات
                             </p>
                         </div>
                         <div ngClass="properties-filtr-values d-flex justify-content-spacebw">
@@ -32,7 +30,7 @@
                                 </div>
                                 <div ngClass="block-wrapper">
                                     <mat-form-field appearance="fill" class="select-design">
-                                        <mat-label><img src="{{videotiour}}">Video Tour</mat-label>
+                                        <mat-label><img src="{{videotiour}}">جولة بالفيديو</mat-label>
                                         <mat-select (selectionChange)="videoSorting($event)">
                                             <mat-option value="{{item.id}}" *ngFor="let item of videoTour">{{item.nameAr}}
                                             </mat-option>
@@ -43,11 +41,11 @@
                             <div ngClass="properties-filtr-values-right d-flex justify-content-spacebw">
                                 <div class="checkbox-design position-relative">
                                     <input type="checkbox" id="OV-Verified" name="property-types" value="OV-Verified">
-                                    <button class="checkbox-btn"><img src="{{ovverified}}">OV-Verified</button>
+                                    <button class="checkbox-btn"><img src="{{ovverified}}">OV التحقق</button>
                                 </div>
                                 <div ngClass="block-wrapper">
                                     <mat-form-field appearance="fill" class="select-design">
-                                        <mat-label>Sort by</mat-label>
+                                        <mat-label>صنف حسب</mat-label>
                                         <mat-select (selectionChange)="sortedBy($event)">
                                             <mat-option *ngFor="let SortBy of PropertySortBy" value="{{SortBy.id}}">
                                                 {{SortBy.name}}
@@ -83,9 +81,9 @@
                                                     <h4>{{list.propertyPrice}} {{list.country.currencyAr}} <small
                                                             *ngIf="list.rentType != ''">/{{list.rentType.nameAr}}</small></h4>
                                                     <div ngClass="property-tags d-flex flex-wrap">
-                                                        <span ngClass="tags-bg-grey">Brokrage:
+                                                        <span ngClass="tags-bg-grey">الوساطة:
                                                             {{list.brokerageChargePrice}} {{currency}}</span>
-                                                        <span ngClass="tags-bg-grey">Security deposit:
+                                                        <span ngClass="tags-bg-grey">مبلغ التأمين:
                                                             {{list.securityDepositPrice}} {{currency}}</span>
                                                     </div>
                                                 </div>
@@ -97,7 +95,7 @@
                                                             <button ngClass="circle-btn" id="dropdownBasic21"
                                                                 ngbDropdownToggle><img src="{{share}}"></button>
                                                             <div ngbDropdownMenu aria-labelledby="dropdownBasic21">
-                                                                <h5>Share with:</h5>
+                                                                <h5>شارك مع:</h5>
                                                                 <button ngbDropdownItem><a target="_blank"
                                                                         href="https://facebook.com"
                                                                         ngClass="facebook"><img src="{{fb}}">
@@ -144,7 +142,7 @@
                                                         <img src="{{bathsvg}}" alt="">{{list.bathrooms}} الحمامات
                                                     </span>
                                                     <span ngClass="area">
-                                                        <img src="{{squaremetersvg}}" alt="">{{list.buildupArea}} sqft
+                                                        <img src="{{squaremetersvg}}" alt="">{{list.buildupArea}} قدم مربع
                                                     </span>
                                                     <span ngClass="furnishing">
                                                         <img src="{{furnishing}}" alt="">{{list.furnishingType}}
@@ -157,19 +155,19 @@
                                                 </span>
                                             </div>
                                             <div ngClass="data-inteligence-text">
-                                                <h6>OV Data Intelligence - Corniche Road, Abu Dhabi</h6>
+                                                <h6>OV Data Intelligence - شارع الكورنيش ، أبو ظبي</h6>
                                                 <div ngClass="property-range-bar d-flex">
                                                     <div ngClass="pro-range-whie-box">
-                                                        <p>Recent Rent Txns</p>
-                                                        <h6>{{list.recentRentTxns}} in last 1 year</h6>
+                                                        <p>الإيجار الأخير Txns</p>
+                                                        <h6>{{list.recentRentTxns}} في العام الماضي</h6>
                                                     </div>
                                                     <div ngClass="pro-range-whie-box">
-                                                        <p>Rent Price Range</p>
+                                                        <p>نطاق سعر الإيجار</p>
                                                         <h6>{{list.startRentPrice}} {{list.country.currencyAr}} -
                                                             {{list.endRentPrice}} {{list.country.currencyAr}}</h6>
                                                     </div>
                                                     <div ngClass="pro-range-whie-box">
-                                                        <p>Avg. Rent/ Sq. Ft.</p>
+                                                        <p>متوسط تأجير/ قدم مربع</p>
                                                         <h6>{{list.avgRentPrice}} {{list.country.currencyAr}}</h6>
                                                     </div>
                                                 </div>
@@ -186,14 +184,14 @@
                                                             </div>
                                                             <div ngClass="list_cntnt-blcok">
                                                                 <h5>{{list.fullName}}</h5>
-                                                                <p>Listed on: {{list.requestedDateFormat}}</p>
+                                                                <p>علي قائمة: {{list.requestedDateFormat}}</p>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div ngClass="col-xl-7 col-lg-12 col-md-12 col-sm-12 text-right">
                                                         <div ngClass="pro-contact-details">
                                                             <a *ngIf="userId !== null"
-                                                                routerLink="/agent-details/{{list.userId}}"
+                                                                routerLink="/ar/agent-details/{{list.userId}}"
                                                                 ngClass="grey-bordered-btn">التفاصيل</a>
                                                             <div ngbDropdown placement="top-end"
                                                                 class="d-inline-block call-now_link">
@@ -202,7 +200,7 @@
                                                                     (click)="callNumber(callNumberText)"
                                                                     ngbDropdownToggle>{{callNumberText}}</button>
                                                                 <div ngbDropdownMenu aria-labelledby="dropdownBasic5">
-                                                                    <p ngClass="mention_ref">Mention the reference</p>
+                                                                    <p ngClass="mention_ref">اذكر المرجع</p>
                                                                     <p ngClass="oval_finder-red">"Ovaluate Finder" <span
                                                                             ngClass="ref_id">{{list.propertyCode}}</span>
                                                                     </p>
@@ -211,7 +209,7 @@
                                                             <div ngbDropdown class="d-inline-block">
                                                                 <button ngClass="grren-btn grey-bordered-btn"
                                                                     id="dropdownBasic1"
-                                                                    ngbDropdownToggle>Connect</button>
+                                                                    ngbDropdownToggle>الاتصال</button>
                                                                 <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
                                                                     <button ngbDropdownItem><a routerLink="/chat"><img
                                                                                 src="{{chat}}">
@@ -260,9 +258,9 @@
                                             <!--                          <mat-icon> phone</mat-icon> Last contacted on: 9 Aug 2022-->
                                             <!--                        </p>-->
                                             <!--                      </div>-->
-                                            <p ngClass="premium-tag">PREMIUM</p>
+                                            <p ngClass="premium-tag">الممتازة</p>
                                         </div>
-                                        <button _ngcontent-ekm-c201="" ngclass="tag_btn blue" ng-reflect-ng-class="tag_btn blue" class="tag_btn blue"><img _ngcontent-ekm-c201="" src="../../../assets/images/icons/tag-icn.svg"> PREMIUM</button>
+                                        <button _ngcontent-ekm-c201="" ngclass="tag_btn blue" ng-reflect-ng-class="tag_btn blue" class="tag_btn blue"><img _ngcontent-ekm-c201="" src="../../../assets/images/icons/tag-icn.svg"> الممتازة</button>
                                     </div>
                                 </div>
                                 <div ngClass="notification-box mt-5" *ngIf="i == halfList">
@@ -295,14 +293,13 @@
                                     <img src="{{mapview}}">
                                 </div>
                                 <div ngClass="see-my-lisitng">
-                                    <a ngClass="see-listing-btn" (click)="viewMap()"><img src="{{loc}}"> See the Listing
-                                        on Map View</a>
+                                    <a ngClass="see-listing-btn" (click)="viewMap()"><img src="{{loc}}"> انظر القائمة في عرض الخريطة</a>
                                 </div>
                             </div>
                         </div>
                         <div ngClass="popular-searches" *ngIf="trendTitle.length > 0">
                             <div class="d-block dropdown" [ngClass]="status2 ? 'notshow' : 'show'">
-                                <button type="button" class="btn btn-outline-primary" id="popularSearches" (click)="clickEvent2()">Popular Searches</button>
+                                <button type="button" class="btn btn-outline-primary" id="popularSearches" (click)="clickEvent2()">عمليات البحث الشائعة</button>
                                 <div class="dropdown-menu" [ngClass]="status2 ? 'notshow' : 'show'">
                                     <button class="dropdown-item"
                                         *ngFor="let item of trendTitle[0].trendTitleDetail; let i = index"
@@ -341,14 +338,14 @@
                             <input type="submit" value="Continue">
                         </div>
                         <div ngClass="form-group terms-contioning">
-                         <p>By continuing, you agree to houza's <a routerLink="/term-condition">Term and Conditions</a> & <a routerLink="/privacy-policy">Privacy Policy</a></p>
+                         <p>By continuing, you agree to houza's <a routerLink="/ar/term-condition">Term and Conditions</a> & <a routerLink="/ar/privacy-policy">Privacy Policy</a></p>
                         </div>
                     </form>
                   </div>
                </div>
                <div ngClass="alert-modal-footer">
                   <h4>Are you an agent?</h4>
-                  <p>Log in to the Ovaluate hub here: <a routerLink="/login">Agent log in</a></p>
+                  <p>Log in to the Ovaluate hub here: <a routerLink="/ar/login">Agent log in</a></p>
                </div>
             </div>
         </ng-template>

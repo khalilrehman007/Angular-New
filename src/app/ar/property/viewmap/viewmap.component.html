@@ -29,17 +29,17 @@
                         <div ngClass="map-view-right-listings mt-5">
                             <div ngClass="heading-apragraph-design">
                                 <h2>{{selectedPropertyTypeName}} Properties for {{type}} in UAE</h2>
-                                <p>Showing {{totalRecord}} Properties for Rent in UAE</p>
+                                <p>عرض {{totalRecord}} عقارات سكنية للايجار في الامارات</p>
                             </div>
                             <div ngClass="properties-filtr-values d-flex justify-content-spacebw">
                                 <div ngClass="properties-filtr-values-left d-flex justify-content-spacebw">
                                     <div (click)="allSearch()" class="checkbox-design position-relative">
                                         <input type="checkbox" id="Furnished" name="property-types" value="Furnished">
-                                        <button class="checkbox-btn">All</button>
+                                        <button class="checkbox-btn">كل</button>
                                     </div>
                                     <div ngClass="block-wrapper">
                                         <mat-form-field appearance="fill" class="select-design">
-                                            <mat-label><img src="{{videotiour}}"> Video Tour</mat-label>
+                                            <mat-label><img src="{{videotiour}}"> جولة بالفيديو</mat-label>
                                             <mat-select (selectionChange)="videoSorting($event)">
                                                 <mat-option value="{{item.id}}" *ngFor="let item of videoTour">
                                                     {{item.name}}</mat-option>
@@ -63,11 +63,11 @@
                                 <div ngClass="properties-filtr-values-right d-flex justify-content-spacebw">
                                     <div class="checkbox-design position-relative">
                                         <input type="radio" id="OV-Verified" name="property-types" value="OV-Verified">
-                                        <button class="checkbox-btn"><img src="{{ovverified}}"> OV-Verified</button>
+                                        <button class="checkbox-btn"><img src="{{ovverified}}"> OV التحقق</button>
                                     </div>
                                     <div ngClass="block-wrapper">
                                         <mat-form-field appearance="fill" class="select-design">
-                                            <mat-label>Sort by</mat-label>
+                                            <mat-label>صنف حسب</mat-label>
                                             <mat-select (selectionChange)="sortedBy($event)">
                                                 <mat-option *ngFor="let SortBy of PropertySortBy" value="{{SortBy.id}}">
                                                     {{SortBy.name}}
@@ -102,13 +102,13 @@
                                                         alt="">{{slide.propertyAddress}}</p>
                                                 <div ngClass="property-details">
                                                     <span ngClass="bed">
-                                                        <img src="{{bedsvg}}" alt="">{{slide.bedrooms}} Beds
+                                                        <img src="{{bedsvg}}" alt="">{{slide.bedrooms}} غرفة نوم
                                                     </span>
                                                     <span ngClass="bath">
-                                                        <img src="{{bathsvg}}" alt="">{{slide.bathrooms}} Bath
+                                                        <img src="{{bathsvg}}" alt="">{{slide.bathrooms}} دوره المياه
                                                     </span>
                                                     <span ngClass="area">
-                                                        <img src="{{squaremetersvg}}" alt="">{{slide.buildupArea}} sqft
+                                                        <img src="{{squaremetersvg}}" alt="">{{slide.buildupArea}} قدم مربع
                                                     </span>
                                                 </div>
                                             </div>
