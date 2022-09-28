@@ -407,8 +407,8 @@ blogs: any;
   LoadPropertyCategories() {
     this.service.PropertyCategories().subscribe(data => {
       let response: any = data;
-      this.residential = response.data[0].categoryName;
-      this.commercial = response.data[1].categoryName;
+      this.residential = response.data[0].categoryNameAr;
+      this.commercial = response.data[1].categoryNameAr;
     });
   }
   getAreaData(e: any) {
