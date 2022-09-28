@@ -249,8 +249,8 @@ blogs: any;
     this.service.LoadPropertyListingTypes().subscribe(e => {
       let temp: any = e;
       if (temp.message == "Property Listing Type List fetched successfully") {
-        this.rent = temp.data[0].name;
-        this.buy = temp.data[1].name;
+        this.rent = temp.data[0].nameAr;
+        this.buy = temp.data[1].nameAr;
       }
     });
     this.service.LoadCountries().subscribe(e => {
