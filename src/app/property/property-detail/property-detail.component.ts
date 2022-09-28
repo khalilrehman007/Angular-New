@@ -628,7 +628,7 @@ export class PropertyDetailComponent implements OnInit {
       {
         show: true,
         label: 'Available From',
-        value: this.propertyDetailData.availableDate,
+        value: this.propertyDetailData.availableDate.split("T")[0],
       },
       {
         show: true,
