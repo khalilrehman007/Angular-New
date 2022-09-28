@@ -446,7 +446,7 @@ export class SearchComponent implements OnInit {
       MinCarpetArea: this.MinCarpetArea, MaxCarpetArea: this.MaxCarpetArea, FurnishingTypeId: this.FurnishingTypeId
     }
 
-    this.route.navigate(['/property/mapview'], { queryParams: params })
+    this.route.navigate(['/ar/property/mapview'], { queryParams: params })
 
   }
   status2: boolean = false;

@@ -7,12 +7,12 @@
                     <div ngClass="black-text-breadcrumb">
                         <app-breadcrumbs></app-breadcrumbs>
                         <a class="back-to-text cursor-pointer" (click)="goBack()">
-                            <mat-icon>keyboard_arrow_left</mat-icon> Back to Search
+                            <mat-icon>keyboard_arrow_left</mat-icon> رجوع إلى البحث
                         </a>
                     </div>
                     <div ngClass="last-updated-details">
                         <!-- <p>Last Updated: <span ngClass="update-date">April 19, 2022</span></p> -->
-                        <p>Listing ID <span ngClass="update-id">#OV-4003021</span></p>
+                        <p>معرف القائمة <span ngClass="update-id">#OV-4003021</span></p>
                     </div>
                 </div>
             </div>
@@ -23,9 +23,9 @@
                             <h4>{{propertyDetailData.propertyPrice}}
                                 {{propertyData.country.currencyAr}}<small *ngIf="propertyDetailData.rentType != ''">/{{propertyData.rentType.nameAr}}</small></h4>
                             <div ngClass="property-tags d-flex flex-wrap">
-                                <span ngClass="tags-bg-grey">Brokrage: {{propertyDetailData.brokerageChargePrice}}
+                                <span ngClass="tags-bg-grey">الوساطة: {{propertyDetailData.brokerageChargePrice}}
                                     {{propertyData.country.currencyAr}}</span>
-                                <span ngClass="tags-bg-grey">Security deposit:
+                                <span ngClass="tags-bg-grey">مبلغ التأمين:
                                     {{propertyDetailData.securityDepositPrice}} {{propertyData.country.currencyAr}}</span>
                             </div>
                         </div>
@@ -45,7 +45,7 @@
                                     <button ngClass="grey-bordered-btn" id="dropdownBasic2" ngbDropdownToggle><img
                                             src="{{dots}}"></button>
                                     <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
-                                        <h5>Share with:</h5>
+                                        <h5>شارك مع:</h5>
                                         <button ngbDropdownItem><a target="_blank" href="https://facebook.com"
                                                 ngClass="facebook"><img src="{{fb}}"> Facebook</a></button>
                                         <!-- <button ngbDropdownItem><a target="_blank" href="whatsapp://send?{{shareURL}}" -->
@@ -66,8 +66,7 @@
                                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                                 </svg>
                             </button>
-                            <button ngClass="grey-bordered-btn text-btn" (click)="scroll(NearLsiting)">Browse Nearby
-                                Lisitng</button>
+                            <button ngClass="grey-bordered-btn text-btn" (click)="scroll(NearLsiting)">تصفح القائمة القريبة</button>
                         </div>
                     </div>
                 </div>
@@ -83,29 +82,29 @@
                         <div ngClass="blogs-link-list">
                             <ul ngClass="list-unstyled d-flex justify-content-start">
                                 <li [ngClass]="status ? 'tactive' : 'thide'" (click)="keyhighlight()"><a
-                                        (click)="scroll(keyHighligh)">Key Highlights</a></li>
+                                        (click)="scroll(keyHighligh)">النقاط الرئيسية</a></li>
                                 <li [ngClass]="status1 ? 'tactive' : 'thide'" (click)="PropertyInfo()"><a
-                                        (click)="scroll(propertyInfo)">Property Info</a></li>
+                                        (click)="scroll(propertyInfo)">معلومات الملكية</a></li>
                                 <li [ngClass]="status2 ? 'tactive' : 'thide'" (click)="Amenities()"><a
-                                        (click)="scroll(amentieScroll)">Amenities</a></li>
+                                        (click)="scroll(amentieScroll)">وسائل الراحة</a></li>
                                 <li [ngClass]="status3 ? 'tactive' : 'thide'" (click)="PriceTrends()"><a
-                                        (click)="scroll(priceScroll)">Price Trends</a></li>
+                                        (click)="scroll(priceScroll)">اتجاهات الأسعار</a></li>
                                 <li [ngClass]="status4 ? 'tactive' : 'thide'" (click)="Location()"><a
                                         (click)="scroll(locationScroll)">المواقع</a></li>
                             </ul>
                         </div>
                         <div class="key_highlight mt-5" #keyHighligh>
                             <div ngClass="tabs-heading-div">
-                                <h5>Key Highlights</h5>
+                                <h5>النقاط الرئيسية</h5>
                             </div>
                             <div ngClass="topkey-highlights">
                                 <h6>{{propertyDetailData.typeDescription}}</h6>
                                 <div ngClass="property-details-highlights">
                                     <span ngClass="bed" *ngIf="propertyDetailData.bedrooms != 0">
-                                        <img src="{{bedsvg}}" alt="">{{propertyDetailData.bedrooms}} Beds
+                                        <img src="{{bedsvg}}" alt="">{{propertyDetailData.bedrooms}}غرفة نوم
                                     </span>
                                     <span ngClass="bath" *ngIf="propertyDetailData.bathrooms != 0">
-                                        <img src="{{bathsvg}}" alt="">{{propertyDetailData.bathrooms}} Bath
+                                        <img src="{{bathsvg}}" alt="">{{propertyDetailData.bathrooms}}دوره المياه
                                     </span>
                                     <span ngClass="area">
                                         <img src="{{squaremetersvg}}"
@@ -129,10 +128,10 @@
                         <div class="Pro-perty_info mt-5" #propertyInfo>
                             <div ngClass="d-flex justify-content-spacebw align-items-center mb-3">
                                 <div ngClass="tabs-heading-div">
-                                    <h5>Property Info</h5>
+                                    <h5>معلومات الملكية</h5>
                                 </div>
                                 <div ngClass="ov-verified">
-                                    <p><img src="{{ovverified}}"> OV-Verified</p>
+                                    <p><img src="{{ovverified}}"> تم التحقق من OV</p>
                                 </div>
                             </div>
                             <div ngClass="property_infor-div-sec">
@@ -151,7 +150,7 @@
                         </div>
                         <div class="amenties_properties-wrapper mt-5" #amentieScroll>
                             <div ngClass="tabs-heading-div">
-                                <h5>Amenities</h5>
+                                <h5>وسائل الراحة</h5>
                             </div>
                             <div ngClass="amenties_infor-div-sec">
                                 <div ngClass="amenties_info-row">
@@ -171,10 +170,10 @@
                         </div>
                         <div class="price-trens_wrapper-wrapper mt-5" #priceScroll>
                             <div ngClass="tabs-heading-div">
-                                <h5>Rental Price Trends</h5>
+                                <h5>اتجاهات أسعار الإيجار</h5>
                             </div>
                             <div ngClass="price_trend-texts">
-                                <p>3 beds in Downtown Dubai - Rent Evolutions <span ngClass="">
+                                <p>3 أسرة في وسط مدينة دبي - إيجار تطورات<span ngClass="">
                                         <mat-icon>trending_up</mat-icon>
                                     </span> 40%</p>
                             </div>
@@ -212,9 +211,7 @@
                                         </div>
                                     </div>
                                     <div ngClass="col-sm-12">
-                                        <p ngClass="price-trent_desc-info">The data displayed is based on the
-                                            average price and size of all listing that were live in the Ovaluate
-                                            in Dubai</p>
+                                        <p ngClass="price-trent_desc-info">تستند البيانات المعروضة إلى متوسط ​​السعر والحجم لجميع القوائم التي كانت موجودة في Ovaluate في دبي</p>
                                     </div>
                                 </div>
                             </div>
@@ -230,7 +227,7 @@
                     <div ngClass="col-xl-4 col-lg-4 col-md-12 col-sm-12">
                         <div ngClass="property-owner-details">
                             <div ngClass="property-listed-by">
-                                <h4>Property Listed by</h4>
+                                <h4>الملكية مدرجة من قبل</h4>
                                 <img src="{{propertylistedbrand}}">
                             </div>
                             <div ngClass="property-listed-by-details d-flex">
@@ -238,7 +235,7 @@
                                     <div ngClass="white-circle-outline">
                                         <img src="{{propertyDetailData.userImageUrl}}">
                                     </div>
-                                    <button ngClass="agent-or-owner-btn">Agent</button>
+                                    <button ngClass="agent-or-owner-btn">وكلاء</button>
                                 </div>
                                 <div ngClass="property-listedby-cntnt">
                                     <h5 ngClass="propertier-name">{{propertyDetailData.userfullName}}</h5>
@@ -256,17 +253,17 @@
                                 <form [formGroup]="SubmitForm">
                                     <div ngClass="form-grouph input-design white-input-design">
                                         <mat-form-field class="example-full-width" appearance="fill">
-                                            <mat-label>Name</mat-label>
+                                            <mat-label>اسم</mat-label>
                                             <input type="text" formControlName="name" matInput
-                                                placeholder="Name">
+                                                placeholder="اسم">
                                         </mat-form-field>
                                         <p style="color: red" *ngIf="nameError !=''">{{nameError}}</p>
                                     </div>
                                     <div ngClass="form-grouph input-design white-input-design">
                                         <mat-form-field class="example-full-width" appearance="fill">
-                                            <mat-label>Email</mat-label>
+                                            <mat-label>البريد الإلكتروني</mat-label>
                                             <input type="email" formControlName="email" matInput
-                                                placeholder="Email">
+                                                placeholder="البريد الإلكتروني">
                                         </mat-form-field>
                                         <p style="color: red" *ngIf="emailError !=''">{{emailError}}</p>
                                     </div>
@@ -274,9 +271,9 @@
 
                                     <div ngClass="form-grouph input-design white-input-design">
                                         <mat-form-field class="example-full-width" appearance="fill">
-                                            <mat-label>Phone No.</mat-label>
+                                            <mat-label>رقم هاتف</mat-label>
                                             <input matInput type="number" (input)="checkLength()"
-                                                formControlName="phone" required  placeholder="Phone Number">
+                                                formControlName="phone" required  placeholder="رقم هاتف">
                                         </mat-form-field>
                                         <p style="color: red" *ngIf="phoneError !=''">{{phoneError}}</p>
                                     </div>
@@ -285,39 +282,35 @@
 
                                     <div ngClass="form-grouph textarea-design white-input-design">
                                         <mat-form-field class="example-full-width" appearance="fill">
-                                            <mat-label>Message</mat-label>
+                                            <mat-label>رسالة</mat-label>
                                             <textarea matInput formControlName="message"
-                                                placeholder="I would like to inquire about the property OV - R8986. Please contact me at your earliest convenience."></textarea>
+                                                placeholder="رسالة"></textarea>
                                         </mat-form-field>
                                         <p style="color: red" *ngIf="messageError !=''">{{messageError}}</p>
                                     </div>
                                     <div ngClass="form-grouph submit-design submit-design-email-send">
-                                        <button type="button" (click)="leadProceedStore()" ngClass="btn-design-3">Send
-                                            Email</button>
+                                        <button type="button" (click)="leadProceedStore()" ngClass="btn-design-3">ارسل بريد الكتروني</button>
                                     </div>
                                 </form>
                             </div>
                             <div ngClass="contact-list-details">
                                 <div ngClass="row">
                                     <div ngClass="col-xl-6 col-lg-12 col-md-12 col-sm-12">
-                                        <button ngClass="" (click)="loadChat()"><img src="{{call}}"> Call
-                                            Landlord</button>
+                                        <button ngClass="" (click)="loadChat()"><img src="{{call}}"> اتصل بالمالك</button>
                                     </div>
                                     <div ngClass="col-xl-6 col-lg-12 col-md-12 col-sm-12">
                                         <button ngClass=""><a href="https://web.whatsapp.com/" target="_blank"><img
                                                     src="{{whatsapp}}"> Whats APP </a></button>
                                     </div>
                                     <div ngClass="col-xl-6 col-lg-12 col-md-12 col-sm-12">
-                                        <button ngClass="" (click)="loadChat()"><img src="{{chat}}"> Chat with
-                                            Landlord</button>
+                                        <button ngClass="" (click)="loadChat()"><img src="{{chat}}"> الدردشة مع المالك</button>
                                     </div>
                                     <div ngClass="col-xl-6 col-lg-12 col-md-12 col-sm-12">
-                                        <button ngClass="" (click)="loadChat()"><img src="{{videocall}}"> Video
-                                            Call</button>
+                                        <button ngClass="" (click)="loadChat()"><img src="{{videocall}}"> مكالمة فيديو</button>
                                     </div>
                                     <div ngClass="col-xl-6 col-lg-12 col-md-6 col-sm-12">
                                         <button ngClass=""><a href="https://www.youtube.com/watch?v=y9j-BL5ocW8"
-                                                target="_blank"><img src="{{virtual}}"> Virtual Tour </a></button>
+                                                target="_blank"><img src="{{virtual}}"> جولة افتراضية </a></button>
                                     </div>
                                 </div>
                             </div>
@@ -330,7 +323,7 @@
     <section ngClass="similer-properties-sec" #NearLsiting>
         <div [ngClass]="'container_1220px'">
             <div ngClass="section-custom-title-left">
-                <h4>Similar properties in the same area</h4>
+                <h4>عقارات مماثلة في نفس المنطقة</h4>
                 <p *ngIf="similarPropertyDetails.length < 1">No similar properties....</p>
             </div>
             <div ngClass="row">
@@ -370,7 +363,7 @@
                         </div>
                         <a [routerLink]="['/ar/property/detail']" [queryParams]="{id: slide.id}"
                             ngClass="linK_overlay"></a>
-                        <button ngClass="tag_btn blue"><img src="{{tagicn}}"> POPULAR</button>
+                        <button ngClass="tag_btn blue"><img src="{{tagicn}}"> جمع</button>
                     </div>
                 </div>
             </div>

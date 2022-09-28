@@ -509,11 +509,11 @@ export class PropertyDetailComponent implements OnInit {
   getPropertyInfo() {
     this.propertyinfo = [
       {
-        label: 'Listed on',
+        label: 'علي قائمة',
         value: this.propertyDetailData.requestedDateFormat,
       },
       {
-        label: 'OV-Verified On',
+        label: 'تم التحقق من OV',
         value: this.propertyDetailData.requestedDateFormat,
       },
       {
@@ -525,11 +525,11 @@ export class PropertyDetailComponent implements OnInit {
         value: this.propertyData.propertyType.typeDescriptionAr,
       },
       {
-        label: 'Tower No. / Building Name',
+        label: 'رقم البرج / اسم المبنى',
         value: this.propertyDetailData.buildingName,
       },
       {
-        label: 'Total Floors in Building',
+        label: 'مجموع عدد الطوابق في المبنى',
         value: this.propertyDetailData.totalFloor,
       },
       {
@@ -537,7 +537,7 @@ export class PropertyDetailComponent implements OnInit {
         value: this.propertyDetailData.floorNo,
       },
       {
-        label: 'Unit No.',
+        label: 'رقم الوحدة',
         value: this.propertyDetailData.unitNo,
       },
       {
@@ -573,15 +573,15 @@ export class PropertyDetailComponent implements OnInit {
         value: "-",
       },
       {
-        label: 'Carpet Area',
+        label: 'منطقة السجاد',
         value: this.propertyDetailData.carpetArea,
       },
       {
-        label: 'Build-up Area',
+        label: 'منطقة البناء',
         value: this.propertyDetailData.buildupArea,
       },
       {
-        label: 'Current Occupancy Status',
+        label: 'حالة الإشغال الحالية',
         value: this.propertyData.occupancyStatus.nameAr,
       },
       {
@@ -597,11 +597,11 @@ export class PropertyDetailComponent implements OnInit {
         value: this.propertyDetailData.propertyPrice + ' ' + this.propertyData.country.currencyAr,
       },
       {
-        label: 'Security Deposit',
+        label: 'مبلغ التأمين',
         value: this.propertyDetailData.securityDepositPrice + ' ' + this.propertyData.country.currencyAr,
       },
       {
-        label: 'Brokerage Deposit',
+        label: 'إيداع الوساطة',
         value: this.propertyDetailData.brokerageChargePrice + ' ' + this.propertyData.country.currencyAr,
       },
       {

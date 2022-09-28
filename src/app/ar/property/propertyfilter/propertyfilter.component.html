@@ -64,7 +64,7 @@
                         <div ngClass="property-types-cntnts">
                             <div id="Residentials"
                                 [ngClass]="PropertyCategoryId == residentialId ? 'residential-tabs' : 'hide residential-tabs'">
-                                <h5 ngClass="h5-heading">Residential Unit Type</h5>
+                                <h5 ngClass="h5-heading">نوع الوحدة السكنية</h5>
                                 <ul ngClass="list-unstyled residentails-unit-list">
                                     <li ngClass="d-flex" *ngFor="let item of propertyTypeResdential">
                                         <div ngClass="position-relative">
@@ -79,7 +79,7 @@
                             </div>
                             <div id="Commercial"
                                 [ngClass]="PropertyCategoryId == commercialId ? 'commertial-tabs' : 'hide commertial-tabs'">
-                                <h5 ngClass="h5-heading">Commercial Unit Type</h5>
+                                <h5 ngClass="h5-heading">نوع الوحدة التجارية</h5>
                                 <ul ngClass="list-unstyled residentails-unit-list">
                                     <li ngClass="d-flex" *ngFor="let item of propertyTypeCommercial">
                                         <div ngClass="position-relative">
@@ -186,9 +186,9 @@
         <div ngClass="block-item four-block">
             <div ngClass="block-wrapper">
                 <div ngClass="cstm_dropdown-list dropdown-design-2 position-relative drodown_with-img">
-                    <button ngClass="drop-down_btn" (click)="clickEvent()">Budget</button>
+                    <button ngClass="drop-down_btn" (click)="clickEvent()">ميزانية</button>
                     <div class="cstm_dropdown-menu" [ngClass]="status ? 'active' : 'notactive'">
-                        <h4 ngClass="drop_label">Price Range</h4>
+                        <h4 ngClass="drop_label">نطاق السعر</h4>
                         <div ngClass="rental-type-tabs-sec">
                             <div ngClass="price-range_sec">
                                 <div ngClass="extra-controls form-inline">
@@ -204,7 +204,7 @@
                                     </ngx-slider>
                                 </div>
                                 <div ngClass="rentle_type-hding" *ngIf="PropertyListingTypeId != 2">
-                                    <h5 ngClass="h5-design">Rental Type</h5>
+                                    <h5 ngClass="h5-design">نوع الإيجار</h5>
                                 </div>
                             </div>
                             <mat-tab-group *ngIf="PropertyListingTypeId != 2" [(selectedIndex)]="RentTypeIndexId"
@@ -221,7 +221,7 @@
         <div ngClass="block-item five-block">
             <div ngClass="block-wrapper mb-4">
                 <mat-form-field appearance="fill" class="select-design">
-                    <mat-label>Posted by</mat-label>
+                    <mat-label>منشور من طرف</mat-label>
                     <mat-select (selectionChange)="postedBy($event)">
                         <mat-option value="Dealer" *ngFor="let data of postedByOption">{{data.nameAr}}</mat-option>
                     </mat-select>
@@ -230,7 +230,7 @@
         </div>
         <div ngClass="block-item six-block">
             <div ngClass="block-wrapper more-filter_btn-wrapper">
-                <button ngClass="more-filter-button" (click)="openVerticallyCentered(content)">More Filters</button>
+                <button ngClass="more-filter-button" (click)="openVerticallyCentered(content)">المزيد من المرشحات</button>
             </div>
             <div ngClass="gallery-modal-design more_filters-modal">
                 <ng-template #content let-modal>
@@ -240,7 +240,7 @@
                         <div ngClass="row">
                             <div ngClass="col-xl-12 col-lg-12 col-sm-12">
                                 <div ngClass="form_heading mb-4">
-                                    <h4 ngClass="h4-design">More Filters</h4>
+                                    <h4 ngClass="h4-design">المزيد من المرشحات</h4>
                                 </div>
                             </div>
                             <div ngClass="col-xl-6 col-lg-6 col-sm-12">
@@ -261,7 +261,7 @@
                             </div>
                             <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                 <div ngClass="block-wrapper mb-2">
-                                    <label class="h6-design">Property Area (sqft)</label>
+                                    <label class="h6-design">مساحة العقار (قدم مربع)</label>
                                     <div ngClass="row">
                                         <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                             <div ngClass="block-wrapper mb-2">
@@ -271,7 +271,7 @@
                                                             (keyup)="minCarpetAreaChange(minCarpet.value)" #minCarpet
                                                             matInput type="number" placeholder="Min. Area">
                                                     </mat-form-field>
-                                                    <p ngClass="input-overlay-layer">sqft.</p>
+                                                    <p ngClass="input-overlay-layer">قدم مربع</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -283,7 +283,7 @@
                                                             (keyup)="maxCarpetAreaChange(maxCarpet.value)" #maxCarpet
                                                             matInput type="number" placeholder="Max. Area">
                                                     </mat-form-field>
-                                                    <p ngClass="input-overlay-layer">sqft.</p>
+                                                    <p ngClass="input-overlay-layer">قدم مربع</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -294,7 +294,7 @@
                                 <div class="select-features mb-3">
                                     <div class="row">
                                         <div class="col-sm-12">
-                                            <label class="h6-design">Select Amenities</label>
+                                            <label class="h6-design">حدد وسائل الراحة</label>
                                             <div class="inneR-border-wrap">
                                                 <div class="checkbox-flex-box autoflex-layout">
                                                     <div (click)="propertyFeatureChange(data.id)"
@@ -311,9 +311,9 @@
                             </div>
                             <div ngClass="col-xl-12 col-lg-12 col-sm-12">
                                 <div ngClass="block-wrapper keywords_design-input">
-                                    <label class="h6-design">Keywords</label>
+                                    <label class="h6-design">الكلمات الدالة</label>
                                     <mat-form-field class="example-chip-list" appearance="fill">
-                                        <mat-label>Add Keywords</mat-label>
+                                        <mat-label>أضف كلمات رئيسية</mat-label>
                                         <mat-chip-list #chipList aria-label="Keyword selection">
                                             <mat-chip *ngFor="let KeywordName of Keywords"
                                                 (removed)="remove(KeywordName)">
@@ -332,7 +332,7 @@
                             </div>
                             <div ngClass="text-right totel_properties-btn mt-5">
                                 <!--                <app-loader></app-loader>-->
-                                <button (click)="proceedSearch()" (click)="modal.dismiss('Cross click')">Total Properties Count<span ngClass="count_properties">({{totalRecord}})</span></button>
+                                <button (click)="proceedSearch()" (click)="modal.dismiss('Cross click')">إجمالي عدد الخصائص<span ngClass="count_properties">({{totalRecord}})</span></button>
                             </div>
                         </div>
                     </div>
