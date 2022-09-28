@@ -306,10 +306,9 @@
                         <ng-template carouselSlide *ngFor="let item of slider">
                             <div ngClass="row">
                                 <div ngClass="col-md-6 property-listing-slider-left">
-                                    <h2>{{item.titleAr}} section is null in api</h2>
+                                    <h2>{{item.titleAr}}</h2>
                                     <ul>
-                                        <li *ngFor="let list of item.ovaluateOfferingDetails">{{list.descriptionAr}}
-                                            section is null in api </li>
+                                        <li *ngFor="let list of item.ovaluateOfferingDetails">{{list.descriptionAr}}</li>
                                     </ul>
                                     <div ngClass="listing-btn">
                                         <a [routerLink]="['/ar/add-property/listingproperty']"

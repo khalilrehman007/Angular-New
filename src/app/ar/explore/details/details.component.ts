@@ -62,20 +62,20 @@ export class DetailsComponent implements OnInit {
           image = this.baseUrl + element.documents[0].fileUrl
         }
         let rentType: any = ''
-        if (element.rentType != undefined && element.rentType.name != undefined && element.rentType.name != null) {
-          rentType = '/ '+element.rentType.name
+        if (element.rentType != undefined && element.rentType.nameAr != undefined && element.rentType.nameAr != null) {
+          rentType = '/ '+element.rentType.nameAr
         }
         tempData.push(
           {
             title: element.propertyTitle,
             rentType: rentType,
-            currency: element.country.currency,
+            currency: element.country.currencyAr,
             price: element.propertyPrice,
             id: element.id,
             alt: element.propertyTitle,
             src: image,
             bedrooms: element.bedrooms,
-            propertyAddress: element.propertyAddress,
+            propertyAddress: element.propertyAddressArabic,
             bathrooms: element.bathrooms,
             buildingName: element.buildingName,
             carpetArea: element.carpetArea,
@@ -103,8 +103,8 @@ export class DetailsComponent implements OnInit {
             title: element.propertyTitle,
             price: element.propertyPrice,
             rentType: rentType,
-            currency: element.country.currency,
-            propertyAddress: element.propertyAddress,
+            currency: element.country.currencyAr,
+            propertyAddress: element.propertyAddressArabic,
             id: element.id,
             alt: element.propertyTitle,
             src: image,
@@ -129,16 +129,16 @@ export class DetailsComponent implements OnInit {
           image = this.baseUrl + element.documents[0].fileUrl
         }
         let rentType: any = ''
-        if (element.rentType != undefined && element.rentType.name != undefined && element.rentType.name != null) {
-          rentType = '/ '+element.rentType.name
+        if (element.rentType != undefined && element.rentType.nameAr != undefined && element.rentType.nameAr != null) {
+          rentType = '/ '+element.rentType.nameAr
         }
         tempData.push(
           {
             title: element.propertyTitle,
             price: element.propertyPrice,
             rentType: rentType,
-            currency: element.country.currency,
-            propertyAddress: element.propertyAddress,
+            currency: element.country.currencyAr,
+            propertyAddress: element.propertyAddressArabic,
             id: element.id,
             alt: element.propertyTitle,
             src: image,
@@ -170,8 +170,8 @@ export class DetailsComponent implements OnInit {
             title: element.propertyTitle,
             price: element.propertyPrice,
             rentType: rentType,
-            currency: element.country.currency,
-            propertyAddress: element.propertyAddress,
+            currency: element.country.currencyAr,
+            propertyAddress: element.propertyAddressArabic,
             id: element.id,
             alt: element.propertyTitle,
             src: image,
