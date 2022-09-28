@@ -4,7 +4,7 @@
         <form class="auth-form" [formGroup]="signup">
             <div ngClass="wecome-message">
                 <h2>مرحبا بكم في اوفاليويت</h2>
-                <p>Welcome back! Please enter your details.</p>
+                <p>مرحبًا بعودتك! الرجاء إدخال التفاصيل الخاصة بك..</p>
             </div>
             <div *ngIf="submitted && validate['FirstName'].errors" class="alert-indicators">
             </div>
@@ -79,9 +79,9 @@
             <div ngClass="landlord-checkbox-sec checkbox-design">
                 <mat-checkbox class="example-margin" (change)="toggleType($event)">هل أنت صاحب عقار أو متخصص في العقارات؟</mat-checkbox>
                 <div ngClass="dropdown hide">
-                    <button type="button" ngClass="btn dropdown-toggle" data-bs-toggle="dropdown">Professional Type</button>
+                    <button type="button" ngClass="btn dropdown-toggle" data-bs-toggle="dropdown">النوع المهني</button>
                     <div ngClass="dropdown-menu" id="property-type-sec">
-                        <h5 ngClass="h5-heading">Professional Type</h5>
+                        <h5 ngClass="h5-heading">النوع المهني</h5>
                         <div ngClass="property-types-heading">
                             <ul ngClass="nav nav-tabs">
                                 <li ngClass="nav-item" *ngFor="let data of signUpPropertytype">
@@ -102,17 +102,17 @@
                 <button mat-raised-button type="submit" ngClass="submit-btn">اشتراك</button>
             </mat-card-actions>
             <div ngClass="terms-text">
-                <p>By submitting, I accept Ovaluate’s <a routerLink="/ar/term-condition">الشروط والأحكام.</a></p>
+                <p>من خلال التقديم ، أنا أقبل Ovaluate's <a routerLink="/ar/term-condition">الشروط والأحكام.</a></p>
             </div>
             <div ngClass="or-connect">
-                <p>Or connect with</p>
+                <p>أو تواصل مع</p>
             </div>
             <div class="continue-btns">
                 <button ngClass="google-btn" #signupRef (click)="callLogin()"><img src="{{goggle}}">الدخول مع جوجل</button>
                 <button ngClass="apple-btn"><img src="{{apple}}"> تسجيل الدخول مع التفاح</button>
             </div>
             <div ngClass="dont-have-account text-center">
-                <p>Already have an account? <a href="/ar/login">تسجيل الدخول</a></p>
+                <p>هل لديك حساب؟ <a href="/ar/login">تسجيل الدخول</a></p>
             </div>
         </form>
     </div>
