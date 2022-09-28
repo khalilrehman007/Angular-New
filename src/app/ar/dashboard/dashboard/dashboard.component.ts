@@ -257,7 +257,7 @@ blogs: any;
       let temp: any = e;
       if (temp.message == "Country list fetched successfully") {
         for (let country of temp.data) {
-          this.country.push({ viewValue: country.name, value: country.id });
+          this.country.push({ viewValue: country.nameAr, value: country.id });
         }
       }
     });
@@ -592,7 +592,7 @@ blogs: any;
       let temp: any = e;
       if (temp.message == "Country list fetched successfully") {
         for (let country of temp.data) {
-          this.country.push({ viewValue: country.name, value: country.id });
+          this.country.push({ viewValue: country.nameAr, value: country.id });
         }
       }
     });
@@ -605,7 +605,7 @@ blogs: any;
       let temp: any = e;
       if (temp.message == "City list fetched successfully") {
         for (let city of temp.data) {
-          this.city.push({ viewValue: city.name, value: city.id });
+          this.city.push({ viewValue: city.nameAr, value: city.id });
         }
       }
     });
