@@ -216,7 +216,7 @@ export class HeaderComponent implements OnInit {
       src: '../../../assets/images/icons/wallet.svg',
       class: 'nav-items my-wallet',
       text: 'محفظتى',
-      link: 'profile',
+      link: 'profile/wallet',
     }
   ]
 

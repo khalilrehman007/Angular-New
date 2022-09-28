@@ -179,7 +179,9 @@ blogs: any;
   userId: number;
   parentTabId: any = "";
   childTabId: any  = "";
+  url:any = "";
   constructor(private authService: AuthService, private service: AppService, private route: Router, private notifyService: NotificationService,private modalService: NgbModal) {
+    this.url = this.route.url.split("/");
     $(window).scrollTop(0);
     this.getUser();
     this.userId = this.user.id;
@@ -214,7 +216,6 @@ blogs: any;
       }
       this.service.MyActivityPropertyListingViewForAgent({ "UserId": this.userData.id, "PropertyCategoryId": "" }).subscribe((result:any) => {
         this.activityViewData = result.data;
-        // console.log(this.activityViewData);
       })
       this.service.SummaryLeads({ "UserId": this.userData.id, "PropertyCategoryId": "1" }).subscribe((result: any) => {
         if (result.data.length > 0) {
@@ -229,6 +230,13 @@ blogs: any;
         } else {
           this.leadSummary = "temp";
         }
+        setTimeout(() => {
+          if(this.url[3] == "wallet") {
+            $(".dashboard-tabs .wallet-btn").click();
+          } else if(this.url[3] == "my-listing") {
+            $(".dashboard-tabs .my-listing-btn").click();
+          }
+        },500);
         this.showLoader = false;
       })
       this.service.MyPackages(this.userData.id).subscribe((result: any) => {
@@ -236,7 +244,6 @@ blogs: any;
       })
       this.service.MyActivitySavedSearchProperty({ "UserId": this.userData.id, "PropertyListingTypeId": "" }).subscribe((result: any) => {
         this.activitySavedSearch = result.data;
-        // console.log(this.activitySavedSearch)
       })
     })
     this.service.LoadPropertyListingTypes().subscribe(e => {
@@ -825,38 +832,13 @@ blogs: any;
 
     let valuationData = new FormData();
       valuationData.append("CompanyRequest", JSON.stringify(this.companyFormData));
-      // console.log(this.agentFormData)
 
       for (let i = 0; i < 4; i++) {
-        // console.log(this.otherImages[i])
         valuationData.append(i+1 + "_" + this.otherImages[i].file.name, this.otherImages[i].file);
       }
     
 
-    // if ( this.data.CompanyName = this.companyDetailsFormData.value.companyName )
     let token: any = localStorage.getItem("token");
-    // console.log(this.companyFormData)
-      // token = JSON.parse(token);
-      // $.ajax({
-      //   url: "https://beta.ovaluate.com/api/AddUpdateCompany",
-      //   method: "post",
-      //   contentType: false,
-      //   processData: false,
-      //   headers: {
-      //     "Authorization": 'bearer ' + token
-      //   },
-      //   dataType: "json",
-      //   success: (res) => {
-      //     console.log(res)
-      //     this.companyDetailsFormData = res.data.id;
-      //     this.notifyService.showSuccess(res.message, "Company details updated successfully");
-      //   },
-      //   error: (err) => {
-      //     this.notifyService.showError(err, "");
-
-      //   }
-      // })
-
   }
 
   agentBrokerId: any;
@@ -913,7 +895,6 @@ blogs: any;
       }
       let token: any = localStorage.getItem("token");
       token = JSON.parse(token);
-      // console.log(JSON.stringify(this.agentFormData))
       $.ajax({
         url: "https://beta.ovaluate.com/api/AddUpdateAgentDetails",
         method: "post",
@@ -925,15 +906,10 @@ blogs: any;
         },
         dataType: "json",
         success: (res:any) => {
-          // console.log(res)
           this.agentBrokerId = res.data.id;
           if(res.message == "agent request completed successfully") {
             this.notifyService.showSuccess(res.message, "Agent details updated successfully");
           }
-          // if(res.message == "Property Listing request completed successfully") {
-          //   localStorage.removeItem("propertyData");
-          //   this.route.navigate(['listpropertypublish'])
-          // }
         },
         error: (err) => {
           this.notifyService.showError(err, "");
