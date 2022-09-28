@@ -1721,28 +1721,28 @@
                                             </div>
                                             <div ngClass="my_valuation-inner-div category">
                                                 <h6>فئة</h6>
-                                                <p>{{item.propertyCategory.categoryName}}</p>
+                                                <p>{{item.propertyCategory.categoryNameAr}}</p>
                                             </div>
                                             <div ngClass="my_valuation-inner-div place">
                                                 <h6>أماكن</h6>
-                                                <p>{{item.city.name}}</p>
+                                                <p>{{item.city.nameAr}}</p>
                                             </div>
                                             <div ngClass="my_valuation-inner-div property_type">
                                                 <h6>نوع العقار</h6>
-                                                <p>{{item.propertyType.typeDescription}}</p>
+                                                <p>{{item.propertyType.typeDescriptionAr}}</p>
                                             </div>
                                             <div ngClass="my_valuation-inner-div payemnt"
                                                 *ngIf="item.valuationStatus.statusDescription == 'Payment Pending'">
-                                                <p ngClass="payment pending">Payment Pending</p>
-                                                <a class="pay-now-btn cursor-pointer" routerLink="/ar/PropertyPayment">Pay Now</a>
+                                                <p ngClass="payment pending">انتظار الدفع</p>
+                                                <a class="pay-now-btn cursor-pointer" routerLink="/ar/PropertyPayment">ادفع الآن</a>
                                             </div>
                                             <div ngClass="my_valuation-inner-div payemnt"
                                                 *ngIf="item.valuationStatus.statusDescription != 'Payment Pending'">
                                                 <p ngClass="payment success">
-                                                    <mat-icon>check_circle</mat-icon> Submitted
+                                                    <mat-icon>check_circle</mat-icon> مُقَدَّم
                                                 </p>
                                                 <a class="download-pdf cursor-pointer"
-                                                    (click)="downloadReport(item.reportNumberCode)">Download Pdf</a>
+                                                    (click)="downloadReport(item.reportNumberCode)">تحميل PDF</a>
                                             </div>
                                         </div>
                                     </div>
