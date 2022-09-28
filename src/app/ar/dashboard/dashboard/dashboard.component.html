@@ -256,10 +256,10 @@
                                                 <img src="assets/images/user.png" alt="">
                                             </div>
                                             <div class="col base-info-col">
-                                                <h4 class="name" *ngIf="data && data.name">{{data.nameAr}}</h4>
+                                                <h4 class="name" *ngIf="data && data.nameAr">{{data.nameAr}}</h4>
                                                 <p *ngIf="data && data.leadDate">{{data.leadDate.split("T")[0]}}</p>
-                                                <p *ngIf="data.propertyListing.city && data.propertyListing.city.name">
-                                                    {{data.propertyListing.city.name}}, الامارات</p>
+                                                <p *ngIf="data.propertyListing.city && data.propertyListing.city.nameAr">
+                                                    {{data.propertyListing.city.nameAr}}, الامارات</p>
                                             </div>
                                             <div class="col ">
                                                 <span>معرف الخاصية</span>
@@ -270,15 +270,15 @@
 
                                                 <span>نوع البناية</span>
                                                 <p
-                                                    *ngIf="data.propertyListing.propertyCategory && data.propertyListing.propertyCategory.categoryName">
-                                                    {{data.propertyListing.propertyCategory.categoryName}}</p>
+                                                    *ngIf="data.propertyListing.propertyCategory && data.propertyListing.propertyCategory.categoryNameAr">
+                                                    {{data.propertyListing.propertyCategory.categoryNameAr}}</p>
                                             </div>
                                             <div class="col ">
 
                                                 <span>البحث عن</span>
                                                 <p
-                                                    *ngIf="data.propertyListing.propertyListingType && data.propertyListing.propertyListingType.name">
-                                                    {{data.propertyListing.propertyListingType.name}}</p>
+                                                    *ngIf="data.propertyListing.propertyListingType && data.propertyListing.propertyListingType.nameAr">
+                                                    {{data.propertyListing.propertyListingType.nameAr}}</p>
                                             </div>
                                             <div class="col contact-col">
                                                 <span>اتصال</span>

@@ -220,6 +220,7 @@ blogs: any;
       this.service.SummaryLeads({ "UserId": this.userData.id, "PropertyCategoryId": "1" }).subscribe((result: any) => {
         if (result.data.length > 0) {
           this.leadSummary = result.data;
+          console.log(this.leadSummary)
           for (let i = 0; i < this.leadSummary.length; i++) {
             if (this.leadSummary[i].propertyListing.propertyCategory.categoryName == "Residential") {
               this.leadsResidentialSummary.push(this.leadSummary[i]);
