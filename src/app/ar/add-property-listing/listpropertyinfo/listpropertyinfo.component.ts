@@ -3,9 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from "../../../service/auth.service";
 import { Router } from "@angular/router";
 import { NotificationService } from "../../../service/notification.service";
-import { disableDebugTools } from "@angular/platform-browser";
 import { AppService } from 'src/app/service/app.service';
-import { F } from '@angular/cdk/keycodes';
 import { Select2 } from 'select2';
 @Component({
   selector: 'app-listpropertyinfo',
@@ -68,6 +66,7 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
   ownershipType: any = [{ id: 1, name: "Freehold" }, { id: 2, name: "Leasehold" }];
   currentField: any;
   showLoader: boolean = false;
+  currency:any;
   SubmitForm = new FormGroup({
     PropertyAge: new FormControl("", [Validators.required]),
     BuildingName: new FormControl("", [Validators.required]),
@@ -91,6 +90,7 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
     return this.SubmitForm.controls;
   }
   constructor(private api: AppService, private service: AuthService, private route: Router, private notifyService: NotificationService) {
+    this.currency = localStorage.getItem("currency");
     this.api.PropertyListingRentBuy({ "Lat": this.data.PropertyLat, "Long": this.data.PropertyLong }).subscribe((result: any) => {
       this.propertyListingBuy = result.data.propertyListingBuy;
       this.propertyListingRent = result.data.propertyListingRent;
@@ -134,7 +134,6 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
   }
   ngOnInit() {
     $(".start-date-input").on("click", function () {
-      console.log($(this).find(".mat-datepicker-toggle"));
       $(this).find(".mat-datepicker-toggle").click();
     })
   }
@@ -283,8 +282,6 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
     if (id == 2) {
       this.api.PropertyTransactionTypes().subscribe((result: any) => {
         this.transactionType = result.data;
-        let a = setInterval(()=> {
-        },50);
       })
       this.api.LoadCompletionStatus().subscribe((result: any) => {
         this.completionStatus = result.data;
@@ -428,9 +425,6 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
         })
       }
     }
-  }
-  tempFunction() {
-    console.log($(".features-select").val());
   }
   onSubmit() {
     this.featuresFormData = $(".features-select").val();
@@ -692,9 +686,9 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
       temp.push({ PropertyFeatureId: this.featuresFormData[i] });
     }
     this.data.PropertyFeatures = temp;
-    console.log(this.data);
+    // console.log(this.data);
     localStorage.setItem('propertyData', JSON.stringify(this.data));
     localStorage.setItem('listingData', JSON.stringify(this.data));
-    this.route.navigate(['/add-property/listpropertymedia'])
+    this.route.navigate(['/ar/add-property/listpropertymedia'])
   }
 }

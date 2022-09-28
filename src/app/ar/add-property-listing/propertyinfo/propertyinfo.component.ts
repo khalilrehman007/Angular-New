@@ -63,7 +63,7 @@ export class PropertyinfoComponent implements OnInit {
   currentField: any;
 
   constructor(private route: Router, private notifyService: NotificationService, private service: AppService) {
-    if(!localStorage.getItem("user")) {
+    if (!localStorage.getItem("user")) {
       this.notifyService.showError("You need to register/login", "");
       this.route.navigate(["/login"]);
     }
@@ -147,10 +147,9 @@ export class PropertyinfoComponent implements OnInit {
     this.showLoader = true;
     this.service.LoadCountries().subscribe(e => {
       let temp: any = e;
-      console.log(temp.data);
       if (temp.message == "Country list fetched successfully") {
         for (let country of temp.data) {
-          this.country.push({ viewValue: country.nameAr, value: country.id });
+          this.country.push({ viewValue: country.nameAr, value: country.id, currency: country.currencyAr });
         }
         this.showLoader = false;
       }
@@ -171,6 +170,7 @@ export class PropertyinfoComponent implements OnInit {
     let temp = this.country.filter(function (c: any) {
       return c.value == e;
     });
+    localStorage.setItem("currency", temp[0].currency)
     this.countryName = temp[0].viewValue;
     this.getLocationDetails(temp[0].viewValue, false);
     this.countryId = e;
@@ -272,7 +272,6 @@ export class PropertyinfoComponent implements OnInit {
       $('.select2').select2();
     }
     $(".country-select").on("change", () => {
-      console.log($(".country-select").val());
       this.onCountrySelect($(".country-select").val());
     });
     $(".city-select").on("change", () => {
