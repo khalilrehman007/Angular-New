@@ -512,7 +512,7 @@ blogs: any;
           count = this.tabCounts.propertyListingExpireSoon
         }
         tempData.push(
-          { id: element.id, statusDescription: element.statusDescription, count: count });
+          { id: element.id, statusDescription: element.statusDescriptionAr, count: count });
       })
     });
     this.propertyListingStatus = tempData

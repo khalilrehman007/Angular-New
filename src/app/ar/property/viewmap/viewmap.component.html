@@ -18,7 +18,7 @@
 
                             </div>
                             <div ngClass="back-to-search">
-                                <a [routerLink]="['/property/search']" [queryParams]="{type: 'Rent',PropertyListingTypeId:1}"
+                                <a [routerLink]="['/ar/property/search']" [queryParams]="{type: 'Rent',PropertyListingTypeId:1}"
                                     ngClass="back-to-text">
                                     <mat-icon>keyboard_arrow_left</mat-icon> Back to List View
                                 </a>
@@ -28,7 +28,7 @@
                     <div ngClass="col-xl-8 col-lg-8 col-md-12 col-sm-12">
                         <div ngClass="map-view-right-listings mt-5">
                             <div ngClass="heading-apragraph-design">
-                                <h2>{{selectedPropertyTypeName}} Properties for {{type}} in UAE</h2>
+                                <h2>{{selectedPropertyTypeName}} عقارات للا {{type}} في الامارات</h2>
                                 <p>عرض {{totalRecord}} عقارات سكنية للايجار في الامارات</p>
                             </div>
                             <div ngClass="properties-filtr-values d-flex justify-content-spacebw">
@@ -42,7 +42,7 @@
                                             <mat-label><img src="{{videotiour}}"> جولة بالفيديو</mat-label>
                                             <mat-select (selectionChange)="videoSorting($event)">
                                                 <mat-option value="{{item.id}}" *ngFor="let item of videoTour">
-                                                    {{item.name}}</mat-option>
+                                                    {{item.nameAr}}</mat-option>
                                             </mat-select>
                                         </mat-form-field>
                                     </div>
@@ -96,7 +96,7 @@
                                             </button>
                                             <div ngClass="property-info">
                                                 <span ngClass="property-pricing"><span>{{slide.propertyPrice}}
-                                                        {{slide.currency}}</span>/yearly</span>
+                                                        {{slide.currency}}</span>/السنوي</span>
                                                 <span ngClass="property-name">{{slide.companyName}}</span>
                                                 <p ngClass="property-location"><img src="{{homelocationsvg}}" width="14"
                                                         alt="">{{slide.propertyAddress}}</p>
@@ -112,7 +112,7 @@
                                                     </span>
                                                 </div>
                                             </div>
-                                            <a [routerLink]="['/property/detail']" [queryParams]="{id: slide.id}"
+                                            <a [routerLink]="['/ar/property/detail']" [queryParams]="{id: slide.id}"
                                                 ngClass="linK_overlay"></a>
                                         </div>
                                     </div>
