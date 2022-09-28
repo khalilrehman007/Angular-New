@@ -951,8 +951,8 @@ blogs: any;
       response.data.forEach((element: any, i: any) => {
         let image: any;
         let rentTypeName = ''
-        if (element.rentType != null && element.rentType != undefined && element.rentType.name != undefined && element.rentType.name != null && element.propertyListingTypeId != 2) {
-            rentTypeName = '/'+element.rentType.name
+        if (element.rentType != null && element.rentType != undefined && element.rentType.nameAr != undefined && element.rentType.nameAr != null && element.propertyListingTypeId != 2) {
+            rentTypeName = '/'+element.rentType.nameAr
         }
         if (element.documents.length > 1) {
           image = this.baseUrl + element.documents[0].fileUrl
@@ -961,12 +961,12 @@ blogs: any;
         }
         tempData.push(
           {
-            id:element.id, propertyTitle: element.propertyTitle, propertyAddress: element.propertyAddress, img: image,
+            id:element.id, propertyTitle: element.propertyTitle, propertyAddress: element.propertyAddressArabic, img: image,
             buildingName: element.buildingName, bedrooms: element.bedrooms, bathrooms: element.bathrooms, carpetArea: element.carpetArea,
             unitNo: element.unitNo, totalFloor: element.totalFloor, floorNo: element.floorNo, propertyDescription: element.propertyDescription,
             requestedDate: element.requestedDate, furnishingType: element.furnishingType, propertyPrice: element.propertyPrice,
-            requestedDateFormat: element.requestedDateFormat, propertyType: element.propertyType.typeDescription,
-            expiredDateFormat: element.expiredDateFormat, rentType: rentTypeName, currency: element.country.currency
+            requestedDateFormat: element.requestedDateFormat, propertyType: element.propertyType.typeDescriptionAr,
+            expiredDateFormat: element.expiredDateFormat, rentType: rentTypeName, currency: element.country.currencyAr
           }
         );
       })
