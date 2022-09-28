@@ -57,7 +57,7 @@
 
         <div class="tab-wrap">
             <div ngClass="container_1280px">
-                <ul class="nav nav-pills" id="pills-tab" role="tablist">
+                <ul class="nav nav-pills dashboard-tabs" id="pills-tab" role="tablist">
                     <li class="nav-item" role="presentation">
                         <button class="nav-link active" id="pills-dashboard-tab" data-bs-toggle="pill"
                             data-bs-target="#pills-dashboard" type="button" role="tab" aria-controls="pills-dashboard"
@@ -75,7 +75,7 @@
                             *ngIf="professionalType == 1 || professionalType == 2 || professionalType == 3">يؤدي بلدي</button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="pills-listing-tab" data-bs-toggle="pill"
+                        <button class="nav-link my-listing-btn" id="pills-listing-tab" data-bs-toggle="pill"
                             data-bs-target="#pills-listing" type="button" role="tab" aria-controls="pills-listing"
                             aria-selected="false"
                             *ngIf="professionalType == 1 || professionalType == 2 || professionalType == 3">القوائم الخاصة بي</button>
@@ -85,15 +85,8 @@
                             data-bs-target="#pills-valuation" type="button" role="tab" aria-controls="pills-valuation"
                             aria-selected="false">تقييماتي</button>
                     </li>
-                    <!-- <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="pills-packages-tab" data-bs-toggle="pill"
-                            data-bs-target="#pills-packages" type="button" role="tab" aria-controls="pills-packages"
-                            aria-selected="false"
-                            *ngIf="professionalType == 1 || professionalType == 2 || professionalType == 3">My
-                            Packages</button>
-                    </li> -->
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="pills-valuation-tab" data-bs-toggle="pill"
+                        <button class="nav-link wallet-btn" id="pills-valuation-tab" data-bs-toggle="pill"
                             data-bs-target="#pills-wallet" type="button" role="tab" aria-controls="pills-wallet"
                             aria-selected="false">محفظتى</button>
                     </li>
@@ -103,11 +96,9 @@
                             aria-selected="false">رمز الإحالة الخاص بي</button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <!-- <button class="nav-link" id="">More</button> -->
                         <div ngbDropdown class="d-inline-block">
                             <button mat-icon-button ngClass="action-btn" id="dropdownBasic1" ngbDropdownToggle>أكثر</button>
                             <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                                <!-- <h5>Share with:</h5> -->
                                 <button ngbDropdownItem><a href=""><img src="{{web}}"> اذهب إلى Ovaluate</a></button>
                                 <button ngbDropdownItem><a href="" data-bs-toggle="pill" data-bs-target="#pills-profile"
                                         type="button" role="tab" aria-controls="pills-profile"
