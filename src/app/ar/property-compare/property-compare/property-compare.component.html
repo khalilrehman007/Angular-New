@@ -5,8 +5,8 @@
             <div ngClass="property_compare-header">
                 <ul>
                     <li (click)="scroll(target)">المواقع</li>
-                    <li (click)="scroll(property_info)">Property Info</li>
-                    <li (click)="scroll(other_details)">Other Details</li>
+                    <li (click)="scroll(property_info)">معلومات الملكية</li>
+                    <li (click)="scroll(other_details)">تفاصيل أخرى</li>
                 </ul>
             </div>
             <div ngClass="property-compare-box">
@@ -17,7 +17,7 @@
                                 <tr>
                                     <td ngClass="first-td-design">
                                         <div ngClass="property-cparison-heading">
-                                            <h4>Rental Property Comparision</h4>
+                                            <h4>مقارنة تأجير العقارات</h4>
                                         </div>
                                     </td>
                                     <td *ngFor="let property of compareData">
@@ -49,7 +49,7 @@
                             <tbody>
                                 <tr>
                                     <td ngClass="first-td-design">
-                                        Building Name / Project Name
+                                        اسم المبنى / اسم المشروع
                                     </td>
                                     <td *ngFor="let property of compareData">
                                         <strong>{{property.title}}</strong>
@@ -57,7 +57,7 @@
                                 </tr>
                                 <tr>
                                     <td ngClass="first-td-design">
-                                        Locality
+                                        المنطقة
                                     </td>
                                     <td *ngFor="let property of compareData">
                                         {{property.propertyAddress}}
@@ -76,7 +76,7 @@
                     </div>
                 </div>
                 <div ngClass="grey-heading" #property_info>
-                    <h2>Property Info</h2>
+                    <h2>معلومات الملكية</h2>
                 </div>
                 <div ngClass="compare-block">
                     <div ngClass="table-responsive table-design">
@@ -124,7 +124,7 @@
                                 </tr>
                                 <tr>
                                     <td ngClass="first-td-design">
-                                        Floor Number
+                                        رقم الدور
                                     </td>
                                     <td *ngFor="let property of compareData">
                                         {{property.floorNo}}
@@ -132,7 +132,7 @@
                                 </tr>
                                 <tr>
                                     <td ngClass="first-td-design">
-                                        Total Floors
+                                        مجموع الطوابق
                                     </td>
                                     <td *ngFor="let property of compareData">
                                         {{property.totalFloor}}
@@ -140,7 +140,7 @@
                                 </tr>
                                 <tr>
                                     <td ngClass="first-td-design">
-                                        Tower Block
+                                        برج سكني
                                     </td>
                                     <td *ngFor="let property of compareData">
                                         {{property.towerBlock}}
@@ -148,7 +148,7 @@
                                 </tr>
                                 <tr>
                                     <td ngClass="first-td-design">
-                                        Unit No
+                                        رقم الوحدة
                                     </td>
                                     <td *ngFor="let property of compareData">
                                         {{property.unitNo}}
@@ -159,7 +159,7 @@
                     </div>
                 </div>
                 <div ngClass="grey-heading" #other_details>
-                    <h2>Other Details</h2>
+                    <h2>تفاصيل أخرى</h2>
                 </div>
                 <div ngClass="compare-block">
                     <div ngClass="table-responsive table-design">
@@ -167,7 +167,7 @@
                             <tbody>
                                 <tr>
                                     <td ngClass="first-td-design">
-                                        Furnishing Status
+                                        حالة التأثيث
                                     </td>
                                     <td *ngFor="let property of compareData">
                                         {{property.furnishingType}}
@@ -187,8 +187,7 @@
 
                                             <div ngClass="proprty-View-detials">
                                                 <a [routerLink]="['/PropertDetailsPage']"
-                                                    [queryParams]="{id: property.id}" ngClass="grey-bordered-btn">View
-                                                    Details</a>
+                                                    [queryParams]="{id: property.id}" ngClass="grey-bordered-btn">عرض التفاصيل</a>
                                             </div>
                                         </ul>
                                     </td>
