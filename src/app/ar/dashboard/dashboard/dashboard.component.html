@@ -143,7 +143,7 @@
                             <li>Directly List your Property on Ovaluate</li>
                             <li>Directly List your Property on Ovaluate</li>
                         </ul>
-                        <a routerLink="/add-property/listingproperty" class="btn btn-primary"> قائمة الممتلكات</a>
+                        <a routerLink="/ar/add-property/listingproperty" class="btn btn-primary"> قائمة الممتلكات</a>
                     </div>
 
                     <div class="statictics-wrap">
@@ -303,7 +303,7 @@
                                                 </div>
                                             </div>
                                             <div class="col">
-                                                <a [routerLink]="['/property/detail']"
+                                                <a [routerLink]="['/ar/property/detail']"
                                                     [queryParams]="{id: data.propertyListingId}" class="view-more">
                                                     <img src="{{MoreIcon}}" alt="" class="icon">
                                                 </a>
@@ -362,7 +362,7 @@
                                                 </div>
                                             </div>
                                             <div class="col">
-                                                <a [routerLink]="['/property/detail']"
+                                                <a [routerLink]="['/ar/property/detail']"
                                                     [queryParams]="{id: data.propertyListingId}" class="view-more">
                                                     <img src="{{MoreIcon}}" alt="" class="icon">
                                                 </a>
@@ -381,13 +381,13 @@
                                     <p>بعض العقارات المختارة بالقرب من موقعك.</p>
                                 </div>
                                 <div ngClass="section-custom-title-right">
-                                    <a routerLink="/blog">اقرأ كل شيء</a>
+                                    <a routerLink="/ar/blog">اقرأ كل شيء</a>
                                 </div>
                             </div>
 
                             <div ngClass="row">
                                 <div ngClass="col-lg-4 col-md-6 blog-places-col" *ngFor=" let blog of blogs">
-                                    <a [routerLink]="['/blogs-details/' + blog.id]" ngClass="position-relative">
+                                    <a [routerLink]="['/ar/blogs-details/' + blog.id]" ngClass="position-relative">
                                         <img [src]="'https://www.ovaluate.com/'+blog.blogDocument.fileUrl"
                                             ngClass="img-fluid blog-image-homepage" alt="">
                                         <span ngClass="blog-tag">
@@ -454,7 +454,7 @@
                                                             <div class="col-lg-10">
                                                                 <div class="row">
                                                                     <div class="col-7">
-                                                                        <a routerLink="/property/detail" [queryParams]="{id: viewList.id}" class="agent-details__property-list-item-link cursor-pointer">{{viewList.propertyPrice}}
+                                                                        <a routerLink="/ar/property/detail" [queryParams]="{id: viewList.id}" class="agent-details__property-list-item-link cursor-pointer">{{viewList.propertyPrice}}
                                                                             {{viewList.currency}}
                                                                             <span>{{viewList.rentType}}</span>
                                                                         </a>
@@ -538,7 +538,7 @@
                                                                         <div
                                                                             class="agent-landing-featured__agent-right-panel">
                                                                             <h6 class="agent-landing-featured__property-heading"
-                                                                                routerLink="/agent-details/1">
+                                                                                routerLink="/ar/agent-details/1">
                                                                                 {{agentView.company}}</h6>
                                                                             <p
                                                                                 class="agent-landing-featured__property-text">
@@ -635,7 +635,7 @@
                                                             <div class="col-lg-10">
                                                                 <div class="row">
                                                                     <div class="col-7">
-                                                                        <a routerLink="/property/detail" [queryParams]="{id: viewList.id}" class="agent-details__property-list-item-link cursor-pointer">{{viewList.propertyPrice}}
+                                                                        <a routerLink="/ar/property/detail" [queryParams]="{id: viewList.id}" class="agent-details__property-list-item-link cursor-pointer">{{viewList.propertyPrice}}
                                                                             {{viewList.country.currency}}
                                                                             <span *ngIf="viewList.rentType">/{{viewList.rentType.name}}</span>
                                                                         </a>
@@ -719,7 +719,7 @@
                                                                         <div
                                                                             class="agent-landing-featured__agent-right-panel">
                                                                             <h6 class="agent-landing-featured__property-heading"
-                                                                                routerLink="/agent-details/1">
+                                                                                routerLink="/ar/agent-details/1">
                                                                                 {{agentView.company}}</h6>
                                                                             <p
                                                                                 class="agent-landing-featured__property-text">
@@ -1089,7 +1089,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="col">
-                                                            <a [routerLink]="['/property/detail']"
+                                                            <a [routerLink]="['/ar/property/detail']"
                                                                 [queryParams]="{id: item.propertyListingId}"
                                                                 class="view-more">
                                                                 <img src="{{MoreIcon}}" alt="" class="icon">
@@ -1335,7 +1335,7 @@
                                                                     class="img-fluid agent-details__property-list-item-img">
                                                             </div>
                                                             <div class="col-lg-10">
-                                                                <div class="row" [routerLink]="['/property/detail']"
+                                                                <div class="row" [routerLink]="['/ar/property/detail']"
                                                                     [queryParams]="{id: listing.id}">
                                                                     <div class="col-7">
                                                                         <a
@@ -1413,7 +1413,7 @@
                                                                                 <button ngbDropdownItem><a href=""><img
                                                                                             src="{{deleteimg}}">
                                                                                         Delete</a></button>
-                                                                                <button ngbDropdownItem><a routerLink="/add-property/edit/{{listing.id}}/listingproperty" target="_blank"><img
+                                                                                <button ngbDropdownItem><a routerLink="/ar/add-property/edit/{{listing.id}}/listingproperty" target="_blank"><img
                                                                                             src="{{editimg}}">
                                                                                         Edit</a></button>
                                                                             </div>
@@ -1746,7 +1746,7 @@
                                             <div ngClass="my_valuation-inner-div payemnt"
                                                 *ngIf="item.valuationStatus.statusDescription == 'Payment Pending'">
                                                 <p ngClass="payment pending">Payment Pending</p>
-                                                <a class="pay-now-btn cursor-pointer" routerLink="/PropertyPayment">Pay
+                                                <a class="pay-now-btn cursor-pointer" routerLink="/ar/PropertyPayment">Pay
                                                     Now</a>
                                             </div>
                                             <div ngClass="my_valuation-inner-div payemnt"
@@ -1798,7 +1798,7 @@
                                             <div ngClass="my_valuation-inner-div payemnt"
                                                 *ngIf="item.valuationStatus.statusDescription == 'Payment Pending'">
                                                 <p ngClass="payment pending">Payment Pending</p>
-                                                <a class="pay-now-btn cursor-pointer" routerLink="/PropertyPayment">Pay
+                                                <a class="pay-now-btn cursor-pointer" routerLink="/ar/PropertyPayment">Pay
                                                     Now</a>
                                             </div>
                                             <div ngClass="my_valuation-inner-div payemnt"
@@ -1806,7 +1806,7 @@
                                                 <p ngClass="payment success">
                                                     <mat-icon>check_circle</mat-icon> Submitted
                                                 </p>
-                                                <a routerLink="/PropertyDownloadReport" ngClass="download-pdf">Download
+                                                <a routerLink="/ar/PropertyDownloadReport" ngClass="download-pdf">Download
                                                     Pdf</a>
                                             </div>
                                         </div>
@@ -1850,7 +1850,7 @@
                                             <div ngClass="my_valuation-inner-div payemnt"
                                                 *ngIf="item.valuationStatus.statusDescription == 'Payment Pending'">
                                                 <p ngClass="payment pending">Payment Pending</p>
-                                                <a class="pay-now-btn cursor-pointer" routerLink="/PropertyPayment">Pay
+                                                <a class="pay-now-btn cursor-pointer" routerLink="/ar/PropertyPayment">Pay
                                                     Now</a>
                                             </div>
                                             <div ngClass="my_valuation-inner-div payemnt"
@@ -1858,7 +1858,7 @@
                                                 <p ngClass="payment success">
                                                     <mat-icon>check_circle</mat-icon> Submitted
                                                 </p>
-                                                <a routerLink="/PropertyDownloadReport" ngClass="download-pdf">Download
+                                                <a routerLink="/ar/PropertyDownloadReport" ngClass="download-pdf">Download
                                                     Pdf</a>
                                             </div>
                                         </div>
@@ -2772,7 +2772,7 @@
                             <li>Directly List your Property on Ovaluate</li>
                             <li>Directly List your Property on Ovaluate</li>
                         </ul>
-                        <a routerLink="/listingproperty" class="btn btn-primary">List Property</a>
+                        <a routerLink="/ar/listingproperty" class="btn btn-primary">List Property</a>
                     </div>
 
                     <div class="statictics-wrap mt-5">
@@ -3022,14 +3022,14 @@
                                     <p>Some of our picked properties near your location.</p>
                                 </div>
                                 <div ngClass="section-custom-title-right">
-                                    <a [routerLink]="['blogs']">Read all</a>
+                                    <a [routerLink]="['/ar/blogs']">Read all</a>
                                 </div>
                             </div>
 
                             <div ngClass="row">
                                 <!-- let blogs of Blogsec -->
                                 <div ngClass="col-lg-4 col-md-6 blog-places-col" *ngFor=" let blog of blogs">
-                                    <a [routerLink]="['/blogs/'+blog.id]" [queryParams]="{title: blog.blogTitle}"
+                                    <a [routerLink]="['/ar/blogs/'+blog.id]" [queryParams]="{title: blog.blogTitle}"
                                         ngClass="position-relative">
                                         <!-- blog.blogDocument.fileUrl -->
                                         <img [src]="'https://www.ovaluate.com/'+blog.blogDocument.fileUrl"
@@ -3591,7 +3591,7 @@
                                                                         <div
                                                                             class="agent-landing-featured__agent-right-panel">
                                                                             <h6 class="agent-landing-featured__property-heading"
-                                                                                routerLink="/agent-details/1">
+                                                                                routerLink="/ar/agent-details/1">
                                                                                 Better Homes Properties</h6>
                                                                             <p
                                                                                 class="agent-landing-featured__property-text">
@@ -3653,7 +3653,7 @@
                                                                         <div
                                                                             class="agent-landing-featured__agent-right-panel">
                                                                             <h6 class="agent-landing-featured__property-heading"
-                                                                                routerLink="/agent-details/1">
+                                                                                routerLink="/ar/agent-details/1">
                                                                                 Better Homes Properties</h6>
                                                                             <p
                                                                                 class="agent-landing-featured__property-text">
