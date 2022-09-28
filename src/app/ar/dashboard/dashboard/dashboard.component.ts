@@ -535,9 +535,9 @@ blogs: any;
       if(this.leadsData.length > 0) {
         for (let i = 0; i < this.leadsData.length; i++) {
           if (this.leadsData[i].propertyListing.propertyCategoryId == 1) {
-            this.leadsData[i].propertyCategory = "Residential"
+            this.leadsData[i].propertyCategory = "سكني"
           } else {
-            this.leadsData[i].propertyCategory = "Commercial"
+            this.leadsData[i].propertyCategory = "تجاري"
           }
         }
         for (let i = 0; i < this.leadsData.length; i++) {
