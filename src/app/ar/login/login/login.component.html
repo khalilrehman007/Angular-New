@@ -4,7 +4,7 @@
         <form class="auth-form" [formGroup]="Login">
             <div ngClass="wecome-message">
                 <h2>مرحبا بكم في أوڨالويت</h2>
-                <p>Welcome back! Please enter your details.</p>
+                <p>مرحبًا بعودتك! الرجاء إدخال التفاصيل الخاصة بك.</p>
             </div>
             <div *ngIf="submitted && validate['Email'].errors" class="alert-indicators">
             </div>
@@ -39,7 +39,7 @@
                 <button mat-raised-button type="submit" ngClass="submit-btn">تسجيل الدخول</button>
             </mat-card-actions>
             <div ngClass="or-connect">
-                <p>Or connect with</p>
+                <p>أو تواصل مع</p>
             </div>
             <div class="continue-btns">
                 <button ngClass="google-btn" #loginRef><img src="{{goggle}}"> الدخول مع جوجل</button>
