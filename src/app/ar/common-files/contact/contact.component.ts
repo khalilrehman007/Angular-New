@@ -17,12 +17,12 @@ export class ContactComponent implements OnInit {
 
   conductList = [
     {
-      value: 'Summary valuation  Certificate report',
-      text: "Summary Report"
+      value: 'تقرير شهادة التقييم الموجز',
+      text: "تقرير ملخص"
     },
     {
-      value: 'Detailed  valuation  Certificate report',
-      text: "Detailed Report"
+      value: 'تقرير شهادة تثمين مفصل',
+      text: "تقرير تفاصيل"
     },
   ]
   conductReport:string = "";
