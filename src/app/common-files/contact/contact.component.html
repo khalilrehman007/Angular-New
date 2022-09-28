@@ -104,3 +104,4 @@
     </section>
   </section>
 <app-footer></app-footer>
+<app-erroralert [error]="error" (errorResponse)="errorResponse($event)" *ngIf="showError"></app-erroralert>

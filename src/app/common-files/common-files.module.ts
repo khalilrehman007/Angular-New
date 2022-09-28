@@ -21,7 +21,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
-
+import { AlertsModule } from '../alerts/alerts.module';
 
 
 @NgModule({
@@ -48,6 +48,7 @@ import { MatInputModule } from '@angular/material/input';
     MatSelectModule,
     MatInputModule,
     ReactiveFormsModule,
+    AlertsModule,
     NgbModule
   ],
   exports: [
