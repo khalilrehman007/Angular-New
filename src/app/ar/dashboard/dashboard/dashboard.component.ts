@@ -654,7 +654,7 @@ blogs: any;
       response.data.forEach((element: any, i: any) => {
         let image: any;
         let rentTypeName = ''
-        if (element.rentType != null && element.rentType != undefined && element.rentType.name != undefined && element.rentType.name != null && element.propertyListingTypeId != 2) {
+        if (element.rentType != null && element.rentType != undefined && element.rentType.nameAr != undefined && element.rentType.nameAr != null && element.propertyListingTypeId != 2) {
           rentTypeName = '/'+element.rentType.nameAr
         }
         if (element.documents.length > 1) {
