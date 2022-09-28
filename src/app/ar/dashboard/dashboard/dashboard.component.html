@@ -1905,36 +1905,36 @@
                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                                         <div ngClass="my-wallet-list-design">
                                             <div ngClass="exisitng-amount">
-                                                <h6>Existing Amount</h6>
+                                                <h6>المبلغ الحالي</h6>
                                                 <p>100 AED</p>
                                             </div>
                                             <div ngClass="recharge-now-btn">
-                                                <a class="cursor-pointer">Recharge Now</a>
+                                                <a class="cursor-pointer">اشحن الآن</a>
                                             </div>
                                         </div>
                                         </div>
                                         </div>
                                     </div>
                                 </mat-tab>
-                                <mat-tab label="My Transactions">
+                                <mat-tab label="معاملاتي">
                                     <div ngClass="my-valuation-list-wrapper">
                                         <div ngClass="my-valuation-list-design d-flex">
                                             <div ngClass="my_valuation-inner-div valuation_property-name">
                                                 <div ngClass="valuation_property-name-first d-flex align-items-center">
                                                     <span ngClass="val_pro-number">1</span>
-                                                    <p>Transaction Detail</p>
+                                                    <p>تفاصيل الصفقة</p>
                                                 </div>
                                             </div>
                                             <div ngClass="my_valuation-inner-div category">
-                                                <h6>Transaction Number</h6>
+                                                <h6>رقم التحويلة</h6>
                                                 <p>123</p>
                                             </div>
                                             <div ngClass="my_valuation-inner-div place">
-                                                <h6>Transaction Date</h6>
+                                                <h6>تاريخ الصفقة</h6>
                                                 <p>16 Sep 2022</p>
                                             </div>
                                             <div ngClass="my_valuation-inner-div property_type">
-                                                <h6>Transaction Time</h6>
+                                                <h6>وقت المعاملة</h6>
                                                 <p>4:07 PM</p>
                                             </div>
                                         </div>
@@ -2113,7 +2113,7 @@
                                         </div>
                                     </div>
                                 </mat-tab>
-                                <mat-tab label="Agent/Broker Details"
+                                <mat-tab label="تفاصيل الوكيل / الوسيط"
                                     *ngIf="professionalType == 1 || professionalType == 2 || professionalType == 3">
                                     <div class="row">
                                         <div class="col-md-9">
@@ -2135,7 +2135,7 @@
                                                                 </div>
                                                                 <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                                                     <div ngClass="block-wrapper mb-4">
-                                                                        <label class="h6-design">BRN No.#</label>
+                                                                        <label class="h6-design">BRN No</label>
                                                                         <mat-form-field appearance="fill"
                                                                             class="full-width input-design-2">
                                                                             <input matInput formControlName="BRNNo">
@@ -2145,7 +2145,7 @@
                                                                 <div ngClass="col-xl-6 col-lg-6 col-sm-12">
 
                                                                     <div class="col-sm-12">
-                                                                        <h6 class="h6-design">Experts in</h6>
+                                                                        <h6 class="h6-design">خبراء في</h6>
                                                                         <div class="inneR-border-wrap">
                                                                             <div
                                                                                 class="checkbox-flex-box autoflex-layout">
@@ -2154,7 +2154,7 @@
                                                                                     *ngFor="let list of ExpertIn">
                                                                                     <input type="checkbox"
                                                                                         id="{{list.name}}"
-                                                                                        name="{{list.name}}"
+                                                                                        name="{{list.nameAR}}"
                                                                                         value="{{list.id}}">
                                                                                     <button
                                                                                         class="checkbox-btn">{{list.name}}</button>
@@ -2166,10 +2166,10 @@
                                                                 </div>
                                                                 <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                                                     <div ngClass="block-wrapper mb-4">
-                                                                        <label class="h6-design">Nationality</label>
+                                                                        <label class="h6-design">جنسية</label>
                                                                         <mat-form-field appearance="fill"
                                                                             class="full-width select-form input-design-2">
-                                                                            <mat-label>Select Nationality</mat-label>
+                                                                            <mat-label>اختر الجنسية</mat-label>
                                                                             <mat-select
                                                                                 (selectionChange)="onChangeNationality($event)">
                                                                                 <mat-option [value]="list.id"
@@ -2211,7 +2211,7 @@
                                                                                 <label>مجالات</label>
                                                                                 <div class="pet-policy-input">
                                                                                     <mat-form-field appearance="fill">
-                                                                                        <mat-label> Select the Areas
+                                                                                        <mat-label> حدد المناطق
                                                                                         </mat-label>
                                                                                         <mat-select multiple
                                                                                             [(value)]="areaData"
@@ -2230,7 +2230,7 @@
                                                                 </div>
                                                             </div>
                                                             <div ngClass="other-document-upload mt-4">
-                                                                <h6 ngClass="h6-design mb-3">Douments Upload</h6>
+                                                                <h6 ngClass="h6-design mb-3">تحميل المستندات</h6>
                                                                 <div ngClass="row">
                                                                     <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                                                                         <div ngClass="blue-upload-box">
@@ -2245,7 +2245,7 @@
                                                                                             ngClass="outpup-filename">{{
                                                                                             emirate[1] }}</span> <img
                                                                                             src="{{upload}}">
-                                                                                        <span ngClass="btn-txt">Picture: Emirates ID (Fornt View)</span></button>
+                                                                                        <span ngClass="btn-txt">هوية الإمارات (الواجهة الامامية)</span></button>
                                                                                 </div>
 
                                                                             </div>
@@ -2269,9 +2269,7 @@
                                                                                             ngClass="outpup-filename">{{
                                                                                             emirate[2] }}</span> <img
                                                                                             src="{{upload}}">
-                                                                                        <span ngClass="btn-txt">Picture:
-                                                                                            Emirates ID (Fornt
-                                                                                            View)</span></button>
+                                                                                        <span ngClass="btn-txt">هوية الإمارات (الواجهة الامامية)</span></button>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -2291,9 +2289,7 @@
                                                                                             ngClass="outpup-filename">{{
                                                                                             emirate[3] }}</span> <img
                                                                                             src="{{upload}}">
-                                                                                        <span ngClass="btn-txt">Picture:
-                                                                                            Emirates ID (Fornt
-                                                                                            View)</span></button>
+                                                                                        <span ngClass="btn-txt">هوية الإمارات (الواجهة الامامية)</span></button>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -2320,7 +2316,7 @@
 
                                 <!-- Profile Dashboard/Company Details -->
 
-                                <mat-tab label="Company Details"
+                                <mat-tab label="تفاصيل الشركة"
                                     *ngIf="professionalType == 1 || professionalType == 2 || professionalType == 3">
                                     <div class="row">
                                         <div class="col-md-9">
@@ -2341,7 +2337,7 @@
                                                                 </div>
                                                                 <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                                                     <div ngClass="block-wrapper mb-4">
-                                                                        <label class="h6-design">Trade License No.#</label>
+                                                                        <label class="h6-design">رقم الرخصة التجارية</label>
                                                                         <mat-form-field appearance="fill"
                                                                             class="full-width input-design-2">
                                                                             <input matInput
@@ -2351,7 +2347,7 @@
                                                                 </div>
                                                                 <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                                                     <div ngClass="block-wrapper mb-4">
-                                                                        <label class="h6-design">Permit No.#</label>
+                                                                        <label class="h6-design">رقم التصريح</label>
                                                                         <mat-form-field appearance="fill"
                                                                             class="full-width input-design-2">
                                                                             <input matInput formControlName="permitNo">
@@ -2360,7 +2356,7 @@
                                                                 </div>
                                                                 <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                                                     <div ngClass="block-wrapper mb-4">
-                                                                        <label class="h6-design">ORN No.#</label>
+                                                                        <label class="h6-design">ORN No</label>
                                                                         <mat-form-field appearance="fill"
                                                                             class="full-width input-design-2">
                                                                             <input matInput formControlName="ornNo">
@@ -2369,7 +2365,7 @@
                                                                 </div>
                                                                 <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                                                     <div ngClass="block-wrapper mb-4">
-                                                                        <label class="h6-design">RERA No.#</label>
+                                                                        <label class="h6-design">RERA No</label>
                                                                         <mat-form-field appearance="fill"
                                                                             class="full-width input-design-2">
                                                                             <input matInput formControlName="reraNo">
@@ -2379,7 +2375,7 @@
 
                                                                 <div ngClass="col-sm-12">
                                                                     <div ngClass="block-wrapper mb-4">
-                                                                        <label class="h6-design">Company Address</label>
+                                                                        <label class="h6-design">عنوان الشركة</label>
                                                                         <mat-form-field appearance="fill"
                                                                             class="full-width input-design-2">
                                                                             <input matInput
@@ -2394,7 +2390,7 @@
 
                                                                         <mat-form-field appearance="fill"
                                                                             class="full-width select-form input-design-2">
-                                                                            <mat-label>Select Country</mat-label>
+                                                                            <mat-label>حدد الدولة</mat-label>
                                                                             <mat-select
                                                                                 (selectionChange)="onCountrySelect($event);">
                                                                                 <mat-option *ngFor="let list of country"
@@ -2402,17 +2398,6 @@
                                                                                     {{ list.viewValue }}
                                                                                 </mat-option>
                                                                             </mat-select>
-                                                                            <!-- <mat-select>
-                                                                                <mat-option>
-                                                                                    Country 1
-                                                                                </mat-option>
-                                                                                <mat-option>
-                                                                                    Country 1
-                                                                                </mat-option>
-                                                                                <mat-option>
-                                                                                    Country 1
-                                                                                </mat-option>
-                                                                            </mat-select> -->
                                                                         </mat-form-field>
 
                                                                     </div>
@@ -2424,7 +2409,7 @@
 
                                                                         <mat-form-field appearance="fill"
                                                                             class="full-width select-form input-design-2">
-                                                                            <mat-label>Select City</mat-label>
+                                                                            <mat-label>اختر مدينة</mat-label>
                                                                             <mat-select
                                                                                 (selectionChange)="onCitySelect($event);">
                                                                                 <mat-option
@@ -2452,7 +2437,7 @@
 
 
                                                             <div ngClass="other-document-upload mb-4">
-                                                                <h6 ngClass="h6-design mb-3">Douments Upload</h6>
+                                                                <h6 ngClass="h6-design mb-3">تحميل المستندات</h6>
                                                                 <div ngClass="row">
                                                                     <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                                                                         <div ngClass="blue-upload-box">
@@ -2467,14 +2452,7 @@
                                                                                             ngClass="outpup-filename">{{
                                                                                             emirate[0] }}</span> <img
                                                                                             src="{{upload}}">
-                                                                                        <!-- <input type="file" hidden
-                                                                                        #emirateInput>
-                                                                                    <button mat-button><span
-                                                                                            ngClass="outpup-filename">
-                                                                                            Picture: Trade License
-                                                                                            Document </span>
-                                                                                        <img src="{{upload}}"> -->
-                                                                                        <span ngClass="btn-txt">Picture: Trade License Document</span>
+                                                                                        <span ngClass="btn-txt">وثيقة الرخصة التجارية</span>
                                                                                     </button>
                                                                                 </div>
                                                                             </div>
@@ -2505,7 +2483,7 @@
                                                                                             Picture: Permit No
                                                                                             Document</span>
                                                                                         <img src="{{upload}}"> <span -->
-                                                                                        <span ngClass="btn-txt">Picture: Permit No Document</span>
+                                                                                        <span ngClass="btn-txt">رقم تصريح الملف</span>
                                                                                     </button>
                                                                                 </div>
                                                                             </div>
@@ -2591,7 +2569,7 @@
                                         </div>
                                     </div>
                                 </mat-tab>
-                                <mat-tab label="Change Password">
+                                <mat-tab label="غير كلمة السر">
                                     <div class="row">
                                         <div class="col-md-9">
                                             <form [formGroup]="changePasswordForm">
@@ -2601,7 +2579,7 @@
                                                             <div ngClass="row">
                                                                 <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                                                     <div ngClass="block-wrapper mb-4">
-                                                                        <label class="h6-design">Change Password</label>
+                                                                        <label class="h6-design">غير كلمة السر</label>
                                                                         <mat-form-field appearance="fill"
                                                                             class="full-width input-design-2">
                                                                             <input matInput
@@ -2644,7 +2622,7 @@
                                         </div>
                                     </div>
                                 </mat-tab>
-                                <mat-tab label="Account Settings">
+                                <mat-tab label="إعدادت الحساب">
                                     <div class="row">
                                         <div class="col-md-12">
                                             <form action="">
@@ -2661,12 +2639,12 @@
                                                                     <div ngClass="block-wrapper mb-4">
                                                                         <div class="d-flex justify-content-between">
                                                                             <div>
-                                                                            <h3 class="sub-title">Language Settings</h3>
-                                                                            <label class="h6-design">Set your preferred language</label>
+                                                                            <h3 class="sub-title">اعدادات اللغة</h3>
+                                                                            <label class="h6-design">حدد لغتك المفضلة</label>
                                                                             </div>
                                                                             <mat-form-field appearance="fill"
                                                                                 class="select-form input-design-2">
-                                                                                <mat-label>Select Language</mat-label>
+                                                                                <mat-label>اختار اللغة</mat-label>
                                                                                 <mat-select>
                                                                                     <mat-option [value]="city">
                                                                                         تقرير مالي
@@ -2684,8 +2662,8 @@
                                                                     <div ngClass="block-wrapper mb-4">
                                                                         <div class="d-flex justify-content-between">
                                                                             <div>
-                                                                            <h3 class="sub-title">Push Notification Settings</h3>
-                                                                            <label class="h6-design">Get notifications from estatery to stay up-to-date.</label>
+                                                                            <h3 class="sub-title">اضغط على ضبط الاشعارات</h3>
+                                                                            <label class="h6-design">احصل على إشعارات من العقارات للبقاء على اطلاع دائم.</label>
                                                                             </div>
                                                                             <div class="form-check form-switch">
                                                                                 <mat-slide-toggle></mat-slide-toggle>
@@ -2698,10 +2676,10 @@
                                                                     <div ngClass="block-wrapper mb-4">
                                                                         <div class="d-flex justify-content-between">
                                                                             <div>
-                                                                            <h3 class="sub-title">Delete Account</h3>
-                                                                            <label class="h6-design">Delete your account and all the data</label>
+                                                                            <h3 class="sub-title">حذف الحساب</h3>
+                                                                            <label class="h6-design">احذف حسابك وجميع البيانات</label>
                                                                             </div>
-                                                                            <a href="#" class="btn btn-delete-act">Delete Account</a>
+                                                                            <a href="#" class="btn btn-delete-act">حذف الحساب</a>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -2727,7 +2705,7 @@
 
             </div>
 
-            <!-- code remove from line 2739 to 4867 -->
+            <!-- code remove from line 2739 to 4867 (Waste code here)-->
             <mat-tab-group class="tab-wrap" animationDuration="0ms" style="display: none;">
                 <mat-tab class="tab-item" label="Dashboard">
 

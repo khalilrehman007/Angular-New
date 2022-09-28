@@ -220,7 +220,6 @@ blogs: any;
       this.service.SummaryLeads({ "UserId": this.userData.id, "PropertyCategoryId": "1" }).subscribe((result: any) => {
         if (result.data.length > 0) {
           this.leadSummary = result.data;
-          console.log(this.leadSummary)
           for (let i = 0; i < this.leadSummary.length; i++) {
             if (this.leadSummary[i].propertyListing.propertyCategory.categoryName == "Residential") {
               this.leadsResidentialSummary.push(this.leadSummary[i]);
@@ -335,12 +334,12 @@ blogs: any;
   }
   changePassword() {
     if (this.changePasswordForm.value.currentPassword == "") {
-      alert("Enter Password");
+      alert("أدخل كلمة المرور");
     } else if (this.changePasswordForm.value.currentPassword == this.changePasswordForm.value.newPassword) {
       let temp: any = localStorage.getItem("user");
       temp = JSON.parse(temp);
       this.service.ChangePassword({ "Id": temp.id, "Password": this.changePasswordForm.value.currentPassword, "ConfirmPassword": this.changePasswordForm.value.newPassword }).subscribe((result: any) => {
-        alert("Password Changed Successfully");
+        alert("تم إعادة تعيين كلمة المرور الخاصة بك.");
         this.changePasswordForm.reset();
       })
     } else {
@@ -354,16 +353,16 @@ blogs: any;
       || this.countryId == -1
       || this.cityId == -1
       || $("#formDate").val() == "") {
-      alert("Enter all the fields");
+      alert("أدخل جميع الحقول");
       return;
     }
 
     if (this.agentDetailForm.value.agentBrnNo == "") {
-      alert("Enter BRN No");
+      alert("ادخال BRN No");
       return;
     }
     if (this.agentDetailForm.value.agentAboutMe == "") {
-      alert("Enter About Me");
+      alert("ادخال About Me");
       return;
     }
     let temp: any = localStorage.getItem("user");
@@ -378,10 +377,10 @@ blogs: any;
     this.data.DateOfBirth = $("#formDate").val();
     this.service.UpdatePersonalDetails(this.data).subscribe((result: any) => {
       if (result.message == "User  fetched successfully") {
-        alert("Profile Update Successfully");
+        alert("تم تحديث الملف الشخصي بنجاح");
         localStorage.setItem("user", JSON.stringify(result.data))
       } else {
-        alert("Something went wrong");
+        alert("حدث خطأ ما. أعد المحاولة من فضلك.");
       }
     });
     // this.data.BRNNo = this.agentDetailsFormData.value.agentBrnNo;
@@ -705,7 +704,7 @@ blogs: any;
       let response: any = data;
       response.data.forEach((element: any, i: any) => {
         tempData.push(
-          { id: element.id, name: element.name });
+          { id: element.id, name: element.nameAR });
       })
       this.ExpertIn = tempData
     });
@@ -717,7 +716,7 @@ blogs: any;
       let response: any = data;
       response.data.forEach((element: any, i: any) => {
         tempData.push(
-          { id: element.id, name: element.name });
+          { id: element.id, name: element.nameAr });
       })
       this.SpokenLanguages = tempData
     });
@@ -731,7 +730,7 @@ blogs: any;
       let response: any = data;
       response.data.forEach((element: any, i: any) => {
         tempData.push(
-          { id: element.id, name: element.name });
+          { id: element.id, name: element.nameAr });
       })
     });
     this.Nationality = tempData
@@ -766,7 +765,7 @@ blogs: any;
       let response: any = data;
       response.data.forEach((element: any, i: any) => {
         tempData.push(
-          { id: element.id, name: element.name });
+          { id: element.id, name: element.nameAr });
       })
     });
     this.districts = tempData
@@ -796,31 +795,31 @@ blogs: any;
 
   getCompanyData(){
     if (this.companyFormData.companyName) {
-      this.error = "Enter Company Name";
+      this.error = "اسم الشركة مطلوب";
       this.showError = true;
       return;
     } else if (this.companyFormData.tradeLicenseNo) {
-      this.error = "Enter Trade License No";
+      this.error = "رقم الترخيص مطلوب";
       this.showError = true;
       return;
     } else if (this.companyFormData.premitNo) {
-      this.error = "Enter Permit No";
+      this.error = "ادخال رقم التصريح";
       this.showError = true;
       return;
     } else if (this.companyFormData.ornNo) {
-      this.error = "Enter ORN no";
+      this.error = "ادخال ORN no";
       this.showError = true;
       return;
     } else if (this.companyFormData.reraNo) {
-      this.error = "Enter RERA no";
+      this.error = "ادخال RERA no";
       this.showError = true;
       return;
     } else if (this.companyFormData.companyAdress) {
-      this.error = "Enter Company Address";
+      this.error = "ادخال عنوان الشركة  ";
       this.showError = true;
       return;
     } else if (this.otherImages.length < 4) {
-      this.notifyService.showError('Please select all images', "Error");
+      this.notifyService.showError('الرجاء تحديد جميع الصور', "خلل");
       return;
     } 
 
@@ -846,7 +845,7 @@ blogs: any;
   imageObject: any = []
   getAgentData() {
     if (this.otherImages.length < 3) {
-      this.notifyService.showError('Please enter all data', "Error");
+      this.notifyService.showError('الرجاء إدخال كافة البيانات', "خلل");
     } else {
       
       if (this.NationalityId == null || this.NationalityId == undefined) {
