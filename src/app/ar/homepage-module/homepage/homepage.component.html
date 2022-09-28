@@ -102,7 +102,7 @@
                                         d="M12.083 9.16797C12.7734 9.16797 13.333 8.60833 13.333 7.91797C13.333 7.22761 12.7734 6.66797 12.083 6.66797C11.3927 6.66797 10.833 7.22761 10.833 7.91797C10.833 8.60833 11.3927 9.16797 12.083 9.16797Z"
                                         stroke="#595ad4" stroke-width="2" stroke-linecap="round"
                                         stroke-linejoin="round" />
-                                </svg> {{ Rent }}</a>
+                                </svg> {{ RentAr }}</a>
                         </li>
                         <li ngClass="nav-item">
                             <a ngClass="nav-link" data-bs-toggle="tab" (click)="newData1()">
@@ -120,7 +120,7 @@
                                         stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                                     <path d="M15.417 7.91797V12.0846" stroke="#100A55" stroke-width="2"
                                         stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                                </svg> {{ Sale }}
+                                </svg> {{ SaleAr }}
                             </a>
                         </li>
                     </ul>
@@ -128,7 +128,7 @@
             </div>
             <div class="no-data-found" *ngIf="dynamicSlides1.length == 0">
                 <mat-icon>file_copy</mat-icon>
-                <p>No Data Found</p>
+                <p>لاتوجد بيانات</p>
             </div>
             <div ngClass="tab-content" *ngIf="dynamicSlides1.length > 0">
                 <div id="resedential-rent" class="tab-pane active">
@@ -154,12 +154,12 @@
                                     </button>
                                     <div ngClass="property-info">
                                         <span ngClass="property-pricing"><span>{{ slide.propertyPrice }} {{
-                                                slide.country.currency }}</span>
-                                            <span *ngIf="slide.rentType != null">/{{slide.rentType.name}}</span></span>
+                                                slide.country.currencyAr }}</span>
+                                            <span *ngIf="slide.rentType != null">/{{slide.rentType.nameAr}}</span></span>
                                         <span ngClass="property-name">{{ slide.buildingName }}</span>
                                         <p ngClass="property-location">
                                             <img src="{{ homelocationsvg }}" width="14"
-                                                alt="" />{{slide.propertyAddress}}
+                                                alt="" />{{slide.propertyAddressArabic}}
                                         </p>
                                         <div ngClass="property-details">
                                             <span ngClass="bed" *ngIf="slide.propertyType.hasBed">
@@ -213,7 +213,7 @@
                                         stroke="#595ad4" stroke-width="2" stroke-linecap="round"
                                         stroke-linejoin="round" />
                                 </svg>
-                                {{ Rent }}
+                                {{ RentAr }}
                             </a>
                         </li>
                         <li ngClass="nav-item">
@@ -232,7 +232,7 @@
                                         stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                                     <path d="M15.417 7.91797V12.0846" stroke="#100A55" stroke-width="2"
                                         stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                                </svg> {{ Sale }}
+                                </svg> {{ SaleAr }}
                             </a>
                         </li>
                     </ul>
@@ -240,7 +240,7 @@
             </div>
             <div class="no-data-found" *ngIf="dynamicSlides2.length == 0">
                 <mat-icon>file_copy</mat-icon>
-                <p>No Data Found</p>
+                <p>لاتوجد بيانات</p>
             </div>
             <div ngClass="tab-content" *ngIf="dynamicSlides2.length > 0">
                 <div id="resedential-rent" class="tab-pane active">
@@ -265,12 +265,12 @@
                                     </button>
                                     <div ngClass="property-info">
                                         <span ngClass="property-pricing"><span>{{ slide.propertyPrice }} {{
-                                                slide.country.currency }}</span>
-                                            <span *ngIf="slide.rentType != null">/{{slide.rentType.name}}</span></span>
+                                                slide.country.currencyAr }}</span>
+                                            <span *ngIf="slide.rentType != null">/{{slide.rentType.nameAr}}</span></span>
                                         <span ngClass="property-name">{{ slide.buildingName }}</span>
                                         <p ngClass="property-location">
                                             <img src="{{ homelocationsvg }}" width="14"
-                                                alt="" />{{slide.propertyAddress}}
+                                                alt="" />{{slide.propertyAddressArabic}}
                                         </p>
                                         <div ngClass="property-details">
                                             <span ngClass="bed" *ngIf="slide.propertyType.hasBed">
