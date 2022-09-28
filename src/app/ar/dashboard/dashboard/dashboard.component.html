@@ -628,25 +628,25 @@
                                                                 <div class="row">
                                                                     <div class="col-7">
                                                                         <a routerLink="/ar/property/detail" [queryParams]="{id: viewList.id}" class="agent-details__property-list-item-link cursor-pointer">{{viewList.propertyPrice}}
-                                                                            {{viewList.country.currency}}
-                                                                            <span *ngIf="viewList.rentType">/{{viewList.rentType.name}}</span>
+                                                                            {{viewList.country.currencyAr}}
+                                                                            <span *ngIf="viewList.rentType">/{{viewList.rentType.nameAr}}</span>
                                                                         </a>
                                                                     </div>
                                                                     <div class="col-5 text-end">
                                                                         <h4 class="sub-bold-text">{{viewList.propertyTitle}}</h4>
                                                                         <p class="agent-details__property-list-item-date">علي قائمة: <span class="value_span">{{viewList.requestedDateFormat}}</span></p>
-                                                                        <p class="agent-details__property-list-item-date">القائمة المختصرة بواسطة: <span class="value_span">{{viewList.numberOfUsershortListedProperty}} Persons</span></p>
-                                                                        <p class="agent-details__property-list-item-date">عرض بواسطة: <span class="value_span">{{viewList.numberOfUserSeeingProperty}} Persons</span></p>
+                                                                        <p class="agent-details__property-list-item-date">القائمة المختصرة بواسطة: <span class="value_span">{{viewList.numberOfUsershortListedProperty}} الأشخاص</span></p>
+                                                                        <p class="agent-details__property-list-item-date">عرض بواسطة: <span class="value_span">{{viewList.numberOfUserSeeingProperty}} الأشخاص</span></p>
                                                                     </div>
                                                                 </div>
                                                                 <h6>{{viewList.buildingName}}</h6>
                                                                 <p class="agent-details__property-list-item-text">
                                                                     <img src="assets/images/home-location.svg" alt=""
                                                                         class="img-fluid agent-details__property-list-item-text-icon">
-                                                                    {{viewList.propertyAddress}}
+                                                                    {{viewList.propertyAddressArabic}}
                                                                 </p>
                                                                 <p class="agent-details__property-list-item-type">
-                                                                    {{viewList.propertyType.typeDescription}}</p>
+                                                                    {{viewList.propertyType.typeDescriptionAr}}</p>
                                                                 <div class="row">
                                                                     <div class="col-md-10">
                                                                         <ul class="agent-details__property-detail-list">
