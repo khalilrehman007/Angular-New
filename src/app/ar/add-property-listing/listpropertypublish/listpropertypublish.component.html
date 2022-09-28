@@ -1,0 +1,52 @@
+<div class="back-tag-hide">
+<app-header2></app-header2>
+</div>
+<section ngClass="list-properties-sec">
+    <div ngClass="listing-container">
+        <div ngClass="heading-title-sec text-center">
+            <h2>List New Property</h2>
+            <p>تأكد من ملء جميع الحقول اللازمة وتحميل جميع الملفات المطلوبة.</p>
+        </div>
+        <div ngClass="listing-property-form-sec pusblished-sec">
+            <div ngClass="listing-property-ul">
+                <mat-list>
+                    <mat-list-item ngClass="active"> <a routerLink="/listingproperty"><span ngClass="">1</span>معلومات الملكية</a> </mat-list-item>
+                    <mat-list-item ngClass="active"><a routerLink=""><span ngClass="">2</span> Listing Info</a>
+                    </mat-list-item>
+                    <mat-list-item ngClass="active"> <a routerLink=""><span ngClass="">3</span> Media</a>
+                    </mat-list-item>
+                    <mat-list-item ngClass="active"> <a routerLink=""><span ngClass="">4</span> Publish</a>
+                    </mat-list-item>
+                </mat-list>
+            </div>
+            <div ngClass="list-property-content">
+                <div ngClass="list-property-body">
+                    <form action="">
+                        <div ngClass="form-border-wrapper">
+                            <div ngClass="list-property-header">
+                                <h5 ngClass="h5-heading">Published</h5>
+                                <p>يرجى تأكيد بعض الحقائق عن العقار</p>
+                            </div>
+                            <div ngClass="succesfully-addd-property">
+                                <div ngClass="checkmark_icon">
+                                    <img src="{{checkmark}}">
+                                </div>
+                                <h2>Successfully Added Your Property</h2>
+                                <p>We have received details of your property. It will be made live after quality checks within next 48 hours. You will be notified by email or SMS.</p>
+                            </div>
+                            <div ngClass="list-new-proerty-cntnt">
+                                <div ngClass="publishing-pictures-sec">
+                                    <div ngClass="new_listing-btn">
+                                        <button routerLink="/ar/profile/my-listing" ngClass="blue-listing-btn mb-3">View Your Listings</button>
+                                        <button routerLink="/ar/add-property/listingproperty" ngClass="blue-listing-btn"><span
+                                                ngClass="plus_icon-div">+</span>Add More Listing</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
