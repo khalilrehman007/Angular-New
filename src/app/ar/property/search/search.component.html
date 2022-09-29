@@ -79,7 +79,7 @@
                                                     [routerLink]="['/ar/property/detail']"
                                                     [queryParams]="{id: list.id}">
                                                     <h4>{{list.propertyPrice}} {{list.country.currencyAr}} <small
-                                                            *ngIf="list.rentType != ''">/{{list.rentType.nameAr}}</small></h4>
+                                                            *ngIf="list.rentType != null">/{{list.rentType.nameAr}}</small></h4>
                                                     <div ngClass="property-tags d-flex flex-wrap">
                                                         <span ngClass="tags-bg-grey">الوساطة:
                                                             {{list.brokerageChargePrice}} {{currency}}</span>
