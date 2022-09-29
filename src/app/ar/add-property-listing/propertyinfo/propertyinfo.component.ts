@@ -96,7 +96,7 @@ export class PropertyinfoComponent implements OnInit {
         let temp: any = e;
         if (temp.message == "City list fetched successfully") {
           for (let city of temp.data) {
-            this.city.push({ viewValue: city.name, value: city.id });
+            this.city.push({ viewValue: city.nameAr, value: city.id });
           }
           let interval: any = setInterval(() => {
             if (this.country.length > 0) {
@@ -109,12 +109,12 @@ export class PropertyinfoComponent implements OnInit {
           let a = this.city.filter(function (c: any) {
             return c.value == id;
           });
-          this.locationInformation.city = a[0].viewValue;
+          this.locationInformation.city = this.cityName = a[0].viewValue;
           this.service.LoadDistrict(this.cityId).subscribe(e => {
             let temp: any = e;
             if (temp.message == "District list fetched successfully") {
               for (let district of temp.data) {
-                this.district.push({ viewValue: district.name, value: district.id });
+                this.district.push({ viewValue: district.nameAr, value: district.id });
               }
               this.showLoader = false;
               let interval: any = setInterval(() => {
@@ -128,7 +128,7 @@ export class PropertyinfoComponent implements OnInit {
           });
         }
       });
-      this.locationInformation.address = this.oldData.PropertyAddress;
+      this.locationInformation.address = this.oldData.PropertyAddressArabic;
     }
   }
   changeInfo() {
@@ -140,8 +140,7 @@ export class PropertyinfoComponent implements OnInit {
   confirmLocation() {
     this.locationInformation.country = this.countryName;
     this.locationInformation.city = this.cityName;
-    this.locationInformation.address = localStorage.getItem("address");
-    localStorage.removeItem("address");
+    this.locationInformation.address = localStorage.getItem("arabicAddress");
   }
   loadCountriesData() {
     this.showLoader = true;
@@ -158,7 +157,7 @@ export class PropertyinfoComponent implements OnInit {
         let a = this.country.filter(function (c: any) {
           return c.value == id;
         });
-        this.locationInformation.country = a[0].viewValue;
+        this.locationInformation.country = this.countryName = a[0].viewValue;
       }
     });
   }
