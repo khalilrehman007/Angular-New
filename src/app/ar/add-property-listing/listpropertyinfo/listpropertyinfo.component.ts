@@ -167,11 +167,19 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
             this.locatedNearData.push(this.data.PropertyListingLocatedNears[i].LocatedNearId)
           }
         }
-        if (this.data.PropertyFeatures) {
-          for (let i = 0; i < this.data.PropertyFeatures.length; i++) {
-            this.featuresFormData.push(this.data.PropertyFeatures[i].PropertyFeatureId)
-          }
-        }
+        this.api.PropertyFeatures(this.data.PropertyTypeId).subscribe((result: any) => {
+          this.featuresData = result.data;
+          this.showLoader = false;
+          let interval: any = setInterval(() => {
+            if (this.featuresData.length > 0) {
+              for (let i = 0; i < this.data.PropertyFeatures.length; i++) {
+                $(".features-item-" + this.data.PropertyFeatures[i].PropertyFeatureId).attr("selected", "selected");
+              }
+              $('.select2').select2({ placeholder: "Click here to add more" });
+              clearInterval(interval);
+            }
+          }, 100);
+        })
 
         this.showLoader = true;
         this.categoryID = this.data.PropertyCategoryId;
@@ -248,8 +256,12 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
               propertyOffers: this.data.PropertyOffer
             })
           }
+          console.log(this.data)
           this.SubmitForm.patchValue({
-            price: this.data.PropertyPrice
+            PropertyAge: this.data.PropertyAge,
+            BuildingName: this.data.BuildingName,
+            price: this.data.PropertyPrice,
+            UnitNo: this.data.UnitNo,
           })
         });
       }
