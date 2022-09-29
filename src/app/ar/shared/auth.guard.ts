@@ -8,9 +8,9 @@ import {
   UrlTree
 } from '@angular/router';
 import { filter, Observable, pairwise } from 'rxjs';
-import { AuthService } from '../service/auth.service';
-import { NotificationService } from "../service/notification.service";
-import { AppService } from "../service/app.service";
+import { AuthService } from '../../service/auth.service';
+import { NotificationService } from "../../service/notification.service";
+import { AppService } from "../../service/app.service";
 import { Location } from "@angular/common";
 
 @Injectable({
@@ -33,7 +33,7 @@ export class AuthGuard implements CanActivate {
 
     if (!this.service.isAuthenticated()) {
       this.notifyService.showError("You need to register/login", "");
-      this.route.navigate(['login']);
+      this.route.navigate(['/ar/login']);
       return false;
     }
 

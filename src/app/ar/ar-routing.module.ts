@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from '../shared/auth.guard';
+import { AuthGuard } from './shared/auth.guard';
 
 const routes: Routes = [
   { path: "", loadChildren: () => import('./homepage-module/homepage-module.module').then(module => module.HomepageModuleModule) },
