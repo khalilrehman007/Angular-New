@@ -1,0 +1,891 @@
+<div class="back-tag-hide">
+<app-header2></app-header2>
+</div>
+<section ngClass="property-valuation-sec">
+    <div ngClass="listing-container full-width">
+        <div ngClass="heading-title-sec text-center">
+            <h2>Property Valuation</h2>
+            <p>Make sure you filled in all the necessary fields and have uploaded all the required files.</p>
+        </div>
+        <div ngClass="listing-property-form-sec">
+            <div ngClass="listing-property-ul">
+                <mat-list>
+                    <mat-list-item ngClass="active"> <a routerLink=""><span ngClass="">1</span> Details</a>
+                    </mat-list-item>
+                    <mat-list-item ngClass="active"><a routerLink=""><span ngClass="">2</span> Type</a></mat-list-item>
+                    <mat-list-item [ngClass]="'active'"> <a routerLink=""><span ngClass="">3</span> Documents</a>
+                    </mat-list-item>
+                    <mat-list-item [ngClass]="status5 ? 'active' : 'disabled'"> <a routerLink=""><span
+                                ngClass="">4</span> Review</a> </mat-list-item>
+                    <mat-list-item [ngClass]="status6 ? 'active' : 'disabled'"> <a routerLink=""><span
+                                ngClass="">5</span> Certificate Type</a> </mat-list-item>
+                    <mat-list-item [ngClass]="status7 ? 'active' : 'disabled'"> <a routerLink=""><span
+                                ngClass="">6</span> Payment</a> </mat-list-item>
+                    <mat-list-item> <a ngClass="disabled" routerLink=""><span ngClass="">7</span> Download Report</a>
+                    </mat-list-item>
+                </mat-list>
+            </div>
+            <div ngClass="list-property-content">
+                <div ngClass="list-property-body">
+                    <form>
+                        <div class="valuation-cstm_tabs property_documents" [ngClass]="status ? 'hide' : 'active'">
+                            <div ngClass="form-border-wrapper">
+                                <div ngClass="list-property-header">
+                                    <h5 ngClass="h5-heading">Documents</h5>
+                                    <p>Please provide your propety type for the valuation</p>
+                                </div>
+                                <div ngClass="madatory-document-upload mb-4" *ngIf="documentType.length > 0">
+                                    <h6 ngClass="h6-design mb-3">Mandatory Documents to upload*</h6>
+                                    <div ngClass="row required-docs">
+                                        <div ngClass="col-xl-4 col-lg-4 col-md-4 col-sm-12"
+                                            *ngIf="formData.TitleDeedNo != 0">
+                                            <div ngClass="blue-upload-box">
+                                                <div ngClass="blue-upload-bordered-btn">
+                                                    <h6 ngClass="blue-heading">{{documentType[0].documentName}}</h6>
+                                                    <div ngClass="upload-files-design">
+                                                        <div ngClass="greybordered-btn position-relative">
+                                                            <input type="file" #fileInput
+                                                                class="title-deed-image input-file"
+                                                                accept=".doc, .pdf, .jpg, .jpeg, .png"
+                                                                (change)='handleChange($any($event.target).files, 10)'>
+                                                            <button mat-button (click)="fileInput.click()"><img
+                                                                    src="{{upload}}"> Upload Files</button>
+                                                        </div>
+                                                        <div ngClass="uploded-output">
+                                                            <span ngClass="outpup-filename">{{ file }}</span>
+                                                            <div ngClass="action-btns">
+                                                                <button ngClass="trash" (click)="deleteImage(10)"><img
+                                                                        src="{{trash}}"></button>
+                                                            </div>
+                                                            <p ngClass="drag-drop-text">Drag & drop file here or Browse
+                                                            </p>
+                                                            <button ngClass="succesfull-uploaded"><img
+                                                                    src="{{checkmark}}"> Uploaded</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <p ngClass="accepted-file-text">Accepted File Type: .doc, .pdf, .jpg,
+                                                    .jpeg, .png</p>
+                                            </div>
+                                        </div>
+                                        <div ngClass="col-xl-4 col-lg-4 col-md-4 col-sm-12"
+                                            *ngIf="formData.MunicipalityNo != 0">
+                                            <div ngClass="blue-upload-box">
+                                                <div ngClass="blue-upload-bordered-btn">
+                                                    <h6 ngClass="blue-heading">{{documentType[1].documentName}}</h6>
+                                                    <div ngClass="upload-files-design">
+                                                        <div ngClass="greybordered-btn position-relative">
+                                                            <input type="file" #affectioninput
+                                                                class="affection-image input-file"
+                                                                accept=".doc, .pdf, .jpg, .jpeg, .png"
+                                                                (change)='affection($any($event.target).files, 11)'>
+                                                            <button mat-button (click)="affectioninput.click()"><img
+                                                                    src="{{upload}}"> Upload Files</button>
+                                                        </div>
+                                                        <div ngClass="uploded-output">
+                                                            <span ngClass="outpup-filename">{{ affecton }}</span>
+                                                            <div ngClass="action-btns">
+                                                                <button ngClass="trash" (click)="deleteImage(11)"><img
+                                                                        src="{{trash}}"></button>
+                                                            </div>
+                                                            <p ngClass="drag-drop-text">Drag & drop file here or Browse
+                                                            </p>
+                                                            <button ngClass="succesfull-uploaded"><img
+                                                                    src="{{checkmark}}"> Uploaded</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <p ngClass="accepted-file-text">Accepted File Type: .doc, .pdf, .jpg,
+                                                    .jpeg, .png</p>
+                                            </div>
+                                        </div>
+                                        <div ngClass="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                                            <div ngClass="blue-upload-box">
+                                                <div ngClass="blue-upload-bordered-btn">
+                                                    <div ngClass="d-flex align-items-center justify-content-spacebw">
+                                                    <h6 ngClass="blue-heading">{{documentType[2].documentName}}</h6>
+                                                    <button ngClass="camera-bitton" (click)="openCamera()"><mat-icon>camera_alt</mat-icon></button>
+                                                    <input type="file" accept="image/*" capture="environment" class="camera-image d-none" (change)='property($any($event.target).files, 12)'>
+                                                    </div>
+                                                    <div ngClass="upload-files-design">
+                                                        <div ngClass="greybordered-btn position-relative">
+                                                            <input type="file" #propertyInput
+                                                                class="front-view-image input-file"
+                                                                accept=".doc, .pdf, .jpg, .jpeg, .png"
+                                                                (change)='property($any($event.target).files, 12)'>
+                                                            <button mat-button (click)="propertyInput.click()"><img
+                                                                    src="{{upload}}"> Upload Files</button>
+                                                        </div>
+                                                        <div ngClass="uploded-output">
+                                                            <span ngClass="outpup-filename">{{ propertys }}</span>
+                                                            <div ngClass="action-btns">
+                                                                <button ngClass="trash" (click)="deleteImage(12)"><img
+                                                                        src="{{trash}}"></button>
+                                                            </div>
+                                                            <p ngClass="drag-drop-text">Drag & drop file here or Browse
+                                                            </p>
+                                                            <button ngClass="succesfull-uploaded"><img
+                                                                    src="{{checkmark}}"> Uploaded</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <p ngClass="accepted-file-text">Accepted File Type: .doc, .pdf, .jpg,
+                                                    .jpeg, .png</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div ngClass="other-document-upload mb-4" *ngIf="documentType.length > 0">
+                                    <h6 ngClass="h6-design mb-3">Other Documents Upload (optional)</h6>
+                                    <div ngClass="row">
+                                        <div ngClass="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                                            <div ngClass="blue-upload-box">
+                                                <div ngClass="upload-files-design">
+                                                    <div ngClass="greybordered-btn position-relative">
+                                                        <input type="file" #emirateInput0
+                                                            class="emirateInput0 input-file"
+                                                            accept=".doc, .pdf, .jpg, .jpeg, .png"
+                                                            (change)='emiratesfun($any($event.target).files, 0, documentType[3].id)'>
+                                                        <button mat-button (click)="emirateInput0.click()"><span
+                                                                ngClass="outpup-filename">{{ emirate[0] }}</span> <img
+                                                                src="{{upload}}"> <span
+                                                                ngClass="btn-txt">{{documentType[3].documentName}}</span></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div ngClass="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                                            <div ngClass="blue-upload-box">
+                                                <div ngClass="upload-files-design">
+                                                    <div ngClass="greybordered-btn position-relative">
+                                                        <input type="file" #emirateInput1
+                                                            class="emirateInput1 input-file"
+                                                            accept=".doc, .pdf, .jpg, .jpeg, .png"
+                                                            (change)='emiratesfun($any($event.target).files, 1, documentType[4].id)'>
+                                                        <button mat-button (click)="emirateInput1.click()"><span
+                                                                ngClass="outpup-filename">{{ emirate[1] }}</span> <img
+                                                                src="{{upload}}"> <span
+                                                                ngClass="btn-txt">{{documentType[4].documentName}}</span></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div ngClass="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                                            <div ngClass="blue-upload-box">
+                                                <div ngClass="upload-files-design">
+                                                    <div ngClass="greybordered-btn position-relative">
+                                                        <input type="file" #emirateInput2
+                                                            class="emirateInput2 input-file"
+                                                            accept=".doc, .pdf, .jpg, .jpeg, .png"
+                                                            (change)='emiratesfun($any($event.target).files, 2, documentType[5].id)'>
+                                                        <button mat-button (click)="emirateInput2.click()"><span
+                                                                ngClass="outpup-filename">{{ emirate[2] }}</span> <img
+                                                                src="{{upload}}"> <span
+                                                                ngClass="btn-txt">{{documentType[5].documentName}}</span></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div ngClass="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                                            <div ngClass="blue-upload-box">
+                                                <div ngClass="upload-files-design">
+                                                    <div ngClass="greybordered-btn position-relative">
+                                                        <input type="file" #emirateInput3
+                                                            class="emirateInput3 input-file"
+                                                            accept=".doc, .pdf, .jpg, .jpeg, .png"
+                                                            (change)='emiratesfun($any($event.target).files, 3, documentType[6].id)'>
+                                                        <button mat-button (click)="emirateInput3.click()"><span
+                                                                ngClass="outpup-filename">{{ emirate[3] }}</span> <img
+                                                                src="{{upload}}"> <span
+                                                                ngClass="btn-txt">{{documentType[6].documentName}}</span></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div ngClass="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                                            <div ngClass="blue-upload-box">
+                                                <div ngClass="upload-files-design">
+                                                    <div ngClass="greybordered-btn position-relative">
+                                                        <input type="file" #emirateInput4
+                                                            class="emirateInput4 input-file"
+                                                            accept=".doc, .pdf, .jpg, .jpeg, .png"
+                                                            (change)='emiratesfun($any($event.target).files, 4, documentType[7].id)'>
+                                                        <button mat-button (click)="emirateInput4.click()"><span
+                                                                ngClass="outpup-filename">{{ emirate[4] }}</span> <img
+                                                                src="{{upload}}"> <span
+                                                                ngClass="btn-txt">{{documentType[7].documentName}}</span></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div ngClass="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                                            <div ngClass="blue-upload-box">
+                                                <div ngClass="upload-files-design">
+                                                    <div ngClass="greybordered-btn position-relative">
+                                                        <input type="file" #emirateInput5
+                                                            class="emirateInput5 input-file"
+                                                            accept=".doc, .pdf, .jpg, .jpeg, .png"
+                                                            (change)='emiratesfun($any($event.target).files, 5, documentType[8].id)'>
+                                                        <button mat-button (click)="emirateInput5.click()"><span
+                                                                ngClass="outpup-filename">{{ emirate[5] }}</span> <img
+                                                                src="{{upload}}"> <span
+                                                                ngClass="btn-txt">{{documentType[8].documentName}}</span></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div ngClass="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                                            <div ngClass="blue-upload-box">
+                                                <div ngClass="upload-files-design">
+                                                    <div ngClass="greybordered-btn position-relative">
+                                                        <input type="file" #emirateInput6
+                                                            class="emirateInput6 input-file"
+                                                            accept=".doc, .pdf, .jpg, .jpeg, .png"
+                                                            (change)='emiratesfun($any($event.target).files, 6, documentType[9].id)'>
+                                                        <button mat-button (click)="emirateInput6.click()"><span
+                                                                ngClass="outpup-filename">{{ emirate[6] }}</span> <img
+                                                                src="{{upload}}"> <span
+                                                                ngClass="btn-txt">{{documentType[9].documentName}}</span></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div ngClass="upload_documents-div frame-border-inner">
+                                    <div ngClass="small-blue-black-heading">
+                                        <h6>Uploaded Documents</h6>
+                                        <p>List of the documents uploaded</p>
+                                    </div>
+                                    <div ngClass="upload-documents-list">
+                                        <div ngClass="doc-list-div d-flex justify-content-spacebq align-items-center"
+                                            *ngFor="let item of uploadedDocuments">
+                                            <div ngClass="d-flex doc-list-name align-items-center">
+                                                <div ngClass="document_img">
+                                                    <img src="{{item.imgsrc}}">
+                                                </div>
+                                                <div ngClass="doc-text-details">
+                                                    <h6>Document Name</h6>
+                                                    <p>{{item.documentName}}</p>
+                                                </div>
+                                            </div>
+                                            <div ngClass="doc-list-file">
+                                                <div ngClass="doc-text-details">
+                                                    <h6>File Name</h6>
+                                                    <p>{{item.fileName}}</p>
+                                                </div>
+                                            </div>
+                                            <div ngClass="doc-list-action">
+                                                <div ngClass="doc-text-actions">
+                                                    <h6>Action</h6>
+                                                    <div ngClass="action-text-btns">
+                                                        <a (click)="viewImage(item.imgsrc)"
+                                                            class="view-image-btn">View</a>
+                                                        <a (click)="deleteImage(item.index)"
+                                                            class="view-image-btn">Delete</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-right save-continue-sec">
+                                <mat-card-actions>
+                                    <a routerLink="/valuation/PropertyType" class="back-btn">Back</a>
+                                </mat-card-actions>
+                                <mat-card-actions>
+                                    <button (click)="Nextshow()" class="save-continue-btn">Save & Continue</button>
+                                </mat-card-actions>
+                            </div>
+                        </div>
+                        <div class="valuation-cstm_tabs property_review" [ngClass]="status1 ? 'active' : 'hide'">
+                            <div ngClass="form-border-wrapper">
+                                <div ngClass="list-property-header">
+                                    <h5 ngClass="h5-heading">Review</h5>
+                                </div>
+                                <div ngClass="pro-details-sec mb-4">
+                                    <div ngClass="row">
+                                        <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                                            <div ngClass="pro-details-left-column">
+                                                <h5 ngClass="h5-borderd-heading">Property Details</h5>
+                                                <div ngClass="row">
+                                                    <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                                                        <div ngClass="pro-details-info-blocks">
+                                                            <h6>Title Deed No.</h6>
+                                                            <p>{{formData.TitleDeedNo}}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                                                        <div ngClass="pro-details-info-blocks">
+                                                            <h6>Title Dead Type.</h6>
+                                                            <p>{{formData.TitleDeedType == 1 ? "Leasehold" :
+                                                                "Freehold"}}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                                                        <div ngClass="pro-details-info-blocks">
+                                                            <h6>Municipality No.</h6>
+                                                            <p>{{formData.MunicipalityNo}}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                                                        <div ngClass="pro-details-info-blocks">
+                                                            <h6>Property Insured</h6>
+                                                            <p>{{formData.PropertyInsured == 1 ? "Yes" : "No"}}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12"
+                                                        *ngIf="userData.ownerName">
+                                                        <div ngClass="pro-details-info-blocks">
+                                                            <h6>Name of the Owner</h6>
+                                                            <p>{{userData.ownerName}}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12"
+                                                        *ngIf="userData.PhoneNumber">
+                                                        <div ngClass="pro-details-info-blocks">
+                                                            <h6>Phone No. of the Owner</h6>
+                                                            <p>{{userData.PhoneNumber}}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12"
+                                                        *ngIf="userData.propertyCategory">
+                                                        <div ngClass="pro-details-info-blocks">
+                                                            <h6>Property Category</h6>
+                                                            <p>{{userData.propertyCategory}}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12"
+                                                        *ngIf="userData.propertyType">
+                                                        <div ngClass="pro-details-info-blocks">
+                                                            <h6>Property Type</h6>
+                                                            <p>{{userData.propertyType}}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12"
+                                                        *ngIf="userData.ValuationPurpose">
+                                                        <div ngClass="pro-details-info-blocks">
+                                                            <h6>Purpose of valuation</h6>
+                                                            <p>{{userData.ValuationPurpose}}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12"
+                                                        *ngIf="userData.PropertyStatus">
+                                                        <div ngClass="pro-details-info-blocks">
+                                                            <h6>Property Current Status</h6>
+                                                            <p>{{userData.PropertyStatus}}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12"
+                                                        *ngIf="formData.ConstructionAge">
+                                                        <div ngClass="pro-details-info-blocks">
+                                                            <h6>Construction Age</h6>
+                                                            <p>{{formData.ConstructionAge}}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12"
+                                                        *ngIf="userData.elevation">
+                                                        <div ngClass="pro-details-info-blocks">
+                                                            <h6>Elevation</h6>
+                                                            <p>{{userData.elevation}}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12"
+                                                        *ngIf="userData.PlotSize">
+                                                        <div ngClass="pro-details-info-blocks">
+                                                            <h6>Plot Size</h6>
+                                                            <p>{{userData.PlotSize}} Sq.Ft</p>
+                                                        </div>
+                                                    </div>
+                                                    <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12"
+                                                        *ngIf="userData.BuildupArea">
+                                                        <div ngClass="pro-details-info-blocks">
+                                                            <h6>Buildup Area</h6>
+                                                            <p>{{userData.BuildupArea}} Sq.Ft</p>
+                                                        </div>
+                                                    </div>
+                                                    <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12"
+                                                        *ngIf="userData.Bedrooms">
+                                                        <div ngClass="pro-details-info-blocks">
+                                                            <h6>Bedrooms</h6>
+                                                            <p>{{userData.Bedrooms}}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12"
+                                                        *ngIf="userData.Bathrooms">
+                                                        <div ngClass="pro-details-info-blocks">
+                                                            <h6>Bathrooms</h6>
+                                                            <p>{{userData.Bathrooms}}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12"
+                                                        *ngIf="userData.Furnishing">
+                                                        <div ngClass="pro-details-info-blocks">
+                                                            <h6>Furnishing Type</h6>
+                                                            <p>{{userData.Furnishing}}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12"
+                                                        *ngIf="userData.Fitting">
+                                                        <div ngClass="pro-details-info-blocks">
+                                                            <h6>Fitting Type</h6>
+                                                            <p>{{userData.Fitting}}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                                            <div ngClass="pro-details-right-column">
+                                                <h5 ngClass="h5-borderd-heading">Property Locations</h5>
+                                                <div ngClass="row">
+                                                    <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12"
+                                                        *ngIf="userData.country">
+                                                        <div ngClass="pro-details-info-blocks">
+                                                            <h6>Country</h6>
+                                                            <p>{{userData.country}}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12"
+                                                        *ngIf="userData.city">
+                                                        <div ngClass="pro-details-info-blocks">
+                                                            <h6>City</h6>
+                                                            <p>{{userData.city}}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12"
+                                                        *ngIf="userData.district">
+                                                        <div ngClass="pro-details-info-blocks">
+                                                            <h6>Area</h6>
+                                                            <p>{{userData.district}}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12"
+                                                        *ngIf="userData.address">
+                                                        <div ngClass="pro-details-info-blocks">
+                                                            <h6>Property Address</h6>
+                                                            <p>{{userData.address}}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12"
+                                                        *ngIf="userData.PlotNo">
+                                                        <div ngClass="pro-details-info-blocks">
+                                                            <h6>Plot No.</h6>
+                                                            <p>{{userData.PlotNo}}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12"
+                                                        *ngIf="userData.roads">
+                                                        <div ngClass="pro-details-info-blocks">
+                                                            <h6>No. of Road</h6>
+                                                            <p>{{userData.roads}}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div ngClass="building-unit-details-div">
+                                                    <h6 *ngIf="userData.ValuationPropertyUnits.length > 0">Building Unit
+                                                        Details</h6>
+                                                    <div ngClass="building-unit_div"
+                                                        *ngFor="let item of userData.ValuationPropertyUnits; let i = index">
+                                                        <p ngClass="building-unit-no">{{i+1}}</p>
+                                                        <div ngClass="row">
+                                                            <div ngClass="col-xl-3 col-lg-3 col-md-6 col-sm-12"
+                                                                *ngIf="item.NumberOfBeds != ''">
+                                                                <div ngClass="pro-details-info-blocks">
+                                                                    <h6>Number Of Beds</h6>
+                                                                    <p>{{item.NumberOfBeds}}</p>
+                                                                </div>
+                                                            </div>
+                                                            <div ngClass="col-xl-3 col-lg-3 col-md-6 col-sm-12"
+                                                                *ngIf="item.NumberOfUnit != ''">
+                                                                <div ngClass="pro-details-info-blocks">
+                                                                    <h6>Number Of Unit</h6>
+                                                                    <p>{{item.NumberOfUnit}}</p>
+                                                                </div>
+                                                            </div>
+                                                            <div ngClass="col-xl-3 col-lg-3 col-md-6 col-sm-12"
+                                                                *ngIf="item.RentValue != ''">
+                                                                <div ngClass="pro-details-info-blocks">
+                                                                    <h6>Rent Value</h6>
+                                                                    <p>{{item.RentValue}}</p>
+                                                                </div>
+                                                            </div>
+                                                            <div ngClass="col-xl-3 col-lg-3 col-md-6 col-sm-12"
+                                                                *ngIf="item.UnitSize != ''">
+                                                                <div ngClass="pro-details-info-blocks">
+                                                                    <h6>Unit Size</h6>
+                                                                    <p>{{item.UnitSize}}</p>
+                                                                </div>
+                                                            </div>
+                                                            <div ngClass="col-xl-3 col-lg-3 col-md-6 col-sm-12"
+                                                                *ngIf="item.Vacant != ''">
+                                                                <div ngClass="pro-details-info-blocks">
+                                                                    <h6>Vacant</h6>
+                                                                    <p>{{item.Vacant}}</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row" *ngIf="userData.PropertyFeatures.length > 0">
+                                                    <h6>Property Feature</h6>
+                                                    <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12"
+                                                        *ngFor="let item of userData.PropertyFeatures">
+                                                        <div ngClass="pro-details-info-blocks">
+                                                            <p>{{item}}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div ngClass="upload_documents-div frame-border-inner">
+                                    <div ngClass="upload-documents-list">
+                                        <div ngClass="small-blue-black-heading">
+                                            <h6>Uploaded Documents</h6>
+                                            <p>List of the documents uploaded</p>
+                                        </div>
+                                        <div ngClass="doc-list-div d-flex justify-content-spacebq align-items-center"
+                                            *ngFor="let item of uploadedDocuments">
+                                            <div ngClass="d-flex doc-list-name align-items-center">
+                                                <div ngClass="document_img">
+                                                    <img src="{{item.imgsrc}}">
+                                                </div>
+                                                <div ngClass="doc-text-details">
+                                                    <h6>Document Name</h6>
+                                                    <p>{{item.documentName}}</p>
+                                                </div>
+                                            </div>
+                                            <div ngClass="doc-list-file">
+                                                <div ngClass="doc-text-details">
+                                                    <h6>File Name</h6>
+                                                    <p>{{item.fileName}}</p>
+                                                </div>
+                                            </div>
+                                            <div ngClass="doc-list-action">
+                                                <div ngClass="doc-text-actions">
+                                                    <h6>Action</h6>
+                                                    <div ngClass="action-text-btns no-sperator">
+                                                        <a (click)="viewImage(item.imgsrc)"
+                                                            class="view-image-btn">View</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-right save-continue-sec">
+                                <mat-card-actions>
+                                    <button (click)="Prevshow()" class="back-btn">Back</button>
+                                </mat-card-actions>
+                                <mat-card-actions>
+                                    <button (click)="Nextshow1()" class="save-continue-btn">Save & Continue</button>
+                                </mat-card-actions>
+                            </div>
+                        </div>
+                        <div class="valuation-cstm_tabs property_certificate-type"
+                            [ngClass]="status2 ? 'active' : 'hide'">
+                            <div ngClass="form-border-wrapper" *ngIf="certificateData.packageTypes">
+                                <div ngClass="list-property-header">
+                                    <h5 ngClass="h5-heading">Certificate Type</h5>
+                                    <p>Select the type of certification you are looking for?</p>
+                                </div>
+                                <div ngClass="pro-details-sec mb-4 package-type-input">
+                                    <div ngClass="row">
+                                        <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12"
+                                            *ngFor="let item of data; let i = index">
+                                            <div ngClass="prperty_certificate-reports-div">
+                                                <div>
+                                                    <div ngClass="reports_header">
+                                                        <div ngClass="reports_img-icon">
+                                                            <img src="{{reportimg}}">
+                                                        </div>
+                                                        <div ngClass="reports_title-list">
+                                                            <h5>{{certificateData.packageTypes[i].name}}</h5>
+                                                            <p *ngIf="i == 0">
+                                                                <span
+                                                                    ngClass="discounted-price">{{valuationPrices.summeryCertificateSellingPrice}}{{currency}}</span>
+                                                                <span
+                                                                    ngClass="regular-price"><del>{{valuationPrices.summeryCertificatePrice}}{{currency}}</del></span>
+                                                                <span
+                                                                    ngClass="discount_offer">{{valuationPrices.summeryCertificateDiscount}}
+                                                                    % OFF</span>
+                                                            </p>
+                                                            <p *ngIf="i == 1">
+                                                                <span
+                                                                    ngClass="discounted-price">{{valuationPrices.detailCertificateSellingPrice}}{{currency}}</span>
+                                                                <span
+                                                                    ngClass="regular-price"><del>{{valuationPrices.detailedCertificatePrice}}{{currency}}</del></span>
+                                                                <span
+                                                                    ngClass="discount_offer">{{valuationPrices.detailCertificateDiscount}}
+                                                                    % OFF</span>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div ngClass="reports_cntnt-list">
+                                                        <div ngClass="reports_cntnt-list-inner"
+                                                            *ngFor="let item2 of certificateData.packageCategories; let j = index ">
+                                                            <h4>{{item2.name}}</h4>
+                                                            <ul *ngFor="let item3 of data[i][j]">
+                                                                <li *ngIf="item3.selected == true">
+                                                                    {{item3.packageTopic.name}}</li>
+                                                                <li *ngIf="item3.selected == false">-</li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <button class="summary_certificate-btn"
+                                                    (click)="SummaryReport(i, certificateData.packageTypes[i].id, valuationPrices.summeryCertificateSellingPrice)"
+                                                    *ngIf="i == 0"
+                                                    [ngClass]="status8 ? 'report-btn-active' : ''">{{valuationPrices.summeryCertificateSellingPrice}}
+                                                    {{currency}} Summary Certificate</button>
+                                                <button class="summary_certificate-btn"
+                                                    (click)="SummaryReport(i, certificateData.packageTypes[i].id, valuationPrices.detailCertificateSellingPrice)"
+                                                    *ngIf="i == 1"
+                                                    [ngClass]="status9 ? 'report-btn-active' : ''">{{valuationPrices.detailCertificateSellingPrice}}
+                                                    {{currency}} Detail Certificate</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div ngClass="certified_form-sec">
+                                    <form [formGroup]="reportForm">
+                                        <div ngClass="row">
+                                            <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+                                                <div ngClass="block-wrapper mb-4">
+                                                    <label class="h6-design">Report Language <span
+                                                            ngClass="required-span">*</span></label>
+                                                    <div class="checkbox-flex-box two-column language-input">
+                                                        <div class="checkbox-design position-relative"
+                                                            (click)="reportLanguage(1)">
+                                                            <input type="radio" id="english" name="building-type"
+                                                                value="english" />
+                                                            <button class="checkbox-btn">English Language</button>
+                                                        </div>
+                                                        <div class="checkbox-design position-relative"
+                                                            (click)="reportLanguage(2)">
+                                                            <input type="radio" id="arabic" name="building-type"
+                                                                value="arabic" />
+                                                            <button class="checkbox-btn">Arabic Language</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div ngClass="row">
+                                            <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+                                                <div ngClass="block-wrapper mb-4">
+                                                    <label class="h6-design">Name of the Property Owner.<span
+                                                            ngClass="required-span">*</span></label>
+                                                    <div class="name-input">
+                                                        <mat-form-field class="full-width input-design-2" appearance="fill">
+                                                            <input matInput type="text"
+                                                                placeholder="Enter the full name in the language of report"
+                                                                formControlName="name" (keypress)="validateName($event)"
+                                                                (input)="removeChar()" />
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+                                                <div ngClass="block-wrapper mb-4">
+                                                    <label class="h6-design">Enter Phone Number of Property Owner<span
+                                                            ngClass="required-span">*</span></label>
+                                                    <div class="phone-input">
+                                                        <div ngClass="position-relative country-code-select-design">
+                                                            <mat-form-field class="full-width input-design-2"
+                                                                appearance="fill">
+                                                                <input matInput type="number" placeholder="Enter Phone"
+                                                                    formControlName="phone" (input)="checkPhone()" />
+                                                            </mat-form-field>
+                                                            <mat-form-field appearance="fill" class="countries-select">
+                                                                <mat-select [formControl]="countriesList"
+                                                                    panelClass="example-panel-{{countriesList.value}}">
+                                                                    <mat-option value="+971">+971</mat-option>
+                                                                    <mat-option value="+91">+91</mat-option>
+                                                                </mat-select>
+                                                            </mat-form-field>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div ngClass="row">
+                                            <div ngClass="col-sm-12">
+                                                <div
+                                                    ngClass="block-wrapper mb-4 inspection-required-block input-date-picker input-design-2">
+                                                    <mat-checkbox class="example-margin">Do you have Referral Code
+                                                    </mat-checkbox>
+                                                    <mat-form-field class="full-width hide" appearance="fill">
+                                                        <input matInput type="text" placeholder="Enter Referral Code" />
+                                                    </mat-form-field>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div ngClass="row mb-4">
+                                            <div ngClass="col-sm-12">
+                                                <div class="d-inline-block accept-terms-input">
+                                                    <mat-checkbox class="example-margin" (change)="acceptTerms($event)">
+                                                        Accept <a routerLink="/term-condition" target="_blank">Term &
+                                                            Conditions.</a>
+                                                    </mat-checkbox>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div ngClass="row">
+                                            <div ngClass="col-sm-12">
+                                                <div
+                                                    ngClass="block-wrapper mb-4 inspection-required-block input-date-picker input-design">
+                                                    <mat-checkbox class="example-margin"
+                                                        (change)="onInspectionSelect($event)">Inspection Required
+                                                    </mat-checkbox>
+                                                    <mat-form-field class="full-width hide" appearance="fill">
+                                                        <input matInput type="datetime-local" id="formDate" />
+                                                    </mat-form-field>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="text-right save-continue-sec">
+                                <mat-card-actions>
+                                    <button (click)="Prevshow1()" class="back-btn">Back</button>
+                                </mat-card-actions>
+                                <mat-card-actions>
+                                    <button (click)="Nextshow2()" class="save-continue-btn">{{publishText}}</button>
+                                </mat-card-actions>
+                            </div>
+                        </div>
+                        
+                        <div class="valuation-cstm_tabs property_payment" *ngIf="showPayment"
+                            [ngClass]="status3 ? 'active' : 'hide'">
+                            <div ngClass="form-border-wrapper">
+                                <div ngClass="list-property-header mb-4">
+                                    <h5 ngClass="h5-heading">Payment</h5>
+                                    <p>Please provide your propety type for the valuation</p>
+                                </div>
+                                <div ngClass="payment-main-sec">
+                                    <div ngClass="row">
+                                        <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+                                            <div ngClass="payment-left-form-sec position-relative">
+                                                <div ngClass="payment-price-box">
+                                                    <p>Pay Ovaluate Real Estate Valuation Services LLC</p>
+                                                    <h3 ngClass="price">{{currency}}
+                                                        {{valuationResponse.valuationPayment.totalAmount}}</h3>
+                                                </div>
+                                                <div ngClass="payment-another-info">
+                                                    <div ngClass="detail-box d-flex justify-content-spacebw">
+                                                        <div ngClass="pay-heading-block">
+                                                            <h6>{{valuationResponse.reportPackage.name}}</h6>
+                                                            <p>{{userData.propertyCategory}} - {{userData.propertyType}}
+                                                                Valuation Report</p>
+                                                        </div>
+                                                        <p ngClass="price">{{currency}}
+                                                            {{valuationResponse.valuationPayment.reportAmount}}</p>
+                                                    </div>
+                                                    <div ngClass="Inspection-box d-flex justify-content-spacebw">
+                                                        <div ngClass="pay-heading-block">
+                                                            <h6>Inspection</h6>
+                                                        </div>
+                                                        <p ngClass="price">{{currency}}
+                                                            {{valuationResponse.valuationPayment.inspectionAmount}}</p>
+                                                    </div>
+                                                    <div ngClass="tax-box d-flex justify-content-spacebw">
+                                                        <div ngClass="pay-heading-block">
+                                                            <h6>Tax</h6>
+                                                        </div>
+                                                        <p ngClass="tax-cost">Included</p>
+                                                    </div>
+                                                    <div ngClass="totel-due-box d-flex justify-content-spacebw">
+                                                        <div ngClass="pay-heading-block">
+                                                            <h6>Total Due</h6>
+                                                        </div>
+                                                        <p ngClass="price">{{currency}}
+                                                            {{valuationResponse.valuationPayment.totalAmount}}</p>
+                                                    </div>
+                                                </div>
+                                                <div ngClass="strip-btn-div">
+                                                    <button ngClass="stripr-btn"><img src="{{stripe}}"></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+                                            <div ngClass="payment-right-form-sec">
+                                                <form [formGroup]="paymentForm">
+                                                    <div ngClass="block-wrapper mb-3">
+                                                        <label class="h6-design">Email</label>
+                                                        <mat-form-field class="full-width input-design-2 grey-input-bg"
+                                                            appearance="fill">
+                                                            <input matInput type="email"
+                                                                placeholder="{{valuationResponse.emailAddress}}"
+                                                                disabled>
+                                                        </mat-form-field>
+                                                    </div>
+                                                    <div ngClass="block-wrapper mb-3">
+                                                        <label class="h6-design">Card Number</label>
+                                                        <div class="card-number-input">
+                                                            <mat-form-field class="full-width input-design-2"
+                                                                appearance="fill">
+                                                                <input matInput type="number"
+                                                                    placeholder="1234 1234 1234 1234"
+                                                                    formControlName="cardNumber"
+                                                                    (input)="checkLength(1, false)">
+                                                            </mat-form-field>
+                                                        </div>
+                                                    </div>
+                                                    <div ngClass="block-wrapper mb-3">
+                                                        <label class="h6-design">Expiry</label>
+                                                        <div class="expiry-input">
+                                                            <mat-form-field class="full-width input-design-2"
+                                                                appearance="fill">
+                                                                <input matInput type="text" placeholder="MM/YY"
+                                                                    (input)="checkLength(3, true)"
+                                                                    (keypress)="onKeypressEvent($event)"
+                                                                    formControlName="expiryDate">
+                                                            </mat-form-field>
+                                                        </div>
+                                                    </div>
+                                                    <div ngClass="block-wrapper mb-3">
+                                                        <label class="h6-design">CVV</label>
+                                                        <div class="cvv-input">
+                                                            <mat-form-field class="full-width input-design-2"
+                                                                appearance="fill">
+                                                                <input matInput type="number" placeholder="CVV"
+                                                                    formControlName="cvv" (input)="checkLength(2, false)">
+                                                            </mat-form-field>
+                                                        </div>
+                                                    </div>
+                                                    <div ngClass="block-wrapper mb-3">
+                                                        <label class="h6-design">Name on Card</label>
+                                                        <div class="card-name-input">
+                                                            <mat-form-field class="full-width input-design-2"
+                                                                appearance="fill">
+                                                                <input matInput type="text" placeholder="Name"
+                                                                    formControlName="cardName">
+                                                            </mat-form-field>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-right save-continue-sec justify-content-end">
+                                <mat-card-actions (click)="getPaymentData()">
+                                    <a class="save-continue-btn">Proceed to Pay</a>
+                                </mat-card-actions>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<app-loader *ngIf="showLoader"></app-loader>
+<app-erroralert [error]="error" (errorResponse)="errorResponse($event)" *ngIf="showError"></app-erroralert>
