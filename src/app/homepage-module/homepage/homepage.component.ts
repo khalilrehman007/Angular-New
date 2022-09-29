@@ -133,6 +133,7 @@ export class HomepageComponent implements OnInit {
     pullDrag: true,
     dots: false,
     navSpeed: 700,
+    autoplay: true,
     autoWidth: true,
     responsive: {
       0: {
@@ -175,12 +176,13 @@ export class HomepageComponent implements OnInit {
     nav: false
   }
   testimonialslider: OwlOptions = {
-    loop: false,
+    loop: true,
     mouseDrag: true,
     touchDrag: true,
     pullDrag: true,
     dots: true,
     navSpeed: 700,
+    autoplay: true,
     responsive: {
       0: {
         items: 1

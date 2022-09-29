@@ -20,9 +20,6 @@ html[dir="rtl"]{
 		margin-left: 0px;
 		margin-right: 14px;
 	}
-	owl-carousel-o {
-		direction: ltr;
-	}
 	.property-item {
 		direction: rtl;
 		.property-whistlist {
@@ -342,9 +339,43 @@ html[dir="rtl"]{
     left: 15px;
     right: initial !important;
 }
-
-
-
+.listing-property-ul .mat-list .mat-list-item a {
+    font-size: 13px;
+}
+.listing-property-ul .mat-list .mat-list-item a > span {
+    margin-right: 0px;
+    margin-left: 4px;
+}
+.listing-property-ul .mat-list .mat-list-item:last-child:after{
+	display: block !important;
+}
+.listing-property-ul .mat-list .mat-list-item:first-child:after{
+	display: none;
+}
+.location-div-block .loc-heading {
+    padding-left: 0px;
+    padding-right: 38px;
+}
+.location-div-block p {
+    padding-left: 0px;
+    padding-right: 38px;
+}
+.location-div-block img {
+    top: 5px;
+}
+.location-information {
+    margin-top: 15px;
+}
+.input-date-picker .mat-form-field-flex .mat-form-field-suffix {
+    left: -8px;
+    right: initial;
+    border-left: 0px;
+    border-right: 0.5px solid rgba(0, 0, 0, 0.2);
+}
+.input-flaoted-left-text input{
+	padding-left: 0px;
+	padding-right: 50px;
+}
 
 	@media (max-width: 1199px){
 		#collapsibleNavbar{

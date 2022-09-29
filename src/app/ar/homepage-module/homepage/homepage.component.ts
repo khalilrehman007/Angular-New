@@ -102,6 +102,7 @@ export class HomepageComponent implements OnInit {
 
   customOptions: OwlOptions = {
     loop: false,
+    rtl:true,
     mouseDrag: true,
     touchDrag: true,
     pullDrag: true,
@@ -127,10 +128,12 @@ export class HomepageComponent implements OnInit {
   easyslider: OwlOptions = {
     loop: true,
     mouseDrag: true,
+    rtl:true,
     center: true,
     touchDrag: true,
     pullDrag: true,
     dots: false,
+    autoplay: true,
     navSpeed: 700,
     autoWidth: true,
     responsive: {
@@ -152,6 +155,7 @@ export class HomepageComponent implements OnInit {
   sellrentproperty: OwlOptions = {
     loop: true,
     mouseDrag: true,
+    rtl:true,
     touchDrag: true,
     pullDrag: true,
     dots: true,
@@ -174,10 +178,12 @@ export class HomepageComponent implements OnInit {
     nav: false
   }
   testimonialslider: OwlOptions = {
-    loop: false,
+    loop: true,
     mouseDrag: true,
     touchDrag: true,
+    rtl:true,
     pullDrag: true,
+    autoplay: true,
     dots: true,
     navSpeed: 700,
     responsive: {
