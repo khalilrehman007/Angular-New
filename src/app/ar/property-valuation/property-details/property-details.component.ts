@@ -168,7 +168,7 @@ export class PropertyDetailsComponent implements OnInit {
       let temp: any = e;
       if (temp.message == "Country list fetched successfully") {
         for (let country of temp.data) {
-          this.country.push({ viewValue: country.nameAr, value: country.id, currency: country.currency });
+          this.country.push({ viewValue: country.nameAr, value: country.id, currency: country.currencyAr });
         }
         this.showLoader = false;
       }

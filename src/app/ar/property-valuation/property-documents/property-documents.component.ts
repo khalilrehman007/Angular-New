@@ -41,7 +41,7 @@ export class PropertyDocumentsComponent implements OnInit {
   documentType: any = [];
   valuationResponse: any = {};
   showPayment: boolean = false;
-  publishText: any = "Submit";
+  publishText: any = "تقديم";
   showLoader: boolean = false;
   error: any = ""
   showError: boolean = false;
@@ -280,6 +280,8 @@ export class PropertyDocumentsComponent implements OnInit {
         a.push(temp);
       }
       this.data.push(a);
+      console.log(result.data)
+      console.log(a)
     });
   }
   Nextshow() {
@@ -374,7 +376,7 @@ export class PropertyDocumentsComponent implements OnInit {
       return;
     }
     this.showLoader = true;
-    this.publishText = "Please Wait...";
+    this.publishText = "أرجو الإنتظار...";
     this.formData.CustomerName = this.reportForm.value.name;
     let temp: any = this.countriesList.value
     this.formData.PhoneNumber = temp + this.reportForm.value.phone;
@@ -603,7 +605,7 @@ export class PropertyDocumentsComponent implements OnInit {
         localStorage.removeItem("valuationData");
         localStorage.removeItem("mapImg");
         this.showLoader = false;
-        this.router.navigate(['//valuation/PropertyDownloadReport']);
+        this.router.navigate(['/ar/valuation/PropertyDownloadReport']);
       } else {
         this.showLoader = false;
         this.error = result.error;
@@ -614,12 +616,12 @@ export class PropertyDocumentsComponent implements OnInit {
   constructor(private service: AppService, private datePipe: DatePipe, private router: Router) {
     this.userData = localStorage.getItem("valuationDetailData");
     this.userData = JSON.parse(this.userData);
+    console.log(this.userData);
     this.formData = localStorage.getItem("valuationData");
     this.formData = JSON.parse(this.formData);
     this.formData.InspectionRequired = false;
     this.service.ValuationDocumentTypes().subscribe((result: any) => {
       this.documentType = result.data;
-      console.log(this.documentType);
     })
     this.checkPackage();
     if (this.formData.TitleDeedNo == 0) {
