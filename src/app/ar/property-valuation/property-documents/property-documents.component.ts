@@ -47,7 +47,8 @@ export class PropertyDocumentsComponent implements OnInit {
   showError: boolean = false;
   requiredDocs: number = 3;
   currentField: any;
-  currency: any = localStorage.getItem("currency");
+  currency: any = localStorage.getItem("currencyAr");
+  currencyStripe: any = localStorage.getItem("currency");
   errorResponse(data: any) {
     this.showError = false;
     this.animate();
@@ -421,13 +422,13 @@ export class PropertyDocumentsComponent implements OnInit {
           this.valuationResponse = res.data;
           let tempUser:any = localStorage.getItem("user");
           let tempToken:any = localStorage.getItem("token");
-          localStorage.clear();
+          // localStorage.clear();
           localStorage.setItem("user", tempUser);
           localStorage.setItem("token", tempToken);
           let temp:any = {};
           temp.reportNumberCode = this.valuationResponse.reportNumberCode;
           temp.emailAddress = this.valuationResponse.emailAddress;
-          localStorage.setItem("valuationResponse", JSON.stringify(temp));
+          localStorage.setItem("valuationResponse", JSON.stringify(res.data));
           this.showPayment = true;
           this.status3 = !this.status3;
           this.status7 = !this.status7;
@@ -596,7 +597,7 @@ export class PropertyDocumentsComponent implements OnInit {
       return;
     }
     this.showLoader = true;
-    let data: any = { "CardNumder": number, "Currency": this.currency, "reportNumberCode": this.valuationResponse.reportNumberCode, "Month": date.toString().split("/")[0], "Year": "20" + date.toString().split("/")[1], "CVC": cvv, "Amount": this.valuationResponse.valuationPayment.totalAmount, "Email": this.valuationResponse.emailAddress, "CustomerName": this.paymentForm.value.cardName, "DescriptionPayment": this.userData.propertyCategory + " " + this.userData.propertyType + " " + this.valuationResponse.reportPackage.name };
+    let data: any = { "CardNumder": number, "Currency": this.currencyStripe, "reportNumberCode": this.valuationResponse.reportNumberCode, "Month": date.toString().split("/")[0], "Year": "20" + date.toString().split("/")[1], "CVC": cvv, "Amount": this.valuationResponse.valuationPayment.totalAmount, "Email": this.valuationResponse.emailAddress, "CustomerName": this.paymentForm.value.cardName, "DescriptionPayment": this.userData.propertyCategory + " " + this.userData.propertyType + " " + this.valuationResponse.reportPackage.name };
     this.service.ValuationPayment(data).subscribe((result: any) => {
       if (result.message == "Valuation transaction completed successfully") {
         localStorage.removeItem("bounds");

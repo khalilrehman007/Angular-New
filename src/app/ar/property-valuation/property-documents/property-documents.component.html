@@ -769,35 +769,34 @@
                                             <div ngClass="payment-left-form-sec position-relative">
                                                 <div ngClass="payment-price-box">
                                                     <p>إدفع لشركة اوفاليوت للتثمين العقاري</p>
-                                                    <h3 ngClass="price">{{currency}}
-                                                        {{valuationResponse.valuationPayment.totalAmount}}</h3>
+                                                    <h3 ngClass="price">{{currency}} {{valuationResponse.valuationPayment.totalAmount}}</h3>
                                                 </div>
                                                 <div ngClass="payment-another-info">
                                                     <div ngClass="detail-box d-flex justify-content-spacebw">
                                                         <div ngClass="pay-heading-block">
-                                                            <h6>{{valuationResponse.reportPackage.name}}</h6>
+                                                            <h6>{{valuationResponse.reportPackage.nameAr}}</h6>
                                                             <p>{{userData.propertyCategory}} - {{userData.propertyType}}
-                                                                Valuation Report</p>
+                                                                تقرير التقييم</p>
                                                         </div>
                                                         <p ngClass="price">{{currency}}
                                                             {{valuationResponse.valuationPayment.reportAmount}}</p>
                                                     </div>
                                                     <div ngClass="Inspection-box d-flex justify-content-spacebw">
                                                         <div ngClass="pay-heading-block">
-                                                            <h6>Inspection</h6>
+                                                            <h6>تكمن</h6>
                                                         </div>
                                                         <p ngClass="price">{{currency}}
                                                             {{valuationResponse.valuationPayment.inspectionAmount}}</p>
                                                     </div>
                                                     <div ngClass="tax-box d-flex justify-content-spacebw">
                                                         <div ngClass="pay-heading-block">
-                                                            <h6>Tax</h6>
+                                                            <h6>ضريبة</h6>
                                                         </div>
-                                                        <p ngClass="tax-cost">Included</p>
+                                                        <p ngClass="tax-cost">متضمن</p>
                                                     </div>
                                                     <div ngClass="totel-due-box d-flex justify-content-spacebw">
                                                         <div ngClass="pay-heading-block">
-                                                            <h6>Total Due</h6>
+                                                            <h6>الاجمالي المستحق</h6>
                                                         </div>
                                                         <p ngClass="price">{{currency}}
                                                             {{valuationResponse.valuationPayment.totalAmount}}</p>
@@ -812,7 +811,7 @@
                                             <div ngClass="payment-right-form-sec">
                                                 <form [formGroup]="paymentForm">
                                                     <div ngClass="block-wrapper mb-3">
-                                                        <label class="h6-design">Email</label>
+                                                        <label class="h6-design">البريد الإلكتروني</label>
                                                         <mat-form-field class="full-width input-design-2 grey-input-bg"
                                                             appearance="fill">
                                                             <input matInput type="email"
@@ -821,7 +820,7 @@
                                                         </mat-form-field>
                                                     </div>
                                                     <div ngClass="block-wrapper mb-3">
-                                                        <label class="h6-design">Card Number</label>
+                                                        <label class="h6-design">رقم البطاقة</label>
                                                         <div class="card-number-input">
                                                             <mat-form-field class="full-width input-design-2"
                                                                 appearance="fill">
@@ -833,7 +832,7 @@
                                                         </div>
                                                     </div>
                                                     <div ngClass="block-wrapper mb-3">
-                                                        <label class="h6-design">Expiry</label>
+                                                        <label class="h6-design">انقضاء</label>
                                                         <div class="expiry-input">
                                                             <mat-form-field class="full-width input-design-2"
                                                                 appearance="fill">
@@ -855,7 +854,7 @@
                                                         </div>
                                                     </div>
                                                     <div ngClass="block-wrapper mb-3">
-                                                        <label class="h6-design">Name on Card</label>
+                                                        <label class="h6-design">الاسم على البطاقة</label>
                                                         <div class="card-name-input">
                                                             <mat-form-field class="full-width input-design-2"
                                                                 appearance="fill">

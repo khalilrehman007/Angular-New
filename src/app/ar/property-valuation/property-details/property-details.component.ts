@@ -168,7 +168,7 @@ export class PropertyDetailsComponent implements OnInit {
       let temp: any = e;
       if (temp.message == "Country list fetched successfully") {
         for (let country of temp.data) {
-          this.country.push({ viewValue: country.nameAr, value: country.id, currency: country.currencyAr });
+          this.country.push({ viewValue: country.nameAr, value: country.id, currency: country.currency, currencyAr: country.currencyAr });
         }
         this.showLoader = false;
       }
@@ -208,6 +208,7 @@ export class PropertyDetailsComponent implements OnInit {
     console.log(temp);
     this.countryName = temp[0].viewValue;
     localStorage.setItem("currency", temp[0].currency)
+    localStorage.setItem("currencyAr", temp[0].currencyAr)
     this.getLocationDetails(temp[0].viewValue, false);
     this.countryId = e;
     this.city = [];

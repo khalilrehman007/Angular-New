@@ -189,9 +189,9 @@ export class PropertyTypesComponent implements OnInit {
     this.clearData();
     this.showLoader = true;
     if (e == 1) {
-      this.formDetailData.propertyCategory = "Residential";
+      this.formDetailData.propertyCategory = "سكني";
     } else {
-      this.formDetailData.propertyCategory = "Commercial";
+      this.formDetailData.propertyCategory = "تجاري";
     }
     this.formData.PropertyCategoryId = e;
     this.typeSelected = false;
@@ -219,7 +219,8 @@ export class PropertyTypesComponent implements OnInit {
     this.clearData();
     this.formData.PropertyCategoryId = temp;
     this.showLoader = true;
-    this.formDetailData.propertyType = this.propertyType.filter((item: any) => item.id == e.value)[0].typeDescription;
+    this.formDetailData.propertyType = this.propertyType.filter((item: any) => item.id == e.value)[0].typeDescriptionAr;
+    console.log(this.formDetailData);
     this.formData.PropertyTypeId = e.value;
     this.purposeOfValuation = [];
     this.featuresData = [];
