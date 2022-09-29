@@ -150,7 +150,7 @@ export class HeaderComponent implements OnInit {
       src: '../../../assets/images/icons/login.svg',
       class: 'nav-items sign-in',
       text: this.loggedInUser == null ? 'تسجيل الدخول' : JSON.parse(this.loggedInUser).fullName,
-      link: this.loggedInUser == null ? 'login' : 'profile',
+      link: this.loggedInUser == null ? '/ar/login' : '/ar/profile',
     },
     {
       src: '../../../assets/images/icons/ioi.svg',
@@ -545,8 +545,8 @@ export class HeaderComponent implements OnInit {
 
   }
   language: LanguagesList[] = [
-    {value: 'english', viewValue: 'English'},
-    {value: 'arabic', viewValue: 'Arabic'}
+    {value: 'english', viewValue: 'الإنجليزية'},
+    {value: 'arabic', viewValue: 'العربية'}
   ];
   selectedLanguage = this.language[1].value;
   changeLanguage() {
