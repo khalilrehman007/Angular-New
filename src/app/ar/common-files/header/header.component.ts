@@ -545,8 +545,8 @@ export class HeaderComponent implements OnInit {
 
   }
   language: LanguagesList[] = [
-    {value: 'english', viewValue: 'English'},
-    {value: 'arabic', viewValue: 'Arabic'}
+    {value: 'english', viewValue: 'الإنجليزية'},
+    {value: 'arabic', viewValue: 'العربية'}
   ];
   selectedLanguage = this.language[1].value;
   changeLanguage() {
