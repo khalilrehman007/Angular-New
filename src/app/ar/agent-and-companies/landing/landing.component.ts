@@ -85,8 +85,7 @@ export class LandingComponent implements OnInit {
     this.companiesListData({ "CountryId": "1", "DistrictsId": [], "CompaniesId": [], "CurrentPage": 1 });
 
     this.service.BestAgent(1).subscribe((result: any) => {
-      this.agentDetails = result.data;
-      console.log(this.agentDetails)
+      // this.agentDetails = result.data;
       let tempData: Array<Object> = []
       let response: any = result.data;
       console.log(tempData)

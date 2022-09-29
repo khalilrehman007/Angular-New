@@ -151,11 +151,12 @@ export class HomepageComponent implements OnInit {
     nav: false
   }
   sellrentproperty: OwlOptions = {
-    loop: false,
+    loop: true,
     mouseDrag: true,
     touchDrag: true,
     pullDrag: true,
     dots: true,
+    autoplay: true,
     navSpeed: 700,
     responsive: {
       0: {
