@@ -389,12 +389,12 @@ export class HeaderComponent implements OnInit {
 
         let rentType: any = '';
         if (element.rentType !== null && element.rentType !== undefined && element.propertyListingTypeId != 2) {
-          rentType = element.rentType.name
+          rentType = element.rentType.nameAr
         }
 
         let propertyType: any = '';
         if (element.propertyType !== null && element.propertyType !== undefined) {
-          propertyType = element.propertyType.typeDescription
+          propertyType = element.propertyType.typeDescriptionAr
         }
 
         tempData.push(
@@ -403,14 +403,14 @@ export class HeaderComponent implements OnInit {
             title: element.propertyTitle,
             rentType: rentType,
             propertyType: propertyType,
-            currency: element.country.currency,
+            currency: element.country.currencyAr,
             price: element.propertyPrice,
             favorite: element.favorite,
             id: element.id,
             alt: element.propertyTitle,
             src: this.baseUrl + image,
             bedrooms: element.bedrooms,
-            propertyAddress: element.propertyAddress,
+            propertyAddress: element.propertyAddressArabic,
             bathrooms: element.bathrooms,
             buildingName: element.buildingName,
             carpetArea: element.carpetArea,
