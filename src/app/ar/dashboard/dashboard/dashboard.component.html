@@ -99,7 +99,7 @@
                         <div ngbDropdown class="d-inline-block">
                             <button mat-icon-button ngClass="action-btn" id="dropdownBasic1" ngbDropdownToggle>أكثر</button>
                             <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                                <button ngbDropdownItem><a href=""><img src="{{web}}"> اذهب إلى Ovaluate</a></button>
+                                <button ngbDropdownItem><a href="/ar"><img src="{{web}}"> اذهب إلى Ovaluate</a></button>
                                 <button ngbDropdownItem><a href="" data-bs-toggle="pill" data-bs-target="#pills-profile"
                                         type="button" role="tab" aria-controls="pills-profile"
                                         aria-selected="false"><img src="{{profile}}"> ملفي</a></button>
@@ -1961,7 +1961,7 @@
                             <div ngClass="my-wallet-list-design">
                                 <div ngClass="exisitng-amount">
                                     <h6>رمز الإحالة الخاص بي</h6>
-                                    <button class="referral-copy">1234567890 <mat-icon>file_copy</mat-icon></button>
+                                    <button class="referral-copy">{{userData.referralCode}} <mat-icon>file_copy</mat-icon></button>
                                 </div>
                                 <div ngClass="pro-contact-details">
                                     <div ngbDropdown class="d-inline-block">
