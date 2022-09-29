@@ -4,24 +4,24 @@
 <section ngClass="property-valuation-sec">
     <div ngClass="listing-container full-width">
         <div ngClass="heading-title-sec text-center">
-            <h2>Property Valuation</h2>
-            <p>Make sure you filled in all the necessary fields and have uploaded all the required files.</p>
+            <h2>تقييم العقارات</h2>
+            <p>تأكد من ملء جميع الحقول اللازمة وتحميل جميع الملفات المطلوبة.</p>
         </div>
         <div ngClass="listing-property-form-sec">
             <div ngClass="listing-property-ul">
                 <mat-list>
-                    <mat-list-item ngClass="active"> <a routerLink=""><span ngClass="">1</span> Details</a>
+                    <mat-list-item ngClass="active"> <a routerLink=""><span ngClass="">1</span>تفاصيل</a>
                     </mat-list-item>
-                    <mat-list-item ngClass="active"><a routerLink=""><span ngClass="">2</span> Type</a></mat-list-item>
-                    <mat-list-item [ngClass]="'active'"> <a routerLink=""><span ngClass="">3</span> Documents</a>
+                    <mat-list-item ngClass="active"><a routerLink=""><span ngClass="">2</span>يكتب</a></mat-list-item>
+                    <mat-list-item [ngClass]="'active'"> <a routerLink=""><span ngClass="">3</span>وثائق</a>
                     </mat-list-item>
                     <mat-list-item [ngClass]="status5 ? 'active' : 'disabled'"> <a routerLink=""><span
-                                ngClass="">4</span> Review</a> </mat-list-item>
+                                ngClass="">4</span>إعادة النظر</a> </mat-list-item>
                     <mat-list-item [ngClass]="status6 ? 'active' : 'disabled'"> <a routerLink=""><span
-                                ngClass="">5</span> Certificate Type</a> </mat-list-item>
+                                ngClass="">5</span>نوع الشهادة</a> </mat-list-item>
                     <mat-list-item [ngClass]="status7 ? 'active' : 'disabled'"> <a routerLink=""><span
-                                ngClass="">6</span> Payment</a> </mat-list-item>
-                    <mat-list-item> <a ngClass="disabled" routerLink=""><span ngClass="">7</span> Download Report</a>
+                                ngClass="">6</span>دفع</a> </mat-list-item>
+                    <mat-list-item> <a ngClass="disabled" routerLink=""><span ngClass="">7</span>تنزيل التقرير</a>
                     </mat-list-item>
                 </mat-list>
             </div>
@@ -31,17 +31,17 @@
                         <div class="valuation-cstm_tabs property_documents" [ngClass]="status ? 'hide' : 'active'">
                             <div ngClass="form-border-wrapper">
                                 <div ngClass="list-property-header">
-                                    <h5 ngClass="h5-heading">Documents</h5>
-                                    <p>Please provide your propety type for the valuation</p>
+                                    <h5 ngClass="h5-heading">وثائق</h5>
+                                    <p>يرجى تقديم نوع الملاءمة الخاص بك للتقييم</p>
                                 </div>
                                 <div ngClass="madatory-document-upload mb-4" *ngIf="documentType.length > 0">
-                                    <h6 ngClass="h6-design mb-3">Mandatory Documents to upload*</h6>
+                                    <h6 ngClass="h6-design mb-3">المستندات المطلوبة للتحميل *</h6>
                                     <div ngClass="row required-docs">
                                         <div ngClass="col-xl-4 col-lg-4 col-md-4 col-sm-12"
                                             *ngIf="formData.TitleDeedNo != 0">
                                             <div ngClass="blue-upload-box">
                                                 <div ngClass="blue-upload-bordered-btn">
-                                                    <h6 ngClass="blue-heading">{{documentType[0].documentName}}</h6>
+                                                    <h6 ngClass="blue-heading">{{documentType[0].documentNameAr}}</h6>
                                                     <div ngClass="upload-files-design">
                                                         <div ngClass="greybordered-btn position-relative">
                                                             <input type="file" #fileInput
@@ -57,22 +57,21 @@
                                                                 <button ngClass="trash" (click)="deleteImage(10)"><img
                                                                         src="{{trash}}"></button>
                                                             </div>
-                                                            <p ngClass="drag-drop-text">Drag & drop file here or Browse
+                                                            <p ngClass="drag-drop-text">اسحب الملف وأفلته هنا أو تصفح
                                                             </p>
                                                             <button ngClass="succesfull-uploaded"><img
-                                                                    src="{{checkmark}}"> Uploaded</button>
+                                                                    src="{{checkmark}}">تم الرفع</button>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <p ngClass="accepted-file-text">Accepted File Type: .doc, .pdf, .jpg,
-                                                    .jpeg, .png</p>
+                                                <p ngClass="accepted-file-text">نوع الملف المقبول: .doc ، .pdf ، .jpg ، .jpeg ، .png</p>
                                             </div>
                                         </div>
                                         <div ngClass="col-xl-4 col-lg-4 col-md-4 col-sm-12"
                                             *ngIf="formData.MunicipalityNo != 0">
                                             <div ngClass="blue-upload-box">
                                                 <div ngClass="blue-upload-bordered-btn">
-                                                    <h6 ngClass="blue-heading">{{documentType[1].documentName}}</h6>
+                                                    <h6 ngClass="blue-heading">{{documentType[1].documentNameAr}}</h6>
                                                     <div ngClass="upload-files-design">
                                                         <div ngClass="greybordered-btn position-relative">
                                                             <input type="file" #affectioninput
@@ -88,22 +87,21 @@
                                                                 <button ngClass="trash" (click)="deleteImage(11)"><img
                                                                         src="{{trash}}"></button>
                                                             </div>
-                                                            <p ngClass="drag-drop-text">Drag & drop file here or Browse
+                                                            <p ngClass="drag-drop-text">اسحب الملف وأفلته هنا أو تصفح
                                                             </p>
                                                             <button ngClass="succesfull-uploaded"><img
                                                                     src="{{checkmark}}"> Uploaded</button>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <p ngClass="accepted-file-text">Accepted File Type: .doc, .pdf, .jpg,
-                                                    .jpeg, .png</p>
+                                                <p ngClass="accepted-file-text">نوع الملف المقبول: .doc ، .pdf ، .jpg ، .jpeg ، .png</p>
                                             </div>
                                         </div>
                                         <div ngClass="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                                             <div ngClass="blue-upload-box">
                                                 <div ngClass="blue-upload-bordered-btn">
                                                     <div ngClass="d-flex align-items-center justify-content-spacebw">
-                                                    <h6 ngClass="blue-heading">{{documentType[2].documentName}}</h6>
+                                                    <h6 ngClass="blue-heading">{{documentType[2].documentNameAr}}</h6>
                                                     <button ngClass="camera-bitton" (click)="openCamera()"><mat-icon>camera_alt</mat-icon></button>
                                                     <input type="file" accept="image/*" capture="environment" class="camera-image d-none" (change)='property($any($event.target).files, 12)'>
                                                     </div>
@@ -122,21 +120,20 @@
                                                                 <button ngClass="trash" (click)="deleteImage(12)"><img
                                                                         src="{{trash}}"></button>
                                                             </div>
-                                                            <p ngClass="drag-drop-text">Drag & drop file here or Browse
+                                                            <p ngClass="drag-drop-text">اسحب الملف وأفلته هنا أو تصفح
                                                             </p>
                                                             <button ngClass="succesfull-uploaded"><img
                                                                     src="{{checkmark}}"> Uploaded</button>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <p ngClass="accepted-file-text">Accepted File Type: .doc, .pdf, .jpg,
-                                                    .jpeg, .png</p>
+                                                <p ngClass="accepted-file-text">نوع الملف المقبول: .doc ، .pdf ، .jpg ، .jpeg ، .png</p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div ngClass="other-document-upload mb-4" *ngIf="documentType.length > 0">
-                                    <h6 ngClass="h6-design mb-3">Other Documents Upload (optional)</h6>
+                                    <h6 ngClass="h6-design mb-3">تحميل مستندات أخرى (اختياري)</h6>
                                     <div ngClass="row">
                                         <div ngClass="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                                             <div ngClass="blue-upload-box">
@@ -149,7 +146,7 @@
                                                         <button mat-button (click)="emirateInput0.click()"><span
                                                                 ngClass="outpup-filename">{{ emirate[0] }}</span> <img
                                                                 src="{{upload}}"> <span
-                                                                ngClass="btn-txt">{{documentType[3].documentName}}</span></button>
+                                                                ngClass="btn-txt">{{documentType[3].documentNameAr}}</span></button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -165,7 +162,7 @@
                                                         <button mat-button (click)="emirateInput1.click()"><span
                                                                 ngClass="outpup-filename">{{ emirate[1] }}</span> <img
                                                                 src="{{upload}}"> <span
-                                                                ngClass="btn-txt">{{documentType[4].documentName}}</span></button>
+                                                                ngClass="btn-txt">{{documentType[4].documentNameAr}}</span></button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -181,7 +178,7 @@
                                                         <button mat-button (click)="emirateInput2.click()"><span
                                                                 ngClass="outpup-filename">{{ emirate[2] }}</span> <img
                                                                 src="{{upload}}"> <span
-                                                                ngClass="btn-txt">{{documentType[5].documentName}}</span></button>
+                                                                ngClass="btn-txt">{{documentType[5].documentNameAr}}</span></button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -197,7 +194,7 @@
                                                         <button mat-button (click)="emirateInput3.click()"><span
                                                                 ngClass="outpup-filename">{{ emirate[3] }}</span> <img
                                                                 src="{{upload}}"> <span
-                                                                ngClass="btn-txt">{{documentType[6].documentName}}</span></button>
+                                                                ngClass="btn-txt">{{documentType[6].documentNameAr}}</span></button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -213,7 +210,7 @@
                                                         <button mat-button (click)="emirateInput4.click()"><span
                                                                 ngClass="outpup-filename">{{ emirate[4] }}</span> <img
                                                                 src="{{upload}}"> <span
-                                                                ngClass="btn-txt">{{documentType[7].documentName}}</span></button>
+                                                                ngClass="btn-txt">{{documentType[7].documentNameAr}}</span></button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -229,7 +226,7 @@
                                                         <button mat-button (click)="emirateInput5.click()"><span
                                                                 ngClass="outpup-filename">{{ emirate[5] }}</span> <img
                                                                 src="{{upload}}"> <span
-                                                                ngClass="btn-txt">{{documentType[8].documentName}}</span></button>
+                                                                ngClass="btn-txt">{{documentType[8].documentNameAr}}</span></button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -245,7 +242,7 @@
                                                         <button mat-button (click)="emirateInput6.click()"><span
                                                                 ngClass="outpup-filename">{{ emirate[6] }}</span> <img
                                                                 src="{{upload}}"> <span
-                                                                ngClass="btn-txt">{{documentType[9].documentName}}</span></button>
+                                                                ngClass="btn-txt">{{documentType[9].documentNameAr}}</span></button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -254,8 +251,8 @@
                                 </div>
                                 <div ngClass="upload_documents-div frame-border-inner">
                                     <div ngClass="small-blue-black-heading">
-                                        <h6>Uploaded Documents</h6>
-                                        <p>List of the documents uploaded</p>
+                                        <h6>المستندات التي تم تحميلها</h6>
+                                        <p>قائمة الوثائق التي تم تحميلها</p>
                                     </div>
                                     <div ngClass="upload-documents-list">
                                         <div ngClass="doc-list-div d-flex justify-content-spacebq align-items-center"
@@ -271,13 +268,13 @@
                                             </div>
                                             <div ngClass="doc-list-file">
                                                 <div ngClass="doc-text-details">
-                                                    <h6>File Name</h6>
+                                                    <h6>ملخص مالي</h6>
                                                     <p>{{item.fileName}}</p>
                                                 </div>
                                             </div>
                                             <div ngClass="doc-list-action">
                                                 <div ngClass="doc-text-actions">
-                                                    <h6>Action</h6>
+                                                    <h6>تحميل الملف</h6>
                                                     <div ngClass="action-text-btns">
                                                         <a (click)="viewImage(item.imgsrc)"
                                                             class="view-image-btn">View</a>

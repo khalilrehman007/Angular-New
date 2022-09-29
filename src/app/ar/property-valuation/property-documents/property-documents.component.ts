@@ -131,7 +131,7 @@ export class PropertyDocumentsComponent implements OnInit {
         }
       }
       if (found == -1) {
-        this.uploadedDocuments.push({ index: index, documentName: "Title Deed", fileName: files[0].name, imgsrc: reader.result });
+        this.uploadedDocuments.push({ index: index, documentName: this.documentType[0].documentNameAr, fileName: files[0].name, imgsrc: reader.result });
       } else {
         this.uploadedDocuments[found].fileName = files[0].name;
         this.uploadedDocuments[found].imgsrc = reader.result;
@@ -154,7 +154,7 @@ export class PropertyDocumentsComponent implements OnInit {
         }
       }
       if (found == -1) {
-        this.uploadedDocuments.push({ index: index, documentName: "Affection Plan", fileName: files[0].name, imgsrc: reader.result });
+        this.uploadedDocuments.push({ index: index, documentName: this.documentType[1].documentNameAr, fileName: files[0].name, imgsrc: reader.result });
       } else {
         this.uploadedDocuments[found].fileName = files[0].name;
         this.uploadedDocuments[found].imgsrc = reader.result;
@@ -177,7 +177,7 @@ export class PropertyDocumentsComponent implements OnInit {
         }
       }
       if (found == -1) {
-        this.uploadedDocuments.push({ index: index, documentName: "Picture: Front View", fileName: files[0].name, imgsrc: reader.result });
+        this.uploadedDocuments.push({ index: index, documentName: this.documentType[2].documentNameAr, fileName: files[0].name, imgsrc: reader.result });
       } else {
         this.uploadedDocuments[found].fileName = files[0].name;
         this.uploadedDocuments[found].imgsrc = reader.result;
@@ -209,7 +209,7 @@ export class PropertyDocumentsComponent implements OnInit {
           }
         }
         if (found == -1) {
-          this.uploadedDocuments.push({ index: index, documentName: "Other Documents", fileName: files[0].name, imgsrc: reader.result });
+          this.uploadedDocuments.push({ index: index, documentName: this.documentType[index+3].documentNameAr, fileName: files[0].name, imgsrc: reader.result });
         } else {
           this.uploadedDocuments[found].fileName = files[0].name;
           this.uploadedDocuments[found].imgsrc = reader.result;
@@ -619,6 +619,7 @@ export class PropertyDocumentsComponent implements OnInit {
     this.formData.InspectionRequired = false;
     this.service.ValuationDocumentTypes().subscribe((result: any) => {
       this.documentType = result.data;
+      console.log(this.documentType);
     })
     this.checkPackage();
     if (this.formData.TitleDeedNo == 0) {
