@@ -150,7 +150,7 @@ export class HeaderComponent implements OnInit {
       src: '../../../assets/images/icons/login.svg',
       class: 'nav-items sign-in',
       text: this.loggedInUser == null ? 'تسجيل الدخول' : JSON.parse(this.loggedInUser).fullName,
-      link: this.loggedInUser == null ? 'login' : 'profile',
+      link: this.loggedInUser == null ? '/ar/login' : '/ar/profile',
     },
     {
       src: '../../../assets/images/icons/ioi.svg',
@@ -389,12 +389,12 @@ export class HeaderComponent implements OnInit {
 
         let rentType: any = '';
         if (element.rentType !== null && element.rentType !== undefined && element.propertyListingTypeId != 2) {
-          rentType = element.rentType.name
+          rentType = element.rentType.nameAr
         }
 
         let propertyType: any = '';
         if (element.propertyType !== null && element.propertyType !== undefined) {
-          propertyType = element.propertyType.typeDescription
+          propertyType = element.propertyType.typeDescriptionAr
         }
 
         tempData.push(
@@ -403,14 +403,14 @@ export class HeaderComponent implements OnInit {
             title: element.propertyTitle,
             rentType: rentType,
             propertyType: propertyType,
-            currency: element.country.currency,
+            currency: element.country.currencyAr,
             price: element.propertyPrice,
             favorite: element.favorite,
             id: element.id,
             alt: element.propertyTitle,
             src: this.baseUrl + image,
             bedrooms: element.bedrooms,
-            propertyAddress: element.propertyAddress,
+            propertyAddress: element.propertyAddressArabic,
             bathrooms: element.bathrooms,
             buildingName: element.buildingName,
             carpetArea: element.carpetArea,
@@ -545,11 +545,19 @@ export class HeaderComponent implements OnInit {
 
   }
   language: LanguagesList[] = [
-    {value: 'english', viewValue: 'English'},
-    {value: 'arabic', viewValue: 'Arabic'}
+    {value: 'english', viewValue: 'الإنجليزية'},
+    {value: 'arabic', viewValue: 'العربية'}
   ];
   selectedLanguage = this.language[1].value;
   changeLanguage() {
+    let temp:any = {};
+    temp.user = localStorage.getItem("user");
+    temp.token = localStorage.getItem("token");
+    temp.fireid = localStorage.getItem("firebase:host:ovaluate-notification-4acc7-default-rtdb.firebaseio.com");
+    localStorage.clear();
+    localStorage.setItem("user", temp.user);
+    localStorage.setItem("token", temp.token);
+    localStorage.setItem("firebase:host:ovaluate-notification-4acc7-default-rtdb.firebaseio.com", temp.fireid);
     if(this.route.url.split("?").length == 1) {
       let temp = this.route.url.split("/");
       temp.splice(0,2);

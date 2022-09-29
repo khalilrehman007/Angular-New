@@ -2,18 +2,18 @@
 <section ngClass="list-properties-sec">
     <div ngClass="listing-container">
         <div ngClass="heading-title-sec text-center">
-            <h2>List New Property</h2>
+            <h2>أعلن عن عقار جديد</h2>
             <p>تأكد من ملء جميع الحقول اللازمة وتحميل جميع الملفات المطلوبة.</p>
         </div>
         <div ngClass="listing-property-form-sec">
             <div ngClass="listing-property-ul">
                 <mat-list>
                     <mat-list-item ngClass="active"> <a routerLink="/listingproperty"><span ngClass="">1</span>معلومات الملكية</a> </mat-list-item>
-                    <mat-list-item ngClass="active"><a routerLink=""><span ngClass="">2</span> Listing Info</a>
+                    <mat-list-item ngClass="active"><a routerLink=""><span ngClass="">2</span> معلومات القائمة</a>
                     </mat-list-item>
-                    <mat-list-item ngClass="active"> <a routerLink=""><span ngClass="">3</span> Media</a>
+                    <mat-list-item ngClass="active"> <a routerLink=""><span ngClass="">3</span> وسائل الإعلام</a>
                     </mat-list-item>
-                    <mat-list-item ngClass="disabled"> <a routerLink=""><span ngClass="">4</span> Publish</a>
+                    <mat-list-item ngClass="disabled"> <a routerLink=""><span ngClass="">4</span>نشر</a>
                     </mat-list-item>
                 </mat-list>
             </div>
@@ -33,11 +33,11 @@
                                     <div ngClass="row">
                                         <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                                             <p ngClass="no-units-p"><span
-                                                    ngClass="unit-no">{{propertyListingBuy}}</span> Units on sale</p>
+                                                    ngClass="unit-no">{{propertyListingBuy}}</span>وحدات معروضة للبيع</p>
                                         </div>
                                         <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                                             <p ngClass="no-units-p"><span
-                                                    ngClass="unit-no">{{propertyListingRent}}</span> Units on rent</p>
+                                                    ngClass="unit-no">{{propertyListingRent}}</span>وحدات للإيجار</p>
                                         </div>
                                     </div>
                                 </div>
@@ -47,7 +47,7 @@
                     <form [formGroup]="SubmitForm">
                         <div ngClass="form-border-wrapper">
                             <div ngClass="list-property-header">
-                                <h5 ngClass="h5-heading">Verify Property</h5>
+                                <h5 ngClass="h5-heading">تحقق من العار</h5>
                                 <p>يرجى تأكيد بعض الحقائق عن العقار</p>
                             </div>
                             <div ngClass="list-new-proerty-cntnt">
@@ -61,7 +61,7 @@
                                                     <input type="file" #fileInput class="input-file"
                                                         (change)='handleChange($any($event.target).files)'>
                                                     <button mat-button (click)="fileInput.click()"><img
-                                                            src="{{upload1}}">Upload Title Deed</button>
+                                                            src="{{upload1}}">تحميل سند الملكية</button>
                                                 </div>
                                                 <div ngClass="uploded-output">
                                                     <span ngClass="outpup-filename">{{ file }}</span>
@@ -71,12 +71,11 @@
                                                     </div>
                                                     <p ngClass="drag-drop-text">اسحب الملف وأفلته هنا أو تصفح
                                                     </p>
-                                                    <button ngClass="succesfull-uploaded"><img src="{{checkmark}}">
-                                                        Uploaded</button>
+                                                    <button ngClass="succesfull-uploaded"><img src="{{checkmark}}">تم الرفع</button>
                                                 </div>
                                             </div>
                                         </div>
-                                        <p ngClass="accepted-file-text">Accepted File Type: .doc, .pdf, .jpg, .jpeg, .png</p>
+                                        <p ngClass="accepted-file-text">نوع الملف المقبول: .doc ، .pdf ، .jpg ، .jpeg ، .png</p>
                                     </div>
                                 </div>
                             </div>
@@ -93,7 +92,7 @@
                                                 <input type="file" accept=".jpg, .png, .jpeg," multiple
                                                     class="input-file" (change)="selectFiles($event);imgCheck=true" />
                                                 <button ngClass="black-upload-btn"><span
-                                                        ngClass="plus_icon-div">+</span> Upload Pictures</button>
+                                                        ngClass="plus_icon-div">+</span>تحميل الصور</button>
                                             </label>
                                             <div ngClass="upload-preview-images">
                                                 <img *ngFor='let preview of previews' [src]="preview" class="preview">
@@ -101,9 +100,9 @@
                                                     src="../../../../assets/images/image-gallery-thumbnail.png">
                                             </div>
                                             <div ngClass="image-thumb-cntnt">
-                                                <p>Property Listings with more than 5 images get 3x more views.<br />
-                                                    More Images = Higher chances of Leads.</p>
-                                                <p>Accepted formats are .jpg, .gif, .bmp & .png and Maximum size allowed 10 MB</p>
+                                                <p> العقارات التي تحتوي على أكثر من 5 صور على عدد مشاهدات أكبر يحصل بمقدار 3 أضعاف.<br />
+                                                    المزيد من الصور = فرص أكبر للعملاء المتوقعين.</p>
+                                                <p>التنسيقات المقبولة هي .jpg و .gif و .bmp و .png والحد الأقصى للحجم المسموح به هو 10 ميغابايت</p>
                                             </div>
                                         </div>
                                     </div>
@@ -116,7 +115,7 @@
                                                 <input type='file' accept=".mp4, .mpeg, .flv, mov, swf" multiple
                                                     (change)="onSelectFile($event);videoCheck=true" />
                                                 <button ngClass="black-upload-btn"><span
-                                                        ngClass="plus_icon-div">+</span>Upload Videos</button>
+                                                        ngClass="plus_icon-div">+</span>تحميل الفيديو</button>
                                             </label>
                                             <div ngClass="upload-preview-images">
                                                 <video [src]="url" *ngIf="format==='video' && url"></video>
@@ -124,8 +123,8 @@
                                                     src="../../../../assets/images/image-gallery-thumbnail.png">
                                             </div>
                                             <div ngClass="image-thumb-cntnt">
-                                                <p>Property Listings with Video get 3x more views.<br />Video = Higher chances of Leads.</p>
-                                                <p>Accepted formats are .MPEG, FLV, MOV & SWF and Maximum size allowed 30 MB</p>
+                                                <p>تحصل قوائم العقارات مع الفيديو على عدد مشاهدات أكثر بثلاث مرات.<br />الفيديو = فرص أكبر للعملاء المتوقعين.</p>
+                                                <p>التنسيقات المقبولة هي MPEG و FLV و MOV و SWF والحد الأقصى للحجم المسموح به هو 30 ميغابايت</p>
                                             </div>
                                         </div>
                                     </div>
@@ -139,7 +138,7 @@
                                             <h6 ngClass="h6-design">رابط الفيديو</h6>
                                             <div ngClass="textarea-design">
                                                 <mat-form-field class="full-width input-design" appearance="fill">
-                                                    <mat-label>Paste Youtube/Vemio or any video link below</mat-label>
+                                                    <mat-label>الصق Youtube / Vemio أو أي رابط فيديو أدناه</mat-label>
                                                     <input matInput formControlName="videoLink" type="text"
                                                         (change)="videoCheck=true" placeholder="Eg. https://www.YT.com">
                                                 </mat-form-field>

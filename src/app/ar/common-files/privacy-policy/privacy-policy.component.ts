@@ -15,8 +15,8 @@ export class PrivacyPolicyComponent implements OnInit {
   constructor(private api: AppService) {
     $(window).scrollTop(0);
     this.api.PrivacyPolicy().subscribe((result:any)=> {
-      this.title = result.data.pageDescriptionAr;
-      this.subHeading = result.data.pageCaptionHelightAr;
+      this.title = result.data.pageCaptionHelightAr;
+      this.subHeading = result.data.pageCaptionTextAr;
       this.image = "https://beta.ovaluate.com/" + result.data.fileUrl;
       this.image = this.image.replaceAll("\\", "/");
       $(".inner-page-banner-sec").css({"background-image":"url('"+this.image+"')"})

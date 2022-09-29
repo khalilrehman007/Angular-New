@@ -87,7 +87,7 @@ export class PropertyfilterComponent implements OnInit {
 
   constructor(private activeRoute: ActivatedRoute,private service:AppService,private api: AppService,private route:Router,private modalService: NgbModal) {
 
-    let url = this.route.url.replace("/", "");
+    let url = this.route.url.replace("/ar/", "");
     url = this.route.url.split('?')[0];
     this.routeCheck = url
 
@@ -441,8 +441,8 @@ export class PropertyfilterComponent implements OnInit {
       ,PropertyFeatureIds:this.propertyFeatureIds,FurnishingTypeId:this.furnishedType,
       MinCarpetArea:this.minCarpet,MaxCarpetArea:this.maxCarpet
     }
-    if(this.routeCheck == '/property/search'){
-      this.route.navigate(['/property/search'],{queryParams:params})
+    if(this.routeCheck == '/ar/property/search'){
+      this.route.navigate(['/ar/property/search'],{queryParams:params})
       this.childToParentDataLoad.emit(objects)
       // this.proceedSearch()
     }else{
@@ -509,8 +509,8 @@ export class PropertyfilterComponent implements OnInit {
     }
 
 
-    if(this.routeCheck == '/property/search'){
-      this.route.navigate(['/property/search'],{queryParams:params})
+    if(this.routeCheck == '/ar/property/search'){
+      this.route.navigate(['/ar/property/search'],{queryParams:params})
       this.childToParentDataLoad.emit(object)
       // this.proceedSearch()
     }else{
@@ -542,7 +542,7 @@ export class PropertyfilterComponent implements OnInit {
     // Clear the input value
     event.chipInput!.clear();
 
-    if(this.routeCheck == '/property/search'){
+    if(this.routeCheck == '/ar/property/search'){
       this.proceedSearch()
     }else{
       this.proceedSearchViewMap()
@@ -556,7 +556,7 @@ export class PropertyfilterComponent implements OnInit {
     if (index >= 0) {
       this.Keywords.splice(index, 1);
     }
-    if(this.routeCheck == '/property/search'){
+    if(this.routeCheck == '/ar/property/search'){
       this.proceedSearch()
     }else{
       this.proceedSearchViewMap()
@@ -569,7 +569,7 @@ export class PropertyfilterComponent implements OnInit {
   furnishedType :any = '';
   furnishedTypeChange(data :any){
     this.furnishedType = data
-    if(this.routeCheck == '/property/search'){
+    if(this.routeCheck == '/ar/property/search'){
       this.proceedSearch()
     }else{
       this.proceedSearchViewMap()
@@ -597,7 +597,7 @@ export class PropertyfilterComponent implements OnInit {
       }
     }
 
-    if(this.routeCheck == '/property/search'){
+    if(this.routeCheck == '/ar/property/search'){
       this.proceedSearch()
     }else{
       this.proceedSearchViewMap()
@@ -609,7 +609,7 @@ export class PropertyfilterComponent implements OnInit {
   minCarpet : any = ''
   minCarpetAreaChange(searchValue: any): void {
     this.minCarpet = searchValue
-    if(this.routeCheck == '/property/search'){
+    if(this.routeCheck == '/ar/property/search'){
       this.proceedSearch()
     }else{
       this.proceedSearchViewMap()
@@ -619,7 +619,7 @@ export class PropertyfilterComponent implements OnInit {
   maxCarpet : any = ''
   maxCarpetAreaChange(searchValue: any): void {
     this.maxCarpet = searchValue
-    if(this.routeCheck == '/property/search'){
+    if(this.routeCheck == '/ar/property/search'){
       this.proceedSearch()
     }else{
       this.proceedSearchViewMap()
@@ -723,7 +723,7 @@ export class PropertyfilterComponent implements OnInit {
       ,PropertyFeatureIds:this.propertyFeatureIds,FurnishingTypeId:this.furnishedType,
       MinCarpetArea:this.minCarpet,MaxCarpetArea:this.maxCarpet
     }
-    this.route.navigate(['/property/mapview'],{queryParams:params})
+    this.route.navigate(['/ar/property/mapview'],{queryParams:params})
     this.childToParentDataLoad.emit(objects)
 
   }
