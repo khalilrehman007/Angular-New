@@ -29,7 +29,7 @@
                             </div>
                             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                                 <div class="proprty-units">
-                                    <p>This building also listing in ovaluate</p>
+                                    <p>هذا المبنى مدرج أيضًا في قائمة العقارات</p>
                                     <div class="row">
                                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                                             <p class="no-units-p"><span class="unit-no">{{propertyListingBuy}}</span>وحدات معروضة للبيع</p>
@@ -45,7 +45,7 @@
                     <form [formGroup]="SubmitForm">
                         <div class="form-border-wrapper">
                             <div class="list-property-header">
-                                <h5 class="h5-heading">Property Listing Information</h5>
+                                <h5 class="h5-heading">معلومات قائمة العقارات</h5>
                                 <p>يرجى تأكيد بعض الحقائق عن العقار</p>
                             </div>
                             <div class="list-new-proerty-cntnt">
@@ -100,7 +100,7 @@
                                                 <label>نوع العقار</label>
                                                 <div class="type-input">
                                                     <mat-form-field appearance="fill">
-                                                        <mat-label>Select type of property</mat-label>
+                                                        <mat-label>حدد نوع العقار</mat-label>
                                                         <mat-select [(value)]="data.PropertyTypeId"
                                                             (selectionChange)="getPropertyType($event)">
                                                             <mat-option *ngFor="let item of propertyType"
@@ -125,7 +125,7 @@
                                                         <mat-form-field class="full-width input-design"
                                                             appearance="fill">
                                                             <input matInput type="number" formControlName="PropertyAge"
-                                                                placeholder="Please mention the Yrs."
+                                                                placeholder="يرجى ذكر السنوات"
                                                                 (input)="validateLength(1)">
                                                         </mat-form-field>
                                                     </div>
@@ -139,7 +139,7 @@
                                                         <mat-form-field class="full-width input-design"
                                                             appearance="fill">
                                                             <input matInput type="text" formControlName="BuildingName"
-                                                                placeholder="Enter Building Name">
+                                                                placeholder="أدخل اسم المبنى">
                                                         </mat-form-field>
                                                     </div>
                                                 </div>
@@ -152,7 +152,7 @@
                                                         <mat-form-field class="full-width input-design"
                                                             appearance="fill">
                                                             <input matInput type="number" formControlName="UnitNo"
-                                                                placeholder="Enter Unit No."
+                                                                placeholder="أدخل رقم الوحدة"
                                                                 (input)="validateLength(1)">
                                                         </mat-form-field>
                                                     </div>
@@ -166,7 +166,7 @@
                                                         <mat-form-field class="full-width input-design"
                                                             appearance="fill">
                                                             <input matInput type="number" formControlName="TotalFloor"
-                                                                placeholder="Enter Total Floors"
+                                                                placeholder="أدخل إجمالي عدد الطوابق"
                                                                 (input)="checkLength(1)">
                                                         </mat-form-field>
                                                     </div>
@@ -180,7 +180,7 @@
                                                         <mat-form-field class="full-width input-design"
                                                             appearance="fill">
                                                             <input matInput type="number" formControlName="FloorNo"
-                                                                placeholder="Enter Floors No." (input)="checkLength(1)">
+                                                                placeholder="أدخل عدد الطوابق" (input)="checkLength(1)">
                                                         </mat-form-field>
                                                     </div>
                                                 </div>
@@ -768,7 +768,7 @@
                                                     <mat-form-field class="example-full-width" appearance="fill">
                                                         <mat-label>وصف العقار</mat-label>
                                                         <textarea formControlName="propertyDescription" matInput
-                                                            placeholder="Eg. 30"></textarea>
+                                                            placeholder=""></textarea>
                                                     </mat-form-field>
                                                     <p class="textraea-hint text-right">320 كلمة متبقية</p>
                                                 </div>
@@ -780,7 +780,7 @@
                                                         <mat-label>العروض - زيادة العملاء المتوقعين على الممتلكات الخاصة بك حتى 50٪
                                                         </mat-label>
                                                         <input matInput formControlName="propertyOffers" type="text"
-                                                            placeholder="Example - 15 days of rent off. Only Pay 15 days of brokerage now! Free rental agreement.">
+                                                            placeholder="15 يوم إيجار. ادفع فقط 15 يومًا من الوساطة الآن! عقد إيجار مجاني">
                                                     </mat-form-field>
                                                 </div>
                                             </div>
@@ -789,7 +789,7 @@
                                                 <h6 class="h6-design">حدد الميزات</h6>
                                                 <div class="features-select-wrapper">
                                                     <select class="select2 features-select" multiple="multiple">
-                                                        <option *ngFor="let item of featuresData" [value]="item.propertyFeature.id" class="features-item-{{item.propertyFeatureId}}"> {{item.propertyFeature.featureName}}</option>
+                                                        <option *ngFor="let item of featuresData" [value]="item.propertyFeature.id" class="features-item-{{item.propertyFeatureId}}"> {{item.propertyFeature.featureNameAr}}</option>
                                                     </select>
                                                 </div>
                                                 </div>
