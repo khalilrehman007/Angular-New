@@ -422,7 +422,7 @@ export class PropertyDocumentsComponent implements OnInit {
           this.valuationResponse = res.data;
           let tempUser:any = localStorage.getItem("user");
           let tempToken:any = localStorage.getItem("token");
-          // localStorage.clear();
+          localStorage.clear();
           localStorage.setItem("user", tempUser);
           localStorage.setItem("token", tempToken);
           let temp:any = {};
