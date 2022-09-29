@@ -12,7 +12,8 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {{companiesCheck ? 'active' : ''}}" id="pills-companies-tab"
-                            data-bs-toggle="pill" data-bs-target="#pills-companies" (click)="toggleCompany(false)">البحث عن الشركات</a>
+                            data-bs-toggle="pill" data-bs-target="#pills-companies" (click)="toggleCompany(false)">البحث
+                            عن الشركات</a>
                     </li>
                 </ul>
                 <div ngClass="form_tabs">
@@ -109,20 +110,20 @@
                                                 {{item.expertIn}}</p>
                                             <p class="agent-landing-featured__property-text">RERA#
                                                 {{item.reraNo}}</p>
-                                            <p class="agent-landing-featured__property-text">Permits#
+                                            <p class="agent-landing-featured__property-text">يسمح#
                                                 {{item.premitNo}}</p>
                                             <ul class="agent-landing-featured__property-details-list">
                                                 <li class="agent-landing-featured__property-details-list-item">
                                                     <p class="agent-landing-featured__property-details-list-text">
-                                                        {{item.salePropertyListingCount}}<br>Sale</p>
+                                                        {{item.salePropertyListingCount}}<br>للبيع</p>
                                                 </li>
                                                 <li class="agent-landing-featured__property-details-list-item">
                                                     <p class="agent-landing-featured__property-details-list-text">
-                                                        {{item.rentPropertyListingCount}}<br>Rents</p>
+                                                        {{item.rentPropertyListingCount}}<br>ايجار</p>
                                                 </li>
                                                 <li class="agent-landing-featured__property-details-list-item">
                                                     <p class="agent-landing-featured__property-details-list-text">
-                                                        {{item.commercialPropertyListingCount}}<br>Commercial</p>
+                                                        {{item.commercialPropertyListingCount}}<br>تجاري</p>
                                                 </li>
                                             </ul>
                                         </div>
@@ -156,7 +157,7 @@
                                     <p class="agent-landing-featured__property-text"
                                         *ngIf="item.company && item.company.reraNo">RERA# {{item.company.reraNo}}</p>
                                     <p class="agent-landing-featured__property-text"
-                                        *ngIf="item.company && item.company.permitNo">Permit# {{item.company.permitNo}}
+                                        *ngIf="item.company && item.company.permitNo">يسمح# {{item.company.permitNo}}
                                     </p>
                                     <p class="agent-landing-featured__property-text"
                                         *ngIf="item.company && item.company.ornNo">ORN# {{item.company.ornNo}}</p>
@@ -165,15 +166,15 @@
                             <ul class="agent-landing-featured__property-details-list">
                                 <li class="agent-landing-featured__property-details-list-item">
                                     <p class="agent-landing-featured__property-details-list-text">
-                                        {{item.statistics.salePropertyListingCount}}<br>Sale</p>
+                                        {{item.statistics.salePropertyListingCount}}<br>للبيع</p>
                                 </li>
                                 <li class="agent-landing-featured__property-details-list-item">
                                     <p class="agent-landing-featured__property-details-list-text">
-                                        {{item.statistics.rentPropertyListingCount}}<br>Rents</p>
+                                        {{item.statistics.rentPropertyListingCount}}<br>ايجار</p>
                                 </li>
                                 <li class="agent-landing-featured__property-details-list-item">
                                     <p class="agent-landing-featured__property-details-list-text">
-                                        {{item.statistics.commercialPropertyListingCount}}<br>Commercial</p>
+                                        {{item.statistics.commercialPropertyListingCount}}<br>تجاري</p>
                                 </li>
                             </ul>
                         </div>
@@ -220,7 +221,7 @@
                                                 </p>
                                                 <p class="agent-landing-featured__property-text mb-3"
                                                     *ngIf="data.countryId != ''">{{filterCountry(data.countryId)}}</p>
-                                                <p class="agent-landing-featured__property-text">Languages:
+                                                <p class="agent-landing-featured__property-text">اللغات:
                                                     <span *ngFor="let Language of data.agentLanguages">
                                                         {{Language.spokenLanguage.name}},
                                                     </span>
@@ -242,7 +243,7 @@
                                     <td class="agent-landing-list__table-data">
                                         <a class="agent-landing-list__table-btn cursor-pointer"
                                             routerLink="/ar/agent-details/{{data.id}}">
-                                            <img src="assets/images/icons/eye.svg" alt="">"View Detail"</a>
+                                            <img src="assets/images/icons/eye.svg" alt="">"عرض التفاصيل"</a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -289,7 +290,7 @@
                                                         *ngIf="data.companyAdress">{{data.companyAdress}}</p>
                                                     <p class="agent-landing-featured__property-text"
                                                         *ngIf="data.reraNo">
-                                                        RERA# {{data.reraNo}} | <span *ngIf="data.premitNo">Permit#
+                                                        RERA# {{data.reraNo}} | <span *ngIf="data.premitNo">يسمح#
                                                             {{data.premitNo}}</span> </p>
                                                 </div>
                                             </div>
@@ -303,12 +304,12 @@
                                         </div>
                                     </td>
                                     <td class="agent-landing-list__table-data">
-                                        <p>{{data.agents.length}}<br>Agents</p>
+                                        <p>{{data.agents.length}}<br>وكلاء</p>
                                     </td>
                                     <td class="agent-landing-list__table-data">
                                         <a class="agent-landing-list__table-btn cursor-pointer"
                                             routerLink="/ar/company-details/{{data.id}}">
-                                            <img src="assets/images/icons/eye.svg" alt="">View Detail</a>
+                                            <img src="assets/images/icons/eye.svg" alt="">عرض التفاصيل</a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -325,30 +326,21 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <h4 class="agent-landing-featured__heading">Top Real Estate Agents in Dubai</h4>
-                    <p class="agent-landing-featured__text">Whether you are looking to rent, buy or sell your home,
-                        Zillow's
-                        directory of local real estate agents and brokers in Daytona Beach FL connects you with
-                        professionals who can help meet your needs. Because the Daytona Beach FL real estate market is
-                        unique, it's important to choose a real estate agent or broker with local expertise to guide you
-                        through the process of renting, buying or selling your next home. Our directory helps you find
-                        real
-                        estate professionals who specialize in buying, selling, foreclosures, or relocation - among many
-                        other options. Alternatively, you could work with a local agent or real estate broker who
-                        provides
-                        an entire suite of buying and selling services.</p>
+                    <h4 class="agent-landing-featured__heading">أفضل وكلاء العقارات في دبي</h4>
+                    <p class="agent-landing-featured__text">سواء كنت تبحث عن استئجار أو شراء أو بيع منزلك ، فإن اوفاليوت
+                        يوصلك بالمحترفين الذين يمكنهم المساعدة في تلبية احتياجاتك. نظرًا لأن سوق العقارات في دبي فريد من
+                        نوعه ، فمن المهم اختيار وكيل عقارات أو سمسار ذي خبرة محلية لإرشادك خلال عملية تأجير أو شراء أو
+                        بيع منزلك التالي. يساعدك دليلنا في العثور على محترفي العقارات المتخصصين في الشراء أو البيع أو
+                        حبس الرهن أو إعادة التوطين - من بين العديد من الخيارات الأخرى. بدلاً من ذلك ، يمكنك العمل مع
+                        وكيل محلي أو سمسار عقارات يقدم مجموعة كاملة من خدمات البيع والشراء.</p>
 
-                    <p>No matter what type of real estate needs you have, finding the local real estate professional you
-                        want to work with is the first step. The Daytona Beach FL real estate directory lets you view
-                        and
-                        compare real estate agents, read reviews, see an agent's current listings and past sales, and
-                        contact agents directly from their profile pages on Zillow.</p>
+                    <p>بغض النظر عن نوع العقار الذي تحتاجه ، فإن الخطوة الأولى هي إيجاد متخصص عقاري محلي تريد العمل معه.
+                        يتيح لك اوفاليوت عرض وكلاء العقارات ومقارنتهم ، وقراءة المراجعات ، والاطلاع على القوائم الحالية
+                        للوكيل والمبيعات السابقة ، والاتصال بالوكلاء مباشرةً من صفحات ملفاتهم الشخصية.</p>
 
-                    <p>Zillow is the leading real estate and rental marketplace dedicated to empowering consumers with
-                        data,
-                        inspiration and knowledge around the place they call home, and connecting them with the best
-                        local
-                        professionals who can help.</p>
+                    <p>اوفاليوت هو سوق العقارات والإيجارات الرائد المكرس لتمكين المستهلكين من خلال البيانات والإلهام
+                        والمعرفة حول المكان الذي يسمونه المنزل ، وربطهم بأفضل المهنيين المحليين الذين يمكنهم المساعدة.
+                    </p>
                 </div>
             </div>
         </div>
@@ -363,7 +355,7 @@
                     <input type="email" placeholder="أدخل بريدك الإلكتروني للاشتراك">
                     <input type="submit" value="تقديم">
                 </form>
-                <p>انضم إلى أكثر من <span>10,000+</span>  مالك عقار في مجتمع عقاراتنا.</p>
+                <p>انضم إلى أكثر من <span>10,000+</span> مالك عقار في مجتمع عقاراتنا.</p>
             </div>
         </div>
     </section>
