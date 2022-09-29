@@ -50,7 +50,7 @@ export class ListpropertymediaComponent implements OnInit {
   imageData: any = [];
   videoData: any = [];
   documentData = new FormData();
-  btnText: string = "Publish";
+  btnText: string = "نشر";
   propertyListingBuy: any;
   propertyListingRent: any;
   titledeedUploaded: boolean = false;
