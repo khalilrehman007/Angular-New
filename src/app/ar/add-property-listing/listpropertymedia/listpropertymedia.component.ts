@@ -236,7 +236,7 @@ export class ListpropertymediaComponent implements OnInit {
       return;
     }
     this.showLoader = true;
-    this.btnText = "Please Wait...";
+    this.btnText = "أرجو الإنتظار...";
     this.data.VideoLink = this.SubmitForm.value.videoLink;
     let temp: any = [];
     let tempDoc: any = [];

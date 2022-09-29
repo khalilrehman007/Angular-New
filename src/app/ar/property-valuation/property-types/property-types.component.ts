@@ -130,6 +130,7 @@ export class PropertyTypesComponent implements OnInit {
   }
   loadOldData() {
     if (localStorage.getItem("propertyTypeData")) {
+      this.loadFurnishingType();
       this.oldData = localStorage.getItem("propertyTypeData");
       this.formData = JSON.parse(this.oldData);
       if (this.formData.PropertyStatusId == 2) {
@@ -195,9 +196,9 @@ export class PropertyTypesComponent implements OnInit {
     this.formData.PropertyCategoryId = e;
     this.typeSelected = false;
     this.propertyType = [];
-    this.service.LoadTypebyLatLng({ id: e, lat: this.formData.PropertyLat, lng: this.formData.PropertyLong }).subscribe((result) => {
-      this.propertyType = result;
-      this.propertyType = this.propertyType.data;
+    this.service.LoadTypebyLatLng({ id: e, lat: this.formData.PropertyLat, lng: this.formData.PropertyLong }).subscribe((result:any) => {
+      this.propertyType = result.data;
+      console.log(this.propertyType);
       if (this.propertyType.length == 0) {
         this.error = "We don't have data in the selected location";
         this.showError = true;
@@ -490,6 +491,6 @@ export class PropertyTypesComponent implements OnInit {
     localStorage.setItem('propertyTypeData', JSON.stringify(this.formData));
     localStorage.setItem('valuationData', JSON.stringify(this.formData));
     localStorage.removeItem("valuationFromFooter");
-    this.router.navigate(['/valuation/PropertyDocument']);
+    this.router.navigate(['/ar/valuation/PropertyDocument']);
   }
 }
