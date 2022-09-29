@@ -185,7 +185,7 @@ html[dir="rtl"]{
 }
 .property-footer-block::before {
     left: initial !important;
-    right: -39px;
+    right: -24px;
 }
 .property-action-hdr {
 	padding-left: 10px;
@@ -229,9 +229,6 @@ html[dir="rtl"]{
 .property-footer-block .text-right {
     text-align: left !important;
 }
-.properties-list-block-design .row {
-    margin: 0px;
-}
 .property-details-highlights > span {
     margin-right: 0px !important;
     margin-left: 15px;
@@ -243,7 +240,7 @@ html[dir="rtl"]{
 .popular-searches .dropdown > button {
     text-align: right;
 }
-.popular-searches .dropdown.show > button::before {
+.popular-searches .dropdown > button::before {
     left: 0 !important;
     right: initial !important;
 }
@@ -372,10 +369,40 @@ html[dir="rtl"]{
     border-left: 0px;
     border-right: 0.5px solid rgba(0, 0, 0, 0.2);
 }
-.input-flaoted-left-text input{
-	padding-left: 0px;
-	padding-right: 50px;
+.input-flaoted-right-text .area-sq {
+    left: 0;
+    right: initial;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
 }
+.input-flaoted-right-text .mat-form-field-flex > .mat-form-field-infix input {
+    padding-left: 45px;
+    box-sizing: border-box;
+}
+.input-design .mat-form-field-flex input {
+    box-sizing: border-box;
+}
+.listing-slider-area {
+	.owl-dots {
+		margin: 0px;
+		position: absolute;
+		bottom: 15px;
+		right: 37px;
+		left: initial !important;
+	}
+}
+.properties-list_cntnts {
+    padding-right: 0px;
+    padding-left: 15px;
+}
+
+
+
+
+
+
 
 	@media (max-width: 1199px){
 		#collapsibleNavbar{
@@ -391,6 +418,9 @@ html[dir="rtl"]{
 		.amazing_details-text {
 			padding-left: 0px !important;
 			padding-right: 30px;
+		}
+		.property-filter-wrap .block-item.six-block {
+			width: 10% !important;
 		}
 	}
 }
