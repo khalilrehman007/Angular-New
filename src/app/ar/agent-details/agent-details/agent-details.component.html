@@ -32,30 +32,30 @@
                                 <p class="agent-details__wrapper-details-phone" *ngIf="newAgentDetail.phoneNumber">
                                     {{newAgentDetail.phoneNumber}}</p>
                                 <p class="agent-details__wrapper-details-text" *ngIf="newAgentDetail.companyAdress">
-                                    {{newAgentDetail.companyAdress}}, UAE</p>
+                                    {{newAgentDetail.companyAdress}}, الامارات</p>
                                 <p class="agent-details__wrapper-details-text" *ngIf="newAgentDetail.brnNo">
                                     {{newAgentDetail.brnNo}}</p>
                                 <p class="agent-details__wrapper-details-text" *ngIf="newAgentDetail.agentLanguages">
-                                    Language:
+                                    اللغات:
                                     <!--                                    {{agentDetail.agentLanguages}}-->
                                     <span
                                         *ngFor="let item of newAgentDetail.agentLanguages">{{item.spokenLanguage}}</span>
                                 </p>
-                                <p class="agent-details__wrapper-details-text" *ngIf="newAgentDetail.agentAreas">Area:
+                                <p class="agent-details__wrapper-details-text" *ngIf="newAgentDetail.agentAreas">منطقة:
                                     <span *ngFor="let item of newAgentDetail.agentAreas">{{item.district.name}}</span>
                                 </p>
                                 <ul class="agent-details__wrapper-details-list">
                                     <li class="agent-details__wrapper-details-list-item">
                                         <p class="agent-details__wrapper-details-list-text">
-                                            {{newAgentDetail.salePropertyListingCount}} <br> Sale</p>
+                                            {{newAgentDetail.salePropertyListingCount}} <br> للبيع</p>
                                     </li>
                                     <li class="agent-details__wrapper-details-list-item">
                                         <p class="agent-details__wrapper-details-list-text">
-                                            {{newAgentDetail.rentPropertyListingCount}} <br> Rent</p>
+                                            {{newAgentDetail.rentPropertyListingCount}} <br> ايجار</p>
                                     </li>
                                     <li class="agent-details__wrapper-details-list-item">
                                         <p class="agent-details__wrapper-details-list-text">
-                                            {{newAgentDetail.commercialPropertyListingCount}} <br> Commercial</p>
+                                            {{newAgentDetail.commercialPropertyListingCount}} <br> تجاري</p>
                                     </li>
                                 </ul>
                             </div>
@@ -65,11 +65,11 @@
                         <ul class="nav nav-tabs" id="myTab">
                             <li class="nav-item">
                                 <button class="nav-link active" id="about-tab" data-bs-toggle="tab"
-                                    data-bs-target="#about">About Me</button>
+                                    data-bs-target="#about">نبذة عني</button>
                             </li>
                             <li class="nav-item">
                                 <button class="nav-link" id="properties-tab" data-bs-toggle="tab"
-                                    data-bs-target="#properties">My Properties({{myListing.length}})</button>
+                                    data-bs-target="#properties"> عقارات({{myListing.length}})</button>
                             </li>
                         </ul>
                         <div class="tab-content" id="myTabContent">
@@ -81,7 +81,7 @@
                             <div class="tab-pane fade" id="properties">
                                 <div class="no-data-found" *ngIf="myListing.length == 0">
                                     <mat-icon>file_copy</mat-icon>
-                                    <p>No Data Found</p>
+                                    <p>لاتوجد بيانات</p>
                                 </div>
                                 <div *ngIf="myListing.length > 0">
                                     <div class="agent-details__tab-content mb-3">
@@ -89,12 +89,12 @@
                                             <div class="row">
                                                 <div
                                                     class="col-xl-8 col-lg-8 col-md-4 col-12 d-flex align-items-center">
-                                                    <h6>My Properties</h6>
+                                                    <h6> عقارات</h6>
                                                 </div>
                                                 <div class="col-xl-4 col-lg-4 col-md-8 col-12 text-end">
                                                     <div class="agent-details__select-wrapper">
                                                         <mat-form-field appearance="fill">
-                                                            <mat-label>Sort By</mat-label>
+                                                            <mat-label>صنف حسب</mat-label>
                                                             <mat-select (selectionChange)="sortedBy($event)">
                                                                 <mat-option *ngFor="let SortBy of PropertySortBy"
                                                                     value="{{SortBy.id}}">
@@ -125,7 +125,7 @@
                                                             </a>
                                                         </div>
                                                         <div class="col-5 text-end">
-                                                            <p class="agent-details__property-list-item-date">Listed on
+                                                            <p class="agent-details__property-list-item-date">علي قائمة
                                                                 {{item.requestedDateFormat}}</p>
                                                         </div>
                                                     </div>
@@ -143,15 +143,15 @@
                                                             <ul class="agent-details__property-detail-list">
                                                                 <li class="agent-details__property-detail-list-item" *ngIf="item.bedrooms != 0 && item.bedrooms != null">
                                                                     <img src="{{bedsvg}}" alt="">
-                                                                    {{item.bedrooms}} Beds
+                                                                    {{item.bedrooms}} غرفة نوم
                                                                 </li>
                                                                 <li class="agent-details__property-detail-list-item" *ngIf="item.bathrooms != 0 && item.bathrooms != null">
                                                                     <img src="{{bathsvg}}" alt="">
-                                                                    {{item.bathrooms}} Bath
+                                                                    {{item.bathrooms}} دوره المياه
                                                                 </li>
                                                                 <li class="agent-details__property-detail-list-item">
                                                                     <img src="{{squaremetersvg}}" alt="">
-                                                                    {{item.buildupArea}} Sq.Ft.
+                                                                    {{item.buildupArea}}  قدم مربع
                                                                 </li>
                                                                 <li class="agent-details__property-detail-list-item">
                                                                     <img src="{{furnishing}}" alt="">
@@ -182,7 +182,7 @@
                 <div class="agent-details__form-wrapper">
                     <div class="row mb-3">
                         <div class="col-8 d-flex align-items-center">
-                            <h6>Contact {{newAgentDetail.fullName}}</h6>
+                            <h6>الاتصال {{newAgentDetail.fullName}}</h6>
                         </div>
                         <div class="col-4 text-end">
                             <img src="assets/images/better-home.svg" alt="" class="agent-details__form-img">
@@ -190,65 +190,59 @@
                     </div>
                     <form class="agent-details__form" [formGroup]="agentContact">
                         <fieldset class="agent-details__form-fieldset">
-                            <label for="name" class="agent-details__form-label">Name*</label>
-                            <input type="text" name="name" id="name" placeholder="Enter your full name"
+                            <label for="name" class="agent-details__form-label">الاسم*</label>
+                            <input type="text" name="name" id="name" placeholder="الرجاء ادخال الاسم"
                                 class="agent-details__form-input" formControlName="name">
-                            <span style="color: red" *ngIf="nameError != ''">*This field is
-                                required</span>
+                            <span style="color: red" *ngIf="nameError != ''">*هذا الحقل مطلوب</span>
 
                         </fieldset>
                         <fieldset class="agent-details__form-fieldset">
-                            <label for="email" class="agent-details__form-label">Email*</label>
-                            <input type="text" name="email" id="email" placeholder="Enter your email address"
+                            <label for="email" class="agent-details__form-label">البريد الإلكتروني*</label>
+                            <input type="text" name="email" id="email" placeholder="الرجاء ادخال البريد الالكتروني الخاص بك"
                                 class="agent-details__form-input" formControlName="email">
-                            <span style="color: red" *ngIf="emailError != ''">*This field is
-                                required</span>
+                            <span style="color: red" *ngIf="emailError != ''">*هذا الحقل مطلوب</span>
                         </fieldset>
                         <fieldset class="agent-details__form-fieldset">
-                            <label for="phone" class="agent-details__form-label">Phone No.*</label>
-                            <input type="text" name="phone" id="phone" placeholder="Enter your phone number"
+                            <label for="phone" class="agent-details__form-label">رقم هاتف.*</label>
+                            <input type="text" name="phone" id="phone" placeholder="أدخل رقم هاتفك"
                                 class="agent-details__form-input" formControlName="phone">
-                            <span style="color: red" *ngIf="phoneError != ''">*This field is
-                                required</span>
+                            <span style="color: red" *ngIf="phoneError != ''">*هذا الحقل مطلوب</span>
                         </fieldset>
                         <fieldset class="agent-details__form-fieldset">
-                            <label for="message" class="agent-details__form-label">Message</label>
+                            <label for="message" class="agent-details__form-label">رسالة</label>
                             <textarea type="text" name="message" id="message"
-                                placeholder="I would like to inquire about the property OV - R8986. Please contact me at your earliest convenience."
-                                class="agent-details__form-input agent-details__form-textarea"
+                                placeholder="الرجاء وضع رسالتك هنا"
                                 formControlName="message"></textarea>
-                            <span style="color: red" *ngIf="messageError != ''">*This field is
-                                required</span>
+                            <span style="color: red" *ngIf="messageError != ''">*هذا الحقل مطلوب</span>
                         </fieldset>
-                        <button type="button" (click)="leadProceedStore()" class="agent-details__form-submit">Send
-                            Email</button>
+                        <button type="button" (click)="leadProceedStore()" class="agent-details__form-submit">ارسل بريد الكتروني</button>
                     </form>
                     <div class="row">
                         <div class="col-xxl-6">
                             <a class="agent-details__btn cursor-pointer" routerLink="/chat">
                                 <img src="assets/images/icons/phone-call.svg" alt="">
-                                Call Landlord</a>
+                                اتصل بالمالك</a>
                         </div>
                         <div class="col-xxl-6">
                             <a class="agent-details__btn" href="https://web.whatsapp.com/" target="_blank">
                                 <img src="assets/images/icons/WA_Logo.svg" alt="">
-                                Whats APP</a>
+                                واتساب</a>
                         </div>
                         <div class="col-xxl-6">
                             <a class="agent-details__btn cursor-pointer" routerLink="/chat">
                                 <img src="assets/images/icons/comments.svg" alt="">
-                                Chat with Landlord</a>
+                                الدردشة مع المالك</a>
                         </div>
                         <div class="col-xxl-6">
                             <a class="agent-details__btn cursor-pointer" routerLink="/chat">
                                 <img src="assets/images/icons/play-alt.svg" alt="">
-                                Video Call</a>
+                                مكالمة فيديو</a>
                         </div>
                         <div class="col-xxl-6">
                             <a class="agent-details__btn" target="_blank"
                                 href="https://www.youtube.com/watch?v=y9j-BL5ocW8">
                                 <img src="assets/images/icons/film.svg" alt="">
-                                Virtual Tour</a>
+                                جولة افتراضية</a>
                         </div>
                     </div>
                 </div>
