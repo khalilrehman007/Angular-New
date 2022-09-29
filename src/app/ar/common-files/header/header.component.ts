@@ -550,14 +550,16 @@ export class HeaderComponent implements OnInit {
   ];
   selectedLanguage = this.language[1].value;
   changeLanguage() {
-    let temp:any = {};
-    temp.user = localStorage.getItem("user");
-    temp.token = localStorage.getItem("token");
-    temp.fireid = localStorage.getItem("firebase:host:ovaluate-notification-4acc7-default-rtdb.firebaseio.com");
-    localStorage.clear();
-    localStorage.setItem("user", temp.user);
-    localStorage.setItem("token", temp.token);
-    localStorage.setItem("firebase:host:ovaluate-notification-4acc7-default-rtdb.firebaseio.com", temp.fireid);
+    if(localStorage.getItem("user")) {
+      let temp:any = {};
+      temp.user = localStorage.getItem("user");
+      temp.token = localStorage.getItem("token");
+      temp.fireid = localStorage.getItem("firebase:host:ovaluate-notification-4acc7-default-rtdb.firebaseio.com");
+      localStorage.clear();
+      localStorage.setItem("user", temp.user);
+      localStorage.setItem("token", temp.token);
+      localStorage.setItem("firebase:host:ovaluate-notification-4acc7-default-rtdb.firebaseio.com", temp.fireid);
+    }
     if(this.route.url.split("?").length == 1) {
       let temp = this.route.url.split("/");
       temp.splice(0,2);
