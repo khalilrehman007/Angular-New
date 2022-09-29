@@ -65,7 +65,7 @@ export class PropertyinfoComponent implements OnInit {
   constructor(private route: Router, private notifyService: NotificationService, private service: AppService) {
     if (!localStorage.getItem("user")) {
       this.notifyService.showError("You need to register/login", "");
-      this.route.navigate(["/login"]);
+      this.route.navigate(["/ar/login"]);
     }
     this.loadCountriesData();
     this.options = {
