@@ -371,12 +371,19 @@ a {
 	border: 0;
 }
 .listing-slider-area {
-	padding: 20px 20px 20px 20px;
+	padding: 0px;
 	border: 0.5px solid var(--stroke-color);
 	border-radius: 10px;
 	background: #F0F3F5;
 	overflow: hidden;
-
+	.owl-stage-outer {
+		padding-bottom: 0px !important;
+	}
+	.owl-dots {
+		margin: 0px;
+		position: absolute;
+		bottom: 15px;
+		left: 37px;
 	.owl-dot {
 		span {
 			width: 20px !important;
@@ -384,6 +391,7 @@ a {
 			border-radius: 0px !important;
 		}
 	}
+}
 
 	.owl-theme {
 		.owl-dots {
@@ -3869,7 +3877,7 @@ input[type=number] {
 }
 
 .property-listing-slider-left {
-	padding: 20px 0px 20px 40px;
+	padding: 40px !important;
 
 	h2 {
 		font-weight: 40px;
@@ -12079,9 +12087,20 @@ background: transparent !important;
 }
 }
 .property-listing-slider-right img {
-    height: 375px;
+    height: 400px;
     object-fit: cover;
 }
 .agent-landing__banner-wrapper.black-overlay > img {
     filter: brightness(0.5);
+}
+.property-listing-slider-right {
+    padding: 0px !important;
+}
+
+
+
+@media (min-width: 1200px){
+	.footer-secondary-menu-heading.find-agent-footer-heading {
+		margin-top: 111px !important;
+	}
 }
