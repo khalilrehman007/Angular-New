@@ -2,7 +2,7 @@
 <section class="list-properties-sec">
     <div class="listing-container">
         <div class="heading-title-sec text-center">
-            <h2>List New Property</h2>
+            <h2>أعلن عن عقار جديد</h2>
             <p>تأكد من ملء جميع الحقول اللازمة وتحميل جميع الملفات المطلوبة.</p>
         </div>
         <div ngClass="listing-property-form-sec">
@@ -10,11 +10,11 @@
                 <mat-list>
                     <mat-list-item ngClass="active"><a routerLink="/listingproperty"><span ngClass="">1</span>معلومات الملكية</a>
                     </mat-list-item>
-                    <mat-list-item ngClass="active"><a routerLink=""><span ngClass="">2</span> Listing Info</a>
+                    <mat-list-item ngClass="active"><a routerLink=""><span ngClass="">2</span>معلومات القائمة</a>
                     </mat-list-item>
-                    <mat-list-item ngClass="disabled"><a routerLink=""><span ngClass="">3</span> Media</a>
+                    <mat-list-item ngClass="disabled"><a routerLink=""><span ngClass="">3</span>وسائل الإعلام</a>
                     </mat-list-item>
-                    <mat-list-item ngClass="disabled"><a routerLink=""><span ngClass="">4</span> Publish</a>
+                    <mat-list-item ngClass="disabled"><a routerLink=""><span ngClass="">4</span>نشر</a>
                     </mat-list-item>
                 </mat-list>
             </div>
@@ -24,7 +24,6 @@
                         <div class="row">
                             <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12">
                                 <div class="new-proprty-details">
-                                    <!-- <h5 class="proname">{{data.BuildingName}}</h5> -->
                                     <address>{{data.PropertyAddressArabic}}</address>
                                 </div>
                             </div>
@@ -33,12 +32,10 @@
                                     <p>This building also listing in ovaluate</p>
                                     <div class="row">
                                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-                                            <p class="no-units-p"><span class="unit-no">{{propertyListingBuy}}</span>
-                                                Units on sale</p>
+                                            <p class="no-units-p"><span class="unit-no">{{propertyListingBuy}}</span>وحدات معروضة للبيع</p>
                                         </div>
                                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-                                            <p class="no-units-p"><span class="unit-no">{{propertyListingRent}}</span>
-                                                Units on rent</p>
+                                            <p class="no-units-p"><span class="unit-no">{{propertyListingRent}}</span>وحدات للإيجار</p>
                                         </div>
                                     </div>
                                 </div>
@@ -195,7 +192,7 @@
                                                         <label>غرف نوم</label>
                                                         <div class="bedroom-input">
                                                             <mat-form-field appearance="fill">
-                                                                <mat-label>Select Number Of Bedrooms</mat-label>
+                                                                <mat-label>حدد عدد غرف النوم</mat-label>
                                                                 <mat-select [(value)]="data.BedRooms"
                                                                     (selectionChange)="getBedroom($event)">
                                                                     <mat-option *ngFor="let item of room"
@@ -215,7 +212,7 @@
                                                         <label>الحمامات</label>
                                                         <div class="bathroom-input">
                                                             <mat-form-field appearance="fill">
-                                                                <mat-label>Select Number Of Bathrooms</mat-label>
+                                                                <mat-label>حدد عدد الحمامات</mat-label>
                                                                 <mat-select [(value)]="data.BathRooms"
                                                                     (selectionChange)="getBathroom($event)">
                                                                     <mat-option *ngFor="let item of room"
@@ -269,7 +266,7 @@
                                                             appearance="fill">
                                                             <input matInput type="number" formControlName="carpetArea">
                                                         </mat-form-field>
-                                                        <span class="area-sq">Sq. Ft.</span>
+                                                        <span class="area-sq">بالقدم المربع</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -509,7 +506,7 @@
                                                         <label>سياسة الحيوانات الأليفة</label>
                                                         <div class="pet-policy-input">
                                                             <mat-form-field appearance="fill">
-                                                                <mat-label>Select the pet policy</mat-label>
+                                                                <mat-label>حدد سياسة الحيوانات المسموحة</mat-label>
                                                                 <mat-select multiple [(value)]="petPolicyData"
                                                                     (selectionChange)="getPetPolicy($event)">
                                                                     <mat-option *ngFor="let item of petPolicy"
@@ -581,7 +578,7 @@
                                             </div>
                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4"
                                                 *ngIf="data.RentTypeId == 1">
-                                                <h6 class="h6-design">Start Date</h6>
+                                                <h6 class="h6-design">تاريخ البدء</h6>
                                                 <div class="input-date-picker input-design start-date-input">
                                                     <mat-form-field appearance="fill">
                                                         <input matInput [matDatepicker]="picker" [min]="minDate"
@@ -594,7 +591,7 @@
                                             </div>
                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4"
                                                 *ngIf="data.RentTypeId == 1">
-                                                <h6 class="h6-design">End Date</h6>
+                                                <h6 class="h6-design">تاريخ الانتهاء</h6>
                                                 <div class="input-date-picker input-design available-input">
                                                     <mat-form-field appearance="fill">
                                                         <input matInput [matDatepicker]="picker" [min]="minDate"
@@ -635,7 +632,7 @@
                                                                         <span class="property_sel"></span>
                                                                     </div>
                                                                     <div class="proprty_name">
-                                                                        <p>Is it Negotiable</p>
+                                                                        <p>هل هو قابل للتفاوض</p>
                                                                     </div>
                                                                 </li>
                                                             </ul>
@@ -681,7 +678,7 @@
                                                                         <span class="property_sel"></span>
                                                                     </div>
                                                                     <div class="proprty_name">
-                                                                        <p>Is it Negotiable</p>
+                                                                        <p>هل هو قابل للتفاوض</p>
                                                                     </div>
                                                                 </li>
                                                             </ul>
@@ -720,7 +717,7 @@
                                                             <input matInput type="number"
                                                                 formControlName="noticePeriod">
                                                         </mat-form-field>
-                                                        <span class="area-sq">Days</span>
+                                                        <span class="area-sq">أيام</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -734,7 +731,7 @@
                                                             <input matInput type="number"
                                                                 formControlName="lockingPeriod">
                                                         </mat-form-field>
-                                                        <span class="area-sq">Days</span>
+                                                        <span class="area-sq">أيام</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -744,7 +741,7 @@
                                                         <label>تقع قرب</label>
                                                         <div class="located-near-input">
                                                             <mat-form-field appearance="fill">
-                                                                <mat-label>Select Near Locations</mat-label>
+                                                                <mat-label>حدد المواقع القريبة</mat-label>
                                                                 <mat-select multiple [(value)]="locatedNearData"
                                                                     (selectionChange)="getLocatedNear($event)">
                                                                     <mat-option *ngFor="let item of locatedNear"
@@ -773,14 +770,14 @@
                                                         <textarea formControlName="propertyDescription" matInput
                                                             placeholder="Eg. 30"></textarea>
                                                     </mat-form-field>
-                                                    <p class="textraea-hint text-right">320 words left</p>
+                                                    <p class="textraea-hint text-right">320 كلمة متبقية</p>
                                                 </div>
                                             </div>
                                             <div class="col-sm-12 pb-4" *ngIf="listingTypeId == 1">
-                                                <h6 class="h6-design">Property Offers (if any)</h6>
+                                                <h6 class="h6-design">عروض العقارات (إن وجدت)</h6>
                                                 <div class="textarea-design">
                                                     <mat-form-field class="full-width input-design" appearance="fill">
-                                                        <mat-label>Offers - Increase leads on your property upto 50%!
+                                                        <mat-label>العروض - زيادة العملاء المتوقعين على الممتلكات الخاصة بك حتى 50٪
                                                         </mat-label>
                                                         <input matInput formControlName="propertyOffers" type="text"
                                                             placeholder="Example - 15 days of rent off. Only Pay 15 days of brokerage now! Free rental agreement.">
@@ -790,29 +787,9 @@
                                             <div class="col-sm-12 pb-4" *ngIf="selectedPropertyType.hasPropertyFeature">
                                                 <div ngClass="select-design select2-design select2-design-full">
                                                 <h6 class="h6-design">حدد الميزات</h6>
-                                                <!-- <div class="inneR-border-wrap">
-                                                    <div class="checkbox-flex-box autoflex-layout feature-input">
-                                                        <div class="checkbox-design position-relative"
-                                                            *ngFor="let item of featuresData"
-                                                            (click)="getFeaturesData(item.propertyFeature.id)">
-                                                            <input type="checkbox" id={{item.propertyFeature.id}}
-                                                                name={{item.propertyFeature.featureName}}
-                                                                value={{item.propertyFeature.featureName}}
-                                                                *ngIf="featuresFormData.indexOf(item.propertyFeature.id) != -1"
-                                                                checked>
-                                                            <input type="checkbox" id={{item.propertyFeature.id}}
-                                                                name={{item.propertyFeature.featureName}}
-                                                                value={{item.propertyFeature.featureName}}
-                                                                *ngIf="featuresFormData.indexOf(item.propertyFeature.id) == -1">
-                                                            <button
-                                                                class="checkbox-btn">{{item.propertyFeature.featureName}}</button>
-                                                        </div>
-                                                    </div>
-                                                </div> -->
                                                 <div class="features-select-wrapper">
                                                     <select class="select2 features-select" multiple="multiple">
-                                                        <option value="0">حدد الميزات</option>
-                                                        <option *ngFor="let item of featuresData" [value]="item.propertyFeature.id"> {{item.propertyFeature.featureNameAr}}</option>
+                                                        <option *ngFor="let item of featuresData" [value]="item.propertyFeature.id" class="features-item-{{item.propertyFeatureId}}"> {{item.propertyFeature.featureName}}</option>
                                                     </select>
                                                 </div>
                                                 </div>
