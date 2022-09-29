@@ -371,7 +371,7 @@ a {
 	border: 0;
 }
 .listing-slider-area {
-	padding: 0px 0px 20px 20px;
+	padding: 20px 20px 20px 20px;
 	border: 0.5px solid var(--stroke-color);
 	border-radius: 10px;
 	background: #F0F3F5;
@@ -3870,7 +3870,6 @@ input[type=number] {
 
 .property-listing-slider-left {
 	padding: 20px 0px 20px 40px;
-	margin: auto;
 
 	h2 {
 		font-weight: 40px;
@@ -6079,6 +6078,8 @@ img {
 	background-size: cover;
 	background-repeat: no-repeat;
 	padding: 8.1% 0px;
+	background-position: center;
+    z-index: 0;
 
 	.inner-banner-heading {
 		h2 {
@@ -6089,7 +6090,18 @@ img {
 		}
 	}
 }
-
+.explore-banner-sec::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);
+    z-index: -1;
+}
 .hp-design {
 	h4 {
 		color: $color_15;
@@ -8359,7 +8371,6 @@ li.agent-details__property-list-item {
 
 .sell-rent-home-directly {
 	.row {
-		max-width: fit-content;
 		margin: 0px;
 	}
 }
@@ -12066,4 +12077,11 @@ background: transparent !important;
 .padd-r-0{
 	padding-right: 0px !important;
 }
+}
+.property-listing-slider-right img {
+    height: 375px;
+    object-fit: cover;
+}
+.agent-landing__banner-wrapper.black-overlay > img {
+    filter: brightness(0.5);
 }

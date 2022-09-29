@@ -178,7 +178,7 @@
                                     </div>
                                     <a [routerLink]="['/property/detail']" [queryParams]="{id: slide.id}"
                                         ngClass="linK_overlay"></a>
-                                    <button ngClass="tag_btn green"><img src="{{tagicn}}"> PREMIUM</button>
+                                    <button ngClass="tag_btn blue"><img src="{{tagicn}}"> PREMIUM</button>
                                 </div>
                             </ng-template>
                         </ng-container>
@@ -302,7 +302,7 @@
                 <owl-carousel-o [options]="sellrentproperty">
                     <ng-container>
                         <ng-template carouselSlide *ngFor="let item of slider">
-                            <div ngClass="row">
+                            <div ngClass="row align-items-center">
                                 <div ngClass="col-md-6 property-listing-slider-left">
                                     <h2>{{item.title}}</h2>
                                     <ul>
