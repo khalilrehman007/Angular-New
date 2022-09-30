@@ -1231,4 +1231,8 @@ blogs: any;
       this.enquiredlistingData = tempData
     }, 1000);
   }
+  copyCode() {
+    navigator.clipboard.writeText(this.userData.referralCode);
+    alert("Copied")
+  }
 }
