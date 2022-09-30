@@ -714,6 +714,8 @@
                                             </div>
                                         </div>
                                         <div ngClass="row">
+                                            <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+                                            <div ngClass="row">
                                             <div ngClass="col-sm-12">
                                                 <div
                                                     ngClass="block-wrapper mb-4 inspection-required-block input-date-picker input-design-2">
@@ -748,6 +750,25 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        </div>
+                                        <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+                                            <div ngClass="payent-type-block">
+                                                <h5 ngClass="h5-design mb-4">Payment Method</h5>
+                                                <div
+                                                ngClass="block-wrapper mb-4 input-design-2">
+                                                <mat-checkbox class="example-margin">Pay By Card
+                                                </mat-checkbox>
+                                               </div>
+                                               <div
+                                               ngClass="block-wrapper mb-4 input-design-2">
+                                               <mat-checkbox class="example-margin">Pay By Wallet
+                                               </mat-checkbox>
+                                              </div>
+                                            </div>
+                                            <!-- Demo code  -->
+                                            <a ngClass="nav-link" (click)="walletPopup(content)"> Demo </a>
+                                        </div>
+                                    </div>
                                     </form>
                                 </div>
                             </div>
@@ -889,3 +910,16 @@
 </section>
 <app-loader *ngIf="showLoader"></app-loader>
 <app-erroralert [error]="error" (errorResponse)="errorResponse($event)" *ngIf="showError"></app-erroralert>
+<div ngClass="wallet-modal">
+    <ng-template #content let-modal>
+        <div class="modal-body wallet-modal-design">
+            <img src="../../../assets/images/no-money.png">
+           <p>You don’t have sufficient balance in your wallet.</p>
+           <div class="wallet-btn-flex">
+              <button class="recharge-btn">Recharge Now</button>
+              <button class="cancel-btn" aria-label="Close"
+              (click)="modal.dismiss('Cross click')">Cancel</button>
+           </div>
+        </div>
+    </ng-template>
+</div>

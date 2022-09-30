@@ -80,7 +80,7 @@
                             </div>
                             <div *ngIf="typeSelected">
                                 <div ngClass="row">
-                                    <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+                                    <div ngClass="col-xl-12 col-lg-12 col-sm-12">
                                         <div ngClass="block-wrapper mb-4 select-design">
                                             <label class="h6-design">الغرض من التقييم<span
                                                     ngClass="required-span">*</span></label>
@@ -98,11 +98,11 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div ngClass="col-xl-6 col-lg-6 col-sm-12" *ngIf="!propertyData.hasUnits">
+                                    <div ngClass="col-xl-12 col-lg-12 col-sm-12" *ngIf="!propertyData.hasUnits">
                                         <div ngClass="block-wrapper mb-4">
                                             <label class="h6-design">تفاصيل اوضح<span
                                                     ngClass="required-span">*</span></label>
-                                            <div class="checkbox-flex-box three-column property-status-input">
+                                            <div class="checkbox-flex-box four-column property-status-input">
                                                 <div class="checkbox-design position-relative"
                                                     *ngFor="let item of propertyStatusData;"
                                                     (click)="propertyStatus(item.id, item.statusDescriptionAr)">

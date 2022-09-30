@@ -449,8 +449,24 @@ html[dir="rtl"]{
     border-left: 1px solid #d3dbfc;
     border-right: 0px;
 }
-
-
+.tab-nav-main .nav-pills .action-btn::after {
+    margin-right: 5px;
+    margin-left: 0px;
+}
+.mat-inner-chip-design input {
+    padding-right: 0px !important;
+    padding-left: 28px !important;
+}
+.mat_indicators-counts {
+    left: 0;
+    right: initial;
+}
+.mat-chip-inner-container {
+    justify-content: flex-end;
+}
+.mat-standard-chip {
+    direction: rtl !important;
+}
 	@media (max-width: 1199px){
 		#collapsibleNavbar{
 			right: -100%;

@@ -3,6 +3,7 @@ import { AppService } from 'src/app/service/app.service';
 import { DatePipe } from '@angular/common';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-property-documents',
@@ -611,7 +612,7 @@ export class PropertyDocumentsComponent implements OnInit {
       }
     })
   }
-  constructor(private service: AppService, private datePipe: DatePipe, private router: Router) {
+  constructor(private service: AppService, private datePipe: DatePipe, private router: Router,private modalService: NgbModal) {
     this.userData = localStorage.getItem("valuationDetailData");
     this.userData = JSON.parse(this.userData);
     this.formData = localStorage.getItem("valuationData");
@@ -632,5 +633,8 @@ export class PropertyDocumentsComponent implements OnInit {
     $("#formDate").on("click", function () {
       $(".mat-datepicker-toggle").click();
     })
+  }
+  walletPopup(content: any) {
+    this.modalService.open(content, { centered: true });
   }
 }
