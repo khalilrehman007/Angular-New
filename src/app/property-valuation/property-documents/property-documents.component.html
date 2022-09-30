@@ -725,7 +725,7 @@
                                                     <mat-checkbox class="example-margin">Do you have Referral Code
                                                     </mat-checkbox>
                                                     <mat-form-field class="full-width hide refrell-overlay-block" appearance="fill">
-                                                        <input matInput type="text" placeholder="Enter Referral Code" />
+                                                        <input matInput type="text" placeholder="Enter Referral Code" maxlength="8" formControlName="referralCode" (input)="validateCode()"/>
                                                         <span class="ovrc">OVRC-</span>
                                                     </mat-form-field>
                                                 </div>
