@@ -1924,11 +1924,11 @@
                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                                         <div ngClass="my-wallet-list-design">
                                             <div ngClass="exisitng-amount">
-                                                <h6>Existing Amount</h6>
-                                                <p>100 AED</p>
+                                                <h6>Existing Points</h6>
+                                                <p>100</p>
                                             </div>
                                             <div ngClass="recharge-now-btn">
-                                                <a class="cursor-pointer">Recharge Now</a>
+                                                <a class="cursor-pointer" (click)="rechargePopup(rechargemodal)">Recharge Now</a>
                                             </div>
                                         </div>
                                         </div>
@@ -4927,3 +4927,37 @@
 </div>
 <app-footer></app-footer>
 <app-loader *ngIf="showLoader"></app-loader>
+<div ngClass="wallet-modal">
+    <ng-template #rechargemodal let-modal>
+        <div class="modal-body wallet-modal-design">
+            <form>
+           <div class="wallet-modal-list">
+             <h5 class="h5-design mb-4">Please select</h5>
+             <div class="wallet-form-design">
+                    <div class="wallet-radio-design position-relative mb-3">
+                        <input type="radio" name="recharge-points">
+                        <button class="cstm-wallet-btn">10000 Points = AED 50</button>
+                    </div>
+                    <div class="wallet-radio-design position-relative mb-3">
+                        <input type="radio" name="recharge-points">
+                        <button class="cstm-wallet-btn">20000 Points = AED 100</button>
+                    </div>
+                    <div class="wallet-radio-design position-relative mb-3">
+                        <input type="radio" name="recharge-points">
+                        <button class="cstm-wallet-btn">30000 Points = AED 150</button>
+                    </div>
+                    <div class="wallet-radio-design position-relative mb-3">
+                        <input type="radio" name="recharge-points">
+                        <button class="cstm-wallet-btn">40000 Points = AED 200</button>
+                    </div>
+             </div>
+           </div>
+           <div class="wallet-btn-flex">
+              <button class="recharge-btn">Buy Now</button>
+              <button class="cancel-btn" aria-label="Close"
+              (click)="modal.dismiss('Cross click')">Cancel</button>
+           </div>
+        </form>
+        </div>
+    </ng-template>
+</div>
