@@ -634,7 +634,4 @@ export class PropertyDocumentsComponent implements OnInit {
       $(".mat-datepicker-toggle").click();
     })
   }
-  walletPopup(content: any) {
-    this.modalService.open(content, { centered: true });
-  }
 }

@@ -1,5 +1,5 @@
 <div class="back-tag-hide">
-<app-header2></app-header2>
+    <app-header2></app-header2>
 </div>
 <section ngClass="property-valuation-sec">
     <div ngClass="listing-container full-width">
@@ -103,9 +103,13 @@
                                             <div ngClass="blue-upload-box">
                                                 <div ngClass="blue-upload-bordered-btn">
                                                     <div ngClass="d-flex align-items-center justify-content-spacebw">
-                                                    <h6 ngClass="blue-heading">{{documentType[2].documentName}}</h6>
-                                                    <button ngClass="camera-bitton" (click)="openCamera()"><mat-icon>camera_alt</mat-icon></button>
-                                                    <input type="file" accept="image/*" capture="environment" class="camera-image d-none" (change)='property($any($event.target).files, 12)'>
+                                                        <h6 ngClass="blue-heading">{{documentType[2].documentName}}</h6>
+                                                        <button ngClass="camera-bitton" (click)="openCamera()">
+                                                            <mat-icon>camera_alt</mat-icon>
+                                                        </button>
+                                                        <input type="file" accept="image/*" capture="environment"
+                                                            class="camera-image d-none"
+                                                            (change)='property($any($event.target).files, 12)'>
                                                     </div>
                                                     <div ngClass="upload-files-design">
                                                         <div ngClass="greybordered-btn position-relative">
@@ -681,7 +685,8 @@
                                                     <label class="h6-design">Name of the Property Owner.<span
                                                             ngClass="required-span">*</span></label>
                                                     <div class="name-input">
-                                                        <mat-form-field class="full-width input-design-2" appearance="fill">
+                                                        <mat-form-field class="full-width input-design-2"
+                                                            appearance="fill">
                                                             <input matInput type="text"
                                                                 placeholder="Enter the full name in the language of report"
                                                                 formControlName="name" (keypress)="validateName($event)"
@@ -715,60 +720,48 @@
                                         </div>
                                         <div ngClass="row">
                                             <div ngClass="col-xl-6 col-lg-6 col-sm-12">
-                                            <div ngClass="row">
-                                            <div ngClass="col-sm-12">
-                                                <div
-                                                    ngClass="block-wrapper mb-4 inspection-required-block input-date-picker input-design-2">
-                                                    <mat-checkbox class="example-margin">Do you have Referral Code
-                                                    </mat-checkbox>
-                                                    <mat-form-field class="full-width hide" appearance="fill">
-                                                        <input matInput type="text" placeholder="Enter Referral Code" />
-                                                    </mat-form-field>
+                                                <div ngClass="row">
+                                                    <div ngClass="col-sm-12">
+                                                        <div
+                                                            ngClass="block-wrapper mb-4 inspection-required-block input-date-picker input-design-2">
+                                                            <mat-checkbox class="example-margin">Do you have Referral
+                                                                Code
+                                                            </mat-checkbox>
+                                                            <mat-form-field class="full-width hide" appearance="fill">
+                                                                <input matInput type="text"
+                                                                    placeholder="Enter Referral Code" />
+                                                            </mat-form-field>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div ngClass="row mb-4">
+                                                    <div ngClass="col-sm-12">
+                                                        <div class="d-inline-block accept-terms-input">
+                                                            <mat-checkbox class="example-margin"
+                                                                (change)="acceptTerms($event)">
+                                                                Accept <a routerLink="/term-condition"
+                                                                    target="_blank">Term &
+                                                                    Conditions.</a>
+                                                            </mat-checkbox>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div ngClass="row">
+                                                    <div ngClass="col-sm-12">
+                                                        <div
+                                                            ngClass="block-wrapper mb-4 inspection-required-block input-date-picker input-design">
+                                                            <mat-checkbox class="example-margin"
+                                                                (change)="onInspectionSelect($event)">Inspection
+                                                                Required
+                                                            </mat-checkbox>
+                                                            <mat-form-field class="full-width hide" appearance="fill">
+                                                                <input matInput type="datetime-local" id="formDate" />
+                                                            </mat-form-field>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div ngClass="row mb-4">
-                                            <div ngClass="col-sm-12">
-                                                <div class="d-inline-block accept-terms-input">
-                                                    <mat-checkbox class="example-margin" (change)="acceptTerms($event)">
-                                                        Accept <a routerLink="/term-condition" target="_blank">Term &
-                                                            Conditions.</a>
-                                                    </mat-checkbox>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div ngClass="row">
-                                            <div ngClass="col-sm-12">
-                                                <div
-                                                    ngClass="block-wrapper mb-4 inspection-required-block input-date-picker input-design">
-                                                    <mat-checkbox class="example-margin"
-                                                        (change)="onInspectionSelect($event)">Inspection Required
-                                                    </mat-checkbox>
-                                                    <mat-form-field class="full-width hide" appearance="fill">
-                                                        <input matInput type="datetime-local" id="formDate" />
-                                                    </mat-form-field>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        </div>
-                                        <div ngClass="col-xl-6 col-lg-6 col-sm-12">
-                                            <div ngClass="payent-type-block">
-                                                <h5 ngClass="h5-design mb-4">Payment Method</h5>
-                                                <div
-                                                ngClass="block-wrapper mb-4 input-design-2">
-                                                <mat-checkbox class="example-margin">Pay By Card
-                                                </mat-checkbox>
-                                               </div>
-                                               <div
-                                               ngClass="block-wrapper mb-4 input-design-2">
-                                               <mat-checkbox class="example-margin">Pay By Wallet
-                                               </mat-checkbox>
-                                              </div>
-                                            </div>
-                                            <!-- Demo code  -->
-                                            <a ngClass="nav-link" (click)="walletPopup(content)"> Demo </a>
-                                        </div>
-                                    </div>
                                     </form>
                                 </div>
                             </div>
@@ -781,7 +774,7 @@
                                 </mat-card-actions>
                             </div>
                         </div>
-                        
+
                         <div class="valuation-cstm_tabs property_payment" *ngIf="showPayment"
                             [ngClass]="status3 ? 'active' : 'hide'">
                             <div ngClass="form-border-wrapper">
@@ -876,7 +869,8 @@
                                                             <mat-form-field class="full-width input-design-2"
                                                                 appearance="fill">
                                                                 <input matInput type="number" placeholder="CVV"
-                                                                    formControlName="cvv" (input)="checkLength(2, false)">
+                                                                    formControlName="cvv"
+                                                                    (input)="checkLength(2, false)">
                                                             </mat-form-field>
                                                         </div>
                                                     </div>
@@ -914,12 +908,11 @@
     <ng-template #content let-modal>
         <div class="modal-body wallet-modal-design">
             <img src="../../../assets/images/no-money.png">
-           <p>You don’t have sufficient balance in your wallet.</p>
-           <div class="wallet-btn-flex">
-              <button class="recharge-btn">Recharge Now</button>
-              <button class="cancel-btn" aria-label="Close"
-              (click)="modal.dismiss('Cross click')">Cancel</button>
-           </div>
+            <p>You don’t have sufficient balance in your wallet.</p>
+            <div class="wallet-btn-flex">
+                <button class="recharge-btn">Recharge Now</button>
+                <button class="cancel-btn" aria-label="Close" (click)="modal.dismiss('Cross click')">Cancel</button>
+            </div>
         </div>
     </ng-template>
 </div>
