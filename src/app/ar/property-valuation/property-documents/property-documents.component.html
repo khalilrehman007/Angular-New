@@ -710,15 +710,14 @@
                                             </div>
                                         </div>
                                         <div ngClass="row">
-                                        <div ngClass="col-xl-6 col-lg-6 col-sm-12">
-                                        <div ngClass="row">
                                             <div ngClass="col-sm-12">
                                                 <div
                                                     ngClass="block-wrapper mb-4 inspection-required-block input-date-picker input-design-2">
                                                     <mat-checkbox class="example-margin">Do you have Referral Code
                                                     </mat-checkbox>
-                                                    <mat-form-field class="full-width hide" appearance="fill">
-                                                        <input matInput type="text" placeholder="Enter Referral Code" />
+                                                    <mat-form-field class="full-width hide refrell-overlay-block" appearance="fill">
+                                                        <input matInput type="text" placeholder="Enter Referral Code" maxlength="8" formControlName="referralCode" (input)="validateCode()"/>
+                                                        <span class="ovrc">OVRC-</span>
                                                     </mat-form-field>
                                                 </div>
                                             </div>
@@ -745,23 +744,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        </div>
-                                        <div ngClass="col-xl-6 col-lg-6 col-sm-12">
-                                            <div ngClass="payent-type-block">
-                                                <h5 ngClass="h5-design mb-4">Payment Method</h5>
-                                                <div
-                                                ngClass="block-wrapper mb-4 input-design-2">
-                                                <mat-checkbox class="example-margin">Pay By Card
-                                                </mat-checkbox>
-                                               </div>
-                                               <div
-                                               ngClass="block-wrapper mb-4 input-design-2">
-                                               <mat-checkbox class="example-margin">Pay By Wallet
-                                               </mat-checkbox>
-                                              </div>
-                                            </div>
-                                        </div>
-                                        </div>
+
                                     </form>
                                 </div>
                             </div>

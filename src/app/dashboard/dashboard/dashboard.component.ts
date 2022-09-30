@@ -1037,6 +1037,9 @@ export class DashboardComponent implements OnInit {
   logOutPopup(content:any) {
     this.modalService.open(content, { centered: true });
   }
+  rechargePopup(rechargemodal:any) {
+    this.modalService.open(rechargemodal, { centered: true });
+  }
 
   buyCount: any;
   rentCount: any;
@@ -1263,5 +1266,9 @@ export class DashboardComponent implements OnInit {
     setTimeout(() => {
       this.enquiredlistingData = tempData
     }, 1000);
+  }
+  copyCode() {
+    navigator.clipboard.writeText(this.userData.referralCode);
+    alert("Copied")
   }
 }

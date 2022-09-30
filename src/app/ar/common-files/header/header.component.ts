@@ -8,6 +8,7 @@ import { AuthService } from 'src/app/service/auth.service';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database';
 import { map } from 'rxjs';
+import { getDatabase, ref, child, push, update } from 'firebase/database';
 interface LanguagesList {
   value: string;
   viewValue: string;
@@ -325,6 +326,23 @@ export class HeaderComponent implements OnInit {
   }
   status3: boolean = false;
   clickEvent3() {
+    if (!this.status3) {
+      let updates: any = {};
+      let temp: any = {};
+      let database: any = getDatabase();
+      for (let i = 0; i < this.notificationData.length; i++) {
+        if (!this.notificationData[i].value.HasSeen) {
+          temp = this.notificationData[i].value;
+          temp.HasSeen = true;
+          updates["/Notifications/" + this.userData + "/" + this.notificationData[i].key] = temp;
+        }
+        update(ref(database), updates).then(() => {
+          this.notificationcount = 0;
+        })
+          .catch((error) => {
+          });
+      }
+    }
     this.status3 = !this.status3;
     this.status1 = false;
     this.status = false;
