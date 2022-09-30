@@ -2319,7 +2319,7 @@ input[type=number] {
 	align-items: center;
 	color: $color_6;
 	border-left: 0.5px solid rgba(0, 0, 0, 0.2);
-	padding: 0px 10px;
+	padding: 0px 5px;
 	background: #fff;
 	border: 0.5px solid #D3DBFF;
 	border-top-right-radius: 8px;
@@ -11513,12 +11513,13 @@ p:empty {
 
 	&::before {
 		content: "";
-		width: calc(100% + 4px);
-		height: calc(100% + 4px);
-		position: absolute;
-		border: 0.5px solid red;
-		border-radius: 10px;
-		transform: translate(-2px, -2px);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    outline: 0.5px solid red;
+    border-radius: 2px;
+    transform: translate(-2px, -2px);
+    outline-offset: 8px;
 	}
 }
 
