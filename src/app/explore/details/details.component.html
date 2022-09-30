@@ -26,10 +26,8 @@
                                     </li>
                                     <li [ngClass]="status1 ? 'tactive' : 'thide'"><a (click)="NearBy()">Location</a>
                                     </li>
-                                    <li [ngClass]="status2 ? 'tactive' : 'thide'"><a (click)="ResPro()">Residential
-                                            Properties</a></li>
-                                    <li [ngClass]="status3 ? 'tactive' : 'thide'"><a (click)="ComPro()">Commercial
-                                            Properties</a></li>
+                                    <li [ngClass]="status2 ? 'tactive' : 'thide'"><a (click)="ResPro()">Residential Properties</a></li>
+                                    <li [ngClass]="status3 ? 'tactive' : 'thide'"><a (click)="ComPro()">Commercial Properties</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -42,9 +40,9 @@
                 </div>
             </div>
             <div class="nearBy-wrapper" [ngClass]="status1 ? 'Showactive' : 'ExDetailhide'">
-                <div ngClass="tabs-heading-div">
+                <!-- <div ngClass="tabs-heading-div">
                     <h5>Nearby Al Barsha</h5>
-                </div>
+                </div> -->
                 <!-- <div ngClass="explore-near-by-buttons">
                       <button ngClass="explore-btn-design">All</button>
                       <button ngClass="explore-btn-design active"><img src="{{restaurant}}"> Restaurants</button>
@@ -189,7 +187,7 @@
                                                 </button>
                                                 <div ngClass="property-info">
                                                     <span ngClass="property-pricing"><span>{{ slide.price }} {{
-                                                            slide.currency }}22</span>
+                                                            slide.currency }}</span>
                                                         {{slide.rentType}}</span>
                                                     <span ngClass="property-name">{{slide.buildingName}}</span>
                                                     <p ngClass="property-location">
@@ -302,7 +300,7 @@
                                                 </button>
                                                 <div ngClass="property-info">
                                                     <span ngClass="property-pricing"><span>{{ slide.price }} {{
-                                                            slide.currency }}33</span>
+                                                            slide.currency }}</span>
                                                         {{slide.rentType}}</span>
                                                     <span ngClass="property-name">{{slide.buildingName}}</span>
                                                     <p ngClass="property-location">
@@ -352,7 +350,7 @@
                                                 </button>
                                                 <div ngClass="property-info">
                                                     <span ngClass="property-pricing"><span>{{ slide.price }} {{
-                                                            slide.currency }}44</span>
+                                                            slide.currency }}</span>
                                                         {{slide.rentType}}</span>
                                                     <span ngClass="property-name">{{slide.buildingName}}</span>
                                                     <p ngClass="property-location">
