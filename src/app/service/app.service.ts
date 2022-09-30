@@ -432,4 +432,7 @@ export class AppService {
   PropertyStatuses() {
     return this.http.get(this.apiurl + 'PropertyStatuses');
   }
+  VerifyReferralCode(data:any) {
+    return this.http.get(this.apiurl + 'VerifyReferralCode/' + data);
+  }
 }

@@ -56,7 +56,8 @@ export class PropertyDocumentsComponent implements OnInit {
 
   reportForm = new FormGroup({
     name: new FormControl("", Validators.required),
-    phone: new FormControl("", Validators.required)
+    phone: new FormControl("", Validators.required),
+    referralCode: new FormControl("")
   })
 
   checkPhone() {
@@ -78,6 +79,9 @@ export class PropertyDocumentsComponent implements OnInit {
 
   get name() {
     return this.reportForm.get("name");
+  }
+  get referralCode() {
+    return this.reportForm.get("referralCode");
   }
   get email() {
     return this.reportForm.get("email");
@@ -377,7 +381,7 @@ export class PropertyDocumentsComponent implements OnInit {
       return;
     }
     this.showLoader = true;
-    this.publishText = "أرجو الإنتظار...";
+    this.publishText = "Please Wait...";
     this.formData.CustomerName = this.reportForm.value.name;
     let temp: any = this.countriesList.value
     this.formData.PhoneNumber = temp + this.reportForm.value.phone;
@@ -387,7 +391,9 @@ export class PropertyDocumentsComponent implements OnInit {
     userData = JSON.parse(userData);
     this.formData.UserId = userData.id;
     this.formData.EmailAddress = userData.email;
-
+    if(this.formData.ValauationReferralCode) {
+      this.formData.ValauationReferralCode.UserId = userData.id;
+    }
     if (this.formData.InspectionRequired) {
       let a: any = localStorage.getItem("inspectionFee");
       this.formData.ValuationPayment = { "Email": userData.email, "CustomerName": this.reportForm.value.name, "TotalAmount": parseInt(this.reportPrice) + parseInt(a), "InspectionAmount": localStorage.getItem("inspectionFee"), "ReportAmount": this.reportPrice };
@@ -428,7 +434,7 @@ export class PropertyDocumentsComponent implements OnInit {
           let temp:any = {};
           temp.reportNumberCode = this.valuationResponse.reportNumberCode;
           temp.emailAddress = this.valuationResponse.emailAddress;
-          localStorage.setItem("valuationResponse", JSON.stringify(res.data));
+          localStorage.setItem("valuationResponse", JSON.stringify(temp));
           this.showPayment = true;
           this.status3 = !this.status3;
           this.status7 = !this.status7;
@@ -613,6 +619,16 @@ export class PropertyDocumentsComponent implements OnInit {
         this.showError = true;
       }
     })
+  }
+  validateCode() {
+    if(this.reportForm.value.referralCode?.length == 8) {
+      this.service.VerifyReferralCode("OVRC-" + this.reportForm.value.referralCode).subscribe((result:any) => {
+        if(result.message == "You have verified the referral code") {
+          console.log(result);
+          this.formData.ValauationReferralCode = {"ReferralCode": this.reportForm.value.referralCode,"UserId" :"", "ReferralCodeUserId":result.data}
+        }
+      })
+    }
   }
   constructor(private service: AppService, private datePipe: DatePipe, private router: Router) {
     this.userData = localStorage.getItem("valuationDetailData");
