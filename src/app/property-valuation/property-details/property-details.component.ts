@@ -356,7 +356,6 @@ export class PropertyDetailsComponent implements OnInit {
   ngOnInit(): void {
   }
   ngAfterViewInit(): void {
-    this.getLocation();
     if (this.oldData == "") {
       $('.select2').select2();
     }
