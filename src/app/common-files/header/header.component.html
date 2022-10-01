@@ -78,29 +78,114 @@
                                         <button (click)="clickEvent()"><img src="{{close}}"></button>
                                     </div>
                                     <div ngClass="shortlisted-inner-cntnt">
-                                        <mat-tab-group>
+                                        <mat-tab-group (selectedTabChange)="getCountChange($event)">
                                             <mat-tab label="All ({{allCount}})">
-                                                <div ngClass="shortlisted-inner-details">
-                                                    <div ngClass="compare-btn-design">
-                                                        <a routerLink="/PropertyCompare"
-                                                            ngClass="compare-btn">Compare</a>
-                                                    </div>
-                                                </div>
-                                            </mat-tab>
-                                            <mat-tab label="Buy ({{buyCount}})">
-                                                <div ngClass="shortlisted-inner-details">
-                                                    <div ngClass="compare-btn-design">
-                                                        <a routerLink="/PropertyCompare"
-                                                            ngClass="compare-btn">Compare</a>
+                                                <div
+                                                    [ngClass]="wishlistingDataAll.length == 1 ? 'shortlisted-inner-details single-shortlisted-property' : 'shortlisted-inner-details'">
+                                                    <form>
+                                                        <div ngClass="shortlisted-project-cntnt position-relative"
+                                                            *ngFor="let list of wishlistingDataAll">
+                                                            <div ngClass="property-selection-div">
+                                                                <!-- <div ngClass="selection-checkbox-selector"
+                                                                    *ngIf="wishlistingDataAll.length > 1">
+                                                                    <input type="checkbox" value="{{list.id}}"
+                                                                        (click)="allFormCheckbox(list.id,list.propertyListingTypeId)">
+                                                                    <button ngClass="cstm-selection-btn"></button>
+                                                                </div> -->
+                                                                <div ngClass="shortlisted-white-box">
+                                                                    <div ngClass="short-img">
+                                                                        <img src="{{list.src}}">
+                                                                    </div>
+                                                                    <div ngClass="short-cntnt">
+                                                                        <h2>{{list.price}} {{list.currency}} <small
+                                                                                *ngIf="list.rentType != ''">/{{list.rentType}}</small>
+                                                                        </h2>
+                                                                        <h4>{{list.title}}</h4>
+                                                                        <p>{{list.propertyType}}</p>
+                                                                        <address>{{list.propertyAddress}}</address>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div ngClass="delete-property-div">
+                                                                <button ngClass="delete-btn"
+                                                                    (click)="removeFavorite(list.id)"><img
+                                                                        src="{{trash}}"></button>
+                                                            </div>
+                                                        </div>
+                                                        <!-- <div ngClass="compare-btn-design">
+                                                            <a (click)="compareProceed('all')"
+                                                                *ngIf="wishlistingDataAll.length > 1"
+                                                                ngClass="compare-btn">Compare</a>
+                                                        </div> -->
+                                                    </form>
+                                                    <div *ngIf="wishlistingDataAll.length == 0" ngClass="property_not-found">
+                                                        <img src="{{propertynotFound}}">
+                                                        <p>It seems you have not shortlisted any property</p>
                                                     </div>
                                                 </div>
                                             </mat-tab>
                                             <mat-tab label="Rent ({{rentCount}})">
-                                                <div ngClass="shortlisted-inner-details">
-                                                    <div ngClass="compare-btn-design">
-                                                        <a routerLink="/PropertyCompare"
-                                                            ngClass="compare-btn">Compare</a>
+                                                <div
+                                                    [ngClass]="wishlistingDataRent.length == 1 ? 'shortlisted-inner-details single-shortlisted-property' : 'shortlisted-inner-details'">
+                                                    <div ngClass="shortlisted-project-cntnt position-relative"
+                                                        *ngFor="let list of wishlistingDataRent">
+                                                        <div ngClass="property-selection-div">
+                                                            <div ngClass="shortlisted-white-box">
+                                                                <div ngClass="short-img">
+                                                                    <img src="{{list.src}}">
+                                                                </div>
+                                                                <div ngClass="short-cntnt">
+                                                                    <h2>{{list.price}} {{list.currency}} <small
+                                                                            *ngIf="list.rentType != ''">/{{list.rentType}}</small>
+                                                                    </h2>
+                                                                    <h4>{{list.title}}</h4>
+                                                                    <p>{{list.propertyType}}</p>
+                                                                    <address>{{list.propertyAddress}}</address>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div ngClass="delete-property-div">
+                                                            <button ngClass="delete-btn"
+                                                                (click)="removeFavorite(list.id)"><img
+                                                                    src="{{trash}}"></button>
+                                                        </div>
                                                     </div>
+                                                        <div *ngIf="wishlistingDataRent.length == 0" ngClass="property_not-found">
+                                                            <img src="{{propertynotFound}}">
+                                                            <p>It seems you have not shortlisted any property</p>
+                                                        </div>
+                                                </div>
+                                            </mat-tab>
+                                            <mat-tab label="Buy ({{buyCount}})">
+                                                <div
+                                                    [ngClass]="wishlistingDataBuy.length == 1 ? 'shortlisted-inner-details single-shortlisted-property' : 'shortlisted-inner-details'">
+                                                    <div ngClass="shortlisted-project-cntnt position-relative"
+                                                        *ngFor="let list of wishlistingDataBuy">
+                                                        <div ngClass="property-selection-div">
+                                                            <div ngClass="shortlisted-white-box">
+                                                                <div ngClass="short-img">
+                                                                    <img src="{{list.src}}">
+                                                                </div>
+                                                                <div ngClass="short-cntnt">
+                                                                    <h2>{{list.price}} {{list.currency}} <small
+                                                                            *ngIf="list.rentType != ''">/{{list.rentType}}</small>
+                                                                    </h2>
+                                                                    <h4>{{list.title}}</h4>
+                                                                    <p>{{list.propertyType}}</p>
+                                                                    <address>{{list.propertyAddress}}</address>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div ngClass="delete-property-div">
+                                                            <button ngClass="delete-btn"
+                                                                (click)="removeFavorite(list.id)"><img
+                                                                    src="{{trash}}"></button>
+                                                        </div>
+                                                    </div>
+                                                        <div *ngIf="wishlistingDataBuy.length == 0" ngClass="property_not-found">
+                                                            <img src="{{propertynotFound}}">
+                                                            <p>It seems you have not shortlisted any property</p>
+                                                        </div>
                                                 </div>
                                             </mat-tab>
                                         </mat-tab-group>

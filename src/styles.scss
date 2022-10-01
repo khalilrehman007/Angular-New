@@ -4198,8 +4198,9 @@ input[type=number] {
 	}
 
 	.client-img {
-		width: 150px !important;
-		height: auto;
+		width: 100% !important;
+		height: 100%;
+		object-fit: cover;
 	}
 
 	.client_img {
@@ -4358,7 +4359,7 @@ img {
 		font-size: 24px;
 		color: $color_2;
 		font-weight: 700;
-		margin-bottom: 0px;
+		margin-bottom: 10px;
 	}
 
 	.property-tags {
@@ -4383,7 +4384,7 @@ img {
 	h4 {
 		color: $color_15;
 		font-size: 24px;
-		margin-bottom: 0px;
+		margin-bottom: 10px;
 	}
 
 	.property-name_detals {
@@ -4720,22 +4721,6 @@ img {
 
 .amenties_info-row {
 	padding-top: 15px;
-
-	>.row {
-		>div {
-			&:last-child {
-				.amenties_info-text {
-					img {
-						display: none;
-					}
-
-					p {
-						display: none;
-					}
-				}
-			}
-		}
-	}
 }
 
 .see-more-amenties {
@@ -5785,7 +5770,7 @@ img {
 	background: #F0F3F5;
 	padding: 10px 0px;
 	position: relative;
-	z-index: 99;
+	z-index: 9;
 
 	&::before {
 		content: '';
@@ -8901,7 +8886,9 @@ li.agent-details__property-list-item {
 			padding: 60px 40px !important;
 		}
 	}
-
+	.property-price_detals {
+		margin-bottom: 15px;
+	}
 	.property-gallery-div-sec {
 		.mobile-gallery_flex {
 			display: flex;
@@ -9554,11 +9541,41 @@ li.agent-details__property-list-item {
 		margin-bottom: 20px;
 
 		img {
-			width: auto !important;
+			width: 100% !important;
 			height: 300px !important;
 		}
 	}
-
+	.agent-details__wrapper-details {
+		padding-top: 20px;
+	}
+	.agent-pagination-wrapper {
+		margin: 40px 0 !important;
+	}
+	.blogs_categries-sec .mat-tab-list .mat-tab-labels .mat-tab-label {
+		min-width: auto;
+		width: auto;
+		padding: 5px 15px;
+		height: auto;
+	}
+	.blogs_sliders-cntnt-bg .blog-title-content h5 {
+		font-size: 20px !important;
+		line-height: 26px !important;
+	}
+	.price-trens_wrapper-wrapper.mt-5 {
+		margin-top: 15px !important;
+	}
+	.key_highlight.mt-5 {
+		margin-top: 15px !important;
+	}
+	.Pro-perty_info.mt-5 {
+		margin-top: 15px !important;
+	}
+	.amenties_properties-wrapper.mt-5 {
+		margin-top: 15px !important;
+	}
+	.property-gallery-main-slider .ngx-gallery {
+		height: 400px !important;
+	}
 	.agent-details__property-wrapper {
 		>.row {
 			>div {
@@ -9633,7 +9650,7 @@ li.agent-details__property-list-item {
 	}
 
 	.total-transaction {
-		margin: 20px 0px;
+		margin: 10px 0px;
 
 		p {
 			text-align: center !important;
@@ -9724,7 +9741,7 @@ li.agent-details__property-list-item {
 	}
 
 	.property-valuation-sec {
-		padding-top: 45px !important;
+		padding-top: 10px !important;
 		padding-bottom: 0px !important;
 
 		.property-valuation-cntnt {
@@ -9775,6 +9792,7 @@ li.agent-details__property-list-item {
 
 	.recent-data-realestate {
 		margin-top: 30px !important;
+		margin-bottom: 15px;
 	}
 
 	.real-hub-sec {
@@ -10031,7 +10049,7 @@ li.agent-details__property-list-item {
 		padding-right: 15px;
 
 		.block-wrapper {
-			margin-bottom: 15px;
+			padding-bottom: 15px;
 		}
 	}
 
@@ -10274,10 +10292,6 @@ li.agent-details__property-list-item {
 	}
 
 	.testimonial-info {
-		.client-img {
-			width: 80px !important;
-		}
-
 		.client-info {
 			h5 {
 				font-size: 16px;
@@ -10553,7 +10567,26 @@ li.agent-details__property-list-item {
 			left: 15px;
 		}
 	}
-
+	.classified-search-sec {
+		padding-top: 30px !important;
+		padding-bottom: 40px !important;
+	}
+	.property-footer-block::before{
+		display: none;
+	}
+	.property-footer-block {
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+	.property-footer-block .pro-contact-details {
+    margin-top: 10px;
+}
+.property-action-hdr {
+    justify-content: flex-start !important;
+}
+.properties-list_cntnts{
+	padding-bottom: 15px;
+}
 	.hotspot-div-block {
 		.price_list {
 			font-size: 13px;
@@ -10600,15 +10633,6 @@ li.agent-details__property-list-item {
 	}
 
 	.agent-landing-featured__property-wrapper {
-		.agent-landing-featured__property-img {
-			height: auto !important;
-		}
-
-		.agent-landing-featured__agent-company {
-			position: initial !important;
-			display: block !important;
-		}
-
 		.align-items-center {
 			display: block !important;
 		}
@@ -10921,15 +10945,54 @@ li.agent-details__property-list-item {
 .property-gallery-sec .carousel>.carousel-inner>div {
 	height: 100%;
 }
-
+.classified_tabs-component .mat-tab-header-pagination-chevron {
+    border-color: #fff !important;
+}
 @media (max-width: 767px) {
 	.checkbox-flex-box.four-column {
 		flex-wrap: wrap;
 	}
-
+	.classified-header-banner h4 {
+		font-size: 22px !important;
+		margin-bottom: 15px !important;
+	}
+	.classified_tabs-component {
+		padding-left: 15px !important;
+		padding-right: 15px !important;
+	}
+	.explore-details-bars {
+		padding-bottom: 0px;
+		border: none;
+		margin-bottom: 10px;
+	}
+	.custom-wrapper-section.bottom-selectionboxes {
+		padding-left: 0px;
+		padding-right: 0px;
+		padding-top: 20px;
+		padding-bottom: 0px;
+	}
+	.homepage-search-section {
+		margin: 0px 0px 5px 0px;
+	}
+	.certified_sec {
+		padding-top: 30px;
+		padding-bottom: 5px;
+	}
+	footer {
+		padding-bottom: 50px;
+	}
 	.checkbox-flex-box.four-column>.checkbox-design {
 		width: 48%;
 		margin-bottom: 15px;
+	}
+	.owl-theme .owl-nav .owl-next {
+		right: -9px !important;
+	}
+	.download-btns {
+		margin-bottom: 0px !important;
+	}
+	.testimonial-title h2 {
+		margin-bottom: 15px !important;
 	}
 }
 
@@ -11662,8 +11725,26 @@ background: transparent !important;
 		padding-bottom: 8px;
 		margin-bottom: 8px;
 	}
+	.agent-landing-featured__agent {
+		padding-bottom: 15px;
+	}
+	.like-dislike-box-wrap {
+		margin-bottom: 15px;
+	}
+	.locarions_wrapper.mt-5 {
+		margin-top: 15px !important;
+	}
 	.property_info-text h6 {
 		margin-bottom: 0px;
+	}
+	.section-title .section-title-left h2 {
+		line-height: 30px;
+	}
+	.line {
+		margin: 20px 0px;
+	}
+	.easy-tenants-landlords-sec {
+		padding-bottom: 30px;
 	}
 }
 @media (max-width: 1200px){
@@ -11769,7 +11850,6 @@ background: transparent !important;
 }
 .ngx-gallery-thumbnails .ngx-gallery-thumbnail {
     border: none !important;
-    height: 100px !important;
     border-radius: 8px;
     filter: brightness(0.7);
 }
@@ -12190,7 +12270,12 @@ background: transparent !important;
     padding-left: 9% !important;
     box-sizing: border-box;
 }
-
+.property_info-row .row > div:empty {
+    display: none;
+}
+.agent-landing__banner-heading {
+    text-align: center;
+}
 
 
 @media (min-width: 1200px){

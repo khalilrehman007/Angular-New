@@ -186,11 +186,13 @@ export class DetailsComponent implements OnInit {
   }
 
   customOptions: OwlOptions = {
-    loop: true,
+    loop: false,
     mouseDrag: true,
     touchDrag: true,
+    autoWidth:false,
     pullDrag: true,
-    dots: false,
+    dots: true,
+    navText: ['<i class="fa fa-chevron-left" aria-hidden="true"></i>', '<i class="fa fa-chevron-right" aria-hidden="true"></i>'],
     navSpeed: 700,
     responsive: {
       0: {
@@ -206,7 +208,7 @@ export class DetailsComponent implements OnInit {
         items: 4
       }
     },
-    nav: false
+    nav: true
   }
   districtDetail: any = {};
   dataLoaded: boolean = false;
