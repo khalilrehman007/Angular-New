@@ -435,4 +435,10 @@ export class AppService {
   VerifyReferralCode(data:any) {
     return this.http.get(this.apiurl + 'VerifyReferralCode/' + data);
   }
+  MyWallet(data:any) {
+    return this.http.get(this.apiurl + 'MyWallet?userId=' + data);
+  }
+  GetPoints(data:any) {
+    return this.http.get(this.apiurl + 'GetPoints?countryId=' + data);
+  }
 }

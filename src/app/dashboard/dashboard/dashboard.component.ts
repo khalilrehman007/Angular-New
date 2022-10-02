@@ -134,6 +134,8 @@ export class DashboardComponent implements OnInit {
   lastValuationDate: any;
   totalRestValuation: any;
   totalCommValuation: any;
+  myBalance:any = 0;
+  pointsData:any = "";
   get firstName() {
     return this.detailForm.get("firstName");
   }
@@ -296,6 +298,14 @@ export class DashboardComponent implements OnInit {
           this.myValuationCommercial.push(this.myValuation[i]);
         }
       }
+    })
+    temp = JSON.parse(temp);
+    this.service.MyWallet(335).subscribe((result:any) => {
+      this.myBalance = result.data;
+    })
+    this.service.GetPoints(1).subscribe((result:any) => {
+      this.pointsData = result.data;
+      console.log(this.pointsData);
     })
   }
   downloadReport(e: any) {
@@ -1270,5 +1280,8 @@ export class DashboardComponent implements OnInit {
   copyCode() {
     navigator.clipboard.writeText(this.userData.referralCode);
     alert("Copied")
+  }
+  getPackage(index:any) {
+    console.log(index);
   }
 }
