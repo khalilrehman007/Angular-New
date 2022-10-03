@@ -74,7 +74,11 @@ export class DashboardComponent implements OnInit {
   areaData: any = [];
   activityViewData: any = [];
   minDate = new Date();
-  plus = '../../../../assets/images/plus.svg'
+  plus = '../../../../assets/images/plus.svg';
+  showSuccess:boolean = false;
+  successResponse(data:any) {
+    this.showSuccess = false;
+  }
   errorResponse(data: any) {
     this.showError = false;
   }
@@ -1335,6 +1339,7 @@ export class DashboardComponent implements OnInit {
         this.showLoader = false;
         this.getPoints();
         $(".payment-cancel-btn").click();
+        this.showSuccess = true;
       }
     })
   }
