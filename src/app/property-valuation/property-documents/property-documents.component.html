@@ -898,20 +898,4 @@
     </div>
 </section>
 <app-loader *ngIf="showLoader"></app-loader>
-<<<<<<< HEAD
 <app-erroralert [error]="error" (errorResponse)="errorResponse($event)" *ngIf="showError"></app-erroralert>
-=======
-<app-erroralert [error]="error" (errorResponse)="errorResponse($event)" *ngIf="showError"></app-erroralert>
-<div ngClass="wallet-modal">
-    <ng-template #content let-modal>
-        <div class="modal-body wallet-modal-design">
-            <img src="../../../assets/images/no-money.png">
-            <p>You don’t have sufficient balance in your wallet.</p>
-            <div class="wallet-btn-flex">
-                <button class="recharge-btn">Recharge Now</button>
-                <button class="cancel-btn" aria-label="Close" (click)="modal.dismiss('Cross click')">Cancel</button>
-            </div>
-        </div>
-    </ng-template>
-</div>
->>>>>>> 787fcb5fecc27ab137cd5e1ffb5fff999b4045db
