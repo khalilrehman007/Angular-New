@@ -1,0 +1,7 @@
+<div class="alert_box-design" [ngClass]="hideAlertNg ? 'active' : 'hide'">
+  <div ngClass="alert-message-wrap success">
+    <mat-icon>check_circle_outline</mat-icon>
+    <p>{{success}}</p>
+    <button ngClass="ok-btn" (click)="sendData()">Ok</button>
+  </div>
+</div>

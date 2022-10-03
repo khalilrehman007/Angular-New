@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { ErroralertComponent } from './erroralert/erroralert.component';
 import { ConfirmationboxComponent } from './confirmationbox/confirmationbox.component';
+import { SuccessAlertComponent } from './success-alert/success-alert.component';
 
 import { MatIconModule } from '@angular/material/icon';
 
@@ -10,7 +11,8 @@ import { MatIconModule } from '@angular/material/icon';
 @NgModule({
   declarations: [
     ErroralertComponent,
-    ConfirmationboxComponent
+    ConfirmationboxComponent,
+    SuccessAlertComponent
   ],
   imports: [
     CommonModule,
@@ -18,7 +20,8 @@ import { MatIconModule } from '@angular/material/icon';
   ],
   exports: [
     ErroralertComponent,
-    ConfirmationboxComponent
+    ConfirmationboxComponent,
+    SuccessAlertComponent
   ]
 })
 export class AlertsModule { }
