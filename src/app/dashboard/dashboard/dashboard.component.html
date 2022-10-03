@@ -5087,5 +5087,5 @@
     </ng-template>
 </div>
 <app-loader *ngIf="showLoader"></app-loader>
-<app-success-alert [success]="error" (errorResponse)="successResponse($event)" *ngIf="showSuccess"></app-success-alert>
+<app-success-alert [success]="success" (errorResponse)="successResponse($event)" *ngIf="showSuccess"></app-success-alert>
 <app-erroralert [error]="error" (errorResponse)="errorResponse($event)" *ngIf="showError"></app-erroralert>

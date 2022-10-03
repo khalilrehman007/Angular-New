@@ -76,6 +76,7 @@ export class DashboardComponent implements OnInit {
   minDate = new Date();
   plus = '../../../../assets/images/plus.svg';
   showSuccess:boolean = false;
+  success:any = "";
   successResponse(data:any) {
     this.showSuccess = false;
   }
@@ -1337,6 +1338,7 @@ export class DashboardComponent implements OnInit {
         this.showLoader = false;
         this.getPoints();
         $(".payment-cancel-btn").click();
+        this.success = "Payment Successful"
         this.showSuccess = true;
       }
     })
