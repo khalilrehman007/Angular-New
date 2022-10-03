@@ -174,13 +174,13 @@ export class HeaderComponent implements OnInit {
     {
       src: '../../../assets/images/icons/find-agents.svg',
       class: 'nav-items find-agents',
-      text: 'ابحث عن وكيل',
+      text: 'ابحث عن وسيط',
       link: 'find-agent',
     },
     {
       src: '../../../assets/images/icons/world.svg',
       class: 'nav-items guide',
-      text: 'خطوط إرشاد',
+      text: 'مناطق',
       link: 'explore',
     },
     {

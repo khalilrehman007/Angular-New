@@ -30,7 +30,8 @@
                             <li ngClass="nav-item select-design-language d-hide">
                                 <mat-form-field appearance="fill">
                                     <mat-select [(value)]="selectedLanguage" (selectionChange)="changeLanguage()">
-                                        <mat-option [value]="option.value" *ngFor="let option of language">{{ option.viewValue }}</mat-option>
+                                        <mat-option [value]="option.value" *ngFor="let option of language">{{
+                                            option.viewValue }}</mat-option>
                                     </mat-select>
                                 </mat-form-field>
                             </li>
@@ -76,7 +77,7 @@
                                 </button>
                                 <div class="fav-list-dropdown" [ngClass]="status ? 'active' : 'notactive'">
                                     <div ngClass="shortlisted-header d-flex justify-content-spacebw">
-                                        <h4>المشاريع المختصرة</h4>
+                                        <h4>المشاريع المفضلة</h4>
                                         <button (click)="clickEvent()"><img src="{{close}}"></button>
                                     </div>
                                     <div ngClass="shortlisted-inner-cntnt">
@@ -120,9 +121,10 @@
                                                                 ngClass="compare-btn">قارن</a>
                                                         </div> -->
                                                     </form>
-                                                    <div *ngIf="wishlistingDataAll.length == 0" ngClass="property_not-found">
+                                                    <div *ngIf="wishlistingDataAll.length == 0"
+                                                        ngClass="property_not-found">
                                                         <img src="{{propertynotFound}}">
-                                                        <p >يبدو أنك لم تقم بإدراج أي خاصية في القائمة المختصرة</p>
+                                                        <p>يبدو أنك لم تقم باختيارأي عقار في القائمة المختصرة</p>
                                                     </div>
                                                 </div>
                                             </mat-tab>
@@ -152,9 +154,10 @@
                                                                     src="{{trash}}"></button>
                                                         </div>
                                                     </div>
-                                                    <div *ngIf="wishlistingDataRent.length == 0" ngClass="property_not-found">
+                                                    <div *ngIf="wishlistingDataRent.length == 0"
+                                                        ngClass="property_not-found">
                                                         <img src="{{propertynotFound}}">
-                                                        <p>يبدو أنك لم تقم بإدراج أي خاصية في القائمة المختصرة</p>
+                                                        <p>يبدو أنك لم تقم باختيارأي عقار في القائمة المختصرة</p>
                                                     </div>
                                                 </div>
                                             </mat-tab>
@@ -184,9 +187,10 @@
                                                                     src="{{trash}}"></button>
                                                         </div>
                                                     </div>
-                                                    <div *ngIf="wishlistingDataBuy.length == 0" ngClass="property_not-found">
+                                                    <div *ngIf="wishlistingDataBuy.length == 0"
+                                                        ngClass="property_not-found">
                                                         <img src="{{propertynotFound}}">
-                                                        <p>يبدو أنك لم تقم بإدراج أي خاصية في القائمة المختصرة</p>
+                                                        <p>يبدو أنك لم تقم باختيارأي عقار في القائمة المختصرة</p>
                                                     </div>
                                                 </div>
                                             </mat-tab>
@@ -213,7 +217,8 @@
                             <li ngClass="nav-item select-design-language tm-hide">
                                 <mat-form-field appearance="fill">
                                     <mat-select [(value)]="selectedLanguage" (selectionChange)="changeLanguage()">
-                                        <mat-option [value]="option.value" *ngFor="let option of language">{{ option.viewValue }}</mat-option>
+                                        <mat-option [value]="option.value" *ngFor="let option of language">{{
+                                            option.viewValue }}</mat-option>
                                     </mat-select>
                                 </mat-form-field>
                             </li>
@@ -278,9 +283,10 @@
                                                                 ngClass="compare-btn">قارن</a>
                                                         </div> -->
                                                     </form>
-                                                    <div *ngIf="wishlistingDataAll.length == 0" ngClass="property_not-found">
+                                                    <div *ngIf="wishlistingDataAll.length == 0"
+                                                        ngClass="property_not-found">
                                                         <img src="{{propertynotFound}}">
-                                                        <p >يبدو أنك لم تقم بإدراج أي خاصية في القائمة المختصرة</p>
+                                                        <p>يبدو أنك لم تقم باختيارأي عقار في القائمة المختصرة</p>
                                                     </div>
                                                 </div>
                                             </mat-tab>
@@ -310,9 +316,10 @@
                                                                     src="{{trash}}"></button>
                                                         </div>
                                                     </div>
-                                                    <div *ngIf="wishlistingDataRent.length == 0" ngClass="property_not-found">
+                                                    <div *ngIf="wishlistingDataRent.length == 0"
+                                                        ngClass="property_not-found">
                                                         <img src="{{propertynotFound}}">
-                                                        <p>يبدو أنك لم تقم بإدراج أي خاصية في القائمة المختصرة</p>
+                                                        <p>يبدو أنك لم تقم باختيارأي عقار في القائمة المختصرة</p>
                                                     </div>
                                                 </div>
                                             </mat-tab>
@@ -342,9 +349,10 @@
                                                                     src="{{trash}}"></button>
                                                         </div>
                                                     </div>
-                                                    <div *ngIf="wishlistingDataBuy.length == 0" ngClass="property_not-found">
+                                                    <div *ngIf="wishlistingDataBuy.length == 0"
+                                                        ngClass="property_not-found">
                                                         <img src="{{propertynotFound}}">
-                                                        <p>يبدو أنك لم تقم بإدراج أي خاصية في القائمة المختصرة</p>
+                                                        <p>يبدو أنك لم تقم باختيارأي عقار في القائمة المختصرة</p>
                                                     </div>
                                                 </div>
                                             </mat-tab>
@@ -356,7 +364,8 @@
                             <li ngClass="nav-item position-relative notification_header-list" *ngIf="userData != ''">
                                 <button (click)="clickEvent3()" class="position-relative">
                                     <mat-icon>notifications_none</mat-icon>
-                                    <span class="notification-indicator" *ngIf="notificationcount != 0">{{notificationcount}}</span>
+                                    <span class="notification-indicator"
+                                        *ngIf="notificationcount != 0">{{notificationcount}}</span>
                                 </button>
                                 <div class="notifivation-list-dropdown" [ngClass]="status3 ? 'active' : 'notactive'">
                                     <div ngClass="shortlisted-header d-flex justify-content-spacebw">
@@ -365,7 +374,8 @@
                                     </div>
                                     <div ngClass="notifivation-inner-cntnt" *ngIf="notificationData.length > 0">
                                         <ul ngClass="list-unstyled">
-                                            <li class="position-relative" *ngFor="let item of notificationData" [ngClass]="item.value.HasSeen? '' : ''">
+                                            <li class="position-relative" *ngFor="let item of notificationData"
+                                                [ngClass]="item.value.HasSeen? '' : ''">
                                                 <h4>{{item.value.Title}}
                                                     <span
                                                         ngClass="notifiction_time">{{getTime(item.value.NotificationDateTime)}}</span>
@@ -394,8 +404,8 @@
                                 </div>
                             </li>
                             <li ngClass="nav-item aed-li">
-                                <button class="nav-link aed-sq" (click)="clickEvent2()"><img src="{{flagsvg}}"> درهم |
-                                    قدم مربع</button>
+                                <button class="nav-link aed-sq" (click)="clickEvent2()"><img src="{{flagsvg}}">إ.د | قدم
+                                    مربع</button>
                                 <!-- <div class="country_list-dropdown" [ngClass]="status2 ? 'active' : 'notactive'">
                                     <button (click)="clickEvent2()"><img src="{{close}}"></button>
                                     <div ngClass="countries_dropdown-list" *ngFor="let data of headerCountries">
@@ -435,7 +445,7 @@
                             <li ngClass="nav-item link-li" (click)="checkActiveTab('areas')">
                                 <a [ngClass]="activeShortterm ? 'nav-active' : 'nav-link'"
                                     routerLink="/ar/property/short-term-rent">
-                                    إيجار قصير الأجل
+                                    إيجار قصيرالأجل
                                 </a>
                             </li>
                             <li ngClass="nav-item hover-block-header">
@@ -443,38 +453,38 @@
                                     <button type="button" class="btn btn-outline-primary" id="dropdownBasic1"
                                         ngbDropdownToggle>المشاريع</button>
                                     <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                                        <button ngbDropdownItem><a >كل مشروع</a></button>
-                                        <button ngbDropdownItem><a >مشاريع فاخرة</a></button>
-                                        <button ngbDropdownItem><a >مشاريع فائقة الفخامة</a></button>
-                                        <button ngbDropdownItem><a >عشرات المشاريع</a></button>
+                                        <button ngbDropdownItem><a>كل المشاريع</a></button>
+                                        <button ngbDropdownItem><a>مشاريع فاخرة</a></button>
+                                        <button ngbDropdownItem><a>مشاريع فائقة الفخامة</a></button>
+                                        <button ngbDropdownItem><a>تصنيف المشاريع</a></button>
                                     </div>
                                 </div>
                             </li>
                             <li ngClass="nav-item hover-block-header">
                                 <div ngbDropdown class="d-inline-block">
                                     <button type="button" class="btn btn-outline-primary" id="dropdownBasic2"
-                                        ngbDropdownToggle>اتجاهات</button>
+                                        ngbDropdownToggle>إتجاهات</button>
                                     <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
-                                        <button ngbDropdownItem><a >أداء السوق 2022</a></button>
-                                        <button ngbDropdownItem><a >أسعار العقارات في دبي 2022</a></button>
-                                        <button ngbDropdownItem><a >العقارات المباعة</a></button>
-                                        <button ngbDropdownItem><a >توريد العقارات</a></button>
-                                        <button ngbDropdownItem><a >مؤشر أسعار العقارات</a></button>
-                                        <button ngbDropdownItem><a >حالة المشروع</a></button>
-                                        <button ngbDropdownItem><a >دبي بالأرقام</a></button>
+                                        <button ngbDropdownItem><a>أداء السوق 2022</a></button>
+                                        <button ngbDropdownItem><a>أسعار العقارات في دبي 2022</a></button>
+                                        <button ngbDropdownItem><a>العقارات المباعة</a></button>
+                                        <button ngbDropdownItem><a>توريد العقارات</a></button>
+                                        <button ngbDropdownItem><a>مؤشرات أسعار العقارات</a></button>
+                                        <button ngbDropdownItem><a>حالة المشاريع</a></button>
+                                        <button ngbDropdownItem><a>إحصائية دبي</a></button>
                                     </div>
                                 </div>
                             </li>
                             <li ngClass="nav-item hover-block-header ">
                                 <div ngbDropdown class="d-inline-block">
                                     <button type="button" class="btn btn-outline-primary" id="dropdownBasic3"
-                                        ngbDropdownToggle>جديدة الصفحة الرئيسية</button>
+                                        ngbDropdownToggle>العقارات الجديدة</button>
                                     <div ngbDropdownMenu aria-labelledby="dropdownBasic3">
-                                        <button ngbDropdownItem><a >مشاريع جديدة في دبي</a></button>
-                                        <button ngbDropdownItem><a >خريطة موقع العقارات على الخارطة</a></button>
-                                        <button ngbDropdownItem><a >شراء شقق على المخطط في دبي</a></button>
-                                        <button ngbDropdownItem><a >شراء منازل على المخطط في دبي</a></button>
-                                        <button ngbDropdownItem><a >عقارات بخطة سداد</a></button>
+                                        <button ngbDropdownItem><a>مشاريع جديدة في دبي</a></button>
+                                        <button ngbDropdownItem><a>عقارات قبل الانشاء من المخطط</a></button>
+                                        <button ngbDropdownItem><a>شراء شقق على المخطط في دبي</a></button>
+                                        <button ngbDropdownItem><a>شراء منازل على المخطط في دبي</a></button>
+                                        <button ngbDropdownItem><a>عقارات بخطة سداد</a></button>
                                     </div>
                                 </div>
                             </li>
@@ -494,7 +504,8 @@
                                 </a>
                             </li>
                             <li ngClass="nav-item">
-                                <a ngClass="nav-link blue-bordered-btn blue-fill-btn" routerLink="/ar/dashboard-reports">
+                                <a ngClass="nav-link blue-bordered-btn blue-fill-btn"
+                                    routerLink="/ar/dashboard-reports">
                                     <!-- <a ngClass="nav-link blue-bordered-btn"
                                     href="https://dx1.in/data-Intelligence/dashboard/"> -->
                                     <span ngClass="ai-tag">AI</span> ذكاء البيانات <span ngClass="icon-di"><img
@@ -502,8 +513,8 @@
                                 </a>
                             </li>
                             <li ngClass="nav-item aed-li d-hide">
-                                <button class="nav-link aed-sq" (click)="clickEvent2()"><img src="{{flagsvg}}"> درهم |
-                                    قدم مربع</button>
+                                <button class="nav-link aed-sq" (click)="clickEvent2()"><img src="{{flagsvg}}">إ.د | قدم
+                                    مربع</button>
                                 <!-- <div class="country_list-dropdown" [ngClass]="status2 ? 'active' : 'notactive'">
                                     <button (click)="clickEvent2()"><img src="{{close}}"></button>
                                     <div ngClass="countries_dropdown-list" *ngFor="let data of headerCountries">
@@ -529,7 +540,7 @@
                 </div>
                 <div ngClass="logout-banner-cntnt text-center">
                     <h4>هل أنت متأكد أنك تريد تسجيل الخروج؟</h4>
-                    <p>سنفتقدك تعود قريبا!</p>
+                    <p>بانتظار عودتك!</p>
                 </div>
                 <div ngClass="logout-banner-footer">
                     <button type="button" class="btn-cancel" aria-label="Close"
