@@ -441,4 +441,7 @@ export class AppService {
   GetPoints(data:any) {
     return this.http.get(this.apiurl + 'GetPoints?countryId=' + data);
   }
+  PointTransaction(data:any) {
+    return this.http.get(this.apiurl + 'PointTransaction?userId=' + data);
+  }
 }

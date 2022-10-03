@@ -17,6 +17,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { MatIconModule } from '@angular/material/icon';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AlertsModule } from '../alerts/alerts.module';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     NgxPaginationModule,
     MatIconModule,
     NgbModule,
+    AlertsModule,
     MatSlideToggleModule
   ]
 })
