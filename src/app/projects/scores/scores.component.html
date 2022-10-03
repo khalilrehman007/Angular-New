@@ -1,0 +1,181 @@
+<app-header></app-header>
+<section [ngClass]="'inner-cntnt-wrapper slide-left-bar'">
+    <section [ngClass]="'explore-banner-sec position-relative'"
+      style="background-image: url('assets/images/areas-banner.webp')">
+      <div [ngClass]="'container_1280px'">
+        <div ngClass="inner-banner-heading text-center">
+          <h2>Projects scores</h2>
+        </div>
+      </div>
+    </section>
+    <section ngClass="all-projects-sec">
+      <div [ngClass]="'container_1280px'">
+        <div ngClass="explore-breadcrumb-wrapper black-text-breadcrumb">
+          <app-breadcrumbs></app-breadcrumbs>
+        </div>
+        <div ngClass="explore-word-sec" *ngIf="selectedCountry">
+          <!-- <div ngClass="d-flex justify-content-spacebw mb-4">
+            <div ngClass="hp-design">
+              <h4>Ultra Luxury Projects</h4>
+              <p>When it comes to finding out about new projects, which are almost nearing completion or ready to occupy new developments and off-plan projects, which have been just launched, or those under-construction in Dubai, our ‘Home Finder section’ is just what you need. Home to Dubai’s comprehensive list of real estate projects every project listing provides in-depth details starting from artistic, live images and video gallery, fact sheet, location map, frequently asked questions (FAQs), and more on sub communities within the projects, their features and nearby places. Our aim to provide as much information as possible to help you understand thoroughly as you progress with your home buying and investments.</p>
+              <p>Use our search tool to select your preferences in order to view the best properties available. Or give us a call for immediate service at <a href="#"> 800-326- 800.</a>
+              </p>
+            </div>
+          </div> -->
+          <!-- <div ngClass="explore-locations-block-designs">
+            <div ngClass="hp-design mb-4">
+              <h4>{{selectedCountry.viewValue}}</h4>
+            </div>
+            <div ngClass="explore-locations-lists">
+              <div class="row" *ngIf="cityData.length > 0">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-4" *ngFor="let item of cityData"
+                  [ngClass]="checkCity(item.name) ? 'd-none' : ''">
+                  <div ngClass="loc-div-block position-relative">
+                    <div ngClass="loc-img-design">
+                      <img src="https://beta.ovaluate.com/{{item.cityDocument.fileUrl}}">
+                    </div>
+                    <div ngClass="loc-img-cntnt">
+                      <div ngClass="d-flex justify-content-spacebw align-items-center">
+                        <div ngClass="hp-design white">
+                          <h4 ngClass="city-name">{{item.name}}</h4>
+                          <p ngClass="country-name">{{item.country.name}}</p>
+                        </div>
+                        <div ngClass="explore-link">
+                          <a routerLink="/explore/city/{{item.id}}">Explore <mat-icon>keyboard_arrow_right</mat-icon></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> -->
+          <!-- <div ngClass="explore-description_sec mt-4 mb-5" *ngIf="selectedCountry">
+            <div ngClass="hp-design hp-explore-spacing">
+              <h4>Explore {{selectedCountry.viewValue}}</h4>
+              <p>{{selectedCountry.desc}}.</p>
+            </div>
+          </div> -->
+        </div>
+
+                            
+        <div>
+          <div ngClass="properties-list-block-design">
+              <div ngClass="row">
+                  <div ngClass="col-xl-3 col-md-3 col-lg-3 col-sm-12">
+                    
+                    <div ngClass="properties-list_cntnts position-relative">
+                      <div ngClass="properties-list_hdr d-flex justify-content-spacebw">
+                          <div ngClass="property-price_detals cursor-pointer">
+                              <h2>Palm Beach Towers</h2>
+                              <!-- <h4>AED 500.00</h4> -->
+                              <div ngClass="property-name_detals">
+                                <div ngClass="property-addresss">
+                                    <p><img src="{{homelocationsvg}}"> Business Bay</p>
+                                </div>
+                            </div>
+                          </div>
+                      </div>
+                  </div>
+                  </div>
+                  <div ngClass="col-xl-7 col-md-3 col-lg-3 col-sm-12">
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div ngClass="properties-list_cntnts position-relative">
+                          <div ngClass="properties-list_hdr d-flex justify-content-spacebw">
+                              <div ngClass="property-price_detals cursor-pointer">
+                                  <!-- <h2>Palm Beach Towers</h2> -->
+                                  <h5>Money Value</h5>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div ngClass="properties-list_cntnts position-relative">
+                          <div ngClass="properties-list_hdr d-flex justify-content-spacebw">
+                              <div ngClass="property-price_detals cursor-pointer">
+                                  <!-- <h2>Palm Beach Towers</h2> -->
+                                  <h5>Income Generating</h5>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div ngClass="properties-list_cntnts position-relative">
+                          <div ngClass="properties-list_hdr d-flex justify-content-spacebw">
+                              <div ngClass="property-price_detals cursor-pointer">
+                                  <!-- <h2>Palm Beach Towers</h2> -->
+                                  <h5>Capital Appreciation</h5>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div ngClass="col-xl-2 col-md-3 col-lg-3 col-sm-12">
+                    
+                    <div ngClass="properties-list_cntnts position-relative">
+                      <div ngClass="properties-list_hdr d-flex justify-content-spacebw">
+                          <div ngClass="property-price_detals cursor-pointer">
+                              <h2>10/10</h2>
+                              <h4>Overall</h4>
+                          </div>
+                      </div>
+                  </div>
+                  </div>
+                  <!-- <div ngClass="col-xl-5 col-md-6 col-lg-5 col-sm-12">
+                      <div ngClass="properties-list_cntnts position-relative">
+                          <div ngClass="properties-list_hdr d-flex justify-content-spacebw">
+                              <div ngClass="property-price_detals cursor-pointer">
+                                  <h2>Palm Beach Towers</h2>
+                                  <h4>AED 500.00</h4>
+                              </div>
+                          </div>
+
+                          <div ngClass="property-name_detals">
+                              <div ngClass="property-addresss">
+                                  <p><img src="{{homelocationsvg}}"> Business Bay</p>
+                              </div>
+                          </div>
+                          <div ngClass="topkey-highlights">
+                              <div ngClass="property-details-highlights">
+                                  <span ngClass="bed">
+                                      Status: <b>Off-plan</b>
+                                  </span>
+                                  <span  ngClass="bath">
+                                      <img src="{{viewsvg}}" alt=""> 872 Views
+                                  </span>
+                              </div>
+                          </div>
+                          <div ngClass="property-footer-block">
+                              <div ngClass="row align-items-center">
+                                  <div ngClass="col-xl-5 col-lg-12 col-md-12 col-sm-12">
+                                      <div ngClass="lsited-by-details d-flex">
+                                          <div ngClass="list_cntnt-img">
+                                              <img src="https://play-lh.googleusercontent.com/DTzWtkxfnKwFO3ruybY1SKjJQnLYeuK3KmQmwV5OQ3dULr5iXxeEtzBLceultrKTIUTr">
+                                          </div>
+                                          <div ngClass="list_cntnt-blcok">
+                                              <h5>Ali Raza</h5>
+                                              <p>Listed on: 25 July 2022</p>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div
+                                      ngClass="col-xl-7 col-lg-12 col-md-12 col-sm-12 text-right">
+                                      <div ngClass="pro-contact-details">
+                                          <a ngClass="grey-bordered-btn grren-btn">Contct</a>
+                                          <a ngClass="grey-bordered-btn">Discover More</a>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div> -->
+              </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+<app-footer></app-footer>
+</section>
