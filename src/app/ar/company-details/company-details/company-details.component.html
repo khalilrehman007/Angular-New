@@ -23,8 +23,8 @@
                                     *ngIf="companyDetails.company && companyDetails.company.companyName">
                                     {{companyDetails.company.companyName}}</h4>
                                 <p class="company-details__wrapper-details-text mb-0"
-                                    *ngIf="companyDetails.company && companyDetails.company.companyAdress">
-                                    {{companyDetails.company.companyAdress}}</p>
+                                    *ngIf="companyDetails.company && companyDetails.company.companyAdressAr">
+                                    {{companyDetails.company.companyAdressAr}}</p>
                                 <p class="company-details__wrapper-details-text"
                                     *ngIf="companyDetails.company && companyDetails.company.ornNo">ORN#:
                                     {{companyDetails.company.ornNo}}</p>
@@ -32,40 +32,40 @@
                                     *ngIf="companyDetails.company && companyDetails.company.reraNo">RERA#
                                     {{companyDetails.company.reraNo}}</p>
                                 <p class="company-details__wrapper-details-text"
-                                    *ngIf="companyDetails.company && companyDetails.company.premitNo">Permit#
+                                    *ngIf="companyDetails.company && companyDetails.company.premitNo">يسمح#
                                     {{companyDetails.company.premitNo}}</p>
                                 <ul class="company-details__wrapper-details-list">
                                     <li class="company-details__wrapper-details-list-item">
                                         <p class="company-details__wrapper-details-list-text"
                                             *ngIf="companyDetails.agentNumber">{{companyDetails.agentNumber}} <br>
-                                            Agents</p>
+                                            وكيل</p>
                                         <p class="company-details__wrapper-details-list-text"
-                                            *ngIf="!companyDetails.agentNumber">0 <br> Agents</p>
+                                            *ngIf="!companyDetails.agentNumber">0 <br>  وكيل</p>
                                     </li>
                                     <li class="company-details__wrapper-details-list-item">
                                         <p class="company-details__wrapper-details-list-text"
                                             *ngIf="companyDetails.statistics && companyDetails.statistics.salePropertyListingCount">
-                                            {{companyDetails.statistics.salePropertyListingCount}} <br> Sale</p>
+                                            {{companyDetails.statistics.salePropertyListingCount}} <br> للبيع</p>
                                         <p class="company-details__wrapper-details-list-text"
                                             *ngIf="!companyDetails.statistics || !companyDetails.statistics.salePropertyListingCount">
-                                            0 <br> Sale</p>
+                                            0 <br> للبيع</p>
                                     </li>
                                     <li class="company-details__wrapper-details-list-item">
                                         <p class="company-details__wrapper-details-list-text"
                                             *ngIf="companyDetails.statistics && companyDetails.statistics.rentPropertyListingCount">
-                                            {{companyDetails.statistics.rentPropertyListingCount}} <br> Rent</p>
+                                            {{companyDetails.statistics.rentPropertyListingCount}} <br> ايجار</p>
                                         <p class="company-details__wrapper-details-list-text"
                                             *ngIf="!companyDetails.statistics || !companyDetails.statistics.rentPropertyListingCount">
-                                            0 <br> Rent</p>
+                                            0 <br> ايجار</p>
                                     </li>
                                     <li class="company-details__wrapper-details-list-item">
                                         <p class="company-details__wrapper-details-list-text"
                                             *ngIf="companyDetails.statistics && companyDetails.statistics.commercialPropertyListingCount">
-                                            {{companyDetails.statistics.commercialPropertyListingCount}} <br> Commercial
+                                            {{companyDetails.statistics.commercialPropertyListingCount}} <br> تجاري
                                         </p>
                                         <p class="company-details__wrapper-details-list-text"
                                             *ngIf="!companyDetails.statistics || !companyDetails.statistics.commercialPropertyListingCount">
-                                            0 <br> Commercial</p>
+                                            0 <br> تجاري</p>
                                     </li>
                                 </ul>
                             </div>
@@ -75,18 +75,17 @@
                         <ul class="nav nav-tabs" id="myTab">
                             <li class="nav-item">
                                 <button class="nav-link active" id="about-tab" data-bs-toggle="tab"
-                                    data-bs-target="#about">About Company</button>
+                                    data-bs-target="#about">عن الشركة</button>
                             </li>
                             <li class="nav-item">
-                                <button class="nav-link" id="agent-tab" data-bs-toggle="tab" data-bs-target="#agent">Our
-                                    Agents
+                                <button class="nav-link" id="agent-tab" data-bs-toggle="tab" data-bs-target="#agent"> وكيل
                                     <span
                                         *ngIf="companyDetails.company && companyDetails.company.agents.length > 0">{{companyDetails.company.agents.length}}</span>
                                 </button>
                             </li>
                             <li class="nav-item">
                                 <button class="nav-link" id="properties-tab" data-bs-toggle="tab"
-                                    data-bs-target="#properties">Our Properties
+                                    data-bs-target="#properties">عقارات
                                     <span
                                         *ngIf="companyDetails.properties && companyDetails.properties.length > 0">{{companyDetails.properties.length}}</span>
                                 </button>
@@ -95,8 +94,8 @@
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" id="about">
                                 <div class="company-details__tab-content"
-                                    *ngIf="companyDetails.company && companyDetails.company.aboutCompany">
-                                    <p>{{companyDetails.company.aboutCompany}}</p>
+                                    *ngIf="companyDetails.company && companyDetails.company.aboutCompanyAr">
+                                    <p>{{companyDetails.company.aboutCompanyAr}}</p>
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="agent"
@@ -104,7 +103,7 @@
                                 <div class="row">
                                     <div class="col-lg-6" *ngFor="let item of companyDetails.agentsViewModel">
                                         <div class="company-details__agent"
-                                            routerLink="/agent-details/{{item.agentDetails.user.id}}">
+                                            routerLink="/ar/agent-details/{{item.agentDetails.user.id}}">
                                             <div class="company-details__agent-wrapper">
                                                 <div class="row">
                                                     <div class="col-xl-5 col-lg-5 col-md-5 col-sm-12 d-flex align-items-center"
@@ -118,29 +117,29 @@
                                                                 *ngIf="item.agentDetails.user && item.agentDetails.user.fullName">
                                                                 {{item.agentDetails.user.fullName}}</h6>
                                                             <p class="company-details__agent-text"
-                                                                *ngIf="item && item.agentDetails.expertIn">{{item.agentDetails.expertIn}}</p>
+                                                                *ngIf="item && item.agentDetails.expertInAr">{{item.agentDetails.expertInAr}}</p>
                                                             <a class="company-details__agent-text company-details__agent-link"
                                                                 *ngIf="item.agentDetails.user && item.agentDetails.user.phoneNumber">{{item.agentDetails.user.phoneNumber}}</a>
                                                             <p class="company-details__agent-text mb-3"
-                                                                *ngIf="item.agentDetails.user && item.agentDetails.user.location">Location:
-                                                                {{item.agentDetails.user.location}}</p>
+                                                                *ngIf="item.agentDetails.user && item.agentDetails.user.locationAr">المواقع:
+                                                                {{item.agentDetails.user.locationAr}}</p>
                                                             <p class="company-details__agent-text"
-                                                                *ngIf="item.agentDetails.agents && item.agentDetails.agents.agentLanguages">
-                                                                Language: {{item.agentDetails.agents.agentLanguages}}</p>
+                                                                *ngIf="item.agentDetails.agents && item.agentDetails.agents.agentLanguagesAr">
+                                                                اللغات: {{item.agentDetails.agents.agentLanguagesAr}}</p>
                                                             <ul class="company-details__agent-details-list">
                                                                 <li class="company-details__agent-details-list-item">
                                                                     <p class="company-details__agent-details-list-text">
-                                                                        {{item.salePropertyListingCount}}<br>Sale
+                                                                        {{item.salePropertyListingCount}}<br>للبيع
                                                                     </p>
                                                                 </li>
                                                                 <li class="company-details__agent-details-list-item">
                                                                     <p class="company-details__agent-details-list-text">
-                                                                        {{item.rentPropertyListingCount}}<br>Rents
+                                                                        {{item.rentPropertyListingCount}}<br>ايجار
                                                                     </p>
                                                                 </li>
                                                                 <li class="company-details__agent-details-list-item">
                                                                     <p class="company-details__agent-details-list-text">
-                                                                        {{item.commercialPropertyListingCount}}<br>Commercial
+                                                                        {{item.commercialPropertyListingCount}}<br>تجاري
                                                                     </p>
                                                                 </li>
                                                             </ul>
@@ -157,12 +156,12 @@
                                     <div class="company-details__property-wrapper">
                                         <div class="row">
                                             <div class="col-xl-8 col-lg-8 col-md-4 col-12 d-flex align-items-center">
-                                                <h6>My Properties</h6>
+                                                <h6>عقارات</h6>
                                             </div>
                                             <div class="col-xl-4 col-lg-4 col-md-8 col-12 text-end">
                                                 <div class="company-details__select-wrapper">
                                                     <mat-form-field appearance="fill">
-                                                        <mat-label>Sort By</mat-label>
+                                                        <mat-label>صنف حسب</mat-label>
                                                       <mat-select (selectionChange)="sortedBy($event)">
                                                         <mat-option *ngFor="let SortBy of PropertySortBy"
                                                                     value="{{SortBy.id}}">
@@ -179,7 +178,7 @@
                                     <li class="company-details__property-list-item"
                                         *ngFor="let item of companyDetails.properties | paginate: { itemsPerPage: 10, currentPage: page, totalItems:totalLength }">
                                         <div class="row"
-                                             [routerLink]="['/property/detail']"
+                                             [routerLink]="['//property/detail']"
                                              [queryParams]="{id: item.id}">
                                             <div class="col-lg-2" *ngIf="item.documents && item.documents.length > 0">
                                                 <img src="{{baseUrl+item.documents[0].fileUrl}}" alt=""
@@ -193,19 +192,19 @@
                                                 <div class="row">
                                                     <div class="col-7">
                                                         <a class="company-details__property-list-item-link">{{item.propertyPrice}}
-                                                            <span *ngIf="item.rentType && item.rentType.length > 0">/{{item.rentType.name}}</span>
+                                                            <span *ngIf="item.rentType && item.rentType.length > 0">/{{item.rentType.nameAr}}</span>
                                                         </a>
                                                     </div>
                                                     <div class="col-5 text-end">
-                                                        <p class="company-details__property-list-item-date">Listed on
+                                                        <p class="company-details__property-list-item-date">علي قائمة
                                                             {{item.requestedDateFormat}}</p>
                                                     </div>
                                                 </div>
-                                                <h6>Blue Wave Tower</h6>
+                                                <h6>برج بلو ويف</h6>
                                                 <p class="company-details__property-list-item-text">
                                                     <img src="assets/images/home-location.svg" alt=""
                                                         class="img-fluid company-details__property-list-item-text-icon">
-                                                    {{item.propertyAddress}}
+                                                    {{item.propertyAddressAr}}
                                                 </p>
                                                 <p class="company-details__property-list-item-type">
                                                     {{item.propertyTitle}}</p>
@@ -214,15 +213,15 @@
                                                         <ul class="company-details__property-detail-list">
                                                             <li class="company-details__property-detail-list-item" *ngIf="item.bedrooms != 0 && item.bedrooms != null">
                                                                 <img src="{{bedsvg}}" alt="">
-                                                                {{item.bedrooms}}
+                                                                {{item.bedrooms}} غرفة نوم
                                                             </li>
                                                             <li class="company-details__property-detail-list-item" *ngIf="item.bedrooms != 0 && item.bathrooms != null">
                                                                 <img src="{{bathsvg}}" alt="">
-                                                                {{item.bathrooms}}
+                                                                {{item.bathrooms}} دوره المياه
                                                             </li>
                                                             <li class="company-details__property-detail-list-item">
                                                                 <img src="{{squaremetersvg}}" alt="">
-                                                                {{item.buildupArea}}
+                                                                {{item.buildupArea}}  قدم مربع
                                                             </li>
                                                             <li class="company-details__property-detail-list-item">
                                                                 <img src="{{furnishing}}" alt="">
