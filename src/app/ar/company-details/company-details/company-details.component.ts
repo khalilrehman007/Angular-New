@@ -37,7 +37,7 @@ export class CompanyDetailsComponent implements OnInit {
   DisplayCompany(){
     this.service.DisplayCompany({"companyId": this.id, "SortedBy": this.sortedById}).subscribe((result: any) => {
       this.companyDetails = result.data;
-      console.log(this.companyDetails)
+      // console.log(this.companyDetails)
     })
   }
 
@@ -46,7 +46,7 @@ export class CompanyDetailsComponent implements OnInit {
     this.service.PropertySortBy().subscribe(e => {
       let temp: any = e;
       for (let list of temp.data) {
-        this.PropertySortBy.push({ name: list.name, id: list.id });
+        this.PropertySortBy.push({ name: list.nameAr, id: list.id });
       }
     });
   }

@@ -129,7 +129,7 @@ export class AgentDetailsComponent implements OnInit {
     this.service.PropertySortBy().subscribe(e => {
       let temp: any = e;
       for (let list of temp.data) {
-        this.PropertySortBy.push({ name: list.name, id: list.id });
+        this.PropertySortBy.push({ name: list.nameAr, id: list.id });
       }
     });
   }

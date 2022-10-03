@@ -27,7 +27,7 @@
                                 <p class="agent-details__wrapper-details-text" *ngIf="newAgentDetail.expertInAr">
                                     {{newAgentDetail.expertInAr}}</p>
                                 <h6 class="agent-details__wrapper-details-desc cursor-pointer"
-                                    routerLink="/company-details/{{newAgentDetail.companyid}}"
+                                    routerLink="/ar/company-details/{{newAgentDetail.companyid}}"
                                     *ngIf="newAgentDetail.companyName">
                                     {{newAgentDetail.companyName}}</h6>
                                 <p class="agent-details__wrapper-details-phone" *ngIf="newAgentDetail.phoneNumber">
@@ -111,7 +111,7 @@
                                     <ul class="agent-details__property-list">
                                         <li class="agent-details__property-list-item"
                                             *ngFor="let item of myListing | paginate: { itemsPerPage: 10, currentPage: page, totalItems:totalLength }">
-                                            <div class="row cursor-pointer" [routerLink]="['/property/detail']"
+                                            <div class="row cursor-pointer" [routerLink]="['/ar/property/detail']"
                                                 [queryParams]="{id: item.id}">
                                                 <div class="col-lg-2" >
                                                     <img src="{{item.image}}" [alt]=""
