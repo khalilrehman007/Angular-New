@@ -343,9 +343,6 @@ html[dir="rtl"]{
     margin-right: 0px;
     margin-left: 4px;
 }
-.listing-property-ul .mat-list .mat-list-item:last-child:after{
-	display: block !important;
-}
 .listing-property-ul .mat-list .mat-list-item:first-child:after{
 	display: none;
 }
@@ -475,18 +472,73 @@ html[dir="rtl"]{
     padding-left: 0% !important;
 	padding-right: 9% !important;
 }
+.pro-contact-details>a.grey-bordered-btn {
+    margin-right: 0px !important;
+}
+.dashboard-data-side-lists .dropdown .dropdown-toggle {
+    text-align: right !important;
+}
+.dashboard-data-side-lists .dropdown .dropdown-toggle::before {
+    left: 0;
+    right: initial !important;
+    transform: rotate(227deg) !important;
+    top: 5px !important;
+}
+select.nice-select {
+    background-position: 5% !important;
+}
+.stroe-icons-link>a:first-child {
+    margin-right: 0px !important;
+    margin-left: 15px !important;
+}
 
 
 
 
-
-
-
-
+    @media (max-width: 767px){
+		.properties-list_cntnts {
+			padding-right: 15px !important;
+		}
+		.call-now_link > .grey-bordered-btn {
+			font-size: 13px;
+			padding-left: 10px;
+			padding-right: 10px;
+		}
+		.pro-contact-details {
+			text-align: right !important;
+		}
+	}
 	@media (max-width: 1199px){
-		#collapsibleNavbar{
-			right: -100%;
-			left: initial;
+		.mobile-abs-items {
+			left: 58px;
+			right: initial !important;
+		}
+		.mobile-abs-items .notification_header-list {
+			margin-left: 0px !important;
+			margin-right: 15px !important;
+		}
+		#collapsibleNavbar {
+			left: -100% !important;
+			right: initial !important;
+		}
+		#collapsibleNavbar.show {
+			left: -0% !important;
+			right: initial !important;
+		}
+		#collapsibleNavbar .overlay_counter {
+			margin-left: auto !important;
+			margin-right: initial !important;
+		}
+		.header-section .hover-block-header .btn {
+			text-align: right !important;
+		}
+		.header-section .hover-block-header .btn::after {
+			left: 0;
+			right: initial !important;
+		}
+		.listing-property-ul .mat-list .mat-list-item a > span {
+			display: flex;
+			margin: 0px auto 5px auto !important;
 		}
 	}
 	@media (min-width: 1200px){
@@ -512,6 +564,9 @@ html[dir="rtl"]{
 			border-right: 0px;
 			padding-left: 25px;
 			border-left: 1.5px solid #F0EFFB;
+		}
+		.listing-property-ul .mat-list .mat-list-item:last-child:after{
+			display: block !important;
 		}
 	}
 }
