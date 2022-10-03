@@ -5,6 +5,7 @@ import * as $ from 'jquery';
 import { NgbNav } from '@ng-bootstrap/ng-bootstrap';
 import { NotificationService } from "../../service/notification.service";
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { DatePipe } from '@angular/common';
 
 import { AppService } from 'src/app/service/app.service';
 import { AuthService } from "../../service/auth.service";
@@ -12,7 +13,8 @@ import { AuthService } from "../../service/auth.service";
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  styleUrls: ['./dashboard.component.scss'],
+  providers: [DatePipe]
 })
 export class DashboardComponent implements OnInit {
   blogs: any;
@@ -50,7 +52,7 @@ export class DashboardComponent implements OnInit {
   whatsapp = '../../../assets/images/icons/whatsapp.svg'
   share = '../../../assets/images/icons/share-1.png'
   refrell = '../../../assets/images/refrell-code.png'
-  loggedInUser = localStorage.getItem('user')
+  loggedInUser:any = localStorage.getItem('user')
   user: any;
   greet: any;
   country: any = [];
@@ -70,10 +72,12 @@ export class DashboardComponent implements OnInit {
   leadsResidentialSummary: any = [];
   leadsCommercialSummary: any = [];
   areaData: any = [];
-  activityViewData:any = [];
-
+  activityViewData: any = [];
+  minDate = new Date();
   plus = '../../../../assets/images/plus.svg'
-
+  errorResponse(data: any) {
+    this.showError = false;
+  }
   bedrooms = [
     { viewValue: '01', value: 'bedroom' },
     { viewValue: '02', value: 'bedroom' },
@@ -123,6 +127,12 @@ export class DashboardComponent implements OnInit {
     currentPassword: new FormControl(""),
     newPassword: new FormControl("")
   });
+  cardForm = new FormGroup({
+    cardNumber: new FormControl(""),
+    expiryDate: new FormControl(""),
+    cvv: new FormControl(""),
+    cardName: new FormControl("")
+  })
   myValuation: any = [];
   myValuationResidential: any = [];
   myValuationCommercial: any = [];
@@ -134,8 +144,10 @@ export class DashboardComponent implements OnInit {
   lastValuationDate: any;
   totalRestValuation: any;
   totalCommValuation: any;
-  myBalance:any = 0;
-  pointsData:any = "";
+  myBalance: any = 0;
+  seletedPackage: any = "";
+  pointsData: any = "";
+  pointsHistory: any = "";
   get firstName() {
     return this.detailForm.get("firstName");
   }
@@ -180,12 +192,13 @@ export class DashboardComponent implements OnInit {
   }
   userId: number;
   parentTabId: any = "";
-  childTabId: any  = "";
-  url:any = "";
+  childTabId: any = "";
+  url: any = "";
 
-  constructor(private authService: AuthService, private service: AppService, private route: Router, private notifyService: NotificationService,private modalService: NgbModal) {
+  constructor(private authService: AuthService, private datePipe: DatePipe, private service: AppService, private route: Router, private notifyService: NotificationService, private modalService: NgbModal) {
     this.url = this.route.url.split("/");
     $(window).scrollTop(0);
+    this.loggedInUser = JSON.parse(this.loggedInUser);
     this.getUser();
     this.userId = this.user.id;
     this.LoadBlogs();
@@ -217,7 +230,7 @@ export class DashboardComponent implements OnInit {
       } else {
         this.proAvatar = this.baseUrl + this.userData.imageUrl;
       }
-      this.service.MyActivityPropertyListingViewForAgent({ "UserId": this.userData.id, "PropertyCategoryId": "" }).subscribe((result:any) => {
+      this.service.MyActivityPropertyListingViewForAgent({ "UserId": this.userData.id, "PropertyCategoryId": "" }).subscribe((result: any) => {
         this.activityViewData = result.data;
       })
       this.service.SummaryLeads({ "UserId": this.userData.id, "PropertyCategoryId": "1" }).subscribe((result: any) => {
@@ -234,12 +247,12 @@ export class DashboardComponent implements OnInit {
           this.leadSummary = "temp";
         }
         setTimeout(() => {
-          if(this.url[2] == "wallet") {
+          if (this.url[2] == "wallet") {
             $(".dashboard-tabs .wallet-btn").click();
-          } else if(this.url[2] == "my-listing") {
+          } else if (this.url[2] == "my-listing") {
             $(".dashboard-tabs .my-listing-btn").click();
           }
-        },500);
+        }, 500);
         this.showLoader = false;
       })
       this.service.MyPackages(this.userData.id).subscribe((result: any) => {
@@ -247,7 +260,6 @@ export class DashboardComponent implements OnInit {
       })
       this.service.MyActivitySavedSearchProperty({ "UserId": this.userData.id, "PropertyListingTypeId": "" }).subscribe((result: any) => {
         this.activitySavedSearch = result.data;
-        // console.log(this.activitySavedSearch)
       })
     })
     this.service.LoadPropertyListingTypes().subscribe(e => {
@@ -299,13 +311,17 @@ export class DashboardComponent implements OnInit {
         }
       }
     })
-    temp = JSON.parse(temp);
-    this.service.MyWallet(335).subscribe((result:any) => {
-      this.myBalance = result.data;
-    })
-    this.service.GetPoints(1).subscribe((result:any) => {
+    this.getPoints();
+    this.service.GetPoints(1).subscribe((result: any) => {
       this.pointsData = result.data;
-      console.log(this.pointsData);
+    })
+    this.service.PointTransaction(this.loggedInUser.id).subscribe((result: any) => {
+      this.pointsHistory = result.data;
+    })
+  }
+  getPoints() {
+    this.service.MyWallet(this.loggedInUser.id).subscribe((result: any) => {
+      this.myBalance = result.data;
     })
   }
   downloadReport(e: any) {
@@ -544,7 +560,7 @@ export class DashboardComponent implements OnInit {
     temp = JSON.parse(temp).id;
     this.service.MyLeads({ "UserId": temp, "PropertyCategoryId": CategoryId, "PropertyListingTypeId": TypeId }).subscribe((result: any) => {
       this.leadsData = result.data;
-      if(this.leadsData.length > 0) {
+      if (this.leadsData.length > 0) {
         for (let i = 0; i < this.leadsData.length; i++) {
           if (this.leadsData[i].propertyListing.propertyCategoryId == 1) {
             this.leadsData[i].propertyCategory = "Residential"
@@ -553,7 +569,7 @@ export class DashboardComponent implements OnInit {
           }
         }
         for (let i = 0; i < this.leadsData.length; i++) {
-          if(this.leadsData[i].leadDate != null) {
+          if (this.leadsData[i].leadDate != null) {
             this.leadsData[i].leadDate = this.leadsData[i].leadDate.split("T")[0];
           }
         }
@@ -667,7 +683,7 @@ export class DashboardComponent implements OnInit {
         let image: any;
         let rentTypeName = ''
         if (element.rentType != null && element.rentType != undefined && element.rentType.name != undefined && element.rentType.name != null && element.propertyListingTypeId != 2) {
-          rentTypeName = '/'+element.rentType.name
+          rentTypeName = '/' + element.rentType.name
         }
         if (element.documents.length > 1) {
           image = this.baseUrl + element.documents[0].fileUrl
@@ -794,7 +810,7 @@ export class DashboardComponent implements OnInit {
   }
 
   agentFormData: any = {};
-  companyFormData: any={};
+  companyFormData: any = {};
 
 
   finalBrokerDocments: any = []
@@ -805,7 +821,7 @@ export class DashboardComponent implements OnInit {
     })
   }
 
-  getCompanyData(){
+  getCompanyData() {
     if (this.companyFormData.companyName) {
       this.error = "Enter Company Name";
       this.showError = true;
@@ -833,7 +849,7 @@ export class DashboardComponent implements OnInit {
     } else if (this.otherImages.length < 4) {
       this.notifyService.showError('Please select all images', "Error");
       return;
-    } 
+    }
 
     this.companyFormData.CompanyName = this.companyDetail.value.companyName;
     this.companyFormData.TradeLicenseNo = this.companyDetail.value.tradeLicenseNo;
@@ -843,38 +859,34 @@ export class DashboardComponent implements OnInit {
     this.companyFormData.CompanyAdress = this.companyDetail.value.companyAddress;
 
     let valuationData = new FormData();
-      valuationData.append("CompanyRequest", JSON.stringify(this.companyFormData));
-      // console.log(this.agentFormData)
+    valuationData.append("CompanyRequest", JSON.stringify(this.companyFormData));
 
-      for (let i = 0; i < 4; i++) {
-        // console.log(this.otherImages[i])
-        valuationData.append(i+1 + "_" + this.otherImages[i].file.name, this.otherImages[i].file);
-      }
-    
+    for (let i = 0; i < 4; i++) {
+      valuationData.append(i + 1 + "_" + this.otherImages[i].file.name, this.otherImages[i].file);
+    }
+
 
     // if ( this.data.CompanyName = this.companyDetailsFormData.value.companyName )
     let token: any = localStorage.getItem("token");
-    console.log(this.companyFormData)
-      // token = JSON.parse(token);
-      // $.ajax({
-      //   url: "https://beta.ovaluate.com/api/AddUpdateCompany",
-      //   method: "post",
-      //   contentType: false,
-      //   processData: false,
-      //   headers: {
-      //     "Authorization": 'bearer ' + token
-      //   },
-      //   dataType: "json",
-      //   success: (res) => {
-      //     console.log(res)
-      //     this.companyDetailsFormData = res.data.id;
-      //     this.notifyService.showSuccess(res.message, "Company details updated successfully");
-      //   },
-      //   error: (err) => {
-      //     this.notifyService.showError(err, "");
+    // token = JSON.parse(token);
+    // $.ajax({
+    //   url: "https://beta.ovaluate.com/api/AddUpdateCompany",
+    //   method: "post",
+    //   contentType: false,
+    //   processData: false,
+    //   headers: {
+    //     "Authorization": 'bearer ' + token
+    //   },
+    //   dataType: "json",
+    //   success: (res) => {
+    //     this.companyDetailsFormData = res.data.id;
+    //     this.notifyService.showSuccess(res.message, "Company details updated successfully");
+    //   },
+    //   error: (err) => {
+    //     this.notifyService.showError(err, "");
 
-      //   }
-      // })
+    //   }
+    // })
 
   }
 
@@ -884,7 +896,7 @@ export class DashboardComponent implements OnInit {
     if (this.otherImages.length < 3) {
       this.notifyService.showError('Please enter all data', "Error");
     } else {
-      
+
       if (this.NationalityId == null || this.NationalityId == undefined) {
         // this.notifyService.showError('Please select Nationality', "Error");
       }
@@ -912,7 +924,7 @@ export class DashboardComponent implements OnInit {
       } else {
         this.agentFormData.Id = this.agentBrokerId.toString();
       }
-      
+
       this.agentFormData.AboutMe = this.agentBroker.value.agentAboutMe;
       this.agentFormData.BRNNo = this.agentBroker.value.BRNNo;
       this.agentFormData.NationalityId = this.NationalityId.toString();
@@ -928,11 +940,10 @@ export class DashboardComponent implements OnInit {
       valuationData.append("AgentRequest", JSON.stringify(this.agentFormData));
 
       for (let i = 0; i < 3; i++) {
-        valuationData.append(i+1 + "_" + this.otherImages[i].file.name, this.otherImages[i].file);
+        valuationData.append(i + 1 + "_" + this.otherImages[i].file.name, this.otherImages[i].file);
       }
       let token: any = localStorage.getItem("token");
       token = JSON.parse(token);
-      console.log(JSON.stringify(this.agentFormData))
       $.ajax({
         url: "https://beta.ovaluate.com/api/AddUpdateAgentDetails",
         method: "post",
@@ -943,10 +954,9 @@ export class DashboardComponent implements OnInit {
           "Authorization": 'bearer ' + token
         },
         dataType: "json",
-        success: (res:any) => {
-          console.log(res)
+        success: (res: any) => {
           this.agentBrokerId = res.data.id;
-          if(res.message == "agent request completed successfully") {
+          if (res.message == "agent request completed successfully") {
             this.notifyService.showSuccess(res.message, "Agent details updated successfully");
           }
           // if(res.message == "Property Listing request completed successfully") {
@@ -995,7 +1005,7 @@ export class DashboardComponent implements OnInit {
         let image: any;
         let rentTypeName = ''
         if (element.rentType != null && element.rentType != undefined && element.rentType.name != undefined && element.rentType.name != null && element.propertyListingTypeId != 2) {
-            rentTypeName = '/'+element.rentType.name
+          rentTypeName = '/' + element.rentType.name
         }
         if (element.documents.length > 1) {
           image = this.baseUrl + element.documents[0].fileUrl
@@ -1004,7 +1014,7 @@ export class DashboardComponent implements OnInit {
         }
         tempData.push(
           {
-            id:element.id, propertyTitle: element.propertyTitle, propertyAddress: element.propertyAddress, img: image,
+            id: element.id, propertyTitle: element.propertyTitle, propertyAddress: element.propertyAddress, img: image,
             buildingName: element.buildingName, bedrooms: element.bedrooms, bathrooms: element.bathrooms, carpetArea: element.carpetArea,
             unitNo: element.unitNo, totalFloor: element.totalFloor, floorNo: element.floorNo, propertyDescription: element.propertyDescription,
             requestedDate: element.requestedDate, furnishingType: element.furnishingType, propertyPrice: element.propertyPrice,
@@ -1041,14 +1051,26 @@ export class DashboardComponent implements OnInit {
         );
       });
       this.myActivityAgentView = tempData;
-      })
+    })
   }
 
-  logOutPopup(content:any) {
+  logOutPopup(content: any) {
     this.modalService.open(content, { centered: true });
   }
-  rechargePopup(rechargemodal:any) {
+  rechargePopup(rechargemodal: any) {
+    this.seletedPackage = "";
     this.modalService.open(rechargemodal, { centered: true });
+  }
+  PaymentPopup(PaymentPopupModal: any) {
+    if (this.seletedPackage == "") {
+      this.error = "Please Select a Package";
+      this.showError = true;
+      return;
+    }
+    this.modalService.open(PaymentPopupModal, { centered: true });
+  }
+  TransferPopup(TransferModal: any) {
+    this.modalService.open(TransferModal, { centered: true });
   }
 
   buyCount: any;
@@ -1073,8 +1095,6 @@ export class DashboardComponent implements OnInit {
       PropertyListingTypeId = '';
     }
     this.allCheckbox = [];
-    // this.rentCheckbox = [];
-    // this.buyCheckbox  = [];
     this.getCountData(PropertyListingTypeId);
   }
   wishlistingData: any = []
@@ -1093,7 +1113,7 @@ export class DashboardComponent implements OnInit {
 
         let rentType: any = '';
         if (element.rentType != null && element.rentType != undefined && element.rentType.name != undefined && element.rentType.name != null && element.propertyListingTypeId != 2) {
-          rentType = '/'+element.rentType.name
+          rentType = '/' + element.rentType.name
         }
 
         let propertyType: any = '';
@@ -1155,17 +1175,6 @@ export class DashboardComponent implements OnInit {
   allFormCheckbox(id: number) {
     this.allCheckbox.push({ 'id': id })
   }
-
-  // rentCheckbox :any = []
-  // rentFormCheckbox(id:number){
-  //   this.rentCheckbox.push({'id':id})
-  // }
-  //
-  // buyCheckbox :any = []
-  // buyFormCheckbox(id:number){
-  //   this.buyCheckbox.push({'id':id})
-  // }
-
   compareProceed(type: any) {
     if (this.user.id == '') {
       this.notifyService.showSuccess('First you need to login', "");
@@ -1185,24 +1194,6 @@ export class DashboardComponent implements OnInit {
         this.route.navigateByUrl('/PropertyCompare');
       }
     }
-    // else if(type == 'rent'){
-    //   if(this.rentCheckbox.length < 2 || this.rentCheckbox.length > 4){
-    //     this.notifyService.showWarning('Selected property atleast less than < 4 greater than > 2 ', "");
-    //   }else{
-    //     localStorage.removeItem("compareIds");
-    //     localStorage.setItem('compareIds',JSON.stringify(this.allCheckbox))
-    //     this.route.navigateByUrl('/PropertyCompare');
-    //   }
-    // }else if(type == "buy"){
-    //   if(this.buyCheckbox.length < 2 || this.buyCheckbox.length > 4){
-    //     this.notifyService.showWarning('Selected property atleast less than < 4 greater than > 2 ', "");
-    //   }else{
-    //     localStorage.removeItem("compareIds");
-    //     localStorage.setItem('compareIds',JSON.stringify(this.allCheckbox))
-    //     this.route.navigateByUrl('/PropertyCompare');
-    //   }
-    // }
-
   }
 
   enquiredBuyCount: any;
@@ -1216,7 +1207,6 @@ export class DashboardComponent implements OnInit {
       this.enquiredBuyCount = response.data.buy
     });
   }
-
 
   getEnquiredCountChange(e: any) {
     let PropertyListingTypeId: any;
@@ -1245,7 +1235,7 @@ export class DashboardComponent implements OnInit {
         }
         let rentType: any = '';
         if (element.rentType != null && element.rentType != undefined && element.rentType.name != undefined && element.rentType.name != null && element.propertyListingTypeId != 2) {
-          rentType = '/'+element.rentType.name
+          rentType = '/' + element.rentType.name
         }
 
         let propertyType: any = '';
@@ -1281,7 +1271,115 @@ export class DashboardComponent implements OnInit {
     navigator.clipboard.writeText(this.userData.referralCode);
     alert("Copied")
   }
-  getPackage(index:any) {
-    console.log(index);
+  getPackage(index: any) {
+    this.seletedPackage = this.pointsData[index];
+  }
+  purchasePoints() {
+    let number: any = this.cardForm.value.cardNumber;
+    let date: any = this.cardForm.value.expiryDate;
+    let cvv: any = this.cardForm.value.cvv;
+    let currentDate: any = this.datePipe.transform(this.minDate, 'yyyy-MM-dd')?.split("-");
+    if (this.cardForm.value.cardNumber == "" || this.cardForm.value.cardNumber == null) {
+      this.error = "Please Enter Card Number";
+      this.showError = true;
+      return;
+    } else if (number.toString().length < 16) {
+      this.error = "Please Enter a Valid Card Number";
+      this.showError = true;
+      return;
+    } else if (this.cardForm.value.expiryDate == "") {
+      this.error = "Please Enter Card Expiry";
+      this.showError = true;
+      return;
+    } else if (date.toString().length < 5) {
+      this.error = "Please Enter a Valid Card Expiry";
+      this.showError = true;
+      return;
+    } else if ("20" + date.toString().split("/")[1] < currentDate[0]) {
+      this.error = "Please Enter a Valid Card Expiry";
+      this.showError = true;
+      return;
+    } else if ("20" + date.toString().split("/")[1] == currentDate[0] && date.toString().split("/")[0] < currentDate[1] || date.toString().split("/")[0] > 12) {
+      this.error = "Please Enter a Valid Card Expiry";
+      this.showError = true;
+      return;
+    } else if (this.cardForm.value.cvv == "" || this.cardForm.value.cvv == null) {
+      this.error = "Please Enter CVV";
+      this.showError = true;
+      return;
+    } else if (cvv.toString().length < 3) {
+      this.error = "Please Enter a valid CVV";
+      this.showError = true;
+      return;
+    } else if (this.cardForm.value.cardName == "" || this.cardForm.value.cardName == null) {
+      console.log(this.cardForm.value.cardName);
+      this.error = "Please Enter Card Holder Name";
+      this.showError = true;
+    }
+    let temp:any = {};
+    temp.UserId = this.loggedInUser.id;
+    temp.Email = this.loggedInUser.email;
+    temp.PointId = this.seletedPackage.id;
+    temp.CardNumder = this.cardForm.value.cardNumber;
+    temp.CardNumder = this.cardForm.value.cardNumber;
+    temp.Month = date.split("/")[0];
+    temp.Year = date.split("/")[1];
+    temp.CVC = this.cardForm.value.cvv;
+    temp.Amount = this.seletedPackage.price;
+    temp.CustomerName = this.cardForm.value.cardName;
+    temp.Currency = this.seletedPackage.country.currency;
+    temp.DescriptionPayment = "Point Package";
+    this.showLoader = true;
+    this.service.PointPayment(temp).subscribe((result:any) => {
+      if(result.message == "Purchasing Point is completed successfully") {
+        this.showLoader = false;
+        this.getPoints();
+        $(".payment-cancel-btn").click();
+      }
+    })
+  }
+
+  onKeypressEvent(e: any) {
+    this.checkLength(3, false)
+  }
+  checkLength(e: any, type: boolean) {
+    if (e == 1) {
+      let temp: any = this.cardForm.value.cardNumber;
+      if (temp != null) {
+        if (temp.toString().length > 16) {
+          this.cardForm.patchValue({
+            cardNumber: temp.toString().slice(0, -1)
+          })
+        }
+      }
+    } else if (e == 2) {
+      let temp: any = this.cardForm.value.cvv;
+      if (temp.toString().length > 4) {
+        this.cardForm.patchValue({
+          cvv: temp.toString().slice(0, -1)
+        })
+      }
+    } else if (e == 3) {
+      let temp: any = this.cardForm.value.expiryDate;
+      if (temp.replace("/", "") >= 0) {
+        if (temp.toString().length == 2 && !type) {
+          this.cardForm.patchValue({
+            expiryDate: temp.toString() + "/"
+          })
+        } else if (temp.toString().length == 3 && type) {
+          this.cardForm.patchValue({
+            expiryDate: temp.toString().slice(0, -1)
+          })
+        } else if (temp.toString().length > 5) {
+          this.cardForm.patchValue({
+            expiryDate: temp.toString().slice(0, -1)
+          })
+        }
+      } else {
+        this.cardForm.patchValue({
+          expiryDate: temp.toString().slice(0, -1)
+        })
+      }
+    }
   }
 }
