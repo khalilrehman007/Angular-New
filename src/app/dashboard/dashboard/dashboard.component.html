@@ -4941,7 +4941,62 @@
              </div>
            </div>
            <div class="wallet-btn-flex">
-              <button class="recharge-btn">Buy Now</button>
+              <button class="recharge-btn" (click)="PaymentPopup(PaymentPopupModal)" aria-label="Close"
+              (click)="modal.dismiss('Cross click')">Buy Now</button>
+              <button class="cancel-btn" aria-label="Close"
+              (click)="modal.dismiss('Cross click')">Cancel</button>
+           </div>
+        </form>
+        </div>
+    </ng-template>
+</div>
+<div ngClass="wallet-modal payment-modal-wrap">
+    <ng-template #PaymentPopupModal let-modal>
+        <div class="modal-body wallet-modal-design payment-modal-design">
+            <form>
+           <div class="payment-modal-list">
+             <h5 class="h5-design mb-2">Payment</h5>
+             <p ngClass="mb-4">Please fill your payment details for proceed further</p>
+             <div class="paymentmodal-form-design">
+                <form>
+                <div ngClass="block-wrapper mb-3">
+                    <label>Card Number</label>
+                    <mat-form-field class="full-width input-design-2"
+                    appearance="fill">
+                    <input matInput type="number"
+                        placeholder="1234 1234 1234 1234"
+                        formControlName="cardNumber">
+                </mat-form-field>
+                </div>
+                <div ngClass="block-wrapper mb-3">
+                    <label>Expiry</label>
+                    <mat-form-field class="full-width input-design-2"
+                        appearance="fill">
+                        <input matInput type="text" placeholder="MM/YY"
+                            formControlName="expiryDate">
+                    </mat-form-field>
+                </div>
+                <div ngClass="block-wrapper mb-3">
+                    <label>CVV</label>
+                    <mat-form-field class="full-width input-design-2"
+                        appearance="fill">
+                        <input matInput type="number" placeholder="CVV"
+                            formControlName="cvv">
+                    </mat-form-field>
+                </div>
+                <div ngClass="block-wrapper mb-3">
+                    <label>Name on Card</label>
+                    <mat-form-field class="full-width input-design-2"
+                        appearance="fill">
+                        <input matInput type="text" placeholder="Name"
+                            formControlName="cardName">
+                    </mat-form-field>
+                </div>
+                </form>
+             </div>
+           </div>
+           <div class="wallet-btn-flex">
+              <button class="recharge-btn">Proceed to Pay</button>
               <button class="cancel-btn" aria-label="Close"
               (click)="modal.dismiss('Cross click')">Cancel</button>
            </div>

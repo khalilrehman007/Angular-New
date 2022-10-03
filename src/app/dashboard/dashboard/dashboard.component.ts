@@ -1050,6 +1050,9 @@ export class DashboardComponent implements OnInit {
   rechargePopup(rechargemodal:any) {
     this.modalService.open(rechargemodal, { centered: true });
   }
+  PaymentPopup(PaymentPopupModal:any) {
+    this.modalService.open(PaymentPopupModal, { centered: true });
+  }
 
   buyCount: any;
   rentCount: any;
