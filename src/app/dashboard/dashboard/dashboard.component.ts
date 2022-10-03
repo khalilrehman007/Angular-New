@@ -136,6 +136,7 @@ export class DashboardComponent implements OnInit {
   totalCommValuation: any;
   myBalance:any = 0;
   pointsData:any = "";
+  pointsHistory:any = "";
   get firstName() {
     return this.detailForm.get("firstName");
   }
@@ -300,12 +301,15 @@ export class DashboardComponent implements OnInit {
       }
     })
     temp = JSON.parse(temp);
-    this.service.MyWallet(335).subscribe((result:any) => {
+    this.service.MyWallet(temp.id).subscribe((result:any) => {
       this.myBalance = result.data;
     })
     this.service.GetPoints(1).subscribe((result:any) => {
       this.pointsData = result.data;
-      console.log(this.pointsData);
+    })
+    this.service.PointTransaction(temp.id).subscribe((result:any) => {
+      this.pointsHistory = result.data;
+      console.log(this.pointsHistory);
     })
   }
   downloadReport(e: any) {
