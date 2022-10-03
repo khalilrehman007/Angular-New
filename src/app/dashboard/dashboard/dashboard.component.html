@@ -121,7 +121,8 @@
                                 <!-- <button ngbDropdownItem><a href=""><img src="{{acsetting}}"> Account
                                         Settings</a></button> -->
                                 <button ngbDropdownItem>
-                                    <a ngClass="logout-link logout-popup" (click)="logOutPopup(content)"><img src="{{aclogout}}"> Logout </a>
+                                    <a ngClass="logout-link logout-popup" (click)="logOutPopup(content)"><img
+                                            src="{{aclogout}}"> Logout </a>
                                 </button>
                             </div>
                         </div>
@@ -458,7 +459,9 @@
                                                             <div class="col-lg-10">
                                                                 <div class="row">
                                                                     <div class="col-7">
-                                                                        <a routerLink="/property/detail" [queryParams]="{id: viewList.id}" class="agent-details__property-list-item-link cursor-pointer">{{viewList.propertyPrice}}
+                                                                        <a routerLink="/property/detail"
+                                                                            [queryParams]="{id: viewList.id}"
+                                                                            class="agent-details__property-list-item-link cursor-pointer">{{viewList.propertyPrice}}
                                                                             {{viewList.currency}}
                                                                             <span>{{viewList.rentType}}</span>
                                                                         </a>
@@ -633,24 +636,43 @@
                                                         *ngFor=" let viewList of activityViewData | paginate: { itemsPerPage: 10, currentPage: page, totalItems:activityViewData.length }">
                                                         <div class="row">
                                                             <div class="col-lg-2">
-                                                                <img *ngIf="viewList.documents.length > 0" src="https://beta.ovaluate.com/{{viewList.documents[0].fileUrl}}" alt=""
+                                                                <img *ngIf="viewList.documents.length > 0"
+                                                                    src="https://beta.ovaluate.com/{{viewList.documents[0].fileUrl}}"
+                                                                    alt=""
                                                                     class="img-fluid agent-details__property-list-item-img">
-                                                                <img *ngIf="viewList.documents.length == 0" src="assets/images/placeholder.png" alt=""
+                                                                <img *ngIf="viewList.documents.length == 0"
+                                                                    src="assets/images/placeholder.png" alt=""
                                                                     class="img-fluid agent-details__property-list-item-img">
                                                             </div>
                                                             <div class="col-lg-10">
                                                                 <div class="row">
                                                                     <div class="col-7">
-                                                                        <a routerLink="/property/detail" [queryParams]="{id: viewList.id}" class="agent-details__property-list-item-link cursor-pointer">{{viewList.propertyPrice}}
+                                                                        <a routerLink="/property/detail"
+                                                                            [queryParams]="{id: viewList.id}"
+                                                                            class="agent-details__property-list-item-link cursor-pointer">{{viewList.propertyPrice}}
                                                                             {{viewList.country.currency}}
-                                                                            <span *ngIf="viewList.rentType">/{{viewList.rentType.name}}</span>
+                                                                            <span
+                                                                                *ngIf="viewList.rentType">/{{viewList.rentType.name}}</span>
                                                                         </a>
                                                                     </div>
                                                                     <div class="col-5 text-end">
-                                                                        <h4 class="sub-bold-text">{{viewList.propertyTitle}}</h4>
-                                                                        <p class="agent-details__property-list-item-date">Listed on: <span class="value_span">{{viewList.requestedDateFormat}}</span></p>
-                                                                        <p class="agent-details__property-list-item-date">Shortlisted By: <span class="value_span">{{viewList.numberOfUsershortListedProperty}} Persons</span></p>
-                                                                        <p class="agent-details__property-list-item-date">Viewed By: <span class="value_span">{{viewList.numberOfUserSeeingProperty}} Persons</span></p>
+                                                                        <h4 class="sub-bold-text">
+                                                                            {{viewList.propertyTitle}}</h4>
+                                                                        <p
+                                                                            class="agent-details__property-list-item-date">
+                                                                            Listed on: <span
+                                                                                class="value_span">{{viewList.requestedDateFormat}}</span>
+                                                                        </p>
+                                                                        <p
+                                                                            class="agent-details__property-list-item-date">
+                                                                            Shortlisted By: <span
+                                                                                class="value_span">{{viewList.numberOfUsershortListedProperty}}
+                                                                                Persons</span></p>
+                                                                        <p
+                                                                            class="agent-details__property-list-item-date">
+                                                                            Viewed By: <span
+                                                                                class="value_span">{{viewList.numberOfUserSeeingProperty}}
+                                                                                Persons</span></p>
                                                                     </div>
                                                                 </div>
                                                                 <h6>{{viewList.buildingName}}</h6>
@@ -1419,7 +1441,9 @@
                                                                                 <button ngbDropdownItem><a href=""><img
                                                                                             src="{{deleteimg}}">
                                                                                         Delete</a></button>
-                                                                                <button ngbDropdownItem><a routerLink="/add-property/edit/{{listing.id}}/listingproperty" target="_blank"><img
+                                                                                <button ngbDropdownItem><a
+                                                                                        routerLink="/add-property/edit/{{listing.id}}/listingproperty"
+                                                                                        target="_blank"><img
                                                                                             src="{{editimg}}">
                                                                                         Edit</a></button>
                                                                             </div>
@@ -1916,28 +1940,30 @@
                                 <mat-tab label="My Wallet">
                                     <div ngClass="my-wallet-list-wrapper">
                                         <div class="row align-items-center">
-                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                                            <div ngClass="my-wallet-list-img">
-                                                <img src="{{wallet}}">
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                                <div ngClass="my-wallet-list-img">
+                                                    <img src="{{wallet}}">
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                                        <div ngClass="my-wallet-list-design">
-                                            <div ngClass="exisitng-amount">
-                                                <h6>Existing Points</h6>
-                                                <p>{{myBalance}}</p>
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                                <div ngClass="my-wallet-list-design">
+                                                    <div ngClass="exisitng-amount">
+                                                        <h6>Existing Points</h6>
+                                                        <p>{{myBalance}}</p>
+                                                    </div>
+                                                    <div ngClass="recharge-now-btn">
+                                                        <a class="cursor-pointer"
+                                                            (click)="rechargePopup(rechargemodal)">Recharge Now</a>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div ngClass="recharge-now-btn">
-                                                <a class="cursor-pointer" (click)="rechargePopup(rechargemodal)">Recharge Now</a>
-                                            </div>
-                                        </div>
-                                        </div>
                                         </div>
                                     </div>
                                 </mat-tab>
                                 <mat-tab label="My Transactions">
                                     <div ngClass="my-valuation-list-wrapper">
-                                        <div ngClass="my-valuation-list-design d-flex" *ngFor="let item of pointsHistory">
+                                        <div ngClass="my-valuation-list-design d-flex"
+                                            *ngFor="let item of pointsHistory">
                                             <div ngClass="my_valuation-inner-div valuation_property-name">
                                                 <div ngClass="valuation_property-name-first d-flex align-items-center">
                                                     <span ngClass="val_pro-number">1</span>
@@ -1970,40 +1996,42 @@
                         </div>
                         <div ngClass="my-wallet-list-wrapper referral-code-block">
                             <div class="row align-items-center">
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                                <div ngClass="my-wallet-list-img">
-                                    <img src="{{refrell}}">
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                    <div ngClass="my-wallet-list-img">
+                                        <img src="{{refrell}}">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                            <div ngClass="my-wallet-list-design">
-                                <div ngClass="exisitng-amount">
-                                    <h6>My Referral Code</h6>
-                                    <button class="referral-copy" (click)="copyCode()">{{userData.referralCode}} <mat-icon>file_copy</mat-icon></button>
-                                </div>
-                                <div ngClass="pro-contact-details">
-                                    <div ngbDropdown class="d-inline-block">
-                                        <button ngClass="circle-btn" id="dropdownBasic21"
-                                            ngbDropdownToggle><img src="{{share}}"></button>
-                                        <div ngbDropdownMenu aria-labelledby="dropdownBasic21">
-                                            <h5>Share with:</h5>
-                                            <button ngbDropdownItem><a target="_blank"
-                                                    href="https://facebook.com"
-                                                    ngClass="facebook"><img src="{{fb}}">
-                                                    Facebook</a></button>
-                                            <button ngbDropdownItem><a target="_blank"
-                                                    href="https://web.whatsapp.com/"
-                                                    ngClass="whatsapp"><img src="{{whatsapp}}">
-                                                    WhatsAPP</a></button>
-                                            <button ngbDropdownItem><a target="_blank"
-                                                    href="https://twitter.com/"
-                                                    ngClass="twitter"><img src="{{twitter}}">
-                                                    Twitter</a></button>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                    <div ngClass="my-wallet-list-design">
+                                        <div ngClass="exisitng-amount">
+                                            <h6>My Referral Code</h6>
+                                            <button class="referral-copy" (click)="copyCode()">{{userData.referralCode}}
+                                                <mat-icon>file_copy</mat-icon>
+                                            </button>
+                                        </div>
+                                        <div ngClass="pro-contact-details">
+                                            <div ngbDropdown class="d-inline-block">
+                                                <button ngClass="circle-btn" id="dropdownBasic21" ngbDropdownToggle><img
+                                                        src="{{share}}"></button>
+                                                <div ngbDropdownMenu aria-labelledby="dropdownBasic21">
+                                                    <h5>Share with:</h5>
+                                                    <button ngbDropdownItem><a target="_blank"
+                                                            href="https://facebook.com" ngClass="facebook"><img
+                                                                src="{{fb}}">
+                                                            Facebook</a></button>
+                                                    <button ngbDropdownItem><a target="_blank"
+                                                            href="https://web.whatsapp.com/" ngClass="whatsapp"><img
+                                                                src="{{whatsapp}}">
+                                                            WhatsAPP</a></button>
+                                                    <button ngbDropdownItem><a target="_blank"
+                                                            href="https://twitter.com/" ngClass="twitter"><img
+                                                                src="{{twitter}}">
+                                                            Twitter</a></button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            </div>
                             </div>
                         </div>
                     </div>
@@ -2690,9 +2718,11 @@
                                                                     <div ngClass="block-wrapper mb-4">
                                                                         <div class="d-flex justify-content-between">
                                                                             <div>
-                                                                            <h3 class="sub-title">Language Settings</h3>
-                                                                            <label class="h6-design">Set your preferred
-                                                                                language</label>
+                                                                                <h3 class="sub-title">Language Settings
+                                                                                </h3>
+                                                                                <label class="h6-design">Set your
+                                                                                    preferred
+                                                                                    language</label>
                                                                             </div>
                                                                             <mat-form-field appearance="fill"
                                                                                 class="select-form input-design-2">
@@ -2717,10 +2747,12 @@
                                                                     <div ngClass="block-wrapper mb-4">
                                                                         <div class="d-flex justify-content-between">
                                                                             <div>
-                                                                            <h3 class="sub-title">Push Notification Settings</h3>
-                                                                            <label class="h6-design">Get notifications
-                                                                                from estatery to stay
-                                                                                up-to-date.</label>
+                                                                                <h3 class="sub-title">Push Notification
+                                                                                    Settings</h3>
+                                                                                <label class="h6-design">Get
+                                                                                    notifications
+                                                                                    from estatery to stay
+                                                                                    up-to-date.</label>
                                                                             </div>
                                                                             <div class="form-check form-switch">
                                                                                 <mat-slide-toggle></mat-slide-toggle>
@@ -2733,18 +2765,24 @@
                                                                     <div ngClass="block-wrapper mb-4">
                                                                         <div class="d-flex justify-content-between">
                                                                             <div>
-                                                                            <h3 class="sub-title">Delete Account</h3>
-                                                                            <label class="h6-design">Delete your account
-                                                                                and all the data</label>
+                                                                                <h3 class="sub-title">Delete Account
+                                                                                </h3>
+                                                                                <label class="h6-design">Delete your
+                                                                                    account
+                                                                                    and all the data</label>
                                                                             </div>
-                                                                            <a href="#" class="btn btn-delete-act">Delete Account</a>
+                                                                            <a href="#"
+                                                                                class="btn btn-delete-act">Delete
+                                                                                Account</a>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                                 <div ngClass="col-xl-6 col-lg-6 col-sm-12"></div>
                                                                 <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                                                     <div ngClass="block-wrapper mb-4 setting-logout">
-                                                                        <a ngClass="sub-title" (click)="logOutPopup(content)"><img src="{{logoutIcon}}"> Logout </a>
+                                                                        <a ngClass="sub-title"
+                                                                            (click)="logOutPopup(content)"><img
+                                                                                src="{{logoutIcon}}"> Logout </a>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -4881,8 +4919,9 @@
                                 <button ngbDropdownItem><a href=""><img src="{{acsetting}}"> Account
                                         Settings</a></button>
                                 <button ngbDropdownItem>
-                                        <a ngClass="logout-link" (click)="logOutPopup(content)"><img src="{{aclogout}}"> Logout </a>
-                                    </button>
+                                    <a ngClass="logout-link" (click)="logOutPopup(content)"><img src="{{aclogout}}">
+                                        Logout </a>
+                                </button>
                             </div>
                         </div>
                         <!-- <button mat-icon-button>
@@ -4904,7 +4943,7 @@
   </div> -->
         </div>
     </div>
-<app-footer></app-footer>
+    <app-footer></app-footer>
 </section>
 <div ngClass="logout-modal">
     <ng-template #content let-modal>
@@ -4931,22 +4970,23 @@
     <ng-template #rechargemodal let-modal>
         <div class="modal-body wallet-modal-design">
             <form>
-           <div class="wallet-modal-list">
-             <h5 class="h5-design mb-4">Please select</h5>
-             <div class="wallet-form-design">
-                    <div class="wallet-radio-design position-relative mb-3" *ngFor="let item of pointsData; let i = index" (click)="getPackage(i)">
-                        <input type="radio" name="recharge-points">
-                        <button class="cstm-wallet-btn">{{item.pointValue}} Points = {{item.country.currency}} {{item.price}}</button>
+                <div class="wallet-modal-list">
+                    <h5 class="h5-design mb-4">Please select</h5>
+                    <div class="wallet-form-design">
+                        <div class="wallet-radio-design position-relative mb-3"
+                            *ngFor="let item of pointsData; let i = index" (click)="getPackage(i)">
+                            <input type="radio" name="recharge-points">
+                            <button class="cstm-wallet-btn">{{item.pointValue}} Points = {{item.country.currency}}
+                                {{item.price}}</button>
+                        </div>
                     </div>
-             </div>
-           </div>
-           <div class="wallet-btn-flex">
-              <button class="recharge-btn" (click)="PaymentPopup(PaymentPopupModal)" aria-label="Close"
-              (click)="modal.dismiss('Cross click')">Buy Now</button>
-              <button class="cancel-btn" aria-label="Close"
-              (click)="modal.dismiss('Cross click')">Cancel</button>
-           </div>
-        </form>
+                </div>
+                <div class="wallet-btn-flex">
+                    <button class="recharge-btn" (click)="PaymentPopup(PaymentPopupModal)" aria-label="Close"
+                        (click)="modal.dismiss('Cross click')">Buy Now</button>
+                    <button class="cancel-btn" aria-label="Close" (click)="modal.dismiss('Cross click')">Cancel</button>
+                </div>
+            </form>
         </div>
     </ng-template>
 </div>
@@ -4954,53 +4994,46 @@
     <ng-template #PaymentPopupModal let-modal>
         <div class="modal-body wallet-modal-design payment-modal-design">
             <form>
-           <div class="payment-modal-list">
-             <h5 class="h5-design mb-2">Payment</h5>
-             <p ngClass="mb-4">Please fill your payment details for proceed further</p>
-             <div class="paymentmodal-form-design">
-                <form>
-                <div ngClass="block-wrapper mb-3">
-                    <label>Card Number</label>
-                    <mat-form-field class="full-width input-design-2"
-                    appearance="fill">
-                    <input matInput type="number"
-                        placeholder="1234 1234 1234 1234"
-                        formControlName="cardNumber">
-                </mat-form-field>
+                <div class="payment-modal-list">
+                    <h5 class="h5-design mb-2">Payment</h5>
+                    <p ngClass="mb-4">Please fill your payment details for proceed further</p>
+                    <div class="paymentmodal-form-design">
+                        <form [formGroup]="cardForm">
+                            <div ngClass="block-wrapper mb-3">
+                                <label>Card Number</label>
+                                <mat-form-field class="full-width input-design-2" appearance="fill">
+                                    <input matInput type="number" placeholder="1234 1234 1234 1234"
+                                        formControlName="cardNumber" (input)="checkLength(1, false)">
+                                </mat-form-field>
+                            </div>
+                            <div ngClass="block-wrapper mb-3">
+                                <label>Expiry</label>
+                                <mat-form-field class="full-width input-design-2" appearance="fill">
+                                    <input matInput type="text" placeholder="MM/YY" formControlName="expiryDate"
+                                        (input)="checkLength(3, true)" (keypress)="onKeypressEvent($event)">
+                                </mat-form-field>
+                            </div>
+                            <div ngClass="block-wrapper mb-3">
+                                <label>CVV</label>
+                                <mat-form-field class="full-width input-design-2" appearance="fill">
+                                    <input matInput type="number" placeholder="CVV" formControlName="cvv">
+                                </mat-form-field>
+                            </div>
+                            <div ngClass="block-wrapper mb-3">
+                                <label>Name on Card</label>
+                                <mat-form-field class="full-width input-design-2" appearance="fill">
+                                    <input matInput type="text" placeholder="Name" formControlName="cardName">
+                                </mat-form-field>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-                <div ngClass="block-wrapper mb-3">
-                    <label>Expiry</label>
-                    <mat-form-field class="full-width input-design-2"
-                        appearance="fill">
-                        <input matInput type="text" placeholder="MM/YY"
-                            formControlName="expiryDate">
-                    </mat-form-field>
+                <div class="wallet-btn-flex">
+                    <button class="recharge-btn" (click)="purchasePoints()">Proceed to Pay</button>
+                    <button class="cancel-btn" aria-label="Close" (click)="modal.dismiss('Cross click')">Cancel</button>
                 </div>
-                <div ngClass="block-wrapper mb-3">
-                    <label>CVV</label>
-                    <mat-form-field class="full-width input-design-2"
-                        appearance="fill">
-                        <input matInput type="number" placeholder="CVV"
-                            formControlName="cvv">
-                    </mat-form-field>
-                </div>
-                <div ngClass="block-wrapper mb-3">
-                    <label>Name on Card</label>
-                    <mat-form-field class="full-width input-design-2"
-                        appearance="fill">
-                        <input matInput type="text" placeholder="Name"
-                            formControlName="cardName">
-                    </mat-form-field>
-                </div>
-                </form>
-             </div>
-           </div>
-           <div class="wallet-btn-flex">
-              <button class="recharge-btn">Proceed to Pay</button>
-              <button class="cancel-btn" aria-label="Close"
-              (click)="modal.dismiss('Cross click')">Cancel</button>
-           </div>
-        </form>
+            </form>
         </div>
     </ng-template>
 </div>
+<app-erroralert [error]="error" (errorResponse)="errorResponse($event)" *ngIf="showError"></app-erroralert>

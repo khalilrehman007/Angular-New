@@ -5,6 +5,7 @@ import * as $ from 'jquery';
 import { NgbNav } from '@ng-bootstrap/ng-bootstrap';
 import { NotificationService } from "../../service/notification.service";
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { DatePipe } from '@angular/common';
 
 import { AppService } from 'src/app/service/app.service';
 import { AuthService } from "../../service/auth.service";
@@ -12,7 +13,8 @@ import { AuthService } from "../../service/auth.service";
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  styleUrls: ['./dashboard.component.scss'],
+  providers: [DatePipe]
 })
 export class DashboardComponent implements OnInit {
   blogs: any;
@@ -71,9 +73,11 @@ export class DashboardComponent implements OnInit {
   leadsCommercialSummary: any = [];
   areaData: any = [];
   activityViewData:any = [];
-
+  minDate = new Date();
   plus = '../../../../assets/images/plus.svg'
-
+  errorResponse(data: any) {
+    this.showError = false;
+  }
   bedrooms = [
     { viewValue: '01', value: 'bedroom' },
     { viewValue: '02', value: 'bedroom' },
@@ -123,6 +127,12 @@ export class DashboardComponent implements OnInit {
     currentPassword: new FormControl(""),
     newPassword: new FormControl("")
   });
+  cardForm = new FormGroup({
+    cardNumber: new FormControl(""),
+    expiryDate: new FormControl(""),
+    cvv: new FormControl(""),
+    cardName: new FormControl("")
+  })
   myValuation: any = [];
   myValuationResidential: any = [];
   myValuationCommercial: any = [];
@@ -135,6 +145,7 @@ export class DashboardComponent implements OnInit {
   totalRestValuation: any;
   totalCommValuation: any;
   myBalance:any = 0;
+  seletedPackage:any = "";
   pointsData:any = "";
   pointsHistory:any = "";
   get firstName() {
@@ -184,7 +195,7 @@ export class DashboardComponent implements OnInit {
   childTabId: any  = "";
   url:any = "";
 
-  constructor(private authService: AuthService, private service: AppService, private route: Router, private notifyService: NotificationService,private modalService: NgbModal) {
+  constructor(private authService: AuthService, private datePipe: DatePipe, private service: AppService, private route: Router, private notifyService: NotificationService,private modalService: NgbModal) {
     this.url = this.route.url.split("/");
     $(window).scrollTop(0);
     this.getUser();
@@ -248,7 +259,6 @@ export class DashboardComponent implements OnInit {
       })
       this.service.MyActivitySavedSearchProperty({ "UserId": this.userData.id, "PropertyListingTypeId": "" }).subscribe((result: any) => {
         this.activitySavedSearch = result.data;
-        // console.log(this.activitySavedSearch)
       })
     })
     this.service.LoadPropertyListingTypes().subscribe(e => {
@@ -309,7 +319,6 @@ export class DashboardComponent implements OnInit {
     })
     this.service.PointTransaction(temp.id).subscribe((result:any) => {
       this.pointsHistory = result.data;
-      console.log(this.pointsHistory);
     })
   }
   downloadReport(e: any) {
@@ -848,17 +857,14 @@ export class DashboardComponent implements OnInit {
 
     let valuationData = new FormData();
       valuationData.append("CompanyRequest", JSON.stringify(this.companyFormData));
-      // console.log(this.agentFormData)
 
       for (let i = 0; i < 4; i++) {
-        // console.log(this.otherImages[i])
         valuationData.append(i+1 + "_" + this.otherImages[i].file.name, this.otherImages[i].file);
       }
     
 
     // if ( this.data.CompanyName = this.companyDetailsFormData.value.companyName )
     let token: any = localStorage.getItem("token");
-    console.log(this.companyFormData)
       // token = JSON.parse(token);
       // $.ajax({
       //   url: "https://beta.ovaluate.com/api/AddUpdateCompany",
@@ -870,7 +876,6 @@ export class DashboardComponent implements OnInit {
       //   },
       //   dataType: "json",
       //   success: (res) => {
-      //     console.log(res)
       //     this.companyDetailsFormData = res.data.id;
       //     this.notifyService.showSuccess(res.message, "Company details updated successfully");
       //   },
@@ -936,7 +941,6 @@ export class DashboardComponent implements OnInit {
       }
       let token: any = localStorage.getItem("token");
       token = JSON.parse(token);
-      console.log(JSON.stringify(this.agentFormData))
       $.ajax({
         url: "https://beta.ovaluate.com/api/AddUpdateAgentDetails",
         method: "post",
@@ -948,7 +952,6 @@ export class DashboardComponent implements OnInit {
         },
         dataType: "json",
         success: (res:any) => {
-          console.log(res)
           this.agentBrokerId = res.data.id;
           if(res.message == "agent request completed successfully") {
             this.notifyService.showSuccess(res.message, "Agent details updated successfully");
@@ -1289,6 +1292,98 @@ export class DashboardComponent implements OnInit {
     alert("Copied")
   }
   getPackage(index:any) {
-    console.log(index);
+    this.seletedPackage = this.pointsData[index];
+    console.log(this.seletedPackage);
+  }
+  purchasePoints() {
+    let number: any = this.cardForm.value.cardNumber;
+    let date: any = this.cardForm.value.expiryDate;
+    let cvv: any = this.cardForm.value.cvv;
+    let currentDate: any = this.datePipe.transform(this.minDate, 'yyyy-MM-dd')?.split("-");
+    if (this.cardForm.value.cardNumber == "" || this.cardForm.value.cardNumber == null) {
+      this.error = "Please Enter Card Number";
+      this.showError = true;
+      return;
+    } else if (number.toString().length < 16) {
+      this.error = "Please Enter a Valid Card Number";
+      this.showError = true;
+      return;
+    } else if (this.cardForm.value.expiryDate == "") {
+      this.error = "Please Enter Card Expiry";
+      this.showError = true;
+      return;
+    } else if (date.toString().length < 5) {
+      this.error = "Please Enter a Valid Card Expiry";
+      this.showError = true;
+      return;
+    } else if ("20" + date.toString().split("/")[1] < currentDate[0]) {
+      this.error = "Please Enter a Valid Card Expiry";
+      this.showError = true;
+      return;
+    } else if ("20" + date.toString().split("/")[1] == currentDate[0] && date.toString().split("/")[0] < currentDate[1] || date.toString().split("/")[0] > 12) {
+      this.error = "Please Enter a Valid Card Expiry";
+      this.showError = true;
+      return;
+    } else if (this.cardForm.value.cardName = "") {
+      this.error = "Please Enter a Card Holder Name";
+      this.showError = true;
+      return;
+    } else if (this.cardForm.value.cvv == "" || this.cardForm.value.cvv == null) {
+      this.error = "Please Enter CVV";
+      this.showError = true;
+      return;
+    } else if (cvv.toString().length < 3) {
+      this.error = "Please Enter a valid CVV";
+      this.showError = true;
+      return;
+    } else if(this.cardForm.value.cardName == "" || this.cardForm.value.cardName == null) {
+      console.log(this.cardForm.value.cardName);
+      this.error = "Please Enter Card Holder Name";
+      this.showError = true;
+    }
+  }
+  
+  onKeypressEvent(e: any) {
+    this.checkLength(3, false)
+  }
+  checkLength(e: any, type: boolean) {
+    if (e == 1) {
+      let temp: any = this.cardForm.value.cardNumber;
+      if(temp != null) {
+        if (temp.toString().length > 16) {
+          this.cardForm.patchValue({
+            cardNumber: temp.toString().slice(0, -1)
+          })
+        }
+      }
+    } else if (e == 2) {
+      let temp: any = this.cardForm.value.cvv;
+      if (temp.toString().length > 4) {
+        this.cardForm.patchValue({
+          cvv: temp.toString().slice(0, -1)
+        })
+      }
+    } else if (e == 3) {
+      let temp: any = this.cardForm.value.expiryDate;
+      if (temp.replace("/", "") >= 0) {
+        if (temp.toString().length == 2 && !type) {
+          this.cardForm.patchValue({
+            expiryDate: temp.toString() + "/"
+          })
+        } else if (temp.toString().length == 3 && type) {
+          this.cardForm.patchValue({
+            expiryDate: temp.toString().slice(0, -1)
+          })
+        } else if (temp.toString().length > 5) {
+          this.cardForm.patchValue({
+            expiryDate: temp.toString().slice(0, -1)
+          })
+        }
+      } else {
+        this.cardForm.patchValue({
+          expiryDate: temp.toString().slice(0, -1)
+        })
+      }
+    }
   }
 }
