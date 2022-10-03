@@ -24,16 +24,16 @@
                             <div class="agent-details__wrapper-details">
                                 <h4 class="agent-details__wrapper-details-heading" *ngIf="newAgentDetail.fullName">
                                     {{newAgentDetail.fullName}}</h4>
-                                <p class="agent-details__wrapper-details-text" *ngIf="newAgentDetail.expertIn">
-                                    {{newAgentDetail.expertIn}}</p>
+                                <p class="agent-details__wrapper-details-text" *ngIf="newAgentDetail.expertInAr">
+                                    {{newAgentDetail.expertInAr}}</p>
                                 <h6 class="agent-details__wrapper-details-desc cursor-pointer"
-                                    routerLink="/company-details/{{newAgentDetail.companyid}}"
+                                    routerLink="/ar/company-details/{{newAgentDetail.companyid}}"
                                     *ngIf="newAgentDetail.companyName">
                                     {{newAgentDetail.companyName}}</h6>
                                 <p class="agent-details__wrapper-details-phone" *ngIf="newAgentDetail.phoneNumber">
                                     {{newAgentDetail.phoneNumber}}</p>
-                                <p class="agent-details__wrapper-details-text" *ngIf="newAgentDetail.companyAdress">
-                                    {{newAgentDetail.companyAdress}}, الامارات</p>
+                                <p class="agent-details__wrapper-details-text" *ngIf="newAgentDetail.companyAdressAr">
+                                    {{newAgentDetail.companyAdressAr}}, الامارات</p>
                                 <p class="agent-details__wrapper-details-text" *ngIf="newAgentDetail.brnNo">
                                     {{newAgentDetail.brnNo}}</p>
                                 <p class="agent-details__wrapper-details-text" *ngIf="newAgentDetail.agentLanguages">
@@ -43,7 +43,7 @@
                                         *ngFor="let item of newAgentDetail.agentLanguages">{{item.spokenLanguage}}</span>
                                 </p>
                                 <p class="agent-details__wrapper-details-text" *ngIf="newAgentDetail.agentAreas">منطقة:
-                                    <span *ngFor="let item of newAgentDetail.agentAreas">{{item.district.name}}</span>
+                                    <span *ngFor="let item of newAgentDetail.agentAreas">{{item.district.nameAr}}</span>
                                 </p>
                                 <ul class="agent-details__wrapper-details-list">
                                     <li class="agent-details__wrapper-details-list-item">
@@ -111,7 +111,7 @@
                                     <ul class="agent-details__property-list">
                                         <li class="agent-details__property-list-item"
                                             *ngFor="let item of myListing | paginate: { itemsPerPage: 10, currentPage: page, totalItems:totalLength }">
-                                            <div class="row cursor-pointer" [routerLink]="['/property/detail']"
+                                            <div class="row cursor-pointer" [routerLink]="['/ar/property/detail']"
                                                 [queryParams]="{id: item.id}">
                                                 <div class="col-lg-2" >
                                                     <img src="{{item.image}}" [alt]=""
