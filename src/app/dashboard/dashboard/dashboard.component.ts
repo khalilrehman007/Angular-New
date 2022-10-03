@@ -1057,6 +1057,9 @@ export class DashboardComponent implements OnInit {
   PaymentPopup(PaymentPopupModal:any) {
     this.modalService.open(PaymentPopupModal, { centered: true });
   }
+  TransferPopup(TransferModal:any) {
+    this.modalService.open(TransferModal, { centered: true });
+  }
 
   buyCount: any;
   rentCount: any;

@@ -1916,19 +1916,28 @@
                                 <mat-tab label="My Wallet">
                                     <div ngClass="my-wallet-list-wrapper">
                                         <div class="row align-items-center">
-                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                                             <div ngClass="my-wallet-list-img">
                                                 <img src="{{wallet}}">
                                             </div>
                                         </div>
-                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                        <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12">
                                         <div ngClass="my-wallet-list-design">
                                             <div ngClass="exisitng-amount">
                                                 <h6>Existing Points</h6>
                                                 <p>{{myBalance}}</p>
                                             </div>
+                                            <div class="row">
+                                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                                             <div ngClass="recharge-now-btn">
                                                 <a class="cursor-pointer" (click)="rechargePopup(rechargemodal)">Recharge Now</a>
+                                            </div>
+                                            </div>
+                                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                                            <div ngClass="transfer-now-btn">
+                                                <a class="cursor-pointer" (click)="TransferPopup(TransferModal)">Transfer</a>
+                                            </div>
+                                            </div>
                                             </div>
                                         </div>
                                         </div>
@@ -1941,7 +1950,6 @@
                                             <div ngClass="my_valuation-inner-div valuation_property-name">
                                                 <div ngClass="valuation_property-name-first d-flex align-items-center">
                                                     <span ngClass="val_pro-number">1</span>
-                                                    <p>Transaction Detail</p>
                                                 </div>
                                             </div>
                                             <div ngClass="my_valuation-inner-div category">
@@ -1952,9 +1960,17 @@
                                                 <h6>Transaction Date</h6>
                                                 <p>{{item.purchaseDate.split("T")[0]}}</p>
                                             </div>
-                                            <div ngClass="my_valuation-inner-div property_type">
-                                                <h6>Transaction Time</h6>
-                                                <p>4:07 PM</p>
+                                            <div ngClass="my_valuation-inner-div place">
+                                                <h6>Points Debit/Credit</h6>
+                                                <p class="debit">- 100</p>
+                                            </div>
+                                            <div ngClass="my_valuation-inner-div place">
+                                                <h6>Amount Debit</h6>
+                                                <p class="debit">- 100</p>
+                                            </div>
+                                            <div ngClass="my_valuation-inner-div place">
+                                                <h6>Amount Credit</h6>
+                                                <p class="credit">+ 100</p>
                                             </div>
                                         </div>
                                     </div>
@@ -4993,6 +5009,44 @@
                     </mat-form-field>
                 </div>
                 </form>
+             </div>
+           </div>
+           <div class="wallet-btn-flex">
+              <button class="recharge-btn">Proceed to Pay</button>
+              <button class="cancel-btn" aria-label="Close"
+              (click)="modal.dismiss('Cross click')">Cancel</button>
+           </div>
+        </form>
+        </div>
+    </ng-template>
+</div>
+<div ngClass="wallet-modal payment-modal-wrap">
+    <ng-template #TransferModal let-modal>
+        <div class="modal-body wallet-modal-design payment-modal-design">
+            <form>
+           <div class="payment-modal-list">
+             <h5 class="h5-design mb-2">Transfer Points</h5>
+             <div class="paymentmodal-form-design">
+                <div ngClass="block-wrapper mb-3">
+                    <label>The total number of points transferred</label>
+                    <mat-form-field class="full-width input-design-2"
+                    appearance="fill">
+                    <input matInput type="number"
+                        placeholder="10000"
+                        formControlName="PointsNumber">
+                </mat-form-field>
+                </div>
+                <div ngClass="block-wrapper mb-3 refrell-overlay-block">
+                    <label>Referral Code</label>
+                    <div ngClass="position-relative">
+                    <mat-form-field class="full-width input-design-2"
+                        appearance="fill">
+                        <input matInput type="text" placeholder="82500038"
+                            formControlName="ReferralCode">
+                    </mat-form-field>
+                    <span ngClass="ovrc">OVRC-</span>
+                </div>
+                </div>
              </div>
            </div>
            <div class="wallet-btn-flex">
