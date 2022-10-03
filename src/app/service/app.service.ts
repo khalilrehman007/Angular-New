@@ -444,4 +444,7 @@ export class AppService {
   PointTransaction(data:any) {
     return this.http.get(this.apiurl + 'PointTransaction?userId=' + data);
   }
+  PointPayment(data:any) {
+    return this.http.post(this.apiurl + 'PointPayment' , data);
+  }
 }

@@ -1940,32 +1940,35 @@
                                 <mat-tab label="My Wallet">
                                     <div ngClass="my-wallet-list-wrapper">
                                         <div class="row align-items-center">
-                                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-                                            <div ngClass="my-wallet-list-img">
-                                                <img src="{{wallet}}">
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12">
-                                            <div ngClass="my-wallet-list-design">
-                                                <div ngClass="exisitng-amount">
-                                                    <h6>Existing Points</h6>
-                                                    <p>{{myBalance}}</p>
-                                                </div>
-                                                <div class="row">
-                                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-                                                <div ngClass="recharge-now-btn">
-                                                    <a class="cursor-pointer" (click)="rechargePopup(rechargemodal)">Recharge Now</a>
-                                                </div>
-                                                </div>
-                                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-                                                <div ngClass="transfer-now-btn">
-                                                    <a class="cursor-pointer" (click)="TransferPopup(TransferModal)">Transfer</a>
-                                                </div>
-                                                </div>
+                                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                                                <div ngClass="my-wallet-list-img">
+                                                    <img src="{{wallet}}">
                                                 </div>
                                             </div>
+                                            <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12">
+                                                <div ngClass="my-wallet-list-design">
+                                                    <div ngClass="exisitng-amount">
+                                                        <h6>Existing Points</h6>
+                                                        <p>{{myBalance}}</p>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                                                            <div ngClass="recharge-now-btn">
+                                                                <a class="cursor-pointer"
+                                                                    (click)="rechargePopup(rechargemodal)">Recharge
+                                                                    Now</a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                                                            <div ngClass="transfer-now-btn">
+                                                                <a class="cursor-pointer"
+                                                                    (click)="TransferPopup(TransferModal)">Transfer</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
                                     </div>
                                 </mat-tab>
                                 <mat-tab label="My Transactions">
@@ -4980,7 +4983,6 @@
         </div>
     </ng-template>
 </div>
-<app-loader *ngIf="showLoader"></app-loader>
 <div ngClass="wallet-modal">
     <ng-template #rechargemodal let-modal>
         <div class="modal-body wallet-modal-design">
@@ -4998,7 +5000,7 @@
                 </div>
                 <div class="wallet-btn-flex">
                     <button class="recharge-btn" (click)="PaymentPopup(PaymentPopupModal)" aria-label="Close"
-                        (click)="modal.dismiss('Cross click')">Buy Now</button>
+                        (click)="seletedPackage != '' ? modal.dismiss('Cross click'): ''">Buy Now</button>
                     <button class="cancel-btn" aria-label="Close" (click)="modal.dismiss('Cross click')">Cancel</button>
                 </div>
             </form>
@@ -5031,7 +5033,8 @@
                             <div ngClass="block-wrapper mb-3">
                                 <label>CVV</label>
                                 <mat-form-field class="full-width input-design-2" appearance="fill">
-                                    <input matInput type="number" placeholder="CVV" formControlName="cvv">
+                                    <input matInput type="number" placeholder="CVV" formControlName="cvv"
+                                        (input)="checkLength(2, false)">
                                 </mat-form-field>
                             </div>
                             <div ngClass="block-wrapper mb-3">
@@ -5045,7 +5048,7 @@
                 </div>
                 <div class="wallet-btn-flex">
                     <button class="recharge-btn" (click)="purchasePoints()">Proceed to Pay</button>
-                    <button class="cancel-btn" aria-label="Close" (click)="modal.dismiss('Cross click')">Cancel</button>
+                    <button class="payment-cancel-btn cancel-btn" aria-label="Close" (click)="modal.dismiss('Cross click')">Cancel</button>
                 </div>
             </form>
         </div>
@@ -5055,38 +5058,33 @@
     <ng-template #TransferModal let-modal>
         <div class="modal-body wallet-modal-design payment-modal-design">
             <form>
-           <div class="payment-modal-list">
-             <h5 class="h5-design mb-2">Transfer Points</h5>
-             <div class="paymentmodal-form-design">
-                <div ngClass="block-wrapper mb-3">
-                    <label>The total number of points transferred</label>
-                    <mat-form-field class="full-width input-design-2"
-                    appearance="fill">
-                    <input matInput type="number"
-                        placeholder="10000"
-                        formControlName="PointsNumber">
-                </mat-form-field>
+                <div class="payment-modal-list">
+                    <h5 class="h5-design mb-2">Transfer Points</h5>
+                    <div class="paymentmodal-form-design">
+                        <div ngClass="block-wrapper mb-3">
+                            <label>The total number of points transferred</label>
+                            <mat-form-field class="full-width input-design-2" appearance="fill">
+                                <input matInput type="number" placeholder="10000" formControlName="PointsNumber">
+                            </mat-form-field>
+                        </div>
+                        <div ngClass="block-wrapper mb-3 refrell-overlay-block">
+                            <label>Referral Code</label>
+                            <div ngClass="position-relative">
+                                <mat-form-field class="full-width input-design-2" appearance="fill">
+                                    <input matInput type="text" placeholder="82500038" formControlName="ReferralCode">
+                                </mat-form-field>
+                                <span ngClass="ovrc">OVRC-</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div ngClass="block-wrapper mb-3 refrell-overlay-block">
-                    <label>Referral Code</label>
-                    <div ngClass="position-relative">
-                    <mat-form-field class="full-width input-design-2"
-                        appearance="fill">
-                        <input matInput type="text" placeholder="82500038"
-                            formControlName="ReferralCode">
-                    </mat-form-field>
-                    <span ngClass="ovrc">OVRC-</span>
+                <div class="wallet-btn-flex">
+                    <button class="recharge-btn">Proceed to Pay</button>
+                    <button class="cancel-btn" aria-label="Close" (click)="modal.dismiss('Cross click')">Cancel</button>
                 </div>
-                </div>
-             </div>
-           </div>
-           <div class="wallet-btn-flex">
-              <button class="recharge-btn">Proceed to Pay</button>
-              <button class="cancel-btn" aria-label="Close"
-              (click)="modal.dismiss('Cross click')">Cancel</button>
-           </div>
-        </form>
+            </form>
         </div>
     </ng-template>
 </div>
+<app-loader *ngIf="showLoader"></app-loader>
 <app-erroralert [error]="error" (errorResponse)="errorResponse($event)" *ngIf="showError"></app-erroralert>
