@@ -85,6 +85,8 @@ export class ShortTermRentComponent implements OnInit {
   Bathrooms: any;
   KeyWordsParams: any;
   headingPropertyType: any = "Properties";
+  halfList:any = 0;
+  currency:any = "";
   constructor(private authService: AuthService, private notifyService: NotificationService, private activeRoute: ActivatedRoute, private service: AppService, private api: AppService, private route: Router, private modalService: NgbModal) {
     $(window).scrollTop(0);
     this.route.events.subscribe((e: any) => {
@@ -133,7 +135,7 @@ export class ShortTermRentComponent implements OnInit {
           });
         }
         let params: any = {
-          "PropertyTypeIds": this.PropertyTypeIds, "PropertyAddress": this.PropertyAddress, "RentTypeId": this.RentTypeId, Bedrooms: this.Bedrooms, Bathrooms: this.Bathrooms,
+          "RentTypeId": 1, Bedrooms: this.Bedrooms, Bathrooms: this.Bathrooms,
           "PropertyCategoryId": this.PropertyCategoryId, "CityID": cityID, "CountryID": countryId, "PriceStart": this.PriceStart, "PriceEnd": this.PriceEnd,
           "PropertyListingTypeId": this.PropertyListingTypeId, "SortedBy": this.sortedById, CurrentPage: 1, DistrictIds: this.DistrictsId,
           FurnishingTypeId: this.FurnishingTypeId, MinCarpetArea: this.MinCarpetArea, MaxCarpetArea: this.MaxCarpetArea,
@@ -246,7 +248,7 @@ export class ShortTermRentComponent implements OnInit {
     let params: any = {
       MinCarpetArea: this.MinCarpetArea, MaxCarpetArea: this.MaxCarpetArea, PropertyFeatureIds: this.PropertyFeatureIds, KeyWords: this.KeyWords,
       FurnishingTypeId: this.FurnishingTypeId,
-      "PropertyTypeIds": this.PropertyTypeIds, "PropertyAddress": this.PropertyAddress, "RentTypeId": this.RentTypeId, Bedrooms: this.Bedrooms, Bathrooms: this.Bathrooms,
+      "PropertyTypeIds": this.PropertyTypeIds, "PropertyAddress": this.PropertyAddress, "RentTypeId": 1, Bedrooms: this.Bedrooms, Bathrooms: this.Bathrooms,
       "PropertyCategoryId": this.PropertyCategoryId, "PriceStart": this.PriceStart, "PriceEnd": this.PriceEnd, "videoTour": this.videoTourSorting,
       "PropertyListingTypeId": this.PropertyListingTypeId, "SortedBy": this.sortedById, CurrentPage: this.page, DistrictIds: this.DistrictsId,
     }
@@ -376,6 +378,8 @@ export class ShortTermRentComponent implements OnInit {
         );
       })
       this.searchListing = tempData;
+      this.currency = response.data.propertyListings[0].country.currency;
+      this.halfList = Math.floor(this.searchListing.length / 2);
     });
 
   }
@@ -447,7 +451,8 @@ export class ShortTermRentComponent implements OnInit {
     this.route.navigate(['/property/mapview'], { queryParams: params })
 
   }
+  status2: boolean = false;
+  clickEvent2() {
+    this.status2 = !this.status2;
+  }
 }
-
-
-
