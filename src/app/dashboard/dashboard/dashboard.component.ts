@@ -1055,9 +1055,15 @@ export class DashboardComponent implements OnInit {
     this.modalService.open(content, { centered: true });
   }
   rechargePopup(rechargemodal:any) {
+    this.seletedPackage = "";
     this.modalService.open(rechargemodal, { centered: true });
   }
   PaymentPopup(PaymentPopupModal:any) {
+    if(this.seletedPackage == "") {
+      this.error = "Please Select a Package";
+      this.showError = true;
+      return;
+    }
     this.modalService.open(PaymentPopupModal, { centered: true });
   }
 
