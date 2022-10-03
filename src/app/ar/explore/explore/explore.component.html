@@ -13,7 +13,7 @@
                     <div ngClass="select-design">
                       <mat-form-field appearance="fill">
                         <mat-label>بلدان</mat-label>
-                        <mat-select [(value)]="selectedCountry.value" (selectionChange)="onCountrySelect($event)">
+                        <mat-select [(value)]="defaultCountry" (selectionChange)="onCountrySelect($event)">
                           <mat-option *ngFor="let list of country" [value]="list.value">
                             {{ list.viewValue }}
                           </mat-option>

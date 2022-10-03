@@ -62,6 +62,7 @@ export class ExploreComponent implements OnInit {
   cityData: any = [];
   country: any = [];
   selectedCountry: any;
+  defaultCountry: any = "";
   separatorKeysCodesExplore: number[] = [ENTER, COMMA];
   searchctrlExplore = new FormControl('');
   searchfilterExplore: Observable<string[]>;
@@ -93,6 +94,7 @@ export class ExploreComponent implements OnInit {
         for (let country of temp.data) {
           this.country.push({ viewValue: country.nameAr, value: country.id, desc: country.descriptionAr });
         }
+        this.defaultCountry = this.country[0].value;
         this.selectedCountry = this.country[0];
         this.service.FindCities({ "CountryId": this.country[0].value, "Locations": [] }).subscribe((result: any) => {
           this.cityData = result.data;

@@ -13,7 +13,7 @@
                     <div ngClass="select-design">
                       <mat-form-field appearance="fill">
                         <mat-label>Countries</mat-label>
-                        <mat-select [(value)]="selectedCountry.value" (selectionChange)="onCountrySelect($event)">
+                        <mat-select [(value)]="defaultCountry" (selectionChange)="onCountrySelect($event)">
                           <mat-option *ngFor="let list of country" [value]="list.value">
                             {{ list.viewValue }}
                           </mat-option>
@@ -63,7 +63,7 @@
         <div ngClass="explore-breadcrumb-wrapper black-text-breadcrumb">
           <app-breadcrumbs></app-breadcrumbs>
         </div>
-        <div ngClass="explore-word-sec" *ngIf="selectedCountry">
+        <div ngClass="explore-word-sec" *ngIf="defaultCountry != ''">
           <div ngClass="d-flex justify-content-spacebw mb-4">
             <div ngClass="hp-design">
               <h4>Explore World</h4>

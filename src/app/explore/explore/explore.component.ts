@@ -62,6 +62,7 @@ export class ExploreComponent implements OnInit {
   cityData: any = [];
   country: any = [];
   selectedCountry: any;
+  defaultCountry: any = "";
   separatorKeysCodesExplore: number[] = [ENTER, COMMA];
   searchctrlExplore = new FormControl('');
   searchfilterExplore: Observable<string[]>;
@@ -71,12 +72,12 @@ export class ExploreComponent implements OnInit {
 
   onCountrySelect(e: any) {
     this.searchListExplore = [];
-    this.selectedCountry = this.country.filter((item: any) => {
+    let temp: any = this.country.filter((item: any) => {
       if (item.value == e.value) {
         return item;
       }
     })
-    this.selectedCountry = this.selectedCountry[0];
+    this.selectedCountry = temp[0];
     this.service.FindCities({ "CountryId": e.value, "Locations": [] }).subscribe((result: any) => {
       this.cityData = result.data;
       for (let i = 0; i < this.cityData.length; i++) {
@@ -89,14 +90,15 @@ export class ExploreComponent implements OnInit {
     this.service.LoadCountries().subscribe(e => {
       let temp: any = e;
       if (temp.message == "Country list fetched successfully") {
-        for (let country of temp.data) {
-          this.country.push({ viewValue: country.name, value: country.id, desc: country.description });
+        for (let i = 0; i < temp.data.length; i++) {
+          this.country.push({ viewValue: temp.data[i].name, value: temp.data[i].id, desc: temp.data[i].description });
         }
+        this.defaultCountry = this.country[0].value;
         this.selectedCountry = this.country[0];
         this.service.FindCities({ "CountryId": this.country[0].value, "Locations": [] }).subscribe((result: any) => {
           this.cityData = result.data;
           for (let i = 0; i < this.cityData.length; i++) {
-            this.searchListExplore.push(this.cityData[i].nameAr)
+            this.searchListExplore.push(this.cityData[i].name)
           }
         })
       }
@@ -150,6 +152,6 @@ export class ExploreComponent implements OnInit {
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
 
-    return this.searchListExplore.filter((fruit:any) => fruit.toLowerCase().includes(filterValue));
+    return this.searchListExplore.filter((fruit: any) => fruit.toLowerCase().includes(filterValue));
   }
 }
