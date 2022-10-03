@@ -1974,10 +1974,10 @@
                                 <mat-tab label="My Transactions">
                                     <div ngClass="my-valuation-list-wrapper">
                                         <div ngClass="my-valuation-list-design d-flex"
-                                            *ngFor="let item of pointsHistory">
+                                            *ngFor="let item of pointsHistory; let i = index">
                                             <div ngClass="my_valuation-inner-div valuation_property-name">
                                                 <div ngClass="valuation_property-name-first d-flex align-items-center">
-                                                    <span ngClass="val_pro-number">1</span>
+                                                    <span ngClass="val_pro-number">{{i}}</span>
                                                 </div>
                                             </div>
                                             <div ngClass="my_valuation-inner-div category">
