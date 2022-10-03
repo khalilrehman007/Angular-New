@@ -30,7 +30,8 @@
                             <li ngClass="nav-item select-design-language d-hide">
                                 <mat-form-field appearance="fill">
                                     <mat-select [(value)]="selectedLanguage" (selectionChange)="changeLanguage()">
-                                        <mat-option [value]="option.value" *ngFor="let option of language">{{ option.viewValue }}</mat-option>
+                                        <mat-option [value]="option.value" *ngFor="let option of language">{{
+                                            option.viewValue }}</mat-option>
                                     </mat-select>
                                 </mat-form-field>
                             </li>
@@ -40,7 +41,8 @@
                                     <option>Arabic</option>
                                 </select>
                             </li> -->
-                            <li ngClass="nav-item position-relative d-hide notification_header-list" *ngIf="userData != ''">
+                            <li ngClass="nav-item position-relative d-hide notification_header-list"
+                                *ngIf="userData != ''">
                                 <button (click)="clickEvent3()" class="position-relative">
                                     <mat-icon>notifications_none</mat-icon>
                                     <span class="notification-indicator">{{notificationData.length}}</span>
@@ -74,7 +76,7 @@
                                 </button>
                                 <div class="fav-list-dropdown" [ngClass]="status ? 'active' : 'notactive'">
                                     <div ngClass="shortlisted-header d-flex justify-content-spacebw">
-                                        <h4>Favourite Projects</h4>
+                                        <h4>Favorite Projects</h4>
                                         <button (click)="clickEvent()"><img src="{{close}}"></button>
                                     </div>
                                     <div ngClass="shortlisted-inner-cntnt">
@@ -118,9 +120,10 @@
                                                                 ngClass="compare-btn">Compare</a>
                                                         </div> -->
                                                     </form>
-                                                    <div *ngIf="wishlistingDataAll.length == 0" ngClass="property_not-found">
+                                                    <div *ngIf="wishlistingDataAll.length == 0"
+                                                        ngClass="property_not-found">
                                                         <img src="{{propertynotFound}}">
-                                                        <p>It seems you have not shortlisted any property</p>
+                                                        <p>It seems like you have not shortlisted any property</p>
                                                     </div>
                                                 </div>
                                             </mat-tab>
@@ -150,10 +153,11 @@
                                                                     src="{{trash}}"></button>
                                                         </div>
                                                     </div>
-                                                        <div *ngIf="wishlistingDataRent.length == 0" ngClass="property_not-found">
-                                                            <img src="{{propertynotFound}}">
-                                                            <p>It seems you have not shortlisted any property</p>
-                                                        </div>
+                                                    <div *ngIf="wishlistingDataRent.length == 0"
+                                                        ngClass="property_not-found">
+                                                        <img src="{{propertynotFound}}">
+                                                        <p>It seems like you have not shortlisted any property</p>
+                                                    </div>
                                                 </div>
                                             </mat-tab>
                                             <mat-tab label="Buy ({{buyCount}})">
@@ -182,10 +186,11 @@
                                                                     src="{{trash}}"></button>
                                                         </div>
                                                     </div>
-                                                        <div *ngIf="wishlistingDataBuy.length == 0" ngClass="property_not-found">
-                                                            <img src="{{propertynotFound}}">
-                                                            <p>It seems you have not shortlisted any property</p>
-                                                        </div>
+                                                    <div *ngIf="wishlistingDataBuy.length == 0"
+                                                        ngClass="property_not-found">
+                                                        <img src="{{propertynotFound}}">
+                                                        <p>It seems like you have not shortlisted any property</p>
+                                                    </div>
                                                 </div>
                                             </mat-tab>
                                         </mat-tab-group>
@@ -211,7 +216,8 @@
                             <li ngClass="nav-item select-design-language tm-hide">
                                 <mat-form-field appearance="fill">
                                     <mat-select [(value)]="selectedLanguage" (selectionChange)="changeLanguage()">
-                                        <mat-option [value]="option.value" *ngFor="let option of language">{{ option.viewValue }}</mat-option>
+                                        <mat-option [value]="option.value" *ngFor="let option of language">{{
+                                            option.viewValue }}</mat-option>
                                     </mat-select>
                                 </mat-form-field>
                             </li>
@@ -276,9 +282,10 @@
                                                                 ngClass="compare-btn">Compare</a>
                                                         </div> -->
                                                     </form>
-                                                    <div *ngIf="wishlistingDataAll.length == 0" ngClass="property_not-found">
+                                                    <div *ngIf="wishlistingDataAll.length == 0"
+                                                        ngClass="property_not-found">
                                                         <img src="{{propertynotFound}}">
-                                                        <p>It seems you have not shortlisted any property</p>
+                                                        <p>It seems like you have not shortlisted any property</p>
                                                     </div>
                                                 </div>
                                             </mat-tab>
@@ -308,10 +315,11 @@
                                                                     src="{{trash}}"></button>
                                                         </div>
                                                     </div>
-                                                        <div *ngIf="wishlistingDataRent.length == 0" ngClass="property_not-found">
-                                                            <img src="{{propertynotFound}}">
-                                                            <p>It seems you have not shortlisted any property</p>
-                                                        </div>
+                                                    <div *ngIf="wishlistingDataRent.length == 0"
+                                                        ngClass="property_not-found">
+                                                        <img src="{{propertynotFound}}">
+                                                        <p>It seems like you have not shortlisted any property</p>
+                                                    </div>
                                                 </div>
                                             </mat-tab>
                                             <mat-tab label="Buy ({{buyCount}})">
@@ -340,10 +348,11 @@
                                                                     src="{{trash}}"></button>
                                                         </div>
                                                     </div>
-                                                        <div *ngIf="wishlistingDataBuy.length == 0" ngClass="property_not-found">
-                                                            <img src="{{propertynotFound}}">
-                                                            <p>It seems you have not shortlisted any property</p>
-                                                        </div>
+                                                    <div *ngIf="wishlistingDataBuy.length == 0"
+                                                        ngClass="property_not-found">
+                                                        <img src="{{propertynotFound}}">
+                                                        <p>It seems like you have not shortlisted any property</p>
+                                                    </div>
                                                 </div>
                                             </mat-tab>
                                         </mat-tab-group>
@@ -354,7 +363,8 @@
                             <li ngClass="nav-item position-relative notification_header-list" *ngIf="userData != ''">
                                 <button (click)="clickEvent3()" class="position-relative">
                                     <mat-icon>notifications_none</mat-icon>
-                                    <span class="notification-indicator" *ngIf="notificationcount != 0">{{notificationcount}}</span>
+                                    <span class="notification-indicator"
+                                        *ngIf="notificationcount != 0">{{notificationcount}}</span>
                                 </button>
                                 <div class="notifivation-list-dropdown" [ngClass]="status3 ? 'active' : 'notactive'">
                                     <div ngClass="shortlisted-header d-flex justify-content-spacebw">
@@ -363,7 +373,8 @@
                                     </div>
                                     <div ngClass="notifivation-inner-cntnt" *ngIf="notificationData.length > 0">
                                         <ul ngClass="list-unstyled">
-                                            <li class="position-relative" *ngFor="let item of notificationData" [ngClass]="item.value.HasSeen? '' : ''">
+                                            <li class="position-relative" *ngFor="let item of notificationData"
+                                                [ngClass]="item.value.HasSeen? '' : ''">
                                                 <h4>{{item.value.Title}}
                                                     <span
                                                         ngClass="notifiction_time">{{getTime(item.value.NotificationDateTime)}}</span>
@@ -407,73 +418,79 @@
                         <ul ngClass="navbar-nav">
                             <li ngClass="nav-item link-li" (click)="checkActiveTab('buy')">
                                 <a [ngClass]="activeTabBuy ? 'nav-active' : 'nav-link'"
-                                   [routerLink]="['/property/search']"
-                                   [queryParams]="{type:'Buy',PropertyListingTypeId: 2}">
+                                    [routerLink]="['/property/search']"
+                                    [queryParams]="{type:'Buy',PropertyListingTypeId: 2}">
                                     Buy
                                 </a>
                             </li>
                             <li ngClass="nav-item link-li" (click)="checkActiveTab('rent')">
-                                <a
-                                   [ngClass]="activeTabRent ? 'nav-active' : 'nav-link'"
-                                   [routerLink]="['/property/search']"
-                                   [queryParams]="{type:'Rent',PropertyListingTypeId: 1}">
+                                <a [ngClass]="activeTabRent ? 'nav-active' : 'nav-link'"
+                                    [routerLink]="['/property/search']"
+                                    [queryParams]="{type:'Rent',PropertyListingTypeId: 1}">
                                     Rent
                                 </a>
                             </li>
                             <li ngClass="nav-item link-li" (click)="checkActiveTab('blog')">
-                                <a  [ngClass]="activeTabBlog ? 'nav-active' : 'nav-link'"
-                                   routerLink="/blog">
+                                <a [ngClass]="activeTabBlog ? 'nav-active' : 'nav-link'" routerLink="/blog">
                                     Blog
                                 </a>
                             </li>
                             <li ngClass="nav-item link-li" (click)="checkActiveTab('areas')">
-                                <a [ngClass]="activeTabArea ? 'nav-active' : 'nav-link'"
-                                   routerLink="/explore">
+                                <a [ngClass]="activeTabArea ? 'nav-active' : 'nav-link'" routerLink="/explore">
                                     Areas
                                 </a>
                             </li>
                             <li ngClass="nav-item link-li" (click)="checkActiveTab('shorttermrent')">
-                                <a [ngClass]="activeShortterm ? 'nav-active' : 'nav-link'" routerLink="/property/short-term-rent">
+                                <a [ngClass]="activeShortterm ? 'nav-active' : 'nav-link'"
+                                    routerLink="/property/short-term-rent">
                                     Short-Term Rent
                                 </a>
                             </li>
-                            <li ngClass="nav-item hover-block-header" >
+                            <li ngClass="nav-item hover-block-header">
                                 <div ngbDropdown class="d-inline-block">
-                                    <button type="button" class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Projects</button>
+                                    <button type="button" class="btn btn-outline-primary" id="dropdownBasic1"
+                                        ngbDropdownToggle>Projects</button>
                                     <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                                      <button ngbDropdownItem><a routerLink="">All projects</a></button>
-                                      <button ngbDropdownItem><a routerLink="">Luxury projects</a></button>
-                                      <button ngbDropdownItem><a routerLink="">Ultra Luxury projects</a></button>
-                                      <button ngbDropdownItem><a routerLink="">Projects scores</a></button>
+                                        <button ngbDropdownItem><a routerLink="">All projects</a></button>
+                                        <button ngbDropdownItem><a routerLink="">Premium Projects</a></button>
+                                        <button ngbDropdownItem><a routerLink="">Ultra Premium Projects</a></button>
+                                        <button ngbDropdownItem><a routerLink="">Projects Ratings</a></button>
                                     </div>
-                                  </div>
+                                </div>
                             </li>
-                            <li ngClass="nav-item hover-block-header" >
+                            <li ngClass="nav-item hover-block-header">
                                 <div ngbDropdown class="d-inline-block">
-                                    <button type="button" class="btn btn-outline-primary" id="dropdownBasic2" ngbDropdownToggle>Trends</button>
+                                    <button type="button" class="btn btn-outline-primary" id="dropdownBasic2"
+                                        ngbDropdownToggle>Trends</button>
                                     <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
-                                      <button ngbDropdownItem><a routerLink="">Market performance 2022</a></button>
-                                      <button ngbDropdownItem><a routerLink="">Dubai property prices 2022</a></button>
-                                      <button ngbDropdownItem><a routerLink="">Sold properties</a></button>
-                                      <button ngbDropdownItem><a routerLink="">Property supply</a></button>
-                                      <button ngbDropdownItem><a routerLink="">Property price index</a></button>
-                                      <button ngbDropdownItem><a routerLink="">Projects status</a></button>
-                                      <button ngbDropdownItem><a routerLink="">Dubai in numbers</a></button>
+                                        <button ngbDropdownItem><a routerLink="">Market performance 2022</a></button>
+                                        <button ngbDropdownItem><a routerLink="">Dubai property prices 2022</a></button>
+                                        <button ngbDropdownItem><a routerLink="">Sold properties</a></button>
+                                        <button ngbDropdownItem><a routerLink="">Property supply</a></button>
+                                        <button ngbDropdownItem><a routerLink="">Property price index</a></button>
+                                        <button ngbDropdownItem><a routerLink="">Projects status</a></button>
+                                        <button ngbDropdownItem><a routerLink="">Dubai in numbers</a></button>
                                     </div>
-                                  </div>
+                                </div>
                             </li>
-                            <li ngClass="nav-item hover-block-header " >
+                            <li ngClass="nav-item hover-block-header ">
                                 <div ngbDropdown class="d-inline-block">
-                                    <button type="button" class="btn btn-outline-primary" id="dropdownBasic3" ngbDropdownToggle>New Homes</button>
+                                    <button type="button" class="btn btn-outline-primary" id="dropdownBasic3"
+                                        ngbDropdownToggle>New Homes</button>
                                     <div ngbDropdownMenu aria-labelledby="dropdownBasic3">
-                                      <button ngbDropdownItem><a routerLink="">New projects in Dubai</a></button>
-                                      <button ngbDropdownItem><a routerLink="">Off-plan properties location map</a></button>
-                                      <button ngbDropdownItem><a routerLink="">Buy off-plan apartments in Dubai</a></button>
-                                      <button ngbDropdownItem><a routerLink="">Buy off-plan townhouses in Dubai</a></button>
-                                      <button ngbDropdownItem><a routerLink="">Buy off-plan townhouses in Dubai</a></button>
-                                      <button ngbDropdownItem><a routerLink="">Properties with payment plan</a></button>
+                                        <button ngbDropdownItem><a routerLink="">New projects in Dubai</a></button>
+                                        <button ngbDropdownItem><a routerLink="">Off-plan properties location
+                                                map</a></button>
+                                        <button ngbDropdownItem><a routerLink="">Buy off-plan apartments in
+                                                Dubai</a></button>
+                                        <button ngbDropdownItem><a routerLink="">Buy off-plan townhouses in
+                                                Dubai</a></button>
+                                        <button ngbDropdownItem><a routerLink="">Buy off-plan townhouses in
+                                                Dubai</a></button>
+                                        <button ngbDropdownItem><a routerLink="">Properties with payment
+                                                plan</a></button>
                                     </div>
-                                  </div>
+                                </div>
                             </li>
                             <li ngClass="nav-item classified">
                                 <a ngClass="nav-link blue-bordered-btn" [routerLink]="['/classified']">
@@ -491,16 +508,16 @@
                                 </a>
                             </li>
                             <li ngClass="nav-item">
-                                <a ngClass="nav-link blue-bordered-btn blue-fill-btn"
-                                    routerLink="/dashboard-reports">
-                                <!-- <a ngClass="nav-link blue-bordered-btn"
+                                <a ngClass="nav-link blue-bordered-btn blue-fill-btn" routerLink="/dashboard-reports">
+                                    <!-- <a ngClass="nav-link blue-bordered-btn"
                                     href="https://dx1.in/data-Intelligence/dashboard/"> -->
                                     <span ngClass="ai-tag">AI</span> Data Intelligence <span ngClass="icon-di"><img
                                             src="{{chartsvg}}"></span>
                                 </a>
                             </li>
                             <li ngClass="nav-item aed-li d-hide">
-                                <button class="nav-link aed-sq" (click)="clickEvent2()"><img src="{{flagsvg}}"> AED | Sqft</button>
+                                <button class="nav-link aed-sq" (click)="clickEvent2()"><img src="{{flagsvg}}"> AED |
+                                    Sqft</button>
                                 <!-- <div class="country_list-dropdown" [ngClass]="status2 ? 'active' : 'notactive'">
                                     <button (click)="clickEvent2()"><img src="{{close}}"></button>
                                     <div ngClass="countries_dropdown-list" *ngFor="let data of headerCountries">
@@ -526,7 +543,7 @@
                 </div>
                 <div ngClass="logout-banner-cntnt text-center">
                     <h4>Are you sure you want to log out?</h4>
-                    <p>We will miss you come back soon!</p>
+                    <p>We will miss you. Come back soon!</p>
                 </div>
                 <div ngClass="logout-banner-footer">
                     <button type="button" class="btn-cancel" aria-label="Close"
