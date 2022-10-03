@@ -1004,6 +1004,15 @@ blogs: any;
   logOutPopup(content:any) {
     this.modalService.open(content, { centered: true });
   }
+  rechargePopup(rechargemodal:any) {
+    this.modalService.open(rechargemodal, { centered: true });
+  }
+  PaymentPopup(PaymentPopupModal:any) {
+    this.modalService.open(PaymentPopupModal, { centered: true });
+  }
+  TransferPopup(TransferModal:any) {
+    this.modalService.open(TransferModal, { centered: true });
+  }
 
   buyCount: any;
   rentCount: any;
