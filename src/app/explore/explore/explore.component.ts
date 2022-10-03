@@ -94,7 +94,7 @@ export class ExploreComponent implements OnInit {
           this.country.push({ viewValue: temp.data[i].name, value: temp.data[i].id, desc: temp.data[i].description });
         }
         this.defaultCountry = this.country[0].value;
-        this.selectedCountry = this.country[0].value;
+        this.selectedCountry = this.country[0];
         this.service.FindCities({ "CountryId": this.country[0].value, "Locations": [] }).subscribe((result: any) => {
           this.cityData = result.data;
           for (let i = 0; i < this.cityData.length; i++) {
