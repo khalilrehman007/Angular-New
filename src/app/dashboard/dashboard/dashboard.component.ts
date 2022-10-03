@@ -76,6 +76,7 @@ export class DashboardComponent implements OnInit {
   minDate = new Date();
   plus = '../../../../assets/images/plus.svg';
   showSuccess:boolean = false;
+  success:any = "";
   successResponse(data:any) {
     this.showSuccess = false;
   }
@@ -292,10 +293,7 @@ export class DashboardComponent implements OnInit {
       this.lastValuationDate = this.dashboard.lastValuationDate
       this.totalRestValuation = this.dashboard.totalRestValuation
       this.totalCommValuation = this.dashboard.totalCommValuation
-
     });
-
-
     this.LoadLeads("", "");
     this.userFormData = localStorage.getItem("user");
     this.userFormData = JSON.parse(this.userFormData);
@@ -321,6 +319,7 @@ export class DashboardComponent implements OnInit {
     })
     this.service.PointTransaction(this.loggedInUser.id).subscribe((result: any) => {
       this.pointsHistory = result.data;
+      console.log(this.pointsHistory);
     })
   }
   getPoints() {
@@ -1339,6 +1338,7 @@ export class DashboardComponent implements OnInit {
         this.showLoader = false;
         this.getPoints();
         $(".payment-cancel-btn").click();
+        this.success = "Payment Successful"
         this.showSuccess = true;
       }
     })
