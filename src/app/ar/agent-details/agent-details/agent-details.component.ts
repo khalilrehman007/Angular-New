@@ -88,7 +88,7 @@ export class AgentDetailsComponent implements OnInit {
         let documentsCheck: any = true;
         let rentTypeName = ''
         if (element.rentType != null) {
-          rentTypeName = element.rentType.name
+          rentTypeName = element.rentType.nameAr
         }
         let image: any = 'assets/images/placeholder.png'
         if (element.documents.length >= 1) {
@@ -110,12 +110,12 @@ export class AgentDetailsComponent implements OnInit {
             id: element.id, favorite: element.favorite, userImage: userImage, fullName: fullName, userId: userId,
             StartRentPrice: element.startRentPrice, EndRentPrice: element.endRentPrice, AvgRentPrice: element.avgRentPrice, RecentRentTxns: element.recentRentTxns,
             image: image, propertyFeatures: element.propertyFeatures, propertyType: element.propertyType,
-            propertyTitle: element.propertyTitle, propertyAddress: element.propertyAddress, documentsCheck: documentsCheck,
+            propertyTitle: element.propertyTitleAr, propertyAddress: element.propertyAddressAr, documentsCheck: documentsCheck,
             buildingName: element.buildingName, bedrooms: element.bedrooms, bathrooms: element.bathrooms, carpetArea: element.carpetArea,
             unitNo: element.unitNo, totalFloorgit: element.totalFloor, floorNo: element.floorNo, propertyDescription: element.propertyDescription,
             requestedDate: element.requestedDate, furnishingType: element.furnishingType, propertyPrice: element.propertyPrice,
             requestedDateFormat: element.requestedDateFormat, brokerageChargePrice: element.brokerageChargePrice, securityDepositPrice: element.securityDepositPrice,
-            expiredDateFormat: element.expiredDateFormat, rentType: rentTypeName, currency: element.country.currency, propertyCode: element.propertyCode
+            expiredDateFormat: element.expiredDateFormat, rentType: rentTypeName, currency: element.country.currencyAr, propertyCode: element.propertyCode
           }
         );
       })
