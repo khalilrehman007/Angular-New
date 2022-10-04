@@ -1977,7 +1977,7 @@
                                             *ngFor="let item of pointsHistory; let i = index">
                                             <div ngClass="my_valuation-inner-div valuation_property-name">
                                                 <div ngClass="valuation_property-name-first d-flex align-items-center">
-                                                    <span ngClass="val_pro-number">{{i}}</span>
+                                                    <span ngClass="val_pro-number">{{i+1}}</span>
                                                 </div>
                                             </div>
                                             <div ngClass="my_valuation-inner-div category">
@@ -1988,17 +1988,18 @@
                                                 <h6>Transaction Date</h6>
                                                 <p>{{item.purchaseDate.split("T")[0]}}</p>
                                             </div>
-                                            <div ngClass="my_valuation-inner-div place">
+                                            <!-- <div ngClass="my_valuation-inner-div place">
                                                 <h6>Points Debit/Credit</h6>
                                                 <p class="debit">- 100</p>
-                                            </div>
-                                            <div ngClass="my_valuation-inner-div place">
+                                            </div> -->
+                                            <!-- <div ngClass="my_valuation-inner-div place">
                                                 <h6>Amount Debit</h6>
                                                 <p class="debit">- 100</p>
-                                            </div>
+                                            </div> -->
                                             <div ngClass="my_valuation-inner-div place">
-                                                <h6>Amount Credit</h6>
-                                                <p class="credit">+ 100</p>
+                                                <!-- <h6>Amount Credit</h6> -->
+                                                <h6>Points Credit</h6>
+                                                <p class="credit">+ {{item.totalPoints}}</p>
                                             </div>
                                         </div>
                                     </div>

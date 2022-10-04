@@ -319,7 +319,6 @@ export class DashboardComponent implements OnInit {
     })
     this.service.PointTransaction(this.loggedInUser.id).subscribe((result: any) => {
       this.pointsHistory = result.data;
-      console.log(this.pointsHistory);
     })
   }
   getPoints() {
