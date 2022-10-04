@@ -32,7 +32,7 @@
                                     *ngIf="companyDetails.company && companyDetails.company.reraNo">RERA#
                                     {{companyDetails.company.reraNo}}</p>
                                 <p class="company-details__wrapper-details-text"
-                                    *ngIf="companyDetails.company && companyDetails.company.premitNo">يسمح#
+                                    *ngIf="companyDetails.company && companyDetails.company.premitNo">شهادة#
                                     {{companyDetails.company.premitNo}}</p>
                                 <ul class="company-details__wrapper-details-list">
                                     <li class="company-details__wrapper-details-list-item">
@@ -217,7 +217,7 @@
                                                             </li>
                                                             <li class="company-details__property-detail-list-item" *ngIf="item.bedrooms != 0 && item.bathrooms != null">
                                                                 <img src="{{bathsvg}}" alt="">
-                                                                {{item.bathrooms}} دوره المياه
+                                                                {{item.bathrooms}} حمام
                                                             </li>
                                                             <li class="company-details__property-detail-list-item">
                                                                 <img src="{{squaremetersvg}}" alt="">

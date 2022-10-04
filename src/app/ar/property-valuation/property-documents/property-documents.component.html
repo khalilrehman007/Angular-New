@@ -12,7 +12,7 @@
                 <mat-list>
                     <mat-list-item ngClass="active"> <a routerLink=""><span ngClass="">1</span>تفاصيل</a>
                     </mat-list-item>
-                    <mat-list-item ngClass="active"><a routerLink=""><span ngClass="">2</span>يكتب</a></mat-list-item>
+                    <mat-list-item ngClass="active"><a routerLink=""><span ngClass="">2</span>نوع</a></mat-list-item>
                     <mat-list-item [ngClass]="'active'"> <a routerLink=""><span ngClass="">3</span>وثائق</a>
                     </mat-list-item>
                     <mat-list-item [ngClass]="status5 ? 'active' : 'disabled'"> <a routerLink=""><span
@@ -305,7 +305,7 @@
                                     <div ngClass="row">
                                         <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                                             <div ngClass="pro-details-left-column">
-                                                <h5 ngClass="h5-borderd-heading">مرفق الملكية</h5>
+                                                <h5 ngClass="h5-borderd-heading">معلومات العقار</h5>
                                                 <div ngClass="row">
                                                     <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                                                         <div ngClass="pro-details-info-blocks">
@@ -328,7 +328,7 @@
                                                     </div>
                                                     <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                                                         <div ngClass="pro-details-info-blocks">
-                                                            <h6>الممتلكات المؤمن عليها</h6>
+                                                            <h6>العقار المؤمن عليها</h6>
                                                             <p>{{formData.PropertyInsured == 1 ? "Yes" : "No"}}</p>
                                                         </div>
                                                     </div>
@@ -349,14 +349,14 @@
                                                     <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12"
                                                         *ngIf="userData.propertyCategory">
                                                         <div ngClass="pro-details-info-blocks">
-                                                            <h6>الممتلكات المؤمن عليها</h6>
+                                                            <h6>العقار المؤمن عليها</h6>
                                                             <p>{{userData.propertyCategory}}</p>
                                                         </div>
                                                     </div>
                                                     <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12"
                                                         *ngIf="userData.propertyType">
                                                         <div ngClass="pro-details-info-blocks">
-                                                            <h6>نوع الملكية</h6>
+                                                            <h6>نوع العقار</h6>
                                                             <p>{{userData.propertyType}}</p>
                                                         </div>
                                                     </div>
@@ -419,14 +419,14 @@
                                                     <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12"
                                                         *ngIf="userData.Furnishing">
                                                         <div ngClass="pro-details-info-blocks">
-                                                            <h6>نوع التأثيث</h6>
+                                                            <h6>نوع الاثاث</h6>
                                                             <p>{{userData.Furnishing}}</p>
                                                         </div>
                                                     </div>
                                                     <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12"
                                                         *ngIf="userData.Fitting">
                                                         <div ngClass="pro-details-info-blocks">
-                                                            <h6>نوع التأثيث</h6>
+                                                            <h6>نوع الاثاث</h6>
                                                             <p>{{userData.Fitting}}</p>
                                                         </div>
                                                     </div>
@@ -468,7 +468,7 @@
                                                     <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12"
                                                         *ngIf="userData.PlotNo">
                                                         <div ngClass="pro-details-info-blocks">
-                                                            <h6>رقم الملكية</h6>
+                                                            <h6>رقم العقار</h6>
                                                             <p>{{userData.PlotNo}}</p>
                                                         </div>
                                                     </div>

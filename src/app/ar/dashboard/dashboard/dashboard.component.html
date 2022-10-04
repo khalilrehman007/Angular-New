@@ -72,7 +72,7 @@
                         <button class="nav-link" id="pills-leads-tab" data-bs-toggle="pill"
                             data-bs-target="#pills-leads" type="button" role="tab" aria-controls="pills-leads"
                             aria-selected="false"
-                            *ngIf="professionalType == 1 || professionalType == 2 || professionalType == 3">يؤدي بلدي</button>
+                            *ngIf="professionalType == 1 || professionalType == 2 || professionalType == 3">عملائي المحتملين</button>
                     </li>
                     <li class="nav-item" role="presentation">
                         <button class="nav-link my-listing-btn" id="pills-listing-tab" data-bs-toggle="pill"
@@ -125,16 +125,16 @@
                     <div class="free-proplisting"
                         *ngIf="professionalType == 1 || professionalType == 2 || professionalType == 3">
                         <div class="first-title">
-                            <h3 class="title">قائمة مجانية للعقارات</h3>
+                            <h3 class="title">إدراج مجاني للعقارات</h3>
                             <p>بيع أو تأجير منزلك</p>
                         </div>
                         <ul>
-                            <li>قائمة الممتلكات الخاصة بك مباشرة على Ovaluate</li>
-                            <li>قائمة الممتلكات الخاصة بك مباشرة على Ovaluate</li>
-                            <li>قائمة الممتلكات الخاصة بك مباشرة على Ovaluate</li>
-                            <li>قائمة الممتلكات الخاصة بك مباشرة على Ovaluate</li>
+                            <li>قائمة العقارات الخاصة بك مباشرة على أوفالويت</li>
+                            <li>قائمة العقارات الخاصة بك مباشرة على أوفالويت</li>
+                            <li>قائمة العقارات الخاصة بك مباشرة على أوفالويت</li>
+                            <li>قائمة العقارات الخاصة بك مباشرة على أوفالويت</li>
                         </ul>
-                        <a routerLink="/ar/add-property/listingproperty" class="btn btn-primary"> قائمة الممتلكات</a>
+                        <a routerLink="/ar/add-property/listingproperty" class="btn btn-primary"> إدراج العقارات</a>
                     </div>
 
                     <div class="statictics-wrap">
@@ -143,7 +143,7 @@
                                 *ngIf="professionalType == 1 || professionalType == 2 || professionalType == 3">
                                 <div class="card">
                                     <div class="content-area">
-                                        <h4 class="title">ملخص القوائم</h4>
+                                        <h4 class="title">ملخص الإدراجات</h4>
                                         <p>{{lastPropertyLastingDate}}</p>
                                         <ul class="counts-wrap">
                                             <li>
@@ -193,8 +193,8 @@
                             ngClass="position-relative wrapper-section properties-slider residentials-property-rent-1">
                             <div ngClass="section-title">
                                 <div ngClass="section-title-left">
-                                    <h4>ملخص العروض</h4>
-                                    <p>مهتمًا بالمخزون الخاص بك وحاول الاتصال بك</p>
+                                    <h4>ملخص العملاء المحتملين</h4>
+                                    <p>مهتمًا بالرغبة الخاص بك وحاول الاتصال بك</p>
                                 </div>
                                 <div ngClass="section-title-right">
                                     <ul ngClass="nav nav-tabs" role="tablist">
@@ -262,7 +262,7 @@
                                                     {{data.propertyListing.city.nameAr}}, الامارات</p>
                                             </div>
                                             <div class="col ">
-                                                <span>معرف الخاصية</span>
+                                                <span>الرمز المعرف للعقار</span>
                                                 <p *ngIf="data.propertyListing && data.propertyListing.propertyId">
                                                     {{data.propertyListing.propertyId}}</p>
                                             </div>
@@ -321,7 +321,7 @@
                                                     {{data.propertyListing.city.nameAr}}, الامارات</p>
                                             </div>
                                             <div class="col ">
-                                                <span>معرف الخاصية</span>
+                                                <span>الرمز المعرف للعقار</span>
                                                 <p *ngIf="data.propertyListing && data.propertyListing.propertyId">
                                                     {{data.propertyListing.propertyId}}</p>
                                             </div>
@@ -478,7 +478,7 @@
                                                                                 class="agent-details__property-detail-list-item">
                                                                                 <img src="assets/images/icons/Bed.svg"
                                                                                     alt="">
-                                                                                {{viewList.bathrooms}} دوره المياه
+                                                                                {{viewList.bathrooms}} حمام
                                                                             </li>
                                                                             <li
                                                                                 class="agent-details__property-detail-list-item">
@@ -538,7 +538,7 @@
                                                                                 مؤسسة التنظيم العقاري# {{agentView.reraNo}}</p>
                                                                             <p
                                                                                 class="agent-landing-featured__property-text">
-                                                                                يسمح# {{agentView.premitNo}}
+                                                                                شهادة# {{agentView.premitNo}}
                                                                             </p>
                                                                             <ul
                                                                                 class="agent-landing-featured__property-details-list">
@@ -635,8 +635,8 @@
                                                                     <div class="col-5 text-end">
                                                                         <h4 class="sub-bold-text">{{viewList.propertyTitle}}</h4>
                                                                         <p class="agent-details__property-list-item-date">مدرج في: <span class="value_span">{{viewList.requestedDateFormat}}</span></p>
-                                                                        <p class="agent-details__property-list-item-date">القائمة المختصرة بواسطة: <span class="value_span">{{viewList.numberOfUsershortListedProperty}} الأشخاص</span></p>
-                                                                        <p class="agent-details__property-list-item-date">عرض بواسطة: <span class="value_span">{{viewList.numberOfUserSeeingProperty}} الأشخاص</span></p>
+                                                                        <p class="agent-details__property-list-item-date">تم إدراجه على القائمة المختصرة بواسطة: <span class="value_span">{{viewList.numberOfUsershortListedProperty}} الأشخاص</span></p>
+                                                                        <p class="agent-details__property-list-item-date">تمت مشاهدته من قبل: <span class="value_span">{{viewList.numberOfUserSeeingProperty}} الأشخاص</span></p>
                                                                     </div>
                                                                 </div>
                                                                 <h6>{{viewList.buildingName}}</h6>
@@ -660,7 +660,7 @@
                                                                                 class="agent-details__property-detail-list-item">
                                                                                 <img src="assets/images/icons/Bed.svg"
                                                                                     alt="">
-                                                                                {{viewList.bathrooms}}دوره المياه
+                                                                                {{viewList.bathrooms}}حمام
                                                                             </li>
                                                                             <li
                                                                                 class="agent-details__property-detail-list-item">
@@ -724,7 +724,7 @@
                                                                                 مؤسسة التنظيم العقاري# {{agentView.reraNo}}</p>
                                                                             <p
                                                                                 class="agent-landing-featured__property-text">
-                                                                                يسمح# {{agentView.premitNo}}
+                                                                                شهادة# {{agentView.premitNo}}
                                                                             </p>
                                                                             <ul
                                                                                 class="agent-landing-featured__property-details-list">
@@ -846,7 +846,7 @@
                                                                                     class="agent-details__property-detail-list-item">
                                                                                     <img src="assets/images/icons/Bed.svg"
                                                                                         alt="">
-                                                                                    {{wishData.bathrooms}} دوره المياه
+                                                                                    {{wishData.bathrooms}} حمام
                                                                                 </li>
                                                                                 <li
                                                                                     class="agent-details__property-detail-list-item">
@@ -891,7 +891,7 @@
                                     </div>
 
                                 </mat-tab>
-                                <mat-tab label="استفسر">
+                                <mat-tab label="تم الاستفسار">
 
                                     <div class="type-activity-status">
                                         <div ngClass="block-wrapper mb-4">
@@ -1011,7 +1011,7 @@
                 </div>
                 <div class="tab-pane fade" id="pills-leads" role="tabpanel" aria-labelledby="pills-leads-tab">
                     <div class="recent-activity">
-                        <h4 class="sub-title">يؤدي بلدي</h4>
+                        <h4 class="sub-title">عملائي المحتملين</h4>
                         <div class="sub-tab-nav">
                             <mat-tab-group (selectedTabChange)="getTab($event)">
                                 <mat-tab label="كل">
@@ -1060,7 +1060,7 @@
                                                                 {{item.propertyListing.country.nameAr}}</p>
                                                         </div>
                                                         <div class="col ">
-                                                            <span>معرف الخاصية</span>
+                                                            <span>الرمز المعرف للعقار</span>
                                                             <p>{{item.propertyListing.propertyCode}}</p>
                                                         </div>
                                                         <div class="col ">
@@ -1152,7 +1152,7 @@
                                                                 {{item.propertyListing.country.nameAr}}</p>
                                                         </div>
                                                         <div class="col ">
-                                                            <span>معرف الخاصية</span>
+                                                            <span>الرمز المعرف للعقار</span>
                                                             <p>{{item.propertyListing.propertyCode}}</p>
                                                         </div>
                                                         <div class="col ">
@@ -1241,7 +1241,7 @@
                                                                 {{item.propertyListing.country.nameAr}}</p>
                                                         </div>
                                                         <div class="col ">
-                                                            <span>معرف الخاصية</span>
+                                                            <span>الرمز المعرف للعقار</span>
                                                             <p>{{item.propertyListing.propertyCode}}</p>
                                                         </div>
                                                         <div class="col ">
@@ -1507,7 +1507,7 @@
                                                                                 class="agent-details__property-detail-list-item">
                                                                                 <img src="assets/images/icons/Bed.svg"
                                                                                     alt="">
-                                                                                {{listing.bathrooms}} دوره المياه
+                                                                                {{listing.bathrooms}} حمام
                                                                             </li>
                                                                             <li
                                                                                 class="agent-details__property-detail-list-item">
@@ -1744,10 +1744,10 @@
                                             <div ngClass="my_valuation-inner-div payemnt"
                                                 *ngIf="item.valuationStatus.statusDescription != 'Payment Pending'">
                                                 <p ngClass="payment success">
-                                                    <mat-icon>check_circle</mat-icon> مُقَدَّم
+                                                    <mat-icon>check_circle</mat-icon> مُقَدَّم\ تم تقديمه
                                                 </p>
                                                 <a class="download-pdf cursor-pointer"
-                                                    (click)="downloadReport(item.reportNumberCode)">تحميل PDF</a>
+                                                    (click)="downloadReport(item.reportNumberCode)">تحميل بصيغة PDF</a>
                                             </div>
                                         </div>
                                     </div>
@@ -1795,9 +1795,9 @@
                                             <div ngClass="my_valuation-inner-div payemnt"
                                                 *ngIf="item.valuationStatus.statusDescription != 'Payment Pending'">
                                                 <p ngClass="payment success">
-                                                    <mat-icon>check_circle</mat-icon> مُقَدَّم
+                                                    <mat-icon>check_circle</mat-icon> مُقَدَّم\ تم تقديمه
                                                 </p>
-                                                <a routerLink="/ar/PropertyDownloadReport" ngClass="download-pdf">تحميل PDF</a>
+                                                <a routerLink="/ar/PropertyDownloadReport" ngClass="download-pdf">تحميل بصيغة PDF</a>
                                             </div>
                                         </div>
                                     </div>
@@ -1845,9 +1845,9 @@
                                             <div ngClass="my_valuation-inner-div payemnt"
                                                 *ngIf="item.valuationStatus.statusDescription != 'Payment Pending'">
                                                 <p ngClass="payment success">
-                                                    <mat-icon>check_circle</mat-icon> مُقَدَّم
+                                                    <mat-icon>check_circle</mat-icon> مُقَدَّم\ تم تقديمه
                                                 </p>
-                                                <a routerLink="/ar/PropertyDownloadReport" ngClass="download-pdf">تحميل PDF</a>
+                                                <a routerLink="/ar/PropertyDownloadReport" ngClass="download-pdf">تحميل بصيغة PDF</a>
                                             </div>
                                         </div>
                                     </div>
@@ -1926,7 +1926,7 @@
                                         </div>
                                     </div>
                                 </mat-tab>
-                                <mat-tab label="معاملاتي">
+                                <mat-tab label="مبيعاتي">
                                     <div ngClass="my-valuation-list-wrapper">
                                         <div ngClass="my-valuation-list-design d-flex">
                                             <div ngClass="my_valuation-inner-div valuation_property-name">
@@ -1935,11 +1935,11 @@
                                                 </div>
                                             </div>
                                             <div ngClass="my_valuation-inner-div category">
-                                                <h6>رقم التحويلة</h6>
+                                                <h6>رقم عملية البيع</h6>
                                                 <p>123</p>
                                             </div>
                                             <div ngClass="my_valuation-inner-div place">
-                                                <h6>تاريخ الصفقة</h6>
+                                                <h6>تاريخ عملية البيع</h6>
                                                 <p>16 Sep 2022</p>
                                             </div>
                                             <div ngClass="my_valuation-inner-div place">
@@ -2130,7 +2130,7 @@
                                         </div>
                                     </div>
                                 </mat-tab>
-                                <mat-tab label="تفاصيل الوكيل / الوسيط"
+                                <mat-tab label="تفاصيل الوسيط"
                                     *ngIf="professionalType == 1 || professionalType == 2 || professionalType == 3">
                                     <div class="row">
                                         <div class="col-md-9">
@@ -2407,7 +2407,7 @@
 
                                                                         <mat-form-field appearance="fill"
                                                                             class="full-width select-form input-design-2">
-                                                                            <mat-label>حدد الدولة</mat-label>
+                                                                            <mat-label>اختر الدولة</mat-label>
                                                                             <mat-select
                                                                                 (selectionChange)="onCountrySelect($event);">
                                                                                 <mat-option *ngFor="let list of country"
@@ -2661,7 +2661,7 @@
                                                                             </div>
                                                                             <mat-form-field appearance="fill"
                                                                                 class="select-form input-design-2">
-                                                                                <mat-label>اختار اللغة</mat-label>
+                                                                                <mat-label>اختيار اللغة</mat-label>
                                                                                 <mat-select>
                                                                                     <mat-option [value]="city">
                                                                                         تقرير مالي
@@ -2679,8 +2679,8 @@
                                                                     <div ngClass="block-wrapper mb-4">
                                                                         <div class="d-flex justify-content-between">
                                                                             <div>
-                                                                            <h3 class="sub-title">اضغط على ضبط الاشعارات</h3>
-                                                                            <label class="h6-design">احصل على إشعارات من العقارات للبقاء على اطلاع دائم.</label>
+                                                                            <h3 class="sub-title">ضبط الإشعارات</h3>
+                                                                            <label class="h6-design">احصل على إشعارات من أوفالويت للبقاء على اطلاع دائم</label>
                                                                             </div>
                                                                             <div class="form-check form-switch">
                                                                                 <mat-slide-toggle></mat-slide-toggle>

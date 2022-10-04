@@ -521,7 +521,7 @@ export class PropertyDetailComponent implements OnInit {
         value: this.propertyData.propertyCategory.categoryNameAr,
       },
       {
-        label: 'نوع الملكية',
+        label: 'نوع العقار',
         value: this.propertyData.propertyType.typeDescriptionAr,
       },
       {
@@ -545,15 +545,15 @@ export class PropertyDetailComponent implements OnInit {
         value: this.propertyDetailData.bedrooms,
       },
       {
-        label: 'دوره المياه',
+        label: 'حمام',
         value: this.propertyDetailData.bathrooms,
       },
       {
-        label: 'نوع التأثيث',
+        label: 'نوع الاثاث',
         value: this.propertyDetailData.furnishingType,
       },
       {
-        label: 'نوع المناسب',
+        label: 'نوع التجهيزات',
         value: this.propertyDetailData.fittingType,
       },
       {
@@ -613,7 +613,7 @@ export class PropertyDetailComponent implements OnInit {
         value: this.propertyDetailData.noticePeriod,
       },
       {
-        label: 'فترة القفل',
+        label: 'الإغلاق',
         value: this.propertyDetailData.lockingPeriod,
       },
     ]

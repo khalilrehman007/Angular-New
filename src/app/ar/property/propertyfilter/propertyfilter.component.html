@@ -3,7 +3,7 @@
         <div ngClass="block-item first-block">
             <div ngClass="block-wrapper mb-4 position-relative d-flex searc-input-combination">
                 <mat-form-field appearance="fill" class="select-design">
-                    <mat-label>يكتب</mat-label>
+                    <mat-label>نوع</mat-label>
                     <mat-select [(value)]="selectedRentType" (selectionChange)="changeType($event)">
                         <mat-option *ngFor="let option of rentTypes" [value]="option.id">{{ option.name }}</mat-option>
                     </mat-select>
@@ -44,9 +44,9 @@
         <div ngClass="block-item scnd-block">
             <div ngClass="block-wrapper">
                 <div ngClass="cstm_dropdown-list dropdown-design-2 position-relative drodown_with-img">
-                    <button ngClass="drop-down_btn" (click)="clickEvent1()">نوع الملكية</button>
+                    <button ngClass="drop-down_btn" (click)="clickEvent1()">نوع العقار</button>
                     <div class="cstm_dropdown-menu" [ngClass]="status1 ? 'active' : 'notactive'">
-                        <h4 ngClass="drop_label">نوع الملكية</h4>
+                        <h4 ngClass="drop_label">نوع العقار</h4>
                         <div ngClass="property-types-heading">
                             <ul ngClass="nav nav-tabs" role="tablist">
                                 <li ngClass="nav-item" (click)="propertyType(residentialId)">
@@ -245,7 +245,7 @@
                             </div>
                             <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                 <div ngClass="block-wrapper mb-4">
-                                    <label class="h6-design">نوع التأثيث</label>
+                                    <label class="h6-design">نوع الاثاث</label>
                                     <div class="checkbox-flex-box four-column button-same-select">
                                         <div (click)="furnishedTypeChange(data.id)"
                                             class="checkbox-design position-relative"

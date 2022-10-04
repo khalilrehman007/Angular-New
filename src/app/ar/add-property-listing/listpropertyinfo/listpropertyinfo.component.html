@@ -10,7 +10,7 @@
                 <mat-list>
                     <mat-list-item ngClass="active"><a routerLink="/listingproperty"><span ngClass="">1</span>معلومات العقار</a>
                     </mat-list-item>
-                    <mat-list-item ngClass="active"><a routerLink=""><span ngClass="">2</span>معلومات القائمة</a>
+                    <mat-list-item ngClass="active"><a routerLink=""><span ngClass="">2</span>معلومات الإدراج</a>
                     </mat-list-item>
                     <mat-list-item ngClass="disabled"><a routerLink=""><span ngClass="">3</span>وسائل الإعلام</a>
                     </mat-list-item>
@@ -224,7 +224,7 @@
                                             </div>
                                             <div class="col-xl-12 col-lg-12 col-md-6 col-sm-12 pb-4"
                                                 *ngIf="selectedPropertyType.hasFurnishing">
-                                                <h6 class="h6-design">نوع التأثيث</h6>
+                                                <h6 class="h6-design">نوع الاثاث</h6>
                                                 <div
                                                     class="checkbox-flex-box four-column button-same-select furnishing-input">
                                                     <div class="checkbox-design position-relative"
@@ -240,7 +240,7 @@
                                             </div>
                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4"
                                                 *ngIf="selectedPropertyType.hasFitting">
-                                                <h6 class="h6-design">نوع المناسب</h6>
+                                                <h6 class="h6-design">نوع التجهيزات</h6>
                                                 <div
                                                     class="checkbox-flex-box four-column button-same-select fitting-input">
                                                     <div class="checkbox-design position-relative"
@@ -462,7 +462,7 @@
                                             </div>
                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4"
                                                 *ngIf="listingTypeId == 2">
-                                                <h6 class="h6-design">نوع المعاملة</h6>
+                                                <h6 class="h6-design">نوع عملية البيع</h6>
                                                 <div
                                                     class="checkbox-flex-box two-column button-same-select max-240 transaction-type-input">
                                                     <div class="checkbox-design position-relative"
@@ -480,7 +480,7 @@
                                             </div>
                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4"
                                                 *ngIf="listingTypeId == 2">
-                                                <h6 class="h6-design">حالة إكمال</h6>
+                                                <h6 class="h6-design">حالة االإنتهاء</h6>
                                                 <div
                                                     class="checkbox-flex-box two-column button-same-select max-240 completion-status-input">
                                                     <div class="checkbox-design position-relative"
@@ -516,7 +516,7 @@
                                             </div>
                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4"
                                                 *ngIf="listingTypeId == 2">
-                                                <h6 class="h6-design">تم التسليم</h6>
+                                                <h6 class="h6-design">التسليم في</h6>
                                                 <div class="input-date-picker input-design handover-on-input">
                                                     <mat-form-field appearance="fill">
                                                         <input matInput [matDatepicker]="picker" [min]="minDate"
@@ -530,7 +530,7 @@
                                             </div>
                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4"
                                                 *ngIf="listingTypeId == 2 && categoryID == 2">
-                                                <h6 class="h6-design">نوع الملكية</h6>
+                                                <h6 class="h6-design">نوع العقار</h6>
                                                 <div
                                                     class="checkbox-flex-box two-column button-same-select max-240 ownership-input">
                                                     <div class="checkbox-design position-relative"
@@ -610,7 +610,7 @@
                                                             *ngIf="data.SecurityDeposit == 'true'" checked>
                                                         <input type="radio" id="Yes" value="Yes" name="Security-deposit"
                                                             *ngIf="data.SecurityDeposit != 'true'">
-                                                        <button class="checkbox-btn">حدد نوع الملكية</button>
+                                                        <button class="checkbox-btn">حدد نوع العقار</button>
                                                         <div class="deposit-yes hide">
                                                             <div class="input-flaoted-left-text">
                                                                 <div class="position-relative security-price-input">
@@ -656,7 +656,7 @@
                                                             *ngIf="data.BrokerageCharge == 'true'" checked>
                                                         <input type="radio" id="Yes" value="Yes" name="charge-brokerage"
                                                             *ngIf="data.BrokerageCharge != 'true'">
-                                                        <button class="checkbox-btn">حدد نوع الملكية</button>
+                                                        <button class="checkbox-btn">حدد نوع العقار</button>
                                                         <div class="deposit-yes hide">
                                                             <div class="input-flaoted-left-text">
                                                                 <div class="position-relative brokage-price-input">
@@ -720,7 +720,7 @@
                                             </div>
                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4"
                                                 *ngIf="listingTypeId == 1">
-                                                <h6 class="h6-design">فترة القفل</h6>
+                                                <h6 class="h6-design">الإغلاق</h6>
                                                 <div class="input-flaoted-right-text">
                                                     <div class="position-relative locking-input">
                                                         <mat-form-field class="full-width input-design"
@@ -735,7 +735,7 @@
                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4">
                                                 <div ngClass="block-wrapper">
                                                     <div ngClass="select-design">
-                                                        <label>تقع قرب</label>
+                                                        <label>بالقرب من</label>
                                                         <div class="located-near-input">
                                                             <mat-form-field appearance="fill">
                                                                 <mat-label>حدد المواقع القريبة</mat-label>
@@ -750,7 +750,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-sm-12 pb-4" *ngIf="listingTypeId == 1">
-                                                <h6 class="h6-design">عنوان الملكية</h6>
+                                                <h6 class="h6-design">عنوان العقار</h6>
                                                 <div class="textarea-design title-input">
                                                     <mat-form-field class="full-width input-design" appearance="fill">
                                                         <mat-label>اسم العقار</mat-label>

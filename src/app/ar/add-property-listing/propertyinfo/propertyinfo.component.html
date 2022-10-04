@@ -10,7 +10,7 @@
                 <mat-list>
                     <mat-list-item ngClass="active"> <a routerLink="/listingproperty"><span ngClass="">1</span>معلومات العقار</a>
                     </mat-list-item>
-                    <mat-list-item ngClass="disabled"><a routerLink=""><span ngClass="">2</span>معلومات القائمة</a>
+                    <mat-list-item ngClass="disabled"><a routerLink=""><span ngClass="">2</span>معلومات الإدراج</a>
                     </mat-list-item>
                     <mat-list-item ngClass="disabled"> <a routerLink=""><span ngClass="">3</span> وسائل الإعلام</a>
                     </mat-list-item>
@@ -32,7 +32,7 @@
                                         <div ngClass="select-design select2-design">
                                             <label>الدولة <span ngClass="required-span">*</span></label>
                                             <select class="select2 country-select" *ngIf="oldData == '' || country.length > 0">
-                                                <option value="0">حدد الدولة</option>
+                                                <option value="0">اختر الدولة</option>
                                                 <option class="country-item-{{list.value}}" *ngFor="let list of country" [value]="list.value"> {{ list.viewValue }}</option>
                                             </select>
                                         </div>

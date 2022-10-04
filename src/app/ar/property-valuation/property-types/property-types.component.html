@@ -12,7 +12,7 @@
                 <mat-list>
                     <mat-list-item ngClass="active"> <a routerLink=""><span ngClass="">1</span>تفاصيل</a>
                     </mat-list-item>
-                    <mat-list-item ngClass="active"><a routerLink=""><span ngClass="">2</span>يكتب</a></mat-list-item>
+                    <mat-list-item ngClass="active"><a routerLink=""><span ngClass="">2</span>نوع</a></mat-list-item>
                     <mat-list-item ngClass="disabled"> <a routerLink=""><span ngClass="">3</span>وثائق</a>
                     </mat-list-item>
                     <mat-list-item ngClass="disabled"> <a routerLink=""><span ngClass="">4</span>إعادة النظر</a>
@@ -30,7 +30,7 @@
                     <form [formGroup]="propertyTypeForm">
                         <div ngClass="form-border-wrapper">
                             <div ngClass="list-property-header">
-                                <h5 ngClass="h5-heading">نوع الملكية</h5>
+                                <h5 ngClass="h5-heading">نوع العقار</h5>
                                 <p>يرجى تقديم نوع الملاءمة الخاص بك للتقييم</p>
                             </div>
                             <div ngClass="deed-numbers">
@@ -100,7 +100,7 @@
                                     </div>
                                     <div ngClass="col-xl-12 col-lg-12 col-sm-12" *ngIf="!propertyData.hasUnits">
                                         <div ngClass="block-wrapper mb-4">
-                                            <label class="h6-design">تفاصيل اوضح<span
+                                            <label class="h6-design">تفاصيل العقار<span
                                                     ngClass="required-span">*</span></label>
                                             <div class="checkbox-flex-box four-column property-status-input">
                                                 <div class="checkbox-design position-relative"
@@ -269,7 +269,7 @@
                                     </div>
                                     <div ngClass="col-xl-6 col-lg-6 col-sm-12" *ngIf="propertyData.hasBath">
                                         <div ngClass="block-wrapper mb-4 select-design">
-                                            <label class="h6-design">دوره المياه</label>
+                                            <label class="h6-design">حمام</label>
                                             <div class="bathroom-input">
                                                 <mat-form-field appearance="fill">
                                                     <mat-label>حدد عدد الحمامات</mat-label>
@@ -286,7 +286,7 @@
                                     <div class="col-xl-12 col-lg-12 col-md-6 col-sm-12"
                                         *ngIf="propertyData.hasFurnishing">
                                         <div ngClass="block-wrapper mb-4">
-                                            <label class="h6-design">نوع التأثيث</label>
+                                            <label class="h6-design">نوع الاثاث</label>
                                             <div class="checkbox-flex-box autoflex-layout button-same-select furnishing-input">
                                                 <div *ngFor="let item of furnishingType">
                                                     <div class="checkbox-design position-relative"
@@ -309,7 +309,7 @@
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12" *ngIf="propertyData.hasFitting">
                                         <div ngClass="block-wrapper mb-4">
-                                            <label class="h6-design">نوع المناسب</label>
+                                            <label class="h6-design">نوع التجهيزات</label>
                                             <div class="checkbox-flex-box four-column button-same-select fitting-input">
                                                 <div *ngFor="let item of fittingType">
                                                     <div class="checkbox-design position-relative"

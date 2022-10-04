@@ -31,7 +31,7 @@ export class ClassifiedHomeComponent implements OnInit {
   serviceTs = [
     {
       src: '../../../assets/images/services/handyman.jpg',
-      title: 'عامل يدوي',
+      title: 'عامل صيانة',
       text: 'نطاق السعر إ.د100 - إ.د120',
       link: '',
     },
@@ -67,7 +67,7 @@ export class ClassifiedHomeComponent implements OnInit {
     },
     {
       src: '../../../assets/images/services/Yardwork-Services.jpeg',
-      title: 'خدمات ياردورك',
+      title: 'خدمات بستنة',
       text: 'نطاق السعر إ.د100 - إ.د120',
       link: '',
     },
