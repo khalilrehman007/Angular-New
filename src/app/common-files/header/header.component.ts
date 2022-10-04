@@ -90,6 +90,7 @@ export class HeaderComponent implements OnInit {
 
     this.service.LoadCountries().subscribe((result: any) => {
       this.headerCountries = result.data;
+      console.log(this.headerCountries);
     })
 
     let userId = '';
