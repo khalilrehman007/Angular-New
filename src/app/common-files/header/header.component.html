@@ -401,17 +401,17 @@
                                     <a ngClass="nav-link" (click)="logOutPopup(content)"> Logout </a>
                                 </div>
                             </li>
-                            <li ngClass="nav-item aed-li">
-                                <button class="nav-link aed-sq" (click)="clickEvent2()"><img src="{{flagsvg}}"> AED |
-                                    Sqft</button>
-                                <!-- <div class="country_list-dropdown" [ngClass]="status2 ? 'active' : 'notactive'">
+                            <li ngClass="nav-item aed-li" *ngIf="currentCountry != ''">
+                                <button class="nav-link aed-sq" (click)="clickEvent2()"><img src="{{flagsvg}}"> {{currentCountry.currency}} |
+                                    {{currentCountry.unitType}}</button>
+                                <div class="country_list-dropdown" [ngClass]="status2 ? 'active' : 'notactive'">
                                     <button (click)="clickEvent2()"><img src="{{close}}"></button>
                                     <div ngClass="countries_dropdown-list" *ngFor="let data of headerCountries">
                                     <ul ngClass="list-unstyled">
-                                        <li><img src="{{flagsvg}}">{{data.currency}}</li>
+                                        <li class="country-dropdown-item" (click)="selectCountry(data)"><img src="{{flagsvg}}">{{data.name}} ({{data.currency}} | {{data.unitType}})</li>
                                     </ul>
                                     </div>
-                                </div> -->
+                                </div>
                                 <button (click)="clickEvent2()" ngClass="overlay_dropdown-btn"></button>
                             </li>
                         </ul>
@@ -516,16 +516,16 @@
                                 </a>
                             </li>
                             <li ngClass="nav-item aed-li d-hide">
-                                <button class="nav-link aed-sq" (click)="clickEvent2()"><img src="{{flagsvg}}"> AED |
-                                    Sqft</button>
-                                <!-- <div class="country_list-dropdown" [ngClass]="status2 ? 'active' : 'notactive'">
+                                <button class="nav-link aed-sq w-100" (click)="clickEvent2()"><img src="{{flagsvg}}">{{currentCountry.currency}} |
+                                    {{currentCountry.unitType}}</button>
+                                <div class="country_list-dropdown" [ngClass]="status2 ? 'active' : 'notactive'">
                                     <button (click)="clickEvent2()"><img src="{{close}}"></button>
                                     <div ngClass="countries_dropdown-list" *ngFor="let data of headerCountries">
                                     <ul ngClass="list-unstyled">
-                                        <li><img src="{{flagsvg}}">{{data.currency}}</li>
+                                        <li class="country-dropdown-item" (click)="selectCountry(data)"><img src="{{flagsvg}}">{{data.name}} ({{data.currency}} | {{data.unitType}})</li>
                                     </ul>
                                     </div>
-                                </div> -->
+                                </div>
                                 <button (click)="clickEvent2()" ngClass="overlay_dropdown-btn"></button>
                             </li>
                         </ul>

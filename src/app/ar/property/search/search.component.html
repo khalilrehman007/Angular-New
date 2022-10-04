@@ -17,9 +17,9 @@
                             </div>
                         </div>
                         <div ngClass="heading-apragraph-design mt-4">
-                            <h2>{{selectedPropertyTypeName}} {{headingPropertyType}} للإي {{type}} في الإمارات</h2>
-                            <p>عرض {{totalRecord}} {{headingPropertyType}} للإي {{type}} في الإمارات</p>
-                            <p>عقارات ل {{type}} في الإمارات.  القوائم التي تم التحقق منها. منزلك المثالي موجود على Property Finder! مكتشف الملكية: عقارات
+                            <h2>{{selectedPropertyTypeName}} {{headingPropertyType}} للإي {{type}} في الإمارات العربية المتحدة</h2>
+                            <p>عرض {{totalRecord}} {{headingPropertyType}} للإي {{type}} في الإمارات العربية المتحدة</p>
+                            <p>عقارات ل {{type}} في الإمارات العربية المتحدة.  القوائم التي تم التحقق منها. منزلك المثالي موجود على Property Finder! مكتشف الملكية: عقارات
                             </p>
                         </div>
                         <div ngClass="properties-filtr-values d-flex justify-content-spacebw">
@@ -45,7 +45,7 @@
                                 </div>
                                 <div ngClass="block-wrapper">
                                     <mat-form-field appearance="fill" class="select-design">
-                                        <mat-label>صنف حسب</mat-label>
+                                        <mat-label>تصنيف حسب</mat-label>
                                         <mat-select (selectionChange)="sortedBy($event)">
                                             <mat-option *ngFor="let SortBy of PropertySortBy" value="{{SortBy.id}}">
                                                 {{SortBy.name}}
@@ -158,7 +158,7 @@
                                                 <h6>OV Data Intelligence - شارع الكورنيش ، أبو ظبي</h6>
                                                 <div ngClass="property-range-bar d-flex">
                                                     <div ngClass="pro-range-whie-box">
-                                                        <p>الإيجار الأخير Txns</p>
+                                                        <p>آخر معاملات الإيجار</p>
                                                         <h6>{{list.recentRentTxns}} في العام الماضي</h6>
                                                     </div>
                                                     <div ngClass="pro-range-whie-box">
@@ -184,7 +184,7 @@
                                                             </div>
                                                             <div ngClass="list_cntnt-blcok">
                                                                 <h5>{{list.fullName}}</h5>
-                                                                <p>علي قائمة: {{list.requestedDateFormat}}</p>
+                                                                <p>مدرج في: {{list.requestedDateFormat}}</p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -200,7 +200,7 @@
                                                                     (click)="callNumber(callNumberText)"
                                                                     ngbDropdownToggle>{{callNumberText}}</button>
                                                                 <div ngbDropdownMenu aria-labelledby="dropdownBasic5">
-                                                                    <p ngClass="mention_ref">اذكر المرجع</p>
+                                                                    <p ngClass="mention_ref">اذكر المصدر</p>
                                                                     <p ngClass="oval_finder-red">"Ovaluate Finder" <span
                                                                             ngClass="ref_id">{{list.propertyCode}}</span>
                                                                     </p>
@@ -255,9 +255,9 @@
                                             <!--                          <mat-icon> phone</mat-icon> Last contacted on: 9 Aug 2022-->
                                             <!--                        </p>-->
                                             <!--                      </div>-->
-                                            <p ngClass="premium-tag">الممتازة</p>
+                                            <p ngClass="premium-tag">مميزة</p>
                                         </div>
-                                        <button _ngcontent-ekm-c201="" ngclass="tag_btn blue" ng-reflect-ng-class="tag_btn blue" class="tag_btn blue"><img _ngcontent-ekm-c201="" src="../../../assets/images/icons/tag-icn.svg"> مميز</button>
+                                        <button _ngcontent-ekm-c201="" ngclass="tag_btn blue" ng-reflect-ng-class="tag_btn blue" class="tag_btn blue"><img _ngcontent-ekm-c201="" src="../../../assets/images/icons/tag-icn.svg"> الأكثر شعبية</button>
                                     </div>
                                 </div>
                                 <div ngClass="notification-box mt-5" *ngIf="i == halfList">
@@ -266,7 +266,7 @@
                                             <img src="{{emailhome}}">
                                         </div>
                                         <div ngClass="email-home-cntnt">
-                                            <h4>احصل على Notofied عندما تطابق الممتلكات الجديدة معايير البحث الخاصة بك</h4>
+                                            <h4>الحصول على إشعار عند إدراج عقار جديد يناسب معايير البحث الخاص بك</h4>
                                         </div>
                                         <div ngClass="email-alert-btn">
                                             <button ngClass="alert_btn" (click)="openVerticallyCentered(content)">
@@ -334,7 +334,7 @@
                             <input type="submit" value="يكمل">
                         </div>
                         <div ngClass="form-group terms-contioning">
-                         <p>من خلال المتابعة، فإنك توافق على الهزاع <a routerLink="/ar/term-condition">البنود و الظروف</a> و <a routerLink="/ar/privacy-policy">سياسة الخصوصية</a></p>
+                         <p>من خلال المتابعة، فإنك توافق على الهزاع <a routerLink="/ar/term-condition">الشروط والأحكام</a> و <a routerLink="/ar/privacy-policy">سياسة الخصوصية</a></p>
                         </div>
                     </form>
                   </div>

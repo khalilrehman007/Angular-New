@@ -79,9 +79,9 @@
             <div ngClass="landlord-checkbox-sec checkbox-design">
                 <mat-checkbox class="example-margin" (change)="toggleType($event)">هل أنت صاحب عقار أو متخصص في العقارات؟</mat-checkbox>
                 <div ngClass="dropdown hide">
-                    <button type="button" ngClass="btn dropdown-toggle" data-bs-toggle="dropdown">النوع المهني</button>
+                    <button type="button" ngClass="btn dropdown-toggle" data-bs-toggle="dropdown">النوع الهنة</button>
                     <div ngClass="dropdown-menu" id="property-type-sec">
-                        <h5 ngClass="h5-heading">النوع المهني</h5>
+                        <h5 ngClass="h5-heading">النوع الهنة</h5>
                         <div ngClass="property-types-heading">
                             <ul ngClass="nav nav-tabs">
                                 <li ngClass="nav-item" *ngFor="let data of signUpPropertytype">
@@ -102,14 +102,14 @@
                 <button mat-raised-button type="submit" ngClass="submit-btn">اشتراك</button>
             </mat-card-actions>
             <div ngClass="terms-text">
-                <p>من خلال التقديم ، أنا أقبل Ovaluate's <a routerLink="/ar/term-condition">الشروط والأحكام.</a></p>
+                <p>من خلال تقديم الطلب، أنا أوافق على  <a routerLink="/ar/term-condition">الشروط والأحكام.</a></p>
             </div>
             <div ngClass="or-connect">
                 <p>أو تواصل مع</p>
             </div>
             <div class="continue-btns">
-                <button ngClass="google-btn" #signupRef (click)="callLogin()"><img src="{{goggle}}">الدخول مع جوجل</button>
-                <button ngClass="apple-btn"><img src="{{apple}}"> تسجيل الدخول مع التفاح</button>
+                <button ngClass="google-btn" #signupRef (click)="callLogin()"><img src="{{goggle}}">تسجيل الدخول من خلال حساب غوغل</button>
+                <button ngClass="apple-btn"><img src="{{apple}}"> تسجيل الدخول من خلال حساب آبل</button>
             </div>
             <div ngClass="dont-have-account text-center">
                 <p>هل لديك حساب؟ <a href="/ar/login">تسجيل الدخول</a></p>

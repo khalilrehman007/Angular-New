@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as $ from 'jquery';
 import { NotificationService } from "../../service/notification.service";
@@ -9,6 +9,7 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database';
 import { map } from 'rxjs';
 import { getDatabase, ref, child, push, update } from 'firebase/database';
+import { CookieService } from 'ngx-cookie-service';
 interface LanguagesList {
   value: string;
   viewValue: string;
@@ -18,7 +19,7 @@ interface LanguagesList {
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, AfterViewInit {
   togglesvg = '../../../assets/images/icons/toggle.svg'
   logo = '../../../assets/images/logo.svg'
   chartsvg = '../../../assets/images/Charts-nav.svg'
@@ -50,7 +51,8 @@ export class HeaderComponent implements OnInit {
   activeTabArea: any = false;
   activeShortterm: any = false;
   notificationcount:number = 0;
-  constructor(private activeRoute: ActivatedRoute, private authService: AuthService, private route: Router, private notifyService: NotificationService, private modalService: NgbModal, private service: AppService, private db: AngularFireDatabase) {
+  currentCountry:any = "";
+  constructor(private cookie:CookieService , private activeRoute: ActivatedRoute, private authService: AuthService, private route: Router, private notifyService: NotificationService, private modalService: NgbModal, private service: AppService, private db: AngularFireDatabase) {
     let a: any = this.currentDate;
     a = a.toString().split(" ")[5].split("T")[1];
     let sign = a.split('')[0];
@@ -137,6 +139,16 @@ export class HeaderComponent implements OnInit {
       this.activeTabArea = false;
       this.activeShortterm = true;
     }
+  }
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      let a = setInterval(() => {
+        if(this.cookie.get("countryData")) {
+          this.currentCountry = JSON.parse(this.cookie.get("countryData"));
+          clearInterval(a);
+        }
+      },100);
+    },100);
   }
   getNotificationCount() {
     let count:any = 0;
@@ -597,5 +609,15 @@ export class HeaderComponent implements OnInit {
       let url:any = "/ar" + this.route.url;
       window.location.href = url;
     }
+  }
+  selectCountry(e:any) {
+    this.clickEvent2();
+    delete e.city;
+    this.currentCountry = e;
+    let expire = new Date();
+    let time = Date.now() + ((3600 * 1000) * 24);
+    expire.setTime(time);
+    this.cookie.set("countryData", JSON.stringify(e), expire);
+    location.reload();
   }
 }

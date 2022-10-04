@@ -246,7 +246,7 @@
                                 <div id="resedential-rent" class="tab-pane active">
                                     <div class="no-data-found" *ngIf="leadsResidentialSummary.length == 0">
                                         <mat-icon>file_copy</mat-icon>
-                                        <p>لاتوجد بيانات</p>
+                                        <p>عذراً، لا توجد بيانات</p>
                                     </div>
                                     <div class="lead-summ-table" *ngIf="leadsResidentialSummary.length > 0">
                                         <div class="table-row" *ngFor="let data of leadsResidentialSummary">
@@ -305,7 +305,7 @@
                                 <div id="resedential-buy" class="tab-pane">
                                     <div class="no-data-found" *ngIf="leadsCommercialSummary.length == 0">
                                         <mat-icon>file_copy</mat-icon>
-                                        <p>لاتوجد بيانات</p>
+                                        <p>عذراً، لا توجد بيانات</p>
                                     </div>
                                     <div class="lead-summ-table" *ngIf="leadsCommercialSummary.length > 0">
                                         <div class="table-row" *ngFor="let data of leadsCommercialSummary">
@@ -368,11 +368,11 @@
                         <div ngClass="container_1220px">
                             <div ngClass="section-title">
                                 <div ngClass="section-custom-title-left">
-                                    <h4>مقالات</h4>
-                                    <p>بعض العقارات المختارة بالقرب من موقعك.</p>
+                                    <h4>المدونات</h4>
+                                    <p>اختياراتنا الالأكثر شعبيةة لعقارات قريبة منك</p>
                                 </div>
                                 <div ngClass="section-custom-title-right">
-                                    <a routerLink="/ar/blog">اقرأ كل شيء</a>
+                                    <a routerLink="/ar/blog">قراءة كامل المحتوى</a>
                                 </div>
                             </div>
 
@@ -454,7 +454,7 @@
                                                                         <h4 class="sub-bold-text">
                                                                             {{viewList.propertyTitle}}</h4>
                                                                         <p
-                                                                            class="agent-details__property-list-item-date">علي قائمة{{viewList.requestedDateFormat}}</p>
+                                                                            class="agent-details__property-list-item-date">مدرج في{{viewList.requestedDateFormat}}</p>
                                                                     </div>
                                                                 </div>
                                                                 <h6>{{viewList.buildingName}}</h6>
@@ -634,7 +634,7 @@
                                                                     </div>
                                                                     <div class="col-5 text-end">
                                                                         <h4 class="sub-bold-text">{{viewList.propertyTitle}}</h4>
-                                                                        <p class="agent-details__property-list-item-date">علي قائمة: <span class="value_span">{{viewList.requestedDateFormat}}</span></p>
+                                                                        <p class="agent-details__property-list-item-date">مدرج في: <span class="value_span">{{viewList.requestedDateFormat}}</span></p>
                                                                         <p class="agent-details__property-list-item-date">القائمة المختصرة بواسطة: <span class="value_span">{{viewList.numberOfUsershortListedProperty}} الأشخاص</span></p>
                                                                         <p class="agent-details__property-list-item-date">عرض بواسطة: <span class="value_span">{{viewList.numberOfUserSeeingProperty}} الأشخاص</span></p>
                                                                     </div>
@@ -819,7 +819,7 @@
                                                                             </h4>
                                                                             <p
                                                                                 class="agent-details__property-list-item-date">
-                                                                                علي قائمة
+                                                                                مدرج في
                                                                                 {{wishData.requestedDateFormat}}</p>
                                                                         </div>
                                                                     </div>
@@ -886,7 +886,7 @@
                                         </div>
                                         <div class="no-data-found" *ngIf="wishlistingData.length == 0">
                                             <mat-icon>file_copy</mat-icon>
-                                            <p>لاتوجد بيانات</p>
+                                            <p>عذراً، لا توجد بيانات</p>
                                         </div>
                                     </div>
 
@@ -943,7 +943,7 @@
                                                                             {{enquiredData.propertyTitle}}</h4>
                                                                         <p
                                                                             class="agent-details__property-list-item-date">
-                                                                            علي قائمة
+                                                                            مدرج في
                                                                             {{enquiredData.requestedDateFormat}}</p>
                                                                     </div>
                                                                 </div>
@@ -1001,7 +1001,7 @@
                                         </div>
                                         <div class="no-data-found" *ngIf="enquiredlistingData.length == 0">
                                             <mat-icon>file_copy</mat-icon>
-                                            <p>لاتوجد بيانات</p>
+                                            <p>عذراً، لا توجد بيانات</p>
                                         </div>
                                     </div>
                                 </mat-tab>
@@ -1041,7 +1041,7 @@
                                     </div>
                                     <div class="no-data-found" *ngIf="leadsData.length == 0">
                                         <mat-icon>file_copy</mat-icon>
-                                        <p>لاتوجد بيانات</p>
+                                        <p>عذراً، لا توجد بيانات</p>
                                     </div>
                                     <section *ngIf="leadsData.length >= 0"
                                         ngClass="my-lead-listing-wrap position-relative wrapper-section properties-slider residentials-property-rent-1">
@@ -1133,7 +1133,7 @@
                                     </div>
                                     <div class="no-data-found" *ngIf="leadsData.length == 0">
                                         <mat-icon>file_copy</mat-icon>
-                                        <p>لاتوجد بيانات</p>
+                                        <p>عذراً، لا توجد بيانات</p>
                                     </div>
                                     <section *ngIf="leadsData.length >= 0"
                                         ngClass="my-lead-listing-wrap position-relative wrapper-section properties-slider residentials-property-rent-1">
@@ -1222,7 +1222,7 @@
                                     </div>
                                     <div class="no-data-found" *ngIf="leadsData.length == 0">
                                         <mat-icon>file_copy</mat-icon>
-                                        <p>لاتوجد بيانات</p>
+                                        <p>عذراً، لا توجد بيانات</p>
                                     </div>
                                     <section *ngIf="leadsData.length >= 0"
                                         ngClass="my-lead-listing-wrap position-relative wrapper-section properties-slider residentials-property-rent-1">
@@ -1317,7 +1317,7 @@
                                     </div>
                                     <div class="no-data-found" *ngIf="listingAll.length < 1">
                                         <mat-icon>file_copy</mat-icon>
-                                        <p>لاتوجد بيانات</p>
+                                        <p>عذراً، لا توجد بيانات</p>
                                     </div>
                                     <div class="agent-details__tabs">
                                         <div class="row">
@@ -1453,7 +1453,7 @@
                                     </div>
                                     <div class="no-data-found" *ngIf="listingAll.length < 1">
                                         <mat-icon>file_copy</mat-icon>
-                                        <p>لاتوجد بيانات</p>
+                                        <p>عذراً، لا توجد بيانات</p>
                                     </div>
                                     <div class="agent-details__tabs">
                                         <div class="row">
@@ -1588,7 +1588,7 @@
                                     </div>
                                     <div class="no-data-found" *ngIf="listingAll.length < 1">
                                         <mat-icon>file_copy</mat-icon>
-                                        <p>لاتوجد بيانات</p>
+                                        <p>عذراً، لا توجد بيانات</p>
                                     </div>
                                     <div class="agent-details__tabs">
                                         <div class="row">
@@ -1710,7 +1710,7 @@
                                 <mat-tab label="كل ({{myValuation.length}})">
                                     <div class="no-data-found" *ngIf="myValuation.length == 0">
                                         <mat-icon>file_copy</mat-icon>
-                                        <p>لاتوجد بيانات</p>
+                                        <p>عذراً، لا توجد بيانات</p>
                                     </div>
                                     <div ngClass="my-valuation-list-wrapper" *ngIf="myValuation.length > 0">
                                         <div ngClass="my-valuation-list-design d-flex"
@@ -1761,7 +1761,7 @@
                                 <mat-tab label="{{residential}} ({{myValuationResidential.length}})">
                                     <div class="no-data-found" *ngIf="myValuationResidential.length == 0">
                                         <mat-icon>file_copy</mat-icon>
-                                        <p>لاتوجد بيانات</p>
+                                        <p>عذراً، لا توجد بيانات</p>
                                     </div>
                                     <div ngClass="my-valuation-list-wrapper" *ngIf="myValuationResidential.length > 0">
                                         <div ngClass="my-valuation-list-design d-flex"
@@ -1811,7 +1811,7 @@
                                 <mat-tab label="{{commercial}} ({{myValuationCommercial.length}})">
                                     <div class="no-data-found" *ngIf="myValuationCommercial.length == 0">
                                         <mat-icon>file_copy</mat-icon>
-                                        <p>لاتوجد بيانات</p>
+                                        <p>عذراً، لا توجد بيانات</p>
                                     </div>
                                     <div ngClass="my-valuation-list-wrapper" *ngIf="myValuationCommercial.length > 0">
                                         <div ngClass="my-valuation-list-design d-flex"
@@ -2262,7 +2262,7 @@
                                                                                             ngClass="outpup-filename">{{
                                                                                             emirate[1] }}</span> <img
                                                                                             src="{{upload}}">
-                                                                                        <span ngClass="btn-txt">هوية الإمارات (الواجهة الامامية)</span></button>
+                                                                                        <span ngClass="btn-txt">هوية الإمارات العربية المتحدة (الواجهة الامامية)</span></button>
                                                                                 </div>
 
                                                                             </div>
@@ -2286,7 +2286,7 @@
                                                                                             ngClass="outpup-filename">{{
                                                                                             emirate[2] }}</span> <img
                                                                                             src="{{upload}}">
-                                                                                        <span ngClass="btn-txt">هوية الإمارات (الواجهة الامامية)</span></button>
+                                                                                        <span ngClass="btn-txt">هوية الإمارات العربية المتحدة (الواجهة الامامية)</span></button>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -2306,7 +2306,7 @@
                                                                                             ngClass="outpup-filename">{{
                                                                                             emirate[3] }}</span> <img
                                                                                             src="{{upload}}">
-                                                                                        <span ngClass="btn-txt">هوية الإمارات (الواجهة الامامية)</span></button>
+                                                                                        <span ngClass="btn-txt">هوية الإمارات العربية المتحدة (الواجهة الامامية)</span></button>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -4864,7 +4864,7 @@
             </div>
             <div ngClass="logout-banner-cntnt text-center">
                 <h4>هل أنت متأكد أنك تريد تسجيل الخروج؟</h4>
-                <p>سنفتقدك تعود قريبا!</p>
+                <p>بانتظار عودتك!</p>
             </div>
             <div ngClass="logout-banner-footer">
                 <button type="button" class="btn-cancel" aria-label="Close"

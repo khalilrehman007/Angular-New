@@ -32,49 +32,49 @@ export class ClassifiedHomeComponent implements OnInit {
     {
       src: '../../../assets/images/services/handyman.jpg',
       title: 'عامل يدوي',
-      text: 'نطاق السعر درهم100 - درهم120',
+      text: 'نطاق السعر إ.د100 - إ.د120',
       link: '',
     },
     {
       src: '../../../assets/images/services/movers.jpeg',
       title: 'خدمات النقل',
-      text: 'نطاق السعر درهم100 - درهم120',
+      text: 'نطاق السعر إ.د100 - إ.د120',
       link: '',
     },
       {
       src: '../../../assets/images/services/furniture-assembly.jpeg',
       title: 'تجميع الأثاث',
-      text: 'نطاق السعر درهم100 - درهم120',
+      text: 'نطاق السعر إ.د100 - إ.د120',
       link: '',
     },
     {
       src: '../../../assets/images/services/mobile-service.jpeg',
       title: 'مبيعات وخدمات المحمول',
-      text: 'نطاق السعر درهم100 - درهم120',
+      text: 'نطاق السعر إ.د100 - إ.د120',
       link: '',
     },
     {
       src: '../../../assets/images/services/cleaning.jpeg',
       title: 'تنظيف',
-      text: 'نطاق السعر درهم100 - درهم120',
+      text: 'نطاق السعر إ.د100 - إ.د120',
       link: '',
     },
     {
       src: '../../../assets/images/services/auto-service-parts.jpeg',
       title: 'اكسسوارات وقطع غيار السيارات',
-      text: 'نطاق السعر درهم100 - درهم120',
+      text: 'نطاق السعر إ.د100 - إ.د120',
       link: '',
     },
     {
       src: '../../../assets/images/services/Yardwork-Services.jpeg',
       title: 'خدمات ياردورك',
-      text: 'نطاق السعر درهم100 - درهم120',
+      text: 'نطاق السعر إ.د100 - إ.د120',
       link: '',
     },
     {
       src: '../../../assets/images/services/freelancers.jpeg',
       title: 'لحسابهم الخاص',
-      text: 'نطاق السعر درهم100 - درهم120',
+      text: 'نطاق السعر إ.د100 - إ.د120',
       link: '',
     }
   ]

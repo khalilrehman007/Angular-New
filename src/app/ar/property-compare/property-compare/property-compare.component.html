@@ -5,7 +5,7 @@
             <div ngClass="property_compare-header">
                 <ul>
                     <li (click)="scroll(target)">المواقع</li>
-                    <li (click)="scroll(property_info)">معلومات الملكية</li>
+                    <li (click)="scroll(property_info)">معلومات العقار</li>
                     <li (click)="scroll(other_details)">تفاصيل أخرى</li>
                 </ul>
             </div>
@@ -76,7 +76,7 @@
                     </div>
                 </div>
                 <div ngClass="grey-heading" #property_info>
-                    <h2>معلومات الملكية</h2>
+                    <h2>معلومات العقار</h2>
                 </div>
                 <div ngClass="compare-block">
                     <div ngClass="table-responsive table-design">
@@ -124,7 +124,7 @@
                                 </tr>
                                 <tr>
                                     <td ngClass="first-td-design">
-                                        رقم الدور
+                                        رقم الطابق
                                     </td>
                                     <td *ngFor="let property of compareData">
                                         {{property.floorNo}}
@@ -140,7 +140,7 @@
                                 </tr>
                                 <tr>
                                     <td ngClass="first-td-design">
-                                        برج سكني
+                                        منطقة الابراج
                                     </td>
                                     <td *ngFor="let property of compareData">
                                         {{property.towerBlock}}
@@ -167,7 +167,7 @@
                             <tbody>
                                 <tr>
                                     <td ngClass="first-td-design">
-                                        حالة التأثيث
+                                        حالة الاثاث
                                     </td>
                                     <td *ngFor="let property of compareData">
                                         {{property.furnishingType}}

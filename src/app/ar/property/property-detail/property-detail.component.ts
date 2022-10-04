@@ -509,11 +509,11 @@ export class PropertyDetailComponent implements OnInit {
   getPropertyInfo() {
     this.propertyinfo = [
       {
-        label: 'علي قائمة',
+        label: 'مدرج في',
         value: this.propertyDetailData.requestedDateFormat,
       },
       {
-        label: 'تم التحقق من OV',
+        label: 'تم التحقق من الرمز التحقق',
         value: this.propertyDetailData.requestedDateFormat,
       },
       {
@@ -573,11 +573,11 @@ export class PropertyDetailComponent implements OnInit {
         value: "-",
       },
       {
-        label: 'منطقة السجاد',
+        label: 'منطقة التأجير',
         value: this.propertyDetailData.carpetArea,
       },
       {
-        label: 'منطقة البناء',
+        label: 'المساحة الإجمالية للبناء',
         value: this.propertyDetailData.buildupArea,
       },
       {
