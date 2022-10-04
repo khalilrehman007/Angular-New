@@ -14,17 +14,19 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 // import { CityComponent } from './city/city.component';
-import { DetailsComponent } from './details/details.component';
+// import { DetailsComponent } from './details/details.component';
 import { LuxuryComponent } from './luxury/luxury.component';
 import { UltraLuxuryComponent } from './ultraluxury/ultraluxury.component';
 import { ScoresComponent } from './scores/scores.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+// Import ng-circle-progress
+import { NgCircleProgressModule } from 'ng-circle-progress';
 
 @NgModule({
   declarations: [
     ProjectComponent,
     // CityComponent,
-    DetailsComponent,
+    // DetailsComponent,
     LuxuryComponent,
     UltraLuxuryComponent,
     ScoresComponent
@@ -42,7 +44,18 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     ReactiveFormsModule,
     MatAutocompleteModule,
     BreadcrumbsModule,
-    CarouselModule
+    CarouselModule,
+    // Specify ng-circle-progress as an import
+    NgCircleProgressModule.forRoot({
+      // set defaults here
+      radius: 100,
+      outerStrokeWidth: 16,
+      innerStrokeWidth: 8,
+      outerStrokeColor: "#78C000",
+      innerStrokeColor: "#C7E596",
+      animationDuration: 300,
+      titleFontWeight: "700"
+    })
   ]
 })
 export class ExploreModule { }
