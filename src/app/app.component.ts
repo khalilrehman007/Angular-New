@@ -58,9 +58,9 @@ export class AppComponent implements DoCheck, OnInit, AfterViewInit {
       method: "get",
       success: (res:any) => {
         console.clear();
-        let length:any = res.results[0].address_components.length - 1;
-        this.currentCountry = res.results[0].address_components[length].long_name;
-        console.log(res.results[0].address_components[length].long_name);
+        let length:any = res.results.length - 1;
+        this.currentCountry = res.results[length].address_components[0].short_name;
+        console.log(res.results[length].address_components[0].long_name);
         this.loadCountryData();
       }
     });
@@ -69,7 +69,7 @@ export class AppComponent implements DoCheck, OnInit, AfterViewInit {
     this.service.LoadCountries().subscribe((result:any) => {
       let temp:any = result.data;
       for(let i = 0; i < temp.length; i++) {
-        if(temp[i].name == this.currentCountry) {
+        if(temp[i].code == this.currentCountry) {
           this.countryData = temp[i];
           break;
         }
