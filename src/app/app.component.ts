@@ -57,7 +57,7 @@ export class AppComponent implements DoCheck, OnInit, AfterViewInit {
       url: "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + this.latitude + "," + this.longitude + "&key=AIzaSyBPSEz52-AfPEVbmV_3yuGUGol_KiLb3GU",
       method: "get",
       success: (res:any) => {
-        console.clear();
+        // console.clear();
         let length:any = res.results.length - 1;
         this.currentCountry = res.results[length].address_components[0].short_name;
         console.log(res.results[length].address_components[0].long_name);
@@ -77,7 +77,17 @@ export class AppComponent implements DoCheck, OnInit, AfterViewInit {
       if(this.countryData == "") {
         this.countryData = temp[0];
       }
-      console.log(this.countryData)
+      let tempCountry:any = {}
+      tempCountry.code = this.countryData.code;
+      tempCountry.currency = this.countryData.currency;
+      tempCountry.currencyAr = this.countryData.currencyAr;
+      tempCountry.dialCode = this.countryData.dialCode;
+      tempCountry.name = this.countryData.name;
+      tempCountry.nameAr = this.countryData.nameAr;
+      tempCountry.unitType = this.countryData.unitType;
+      tempCountry.id = this.countryData.id;
+      console.log(tempCountry)
+      this.cookie.set("countryData", JSON.stringify(tempCountry))
     })
   }
   ngOnInit(): void {
