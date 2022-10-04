@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 // import { CityComponent } from './city/city.component';
-import { DetailsComponent } from './details/details.component';
+// import { DetailsComponent } from './details/details.component';
 import { ProjectComponent } from './project/project.component';
 import { LuxuryComponent } from './luxury/luxury.component';
 import { UltraLuxuryComponent } from './ultraluxury/ultraluxury.component';
@@ -13,7 +13,7 @@ const routes: Routes = [
   { path: "ultraluxury", component: UltraLuxuryComponent },
   { path: "scores", component: ScoresComponent },
   // { path: "city/:id", component: CityComponent },
-  { path: "details/:id", component: DetailsComponent }
+  // { path: "details/:id", component: DetailsComponent }
 ];
 
 @NgModule({
