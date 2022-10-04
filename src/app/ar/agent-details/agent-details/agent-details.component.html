@@ -95,7 +95,7 @@
                                                 <div class="col-xl-4 col-lg-4 col-md-8 col-12 text-start">
                                                     <div class="agent-details__select-wrapper">
                                                         <mat-form-field appearance="fill">
-                                                            <mat-label>صنف حسب</mat-label>
+                                                            <mat-label>تصنيف حسب</mat-label>
                                                             <mat-select (selectionChange)="sortedBy($event)">
                                                                 <mat-option *ngFor="let SortBy of PropertySortBy"
                                                                     value="{{SortBy.id}}">
@@ -126,7 +126,7 @@
                                                             </a>
                                                         </div>
                                                         <div class="col-5 text-end">
-                                                            <p class="agent-details__property-list-item-date">علي قائمة
+                                                            <p class="agent-details__property-list-item-date">مدرج في
                                                                 {{item.requestedDateFormat}}</p>
                                                         </div>
                                                     </div>

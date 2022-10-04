@@ -67,7 +67,7 @@
                                     </div>
                                     <div ngClass="block-wrapper">
                                         <mat-form-field appearance="fill" class="select-design">
-                                            <mat-label>صنف حسب</mat-label>
+                                            <mat-label>تصنيف حسب</mat-label>
                                             <mat-select (selectionChange)="sortedBy($event)">
                                                 <mat-option *ngFor="let SortBy of PropertySortBy" value="{{SortBy.id}}">
                                                     {{SortBy.name}}

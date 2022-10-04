@@ -177,12 +177,12 @@ export class LandingComponent implements OnInit {
   agentData() {
     this.page = 1;
     this.featuredAgentData = {
-      heading: "وكلاء العقارات المميزون",
-      desc: "بعض من أفضل وكلاء العقارات لدينا",
+      heading: "وكلاء العقارات الالأكثر شعبيةون",
+      desc: "بعض من أفضل الوسطاء العقارات لدينا",
     };
     this.agentList = {
-      heading: "قائمة الوكيل العقاري",
-      desc: "بعض من أفضل وكلاء العقارات لدينا",
+      heading: "إدراج وسيط عقاري",
+      desc: "بعض من أفضل الوسطاء العقارات لدينا",
       tableHeadings: [
         "الوكلاء",
         "موقعك",
@@ -205,12 +205,12 @@ export class LandingComponent implements OnInit {
   companyData() {
     this.page = 1;
     this.featuredCompaniesData = {
-      heading: "الشركات العقارية المميزة",
-      desc: "بعض من أفضل وكلاء العقارات لدينا",
+      heading: "الشركات العقارية الالأكثر شعبيةة",
+      desc: "بعض من أفضل الوسطاء العقارات لدينا",
     };
     this.companiesList = {
       heading: "قائمة الشركات العقارية",
-      desc: "بعض من أفضل وكلاء العقارات لدينا",
+      desc: "بعض من أفضل الوسطاء العقارات لدينا",
       tableHeadings: [
         "الشركات",
         "التخصصات",

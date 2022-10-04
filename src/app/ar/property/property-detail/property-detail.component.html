@@ -7,12 +7,12 @@
                     <div ngClass="black-text-breadcrumb">
                         <app-breadcrumbs></app-breadcrumbs>
                         <a class="back-to-text cursor-pointer" (click)="goBack()">
-                            <mat-icon>keyboard_arrow_left</mat-icon> رجوع إلى البحث
+                            <mat-icon>keyboard_arrow_left</mat-icon> العودة إلى نتائج البحث
                         </a>
                     </div>
                     <div ngClass="last-updated-details">
                         <!-- <p>Last Updated: <span ngClass="update-date">April 19, 2022</span></p> -->
-                        <p>معرف القائمة <span ngClass="update-id">#OV-4003021</span></p>
+                        <p>الرقم التعريفي للإدراج <span ngClass="update-id">#OV-4003021</span></p>
                     </div>
                 </div>
             </div>
@@ -84,11 +84,11 @@
                                 <li [ngClass]="status ? 'tactive' : 'thide'" (click)="keyhighlight()"><a
                                         (click)="scroll(keyHighligh)">النقاط الرئيسية</a></li>
                                 <li [ngClass]="status1 ? 'tactive' : 'thide'" (click)="PropertyInfo()"><a
-                                        (click)="scroll(propertyInfo)">معلومات الملكية</a></li>
+                                        (click)="scroll(propertyInfo)">معلومات العقار</a></li>
                                 <li [ngClass]="status2 ? 'tactive' : 'thide'" (click)="Amenities()"><a
                                         (click)="scroll(amentieScroll)">وسائل الراحة</a></li>
                                 <li [ngClass]="status3 ? 'tactive' : 'thide'" (click)="PriceTrends()"><a
-                                        (click)="scroll(priceScroll)">اتجاهات الأسعار</a></li>
+                                        (click)="scroll(priceScroll)">إتجاهات الأسعار</a></li>
                                 <li [ngClass]="status4 ? 'tactive' : 'thide'" (click)="Location()"><a
                                         (click)="scroll(locationScroll)">المواقع</a></li>
                             </ul>
@@ -128,10 +128,10 @@
                         <div class="Pro-perty_info mt-5" #propertyInfo>
                             <div ngClass="d-flex justify-content-spacebw align-items-center mb-3">
                                 <div ngClass="tabs-heading-div">
-                                    <h5>معلومات الملكية</h5>
+                                    <h5>معلومات العقار</h5>
                                 </div>
                                 <div ngClass="ov-verified">
-                                    <p><img src="{{ovverified}}"> تم التحقق من OV</p>
+                                    <p><img src="{{ovverified}}"> تم التحقق من الرمز التحقق</p>
                                 </div>
                             </div>
                             <div ngClass="property_infor-div-sec">
@@ -170,10 +170,10 @@
                         </div>
                         <div class="price-trens_wrapper-wrapper mt-5" #priceScroll>
                             <div ngClass="tabs-heading-div">
-                                <h5>اتجاهات أسعار الإيجار</h5>
+                                <h5>إتجاهات أسعار الإيجار</h5>
                             </div>
                             <div ngClass="price_trend-texts">
-                                <p>3 أسرة في وسط مدينة دبي - إيجار تطورات<span ngClass="">
+                                <p>3 غرف نوم في وسط مدينة دبي - تطورات الإيجار<span ngClass="">
                                         <mat-icon>trending_up</mat-icon>
                                     </span> 40%</p>
                             </div>
@@ -211,7 +211,7 @@
                                         </div>
                                     </div>
                                     <div ngClass="col-sm-12">
-                                        <p ngClass="price-trent_desc-info">تستند البيانات المعروضة إلى متوسط ​​السعر والحجم لجميع القوائم التي كانت موجودة في Ovaluate في دبي</p>
+                                        <p ngClass="price-trent_desc-info">تستند البيانات المعروضة إلى متوسط ​​السعر والحجم لجميع القوائم التي كانت موجودة في افالويت في دبي</p>
                                     </div>
                                 </div>
                             </div>
@@ -363,7 +363,7 @@
                         </div>
                         <a [routerLink]="['/ar/property/detail']" [queryParams]="{id: slide.id}"
                             ngClass="linK_overlay"></a>
-                        <button ngClass="tag_btn blue"><img src="{{tagicn}}"> جمع</button>
+                        <button ngClass="tag_btn blue"><img src="{{tagicn}}"> شائع</button>
                     </div>
                 </div>
             </div>
