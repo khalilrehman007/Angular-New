@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { SliderModule } from 'primeng/slider';
@@ -10,13 +10,14 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NotificationService } from 'src/app/service/notification.service';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/service/auth.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',
   styleUrls: ['./homepage.component.scss']
 })
-export class HomepageComponent implements OnInit {
+export class HomepageComponent implements OnInit, AfterViewInit {
   homelocationsvg = 'assets/images/home-location.svg'
   bedsvg = 'assets/images/icons/Bed.svg'
   bathsvg = 'assets/images/icons/Bath-tub.svg'
@@ -38,8 +39,8 @@ export class HomepageComponent implements OnInit {
   country: any = [];
   clientFeedback: any = [];
   slider: any = [];
-  user: any
-
+  user: any;
+  countryData:any = "";
   id: any = 1;
   propertyDetails: any;
   oldData1() {
@@ -230,7 +231,7 @@ export class HomepageComponent implements OnInit {
   userId: any;
   explorePlaces: any;
   trendTitle: any = [];
-  constructor(private authService: AuthService, private service: AppService, private route: Router, private notifyService: NotificationService) {
+  constructor(private cookie: CookieService, private authService: AuthService, private service: AppService, private route: Router, private notifyService: NotificationService) {
     $(window).scrollTop(0);
     this.LoadPropertyCategories()
     this.LoadBlogs();
@@ -281,12 +282,20 @@ export class HomepageComponent implements OnInit {
     this.service.OvaluateOfferings().subscribe((result: any = []) => {
       this.slider = result.data;
     })
-
-    this.service.NearPlaces(1).subscribe((result: any) => {
-      this.explorePlaces = result.data;
-    })
-    this.service.TrendTitle(1).subscribe((result: any) => {
-      this.trendTitle = result.data
+  }
+  ngAfterViewInit(): void {
+    let a = setInterval(() => {
+      if(this.cookie.get("countryData")) {
+        this.countryData = JSON.parse(this.cookie.get("countryData"));
+        this.service.NearPlaces(this.countryData.id).subscribe((result: any) => {
+          this.explorePlaces = result.data;
+        })
+        this.service.TrendTitle(this.countryData.id).subscribe((result: any) => {
+          this.trendTitle = result.data
+        })
+        console.log(this.countryData);
+        clearInterval(a);
+      }
     })
   }
   onTrendClick(typeID: any, titleID: any) {

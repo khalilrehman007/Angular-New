@@ -17,10 +17,10 @@ export class AppComponent implements DoCheck, OnInit, AfterViewInit {
   title = 'ovaluate';
   message: any = null;
   displaymenu = false;
-  latitude:any = "";
-  longitude:any = "";
-  currentCountry:any = "";
-  countryData:any = "";
+  latitude: any = "";
+  longitude: any = "";
+  currentCountry: any = "";
+  countryData: any = "";
   constructor(private cookie: CookieService, private service: AppService, private route: Router, private notifyService: NotificationService) {
     this.route.events.subscribe((val: any) => {
       if (val instanceof NavigationEnd) {
@@ -49,16 +49,18 @@ export class AppComponent implements DoCheck, OnInit, AfterViewInit {
 
       this.latitude = position.coords.latitude;
       this.longitude = position.coords.longitude;
-      this.getCountry();
+      if (!this.cookie.get("countryData")) {
+        this.getCountry();
+      }
     }, error);
   }
   getCountry() {
     $.ajax({
       url: "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + this.latitude + "," + this.longitude + "&key=AIzaSyBPSEz52-AfPEVbmV_3yuGUGol_KiLb3GU",
       method: "get",
-      success: (res:any) => {
-        // console.clear();
-        let length:any = res.results.length - 1;
+      success: (res: any) => {
+        console.clear();
+        let length: any = res.results.length - 1;
         this.currentCountry = res.results[length].address_components[0].short_name;
         console.log(res.results[length].address_components[0].long_name);
         this.loadCountryData();
@@ -66,28 +68,23 @@ export class AppComponent implements DoCheck, OnInit, AfterViewInit {
     });
   }
   loadCountryData() {
-    this.service.LoadCountries().subscribe((result:any) => {
-      let temp:any = result.data;
-      for(let i = 0; i < temp.length; i++) {
-        if(temp[i].code == this.currentCountry) {
+    this.service.LoadCountries().subscribe((result: any) => {
+      let temp: any = result.data;
+      for (let i = 0; i < temp.length; i++) {
+        if (temp[i].code == this.currentCountry) {
           this.countryData = temp[i];
           break;
         }
       }
-      if(this.countryData == "") {
+      if (this.countryData == "") {
         this.countryData = temp[0];
       }
-      let tempCountry:any = {}
-      tempCountry.code = this.countryData.code;
-      tempCountry.currency = this.countryData.currency;
-      tempCountry.currencyAr = this.countryData.currencyAr;
-      tempCountry.dialCode = this.countryData.dialCode;
-      tempCountry.name = this.countryData.name;
-      tempCountry.nameAr = this.countryData.nameAr;
-      tempCountry.unitType = this.countryData.unitType;
-      tempCountry.id = this.countryData.id;
-      console.log(tempCountry)
-      this.cookie.set("countryData", JSON.stringify(tempCountry))
+      let expire = new Date();
+      let time = Date.now() + ((3600 * 1000) * 24);
+      expire.setTime(time);
+      delete this.countryData.city;
+      console.log(this.countryData)
+      this.cookie.set("countryData", JSON.stringify(this.countryData), expire);
     })
   }
   ngOnInit(): void {
