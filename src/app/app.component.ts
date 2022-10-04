@@ -5,6 +5,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { NotificationService } from './service/notification.service'
 import { getMessaging, getToken, onMessage } from "firebase/messaging";
 import { data } from 'jquery';
+import { AppService } from './service/app.service';
 
 @Component({
   selector: 'app-root',
@@ -16,22 +17,68 @@ export class AppComponent implements DoCheck, OnInit, AfterViewInit {
   title = 'ovaluate';
   message: any = null;
   displaymenu = false;
-  constructor(private cookie: CookieService, private route: Router, private notifyService: NotificationService) {
-    this.route.events.subscribe((val:any) => {
+  latitude:any = "";
+  longitude:any = "";
+  currentCountry:any = "";
+  countryData:any = "";
+  constructor(private cookie: CookieService, private service: AppService, private route: Router, private notifyService: NotificationService) {
+    this.route.events.subscribe((val: any) => {
       if (val instanceof NavigationEnd) {
-        let temp:any = val.url.split("/");
-        if(temp[1] == "ar") {
-          $("html").attr("dir","rtl");
+        let temp: any = val.url.split("/");
+        if (temp[1] == "ar") {
+          $("html").attr("dir", "rtl");
           $("title").text("OV- المتجر");
         } else {
           $("html").removeAttr("dir");
           $("title").text("OV - Marketplace");
         }
-    }
+      }
     })
+    this.latLng();
   }
   ngAfterViewInit(): void {
-    $(".main-loader-wrapper").remove()
+    $(".main-loader-wrapper").remove();
+  }
+  latLng() {
+    if (!navigator.geolocation) {
+      return;
+    }
+    function error() {
+    }
+    navigator.geolocation.getCurrentPosition((position: any) => {
+
+      this.latitude = position.coords.latitude;
+      this.longitude = position.coords.longitude;
+      this.getCountry();
+    }, error);
+  }
+  getCountry() {
+    $.ajax({
+      url: "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + this.latitude + "," + this.longitude + "&key=AIzaSyBPSEz52-AfPEVbmV_3yuGUGol_KiLb3GU",
+      method: "get",
+      success: (res:any) => {
+        console.clear();
+        let length:any = res.results[0].address_components.length - 1;
+        this.currentCountry = res.results[0].address_components[length].long_name;
+        console.log(res.results[0].address_components[length].long_name);
+        this.loadCountryData();
+      }
+    });
+  }
+  loadCountryData() {
+    this.service.LoadCountries().subscribe((result:any) => {
+      let temp:any = result.data;
+      for(let i = 0; i < temp.length; i++) {
+        if(temp[i].name == this.currentCountry) {
+          this.countryData = temp[i];
+          break;
+        }
+      }
+      if(this.countryData == "") {
+        this.countryData = temp[0];
+      }
+      console.log(this.countryData)
+    })
   }
   ngOnInit(): void {
     Notification.requestPermission().then((permission) => {
@@ -54,7 +101,6 @@ export class AppComponent implements DoCheck, OnInit, AfterViewInit {
   listen() {
     const messaging = getMessaging();
     onMessage(messaging, (payload) => {
-      console.log('Message received. ', payload);
       this.message = payload;
     });
   }
