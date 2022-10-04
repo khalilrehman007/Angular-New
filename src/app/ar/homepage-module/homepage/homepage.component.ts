@@ -68,7 +68,7 @@ export class HomepageComponent implements OnInit {
       id: 'slide1',
       src: 'assets/images/icons/virtul-toor.svg',
       heading: 'جولة منزلية افتراضية',
-      desc: 'يمكنك التواصل مباشرة مع الملاك ونوفر لك جولة افتراضية قبل أن تشتري أو تستأجر العقار.',
+      desc: 'يمكنك التواصل مباشرة مع ملاك العقارات ونوفر لك جولة افتراضية قبل أن تشتري أو تستأجر العقار.',
       class: 'virtual-tour'
     },
     {
