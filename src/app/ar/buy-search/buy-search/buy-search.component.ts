@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { AppService } from 'src/app/service/app.service';
 import { Options } from '@angular-slider/ngx-slider';
@@ -8,15 +8,17 @@ import { MatChipInputEvent } from '@angular/material/chips';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-buy-search',
   templateUrl: './buy-search.component.html',
   styleUrls: ['./buy-search.component.scss']
 })
-export class BuySearchComponent implements OnInit {
+export class BuySearchComponent implements OnInit, AfterViewInit {
 
-  constructor(private activeRoute: ActivatedRoute, private service: AppService, private api: AppService, private route: Router) {
+  countryData:any = "";
+  constructor(private activeRoute: ActivatedRoute, private service: AppService, private api: AppService, private route: Router, private cookie : CookieService) {
     this.getLoaction({ "Searching": "", "CountryId": "1" });
 
     this.data.rentalTypeId = 1
@@ -44,8 +46,15 @@ export class BuySearchComponent implements OnInit {
       map((fruit: string | null) => (fruit ? this._filter(fruit) : this.searchList.slice())),
     );
   }
-
-
+  ngAfterViewInit(): void {
+    let a = setInterval(() => {
+      if (this.cookie.get("countryData")) {
+        this.countryData = JSON.parse(this.cookie.get("countryData"));
+        this.getLoaction({ "Searching": "", "CountryId": this.countryData.id });
+        clearInterval(a);
+      }
+    }, 100);
+  }
   locationOnSearchData: any = []
   getLoaction(data: any) {
     let tempData: any = []
