@@ -87,22 +87,20 @@
                             data-bs-target="#pills-valuation" type="button" role="tab" aria-controls="pills-valuation"
                             aria-selected="false">My Valuations</button>
                     </li>
-                    <!-- <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="pills-packages-tab" data-bs-toggle="pill"
-                            data-bs-target="#pills-packages" type="button" role="tab" aria-controls="pills-packages"
-                            aria-selected="false"
-                            *ngIf="professionalType == 1 || professionalType == 2 || professionalType == 3">My
-                            Packages</button>
-                    </li> -->
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link wallet-btn" id="pills-valuation-tab" data-bs-toggle="pill"
+                        <button class="nav-link wallet-btn" id="pills-wallet-tab" data-bs-toggle="pill"
                             data-bs-target="#pills-wallet" type="button" role="tab" aria-controls="pills-wallet"
                             aria-selected="false">My Wallet</button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="pills-valuation-tab" data-bs-toggle="pill"
+                        <button class="nav-link" id="pills-refreel-tab" data-bs-toggle="pill"
                             data-bs-target="#pills-code" type="button" role="tab" aria-controls="pills-code"
                             aria-selected="false">My Referral Code</button>
+                    </li>
+                     <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="pills-packages-tab" data-bs-toggle="pill"
+                            data-bs-target="#pills-packages" type="button" role="tab" aria-controls="pills-packages"
+                            aria-selected="false">My Packages</button>
                     </li>
                     <li class="nav-item" role="presentation">
                         <!-- <button class="nav-link" id="">More</button> -->
@@ -1903,34 +1901,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- <div class="tab-pane fade" id="pills-packages" role="tabpanel" aria-labelledby="pills-valuation-tab">
-                    <div class="recent-activity">
-                        <h4 class="sub-title mb-4">My Packages</h4>
-                        <div ngClass="packages_details" *ngFor="let data of myPackages">
-                            <div ngClass="package_flex d-flex justify-content-spacebw">
-                                <div ngClass="packge-item packge_type">
-                                    <p>Package Type</p>
-                                    <h6>{{data.propertyListingPackage.name}}</h6>
-                                </div>
-                                <div ngClass="packge-item packge_price">
-                                    <p>Package Price</p>
-                                    <h6>{{data.propertyListingPackage.price}} AED <span>inclusive of VAT</span></h6>
-                                </div>
-                                <div ngClass="packge-item packge_validity">
-                                    <p>Package Validity</p>
-                                    <h6>{{data.propertyListingPackage.validDays}} Days</h6>
-                                </div>
-                                <div ngClass="packge-item packge_renew">
-                                    <button ngClass="renew-btn" routerLink="/payment-packages">Renew</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div ngClass="packge-item packge_others text-center mt-5 mb-5">
-                            <button ngClass="other-packages_btn" routerLink="/payment-packages">Other Packages</button>
-                        </div>
-                    </div>
-                </div> -->
-                <div class="tab-pane fade" id="pills-wallet" role="tabpanel" aria-labelledby="pills-valuation-tab">
+                <div class="tab-pane fade" id="pills-wallet" role="tabpanel" aria-labelledby="pills-wallet-tab">
                     <div clss="tab-iiner-content-sec">
                         <div class="sub-dash-heading mb-4">
                             <h4 class="sub-title">My Wallet</h4>
@@ -1939,32 +1910,50 @@
                             <mat-tab-group>
                                 <mat-tab label="My Wallet">
                                     <div ngClass="my-wallet-list-wrapper">
-                                        <div class="row align-items-center">
-                                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                                        <div class="row">
+                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12">
                                                 <div ngClass="my-wallet-list-img">
                                                     <img src="{{wallet}}">
                                                 </div>
                                             </div>
-                                            <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12">
+                                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                                                 <div ngClass="my-wallet-list-design">
                                                     <div ngClass="exisitng-amount">
                                                         <h6>Existing Points</h6>
                                                         <p>{{myBalance}}</p>
                                                     </div>
-                                                    <div class="row">
-                                                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-                                                            <div ngClass="recharge-now-btn">
+                                                            <div ngClass="recharge-now-btn mt-3 mb-2">
                                                                 <a class="cursor-pointer"
                                                                     (click)="rechargePopup(rechargemodal)">Recharge
                                                                     Now</a>
                                                             </div>
-                                                        </div>
-                                                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                                                             <div ngClass="transfer-now-btn">
                                                                 <a class="cursor-pointer"
                                                                     (click)="TransferPopup(TransferModal)">Transfer</a>
                                                             </div>
-                                                        </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12">
+                                                <div ngClass="my-wallet-list-design">
+                                                    <div ngClass="exisitng-amount">
+                                                        <h6>Purchased Points</h6>
+                                                        <p>20000</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12">
+                                                <div ngClass="my-wallet-list-design">
+                                                    <div ngClass="exisitng-amount">
+                                                        <h6>Used Points</h6>
+                                                        <p>10000</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12">
+                                                <div ngClass="my-wallet-list-design">
+                                                    <div ngClass="exisitng-amount">
+                                                        <h6>Expired Date</h6>
+                                                        <p>10 Oct 2022</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -2008,7 +1997,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="pills-code" role="tabpanel" aria-labelledby="pills-valuation-tab">
+                <div class="tab-pane fade" id="pills-code" role="tabpanel" aria-labelledby="pills-code-tab">
                     <div clss="tab-iiner-content-sec">
                         <div class="sub-dash-heading mb-4">
                             <h4 class="sub-title">My Referral Code</h4>
@@ -2054,6 +2043,34 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="tab-pane fade" id="pills-packages" role="tabpanel" aria-labelledby="pills-packages-tab">
+                    <div clss="tab-iiner-content-sec">
+                        <div class="sub-dash-heading mb-4">
+                            <h4 class="sub-title">My Packages</h4>
+                        </div>
+                    <div ngClass="my-valuation-list-wrapper">
+                        <div ngClass="my-valuation-list-design d-flex">
+                            <div ngClass="my_valuation-inner-div valuation_property-name">
+                                <div ngClass="valuation_property-name-first d-flex align-items-center">
+                                    <span ngClass="val_pro-number">1</span>
+                                </div>
+                            </div>
+                            <div ngClass="my_valuation-inner-div category">
+                                <h6>Package Name</h6>
+                                <p>Premium</p>
+                            </div>
+                            <div ngClass="my_valuation-inner-div category">
+                                <h6>Package Purchased Date</h6>
+                                <p>5 Oct 2022</p>
+                            </div>
+                            <div ngClass="my_valuation-inner-div place">
+                                <h6>Package Validity</h6>
+                                <p>15 Oct 2022</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 </div>
                 <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
                     <div class="recent-activity profile-tab-wrap">
