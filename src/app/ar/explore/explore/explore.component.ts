@@ -107,8 +107,6 @@ export class ExploreComponent implements OnInit, AfterViewInit {
                 this.selectedCountry = this.country[i];
               }
             }
-            console.log(this.defaultCountry);
-            console.log(this.selectedCountry);
             this.service.FindCities({ "CountryId": this.defaultCountry, "Locations": [] }).subscribe((result: any) => {
               this.cityData = result.data;
               for (let i = 0; i < this.cityData.length; i++) {
