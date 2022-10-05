@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, Output, EventEmitter, AfterViewInit } from '@angular/core';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { AppService } from 'src/app/service/app.service';
 import { Options } from '@angular-slider/ngx-slider';
@@ -9,13 +9,14 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { data } from 'jquery';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-find-agent-search',
   templateUrl: './find-agent-search.component.html',
   styleUrls: ['./find-agent-search.component.scss']
 })
-export class FindAgentSearchComponent implements OnInit {
+export class FindAgentSearchComponent implements OnInit, AfterViewInit {
   @Output() childParentDataLoad: EventEmitter<any> = new EventEmitter<any>()
 
   myControl = new FormControl('');
@@ -54,8 +55,9 @@ export class FindAgentSearchComponent implements OnInit {
   getUrllanguageIds: any = []
   getUrlExpertInId: any;
   districtValue: any = [];
+  countryData:any = "";
 
-  constructor(private activeRoute: ActivatedRoute, private service: AppService, public route: Router) {
+  constructor(private activeRoute: ActivatedRoute, private service: AppService, public route: Router, private cookie: CookieService) {
 
     this.getUrllanguageIds = this.activeRoute.snapshot.queryParamMap.get('LanguageId');
     this.getUrlExpertInId = this.activeRoute.snapshot.queryParamMap.get('ExpertInId');
@@ -74,8 +76,15 @@ export class FindAgentSearchComponent implements OnInit {
       map((fruit: string | null) => (fruit ? this._filter(fruit) : this.allFruits.slice())),
     );
   }
-
-
+  ngAfterViewInit(): void {
+    let a = setInterval(() => {
+      if (this.cookie.get("countryData")) {
+        this.countryData = JSON.parse(this.cookie.get("countryData"));
+        this.getLoaction({ "Searching": "", "CountryId": this.countryData.id });
+        clearInterval(a);
+      }
+    }, 100);
+  }
   locationOnSearchData: any = []
   getLoaction(data: any) {
     let tempData: any = []

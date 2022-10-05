@@ -30,7 +30,6 @@ export class CommunitySearchModuleComponent implements OnInit, AfterViewInit {
       this.propertyType = this.propertyType.data
     });
     this.LoadPropertyCategories();
-    this.getLoaction({ "Searching": "", "CountryId": "1" });
     this.service.RentTypes().subscribe(data => {
       let response: any = data;
       this.Monthly = response.data[0].name;
