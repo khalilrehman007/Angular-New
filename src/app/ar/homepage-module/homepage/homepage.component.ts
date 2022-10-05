@@ -235,7 +235,6 @@ export class HomepageComponent implements OnInit, AfterViewInit {
     $(window).scrollTop(0);
     this.LoadPropertyCategories()
     this.LoadBlogs();
-    this.LoadBanners();
     this.getLoadFeedback();
     this.loadCountriesData();
     this.ValuationTransactions();
@@ -289,11 +288,11 @@ export class HomepageComponent implements OnInit, AfterViewInit {
         this.countryData = JSON.parse(this.cookie.get("countryData"));
         this.service.NearPlaces(this.countryData.id).subscribe((result: any) => {
           this.explorePlaces = result.data;
-        })
+        });
         this.service.TrendTitle(this.countryData.id).subscribe((result: any) => {
           this.trendTitle = result.data
-        })
-        console.log(this.countryData);
+        });
+        this.LoadBanners();
         clearInterval(a);
       }
     })
@@ -419,7 +418,7 @@ export class HomepageComponent implements OnInit, AfterViewInit {
 
   LoadBanners() {
     let tempData: Array<Object> = []
-    this.service.LoadBanners().subscribe(data => {
+    this.service.LoadBanners(this.countryData.id).subscribe(data => {
       let response: any = data;
       response.data.forEach((element: any, i: any) => {
         let image = element.bannerDocument.fileUrl

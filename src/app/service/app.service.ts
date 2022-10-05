@@ -34,9 +34,9 @@ export class AppService {
     // BlogBanners
     return this.http.get(this.apiurl + 'blogs');
   }
-  LoadBanners() {
+  LoadBanners(data:any) {
     // BlogBanners
-    return this.http.get(this.apiurl + 'Banners');
+    return this.http.get(this.apiurl + 'Banners/' + data);
   }
   LoadExpertIn() {
     // BlogBanners

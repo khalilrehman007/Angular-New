@@ -617,7 +617,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     let expire = new Date();
     let time = Date.now() + ((3600 * 1000) * 24);
     expire.setTime(time);
-    this.cookie.set("countryData", JSON.stringify(e), expire);
+    this.cookie.set("countryData", JSON.stringify(e), expire, "/");
     location.reload();
   }
 }
