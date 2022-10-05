@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { ActivatedRoute, Router } from "@angular/router";
 import { AppService } from 'src/app/service/app.service';
@@ -9,13 +9,14 @@ import { map, startWith } from 'rxjs/operators';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { data } from 'jquery';
 import { AuthService } from 'src/app/service/auth.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-landing',
   templateUrl: './landing.component.html',
   styleUrls: ['./landing.component.scss']
 })
-export class LandingComponent implements OnInit {
+export class LandingComponent implements OnInit, AfterViewInit {
   baseUrl = 'https://beta.ovaluate.com/'
   totalLength: number = 0;
   page: number = 1;
@@ -37,15 +38,15 @@ export class LandingComponent implements OnInit {
   ExpertInId: any;
   getAgentId: any;
   locationId: any = [];
+  countryData: any = "";
 
-  constructor(private activeRoute: ActivatedRoute, private authService: AuthService, private router: Router, private service: AppService) {
-    if(this.router.url == "/find-companies") {
+  constructor(private activeRoute: ActivatedRoute, private authService: AuthService, private router: Router, private service: AppService, private cookie: CookieService) {
+    if (this.router.url == "/find-companies") {
       this.companies = true;
     }
     $(window).scrollTop(0);
     this.agentData();
     this.companyData();
-    this.getCompany({ "Searching": '', "CountryId": "1" });
 
     this.languageIds = this.activeRoute.snapshot.queryParamMap.get('LanguageId');
     this.ExpertInId = this.activeRoute.snapshot.queryParamMap.get('ExpertInId');
@@ -73,69 +74,6 @@ export class LandingComponent implements OnInit {
       this.agentCheck = true;
       this.agentData();
     }
-
-    let agentObject: any = {
-      "CountryId": "1", "DistrictsId": this.locationId,
-      "CompaniesId": [], "UserId": "0", "EpertInId": this.ExpertInId,
-      "LanguageId": this.languageIds, "CurrentPage": 1
-    };
-
-    this.agentListData(agentObject);
-
-    this.companiesListData({ "CountryId": "1", "DistrictsId": [], "CompaniesId": [], "CurrentPage": 1 });
-
-    this.service.BestAgent(1).subscribe((result: any) => {
-      // this.agentDetails = result.data;
-      let tempData: Array<Object> = []
-      let response: any = result.data;
-      console.log(tempData)
-      response.forEach((element:any, i:any) => {
-        let imageUrl: any = '../assets/images/user.png';
-        if (element.agentDetails != undefined && element.agentDetails.user.imageUrl != undefined) {
-          imageUrl = this.baseUrl + element.agentDetails.user.imageUrl
-        }
-        let fullName: any = '';
-        if (element.agentDetails != undefined && element.agentDetails.user.fullName != undefined) {
-          fullName = element.agentDetails.user.fullName
-        }
-        let id: any = '';
-        if (element.agentDetails != undefined && element.agentDetails.user.id != undefined) {
-          id = element.agentDetails.user.id
-        }
-        let expertIn: any = '';
-        if (element.agentDetails != undefined && element.agentDetails.expertIn != undefined) {
-          expertIn = element.agentDetails.expertIn
-        }
-        let reraNo: any = '';
-        if (element.agentDetails != undefined && element.agentDetails.company != undefined && element.agentDetails.company.reraNo != undefined) {
-          reraNo = element.agentDetails.company.reraNo
-        }
-        let premitNo: any = '';
-        if (element.agentDetails != undefined && element.agentDetails.company != undefined && element.agentDetails.company.premitNo != undefined) {
-          premitNo = element.agentDetails.company.premitNo
-        }
-        tempData.push(
-          {
-            id: id,
-            imageUrl: imageUrl,
-            fullName: fullName,
-            expertIn: expertIn,
-            reraNo: reraNo,
-            premitNo: premitNo,
-            salePropertyListingCount: element.salePropertyListingCount,
-            rentPropertyListingCount: element.rentPropertyListingCount,
-            commercialPropertyListingCount: element.commercialPropertyListingCount,
-
-          }
-        );
-      })
-      this.agentDetails = tempData
-    })
-
-
-    this.service.BestCompanies(1).subscribe((result: any) => {
-      this.bestCompanies = result.data;
-    })
     this.searchfilter = this.searchctrl.valueChanges.pipe(
       startWith(null),
       map((searchCompenies: string | null) => (searchCompenies ? this._filter(searchCompenies) : this.searchList.slice())),
@@ -148,13 +86,76 @@ export class LandingComponent implements OnInit {
       }
     });
   }
+  ngAfterViewInit(): void {
+    let a = setInterval(() => {
+      if (this.cookie.get("countryData")) {
+        this.countryData = JSON.parse(this.cookie.get("countryData"));
+        this.getCompany({ "Searching": '', "CountryId": this.countryData.id });
+        let agentObject: any = {
+          "CountryId": this.countryData.id, "DistrictsId": this.locationId,
+          "CompaniesId": [], "UserId": "0", "EpertInId": this.ExpertInId,
+          "LanguageId": this.languageIds, "CurrentPage": 1
+        };
+        this.agentListData(agentObject);
+        this.companiesListData({ "CountryId": this.countryData.id, "DistrictsId": [], "CompaniesId": [], "CurrentPage": 1 });
+        this.service.BestAgent(this.countryData.id).subscribe((result: any) => {
+          let tempData: Array<Object> = []
+          let response: any = result.data;
+          response.forEach((element: any, i: any) => {
+            let imageUrl: any = '../assets/images/user.png';
+            if (element.agentDetails != undefined && element.agentDetails.user.imageUrl != undefined) {
+              imageUrl = this.baseUrl + element.agentDetails.user.imageUrl
+            }
+            let fullName: any = '';
+            if (element.agentDetails != undefined && element.agentDetails.user.fullName != undefined) {
+              fullName = element.agentDetails.user.fullName
+            }
+            let id: any = '';
+            if (element.agentDetails != undefined && element.agentDetails.user.id != undefined) {
+              id = element.agentDetails.user.id
+            }
+            let expertIn: any = '';
+            if (element.agentDetails != undefined && element.agentDetails.expertIn != undefined) {
+              expertIn = element.agentDetails.expertIn
+            }
+            let reraNo: any = '';
+            if (element.agentDetails != undefined && element.agentDetails.company != undefined && element.agentDetails.company.reraNo != undefined) {
+              reraNo = element.agentDetails.company.reraNo
+            }
+            let premitNo: any = '';
+            if (element.agentDetails != undefined && element.agentDetails.company != undefined && element.agentDetails.company.premitNo != undefined) {
+              premitNo = element.agentDetails.company.premitNo
+            }
+            tempData.push(
+              {
+                id: id,
+                imageUrl: imageUrl,
+                fullName: fullName,
+                expertIn: expertIn,
+                reraNo: reraNo,
+                premitNo: premitNo,
+                salePropertyListingCount: element.salePropertyListingCount,
+                rentPropertyListingCount: element.rentPropertyListingCount,
+                commercialPropertyListingCount: element.commercialPropertyListingCount,
+
+              }
+            );
+          })
+          this.agentDetails = tempData
+        })
+        this.service.BestCompanies(this.countryData.id).subscribe((result: any) => {
+          this.bestCompanies = result.data;
+        })
+        clearInterval(a);
+      }
+    }, 100);
+  }
   companyOnSearchData: any = []
   getCompany(data: any) {
     let tempData: any = []
     let tempCompleteData: any = []
     this.service.CompanyLocationAutoCompleteSearch(data).subscribe(data => {
       let response: any = data;
-      console.log(response)
       response.data.locationAutoComplete.forEach((element:any, i:any) => {
         tempData.push(element.item2);
         tempCompleteData.push({ 'id': element.key, 'value': element.item2 })
@@ -199,7 +200,7 @@ export class LandingComponent implements OnInit {
     } else {
       this.companies = true;
       this.totalLength = this.findCompanies.length;
-      this.companiesListData({ "CountryId": "1", "DistrictsId": [], "CompaniesId": [], "CurrentPage": 1 });
+      this.companiesListData({ "CountryId": this.countryData.id, "DistrictsId": [], "CompaniesId": [], "CurrentPage": 1 });
     }
   }
   companyData() {
@@ -222,11 +223,9 @@ export class LandingComponent implements OnInit {
   }
   agentpageChanged(value: any) {
     this.page = value;
-    // this.companiesListData({ "CountryId": "1", "DistrictsId": [], "CompaniesId": [], "CurrentPage": value });
   }
   companypageChanged(value: any) {
     this.companypage = value;
-    // this.companiesListData({ "CountryId": "1", "DistrictsId": [], "CompaniesId": [], "CurrentPage": value });
   }
   filterCountry(id: any) {
     let temp = this.country.filter((c: any) => c.id == id)[0];
@@ -360,7 +359,7 @@ export class LandingComponent implements OnInit {
     this.agentListData(data);
   }
   proceedCompanySearch() {
-    let params: any = { "CountryId": "1", "DistrictsId": [], "CompaniesId": this.companyIds, "CurrentPage": 1 }
+    let params: any = { "CountryId": this.countryData.id, "DistrictsId": [], "CompaniesId": this.companyIds, "CurrentPage": 1 }
     this.router.navigate(['/find-agent'], { queryParams: params })
     this.companiesListData(params);
 
