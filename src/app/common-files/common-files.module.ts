@@ -22,6 +22,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { AlertsModule } from '../alerts/alerts.module';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 
 @NgModule({
@@ -47,6 +48,7 @@ import { AlertsModule } from '../alerts/alerts.module';
     MatFormFieldModule,
     MatSelectModule,
     MatInputModule,
+    MatAutocompleteModule,
     ReactiveFormsModule,
     AlertsModule,
     NgbModule

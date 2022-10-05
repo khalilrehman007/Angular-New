@@ -455,3 +455,169 @@ ul.package-listing-details-inner {
     color: #fff !important;
 }
 
+.packagepoints-wrapper {
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+.payment_box_wrap {
+  padding: 30px;
+  box-shadow: 0px 0 41px -36px #000929;
+  position: relative;
+  overflow: hidden;
+  border-radius: 15px;
+  transition: all 0.5s ease-in-out;
+  bottom: 0px;
+  background-color: #fff;
+  height: 100%;
+}
+.view-more-modal {
+  background: transparent;
+  border: none;
+  color: #0f2ead;
+  padding-left: 20px;
+  cursor: pointer;
+}
+.payment-text-modal-design {
+  background-color: #fff;
+  border-radius: 15px;
+  padding: 35px;
+}
+.payment_box_cnntn ul li {
+  font-size: 14px;
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 10px;
+}
+.payment_box_cnntn ul li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 5px;
+  width: 10px;
+  height: 6px;
+  border-top: 2px solid #9a9c9d;
+  border-right: 2px solid #9a9c9d;
+  transform: rotate(132deg);
+}
+.cancel-btn {
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  text-align: right;
+  font-size: 30px;
+}
+.payment-text-modal-design .payment_box_hdr {
+  padding-bottom: 15px;
+  border-bottom: 1px solid #f4f4f4;
+  margin-bottom: 18px;
+}
+.payment_box_wrap::before {
+  content: "";
+  position: absolute;
+  right: -20px;
+  top: -20px;
+  width: 250px;
+  height: 250px;
+  background-color: #fbfbfb;
+  border-radius: 50%;
+  z-index: -1;
+}
+.box_list-pay {
+  text-align: right;
+}
+.payment_box_wrap>input {
+  position: absolute;
+  right: 24px;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  z-index: 9;
+  opacity: 0;
+  top: 22px;
+}
+.payment_box_cnntn {
+  padding-top: 20px;
+}
+.cstm-btn-pay-points {
+  width: 20px;
+  height: 20px;
+  border: none;
+  border-radius: 50%;
+  background-color: transparent;
+  outline: 1px solid #D3D5DA;
+  outline-offset: 4px;
+}
+.payment_box_wrap>input:checked+.box_list-pay .cstm-btn-pay-points {
+  background-color: #4a565f;
+}
+.payment_box_wrap.standard, .payment_box_wrap.free {
+  border-top: 7px solid #4a565f;
+}
+.payment_box_wrap.platinum {
+  border-top: 7px solid purple;
+}
+.payment_box_wrap.premium{
+  border-top: 7px solid #2DB57D;
+}
+.payment_box_wrap:hover {
+  box-shadow: 0px 0 61px -36px #000929;
+  cursor: pointer;
+  bottom: 10px;
+}
+.payment_box_wrap.platinum>input:checked+.box_list-pay .cstm-btn-pay-points {
+  background-color: purple;
+}
+.payment_box_wrap.premium>input:checked+.box_list-pay .cstm-btn-pay-points{
+  background-color: #2DB57D;
+}
+.packages-point-heading h2 {
+  text-transform: uppercase;
+  margin-bottom: 40px;
+}
+.pointss_lists .payment_box_cnntn {
+  padding-top: 0px;
+}
+.pointss_lists .payment_box_cnntn .box-price {
+  font-size: 42px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+.pointss_lists .payment_box_cnntn p {
+  font-size: 16px;
+  margin-bottom: 0px;
+  color: gray;
+}
+.packagepoints-wrapper-2 {
+  background-color: #f0f3f6;
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+.packagepoints-wrapper-2 .payment_box_wrap.platinum .box-price {
+  color: #812b80;
+}
+.payment_box_wrap.standard h4,.payment_box_wrap.free h4 {
+  color: #4a565f;
+}
+.payment_box_wrap.platinum h4 {
+  color: #812b80;
+}
+.payment_box_wrap.premium h4{
+  color: #2DB57D;
+}
+.pointss_lists .payment_box_wrap.standard .box-price {
+  color: #4a565f;
+}
+.pointss_lists .payment_box_wrap.premium .box-price {
+  color: #51b67e;
+}
+.buy-now-btn {
+  background-color: #51b67e;
+  color: #fff;
+  border: none;
+  padding: 14px 50px;
+  border-radius: 10px;
+  font-size: 16px;
+}
+.buy-now-btn:hover {
+  background-color: #4a565f;
+}
