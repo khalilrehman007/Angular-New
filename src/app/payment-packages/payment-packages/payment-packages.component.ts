@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AppService} from "../../service/app.service";
 import * as $ from 'jquery';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-payment-packages',
@@ -22,7 +23,7 @@ export class PaymentPackagesComponent implements OnInit {
   professionalTypeTab: any;
 
 
-  constructor(private service: AppService) {
+  constructor(private service: AppService,private modalService: NgbModal) {
     $(window).scrollTop(0);
     this.loadProfessionalTypes();
     this.loadPropertyListingTypes();
@@ -98,5 +99,13 @@ export class PaymentPackagesComponent implements OnInit {
     });
 
   }
-
+  platinumPopup(Platinumcontent: any) {
+    this.modalService.open(Platinumcontent, { centered: true });
+  }
+  premiumPopup(premiumcontent: any) {
+    this.modalService.open(premiumcontent, { centered: true });
+  }
+  freePopup(freecontent: any) {
+    this.modalService.open(freecontent, { centered: true });
+  }
 }
