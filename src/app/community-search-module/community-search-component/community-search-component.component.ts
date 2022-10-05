@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { AppService } from 'src/app/service/app.service';
 import { Options } from '@angular-slider/ngx-slider';
@@ -8,20 +8,23 @@ import { MatChipInputEvent } from '@angular/material/chips';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-community-search-component',
   templateUrl: './community-search-component.component.html',
   styleUrls: ['./community-search-component.component.scss']
 })
-export class CommunitySearchComponentComponent implements OnInit {
+export class CommunitySearchComponentComponent implements OnInit, AfterViewInit {
+
+  countryData: any = "";
   separatorKeysCodes: number[] = [ENTER, COMMA];
   searchctrl = new FormControl('');
   searchfilter: any;
   SearchKeyword: string[] = [];
   searchList: string[] = [];
 
-  constructor(private activeRoute: ActivatedRoute, private service: AppService, private api: AppService, private route: Router) {
+  constructor(private activeRoute: ActivatedRoute, private service: AppService, private api: AppService, private route: Router, private cookie: CookieService) {
     this.data.rentalTypeId = 1
     this.api.LoadType(1).subscribe((result) => {
       this.propertyType = result;
@@ -49,6 +52,15 @@ export class CommunitySearchComponentComponent implements OnInit {
     );
   }
 
+  ngAfterViewInit(): void {
+    let a = setInterval(() => {
+      if (this.cookie.get("countryData")) {
+        this.countryData = JSON.parse(this.cookie.get("countryData"));
+        this.getLoaction({ "Searching": "", "CountryId": this.countryData.id });
+        clearInterval(a);
+      }
+    }, 100);
+  }
   locationOnSearchData: any = []
   getLoaction(data: any) {
     let tempData: any = []
@@ -222,7 +234,7 @@ export class CommunitySearchComponentComponent implements OnInit {
 
   remove(fruit: string): void {
     let removeId: any;
-    this.locationOnSearchData.forEach((element:any, i:any) => {
+    this.locationOnSearchData.forEach((element: any, i: any) => {
       if (element.value == fruit) {
         removeId = element.id
       }
@@ -242,7 +254,7 @@ export class CommunitySearchComponentComponent implements OnInit {
 
   DistrictsId: any = []
   selected(event: MatAutocompleteSelectedEvent): void {
-    this.locationOnSearchData.forEach((element:any, i:any) => {
+    this.locationOnSearchData.forEach((element: any, i: any) => {
       if (element.value == event.option.viewValue) {
         this.DistrictsId.push(element.id)
       }

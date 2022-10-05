@@ -53,8 +53,6 @@ export class BuySearchComponent implements OnInit, AfterViewInit {
       }
     }, 100);
   }
-
-
   locationOnSearchData: any = []
   getLoaction(data: any) {
     let tempData: any = []
