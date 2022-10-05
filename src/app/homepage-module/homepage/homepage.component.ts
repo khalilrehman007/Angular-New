@@ -279,7 +279,6 @@ export class HomepageComponent implements OnInit, AfterViewInit {
         this.service.TrendTitle(this.countryData.id).subscribe((result: any) => {
           this.trendTitle = result.data
         })
-        console.log(this.countryData);
         clearInterval(a);
       }
     })
