@@ -117,7 +117,7 @@ export class ExploreComponent implements OnInit, AfterViewInit {
         });
         clearInterval(a);
       }
-    })
+    },100)
   }
 
   ngOnInit(): void {

@@ -97,27 +97,9 @@ export class ExploreComponent implements OnInit, AfterViewInit {
     let a = setInterval(() => {
       if(this.cookie.get("countryData")) {
         this.countryData = JSON.parse(this.cookie.get("countryData"));
-        this.service.LoadCountries().subscribe(e => {
-          let temp: any = e;
-          if (temp.message == "Country list fetched successfully") {
-            for (let i = 0; i < temp.data.length; i++) {
-              this.country.push({ viewValue: temp.data[i].name, value: temp.data[i].id, desc: temp.data[i].description });
-              if(temp.data[i].name == this.countryData.name) {
-                this.defaultCountry = this.country[i].value;
-                this.selectedCountry = this.country[i];
-              }
-            }
-            this.service.FindCities({ "CountryId": this.defaultCountry, "Locations": [] }).subscribe((result: any) => {
-              this.cityData = result.data;
-              for (let i = 0; i < this.cityData.length; i++) {
-                this.searchListExplore.push(this.cityData[i].name)
-              }
-            })
-          }
-        });
         clearInterval(a);
       }
-    })
+    },100);
   }
 
   ngOnInit(): void {
