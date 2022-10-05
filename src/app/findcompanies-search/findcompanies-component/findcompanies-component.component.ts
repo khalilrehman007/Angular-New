@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { ActivatedRoute, Router } from "@angular/router";
 import { AppService } from 'src/app/service/app.service';
@@ -9,13 +9,14 @@ import { map, startWith } from 'rxjs/operators';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { data } from 'jquery';
 import { AuthService } from "../../service/auth.service";
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-findcompanies-component',
   templateUrl: './findcompanies-component.component.html',
   styleUrls: ['./findcompanies-component.component.scss']
 })
-export class FindcompaniesComponentComponent implements OnInit {
+export class FindcompaniesComponentComponent implements OnInit, AfterViewInit {
   baseUrl = 'https://beta.ovaluate.com/'
   totalLength: number = 0;
   page: number = 1;
@@ -38,7 +39,7 @@ export class FindcompaniesComponentComponent implements OnInit {
   getAgentId: any;
   locationId: any = [];
 
-  constructor(private activeRoute: ActivatedRoute, private authService: AuthService, private router: Router, private service: AppService) {
+  constructor(private activeRoute: ActivatedRoute, private authService: AuthService, private router: Router, private service: AppService, private cookie : CookieService) {
     $(window).scrollTop(0);
     this.agentData();
     this.companyData();
@@ -143,6 +144,9 @@ export class FindcompaniesComponentComponent implements OnInit {
         }
       }
     });
+  }
+  ngAfterViewInit(): void {
+    
   }
 
   companyOnSearchData: any = []
