@@ -1,72 +1,72 @@
 <app-header></app-header>
 <section [ngClass]="'inner-cntnt-wrapper slide-left-bar'">
-    <section [ngClass]="'list-package-banner-sec position-relative'"
-      style="background-image: url('assets/images/package-banner.png')">
-      <div [ngClass]="'container_1280px'">
-        <app-breadcrumbs></app-breadcrumbs>
-        <div ngClass="inner-banner-heading text-center">
-          <h2>Ovaluate Points and Packages</h2>
-          <p>First time on ovaluate and want to sell or rent your property really fast, simply subscibe to one of our paid
-            packages and get super benefits.</p>
-        </div>
+  <section [ngClass]="'list-package-banner-sec position-relative'"
+    style="background-image: url('assets/images/package-banner.png')">
+    <div [ngClass]="'container_1280px'">
+      <app-breadcrumbs></app-breadcrumbs>
+      <div ngClass="inner-banner-heading text-center">
+        <h2>Ovaluate Points and Packages</h2>
+        <p>First time on ovaluate and want to sell or rent your property really fast, simply subscibe to one of our paid
+          packages and get super benefits.</p>
       </div>
-    </section>
-    <section ngClass="packagepoints-wrapper">
-      <div ngClass="container_1280px">
+    </div>
+  </section>
+  <section ngClass="packagepoints-wrapper">
+    <div ngClass="container_1280px">
       <div class="package_lists">
-      <div class="packages-point-heading text-center">
-        <h2>Packages</h2>
-      </div>
-        <div ngClass="row">
-          <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+        <div class="packages-point-heading text-center">
+          <h2>Packages</h2>
+        </div>
+        <div ngClass="row" *ngIf="packagesType.length > 0">
+          <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12" *ngFor="let packages of packagesType">
             <div class="payment_box_wrap standard">
               <input type="radio" name="payment">
               <div class="box_list-pay">
-              <button class="cstm-btn-pay-points"></button>
+                <button class="cstm-btn-pay-points"></button>
               </div>
               <div class="payment_box_hdr">
-                 <h4>STANDARD</h4>
+                <h4>{{packages.name}}</h4>
               </div>
               <div class="payment_box_cnntn">
-                <ul class="list-unstyled">
-                  <li>10 CREDITS/ PER LISTING</li>
-                  <li>A basic listing, appears below the premium listing</li>
+                <ul class="list-unstyled" *ngFor="let property of packages.propertyListingPackageFeatures">
+                  <li>{{property.detail}}</li>
+                  <!-- <li>A basic listing, appears below the premium listing</li>
                   <li>Display 6 pictures /each listing</li>
                   <li>Call, Email, and Chat with the Broker</li>
-                  <li>High number of Leads</li>
+                  <li>High number of Leads</li> -->
                 </ul>
               </div>
             </div>
-        </div>
-          <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
-              <div class="payment_box_wrap platinum">
-                <input type="radio" name="payment">
-                <div class="box_list-pay">
+          </div>
+          <!-- <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+            <div class="payment_box_wrap platinum">
+              <input type="radio" name="payment">
+              <div class="box_list-pay">
                 <button class="cstm-btn-pay-points"></button>
-                </div>
-                <div class="payment_box_hdr">
-                   <h4>PLATINUM</h4>
-                </div>
-                <div class="payment_box_cnntn">
-                  <ul class="list-unstyled">
+              </div>
+              <div class="payment_box_hdr">
+                <h4>PLATINUM</h4>
+              </div>
+              <div class="payment_box_cnntn">
+                <ul class="list-unstyled">
                   <li>50 CREDITS/ PER LISTING</li>
                   <li>On the first pages, the top listings to appear</li>
                   <li>Highest number of leads</li>
                   <li>Most no of appearances on the landing page and in the similar properties</li>
                   <li>Display 10 pictures, and 6 videos /for each listing</li>
-                  </ul>
-                  <button class="view-more-modal" (click)="platinumPopup(Platinumcontent)">View More</button>
-                </div>
+                </ul>
+                <button class="view-more-modal" (click)="platinumPopup(Platinumcontent)">View More</button>
               </div>
+            </div>
           </div>
           <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
             <div class="payment_box_wrap premium">
               <input type="radio" name="payment">
               <div class="box_list-pay">
-              <button class="cstm-btn-pay-points"></button>
+                <button class="cstm-btn-pay-points"></button>
               </div>
               <div class="payment_box_hdr">
-                 <h4>PREMIUM</h4>
+                <h4>PREMIUM</h4>
               </div>
               <div class="payment_box_cnntn">
                 <ul class="list-unstyled">
@@ -79,12 +79,6 @@
                 <button class="view-more-modal" (click)="premiumPopup(premiumcontent)">View More</button>
               </div>
             </div>
-        </div>
-      <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
-        <div class="payment_box_wrap free">
-          <input type="radio" name="payment">
-          <div class="box_list-pay">
-          <button class="cstm-btn-pay-points"></button>
           </div>
           <div class="payment_box_hdr">
              <h4>FREE</h4>
@@ -100,130 +94,212 @@
             </ul>
           </div>
         </div>
-    </div>
+        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+            <div class="payment_box_wrap free">
+              <input type="radio" name="payment">
+              <div class="box_list-pay">
+                <button class="cstm-btn-pay-points"></button>
+              </div>
+              <div class="payment_box_hdr">
+                <h4>FREE</h4>
+              </div>
+              <div class="payment_box_cnntn">
+                <ul class="list-unstyled">
+                  <li>No credits required</li>
+                  <li>One email - one account- one listing</li>
+                  <li>Appears at the bottom of the page</li>
+                  <li>Display 4 photos on the listing</li>
+                  <li>Email/ Chat with the customers</li>
+                </ul>
+                <button class="view-more-modal" (click)="freePopup(freecontent)">View More</button>
+              </div>
+            </div>
+          </div> -->
         </div>
       </div>
       <div class="text-center mt-5">
-         <button class="buy-now-btn">Buy Now</button>
+        <button class="buy-now-btn">Buy Now</button>
       </div>
-      </div>
-    </section>
-    <section ngClass="packagepoints-wrapper-2">
-      <div ngClass="container_1280px">
+    </div>
+  </section>
+  <section ngClass="packagepoints-wrapper-2">
+    <div ngClass="container_1280px">
       <div class="pointss_lists">
         <div class="packages-point-heading text-center">
           <h2>Points</h2>
         </div>
-          <div ngClass="row">
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-              <div class="payment_box_wrap standard">
-                <input type="radio" name="payment">
-                <div class="box_list-pay">
+        <div ngClass="row">
+          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12" *ngFor="let data of points">
+            <div class="payment_box_wrap standard">
+              <input type="radio" name="payment">
+              <div class="box_list-pay">
                 <button class="cstm-btn-pay-points"></button>
-                </div>
-                <div class="payment_box_hdr">
-                   <h4>STANDARD</h4>
-                </div>
-                <div class="payment_box_cnntn">
-                  <h2 class="box-price">100 AED</h2>
-                  <p class="ads-points">135 ad points</p>
-                  <p class="validity-days">30 days validity</p>
-                </div>
               </div>
-          </div>
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-                <div class="payment_box_wrap platinum">
-                  <input type="radio" name="payment">
-                  <div class="box_list-pay">
-                  <button class="cstm-btn-pay-points"></button>
-                  </div>
-                  <div class="payment_box_hdr">
-                     <h4>PLATINUM</h4>
-                  </div>
-                  <div class="payment_box_cnntn">
-                    <h2 class="box-price">200 AED</h2>
-                  <p class="ads-points">270 ad points</p>
-                  <p class="validity-days">30 days validity</p>
-                  </div>
-                </div>
+              <div class="payment_box_hdr">
+                <h4>STANDARD</h4>
+              </div>
+              <div class="payment_box_cnntn">
+                <h2 class="box-price">{{data.price}} {{data.country.currency}}</h2>
+                <p class="ads-points">{{data.pointValue}}</p>
+                <p class="validity-days">30 days validity</p>
+              </div>
             </div>
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-              <div class="payment_box_wrap premium">
-                <input type="radio" name="payment">
-                <div class="box_list-pay">
+          </div>
+          <!-- <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+            <div class="payment_box_wrap platinum">
+              <input type="radio" name="payment">
+              <div class="box_list-pay">
                 <button class="cstm-btn-pay-points"></button>
-                </div>
-                <div class="payment_box_hdr">
-                   <h4>PREMIUM</h4>
-                </div>
-                <div class="payment_box_cnntn">
-                  <h2 class="box-price">160 AED</h2>
-                  <p class="ads-points">215 ad points</p>
-                  <p class="validity-days">30 days validity</p>
-                </div>
               </div>
+              <div class="payment_box_hdr">
+                <h4>PLATINUM</h4>
+              </div>
+              <div class="payment_box_cnntn">
+                <h2 class="box-price">200 AED</h2>
+                <p class="ads-points">270 ad points</p>
+                <p class="validity-days">30 days validity</p>
+              </div>
+            </div>
           </div>
-          </div>
+          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+            <div class="payment_box_wrap premium">
+              <input type="radio" name="payment">
+              <div class="box_list-pay">
+                <button class="cstm-btn-pay-points"></button>
+              </div>
+              <div class="payment_box_hdr">
+                <h4>PREMIUM</h4>
+              </div>
+              <div class="payment_box_cnntn">
+                <h2 class="box-price">160 AED</h2>
+                <p class="ads-points">215 ad points</p>
+                <p class="validity-days">30 days validity</p>
+              </div>
+            </div>
+          </div> -->
         </div>
-        <div class="text-center mt-5">
-          <button class="buy-now-btn">Buy Now</button>
-       </div>
       </div>
-    </section>
-<app-footer></app-footer>
+      <div class="text-center mt-5">
+        <button class="buy-now-btn">Buy Now</button>
+      </div>
+    </div>
+  </section>
+  <app-footer></app-footer>
 </section>
 
 <div ngClass="payment-text-modal">
   <ng-template #Platinumcontent let-modal>
     <button class="cancel-btn" aria-label="Close" (click)="modal.dismiss('Cross click')">&times;</button>
+    <div class="modal-body payment-text-modal-design">
+      <div class="payment_box_hdr">
+        <img src="../../../assets/images/payment-popup.jpg">
+        <h4>PLATINUM <br>PACKAGE</h4>
+      </div>
+      <div class="payment_box_cnntn">
+        <ul class="list-unstyled">
+          <li>50 CREDITS/ PER LISTING</li>
+          <li>On the first pages, the top listings to appear</li>
+          <li>Highest number of leads</li>
+          <li>Most no of appearances on the landing page and in the similar properties</li>
+          <li>Display 10 pictures, and 6 videos /for each listing</li>
+          <li>Chat, Call and Live Stream options are available</li>
+          <li>Ovaluate Verified Listings</li>
+          <li>ank higher than Standard and Premium listings</li>
+          <li> 5x more leads than Standard Listings</li>
+          <li>360 Virtual Tour</li>
+          <li>Floor Plans</li>
+          <li>Branding of the property</li>
+          <li>ore Exposure on the website</li>
+          <li>Super Agent</li>
+          <li>High Agent score</li>
+        </ul>
+      </div>
       <div class="modal-body payment-text-modal-design">
         <div class="payment_box_hdr">
-          <img src="../../../assets/images/payment-popup.jpg">
-          <h4>PLATINUM <br>PACKAGE</h4>
-       </div>
-       <div class="payment_box_cnntn">
-         <ul class="list-unstyled">
-         <li>50 CREDITS/ PER LISTING</li>
-         <li>On the first pages, the top listings to appear</li>
-         <li>Highest number of leads</li>
-         <li>Most no of appearances on the landing page and in the similar properties</li>
-         <li>Display 10 pictures, and 6 videos /for each listing</li>
-         <li>Chat, Call and Live Stream options are available</li>
-         <li>Ovaluate Verified Listings</li>
-         <li>ank higher than Standard and Premium listings</li>
-         <li> 5x more leads than Standard Listings</li>
-         <li>360 Virtual Tour</li>
-         <li>Floor Plans</li>
-         <li>Branding of the property</li>
-         <li>ore Exposure on the website</li>
-         <li>Super Agent</li>
-         <li>High Agent score</li>
-         </ul>
-       </div>
+          <h4>PLATINUM</h4>
+        </div>
+        <div class="payment_box_cnntn">
+          <ul class="list-unstyled">
+            <li>50 CREDITS/ PER LISTING</li>
+            <li>On the first pages, the top listings to appear</li>
+            <li>Highest number of leads</li>
+            <li>Most no of appearances on the landing page and in the similar properties</li>
+            <li>Display 10 pictures, and 6 videos /for each listing</li>
+            <li>Chat, Call and Live Stream options are available</li>
+            <li>Ovaluate Verified Listings</li>
+            <li>ank higher than Standard and Premium listings</li>
+            <li> 5x more leads than Standard Listings</li>
+            <li>360 Virtual Tour</li>
+            <li>Floor Plans</li>
+            <li>Branding of the property</li>
+            <li>ore Exposure on the website</li>
+            <li>Super Agent</li>
+            <li>High Agent score</li>
+          </ul>
+        </div>
       </div>
+    </div>
   </ng-template>
 </div>
 <div ngClass="payment-text-modal">
   <ng-template #premiumcontent let-modal>
     <button class="cancel-btn" aria-label="Close" (click)="modal.dismiss('Cross click')">&times;</button>
+    <div class="modal-body payment-text-modal-design">
+      <div class="payment_box_hdr">
+        <img src="../../../assets/images/payment-popup.jpg">
+        <h4>PREMIUM <br>PACKAGE</h4>
+      </div>
+      <div class="payment_box_cnntn">
+        <ul class="list-unstyled">
+          <li>20-30 CREDITS/ PER LISTING</li>
+          <li>Right below the premium listing, a high number of leads</li>
+          <li>Appears in similar properties</li>
+          <li>Display 8 pictures, and 2 videos /for each listing</li>
+          <li>Chat, Call and Live Stream options are available</li>
+          <li>Ovaluate Verified Listings</li>
+          <li>Rank higher than Standard listings</li>
+          <li>5x more leads than Standard Listings</li>
+          <li>Agent Dashboard</li>
+        </ul>
+      </div>
       <div class="modal-body payment-text-modal-design">
         <div class="payment_box_hdr">
-          <img src="../../../assets/images/payment-popup.jpg">
-          <h4>PREMIUM <br>PACKAGE</h4>
-       </div>
-       <div class="payment_box_cnntn">
-         <ul class="list-unstyled">
-           <li>20-30 CREDITS/ PER LISTING</li>
-           <li>Right below the premium listing, a high number of leads</li>
-           <li>Appears in similar properties</li>
-           <li>Display 8 pictures, and 2 videos /for each listing</li>
-           <li>Chat, Call and Live Stream options are available</li>
-           <li>Ovaluate Verified Listings</li>
-           <li>Rank higher than Standard listings</li>
-           <li>5x more leads than Standard Listings</li>
-           <li>Agent Dashboard</li>
-         </ul>
-       </div>
+          <h4>PREMIUM</h4>
+        </div>
+        <div class="payment_box_cnntn">
+          <ul class="list-unstyled">
+            <li>20-30 CREDITS/ PER LISTING</li>
+            <li>Right below the premium listing, a high number of leads</li>
+            <li>Appears in similar properties</li>
+            <li>Display 8 pictures, and 2 videos /for each listing</li>
+            <li>Chat, Call and Live Stream options are available</li>
+            <li>Ovaluate Verified Listings</li>
+            <li>Rank higher than Standard listings</li>
+            <li>5x more leads than Standard Listings</li>
+            <li>Agent Dashboard</li>
+          </ul>
+        </div>
       </div>
+    </div>
+  </ng-template>
+</div>
+<div ngClass="payment-text-modal">
+  <ng-template #freecontent let-modal>
+    <button class="cancel-btn" aria-label="Close" (click)="modal.dismiss('Cross click')">&times;</button>
+    <div class="modal-body payment-text-modal-design">
+      <div class="payment_box_hdr">
+        <h4>FREE</h4>
+      </div>
+      <div class="payment_box_cnntn">
+        <ul class="list-unstyled">
+          <li>No credits required</li>
+          <li>One email - one account- one listing</li>
+          <li>Appears at the bottom of the page</li>
+          <li>Display 4 photos on the listing</li>
+          <li>Email/ Chat with the customers</li>
+          <li>Display of email and chat option</li>
+        </ul>
+      </div>
+    </div>
   </ng-template>
 </div>
