@@ -1912,25 +1912,24 @@
                                     <div ngClass="my-wallet-list-wrapper">
                                         <div class="row">
                                             <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12">
+                                                <div ngClass="my-wallet-list-design">
+                                                    <div ngClass="exisitng-amount">
+                                                        <h6>Package Name</h6>
+                                                        <p>Standard</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12">
                                                 <div ngClass="my-wallet-list-img">
                                                     <img src="{{wallet}}">
                                                 </div>
-                                            </div>
-                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
+                                            </div> -->
+                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12">
                                                 <div ngClass="my-wallet-list-design">
                                                     <div ngClass="exisitng-amount">
                                                         <h6>Existing Points</h6>
                                                         <p>{{myBalance}}</p>
                                                     </div>
-                                                            <div ngClass="recharge-now-btn mt-3 mb-2">
-                                                                <a class="cursor-pointer"
-                                                                    (click)="rechargePopup(rechargemodal)">Recharge
-                                                                    Now</a>
-                                                            </div>
-                                                            <div ngClass="transfer-now-btn">
-                                                                <a class="cursor-pointer"
-                                                                    (click)="TransferPopup(TransferModal)">Transfer</a>
-                                                            </div>
                                                 </div>
                                             </div>
                                             <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12">
@@ -1944,7 +1943,7 @@
                                             <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12">
                                                 <div ngClass="my-wallet-list-design">
                                                     <div ngClass="exisitng-amount">
-                                                        <h6>Used Points</h6>
+                                                        <h6>Points Used</h6>
                                                         <p>10000</p>
                                                     </div>
                                                 </div>
@@ -1952,10 +1951,31 @@
                                             <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12">
                                                 <div ngClass="my-wallet-list-design">
                                                     <div ngClass="exisitng-amount">
-                                                        <h6>Expired Date</h6>
-                                                        <p>10 Oct 2022</p>
+                                                        <h6>Remaining Points </h6>
+                                                        <p>1000</p>
                                                     </div>
                                                 </div>
+                                            </div>
+                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12">
+                                                <div ngClass="my-wallet-list-design">
+                                                    <div ngClass="exisitng-amount">
+                                                        <h6>Expired Date</h6>
+                                                        <p class="red-color">10 Oct 2022</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="recharge_row-wallet">
+                                            <div class="recharge_row-wallet-flex">
+                                            <div ngClass="recharge-now-btn">
+                                                <a class="cursor-pointer"
+                                                    (click)="rechargePopup(rechargemodal)">Recharge
+                                                    Now</a>
+                                            </div>
+                                            <div ngClass="transfer-now-btn">
+                                                <a class="cursor-pointer"
+                                                    (click)="TransferPopup(TransferModal)">Transfer</a>
+                                            </div>
                                             </div>
                                         </div>
                                     </div>
@@ -2062,6 +2082,10 @@
                             <div ngClass="my_valuation-inner-div package-validity">
                                 <h6>Package Validity</h6>
                                 <p>15 Oct 2022</p>
+                            </div>
+                            <div ngClass="my_valuation-inner-div package-status">
+                                <h6>Package Status</h6>
+                                <p class="green-color">Active</p>
                             </div>
                             <div ngClass="my_valuation-inner-div view-more-packages">
                                 <button routerLink="/payment-packages" class="btn-design-packages">View More Packages</button>

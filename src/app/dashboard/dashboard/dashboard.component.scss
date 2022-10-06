@@ -1151,9 +1151,10 @@ $btncolor: #0B26AD;
     margin-bottom: 0px;
     font-size: 16px;
     font-weight: 400;
+    color: #000;
+    opacity: 0.4;
 }
 .exisitng-amount p {
-    font-weight: 700;
     margin-bottom: 15px;
     margin-top: 5px;
 }
@@ -1236,4 +1237,12 @@ $btncolor: #0B26AD;
 .package-validity p{
     color: #FF0000 !important;
 }
-
+.recharge_row-wallet-flex {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 18px;
+}
+.recharge_row-wallet-flex>.transfer-now-btn {
+    margin-left: 15px;
+}
