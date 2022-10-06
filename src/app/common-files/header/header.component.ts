@@ -24,17 +24,18 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   logo = '../../../assets/images/logo.svg'
   chartsvg = '../../../assets/images/Charts-nav.svg'
   signinsvg = '../../../assets/images/user.svg'
-  flagsvg = '../../../assets/images/aed-fg.svg'
+  flagsvg = ''
   close = '../../../assets/images/icons/close.svg'
   property = '../../../assets/images/shortlisted-img.png'
   trash = '../../../assets/images/icons/Trash-dotted.svg'
   logoutimg = '../../../assets/images/logout-popup-banner.png'
   propertynotFound= '../../../assets/images/icons/property-not-found.svg'
   loggedInUser = localStorage.getItem('user')
+  flags:any = ['assets/images/flags/aed-fg.svg','assets/images/flags/saudiarabia.svg','assets/images/flags/bahrin.svg','assets/images/flags/qatar.svg','assets/images/flags/oman.svg','assets/images/flags/kuwait.svg']
   user: any
   availableClasses: string[] = ["sidebar-active", "nosidebar"];
   currentClassIdx: number = 0;
-  headerCountries: any;
+  headerCountries: any='';
   userId: any;
   baseUrl = 'https://beta.ovaluate.com/'
 
@@ -145,6 +146,17 @@ export class HeaderComponent implements OnInit, AfterViewInit {
       let a = setInterval(() => {
         if(this.cookie.get("countryData")) {
           this.currentCountry = JSON.parse(this.cookie.get("countryData"));
+          let b = setInterval(()=>{
+            if(this.headerCountries != '' ){
+              for (let index = 0; index < this.headerCountries.length; index++) {
+                if(this.currentCountry.id == this.headerCountries[index].id){
+                  this.flagsvg= this.flags[index];
+                  break;
+                }
+              }
+              clearInterval(b)
+            }
+          },100)
           clearInterval(a);
         }
       },100);
@@ -610,7 +622,8 @@ export class HeaderComponent implements OnInit, AfterViewInit {
       window.location.href = url;
     }
   }
-  selectCountry(e:any) {
+  selectCountry(e:any,index:any) {
+    this.flagsvg = this.flags[index]
     this.clickEvent2();
     delete e.city;
     this.currentCountry = e;

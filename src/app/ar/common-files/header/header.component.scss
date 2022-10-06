@@ -1144,37 +1144,29 @@ textarea {
 	top: 4px;
     right: 10px;
 }
-.country_list-dropdown {
-    position: absolute;
-    right: 25px;
-    background-color: #fff;
-    border-radius: 7px;
-    width: 100%;
-    max-width: 300px;
-    overflow: auto;
-    height: 500px;
-	z-index: 99;
-}
 .country_list-dropdown.notactive {
     display: none;
 }
 .country_list-dropdown {
-    position: absolute;
+	position: absolute;
     right: 25px;
     background-color: #fff;
     border-radius: 7px;
     width: 100%;
     max-width: 300px;
     overflow: auto;
-    height: 500px;
-    padding: 20px;
-	margin-top: 25px;
+    margin-top: 25px;
+    border: 0.5px solid #F0EFFB;
+	padding: 25px;
+	z-index: 99;
 }
 .country_list-dropdown>button {
     border: none;
     background: transparent;
     width: 100%;
     text-align: right;
+	position: relative;
+    bottom: 10px;
 }
 .countries_dropdown-list ul li {
     padding: 10px 0px;
@@ -1188,10 +1180,10 @@ textarea {
 	width: 18px;
     height: 18px;
 }
-.country_list-dropdown {
-    padding: 25px;
+.countries_dropdown-list .country-dropdown-item:hover {
+    background: transparent !important;
+    color: #0f2ead;
 }
-
 @media (max-width: 1199px){
 	.mobile-abs-items .signin-li .nav-link {
 		padding: 5px !important;
