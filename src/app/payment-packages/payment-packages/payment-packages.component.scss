@@ -480,7 +480,8 @@ ul.package-listing-details-inner {
 .payment-text-modal-design {
   background-color: #fff;
   border-radius: 15px;
-  padding: 35px;
+  padding: 0px;
+  overflow: hidden;
 }
 .payment_box_cnntn ul li {
   font-size: 14px;
@@ -505,11 +506,6 @@ ul.package-listing-details-inner {
   color: #fff;
   text-align: right;
   font-size: 30px;
-}
-.payment-text-modal-design .payment_box_hdr {
-  padding-bottom: 15px;
-  border-bottom: 1px solid #f4f4f4;
-  margin-bottom: 18px;
 }
 .payment_box_wrap::before {
   content: "";
@@ -629,4 +625,35 @@ ul.package-listing-details-inner {
   width: 100%;
   max-width: 1000px;
   margin: 0 auto;
+}
+.payment-text-modal-design {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.payment-text-modal-design>div {
+  width: 48%;
+}
+.payment-text-modal-design .payment_box_hdr {
+  position: relative;
+}
+.payment-text-modal-design .payment_box_hdr img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  filter: brightness(0.5);
+}
+.payment-text-modal-design .payment_box_hdr h4 {
+  position: absolute;
+  bottom: 50px;
+  width: 100%;
+  padding: 40px 50px;
+  margin-bottom: 0px;
+  font-size: 40px;
+  color: #fff;
+}
+.payment-text-modal-design .payment_box_cnntn li {
+  font-size: 16px !important;
 }
