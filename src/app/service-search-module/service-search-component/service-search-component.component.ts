@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { AppService } from 'src/app/service/app.service';
 import { Options } from '@angular-slider/ngx-slider';
@@ -8,35 +8,33 @@ import { MatChipInputEvent } from '@angular/material/chips';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-service-search-component',
   templateUrl: './service-search-component.component.html',
   styleUrls: ['./service-search-component.component.scss']
 })
-export class ServiceSearchComponentComponent implements OnInit {
+export class ServiceSearchComponentComponent implements OnInit, AfterViewInit {
   separatorKeysCodes: number[] = [ENTER, COMMA];
   searchctrl = new FormControl('');
   searchfilter: any;
   SearchKeyword: string[] = [];
   searchList: string[] = [];
+  countryData:any = "";
 
-  constructor(private activeRoute: ActivatedRoute, private service: AppService, private api: AppService, private route: Router) {
+  constructor(private activeRoute: ActivatedRoute, private service: AppService, private api: AppService, private route: Router, private cookie : CookieService) {
     this.data.rentalTypeId = 1
     this.api.LoadType(1).subscribe((result) => {
       this.propertyType = result;
       this.propertyType = this.propertyType.data
     });
     this.LoadPropertyCategories();
-    this.getLoaction({ "Searching": "", "CountryId": "1" });
     this.service.RentTypes().subscribe(data => {
       let response: any = data;
       this.Monthly = response.data[0].name;
-      // this.MonthlyAr  = response.data[0].nameAr;
       this.Quarterly = response.data[1].name;
-      // this.QuarterlyAr  = response.data[1].nameAr;
       this.Yearly = response.data[2].name;
-      // this.YearlyAr  = response.data[3].nameAr;
     });
 
     this.api.LoadType(2).subscribe((result) => {
@@ -49,6 +47,15 @@ export class ServiceSearchComponentComponent implements OnInit {
     );
   }
 
+  ngAfterViewInit(): void {
+    let a = setInterval(() => {
+      if (this.cookie.get("countryData")) {
+        this.countryData = JSON.parse(this.cookie.get("countryData"));
+        this.getLoaction({ "Searching": "", "CountryId": this.countryData.id });
+        clearInterval(a);
+      }
+    }, 100);
+  }
   locationOnSearchData: any = []
   getLoaction(data: any) {
     let tempData: any = []
