@@ -69,8 +69,6 @@ export class FindAgentSearchComponent implements OnInit, AfterViewInit {
 
     this.getExpertIn();
     this.getSpokenLanguages();
-    this.getAgent({ "Searching": '', "CountryId": "1" });
-    this.getLoaction({ "Searching": '', "CountryId": "1" });
     this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
       startWith(null),
       map((fruit: string | null) => (fruit ? this._filter(fruit) : this.allFruits.slice())),
@@ -80,6 +78,7 @@ export class FindAgentSearchComponent implements OnInit, AfterViewInit {
     let a = setInterval(() => {
       if (this.cookie.get("countryData")) {
         this.countryData = JSON.parse(this.cookie.get("countryData"));
+        this.getAgent({ "Searching": '', "CountryId": this.countryData.id });
         this.getLoaction({ "Searching": "", "CountryId": this.countryData.id });
         clearInterval(a);
       }
