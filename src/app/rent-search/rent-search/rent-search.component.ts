@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { AppService } from 'src/app/service/app.service';
 import { Options } from '@angular-slider/ngx-slider';
@@ -8,29 +8,30 @@ import { MatChipInputEvent } from '@angular/material/chips';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-rent-search',
   templateUrl: './rent-search.component.html',
   styleUrls: ['./rent-search.component.scss']
 })
-export class RentSearchComponent implements OnInit {
+export class RentSearchComponent implements OnInit, AfterViewInit {
   separatorKeysCodes: number[] = [ENTER, COMMA];
   searchctrl = new FormControl('');
   searchfilter: any;
   SearchKeyword: string[] = [];
   searchList: string[] = [];
-  rentType:any = []
+  rentType: any = [];
+  countryData:any = "";
 
-  constructor(private activeRoute: ActivatedRoute, private service: AppService, private api: AppService, private route: Router) {
+  constructor(private activeRoute: ActivatedRoute, private service: AppService, private api: AppService, private route: Router, private cookie : CookieService) {
     this.data.rentalTypeId = 2;
     this.api.LoadType(1).subscribe((result) => {
       this.propertyType = result;
       this.propertyType = this.propertyType.data
     });
     this.LoadPropertyCategories();
-    this.getLoaction({ "Searching": "", "CountryId": "1" });
-    this.service.RentTypes().subscribe((data:any) => {
+    this.service.RentTypes().subscribe((data: any) => {
       this.rentType = data.data;
     });
 
@@ -43,7 +44,15 @@ export class RentSearchComponent implements OnInit {
       map((fruit: string | null) => (fruit ? this._filter(fruit) : this.searchList.slice())),
     );
   }
-
+  ngAfterViewInit(): void {
+    let a = setInterval(() => {
+      if (this.cookie.get("countryData")) {
+        this.countryData = JSON.parse(this.cookie.get("countryData"));
+        this.getLoaction({ "Searching": "", "CountryId": this.countryData.id });
+        clearInterval(a);
+      }
+    }, 100);
+  }
   locationOnSearchData: any = []
   getLoaction(data: any) {
     let tempData: any = []
@@ -147,8 +156,8 @@ export class RentSearchComponent implements OnInit {
   }
 
   getRentalType(e: any) {
-    for(let i = 0; i < this.rentType.length; i++) {
-      if(this.rentType[i].name == e.tab.textLabel) {
+    for (let i = 0; i < this.rentType.length; i++) {
+      if (this.rentType[i].name == e.tab.textLabel) {
         this.data.rentalTypeId = this.rentType[i].id;
       }
     }
@@ -203,7 +212,7 @@ export class RentSearchComponent implements OnInit {
 
   remove(fruit: string): void {
     let removeId: any;
-    this.locationOnSearchData.forEach((element:any, i:any) => {
+    this.locationOnSearchData.forEach((element: any, i: any) => {
       if (element.value == fruit) {
         removeId = element.id
       }
@@ -223,7 +232,7 @@ export class RentSearchComponent implements OnInit {
 
   DistrictsId: any = []
   selected(event: MatAutocompleteSelectedEvent): void {
-    this.locationOnSearchData.forEach((element:any, i:any) => {
+    this.locationOnSearchData.forEach((element: any, i: any) => {
       if (element.value == event.option.viewValue) {
         this.DistrictsId.push(element.id)
       }
