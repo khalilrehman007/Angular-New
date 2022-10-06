@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { ActivatedRoute, Router } from "@angular/router";
 import { AppService } from 'src/app/service/app.service';
@@ -8,8 +8,8 @@ import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { data } from 'jquery';
-import { AuthService } from 'src/app/service/auth.service';
-// import { AuthService } from "../../service/auth.service";
+import { AuthService } from "../../../service/auth.service";
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-findcompanies-search',
@@ -38,12 +38,12 @@ export class FindcompaniesSearchComponent implements OnInit {
   ExpertInId: any;
   getAgentId: any;
   locationId: any = [];
+  countryData:any = "";
 
-  constructor(private activeRoute: ActivatedRoute, private authService: AuthService, private router: Router, private service: AppService) {
+  constructor(private activeRoute: ActivatedRoute, private authService: AuthService, private router: Router, private service: AppService, private cookie: CookieService) {
     $(window).scrollTop(0);
     this.agentData();
     this.companyData();
-    this.getCompany({ "Searching": '', "CountryId": "1" });
 
     this.languageIds = this.activeRoute.snapshot.queryParamMap.get('LanguageId');
     this.ExpertInId = this.activeRoute.snapshot.queryParamMap.get('ExpertInId');
@@ -71,68 +71,6 @@ export class FindcompaniesSearchComponent implements OnInit {
       this.agentCheck = true;
       this.agentData();
     }
-
-    let agentObject: any = {
-      "CountryId": "1", "DistrictsId": this.locationId,
-      "CompaniesId": [], "UserId": "0", "EpertInId": this.ExpertInId,
-      "LanguageId": this.languageIds, "CurrentPage": 1
-    };
-
-    this.agentListData(agentObject);
-
-    this.companiesListData({ "CountryId": "1", "DistrictsId": [], "CompaniesId": [], "CurrentPage": 1 });
-
-    this.service.BestAgent(1).subscribe((result: any) => {
-      // this.agentDetails = result.data;
-      let tempData: Array<Object> = []
-      let response: any = result.data;
-      response.forEach((element:any, i:any) => {
-        let imageUrl: any = '../assets/images/user.png';
-        if (element.agentDetails != undefined && element.agentDetails.user.imageUrl != undefined) {
-          imageUrl = this.baseUrl + element.agentDetails.user.imageUrl
-        }
-        let fullName: any = '';
-        if (element.agentDetails != undefined && element.agentDetails.user.fullName != undefined) {
-          fullName = element.agentDetails.user.fullName
-        }
-        let id: any = '';
-        if (element.agentDetails != undefined && element.agentDetails.user.id != undefined) {
-          id = element.agentDetails.user.id
-        }
-        let expertIn: any = '';
-        if (element.agentDetails != undefined && element.agentDetails.expertIn != undefined) {
-          expertIn = element.agentDetails.expertIn
-        }
-        let reraNo: any = '';
-        if (element.agentDetails != undefined && element.agentDetails.company != undefined && element.agentDetails.company.reraNo != undefined) {
-          reraNo = element.agentDetails.company.reraNo
-        }
-        let premitNo: any = '';
-        if (element.agentDetails != undefined && element.agentDetails.company != undefined && element.agentDetails.company.premitNo != undefined) {
-          premitNo = element.agentDetails.company.premitNo
-        }
-        tempData.push(
-          {
-            id: id,
-            imageUrl: imageUrl,
-            fullName: fullName,
-            expertIn: expertIn,
-            reraNo: reraNo,
-            premitNo: premitNo,
-            salePropertyListingCount: element.salePropertyListingCount,
-            rentPropertyListingCount: element.rentPropertyListingCount,
-            commercialPropertyListingCount: element.commercialPropertyListingCount,
-
-          }
-        );
-      })
-      this.agentDetails = tempData
-    })
-
-
-    this.service.BestCompanies(1).subscribe((result: any) => {
-      this.bestCompanies = result.data;
-    })
     this.searchfilter = this.searchctrl.valueChanges.pipe(
       startWith(null),
       map((searchCompenies: string | null) => (searchCompenies ? this._filter(searchCompenies) : this.searchList.slice())),
@@ -145,6 +83,72 @@ export class FindcompaniesSearchComponent implements OnInit {
       }
     });
   }
+  ngAfterViewInit(): void {
+    let a = setInterval(() => {
+      if (this.cookie.get("countryData")) {
+        this.countryData = JSON.parse(this.cookie.get("countryData"));
+        this.agentObject.CountryId = this.countryData.id;
+        this.getCompany({ "Searching": '', "CountryId": this.countryData.id });
+        let agentObject: any = {
+          "CountryId": this.countryData.id, "DistrictsId": this.locationId,
+          "CompaniesId": [], "UserId": "0", "EpertInId": this.ExpertInId,
+          "LanguageId": this.languageIds, "CurrentPage": 1
+        };
+    
+        this.agentListData(agentObject);
+        this.companiesListData({ "CountryId": this.countryData.id, "DistrictsId": [], "CompaniesId": [], "CurrentPage": 1 });
+        this.service.BestAgent(this.countryData.id).subscribe((result: any) => {
+          let tempData: Array<Object> = []
+          let response: any = result.data;
+          response.forEach((element: any, i: any) => {
+            let imageUrl: any = '../assets/images/user.png';
+            if (element.agentDetails != undefined && element.agentDetails.user.imageUrl != undefined) {
+              imageUrl = this.baseUrl + element.agentDetails.user.imageUrl
+            }
+            let fullName: any = '';
+            if (element.agentDetails != undefined && element.agentDetails.user.fullName != undefined) {
+              fullName = element.agentDetails.user.fullName
+            }
+            let id: any = '';
+            if (element.agentDetails != undefined && element.agentDetails.user.id != undefined) {
+              id = element.agentDetails.user.id
+            }
+            let expertIn: any = '';
+            if (element.agentDetails != undefined && element.agentDetails.expertIn != undefined) {
+              expertIn = element.agentDetails.expertIn
+            }
+            let reraNo: any = '';
+            if (element.agentDetails != undefined && element.agentDetails.company != undefined && element.agentDetails.company.reraNo != undefined) {
+              reraNo = element.agentDetails.company.reraNo
+            }
+            let premitNo: any = '';
+            if (element.agentDetails != undefined && element.agentDetails.company != undefined && element.agentDetails.company.premitNo != undefined) {
+              premitNo = element.agentDetails.company.premitNo
+            }
+            tempData.push(
+              {
+                id: id,
+                imageUrl: imageUrl,
+                fullName: fullName,
+                expertIn: expertIn,
+                reraNo: reraNo,
+                premitNo: premitNo,
+                salePropertyListingCount: element.salePropertyListingCount,
+                rentPropertyListingCount: element.rentPropertyListingCount,
+                commercialPropertyListingCount: element.commercialPropertyListingCount,
+    
+              }
+            );
+          })
+          this.agentDetails = tempData
+        })
+        this.service.BestCompanies(this.countryData.id).subscribe((result: any) => {
+          this.bestCompanies = result.data;
+        })
+        clearInterval(a);
+      }
+    }, 100);
+  }
 
   companyOnSearchData: any = []
   getCompany(data: any) {
@@ -152,7 +156,7 @@ export class FindcompaniesSearchComponent implements OnInit {
     let tempCompleteData: any = []
     this.service.CompanyLocationAutoCompleteSearch(data).subscribe(data => {
       let response: any = data;
-      response.data.companyAutoComplete.forEach((element:any, i:any) => {
+      response.data.companyAutoComplete.forEach((element: any, i: any) => {
         tempData.push(element.value);
         tempCompleteData.push({ 'id': element.key, 'value': element.value })
       })
@@ -172,89 +176,6 @@ export class FindcompaniesSearchComponent implements OnInit {
     this.featuredAgentData = {
       heading: "Featured Real Estate Agents",
       desc: "Some of our best property agents",
-      // list: [
-      //   {
-      //     tag: "assets/images/tag/featured.png",
-      //     img: "/assets/images/agent-image.png",
-      //     company: "assets/images/brand/betterhomes.png",
-      //     heading: "Better Homes Properties",
-      //     text: "P.O. Box 14781, Ground Floor, Golf Building No. GB, Al Hamra Village, Ras Al Khaimah",
-      //     link: {
-      //       text: "View Map",
-      //       url: ""
-      //     },
-      //     rera: "RERA# 11899",
-      //     permit: "Permit# 7187842740",
-      //     details: [
-      //       {
-      //         count: "247",
-      //         name: "Sale"
-      //       },
-      //       {
-      //         count: "247",
-      //         name: "Rents"
-      //       },
-      //       {
-      //         count: "247",
-      //         name: "Commercial"
-      //       },
-      //     ]
-      //   },
-      //   {
-      //     tag: "assets/images/tag/featured.png",
-      //     img: "/assets/images/agent-image.png",
-      //     company: "assets/images/brand/betterhomes.png",
-      //     heading: "Better Homes Properties",
-      //     text: "P.O. Box 14781, Ground Floor, Golf Building No. GB, Al Hamra Village, Ras Al Khaimah",
-      //     link: {
-      //       text: "View Map",
-      //       url: ""
-      //     },
-      //     rera: "RERA# 11899",
-      //     permit: "Permit# 7187842740",
-      //     details: [
-      //       {
-      //         count: "247",
-      //         name: "Sale"
-      //       },
-      //       {
-      //         count: "247",
-      //         name: "Rents"
-      //       },
-      //       {
-      //         count: "247",
-      //         name: "Commercial"
-      //       },
-      //     ]
-      //   },
-      //   {
-      //     tag: "assets/images/tag/featured.png",
-      //     img: "/assets/images/agent-image.png",
-      //     company: "assets/images/brand/betterhomes.png",
-      //     heading: "Better Homes Properties",
-      //     text: "P.O. Box 14781, Ground Floor, Golf Building No. GB, Al Hamra Village, Ras Al Khaimah",
-      //     link: {
-      //       text: "View Map",
-      //       url: ""
-      //     },
-      //     rera: "RERA# 11899",
-      //     permit: "Permit# 7187842740",
-      //     details: [
-      //       {
-      //         count: "247",
-      //         name: "Sale"
-      //       },
-      //       {
-      //         count: "247",
-      //         name: "Rents"
-      //       },
-      //       {
-      //         count: "247",
-      //         name: "Commercial"
-      //       },
-      //     ]
-      //   },
-      // ],
     };
     this.agentList = {
       heading: "Real Estate Agent Listing",
@@ -265,250 +186,6 @@ export class FindcompaniesSearchComponent implements OnInit {
         "Specialities",
         "Action"
       ],
-      // tableData: [
-      //   {
-      //     img: "assets/images/testimonial/user.png",
-      //     heading: "Better Homes Properties",
-      //     name: "Olga Pikina",
-      //     position: "Sales Director",
-      //     link: {
-      //       text: "+971 50 456 3423",
-      //       url: ""
-      //     },
-      //     location: "Dubai, UAE",
-      //     language: "Language: English, Hindi, Arabic, Urdu, Danish",
-      //     specialities: [
-      //       "Residential for sale",
-      //       "Residential for sale",
-      //       "Commercial for sale",
-      //       "Commercial for Rent/Lease",
-      //     ],
-      //     btn: {
-      //       img: "assets/images/icons/eye.svg",
-      //       text: "View Detail"
-      //     }
-      //   },
-      //   {
-      //     img: "assets/images/testimonial/user.png",
-      //     heading: "Better Homes Properties",
-      //     name: "Olga Pikina",
-      //     position: "Sales Director",
-      //     link: {
-      //       text: "+971 50 456 3423",
-      //       url: ""
-      //     },
-      //     location: "Dubai, UAE",
-      //     language: "Language: English, Hindi, Arabic, Urdu, Danish",
-      //     specialities: [
-      //       "Residential for sale",
-      //       "Residential for sale",
-      //       "Commercial for sale",
-      //       "Commercial for Rent/Lease",
-      //     ],
-      //     btn: {
-      //       img: "assets/images/icons/eye.svg",
-      //       text: "View Detail"
-      //     }
-      //   },
-      //   {
-      //     img: "assets/images/testimonial/user.png",
-      //     heading: "Better Homes Properties",
-      //     name: "Olga Pikina",
-      //     position: "Sales Director",
-      //     link: {
-      //       text: "+971 50 456 3423",
-      //       url: ""
-      //     },
-      //     location: "Dubai, UAE",
-      //     language: "Language: English, Hindi, Arabic, Urdu, Danish",
-      //     specialities: [
-      //       "Residential for sale",
-      //       "Residential for sale",
-      //       "Commercial for sale",
-      //       "Commercial for Rent/Lease",
-      //     ],
-      //     btn: {
-      //       img: "assets/images/icons/eye.svg",
-      //       text: "View Detail"
-      //     }
-      //   },
-      //   {
-      //     img: "assets/images/testimonial/user.png",
-      //     heading: "Better Homes Properties",
-      //     name: "Olga Pikina",
-      //     position: "Sales Director",
-      //     link: {
-      //       text: "+971 50 456 3423",
-      //       url: ""
-      //     },
-      //     location: "Dubai, UAE",
-      //     language: "Language: English, Hindi, Arabic, Urdu, Danish",
-      //     specialities: [
-      //       "Residential for sale",
-      //       "Residential for sale",
-      //       "Commercial for sale",
-      //       "Commercial for Rent/Lease",
-      //     ],
-      //     btn: {
-      //       img: "assets/images/icons/eye.svg",
-      //       text: "View Detail"
-      //     }
-      //   },
-      //   {
-      //     img: "assets/images/testimonial/user.png",
-      //     heading: "Better Homes Properties",
-      //     name: "Olga Pikina",
-      //     position: "Sales Director",
-      //     link: {
-      //       text: "+971 50 456 3423",
-      //       url: ""
-      //     },
-      //     location: "Dubai, UAE",
-      //     language: "Language: English, Hindi, Arabic, Urdu, Danish",
-      //     specialities: [
-      //       "Residential for sale",
-      //       "Residential for sale",
-      //       "Commercial for sale",
-      //       "Commercial for Rent/Lease",
-      //     ],
-      //     btn: {
-      //       img: "assets/images/icons/eye.svg",
-      //       text: "View Detail"
-      //     }
-      //   },
-      //   {
-      //     img: "assets/images/testimonial/user.png",
-      //     heading: "Better Homes Properties",
-      //     name: "Olga Pikina",
-      //     position: "Sales Director",
-      //     link: {
-      //       text: "+971 50 456 3423",
-      //       url: ""
-      //     },
-      //     location: "Dubai, UAE",
-      //     language: "Language: English, Hindi, Arabic, Urdu, Danish",
-      //     specialities: [
-      //       "Residential for sale",
-      //       "Residential for sale",
-      //       "Commercial for sale",
-      //       "Commercial for Rent/Lease",
-      //     ],
-      //     btn: {
-      //       img: "assets/images/icons/eye.svg",
-      //       text: "View Detail"
-      //     }
-      //   },
-      //   {
-      //     img: "assets/images/testimonial/user.png",
-      //     heading: "Better Homes Properties",
-      //     name: "Olga Pikina",
-      //     position: "Sales Director",
-      //     link: {
-      //       text: "+971 50 456 3423",
-      //       url: ""
-      //     },
-      //     location: "Dubai, UAE",
-      //     language: "Language: English, Hindi, Arabic, Urdu, Danish",
-      //     specialities: [
-      //       "Residential for sale",
-      //       "Residential for sale",
-      //       "Commercial for sale",
-      //       "Commercial for Rent/Lease",
-      //     ],
-      //     btn: {
-      //       img: "assets/images/icons/eye.svg",
-      //       text: "View Detail"
-      //     }
-      //   },
-      //   {
-      //     img: "assets/images/testimonial/user.png",
-      //     heading: "Better Homes Properties",
-      //     name: "Olga Pikina",
-      //     position: "Sales Director",
-      //     link: {
-      //       text: "+971 50 456 3423",
-      //       url: ""
-      //     },
-      //     location: "Dubai, UAE",
-      //     language: "Language: English, Hindi, Arabic, Urdu, Danish",
-      //     specialities: [
-      //       "Residential for sale",
-      //       "Residential for sale",
-      //       "Commercial for sale",
-      //       "Commercial for Rent/Lease",
-      //     ],
-      //     btn: {
-      //       img: "assets/images/icons/eye.svg",
-      //       text: "View Detail"
-      //     }
-      //   },
-      //   {
-      //     img: "assets/images/testimonial/user.png",
-      //     heading: "Better Homes Properties",
-      //     name: "Olga Pikina",
-      //     position: "Sales Director",
-      //     link: {
-      //       text: "+971 50 456 3423",
-      //       url: ""
-      //     },
-      //     location: "Dubai, UAE",
-      //     language: "Language: English, Hindi, Arabic, Urdu, Danish",
-      //     specialities: [
-      //       "Residential for sale",
-      //       "Residential for sale",
-      //       "Commercial for sale",
-      //       "Commercial for Rent/Lease",
-      //     ],
-      //     btn: {
-      //       img: "assets/images/icons/eye.svg",
-      //       text: "View Detail"
-      //     }
-      //   },
-      //   {
-      //     img: "assets/images/testimonial/user.png",
-      //     heading: "Better Homes Properties",
-      //     name: "Olga Pikina",
-      //     position: "Sales Director",
-      //     link: {
-      //       text: "+971 50 456 3423",
-      //       url: ""
-      //     },
-      //     location: "Dubai, UAE",
-      //     language: "Language: English, Hindi, Arabic, Urdu, Danish",
-      //     specialities: [
-      //       "Residential for sale",
-      //       "Residential for sale",
-      //       "Commercial for sale",
-      //       "Commercial for Rent/Lease",
-      //     ],
-      //     btn: {
-      //       img: "assets/images/icons/eye.svg",
-      //       text: "View Detail"
-      //     }
-      //   },
-      //   {
-      //     img: "assets/images/testimonial/user.png",
-      //     heading: "Better Homes Properties",
-      //     name: "Olga Pikina",
-      //     position: "Sales Director",
-      //     link: {
-      //       text: "+971 50 456 3423",
-      //       url: ""
-      //     },
-      //     location: "Dubai, UAE",
-      //     language: "Language: English, Hindi, Arabic, Urdu, Danish",
-      //     specialities: [
-      //       "Residential for sale",
-      //       "Residential for sale",
-      //       "Commercial for sale",
-      //       "Commercial for Rent/Lease",
-      //     ],
-      //     btn: {
-      //       img: "assets/images/icons/eye.svg",
-      //       text: "View Detail"
-      //     }
-      //   },
-      // ]
     };
   }
   toggleCompany(e: boolean) {
@@ -519,7 +196,7 @@ export class FindcompaniesSearchComponent implements OnInit {
     } else {
       this.companies = true;
       this.totalLength = this.findCompanies.length;
-      this.companiesListData({ "CountryId": "1", "DistrictsId": [], "CompaniesId": [], "CurrentPage": 1 });
+      this.companiesListData({ "CountryId": this.countryData.id, "DistrictsId": [], "CompaniesId": [], "CurrentPage": 1 });
     }
   }
   companyData() {
@@ -527,98 +204,6 @@ export class FindcompaniesSearchComponent implements OnInit {
     this.featuredCompaniesData = {
       heading: "Featured Real Estate Companies",
       desc: "Some of our best property agents",
-      // list: [
-      //   {
-      //     tag: "assets/images/tag/featured.png",
-      //     img: "assets/images/brand/betterhomes.png",
-      //     heading: "Better Homes Properties",
-      //     text: "P.O. Box 14781, Ground Floor, Golf Building No. GB, Al Hamra Village, Ras Al Khaimah",
-      //     link: {
-      //       text: "View Map",
-      //       url: ""
-      //     },
-      //     rera: "RERA# 11899",
-      //     permit: "Permit# 7187842740",
-      //     details: [
-      //       {
-      //         count: "345",
-      //         name: "Agents"
-      //       },
-      //       {
-      //         count: "247",
-      //         name: "Sale"
-      //       },
-      //       {
-      //         count: "247",
-      //         name: "Rents"
-      //       },
-      //       {
-      //         count: "247",
-      //         name: "Commercial"
-      //       },
-      //     ]
-      //   },
-      //   {
-      //     tag: "assets/images/tag/featured.png",
-      //     img: "assets/images/brand/betterhomes.png",
-      //     heading: "Better Homes Properties",
-      //     text: "P.O. Box 14781, Ground Floor, Golf Building No. GB, Al Hamra Village, Ras Al Khaimah",
-      //     link: {
-      //       text: "View Map",
-      //       url: ""
-      //     },
-      //     rera: "RERA# 11899",
-      //     permit: "Permit# 7187842740",
-      //     details: [
-      //       {
-      //         count: "345",
-      //         name: "Agents"
-      //       },
-      //       {
-      //         count: "247",
-      //         name: "Sale"
-      //       },
-      //       {
-      //         count: "247",
-      //         name: "Rents"
-      //       },
-      //       {
-      //         count: "247",
-      //         name: "Commercial"
-      //       },
-      //     ]
-      //   },
-      //   {
-      //     tag: "assets/images/tag/featured.png",
-      //     img: "assets/images/brand/betterhomes.png",
-      //     heading: "Better Homes Properties",
-      //     text: "P.O. Box 14781, Ground Floor, Golf Building No. GB, Al Hamra Village, Ras Al Khaimah",
-      //     link: {
-      //       text: "View Map",
-      //       url: ""
-      //     },
-      //     rera: "RERA# 11899",
-      //     permit: "Permit# 7187842740",
-      //     details: [
-      //       {
-      //         count: "345",
-      //         name: "Agents"
-      //       },
-      //       {
-      //         count: "247",
-      //         name: "Sale"
-      //       },
-      //       {
-      //         count: "247",
-      //         name: "Rents"
-      //       },
-      //       {
-      //         count: "247",
-      //         name: "Commercial"
-      //       },
-      //     ]
-      //   },
-      // ],
     };
     this.companiesList = {
       heading: "Real Estate Companies Listing",
@@ -629,249 +214,14 @@ export class FindcompaniesSearchComponent implements OnInit {
         "Agents",
         "Action"
       ],
-      // tableData: [
-      //   {
-      //     img: "assets/images/brand/betterhomes.png",
-      //     heading: "Better Homes Properties",
-      //     text: "P.O. Box 14781, Ground Floor, Golf Building No. GB, Al Hamra Village, Ras Al Khaimah",
-      //     link: {
-      //       text: "View Map",
-      //       url: ""
-      //     },
-      //     permit: "RERA# 11899 | Permit# 7187842740",
-      //     specialities: [
-      //       "Residential for sale",
-      //       "Residential for sale",
-      //       "Commercial for sale",
-      //       "Commercial for Rent/Lease",
-      //     ],
-      //     agents: "345",
-      //     btn: {
-      //       img: "assets/images/icons/eye.svg",
-      //       text: "View Detail"
-      //     }
-      //   },
-      //   {
-      //     img: "assets/images/brand/betterhomes.png",
-      //     heading: "Better Homes Properties",
-      //     text: "P.O. Box 14781, Ground Floor, Golf Building No. GB, Al Hamra Village, Ras Al Khaimah",
-      //     link: {
-      //       text: "View Map",
-      //       url: ""
-      //     },
-      //     permit: "RERA# 11899 | Permit# 7187842740",
-      //     specialities: [
-      //       "Residential for sale",
-      //       "Residential for sale",
-      //       "Commercial for sale",
-      //       "Commercial for Rent/Lease",
-      //     ],
-      //     agents: "345",
-      //     btn: {
-      //       img: "assets/images/icons/eye.svg",
-      //       text: "View Detail"
-      //     }
-      //   },
-      //   {
-      //     img: "assets/images/brand/betterhomes.png",
-      //     heading: "Better Homes Properties",
-      //     text: "P.O. Box 14781, Ground Floor, Golf Building No. GB, Al Hamra Village, Ras Al Khaimah",
-      //     link: {
-      //       text: "View Map",
-      //       url: ""
-      //     },
-      //     permit: "RERA# 11899 | Permit# 7187842740",
-      //     specialities: [
-      //       "Residential for sale",
-      //       "Residential for sale",
-      //       "Commercial for sale",
-      //       "Commercial for Rent/Lease",
-      //     ],
-      //     agents: "345",
-      //     btn: {
-      //       img: "assets/images/icons/eye.svg",
-      //       text: "View Detail"
-      //     }
-      //   },
-      //   {
-      //     img: "assets/images/brand/betterhomes.png",
-      //     heading: "Better Homes Properties",
-      //     text: "P.O. Box 14781, Ground Floor, Golf Building No. GB, Al Hamra Village, Ras Al Khaimah",
-      //     link: {
-      //       text: "View Map",
-      //       url: ""
-      //     },
-      //     permit: "RERA# 11899 | Permit# 7187842740",
-      //     specialities: [
-      //       "Residential for sale",
-      //       "Residential for sale",
-      //       "Commercial for sale",
-      //       "Commercial for Rent/Lease",
-      //     ],
-      //     agents: "345",
-      //     btn: {
-      //       img: "assets/images/icons/eye.svg",
-      //       text: "View Detail"
-      //     }
-      //   },
-      //   {
-      //     img: "assets/images/brand/betterhomes.png",
-      //     heading: "Better Homes Properties",
-      //     text: "P.O. Box 14781, Ground Floor, Golf Building No. GB, Al Hamra Village, Ras Al Khaimah",
-      //     link: {
-      //       text: "View Map",
-      //       url: ""
-      //     },
-      //     permit: "RERA# 11899 | Permit# 7187842740",
-      //     specialities: [
-      //       "Residential for sale",
-      //       "Residential for sale",
-      //       "Commercial for sale",
-      //       "Commercial for Rent/Lease",
-      //     ],
-      //     agents: "345",
-      //     btn: {
-      //       img: "assets/images/icons/eye.svg",
-      //       text: "View Detail"
-      //     }
-      //   },
-      //   {
-      //     img: "assets/images/brand/betterhomes.png",
-      //     heading: "Better Homes Properties",
-      //     text: "P.O. Box 14781, Ground Floor, Golf Building No. GB, Al Hamra Village, Ras Al Khaimah",
-      //     link: {
-      //       text: "View Map",
-      //       url: ""
-      //     },
-      //     permit: "RERA# 11899 | Permit# 7187842740",
-      //     specialities: [
-      //       "Residential for sale",
-      //       "Residential for sale",
-      //       "Commercial for sale",
-      //       "Commercial for Rent/Lease",
-      //     ],
-      //     agents: "345",
-      //     btn: {
-      //       img: "assets/images/icons/eye.svg",
-      //       text: "View Detail"
-      //     }
-      //   },
-      //   {
-      //     img: "assets/images/brand/betterhomes.png",
-      //     heading: "Better Homes Properties",
-      //     text: "P.O. Box 14781, Ground Floor, Golf Building No. GB, Al Hamra Village, Ras Al Khaimah",
-      //     link: {
-      //       text: "View Map",
-      //       url: ""
-      //     },
-      //     permit: "RERA# 11899 | Permit# 7187842740",
-      //     specialities: [
-      //       "Residential for sale",
-      //       "Residential for sale",
-      //       "Commercial for sale",
-      //       "Commercial for Rent/Lease",
-      //     ],
-      //     agents: "345",
-      //     btn: {
-      //       img: "assets/images/icons/eye.svg",
-      //       text: "View Detail"
-      //     }
-      //   },
-      //   {
-      //     img: "assets/images/brand/betterhomes.png",
-      //     heading: "Better Homes Properties",
-      //     text: "P.O. Box 14781, Ground Floor, Golf Building No. GB, Al Hamra Village, Ras Al Khaimah",
-      //     link: {
-      //       text: "View Map",
-      //       url: ""
-      //     },
-      //     permit: "RERA# 11899 | Permit# 7187842740",
-      //     specialities: [
-      //       "Residential for sale",
-      //       "Residential for sale",
-      //       "Commercial for sale",
-      //       "Commercial for Rent/Lease",
-      //     ],
-      //     agents: "345",
-      //     btn: {
-      //       img: "assets/images/icons/eye.svg",
-      //       text: "View Detail"
-      //     }
-      //   },
-      //   {
-      //     img: "assets/images/brand/betterhomes.png",
-      //     heading: "Better Homes Properties",
-      //     text: "P.O. Box 14781, Ground Floor, Golf Building No. GB, Al Hamra Village, Ras Al Khaimah",
-      //     link: {
-      //       text: "View Map",
-      //       url: ""
-      //     },
-      //     permit: "RERA# 11899 | Permit# 7187842740",
-      //     specialities: [
-      //       "Residential for sale",
-      //       "Residential for sale",
-      //       "Commercial for sale",
-      //       "Commercial for Rent/Lease",
-      //     ],
-      //     agents: "345",
-      //     btn: {
-      //       img: "assets/images/icons/eye.svg",
-      //       text: "View Detail"
-      //     }
-      //   },
-      //   {
-      //     img: "assets/images/brand/betterhomes.png",
-      //     heading: "Better Homes Properties",
-      //     text: "P.O. Box 14781, Ground Floor, Golf Building No. GB, Al Hamra Village, Ras Al Khaimah",
-      //     link: {
-      //       text: "View Map",
-      //       url: ""
-      //     },
-      //     permit: "RERA# 11899 | Permit# 7187842740",
-      //     specialities: [
-      //       "Residential for sale",
-      //       "Residential for sale",
-      //       "Commercial for sale",
-      //       "Commercial for Rent/Lease",
-      //     ],
-      //     agents: "345",
-      //     btn: {
-      //       img: "assets/images/icons/eye.svg",
-      //       text: "View Detail"
-      //     }
-      //   },
-      //   {
-      //     img: "assets/images/brand/betterhomes.png",
-      //     heading: "Better Homes Properties",
-      //     text: "P.O. Box 14781, Ground Floor, Golf Building No. GB, Al Hamra Village, Ras Al Khaimah",
-      //     link: {
-      //       text: "View Map",
-      //       url: ""
-      //     },
-      //     permit: "RERA# 11899 | Permit# 7187842740",
-      //     specialities: [
-      //       "Residential for sale",
-      //       "Residential for sale",
-      //       "Commercial for sale",
-      //       "Commercial for Rent/Lease",
-      //     ],
-      //     agents: "345",
-      //     btn: {
-      //       img: "assets/images/icons/eye.svg",
-      //       text: "View Detail"
-      //     }
-      //   },
-      // ]
     };
 
   }
   agentpageChanged(value: any) {
     this.page = value;
-    // this.companiesListData({ "CountryId": "1", "DistrictsId": [], "CompaniesId": [], "CurrentPage": value });
   }
   companypageChanged(value: any) {
     this.companypage = value;
-    // this.companiesListData({ "CountryId": "1", "DistrictsId": [], "CompaniesId": [], "CurrentPage": value });
   }
   filterCountry(id: any) {
     let temp = this.country.filter((c: any) => c.id == id)[0];
@@ -885,15 +235,13 @@ export class FindcompaniesSearchComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  @ViewChild('SearchInput') SearchInput:any;
+  @ViewChild('SearchInput') SearchInput: any;
   add(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
 
     if (value) {
       this.SearchKeyword.push(value);
     }
-
-    // Clear the input value
     event.chipInput!.clear();
 
     this.searchctrl.setValue(null);
@@ -903,7 +251,7 @@ export class FindcompaniesSearchComponent implements OnInit {
   removeCompanyIds: any = []
   remove(searchCompenies: string): void {
     let removeId: any;
-    this.companyOnSearchData.forEach((element:any, i:any) => {
+    this.companyOnSearchData.forEach((element: any, i: any) => {
       if (element.value == searchCompenies) {
         removeId = element.id
       }
@@ -923,7 +271,7 @@ export class FindcompaniesSearchComponent implements OnInit {
 
   companyIds: any = []
   selected(event: MatAutocompleteSelectedEvent): void {
-    this.companyOnSearchData.forEach((element:any, i:any) => {
+    this.companyOnSearchData.forEach((element: any, i: any) => {
       if (element.value == event.option.viewValue) {
         this.companyIds.push(element.id)
       }
@@ -937,7 +285,7 @@ export class FindcompaniesSearchComponent implements OnInit {
     let tempData: Array<Object> = []
     this.service.FindAgents(data).subscribe((result: any) => {
       let response: any = result.data
-      response.agents.forEach((element:any, i:any) => {
+      response.agents.forEach((element: any, i: any) => {
         let imageUrl: any = '../assets/images/user.png';
         if (element.user != undefined && element.user.imageUrl != undefined) {
           imageUrl = this.baseUrl + element.user.imageUrl
@@ -999,13 +347,13 @@ export class FindcompaniesSearchComponent implements OnInit {
   }
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
-    return this.searchList.filter((searchCompenies:any) => searchCompenies.toLowerCase().includes(filterValue));
+    return this.searchList.filter((searchCompenies: any) => searchCompenies.toLowerCase().includes(filterValue));
   }
   childParentDataLoad(data: any) {
     this.agentListData(data);
   }
   proceedCompanySearch() {
-    let params: any = { "CountryId": "1", "DistrictsId": [], "CompaniesId": this.companyIds, "CurrentPage": 1 }
+    let params: any = { "CountryId": this.countryData.id, "DistrictsId": [], "CompaniesId": this.companyIds, "CurrentPage": 1 }
     this.router.navigate(['/ar/find-companies'], { queryParams: params })
     this.companiesListData(params);
 
