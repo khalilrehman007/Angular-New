@@ -24,6 +24,7 @@ const routes: Routes = [
   {path:"chat", loadChildren:()=>import('./chat/chat.module').then(module => module.ChatModule),canActivate: [AuthGuard]},
   {path:"forgot", loadChildren:()=>import('./forget/forget.module').then(module => module.ForgetModule)},
   {path:"payment-packages", loadChildren:()=>import('./payment-packages/payment-packages.module').then(module => module.PaymentPackagesModule)},
+  {path:"payment-form", loadChildren:()=>import('./payment-packages-final/payment-packages-final.module').then(module => module.PaymentPackagesFinalModule)},
   {path:"PropertyCompare", loadChildren:()=>import('./property-compare/property-compare.module').then(module => module.PropertyCompareModule)},
   {path:"project", loadChildren:()=>import('./projects/project.module').then(module => module.ExploreModule)},
   
