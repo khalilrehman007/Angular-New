@@ -96,8 +96,8 @@
               <li>Appears at the bottom of the page</li>
               <li>Display 4 photos on the listing</li>
               <li>Email/ Chat with the customers</li>
+              <li>Display of  email and chat option</li>
             </ul>
-            <button class="view-more-modal" (click)="freePopup(freecontent)">View More</button>
           </div>
         </div>
     </div>
@@ -178,7 +178,8 @@
     <button class="cancel-btn" aria-label="Close" (click)="modal.dismiss('Cross click')">&times;</button>
       <div class="modal-body payment-text-modal-design">
         <div class="payment_box_hdr">
-          <h4>PLATINUM</h4>
+          <img src="../../../assets/images/payment-popup.jpg">
+          <h4>PLATINUM <br>PACKAGE</h4>
        </div>
        <div class="payment_box_cnntn">
          <ul class="list-unstyled">
@@ -207,7 +208,8 @@
     <button class="cancel-btn" aria-label="Close" (click)="modal.dismiss('Cross click')">&times;</button>
       <div class="modal-body payment-text-modal-design">
         <div class="payment_box_hdr">
-          <h4>PREMIUM</h4>
+          <img src="../../../assets/images/payment-popup.jpg">
+          <h4>PREMIUM <br>PACKAGE</h4>
        </div>
        <div class="payment_box_cnntn">
          <ul class="list-unstyled">
@@ -222,26 +224,6 @@
            <li>Agent Dashboard</li>
          </ul>
        </div>
-      </div>
-  </ng-template>
-</div>
-<div ngClass="payment-text-modal">
-  <ng-template #freecontent let-modal>
-    <button class="cancel-btn" aria-label="Close" (click)="modal.dismiss('Cross click')">&times;</button>
-      <div class="modal-body payment-text-modal-design">
-        <div class="payment_box_hdr">
-          <h4>FREE</h4>
-       </div>
-       <div class="payment_box_cnntn">
-        <ul class="list-unstyled">
-          <li>No credits required</li>
-          <li>One email - one account-  one listing</li>
-          <li>Appears at the bottom of the page</li>
-          <li>Display 4 photos on the listing</li>
-          <li>Email/ Chat with the customers</li>
-          <li>Display of  email and chat option</li>
-        </ul>
-      </div>
       </div>
   </ng-template>
 </div>
