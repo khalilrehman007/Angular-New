@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import * as $ from 'jquery';
 import { AuthService } from 'src/app/service/auth.service';
@@ -9,13 +9,14 @@ import { Location } from '@angular/common';
 import { SearchCountryField, CountryISO, PhoneNumberFormat } from 'ngx-intl-tel-input';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import * as i5 from "ngx-bootstrap/dropdown";
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss']
 })
-export class SignupComponent implements OnInit {
+export class SignupComponent implements OnInit, AfterViewInit {
   error: any = ""
   showError: boolean = false;
   errorResponse(data: any) {
@@ -31,13 +32,32 @@ export class SignupComponent implements OnInit {
   professionalCheck: boolean = false;
   professionalTypeId: number = 0;
   auth2: any;
+  separateDialCode = false;
+  SearchCountryField = SearchCountryField;
+  CountryISO = CountryISO;
+  PhoneNumberFormat = PhoneNumberFormat;
+  countryData:any = "";
+  seletedCountry:any = "";
+  preferredCountries: CountryISO[] = [CountryISO.UnitedArabEmirates, CountryISO.SaudiArabia, CountryISO.Bahrain, CountryISO.Qatar, CountryISO.Oman, CountryISO.Kuwait];
+  phoneForm = new FormGroup({
+    phone: new FormControl(undefined, [Validators.required])
+  });
   @ViewChild('signupRef', { static: true }) signupElement!: ElementRef;
 
-  constructor(private service: AuthService, private route: Router, private notifyService: NotificationService, private _location: Location, private response: AppService) {
+  constructor(private service: AuthService, private route: Router, private notifyService: NotificationService, private _location: Location, private response: AppService, private cookie: CookieService) {
     localStorage.clear();
     this.response.ProfessionalTypes().subscribe((result: any) => {
       this.signUpPropertytype = result.data;
     })
+  }
+  ngAfterViewInit(): void {
+    let a = setInterval(() => {
+      if (this.cookie.get("countryData")) {
+        this.countryData = JSON.parse(this.cookie.get("countryData"));
+        this.seletedCountry = this.countryData.code;
+        clearInterval(a);
+      }
+    }, 100);
   }
   signup = new FormGroup({
     FirstName: new FormControl("", Validators.required),
@@ -62,7 +82,6 @@ export class SignupComponent implements OnInit {
   callLogin() {
     this.auth2.attachClickHandler(this.signupElement.nativeElement, {},
       (googleAuthUser: any) => {
-        console.log(googleAuthUser.getAuthResponse());
         let profile = googleAuthUser.getBasicProfile();
         let temp: any = "";
         if (localStorage.getItem("deviceToken")) {
@@ -196,17 +215,6 @@ export class SignupComponent implements OnInit {
       })
     }
   }
-
-  // Phone number List
-
-  separateDialCode = false;
-  SearchCountryField = SearchCountryField;
-  CountryISO = CountryISO;
-  PhoneNumberFormat = PhoneNumberFormat;
-  preferredCountries: CountryISO[] = [CountryISO.UnitedStates, CountryISO.UnitedKingdom];
-  phoneForm = new FormGroup({
-    phone: new FormControl(undefined, [Validators.required])
-  });
 
   changePreferredCountries() {
     this.preferredCountries = [CountryISO.India, CountryISO.Canada];

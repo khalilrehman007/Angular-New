@@ -447,4 +447,7 @@ export class AppService {
   PointPayment(data:any) {
     return this.http.post(this.apiurl + 'PointPayment' , data);
   }
+  PropertyListingPackages(data:any) {
+    return this.http.get(this.apiurl + 'PropertyListingPackagesByPropertyListingType?listingTypeId=' + data);
+  }
 }

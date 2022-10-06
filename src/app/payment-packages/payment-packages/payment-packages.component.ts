@@ -21,6 +21,8 @@ export class PaymentPackagesComponent implements OnInit {
   professionalTypeId:any = '';
   professionalPakageView: any;
   professionalTypeTab: any;
+  packagesType: any = [];
+  points: any = [];
 
 
   constructor(private service: AppService,private modalService: NgbModal) {
@@ -29,6 +31,19 @@ export class PaymentPackagesComponent implements OnInit {
     this.loadPropertyListingTypes();
     this.professionalTypeTab = localStorage.getItem('user');
     this.professionalTypeTab = JSON.parse(this.professionalTypeTab);
+    this.service.PropertyListingPackages(1).subscribe((result:any)=> {
+      this.packagesType = result.data;
+      // this.packagesType.push(result.data[0]);
+      // this.packagesType.push(result.data[1]);
+      // this.packagesType.push(result.data[2]);
+      // this.packagesType.push(result.data[3]);
+      console.log(result)
+    })
+    this.service.GetPoints(1).subscribe((result:any)=> {
+      this.points = result.data;
+      console.log(result)
+    })
+
   }
 
   ngOnInit(): void {
