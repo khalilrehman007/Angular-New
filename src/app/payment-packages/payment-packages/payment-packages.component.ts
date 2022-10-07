@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AppService} from "../../service/app.service";
 import * as $ from 'jquery';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-payment-packages',
@@ -23,9 +24,14 @@ export class PaymentPackagesComponent implements OnInit {
   professionalTypeTab: any;
   packagesType: any = [];
   points: any = [];
+  selectedPackage: any = "";
+  error: any = ""
+  showError: boolean = false;
+  errorResponse(data: any) {
+    this.showError = false;
+  }
 
-
-  constructor(private service: AppService,private modalService: NgbModal) {
+  constructor(private service: AppService,private modalService: NgbModal, private router : Router) {
     $(window).scrollTop(0);
     this.loadProfessionalTypes();
     this.loadPropertyListingTypes();
@@ -37,11 +43,9 @@ export class PaymentPackagesComponent implements OnInit {
       // this.packagesType.push(result.data[1]);
       // this.packagesType.push(result.data[2]);
       // this.packagesType.push(result.data[3]);
-      console.log(result)
     })
     this.service.GetPoints(1).subscribe((result:any)=> {
       this.points = result.data;
-      console.log(result)
     })
 
   }
@@ -71,9 +75,17 @@ export class PaymentPackagesComponent implements OnInit {
     });
   }
   getPackage(e:any){
-    console.log(e)
+    this.selectedPackage = e;
   }
-
+  proceedPayment() {
+    if(this.selectedPackage != "") {
+      localStorage.setItem("seletedPackage", JSON.stringify(this.selectedPackage));
+      this.router.navigate(["/payment-form"]);
+    } else {
+      this.error = "Please Select a package type";
+      this.showError = true;
+    }
+  }
   public loadProfessionalAndListingType(e:any){
     let listingTypeId:any;
     if(e.tab.textLabel == 'Agent' || e.tab.textLabel == 'Landlord' || e.tab.textLabel == 'developer' ){
@@ -95,7 +107,6 @@ export class PaymentPackagesComponent implements OnInit {
     }else {
       listingTypeId = 1;
     }
-    console.log(this.professionalTypeId,listingTypeId)
     this.service.LoadProfessionalAndListingType(this.professionalTypeId,listingTypeId).subscribe(e => {
       let temp: any = e;
       if (temp.message == "The Packages fetched successfully") {
@@ -116,6 +127,13 @@ export class PaymentPackagesComponent implements OnInit {
       }
     });
 
+  }
+  validateButton(e:any) {
+    if(e.length >= 5) {
+      return true;
+    } else {
+      return false;
+    }
   }
   platinumPopup(Platinumcontent: any) {
     this.modalService.open(Platinumcontent, { centered: true });
