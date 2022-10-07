@@ -228,6 +228,36 @@
                 </mat-form-field>
             </div>
         </div>
+        <div ngClass="block-item six1-block" *ngIf="router.url === '/property/short-term-rent'">
+            <div ngClass="block-wrapper">
+                <div ngClass="cstm_dropdown-list dropdown-design-2 position-relative drodown_with-img">
+                    <button ngClass="drop-down_btn" (click)="clickEvent2()">Availability</button>
+                    <div class="cstm_dropdown-menu" [ngClass]="status2 ? 'active' : 'notactive'">
+                        <h4 ngClass="drop_label">Availability</h4>
+                        <div ngClass="availity-sec-design">
+                            <div ngClass="availity-from input-date-picker input-design">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Availability From</mat-label>
+                                <input matInput [matDatepicker]="pickerFrom">
+                                <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
+                                <mat-datepicker #pickerFrom></mat-datepicker>
+                              </mat-form-field>
+                              </div>
+                             <div ngClass="availity-to input-date-picker input-design">
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Availability To</mat-label>
+                                    <input matInput [matDatepicker]="pickerTo">
+
+                                    <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
+                                    <mat-datepicker #pickerTo></mat-datepicker>
+                                  </mat-form-field>
+                              </div>
+                        </div>
+                    </div>
+                    <button (click)="clickEvent2()" ngClass="overlay_dropdown-btn"></button>
+                </div>
+            </div>
+        </div>
         <div ngClass="block-item six-block">
             <div ngClass="block-wrapper more-filter_btn-wrapper">
                 <button ngClass="more-filter-button" (click)="openVerticallyCentered(content)">More Filters</button>
