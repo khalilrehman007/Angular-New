@@ -12,6 +12,9 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { LoaderModule } from '../loader/loader.module';
+import { AlertsModule } from '../alerts/alerts.module';
+
 
 
 @NgModule({
@@ -30,7 +33,9 @@ import { MatSelectModule } from '@angular/material/select';
     FormsModule,
     ReactiveFormsModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    LoaderModule,
+    AlertsModule
   ]
 })
 export class PaymentPackagesFinalModule { }

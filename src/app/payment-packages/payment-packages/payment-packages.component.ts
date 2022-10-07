@@ -70,6 +70,9 @@ export class PaymentPackagesComponent implements OnInit {
       }
     });
   }
+  getPackage(e:any){
+    console.log(e)
+  }
 
   public loadProfessionalAndListingType(e:any){
     let listingTypeId:any;
