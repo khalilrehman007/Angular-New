@@ -63,12 +63,20 @@ export class PropertyinfoComponent implements OnInit {
   showLoader: boolean = false;
   showMap: boolean = false;
   currentField: any;
+  packagesType: any = [];
 
   constructor(private route: Router, private notifyService: NotificationService, private service: AppService,private modalService: NgbModal,config: NgbModalConfig) {
     if(!localStorage.getItem("user")) {
       this.notifyService.showError("You need to register/login", "");
       this.route.navigate(["/login"]);
     }
+    this.service.PropertyListingPackages(1).subscribe((result:any)=> {
+      this.packagesType = result.data;
+      // this.packagesType.push(result.data[0]);
+      // this.packagesType.push(result.data[1]);
+      // this.packagesType.push(result.data[2]);
+      // this.packagesType.push(result.data[3]);
+    })
     this.loadCountriesData();
     this.options = {
       bounds: [],

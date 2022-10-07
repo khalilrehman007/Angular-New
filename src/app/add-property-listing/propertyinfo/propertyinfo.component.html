@@ -32,20 +32,22 @@
                                     <div ngClass="block-wrapper mb-4">
                                         <div ngClass="select-design select2-design">
                                             <label>Country <span ngClass="required-span">*</span></label>
-                                            <select class="select2 country-select" *ngIf="oldData == '' || country.length > 0">
+                                            <select class="select2 country-select"
+                                                *ngIf="oldData == '' || country.length > 0">
                                                 <option value="0"> Select Country</option>
-                                                <option class="country-item-{{list.value}}" *ngFor="let list of country" [value]="list.value"> {{ list.viewValue }}</option>
+                                                <option class="country-item-{{list.value}}" *ngFor="let list of country"
+                                                    [value]="list.value"> {{ list.viewValue }}</option>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
                                 <div ngClass="col-xl-4 col-lg-4 col-sm-12">
                                     <div ngClass="select-design mb-4 select2-design">
-                                        <label ngClass="h6-design">City <span
-                                                ngClass="required-span">*</span></label>
+                                        <label ngClass="h6-design">City <span ngClass="required-span">*</span></label>
                                         <select class="select2 city-select" *ngIf="oldData == '' || city.length > 0">
-                                                <option value="0"> Select City</option>
-                                                <option class="city-item-{{listcity.value}}" *ngFor="let listcity of city" [value]="listcity.value"> {{ listcity.viewValue }}</option>
+                                            <option value="0"> Select City</option>
+                                            <option class="city-item-{{listcity.value}}" *ngFor="let listcity of city"
+                                                [value]="listcity.value"> {{ listcity.viewValue }}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -53,9 +55,12 @@
                                     <div ngClass="block-wrapper mb-4">
                                         <div ngClass="select-design select2-design">
                                             <label>District <span ngClass="required-span">*</span></label>
-                                            <select class="select2 district-select" *ngIf="oldData == '' || district.length > 0">
+                                            <select class="select2 district-select"
+                                                *ngIf="oldData == '' || district.length > 0">
                                                 <option value="0"> Select District</option>
-                                                <option class="district-item-{{listdistrict.value}}" *ngFor="let listdistrict of district" [value]="listdistrict.value">{{ listdistrict.viewValue }}</option>
+                                                <option class="district-item-{{listdistrict.value}}"
+                                                    *ngFor="let listdistrict of district" [value]="listdistrict.value">
+                                                    {{ listdistrict.viewValue }}</option>
                                             </select>
                                         </div>
                                     </div>
@@ -130,10 +135,10 @@
             <div class="packages-list-modal-hdr">
                 <h2>Current Package</h2>
             </div>
-           <div class="packages-list-modal-cntnt">
-            <div class="package_row">
-                <owl-carousel-o [options]="PackageOptions">
-                    <ng-template carouselSlide>
+            <div class="packages-list-modal-cntnt">
+                <div class="package_row">
+                    <owl-carousel-o [options]="PackageOptions">
+                        <ng-template carouselSlide *ngFor="let packages of packagesType">
                             <div class="packages-list-modal-list position-relative Free">
                                 <div class="packages-list-modal-radio">
                                     <input type="radio" name="package-select">
@@ -142,20 +147,22 @@
                                 <div class="packages-list-modal-content">
                                     <div class="payment_box_cnntn">
                                         <ul class="list-unstyled">
+                                            <li
+                                                *ngFor="let property of packages.propertyListingPackageFeatures; let i = index">
+                                                {{property.detail}}</li>
+                                            <!-- <li>Up to 30 days validity</li>
                                             <li>01 Active Property Listing</li>
                                             <li>Up to 30 days validity</li>
-                                            <li>01 Active Property Listing</li>
-                                            <li>Up to 30 days validity</li>
-                                            <li>Up to 30 days validity</li>
+                                            <li>Up to 30 days validity</li> -->
                                         </ul>
                                     </div>
                                 </div>
                                 <div class="package-tag">
-                                    <h4>Free</h4>
+                                    <h4>{{packages.name}}</h4>
                                 </div>
                             </div>
-                    </ng-template>  
-                    <ng-template carouselSlide>
+                        </ng-template>
+                        <!-- <ng-template carouselSlide>
                             <div class="packages-list-modal-list position-relative Premium disabled">
                                 <div class="packages-list-modal-radio">
                                     <input type="radio" name="package-select">
@@ -170,15 +177,16 @@
                                             <li>Up to 30 days validity</li>
                                             <li>Up to 30 days validity</li>
                                         </ul>
-                                        <button ngClass="view-more-btn" routerLink="/payment-packages">View More</button>
+                                        <button ngClass="view-more-btn" routerLink="/payment-packages">View
+                                            More</button>
                                     </div>
                                 </div>
                                 <div class="package-tag">
                                     <h4>Premium</h4>
                                 </div>
                             </div>
-                    </ng-template>  
-                    <ng-template carouselSlide>
+                        </ng-template>
+                        <ng-template carouselSlide>
                             <div class="packages-list-modal-list position-relative Platinum disabled">
                                 <div class="packages-list-modal-radio">
                                     <input type="radio" name="package-select">
@@ -193,15 +201,16 @@
                                             <li>Up to 30 days validity</li>
                                             <li>Up to 30 days validity</li>
                                         </ul>
-                                        <button ngClass="view-more-btn" routerLink="/payment-packages">View More</button>
+                                        <button ngClass="view-more-btn" routerLink="/payment-packages">View
+                                            More</button>
                                     </div>
                                 </div>
                                 <div class="package-tag">
                                     <h4>Platinum</h4>
                                 </div>
                             </div>
-                    </ng-template>
-                    <ng-template carouselSlide>
+                        </ng-template>
+                        <ng-template carouselSlide>
                             <div class="packages-list-modal-list position-relative Standard disabled">
                                 <div class="packages-list-modal-radio">
                                     <input type="radio" name="package-select">
@@ -222,14 +231,14 @@
                                     <h4>Standard</h4>
                                 </div>
                             </div>
-                    </ng-template>  
-                  </owl-carousel-o>
+                        </ng-template> -->
+                    </owl-carousel-o>
+                </div>
             </div>
-           </div>
-           <div class="packages-list-modal-footer">
-            <button class="want-to-upgrade">Want to upgrade</button>
-            <button class="continue-with-this" (click)="modal.dismiss('Cross click')">Continue with this</button>
-           </div>
+            <div class="packages-list-modal-footer">
+                <button class="want-to-upgrade">Want to upgrade</button>
+                <button class="continue-with-this" (click)="modal.dismiss('Cross click')">Continue with this</button>
+            </div>
         </div>
     </ng-template>
 </div>
@@ -237,13 +246,14 @@
 <div ngClass="packages-modal-wrap">
     <ng-template #NopackageContent let-modal>
         <div class="modal-body nopackages-modal-design">
-           <div class="packages-list-modal-cntnt">
-            <img src="assets/images/property-package.png">
-              <p>Sorry! You dont have any existing packages to list your property. Please buy one.</p>
-           </div>
-           <div class="packages-list-modal-footer justify-content-center">
-            <a class="want-to-upgrade" routerLink="/payment-packages" (click)="modal.dismiss('Cross click')">Buy Now</a>
-           </div>
+            <div class="packages-list-modal-cntnt">
+                <img src="assets/images/property-package.png">
+                <p>Sorry! You dont have any existing packages to list your property. Please buy one.</p>
+            </div>
+            <div class="packages-list-modal-footer justify-content-center">
+                <a class="want-to-upgrade" routerLink="/payment-packages" (click)="modal.dismiss('Cross click')">Buy
+                    Now</a>
+            </div>
         </div>
     </ng-template>
 </div>

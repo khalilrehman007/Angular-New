@@ -2054,19 +2054,19 @@
                         <div class="sub-dash-heading mb-4">
                             <h4 class="sub-title">My Packages</h4>
                         </div>
-                    <div ngClass="my-valuation-list-wrapper">
-                        <div ngClass="my-valuation-list-design d-flex">
+                    <div ngClass="my-valuation-list-wrapper" >
+                        <div ngClass="my-valuation-list-design d-flex" *ngFor="let data of pointsHistory">
                             <div ngClass="my_valuation-inner-div package-name">
                                 <h6>Package Name</h6>
-                                <p>Premium</p>
+                                <p>{{data.point.name}}</p>
                             </div>
                             <div ngClass="my_valuation-inner-div package-date">
                                 <h6>Package Purchased Date</h6>
-                                <p>5 Oct 2022</p>
+                                <p>{{data.purchaseDate.split("T")[0]}}}</p>
                             </div>
                             <div ngClass="my_valuation-inner-div package-validity">
                                 <h6>Package Validity</h6>
-                                <p>15 Oct 2022</p>
+                                <p>{{data.expiryDate.split("T")[0]}}</p>
                             </div>
                             <div ngClass="my_valuation-inner-div package-status">
                                 <h6>Package Status</h6>
