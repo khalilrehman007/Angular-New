@@ -1909,72 +1909,58 @@
                         <div class="sub-tab-nav">
                             <mat-tab-group>
                                 <mat-tab label="My Wallet">
-                                    <div ngClass="my-wallet-list-wrapper" *ngFor="let data of pointsHistory">
+                                    <div ngClass="my-wallet-list-mainwrapper">
+                                        <div class="my-wallet-existing-block">
                                         <div class="row">
-                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12">
-                                                <div ngClass="my-wallet-list-design">
-                                                    <div ngClass="exisitng-amount">
-                                                        <h6>Package Name</h6>
-                                                        <p>{{data.point.name}}</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12">
+                                          <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                                                 <div ngClass="my-wallet-list-img">
                                                     <img src="{{wallet}}">
                                                 </div>
-                                            </div> -->
-                                            <!-- <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12">
+                                            </div>
+                                          <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                                                 <div ngClass="my-wallet-list-design">
                                                     <div ngClass="exisitng-amount">
                                                         <h6>Existing Points</h6>
                                                         <p>{{myBalance}}</p>
                                                     </div>
                                                 </div>
-                                            </div> -->
-                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12">
-                                                <div ngClass="my-wallet-list-design">
-                                                    <div ngClass="exisitng-amount">
-                                                        <h6>Purchased Points</h6>
-                                                        <p>{{data.totalPoints}}</p>
+                                                <div class="recharge_row-wallet">
+                                                    <div class="recharge_row-wallet-flex">
+                                                    <div ngClass="recharge-now-btn">
+                                                        <a class="cursor-pointer" routerLink="/payment-packages">Recharge
+                                                            Now</a>
                                                     </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12">
-                                                <div ngClass="my-wallet-list-design">
-                                                    <div ngClass="exisitng-amount">
-                                                        <h6>Points Used</h6>
-                                                        <p>{{data.totalPoints-data.remainigPoints}}</p>
+                                                    <div ngClass="transfer-now-btn">
+                                                        <a class="cursor-pointer"
+                                                            (click)="TransferPopup(TransferModal)">Transfer</a>
                                                     </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12">
-                                                <div ngClass="my-wallet-list-design">
-                                                    <div ngClass="exisitng-amount">
-                                                        <h6>Remaining Points </h6>
-                                                        <p>{{data.remainigPoints}}</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12">
-                                                <div ngClass="my-wallet-list-design">
-                                                    <div ngClass="exisitng-amount">
-                                                        <h6>Expired Date</h6>
-                                                        <p class="red-color">{{data.expiryDate.split("T")[0]}}</p>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="recharge_row-wallet">
-                                            <div class="recharge_row-wallet-flex">
-                                            <div ngClass="recharge-now-btn">
-                                                <a class="cursor-pointer" routerLink="/payment-packages">Recharge
-                                                    Now</a>
-                                            </div>
-                                            <div ngClass="transfer-now-btn">
-                                                <a class="cursor-pointer"
-                                                    (click)="TransferPopup(TransferModal)">Transfer</a>
-                                            </div>
+                                        </div>
+                                        <div ngClass="my-valuation-list-wrapper">
+                                            <div ngClass="my-valuation-list-design d-flex" *ngFor="let data of pointsHistory">
+                                                <div ngClass="my_valuation-inner-div category">
+                                                    <h6>Package Name</h6>
+                                                    <p>{{data.point.name}}</p>
+                                                </div>
+                                                <div ngClass="my_valuation-inner-div place">
+                                                    <h6>Purchased Points</h6>
+                                                    <p>{{data.totalPoints}}</p>
+                                                </div>
+                                                <div ngClass="my_valuation-inner-div property_type">
+                                                    <h6>Points Used</h6>
+                                                    <p>{{data.totalPoints-data.remainigPoints}}</p>
+                                                </div>
+                                                <div ngClass="my_valuation-inner-div remaning-point">
+                                                    <h6>Remaining Points </h6>
+                                                    <p>{{data.remainigPoints}}</p>
+                                                </div>
+                                                <div ngClass="my_valuation-inner-div expired-point">
+                                                    <h6>Expired Date</h6>
+                                                    <p class="red-color">{{data.expiryDate.split("T")[0]}}</p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

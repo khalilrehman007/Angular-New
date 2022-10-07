@@ -131,91 +131,99 @@
                 <h2>Current Package</h2>
             </div>
            <div class="packages-list-modal-cntnt">
-            <div class="package_row column-4">
-            <div class="package_column">
-            <div class="packages-list-modal-list position-relative Free">
-                <div class="packages-list-modal-radio">
-                    <input type="radio" name="package-select">
-                    <button class="cstm-radio_btn"></button>
-                </div>
-                <div class="packages-list-modal-content">
-                    <div class="payment_box_cnntn">
-                        <ul class="list-unstyled">
-                            <li>01 Active Property Listing</li>
-                            <li>Up to 30 days validity</li>
-                            <li>01 Active Property Listing</li>
-                            <li>Up to 30 days validity</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="package-tag">
-                    <h4>Free</h4>
-                </div>
-            </div>
-            </div>
-                <div class="package_column">
-                    <div class="packages-list-modal-list position-relative Premium">
-                        <div class="packages-list-modal-radio">
-                            <input type="radio" name="package-select">
-                            <button class="cstm-radio_btn"></button>
-                        </div>
-                        <div class="packages-list-modal-content">
-                            <div class="payment_box_cnntn">
-                                <ul class="list-unstyled">
-                                    <li>01 Active Property Listing</li>
-                                    <li>Up to 30 days validity</li>
-                                    <li>01 Active Property Listing</li>
-                                    <li>Up to 30 days validity</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="package-tag">
-                            <h4>Premium</h4>
-                        </div>
-                    </div>
-                    </div>
-                    <div class="package_column">
-                        <div class="packages-list-modal-list position-relative Platinum">
-                            <div class="packages-list-modal-radio">
-                                <input type="radio" name="package-select">
-                                <button class="cstm-radio_btn"></button>
-                            </div>
-                            <div class="packages-list-modal-content">
-                                <div class="payment_box_cnntn">
-                                    <ul class="list-unstyled">
-                                        <li>01 Active Property Listing</li>
-                                        <li>Up to 30 days validity</li>
-                                        <li>01 Active Property Listing</li>
-                                        <li>Up to 30 days validity</li>
-                                    </ul>
+            <div class="package_row">
+                <owl-carousel-o [options]="PackageOptions">
+                    <ng-template carouselSlide>
+                            <div class="packages-list-modal-list position-relative Free">
+                                <div class="packages-list-modal-radio">
+                                    <input type="radio" name="package-select">
+                                    <button class="cstm-radio_btn"></button>
+                                </div>
+                                <div class="packages-list-modal-content">
+                                    <div class="payment_box_cnntn">
+                                        <ul class="list-unstyled">
+                                            <li>01 Active Property Listing</li>
+                                            <li>Up to 30 days validity</li>
+                                            <li>01 Active Property Listing</li>
+                                            <li>Up to 30 days validity</li>
+                                            <li>Up to 30 days validity</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="package-tag">
+                                    <h4>Free</h4>
                                 </div>
                             </div>
-                            <div class="package-tag">
-                                <h4>Platinum</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="package_column">
-                        <div class="packages-list-modal-list position-relative Standard">
-                            <div class="packages-list-modal-radio">
-                                <input type="radio" name="package-select">
-                                <button class="cstm-radio_btn"></button>
-                            </div>
-                            <div class="packages-list-modal-content">
-                                <div class="payment_box_cnntn">
-                                    <ul class="list-unstyled">
-                                        <li>01 Active Property Listing</li>
-                                        <li>Up to 30 days validity</li>
-                                        <li>01 Active Property Listing</li>
-                                        <li>Up to 30 days validity</li>
-                                    </ul>
+                    </ng-template>  
+                    <ng-template carouselSlide>
+                            <div class="packages-list-modal-list position-relative Premium disabled">
+                                <div class="packages-list-modal-radio">
+                                    <input type="radio" name="package-select">
+                                    <button class="cstm-radio_btn"></button>
+                                </div>
+                                <div class="packages-list-modal-content">
+                                    <div class="payment_box_cnntn">
+                                        <ul class="list-unstyled">
+                                            <li>01 Active Property Listing</li>
+                                            <li>Up to 30 days validity</li>
+                                            <li>01 Active Property Listing</li>
+                                            <li>Up to 30 days validity</li>
+                                            <li>Up to 30 days validity</li>
+                                        </ul>
+                                        <button ngClass="view-more-btn" routerLink="/payment-packages">View More</button>
+                                    </div>
+                                </div>
+                                <div class="package-tag">
+                                    <h4>Premium</h4>
                                 </div>
                             </div>
-                            <div class="package-tag">
-                                <h4>Standard</h4>
+                    </ng-template>  
+                    <ng-template carouselSlide>
+                            <div class="packages-list-modal-list position-relative Platinum disabled">
+                                <div class="packages-list-modal-radio">
+                                    <input type="radio" name="package-select">
+                                    <button class="cstm-radio_btn"></button>
+                                </div>
+                                <div class="packages-list-modal-content">
+                                    <div class="payment_box_cnntn">
+                                        <ul class="list-unstyled">
+                                            <li>01 Active Property Listing</li>
+                                            <li>Up to 30 days validity</li>
+                                            <li>01 Active Property Listing</li>
+                                            <li>Up to 30 days validity</li>
+                                            <li>Up to 30 days validity</li>
+                                        </ul>
+                                        <button ngClass="view-more-btn" routerLink="/payment-packages">View More</button>
+                                    </div>
+                                </div>
+                                <div class="package-tag">
+                                    <h4>Platinum</h4>
+                                </div>
                             </div>
-                        </div>
-                        </div>
+                    </ng-template>
+                    <ng-template carouselSlide>
+                            <div class="packages-list-modal-list position-relative Standard disabled">
+                                <div class="packages-list-modal-radio">
+                                    <input type="radio" name="package-select">
+                                    <button class="cstm-radio_btn"></button>
+                                </div>
+                                <div class="packages-list-modal-content">
+                                    <div class="payment_box_cnntn">
+                                        <ul class="list-unstyled">
+                                            <li>01 Active Property Listing</li>
+                                            <li>Up to 30 days validity</li>
+                                            <li>01 Active Property Listing</li>
+                                            <li>Up to 30 days validity</li>
+                                            <li>Up to 30 days validity</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="package-tag">
+                                    <h4>Standard</h4>
+                                </div>
+                            </div>
+                    </ng-template>  
+                  </owl-carousel-o>
             </div>
            </div>
            <div class="packages-list-modal-footer">

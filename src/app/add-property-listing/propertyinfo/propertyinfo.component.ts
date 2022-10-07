@@ -6,6 +6,7 @@ import { NotificationService } from "../../service/notification.service";
 import { AppService } from 'src/app/service/app.service';
 import { Select2 } from 'select2';
 import {NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { OwlOptions } from 'ngx-owl-carousel-o';
 
 declare const google: any;
 
@@ -399,5 +400,29 @@ export class PropertyinfoComponent implements OnInit {
   }
   NoPackageModal(NopackageContent: any) {
     this.modalService.open(NopackageContent, { centered: true });
+  }
+  PackageOptions: OwlOptions = {
+    loop: false,
+    mouseDrag: true,
+    touchDrag: true,
+    autoWidth:false,
+    pullDrag: true,
+    dots: true,
+    navSpeed: 700,
+    responsive: {
+      0: {
+        items: 1
+      },
+      576: {
+        items: 2
+      },
+      992: {
+        items: 4
+      },
+      1200: {
+        items: 4
+      }
+    },
+    nav: false
   }
 }

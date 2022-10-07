@@ -1165,10 +1165,11 @@ $btncolor: #0B26AD;
     font-size: 14px;
     padding: 10px 17px;
     border-radius: 7px;
-    min-width: 92px;
+    width: 100%;
     text-align: center;
     font-weight: 600;
     display: inline-block;
+    margin-bottom: 15px;
 }
 .recharge-now-btn>.cursor-pointer:hover {
     background-color: #0f2ead;
@@ -1238,11 +1239,14 @@ $btncolor: #0B26AD;
     color: #FF0000 !important;
 }
 .recharge_row-wallet-flex {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
     padding-left: 18px;
 }
-.recharge_row-wallet-flex>.transfer-now-btn {
-    margin-left: 15px;
+.my-wallet-existing-block {
+    background-color: #F0F3F5;
+    border-radius: 6px;
+    padding: 15px;
+    width: 100%;
+    max-width: 500px;
+    margin-top: 20px;
 }
+

@@ -20,6 +20,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { ListpropertypublishComponent } from './listpropertypublish/listpropertypublish.component';
 import { EditComponent } from './edit/edit.component';
 import { EditListInfoComponent } from './edit-list-info/edit-list-info.component';
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { EditListInfoComponent } from './edit-list-info/edit-list-info.component
     MatCardModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    CarouselModule
   ]
 })
 export class AddPropertyListingModule { }
