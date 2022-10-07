@@ -85,7 +85,7 @@ export class PropertyfilterComponent implements OnInit {
   options: any = {};
   propertyFeatureIds :any = [];
 
-  constructor(private activeRoute: ActivatedRoute,private service:AppService,private api: AppService,private route:Router,private modalService: NgbModal) {
+  constructor(private activeRoute: ActivatedRoute,private service:AppService,private api: AppService,private route:Router,private modalService: NgbModal,public router: Router) {
 
     let url = this.route.url.replace("/", "");
     url = this.route.url.split('?')[0];
@@ -335,6 +335,10 @@ export class PropertyfilterComponent implements OnInit {
   status: boolean = false;
   clickEvent(){
     this.status = !this.status;
+  }
+  status2: boolean = false;
+  clickEvent2(){
+    this.status2 = !this.status2;
   }
   propertyTypes:any = []
   selectedPropertyType :any;
