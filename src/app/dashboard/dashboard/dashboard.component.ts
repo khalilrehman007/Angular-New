@@ -214,7 +214,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         this.loggedInUser = JSON.parse(this.loggedInUser);
         this.getUser();
         this.userId = this.user.id;
-        this.LoadBlogs();
         this.getloadDashboardData();
         this.getLoadListing()
         this.getTabCount();
@@ -329,10 +328,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         })
   }
   ngAfterViewInit(): void {
-    // this.getDistricts();
     let a = setInterval(() => {
       if(this.cookie.get("countryData")) {
         this.countryData = JSON.parse(this.cookie.get("countryData"));
+        this.LoadBlogs();
         clearInterval(a);
       }
     },100);
@@ -623,7 +622,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
 
   LoadBlogs() {
-    this.service.LoadBlogs().subscribe(data => {
+    this.service.LoadBlogs(this.countryData.id).subscribe(data => {
       this.blogs = data;
       this.blogs = this.blogs.data.filter((blog: any, key: any, array: any) => {
         if (key < 3) {
