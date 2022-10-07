@@ -120,5 +120,122 @@
         </div>
     </div>
 </section>
+<button (click)="PackageModal(packageContent)">Demo 1</button>
+<button (click)="NoPackageModal(NopackageContent)">Demo 2</button>
 <app-loader *ngIf="showLoader"></app-loader>
 <app-erroralert [error]="error" (errorResponse)="errorResponse($event)" *ngIf="showError"></app-erroralert>
+<div ngClass="packages-modal-wrap">
+    <ng-template #packageContent let-modal>
+        <div class="modal-body packages-modal-design">
+            <div class="packages-list-modal-hdr">
+                <h2>Current Package</h2>
+            </div>
+           <div class="packages-list-modal-cntnt">
+            <div class="package_row column-4">
+            <div class="package_column">
+            <div class="packages-list-modal-list position-relative Free">
+                <div class="packages-list-modal-radio">
+                    <input type="radio" name="package-select">
+                    <button class="cstm-radio_btn"></button>
+                </div>
+                <div class="packages-list-modal-content">
+                    <div class="payment_box_cnntn">
+                        <ul class="list-unstyled">
+                            <li>01 Active Property Listing</li>
+                            <li>Up to 30 days validity</li>
+                            <li>01 Active Property Listing</li>
+                            <li>Up to 30 days validity</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="package-tag">
+                    <h4>Free</h4>
+                </div>
+            </div>
+            </div>
+                <div class="package_column">
+                    <div class="packages-list-modal-list position-relative Premium">
+                        <div class="packages-list-modal-radio">
+                            <input type="radio" name="package-select">
+                            <button class="cstm-radio_btn"></button>
+                        </div>
+                        <div class="packages-list-modal-content">
+                            <div class="payment_box_cnntn">
+                                <ul class="list-unstyled">
+                                    <li>01 Active Property Listing</li>
+                                    <li>Up to 30 days validity</li>
+                                    <li>01 Active Property Listing</li>
+                                    <li>Up to 30 days validity</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="package-tag">
+                            <h4>Premium</h4>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="package_column">
+                        <div class="packages-list-modal-list position-relative Platinum">
+                            <div class="packages-list-modal-radio">
+                                <input type="radio" name="package-select">
+                                <button class="cstm-radio_btn"></button>
+                            </div>
+                            <div class="packages-list-modal-content">
+                                <div class="payment_box_cnntn">
+                                    <ul class="list-unstyled">
+                                        <li>01 Active Property Listing</li>
+                                        <li>Up to 30 days validity</li>
+                                        <li>01 Active Property Listing</li>
+                                        <li>Up to 30 days validity</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="package-tag">
+                                <h4>Platinum</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="package_column">
+                        <div class="packages-list-modal-list position-relative Standard">
+                            <div class="packages-list-modal-radio">
+                                <input type="radio" name="package-select">
+                                <button class="cstm-radio_btn"></button>
+                            </div>
+                            <div class="packages-list-modal-content">
+                                <div class="payment_box_cnntn">
+                                    <ul class="list-unstyled">
+                                        <li>01 Active Property Listing</li>
+                                        <li>Up to 30 days validity</li>
+                                        <li>01 Active Property Listing</li>
+                                        <li>Up to 30 days validity</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="package-tag">
+                                <h4>Standard</h4>
+                            </div>
+                        </div>
+                        </div>
+            </div>
+           </div>
+           <div class="packages-list-modal-footer">
+            <button class="want-to-upgrade">Want to upgrade</button>
+            <button class="continue-with-this" (click)="modal.dismiss('Cross click')">Continue with this</button>
+           </div>
+        </div>
+    </ng-template>
+</div>
+
+<div ngClass="packages-modal-wrap">
+    <ng-template #NopackageContent let-modal>
+        <div class="modal-body nopackages-modal-design">
+           <div class="packages-list-modal-cntnt">
+            <img src="assets/images/property-package.png">
+              <p>Sorry! You dont have any existing packages to list your property. Please buy one.</p>
+           </div>
+           <div class="packages-list-modal-footer justify-content-center">
+            <a class="want-to-upgrade" routerLink="/payment-packages" (click)="modal.dismiss('Cross click')">Buy Now</a>
+           </div>
+        </div>
+    </ng-template>
+</div>

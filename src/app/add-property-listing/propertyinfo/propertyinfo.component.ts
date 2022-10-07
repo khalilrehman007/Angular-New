@@ -5,6 +5,7 @@ import { Router } from "@angular/router";
 import { NotificationService } from "../../service/notification.service";
 import { AppService } from 'src/app/service/app.service';
 import { Select2 } from 'select2';
+import {NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 declare const google: any;
 
@@ -62,7 +63,7 @@ export class PropertyinfoComponent implements OnInit {
   showMap: boolean = false;
   currentField: any;
 
-  constructor(private route: Router, private notifyService: NotificationService, private service: AppService) {
+  constructor(private route: Router, private notifyService: NotificationService, private service: AppService,private modalService: NgbModal,config: NgbModalConfig) {
     if(!localStorage.getItem("user")) {
       this.notifyService.showError("You need to register/login", "");
       this.route.navigate(["/login"]);
@@ -73,6 +74,8 @@ export class PropertyinfoComponent implements OnInit {
       strictBounds: true,
     };
     this.loadOldData();
+    config.backdrop = 'static';
+    config.keyboard = false;
   }
   loadOldData() {
     if (localStorage.getItem("propertyData")) {
@@ -390,5 +393,11 @@ export class PropertyinfoComponent implements OnInit {
       this.autocomplete.addListener('place_changed', this.onPlaceChanged);
       this.autocomplete.setBounds(this.bounds);
     }
+  }
+  PackageModal(packageContent: any) {
+    this.modalService.open(packageContent, { centered: true });
+  }
+  NoPackageModal(NopackageContent: any) {
+    this.modalService.open(NopackageContent, { centered: true });
   }
 }
