@@ -1,14 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 import { AppService } from 'src/app/service/app.service';
-
-
 
 @Component({
   selector: 'app-left-at-home',
   templateUrl: './left-at-home.component.html',
   styleUrls: ['./left-at-home.component.scss']
 })
-export class LeftAtHomeComponent implements OnInit {
+export class LeftAtHomeComponent implements OnInit, AfterViewInit {
   exploreimg = '../../../assets/images/Blog-Tile.png'
   Newssec = [
     {
@@ -55,18 +54,27 @@ export class LeftAtHomeComponent implements OnInit {
   ]
   blogs: any;
   lifeatHome: any;
-  constructor(private service: AppService) {
+  countryData:any = "";
+  constructor(private service: AppService, private cookie: CookieService) {
     $(window).scrollTop(0);
-    this.LoadBlogs();
     this.service.BlogCategorybyId(4).subscribe((result: any) => {
       this.lifeatHome = result.data;
     })
+  }
+  ngAfterViewInit(): void {
+    let a = setInterval(() => {
+      if(this.cookie.get("countryData")) {
+        this.countryData = JSON.parse(this.cookie.get("countryData"));
+        this.LoadBlogs();
+        clearInterval(a);
+      }
+    },100);
   }
 
   ngOnInit(): void {
   }
   LoadBlogs() {
-    this.service.LoadBlogs().subscribe(data => {
+    this.service.LoadBlogs(this.countryData.id).subscribe(data => {
       this.blogs = data;
       this.blogs = this.blogs.data;
     });

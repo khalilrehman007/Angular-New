@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 import { AppService } from 'src/app/service/app.service';
 
 @Component({
@@ -6,7 +7,7 @@ import { AppService } from 'src/app/service/app.service';
   templateUrl: './exploreblog.component.html',
   styleUrls: ['./exploreblog.component.scss']
 })
-export class ExploreblogComponent implements OnInit {
+export class ExploreblogComponent implements OnInit, AfterViewInit {
 
   exploreimg = '../../../../assets/images/Blog-Tile.png'
   Newssec = [
@@ -54,18 +55,27 @@ export class ExploreblogComponent implements OnInit {
   ]
   blogs: any;
   exploreBlog: any;
-  constructor(private service: AppService) {
+  countryData: any = "";
+  constructor(private service: AppService, private cookie: CookieService) {
     $(window).scrollTop(0);
-    this.LoadBlogs();
     this.service.BlogCategorybyId(3).subscribe((result: any) => {
       this.exploreBlog = result.data;
     })
+  }
+  ngAfterViewInit(): void {
+    let a = setInterval(() => {
+      if (this.cookie.get("countryData")) {
+        this.countryData = JSON.parse(this.cookie.get("countryData"));
+        this.LoadBlogs();
+        clearInterval(a);
+      }
+    }, 100);
   }
 
   ngOnInit(): void {
   }
   LoadBlogs() {
-    this.service.LoadBlogs().subscribe(data => {
+    this.service.LoadBlogs(this.countryData.id).subscribe(data => {
       this.blogs = data;
       this.blogs = this.blogs.data;
     });

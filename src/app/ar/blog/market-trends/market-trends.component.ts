@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 import { AppService } from 'src/app/service/app.service';
 
 
@@ -7,7 +8,7 @@ import { AppService } from 'src/app/service/app.service';
   templateUrl: './market-trends.component.html',
   styleUrls: ['./market-trends.component.scss']
 })
-export class MarketTrendsComponent implements OnInit {
+export class MarketTrendsComponent implements OnInit, AfterViewInit {
   exploreimg = '../../../../assets/images/Blog-Tile.png'
   Newssec = [
     {
@@ -54,18 +55,27 @@ export class MarketTrendsComponent implements OnInit {
   ]
   blogs: any;
   marketTrendsBlog: any;
-  constructor(private service: AppService) {
+  countryData:any = "";
+  constructor(private service: AppService, private cookie : CookieService) {
     $(window).scrollTop(0);
-    this.LoadBlogs();
     this.service.BlogCategorybyId(6).subscribe((result: any) => {
       this.marketTrendsBlog = result.data;
     })
   }
+  ngAfterViewInit(): void {
+    let a = setInterval(() => {
+      if(this.cookie.get("countryData")) {
+        this.countryData = JSON.parse(this.cookie.get("countryData"));
+        clearInterval(a);
+      }
+    },100);
+  }
 
   ngOnInit(): void {
+    this.LoadBlogs();
   }
   LoadBlogs() {
-    this.service.LoadBlogs().subscribe(data => {
+    this.service.LoadBlogs(this.countryData.id).subscribe(data => {
       this.blogs = data;
       this.blogs = this.blogs.data;
     });

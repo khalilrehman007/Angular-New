@@ -229,7 +229,6 @@ export class HomepageComponent implements OnInit, AfterViewInit {
   constructor(private cookie: CookieService, private authService: AuthService, private service: AppService, private route: Router, private notifyService: NotificationService) {
     $(window).scrollTop(0);
     this.LoadPropertyCategories()
-    this.LoadBlogs();
     this.getLoadFeedback();
     this.loadCountriesData();
     this.ValuationTransactions();
@@ -279,6 +278,7 @@ export class HomepageComponent implements OnInit, AfterViewInit {
           this.trendTitle = result.data
         });
         this.LoadBanners();
+        this.LoadBlogs();
         clearInterval(a);
       }
     })
@@ -391,7 +391,7 @@ export class HomepageComponent implements OnInit, AfterViewInit {
   }
 
   LoadBlogs() {
-    this.service.LoadBlogs().subscribe(data => {
+    this.service.LoadBlogs(this.countryData.id).subscribe(data => {
       this.blogs = data;
       this.blogs = this.blogs.data.filter((blog: any, key: any, array: any) => {
         if (key < 3) {

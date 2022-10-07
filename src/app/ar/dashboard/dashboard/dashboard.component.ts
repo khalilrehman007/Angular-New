@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, OnInit } from '@angular/core';
+import { Component, ViewEncapsulation, OnInit, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import * as $ from 'jquery';
@@ -8,13 +8,14 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { AppService } from 'src/app/service/app.service';
 import { AuthService } from 'src/app/service/auth.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, AfterViewInit {
 blogs: any;
   proFrame = '../../../assets/images/profile/pro-img-frame.png'
   logoutimg = '../../../assets/images/logout-popup-banner.png'
@@ -71,6 +72,7 @@ blogs: any;
   leadsCommercialSummary: any = [];
   areaData: any = [];
   activityViewData:any = [];
+  countryData:any = "";
 
   plus = '../../../../assets/images/plus.svg'
 
@@ -180,12 +182,11 @@ blogs: any;
   parentTabId: any = "";
   childTabId: any  = "";
   url:any = "";
-  constructor(private authService: AuthService, private service: AppService, private route: Router, private notifyService: NotificationService,private modalService: NgbModal) {
+  constructor(private authService: AuthService, private service: AppService, private route: Router, private notifyService: NotificationService,private modalService: NgbModal, private cookie: CookieService) {
     this.url = this.route.url.split("/");
     $(window).scrollTop(0);
     this.getUser();
     this.userId = this.user.id;
-    this.LoadBlogs();
     this.getloadDashboardData();
     this.getLoadListing()
     this.getTabCount();
@@ -295,6 +296,15 @@ blogs: any;
         }
       }
     })
+  }
+  ngAfterViewInit(): void {
+    let a = setInterval(() => {
+      if(this.cookie.get("countryData")) {
+        this.countryData = JSON.parse(this.cookie.get("countryData"));
+        this.LoadBlogs();
+        clearInterval(a);
+      }
+    },100);
   }
   downloadReport(e: any) {
     this.showLoader = true;
@@ -577,7 +587,7 @@ blogs: any;
   }
 
   LoadBlogs() {
-    this.service.LoadBlogs().subscribe(data => {
+    this.service.LoadBlogs(this.countryData.id).subscribe(data => {
       this.blogs = data;
       this.blogs = this.blogs.data.filter((blog: any, key: any, array: any) => {
         if (key < 3) {

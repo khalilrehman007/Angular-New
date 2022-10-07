@@ -30,9 +30,9 @@ export class AppService {
     return this.http.get(this.apiurl + 'PropertyType/');
   }
 
-  LoadBlogs() {
+  LoadBlogs(e:any) {
     // BlogBanners
-    return this.http.get(this.apiurl + 'blogs');
+    return this.http.get(this.apiurl + 'blogs/' + e);
   }
   LoadBanners(data:any) {
     // BlogBanners
