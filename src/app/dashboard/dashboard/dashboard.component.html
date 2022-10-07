@@ -1909,13 +1909,13 @@
                         <div class="sub-tab-nav">
                             <mat-tab-group>
                                 <mat-tab label="My Wallet">
-                                    <div ngClass="my-wallet-list-wrapper">
+                                    <div ngClass="my-wallet-list-wrapper" *ngFor="let data of pointsHistory">
                                         <div class="row">
                                             <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12">
                                                 <div ngClass="my-wallet-list-design">
                                                     <div ngClass="exisitng-amount">
                                                         <h6>Package Name</h6>
-                                                        <p>Standard</p>
+                                                        <p>{{data.point.name}}</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1924,19 +1924,19 @@
                                                     <img src="{{wallet}}">
                                                 </div>
                                             </div> -->
-                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12">
+                                            <!-- <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12">
                                                 <div ngClass="my-wallet-list-design">
                                                     <div ngClass="exisitng-amount">
                                                         <h6>Existing Points</h6>
                                                         <p>{{myBalance}}</p>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                             <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12">
                                                 <div ngClass="my-wallet-list-design">
                                                     <div ngClass="exisitng-amount">
                                                         <h6>Purchased Points</h6>
-                                                        <p>20000</p>
+                                                        <p>{{data.totalPoints}}</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1944,7 +1944,7 @@
                                                 <div ngClass="my-wallet-list-design">
                                                     <div ngClass="exisitng-amount">
                                                         <h6>Points Used</h6>
-                                                        <p>10000</p>
+                                                        <p>{{data.totalPoints-data.remainigPoints}}</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1952,7 +1952,7 @@
                                                 <div ngClass="my-wallet-list-design">
                                                     <div ngClass="exisitng-amount">
                                                         <h6>Remaining Points </h6>
-                                                        <p>1000</p>
+                                                        <p>{{data.remainigPoints}}</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1960,7 +1960,7 @@
                                                 <div ngClass="my-wallet-list-design">
                                                     <div ngClass="exisitng-amount">
                                                         <h6>Expired Date</h6>
-                                                        <p class="red-color">10 Oct 2022</p>
+                                                        <p class="red-color">{{data.expiryDate.split("T")[0]}}</p>
                                                     </div>
                                                 </div>
                                             </div>
