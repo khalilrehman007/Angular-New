@@ -9,6 +9,7 @@ import { MatCardModule } from '@angular/material/card';
 import { CommonFilesModule } from '../common-files/common-files.module';
 import { BreadcrumbsModule } from '../breadcrumbs/breadcrumbs.module';
 import { MatTabsModule } from '@angular/material/tabs';
+import { AlertsModule } from '../alerts/alerts.module';
 
 
 
@@ -23,7 +24,8 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatCardModule,
     CommonFilesModule,
     BreadcrumbsModule,
-    MatTabsModule
+    MatTabsModule,
+    AlertsModule
   ]
 })
 export class PaymentPackagesModule { }

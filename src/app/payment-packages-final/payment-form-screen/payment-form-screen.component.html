@@ -18,9 +18,9 @@
                             <div ngClass="detail-box d-flex justify-content-spacebw">
                                 <div ngClass="pay-heading-block">
                                     <h6>Points Package Type</h6>
-                                    <p>Platinum</p>
+                                    <p>{{seletedPackage.name}}</p>
                                 </div>
-                                <p ngClass="price">AED 4000</p>
+                                <p ngClass="price">{{seletedPackage.country.currency}} {{seletedPackage.price}}</p>
                             </div>
                             <div ngClass="tax-box d-flex justify-content-spacebw">
                                 <div ngClass="pay-heading-block">
@@ -32,7 +32,7 @@
                                 <div ngClass="pay-heading-block">
                                     <h6>Total Due</h6>
                                 </div>
-                                <p ngClass="price">AED 4000</p>
+                                <p ngClass="price">{{seletedPackage.country.currency}} {{seletedPackage.price}}</p>
                             </div>
                         </div>
                         <div ngClass="strip-btn-div">
@@ -42,48 +42,45 @@
                 </div>
                 <!-- <ng-template #PaymentPopupModal let-modal> -->
                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-                    <!-- <form> -->
-                        <div class="payment-form-list">
-                            <h5 class="h5-design mb-2">Payment</h5>
-                            <p ngClass="mb-4">Please fill your payment details for proceed further</p>
-                            <div class="paymentmodal-form-design">
-                                <!-- <form [formGroup]="paymentForm"> -->
-                                <form [formGroup]="cardForm">
-                                    <div ngClass="block-wrapper mb-3">
-                                        <label>Card Number</label>
-                                        <mat-form-field class="full-width input-design-2" appearance="fill">
-                                            <input matInput type="number" placeholder="1234 1234 1234 1234"
-                                                formControlName="cardNumber" (input)="checkLength(1, false)">
-                                        </mat-form-field>
-                                    </div>
-                                    <div ngClass="block-wrapper mb-3">
-                                        <label>Expiry</label>
-                                        <mat-form-field class="full-width input-design-2" appearance="fill">
-                                            <input matInput type="text" placeholder="MM/YY" formControlName="expiryDate"
-                                                (input)="checkLength(3, true)" (keypress)="onKeypressEvent($event)">
-                                        </mat-form-field>
-                                    </div>
-                                    <div ngClass="block-wrapper mb-3">
-                                        <label>CVV</label>
-                                        <mat-form-field class="full-width input-design-2" appearance="fill">
-                                            <input matInput type="number" placeholder="CVV" formControlName="cvv"
-                                                (input)="checkLength(2, false)">
-                                        </mat-form-field>
-                                    </div>
-                                    <div ngClass="block-wrapper mb-3">
-                                        <label>Name on Card</label>
-                                        <mat-form-field class="full-width input-design-2" appearance="fill">
-                                            <input matInput type="text" placeholder="Name" formControlName="cardName">
-                                        </mat-form-field>
-                                    </div>
-                                    <div class="wallet-btn-flex">
-                                        <!-- <button class="recharge-btn">Proceed to Pay</button> -->
-                                        <button class="recharge-btn" (click)="purchasePoints()">Proceed to Pay</button>
-                                    </div>
-                                </form>
-                            </div>
+                    <div class="payment-form-list">
+                        <h5 class="h5-design mb-2">Payment</h5>
+                        <p ngClass="mb-4">Please fill your payment details for proceed further</p>
+                        <div class="paymentmodal-form-design">
+                            <form [formGroup]="cardForm">
+                                <div ngClass="block-wrapper mb-3">
+                                    <label>Card Number</label>
+                                    <mat-form-field class="full-width input-design-2" appearance="fill">
+                                        <input matInput type="number" placeholder="1234 1234 1234 1234"
+                                            formControlName="cardNumber" (input)="checkLength(1, false)">
+                                    </mat-form-field>
+                                </div>
+                                <div ngClass="block-wrapper mb-3">
+                                    <label>Expiry</label>
+                                    <mat-form-field class="full-width input-design-2" appearance="fill">
+                                        <input matInput type="text" placeholder="MM/YY" formControlName="expiryDate"
+                                            (input)="checkLength(3, true)" (keypress)="onKeypressEvent($event)">
+                                    </mat-form-field>
+                                </div>
+                                <div ngClass="block-wrapper mb-3">
+                                    <label>CVV</label>
+                                    <mat-form-field class="full-width input-design-2" appearance="fill">
+                                        <input matInput type="number" placeholder="CVV" formControlName="cvv"
+                                            (input)="checkLength(2, false)">
+                                    </mat-form-field>
+                                </div>
+                                <div ngClass="block-wrapper mb-3">
+                                    <label>Name on Card</label>
+                                    <mat-form-field class="full-width input-design-2" appearance="fill">
+                                        <input matInput type="text" placeholder="Name" formControlName="cardName">
+                                    </mat-form-field>
+                                </div>
+                                <div class="wallet-btn-flex">
+                                    <!-- <button class="recharge-btn">Proceed to Pay</button> -->
+                                    <button class="recharge-btn" (click)="purchasePoints()">Proceed to Pay</button>
+                                </div>
+                            </form>
                         </div>
-                    <!-- </form> -->
+                    </div>
                     <!-- <form>
                             <div class="payment-modal-list">
                                 <h5 class="h5-design mb-2">Payment</h5>
@@ -136,5 +133,6 @@
     <app-footer></app-footer>
 </section>
 <app-loader *ngIf="showLoader"></app-loader>
-<app-success-alert [success]="success" (errorResponse)="successResponse($event)" *ngIf="showSuccess"></app-success-alert>
+<app-success-alert [success]="success" (errorResponse)="successResponse($event)" *ngIf="showSuccess">
+</app-success-alert>
 <app-erroralert [error]="error" (errorResponse)="errorResponse($event)" *ngIf="showError"></app-erroralert>

@@ -5,6 +5,7 @@ import { DatePipe } from '@angular/common';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from 'src/app/service/auth.service';
 import { AppService } from 'src/app/service/app.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -16,7 +17,7 @@ import { AppService } from 'src/app/service/app.service';
 })
 export class PaymentFormScreenComponent implements OnInit {
   stripe = 'assets/images/stripe.svg'
-  loggedInUser:any = localStorage.getItem('user')
+  loggedInUser: any = localStorage.getItem('user')
   error: any = ""
   showError: boolean = false;
   showLoader: boolean = false;
@@ -25,32 +26,30 @@ export class PaymentFormScreenComponent implements OnInit {
   pointsData: any = "";
   pointsHistory: any = "";
   myBalance: any = 0;
-  showSuccess:boolean = false;
-  success:any = "";
-  successResponse(data:any) {
+  showSuccess: boolean = false;
+  success: any = "";
+  successResponse(data: any) {
     this.showSuccess = false;
   }
   errorResponse(data: any) {
     this.showError = false;
   }
-  // cardForm = new FormGroup({
-  //   cardNumber: new FormControl(""),
-  //   expiryDate: new FormControl(""),
-  //   cvv: new FormControl(""),
-  //   cardName: new FormControl("")
-  // })
-  constructor(private authService: AuthService,private datePipe: DatePipe,
-    private service: AppService,
-    private modalService: NgbModal, ) {
-      this.loggedInUser = JSON.parse(this.loggedInUser);
-      this.getPoints();
-        this.service.GetPoints(1).subscribe((result: any) => {
-          this.pointsData = result.data;
-        })
-        this.service.PointTransaction(this.loggedInUser.id).subscribe((result: any) => {
-          this.pointsHistory = result.data;
-        })
-     }
+  constructor(private authService: AuthService, private datePipe: DatePipe, private service: AppService, private modalService: NgbModal, private router : Router) {
+    if(!localStorage.getItem("seletedPackage")) {
+      this.router.navigate(["/payment-packages"])
+    }
+    this.seletedPackage = localStorage.getItem("seletedPackage");
+    this.seletedPackage = JSON.parse(this.seletedPackage);
+    console.log(this.seletedPackage);
+    this.loggedInUser = JSON.parse(this.loggedInUser);
+    this.getPoints();
+    this.service.GetPoints(1).subscribe((result: any) => {
+      this.pointsData = result.data;
+    })
+    this.service.PointTransaction(this.loggedInUser.id).subscribe((result: any) => {
+      this.pointsHistory = result.data;
+    })
+  }
 
   ngOnInit(): void {
   }
@@ -87,7 +86,6 @@ export class PaymentFormScreenComponent implements OnInit {
 
   purchasePoints() {
     let number: any = this.cardForm.value.cardNumber;
-    // alert("Show error")
     let date: any = this.cardForm.value.expiryDate;
     let cvv: any = this.cardForm.value.cvv;
     let currentDate: any = this.datePipe.transform(this.minDate, 'yyyy-MM-dd')?.split("-");
@@ -128,7 +126,8 @@ export class PaymentFormScreenComponent implements OnInit {
       this.error = "Please Enter Card Holder Name";
       this.showError = true;
     }
-    let temp:any = {};
+    this.showLoader = true;
+    let temp: any = {};
     temp.UserId = this.loggedInUser.id;
     temp.Email = this.loggedInUser.email;
     temp.PointId = this.seletedPackage.id;
@@ -141,20 +140,21 @@ export class PaymentFormScreenComponent implements OnInit {
     temp.CustomerName = this.cardForm.value.cardName;
     temp.Currency = this.seletedPackage.country.currency;
     temp.DescriptionPayment = "Point Package";
-    console.log(temp)
-    // this.service.PointPayment(temp).subscribe((result:any) => {
-    //   if(result.message == "Purchasing Point is completed successfully") {
-    //     this.getPoints();
-    //     $(".payment-cancel-btn").click();
-    //     this.success = "Payment Successful"
-    //     this.showSuccess = true;
-    //   }
-    // })
+    this.service.PointPayment(temp).subscribe((result:any) => {
+      if(result.message == "Purchasing Point is completed successfully") {
+        this.showLoader = false;
+        this.success = "Payment Successful"
+        this.showSuccess = true;
+      } else {
+        this.error = result.message;
+        this.showError = true;
+      }
+    })
   }
   onKeypressEvent(e: any) {
     this.checkLength(3, false)
   }
-  
+
   checkLength(e: any, type: boolean) {
     if (e == 1) {
       let temp: any = this.cardForm.value.cardNumber;
