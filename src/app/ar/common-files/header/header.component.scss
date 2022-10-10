@@ -780,11 +780,11 @@ textarea {
 	margin-left: auto;
 }
 .navbar-linebars {
-	width: 30px;
-	height: 2px;
-	display: block;
-	background-color: $background-color_9;
-	margin-bottom: 7px;
+	width: 25px;
+    height: 2px;
+    display: block;
+    background-color: #595ad4;
+    margin-bottom: 5px;
 }
 .sidebar-active {
 	#sidebar {
@@ -835,7 +835,7 @@ textarea {
 		padding: 20px;
 	}
 	.mobile-abs-items .notification_header-list {
-		margin-left: 15px;
+		margin-left: 10px;
 	}
 	#collapsibleNavbar .nav-item.aed-li {
 		padding-top: 7px;
@@ -885,6 +885,12 @@ textarea {
 	.mobile-abs-items .nav-item.aed-li>.aed-sq {
 		margin-right: 0px !important;
 		margin-left: auto;
+		font-size: 0px;
+		img{
+			margin-right: 10px;
+			width: 22px;
+			bottom: -1px;
+		}
 	}
 	.header-section {
 		padding-left: 7px !important;
@@ -931,7 +937,7 @@ textarea {
 		}
 		li.nav-item.fav-li {
 			>button{
-			padding: 2px 15px;
+			padding: 2px 7px 2px 13px;
 			.fav-link {
 				svg {
 					width: 15px !important;
@@ -957,15 +963,15 @@ textarea {
 			width: 100%;
 		}
 	}
-	.fav-list-dropdown {
-		width: 100% !important;
+	.fav-list-dropdown,.country_list-dropdown {
+	    width: 100% !important;
     right: 0px !important;
     top: 65px !important;
-    border: 0.5px solid #e0e0e0;
+    border: 0.5px solid #e0e0e0 !important;
     position: fixed !important;
     left: 0 !important;
-    max-width: 95%;
-    margin: 0 auto;
+    max-width: 95% !important;
+    margin: 0 auto !important;
 	}
 	.delete-property-div {
 		position: initial !important;
@@ -1155,7 +1161,7 @@ textarea {
     width: 100%;
     max-width: 300px;
     overflow: auto;
-    margin-top: 25px;
+    margin-top: 15px;
     border: 0.5px solid #F0EFFB;
 	padding: 25px;
 	z-index: 99;
@@ -1414,4 +1420,46 @@ ul.navbar-nav.sub-header {
 }
 .search-submit-hdr-btn:hover {
     background-color: #4a565f;
+}
+.my-account-li .shortlisted-inner-cntnt .nav-link {
+    padding: 5px;
+    cursor: pointer;
+	color: #000;
+	border-radius: 5px;
+}
+.my-account-li .shortlisted-inner-cntnt .nav-link img {
+	width: 23px;
+    margin-left: 10px;
+    position: relative;
+    bottom: 1px;
+}
+#main-header .my-account-li .fav-list-dropdown {
+    width: 250px;
+}
+#main-header .my-account-li .fav-list-dropdown .shortlisted-header {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.my-account-li .shortlisted-inner-cntnt .nav-link:hover {
+    background-color: #f0f3f7;
+}
+#main-header .my-account-li {
+	margin-left: 5px;
+    margin-right: 10px;
+}
+@media (max-width: 1199px){
+	#main-header .my-account-li{
+		margin-right: 0px;
+	}
+	#main-header .my-account-li>button {
+		padding-left: 5px !important;
+	}
+	#main-header .my-account-li {
+		position: relative;
+		bottom: 2px;
+	}
+	#main-header .navbar-toggler {
+		position: relative;
+		top: 1px;
+	}
 }

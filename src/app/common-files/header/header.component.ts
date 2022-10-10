@@ -21,6 +21,9 @@ interface LanguagesList {
 })
 export class HeaderComponent implements OnInit, AfterViewInit {
   togglesvg = '../../../assets/images/icons/toggle.svg'
+  notification = '../../../assets/images/icons/Notification.svg'
+  signinicn = '../../../assets/images/icons/User.svg'
+  signupicn = '../../../assets/images/icons/User-plus.svg'
   logo = '../../../assets/images/logo.svg'
   chartsvg = '../../../assets/images/Charts-nav.svg'
   signinsvg = '../../../assets/images/user.svg'
@@ -34,6 +37,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   flags:any = ['assets/images/flags/aed-fg.svg','assets/images/flags/saudiarabia.svg','assets/images/flags/bahrin.svg','assets/images/flags/qatar.svg','assets/images/flags/oman.svg','assets/images/flags/kuwait.svg']
   user: any
   availableClasses: string[] = ["sidebar-active", "nosidebar"];
+  overFlowClasses: string[] = ["overflow-shown", "Overflow-hidden"];
   currentClassIdx: number = 0;
   headerCountries: any='';
   userId: any;
@@ -41,6 +45,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
   params: any = {};
   bodyClass: any;
+  overFlow: any;
   notificationData: any = [];
   currentDate: any = new Date();
   currentTime: any;
@@ -89,6 +94,8 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     this.getUser();
     this.bodyClass = this.availableClasses[this.currentClassIdx];
     this.changeBodyClass();
+    this.overFlow = this.overFlowClasses[this.currentClassIdx];
+    this.overFlowClass();
     this.params = { queryParams: { type: 'Rent', PropertyListingTypeId: 1 } };
 
     this.service.LoadCountries().subscribe((result: any) => {
@@ -267,7 +274,6 @@ export class HeaderComponent implements OnInit, AfterViewInit {
       return time.getSeconds() + " secoonds ago";
     }
   }
-
   changeBodyClass() {
     // get html body element
     const bodyElement = document.body;
@@ -299,6 +305,44 @@ export class HeaderComponent implements OnInit, AfterViewInit {
       ? 0
       : this.currentClassIdx + 1;
   }
+
+
+
+// Overflow Code
+
+
+  overFlowClass() {
+    // get html body element
+    const bodyElement = document.body;
+
+    if (bodyElement) {
+
+
+      this.currentClassIdx = this.overnextIdx();
+      const nextClass = this.overFlowClasses[this.currentClassIdx];
+      const activeClass = this.overFlowClasses[this.overprevIdx()];
+
+      // remove existing class (needed if theme is being changed)
+      bodyElement.classList.remove(activeClass);
+      // add next theme class
+      bodyElement.classList.add(nextClass);
+
+      this.overFlow = nextClass;
+    }
+  }
+
+  overprevIdx(): number {
+    return this.currentClassIdx === 0
+      ? this.overFlowClasses.length - 1
+      : this.currentClassIdx - 1;
+  }
+
+  overnextIdx(): number {
+    return this.currentClassIdx === this.overFlowClasses.length - 1
+      ? 0
+      : this.currentClassIdx + 1;
+  }
+
   ngOnInit() {
     $(".language-select").on("change", () => {
       console.log($(".language-select").val())
@@ -354,6 +398,15 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     this.status1 = false;
     this.status = false;
     this.status3 = false;
+  }
+  status5: boolean = false;
+  clickEvent5() {
+    this.status5 = !this.status5;
+    this.status1 = false;
+    this.status2 = false;
+    this.status = false;
+    this.status3 = false;
+    this.status4 = false;
   }
   status3: boolean = false;
   clickEvent3() {
