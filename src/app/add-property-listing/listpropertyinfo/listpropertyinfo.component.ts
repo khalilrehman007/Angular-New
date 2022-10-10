@@ -94,9 +94,6 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
     this.api.PropertyListingRentBuy({ "Lat": this.data.PropertyLat, "Long": this.data.PropertyLong }).subscribe((result: any) => {
       this.propertyListingBuy = result.data.propertyListingBuy;
       this.propertyListingRent = result.data.propertyListingRent;
-    })
-    this.api.FurnishingTypes().subscribe((result: any) => {
-      this.furnishingType = result.data;
     });
     this.api.FittingTypes().subscribe((result: any) => {
       this.fittingType = result.data;
@@ -129,6 +126,20 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
     this.data.BuildupArea = 0;
     this.data.CarpetArea = 0;
     this.loadOldData();
+  }
+  loadFurnishingType() {
+    this.api.FurnishingTypes().subscribe((result: any) => {
+      this.furnishingType = result.data;
+      if (this.data.PropertyTypeId != 29) {
+        let temp: any = [];
+        for (let i = 0; i < this.furnishingType.length; i++) {
+          if (this.furnishingType[i].name != "ShellAndCore") {
+            temp.push(this.furnishingType[i]);
+          }
+        }
+        this.furnishingType = temp;
+      }
+    })
   }
   ngAfterViewInit(): void {
   }
@@ -342,6 +353,7 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
     this.selectedPropertyType = this.propertyType.filter((item: any) => item.id == e.value)[0];
     this.propertyTypeCheck = true;
     this.data.PropertyTypeId = e.value;
+    this.loadFurnishingType();
     this.api.PropertyFeatures(1).subscribe((result: any) => {
       this.featuresData = result.data;
       let a = setInterval(() => {
