@@ -10,6 +10,8 @@ import { CommonFilesModule } from '../common-files/common-files.module';
 import { BreadcrumbsModule } from '../breadcrumbs/breadcrumbs.module';
 import { MatTabsModule } from '@angular/material/tabs';
 import { AlertsModule } from '../alerts/alerts.module';
+import { LoaderModule } from '../loader/loader.module';
+
 
 
 
@@ -25,7 +27,8 @@ import { AlertsModule } from '../alerts/alerts.module';
     CommonFilesModule,
     BreadcrumbsModule,
     MatTabsModule,
-    AlertsModule
+    AlertsModule,
+    LoaderModule
   ]
 })
 export class PaymentPackagesModule { }
