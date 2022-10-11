@@ -450,4 +450,7 @@ export class AppService {
   PropertyListingPackages(data:any) {
     return this.http.get(this.apiurl + 'PropertyListingPackagesByPropertyListingType?listingTypeId=' + data);
   }
+  PurchasePackage(data:any) {
+    return this.http.post(this.apiurl + 'PurchasePackage' , data);
+  }
 }
