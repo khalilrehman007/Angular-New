@@ -139,7 +139,7 @@
                 <div class="package_row">
                     <owl-carousel-o [options]="PackageOptions">
                         <ng-template carouselSlide *ngFor="let packages of packagesType">
-                            <div class="packages-list-modal-list position-relative Free">
+                            <div class="packages-list-modal-list position-relative Free" *ngIf="checkPackage(packages)">
                                 <div class="packages-list-modal-radio">
                                     <input type="radio" name="package-select">
                                     <button class="cstm-radio_btn"></button>

@@ -76,13 +76,12 @@ export class PropertyinfoComponent implements OnInit {
       this.packagesType = result.data;
     })
     this.service.PointTransaction(335).subscribe((result: any) => {
-      console.log(result);
-      let temp: any = [];
-      if (temp.message == "Packages name fetched successfully") {
-        for (let selectedPackage of result.data) {
-          this.selectedPackage.push(selectedPackage.data.point.name);
+      console.log(result.data)
+      if (result.message == "Points Transaction has been fetched successfully") {
+        for (let i = 0; i < result.data.length; i++) {
+          this.selectedPackageName.push(result.data[i].point.id);
         }
-        // console.log(temp)
+        console.log(this.selectedPackageName);
       }
     })
     this.loadCountriesData();
@@ -93,6 +92,14 @@ export class PropertyinfoComponent implements OnInit {
     this.loadOldData();
     config.backdrop = 'static';
     config.keyboard = false;
+  }
+  checkPackage(e:any) {
+    console.log(this.selectedPackageName, e);
+    if(this.selectedPackageName.indexOf(e) != -1) {
+      return true;
+    } else {
+      return false
+    }
   }
   loadOldData() {
     if (localStorage.getItem("propertyData")) {
