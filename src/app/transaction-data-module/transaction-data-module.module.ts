@@ -6,9 +6,6 @@ import { NgChartsModule } from 'ng2-charts';
 import { MatInputModule } from '@angular/material/input';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
-import { DashboardModuleRoutingModule } from './dashboard-module-routing.module';
-import { DashboardHeaderComponent } from './dashboard-header/dashboard-header.component';
-import { DashboardReportsComponent } from './dashboard-reports/dashboard-reports.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
@@ -18,16 +15,19 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatIconModule} from '@angular/material/icon';
 import { CommonFilesModule } from '../common-files/common-files.module';
 import { MatNativeDateModule } from '@angular/material/core';
+import { TransactionDataModuleRoutingModule } from './transaction-data-module-routing.module';
+import { TransactionDataComponent } from './transaction-data/transaction-data.component';
+import { DiSideBarModuleModule } from '../di-side-bar-module/di-side-bar-module.module';
+import { MatChipsModule } from '@angular/material/chips';
 
 
 @NgModule({
   declarations: [
-    DashboardHeaderComponent,
-    DashboardReportsComponent
+    TransactionDataComponent
   ],
   imports: [
     CommonModule,
-    DashboardModuleRoutingModule,
+    TransactionDataModuleRoutingModule,
     NgChartsModule,
     MatFormFieldModule,
     MatSelectModule,
@@ -43,7 +43,9 @@ import { MatNativeDateModule } from '@angular/material/core';
     NgxSliderModule,
     MatIconModule,
     CommonFilesModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    DiSideBarModuleModule,
+    MatChipsModule
   ]
 })
-export class DashboardModuleModule { }
+export class TransactionDataModuleModule { }
