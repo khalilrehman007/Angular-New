@@ -56,8 +56,12 @@ export class ListpropertymediaComponent implements OnInit {
   titledeedUploaded: boolean = false;
   showLoader: boolean = false;
   currentField: any;
+  packageData: any;
 
   constructor(private api: AppService, private uploadService: FileUploadService, private route: Router) {
+    this.packageData = localStorage.getItem('seletedPackage');
+    this.packageData= JSON.parse(this.packageData);
+    console.log(this.packageData)
     this.priviousFormCheck = localStorage.getItem('propertyData');
     if (this.priviousFormCheck == '' || this.priviousFormCheck == null) {
       this.priviousFormCheck = JSON.parse(this.priviousFormCheck);
@@ -123,8 +127,8 @@ export class ListpropertymediaComponent implements OnInit {
     }
   }
   selectFiles(event: any): void {
-    if (event.target.files.length > 5) {
-      alert("You can choose maximun 5 files");
+    if (event.target.files.length > this.packageData.numberOfPhoto) {
+      alert("You can choose maximun " + this.packageData.numberOfPhoto + " files");
       return;
     }
     let temp: number = 0;

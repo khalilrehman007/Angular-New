@@ -105,19 +105,23 @@ export class PaymentPackagesComponent implements OnInit {
       this.scroll = true;
       return;
     } else {
-      this.showLoader = true;
-      let temp: any = localStorage.getItem("user");
-      temp = JSON.parse(temp);
-      this.service.PurchasePackage({ "UserId": temp.id, "PackageId": this.selectedPackageByPoints.id }).subscribe((result: any) => {
-        if (result.message == "Package has been purchased") {
-          this.showLoader = false;
-          this.success = "Your package has been purchsed successfully";
-          this.showSuccess = true;
-        } else {
-          this.error = "Something went wrong please try again";
-          this.showError = true;
-        }
-      })
+      console.log(this.selectedPackageByPoints)
+      localStorage.setItem("seletedPackage", JSON.stringify(this.selectedPackageByPoints));
+      this.router.navigate(["/add-property/listingproperty"]);
+      
+      // this.showLoader = true;
+      // let temp: any = localStorage.getItem("user");
+      // temp = JSON.parse(temp);
+      // this.service.PurchasePackage({ "UserId": temp.id, "PackageId": this.selectedPackageByPoints.id }).subscribe((result: any) => {
+      //   if (result.message == "Package has been purchased") {
+      //     this.showLoader = false;
+      //     this.success = "Your package has been purchsed successfully";
+      //     this.showSuccess = true;
+      //   } else {
+      //     this.error = "Something went wrong please try again";
+      //     this.showError = true;
+      //   }
+      // })
     }
   }
   proceedPayment() {
