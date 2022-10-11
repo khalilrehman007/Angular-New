@@ -5,7 +5,7 @@ import { Router } from "@angular/router";
 import { NotificationService } from "../../service/notification.service";
 import { AppService } from 'src/app/service/app.service';
 import { Select2 } from 'select2';
-import {NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 
 declare const google: any;
@@ -64,18 +64,26 @@ export class PropertyinfoComponent implements OnInit {
   showMap: boolean = false;
   currentField: any;
   packagesType: any = [];
+  selectedPackage: any = [];
+  selectedPackageName: any = [];
 
-  constructor(private route: Router, private notifyService: NotificationService, private service: AppService,private modalService: NgbModal,config: NgbModalConfig) {
-    if(!localStorage.getItem("user")) {
+  constructor(private route: Router, private notifyService: NotificationService, private service: AppService, private modalService: NgbModal, config: NgbModalConfig) {
+    if (!localStorage.getItem("user")) {
       this.notifyService.showError("You need to register/login", "");
       this.route.navigate(["/login"]);
     }
-    this.service.PropertyListingPackages(1).subscribe((result:any)=> {
+    this.service.PropertyListingPackages(1).subscribe((result: any) => {
       this.packagesType = result.data;
-      // this.packagesType.push(result.data[0]);
-      // this.packagesType.push(result.data[1]);
-      // this.packagesType.push(result.data[2]);
-      // this.packagesType.push(result.data[3]);
+    })
+    this.service.PointTransaction(335).subscribe((result: any) => {
+      console.log(result);
+      let temp: any = [];
+      if (temp.message == "Packages name fetched successfully") {
+        for (let selectedPackage of result.data) {
+          this.selectedPackage.push(selectedPackage.data.point.name);
+        }
+        // console.log(temp)
+      }
     })
     this.loadCountriesData();
     this.options = {
@@ -413,7 +421,7 @@ export class PropertyinfoComponent implements OnInit {
     loop: false,
     mouseDrag: true,
     touchDrag: true,
-    autoWidth:false,
+    autoWidth: false,
     pullDrag: true,
     dots: true,
     navSpeed: 700,
