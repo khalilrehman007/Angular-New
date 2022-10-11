@@ -28,8 +28,7 @@
                     <div ngClass="mobile-abs-items d-hide">
                         <ul>
                             <li ngClass="nav-item aed-li d-hide" *ngIf="currentCountry != ''">
-                                <button class="nav-link aed-sq w-100" (click)="clickEvent2()" (click)="overFlowClass()"><img src="{{flagsvg}}">{{currentCountry.currency}} |
-                                    {{currentCountry.unitType}}</button>
+                                <button class="nav-link aed-sq w-100" (click)="clickEvent2()" (click)="overFlowClass()"><img src="{{flagsvg}}">{{currentCountry.currency}}</button>
                                 <div class="country_list-dropdown" [ngClass]="status2 ? 'active' : 'notactive'">
                                     <button (click)="clickEvent2()" (click)="overFlowClass()"><img src="{{close}}"></button>
                                     <div ngClass="countries_dropdown-list" *ngFor="let data of headerCountries; let i = index">
@@ -433,8 +432,7 @@
                                 <button (click)="clickEvent5()" ngClass="overlay_dropdown-btn"></button>
                             </li>
                             <li ngClass="nav-item aed-li tm-hide" *ngIf="currentCountry != ''">
-                                <button class="nav-link aed-sq" (click)="clickEvent2()"><img src="{{flagsvg}}"> {{currentCountry.currency}} |
-                                    {{currentCountry.unitType}}</button>
+                                <button class="nav-link aed-sq" (click)="clickEvent2()"><img src="{{flagsvg}}"> {{currentCountry.currency}}</button>
                                 <div class="country_list-dropdown" [ngClass]="status2 ? 'active' : 'notactive'">
                                     <button (click)="clickEvent2()"><img src="{{close}}"></button>
                                     <div ngClass="countries_dropdown-list" *ngFor="let data of headerCountries; let i=index">
