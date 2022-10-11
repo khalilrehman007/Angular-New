@@ -3810,9 +3810,14 @@ input[type=number] {
 			font-weight: 700;
 
 			span {
-				font-size: 20px;
+				font-size: 17px;
 				color: $color_29;
 				font-weight: bold;
+			}
+			span:last-child {
+				color: #000;
+				font-weight: 400;
+				font-size: 13px;
 			}
 		}
 
@@ -3822,7 +3827,7 @@ input[type=number] {
 			text-decoration: none;
 			display: block;
 			font-size: 14px;
-			font-weight: 700;
+			font-weight: 500;
 			margin-top: 0px;
 		}
 	}
@@ -3833,13 +3838,14 @@ input[type=number] {
 		align-items: flex-start;
 		font-size: 13.5px;
 		margin-bottom: 10px;
-		font-weight: 400;
+		font-weight: 300;
 
 		img {
 			margin-right: 7px;
 			width: 14px !important;
 			position: relative;
-			top: 4px;
+			top: 1px;
+			filter: grayscale(1);
 		}
 	}
 
@@ -5668,9 +5674,9 @@ img {
 	}
 
 	.grren-btn {
-		border-color: #4C4D53;
-		background-color: #4C4D53;
-		color: #fff;
+		border-color: #fff;
+		background-color: #fff;
+		color: #4C4D53;
 
 		&:hover {
 			background-color: $background-color_15;
@@ -5692,6 +5698,7 @@ img {
 		font-size: 13px;
 		padding-top: 8px;
 		padding-bottom: 8px;
+		border: none;
 	}
 
 	.pro-contact-details>.grey-bordered-btn {
@@ -11619,9 +11626,9 @@ p:empty {
     height: 100%;
     position: absolute;
     outline: 0.5px solid red;
-    border-radius: 2px;
+    border-radius: 5px;
     transform: translate(-2px, -2px);
-    outline-offset: 8px;
+    outline-offset: 0px;
 	}
 }
 
