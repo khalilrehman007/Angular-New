@@ -57,10 +57,12 @@ export class ListpropertymediaComponent implements OnInit {
   showLoader: boolean = false;
   currentField: any;
   packageData: any;
+  success: any = "";
+  showSuccess: boolean = false;
 
   constructor(private api: AppService, private uploadService: FileUploadService, private route: Router) {
     this.packageData = localStorage.getItem('seletedPackage');
-    this.packageData= JSON.parse(this.packageData);
+    this.packageData = JSON.parse(this.packageData);
     console.log(this.packageData)
     this.priviousFormCheck = localStorage.getItem('propertyData');
     if (this.priviousFormCheck == '' || this.priviousFormCheck == null) {
@@ -280,6 +282,19 @@ export class ListpropertymediaComponent implements OnInit {
           localStorage.removeItem("propertyData");
           this.route.navigate(['/add-property/listpropertypublish'])
         }
+        this.showLoader = true;
+        let temp: any = localStorage.getItem("user");
+        temp = JSON.parse(temp);
+        this.api.PurchasePackage({ "UserId": temp.id, "PackageId": this.packageData.id }).subscribe((result: any) => {
+          if (result.message == "Package has been purchased") {
+            this.showLoader = false;
+            this.success = "Your package has been purchsed successfully";
+            this.showSuccess = true;
+          } else {
+            this.error = "Something went wrong please try again";
+            this.showError = true;
+          }
+        })
       },
       error: (err) => {
         console.log(err);
