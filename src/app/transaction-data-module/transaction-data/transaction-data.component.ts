@@ -145,7 +145,12 @@ dataSource: MatTableDataSource<UserData>;
     bedsfield: string[] = ['All'];
     allbedsfield: string[] = ['All Developers', 'Developers', 'Developers'];
 
+    // City Filter
 
+    CityCtrl = new FormControl('');
+    filteredCity: Observable<string[]>;
+    Cityfield: string[] = ['City'];
+    allCityfield: string[] = ['All City', 'City', 'City'];
 
   @ViewChild('ComunityInput') ComunityInput:any;
   @ViewChild('PropertyTypeInput') PropertyTypeInput:any;
@@ -154,6 +159,7 @@ dataSource: MatTableDataSource<UserData>;
   @ViewChild('SalesInput') SalesInput:any;
   @ViewChild('developersInput') developersInput:any;
   @ViewChild('bedInput') bedInput:any;
+  @ViewChild('CityInput') CityInput:any;
 
   constructor() {
     // Community Type Filter
@@ -190,6 +196,11 @@ dataSource: MatTableDataSource<UserData>;
       this.filteredbeds = this.bedsCtrl.valueChanges.pipe(
       startWith(null),
       map((beds: string | null) => (beds ? this._filter(beds) : this.allbedsfield.slice())),
+    );
+     // City filter
+     this.filteredCity = this.CityCtrl.valueChanges.pipe(
+      startWith(null),
+      map((city: string | null) => (city ? this._filter(city) : this.allCityfield.slice())),
     );
 
     // Data Table
@@ -342,6 +353,27 @@ selected6(event: MatAutocompleteSelectedEvent): void {
   this.bedsfield.push(event.option.viewValue);
   this.bedInput.nativeElement.value = '';
   this.bedsCtrl.setValue(null);
+}
+
+// City Filter
+add7(event: MatChipInputEvent): void {
+  const value7 = (event.value || '').trim();
+  if (value7) {
+    this.Cityfield.push(value7);
+  }
+  event.chipInput!.clear();
+  this.CityCtrl.setValue(null);
+}
+remove7(city: string): void {
+  const index7 = this.Cityfield.indexOf(city);
+  if (index7 >= 0) {
+    this.Cityfield.splice(index7, 1);
+  }
+}
+selected7(event: MatAutocompleteSelectedEvent): void {
+  this.Cityfield.push(event.option.viewValue);
+  this.CityInput.nativeElement.value = '';
+  this.CityCtrl.setValue(null);
 }
 
   private _filter(value: string): string[] {
