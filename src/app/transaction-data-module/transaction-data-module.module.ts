@@ -19,6 +19,10 @@ import { TransactionDataModuleRoutingModule } from './transaction-data-module-ro
 import { TransactionDataComponent } from './transaction-data/transaction-data.component';
 import { DiSideBarModuleModule } from '../di-side-bar-module/di-side-bar-module.module';
 import { MatChipsModule } from '@angular/material/chips';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+
+
 
 
 @NgModule({
@@ -45,7 +49,9 @@ import { MatChipsModule } from '@angular/material/chips';
     CommonFilesModule,
     MatNativeDateModule,
     DiSideBarModuleModule,
-    MatChipsModule
+    MatChipsModule,
+    MatTableModule,
+    MatPaginatorModule
   ]
 })
 export class TransactionDataModuleModule { }

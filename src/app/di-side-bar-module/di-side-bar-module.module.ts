@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DiSidebarComponentComponent } from './di-sidebar-component/di-sidebar-component.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -9,7 +11,12 @@ import { DiSidebarComponentComponent } from './di-sidebar-component/di-sidebar-c
     DiSidebarComponentComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    NgbModule,
+    NgbNavModule
+  ],
+  exports: [
+    DiSidebarComponentComponent
   ]
 })
 export class DiSideBarModuleModule { }
