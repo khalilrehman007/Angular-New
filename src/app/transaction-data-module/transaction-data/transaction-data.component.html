@@ -14,9 +14,9 @@
                   <label>Registration Date</label>
                   <mat-form-field>
                     <mat-label>Enter a date range</mat-label>
-                    <mat-date-range-input [rangePicker]="picker">
-                      <input matStartDate matInput placeholder="Start date">
-                      <input matEndDate matInput placeholder="End date">
+                    <mat-date-range-input [rangePicker]="picker" >
+                      <input matStartDate matInput placeholder="Start date" (dateChange)="getStartDate($event)">
+                      <input matEndDate matInput placeholder="End date" (dateChange)="getEndDate($event)">
                     </mat-date-range-input>
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-date-range-picker #picker></mat-date-range-picker>

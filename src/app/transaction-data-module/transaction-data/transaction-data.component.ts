@@ -147,11 +147,21 @@ export class TransactionDataComponent implements OnInit {
 
   countryData: any = "";
   citiesData: any = "";
+  startDate:any = "";
+  endDate:any = "";
 
   constructor(private cookie: CookieService, private service: AppService) {
     this.countryData = JSON.parse(this.cookie.get("countryData"));
     this.service.FindCities({ "CountryId": this.countryData.id, "Locations": [] }).subscribe((result: any) => {
       this.citiesData = result.data;
+      this.Cityfield.push({ "id": this.citiesData[0].id, "name": this.citiesData[0].name });
+      this.loadDistrict();
+      let a = setInterval(() => {
+        if(this.filteredcommunity.length > 0) {
+          this.communityfield.push({ "id": this.filteredcommunity[0].id, "name": this.filteredcommunity[0].name });
+          clearInterval(a);
+        }
+      })
     })
     this.service.GetDevelopers(this.countryData.id).subscribe((result: any) => {
       this.filteredDevelopers = result.data;
@@ -171,6 +181,17 @@ export class TransactionDataComponent implements OnInit {
     })
     const users = Array.from({ length: 100 }, (_, k) => createNewUser(k + 1));
     this.dataSource = new MatTableDataSource(users);
+  }
+  getDate(e:any) {
+    let temp:any = new Date(e.value)
+    return temp.getMonth() + "-" + temp.getDate() + "-" + temp.getFullYear();
+  }
+  getStartDate(e:any) {
+    this.startDate = this.getDate(e);
+  }
+  getEndDate(e:any) {
+    this.endDate = this.getDate(e);
+    console.log(this.startDate, this.endDate);
   }
   add(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
