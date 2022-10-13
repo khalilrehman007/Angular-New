@@ -8782,8 +8782,8 @@ li.agent-details__property-list-item {
 	margin-bottom: 3px;
 }
 .mat_indicators-counts {
-    background-color: #0f2eac;
-    color: #fff;
+	background-color: #eeecec;
+    color: #000;
     width: 20px;
     height: 20px;
     display: inline-flex;
@@ -12504,7 +12504,32 @@ color: green !important;
     font-weight: 400;
     opacity: 0.8;
 }
+.dashboard-date-range-box .mat-form-field-appearance-legacy.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label{
+	display: none !important;
+}
 .dashboard-date-range-box .mat-form-field-flex input {
     font-size: 13px;
     color: #000;
+	bottom: 0;
+}
+.dashboard-date-range-box .mat-form-field-flex .mat-form-field-suffix {
+    position: relative;
+    right: 15px;
+}
+.text-limit-chip {
+    max-width: 50px;
+    display: inline-block;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.dashboard-date-range-box .mat-form-field-flex .mat-date-range-input-end-wrapper {
+    padding-left: 10px;
+}
+
+
+@media (min-width: 1200px){
+	.header-section .navbar-nav .search-design-hdr {
+		width: 25.2%;
+	}
 }
