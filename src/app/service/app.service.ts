@@ -453,4 +453,13 @@ export class AppService {
   PurchasePackage(data:any) {
     return this.http.post(this.apiurl + 'PurchasePackage' , data);
   }
+  GetProjects(data:any) {
+    return this.http.post(this.apiurl + 'Projects' , data);
+  }
+  GetDevelopers(data:any) {
+    return this.http.get(this.apiurl + 'Developers/' + data);
+  }
+  TransactionSequence(data:any) {
+    return this.http.get(this.apiurl + 'TransactionSequence', data);
+  }
 }
