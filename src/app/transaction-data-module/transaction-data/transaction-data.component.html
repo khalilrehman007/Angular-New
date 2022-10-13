@@ -305,7 +305,7 @@
             <div class="row">
               <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-2">
                 <div ngClass="di-rangle-block">
-                  <h4>Size Range (Sqf)</h4>
+                  <h4>Size Range ({{countryData.unitType}})</h4>
                   <div ngClass="price-range_sec">
                     <div ngClass="range-slider">
                       <ngx-slider [(value)]="SizeminValue" [(highValue)]="SizemaxValue" [options]="Sizeoptions">
@@ -316,7 +316,7 @@
               </div>
               <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-2">
                 <div ngClass="di-rangle-block">
-                  <h4>Price Range (AED)</h4>
+                  <h4>Price Range ({{countryData.currency}})</h4>
                   <div ngClass="price-range_sec">
                     <div ngClass="range-slider">
                       <ngx-slider [(value)]="PriceminValue" [(highValue)]="PricemaxValue" [options]="Priceoptions">

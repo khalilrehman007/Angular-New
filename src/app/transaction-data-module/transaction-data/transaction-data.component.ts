@@ -57,69 +57,55 @@ const NAMES: string[] = [
 })
 export class TransactionDataComponent implements OnInit {
 
-
-  //  Data Table
   displayedColumns: string[] = ['id', 'name', 'progress', 'fruit'];
   dataSource: MatTableDataSource<UserData>;
-
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
   @ViewChild(MatSort)
   sort!: MatSort;
 
-
-
-
-
-
   //Size RangeSlider
-
   SizeminValue: number = 10;
   SizemaxValue: number = 1000000;
   Sizeoptions: Options = {
     floor: 10,
     ceil: 1000000,
     translate: (value: number): string => {
-      return value + 'K';
+      return value + this.countryData.unitType;
     }
   };
 
   //Price RangeSlider
-
   PriceminValue: number = 10;
   PricemaxValue: number = 1000000;
   Priceoptions: Options = {
     floor: 10,
     ceil: 1000000,
     translate: (value: number): string => {
-      return value + 'AED';
+      return value + this.countryData.currency;
     }
   };
-
 
   separatorKeysCodes: number[] = [ENTER, COMMA];
   CommunityCtrl = new FormControl('');
   filteredcommunity: any = [];
-  communityfield: any= [];
+  communityfield: any = [];
   allcommunityfield: string[] = ['Dubai Community', 'Dubai Community', 'Dubai Community'];
 
   // Property Type Filter
-
   PropertyTypCtrl = new FormControl('');
   filteredProperty: any = [];
   ProTypefield: any = [];
   allProTypefield: string[] = ['Property Type', 'Dubai', 'Dubai'];
 
   // Property Filter
-
   PropertyCtrl = new FormControl('');
   filteredPropertyOnly: any = [];
   Profield: any = [];
   allProfield: string[] = ['Property', 'Dubai', 'Dubai'];
 
   // Transaction Type Filter
-
   TransactionCtrl = new FormControl('');
   filteredTransaction: any;
   Transactionfield: any = [];
@@ -127,28 +113,24 @@ export class TransactionDataComponent implements OnInit {
 
 
   // Sales Sequences Filter
-
   salesCtrl = new FormControl('');
   filteredsales: any = [];
   salesfield: any = [];
   allsalesfield: string[] = ['Sale', 'Dubai', 'Dubai'];
 
   // Developers Filter
-
   DevelopersCtrl = new FormControl('');
   filteredDevelopers: any;
   Developersfield: any = [];
   allDevelopersfield: string[] = ['All Developers', 'Developers', 'Developers'];
 
   // Bedrooms Filter
-
   bedsCtrl = new FormControl('');
   filteredbeds: any;
   bedsfield: any = [];
-  allbedsfield: any = [1,2,3,4,5,6,7,8,9,10];
+  allbedsfield: any = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   // City Filter
-
   CityCtrl = new FormControl('');
   filteredCity: any;
   Cityfield: any = [];
@@ -164,35 +146,32 @@ export class TransactionDataComponent implements OnInit {
   @ViewChild('CityInput') CityInput: any;
 
   countryData: any = "";
-  citiesData:any = "";
+  citiesData: any = "";
 
   constructor(private cookie: CookieService, private service: AppService) {
     this.countryData = JSON.parse(this.cookie.get("countryData"));
-    this.service.FindCities({ "CountryId": this.countryData.id, "Locations": [] }).subscribe((result:any) => {
+    this.service.FindCities({ "CountryId": this.countryData.id, "Locations": [] }).subscribe((result: any) => {
       this.citiesData = result.data;
     })
-    this.service.GetDevelopers(this.countryData.id).subscribe((result:any) => {
+    this.service.GetDevelopers(this.countryData.id).subscribe((result: any) => {
       this.filteredDevelopers = result.data;
     })
-    this.service.LoadType(1).subscribe((result:any) => {
-      for(let item of result.data) {
+    this.service.LoadType(1).subscribe((result: any) => {
+      for (let item of result.data) {
         this.filteredProperty.push(item)
       }
-      this.service.LoadType(2).subscribe((result:any) => {
-        for(let item of result.data) {
+      this.service.LoadType(2).subscribe((result: any) => {
+        for (let item of result.data) {
           this.filteredProperty.push(item)
         }
       })
     })
-    this.service.LoadTransactionTypes().subscribe((result:any) => {
+    this.service.LoadTransactionTypes().subscribe((result: any) => {
       this.filteredTransaction = result.data;
     })
-    // Data Table
     const users = Array.from({ length: 100 }, (_, k) => createNewUser(k + 1));
-    // Assign the data to the data source for the table to render
     this.dataSource = new MatTableDataSource(users);
   }
-  // Community Type Filter
   add(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
     if (value) {
@@ -211,25 +190,23 @@ export class TransactionDataComponent implements OnInit {
     this.loadProjects();
   }
   selected(event: MatAutocompleteSelectedEvent): void {
-    this.communityfield.push({"id":event.option.value, "name":event.option.viewValue});
+    this.communityfield.push({ "id": event.option.value, "name": event.option.viewValue });
     this.ComunityInput.nativeElement.value = '';
     this.CommunityCtrl.setValue(null);
     this.loadProjects();
   }
   loadProjects() {
-    let temp:any = [];
-    for(let item of this.communityfield) {
+    let temp: any = [];
+    for (let item of this.communityfield) {
       temp.push(item.id)
     }
-    this.service.GetProjects({"DistrictIds":temp}).subscribe((result:any) => {
+    this.service.GetProjects({ "DistrictIds": temp }).subscribe((result: any) => {
       this.filteredPropertyOnly = result.data;
     })
-    this.service.TransactionSequence({"DistrictIds":temp}).subscribe((result:any) => {
+    this.service.TransactionSequence({ "DistrictIds": temp }).subscribe((result: any) => {
       this.filteredsales = result.data;
     })
   }
-
-  // Property Type Filter
   add1(event: MatChipInputEvent): void {
     const value1 = (event.value || '').trim();
     if (value1) {
@@ -245,12 +222,10 @@ export class TransactionDataComponent implements OnInit {
     }
   }
   selected1(event: MatAutocompleteSelectedEvent): void {
-    this.ProTypefield.push({"id":event.option.value, "name":event.option.viewValue});
+    this.ProTypefield.push({ "id": event.option.value, "name": event.option.viewValue });
     this.PropertyTypeInput.nativeElement.value = '';
     this.PropertyTypCtrl.setValue(null);
   }
-
-  // Property Filter
   add2(event: MatChipInputEvent): void {
     const value2 = (event.value || '').trim();
     if (value2) {
@@ -266,12 +241,10 @@ export class TransactionDataComponent implements OnInit {
     }
   }
   selected2(event: MatAutocompleteSelectedEvent): void {
-    this.Profield.push({"id":event.option.value, "name":event.option.viewValue});
+    this.Profield.push({ "id": event.option.value, "name": event.option.viewValue });
     this.PropertyInput.nativeElement.value = '';
     this.PropertyCtrl.setValue(null);
   }
-
-  // Transaction Type Filter
   add3(event: MatChipInputEvent): void {
     const value3 = (event.value || '').trim();
     if (value3) {
@@ -291,8 +264,6 @@ export class TransactionDataComponent implements OnInit {
     this.TransactionInput.nativeElement.value = '';
     this.TransactionCtrl.setValue(null);
   }
-
-  // Sales Sequences Filter
   add4(event: MatChipInputEvent): void {
     const value4 = (event.value || '').trim();
     if (value4) {
@@ -308,12 +279,10 @@ export class TransactionDataComponent implements OnInit {
     }
   }
   selected4(event: MatAutocompleteSelectedEvent): void {
-    this.salesfield.push({"id":event.option.value, "name":event.option.viewValue});
+    this.salesfield.push({ "id": event.option.value, "name": event.option.viewValue });
     this.SalesInput.nativeElement.value = '';
     this.salesCtrl.setValue(null);
   }
-
-  // Sales Sequences Filter
   add5(event: MatChipInputEvent): void {
     const value5 = (event.value || '').trim();
     if (value5) {
@@ -329,12 +298,10 @@ export class TransactionDataComponent implements OnInit {
     }
   }
   selected5(event: MatAutocompleteSelectedEvent): void {
-    this.Developersfield.push({"id":event.option.value, "name":event.option.viewValue});
+    this.Developersfield.push({ "id": event.option.value, "name": event.option.viewValue });
     this.developersInput.nativeElement.value = '';
     this.DevelopersCtrl.setValue(null);
   }
-
-  // Bed Rooms Filter
   add6(event: MatChipInputEvent): void {
     const value6 = (event.value || '').trim();
     if (value6) {
@@ -354,8 +321,6 @@ export class TransactionDataComponent implements OnInit {
     this.bedInput.nativeElement.value = '';
     this.bedsCtrl.setValue(null);
   }
-
-  // City Filter
   add7(event: MatChipInputEvent): void {
     const value7 = (event.value || '').trim();
     if (value7) {
@@ -366,9 +331,9 @@ export class TransactionDataComponent implements OnInit {
   }
   loadDistrict() {
     this.filteredcommunity = [];
-    for(let i = 0; i < this.Cityfield.length; i++) {
-      this.service.FindDistricts({ "CityId":this.Cityfield[i].id, "Locations" : [] }).subscribe((result:any) => {
-        for(let item of result.data) {
+    for (let i = 0; i < this.Cityfield.length; i++) {
+      this.service.FindDistricts({ "CityId": this.Cityfield[i].id, "Locations": [] }).subscribe((result: any) => {
+        for (let item of result.data) {
           this.filteredcommunity.push(item);
         }
       })
@@ -384,15 +349,13 @@ export class TransactionDataComponent implements OnInit {
     this.loadDistrict();
   }
   selected7(event: any): void {
-    this.Cityfield.push({"id":event.option.value, "name":event.option.viewValue});
+    this.Cityfield.push({ "id": event.option.value, "name": event.option.viewValue });
     this.CityInput.nativeElement.value = '';
     this.CityCtrl.setValue(null);
     this.loadDistrict();
   }
   ngOnInit(): void {
   }
-
-  // Data Table
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
