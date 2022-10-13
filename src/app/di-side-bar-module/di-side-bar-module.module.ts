@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { DiSidebarComponentComponent } from './di-sidebar-component/di-sidebar-component.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
+import { MatIconModule } from '@angular/material/icon';
 
 
 
@@ -13,7 +14,8 @@ import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
   imports: [
     CommonModule,
     NgbModule,
-    NgbNavModule
+    NgbNavModule,
+    MatIconModule
   ],
   exports: [
     DiSidebarComponentComponent
