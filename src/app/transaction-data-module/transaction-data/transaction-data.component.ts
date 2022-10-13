@@ -1,6 +1,6 @@
 import { Component, OnInit, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { Observable } from 'rxjs';
@@ -67,10 +67,10 @@ export class TransactionDataComponent implements OnInit {
 
   //Size RangeSlider
   SizeminValue: number = 10;
-  SizemaxValue: number = 1000000;
+  SizemaxValue: number = 10000000;
   Sizeoptions: Options = {
     floor: 10,
-    ceil: 1000000,
+    ceil: 10000000,
     translate: (value: number): string => {
       return value + this.countryData.unitType;
     }
@@ -78,10 +78,10 @@ export class TransactionDataComponent implements OnInit {
 
   //Price RangeSlider
   PriceminValue: number = 10;
-  PricemaxValue: number = 1000000;
+  PricemaxValue: number = 10000000;
   Priceoptions: Options = {
     floor: 10,
-    ceil: 1000000,
+    ceil: 10000000,
     translate: (value: number): string => {
       return value + this.countryData.currency;
     }
@@ -136,6 +136,12 @@ export class TransactionDataComponent implements OnInit {
   Cityfield: any = [];
   allCityfield: string[] = ['All City', 'City', 'City'];
 
+  currentDate: any = new Date()
+  range = new FormGroup({
+    start: new FormControl(),
+    end: new FormControl()
+  })
+
   @ViewChild('ComunityInput') ComunityInput: any;
   @ViewChild('PropertyTypeInput') PropertyTypeInput: any;
   @ViewChild('PropertyInput') PropertyInput: any;
@@ -147,18 +153,37 @@ export class TransactionDataComponent implements OnInit {
 
   countryData: any = "";
   citiesData: any = "";
-  startDate:any = "";
-  endDate:any = "";
+  startDate: any = "";
+  endDate: any = "";
+  minSize:any = "";
+  maxSize:any = "";
+  minPrice:any = "";
+  maxPrice:any = "";
+  transactionData:any = "";
 
   constructor(private cookie: CookieService, private service: AppService) {
+    this.minSize = this.SizeminValue;
+    this.maxSize = this.SizemaxValue;
+    this.minPrice = this.PriceminValue;
+    this.maxPrice = this.PricemaxValue;
+    let temp: any = new Date();
+    temp.setFullYear(temp.getFullYear() - 11);
+    this.range.patchValue({
+      start: temp,
+      end: this.currentDate
+    })
+    this.startDate = temp.getMonth() + "-" + temp.getDate() + "-" + temp.getFullYear();
+    this.endDate = this.currentDate.getMonth() + "-" + this.currentDate.getDate() + "-" + this.currentDate.getFullYear();
     this.countryData = JSON.parse(this.cookie.get("countryData"));
     this.service.FindCities({ "CountryId": this.countryData.id, "Locations": [] }).subscribe((result: any) => {
       this.citiesData = result.data;
       this.Cityfield.push({ "id": this.citiesData[0].id, "name": this.citiesData[0].name });
       this.loadDistrict();
       let a = setInterval(() => {
-        if(this.filteredcommunity.length > 0) {
+        if (this.filteredcommunity.length > 0) {
           this.communityfield.push({ "id": this.filteredcommunity[0].id, "name": this.filteredcommunity[0].name });
+          this.loadProjects();
+          this.loadData();
           clearInterval(a);
         }
       })
@@ -182,16 +207,87 @@ export class TransactionDataComponent implements OnInit {
     const users = Array.from({ length: 100 }, (_, k) => createNewUser(k + 1));
     this.dataSource = new MatTableDataSource(users);
   }
-  getDate(e:any) {
-    let temp:any = new Date(e.value)
+  getDate(e: any) {
+    let temp: any = new Date(e.value)
     return temp.getMonth() + "-" + temp.getDate() + "-" + temp.getFullYear();
   }
-  getStartDate(e:any) {
+  getStartDate(e: any) {
     this.startDate = this.getDate(e);
   }
-  getEndDate(e:any) {
+  getEndDate(e: any) {
     this.endDate = this.getDate(e);
     console.log(this.startDate, this.endDate);
+  }
+  getMinSize(e:any) {
+    this.minSize = e;
+  }
+  getMaxSize(e:any) {
+    this.maxSize = e;
+  }
+  getMinPrice(e:any) {
+    this.minSize = e;
+  }
+  getMaxPrice(e:any) {
+    this.maxSize = e;
+  }
+  loadData() {
+    if (this.startDate == "" || this.endDate == "" || this.communityfield.length == 0) {
+      return;
+    }
+    let temp:any = {};
+    temp.StartDate = this.startDate;
+    temp.EndDate = this.endDate;
+    temp.StartSize = this.minSize;
+    temp.EndSize = this.maxSize;
+    temp.StartPrice = this.minPrice;
+    temp.EndPrice = this.maxPrice;
+    temp.DistrictIds = [];
+    for(let item of this.communityfield) {
+      temp.DistrictIds.push(item.id)
+    }
+    if(this.ProTypefield.length != 0) {
+      temp.PropertyTypeIds = [];
+      for(let item of this.ProTypefield) {
+        temp.PropertyTypeIds.push(item.id)
+      }
+    }
+    if(this.Profield.length != 0) {
+      temp.ProjectIds = [];
+      for(let item of this.Profield) {
+        temp.ProjectIds.push(item.id)
+      }
+    }
+    if(this.Transactionfield.length != 0) {
+      temp.TransactionTypeIds = [];
+      for(let item of this.Transactionfield) {
+        temp.TransactionTypeIds.push(item.id)
+      }
+    }
+    if(this.salesfield.length != 0) {
+      temp.TransactionSequenceIds = [];
+      for(let item of this.salesfield) {
+        temp.TransactionSequenceIds.push(item.id)
+      }
+    }
+    if(this.Developersfield.length != 0) {
+      temp.PropertyDeveloperIds = [];
+      for(let item of this.Developersfield) {
+        temp.PropertyDeveloperIds.push(item.id)
+      }
+    }
+    if(this.bedsfield.length != 0) {
+      temp.BedroomList = [];
+      for(let item of this.bedsfield) {
+        temp.BedroomList.push(item.id)
+      }
+    }
+    console.log(temp)
+    this.service.GetResidentialTransactionData(temp).subscribe((result:any) => {
+      if(result.message == "Residential Transaction Data fetched successfully") {
+        this.transactionData = result.data;
+        console.log(this.transactionData);
+      }
+    });
   }
   add(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
@@ -209,12 +305,14 @@ export class TransactionDataComponent implements OnInit {
       this.communityfield.splice(index, 1);
     }
     this.loadProjects();
+    this.loadData();
   }
   selected(event: MatAutocompleteSelectedEvent): void {
     this.communityfield.push({ "id": event.option.value, "name": event.option.viewValue });
     this.ComunityInput.nativeElement.value = '';
     this.CommunityCtrl.setValue(null);
     this.loadProjects();
+    this.loadData();
   }
   loadProjects() {
     let temp: any = [];
@@ -241,11 +339,13 @@ export class TransactionDataComponent implements OnInit {
     if (index1 >= 0) {
       this.ProTypefield.splice(index1, 1);
     }
+    this.loadData();
   }
   selected1(event: MatAutocompleteSelectedEvent): void {
     this.ProTypefield.push({ "id": event.option.value, "name": event.option.viewValue });
     this.PropertyTypeInput.nativeElement.value = '';
     this.PropertyTypCtrl.setValue(null);
+    this.loadData();
   }
   add2(event: MatChipInputEvent): void {
     const value2 = (event.value || '').trim();
@@ -260,11 +360,13 @@ export class TransactionDataComponent implements OnInit {
     if (index2 >= 0) {
       this.Profield.splice(index2, 1);
     }
+    this.loadData();
   }
   selected2(event: MatAutocompleteSelectedEvent): void {
     this.Profield.push({ "id": event.option.value, "name": event.option.viewValue });
     this.PropertyInput.nativeElement.value = '';
     this.PropertyCtrl.setValue(null);
+    this.loadData();
   }
   add3(event: MatChipInputEvent): void {
     const value3 = (event.value || '').trim();
@@ -279,11 +381,13 @@ export class TransactionDataComponent implements OnInit {
     if (index3 >= 0) {
       this.Transactionfield.splice(index3, 1);
     }
+    this.loadData();
   }
   selected3(event: MatAutocompleteSelectedEvent): void {
-    this.Transactionfield.push(event.option.viewValue);
+    this.Transactionfield.push({ "id": event.option.value, "name": event.option.viewValue });
     this.TransactionInput.nativeElement.value = '';
     this.TransactionCtrl.setValue(null);
+    this.loadData();
   }
   add4(event: MatChipInputEvent): void {
     const value4 = (event.value || '').trim();
@@ -298,11 +402,13 @@ export class TransactionDataComponent implements OnInit {
     if (index4 >= 0) {
       this.salesfield.splice(index4, 1);
     }
+    this.loadData();
   }
   selected4(event: MatAutocompleteSelectedEvent): void {
     this.salesfield.push({ "id": event.option.value, "name": event.option.viewValue });
     this.SalesInput.nativeElement.value = '';
     this.salesCtrl.setValue(null);
+    this.loadData();
   }
   add5(event: MatChipInputEvent): void {
     const value5 = (event.value || '').trim();
@@ -317,11 +423,13 @@ export class TransactionDataComponent implements OnInit {
     if (index5 >= 0) {
       this.Developersfield.splice(index5, 1);
     }
+    this.loadData();
   }
   selected5(event: MatAutocompleteSelectedEvent): void {
     this.Developersfield.push({ "id": event.option.value, "name": event.option.viewValue });
     this.developersInput.nativeElement.value = '';
     this.DevelopersCtrl.setValue(null);
+    this.loadData();
   }
   add6(event: MatChipInputEvent): void {
     const value6 = (event.value || '').trim();
@@ -336,11 +444,13 @@ export class TransactionDataComponent implements OnInit {
     if (index6 >= 0) {
       this.bedsfield.splice(index6, 1);
     }
+    this.loadData();
   }
   selected6(event: MatAutocompleteSelectedEvent): void {
     this.bedsfield.push(event.option.viewValue);
     this.bedInput.nativeElement.value = '';
     this.bedsCtrl.setValue(null);
+    this.loadData();
   }
   add7(event: MatChipInputEvent): void {
     const value7 = (event.value || '').trim();
