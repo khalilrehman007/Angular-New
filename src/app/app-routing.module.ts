@@ -29,6 +29,7 @@ const routes: Routes = [
   {path:"rent-data-residential", loadChildren:()=>import('./rent-data-res/rent-data-res.module').then(module => module.RentDataResModule)},
   {path:"PropertyCompare", loadChildren:()=>import('./property-compare/property-compare.module').then(module => module.PropertyCompareModule)},
   {path:"project", loadChildren:()=>import('./projects/project.module').then(module => module.ExploreModule)},
+  {path:"data-intelligence/data", loadChildren:()=>import('./data-intelligence/data/data.module').then(module => module.DataModule)},
   
   {path:"ar", loadChildren:()=>import('./ar/ar.module').then(module => module.ArModuleModule)},
 
