@@ -278,23 +278,24 @@ export class ListpropertymediaComponent implements OnInit {
       },
       dataType: "json",
       success: (res) => {
+        console.log(res)
         if (res.message == "Property Listing request completed successfully") {
           localStorage.removeItem("propertyData");
+          this.showLoader = true;
+          let temp: any = localStorage.getItem("user");
+          temp = JSON.parse(temp);
+          this.api.PurchasePackage({ "UserId": temp.id, "PackageId": this.packageData.id }).subscribe((result: any) => {
+            if (result.message == "Package has been purchased") {
+              this.showLoader = false;
+              this.success = "Your package has been purchsed successfully";
+              this.showSuccess = true;
+            } else {
+              this.error = "Something went wrong please try again";
+              this.showError = true;
+            }
+          })
           this.route.navigate(['/add-property/listpropertypublish'])
         }
-        this.showLoader = true;
-        let temp: any = localStorage.getItem("user");
-        temp = JSON.parse(temp);
-        this.api.PurchasePackage({ "UserId": temp.id, "PackageId": this.packageData.id }).subscribe((result: any) => {
-          if (result.message == "Package has been purchased") {
-            this.showLoader = false;
-            this.success = "Your package has been purchsed successfully";
-            this.showSuccess = true;
-          } else {
-            this.error = "Something went wrong please try again";
-            this.showError = true;
-          }
-        })
       },
       error: (err) => {
         console.log(err);
