@@ -66,8 +66,8 @@
                                 [ngClass]="PropertyCategoryId == residentialId ? 'residential-tabs' : 'hide residential-tabs'">
                                 <h5 ngClass="h5-heading">Residential Unit Type</h5>
                                 <ul ngClass="list-unstyled residentails-unit-list">
-                                    <li ngClass="d-flex" *ngFor="let item of propertyTypeResdential">
-                                        <div ngClass="position-relative">
+                                    <li ngClass="d-flex position-relative" *ngFor="let item of propertyTypeResdential">
+                                        <div>
                                             <input type="checkbox" (click)="getPropertyType(item.id)">
                                             <span ngClass="property_sel"></span>
                                         </div>
@@ -81,8 +81,8 @@
                                 [ngClass]="PropertyCategoryId == commercialId ? 'commertial-tabs' : 'hide commertial-tabs'">
                                 <h5 ngClass="h5-heading">Commercial Unit Type</h5>
                                 <ul ngClass="list-unstyled residentails-unit-list">
-                                    <li ngClass="d-flex" *ngFor="let item of propertyTypeCommercial">
-                                        <div ngClass="position-relative">
+                                    <li ngClass="d-flex position-relative" *ngFor="let item of propertyTypeCommercial">
+                                        <div>
                                             <input type="checkbox" (click)="getPropertyCommercialType(item.id)">
                                             <span ngClass="property_sel"></span>
                                         </div>

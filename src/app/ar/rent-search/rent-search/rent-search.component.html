@@ -94,8 +94,8 @@
                                 <div id="Residentials" ngClass="residential-tabs">
                                     <h5 ngClass="h5-heading">نوع الوحدة السكنية</h5>
                                     <ul ngClass="list-unstyled residentails-unit-list">
-                                        <li ngClass="d-flex" *ngFor="let item of propertyType">
-                                            <div ngClass="position-relative">
+                                        <li ngClass="d-flex position-relative" *ngFor="let item of propertyType">
+                                            <div>
                                                 <input type="checkbox" (click)="getPropertyType(item.id)">
                                                 <span ngClass="property_sel"></span>
                                             </div>
@@ -108,8 +108,8 @@
                                 <div id="Commercial" ngClass="hide commertial-tabs">
                                     <h5 ngClass="h5-heading">نوع الوحدة التجارية</h5>
                                     <ul ngClass="list-unstyled residentails-unit-list">
-                                        <li ngClass="d-flex" *ngFor="let item of propertyTypeCommercial">
-                                            <div ngClass="position-relative">
+                                        <li ngClass="d-flex position-relative" *ngFor="let item of propertyTypeCommercial">
+                                            <div>
                                                 <input type="checkbox" (click)="getPropertyCommercialType(item.id)">
                                                 <span ngClass="property_sel"></span>
                                             </div>

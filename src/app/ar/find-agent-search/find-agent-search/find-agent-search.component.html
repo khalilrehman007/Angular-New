@@ -45,8 +45,8 @@
                         <button ngClass="drop-down_btn" (click)="clickEvent()">التخصصات</button>
                         <div class="cstm_dropdown-menu" [ngClass]="status ? 'active' : 'notactive'">
                             <ul ngClass="list-unstyled residentails-unit-list">
-                                <li ngClass="d-flex" ngbSlide *ngFor="let list of ExpertIn">
-                                    <div (click)="getExpertInId(list.id)" ngClass="position-relative">
+                                <li ngClass="d-flex position-relative" ngbSlide *ngFor="let list of ExpertIn">
+                                    <div (click)="getExpertInId(list.id)">
                                         <input *ngIf="getUrlExpertInId == list.id" checked type="radio" name="ExpertIn"
                                             value="English">
                                         <input *ngIf="getUrlExpertInId != list.id" type="radio" name="ExpertIn"
@@ -70,9 +70,9 @@
                         <div class="cstm_dropdown-menu" [ngClass]="status1 ? 'active' : 'notactive'">
                             <h4 ngClass="drop_label">اللغات</h4>
                             <ul ngClass="list-unstyled residentails-unit-list">
-                                <li ngClass="d-flex" ngbSlide *ngFor="let list of SpokenLanguages">
+                                <li ngClass="d-flex position-relative" ngbSlide *ngFor="let list of SpokenLanguages">
                                     <div *ngIf="getUrllanguageIds !== null" (click)="getLanguageId(list.id)"
-                                        ngClass="position-relative">
+                                        >
                                         <!--                    <input  *ngIf="getUrllanguageIds.includes(list.id)" checked  type="checkbox" name="language" value="English">-->
                                         <input *ngIf="getUrllanguageIds == list.id" checked type="radio" name="language"
                                             value="English">

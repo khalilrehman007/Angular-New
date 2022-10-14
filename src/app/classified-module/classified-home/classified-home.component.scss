@@ -37,12 +37,13 @@
 }
 .services-block-shadow {
     border-radius: 10px;
-    border: 0.5px solid #e0def7;
     text-decoration: none;
-    box-shadow: 0px 0px 10px 0 rgb(89 90 212 / 34%);
-    -webkit-box-shadow: 0px 0px 10px 0 rgb(89 90 212 / 34%);
-    -moz-box-shadow: 0px 0px 10px 0 rgb(89 90 212 / 34%);
     overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    transition: all 0.5s ease-in-out;
+    &:hover{
+        border-color: #aaaaab !important; 
+    }
 }
 .services-block-cntnt {
     text-align: center;
@@ -172,5 +173,13 @@
         position: absolute;
         margin-bottom: 0px;
         top: 25px;
+    }
+    .services-block-wrap>.row {
+        margin-left: -7px;
+        margin-right: -7px;
+    }
+    .services-block-wrap>.row>div {
+        padding-left: 7px;
+        padding-right: 7px;
     }
 }
