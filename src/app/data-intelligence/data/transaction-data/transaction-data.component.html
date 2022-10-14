@@ -406,28 +406,90 @@
                 <div class="mat-elevation-z8">
                   <table mat-table [dataSource]="dataSource" matSort>
   
-                    <!-- ID Column -->
-                    <ng-container matColumnDef="id">
-                      <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
-                      <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+                    <!-- Type Column -->
+                    <ng-container matColumnDef="Type">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Type</th>
+                      <td mat-cell *matCellDef="let row"> {{row.transactionType != null ? row.transactionType.name : "N/A"}} </td>
                     </ng-container>
-  
-                    <!-- Progress Column -->
-                    <ng-container matColumnDef="progress">
-                      <th mat-header-cell *matHeaderCellDef mat-sort-header> Progress </th>
-                      <td mat-cell *matCellDef="let row"> {{row.progress}}% </td>
+                    <!-- Sub Type Column -->
+                    <ng-container matColumnDef="Sub Type">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Sub Type</th>
+                      <td mat-cell *matCellDef="let row"> {{row.transactionSubType != null ? row.transactionSubType.name : "N/A"}} </td>
                     </ng-container>
-  
-                    <!-- Name Column -->
-                    <ng-container matColumnDef="name">
-                      <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
-                      <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+                    <!-- Sequence Type Column -->
+                    <ng-container matColumnDef="Sequence">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Sequence</th>
+                      <td mat-cell *matCellDef="let row"> {{row.transactionSequence != null ? row.transactionSequence.name : "N/A"}} </td>
                     </ng-container>
-  
-                    <!-- Fruit Column -->
-                    <ng-container matColumnDef="fruit">
-                      <th mat-header-cell *matHeaderCellDef mat-sort-header> Fruit </th>
-                      <td mat-cell *matCellDef="let row"> {{row.fruit}} </td>
+                    <!-- Date Type Column -->
+                    <ng-container matColumnDef="Date">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
+                      <td mat-cell *matCellDef="let row"> {{row.transactionDate != null ? row.transactionDate.split("T")[0] : "N/A"}} </td>
+                    </ng-container>
+                    <!-- Location Type Column -->
+                    <ng-container matColumnDef="Location">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Location</th>
+                      <td mat-cell *matCellDef="let row"> {{row.district != null ? row.district.name : "N/A"}} </td>
+                    </ng-container>
+                    <!-- Property Type Type Column -->
+                    <ng-container matColumnDef="Property Type">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Property Type</th>
+                      <td mat-cell *matCellDef="let row"> {{row.propertyType != null ? row.propertyType.typeDescription : ""}} </td>
+                    </ng-container>
+                    <!-- Property Name Type Column -->
+                    <ng-container matColumnDef="Project Name">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Project Name</th>
+                      <td mat-cell *matCellDef="let row"> {{row.project != null ? row.project.name : ""}} </td>
+                    </ng-container>
+                    <!-- Unit Type Column -->
+                    <ng-container matColumnDef="Unit">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Unit</th>
+                      <td mat-cell *matCellDef="let row"> {{row.unit != null ? row.unit : "N/A"}} </td>
+                    </ng-container>
+                    <!-- Bedrooms Type Column -->
+                    <ng-container matColumnDef="Bedrooms">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Bedrooms</th>
+                      <td mat-cell *matCellDef="let row"> {{row.bedRoom != null ? row.bedRoom : "N/A"}} </td>
+                    </ng-container>
+                    <!-- Floor Type Column -->
+                    <ng-container matColumnDef="Floor">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Floor</th>
+                      <td mat-cell *matCellDef="let row"> {{row.floor != null ? row.floor : "N/A"}} </td>
+                    </ng-container>
+                    <!-- Parking Type Column -->
+                    <ng-container matColumnDef="Parking">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Parking</th>
+                      <td mat-cell *matCellDef="let row"> {{row.parking != null ? row.parking : "N/A"}} </td>
+                    </ng-container>
+                    <!-- Balcony Area Type Column -->
+                    <ng-container matColumnDef="Balcony Area">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Balcony Area</th>
+                      <td mat-cell *matCellDef="let row"> {{row.balconyAreaSqft != null ? row.balconyAreaSqft : "N/A"}} </td>
+                    </ng-container>
+                    <!-- Size Type Column -->
+                    <ng-container matColumnDef="Size">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Size</th>
+                      <td mat-cell *matCellDef="let row"> {{row.sizeSqft != null ? row.sizeSqft : "N/A"}} </td>
+                    </ng-container>
+                    <!-- Land Size Column -->
+                    <ng-container matColumnDef="Land Size">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Land Size</th>
+                      <td mat-cell *matCellDef="let row"> {{row.landSizeSqft != null ? row.landSizeSqft : "N/A"}} </td>
+                    </ng-container>
+                    <!-- Amount Column -->
+                    <ng-container matColumnDef="Amount">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Amount</th>
+                      <td mat-cell *matCellDef="let row"> {{row.amount != null ? row.amount : "N/A"}} </td>
+                    </ng-container>
+                    <!-- AED Column -->
+                    <ng-container matColumnDef="AED">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>AED</th>
+                      <td mat-cell *matCellDef="let row"> {{row.amountSqft != null ? row.amountSqft : "N/A"}} </td>
+                    </ng-container>
+                    <!-- Developer Column -->
+                    <ng-container matColumnDef="Developer">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Developer</th>
+                      <td mat-cell *matCellDef="let row"> {{row.propertyDeveloper != null ? row.propertyDeveloper.name : ""}} </td>
                     </ng-container>
   
                     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
