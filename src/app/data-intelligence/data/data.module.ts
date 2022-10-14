@@ -16,11 +16,13 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { TransactionDataComponent } from './transaction-data/transaction-data.component';
 import { CommonFilesModule } from '../../common-files/common-files.module';
 import { DiSideBarModuleModule } from '../../di-side-bar-module/di-side-bar-module.module';
+import { RentDataResidentialComponent } from './rent-data-residential/rent-data-residential.component';
 
 
 @NgModule({
   declarations: [
-    TransactionDataComponent
+    TransactionDataComponent,
+    RentDataResidentialComponent
   ],
   imports: [
     CommonModule,
