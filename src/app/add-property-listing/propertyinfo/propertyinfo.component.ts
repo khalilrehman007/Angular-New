@@ -76,12 +76,12 @@ export class PropertyinfoComponent implements OnInit {
       this.packagesType = result.data;
     })
     this.service.PointTransaction(335).subscribe((result: any) => {
-      console.log(result.data)
+      // console.log(result.data)
       if (result.message == "Points Transaction has been fetched successfully") {
         for (let i = 0; i < result.data.length; i++) {
           this.selectedPackageName.push(result.data[i].point.id);
         }
-        console.log(this.selectedPackageName);
+        // console.log(this.selectedPackageName);
       }
     })
     this.loadCountriesData();
@@ -94,7 +94,7 @@ export class PropertyinfoComponent implements OnInit {
     config.keyboard = false;
   }
   checkPackage(e:any) {
-    console.log(this.selectedPackageName, e);
+    // console.log(this.selectedPackageName, e);
     if(this.selectedPackageName.indexOf(e) != -1) {
       return true;
     } else {

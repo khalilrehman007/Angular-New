@@ -125,8 +125,8 @@
         </div>
     </div>
 </section>
-<button (click)="PackageModal(packageContent)">Demo 1</button>
-<button (click)="NoPackageModal(NopackageContent)">Demo 2</button>
+<!-- <button (click)="PackageModal(packageContent)">Demo 1</button>
+<button (click)="NoPackageModal(NopackageContent)">Demo 2</button> -->
 <app-loader *ngIf="showLoader"></app-loader>
 <app-erroralert [error]="error" (errorResponse)="errorResponse($event)" *ngIf="showError"></app-erroralert>
 <div ngClass="packages-modal-wrap">

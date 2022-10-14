@@ -29,7 +29,7 @@ export class DiSidebarComponentComponent implements OnInit {
   logoutimg = '../../../assets/images/logout-popup-banner.png'
   profileimg = '../../../assets/images/icons/profile-icon.png'
 
-  constructor(config: NgbDropdownConfig) {
+  constructor(config: NgbDropdownConfig, private router: Router) {
     config.autoClose = false;
   }
   ngOnInit(): void {
@@ -69,5 +69,8 @@ export class DiSidebarComponentComponent implements OnInit {
   status5: boolean = false;
   clickEvent5() {
     this.status5 = !this.status5;
+  }
+  btnClicked(e:any) {
+    this.router.navigate([e])
   }
 }

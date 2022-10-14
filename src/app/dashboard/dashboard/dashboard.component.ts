@@ -1329,7 +1329,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       this.showError = true;
       return;
     } else if (this.cardForm.value.cardName == "" || this.cardForm.value.cardName == null) {
-      console.log(this.cardForm.value.cardName);
+      // console.log(this.cardForm.value.cardName);
       this.error = "Please Enter Card Holder Name";
       this.showError = true;
     }
