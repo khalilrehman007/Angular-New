@@ -278,7 +278,7 @@ export class ListpropertymediaComponent implements OnInit {
       },
       dataType: "json",
       success: (res) => {
-        console.log(res)
+        // console.log(res)
         if (res.message == "Property Listing request completed successfully") {
           localStorage.removeItem("propertyData");
           this.showLoader = true;
