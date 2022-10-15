@@ -17,12 +17,20 @@ import { TransactionDataComponent } from './transaction-data/transaction-data.co
 import { CommonFilesModule } from '../../common-files/common-files.module';
 import { DiSideBarModuleModule } from '../../di-side-bar-module/di-side-bar-module.module';
 import { RentDataResidentialComponent } from './rent-data-residential/rent-data-residential.component';
+import { UnitTransactionHistoryResidentialComponent } from './unit-transaction-history-residential/unit-transaction-history-residential.component';
+import { MonthlyAnalysisResidentialComponent } from './monthly-analysis-residential/monthly-analysis-residential.component';
+import { QuaterlyAnalysisResidentialComponent } from './quaterly-analysis-residential/quaterly-analysis-residential.component';
+import { YearlyAnalysisResidentialComponent } from './yearly-analysis-residential/yearly-analysis-residential.component';
 
 
 @NgModule({
   declarations: [
     TransactionDataComponent,
-    RentDataResidentialComponent
+    RentDataResidentialComponent,
+    UnitTransactionHistoryResidentialComponent,
+    MonthlyAnalysisResidentialComponent,
+    QuaterlyAnalysisResidentialComponent,
+    YearlyAnalysisResidentialComponent
   ],
   imports: [
     CommonModule,

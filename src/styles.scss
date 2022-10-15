@@ -8856,8 +8856,9 @@ li.agent-details__property-list-item {
 }
 .select2-dropdown {
     background-color: #fff !important;
-    border: 0.5px solid #F0EFFB !important;
+    border: none !important;
     padding: 15px;
+	box-shadow: 1px 2px 45px -39px #000929 !important;
 }
 .select2-dropdown .select2-search {
     margin-bottom: 15px;
@@ -12552,7 +12553,27 @@ color: green !important;
 .block-wrapper .cstm_dropdown-menu li:hover p {
     color: #595ad5;
 }
-
+.dashboard-data-select-box .select2 {
+	width: 100% !important;
+  }
+  .dashboard-data-select-box .select2 .select2-selection {
+	border: none !important;
+	border-radius: 50px !important;
+	padding: 8px 15px;
+	height: 45px;
+  }
+  .dashboard-data-select-box .select2 .select2-selection .select2-selection__arrow {
+	display: none;
+  }
+  .dashboard-data-select-box .select2 .select2-selection .select2-selection__rendered {
+    font-size: 14px;
+}
+.mat-autocomplete-panel:not([class*=mat-elevation-z]) {
+    box-shadow: 1px 2px 45px -39px #000929;
+}
+.mat-select-panel:not([class*=mat-elevation-z]){
+	box-shadow: 1px 2px 45px -39px #000929 !important;
+}
 @media (min-width: 1200px){
 	.header-section .navbar-nav .search-design-hdr {
 		width: 25.2%;
