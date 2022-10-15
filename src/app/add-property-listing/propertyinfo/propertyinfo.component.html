@@ -69,7 +69,7 @@
                                     <div ngClass="block-wrapper-address">
                                         <label class="h6-design"></label>
                                         <div ngClass="position-relative">
-                                            <div style="width: 100%">
+                                            <div style="width: 100%" >
                                                 <div #propertyDetails__map class="property-details__map"></div>
                                             </div>
                                             <div ngClass="locate-me-sec">
@@ -129,7 +129,7 @@
 <button (click)="NoPackageModal(NopackageContent)">Demo 2</button> -->
 <app-loader *ngIf="showLoader"></app-loader>
 <app-erroralert [error]="error" (errorResponse)="errorResponse($event)" *ngIf="showError"></app-erroralert>
-<div ngClass="packages-modal-wrap">
+<!-- <div ngClass="packages-modal-wrap">
     <ng-template #packageContent let-modal>
         <div class="modal-body packages-modal-design">
             <div class="packages-list-modal-hdr">
@@ -150,10 +150,10 @@
                                             <li
                                                 *ngFor="let property of packages.propertyListingPackageFeatures; let i = index">
                                                 {{property.detail}}</li>
-                                            <!-- <li>Up to 30 days validity</li>
+                                            <li>Up to 30 days validity</li>
                                             <li>01 Active Property Listing</li>
                                             <li>Up to 30 days validity</li>
-                                            <li>Up to 30 days validity</li> -->
+                                            <li>Up to 30 days validity</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -162,7 +162,7 @@
                                 </div>
                             </div>
                         </ng-template>
-                        <!-- <ng-template carouselSlide>
+                        <ng-template carouselSlide>
                             <div class="packages-list-modal-list position-relative Premium disabled">
                                 <div class="packages-list-modal-radio">
                                     <input type="radio" name="package-select">
@@ -231,7 +231,7 @@
                                     <h4>Standard</h4>
                                 </div>
                             </div>
-                        </ng-template> -->
+                        </ng-template>
                     </owl-carousel-o>
                 </div>
             </div>
@@ -256,4 +256,4 @@
             </div>
         </div>
     </ng-template>
-</div>
+</div> -->
