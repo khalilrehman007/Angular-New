@@ -12,7 +12,7 @@ import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatNativeDateModule } from '@angular/material/core';
-
+import { NgChartsModule } from 'ng2-charts';
 import { TransactionDataComponent } from './transaction-data/transaction-data.component';
 import { CommonFilesModule } from '../../common-files/common-files.module';
 import { DiSideBarModuleModule } from '../../di-side-bar-module/di-side-bar-module.module';
@@ -46,7 +46,7 @@ import { YearlyAnalysisResidentialComponent } from './yearly-analysis-residentia
     MatTableModule,
     MatPaginatorModule,
     MatNativeDateModule,
-
+    NgChartsModule,
     CommonFilesModule,
     DiSideBarModuleModule
   ]
