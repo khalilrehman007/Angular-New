@@ -39,13 +39,13 @@
               <div ngbDropdownMenu aria-labelledby="dropdownBasictransactindata">
                 <button ngbDropdownItem><a (click)="btnClicked('/data-intelligence/data/transaction-data')">Transaction Data</a></button>
                 <button ngbDropdownItem><a (click)="btnClicked('/data-intelligence/data/rent-data-residential')">Rent Data</a></button>
-                <button ngbDropdownItem><a routerLink="">Unit Transaction History</a></button>
+                <button ngbDropdownItem><a (click)="btnClicked('/data-intelligence/data/unit-transaction-residential')">Unit Transaction History</a></button>
                 <div ngbDropdown class="dropdown-design dropdown-design-sub-menu">
                   <button type="button" class="btn btn-outline-primary" id="dropdownBasictransactinanalysis" ngbDropdownToggle>Transaction Analysis </button>
                   <div ngbDropdownMenu aria-labelledby="dropdownBasictransactinanalysis">
-                    <button ngbDropdownItem><a routerLink="#">Monthly Analysis</a></button>
-                    <button ngbDropdownItem><a routerLink="#">Quarterly Analysis</a></button>
-                    <button ngbDropdownItem><a routerLink="#">Yearly Analysis</a></button>
+                    <button ngbDropdownItem><a (click)="btnClicked('/data-intelligence/data/monthly-analysis-residential')">Monthly Analysis</a></button>
+                    <button ngbDropdownItem><a (click)="btnClicked('/data-intelligence/data/quaterly-analysis-residential')">Quarterly Analysis</a></button>
+                    <button ngbDropdownItem><a (click)="btnClicked('/data-intelligence/data/yearly-analysis-residential')">Yearly Analysis</a></button>
                   </div>
                 </div>
               </div>
