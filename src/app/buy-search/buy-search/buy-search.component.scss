@@ -1,0 +1,162 @@
+$color_1: #595ad4;
+$background-color_1: transparent;
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{
+    -webkit-box-shadow: 0 0 0 30px #eef1f3 inset !important;
+	padding-right: 0px !important;
+}
+.property-filter-wrap {
+	.block-item {
+		width: 11%;
+	}
+	.block-item.first-block {
+		width: 32%;
+	}
+	.block-item.six-block {
+		width: 7%;
+	}
+	.block-item.seven-block {
+		width: 5%;
+	}
+	.block-item.eight-block {
+		width: 4%;
+	}
+     .block-item.scnd2-block {
+		width: 7%;
+	}
+	.block-item.third-block {
+		width: 7%;
+	}
+	.block-item.scnd-block {
+		width: 11%;
+	}
+}
+.block-wrapper .cstm_dropdown-menu {
+    min-width: 300px;
+}
+.clear-btn {
+	border: 0.25px solid #6C30A6;
+	background-color: $background-color_1;
+	font-size: 16px;
+	color: $color_1;
+	padding: 10px 12px;
+	border-radius: 8px;
+}
+.property-filter-wrap .block-wrapper .search-btn {
+    height: 47px;
+}
+
+
+@media (max-width: 1199px) and (min-width: 575px){
+	.property-filter-wrap {
+		flex-wrap: wrap;
+		.block-item {
+			width: 49%;
+		}
+		.block-item.scnd-block {
+			width: 49%;
+		}
+		.block-item.first-block {
+			width: 100%;
+		}
+		.block-item.six-block {
+			width: 49%;
+		}
+		.block-item.seven-block {
+			width: 100%;
+			margin-bottom: 15px;
+		}
+		.block-item.scnd2-block {
+			width: 49%;
+		}
+		.block-item.third-block {
+			width: 49%;
+		}
+		.block-item.eight-block {
+			width: 100%;
+		}
+		.block-item.seven-block .clear-btn {
+			width: 100%;
+		}
+		.more-filter-button {
+			width: 100%;
+		}
+	}
+}
+@media (max-width: 574px){
+	.property-filter-wrap {
+		flex-wrap: wrap;
+		.block-item {
+			width: 49%;
+		}
+		.block-item.scnd-block {
+			width: 49%;
+		}
+		.block-item.first-block {
+			width: 100%;
+		}
+		.block-item.seven-block {
+			width: 100%;
+			margin-bottom: 15px;
+		}
+		.block-item.seven-block .clear-btn {
+			width: 100%;
+		}
+		.block-item.scnd2-block {
+			width: 49%;
+		}
+		.block-item.third-block {
+			width: 49%;
+		}
+		.block-item.eight-block {
+			width: 100%;
+		}
+		.block-item.six-block {
+			width: 49%;
+		}
+		.more-filter-button {
+			width: 100%;
+		}
+	}
+}
+.more-filter-button {
+    background: whitesmoke;
+    border: none;
+    font-size: 13px;
+    font-weight: 300;
+    color: #000;
+    border-radius: 8px;
+    padding: 14px 10px;
+    height: 100%;
+}
+.property-filter-wrap .dropdown-design-2 .drop-down_btn {
+    padding: 13px 15px;
+}
+.totel_properties-btn button {
+    background: #595ad4;
+    color: #fff;
+    border: none;
+    font-size: 14px;
+    padding: 10px 15px;
+    border-radius: 6px;
+}
+.totel_properties-btn button:hover{
+	background: #4a565f;
+}
+.availity-sec-design {
+    padding-bottom: 20px;
+}
+
+
+@media (max-width: 1200px){
+	.more-filter-form-design {
+		width: 100% !important;
+		max-width: 95%;
+		margin: 0 auto;
+	}
+	.scnd-block .block-wrapper .cstm_dropdown-menu {
+		left: 0;
+	}
+}
