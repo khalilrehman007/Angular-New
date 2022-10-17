@@ -1514,9 +1514,10 @@ input[type=number] {
 .checkbox-flex-box {
 	display: flex;
 	flex-direction: row;
-	justify-content: space-between;
 }
-
+.checkbox-flex-box>div:not(:last-child) {
+    margin-right: 15px;
+}
 .checkbox-flex-box.two-column {
 	>div {
 		width: 48%;
@@ -3510,6 +3511,8 @@ input[type=number] {
 		font-size: 14px;
 		font-weight: 300;
 		color: #000;
+		margin-bottom: 0px;
+		min-height: 90px;
 	}
 
 	img {
@@ -3582,7 +3585,7 @@ input[type=number] {
 }
 
 .section-title {
-	margin-bottom: 40px;
+	margin-bottom: 20px;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -3715,8 +3718,11 @@ input[type=number] {
 	border-bottom-right-radius: 10px;
 	border: 1px solid rgba(0,0,0,.08);
 	transition: all 0.5s ease-in-out;
+	bottom: 0;
 	&:hover{
 		border-color: #aaaaab !important;
+		cursor: pointer;
+		bottom: 10px;
 	}
 	>img {
 		overflow: hidden;
@@ -3936,7 +3942,7 @@ input[type=number] {
 	padding-bottom: 54px;
 
 	.section-title {
-		margin-bottom: 28px;
+		margin-bottom: 20px;
 	}
 }
 
@@ -4027,9 +4033,9 @@ input[type=number] {
 
 	h5 {
 		color: #fff;
-		font-size: 14px;
-		font-weight: 300;
-		line-height: 22px;
+		font-weight: 500;
+		font-size: 20px;
+		margin-bottom: 15px;
 	}
 
 	img {
@@ -4043,6 +4049,8 @@ input[type=number] {
 		font-size: 14px;
 		font-weight: 300;
 		line-height: 22px;
+		margin-bottom: 0px;
+		min-height: 90px;
 	}
 }
 
@@ -4070,6 +4078,8 @@ input[type=number] {
 		font-size: 14px;
 		font-weight: 300;
 		line-height: 22px;
+		margin-bottom: 0px;
+		min-height: 90px;
 	}
 }
 
@@ -4425,7 +4435,7 @@ img {
 	p {
 		font-size: 14px;
 		color: $color_7;
-		font-weight: 500;
+		font-weight: 300;
 		margin-bottom: 0px;
 
 		img {
@@ -4720,14 +4730,14 @@ img {
 	p {
 		color: $color_10;
 		font-size: 14px;
-		font-weight: 300;
+		font-weight: 400;
 		margin-bottom: 4px;
 	}
 
 	h6 {
 		color: $color_10;
 		font-size: 14px;
-		font-weight: 400;
+		font-weight: 300;
 	}
 }
 
@@ -5163,6 +5173,8 @@ img {
 	padding-top: 5px;
 	max-width: 100vw;
 	overflow: hidden;
+	border-radius: 8px;
+    overflow: hidden;
 
 	>.mat-tab-group {
 		>.mat-tab-header {
@@ -5431,10 +5443,8 @@ img {
 
 	.checkbox-design {
 		.checkbox-btn {
-			border: 0.5px solid #D3DBFF;
-			min-width: 75px;
-			padding: 12px 10px;
-
+			border: none;
+            min-width: 60px;
 			img {
 				margin-right: 5px;
 			}
@@ -5444,18 +5454,20 @@ img {
 	.mat-form-field-flex {
 		background-color: $background-color_3  !important;
 		box-shadow: 0px 0px 13px rgba(0, 33, 178, 0.1);
-		border: 0.5px solid #D3DBFF;
+		height: 40px;
 
 		.mat-select-arrow-wrapper {
 			filter: brightness(0);
-			background-size: 14px;
+			background-size: 13px;
+			right: 0px;
+			top: -1px;
 		}
 
 		.mat-form-field-infix {
 			border: none;
 			padding-bottom: 0px;
 			position: relative;
-			top: 10px;
+			top: 8px;
 
 			mat-label {
 				color: $color_3;
@@ -5463,8 +5475,10 @@ img {
 				font-weight: 400;
 
 				img {
-					margin-right: 4px;
+				    margin-right: 4px;
 					width: 18px;
+					position: relative;
+					bottom: 1px;
 				}
 			}
 		}
@@ -5545,6 +5559,8 @@ img {
 	padding-top: 22px;
 	width: 100%;
 	padding-right: 15px;
+	border-radius: 8px;
+    overflow: hidden;
 
 	.property-name_detals {
 		padding-top: 12px;
@@ -6136,6 +6152,8 @@ img {
 .loc-img-design {
 	position: relative;
 	z-index: 0;
+	border-radius: 8px;
+    overflow: hidden;
 
 	img {
 		width: 100%;
@@ -6281,6 +6299,8 @@ img {
 
 .explore_details-img {
 	position: relative;
+	border-radius: 8px;
+    overflow: hidden;
 
 	img {
 		width: 100%;
@@ -8924,7 +8944,7 @@ li.agent-details__property-list-item {
 
 @media (max-width: 991px) {
 	.mockup-conatiner {
-		padding: 35px 30px 35px 30px !important;
+		padding: 35px 20px 35px 20px !important;
 
 		.p-40-100 {
 			padding: 60px 40px !important;
@@ -11503,7 +11523,7 @@ body .header-section .navbar-nav .sell-or-rent-property .blue-bordered-btn {
 }
 
 .confirmation .ok-btn {
-	background-color: red;
+	background-color: #f77d7d;
 }
 
 .alert-message-wrap.confirmation .confirm-btn {
@@ -12592,4 +12612,10 @@ color: green !important;
 	.header-section .navbar-nav .search-design-hdr {
 		width: 25.2%;
 	}
+}
+.property-details span.bath img {
+    bottom: 2px !important;
+}
+.slider-shadow .owl-stage-outer {
+    padding-top: 15px;
 }
