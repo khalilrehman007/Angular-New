@@ -3359,7 +3359,7 @@ input[type=number] {
     border-radius: 8px;
     position: relative;
     z-index: 0;
-    padding: 20px 15px 5px 15px;
+    padding: 20px 15px 20px 15px;
 	border: 1px solid rgba(0, 0, 0, 0.08);
     // box-shadow: 1px 2px 81px -36px #000929;
 	.block-wrapper {
@@ -12639,4 +12639,16 @@ color: green !important;
 }
 input:focus{
 	outline: none !important;
+}
+.buy-sell-wrapepr-forms .block-item.first-block {
+    width: 35% !important;
+}
+.buy-sell-wrapepr-forms .searc-input-combination .mat-form-field:last-child .mat-form-field-flex{
+	padding-top: 11px !important;
+}
+
+@media (min-width: 1200px){
+	.buy-sell-wrapepr-forms .block-wrapper.mb-4 {
+		margin-bottom: 0px !important;
+	}
 }
