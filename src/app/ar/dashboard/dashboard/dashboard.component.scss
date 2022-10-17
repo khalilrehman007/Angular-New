@@ -695,16 +695,16 @@ $btncolor: #0B26AD;
                     }
 
                     &-link {
-                        color: #000929;
-                        font-size: 24px;
-                        line-height: 36px;
-                        font-weight: 800;
+                        color: var(--primary-color);
+                        font-size: 17px;
+                        line-height: normal;
+                        font-weight: 600;
 
                         span {
-                            font-size: 16px;
-                            line-height: 24px;
-                            font-weight: 500;
-                            opacity: .5;
+                            font-size: 13px;
+                            line-height: normal;
+                            font-weight: 400;
+                            color: #000;
                         }
                     }
 
@@ -715,23 +715,27 @@ $btncolor: #0B26AD;
                         color: #4A565F;
                     }
 
-                    h6 {
-                        font-size: 18px;
-                        line-height: 27px;
-                        font-weight: 700;
-                        color: #000929;
-                        margin: 0;
-                    }
+                    // h6 {
+                    //     font-size: 18px;
+                    //     line-height: 27px;
+                    //     font-weight: 400;
+                    //     color: #000929;
+                    //     margin: 0;
+                    // }
 
                     &-text {
                         font-size: 14px;
                         line-height: 21px;
-                        font-weight: 500;
+                        font-weight: 300;
                         margin: 0;
+                        padding-top: 5px;
 
                         &-icon {
-                            max-width: 14px;
-                            max-height: 14px;
+                            filter: grayscale(1);
+                            margin-right: 5px;
+                            width: 16px;
+                            position: relative;
+                            bottom: 2px;
 
                         }
                     }
@@ -741,7 +745,7 @@ $btncolor: #0B26AD;
                         margin-bottom: 0;
                         font-size: 14px;
                         line-height: 20px;
-                        font-weight: 600;
+                        font-weight: 400;
                         color: #000929;
                     }
                 }
@@ -754,10 +758,17 @@ $btncolor: #0B26AD;
 
                 &-item {
                     display: inline-block;
-                    margin-right: 32px;
+                    margin-right: 10px;
+                    font-size: 14px;
+                    font-weight: 300;
 
                     img {
-                        margin-right: 10px;
+                        display: inline-block;
+                        margin-left: 4px;
+                        width: 16px;
+                        filter: grayscale(1);
+                        position: relative;
+                        bottom: 1px;
                     }
                 }
             }
@@ -1246,4 +1257,16 @@ $btncolor: #0B26AD;
 }
 .recharge_row-wallet-flex>.transfer-now-btn {
     margin-left: 15px;
+}
+.agent-details__property-detail-list-item.bath>img {
+    bottom: 2px !important;
+}
+.agent-details__property-detail-list-item.bath>img {
+    bottom: 2px !important;
+}
+.agent-details__property-list-item .col-lg-10>h6 {
+    font-size: 15px;
+    font-weight: 400;
+    margin-bottom: 5px;
+    color: #000929;
 }

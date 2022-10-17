@@ -2868,15 +2868,15 @@ input[type=number] {
 
 	.back-to-text {
 		color: $color_7;
-		font-size: 16px;
-		font-weight: 500;
+		font-size: 14px;
+		font-weight: 400;
 		display: flex;
 		align-items: center;
 
 		.mat-icon {
 			width: auto !important;
 			height: auto !important;
-			font-size: 24px;
+			font-size: 20px;
 			position: relative;
 			bottom: 1px;
 			margin-right: 3px;
@@ -4391,7 +4391,7 @@ img {
 		font-size: 24px;
 		color: $color_2;
 		font-weight: 700;
-		margin-bottom: 10px;
+		margin-bottom: 6px;
 	}
 
 	.property-tags {
@@ -4442,6 +4442,7 @@ img {
 			position: relative;
 			bottom: 2px;
 			margin-right: 6px;
+			filter: grayscale(1);
 		}
 
 		a {
@@ -4454,13 +4455,13 @@ img {
 }
 
 .grey-bordered-btn {
-	border: 0.5px solid #4A565F;
-	border-radius: 8px;
-	background: transparent;
-	padding: 7px 15px;
-	color: $color_7;
-	font-size: 14px;
-	font-weight: 500;
+    border: none;
+    border-radius: 6px;
+    background: whitesmoke;
+    padding: 7px 15px;
+    color: #4A565F;
+    font-size: 14px;
+    font-weight: 400;
 }
 
 .property-action_detals {
@@ -4628,14 +4629,16 @@ img {
 	width: 100%;
 
 	>span {
-		color: $color_33;
+		color: #000;
 		font-size: 14px;
-		font-weight: 500;
+		font-weight: 300;
 		margin-right: 15px;
 		img {
 			position: relative;
 			bottom: 1px;
 			margin-right: 7px;
+			filter: grayscale(1);
+			width: 18px;
 		}
 	}
 }
@@ -5457,7 +5460,7 @@ img {
 		height: 40px;
 
 		.mat-select-arrow-wrapper {
-			filter: brightness(0);
+			filter: brightness(0.6);
 			background-size: 13px;
 			right: 0px;
 			top: -1px;
@@ -5470,7 +5473,7 @@ img {
 			top: 8px;
 
 			mat-label {
-				color: $color_3;
+				color: #4A565F;
 				font-size: 14px;
 				font-weight: 400;
 
@@ -5560,27 +5563,26 @@ img {
 	width: 100%;
 	padding-right: 15px;
 	border-radius: 8px;
-    overflow: hidden;
-
 	.property-name_detals {
-		padding-top: 12px;
+		padding-top: 8px;
 
 		h4 {
 			color: $color_8;
 			font-size: 18px;
-			font-weight: 700;
-			margin-bottom: 5px;
+			font-weight: 400;
+			margin-bottom: 10px;
 		}
 	}
 
 	.topkey-highlights {
 		h6 {
-			font-weight: 600;
+			font-weight: 400;
+			margin-bottom: 12px;
 		}
 	}
 
 	.key-tags {
-		margin: 16px 0px;
+		margin: 16px 0px 5px 0px;
 	}
 
 	.premium-tag {
@@ -5600,8 +5602,10 @@ img {
 	background: transparent;
 	border: none;
 	font-size: 12px;
-	font-weight: 500;
+	font-weight: 300;
 	color: $color_8;
+	position: relative;
+    top: 2px;
 
 	img {
 		margin-right: 5px;
@@ -5636,7 +5640,7 @@ img {
 	>h6 {
 		color: $color_2;
 		font-size: 11px;
-		font-weight: 600;
+		font-weight: 500;
 		margin-bottom: 5px;
 		letter-spacing: 1px;
 	}
@@ -5658,7 +5662,7 @@ img {
 		h6 {
 			color: $color_7;
 			font-size: 11px;
-			font-weight: 600;
+			font-weight: 500;
 			margin-bottom: 0px;
 		}
 	}
@@ -5671,7 +5675,7 @@ img {
 		color: $color_7;
 		font-size: 14px;
 		margin-bottom: 0px;
-		font-weight: 600;
+		font-weight: 400;
 	}
 
 	p {
@@ -5810,6 +5814,7 @@ img {
 		width: calc(100% + 40px);
 		background-color: $background-color_5;
 		z-index: 0;
+		border-bottom-right-radius: 8px;
 	}
 }
 
@@ -5913,7 +5918,7 @@ img {
 			padding: 5px 0px;
 			color: $color_2;
 			font-size: 14px;
-			font-weight: 500;
+			font-weight: 300;
 
 			&:hover {
 				background: transparent !important;
@@ -8650,17 +8655,19 @@ li.agent-details__property-list-item {
 }
 
 .like-dislike-box-wrap {
-	background: #f7f5f5;
+	background: #f0f3f6;
 	border-radius: 12px;
 	padding: 20px 50px;
 
 	h4 {
 		font-size: 16px;
+		font-weight: 400;
 	}
 
 	p {
 		font-size: 14px;
 		margin-bottom: 0px;
+		font-weight: 300;
 	}
 
 	.home_icon {
@@ -8714,6 +8721,7 @@ li.agent-details__property-list-item {
 	color: $color_18;
 	margin-bottom: 0px;
 	margin-top: 10px;
+	font-weight: 300;
 }
 
 .call-now_link {
@@ -8921,6 +8929,16 @@ li.agent-details__property-list-item {
     padding-top: 8px;
     padding-bottom: 8px;
 }
+.property-details-highlights > span.bath img {
+    bottom: 3px;
+}
+.property-details-highlights > span.furnishing img {
+    width: 16px;
+}
+.lsited-by-details {
+    align-items: center;
+}
+
 
 
 @media (min-widthh: 1200px) {
@@ -10590,7 +10608,6 @@ li.agent-details__property-list-item {
 		padding-right: 25px;
 		border-right: 1.5px solid #F0EFFB;
 	}
-
 	.slider-shadow {
 		position: relative;
 
@@ -12583,6 +12600,15 @@ color: green !important;
 .favourite-btn {
     background: transparent;
     border: none;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+	border-radius: 50%;
+}
+.favourite-btn:hover {
+    background-color: whitesmoke;
 }
 .block-wrapper .cstm_dropdown-menu li:hover p {
     color: #595ad5;

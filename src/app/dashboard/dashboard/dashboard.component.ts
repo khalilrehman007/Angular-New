@@ -20,6 +20,8 @@ import { CookieService } from 'ngx-cookie-service';
 export class DashboardComponent implements OnInit, AfterViewInit {
   blogs: any;
   proFrame = '../../assets/images/profile/pro-img-frame.png'
+  ovverified = 'assets/images/icons/ov-verified.svg'
+  share1 = 'assets/images/icons/share-1.png'
   logoutimg = '../../assets/images/logout-popup-banner.png'
   proAvatar: any = '../../assets/images/user.png'
   proClose = '../../assets/images/profile/close.png'
