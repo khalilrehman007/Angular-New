@@ -11,45 +11,6 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { CookieService } from 'ngx-cookie-service';
 import { AppService } from 'src/app/service/app.service';
-//  Data Table
-export interface UserData {
-  id: string;
-  name: string;
-  progress: string;
-  fruit: string;
-}
-const FRUITS: string[] = [
-  'blueberry',
-  'lychee',
-  'kiwi',
-  'mango',
-  'peach',
-  'lime',
-  'pomegranate',
-  'pineapple',
-];
-const NAMES: string[] = [
-  'Maia',
-  'Asher',
-  'Olivia',
-  'Atticus',
-  'Amelia',
-  'Jack',
-  'Charlotte',
-  'Theodore',
-  'Isla',
-  'Oliver',
-  'Isabella',
-  'Jasper',
-  'Cora',
-  'Levi',
-  'Violet',
-  'Arthur',
-  'Mia',
-  'Thomas',
-  'Elizabeth',
-];
-
 @Component({
   selector: 'app-rent-data-residential',
   templateUrl: './rent-data-residential.component.html',
@@ -57,8 +18,8 @@ const NAMES: string[] = [
 })
 export class RentDataResidentialComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'name', 'progress', 'fruit'];
-  dataSource: MatTableDataSource<UserData>;
+  displayedColumns: any = ['Type', 'Sub Type', 'Sequence', 'Date', 'Location', 'Property Type', 'Project Name', 'Unit', 'Bedrooms', 'Floor', 'Parking', 'Balcony Area', 'Size', 'Land Size', 'Amount', 'AED', 'Developer'];
+  dataSource: any;
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
@@ -204,8 +165,6 @@ export class RentDataResidentialComponent implements OnInit {
     this.service.LoadTransactionTypes().subscribe((result: any) => {
       this.filteredTransaction = result.data;
     })
-    const users = Array.from({ length: 100 }, (_, k) => createNewUser(k + 1));
-    this.dataSource = new MatTableDataSource(users);
   }
   getDate(e: any) {
     let temp: any = new Date(e.value)
@@ -216,7 +175,6 @@ export class RentDataResidentialComponent implements OnInit {
   }
   getEndDate(e: any) {
     this.endDate = this.getDate(e);
-    console.log(this.startDate, this.endDate);
   }
   getMinSize(e: any) {
     this.minSize = e;
@@ -281,11 +239,12 @@ export class RentDataResidentialComponent implements OnInit {
         temp.BedroomList.push(item.id)
       }
     }
-    console.log(temp)
     this.service.GetResidentialTransactionData(temp).subscribe((result: any) => {
       if (result.message == "Residential Transaction Data fetched successfully") {
         this.transactionData = result.data;
-        console.log(this.transactionData);
+        this.dataSource = new MatTableDataSource(this.transactionData.transactions);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
       }
     });
   }
@@ -488,8 +447,6 @@ export class RentDataResidentialComponent implements OnInit {
   ngOnInit(): void {
   }
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -499,18 +456,4 @@ export class RentDataResidentialComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
-}
-function createNewUser(id: number): UserData {
-  const name =
-    NAMES[Math.round(Math.random() * (NAMES.length - 1))] +
-    ' ' +
-    NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) +
-    '.';
-
-  return {
-    id: id.toString(),
-    name: name,
-    progress: Math.round(Math.random() * 100).toString(),
-    fruit: FRUITS[Math.round(Math.random() * (FRUITS.length - 1))],
-  };
-}
+} 
