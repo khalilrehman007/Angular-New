@@ -451,8 +451,9 @@
                                                         *ngFor=" let viewList of myActivityListingView | paginate: { itemsPerPage: 10, currentPage: page, totalItems:totalLength }">
                                                         <div class="row">
                                                             <div class="col-lg-4">
-                                                                <img src="{{viewList.img}}" alt=""
-                                                                    class="img-fluid agent-details__property-list-item-img">
+                                                                <a routerLink="/property/detail"
+                                                                [queryParams]="{id: viewList.id}"><img src="{{viewList.img}}" alt=""
+                                                                    class="img-fluid agent-details__property-list-item-img"></a>
                                                             </div>
                                                             <div class="col-lg-8">
                                                                 <div class="row">

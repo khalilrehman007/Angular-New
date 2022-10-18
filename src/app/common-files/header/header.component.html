@@ -1,8 +1,8 @@
 <header>
-    <div id="sidebar">
+    <div id="sidebar" [ngClass]="status6 ? 'active' : 'notactive'">
         <ul ngClass="nav-tabs list-unstyled">
             <li ngClass="toggle-li">
-                <button ngClass="sidebar-toggle" (click)="changeBodyClass()">
+                <button ngClass="sidebar-toggle" (click)="clickEvent6()">
                     <img src={{togglesvg}} ngClass="icon toggle_icn" alt="">
                     <img src={{close}} ngClass="icon close_icn hide" alt="">
                 </button>
@@ -556,5 +556,5 @@
             </div>
         </ng-template>
     </div>
-    <div ngClass="overlay_counter" (click)="changeBodyClass()"></div>
+    <div ngClass="overlay_counter" (click)="clickEvent6()"></div>
 </header>

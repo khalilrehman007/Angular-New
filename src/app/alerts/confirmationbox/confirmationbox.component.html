@@ -1,11 +1,16 @@
-<div class="alert_box-design">
-    <div ngClass="alert-message-wrap confirmation">
-        <mat-icon>info</mat-icon>
-        <p>{{message}}</p>
-        <p>Do you want to proceed?</p>
-        <div class="d-flex justify-content-center">
-            <button ngClass="confirm-btn" (click)="sendData('Yes')">Yes</button>
-            <button ngClass="ok-btn" (click)="sendData('No')">No</button>
+<div class="alert_box-design confirm-box">
+    <div ngClass="alert-message-wrap position-relative" style="background-image: url('assets/images/icons/Animal.png')">
+        <div class="message-block-design">
+        <h2>Oops!</h2>
+        <p class="confirm-msg">{{message}}</p>
+        <p class="want-proceed">Do you want to proceed?</p>
+        <div class="d-flex">
+            <button ngClass="ok-btn" (click)="sendData('Yes')">Yes</button>
+            <button ngClass="no-btn" (click)="sendData('No')">No</button>
+        </div>
+        </div>
+        <div class="close-icon">
+            <button class="close" (click)="sendData('No')"><mat-icon>close</mat-icon></button>
         </div>
     </div>
 </div>
