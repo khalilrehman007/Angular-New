@@ -11,6 +11,10 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { CookieService } from 'ngx-cookie-service';
 import { AppService } from 'src/app/service/app.service';
+interface ItemsPerPage {
+  value: string;
+  viewValue: string;
+}
 //  Data Table
 @Component({
   selector: 'app-transaction-data',
@@ -18,6 +22,14 @@ import { AppService } from 'src/app/service/app.service';
   styleUrls: ['./transaction-data.component.scss']
 })
 export class TransactionDataComponent implements OnInit {
+
+  pageitems: ItemsPerPage[] = [
+    {value: '10', viewValue: '10'},
+    {value: '20', viewValue: '20'},
+    {value: '20', viewValue: '30'},
+    {value: '20', viewValue: '40'}
+  ];
+  PageNumbers = this.pageitems[0].value;
 
   displayedColumns: any = ['Type', 'Sub Type', 'Sequence', 'Date', 'Location', 'Property Type', 'Project Name', 'Unit', 'Bedrooms', 'Floor', 'Parking', 'Balcony Area', 'Size', 'Land Size', 'Amount', 'AED', 'Developer'];
   dataSource: any;

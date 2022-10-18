@@ -12,6 +12,10 @@ import { MatTableDataSource } from '@angular/material/table';
 import { CookieService } from 'ngx-cookie-service';
 import { AppService } from 'src/app/service/app.service';
 import { Select2 } from 'select2';
+interface ItemsPerPage {
+  value: string;
+  viewValue: string;
+}
 //  Data Table
 export interface UserData {
   id: string;
@@ -57,7 +61,13 @@ const NAMES: string[] = [
   styleUrls: ['./unit-transaction-history-residential.component.scss']
 })
 export class UnitTransactionHistoryResidentialComponent implements OnInit {
-
+  pageitems: ItemsPerPage[] = [
+    {value: '10', viewValue: '10'},
+    {value: '20', viewValue: '20'},
+    {value: '20', viewValue: '30'},
+    {value: '20', viewValue: '40'}
+  ];
+  PageNumbers = this.pageitems[0].value;
   displayedColumns: string[] = ['id', 'name', 'progress', 'fruit'];
   dataSource: MatTableDataSource<UserData>;
 

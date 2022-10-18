@@ -21,6 +21,7 @@ import { UnitTransactionHistoryResidentialComponent } from './unit-transaction-h
 import { MonthlyAnalysisResidentialComponent } from './monthly-analysis-residential/monthly-analysis-residential.component';
 import { QuaterlyAnalysisResidentialComponent } from './quaterly-analysis-residential/quaterly-analysis-residential.component';
 import { YearlyAnalysisResidentialComponent } from './yearly-analysis-residential/yearly-analysis-residential.component';
+import { MatSelectModule } from '@angular/material/select';
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import { YearlyAnalysisResidentialComponent } from './yearly-analysis-residentia
     MatNativeDateModule,
     NgChartsModule,
     CommonFilesModule,
-    DiSideBarModuleModule
+    DiSideBarModuleModule,
+    MatSelectModule
   ]
 })
 export class DataModule { }
