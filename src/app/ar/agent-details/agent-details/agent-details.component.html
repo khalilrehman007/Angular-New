@@ -96,7 +96,7 @@
                                                     <div class="agent-details__select-wrapper">
                                                         <mat-form-field appearance="fill">
                                                             <mat-label>تصنيف حسب</mat-label>
-                                                            <mat-select (selectionChange)="sortedBy($event)">
+                                                            <mat-select [disableOptionCentering]="true"  (selectionChange)="sortedBy($event)">
                                                                 <mat-option *ngFor="let SortBy of PropertySortBy"
                                                                     value="{{SortBy.id}}">
                                                                     {{SortBy.name}}

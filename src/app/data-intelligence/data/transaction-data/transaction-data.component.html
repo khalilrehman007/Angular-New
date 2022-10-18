@@ -456,7 +456,7 @@
                   <p>Items Per Page 10</p>
                   <div ngClass="select-design-language">
                     <mat-form-field appearance="fill">
-                      <mat-select [(value)]="PageNumbers" (selectionChange)="getItems($event)">
+                      <mat-select [disableOptionCentering]="true" [(value)]="PageNumbers" (selectionChange)="getItems($event)">
                         <mat-option [value]="option.value" *ngFor="let option of pageitems">
                           {{option.viewValue }}
                         </mat-option>
@@ -477,6 +477,6 @@
         <p class="text-center text-muted mb-0">Copyright &#169; <a routerLink="">Ovaluate</a></p>
       </footer>
     </div>
+    <app-loader *ngIf="showLoader"></app-loader>
   </div>
 </div>
-<app-loader *ngIf="showLoader"></app-loader>

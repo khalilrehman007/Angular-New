@@ -4,7 +4,7 @@
             <div ngClass="block-wrapper mb-4 position-relative d-flex searc-input-combination">
                 <mat-form-field appearance="fill" class="select-design">
                     <mat-label>Type</mat-label>
-                    <mat-select [(value)]="selectedRentType" (selectionChange)="changeType($event)">
+                    <mat-select [disableOptionCentering]="true"  [(value)]="selectedRentType" (selectionChange)="changeType($event)" [disableOptionCentering]="true">
                         <mat-option *ngFor="let option of rentTypes" [value]="option.id">{{ option.name }}</mat-option>
                     </mat-select>
                 </mat-form-field>
@@ -103,7 +103,7 @@
             <div ngClass="block-wrapper mb-4">
                 <mat-form-field appearance="fill" class="select-design">
                     <mat-label>Beds</mat-label>
-                    <mat-select [(value)]="selectedBeds" (selectionChange)="beds($event)">
+                    <mat-select [disableOptionCentering]="true"  [(value)]="selectedBeds" (selectionChange)="beds($event)">
                         <mat-option value="">
                             0
                         </mat-option>
@@ -145,7 +145,7 @@
             <div ngClass="block-wrapper mb-4">
                 <mat-form-field appearance="fill" class="select-design">
                     <mat-label>Baths</mat-label>
-                    <mat-select [(value)]="selectedBaths" (selectionChange)="baths($event)">
+                    <mat-select [disableOptionCentering]="true"  [(value)]="selectedBaths" (selectionChange)="baths($event)">
                         <mat-option value="">
                             0
                         </mat-option>
@@ -222,7 +222,7 @@
             <div ngClass="block-wrapper mb-4">
                 <mat-form-field appearance="fill" class="select-design">
                     <mat-label>Posted by</mat-label>
-                    <mat-select (selectionChange)="postedBy($event)">
+                    <mat-select [disableOptionCentering]="true"  (selectionChange)="postedBy($event)">
                         <mat-option value="Dealer" *ngFor="let data of postedByOption">{{data.name}}</mat-option>
                     </mat-select>
                 </mat-form-field>

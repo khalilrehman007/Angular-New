@@ -2209,7 +2209,7 @@
                                                                         <mat-form-field appearance="fill"
                                                                             class="full-width select-form input-design-2">
                                                                             <mat-label>Select the Country</mat-label>
-                                                                            <mat-select
+                                                                            <mat-select [disableOptionCentering]="true" 
                                                                                 (selectionChange)="onCountrySelect($event);">
                                                                                 <mat-option *ngFor="let list of country"
                                                                                     [value]="list.value">
@@ -2225,7 +2225,7 @@
                                                                         <mat-form-field appearance="fill"
                                                                             class="full-width select-form input-design-2">
                                                                             <mat-label>Select City</mat-label>
-                                                                            <mat-select
+                                                                            <mat-select [disableOptionCentering]="true" 
                                                                                 (selectionChange)="onCitySelect($event);">
                                                                                 <mat-option
                                                                                     *ngFor="let listcity of city"
@@ -2317,7 +2317,7 @@
                                                                         <mat-form-field appearance="fill"
                                                                             class="full-width select-form input-design-2">
                                                                             <mat-label>Select Nationality</mat-label>
-                                                                            <mat-select
+                                                                            <mat-select [disableOptionCentering]="true" 
                                                                                 (selectionChange)="onChangeNationality($event)">
                                                                                 <mat-option [value]="list.id"
                                                                                     *ngFor="let list of Nationality">
@@ -2360,7 +2360,7 @@
                                                                                     <mat-form-field appearance="fill">
                                                                                         <mat-label> Select the Areas
                                                                                         </mat-label>
-                                                                                        <mat-select multiple
+                                                                                        <mat-select [disableOptionCentering]="true"  multiple
                                                                                             [(value)]="areaData"
                                                                                             (selectionChange)="getAreaData($event)">
                                                                                             <mat-option
@@ -2545,14 +2545,14 @@
                                                                         <mat-form-field appearance="fill"
                                                                             class="full-width select-form input-design-2">
                                                                             <mat-label>Select Country</mat-label>
-                                                                            <mat-select
+                                                                            <mat-select [disableOptionCentering]="true" 
                                                                                 (selectionChange)="onCountrySelect($event);">
                                                                                 <mat-option *ngFor="let list of country"
                                                                                     [value]="list.value">
                                                                                     {{ list.viewValue }}
                                                                                 </mat-option>
                                                                             </mat-select>
-                                                                            <!-- <mat-select>
+                                                                            <!-- <mat-select [disableOptionCentering]="true" >
                                                                                 <mat-option>
                                                                                     Country 1
                                                                                 </mat-option>
@@ -2575,7 +2575,7 @@
                                                                         <mat-form-field appearance="fill"
                                                                             class="full-width select-form input-design-2">
                                                                             <mat-label>Select City</mat-label>
-                                                                            <mat-select
+                                                                            <mat-select [disableOptionCentering]="true" 
                                                                                 (selectionChange)="onCitySelect($event);">
                                                                                 <mat-option
                                                                                     *ngFor="let listcity of city"
@@ -2583,7 +2583,7 @@
                                                                                     {{ listcity.viewValue }}
                                                                                 </mat-option>
                                                                             </mat-select>
-                                                                            <!-- <mat-select>
+                                                                            <!-- <mat-select [disableOptionCentering]="true" >
                                                                                 <mat-option [value]="city">
                                                                                     City 1
                                                                                 </mat-option>
@@ -2827,7 +2827,7 @@
                                                                             <mat-form-field appearance="fill"
                                                                                 class="select-form input-design-2">
                                                                                 <mat-label>Select Language</mat-label>
-                                                                                <mat-select>
+                                                                                <mat-select [disableOptionCentering]="true" >
                                                                                     <mat-option [value]="city">
                                                                                         English
                                                                                     </mat-option>

@@ -2079,7 +2079,7 @@
                                                                         <mat-form-field appearance="fill"
                                                                             class="full-width select-form input-design-2">
                                                                             <mat-label>حدد المنطقة</mat-label>
-                                                                            <mat-select
+                                                                            <mat-select [disableOptionCentering]="true" 
                                                                                 (selectionChange)="onCountrySelect($event);">
                                                                                 <mat-option *ngFor="let list of country"
                                                                                     [value]="list.value">
@@ -2095,7 +2095,7 @@
                                                                         <mat-form-field appearance="fill"
                                                                             class="full-width select-form input-design-2">
                                                                             <mat-label>اختر الدولة</mat-label>
-                                                                            <mat-select
+                                                                            <mat-select [disableOptionCentering]="true" 
                                                                                 (selectionChange)="onCitySelect($event);">
                                                                                 <mat-option
                                                                                     *ngFor="let listcity of city"
@@ -2187,7 +2187,7 @@
                                                                         <mat-form-field appearance="fill"
                                                                             class="full-width select-form input-design-2">
                                                                             <mat-label>اختر الجنسية</mat-label>
-                                                                            <mat-select
+                                                                            <mat-select [disableOptionCentering]="true" 
                                                                                 (selectionChange)="onChangeNationality($event)">
                                                                                 <mat-option [value]="list.id"
                                                                                     *ngFor="let list of Nationality">
@@ -2230,7 +2230,7 @@
                                                                                     <mat-form-field appearance="fill">
                                                                                         <mat-label> حدد المناطق
                                                                                         </mat-label>
-                                                                                        <mat-select multiple
+                                                                                        <mat-select [disableOptionCentering]="true"  multiple
                                                                                             [(value)]="areaData"
                                                                                             (selectionChange)="getAreaData($event)">
                                                                                             <mat-option
@@ -2408,7 +2408,7 @@
                                                                         <mat-form-field appearance="fill"
                                                                             class="full-width select-form input-design-2">
                                                                             <mat-label>اختر الدولة</mat-label>
-                                                                            <mat-select
+                                                                            <mat-select [disableOptionCentering]="true" 
                                                                                 (selectionChange)="onCountrySelect($event);">
                                                                                 <mat-option *ngFor="let list of country"
                                                                                     [value]="list.value">
@@ -2427,7 +2427,7 @@
                                                                         <mat-form-field appearance="fill"
                                                                             class="full-width select-form input-design-2">
                                                                             <mat-label>اختر مدينة</mat-label>
-                                                                            <mat-select
+                                                                            <mat-select [disableOptionCentering]="true" 
                                                                                 (selectionChange)="onCitySelect($event);">
                                                                                 <mat-option
                                                                                     *ngFor="let listcity of city"
@@ -2435,7 +2435,7 @@
                                                                                     {{ listcity.viewValue }}
                                                                                 </mat-option>
                                                                             </mat-select>
-                                                                            <!-- <mat-select>
+                                                                            <!-- <mat-select [disableOptionCentering]="true" >
                                                                                 <mat-option [value]="city">
                                                                                     City 1
                                                                                 </mat-option>
@@ -2662,7 +2662,7 @@
                                                                             <mat-form-field appearance="fill"
                                                                                 class="select-form input-design-2">
                                                                                 <mat-label>اختيار اللغة</mat-label>
-                                                                                <mat-select>
+                                                                                <mat-select [disableOptionCentering]="true" >
                                                                                     <mat-option [value]="city">
                                                                                         تقرير مالي
                                                                                     </mat-option>
