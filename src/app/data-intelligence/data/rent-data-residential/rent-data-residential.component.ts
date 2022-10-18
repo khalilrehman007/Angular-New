@@ -199,6 +199,7 @@ export class RentDataResidentialComponent implements OnInit {
     this.maxSize = e;
   }
   loadData() {
+    return;
     if (this.startDate == "" || this.endDate == "" || this.communityfield.length == 0) {
       return;
     }
@@ -366,19 +367,6 @@ export class RentDataResidentialComponent implements OnInit {
     event.chipInput!.clear();
     this.salesCtrl.setValue(null);
   }
-  remove4(sale: string): void {
-    const index4 = this.salesfield.indexOf(sale);
-    if (index4 >= 0) {
-      this.salesfield.splice(index4, 1);
-    }
-    this.loadData();
-  }
-  selected4(event: MatAutocompleteSelectedEvent): void {
-    this.salesfield.push({ "id": event.option.value, "name": event.option.viewValue });
-    this.SalesInput.nativeElement.value = '';
-    this.salesCtrl.setValue(null);
-    this.loadData();
-  }
   add5(event: MatChipInputEvent): void {
     const value5 = (event.value || '').trim();
     if (value5) {
@@ -386,19 +374,6 @@ export class RentDataResidentialComponent implements OnInit {
     }
     event.chipInput!.clear();
     this.DevelopersCtrl.setValue(null);
-  }
-  remove5(developer: string): void {
-    const index5 = this.Developersfield.indexOf(developer);
-    if (index5 >= 0) {
-      this.Developersfield.splice(index5, 1);
-    }
-    this.loadData();
-  }
-  selected5(event: MatAutocompleteSelectedEvent): void {
-    this.Developersfield.push({ "id": event.option.value, "name": event.option.viewValue });
-    this.developersInput.nativeElement.value = '';
-    this.DevelopersCtrl.setValue(null);
-    this.loadData();
   }
   add6(event: MatChipInputEvent): void {
     const value6 = (event.value || '').trim();
