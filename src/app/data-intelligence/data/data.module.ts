@@ -22,6 +22,8 @@ import { MonthlyAnalysisResidentialComponent } from './monthly-analysis-resident
 import { QuaterlyAnalysisResidentialComponent } from './quaterly-analysis-residential/quaterly-analysis-residential.component';
 import { YearlyAnalysisResidentialComponent } from './yearly-analysis-residential/yearly-analysis-residential.component';
 import { MatSelectModule } from '@angular/material/select';
+import { LoaderModule } from 'src/app/loader/loader.module';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -50,7 +52,9 @@ import { MatSelectModule } from '@angular/material/select';
     NgChartsModule,
     CommonFilesModule,
     DiSideBarModuleModule,
-    MatSelectModule
+    MatSelectModule,
+    LoaderModule,
+    NgxPaginationModule
   ]
 })
 export class DataModule { }
