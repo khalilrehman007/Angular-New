@@ -1,466 +1,482 @@
 <div class="light-theme dashboard-data-sec">
-    <app-header></app-header>
-    <div class="dashboard-reports-inner-wrapper">
-      <div class="container">
-        <div class="dashboard-data-main-wrapper">
-          <div class="dashboard-data-scnd-header">
-            <app-di-sidebar-component></app-di-sidebar-component>
-          </div>
-          <div class="dashboard-data-main-contents">
-            <form [formGroup]="range">
-              <div class="dashboard-dat-filter-box">
-                <div class="row">
-                  <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-2">
-                    <div class="dashboard-date-range-box">
-                      <label>Registration Date</label>
-                      <mat-form-field>
-                        <mat-label>Enter a date range</mat-label>
-                        <mat-date-range-input [rangePicker]="picker">
-                          <input matStartDate matInput placeholder="Start date" formControlName="start" (dateChange)="getStartDate($event)">
-                          <input matEndDate matInput placeholder="End date" formControlName="end" (dateChange)="getEndDate($event)">
-                        </mat-date-range-input>
-                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                        <mat-date-range-picker #picker></mat-date-range-picker>
-                      </mat-form-field>
-                    </div>
-                  </div>
-                  <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-2">
-                    <div class="dashboard-data-select-box" *ngIf="citiesData.length > 0">
-                      <label>City</label>
-                      <mat-form-field class="example-chip-list searh_input-design mat-inner-chip-design"
-                        appearance="fill">
-                        <mat-chip-list #chipListCity aria-label="selection">
-                          <div ngClass="mat-chip-input-limited">
-                            <mat-chip *ngFor="let city of Cityfield" (removed)="remove7(city)">
-                              <span class="text-limit-chip">{{city.name}}</span>
-                              <button matChipRemove>
-                                <mat-icon>cancel</mat-icon>
-                              </button>
-                            </mat-chip>
-                          </div>
-                          <input placeholder="Add City..." #CityInput [formControl]="CityCtrl"
-                            [matAutocomplete]="cityauto" [matChipInputFor]="chipListCity"
-                            [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="add7($event)">
-                        </mat-chip-list>
-                        <mat-autocomplete #cityauto="matAutocomplete" (optionSelected)="selected7($event)">
-                          <div ngClass="mat-chip-inner-container">
-                            <mat-chip *ngFor="let city of Cityfield" (removed)="remove7(city)">
-                              <span class="text-limit-chip">{{city.name}}</span>
-                              <button matChipRemove>
-                                <mat-icon>cancel</mat-icon>
-                              </button>
-                            </mat-chip>
-                          </div>
-                          <mat-option *ngFor="let item of citiesData" [value]="item.id">
-                            {{item.name}}
-                          </mat-option>
-                        </mat-autocomplete>
-                        <span ngClass="mat_indicators-counts" *ngIf="Cityfield.length > 0">{{Cityfield.length}}</span>
-                      </mat-form-field>
-                    </div>
-                  </div>
-                  <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-2">
-                    <div class="dashboard-data-select-box">
-                      <label>District</label>
-                      <mat-form-field class="example-chip-list searh_input-design mat-inner-chip-design"
-                        [ngClass]="Cityfield.length > 0 ? '' : 'disabled'" appearance="fill">
-                        <mat-chip-list #chipListCommunity aria-label="selection">
-                          <div ngClass="mat-chip-input-limited">
-                            <mat-chip *ngFor="let community of communityfield" (removed)="remove(community)">
-                              <span class="text-limit-chip">{{community.name}}</span>
-                              <button matChipRemove>
-                                <mat-icon>cancel</mat-icon>
-                              </button>
-                            </mat-chip>
-                          </div>
-                          <input placeholder="Add Community..." #ComunityInput [formControl]="CommunityCtrl"
-                            [matAutocomplete]="Communityauto" [matChipInputFor]="chipListCommunity"
-                            [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="add($event)">
-                        </mat-chip-list>
-                        <mat-autocomplete #Communityauto="matAutocomplete" (optionSelected)="selected($event)">
-                          <div ngClass="mat-chip-inner-container">
-                            <mat-chip *ngFor="let community of communityfield" (removed)="remove(community)">
-                              <span class="text-limit-chip">{{community.name}}</span>
-                              <button matChipRemove>
-                                <mat-icon>cancel</mat-icon>
-                              </button>
-                            </mat-chip>
-                          </div>
-                          <mat-option *ngFor="let community of filteredcommunity" [value]="community.id">
-                            {{community.name}}
-                          </mat-option>
-                        </mat-autocomplete>
-                        <span ngClass="mat_indicators-counts"
-                          *ngIf="communityfield.length > 0">{{communityfield.length}}</span>
-                      </mat-form-field>
-                    </div>
-                  </div>
-                  <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-2">
-                    <div class="dashboard-data-select-box">
-                      <label>Property Type</label>
-                      <mat-form-field class="example-chip-list searh_input-design mat-inner-chip-design"
-                        appearance="fill">
-                        <mat-chip-list #chipListProType aria-label="selection">
-                          <div ngClass="mat-chip-input-limited">
-                            <mat-chip *ngFor="let protype of ProTypefield" (removed)="remove1(protype)">
-                              <span class="text-limit-chip">{{protype.name}}</span>
-                              <button matChipRemove>
-                                <mat-icon>cancel</mat-icon>
-                              </button>
-                            </mat-chip>
-                          </div>
-                          <input placeholder="Add Property Type..." #PropertyTypeInput [formControl]="PropertyTypCtrl"
-                            [matAutocomplete]="PropertyTypeauto" [matChipInputFor]="chipListProType"
-                            [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="add1($event)">
-                        </mat-chip-list>
-                        <mat-autocomplete #PropertyTypeauto="matAutocomplete" (optionSelected)="selected1($event)">
-                          <div ngClass="mat-chip-inner-container">
-                            <mat-chip *ngFor="let protype of ProTypefield" (removed)="remove1(protype)">
-                              <span class="text-limit-chip">{{protype.name}}</span>
-                              <button matChipRemove>
-                                <mat-icon>cancel</mat-icon>
-                              </button>
-                            </mat-chip>
-                          </div>
-                          <mat-option *ngFor="let item of filteredProperty" [value]="item.id">
-                            {{item.typeDescription}}
-                          </mat-option>
-                        </mat-autocomplete>
-                        <span ngClass="mat_indicators-counts"
-                          *ngIf="ProTypefield.length > 0">{{ProTypefield.length}}</span>
-                      </mat-form-field>
-                    </div>
-                  </div>
-                  <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-2">
-                    <div class="dashboard-data-select-box">
-                      <label>Projects</label>
-                      <mat-form-field class="example-chip-list searh_input-design mat-inner-chip-design"
-                        [ngClass]="filteredPropertyOnly.length > 0 ? '' : 'disabled'" appearance="fill">
-                        <mat-chip-list #chipListProperty aria-label="selection">
-                          <div ngClass="mat-chip-input-limited">
-                            <mat-chip *ngFor="let property of Profield" (removed)="remove2(property)">
-                              <span class="text-limit-chip">{{property.name}}</span>
-                              <button matChipRemove>
-                                <mat-icon>cancel</mat-icon>
-                              </button>
-                            </mat-chip>
-                          </div>
-                          <input placeholder="Add Property..." #PropertyInput [formControl]="PropertyCtrl"
-                            [matAutocomplete]="Propertyauto" [matChipInputFor]="chipListProperty"
-                            [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="add2($event)">
-                        </mat-chip-list>
-                        <mat-autocomplete #Propertyauto="matAutocomplete" (optionSelected)="selected2($event)">
-                          <div ngClass="mat-chip-inner-container">
-                            <mat-chip *ngFor="let property of Profield" (removed)="remove2(property)">
-                              <span class="text-limit-chip">{{property.name}}</span>
-                              <button matChipRemove>
-                                <mat-icon>cancel</mat-icon>
-                              </button>
-                            </mat-chip>
-                          </div>
-                          <mat-option *ngFor="let property of filteredPropertyOnly" [value]="property.id">
-                            {{property.name}}
-                          </mat-option>
-                        </mat-autocomplete>
-                        <span ngClass="mat_indicators-counts" *ngIf="Profield.length > 0">{{Profield.length}}</span>
-                      </mat-form-field>
-                    </div>
-                  </div>
-                  <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-2">
-                    <div class="dashboard-data-select-box">
-                      <label>Transaction Type</label>
-                      <mat-form-field class="example-chip-list searh_input-design mat-inner-chip-design"
-                        appearance="fill">
-                        <mat-chip-list #chipListTransaction aria-label="selection">
-                          <div ngClass="mat-chip-input-limited">
-                            <mat-chip *ngFor="let transaction of Transactionfield" (removed)="remove3(transaction)">
-                              <span class="text-limit-chip">{{transaction.name}}</span>
-                              <button matChipRemove>
-                                <mat-icon>cancel</mat-icon>
-                              </button>
-                            </mat-chip>
-                          </div>
-                          <input placeholder="Add Transaction Type..." #TransactionInput [formControl]="TransactionCtrl"
-                            [matAutocomplete]="transactiontype" [matChipInputFor]="chipListTransaction"
-                            [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="add3($event)">
-                        </mat-chip-list>
-                        <mat-autocomplete #transactiontype="matAutocomplete" (optionSelected)="selected3($event)">
-                          <div ngClass="mat-chip-inner-container">
-                            <mat-chip *ngFor="let transaction of Transactionfield" (removed)="remove3(transaction)">
-                              <span class="text-limit-chip">{{transaction.name}}</span>
-                              <button matChipRemove>
-                                <mat-icon>cancel</mat-icon>
-                              </button>
-                            </mat-chip>
-                          </div>
-                          <mat-option *ngFor="let transaction of filteredTransaction" [value]="transaction.id">
-                            {{transaction.name}}
-                          </mat-option>
-                        </mat-autocomplete>
-                        <span ngClass="mat_indicators-counts"
-                          *ngIf="Transactionfield.length > 0">{{Transactionfield.length}}</span>
-                      </mat-form-field>
-                    </div>
-                  </div>
-                  <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-2">
-                    <div class="dashboard-data-select-box">
-                      <label>Sales Sequence</label>
-                      <mat-form-field class="example-chip-list searh_input-design mat-inner-chip-design"
-                        [ngClass]="filteredsales.length > 0 ? '' : 'disabled'" appearance="fill">
-                        <mat-chip-list #chipListSales aria-label="selection">
-                          <div ngClass="mat-chip-input-limited">
-                            <mat-chip *ngFor="let sale of salesfield" (removed)="remove4(sale)">
-                              <span class="text-limit-chip">{{sale.name}}</span>
-                              <button matChipRemove>
-                                <mat-icon>cancel</mat-icon>
-                              </button>
-                            </mat-chip>
-                          </div>
-                          <input placeholder="Add Sales Sequence..." #SalesInput [formControl]="salesCtrl"
-                            [matAutocomplete]="salestype" [matChipInputFor]="chipListSales"
-                            [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="add4($event)">
-                        </mat-chip-list>
-                        <mat-autocomplete #salestype="matAutocomplete" (optionSelected)="selected4($event)">
-                          <div ngClass="mat-chip-inner-container">
-                            <mat-chip *ngFor="let sale of salesfield" (removed)="remove4(sale)">
-                              <span class="text-limit-chip">{{sale.name}}</span>
-                              <button matChipRemove>
-                                <mat-icon>cancel</mat-icon>
-                              </button>
-                            </mat-chip>
-                          </div>
-                          <mat-option *ngFor="let sale of filteredsales" [value]="sale.id">
-                            {{sale.name}}
-                          </mat-option>
-                        </mat-autocomplete>
-                        <span ngClass="mat_indicators-counts" *ngIf="salesfield.length > 0">{{salesfield.length}}</span>
-                      </mat-form-field>
-                    </div>
-                  </div>
-                  <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-2">
-                    <div class="dashboard-data-select-box">
-                      <label>Developers</label>
-                      <mat-form-field class="example-chip-list searh_input-design mat-inner-chip-design"
-                        appearance="fill">
-                        <mat-chip-list #chipListDevelopers aria-label="selection">
-                          <div ngClass="mat-chip-input-limited">
-                            <mat-chip *ngFor="let developer of Developersfield" (removed)="remove5(developer)">
-                              <span class="text-limit-chip">{{developer.name}}</span>
-                              <button matChipRemove>
-                                <mat-icon>cancel</mat-icon>
-                              </button>
-                            </mat-chip>
-                          </div>
-                          <input placeholder="Add Developers..." #developersInput [formControl]="DevelopersCtrl"
-                            [matAutocomplete]="developers" [matChipInputFor]="chipListDevelopers"
-                            [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="add5($event)">
-                        </mat-chip-list>
-                        <mat-autocomplete #developers="matAutocomplete" (optionSelected)="selected5($event)">
-                          <div ngClass="mat-chip-inner-container">
-                            <mat-chip *ngFor="let developer of Developersfield" (removed)="remove5(developer)">
-                              <span class="text-limit-chip">{{developer.name}}</span>
-                              <button matChipRemove>
-                                <mat-icon>cancel</mat-icon>
-                              </button>
-                            </mat-chip>
-                          </div>
-                          <mat-option *ngFor="let developer of filteredDevelopers" [value]="developer.id">
-                            {{developer.name}}
-                          </mat-option>
-                        </mat-autocomplete>
-                        <span ngClass="mat_indicators-counts"
-                          *ngIf="Developersfield.length > 0">{{Developersfield.length}}</span>
-                      </mat-form-field>
-                    </div>
-                  </div>
-                  <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-2">
-                    <div class="dashboard-data-select-box">
-                      <label>BEDROOM</label>
-                      <mat-form-field class="example-chip-list searh_input-design mat-inner-chip-design"
-                        appearance="fill">
-                        <mat-chip-list #chipListBeds aria-label="selection">
-                          <div ngClass="mat-chip-input-limited">
-                            <mat-chip *ngFor="let beds of bedsfield" (removed)="remove6(beds)">
-                              <span class="text-limit-chip">{{beds}}</span>
-                              <button matChipRemove>
-                                <mat-icon>cancel</mat-icon>
-                              </button>
-                            </mat-chip>
-                          </div>
-                          <input placeholder="Add BEDROOM..." #bedInput [formControl]="bedsCtrl"
-                            [matAutocomplete]="bedsmat" [matChipInputFor]="chipListBeds"
-                            [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="add6($event)">
-                        </mat-chip-list>
-                        <mat-autocomplete #bedsmat="matAutocomplete" (optionSelected)="selected6($event)">
-                          <div ngClass="mat-chip-inner-container">
-                            <mat-chip *ngFor="let beds of bedsfield" (removed)="remove6(beds)">
-                              <span class="text-limit-chip">{{beds}}</span>
-                              <button matChipRemove>
-                                <mat-icon>cancel</mat-icon>
-                              </button>
-                            </mat-chip>
-                          </div>
-                          <mat-option *ngFor="let beds of allbedsfield" [value]="beds">
-                            {{beds}}
-                          </mat-option>
-                        </mat-autocomplete>
-                        <span ngClass="mat_indicators-counts" *ngIf="bedsfield.length > 0">{{bedsfield.length}}</span>
-                      </mat-form-field>
-                    </div>
+  <app-header></app-header>
+  <div class="dashboard-reports-inner-wrapper">
+    <div class="container">
+      <div class="dashboard-data-main-wrapper">
+        <div class="dashboard-data-scnd-header">
+          <app-di-sidebar-component></app-di-sidebar-component>
+        </div>
+        <div class="dashboard-data-main-contents">
+          <form [formGroup]="range">
+            <div class="dashboard-dat-filter-box">
+              <div class="row">
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-2">
+                  <div class="dashboard-date-range-box">
+                    <label>Registration Date</label>
+                    <mat-form-field>
+                      <mat-label>Enter a date range</mat-label>
+                      <mat-date-range-input [rangePicker]="picker">
+                        <input matStartDate matInput placeholder="Start date" formControlName="start"
+                          (dateChange)="getStartDate($event)">
+                        <input matEndDate matInput placeholder="End date" formControlName="end"
+                          (dateChange)="getEndDate($event)">
+                      </mat-date-range-input>
+                      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                      <mat-date-range-picker #picker></mat-date-range-picker>
+                    </mat-form-field>
                   </div>
                 </div>
-                <div class="row">
-                  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-2">
-                    <div ngClass="di-rangle-block">
-                      <h4>Size Range ({{countryData.unitType}})</h4>
-                      <div ngClass="price-range_sec">
-                        <div ngClass="range-slider">
-                          <ngx-slider [(value)]="SizeminValue" [(highValue)]="SizemaxValue" [options]="Sizeoptions" (valueChange)="getMinSize($event)" (highValueChange)="getMaxSize($event)">
-                          </ngx-slider>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-2">
+                  <div class="dashboard-data-select-box" *ngIf="citiesData.length > 0">
+                    <label>City</label>
+                    <mat-form-field class="example-chip-list searh_input-design mat-inner-chip-design"
+                      appearance="fill">
+                      <mat-chip-list #chipListCity aria-label="selection">
+                        <div ngClass="mat-chip-input-limited">
+                          <mat-chip *ngFor="let city of Cityfield" (removed)="remove7(city)">
+                            <span class="text-limit-chip">{{city.name}}</span>
+                            <button matChipRemove>
+                              <mat-icon>cancel</mat-icon>
+                            </button>
+                          </mat-chip>
                         </div>
-                      </div>
-                    </div>
+                        <input placeholder="Add City..." #CityInput [formControl]="CityCtrl"
+                          [matAutocomplete]="cityauto" [matChipInputFor]="chipListCity"
+                          [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="add7($event)">
+                      </mat-chip-list>
+                      <mat-autocomplete #cityauto="matAutocomplete" (optionSelected)="selected7($event)">
+                        <div ngClass="mat-chip-inner-container">
+                          <mat-chip *ngFor="let city of Cityfield" (removed)="remove7(city)">
+                            <span class="text-limit-chip">{{city.name}}</span>
+                            <button matChipRemove>
+                              <mat-icon>cancel</mat-icon>
+                            </button>
+                          </mat-chip>
+                        </div>
+                        <mat-option *ngFor="let item of citiesData" [value]="item.id">
+                          {{item.name}}
+                        </mat-option>
+                      </mat-autocomplete>
+                      <span ngClass="mat_indicators-counts" *ngIf="Cityfield.length > 0">{{Cityfield.length}}</span>
+                    </mat-form-field>
                   </div>
-                  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-2">
-                    <div ngClass="di-rangle-block">
-                      <h4>Price Range ({{countryData.currency}})</h4>
-                      <div ngClass="price-range_sec">
-                        <div ngClass="range-slider">
-                          <ngx-slider [(value)]="PriceminValue" [(highValue)]="PricemaxValue" [options]="Priceoptions" (valueChange)="getMinPrice($event)" (highValueChange)="getMaxPrice($event)">
-                          </ngx-slider>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-2">
+                  <div class="dashboard-data-select-box">
+                    <label>District</label>
+                    <mat-form-field class="example-chip-list searh_input-design mat-inner-chip-design"
+                      [ngClass]="Cityfield.length > 0 ? '' : 'disabled'" appearance="fill">
+                      <mat-chip-list #chipListCommunity aria-label="selection">
+                        <div ngClass="mat-chip-input-limited">
+                          <mat-chip *ngFor="let community of communityfield" (removed)="remove(community)">
+                            <span class="text-limit-chip">{{community.name}}</span>
+                            <button matChipRemove>
+                              <mat-icon>cancel</mat-icon>
+                            </button>
+                          </mat-chip>
                         </div>
-                      </div>
-                    </div>
+                        <input placeholder="Add Community..." #ComunityInput [formControl]="CommunityCtrl"
+                          [matAutocomplete]="Communityauto" [matChipInputFor]="chipListCommunity"
+                          [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="add($event)">
+                      </mat-chip-list>
+                      <mat-autocomplete #Communityauto="matAutocomplete" (optionSelected)="selected($event)">
+                        <div ngClass="mat-chip-inner-container">
+                          <mat-chip *ngFor="let community of communityfield" (removed)="remove(community)">
+                            <span class="text-limit-chip">{{community.name}}</span>
+                            <button matChipRemove>
+                              <mat-icon>cancel</mat-icon>
+                            </button>
+                          </mat-chip>
+                        </div>
+                        <mat-option *ngFor="let community of filteredcommunity" [value]="community.id">
+                          {{community.name}}
+                        </mat-option>
+                      </mat-autocomplete>
+                      <span ngClass="mat_indicators-counts"
+                        *ngIf="communityfield.length > 0">{{communityfield.length}}</span>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-2">
+                  <div class="dashboard-data-select-box">
+                    <label>Property Type</label>
+                    <mat-form-field class="example-chip-list searh_input-design mat-inner-chip-design"
+                      appearance="fill">
+                      <mat-chip-list #chipListProType aria-label="selection">
+                        <div ngClass="mat-chip-input-limited">
+                          <mat-chip *ngFor="let protype of ProTypefield" (removed)="remove1(protype)">
+                            <span class="text-limit-chip">{{protype.name}}</span>
+                            <button matChipRemove>
+                              <mat-icon>cancel</mat-icon>
+                            </button>
+                          </mat-chip>
+                        </div>
+                        <input placeholder="Add Property Type..." #PropertyTypeInput [formControl]="PropertyTypCtrl"
+                          [matAutocomplete]="PropertyTypeauto" [matChipInputFor]="chipListProType"
+                          [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="add1($event)">
+                      </mat-chip-list>
+                      <mat-autocomplete #PropertyTypeauto="matAutocomplete" (optionSelected)="selected1($event)">
+                        <div ngClass="mat-chip-inner-container">
+                          <mat-chip *ngFor="let protype of ProTypefield" (removed)="remove1(protype)">
+                            <span class="text-limit-chip">{{protype.name}}</span>
+                            <button matChipRemove>
+                              <mat-icon>cancel</mat-icon>
+                            </button>
+                          </mat-chip>
+                        </div>
+                        <mat-option *ngFor="let item of filteredProperty" [value]="item.id">
+                          {{item.typeDescription}}
+                        </mat-option>
+                      </mat-autocomplete>
+                      <span ngClass="mat_indicators-counts"
+                        *ngIf="ProTypefield.length > 0">{{ProTypefield.length}}</span>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-2">
+                  <div class="dashboard-data-select-box">
+                    <label>Projects</label>
+                    <mat-form-field class="example-chip-list searh_input-design mat-inner-chip-design"
+                      [ngClass]="filteredPropertyOnly.length > 0 ? '' : 'disabled'" appearance="fill">
+                      <mat-chip-list #chipListProperty aria-label="selection">
+                        <div ngClass="mat-chip-input-limited">
+                          <mat-chip *ngFor="let property of Profield" (removed)="remove2(property)">
+                            <span class="text-limit-chip">{{property.name}}</span>
+                            <button matChipRemove>
+                              <mat-icon>cancel</mat-icon>
+                            </button>
+                          </mat-chip>
+                        </div>
+                        <input placeholder="Add Property..." #PropertyInput [formControl]="PropertyCtrl"
+                          [matAutocomplete]="Propertyauto" [matChipInputFor]="chipListProperty"
+                          [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="add2($event)">
+                      </mat-chip-list>
+                      <mat-autocomplete #Propertyauto="matAutocomplete" (optionSelected)="selected2($event)">
+                        <div ngClass="mat-chip-inner-container">
+                          <mat-chip *ngFor="let property of Profield" (removed)="remove2(property)">
+                            <span class="text-limit-chip">{{property.name}}</span>
+                            <button matChipRemove>
+                              <mat-icon>cancel</mat-icon>
+                            </button>
+                          </mat-chip>
+                        </div>
+                        <mat-option *ngFor="let property of filteredPropertyOnly" [value]="property.id">
+                          {{property.name}}
+                        </mat-option>
+                      </mat-autocomplete>
+                      <span ngClass="mat_indicators-counts" *ngIf="Profield.length > 0">{{Profield.length}}</span>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-2">
+                  <div class="dashboard-data-select-box">
+                    <label>Transaction Type</label>
+                    <mat-form-field class="example-chip-list searh_input-design mat-inner-chip-design"
+                      appearance="fill">
+                      <mat-chip-list #chipListTransaction aria-label="selection">
+                        <div ngClass="mat-chip-input-limited">
+                          <mat-chip *ngFor="let transaction of Transactionfield" (removed)="remove3(transaction)">
+                            <span class="text-limit-chip">{{transaction.name}}</span>
+                            <button matChipRemove>
+                              <mat-icon>cancel</mat-icon>
+                            </button>
+                          </mat-chip>
+                        </div>
+                        <input placeholder="Add Transaction Type..." #TransactionInput [formControl]="TransactionCtrl"
+                          [matAutocomplete]="transactiontype" [matChipInputFor]="chipListTransaction"
+                          [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="add3($event)">
+                      </mat-chip-list>
+                      <mat-autocomplete #transactiontype="matAutocomplete" (optionSelected)="selected3($event)">
+                        <div ngClass="mat-chip-inner-container">
+                          <mat-chip *ngFor="let transaction of Transactionfield" (removed)="remove3(transaction)">
+                            <span class="text-limit-chip">{{transaction.name}}</span>
+                            <button matChipRemove>
+                              <mat-icon>cancel</mat-icon>
+                            </button>
+                          </mat-chip>
+                        </div>
+                        <mat-option *ngFor="let transaction of filteredTransaction" [value]="transaction.id">
+                          {{transaction.name}}
+                        </mat-option>
+                      </mat-autocomplete>
+                      <span ngClass="mat_indicators-counts"
+                        *ngIf="Transactionfield.length > 0">{{Transactionfield.length}}</span>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-2">
+                  <div class="dashboard-data-select-box">
+                    <label>Sales Sequence</label>
+                    <mat-form-field class="example-chip-list searh_input-design mat-inner-chip-design"
+                      [ngClass]="filteredsales.length > 0 ? '' : 'disabled'" appearance="fill">
+                      <mat-chip-list #chipListSales aria-label="selection">
+                        <div ngClass="mat-chip-input-limited">
+                          <mat-chip *ngFor="let sale of salesfield" (removed)="remove4(sale)">
+                            <span class="text-limit-chip">{{sale.name}}</span>
+                            <button matChipRemove>
+                              <mat-icon>cancel</mat-icon>
+                            </button>
+                          </mat-chip>
+                        </div>
+                        <input placeholder="Add Sales Sequence..." #SalesInput [formControl]="salesCtrl"
+                          [matAutocomplete]="salestype" [matChipInputFor]="chipListSales"
+                          [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="add4($event)">
+                      </mat-chip-list>
+                      <mat-autocomplete #salestype="matAutocomplete" (optionSelected)="selected4($event)">
+                        <div ngClass="mat-chip-inner-container">
+                          <mat-chip *ngFor="let sale of salesfield" (removed)="remove4(sale)">
+                            <span class="text-limit-chip">{{sale.name}}</span>
+                            <button matChipRemove>
+                              <mat-icon>cancel</mat-icon>
+                            </button>
+                          </mat-chip>
+                        </div>
+                        <mat-option *ngFor="let sale of filteredsales" [value]="sale.id">
+                          {{sale.name}}
+                        </mat-option>
+                      </mat-autocomplete>
+                      <span ngClass="mat_indicators-counts" *ngIf="salesfield.length > 0">{{salesfield.length}}</span>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-2">
+                  <div class="dashboard-data-select-box">
+                    <label>Developers</label>
+                    <mat-form-field class="example-chip-list searh_input-design mat-inner-chip-design"
+                      appearance="fill">
+                      <mat-chip-list #chipListDevelopers aria-label="selection">
+                        <div ngClass="mat-chip-input-limited">
+                          <mat-chip *ngFor="let developer of Developersfield" (removed)="remove5(developer)">
+                            <span class="text-limit-chip">{{developer.name}}</span>
+                            <button matChipRemove>
+                              <mat-icon>cancel</mat-icon>
+                            </button>
+                          </mat-chip>
+                        </div>
+                        <input placeholder="Add Developers..." #developersInput [formControl]="DevelopersCtrl"
+                          [matAutocomplete]="developers" [matChipInputFor]="chipListDevelopers"
+                          [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="add5($event)">
+                      </mat-chip-list>
+                      <mat-autocomplete #developers="matAutocomplete" (optionSelected)="selected5($event)">
+                        <div ngClass="mat-chip-inner-container">
+                          <mat-chip *ngFor="let developer of Developersfield" (removed)="remove5(developer)">
+                            <span class="text-limit-chip">{{developer.name}}</span>
+                            <button matChipRemove>
+                              <mat-icon>cancel</mat-icon>
+                            </button>
+                          </mat-chip>
+                        </div>
+                        <mat-option *ngFor="let developer of filteredDevelopers" [value]="developer.id">
+                          {{developer.name}}
+                        </mat-option>
+                      </mat-autocomplete>
+                      <span ngClass="mat_indicators-counts"
+                        *ngIf="Developersfield.length > 0">{{Developersfield.length}}</span>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-2">
+                  <div class="dashboard-data-select-box">
+                    <label>BEDROOM</label>
+                    <mat-form-field class="example-chip-list searh_input-design mat-inner-chip-design"
+                      appearance="fill">
+                      <mat-chip-list #chipListBeds aria-label="selection">
+                        <div ngClass="mat-chip-input-limited">
+                          <mat-chip *ngFor="let beds of bedsfield" (removed)="remove6(beds)">
+                            <span class="text-limit-chip">{{beds}}</span>
+                            <button matChipRemove>
+                              <mat-icon>cancel</mat-icon>
+                            </button>
+                          </mat-chip>
+                        </div>
+                        <input placeholder="Add BEDROOM..." #bedInput [formControl]="bedsCtrl"
+                          [matAutocomplete]="bedsmat" [matChipInputFor]="chipListBeds"
+                          [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="add6($event)">
+                      </mat-chip-list>
+                      <mat-autocomplete #bedsmat="matAutocomplete" (optionSelected)="selected6($event)">
+                        <div ngClass="mat-chip-inner-container">
+                          <mat-chip *ngFor="let beds of bedsfield" (removed)="remove6(beds)">
+                            <span class="text-limit-chip">{{beds}}</span>
+                            <button matChipRemove>
+                              <mat-icon>cancel</mat-icon>
+                            </button>
+                          </mat-chip>
+                        </div>
+                        <mat-option *ngFor="let beds of allbedsfield" [value]="beds">
+                          {{beds}}
+                        </mat-option>
+                      </mat-autocomplete>
+                      <span ngClass="mat_indicators-counts" *ngIf="bedsfield.length > 0">{{bedsfield.length}}</span>
+                    </mat-form-field>
                   </div>
                 </div>
               </div>
-            </form>
-            <div class="dashboard-data-blue-boxes mt-3">
-              <div class="row dashbpard-reports-inof-blocks">
-                <div class="col-xl-3 p-2">
-                  <div class="card bg-2">
-                    <div class="row">
-                      <div class="col-12 text-center">
-                        <h6 class="text-small">Ready Property Transactions</h6>
-                        <p style="margin-bottom: 12px;"></p>
-                        <div class="custom-box">
-                          <span>
-                            <h3>{{transactionData.transactionsCount}}</h3>
-                            <p>TRANSACTIONS</p>
-                          </span>
-                        </div>
+              <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-2">
+                  <div ngClass="di-rangle-block">
+                    <h4>Size Range ({{countryData.unitType}})</h4>
+                    <div ngClass="price-range_sec">
+                      <div ngClass="range-slider">
+                        <ngx-slider [(value)]="SizeminValue" [(highValue)]="SizemaxValue" [options]="Sizeoptions"
+                          (valueChange)="getMinSize($event)" (highValueChange)="getMaxSize($event)">
+                        </ngx-slider>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="col-xl-3 p-2">
-                  <div class="card bg-3">
-                    <div class="row">
-                      <div class="col-12 text-center">
-                        <h6 class="text-small">Off-plan property transactions</h6>
-                        <p style="margin-bottom: 12px;"></p>
-                        <div class="custom-box">
-                          <span>
-                            <h3>{{transactionData.medianPricePerSqft}}</h3>
-                            <p>Median {{countryData.currency}}/{{countryData.unitType}}</p>
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-xl-3 p-2">
-                  <div class="card bg-2">
-                    <div class="row">
-                      <div class="col-12 text-center">
-                        <h6 class="text-small">Sales listings </h6>
-                        <div class="custom-box">
-                          <span>
-                            <h3>{{transactionData.medianPrice}}</h3>
-                            <p>Median Value ({{countryData.currency}})</p>
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-xl-3 p-2">
-                  <div class="card bg-3">
-                    <div class="row">
-                      <div class="col-12 text-center">
-                        <h6 class="text-small">Rent listings</h6>
-                        <div class="custom-box">
-                          <span>
-                            <h3>{{transactionData.totalPrice}}</h3>
-                            <p>Total Value ({{countryData.currency}})</p>
-                          </span>
-                        </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-2">
+                  <div ngClass="di-rangle-block">
+                    <h4>Price Range ({{countryData.currency}})</h4>
+                    <div ngClass="price-range_sec">
+                      <div ngClass="range-slider">
+                        <ngx-slider [(value)]="PriceminValue" [(highValue)]="PricemaxValue" [options]="Priceoptions"
+                          (valueChange)="getMinPrice($event)" (highValueChange)="getMaxPrice($event)">
+                        </ngx-slider>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="dash-table-box-layout">
-              <div class="table-responsive">
-                <table class="table table-striped">
-                  <thead>
-                    <tr>
-                      <th>Firstname</th>
-                      <th>Lastname</th>
-                      <th>Email</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>John</td>
-                      <td>Doe</td>
-                      <td>john@example.com</td>
-                    </tr>
-                    <tr>
-                      <td>Mary</td>
-                      <td>Moe</td>
-                      <td>mary@example.com</td>
-                    </tr>
-                    <tr>
-                      <td>July</td>
-                      <td>Dooley</td>
-                      <td>july@example.com</td>
-                    </tr>
-                  </tbody>
-                </table>
-                <div class="pagination-controls d-flex justify-content-spacebw">
-                  <div class="pagination-page-per-item d-flex align-items-center">
-                    <p>Items Per Page 10</p>
-                    <div ngClass="select-design-language">
-                      <mat-form-field appearance="fill">
-                        <mat-select [(value)]="PageNumbers">
-                          <mat-option [value]="option.value" *ngFor="let option of pageitems">
-                            {{option.viewValue }}
-                          </mat-option>
-                      </mat-select>
-                      </mat-form-field>
+          </form>
+          <div class="dashboard-data-blue-boxes mt-3">
+            <div class="row dashbpard-reports-inof-blocks">
+              <div class="col-xl-3 p-2">
+                <div class="card bg-2">
+                  <div class="row">
+                    <div class="col-12 text-center">
+                      <h6 class="text-small">Ready Property Transactions</h6>
+                      <p style="margin-bottom: 12px;"></p>
+                      <div class="custom-box">
+                        <span>
+                          <h3>{{transactionData.transactionsCount}}</h3>
+                          <p>TRANSACTIONS</p>
+                        </span>
+                      </div>
                     </div>
                   </div>
-                  <div class="pagination-no-column">
-                    <ul class="pagination">
-                      <li class="page-item"><button class="pagination_item disabled">Previous</button></li>
-                      <li class="page-item"><button class="pagination_item active">1</button></li>
-                      <li class="page-item"><button class="pagination_item">2</button></li>
-                      <li class="page-item"><button class="pagination_item">3</button></li>
-                      <li class="page-item"><button class="pagination_item">Next</button></li>
-                    </ul>
+                </div>
+              </div>
+              <div class="col-xl-3 p-2">
+                <div class="card bg-3">
+                  <div class="row">
+                    <div class="col-12 text-center">
+                      <h6 class="text-small">Off-plan property transactions</h6>
+                      <p style="margin-bottom: 12px;"></p>
+                      <div class="custom-box">
+                        <span>
+                          <h3>{{transactionData.medianPricePerSqft}}</h3>
+                          <p>Median {{countryData.currency}}/{{countryData.unitType}}</p>
+                        </span>
+                      </div>
+                    </div>
                   </div>
                 </div>
+              </div>
+              <div class="col-xl-3 p-2">
+                <div class="card bg-2">
+                  <div class="row">
+                    <div class="col-12 text-center">
+                      <h6 class="text-small">Sales listings </h6>
+                      <div class="custom-box">
+                        <span>
+                          <h3>{{transactionData.medianPrice}}</h3>
+                          <p>Median Value ({{countryData.currency}})</p>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 p-2">
+                <div class="card bg-3">
+                  <div class="row">
+                    <div class="col-12 text-center">
+                      <h6 class="text-small">Rent listings</h6>
+                      <div class="custom-box">
+                        <span>
+                          <h3>{{transactionData.totalPrice}}</h3>
+                          <p>Total Value ({{countryData.currency}})</p>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="dash-table-box-layout">
+            <div class="table-responsive">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Sub Type</th>
+                    <th>Sequence</th>
+                    <th>Date</th>
+                    <th>Location</th>
+                    <th>Property Type</th>
+                    <th>Project Name</th>
+                    <th>Unit</th>
+                    <th>Bedrooms</th>
+                    <th>Floor</th>
+                    <th>Parking</th>
+                    <th>Balcony Area</th>
+                    <th>Size</th>
+                    <th>Land Size</th>
+                    <th>Amount</th>
+                    <th>AED</th>
+                    <th>Developer</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr
+                    *ngFor="let item of transactionData.transactions | paginate: { itemsPerPage: itemsPerPage, currentPage: page, totalItems:totalLength }">
+                    <td>{{item.transactionType != null ? item.transactionType.name : "N/A"}}</td>
+                    <td>{{item.transactionSubType != null ? item.transactionSubType.name : "N/A"}}</td>
+                    <td>{{item.transactionSequence != null ? item.transactionSequence.name : "N/A"}}</td>
+                    <td>{{item.transactionDate != null ? item.transactionDate.split("T")[0] : "N/A"}}</td>
+                    <td>{{item.district != null ? item.district.name : "N/A"}}</td>
+                    <td>{{item.propertyType != null ? item.propertyType.typeDescription : "N/A"}}</td>
+                    <td>{{item.project != null ? item.project.name : "N/A"}}</td>
+                    <td>{{item.unit != null ? item.unit : "N/A"}}</td>
+                    <td>{{item.bedRoom != null ? item.bedRoom : "N/A"}}</td>
+                    <td>{{item.floor != null ? item.floor : "N/A"}}</td>
+                    <td>{{item.parking != null ? item.parking : "N/A"}}</td>
+                    <td>{{item.balconyAreaSqft != null ? item.balconyAreaSqft : "N/A"}}</td>
+                    <td>{{item.landSizeSqft != null ? item.landSizeSqft : "N/A"}}</td>
+                    <td>{{item.amount != null ? item.amount : "N/A"}}</td>
+                    <td>{{item.amountSqft != null ? item.amountSqft : "N/A"}}</td>
+                    <td>{{item.propertyDeveloper != null ? item.propertyDeveloper.name : "N/A"}}</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="pagination-controls d-flex justify-content-spacebw">
+                <div class="pagination-page-per-item d-flex align-items-center">
+                  <p>Items Per Page 10</p>
+                  <div ngClass="select-design-language">
+                    <mat-form-field appearance="fill">
+                      <mat-select [(value)]="PageNumbers" (selectionChange)="getItems($event)">
+                        <mat-option [value]="option.value" *ngFor="let option of pageitems">
+                          {{option.viewValue }}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <pagination-controls (pageChange)="pageChanged($event)" class="text-center my-pagination">
+                </pagination-controls>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="dahboard-data-f0oter">
-        <footer>
-          <p class="text-center text-muted mb-0">Copyright &#169; <a routerLink="">Ovaluate</a></p>
-        </footer>
-      </div>
+    </div>
+    <div class="dahboard-data-f0oter">
+      <footer>
+        <p class="text-center text-muted mb-0">Copyright &#169; <a routerLink="">Ovaluate</a></p>
+      </footer>
     </div>
   </div>
+</div>
+<app-loader *ngIf="showLoader"></app-loader>

@@ -23,11 +23,15 @@ interface ItemsPerPage {
 })
 export class TransactionDataComponent implements OnInit {
 
+  showLoader: boolean = false;
+  page:any = 1;
+  itemsPerPage:any = 10;
+  totalLength:any = 0;
   pageitems: ItemsPerPage[] = [
     {value: '10', viewValue: '10'},
     {value: '20', viewValue: '20'},
-    {value: '20', viewValue: '30'},
-    {value: '20', viewValue: '40'}
+    {value: '50', viewValue: '50'},
+    {value: '100', viewValue: '100'}
   ];
   PageNumbers = this.pageitems[0].value;
 
@@ -179,6 +183,12 @@ export class TransactionDataComponent implements OnInit {
       this.filteredTransaction = result.data;
     })
   }
+  pageChanged(e:any) {
+    this.page = e;
+  }
+  getItems(e:any) {
+    this.itemsPerPage = e.value;
+  }
   getDate(e: any) {
     let temp: any = new Date(e.value)
     return temp.getMonth() + "-" + temp.getDate() + "-" + temp.getFullYear();
@@ -205,6 +215,7 @@ export class TransactionDataComponent implements OnInit {
     if (this.startDate == "" || this.endDate == "" || this.communityfield.length == 0) {
       return;
     }
+    this.showLoader = true;
     let temp: any = {};
     temp.StartDate = this.startDate;
     temp.EndDate = this.endDate;
@@ -254,10 +265,9 @@ export class TransactionDataComponent implements OnInit {
     }
     this.service.GetResidentialTransactionData(temp).subscribe((result: any) => {
       if (result.message == "Residential Transaction Data fetched successfully") {
+        this.showLoader = false;
         this.transactionData = result.data;
-        this.dataSource = new MatTableDataSource(this.transactionData.transactions);
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
+        this.totalLength = this.transactionData.transactions.length
       }
     });
   }
