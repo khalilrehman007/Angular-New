@@ -308,7 +308,6 @@ export class RentDataResidentialComponent implements OnInit {
       if (result.message == "Residential Rent Data fetched successfully") {
         this.showLoader = false;
         this.transactionData = result.data;
-        console.log(this.transactionData)
         this.totalLength = this.transactionData.transactions.length
       }
     });
