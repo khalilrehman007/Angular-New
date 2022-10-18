@@ -44,23 +44,23 @@ export class HomepageComponent implements OnInit, AfterViewInit {
   id: any = 1;
   propertyDetails: any;
   oldData1() {
-    this.service.LatestPropertiesListingResidential({ "UserId": this.userId, "propertyListingTypeId": "1" }).subscribe((response:any) => {
+    this.service.LatestPropertiesListingResidential({"CountryId":this.countryData.id, "UserId": this.userId, "propertyListingTypeId": "1" }).subscribe((response:any) => {
       this.dynamicSlides1 = response.data;
     });
   }
   newData1() {
-    this.service.LatestPropertiesListingResidential({ "UserId": this.userId, "propertyListingTypeId": "2" }).subscribe((response:any) => {
+    this.service.LatestPropertiesListingResidential({"CountryId":this.countryData.id, "UserId": this.userId, "propertyListingTypeId": "2" }).subscribe((response:any) => {
       this.dynamicSlides1 = response.data;
     });
   }
 
   oldData2() {
-    this.service.LatestPropertiesListingCommercial({ "UserId": this.userId, "propertyListingTypeId": "1" }).subscribe((response:any) => {
+    this.service.LatestPropertiesListingCommercial({"CountryId":this.countryData.id, "UserId": this.userId, "propertyListingTypeId": "1" }).subscribe((response:any) => {
       this.dynamicSlides2 = response.data;
     });
   }
   newData2() {
-    this.service.LatestPropertiesListingCommercial({ "UserId": this.userId, "propertyListingTypeId": "2" }).subscribe((response:any) => {
+    this.service.LatestPropertiesListingCommercial({"CountryId":this.countryData.id, "UserId": this.userId, "propertyListingTypeId": "2" }).subscribe((response:any) => {
       this.dynamicSlides2 = response.data;
     });
   }

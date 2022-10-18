@@ -145,7 +145,7 @@ export class TransactionDataComponent implements OnInit {
     this.minPrice = this.PriceminValue;
     this.maxPrice = this.PricemaxValue;
     let temp: any = new Date();
-    temp.setFullYear(temp.getFullYear() - 11);
+    temp.setFullYear(temp.getFullYear() - 5);
     this.range.patchValue({
       start: temp,
       end: this.currentDate
