@@ -707,7 +707,7 @@
                                                                     formControlName="phone" (input)="checkPhone()" />
                                                             </mat-form-field>
                                                             <mat-form-field appearance="fill" class="countries-select">
-                                                                <mat-select [formControl]="countriesList"
+                                                                <mat-select [disableOptionCentering]="true"  [formControl]="countriesList"
                                                                     panelClass="example-panel-{{countriesList.value}}">
                                                                     <mat-option value="+971">+971</mat-option>
                                                                     <mat-option value="+91">+91</mat-option>

@@ -434,7 +434,7 @@
                   <p>Items Per Page 10</p>
                   <div ngClass="select-design-language">
                     <mat-form-field appearance="fill">
-                      <mat-select [(value)]="PageNumbers">
+                      <mat-select [disableOptionCentering]="true"  [(value)]="PageNumbers">
                         <mat-option [value]="option.value" *ngFor="let option of pageitems">
                           {{option.viewValue }}
                         </mat-option>

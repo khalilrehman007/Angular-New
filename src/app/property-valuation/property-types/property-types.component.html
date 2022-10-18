@@ -66,7 +66,7 @@
                                             <div class="property-type-input">
                                                 <mat-form-field appearance="fill">
                                                     <mat-label>Select Property Type</mat-label>
-                                                    <mat-select [(value)]="formData.PropertyTypeId"
+                                                    <mat-select [disableOptionCentering]="true"  [(value)]="formData.PropertyTypeId"
                                                         (selectionChange)="valuationPurpose($event)">
                                                         <mat-option *ngFor="let item of propertyType" [value]="item.id">
                                                             {{item.typeDescription}}
@@ -87,7 +87,7 @@
                                             <div class="valuation-purpose-input">
                                                 <mat-form-field appearance="fill">
                                                     <mat-label>Select The Purpose</mat-label>
-                                                    <mat-select [(value)]="formData.ValuationPurposeId"
+                                                    <mat-select [disableOptionCentering]="true"  [(value)]="formData.ValuationPurposeId"
                                                         (selectionChange)="onPurposeSelect($event)">
                                                         <mat-option *ngFor="let item of purposeOfValuation"
                                                             [value]="item.id">
@@ -257,7 +257,7 @@
                                             <div class="bedrooms-input">
                                                 <mat-form-field appearance="fill">
                                                     <mat-label>Select no. of bedroom</mat-label>
-                                                    <mat-select [(value)]="formData.Bedrooms"
+                                                    <mat-select [disableOptionCentering]="true"  [(value)]="formData.Bedrooms"
                                                         (selectionChange)="getBeds($event)">
                                                         <mat-option *ngFor="let listbedrooms of room"
                                                             [value]="listbedrooms.value">
@@ -274,7 +274,7 @@
                                             <div class="bathroom-input">
                                                 <mat-form-field appearance="fill">
                                                     <mat-label>Select no. of bathroom</mat-label>
-                                                    <mat-select [(value)]="formData.Bathrooms"
+                                                    <mat-select [disableOptionCentering]="true"  [(value)]="formData.Bathrooms"
                                                         (selectionChange)="getBathroom($event)">
                                                         <mat-option *ngFor="let list of room" [value]="list.value">
                                                             {{list.viewValue}}
@@ -341,7 +341,7 @@
                                                             ngClass="required">*</span></label>
                                                     <mat-form-field appearance="fill">
                                                         <mat-label>UNIT TYPE</mat-label>
-                                                        <mat-select>
+                                                        <mat-select [disableOptionCentering]="true" >
                                                             <mat-option *ngFor="let item of propertyUnits"
                                                                 [value]="item.id">
                                                                 {{item.name}}

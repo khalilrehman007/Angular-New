@@ -101,7 +101,7 @@
                                                 <div class="type-input">
                                                     <mat-form-field appearance="fill">
                                                         <mat-label>حدد نوع العقار</mat-label>
-                                                        <mat-select [(value)]="data.PropertyTypeId"
+                                                        <mat-select [disableOptionCentering]="true"  [(value)]="data.PropertyTypeId"
                                                             (selectionChange)="getPropertyType($event)">
                                                             <mat-option *ngFor="let item of propertyType"
                                                                 value="{{item.id}}">
@@ -190,7 +190,7 @@
                                                         <div class="bedroom-input">
                                                             <mat-form-field appearance="fill">
                                                                 <mat-label>حدد عدد غرف النوم</mat-label>
-                                                                <mat-select [(value)]="data.BedRooms"
+                                                                <mat-select [disableOptionCentering]="true"  [(value)]="data.BedRooms"
                                                                     (selectionChange)="getBedroom($event)">
                                                                     <mat-option *ngFor="let item of room"
                                                                         value="{{item}}">
@@ -210,7 +210,7 @@
                                                         <div class="bathroom-input">
                                                             <mat-form-field appearance="fill">
                                                                 <mat-label>حدد عدد الحمامات</mat-label>
-                                                                <mat-select [(value)]="data.BathRooms"
+                                                                <mat-select [disableOptionCentering]="true"  [(value)]="data.BathRooms"
                                                                     (selectionChange)="getBathroom($event)">
                                                                     <mat-option *ngFor="let item of room"
                                                                         value="{{item}}">
@@ -504,7 +504,7 @@
                                                         <div class="pet-policy-input">
                                                             <mat-form-field appearance="fill">
                                                                 <mat-label>حدد سياسة الحيوانات المسموحة</mat-label>
-                                                                <mat-select multiple [(value)]="petPolicyData"
+                                                                <mat-select [disableOptionCentering]="true"  multiple [(value)]="petPolicyData"
                                                                     (selectionChange)="getPetPolicy($event)">
                                                                     <mat-option *ngFor="let item of petPolicy"
                                                                         value="{{item.id}}">{{item.nameAr}}</mat-option>
@@ -739,7 +739,7 @@
                                                         <div class="located-near-input">
                                                             <mat-form-field appearance="fill">
                                                                 <mat-label>حدد المواقع القريبة</mat-label>
-                                                                <mat-select multiple [(value)]="locatedNearData"
+                                                                <mat-select [disableOptionCentering]="true"  multiple [(value)]="locatedNearData"
                                                                     (selectionChange)="getLocatedNear($event)">
                                                                     <mat-option *ngFor="let item of locatedNear"
                                                                         value="{{item.id}}">{{item.nameAr}}</mat-option>

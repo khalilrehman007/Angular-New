@@ -33,7 +33,7 @@
                                 <div ngClass="block-wrapper">
                                     <mat-form-field appearance="fill" class="select-design">
                                         <mat-label><img src="{{videotiour}}"> Video Tour</mat-label>
-                                        <mat-select (selectionChange)="videoSorting($event)">
+                                        <mat-select [disableOptionCentering]="true"  (selectionChange)="videoSorting($event)">
                                             <mat-option value="{{item.id}}" *ngFor="let item of videoTour">{{item.name}}
                                             </mat-option>
                                         </mat-select>
@@ -48,7 +48,7 @@
                                 <div ngClass="block-wrapper">
                                     <mat-form-field appearance="fill" class="select-design">
                                         <mat-label>Sort by</mat-label>
-                                        <mat-select (selectionChange)="sortedBy($event)">
+                                        <mat-select [disableOptionCentering]="true"  (selectionChange)="sortedBy($event)">
                                             <mat-option *ngFor="let SortBy of PropertySortBy" value="{{SortBy.id}}">
                                                 {{SortBy.name}}
                                             </mat-option>

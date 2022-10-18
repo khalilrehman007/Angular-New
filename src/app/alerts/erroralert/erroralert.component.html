@@ -1,7 +1,12 @@
 <div class="alert_box-design" [ngClass]="hideAlertNg ? 'active' : 'hide'">
-    <div ngClass="alert-message-wrap error">
-        <mat-icon>highlight_off</mat-icon>
+    <div ngClass="alert-message-wrap position-relative" style="background-image: url('assets/images/icons/Animal.svg')">
+        <div class="message-block-design">
+        <h2>Oops!</h2>
         <p>{{error}}</p>
         <button ngClass="ok-btn" (click)="sendData()">Ok</button>
+        </div>
+        <div class="close-icon">
+            <button class="close" (click)="sendData()"><mat-icon>close</mat-icon></button>
+        </div>
     </div>
 </div>
