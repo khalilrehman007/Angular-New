@@ -110,11 +110,6 @@ export class UnitTransactionHistoryResidentialComponent implements OnInit {
   ProTypefield: any = [];
   allProTypefield: string[] = ['Property Type', 'Dubai', 'Dubai'];
 
-  // Property Filter
-  PropertyCtrl = new FormControl('');
-  filteredPropertyOnly: any = [];
-  Profield: any = [];
-  allProfield: string[] = ['Property', 'Dubai', 'Dubai'];
 
 
   currentDate: any = new Date()
@@ -205,12 +200,6 @@ export class UnitTransactionHistoryResidentialComponent implements OnInit {
         temp.PropertyTypeIds.push(item.id)
       }
     }
-    if (this.Profield.length != 0) {
-      temp.ProjectIds = [];
-      for (let item of this.Profield) {
-        temp.ProjectIds.push(item.id)
-      }
-    }
     console.log(temp)
     this.service.GetResidentialTransactionData(temp).subscribe((result: any) => {
       if (result.message == "Residential Transaction Data fetched successfully") {
@@ -219,80 +208,11 @@ export class UnitTransactionHistoryResidentialComponent implements OnInit {
       }
     });
   }
-  add(event: MatChipInputEvent): void {
-    const value = (event.value || '').trim();
-    if (value) {
-      this.communityfield.push(value);
-    }
-    event.chipInput!.clear();
-    this.CommunityCtrl.setValue(null);
-  }
-  remove(community: string): void {
-    this.Profield = [];
-    const index = this.communityfield.indexOf(community);
-    if (index >= 0) {
-      this.communityfield.splice(index, 1);
-    }
-    this.loadProjects();
-    this.loadData();
-  }
-  selected(event: MatAutocompleteSelectedEvent): void {
-    this.communityfield.push({ "id": event.option.value, "name": event.option.viewValue });
-    this.ComunityInput.nativeElement.value = '';
-    this.CommunityCtrl.setValue(null);
-    this.loadProjects();
-    this.loadData();
-  }
   loadProjects() {
     let temp: any = [];
     for (let item of this.communityfield) {
       temp.push(item.id)
     }
-    this.service.GetProjects({ "DistrictIds": temp }).subscribe((result: any) => {
-      this.filteredPropertyOnly = result.data;
-    })
-  }
-  add1(event: MatChipInputEvent): void {
-    const value1 = (event.value || '').trim();
-    if (value1) {
-      this.ProTypefield.push(value1);
-    }
-    event.chipInput!.clear();
-    this.PropertyTypCtrl.setValue(null);
-  }
-  remove1(protype: string): void {
-    const index1 = this.ProTypefield.indexOf(protype);
-    if (index1 >= 0) {
-      this.ProTypefield.splice(index1, 1);
-    }
-    this.loadData();
-  }
-  selected1(event: MatAutocompleteSelectedEvent): void {
-    this.ProTypefield.push({ "id": event.option.value, "name": event.option.viewValue });
-    this.PropertyTypeInput.nativeElement.value = '';
-    this.PropertyTypCtrl.setValue(null);
-    this.loadData();
-  }
-  add2(event: MatChipInputEvent): void {
-    const value2 = (event.value || '').trim();
-    if (value2) {
-      this.Profield.push(value2);
-    }
-    event.chipInput!.clear();
-    this.PropertyCtrl.setValue(null);
-  }
-  remove2(property: string): void {
-    const index2 = this.Profield.indexOf(property);
-    if (index2 >= 0) {
-      this.Profield.splice(index2, 1);
-    }
-    this.loadData();
-  }
-  selected2(event: MatAutocompleteSelectedEvent): void {
-    this.Profield.push({ "id": event.option.value, "name": event.option.viewValue });
-    this.PropertyInput.nativeElement.value = '';
-    this.PropertyCtrl.setValue(null);
-    this.loadData();
   }
  
   ngOnInit(): void {
