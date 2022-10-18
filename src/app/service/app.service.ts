@@ -465,4 +465,7 @@ export class AppService {
   GetResidentialTransactionData(data:any) {
     return this.http.post(this.apiurl + 'GetResidentialTransactionData', data);
   }
+  GetResidentialRentData(data:any) {
+    return this.http.post(this.apiurl + 'GetResidentialRentData', data);
+  }
 }

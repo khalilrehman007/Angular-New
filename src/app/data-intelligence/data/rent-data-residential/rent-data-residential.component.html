@@ -167,6 +167,34 @@
                   </div>
                 </div>
                 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-2">
+                  <div class="dashboard-date-range-box">
+                    <label>Start Date</label>
+                    <mat-form-field>
+                      <mat-label>Date</mat-label>
+                      <mat-date-range-input [rangePicker]="startpicker">
+                        <input matStartDate matInput placeholder="Start date" formControlName="minStart" (dateChange)="getMinStartDate($event)">
+                        <input matEndDate matInput placeholder="End date" formControlName="maxStart" (dateChange)="getMaxStartDate($event)">
+                      </mat-date-range-input>
+                      <mat-datepicker-toggle matSuffix [for]="startpicker"></mat-datepicker-toggle>
+                      <mat-date-range-picker #startpicker></mat-date-range-picker>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-2">
+                  <div class="dashboard-date-range-box">
+                    <label>End Date</label>
+                    <mat-form-field>
+                      <mat-label>Date</mat-label>
+                      <mat-date-range-input [rangePicker]="endpicker">
+                        <input matStartDate matInput placeholder="Start date" formControlName="minEnd" (dateChange)="getMinEndDate($event)">
+                        <input matEndDate matInput placeholder="End date" formControlName="maxEnd" (dateChange)="getMaxEndDate($event)">
+                      </mat-date-range-input>
+                      <mat-datepicker-toggle matSuffix [for]="endpicker"></mat-datepicker-toggle>
+                      <mat-date-range-picker #endpicker></mat-date-range-picker>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-2">
                   <div class="dashboard-data-select-box">
                     <label>Transaction Type</label>
                     <mat-form-field class="example-chip-list searh_input-design mat-inner-chip-design"
@@ -264,7 +292,7 @@
               </div>
             </div>
           </form>
-          <div class="dashboard-data-blue-boxes mt-3">
+          <div class="dashboard-data-blue-boxes mt-3" *ngIf="totalLength != 0">
             <div class="row dashbpard-reports-inof-blocks">
               <div class="col-xl-3 p-2">
                 <div class="card bg-2">
@@ -274,7 +302,7 @@
                       <p style="margin-bottom: 12px;"></p>
                       <div class="custom-box">
                         <span>
-                          <h3>{{transactionData.transactionsCount}}</h3>
+                          <h3>{{formatNumber(transactionData.transactionsCount)}}</h3>
                           <p>TRANSACTIONS</p>
                         </span>
                       </div>
@@ -290,7 +318,7 @@
                       <p style="margin-bottom: 12px;"></p>
                       <div class="custom-box">
                         <span>
-                          <h3>{{transactionData.medianPricePerSqft}}</h3>
+                          <h3>{{formatNumber(transactionData.medianPricePerSqft)}}</h3>
                           <p>Median {{countryData.currency}}/{{countryData.unitType}}</p>
                         </span>
                       </div>
@@ -305,7 +333,7 @@
                       <h6 class="text-small">Sales listings </h6>
                       <div class="custom-box">
                         <span>
-                          <h3>{{transactionData.medianPrice}}</h3>
+                          <h3>{{formatNumber(transactionData.medianPrice)}}</h3>
                           <p>Median Value ({{countryData.currency}})</p>
                         </span>
                       </div>
@@ -320,7 +348,7 @@
                       <h6 class="text-small">Rent listings</h6>
                       <div class="custom-box">
                         <span>
-                          <h3>{{transactionData.totalPrice}}</h3>
+                          <h3>{{formatNumber(transactionData.totalPrice)}}</h3>
                           <p>Total Value ({{countryData.currency}})</p>
                         </span>
                       </div>
@@ -330,31 +358,47 @@
               </div>
             </div>
           </div>
-          <div class="dash-table-box-layout">
+          <div class="dash-table-box-layout" *ngIf="totalLength != 0">
             <div class="table-responsive">
               <table class="table table-striped">
                 <thead>
                   <tr>
-                    <th>Firstname</th>
-                    <th>Lastname</th>
-                    <th>Email</th>
+                    <th>Version</th>
+                    <th>Date</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Location</th>
+                    <th>Project Name</th>
+                    <th>Type</th>
+                    <th>Unit</th>
+                    <th>Bedrooms</th>
+                    <th>Floor</th>
+                    <th>Parking</th>
+                    <th>Balcony Area</th>
+                    <th>Size</th>
+                    <th>Land Size</th>
+                    <th>Annual Amount(AED)</th>
+                    <th>AED/Sqf/Year</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>John</td>
-                    <td>Doe</td>
-                    <td>john@example.com</td>
-                  </tr>
-                  <tr>
-                    <td>Mary</td>
-                    <td>Moe</td>
-                    <td>mary@example.com</td>
-                  </tr>
-                  <tr>
-                    <td>July</td>
-                    <td>Dooley</td>
-                    <td>july@example.com</td>
+                  <tr *ngFor="let item of transactionData.transactions | paginate: { itemsPerPage: itemsPerPage, currentPage: page, totalItems:totalLength }">
+                    <td>{{item.transactionType != null ? item.transactionType.name : "N/A"}}</td>
+                    <td>{{item.transactionDate != null ? item.transactionDate.split("T")[0] : "N/A"}}</td>
+                    <td>{{item.startDate != null ? item.startDate.split("T")[0] : "N/A"}}</td>
+                    <td>{{item.endDate != null ? item.endDate.split("T")[0] : "N/A"}}</td>
+                    <td>{{item.district != null ? item.district.name : "N/A"}}</td>
+                    <td>{{item.project != null ? item.project.name : "N/A"}}</td>
+                    <td>{{item.propertyType != null ? item.propertyType.typeDescription : "N/A"}}</td>
+                    <td>{{item.unit != null ? item.unit : "N/A"}}</td>
+                    <td>{{item.bedRoom != null ? item.bedRoom : "N/A"}}</td>
+                    <td>{{item.floor != null ? item.floor : "N/A"}}</td>
+                    <td>{{item.parking != null ? item.parking : "N/A"}}</td>
+                    <td>{{item.balconyAreaSqft != null ? item.balconyAreaSqft : "N/A"}}</td>
+                    <td>{{item.sizeSqft != null ? item.sizeSqft : "N/A"}}</td>
+                    <td>{{item.landSizeSqft != null ? item.landSizeSqft : "N/A"}}</td>
+                    <td>{{item.amountYearly != null ? item.amountYearly : "N/A"}}</td>
+                    <td>{{item.amountSqftYearly != null ? item.amountSqftYearly : "N/A"}}</td>
                   </tr>
                 </tbody>
               </table>
@@ -363,23 +407,16 @@
                   <p>Items Per Page 10</p>
                   <div ngClass="select-design-language">
                     <mat-form-field appearance="fill">
-                      <mat-select [(value)]="PageNumbers">
+                      <mat-select [(value)]="PageNumbers" (selectionChange)="getItems($event)">
                         <mat-option [value]="option.value" *ngFor="let option of pageitems">
                           {{option.viewValue }}
                         </mat-option>
-                    </mat-select>
+                      </mat-select>
                     </mat-form-field>
                   </div>
                 </div>
-                <div class="pagination-no-column">
-                  <ul class="pagination">
-                    <li class="page-item"><button class="pagination_item disabled">Previous</button></li>
-                    <li class="page-item"><button class="pagination_item active">1</button></li>
-                    <li class="page-item"><button class="pagination_item">2</button></li>
-                    <li class="page-item"><button class="pagination_item">3</button></li>
-                    <li class="page-item"><button class="pagination_item">Next</button></li>
-                  </ul>
-                </div>
+                <pagination-controls (pageChange)="pageChanged($event)" class="text-center my-pagination">
+                </pagination-controls>
               </div>
             </div>
           </div>
@@ -393,3 +430,4 @@
     </div>
   </div>
 </div>
+<app-loader *ngIf="showLoader"></app-loader>
