@@ -339,7 +339,7 @@
               </div>
             </div>
           </form>
-          <div class="dashboard-data-blue-boxes mt-3">
+          <div class="dashboard-data-blue-boxes mt-3" *ngIf="totalLength != 0">
             <div class="row dashbpard-reports-inof-blocks">
               <div class="col-xl-3 p-2">
                 <div class="card bg-2">
@@ -349,7 +349,7 @@
                       <p style="margin-bottom: 12px;"></p>
                       <div class="custom-box">
                         <span>
-                          <h3>{{transactionData.transactionsCount}}</h3>
+                          <h3>{{formatNumber(transactionData.transactionsCount)}}</h3>
                           <p>TRANSACTIONS</p>
                         </span>
                       </div>
@@ -365,7 +365,7 @@
                       <p style="margin-bottom: 12px;"></p>
                       <div class="custom-box">
                         <span>
-                          <h3>{{transactionData.medianPricePerSqft}}</h3>
+                          <h3>{{formatNumber(transactionData.medianPricePerSqft)}}</h3>
                           <p>Median {{countryData.currency}}/{{countryData.unitType}}</p>
                         </span>
                       </div>
@@ -380,7 +380,7 @@
                       <h6 class="text-small">Sales listings </h6>
                       <div class="custom-box">
                         <span>
-                          <h3>{{transactionData.medianPrice}}</h3>
+                          <h3>{{formatNumber(transactionData.medianPrice)}}</h3>
                           <p>Median Value ({{countryData.currency}})</p>
                         </span>
                       </div>
@@ -395,7 +395,7 @@
                       <h6 class="text-small">Rent listings</h6>
                       <div class="custom-box">
                         <span>
-                          <h3>{{transactionData.totalPrice}}</h3>
+                          <h3>{{formatNumber(transactionData.totalPrice)}}</h3>
                           <p>Total Value ({{countryData.currency}})</p>
                         </span>
                       </div>
@@ -405,7 +405,7 @@
               </div>
             </div>
           </div>
-          <div class="dash-table-box-layout">
+          <div class="dash-table-box-layout" *ngIf="totalLength != 0">
             <div class="table-responsive">
               <table class="table table-striped">
                 <thead>

@@ -189,6 +189,19 @@ export class TransactionDataComponent implements OnInit {
   getItems(e:any) {
     this.itemsPerPage = e.value;
   }
+  formatNumber(e:any) {
+    if(e >= 1000000000000) {
+      return (Math.round(e/10000000000) / 100) + "T";
+    } else if(e >= 1000000000) {
+      return (Math.round(e/10000000) / 100) + "B";
+    } else if(e >= 1000000) {
+      return (Math.round(e/10000) / 100) + "M";
+    } else if(e >= 1000) {
+      return (Math.round(e/10) / 100) + "k";
+    } else {
+      return (Math.round(e*100) / 100);
+    }
+  }
   getDate(e: any) {
     let temp: any = new Date(e.value)
     return temp.getMonth() + "-" + temp.getDate() + "-" + temp.getFullYear();
@@ -198,18 +211,23 @@ export class TransactionDataComponent implements OnInit {
   }
   getEndDate(e: any) {
     this.endDate = this.getDate(e);
+    this.loadData();
   }
   getMinSize(e: any) {
     this.minSize = e;
+    this.loadData();
   }
   getMaxSize(e: any) {
     this.maxSize = e;
+    this.loadData();
   }
   getMinPrice(e: any) {
     this.minSize = e;
+    this.loadData();
   }
   getMaxPrice(e: any) {
     this.maxSize = e;
+    this.loadData();
   }
   loadData() {
     if (this.startDate == "" || this.endDate == "" || this.communityfield.length == 0) {
