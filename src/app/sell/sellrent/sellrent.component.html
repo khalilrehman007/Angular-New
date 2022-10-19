@@ -40,9 +40,9 @@
             </div>
             <div ngClass="how-it-works-process">
                 <div ngClass="row">
-                    <div ngClass="col-md-4 how-it-works-box" *ngFor="let works of howitworks">
+                    <div ngClass="col-md-4 how-it-works-box" *ngFor="let works of howitworks; let i = index">
                         <div ngClass="how-it-works-inner">
-                            <h1>{{works.id}}</h1>
+                            <h1>{{i + 1}}</h1>
                             <h5>{{works.heading}}</h5>
                             <p>{{works.description}}</p>
                         </div>

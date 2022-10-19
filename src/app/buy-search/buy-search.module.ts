@@ -13,6 +13,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatInputModule } from '@angular/material/input';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     NgxSliderModule,
     MatSelectModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatInputModule
   ],
   exports: [
     BuySearchComponent

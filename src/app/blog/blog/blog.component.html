@@ -54,8 +54,8 @@
                 </div>
                 <div ngClass="explore_details-cntnt">
                     <div ngClass="hp-design white">
-                        <h4 *ngIf="mainBlog && mainBlog.blogTitle">{{mainBlog.blogTitle}}</h4>
-                        <span *ngIf="mainBlog.blogCategory && mainBlog.blogCategory.categoryName"
+                        <h4 routerLink="/blog/details/{{mainBlog.slugName}}" *ngIf="mainBlog && mainBlog.blogTitle">{{mainBlog.blogTitle}}</h4>
+                        <span routerLink="/blog/exploreblog" *ngIf="mainBlog.blogCategory && mainBlog.blogCategory.categoryName"
                             ngClass="blue_tag">{{mainBlog.blogCategory.categoryName}}</span>
                         <p *ngIf="mainBlog && mainBlog.blogData">{{mainBlog.blogDate.split("T")[0]}}</p>
                     </div>

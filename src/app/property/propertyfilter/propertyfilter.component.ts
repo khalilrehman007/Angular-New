@@ -145,7 +145,7 @@ export class PropertyfilterComponent implements OnInit {
     );
 
     this.minValue = this.PriceStart;
-    this.maxValue = this.PriceEnd;
+    this.maxValue = 50000000;
 
     if(this.type == null){
       this.activeRoute.params.subscribe(params => {
