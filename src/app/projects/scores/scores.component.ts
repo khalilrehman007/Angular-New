@@ -14,10 +14,10 @@ import { map, startWith } from 'rxjs/operators';
   styleUrls: ['./scores.component.scss']
 })
 export class ScoresComponent implements OnInit {
-  uaeflag = '../../../../assets/images/flags/uae.svg'
-  homelocationsvg = '../../../assets/images/home-location.svg'
-  viewsvg = '../../../assets/images/view.svg'
-  search = '../../../../assets/images/search.svg'
+  uaeflag = 'assets/images/flags/uae.svg'
+  homelocationsvg = 'assets/images/icons/map-location.svg'
+  viewsvg = 'assets/images/view.svg'
+  search = '../assets/images/search.svg'
   citylocations = [
     {
       src: '../../../../assets/images/location-img.png',

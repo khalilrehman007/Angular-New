@@ -606,7 +606,7 @@ textarea {
 			border: 0;
 			transform: none;
 			font-size: 30px;
-			color: $color_6;
+			color: #a2a2a2;
 		}
 	}
 }
@@ -1023,7 +1023,7 @@ input[type=number] {
 			a {
 				color: $color_7;
 				font-size: 15px;
-				font-weight: 500;
+				font-weight: 400;
 
 				>span {
 					width: 28px;
@@ -1131,14 +1131,14 @@ input[type=number] {
 	.h5-heading {
 		color: $color_8;
 		font-size: 18px;
-		font-weight: 600;
+		font-weight: 500;
 		margin-bottom: 4px;
 	}
 
 	p {
 		font-size: 14px;
-		color: $color_12;
-		font-weight: 400;
+		color: rgba(0, 0, 0, 0.7);
+		font-weight: 300;
 		margin-bottom: 0px;
 	}
 }
@@ -1193,7 +1193,7 @@ input[type=number] {
 .h6-design {
 	color: $color_8;
 	font-size: 16px;
-	font-weight: 500;
+	font-weight: 400;
 	margin-bottom: 10px;
 }
 
@@ -1823,7 +1823,6 @@ input[type=number] {
 
 	>div {
 		min-width: 15%;
-		padding: 0px 8px;
 		margin-bottom: 15px;
 	}
 }
@@ -5518,17 +5517,6 @@ img {
 	}
 }
 
-.properties-list-block-design {
-	background: #FFFFFF;
-	border-radius: 8px;
-	margin-bottom: 41px;
-	box-shadow: 10px 3px 78px -51px rgba(0, 9, 41, 0.5);
-
-	.row {
-		position: relative;
-	}
-}
-
 .properties-list_slider {
 	height: 100%;
 	border-top-left-radius: 8px;
@@ -7931,30 +7919,24 @@ li.agent-details__property-list-item {
 	.accordians-wrapper {
 		h4 {
 			color: $color_7;
-			font-size: 14px;
+			font-size: 16px;
 			margin-bottom: 0px;
 			font-weight: 400;
 		}
 
 		.mat-expansion-panel {
 			box-shadow: none;
-			border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-			border-radius: 0px !important;
+			border: 1px solid rgba(0,0,0,.08);
+			border-radius: 16px !important;
+			transition: all ease 0.5s;
+			box-shadow: none !important;
+			padding: 6px 20px;
 		}
 
 		.mat-expansion-panel-header {
+			height: auto;
+			background: transparent !important;
 			padding: 0px;
-			height: 58px;
-		}
-	}
-
-	.faq-section-wrapper {
-		>.container_1220px {
-			>.row {
-				>div {
-					margin-bottom: 12px;
-				}
-			}
 		}
 	}
 }
@@ -8941,11 +8923,19 @@ li.agent-details__property-list-item {
     font-weight: 300;
     border: none;
     font-size: 14px;
+    min-width: 150px;
+    line-height: 18px;
+    padding: 10px !important;
 }
 .table th {
     font-weight: 400;
     font-size: 14px;
     border: none;
+    padding: 10px !important;
+}
+.table-striped > tbody > tr:nth-of-type(odd) > * {
+    background-color: whitesmoke !important;
+    box-shadow: none !important;
 }
 .pagination-page-per-item p {
     font-size: 12px;
@@ -8980,6 +8970,35 @@ margin-right: 0px;
     background-color: #4a565f;
     color: #fff;
 }
+.accordians-wrapper .mat-expansion-panel.mat-expanded {
+    background-color: #595ad5;
+}
+.accordians-wrapper .mat-expansion-panel.mat-expanded h4, .accordians-wrapper .mat-expansion-panel.mat-expanded p {
+    color: #fff;
+}
+.accordians-wrapper .mat-expansion-panel.mat-expanded .mat-expansion-indicator::after{
+	color: #fff;
+}
+.accordians-wrapper {
+    margin-bottom: 20px;
+}
+.accordians-wrapper .mat-expansion-panel .mat-expansion-panel-body {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.accordians-wrapper p {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: normal;
+}
+.accordians-wrapper .mat-expansion-panel:hover {
+    background-color: whitesmoke;
+}
+.accordians-wrapper .mat-expansion-panel.mat-expanded:hover{
+	background-color: #595ad5;
+}
+
+
 
 @media (min-widthh: 1200px) {
 	.tenants-sec-wrapper {
@@ -10589,19 +10608,6 @@ margin-right: 0px;
 		}
 	}
 
-	.sell-faq-css {
-		.faq-section-wrapper {
-			>.container_1220px {
-				>.row {
-					>div {
-						padding-left: 35px;
-						padding-right: 35px;
-					}
-				}
-			}
-		}
-	}
-
 	.d-hide {
 		display: none;
 	}
@@ -10673,6 +10679,8 @@ margin-right: 0px;
 			>div {
 				width: 100%;
 				transition: all 0.5s ease-in-out;
+				padding-left: 3px;
+				padding-right: 3px;
 			}
 		}
 	}
@@ -10698,6 +10706,9 @@ margin-right: 0px;
 }
 
 @media (max-width: 1199px) {
+	.header-section .navbar-nav .blue-bordered-btn .mat-icon{
+		color: #fff !important;
+	}
 	.auth-header {
 		padding-left: 15px;
 		padding-right: 15px;
@@ -10938,14 +10949,13 @@ margin-right: 0px;
 	opacity: 0;
 	height: 0;
 }
-
 .small-label {
-	font-size: 12px;
-	color: gray;
-	text-transform: initial;
-	padding-left: 3px;
+    font-size: 12px !important;
+    color: gray;
+    text-transform: initial;
+    padding-left: 3px;
+    font-weight: 300;
 }
-
 .table-design tr td:first-child {
 	background: #f0f3f6;
 }
@@ -11928,6 +11938,9 @@ background: transparent !important;
 		padding-bottom: 8px;
 		margin-bottom: 8px;
 	}
+	.sell-faq-css .accordians-wrapper h4 {
+		font-size: 14px;
+	}
 	.amazing-details-sec>.container_1280px {
 		padding: 35px 25px 0px 25px !important;
 		text-align: center;
@@ -12754,6 +12767,12 @@ input:focus{
 @media (min-width: 1200px){
 	.buy-sell-wrapepr-forms .block-wrapper.mb-4 {
 		margin-bottom: 0px !important;
+	}
+	.faq-section-wrapper .row {
+		width: 100%;
+		max-width: 1200px;
+		margin-left: auto;
+		margin-right: auto;
 	}
 }
 .slider-shadow .owl-stage-outer {
