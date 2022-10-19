@@ -3281,7 +3281,7 @@ input[type=number] {
 	max-height: 300px;
 	overflow-y: scroll;
 	overflow-x: hidden;
-	padding-left: 4px !important;
+	padding-left: 0px !important;
 	padding-top: 4px;
 
 	.property_sel {
@@ -3293,7 +3293,7 @@ input[type=number] {
 		outline: 1px solid #595ad4;
 		outline-offset: 4px;
 		position: relative;
-		top: 3px;
+		top: 4px;
 	}
 
 	input {
@@ -12787,4 +12787,7 @@ input:focus{
 }
 .mat-option-text {
     font-weight: 300;
+}
+.block-wrapper .cstm_dropdown-menu li.d-flex.position-relative>div {
+    position: initial !important;
 }
