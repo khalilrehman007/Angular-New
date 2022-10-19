@@ -451,8 +451,9 @@
                                                         *ngFor=" let viewList of myActivityListingView | paginate: { itemsPerPage: 10, currentPage: page, totalItems:totalLength }">
                                                         <div class="row">
                                                             <div class="col-lg-4">
-                                                                <img src="{{viewList.img}}" alt=""
-                                                                    class="img-fluid agent-details__property-list-item-img">
+                                                                <a routerLink="/property/detail"
+                                                                [queryParams]="{id: viewList.id}"><img src="{{viewList.img}}" alt=""
+                                                                    class="img-fluid agent-details__property-list-item-img"></a>
                                                             </div>
                                                             <div class="col-lg-8">
                                                                 <div class="row">
@@ -2174,13 +2175,15 @@
                                                                             class="checkbox-flex-box two-column max-240">
                                                                             <div class="checkbox-design position-relative"
                                                                                 (click)="getGender(1)">
-                                                                                <input type="radio" name="gender" />
+                                                                                <input type="radio" name="gender" *ngIf="userData.gender == 'Male'" checked />
+                                                                                <input type="radio" name="gender"  *ngIf="userData.gender != 'Male'" />
                                                                                 <button
                                                                                     class="checkbox-btn">Male</button>
                                                                             </div>
                                                                             <div class="checkbox-design position-relative"
                                                                                 (click)="getGender(2)">
-                                                                                <input type="radio" name="gender" />
+                                                                                <input type="radio" name="gender" *ngIf="userData.gender == 'Female'" checked  />
+                                                                                <input type="radio" name="gender" *ngIf="userData.gender != 'Female'"/>
                                                                                 <button
                                                                                     class="checkbox-btn">Female</button>
                                                                             </div>
@@ -2209,7 +2212,7 @@
                                                                         <mat-form-field appearance="fill"
                                                                             class="full-width select-form input-design-2">
                                                                             <mat-label>Select the Country</mat-label>
-                                                                            <mat-select [disableOptionCentering]="true" 
+                                                                            <mat-select [disableOptionCentering]="true" [(value)]="countryId" 
                                                                                 (selectionChange)="onCountrySelect($event);">
                                                                                 <mat-option *ngFor="let list of country"
                                                                                     [value]="list.value">
@@ -2225,7 +2228,7 @@
                                                                         <mat-form-field appearance="fill"
                                                                             class="full-width select-form input-design-2">
                                                                             <mat-label>Select City</mat-label>
-                                                                            <mat-select [disableOptionCentering]="true" 
+                                                                            <mat-select [disableOptionCentering]="true" [(value)]="cityId" 
                                                                                 (selectionChange)="onCitySelect($event);">
                                                                                 <mat-option
                                                                                     *ngFor="let listcity of city"

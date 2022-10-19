@@ -205,7 +205,7 @@ $btncolor: #0B26AD;
     .nav-pills {
         .nav-link {
             color: $color_1;
-            font-weight: 500;
+            font-weight: 400;
             position: relative;
         }
 
@@ -304,13 +304,20 @@ $btncolor: #0B26AD;
                 display: block;
                 color: #4A565F;
                 font-size: 14px;
-                font-weight: 500;
+                font-weight: 300;
 
                 img {
                     margin-right: 8px;
                 }
             }
-
+            a.facebook {
+                img{
+                    width: 9px;
+                    margin-right: 17px;
+                    position: relative;
+                    left: 3px;
+                }
+            }
             .logout-link {
                 color: #DB4840;
             }
@@ -1196,14 +1203,16 @@ $btncolor: #0B26AD;
     top: 15px;
     right: 15px;
 }
-.my-wallet-list-wrapper.referral-code-block .pro-contact-details button {
+.my-wallet-list-wrapper.referral-code-block .pro-contact-details .dropdown>button {
     background-color: #fff;
     border: none;
-    border-radius: 8px;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
 }
 .my-wallet-list-wrapper.referral-code-block .pro-contact-details button img {
     position: relative;
-    bottom: 2px;
+    bottom: 1px;
 }
 .my-wallet-list-wrapper.referral-code-block .pro-contact-details button:hover {
     background-color: rgba(15,46,173,0.1) !important;

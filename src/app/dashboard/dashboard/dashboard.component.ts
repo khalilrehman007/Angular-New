@@ -238,6 +238,13 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             this.professionalType = 0;
           }
           localStorage.setItem("user", JSON.stringify(this.userData));
+          if(this.userData.gender == "Male") {
+            this.getGender(1)
+          } else if(this.userData.gender == "Female") {
+            this.getGender(2)
+          }
+          this.onCountrySelect({value:this.userData.countryId})
+          this.onCitySelect({value:this.userData.cityId});
           if (this.userData.imageUrl == null) {
             this.proAvatar = '../../assets/images/user.png';
           } else {
@@ -1331,7 +1338,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       this.showError = true;
       return;
     } else if (this.cardForm.value.cardName == "" || this.cardForm.value.cardName == null) {
-      // console.log(this.cardForm.value.cardName);
       this.error = "Please Enter Card Holder Name";
       this.showError = true;
     }

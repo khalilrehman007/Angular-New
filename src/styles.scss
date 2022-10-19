@@ -208,8 +208,7 @@ body {
 	}
 }
 
-.sidebar-active {
-	#sidebar {
+	#sidebar.active {
 		width: 250px !important;
 		z-index: 999 !important;
 
@@ -237,7 +236,6 @@ body {
 			}
 		}
 	}
-}
 
 * {
 	margin: 0;
@@ -3811,16 +3809,16 @@ input[type=number] {
 		padding: 26px 15px 45px 15px;
 
 		.property-pricing {
-			color: #595ad4;
+			color: #000;
 			font-size: 13px;
 			margin-bottom: 10px;
 			text-decoration: none;
-			font-weight: 700;
+			font-weight: 400;
 
 			span {
 				font-size: 17px;
 				color: $color_29;
-				font-weight: bold;
+				font-weight: 500;
 			}
 			span:last-child {
 				color: #000;
@@ -9962,8 +9960,6 @@ margin-right: 0px;
 			}
 		}
 	}
-
-	body.nosidebar {
 		#sidebar {
 			height: 40px !important;
 			overflow: hidden !important;
@@ -9971,7 +9967,7 @@ margin-right: 0px;
 			box-shadow: none !important;
 			z-index: 99;
 			bottom: 0;
-			background-color: $background-color_9;
+			background-color: $background-color_9 !important;
 			width: 100% !important;
 			position: fixed !important;
 			top: initial !important;
@@ -9990,8 +9986,12 @@ margin-right: 0px;
 				}
 			}
 		}
-	}
-
+		#sidebar.active {
+			background-color: #fff !important;
+		}
+		#sidebar.active button.sidebar-toggle img {
+			filter: initial !important;
+		}
 	.home-slider-sec {
 		.carousel-item {
 			.home-slider_cntnt {
@@ -10145,13 +10145,10 @@ margin-right: 0px;
 	.slide-left-bar {
 		max-width: 100% !important;
 	}
-
-	body.sidebar-active {
-		#sidebar {
+		#sidebar.active {
 			width: 100% !important;
 			height: 100% !important;
 		}
-	}
 
 	.heading-title-sec {
 		h2 {
@@ -11009,7 +11006,24 @@ margin-right: 0px;
     border-radius: 20px 20px 0px 0px;
     background-size: auto;
     background-repeat: no-repeat;
-    background-position: 60px -3px;
+    background-position: 34px -3px;
+}
+.alert_box-design.confirm-box .confirm-msg {
+    padding-bottom: 0px;
+}
+.alert_box-design.confirm-box .ok-btn {
+    margin-right: 10px;
+}
+.no-btn {
+    border: none;
+    color: #fff;
+    padding: 6px 20px;
+    background: #4A565F;
+    border-radius: 7px;
+    font-weight: 400;
+}
+.no-btn:hover {
+    background-color: #df5555;
 }
 .alert-message-wrap .close-icon .close {
     background: #FFFFFF;
@@ -11090,7 +11104,7 @@ margin-right: 0px;
 }
 
 .ok-btn:hover {
-	background: #333 !important;
+	background: #4A565F !important;
 }
 
 .alert_box-design.hide {
@@ -11500,7 +11514,7 @@ margin-right: 0px;
 	box-shadow: none;
 }
 
-.sidebar-active .overlay_counter {
+#sidebar.active~.overlay_counter {
 	display: block !important;
 }
 
@@ -12751,4 +12765,7 @@ input:focus{
     max-width: calc(100% - 260px);
     margin-left: auto;
     margin-top: 98px;
+}
+.mat-option-text {
+    font-weight: 300;
 }

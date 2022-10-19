@@ -408,6 +408,16 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     this.status3 = false;
     this.status4 = false;
   }
+  status6: boolean = false;
+  clickEvent6() {
+    this.status6 = !this.status6;
+    this.status1 = false;
+    this.status2 = false;
+    this.status = false;
+    this.status3 = false;
+    this.status4 = false;
+    this.status5 = false;
+  }
   status3: boolean = false;
   clickEvent3() {
     if (!this.status3) {
