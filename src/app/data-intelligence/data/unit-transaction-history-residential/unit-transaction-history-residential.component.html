@@ -62,55 +62,64 @@
                 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
                   <div class="unit_value-box">
                     <h5 class="unit-value-label">Location</h5>
-                    <button class="unit-value-btn">{{transactionData.unitDetail.district != null ? transactionData.unitDetail.district.name : "N/A"}}</button>
+                    <button class="unit-value-btn">{{transactionData.unitDetail.district != null ?
+                      transactionData.unitDetail.district.name : "N/A"}}</button>
                   </div>
                 </div>
                 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
                   <div class="unit_value-box">
                     <h5 class="unit-value-label">Property Name</h5>
-                    <button class="unit-value-btn">{{transactionData.unitDetail.project != null ? transactionData.unitDetail.project.name : "N/A"}}</button>
+                    <button class="unit-value-btn">{{transactionData.unitDetail.project != null ?
+                      transactionData.unitDetail.project.name : "N/A"}}</button>
                   </div>
                 </div>
                 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
                   <div class="unit_value-box">
                     <h5 class="unit-value-label">Unit Number</h5>
-                    <button class="unit-value-btn">{{transactionData.unitDetail.unit != null ? transactionData.unitDetail.unit : "N/A"}}</button>
+                    <button class="unit-value-btn">{{transactionData.unitDetail.unit != null ?
+                      transactionData.unitDetail.unit : "N/A"}}</button>
                   </div>
                 </div>
                 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
                   <div class="unit_value-box">
                     <h5 class="unit-value-label">Bedrooms</h5>
-                    <button class="unit-value-btn">{{transactionData.unitDetail.bedRoom != null ? transactionData.unitDetail.bedRoom : "N/A"}}</button>
+                    <button class="unit-value-btn">{{transactionData.unitDetail.bedRoom != null ?
+                      transactionData.unitDetail.bedRoom : "N/A"}}</button>
                   </div>
                 </div>
                 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
                   <div class="unit_value-box">
                     <h5 class="unit-value-label">Floor</h5>
-                    <button class="unit-value-btn">{{transactionData.unitDetail.floor != null ? transactionData.unitDetail.floor : "N/A"}}</button>
+                    <button class="unit-value-btn">{{transactionData.unitDetail.floor != null ?
+                      transactionData.unitDetail.floor : "N/A"}}</button>
                   </div>
                 </div>
                 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
                   <div class="unit_value-box">
                     <h5 class="unit-value-label">Size <span class="sqft-ex">({{countryData.unitType}})</span></h5>
-                    <button class="unit-value-btn">{{transactionData.unitDetail.sizeSqft != null ? transactionData.unitDetail.sizeSqft : "N/A"}}</button>
+                    <button class="unit-value-btn">{{transactionData.unitDetail.sizeSqft != null ?
+                      transactionData.unitDetail.sizeSqft : "N/A"}}</button>
                   </div>
                 </div>
                 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
                   <div class="unit_value-box">
                     <h5 class="unit-value-label">Parking</h5>
-                    <button class="unit-value-btn">{{transactionData.unitDetail.parking != null ? transactionData.unitDetail.parking : "N/A"}}</button>
+                    <button class="unit-value-btn">{{transactionData.unitDetail.parking != null ?
+                      transactionData.unitDetail.parking : "N/A"}}</button>
                   </div>
                 </div>
                 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
                   <div class="unit_value-box">
                     <h5 class="unit-value-label">Balcony <span class="sqft-ex">({{countryData.unitType}})</span></h5>
-                    <button class="unit-value-btn">{{transactionData.unitDetail.balconyAreaSqft != null ? transactionData.unitDetail.balconyAreaSqft : "N/A"}}</button>
+                    <button class="unit-value-btn">{{transactionData.unitDetail.balconyAreaSqft != null ?
+                      transactionData.unitDetail.balconyAreaSqft : "N/A"}}</button>
                   </div>
                 </div>
                 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
                   <div class="unit_value-box">
                     <h5 class="unit-value-label">Land Size <span class="sqft-ex">({{countryData.unitType}})</span></h5>
-                    <button class="unit-value-btn">{{transactionData.unitDetail.landSizeSqft != null ? transactionData.unitDetail.landSizeSqft : "N/A"}}</button>
+                    <button class="unit-value-btn">{{transactionData.unitDetail.landSizeSqft != null ?
+                      transactionData.unitDetail.landSizeSqft : "N/A"}}</button>
                   </div>
                 </div>
               </div>
@@ -125,35 +134,33 @@
                 <table class="table table-striped">
                   <thead>
                     <tr>
-                      <th>Firstname</th>
-                      <th>Lastname</th>
-                      <th>Email</th>
+                      <th>Type</th>
+                      <th>Sub Type</th>
+                      <th>Sales Sequence</th>
+                      <th>Date</th>
+                      <th>Amount ({{countryData.currency}})</th>
+                      <th>{{countryData.currency}} / {{countryData.unitType}}</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>John</td>
-                      <td>Doe</td>
-                      <td>john@example.com</td>
-                    </tr>
-                    <tr>
-                      <td>Mary</td>
-                      <td>Moe</td>
-                      <td>mary@example.com</td>
-                    </tr>
-                    <tr>
-                      <td>July</td>
-                      <td>Dooley</td>
-                      <td>july@example.com</td>
+                    <tr
+                      *ngFor="let item of transactionData.saleTransactions | paginate: { itemsPerPage: salesItemsPerPage, currentPage: salesPage, totalItems:salestotalLength }">
+                      <td>{{item.transactionType != null ? item.transactionType.name : "N/A"}}</td>
+                      <td>{{item.transactionSubType != null ? item.transactionSubType.name : "N/A"}}</td>
+                      <td>{{item.transactionSequence != null ? item.transactionSequence.name : "N/A"}}</td>
+                      <td>{{item.transactionDate != null ? item.transactionDate.split("T")[0] : "N/A"}}</td>
+                      <td>{{item.amount != null ? item.amount : "N/A"}}</td>
+                      <td>{{item.amountSqft != null ? item.amountSqft : "N/A"}}</td>
                     </tr>
                   </tbody>
                 </table>
                 <div class="pagination-controls d-flex justify-content-spacebw">
                   <div class="pagination-page-per-item d-flex align-items-center">
-                    <p>Items Per Page 10</p>
+                    <p>Items Per Page</p>
                     <div ngClass="select-design-language">
                       <mat-form-field appearance="fill">
-                        <mat-select [disableOptionCentering]="true" [(value)]="PageNumbers">
+                        <mat-select [disableOptionCentering]="true" [(value)]="PageNumbers"
+                          (selectionChange)="getSalesItems($event)">
                           <mat-option [value]="option.value" *ngFor="let option of pageitems">
                             {{option.viewValue }}
                           </mat-option>
@@ -161,15 +168,8 @@
                       </mat-form-field>
                     </div>
                   </div>
-                  <div class="pagination-no-column">
-                    <ul class="pagination">
-                      <li class="page-item"><button class="pagination_item disabled">Previous</button></li>
-                      <li class="page-item"><button class="pagination_item active">1</button></li>
-                      <li class="page-item"><button class="pagination_item">2</button></li>
-                      <li class="page-item"><button class="pagination_item">3</button></li>
-                      <li class="page-item"><button class="pagination_item">Next</button></li>
-                    </ul>
-                  </div>
+                  <pagination-controls (pageChange)="salesPageChanged($event)" class="text-center my-pagination">
+                  </pagination-controls>
                 </div>
               </div>
             </div>
@@ -183,35 +183,32 @@
                 <table class="table table-striped">
                   <thead>
                     <tr>
-                      <th>Firstname</th>
-                      <th>Lastname</th>
-                      <th>Email</th>
+                      <th>Version</th>
+                      <th>Date</th>
+                      <th>Start Date</th>
+                      <th>End Date</th>
+                      <th>Annual Amount</th>
+                      <th>{{countryData.currency}} / {{countryData.unitType}} / Year</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>John</td>
-                      <td>Doe</td>
-                      <td>john@example.com</td>
-                    </tr>
-                    <tr>
-                      <td>Mary</td>
-                      <td>Moe</td>
-                      <td>mary@example.com</td>
-                    </tr>
-                    <tr>
-                      <td>July</td>
-                      <td>Dooley</td>
-                      <td>july@example.com</td>
+                    <tr
+                      *ngFor="let item of transactionData.rentTransactions | paginate: { itemsPerPage: rentItemsPerPage, currentPage: rentPage, totalItems:renttotalLength }">
+                      <td>{{item.transactionType != null ? item.transactionType.name : "N/A"}}</td>
+                      <td>{{item.transactionDate != null ? item.transactionDate.split("T")[0] : "N/A"}}</td>
+                      <td>{{item.startDate != null ? item.startDate.split("T")[0] : "N/A"}}</td>
+                      <td>{{item.endDate != null ? item.endDate.split("T")[0] : "N/A"}}</td>
+                      <td>{{item.amountYearly != null ? item.amountYearly : "N/A"}}</td>
+                      <td>{{item.amountSqftYearly != null ? item.amountSqftYearly : "N/A"}}</td>
                     </tr>
                   </tbody>
                 </table>
                 <div class="pagination-controls d-flex justify-content-spacebw">
                   <div class="pagination-page-per-item d-flex align-items-center">
-                    <p>Items Per Page 10</p>
+                    <p>Items Per Page</p>
                     <div ngClass="select-design-language">
                       <mat-form-field appearance="fill">
-                        <mat-select [disableOptionCentering]="true" [(value)]="PageNumbers">
+                        <mat-select [disableOptionCentering]="true" [(value)]="PageNumbers" (selectionChange)="getRentItems($event)">
                           <mat-option [value]="option.value" *ngFor="let option of pageitems">
                             {{option.viewValue }}
                           </mat-option>
@@ -219,15 +216,8 @@
                       </mat-form-field>
                     </div>
                   </div>
-                  <div class="pagination-no-column">
-                    <ul class="pagination">
-                      <li class="page-item"><button class="pagination_item disabled">Previous</button></li>
-                      <li class="page-item"><button class="pagination_item active">1</button></li>
-                      <li class="page-item"><button class="pagination_item">2</button></li>
-                      <li class="page-item"><button class="pagination_item">3</button></li>
-                      <li class="page-item"><button class="pagination_item">Next</button></li>
-                    </ul>
-                  </div>
+                  <pagination-controls (pageChange)="rentPageChanged($event)" class="text-center my-pagination">
+                  </pagination-controls>
                 </div>
               </div>
             </div>
@@ -241,35 +231,29 @@
                 <table class="table table-striped">
                   <thead>
                     <tr>
-                      <th>Firstname</th>
-                      <th>Lastname</th>
-                      <th>Email</th>
+                      <th>Type</th>
+                      <th>Sub Type</th>
+                      <th>Date</th>
+                      <th>Amount ({{countryData.currency}})</th>
+                      <th>{{countryData.currency}} / {{countryData.unitType}}</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>John</td>
-                      <td>Doe</td>
-                      <td>john@example.com</td>
-                    </tr>
-                    <tr>
-                      <td>Mary</td>
-                      <td>Moe</td>
-                      <td>mary@example.com</td>
-                    </tr>
-                    <tr>
-                      <td>July</td>
-                      <td>Dooley</td>
-                      <td>july@example.com</td>
+                    <tr *ngFor="let item of transactionData.mortgageTransactions | paginate: { itemsPerPage: mortageItemsPerPage, currentPage: mortagePage, totalItems:mortagetotalLength }">
+                      <td>{{item.transactionType != null ? item.transactionType.name : "N/A"}}</td>
+                      <td>{{item.transactionSubType != null ? item.transactionSubType.name : "N/A"}}</td>
+                      <td>{{item.transactionDate != null ? item.transactionDate.split("T")[0] : "N/A"}}</td>
+                      <td>{{item.amount != null ? item.amount : "N/A"}}</td>
+                      <td>{{item.amountSqft != null ? item.amountSqft : "N/A"}}</td>
                     </tr>
                   </tbody>
                 </table>
                 <div class="pagination-controls d-flex justify-content-spacebw">
                   <div class="pagination-page-per-item d-flex align-items-center">
-                    <p>Items Per Page 10</p>
+                    <p>Items Per Page</p>
                     <div ngClass="select-design-language">
                       <mat-form-field appearance="fill">
-                        <mat-select [disableOptionCentering]="true" [(value)]="PageNumbers">
+                        <mat-select [disableOptionCentering]="true" [(value)]="PageNumbers" (selectionChange)="getMortageItems($event)">
                           <mat-option [value]="option.value" *ngFor="let option of pageitems">
                             {{option.viewValue }}
                           </mat-option>
@@ -277,15 +261,8 @@
                       </mat-form-field>
                     </div>
                   </div>
-                  <div class="pagination-no-column">
-                    <ul class="pagination">
-                      <li class="page-item"><button class="pagination_item disabled">Previous</button></li>
-                      <li class="page-item"><button class="pagination_item active">1</button></li>
-                      <li class="page-item"><button class="pagination_item">2</button></li>
-                      <li class="page-item"><button class="pagination_item">3</button></li>
-                      <li class="page-item"><button class="pagination_item">Next</button></li>
-                    </ul>
-                  </div>
+                  <pagination-controls (pageChange)="mortagePageChanged($event)" class="text-center my-pagination">
+                  </pagination-controls>
                 </div>
               </div>
             </div>

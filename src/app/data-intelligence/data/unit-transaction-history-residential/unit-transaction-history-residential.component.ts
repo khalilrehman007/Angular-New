@@ -14,6 +14,17 @@ interface ItemsPerPage {
   styleUrls: ['./unit-transaction-history-residential.component.scss']
 })
 export class UnitTransactionHistoryResidentialComponent implements OnInit {
+
+  showLoader: boolean = false;
+  salesPage: any = 1;
+  salesItemsPerPage: any = 10;
+  salestotalLength: any = 0;
+  rentPage: any = 1;
+  rentItemsPerPage: any = 10;
+  renttotalLength: any = 0;
+  mortagePage: any = 1;
+  mortageItemsPerPage: any = 10;
+  mortagetotalLength: any = 0;
   pageitems: ItemsPerPage[] = [
     { value: '10', viewValue: '10' },
     { value: '20', viewValue: '20' },
@@ -43,7 +54,7 @@ export class UnitTransactionHistoryResidentialComponent implements OnInit {
   propertyType: any = [];
   projectsData: any = [];
   unitsData: any = [];
-  transactionData:any = "";
+  transactionData: any = "";
 
   constructor(private cookie: CookieService, private service: AppService) {
     this.countryData = JSON.parse(this.cookie.get("countryData"));
@@ -76,10 +87,28 @@ export class UnitTransactionHistoryResidentialComponent implements OnInit {
       this.loadType();
     })
   }
+  salesPageChanged(e: any) {
+    this.salesPage = e;
+  }
+  rentPageChanged(e: any) {
+    this.rentPage = e;
+  }
+  mortagePageChanged(e: any) {
+    this.mortagePage = e;
+  }
+  getSalesItems(e: any) {
+    this.salesItemsPerPage = e.value;
+  }
+  getRentItems(e: any) {
+    this.rentItemsPerPage = e.value;
+  }
+  getMortageItems(e: any) {
+    this.mortageItemsPerPage = e.value;
+  }
   loadUnits(e: any) {
     this.service.GetUnitsByProjectId(e).subscribe((result: any) => {
       this.unitsData = result.data;
-      if(this.unitsData.length == 0) {
+      if (this.unitsData.length == 0) {
         this.unitNumber = "";
       }
     })
@@ -87,7 +116,7 @@ export class UnitTransactionHistoryResidentialComponent implements OnInit {
   loadProject(e: any) {
     this.service.GetProjects({ "DistrictIds": [e] }).subscribe((result: any) => {
       this.projectsData = result.data;
-      if(this.projectsData.length == 0) {
+      if (this.projectsData.length == 0) {
         this.selectedProject = "";
       }
     })
@@ -109,7 +138,7 @@ export class UnitTransactionHistoryResidentialComponent implements OnInit {
   loadDistrict(e: any) {
     this.service.FindDistricts({ "CityId": e, "Locations": [] }).subscribe((result: any) => {
       this.districtData = result.data;
-      if(this.districtData.length == 0) {
+      if (this.districtData.length == 0) {
         this.selectedDistrict = "";
       }
     })
@@ -118,16 +147,25 @@ export class UnitTransactionHistoryResidentialComponent implements OnInit {
     if (this.selectedCity == "" || this.selectedDistrict == "" || this.selectedProject == "" || this.unitNumber == "") {
       return;
     }
-    let temp:any = {};
-    temp.CountryId = this.countryData.id;
-    temp.CityId = this.selectedCity;
-    temp.DistrictId = this.selectedDistrict;
-    temp.ProjectId = this.selectedProject;
-    temp.PropertyTypeId = this.selectedType;
-    temp.UnitNo = this.unitNumber;
-
-    this.service.GetResidentialUnitTransactionHistory(temp).subscribe((result:any) => {
+    let temp: any = {};
+    // temp.CountryId = this.countryData.id;
+    // temp.CityId = this.selectedCity;
+    // temp.DistrictId = this.selectedDistrict;
+    // temp.ProjectId = this.selectedProject;
+    // temp.PropertyTypeId = this.selectedType;
+    temp = {
+      "CityId": 1,
+      "CountryId": 1,
+      "DistrictId": 2287,
+      "ProjectId": 477,
+      "PropertyTypeId": 2,
+      "PropertyCategoryId": 1,
+      "UnitNo": "Sector S - S04"
+    }
+    this.service.GetResidentialUnitTransactionHistory(temp).subscribe((result: any) => {
       this.transactionData = result.data;
+      this.salestotalLength = this.transactionData.saleTransactions;
+      this.renttotalLength = this.transactionData.rentTransactions;
       console.log(this.transactionData);
     })
   }
