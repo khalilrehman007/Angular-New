@@ -250,6 +250,12 @@ export class HeaderComponent implements OnInit, AfterViewInit {
       class: 'nav-items my-wallet',
       text: 'My Wallet',
       link: 'profile/wallet',
+    },
+    {
+      src: '../../../assets/images/icons/compare.png',
+      class: 'nav-items my-wallet',
+      text: 'Compare',
+      link: '',
     }
   ]
 

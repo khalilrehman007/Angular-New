@@ -4386,10 +4386,11 @@ img {
 
 .property-price_detals {
 	h4 {
-		font-size: 24px;
-		color: $color_2;
-		font-weight: 700;
-		margin-bottom: 6px;
+		font-size: 18px;
+		color: #595ad4;
+		font-weight: 500;
+		margin-bottom: 0px;
+		line-height: 30px;
 	}
 
 	.property-tags {
@@ -4614,10 +4615,10 @@ img {
 }
 
 .topkey-highlights {
-	padding-top: 10px;
+	padding-top: 8px;
 
 	>h6 {
-		color: $color_8;
+		color: #000929;
 		font-size: 14px;
 	}
 }
@@ -5546,32 +5547,22 @@ img {
 }
 
 .properties-list_cntnts {
-	padding-top: 22px;
-	width: 100%;
-	padding-right: 15px;
-	border-radius: 8px;
 	.property-name_detals {
-		padding-top: 8px;
 
 		h4 {
-			color: $color_8;
-			font-size: 18px;
+			color: #212529;
+			font-size: 15px;
 			font-weight: 400;
-			margin-bottom: 10px;
+			margin-bottom: 6px;
 		}
 	}
 
 	.topkey-highlights {
 		h6 {
 			font-weight: 400;
-			margin-bottom: 12px;
+			margin-bottom: 3px;
 		}
 	}
-
-	.key-tags {
-		margin: 16px 0px 5px 0px;
-	}
-
 	.premium-tag {
 		position: absolute;
 		top: -10px;
@@ -5587,12 +5578,13 @@ img {
 
 .ov-verified-btn {
 	background: transparent;
-	border: none;
-	font-size: 12px;
-	font-weight: 300;
-	color: $color_8;
-	position: relative;
-    top: 2px;
+    border: none;
+    font-size: 12px;
+    font-weight: 300;
+    color: #000929;
+    position: relative;
+    top: 0px;
+    max-height: 34.8px;
 
 	img {
 		margin-right: 5px;
@@ -5683,6 +5675,7 @@ img {
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
+		border-radius: 5px;
 	}
 }
 
@@ -5784,27 +5777,6 @@ img {
 .grey-bordered-btn:hover {
 	background: rgba(15, 46, 173, 0.1);
 }
-
-.property-footer-block {
-	background: #F0F3F5;
-	padding: 10px 0px;
-	position: relative;
-	z-index: 9;
-
-	&::before {
-		content: '';
-		position: absolute;
-		left: -24px;
-		right: 0;
-		top: 0;
-		bottom: 0;
-		width: calc(100% + 40px);
-		background-color: $background-color_5;
-		z-index: -1;
-		border-bottom-right-radius: 8px;
-	}
-}
-
 .properties-list-sidebar {
 	padding-top: 140px;
 }
@@ -8995,6 +8967,11 @@ margin-right: 0px;
 .accordians-wrapper .mat-expansion-panel.mat-expanded:hover{
 	background-color: #595ad5;
 }
+.rent-propoerties-main-sec .properties-list-block-design {
+    padding: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+}
 
 
 
@@ -11297,9 +11274,9 @@ margin-right: 0px;
 
 .properties-list_slider img {
 	object-position: center;
-	height: 100%;
-	object-fit: contain;
-	background: #f4f4f4;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
 }
 
 .shortlisted-tabs_list .agent-details__property-list-item .selection-checkbox-selector input:checked+.cstm-selection-btn {
@@ -12790,6 +12767,90 @@ input:focus{
     position: initial !important;
 }
 .properties-list-block-design {
-    box-shadow: 0px 0px 27px -18px grey;
+    box-shadow: 0px 4px 20px rgb(14 8 84 / 8%);
     margin-bottom: 25px;
+}
+.property-contact-buttons {
+    display: flex;
+    flex-direction: row;
+	justify-content: flex-end;
+}
+.property-contact-buttons svg {
+    width: 20px;
+    height: 20px;
+}
+.property-contact-buttons>a {
+    padding: 6px 15px;
+    border: 1px solid;
+    border-radius: 50px;
+    font-size: 14px;
+    margin-right: 8px;
+}
+.property-contact-buttons > a:last-child {
+    margin-right: 0px;
+}
+.property-contact-buttons > a.email {
+    color: #4a565f;
+    border-color: #4a565f;
+}
+.property-contact-buttons > a.email svg {
+    position: relative;
+    top: 2px;
+}
+.property-contact-buttons > a.email:hover {
+    background-color: #4a565f;
+    color: #fff;
+}
+.property-contact-buttons > a.email:hover path,.property-contact-buttons > a.whatsapp:hover path,.property-contact-buttons > a.chat:hover path {
+    fill: #fff;
+}
+.property-contact-buttons > a.whatsapp {
+    color: #70b662;
+    border-color: #70b662;
+}
+.property-contact-buttons > a.whatsapp {
+    color: #70b662;
+    border-color: #70b662;
+}
+.property-contact-buttons > a.whatsapp path {
+    fill: #70b662;
+}
+.property-contact-buttons > a.whatsapp svg {
+    position: relative;
+    top: 1px;
+}
+.property-contact-buttons > a.whatsapp:hover{
+	background-color: #70b662;
+    color: #fff;
+}
+.property-contact-buttons > a.chat:hover{
+	background-color: #0d6efd;
+    color: #fff;
+}
+.property-contact-buttons > a.chat {
+    color: #0d6efd;
+    border-color: #0d6efd;
+}
+.property-contact-buttons > a.chat path {
+    fill: #0d6efd;
+}
+.property-contact-buttons > a.call .mat-icon {
+    position: absolute;
+    left: 11px;
+    width: 17px;
+    height: 17px;
+    font-size: 17px;
+    top: 7px;
+}
+.property-contact-buttons > a.call {
+    padding-left: 35px;
+    position: relative;
+    color: #595ad5;
+}
+.property-contact-buttons > a.call:hover{
+	background-color: #595ad5;
+    color: #fff;
+}
+.property-contact-buttons > a.chat svg {
+    margin-right: 1px;
 }
