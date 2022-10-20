@@ -5800,7 +5800,7 @@ img {
 		bottom: 0;
 		width: calc(100% + 40px);
 		background-color: $background-color_5;
-		z-index: 0;
+		z-index: -1;
 		border-bottom-right-radius: 8px;
 	}
 }
@@ -7887,7 +7887,7 @@ li.agent-details__property-list-item {
 	}
 
 	.faq-title {
-		margin: 20px 0px;
+		margin: 20px 0px 50px 0px;
 
 		h2 {
 			color: $color_27;
@@ -7926,8 +7926,8 @@ li.agent-details__property-list-item {
 
 		.mat-expansion-panel {
 			box-shadow: none;
-			border: 1px solid rgba(0,0,0,.08);
-			border-radius: 16px !important;
+			border: 1px solid transparent;
+			border-radius: 10px !important;
 			transition: all ease 0.5s;
 			box-shadow: none !important;
 			padding: 6px 20px;
@@ -7940,7 +7940,9 @@ li.agent-details__property-list-item {
 		}
 	}
 }
-
+.accordians-wrapper .mat-expansion-panel:hover {
+    border-color: rgba(0, 0, 0, 0.14);
+}
 .faq-page-sec {
 	.faq-section-wrapper {
 		padding-top: 40px;
@@ -7951,7 +7953,6 @@ li.agent-details__property-list-item {
 .how-it-works-page {
 	.how-it-works-sec {
 		padding-top: 45px;
-		padding-bottom: 45px;
 	}
 }
 
@@ -8990,9 +8991,6 @@ margin-right: 0px;
     font-size: 14px;
     font-weight: 300;
     line-height: normal;
-}
-.accordians-wrapper .mat-expansion-panel:hover {
-    background-color: whitesmoke;
 }
 .accordians-wrapper .mat-expansion-panel.mat-expanded:hover{
 	background-color: #595ad5;
