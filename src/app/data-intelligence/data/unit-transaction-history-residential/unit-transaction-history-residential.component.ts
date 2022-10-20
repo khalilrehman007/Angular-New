@@ -150,20 +150,12 @@ export class UnitTransactionHistoryResidentialComponent implements OnInit {
       return;
     }
     let temp: any = {};
-    // temp.CountryId = this.countryData.id;
-    // temp.CityId = this.selectedCity;
-    // temp.DistrictId = this.selectedDistrict;
-    // temp.ProjectId = this.selectedProject;
-    // temp.PropertyTypeId = this.selectedType;
-    temp = {
-      "CityId": 1,
-      "CountryId": 1,
-      "DistrictId": 2287,
-      "ProjectId": 477,
-      "PropertyTypeId": 2,
-      "PropertyCategoryId": 1,
-      "UnitNo": "Sector S - S04"
-    }
+    temp.CountryId = this.countryData.id;
+    temp.CityId = this.selectedCity;
+    temp.DistrictId = this.selectedDistrict;
+    temp.ProjectId = this.selectedProject;
+    temp.PropertyTypeId = this.selectedType;
+    temp.UnitNo = this.unitNumber;
     this.service.GetResidentialUnitTransactionHistory(temp).subscribe((result: any) => {
       this.transactionData = result.data;
       this.salestotalLength = this.transactionData.saleTransactions;

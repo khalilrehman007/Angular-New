@@ -53,7 +53,7 @@
               </div>
             </div>
           </form>
-          <div class="mt-3 unit-description-box-wrapper" *ngIf="transactionData != ''">
+          <div class="mt-3 unit-description-box-wrapper" *ngIf="transactionData != '' && transactionData.unitDetail != null">
             <div class="di-heading">
               <h2>UNIT DETAILS</h2>
             </div>
@@ -125,7 +125,7 @@
               </div>
             </div>
           </div>
-          <div class="dash-table-box-layout-wrap mt-2">
+          <div class="dash-table-box-layout-wrap mt-2" *ngIf="transactionData != '' && transactionData.saleTransactions.length > 0">
             <div class="di-heading">
               <h2>SALES TRANSACTIONS</h2>
             </div>
@@ -174,7 +174,7 @@
               </div>
             </div>
           </div>
-          <div class="dash-table-box-layout-wrap mt-2">
+          <div class="dash-table-box-layout-wrap mt-2" *ngIf="transactionData != '' && transactionData.rentTransactions.length > 0">
             <div class="di-heading">
               <h2>RENT TRANSACTIONS</h2>
             </div>
@@ -222,7 +222,7 @@
               </div>
             </div>
           </div>
-          <div class="dash-table-box-layout-wrap mt-2">
+          <div class="dash-table-box-layout-wrap mt-2" *ngIf="transactionData != '' && transactionData.mortgageTransactions.length > 0">
             <div class="di-heading">
               <h2>MORTGAGE TRANSACTIONS</h2>
             </div>
