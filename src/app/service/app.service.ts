@@ -474,4 +474,7 @@ export class AppService {
   GetResidentialUnitTransactionHistory(data:any) {
     return this.http.post(this.apiurl + 'GetResidentialUnitTransactionHistory', data);
   }
+  GetResidentialMonthlyTransactionAnalysis(data:any) {
+    return this.http.post(this.apiurl + 'GetResidentialMonthlyTransactionAnalysis', data);
+  }
 }
