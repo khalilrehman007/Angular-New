@@ -159,7 +159,7 @@
                     <p>Items Per Page</p>
                     <div ngClass="select-design-language">
                       <mat-form-field appearance="fill">
-                        <mat-select [disableOptionCentering]="true" [(value)]="PageNumbers"
+                        <mat-select [disableOptionCentering]="true" [(value)]="salesPageNumbers"
                           (selectionChange)="getSalesItems($event)">
                           <mat-option [value]="option.value" *ngFor="let option of pageitems">
                             {{option.viewValue }}
@@ -208,7 +208,7 @@
                     <p>Items Per Page</p>
                     <div ngClass="select-design-language">
                       <mat-form-field appearance="fill">
-                        <mat-select [disableOptionCentering]="true" [(value)]="PageNumbers" (selectionChange)="getRentItems($event)">
+                        <mat-select [disableOptionCentering]="true" [(value)]="rentPageNumbers" (selectionChange)="getRentItems($event)">
                           <mat-option [value]="option.value" *ngFor="let option of pageitems">
                             {{option.viewValue }}
                           </mat-option>
@@ -253,7 +253,7 @@
                     <p>Items Per Page</p>
                     <div ngClass="select-design-language">
                       <mat-form-field appearance="fill">
-                        <mat-select [disableOptionCentering]="true" [(value)]="PageNumbers" (selectionChange)="getMortageItems($event)">
+                        <mat-select [disableOptionCentering]="true" [(value)]="mortagePageNumbers" (selectionChange)="getMortageItems($event)">
                           <mat-option [value]="option.value" *ngFor="let option of pageitems">
                             {{option.viewValue }}
                           </mat-option>

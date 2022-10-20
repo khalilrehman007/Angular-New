@@ -31,7 +31,9 @@ export class UnitTransactionHistoryResidentialComponent implements OnInit {
     { value: '20', viewValue: '30' },
     { value: '20', viewValue: '40' }
   ];
-  PageNumbers = this.pageitems[0].value;
+  salesPageNumbers = this.pageitems[0].value;
+  rentPageNumbers = this.pageitems[0].value;
+  mortagePageNumbers = this.pageitems[0].value;
 
   separatorKeysCodes: number[] = [ENTER, COMMA];
   CommunityCtrl = new FormControl('');
