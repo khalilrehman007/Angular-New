@@ -16,6 +16,8 @@ import { map, startWith } from 'rxjs/operators';
 export class NewHomesComponent implements OnInit {
   uaeflag = '../../../../assets/images/flags/uae.svg'
   homelocationsvg = '../../../assets/images/home-location.svg'
+  handshakesvg = '../../../assets/images/handshake.svg'
+  lunchsvg = '../../../assets/images/lunch.svg'
   viewsvg = '../../../assets/images/view.svg'
   search = '../../../../assets/images/search.svg'
   citylocations = [
