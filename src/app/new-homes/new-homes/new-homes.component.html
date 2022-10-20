@@ -1,0 +1,617 @@
+<app-header></app-header>
+<section [ngClass]="'inner-cntnt-wrapper slide-left-bar'">
+    <section [ngClass]="'explore-banner-sec position-relative'"
+      style="background-image: url('assets/images/areas-banner.webp')">
+      <div [ngClass]="'container_1280px'">
+        <div ngClass="inner-banner-heading text-center">
+          <h2>New Projects in Dubai</h2>
+          <div ngClass="search_destinations-block" *ngIf="country.length > 0">
+            <form>
+              <div ngClass="row">
+                <div ngClass="col-xl-4 col-lg-3 col-md-3 col-sm-12">
+                  
+                  <div ngClass="block-wrapper height-100">
+                    <mat-form-field class="example-chip-list input-design searh_input-design height-100"
+                      appearance="fill">
+                      <mat-label>Search</mat-label>
+                      <mat-chip-list #chipList aria-label="Search selection">
+                        <!-- <mat-chip>
+                          SearchValue
+                          <button>
+                            <mat-icon>cancel</mat-icon>
+                          </button>
+                        </mat-chip> -->
+                        <input placeholder="Search by developer, Area or Project" #SearchInput [formControl]="searchctrlExplore"
+                          [matAutocomplete]="auto" [matChipInputFor]="chipList"
+                          [matChipInputSeparatorKeyCodes]="separatorKeysCodesExplore"
+                          (matChipInputTokenEnd)="add($event)">
+                      </mat-chip-list>
+                      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+                        <mat-option *ngFor="let SearchValue of searchfilterExplore | async" [value]="SearchValue">
+                          {{SearchValue}}
+                        </mat-option>
+                      </mat-autocomplete>
+                    </mat-form-field>
+                  </div>
+                  <!-- <div ngClass="block-wrapper">
+                    <div ngClass="select-design">
+                      <mat-form-field appearance="fill">
+                        <mat-label>Property type</mat-label>
+                        <mat-select [disableOptionCentering]="true"  [(value)]="selected">
+                          <mat-option>None</mat-option>
+                          <mat-option value="option1">Option 1</mat-option>
+                          <mat-option value="option2">Option 2</mat-option>
+                          <mat-option value="option3">Option 3</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+                  </div> -->
+                </div>
+                <div ngClass="col-xl-2 col-lg-3 col-md-3 col-sm-12">
+                    <div ngClass="block-wrapper height-100">
+                      <mat-form-field class="example-chip-list input-design searh_input-design height-100"
+                        appearance="fill">
+                        <mat-label>Property Type</mat-label>
+                        <mat-chip-list #chipList aria-label="Search selection">
+                          <!-- <mat-chip>
+                            SearchValue
+                            <button>
+                              <mat-icon>cancel</mat-icon>
+                            </button>
+                          </mat-chip> -->
+                          <input placeholder="Property Type" #SearchInput [formControl]="searchctrlExplore"
+                            [matAutocomplete]="auto" [matChipInputFor]="chipList"
+                            [matChipInputSeparatorKeyCodes]="separatorKeysCodesExplore"
+                            (matChipInputTokenEnd)="add($event)">
+                        </mat-chip-list>
+                        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+                          <mat-option *ngFor="let SearchValue of searchfilterExplore | async" [value]="SearchValue">
+                            {{SearchValue}}
+                          </mat-option>
+                        </mat-autocomplete>
+                      </mat-form-field>
+                    </div>
+                </div>
+                <div ngClass="col-xl-2 col-lg-3 col-md-3 col-sm-12">
+                  <div ngClass="block-wrapper">
+                    <div ngClass="select-design">
+                      <mat-form-field appearance="fill">
+                        <mat-label>Handover</mat-label>
+                        <mat-select [disableOptionCentering]="true"  [(value)]="selected">
+                          <mat-option>None</mat-option>
+                          <mat-option value="option1">Before Q4 2022</mat-option>
+                          <mat-option value="option2">Before Q4 2022</mat-option>
+                          <mat-option value="option3">Before Q4 2022</mat-option>
+                          <mat-option value="option4">Before Q4 2022</mat-option>
+                          <mat-option value="option5">Before Q4 2022</mat-option>
+                          <mat-option value="option6">Before Q4 2022</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </div>
+                <div ngClass="col-xl-2 col-lg-3 col-md-3 col-sm-12">
+                  <div ngClass="search-btn-block">
+                    <button ngClass="search-btn" type="submit"><img src="{{search}}"> Search</button>
+                  </div>
+                </div>
+                <div ngClass="col-xl-2 col-lg-3 col-md-3 col-sm-12">
+                  <div ngClass="search-btn-block">
+                    <button ngClass="btn clear-btn" type="clear">Reset Filter</button>
+                  </div>
+                </div>
+                <!-- <div ngClass="col-xl-8 col-lg-8 col-md-8 col-sm-12">
+                  <div ngClass="block-wrapper height-100">
+                    <mat-form-field class="example-chip-list input-design searh_input-design height-100"
+                      appearance="fill">
+                      <mat-label>Search</mat-label>
+                      <mat-chip-list #chipList aria-label="Search selection">
+                        <mat-chip *ngFor="let SearchValue of SearchKeywordExplore" (removed)="remove(SearchValue)">
+                          {{SearchValue}}
+                          <button matChipRemove>
+                            <mat-icon>cancel</mat-icon>
+                          </button>
+                        </mat-chip>
+                        <input placeholder="Location, Project Name" #SearchInput [formControl]="searchctrlExplore"
+                          [matAutocomplete]="auto" [matChipInputFor]="chipList"
+                          [matChipInputSeparatorKeyCodes]="separatorKeysCodesExplore"
+                          (matChipInputTokenEnd)="add($event)">
+                      </mat-chip-list>
+                      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+                        <mat-option *ngFor="let SearchValue of searchfilterExplore | async" [value]="SearchValue">
+                          {{SearchValue}}
+                        </mat-option>
+                      </mat-autocomplete>
+                    </mat-form-field>
+                  </div>
+                </div> -->
+                <!-- <div ngClass="col-xl-1 col-lg-1 col-md-1 col-sm-12">
+                  <div ngClass="search-btn-block">
+                    <button ngClass="search-btn" type="submit"><img src="{{search}}"></button>
+                  </div>
+                </div> -->
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section ngClass="all-projects-sec">
+      <div [ngClass]="'container_1280px'">
+        <div ngClass="explore-breadcrumb-wrapper black-text-breadcrumb">
+          <app-breadcrumbs></app-breadcrumbs>
+        </div>
+        <div ngClass="explore-word-sec" *ngIf="selectedCountry">
+          <!-- <div ngClass="d-flex justify-content-spacebw mb-4">
+            <div ngClass="hp-design">
+              <h4>All Projects</h4>
+              <p>When it comes to finding out about new projects, which are almost nearing completion or ready to occupy new developments and off-plan projects, which have been just launched, or those under-construction in Dubai, our ‘Home Finder section’ is just what you need. Home to Dubai’s comprehensive list of real estate projects every project listing provides in-depth details starting from artistic, live images and video gallery, fact sheet, location map, frequently asked questions (FAQs), and more on sub communities within the projects, their features and nearby places. Our aim to provide as much information as possible to help you understand thoroughly as you progress with your home buying and investments.</p>
+              <p>Use our search tool to select your preferences in order to view the best properties available. Or give us a call for immediate service at <a href="#"> 800-326- 800.</a>
+              </p>
+            </div>
+          </div> -->
+          <!-- <div ngClass="explore-locations-block-designs">
+            <div ngClass="hp-design mb-4">
+              <h4>{{selectedCountry.viewValue}}</h4>
+            </div>
+            <div ngClass="explore-locations-lists">
+              <div class="row" *ngIf="cityData.length > 0">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-4" *ngFor="let item of cityData"
+                  [ngClass]="checkCity(item.name) ? 'd-none' : ''">
+                  <div ngClass="loc-div-block position-relative">
+                    <div ngClass="loc-img-design">
+                      <img src="https://beta.ovaluate.com/{{item.cityDocument.fileUrl}}">
+                    </div>
+                    <div ngClass="loc-img-cntnt">
+                      <div ngClass="d-flex justify-content-spacebw align-items-center">
+                        <div ngClass="hp-design white">
+                          <h4 ngClass="city-name">{{item.name}}</h4>
+                          <p ngClass="country-name">{{item.country.name}}</p>
+                        </div>
+                        <div ngClass="explore-link">
+                          <a routerLink="/explore/city/{{item.id}}">Explore <mat-icon>keyboard_arrow_right</mat-icon></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> -->
+          <!-- <div ngClass="explore-description_sec mt-4 mb-5" *ngIf="selectedCountry">
+            <div ngClass="hp-design hp-explore-spacing">
+              <h4>Explore {{selectedCountry.viewValue}}</h4>
+              <p>{{selectedCountry.desc}}.</p>
+            </div>
+          </div> -->
+        </div>
+
+
+
+                            
+        <div>
+          <div ngClass="properties-list-block-design">
+              <div ngClass="row">
+                  <div ngClass="col-xl-7 col-md-6 col-lg-7 col-sm-12">
+                      <div ngClass="properties-list_slider">
+                        <img src="https://cloud.famproperties.com/project/large/jumeirah-living-business-bay-160826-121954.jpg">
+                      </div>
+                  </div>
+                  <div ngClass="col-xl-5 col-md-6 col-lg-5 col-sm-12">
+                      <div ngClass="properties-list_cntnts position-relative">
+                          <div ngClass="properties-list_hdr d-flex justify-content-spacebw">
+                              <div ngClass="property-price_detals cursor-pointer">
+                                  <h2>Palm Beach Towers</h2>
+                                  <h4>AED 500.00</h4>
+                              </div>
+                          </div>
+
+                          <div ngClass="property-name_detals">
+                              <div ngClass="property-addresss">
+                                  <p><img src="{{homelocationsvg}}"> Business Bay</p>
+                              </div>
+                          </div>
+                          <div ngClass="topkey-highlights">
+                              <!-- <h6>propertyType,</h6> -->
+                              <div ngClass="property-details-highlights">
+                                  <div ngClass="ico-dtls">
+                                    <img src="{{lunchsvg}}" alt="" class="icn">
+                                    <span class="txt">
+                                      Launched in: 
+                                      <b>05-OCT-2022</b>
+                                    </span>
+                                  </div>
+                                  <div ngClass="ico-dtls">
+                                    <img src="{{handshakesvg}}" alt="" class="icn">
+                                    <span class="txt">
+                                      Handover: 
+                                      <b>Q4 - 2023</b>
+                                    </span>
+                                  </div>
+                              </div>
+                          </div>
+                          <div ngClass="property-footer-block">
+                              <div ngClass="row align-items-center">
+                                  <div ngClass="col-xl-5 col-lg-12 col-md-12 col-sm-12">
+                                      <div ngClass="lsited-by-details d-flex">
+                                          <div ngClass="list_cntnt-img">
+                                              <img src="https://play-lh.googleusercontent.com/DTzWtkxfnKwFO3ruybY1SKjJQnLYeuK3KmQmwV5OQ3dULr5iXxeEtzBLceultrKTIUTr">
+                                          </div>
+                                          <div ngClass="list_cntnt-blcok">
+                                              <h5>Ali Raza</h5>
+                                              <p>Listed on: 25 July 2022</p>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div
+                                      ngClass="col-xl-7 col-lg-12 col-md-12 col-sm-12 text-right">
+                                      <div ngClass="pro-contact-details">
+                                          <a ngClass="pro-footer-btn grren-btn">Contct</a>
+                                          <a ngClass="pro-footer-btn">Discover More</a>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          <!-- <p ngClass="premium-tag">PREMIUM</p> -->
+                      </div>
+                      <button _ngcontent-ekm-c201="" ngclass="tag_btn blue" ng-reflect-ng-class="tag_btn blue" class="tag_btn blue"><img _ngcontent-ekm-c201="" src="../../../assets/images/icons/tag-icn.svg"> PREMIUM</button>
+                  </div>
+              </div>
+          </div>
+        </div>
+
+        <div>
+          <div ngClass="properties-list-block-design">
+              <div ngClass="row">
+                  <div ngClass="col-xl-7 col-md-6 col-lg-7 col-sm-12">
+                      <div ngClass="properties-list_slider">
+                        <img src="https://cloud.famproperties.com/project/large/jumeirah-living-business-bay-160826-121954.jpg">
+                      </div>
+                  </div>
+                  <div ngClass="col-xl-5 col-md-6 col-lg-5 col-sm-12">
+                      <div ngClass="properties-list_cntnts position-relative">
+                          <div ngClass="properties-list_hdr d-flex justify-content-spacebw">
+                              <div ngClass="property-price_detals cursor-pointer">
+                                  <h2>Palm Beach Towers</h2>
+                                  <h4 class="p-requ">Price on request</h4>
+                              </div>
+                          </div>
+
+                          <div ngClass="property-name_detals">
+                              <div ngClass="property-addresss">
+                                  <p><img src="{{homelocationsvg}}"> Business Bay</p>
+                              </div>
+                          </div>
+                          <div ngClass="topkey-highlights">
+                              <!-- <h6>propertyType,</h6> -->
+                              <div ngClass="property-details-highlights">
+                                  <div ngClass="ico-dtls">
+                                    <img src="{{lunchsvg}}" alt="" class="icn">
+                                    <span class="txt">
+                                      Launched in: 
+                                      <b>05-OCT-2022</b>
+                                    </span>
+                                  </div>
+                                  <div ngClass="ico-dtls">
+                                    <img src="{{handshakesvg}}" alt="" class="icn">
+                                    <span class="txt">
+                                      Handover: 
+                                      <b>Q4 - 2023</b>
+                                    </span>
+                                  </div>
+                              </div>
+                          </div>
+                          <div ngClass="property-footer-block">
+                              <div ngClass="row align-items-center">
+                                  <div ngClass="col-xl-5 col-lg-12 col-md-12 col-sm-12">
+                                      <div ngClass="lsited-by-details d-flex">
+                                          <div ngClass="list_cntnt-img">
+                                              <img src="https://play-lh.googleusercontent.com/DTzWtkxfnKwFO3ruybY1SKjJQnLYeuK3KmQmwV5OQ3dULr5iXxeEtzBLceultrKTIUTr">
+                                          </div>
+                                          <div ngClass="list_cntnt-blcok">
+                                              <h5>Ali Raza</h5>
+                                              <p>Listed on: 25 July 2022</p>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div
+                                      ngClass="col-xl-7 col-lg-12 col-md-12 col-sm-12 text-right">
+                                      <div ngClass="pro-contact-details">
+                                          <a ngClass="pro-footer-btn grren-btn">Contct</a>
+                                          <a ngClass="pro-footer-btn">Discover More</a>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          <!-- <p ngClass="premium-tag">PREMIUM</p> -->
+                      </div>
+                      <button _ngcontent-ekm-c201="" ngclass="tag_btn blue" ng-reflect-ng-class="tag_btn blue" class="tag_btn blue"><img _ngcontent-ekm-c201="" src="../../../assets/images/icons/tag-icn.svg"> PREMIUM</button>
+                  </div>
+              </div>
+          </div>
+        </div>
+        <div>
+          <div ngClass="properties-list-block-design">
+              <div ngClass="row">
+                  <div ngClass="col-xl-7 col-md-6 col-lg-7 col-sm-12">
+                      <div ngClass="properties-list_slider">
+                        <img src="https://cloud.famproperties.com/project/large/jumeirah-living-business-bay-160826-121954.jpg">
+                      </div>
+                  </div>
+                  <div ngClass="col-xl-5 col-md-6 col-lg-5 col-sm-12">
+                      <div ngClass="properties-list_cntnts position-relative">
+                          <div ngClass="properties-list_hdr d-flex justify-content-spacebw">
+                              <div ngClass="property-price_detals cursor-pointer">
+                                  <h2>Palm Beach Towers</h2>
+                                  <h4>AED 500.00</h4>
+                              </div>
+                          </div>
+
+                          <div ngClass="property-name_detals">
+                              <div ngClass="property-addresss">
+                                  <p><img src="{{homelocationsvg}}"> Business Bay</p>
+                              </div>
+                          </div>
+                          <div ngClass="topkey-highlights">
+                              <!-- <h6>propertyType,</h6> -->
+                              <div ngClass="property-details-highlights">
+                                  <div ngClass="ico-dtls">
+                                    <img src="{{lunchsvg}}" alt="" class="icn">
+                                    <span class="txt">
+                                      Launched in: 
+                                      <b>05-OCT-2022</b>
+                                    </span>
+                                  </div>
+                                  <div ngClass="ico-dtls">
+                                    <img src="{{handshakesvg}}" alt="" class="icn">
+                                    <span class="txt">
+                                      Handover: 
+                                      <b>Q4 - 2023</b>
+                                    </span>
+                                  </div>
+                              </div>
+                          </div>
+                          <div ngClass="property-footer-block">
+                              <div ngClass="row align-items-center">
+                                  <div ngClass="col-xl-5 col-lg-12 col-md-12 col-sm-12">
+                                      <div ngClass="lsited-by-details d-flex">
+                                          <div ngClass="list_cntnt-img">
+                                              <img src="https://play-lh.googleusercontent.com/DTzWtkxfnKwFO3ruybY1SKjJQnLYeuK3KmQmwV5OQ3dULr5iXxeEtzBLceultrKTIUTr">
+                                          </div>
+                                          <div ngClass="list_cntnt-blcok">
+                                              <h5>Ali Raza</h5>
+                                              <p>Listed on: 25 July 2022</p>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div
+                                      ngClass="col-xl-7 col-lg-12 col-md-12 col-sm-12 text-right">
+                                      <div ngClass="pro-contact-details">
+                                          <a ngClass="pro-footer-btn grren-btn">Contct</a>
+                                          <a ngClass="pro-footer-btn">Discover More</a>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          <!-- <p ngClass="premium-tag">PREMIUM</p> -->
+                      </div>
+                      <button _ngcontent-ekm-c201="" ngclass="tag_btn blue" ng-reflect-ng-class="tag_btn blue" class="tag_btn blue"><img _ngcontent-ekm-c201="" src="../../../assets/images/icons/tag-icn.svg"> PREMIUM</button>
+                  </div>
+              </div>
+          </div>
+        </div>
+        <div>
+          <div ngClass="properties-list-block-design">
+              <div ngClass="row">
+                  <div ngClass="col-xl-7 col-md-6 col-lg-7 col-sm-12">
+                      <div ngClass="properties-list_slider">
+                        <img src="https://cloud.famproperties.com/project/large/jumeirah-living-business-bay-160826-121954.jpg">
+                      </div>
+                  </div>
+                  <div ngClass="col-xl-5 col-md-6 col-lg-5 col-sm-12">
+                      <div ngClass="properties-list_cntnts position-relative">
+                          <div ngClass="properties-list_hdr d-flex justify-content-spacebw">
+                              <div ngClass="property-price_detals cursor-pointer">
+                                  <h2>Palm Beach Towers</h2>
+                                  <h4 class="p-requ">Price on request</h4>
+                              </div>
+                          </div>
+
+                          <div ngClass="property-name_detals">
+                              <div ngClass="property-addresss">
+                                  <p><img src="{{homelocationsvg}}"> Business Bay</p>
+                              </div>
+                          </div>
+                          <div ngClass="topkey-highlights">
+                              <!-- <h6>propertyType,</h6> -->
+                              <div ngClass="property-details-highlights">
+                                  <div ngClass="ico-dtls">
+                                    <img src="{{lunchsvg}}" alt="" class="icn">
+                                    <span class="txt">
+                                      Launched in: 
+                                      <b>05-OCT-2022</b>
+                                    </span>
+                                  </div>
+                                  <div ngClass="ico-dtls">
+                                    <img src="{{handshakesvg}}" alt="" class="icn">
+                                    <span class="txt">
+                                      Handover: 
+                                      <b>Q4 - 2023</b>
+                                    </span>
+                                  </div>
+                              </div>
+                          </div>
+                          <div ngClass="property-footer-block">
+                              <div ngClass="row align-items-center">
+                                  <div ngClass="col-xl-5 col-lg-12 col-md-12 col-sm-12">
+                                      <div ngClass="lsited-by-details d-flex">
+                                          <div ngClass="list_cntnt-img">
+                                              <img src="https://play-lh.googleusercontent.com/DTzWtkxfnKwFO3ruybY1SKjJQnLYeuK3KmQmwV5OQ3dULr5iXxeEtzBLceultrKTIUTr">
+                                          </div>
+                                          <div ngClass="list_cntnt-blcok">
+                                              <h5>Ali Raza</h5>
+                                              <p>Listed on: 25 July 2022</p>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div
+                                      ngClass="col-xl-7 col-lg-12 col-md-12 col-sm-12 text-right">
+                                      <div ngClass="pro-contact-details">
+                                          <a ngClass="pro-footer-btn grren-btn">Contct</a>
+                                          <a ngClass="pro-footer-btn">Discover More</a>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          <!-- <p ngClass="premium-tag">PREMIUM</p> -->
+                      </div>
+                      <button _ngcontent-ekm-c201="" ngclass="tag_btn blue" ng-reflect-ng-class="tag_btn blue" class="tag_btn blue"><img _ngcontent-ekm-c201="" src="../../../assets/images/icons/tag-icn.svg"> PREMIUM</button>
+                  </div>
+              </div>
+          </div>
+        </div>
+        <div>
+          <div ngClass="properties-list-block-design">
+              <div ngClass="row">
+                  <div ngClass="col-xl-7 col-md-6 col-lg-7 col-sm-12">
+                      <div ngClass="properties-list_slider">
+                        <img src="https://cloud.famproperties.com/project/large/jumeirah-living-business-bay-160826-121954.jpg">
+                      </div>
+                  </div>
+                  <div ngClass="col-xl-5 col-md-6 col-lg-5 col-sm-12">
+                      <div ngClass="properties-list_cntnts position-relative">
+                          <div ngClass="properties-list_hdr d-flex justify-content-spacebw">
+                              <div ngClass="property-price_detals cursor-pointer">
+                                  <h2>Palm Beach Towers</h2>
+                                  <h4>AED 500.00</h4>
+                              </div>
+                          </div>
+
+                          <div ngClass="property-name_detals">
+                              <div ngClass="property-addresss">
+                                  <p><img src="{{homelocationsvg}}"> Business Bay</p>
+                              </div>
+                          </div>
+                          <div ngClass="topkey-highlights">
+                              <!-- <h6>propertyType,</h6> -->
+                              <div ngClass="property-details-highlights">
+                                  <div ngClass="ico-dtls">
+                                    <img src="{{lunchsvg}}" alt="" class="icn">
+                                    <span class="txt">
+                                      Launched in: 
+                                      <b>05-OCT-2022</b>
+                                    </span>
+                                  </div>
+                                  <div ngClass="ico-dtls">
+                                    <img src="{{handshakesvg}}" alt="" class="icn">
+                                    <span class="txt">
+                                      Handover: 
+                                      <b>Q4 - 2023</b>
+                                    </span>
+                                  </div>
+                              </div>
+                          </div>
+                          <div ngClass="property-footer-block">
+                              <div ngClass="row align-items-center">
+                                  <div ngClass="col-xl-5 col-lg-12 col-md-12 col-sm-12">
+                                      <div ngClass="lsited-by-details d-flex">
+                                          <div ngClass="list_cntnt-img">
+                                              <img src="https://play-lh.googleusercontent.com/DTzWtkxfnKwFO3ruybY1SKjJQnLYeuK3KmQmwV5OQ3dULr5iXxeEtzBLceultrKTIUTr">
+                                          </div>
+                                          <div ngClass="list_cntnt-blcok">
+                                              <h5>Ali Raza</h5>
+                                              <p>Listed on: 25 July 2022</p>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div
+                                      ngClass="col-xl-7 col-lg-12 col-md-12 col-sm-12 text-right">
+                                      <div ngClass="pro-contact-details">
+                                          <a ngClass="pro-footer-btn grren-btn">Contct</a>
+                                          <a ngClass="pro-footer-btn">Discover More</a>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          <!-- <p ngClass="premium-tag">PREMIUM</p> -->
+                      </div>
+                      <button _ngcontent-ekm-c201="" ngclass="tag_btn blue" ng-reflect-ng-class="tag_btn blue" class="tag_btn blue"><img _ngcontent-ekm-c201="" src="../../../assets/images/icons/tag-icn.svg"> PREMIUM</button>
+                  </div>
+              </div>
+          </div>
+        </div>
+        <div>
+          <div ngClass="properties-list-block-design">
+              <div ngClass="row">
+                  <div ngClass="col-xl-7 col-md-6 col-lg-7 col-sm-12">
+                      <div ngClass="properties-list_slider">
+                        <img src="https://cloud.famproperties.com/project/large/jumeirah-living-business-bay-160826-121954.jpg">
+                      </div>
+                  </div>
+                  <div ngClass="col-xl-5 col-md-6 col-lg-5 col-sm-12">
+                      <div ngClass="properties-list_cntnts position-relative">
+                          <div ngClass="properties-list_hdr d-flex justify-content-spacebw">
+                              <div ngClass="property-price_detals cursor-pointer">
+                                  <h2>Palm Beach Towers</h2>
+                                  <h4>AED 500.00</h4>
+                              </div>
+                          </div>
+
+                          <div ngClass="property-name_detals">
+                              <div ngClass="property-addresss">
+                                  <p><img src="{{homelocationsvg}}"> Business Bay</p>
+                              </div>
+                          </div>
+                          <div ngClass="topkey-highlights">
+                              <!-- <h6>propertyType,</h6> -->
+                              <div ngClass="property-details-highlights">
+                                  <div ngClass="ico-dtls">
+                                    <img src="{{lunchsvg}}" alt="" class="icn">
+                                    <span class="txt">
+                                      Launched in: 
+                                      <b>05-OCT-2022</b>
+                                    </span>
+                                  </div>
+                                  <div ngClass="ico-dtls">
+                                    <img src="{{handshakesvg}}" alt="" class="icn">
+                                    <span class="txt">
+                                      Handover: 
+                                      <b>Q4 - 2023</b>
+                                    </span>
+                                  </div>
+                              </div>
+                          </div>
+                          <div ngClass="property-footer-block">
+                              <div ngClass="row align-items-center">
+                                  <div ngClass="col-xl-5 col-lg-12 col-md-12 col-sm-12">
+                                      <div ngClass="lsited-by-details d-flex">
+                                          <div ngClass="list_cntnt-img">
+                                              <img src="https://play-lh.googleusercontent.com/DTzWtkxfnKwFO3ruybY1SKjJQnLYeuK3KmQmwV5OQ3dULr5iXxeEtzBLceultrKTIUTr">
+                                          </div>
+                                          <div ngClass="list_cntnt-blcok">
+                                              <h5>Ali Raza</h5>
+                                              <p>Listed on: 25 July 2022</p>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div
+                                      ngClass="col-xl-7 col-lg-12 col-md-12 col-sm-12 text-right">
+                                      <div ngClass="pro-contact-details">
+                                          <a ngClass="pro-footer-btn grren-btn">Contct</a>
+                                          <a ngClass="pro-footer-btn">Discover More</a>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          <!-- <p ngClass="premium-tag">PREMIUM</p> -->
+                      </div>
+                      <button _ngcontent-ekm-c201="" ngclass="tag_btn blue" ng-reflect-ng-class="tag_btn blue" class="tag_btn blue"><img _ngcontent-ekm-c201="" src="../../../assets/images/icons/tag-icn.svg"> PREMIUM</button>
+                  </div>
+              </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+<app-footer></app-footer>
+</section>
