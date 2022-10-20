@@ -29,7 +29,7 @@
                 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-4">
                   <div class="dashboard-data-select-box">
                     <label>Property Type</label>
-                    <select class="select2 unit-number-select">
+                    <select class="select2 property-type-select unit-number-select">
                       <option *ngFor="let item of propertyType" value="{{item.id}}">{{item.typeDescription}}</option>
                     </select>
                   </div>
@@ -37,7 +37,7 @@
                 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-4">
                   <div class="dashboard-data-select-box">
                     <label>Project</label>
-                    <select class="select2 unit-number-select">
+                    <select class="select2 project-select unit-number-select">
                       <option *ngFor="let item of projectsData" value="{{item.id}}">{{item.name}}</option>
                     </select>
                   </div>
@@ -45,10 +45,8 @@
                 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-4">
                   <div class="dashboard-data-select-box">
                     <label>Unit Number</label>
-                    <select class="select2 unit-number-select">
-                      <option>802</option>
-                      <option>803</option>
-                      <option>804</option>
+                    <select class="select2 unit-select unit-number-select">
+                      <option *ngFor="let item of unitsData" value="{{item}}">{{item}}</option>
                     </select>
                   </div>
                 </div>

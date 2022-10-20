@@ -468,4 +468,7 @@ export class AppService {
   GetResidentialRentData(data:any) {
     return this.http.post(this.apiurl + 'GetResidentialRentData', data);
   }
+  GetUnitsByProjectId(data:any) {
+    return this.http.get(this.apiurl + 'GetUnitsByProjectId/' + data);
+  }
 }

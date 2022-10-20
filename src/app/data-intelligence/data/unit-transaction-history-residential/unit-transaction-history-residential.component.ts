@@ -1,14 +1,6 @@
 import { Component, OnInit, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
-import { MatChipInputEvent } from '@angular/material/chips';
-import { Observable } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
-import { Options } from '@angular-slider/ngx-slider';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
 import { CookieService } from 'ngx-cookie-service';
 import { AppService } from 'src/app/service/app.service';
 import { Select2 } from 'select2';
@@ -50,6 +42,7 @@ export class UnitTransactionHistoryResidentialComponent implements OnInit {
   unitNumber: any = "";
   propertyType: any = [];
   projectsData:any = [];
+  unitsData:any = [];
 
   constructor(private cookie: CookieService, private service: AppService) {
     this.countryData = JSON.parse(this.cookie.get("countryData"));
@@ -62,7 +55,18 @@ export class UnitTransactionHistoryResidentialComponent implements OnInit {
           clearInterval(interval);
         }
       },100)
+      let interval2 = setInterval(() => {
+        if(this.projectsData.length > 0) {
+          this.loadUnits(this.projectsData[0].id)
+          clearInterval(interval2);
+        }
+      },100)
       this.loadType();
+    })
+  }
+  loadUnits(e:any) {
+    this.service.GetUnitsByProjectId(e).subscribe((result: any) => {
+      this.unitsData = result.data;
     })
   }
   loadProject(e: any) {
@@ -96,7 +100,19 @@ export class UnitTransactionHistoryResidentialComponent implements OnInit {
       this.loadDistrict($(".city-select").val());
     })
     $(".district-select").on("change", () => {
-      this.loadProject($(".district-select").val());
-    })
+      this.selectedDistrict = $(".district-select").val();
+      this.loadProject(this.selectedDistrict);
+    });
+    $(".property-type-select").on("change", () => {
+      this.selectedType = $(".property-type-select").val();
+      this.loadProject(this.selectedType);
+    });
+    $(".project-select").on("change", () => {
+      this.selectedProject = $(".project-select").val();
+      this.loadUnits(this.selectedProject);
+    });
+    $(".unit-select").on("change", () => {
+      this.unitNumber = $(".unit-select").val();
+    });
   }
 }
