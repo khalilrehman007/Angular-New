@@ -7926,8 +7926,8 @@ li.agent-details__property-list-item {
 
 		.mat-expansion-panel {
 			box-shadow: none;
-			border: 1px solid rgba(0,0,0,.08);
-			border-radius: 16px !important;
+			border: 1px solid transparent;
+			border-radius: 10px !important;
 			transition: all ease 0.5s;
 			box-shadow: none !important;
 			padding: 6px 20px;
@@ -7940,7 +7940,9 @@ li.agent-details__property-list-item {
 		}
 	}
 }
-
+.accordians-wrapper .mat-expansion-panel:hover {
+    border-color: rgba(0, 0, 0, 0.14);
+}
 .faq-page-sec {
 	.faq-section-wrapper {
 		padding-top: 40px;
@@ -8989,9 +8991,6 @@ margin-right: 0px;
     font-size: 14px;
     font-weight: 300;
     line-height: normal;
-}
-.accordians-wrapper .mat-expansion-panel:hover {
-    background-color: whitesmoke;
 }
 .accordians-wrapper .mat-expansion-panel.mat-expanded:hover{
 	background-color: #595ad5;
