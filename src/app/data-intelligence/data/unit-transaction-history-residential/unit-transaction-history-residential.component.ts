@@ -41,37 +41,55 @@ export class UnitTransactionHistoryResidentialComponent implements OnInit {
   selectedProject: any = "";
   unitNumber: any = "";
   propertyType: any = [];
-  projectsData:any = [];
-  unitsData:any = [];
+  projectsData: any = [];
+  unitsData: any = [];
+  transactionData:any = "";
 
   constructor(private cookie: CookieService, private service: AppService) {
     this.countryData = JSON.parse(this.cookie.get("countryData"));
+    console.log(this.countryData);
     this.service.FindCities({ "CountryId": this.countryData.id, "Locations": [] }).subscribe((result: any) => {
       this.citiesData = result.data;
-      this.loadDistrict(this.citiesData[0].id)
+      this.selectedCity = this.citiesData[0].id;
+      this.loadDistrict(this.citiesData[0].id);
       let interval = setInterval(() => {
-        if(this.districtData.length > 0) {
+        if (this.districtData.length > 0) {
+          this.selectedDistrict = this.districtData[0].id;
           this.loadProject(this.districtData[0].id);
           clearInterval(interval);
         }
-      },100)
+      }, 100)
       let interval2 = setInterval(() => {
-        if(this.projectsData.length > 0) {
+        if (this.projectsData.length > 0) {
+          this.selectedProject = this.projectsData[0].id;
           this.loadUnits(this.projectsData[0].id)
           clearInterval(interval2);
         }
-      },100)
+      }, 100)
+      let interval3 = setInterval(() => {
+        if (this.unitsData.length > 0) {
+          this.unitNumber = this.unitsData[0];
+          this.loadData();
+          clearInterval(interval3);
+        }
+      }, 100)
       this.loadType();
     })
   }
-  loadUnits(e:any) {
+  loadUnits(e: any) {
     this.service.GetUnitsByProjectId(e).subscribe((result: any) => {
       this.unitsData = result.data;
+      if(this.unitsData.length == 0) {
+        this.unitNumber = "";
+      }
     })
   }
   loadProject(e: any) {
     this.service.GetProjects({ "DistrictIds": [e] }).subscribe((result: any) => {
       this.projectsData = result.data;
+      if(this.projectsData.length == 0) {
+        this.selectedProject = "";
+      }
     })
   }
   loadType() {
@@ -79,19 +97,40 @@ export class UnitTransactionHistoryResidentialComponent implements OnInit {
       for (let item of result.data) {
         this.propertyType.push(item)
       }
+      this.selectedType = this.propertyType[0].id
       this.service.LoadType(2).subscribe((result: any) => {
         for (let item of result.data) {
           this.propertyType.push(item)
         }
+        this.selectedType = this.propertyType[0].id;
       })
     })
   }
   loadDistrict(e: any) {
     this.service.FindDistricts({ "CityId": e, "Locations": [] }).subscribe((result: any) => {
       this.districtData = result.data;
+      if(this.districtData.length == 0) {
+        this.selectedDistrict = "";
+      }
     })
   }
+  loadData() {
+    if (this.selectedCity == "" || this.selectedDistrict == "" || this.selectedProject == "" || this.unitNumber == "") {
+      return;
+    }
+    let temp:any = {};
+    temp.CountryId = this.countryData.id;
+    temp.CityId = this.selectedCity;
+    temp.DistrictId = this.selectedDistrict;
+    temp.ProjectId = this.selectedProject;
+    temp.PropertyTypeId = this.selectedType;
+    temp.UnitNo = this.unitNumber;
 
+    this.service.GetResidentialUnitTransactionHistory(temp).subscribe((result:any) => {
+      this.transactionData = result.data;
+      console.log(this.transactionData);
+    })
+  }
   ngOnInit(): void {
   }
   ngAfterViewInit() {
@@ -102,17 +141,21 @@ export class UnitTransactionHistoryResidentialComponent implements OnInit {
     $(".district-select").on("change", () => {
       this.selectedDistrict = $(".district-select").val();
       this.loadProject(this.selectedDistrict);
+      this.loadData();
     });
     $(".property-type-select").on("change", () => {
       this.selectedType = $(".property-type-select").val();
       this.loadProject(this.selectedType);
+      this.loadData();
     });
     $(".project-select").on("change", () => {
       this.selectedProject = $(".project-select").val();
       this.loadUnits(this.selectedProject);
+      this.loadData();
     });
     $(".unit-select").on("change", () => {
       this.unitNumber = $(".unit-select").val();
+      this.loadData();
     });
   }
 }

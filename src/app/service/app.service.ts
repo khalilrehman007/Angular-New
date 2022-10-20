@@ -471,4 +471,7 @@ export class AppService {
   GetUnitsByProjectId(data:any) {
     return this.http.get(this.apiurl + 'GetUnitsByProjectId/' + data);
   }
+  GetResidentialUnitTransactionHistory(data:any) {
+    return this.http.post(this.apiurl + 'GetResidentialUnitTransactionHistory', data);
+  }
 }
