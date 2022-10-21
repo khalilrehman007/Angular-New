@@ -27,7 +27,7 @@ const routes: Routes = [
   {path:"payment-form", loadChildren:()=>import('./payment-packages-final/payment-packages-final.module').then(module => module.PaymentPackagesFinalModule)},
   {path:"PropertyCompare", loadChildren:()=>import('./property-compare/property-compare.module').then(module => module.PropertyCompareModule)},
   {path:"project", loadChildren:()=>import('./projects/project.module').then(module => module.ExploreModule)},
-  {path:"new-homes", loadChildren:()=>import('./new-homes/new-homes.module').then(module => module.ExploreModule)},
+  {path:"new-homes", loadChildren:()=>import('./new-homes/new-homes.module').then(module => module.PropertyModule)},
   {path:"data-intelligence/data", loadChildren:()=>import('./data-intelligence/data/data.module').then(module => module.DataModule)},
   
   {path:"ar", loadChildren:()=>import('./ar/ar.module').then(module => module.ArModuleModule)},

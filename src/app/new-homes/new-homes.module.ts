@@ -1,61 +1,64 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { NewHomesRoutingModule } from './new-homes-routing.module';
-import { NewHomesComponent } from './new-homes/new-homes.component';
+import { PropertyRoutingModule } from './new-homes-routing.module';
+import { SearchComponent } from './search/search.component';
 import { CommonFilesModule } from '../common-files/common-files.module';
+import { PropertyfilterComponent } from './propertyfilter/propertyfilter.component';
 import { BreadcrumbsModule } from '../breadcrumbs/breadcrumbs.module';
-
+import { ShortTermRentComponent } from './short-term-rent/short-term-rent.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
+import { MatTabsModule } from '@angular/material/tabs';
+import { NgxSliderModule } from "@angular-slider/ngx-slider";
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-// import { CityComponent } from './city/city.component';
-// import { DetailsComponent } from './details/details.component';
-// import { LuxuryComponent } from './luxury/luxury.component';
-// import { UltraLuxuryComponent } from './ultraluxury/ultraluxury.component';
-// import { ScoresComponent } from './scores/scores.component';
-import { CarouselModule } from 'ngx-owl-carousel-o';
-// Import ng-circle-progress
-import { NgCircleProgressModule } from 'ng-circle-progress';
+import { PropertyDetailComponent } from './property-detail/property-detail.component';
+import { ViewmapComponent } from './viewmap/viewmap.component';
+import {NgChartsModule} from "ng2-charts";
+import { NgxGalleryModule } from '@kolkov/ngx-gallery';
+import { HttpClientModule} from '@angular/common/http';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+
+
+
 
 @NgModule({
   declarations: [
-    NewHomesComponent,
-    // CityComponent,
-    // DetailsComponent,
-    // LuxuryComponent,
-    // UltraLuxuryComponent,
-    // ScoresComponent
+    SearchComponent,
+    PropertyfilterComponent,
+    PropertyDetailComponent,
+    ViewmapComponent,
+    ShortTermRentComponent
   ],
   imports: [
     CommonModule,
-    NewHomesRoutingModule,
+    PropertyRoutingModule,
     CommonFilesModule,
+    BreadcrumbsModule,
+    NgChartsModule,
+    FormsModule,
+    ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
+    NgbModule,
+    NgxPaginationModule,
     MatChipsModule,
     MatIconModule,
-    FormsModule,
-    ReactiveFormsModule,
+    MatTabsModule,
+    NgxSliderModule,
     MatAutocompleteModule,
-    BreadcrumbsModule,
-    CarouselModule,
-    // Specify ng-circle-progress as an import
-    NgCircleProgressModule.forRoot({
-      // set defaults here
-      radius: 100,
-      outerStrokeWidth: 16,
-      innerStrokeWidth: 8,
-      outerStrokeColor: "#78C000",
-      innerStrokeColor: "#C7E596",
-      animationDuration: 300,
-      titleFontWeight: "700"
-    })
+    NgxGalleryModule,
+    HttpClientModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ]
 })
-export class ExploreModule { }
+export class PropertyModule { }
