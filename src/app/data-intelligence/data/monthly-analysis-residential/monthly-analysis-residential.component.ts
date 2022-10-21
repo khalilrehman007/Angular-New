@@ -820,7 +820,6 @@ export class MonthlyAnalysisResidentialComponent implements OnInit {
       }
     }
     this.transactionTypeChartData = tempData;
-    console.log(this.transactionTypeChartData);
     this.createTypeChartData();
   }
   createTypeChartData() {
@@ -901,8 +900,6 @@ export class MonthlyAnalysisResidentialComponent implements OnInit {
     tempChartData.datasets = tempDataset;
     this.tbtData = tempChartData;
     this.showTBT = true;
-    console.log(tempDataset);
-    // console.log(this.Transactionfield);
   }
 }
 
