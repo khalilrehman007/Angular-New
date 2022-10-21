@@ -176,7 +176,7 @@ export class TransactionDataComponent implements OnInit {
         }
       })
     })
-    this.service.LoadTransactionTypes().subscribe((result: any) => {
+    this.service.GetTransactionType().subscribe((result: any) => {
       this.filteredTransaction = result.data;
     })
   }
