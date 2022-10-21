@@ -80,6 +80,7 @@ export class MonthlyAnalysisResidentialComponent implements OnInit {
   Cityfield: any = [];
   allCityfield: any = [];
   transactionTypeChartData: any = "";
+  transactionSequenceChartData: any = "";
 
   @ViewChild('ComunityInput') ComunityInput: any;
   @ViewChild('PropertyTypeInput') PropertyTypeInput: any;
@@ -139,31 +140,7 @@ export class MonthlyAnalysisResidentialComponent implements OnInit {
   public tbtPlugins = [
     DatalabelsPlugin
   ];
-  public tbtData: any= {};
-  // public tbtData: ChartData<'bar'> = {
-  //   labels: ["01-2016", "03-2017", "03-2018", "03-2019", "03-2020", "03-2021"],
-  //   datasets: [{
-  //     label: 'Primary',
-  //     data: [3.58, 3.59, 3.74, 3.55, 2.85, 2.94],
-  //     borderRadius: 50,
-  //     barPercentage: 0.9,
-  //     minBarLength: 10,
-  //     backgroundColor: "rgb(211, 219, 255)",
-  //     hoverBackgroundColor: [
-  //       "rgb(211, 219, 255)"
-  //     ]
-  //   }, {
-  //     label: 'Secondary',
-  //     data: [12.39, 12.61, 12.89, 13.00, 12.81, 13.39, 7],
-  //     borderRadius: 50,
-  //     barPercentage: 0.9,
-  //     minBarLength: 10,
-  //     backgroundColor: "rgb(89, 90, 212)",
-  //     hoverBackgroundColor: [
-  //       "rgb(89, 90, 212)"
-  //     ]
-  //   }]
-  // };
+  public tbtData: any = {};
   public tbsOptions: ChartConfiguration['options'] = {
     responsive: true,
     scales: {
@@ -204,30 +181,7 @@ export class MonthlyAnalysisResidentialComponent implements OnInit {
   public tbsPlugins = [
     DatalabelsPlugin
   ];
-  public tbsData: ChartData<'bar'> = {
-    labels: ["01-2016", "03-2017", "03-2018", "03-2019", "03-2020", "03-2021"],
-    datasets: [{
-      label: 'Primary',
-      data: [3.58, 3.59, 3.74, 3.55, 2.85, 2.94],
-      borderRadius: 50,
-      barPercentage: 0.9,
-      minBarLength: 10,
-      backgroundColor: "rgb(211, 219, 255)",
-      hoverBackgroundColor: [
-        "rgb(211, 219, 255)"
-      ]
-    }, {
-      label: 'Secondary',
-      data: [12.39, 12.61, 12.89, 13.00, 12.81, 13.39, 7],
-      borderRadius: 50,
-      barPercentage: 0.9,
-      minBarLength: 10,
-      backgroundColor: "rgb(89, 90, 212)",
-      hoverBackgroundColor: [
-        "rgb(89, 90, 212)"
-      ]
-    }]
-  };
+  public tbsData: any = {};
   public tvbtOptions: ChartConfiguration['options'] = {
     responsive: true,
     scales: {
@@ -476,7 +430,8 @@ export class MonthlyAnalysisResidentialComponent implements OnInit {
       ]
     }]
   };
-  showTBT:boolean = false;
+  showTBT: boolean = false;
+  showTBS: boolean = false;
   constructor(private cookie: CookieService, private service: AppService) {
     this.minSize = this.SizeminValue;
     this.maxSize = this.SizemaxValue;
@@ -491,17 +446,14 @@ export class MonthlyAnalysisResidentialComponent implements OnInit {
     this.startDate = temp.getMonth() + "-" + temp.getDate() + "-" + temp.getFullYear();
     this.endDate = this.currentDate.getMonth() + "-" + this.currentDate.getDate() + "-" + this.currentDate.getFullYear();
     this.countryData = JSON.parse(this.cookie.get("countryData"));
+    this.service.TransactionSequence().subscribe((result: any) => {
+      this.filteredsales = result.data;
+    })
     this.service.FindCities({ "CountryId": this.countryData.id, "Locations": [] }).subscribe((result: any) => {
       this.citiesData = result.data;
-      // this.Cityfield.push({ "id": this.citiesData[0].id, "name": this.citiesData[0].name });
-      // this.loadDistrict();
       let a = setInterval(() => {
         if (this.filteredcommunity.length > 0) {
-          // this.communityfield.push({ "id": this.filteredcommunity[0].id, "name": this.filteredcommunity[0].name });
           this.loadData();
-          this.service.TransactionSequence({ "DistrictIds": [this.filteredcommunity[0].id] }).subscribe((result: any) => {
-            this.filteredsales = result.data;
-          })
           clearInterval(a);
         }
       })
@@ -521,8 +473,6 @@ export class MonthlyAnalysisResidentialComponent implements OnInit {
     })
     this.service.GetTransactionType().subscribe((result: any) => {
       this.filteredTransaction = result.data;
-      this.Transactionfield.push({ "id": this.filteredTransaction[0].id, "name": this.filteredTransaction[0].name })
-      this.Transactionfield.push({ "id": this.filteredTransaction[1].id, "name": this.filteredTransaction[1].name })
       this.loadData();
     })
   }
@@ -554,7 +504,7 @@ export class MonthlyAnalysisResidentialComponent implements OnInit {
     this.loadData();
   }
   loadData() {
-    if (this.startDate == "" || this.endDate == "" || this.Transactionfield.length == 0) {
+    if (this.startDate == "" || this.endDate == "") {
       return;
     }
     this.showLoader = true;
@@ -582,10 +532,20 @@ export class MonthlyAnalysisResidentialComponent implements OnInit {
       for (let item of this.Transactionfield) {
         temp.TransactionTypeIds.push(item.id)
       }
+    } else {
+      temp.TransactionTypeIds = [];
+      for (let item of this.filteredTransaction) {
+        temp.TransactionTypeIds.push(item.id)
+      }
     }
     if (this.salesfield.length != 0) {
       temp.TransactionSequenceIds = [];
       for (let item of this.salesfield) {
+        temp.TransactionSequenceIds.push(item.id)
+      }
+    } else {
+      temp.TransactionSequenceIds = [];
+      for (let item of this.filteredsales) {
         temp.TransactionSequenceIds.push(item.id)
       }
     }
@@ -604,7 +564,8 @@ export class MonthlyAnalysisResidentialComponent implements OnInit {
     this.service.GetResidentialMonthlyTransactionAnalysis(temp).subscribe((result: any) => {
       if (result.message == "Residential Monthly Transaction Analysis fetched successfully") {
         this.transactionData = result.data;
-        this.filterData();
+        this.filterTypeData();
+        this.filterSequenceData();
         this.showLoader = false;
       }
     });
@@ -633,7 +594,7 @@ export class MonthlyAnalysisResidentialComponent implements OnInit {
     for (let item of this.communityfield) {
       temp.push(item.id)
     }
-    this.service.TransactionSequence({ "DistrictIds": temp }).subscribe((result: any) => {
+    this.service.TransactionSequence().subscribe((result: any) => {
       this.filteredsales = result.data;
     })
     this.loadData();
@@ -781,7 +742,7 @@ export class MonthlyAnalysisResidentialComponent implements OnInit {
   }
   ngAfterViewInit() {
   }
-  filterData() {
+  filterTypeData() {
     let tempData: any = [];
     let found: boolean = false;
     for (let item of this.transactionData.transactionByType) {
@@ -833,10 +794,16 @@ export class MonthlyAnalysisResidentialComponent implements OnInit {
       tempLabel.push(item.date);
     }
     tempChartData.labels = tempLabel;
-    let tempDataset:any = [];
-    for (let item of this.Transactionfield) {
+    let tempDataset: any = [];
+    let tempArray:any = "";
+    if(this.Transactionfield.length == 0) {
+      tempArray = this.filteredTransaction;
+    } else {
+      tempArray = this.Transactionfield;
+    }
+    for (let item of tempArray) {
       let opacity = opacityData.pop()
-      let tempData:any = {
+      let tempData: any = {
         label: '',
         data: [],
         borderRadius: 50,
@@ -847,50 +814,50 @@ export class MonthlyAnalysisResidentialComponent implements OnInit {
           "rgba(89, 90, 212, " + opacity + ")"
         ]
       };
-      if(item.name == "Sales - Ready") {
-        for(let item2 of this.transactionTypeChartData) {
+      if (item.name == "Sales - Ready") {
+        for (let item2 of this.transactionTypeChartData) {
           tempData.data.push(item2.salesReady)
         }
         tempData.label = item.name;
         tempDataset.push(tempData);
       } else if (item.name == "Mortgage - Ready") {
-        for(let item2 of this.transactionTypeChartData) {
+        for (let item2 of this.transactionTypeChartData) {
           tempData.data.push(item2.mortageReady)
         }
         tempData.label = item.name;
         tempDataset.push(tempData);
       } else if (item.name == "Sales - Off-Plan") {
-        for(let item2 of this.transactionTypeChartData) {
+        for (let item2 of this.transactionTypeChartData) {
           tempData.data.push(item2.salesOffPlan)
         }
         tempData.label = item.name;
         tempDataset.push(tempData);
       } else if (item.name == "Mortgage - Off-Plan") {
-        for(let item2 of this.transactionTypeChartData) {
+        for (let item2 of this.transactionTypeChartData) {
           tempData.data.push(item2.mortageOffPlan)
         }
         tempData.label = item.name;
         tempDataset.push(tempData);
       } else if (item.name == "Gifts - Ready") {
-        for(let item2 of this.transactionTypeChartData) {
+        for (let item2 of this.transactionTypeChartData) {
           tempData.data.push(item2.giftsReady)
         }
         tempData.label = item.name;
         tempDataset.push(tempData);
       } else if (item.name == "Renewed") {
-        for(let item2 of this.transactionTypeChartData) {
+        for (let item2 of this.transactionTypeChartData) {
           tempData.data.push(item2.renewed)
         }
         tempData.label = item.name;
         tempDataset.push(tempData);
       } else if (item.name == "New") {
-        for(let item2 of this.transactionTypeChartData) {
+        for (let item2 of this.transactionTypeChartData) {
           tempData.data.push(item2.new)
         }
         tempData.label = item.name;
         tempDataset.push(tempData);
       } else if (item.name == "Gifts - Off-Plan") {
-        for(let item2 of this.transactionTypeChartData) {
+        for (let item2 of this.transactionTypeChartData) {
           tempData.data.push(item2.giftsOffPlan)
         }
         tempData.label = item.name;
@@ -901,5 +868,82 @@ export class MonthlyAnalysisResidentialComponent implements OnInit {
     this.tbtData = tempChartData;
     this.showTBT = true;
   }
+  filterSequenceData() {
+    let tempData: any = [];
+    let found: boolean = false;
+    for (let item of this.transactionData.transactionValueBySaleSequence) {
+      found = false;
+      for (let item2 of tempData) {
+        if (item2.date == item.transactionDate) {
+          found = true;
+          break;
+        }
+      }
+      if (!found) {
+        tempData.push({ date: item.transactionDate, primary: "", secondary: "" })
+      }
+    }
+    for (let item of this.transactionData.transactionValueBySaleSequence) {
+      for (let i = 0; i < tempData.length; i++) {
+        if (tempData[i].date == item.transactionDate) {
+          if (item.transactionSequence == "Primary") {
+            tempData[i].primary = item.transactionValue;
+          } else if (item.transactionSequence == "Secondary") {
+            tempData[i].secondary = item.transactionValue;
+          }
+        }
+      }
+    }
+    this.transactionSequenceChartData = tempData;
+    this.createSequenceChartData();
+  }
+  createSequenceChartData() {
+    let opacityData = [0.1, 0.1, 0.2, 0.3, 0.4, 0.6, 0.8, 1];
+    let tempChartData: ChartData<'bar'> = {
+      labels: [],
+      datasets: []
+    };
+    let tempLabel: any = []
+    for (let item of this.transactionTypeChartData) {
+      tempLabel.push(item.date);
+    }
+    tempChartData.labels = tempLabel;
+    let tempDataset: any = [];
+    let tempArray:any = "";
+    if(this.salesfield.length == 0) {
+      tempArray = this.filteredsales;
+    } else {
+      tempArray = this.salesfield;
+    }
+    for (let item of tempArray) {
+      let opacity = opacityData.pop()
+      let tempData: any = {
+        label: '',
+        data: [],
+        borderRadius: 50,
+        barPercentage: 0.9,
+        minBarLength: 10,
+        backgroundColor: "rgba(89, 90, 212, " + opacity + ")",
+        hoverBackgroundColor: [
+          "rgba(89, 90, 212, " + opacity + ")"
+        ]
+      };
+      if (item.name == "Primary") {
+        for (let item2 of this.transactionSequenceChartData) {
+          tempData.data.push(item2.primary)
+        }
+        tempData.label = item.name;
+        tempDataset.push(tempData);
+      } else if (item.name == "Secondary") {
+        for (let item2 of this.transactionSequenceChartData) {
+          tempData.data.push(item2.secondary)
+        }
+        tempData.label = item.name;
+        tempDataset.push(tempData);
+      }
+    }
+    tempChartData.datasets = tempDataset;
+    this.tbsData = tempChartData;
+    this.showTBS = true;
+  }
 }
-

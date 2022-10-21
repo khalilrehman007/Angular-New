@@ -345,7 +345,7 @@ export class RentDataResidentialComponent implements OnInit {
     this.service.GetProjects({ "DistrictIds": temp }).subscribe((result: any) => {
       this.filteredPropertyOnly = result.data;
     })
-    this.service.TransactionSequence({ "DistrictIds": temp }).subscribe((result: any) => {
+    this.service.TransactionSequence().subscribe((result: any) => {
       this.filteredsales = result.data;
     })
   }
