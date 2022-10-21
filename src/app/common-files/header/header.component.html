@@ -480,10 +480,10 @@
                                     <button type="button" class="btn btn-outline-primary" id="dropdownBasic1"
                                         ngbDropdownToggle>Projects</button>
                                     <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                                      <button ngbDropdownItem><a [ngClass]="activeShortterm ? 'nav-active' : 'nav-link'" routerLink="/project">All projects</a></button>
-                                      <button ngbDropdownItem><a [ngClass]="activeShortterm ? 'nav-active' : 'nav-link'" routerLink="/project/luxury">Premium Projects</a></button>
-                                      <button ngbDropdownItem><a [ngClass]="activeShortterm ? 'nav-active' : 'nav-link'" routerLink="/project/ultraluxury">Ultra Premium Projects</a></button>
-                                      <button ngbDropdownItem><a [ngClass]="activeShortterm ? 'nav-active' : 'nav-link'" routerLink="/project/scores">Projects Ratings</a></button>
+                                      <button ngbDropdownItem><a routerLink="/project">All projects</a></button>
+                                      <button ngbDropdownItem><a routerLink="/project/luxury">Premium Projects</a></button>
+                                      <button ngbDropdownItem><a routerLink="/project/ultraluxury">Ultra Premium Projects</a></button>
+                                      <button ngbDropdownItem><a routerLink="/project/scores">Projects Ratings</a></button>
                                     </div>
                                 </div>
                             </li>
@@ -492,16 +492,16 @@
                                     <button type="button" class="btn btn-outline-primary" id="dropdownBasic3"
                                         ngbDropdownToggle>New Homes</button>
                                     <div ngbDropdownMenu aria-labelledby="dropdownBasic3">
-                                        <button ngbDropdownItem><a routerLink="">New projects in Dubai</a></button>
-                                        <button ngbDropdownItem><a routerLink="">Off-plan properties location
+                                        <button ngbDropdownItem><a routerLink="/new-homes">New projects in Dubai</a></button>
+                                        <button ngbDropdownItem><a routerLink="/new-homes">Off-plan properties location
                                                 map</a></button>
-                                        <button ngbDropdownItem><a routerLink="">Buy off-plan apartments in
+                                        <button ngbDropdownItem><a routerLink="/new-homes">Buy off-plan apartments in
                                                 Dubai</a></button>
-                                        <button ngbDropdownItem><a routerLink="">Buy off-plan townhouses in
+                                        <button ngbDropdownItem><a routerLink="/new-homes">Buy off-plan townhouses in
                                                 Dubai</a></button>
-                                        <button ngbDropdownItem><a routerLink="">Buy off-plan townhouses in
+                                        <button ngbDropdownItem><a routerLink="/new-homes">Buy off-plan townhouses in
                                                 Dubai</a></button>
-                                        <button ngbDropdownItem><a routerLink="">Properties with payment
+                                        <button ngbDropdownItem><a routerLink="/new-homes">Properties with payment
                                                 plan</a></button>
                                     </div>
                                 </div>
@@ -521,7 +521,7 @@
                                     Valuation <span ngClass="ai-tag">AI</span>
                                 </a>
                             </li>
-                            <li ngClass="nav-item">
+                            <li ngClass="nav-item" *ngIf="currentCountry != ''">
                                 <a ngClass="nav-link blue-bordered-btn blue-fill-btn" routerLink="/data-intelligence/data/transaction-data">
                                     <!-- <a ngClass="nav-link blue-bordered-btn"
                                     href="https://dx1.in/data-Intelligence/dashboard/"> -->

@@ -3,12 +3,9 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatChipInputEvent } from '@angular/material/chips';
-import { Observable } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
 import { Options } from '@angular-slider/ngx-slider';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
 import { CookieService } from 'ngx-cookie-service';
 import { AppService } from 'src/app/service/app.service';
 interface ItemsPerPage {
@@ -114,7 +111,7 @@ export class TransactionDataComponent implements OnInit {
   Cityfield: any = [];
   allCityfield: string[] = ['All City', 'City', 'City'];
 
-  currentDate: any = new Date()
+  currentDate: any = new Date();
   range = new FormGroup({
     start: new FormControl(),
     end: new FormControl()
@@ -179,7 +176,7 @@ export class TransactionDataComponent implements OnInit {
         }
       })
     })
-    this.service.LoadTransactionTypes().subscribe((result: any) => {
+    this.service.GetTransactionType().subscribe((result: any) => {
       this.filteredTransaction = result.data;
     })
   }
@@ -278,7 +275,7 @@ export class TransactionDataComponent implements OnInit {
     if (this.bedsfield.length != 0) {
       temp.BedroomList = [];
       for (let item of this.bedsfield) {
-        temp.BedroomList.push(item.id)
+        temp.BedroomList.push(item)
       }
     }
     this.service.GetResidentialTransactionData(temp).subscribe((result: any) => {

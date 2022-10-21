@@ -193,76 +193,81 @@
          <h4>RANKINGS</h4>
         </div>
         <ul class="list-unstyled">
-         <li class="mt-4 mb-4">RESIDENTIAL</li>
-         <li>
-           <div ngbDropdown>
-             <button type="button" class="btn btn-outline-primary" id="dropdownBasic13" ngbDropdownToggle>AREA RANKINGS</button>
-             <div ngbDropdownMenu aria-labelledby="dropdownBasic13">
-               <button ngbDropdownItem>Sales</button>
-               <button ngbDropdownItem>Rental Yields</button>
-               <button ngbDropdownItem>Residential Supply</button>
-               <button ngbDropdownItem>Occupancy Rates</button>
-               <button ngbDropdownItem>Service Changes</button>
-             </div>
-           </div>
-         </li>
-         <li>
-           <div ngbDropdown>
-             <button type="button" class="btn btn-outline-primary" id="dropdownBasic14" ngbDropdownToggle>PROPERTY RANKINGS</button>
-             <div ngbDropdownMenu aria-labelledby="dropdownBasic14">
-              <button ngbDropdownItem>Sales</button>
-              <button ngbDropdownItem>Rental Yields</button>
-              <button ngbDropdownItem>Residential Supply</button>
-              <button ngbDropdownItem>Occupancy Rates</button>
-              <button ngbDropdownItem>Service Changes</button>
-             </div>
-           </div>
-         </li>
-         <li>COMMERCIAL</li>
-         <li>
-           <div ngbDropdown>
-             <button type="button" class="btn btn-outline-primary" id="dropdownBasic15" ngbDropdownToggle>BROKERAGE RANKINGS</button>
-             <div ngbDropdownMenu aria-labelledby="dropdownBasic15">
-               <button ngbDropdownItem>Brokerage Rankings</button>
-               <button ngbDropdownItem>Brokerage Analytics</button>
-             </div>
-           </div>
-         </li>
-         <li class="mt-4 mb-4">COMMERCIAL</li>
-         <li>
-           <div ngbDropdown>
-             <button type="button" class="btn btn-outline-primary" id="dropdownBasic16" ngbDropdownToggle>OFFICE</button>
-             <div ngbDropdownMenu aria-labelledby="dropdownBasic16">
-               <button ngbDropdownItem>Area Rankings</button>
-               <button ngbDropdownItem>Sales</button>
-               <button ngbDropdownItem>Rent</button>
-               <button ngbDropdownItem>Office Supply</button>
-               <button ngbDropdownItem>Occupancy Rates</button>
-               <button ngbDropdownItem>Service Changes</button>
-             </div>
-           </div>
-         </li>
-         <li>
-           <div ngbDropdown>
-             <button type="button" class="btn btn-outline-primary" id="dropdownBasic17" ngbDropdownToggle>PROPERTY RANKINGSS</button>
-             <div ngbDropdownMenu aria-labelledby="dropdownBasic17">
-               <button ngbDropdownItem>Sales</button>
-               <button ngbDropdownItem>Rental</button>
-               <button ngbDropdownItem>Office Supply</button>
-               <button ngbDropdownItem>Occupancy Rates</button>
-               <button ngbDropdownItem> Service Charges</button>
-             </div>
-           </div>
-         </li>
-         <li>
-          <div ngbDropdown>
-            <button type="button" class="btn btn-outline-primary" id="dropdownBasic18" ngbDropdownToggle>BROKERAGE RANKINGS</button>
-            <div ngbDropdownMenu aria-labelledby="dropdownBasic18">
-              <button ngbDropdownItem>Brokerage Rankings</button>
-              <button ngbDropdownItem>Brokerage Analytics</button>
+          <li>
+            <div ngbDropdown class="dropdown-design dropdown-design-main">
+              <button type="button" class="btn btn-outline-primary" id="dropdownBasicResedentialReportRed" ngbDropdownToggle><mat-icon>home</mat-icon>RESIDENTIAL</button>
+              <div ngbDropdownMenu aria-labelledby="dropdownBasicResedentialReport">
+                <div ngbDropdown class="dropdown-design dropdown-design-sub-menu">
+                  <button type="button" class="btn btn-outline-primary" id="dropdownBasicarearankingRes" ngbDropdownToggle>AREA RANKINGS </button>
+                  <div ngbDropdownMenu aria-labelledby="dropdownBasicarearanking">
+                    <button ngbDropdownItem><a routerLink="">Sales</a></button>
+                    <button ngbDropdownItem><a routerLink="">Rental</a></button>
+                    <button ngbDropdownItem><a routerLink="">Rental Yields</a></button>
+                    <button ngbDropdownItem><a routerLink="">Residential Supply</a></button>
+                    <button ngbDropdownItem><a routerLink="">Occupancy Rates</a></button>
+                    <button ngbDropdownItem><a routerLink="">Service Charges</a></button>
+                  </div>
+                </div>
+                <div ngbDropdown class="dropdown-design dropdown-design-sub-menu">
+                  <button type="button" class="btn btn-outline-primary" id="dropdownBasicpropertyRankingRed" ngbDropdownToggle>PROPERTY RANKINGS </button>
+                  <div ngbDropdownMenu aria-labelledby="dropdownBasicpropertyRankingRed">
+                    <button ngbDropdownItem><a routerLink="">Sales</a></button>
+                    <button ngbDropdownItem><a routerLink="">Rental</a></button>
+                    <button ngbDropdownItem><a routerLink="">Rental Yields</a></button>
+                    <button ngbDropdownItem><a routerLink="">Residential Supply</a></button>
+                    <button ngbDropdownItem><a routerLink="">Occupancy Rates</a></button>
+                    <button ngbDropdownItem><a routerLink="">Service Charges</a></button>
+                  </div>
+                </div>
+                <div ngbDropdown class="dropdown-design dropdown-design-sub-menu">
+                  <button type="button" class="btn btn-outline-primary" id="dropdownBasicpropertyRankingRed" ngbDropdownToggle>BROKERAGE RANKINGS </button>
+                  <div ngbDropdownMenu aria-labelledby="dropdownBasicpropertyRankingRed">
+                    <button ngbDropdownItem><a routerLink="">Brokerage Rankings</a></button>
+                    <button ngbDropdownItem><a routerLink="">Brokerage Analytics</a></button>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-        </li>
+          </li>
+          <li>
+            <div ngbDropdown class="dropdown-design dropdown-design-main">
+              <button type="button" class="btn btn-outline-primary" id="dropdownBasicResedentialReport" ngbDropdownToggle><mat-icon>shopping_cart</mat-icon>COMMERCIAL</button>
+              <div ngbDropdownMenu aria-labelledby="dropdownBasicResedentialReport">
+                <div ngbDropdown class="dropdown-design dropdown-design-sub-menu">
+                  <button type="button" class="btn btn-outline-primary" id="dropdownBasicofficecom1" ngbDropdownToggle>OFFICE</button>
+                  <div ngbDropdownMenu aria-labelledby="dropdownBasicofficecom1">
+                    <div ngbDropdown class="dropdown-design dropdown-design-sub-menu">
+                      <button type="button" class="btn btn-outline-primary" id="dropdownBasicofficecom12" ngbDropdownToggle>Area Rankings</button>
+                      <div ngbDropdownMenu aria-labelledby="dropdownBasicofficecom12">
+                        <button ngbDropdownItem><a routerLink="">Sales</a></button>
+                        <button ngbDropdownItem><a routerLink="">Rent</a></button>
+                        <button ngbDropdownItem><a routerLink="">Office Supply</a></button>
+                        <button ngbDropdownItem><a routerLink="">Occupancy Rates</a></button>
+                        <button ngbDropdownItem><a routerLink="">Service Charges</a></button>
+                      </div>
+                    </div>
+                    <div ngbDropdown class="dropdown-design dropdown-design-sub-menu">
+                      <button type="button" class="btn btn-outline-primary" id="dropdownBasicofficecom13" ngbDropdownToggle>Property Rankings </button>
+                      <div ngbDropdownMenu aria-labelledby="dropdownBasicofficecom13">
+                        <button ngbDropdownItem><a routerLink="">Sales</a></button>
+                        <button ngbDropdownItem><a routerLink="">Rent</a></button>
+                        <button ngbDropdownItem><a routerLink="">Office Supply</a></button>
+                        <button ngbDropdownItem><a routerLink="">Occupancy Rates</a></button>
+                        <button ngbDropdownItem><a routerLink="">Service Charges</a></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div ngbDropdown class="dropdown-design dropdown-design-sub-menu">
+                  <button type="button" class="btn btn-outline-primary" id="dropdownBasicofficecom14" ngbDropdownToggle>Brokerage Rankings</button>
+                  <div ngbDropdownMenu aria-labelledby="dropdownBasicofficecom14">
+                    <button ngbDropdownItem><a routerLink="">Brokerage Rankings</a></button>
+                    <button ngbDropdownItem><a routerLink="">Brokerage Analytics</a></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
         </ul>
       </div>
       <div class="dashboard-data-side-links trends" [ngClass]="status4 ? 'show' : 'hide'">
@@ -270,81 +275,99 @@
          <h4>TRENDS</h4>
         </div>
         <ul class="list-unstyled">
-         <li class="mt-4 mb-4">RESIDENTIAL</li>
-         <li>TRENDS</li>
-         <li>
-           <div ngbDropdown>
-             <button type="button" class="btn btn-outline-primary" id="dropdownBasic19" ngbDropdownToggle>SALES PRICE TRENDS</button>
-             <div ngbDropdownMenu aria-labelledby="dropdownBasic19">
-               <button ngbDropdownItem>Residential Sales</button>
-               <button ngbDropdownItem>Serviced/Hotel Apt Sales</button>
-             </div>
-           </div>
-         </li>
-         <li>RENT PRICE TRENDS</li>
-         <li>RENTAL YIELDS</li>
-         <li>SUPPLY TRENDS</li>
-         <li>INDICES</li>
-         <li>
-           <div ngbDropdown>
-             <button type="button" class="btn btn-outline-primary" id="dropdownBasic20" ngbDropdownToggle>SALES PRICE INDICES</button>
-             <div ngbDropdownMenu aria-labelledby="dropdownBasic20">
-               <button ngbDropdownItem>Residential Sales</button>
-               <button ngbDropdownItem>Prime Residential Sales</button>
-               <button ngbDropdownItem>Off - Plan Sale Prices</button>
-               <button ngbDropdownItem>Serviced/Hotel Apt Sales</button>
-             </div>
-           </div>
-         </li>
-         <li>
-           <div ngbDropdown>
-             <button type="button" class="btn btn-outline-primary" id="dropdownBasic21" ngbDropdownToggle>RENT PRICE INDICES</button>
-             <div ngbDropdownMenu aria-labelledby="dropdownBasic21">
-               <button ngbDropdownItem>Residential Rent</button>
-               <button ngbDropdownItem>Prime Residential Rent</button>
-             </div>
-           </div>
-         </li>
-         <li>HOUSING & RENTAL AFFORDIBILTY</li>
-         <li>BUILDING SCORES</li>
-         <li class="mt-4 mb-4">COMMERCIAL</li>
-         <li>OFFICE</li>
-         <li>TRENDS</li>
-         <li>RENT PRICE TRENDS</li>
-         <li>SUPPLY TRENDS</li>
-         <li>
-           <div ngbDropdown>
-             <button type="button" class="btn btn-outline-primary" id="dropdownBasic22" ngbDropdownToggle>INDICES</button>
-             <div ngbDropdownMenu aria-labelledby="dropdownBasic22">
-               <button ngbDropdownItem>Rent Price Indices</button>
-             </div>
-           </div>
-         </li>
-         <li>
-           <div ngbDropdown>
-             <button type="button" class="btn btn-outline-primary" id="dropdownBasic23" ngbDropdownToggle>RETAIL</button>
-             <div ngbDropdownMenu aria-labelledby="dropdownBasic23">
-               <button ngbDropdownItem>Supply Trends </button>
-             </div>
-           </div>
-         </li>
-         <li>
-          <div ngbDropdown>
-            <button type="button" class="btn btn-outline-primary" id="dropdownBasic24" ngbDropdownToggle>LAND</button>
-            <div ngbDropdownMenu aria-labelledby="dropdownBasic24">
-              <button ngbDropdownItem>Trends</button>
-              <button ngbDropdownItem>Sales Price Trend</button>
+          <li>
+            <div ngbDropdown class="dropdown-design dropdown-design-main">
+              <button type="button" class="btn btn-outline-primary" id="dropdownBasicResedentialReport" ngbDropdownToggle><mat-icon>home</mat-icon>RESIDENTIAL</button>
+              <div ngbDropdownMenu aria-labelledby="dropdownBasicResedentialReport">
+                <div ngbDropdown class="dropdown-design dropdown-design-sub-menu">
+                  <button type="button" class="btn btn-outline-primary" id="dropdowntrends1" ngbDropdownToggle>TRENDS</button>
+                  <div ngbDropdownMenu aria-labelledby="dropdowntrends1">
+                    <div ngbDropdown class="dropdown-design dropdown-design-sub-menu">
+                      <button type="button" class="btn btn-outline-primary" id="dropdowntrends12" ngbDropdownToggle>Sales Price Trends </button>
+                      <div ngbDropdownMenu aria-labelledby="dropdowntrends12">
+                        <button ngbDropdownItem><a routerLink="">Residential Sales</a></button>
+                        <button ngbDropdownItem><a routerLink="">Serviced/Hotel Apartment Sales</a></button>
+                      </div>
+                    </div>
+                    <button ngbDropdownItem><a routerLink="">Rent Price Trends</a></button>
+                    <button ngbDropdownItem><a routerLink="">Rental Yields</a></button>
+                    <button ngbDropdownItem><a routerLink="">Supply Trends</a></button>
+                  </div>
+                </div>
+                <div ngbDropdown class="dropdown-design dropdown-design-sub-menu">
+                  <button type="button" class="btn btn-outline-primary" id="dropdowntrends13" ngbDropdownToggle>INDICES </button>
+                  <div ngbDropdownMenu aria-labelledby="dropdowntrends13">
+                    <div ngbDropdown class="dropdown-design dropdown-design-sub-menu">
+                      <button type="button" class="btn btn-outline-primary" id="dropdowntrends14" ngbDropdownToggle>Sales Price Indices </button>
+                      <div ngbDropdownMenu aria-labelledby="dropdowntrends14">
+                        <button ngbDropdownItem><a routerLink="">Residential Sales</a></button>
+                        <button ngbDropdownItem><a routerLink="">Prime Residential Sales</a></button>
+                        <button ngbDropdownItem><a routerLink="">Off-Plan Sales Prices</a></button>
+                        <button ngbDropdownItem><a routerLink="">Serviced/Hotel Apartment Sales</a></button>
+                      </div>
+                    </div>
+                    <div ngbDropdown class="dropdown-design dropdown-design-sub-menu">
+                      <button type="button" class="btn btn-outline-primary" id="dropdowntrends15" ngbDropdownToggle>Rent Price Indices</button>
+                      <div ngbDropdownMenu aria-labelledby="dropdowntrends15">
+                        <button ngbDropdownItem><a routerLink="">Residential Rent</a></button>
+                        <button ngbDropdownItem><a routerLink="">Prime Residential Rent</a></button>
+                      </div>
+                    </div>
+                    <button ngbDropdownItem><a routerLink="">Housing & Rental Affordability</a></button>
+                    <button ngbDropdownItem><a routerLink="">Buildings Scores</a></button>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-        </li>
-        <li>
-          <div ngbDropdown>
-            <button type="button" class="btn btn-outline-primary" id="dropdownBasic25" ngbDropdownToggle>INDICES</button>
-            <div ngbDropdownMenu aria-labelledby="dropdownBasic25">
-              <button ngbDropdownItem>Sales Price Index</button>
+          </li>
+          <li>
+            <div ngbDropdown class="dropdown-design dropdown-design-main">
+              <button type="button" class="btn btn-outline-primary" id="dropdownBasicResedentialReport" ngbDropdownToggle><mat-icon>shopping_cart</mat-icon>COMMERCIAL</button>
+              <div ngbDropdownMenu aria-labelledby="dropdownBasicResedentialReport">
+                <div ngbDropdown class="dropdown-design dropdown-design-sub-menu">
+                  <button type="button" class="btn btn-outline-primary" id="dropdowntrenscomm16" ngbDropdownToggle>OFFICE</button>
+                  <div ngbDropdownMenu aria-labelledby="dropdowntrenscomm16">
+                    <div ngbDropdown class="dropdown-design dropdown-design-sub-menu">
+                      <button type="button" class="btn btn-outline-primary" id="dropdowntrenscomm17" ngbDropdownToggle>Trends</button>
+                      <div ngbDropdownMenu aria-labelledby="dropdowntrenscomm17">
+                        <button ngbDropdownItem><a routerLink="">Rent Price Trends</a></button>
+                        <button ngbDropdownItem><a routerLink="">Supply Trends</a></button>
+                      </div>
+                    </div>
+                    <div ngbDropdown class="dropdown-design dropdown-design-sub-menu">
+                      <button type="button" class="btn btn-outline-primary" id="dropdowntrenscomm18" ngbDropdownToggle>Indices</button>
+                      <div ngbDropdownMenu aria-labelledby="dropdowntrenscomm18">
+                        <button ngbDropdownItem><a routerLink="">Rent Price Indices</a></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div ngbDropdown class="dropdown-design dropdown-design-sub-menu">
+                  <button type="button" class="btn btn-outline-primary" id="dropdowntrenscomm19" ngbDropdownToggle>RETAIL </button>
+                  <div ngbDropdownMenu aria-labelledby="dropdowntrenscomm19">
+                    <button ngbDropdownItem><a routerLink="">Supply Trends</a></button>
+                  </div>
+                </div>
+                <div ngbDropdown class="dropdown-design dropdown-design-sub-menu">
+                  <button type="button" class="btn btn-outline-primary" id="dropdowntrenscomm20" ngbDropdownToggle>LAND </button>
+                  <div ngbDropdownMenu aria-labelledby="dropdowntrenscomm20">
+                    <div ngbDropdown class="dropdown-design dropdown-design-sub-menu">
+                      <button type="button" class="btn btn-outline-primary" id="dropdowntrenscomm21" ngbDropdownToggle>Trends</button>
+                      <div ngbDropdownMenu aria-labelledby="dropdowntrenscomm21">
+                        <button ngbDropdownItem><a routerLink="">Sale Price Trends</a></button>
+                      </div>
+                    </div>
+                    <div ngbDropdown class="dropdown-design dropdown-design-sub-menu">
+                      <button type="button" class="btn btn-outline-primary" id="dropdowntrenscomm22" ngbDropdownToggle>Indices</button>
+                      <div ngbDropdownMenu aria-labelledby="dropdowntrenscomm22">
+                        <button ngbDropdownItem><a routerLink="">Sale Price Indices</a></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-        </li>
+          </li>
         </ul>
       </div>
    </div>
