@@ -81,6 +81,7 @@ export class MonthlyAnalysisResidentialComponent implements OnInit {
   allCityfield: any = [];
   transactionTypeChartData: any = "";
   transactionSequenceChartData: any = "";
+  transactionTypeValueChartData: any = "";
 
   @ViewChild('ComunityInput') ComunityInput: any;
   @ViewChild('PropertyTypeInput') PropertyTypeInput: any;
@@ -564,8 +565,10 @@ export class MonthlyAnalysisResidentialComponent implements OnInit {
     this.service.GetResidentialMonthlyTransactionAnalysis(temp).subscribe((result: any) => {
       if (result.message == "Residential Monthly Transaction Analysis fetched successfully") {
         this.transactionData = result.data;
+        console.log(this.transactionData);
         this.filterTypeData();
         this.filterSequenceData();
+        this.filterTypeValueData();
         this.showLoader = false;
       }
     });
@@ -945,5 +948,132 @@ export class MonthlyAnalysisResidentialComponent implements OnInit {
     tempChartData.datasets = tempDataset;
     this.tbsData = tempChartData;
     this.showTBS = true;
+  }
+  filterTypeValueData() {
+    let tempData: any = [];
+    let found: boolean = false;
+    for (let item of this.transactionData.transactionValueByType) {
+      found = false;
+      for (let item2 of tempData) {
+        if (item2.date == item.transactionDate) {
+          found = true;
+          break;
+        }
+      }
+      if (!found) {
+        tempData.push({ date: item.transactionDate, salesReady: "", mortageReady: "", salesOffPlan: "", mortageOffPlan: "", giftsReady: "", renewed: "", new: "", giftsOffPlan: "" })
+      }
+    }
+    for (let item of this.transactionData.transactionValueByType) {
+      for (let item2 of tempData) {
+        if (item2.date == item.transactionDate) {
+          if (item.transactionType == "Sales - Ready") {
+            item2.salesReady = item.transactionValue;
+          } else if (item.transactionType == "Mortgage - Ready") {
+            item2.mortageReady = item.transactionValue;
+          } else if (item.transactionType == "Sales - Off-Plan") {
+            item2.salesOffPlan = item.transactionValue;
+          } else if (item.transactionType == "Mortgage - Off-Plan") {
+            item2.mortageOffPlan = item.transactionValue;
+          } else if (item.transactionType == "Gifts - Ready") {
+            item2.giftsReady = item.transactionValue;
+          } else if (item.transactionType == "Renewed") {
+            item2.renewed = item.transactionValue;
+          } else if (item.transactionType == "New") {
+            item2.new = item.transactionValue;
+          } else if (item.transactionType == "Gifts - Off-Plan") {
+            item2.giftsOffPlan = item.transactionValue;
+          }
+        }
+      }
+    }
+    this.transactionTypeValueChartData = tempData;
+    console.log(this.transactionTypeValueChartData);
+    // this.createTypeValueChartData();
+  }
+  createTypeValueChartData() {
+    let opacityData = [0.1, 0.1, 0.2, 0.3, 0.4, 0.6, 0.8, 1];
+    let tempChartData: ChartData<'bar'> = {
+      labels: [],
+      datasets: []
+    };
+    let tempLabel: any = []
+    for (let item of this.transactionTypeChartData) {
+      tempLabel.push(item.date);
+    }
+    tempChartData.labels = tempLabel;
+    let tempDataset: any = [];
+    let tempArray:any = "";
+    if(this.Transactionfield.length == 0) {
+      tempArray = this.filteredTransaction;
+    } else {
+      tempArray = this.Transactionfield;
+    }
+    for (let item of tempArray) {
+      let opacity = opacityData.pop()
+      let tempData: any = {
+        label: '',
+        data: [],
+        borderRadius: 50,
+        barPercentage: 0.9,
+        minBarLength: 10,
+        backgroundColor: "rgba(89, 90, 212, " + opacity + ")",
+        hoverBackgroundColor: [
+          "rgba(89, 90, 212, " + opacity + ")"
+        ]
+      };
+      if (item.name == "Sales - Ready") {
+        for (let item2 of this.transactionTypeChartData) {
+          tempData.data.push(item2.salesReady)
+        }
+        tempData.label = item.name;
+        tempDataset.push(tempData);
+      } else if (item.name == "Mortgage - Ready") {
+        for (let item2 of this.transactionTypeChartData) {
+          tempData.data.push(item2.mortageReady)
+        }
+        tempData.label = item.name;
+        tempDataset.push(tempData);
+      } else if (item.name == "Sales - Off-Plan") {
+        for (let item2 of this.transactionTypeChartData) {
+          tempData.data.push(item2.salesOffPlan)
+        }
+        tempData.label = item.name;
+        tempDataset.push(tempData);
+      } else if (item.name == "Mortgage - Off-Plan") {
+        for (let item2 of this.transactionTypeChartData) {
+          tempData.data.push(item2.mortageOffPlan)
+        }
+        tempData.label = item.name;
+        tempDataset.push(tempData);
+      } else if (item.name == "Gifts - Ready") {
+        for (let item2 of this.transactionTypeChartData) {
+          tempData.data.push(item2.giftsReady)
+        }
+        tempData.label = item.name;
+        tempDataset.push(tempData);
+      } else if (item.name == "Renewed") {
+        for (let item2 of this.transactionTypeChartData) {
+          tempData.data.push(item2.renewed)
+        }
+        tempData.label = item.name;
+        tempDataset.push(tempData);
+      } else if (item.name == "New") {
+        for (let item2 of this.transactionTypeChartData) {
+          tempData.data.push(item2.new)
+        }
+        tempData.label = item.name;
+        tempDataset.push(tempData);
+      } else if (item.name == "Gifts - Off-Plan") {
+        for (let item2 of this.transactionTypeChartData) {
+          tempData.data.push(item2.giftsOffPlan)
+        }
+        tempData.label = item.name;
+        tempDataset.push(tempData);
+      }
+    }
+    tempChartData.datasets = tempDataset;
+    this.tbtData = tempChartData;
+    this.showTBT = true;
   }
 }
