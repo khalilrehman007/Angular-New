@@ -79,6 +79,7 @@ export class MonthlyAnalysisResidentialComponent implements OnInit {
   filteredCity: any = "";
   Cityfield: any = [];
   allCityfield: any = [];
+  transactionTypeChartData:any = "";
 
   @ViewChild('ComunityInput') ComunityInput: any;
   @ViewChild('PropertyTypeInput') PropertyTypeInput: any;
@@ -97,7 +98,7 @@ export class MonthlyAnalysisResidentialComponent implements OnInit {
   maxSize: any = "";
   minPrice: any = "";
   maxPrice: any = "";
-  transactionData:any = "";
+  transactionData: any = "";
   public tbtOptions: ChartConfiguration['options'] = {
     responsive: true,
     scales: {
@@ -474,7 +475,6 @@ export class MonthlyAnalysisResidentialComponent implements OnInit {
       ]
     }]
   };
-
   constructor(private cookie: CookieService, private service: AppService) {
     this.minSize = this.SizeminValue;
     this.maxSize = this.SizemaxValue;
@@ -597,7 +597,6 @@ export class MonthlyAnalysisResidentialComponent implements OnInit {
     this.service.GetResidentialMonthlyTransactionAnalysis(temp).subscribe((result: any) => {
       if (result.message == "Residential Monthly Transaction Analysis fetched successfully") {
         this.transactionData = result.data;
-        console.log(this.transactionData.transactionByType);
         this.filterData();
         this.showLoader = false;
       }
@@ -776,21 +775,45 @@ export class MonthlyAnalysisResidentialComponent implements OnInit {
   ngAfterViewInit() {
   }
   filterData() {
-      let tempData:any = [];
-      let found:boolean = false;
-      for(let item of this.transactionData.transactionByType) {
-        found = false;
-        for(let item2 of tempData) {
-          if(item2.date == item.transactionDate) {
-            found = true;
-            break;
-          }
-        }
-        if(!found) {
-          tempData.push({date:item.transactionDate, salesReady: "", mortageReady: "", salesOffPlan:"", mortageOffPlan:"", giftsReady:"", renewed:"", new:"", giftsOffPlan:""})
+    let tempData: any = [];
+    let found: boolean = false;
+    for (let item of this.transactionData.transactionByType) {
+      found = false;
+      for (let item2 of tempData) {
+        if (item2.date == item.transactionDate) {
+          found = true;
+          break;
         }
       }
-      console.log(tempData);
+      if (!found) {
+        tempData.push({ date: item.transactionDate, salesReady: "", mortageReady: "", salesOffPlan: "", mortageOffPlan: "", giftsReady: "", renewed: "", new: "", giftsOffPlan: "" })
+      }
+    }
+    for (let item of this.transactionData.transactionByType) {
+      for (let item2 of tempData) {
+        if (item2.date == item.transactionDate) {
+          if (item.transactionType == "Sales - Ready") {
+            item2.salesReady = item.transactionCount;
+          } else if (item.transactionType == "Mortgage - Ready") {
+            item2.mortageReady = item.transactionCount;
+          } else if (item.transactionType == "Sales - Off-Plan") {
+            item2.salesOffPlan = item.transactionCount;
+          } else if (item.transactionType == "Mortgage - Off-Plan") {
+            item2.mortageOffPlan = item.transactionCount;
+          } else if (item.transactionType == "Gifts - Ready") {
+            item2.giftsReady = item.transactionCount;
+          } else if (item.transactionType == "Renewed") {
+            item2.renewed = item.transactionCount;
+          } else if (item.transactionType == "New") {
+            item2.new = item.transactionCount;
+          } else if (item.transactionType == "Gifts - Off-Plan") {
+            item2.giftsOffPlan = item.transactionCount;
+          }
+        }
+      }
+    }
+    this.transactionTypeChartData = tempData;
+    console.log(this.transactionTypeChartData);
   }
 }
 
