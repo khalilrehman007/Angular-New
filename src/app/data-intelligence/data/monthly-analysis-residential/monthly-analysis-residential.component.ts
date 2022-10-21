@@ -517,7 +517,7 @@ export class MonthlyAnalysisResidentialComponent implements OnInit {
         }
       })
     })
-    this.service.LoadTransactionTypes().subscribe((result: any) => {
+    this.service.GetTransactionType().subscribe((result: any) => {
       this.filteredTransaction = result.data;
     })
   }
@@ -597,7 +597,8 @@ export class MonthlyAnalysisResidentialComponent implements OnInit {
     this.service.GetResidentialMonthlyTransactionAnalysis(temp).subscribe((result: any) => {
       if (result.message == "Residential Monthly Transaction Analysis fetched successfully") {
         this.transactionData = result.data;
-        console.log(this.transactionData);
+        console.log(this.transactionData.transactionByType);
+        this.filterData();
         this.showLoader = false;
       }
     });
@@ -773,6 +774,23 @@ export class MonthlyAnalysisResidentialComponent implements OnInit {
   ngOnInit(): void {
   }
   ngAfterViewInit() {
+  }
+  filterData() {
+      let tempData:any = [];
+      let found:boolean = false;
+      for(let item of this.transactionData.transactionByType) {
+        found = false;
+        for(let item2 of tempData) {
+          if(item2.date == item.transactionDate) {
+            found = true;
+            break;
+          }
+        }
+        if(!found) {
+          tempData.push({date:item.transactionDate, salesReady: "", mortageReady: "", salesOffPlan:"", mortageOffPlan:"", giftsReady:"", renewed:"", new:"", giftsOffPlan:""})
+        }
+      }
+      console.log(tempData);
   }
 }
 
