@@ -6254,6 +6254,7 @@ img {
 		right: 0;
 		bottom: 0;
 		padding: 30px;
+		cursor: pointer;
 
 		p {
 			margin-bottom: 0px;
@@ -6265,6 +6266,7 @@ img {
 	position: relative;
 	border-radius: 8px;
     overflow: hidden;
+	cursor: pointer;
 
 	img {
 		width: 100%;
@@ -7121,6 +7123,7 @@ img {
 		li {
 			font-size: 14px;
 			color: $color_10;
+			font-weight: 300;
 		}
 	}
 }
@@ -7147,6 +7150,7 @@ img {
 	p {
 		color: $color_3;
 		font-size: 14px;
+		font-weight: 300;
 	}
 
 	h4 {
@@ -7168,13 +7172,13 @@ img {
 	h5 {
 		color: $color_13;
 		font-size: 18px;
-		font-weight: 700;
+		font-weight: 600;
 	}
 
 	p {
 		color: $color_10;
 		font-size: 14px;
-		font-weight: 400;
+		font-weight: 300;
 	}
 }
 
@@ -8284,10 +8288,11 @@ li.agent-details__property-list-item {
 
 .my_valuation-inner-div {
 	h6 {
-		color: $color_10;
-		opacity: 0.4;
+		color: #000;
+		opacity: 0.8;
 		font-size: 14px;
 		margin-bottom: 5px;
+		font-weight: 300;
 	}
 
 	p {
@@ -8297,16 +8302,6 @@ li.agent-details__property-list-item {
 
 	width: 18%;
 	padding: 0px 15px;
-
-	.download-pdf {
-		border: none;
-		background: #3a811d;
-		color: $color_5;
-		font-size: 12px;
-		padding: 10px 10px;
-		border-radius: 7px;
-		min-width: 92px;
-	}
 
 	.payment {
 		font-size: 14px;
@@ -9842,6 +9837,7 @@ margin-right: 0px;
 		>.form_tabs {
 			>.nav.nav-tabs {
 				justify-content: center;
+				padding: 0px;
 				.nav-item {
 					>a {
 						background-color: $background-color_18;
@@ -11131,6 +11127,9 @@ margin-right: 0px;
 	.checkbox-flex-box.four-column {
 		flex-wrap: wrap;
 	}
+	.property-filter-wrap .block-item .block-wrapper.mb-4 {
+		margin-bottom: 5px !important;
+	}
 	.blue-upload-box {
 		padding-bottom: 25px !important;
 	}
@@ -11462,26 +11461,6 @@ margin-right: 0px;
 
 .buy-sell-form-sec+.sell-rent-home-directly {
 	margin-top: 60px;
-}
-
-.my_valuation-inner-div .download-pdf:hover {
-	background: #333;
-}
-
-.pay-now-btn {
-	border: none;
-	background: #ec3d38;
-	color: #fff;
-	font-size: 12px;
-	padding: 10px 10px;
-	border-radius: 7px;
-	min-width: 92px;
-	text-align: center;
-}
-
-.pay-now-btn:hover {
-	background: #333;
-	color: #fff;
 }
 
 .statictics-wrap .content-area p strong {
@@ -12732,9 +12711,7 @@ color: green !important;
 input:focus{
 	outline: none !important;
 }
-.buy-sell-wrapepr-forms .block-item.first-block {
-    width: 35% !important;
-}
+
 .buy-sell-wrapepr-forms .searc-input-combination .mat-form-field:last-child .mat-form-field-flex{
 	padding-top: 11px !important;
 }
@@ -12748,6 +12725,9 @@ input:focus{
 		max-width: 1200px;
 		margin-left: auto;
 		margin-right: auto;
+	}
+	.buy-sell-wrapepr-forms .block-item.first-block {
+		width: 35% !important;
 	}
 }
 .slider-shadow .owl-stage-outer {
@@ -12854,4 +12834,32 @@ input:focus{
 }
 .property-contact-buttons > a.chat svg {
     margin-right: 1px;
+}
+
+.blog-post-content h2 {
+    font-size: 24px;
+}
+.pay-now-btn {
+    background-color: #fff;
+    border-radius: 8px;
+    font-size: 13px;
+    padding: 6px 10px;
+}
+.pay-now-btn .mat-icon {
+    width: 16px;
+    height: 16px;
+    font-size: 16px;
+    position: relative;
+    top: 4px;
+    margin-right: 3px;
+}
+#pills-valuation .my_valuation-inner-div:last-child {
+    width: 12%;
+    justify-content: center;
+}
+@media (max-width: 1199px){
+	#pills-valuation .my_valuation-inner-div:last-child {
+		width: 100%;
+		justify-content: flex-start;
+	}
 }

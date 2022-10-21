@@ -1739,16 +1739,22 @@
                                             <div ngClass="my_valuation-inner-div payemnt"
                                                 *ngIf="item.valuationStatus.statusDescription == 'Payment Pending'">
                                                 <p ngClass="payment pending">انتظار الدفع</p>
-                                                <a class="pay-now-btn cursor-pointer" routerLink="/ar/PropertyPayment">ادفع الآن</a>
                                             </div>
+                                            <div ngClass="my_valuation-inner-div payemnt"
+                                            *ngIf="item.valuationStatus.statusDescription == 'Payment Pending'">
+                                            <a class="pay-now-btn cursor-pointer" routerLink="/ar/PropertyPayment"><mat-icon>payment</mat-icon> ادفع الآن</a>
+                                        </div>
                                             <div ngClass="my_valuation-inner-div payemnt"
                                                 *ngIf="item.valuationStatus.statusDescription != 'Payment Pending'">
                                                 <p ngClass="payment success">
                                                     <mat-icon>check_circle</mat-icon> مُقَدَّم\ تم تقديمه
                                                 </p>
-                                                <a class="download-pdf cursor-pointer"
-                                                    (click)="downloadReport(item.reportNumberCode)">تحميل بصيغة PDF</a>
                                             </div>
+                                            <div ngClass="my_valuation-inner-div payemnt"
+                                            *ngIf="item.valuationStatus.statusDescription != 'Payment Pending'">
+                                            <a class="download-pdf cursor-pointer"
+                                                (click)="downloadReport(item.reportNumberCode)"><img src="{{pdf}}"></a>
+                                        </div>
                                         </div>
                                     </div>
                                     <div class="pagination-wrapper">
@@ -1790,15 +1796,21 @@
                                             <div ngClass="my_valuation-inner-div payemnt"
                                                 *ngIf="item.valuationStatus.statusDescription == 'Payment Pending'">
                                                 <p ngClass="payment pending">انتظار الدفع</p>
-                                                <a class="pay-now-btn cursor-pointer" routerLink="/ar/PropertyPayment">ادفع الآن</a>
                                             </div>
+                                            <div ngClass="my_valuation-inner-div payemnt"
+                                            *ngIf="item.valuationStatus.statusDescription == 'Payment Pending'">
+                                            <a class="pay-now-btn cursor-pointer" routerLink="/ar/PropertyPayment"><mat-icon>payment</mat-icon> ادفع الآن</a>
+                                        </div>
                                             <div ngClass="my_valuation-inner-div payemnt"
                                                 *ngIf="item.valuationStatus.statusDescription != 'Payment Pending'">
                                                 <p ngClass="payment success">
                                                     <mat-icon>check_circle</mat-icon> مُقَدَّم\ تم تقديمه
                                                 </p>
-                                                <a routerLink="/ar/PropertyDownloadReport" ngClass="download-pdf">تحميل بصيغة PDF</a>
                                             </div>
+                                            <div ngClass="my_valuation-inner-div payemnt"
+                                            *ngIf="item.valuationStatus.statusDescription != 'Payment Pending'">
+                                            <a routerLink="/ar/PropertyDownloadReport" ngClass="download-pdf"><img src="{{pdf}}"></a>
+                                        </div>
                                         </div>
                                     </div>
                                     <div class="agent-pagination-wrapper">
@@ -1840,15 +1852,21 @@
                                             <div ngClass="my_valuation-inner-div payemnt"
                                                 *ngIf="item.valuationStatus.statusDescription == 'Payment Pending'">
                                                 <p ngClass="payment pending">انتظار الدفع</p>
-                                                <a class="pay-now-btn cursor-pointer" routerLink="/ar/PropertyPayment">ادفع الآن</a>
                                             </div>
+                                            <div ngClass="my_valuation-inner-div payemnt"
+                                            *ngIf="item.valuationStatus.statusDescription == 'Payment Pending'">
+                                            <a class="pay-now-btn cursor-pointer" routerLink="/ar/PropertyPayment"><mat-icon>payment</mat-icon> ادفع الآن</a>
+                                        </div>
                                             <div ngClass="my_valuation-inner-div payemnt"
                                                 *ngIf="item.valuationStatus.statusDescription != 'Payment Pending'">
                                                 <p ngClass="payment success">
                                                     <mat-icon>check_circle</mat-icon> مُقَدَّم\ تم تقديمه
                                                 </p>
-                                                <a routerLink="/ar/PropertyDownloadReport" ngClass="download-pdf">تحميل بصيغة PDF</a>
                                             </div>
+                                            <div ngClass="my_valuation-inner-div payemnt"
+                                            *ngIf="item.valuationStatus.statusDescription != 'Payment Pending'">
+                                            <a routerLink="/ar/PropertyDownloadReport" ngClass="download-pdf"><img src="{{pdf}}"></a>
+                                        </div>
                                         </div>
                                     </div>
                                     <div class="agent-pagination-wrapper">
