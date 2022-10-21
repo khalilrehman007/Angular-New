@@ -684,6 +684,10 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="no-data-found" *ngIf="activityViewData.length == 0">
+                                        <mat-icon>file_copy</mat-icon>
+                                        <p>No Data Found</p>
+                                    </div>
                                     <div class="agent-details__tabs">
                                         <div class="row">
                                             <div class="col-lg-9 col-md-10">
@@ -883,7 +887,10 @@
                                         </div>
                                     </div>
 
-
+                                    <div class="no-data-found" *ngIf="wishlistingData.length == 0">
+                                        <mat-icon>file_copy</mat-icon>
+                                        <p>No Data Found</p>
+                                    </div>
                                     <div class="agent-details__tabs shortlisted-tabs_list">
                                         <div class="row" *ngIf="wishlistingData.length > 1">
                                             <div class="col-lg-12 col-md-12">
@@ -976,10 +983,7 @@
                                                 </pagination-controls>
                                             </section>
                                         </div>
-                                        <div class="no-data-found" *ngIf="wishlistingData.length == 0">
-                                            <mat-icon>file_copy</mat-icon>
-                                            <p>No Data Found</p>
-                                        </div>
+                                        
                                     </div>
 
                                 </mat-tab>
@@ -1008,6 +1012,10 @@
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="no-data-found" *ngIf="enquiredlistingData.length == 0">
+                                        <mat-icon>file_copy</mat-icon>
+                                        <p>No Data Found</p>
                                     </div>
 
                                     <div class="agent-details__tabs">
