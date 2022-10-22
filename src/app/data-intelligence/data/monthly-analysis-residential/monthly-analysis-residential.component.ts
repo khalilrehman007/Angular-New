@@ -81,6 +81,7 @@ export class MonthlyAnalysisResidentialComponent implements OnInit {
   allCityfield: any = [];
   transactionTypeChartData: any = "";
   transactionSequenceChartData: any = "";
+  transactionSequencevalueChartData: any = "";
   transactionTypeValueChartData: any = "";
 
   @ViewChild('ComunityInput') ComunityInput: any;
@@ -264,30 +265,7 @@ export class MonthlyAnalysisResidentialComponent implements OnInit {
   public tvbsPlugins = [
     DatalabelsPlugin
   ];
-  public tvbsData: ChartData<'bar'> = {
-    labels: ["01-2016", "03-2017", "03-2018", "03-2019", "03-2020", "03-2021"],
-    datasets: [{
-      label: 'Primary',
-      data: [3.58, 3.59, 3.74, 3.55, 2.85, 2.94],
-      borderRadius: 50,
-      barPercentage: 0.9,
-      minBarLength: 10,
-      backgroundColor: "rgb(211, 219, 255)",
-      hoverBackgroundColor: [
-        "rgb(211, 219, 255)"
-      ]
-    }, {
-      label: 'Secondary',
-      data: [12.39, 12.61, 12.89, 13.00, 12.81, 13.39, 7],
-      borderRadius: 50,
-      barPercentage: 0.9,
-      minBarLength: 10,
-      backgroundColor: "rgb(89, 90, 212)",
-      hoverBackgroundColor: [
-        "rgb(89, 90, 212)"
-      ]
-    }]
-  };
+  public tvbsData: any = {};
   public mpotOptions: ChartConfiguration['options'] = {
     responsive: true,
     scales: {
@@ -411,6 +389,7 @@ export class MonthlyAnalysisResidentialComponent implements OnInit {
   showTBT: boolean = false;
   showTBS: boolean = false;
   showTVB: boolean = false;
+  showTVBS: boolean =false;
   constructor(private cookie: CookieService, private service: AppService) {
     this.minSize = this.SizeminValue;
     this.maxSize = this.SizemaxValue;
@@ -547,6 +526,7 @@ export class MonthlyAnalysisResidentialComponent implements OnInit {
         this.filterTypeData();
         this.filterSequenceData();
         this.filterTypeValueData();
+        this.filterSequencevalueData();
         this.showLoader = false;
       }
     });
@@ -1052,5 +1032,84 @@ export class MonthlyAnalysisResidentialComponent implements OnInit {
     tempChartData.datasets = tempDataset;
     this.tvbtData = tempChartData;
     this.showTVB = true;
+  }
+  filterSequencevalueData() {
+    let tempData: any = [];
+    let found: boolean = false;
+    for (let item of this.transactionData.transactionValueBySaleSequence) {
+      found = false;
+      for (let item2 of tempData) {
+        if (item2.date == item.transactionDate) {
+          found = true;
+          break;
+        }
+      }
+      if (!found) {
+        tempData.push({ date: item.transactionDate, primary: "", secondary: "" })
+      }
+    }
+    for (let item of this.transactionData.transactionValueBySaleSequence) {
+      for (let i = 0; i < tempData.length; i++) {
+        if (tempData[i].date == item.transactionDate) {
+          if (item.transactionSequence == "Primary") {
+            tempData[i].primary = item.transactionValue;
+          } else if (item.transactionSequence == "Secondary") {
+            tempData[i].secondary = item.transactionValue;
+          }
+        }
+      }
+    }
+    this.transactionSequencevalueChartData = tempData;
+    this.createSequenceValueChartData();
+  }
+  createSequenceValueChartData() {
+    let opacityData = [0.1, 0.1, 0.2, 0.3, 0.4, 0.6, 0.8, 1];
+    let tempChartData: ChartData<'bar'> = {
+      labels: [],
+      datasets: []
+    };
+    let tempLabel: any = []
+    for (let item of this.transactionTypeChartData) {
+      tempLabel.push(item.date);
+    }
+    tempChartData.labels = tempLabel;
+    let tempDataset: any = [];
+    let tempArray:any = "";
+    if(this.salesfield.length == 0) {
+      tempArray = this.filteredsales;
+    } else {
+      tempArray = this.salesfield;
+    }
+    for (let item of tempArray) {
+      let opacity = opacityData.pop()
+      let tempData: any = {
+        label: '',
+        data: [],
+        borderRadius: 50,
+        barPercentage: 0.9,
+        minBarLength: 10,
+        backgroundColor: "rgba(89, 90, 212, " + opacity + ")",
+        hoverBackgroundColor: [
+          "rgba(89, 90, 212, " + opacity + ")"
+        ]
+      };
+      if (item.name == "Primary") {
+        for (let item2 of this.transactionSequenceChartData) {
+          tempData.data.push(item2.primary)
+        }
+        tempData.label = item.name;
+        tempDataset.push(tempData);
+      } else if (item.name == "Secondary") {
+        for (let item2 of this.transactionSequenceChartData) {
+          tempData.data.push(item2.secondary)
+        }
+        tempData.label = item.name;
+        tempDataset.push(tempData);
+      }
+    }
+    tempChartData.datasets = tempDataset;
+    console.log(tempChartData)
+    this.tvbsData = tempChartData;
+    this.showTVBS = true;
   }
 }
