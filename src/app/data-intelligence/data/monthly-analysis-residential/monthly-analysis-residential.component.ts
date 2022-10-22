@@ -223,30 +223,7 @@ export class MonthlyAnalysisResidentialComponent implements OnInit {
   public tvbtPlugins = [
     DatalabelsPlugin
   ];
-  public tvbtData: ChartData<'bar'> = {
-    labels: ["01-2016", "03-2017", "03-2018", "03-2019", "03-2020", "03-2021"],
-    datasets: [{
-      label: 'Sales - Off-Plan',
-      data: [3.58, 3.59, 3.74, 3.55, 2.85, 2.94],
-      borderRadius: 50,
-      barPercentage: 0.9,
-      minBarLength: 10,
-      backgroundColor: "rgb(211, 219, 255)",
-      hoverBackgroundColor: [
-        "rgb(211, 219, 255)"
-      ]
-    }, {
-      label: 'Sales-Ready',
-      data: [12.39, 12.61, 12.89, 13.00, 12.81, 13.39, 7],
-      borderRadius: 50,
-      barPercentage: 0.9,
-      minBarLength: 10,
-      backgroundColor: "rgb(89, 90, 212)",
-      hoverBackgroundColor: [
-        "rgb(89, 90, 212)"
-      ]
-    }]
-  };
+  public tvbtData: any = {};
   public tvbsOptions: ChartConfiguration['options'] = {
     responsive: true,
     scales: {
@@ -433,6 +410,7 @@ export class MonthlyAnalysisResidentialComponent implements OnInit {
   };
   showTBT: boolean = false;
   showTBS: boolean = false;
+  showTVB: boolean = false;
   constructor(private cookie: CookieService, private service: AppService) {
     this.minSize = this.SizeminValue;
     this.maxSize = this.SizemaxValue;
@@ -989,7 +967,7 @@ export class MonthlyAnalysisResidentialComponent implements OnInit {
     }
     this.transactionTypeValueChartData = tempData;
     console.log(this.transactionTypeValueChartData);
-    // this.createTypeValueChartData();
+    this.createTypeValueChartData();
   }
   createTypeValueChartData() {
     let opacityData = [0.1, 0.1, 0.2, 0.3, 0.4, 0.6, 0.8, 1];
@@ -1073,7 +1051,7 @@ export class MonthlyAnalysisResidentialComponent implements OnInit {
       }
     }
     tempChartData.datasets = tempDataset;
-    this.tbtData = tempChartData;
-    this.showTBT = true;
+    this.tvbtData = tempChartData;
+    this.showTVB = true;
   }
 }
