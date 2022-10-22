@@ -966,7 +966,6 @@ export class MonthlyAnalysisResidentialComponent implements OnInit {
       }
     }
     this.transactionTypeValueChartData = tempData;
-    console.log(this.transactionTypeValueChartData);
     this.createTypeValueChartData();
   }
   createTypeValueChartData() {
