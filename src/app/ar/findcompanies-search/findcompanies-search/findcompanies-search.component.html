@@ -12,7 +12,7 @@
                                     <mat-icon>cancel</mat-icon>
                                 </button>
                             </mat-chip>
-                            <input placeholder="الموقع ، اسم المشروع" #SearchInput [formControl]="searchctrl"
+                            <input placeholder="موقع ، اسم المشروع" #SearchInput [formControl]="searchctrl"
                                 [matAutocomplete]="auto" [matChipInputFor]="chipList"
                                 [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                                 (matChipInputTokenEnd)="add($event)">
