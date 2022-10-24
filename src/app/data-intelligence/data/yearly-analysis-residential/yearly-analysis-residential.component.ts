@@ -476,7 +476,6 @@ export class YearlyAnalysisResidentialComponent implements OnInit {
       }
     }
     this.service.GetResidentialYearlyTransactionAnalysis(temp).subscribe((result: any) => {
-      console.log(result);
       if (result.message == "Residential Yearly Transaction Analysis fetched successfully") {
         this.transactionData = result.data;
         this.filterTypeData();
