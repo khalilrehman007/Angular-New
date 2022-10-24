@@ -480,6 +480,9 @@ export class AppService {
   GetResidentialQuarterlyTransactionAnalysis(data:any) {
     return this.http.post(this.apiurl + 'GetResidentialQuarterlyTransactionAnalysis', data);
   }
+  GetResidentialYearlyTransactionAnalysis(data:any) {
+    return this.http.post(this.apiurl + 'GetResidentialYearlyTransactionAnalysis', data);
+  }
   GetTransactionType() {
     return this.http.get(this.apiurl + 'TransactionType');
   }
