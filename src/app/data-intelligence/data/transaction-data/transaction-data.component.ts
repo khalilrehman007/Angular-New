@@ -8,6 +8,9 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { CookieService } from 'ngx-cookie-service';
 import { AppService } from 'src/app/service/app.service';
+import { MatSelect } from '@angular/material/select';
+import { MatOption } from '@angular/material/core';
+
 interface ItemsPerPage {
   value: string;
   viewValue: string;
@@ -494,4 +497,5 @@ export class TransactionDataComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
+
 }

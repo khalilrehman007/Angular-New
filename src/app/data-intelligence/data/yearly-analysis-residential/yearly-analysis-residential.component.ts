@@ -702,7 +702,7 @@ export class YearlyAnalysisResidentialComponent implements OnInit {
     this.createTypeChartData();
   }
   createTypeChartData() {
-    let opacityData = [0.1, 0.1, 0.2, 0.3, 0.4, 0.6, 0.8, 1];
+    let opacityData = ['#ebb342', '#1e2f4c', '#7eafa8', '#d1475b', '#e48a74', '#497893', '#7cbad1', '#f7c576'];
     let tempChartData: ChartData<'bar'> = {
       labels: [],
       datasets: []
@@ -727,9 +727,9 @@ export class YearlyAnalysisResidentialComponent implements OnInit {
         borderRadius: 50,
         barPercentage: 0.9,
         minBarLength: 10,
-        backgroundColor: "rgba(89, 90, 212, " + opacity + ")",
+        backgroundColor: opacity,
         hoverBackgroundColor: [
-          "rgba(89, 90, 212, " + opacity + ")"
+          "#0f2ead"
         ]
       };
       if (item.name == "Sales - Ready") {
@@ -816,7 +816,7 @@ export class YearlyAnalysisResidentialComponent implements OnInit {
     this.createSequenceChartData();
   }
   createSequenceChartData() {
-    let opacityData = [0.1, 0.1, 0.2, 0.3, 0.4, 0.6, 0.8, 1];
+    let opacityData = ['#ebb342', '#1e2f4c', '#7eafa8', '#d1475b', '#e48a74', '#497893', '#7cbad1', '#f7c576'];
     let tempChartData: ChartData<'bar'> = {
       labels: [],
       datasets: []
@@ -841,9 +841,9 @@ export class YearlyAnalysisResidentialComponent implements OnInit {
         borderRadius: 50,
         barPercentage: 0.9,
         minBarLength: 10,
-        backgroundColor: "rgba(89, 90, 212, " + opacity + ")",
+        backgroundColor: opacity,
         hoverBackgroundColor: [
-          "rgba(89, 90, 212, " + opacity + ")"
+          "#0f2ead"
         ]
       };
       if (item.name == "Primary") {
@@ -906,7 +906,7 @@ export class YearlyAnalysisResidentialComponent implements OnInit {
     this.createTypeValueChartData();
   }
   createTypeValueChartData() {
-    let opacityData = [0.1, 0.1, 0.2, 0.3, 0.4, 0.6, 0.8, 1];
+    let opacityData = ['#ebb342', '#1e2f4c', '#7eafa8', '#d1475b', '#e48a74', '#497893', '#7cbad1', '#f7c576'];
     let tempChartData: ChartData<'bar'> = {
       labels: [],
       datasets: []
@@ -931,9 +931,9 @@ export class YearlyAnalysisResidentialComponent implements OnInit {
         borderRadius: 50,
         barPercentage: 0.9,
         minBarLength: 10,
-        backgroundColor: "rgba(89, 90, 212, " + opacity + ")",
+        backgroundColor: opacity,
         hoverBackgroundColor: [
-          "rgba(89, 90, 212, " + opacity + ")"
+          "#0f2ead"
         ]
       };
       if (item.name == "Sales - Ready") {
@@ -1020,7 +1020,7 @@ export class YearlyAnalysisResidentialComponent implements OnInit {
     this.createSequenceValueChartData();
   }
   createSequenceValueChartData() {
-    let opacityData = [0.1, 0.1, 0.2, 0.3, 0.4, 0.6, 0.8, 1];
+    let opacityData = ['#ebb342', '#1e2f4c', '#7eafa8', '#d1475b', '#e48a74', '#497893', '#7cbad1', '#f7c576'];
     let tempChartData: ChartData<'bar'> = {
       labels: [],
       datasets: []
@@ -1045,9 +1045,9 @@ export class YearlyAnalysisResidentialComponent implements OnInit {
         borderRadius: 50,
         barPercentage: 0.9,
         minBarLength: 10,
-        backgroundColor: "rgba(89, 90, 212, " + opacity + ")",
+        backgroundColor: opacity,
         hoverBackgroundColor: [
-          "rgba(89, 90, 212, " + opacity + ")"
+          "#0f2ead"
         ]
       };
       if (item.name == "Primary") {
@@ -1110,7 +1110,7 @@ export class YearlyAnalysisResidentialComponent implements OnInit {
     this.createMedianTypeChartData();
   }
   createMedianTypeChartData() {
-    let opacityData = [0.1, 0.1, 0.2, 0.3, 0.4, 0.6, 0.8, 1];
+    let opacityData = ['#ebb342', '#1e2f4c', '#7eafa8', '#d1475b', '#e48a74', '#497893', '#7cbad1', '#f7c576'];
     let tempChartData: ChartData<'bar'> = {
       labels: [],
       datasets: []
@@ -1135,9 +1135,9 @@ export class YearlyAnalysisResidentialComponent implements OnInit {
         borderRadius: 50,
         barPercentage: 0.9,
         minBarLength: 10,
-        backgroundColor: "rgba(89, 90, 212, " + opacity + ")",
+        backgroundColor: opacity,
         hoverBackgroundColor: [
-          "rgba(89, 90, 212, " + opacity + ")"
+          "#0f2ead"
         ]
       };
       if (item.name == "Sales - Ready") {
@@ -1236,7 +1236,7 @@ export class YearlyAnalysisResidentialComponent implements OnInit {
     this.createMedianAreaChartData();
   }
   createMedianAreaChartData() {
-    let opacityData = [0.1, 0.1, 0.2, 0.3, 0.4, 0.6, 0.8, 1];
+    let opacityData = ['#ebb342', '#1e2f4c', '#7eafa8', '#d1475b', '#e48a74', '#497893', '#7cbad1', '#f7c576'];
     let tempChartData: ChartData<'bar'> = {
       labels: [],
       datasets: []
@@ -1261,9 +1261,9 @@ export class YearlyAnalysisResidentialComponent implements OnInit {
         borderRadius: 50,
         barPercentage: 0.9,
         minBarLength: 10,
-        backgroundColor: "rgba(89, 90, 212, " + opacity + ")",
+        backgroundColor: opacity,
         hoverBackgroundColor: [
-          "rgba(89, 90, 212, " + opacity + ")"
+          "#0f2ead"
         ]
       };
       if (item.name == "Sales - Ready") {
