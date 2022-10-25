@@ -365,7 +365,7 @@ export class SearchComponent implements OnInit {
 
         tempData.push(
           {
-            buildupArea: element.buildupArea, propertyImage: element.document.fileUrl,
+            buildupArea: element.buildupArea, 
             id: element.id, favorite: element.favorite, userImage: userImage, fullName: fullName, userId: userId,
             StartRentPrice: element.startRentPrice, EndRentPrice: element.endRentPrice, AvgRentPrice: element.avgRentPrice, RecentRentTxns: element.recentRentTxns,
             documents: documents, propertyFeatures: element.propertyFeatures, propertyType: element.propertyType,
@@ -379,8 +379,8 @@ export class SearchComponent implements OnInit {
         );
       })
       this.searchListing = tempData;
-      console.log(this.searchListing)
       this.listingImage = this.searchListing.documents[0].propertyImage;
+      console.log(this.searchListing)
       this.currency = response.data.propertyListings[0].country.currency;
       this.halfList = Math.floor(this.searchListing.length / 2);
     });
