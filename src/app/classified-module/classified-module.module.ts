@@ -17,13 +17,16 @@ import { NgxSliderModule } from "@angular-slider/ngx-slider";
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AddPostComponent } from './add-post/add-post.component';
+import { MatCardModule } from '@angular/material/card';
 
 
 @NgModule({
   declarations: [
     ClassifiedHomeComponent,
     AllSearchComponent,
-    JobSearchComponent
+    JobSearchComponent,
+    AddPostComponent
   ],
   imports: [
     CommonModule,
@@ -41,10 +44,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NgxSliderModule,
     MatInputModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatCardModule
   ],
   exports: [
-    ClassifiedHomeComponent
+    ClassifiedHomeComponent,
+    AddPostComponent
   ]
 })
 export class ClassifiedModuleModule { }
