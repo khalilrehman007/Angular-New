@@ -54,7 +54,7 @@ blogs: any;
   whatsapp = '../../../../assets/images/icons/whatsapp.svg'
   share = '../../../../assets/images/icons/share-1.png'
   refrell = '../../../../assets/images/refrell-code.png'
-  loggedInUser = localStorage.getItem('user')
+  loggedInUser:any = localStorage.getItem('user')
   user: any;
   greet: any;
   country: any = [];
@@ -185,11 +185,14 @@ blogs: any;
   parentTabId: any = "";
   childTabId: any  = "";
   url:any = "";
+  myBalance: any = 0;
+  pointsHistory: any = "";
   constructor(private authService: AuthService, private service: AppService, private route: Router, private notifyService: NotificationService,private modalService: NgbModal, private cookie: CookieService) {
     this.url = this.route.url.split("/");
     $(window).scrollTop(0);
     this.getUser();
     this.userId = this.user.id;
+    this.loggedInUser = JSON.parse(this.loggedInUser);
     this.getloadDashboardData();
     this.getLoadListing()
     this.getTabCount();
@@ -298,6 +301,14 @@ blogs: any;
           this.myValuationCommercial.push(this.myValuation[i]);
         }
       }
+    })
+    this.service.PointTransaction(this.loggedInUser.id).subscribe((result: any) => {
+      this.pointsHistory = result.data;
+    })
+  }
+  getPoints() {
+    this.service.MyWallet(this.loggedInUser.id).subscribe((result: any) => {
+      this.myBalance = result.data;
     })
   }
   ngAfterViewInit(): void {

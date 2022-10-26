@@ -1582,8 +1582,7 @@
                                                         *ngFor="let listing of listingAll | paginate: { itemsPerPage: 10, currentPage: page, totalItems:totalLength }">
                                                         <div class="row">
                                                             <div class="col-lg-2">
-                                                                <img src="assets/images/explore-places/1.jpg" alt=""
-                                                                    class="img-fluid agent-details__property-list-item-img">
+                                                                <img src="{{listing.img}}" alt="" class="img-fluid agent-details__property-list-item-img">
                                                             </div>
                                                             <div class="col-lg-10">
                                                                 <div class="row">
@@ -1718,7 +1717,7 @@
                                                         *ngFor="let listing of listingAll | paginate: { itemsPerPage: 10, currentPage: page, totalItems:totalLength }">
                                                         <div class="row">
                                                             <div class="col-lg-2">
-                                                                <img src="assets/images/explore-places/1.jpg" alt=""
+                                                                <img src="{{listing.img}}" alt=""
                                                                     class="img-fluid agent-details__property-list-item-img">
                                                             </div>
                                                             <div class="col-lg-10">
@@ -2009,33 +2008,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- <div class="tab-pane fade" id="pills-packages" role="tabpanel" aria-labelledby="pills-valuation-tab">
-                    <div class="recent-activity">
-                        <h4 class="sub-title mb-4">My Packages</h4>
-                        <div ngClass="packages_details" *ngFor="let data of myPackages">
-                            <div ngClass="package_flex d-flex justify-content-spacebw">
-                                <div ngClass="packge-item packge_type">
-                                    <p>Package Type</p>
-                                    <h6>{{data.propertyListingPackage.name}}</h6>
-                                </div>
-                                <div ngClass="packge-item packge_price">
-                                    <p>Package Price</p>
-                                    <h6>{{data.propertyListingPackage.price}} AED <span>inclusive of VAT</span></h6>
-                                </div>
-                                <div ngClass="packge-item packge_validity">
-                                    <p>Package Validity</p>
-                                    <h6>{{data.propertyListingPackage.validDays}} Days</h6>
-                                </div>
-                                <div ngClass="packge-item packge_renew">
-                                    <button ngClass="renew-btn" routerLink="/payment-packages">Renew</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div ngClass="packge-item packge_others text-center mt-5 mb-5">
-                            <button ngClass="other-packages_btn" routerLink="/payment-packages">Other Packages</button>
-                        </div>
-                    </div>
-                </div> -->
                 <div class="tab-pane fade" id="pills-wallet" role="tabpanel" aria-labelledby="pills-valuation-tab">
                     <div clss="tab-iiner-content-sec">
                         <div class="sub-dash-heading mb-4">
@@ -2044,33 +2016,58 @@
                         <div class="sub-tab-nav">
                             <mat-tab-group>
                                 <mat-tab label="محفظتى">
-                                    <div ngClass="my-wallet-list-wrapper">
-                                        <div class="row align-items-center">
-                                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-                                                <div ngClass="my-wallet-list-img">
-                                                    <img src="{{wallet}}">
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12">
-                                                <div ngClass="my-wallet-list-design">
-                                                    <div ngClass="exisitng-amount">
-                                                        <h6>المبلغ الحالي</h6>
-                                                        <p>100 AED</p>
+                                    <div ngClass="my-wallet-list-mainwrapper">
+                                        <div class="my-wallet-existing-block">
+                                            <div class="row">
+                                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                                    <div ngClass="my-wallet-list-img">
+                                                        <img src="{{wallet}}">
                                                     </div>
-                                                    <div class="row">
-                                                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                                                </div>
+                                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                                    <div ngClass="my-wallet-list-design">
+                                                        <div ngClass="exisitng-amount">
+                                                            <h6>المبلغ الحالي</h6>
+                                                            <p>{{myBalance}}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="recharge_row-wallet">
+                                                        <div class="recharge_row-wallet-flex">
                                                             <div ngClass="recharge-now-btn">
                                                                 <a class="cursor-pointer"
-                                                                    (click)="rechargePopup(rechargemodal)">اشحن الآن</a>
+                                                                    routerLink="/payment-packages">اشحن الآن</a>
                                                             </div>
-                                                        </div>
-                                                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                                                             <div ngClass="transfer-now-btn">
                                                                 <a class="cursor-pointer"
-                                                                    (click)="TransferPopup(TransferModal)">Transfer</a>
+                                                                    (click)="TransferPopup(TransferModal)">نقل</a>
                                                             </div>
                                                         </div>
                                                     </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div ngClass="my-valuation-list-wrapper">
+                                            <div ngClass="my-valuation-list-design d-flex"
+                                                *ngFor="let data of pointsHistory">
+                                                <div ngClass="my_valuation-inner-div category">
+                                                    <h6>رقم عملية البيع</h6>
+                                                    <p>{{data.point.nameAr}}</p>
+                                                </div>
+                                                <div ngClass="my_valuation-inner-div place">
+                                                    <h6>تاريخ عملية البيع</h6>
+                                                    <p>{{data.totalPoints}}</p>
+                                                </div>
+                                                <div ngClass="my_valuation-inner-div property_type">
+                                                    <h6>النقاط المستخدمة</h6>
+                                                    <p>{{data.totalPoints-data.remainigPoints}}</p>
+                                                </div>
+                                                <div ngClass="my_valuation-inner-div remaning-point">
+                                                    <h6>النقاط المتبقية</h6>
+                                                    <p>{{data.remainigPoints}}</p>
+                                                </div>
+                                                <div ngClass="my_valuation-inner-div expired-point">
+                                                    <h6>تاريخ انتهاء الصلاحية</h6>
+                                                    <p class="red-color">{{data.expiryDate.split("T")[0]}}</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -2078,31 +2075,33 @@
                                 </mat-tab>
                                 <mat-tab label="مبيعاتي">
                                     <div ngClass="my-valuation-list-wrapper">
-                                        <div ngClass="my-valuation-list-design d-flex">
+                                        <div ngClass="my-valuation-list-design d-flex"
+                                            *ngFor="let item of pointsHistory; let i = index">
                                             <div ngClass="my_valuation-inner-div valuation_property-name">
                                                 <div ngClass="valuation_property-name-first d-flex align-items-center">
-                                                    <span ngClass="val_pro-number">1</span>
+                                                    <span ngClass="val_pro-number">{{i+1}}</span>
                                                 </div>
                                             </div>
                                             <div ngClass="my_valuation-inner-div category">
-                                                <h6>رقم عملية البيع</h6>
-                                                <p>123</p>
+                                                <h6>رقم التحويلة</h6>
+                                                <p>{{item.id}}</p>
                                             </div>
                                             <div ngClass="my_valuation-inner-div place">
-                                                <h6>تاريخ عملية البيع</h6>
-                                                <p>16 Sep 2022</p>
+                                                <h6>تاريخ الصفقة</h6>
+                                                <p>{{item.purchaseDate.split("T")[0]}}</p>
                                             </div>
-                                            <div ngClass="my_valuation-inner-div place">
+                                            <!-- <div ngClass="my_valuation-inner-div place">
                                                 <h6>Points Debit/Credit</h6>
                                                 <p class="debit">- 100</p>
-                                            </div>
-                                            <div ngClass="my_valuation-inner-div place">
+                                            </div> -->
+                                            <!-- <div ngClass="my_valuation-inner-div place">
                                                 <h6>Amount Debit</h6>
                                                 <p class="debit">- 100</p>
-                                            </div>
+                                            </div> -->
                                             <div ngClass="my_valuation-inner-div place">
-                                                <h6>Amount Credit</h6>
-                                                <p class="credit">+ 100</p>
+                                                <!-- <h6>Amount Credit</h6> -->
+                                                <h6>رصيد النقاط</h6>
+                                                <p class="credit">+ {{item.totalPoints}}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -5137,7 +5136,7 @@
                                 </mat-form-field>
                             </div>
                             <div ngClass="block-wrapper mb-3 refrell-overlay-block">
-                                <label>Referral Code</label>
+                                <label>رمز الإحالة الخاص بي</label>
                                 <div ngClass="position-relative">
                                     <mat-form-field class="full-width input-design-2" appearance="fill">
                                         <input matInput type="text" placeholder="82500038"
@@ -5151,7 +5150,7 @@
                     <div class="wallet-btn-flex">
                         <button class="recharge-btn">Proceed to Pay</button>
                         <button class="cancel-btn" aria-label="Close"
-                            (click)="modal.dismiss('Cross click')">Cancel</button>
+                            (click)="modal.dismiss('Cross click')">إلغاء</button>
                     </div>
                 </form>
             </div>
