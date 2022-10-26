@@ -84,7 +84,7 @@ export class RentDataResidentialComponent implements OnInit {
 
   // Transaction Type Filter
   TransactionCtrl = new FormControl('');
-  filteredTransaction: any;
+  filteredTransaction: any = [];
   Transactionfield: any = [];
   allTransactionfield: string[] = ['Transaction', 'Dubai', 'Dubai'];
 
