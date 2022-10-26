@@ -492,7 +492,7 @@ export class RentDataResidentialComponent implements OnInit {
     if (this.startDate == "" || this.endDate == "" || this.selectedDistrict.length == 0) {
       return;
     }
-    // this.showLoader = true;
+    this.showLoader = true;
     let temp: any = {};
     temp.StartDate = this.startDate;
     temp.EndDate = this.endDate;
@@ -540,14 +540,13 @@ export class RentDataResidentialComponent implements OnInit {
         temp.BedroomList.push(item.id)
       }
     }
-    console.log(temp);
-    // this.service.GetResidentialRentData(temp).subscribe((result: any) => {
-    //   if (result.message == "Residential Rent Data fetched successfully") {
-    //     this.showLoader = false;
-    //     this.transactionData = result.data;
-    //     this.totalLength = this.transactionData.transactions.length
-    //   }
-    // });
+    this.service.GetResidentialRentData(temp).subscribe((result: any) => {
+      if (result.message == "Residential Rent Data fetched successfully") {
+        this.showLoader = false;
+        this.transactionData = result.data;
+        this.totalLength = this.transactionData.transactions.length
+      }
+    });
   }
   add(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
