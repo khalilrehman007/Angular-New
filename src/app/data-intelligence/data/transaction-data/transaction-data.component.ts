@@ -144,6 +144,12 @@ export class TransactionDataComponent implements OnInit {
   selectedDistrict: any = [];
   allPropertyTypeSelected: boolean = false;
   selectedPropertyType: any = [];
+  allProjectSelected: boolean = false;
+  selectedProject: any = [];
+  allTransactionTypeSelected: boolean = false;
+  selectedTransactionType: any = [];
+  allBedsSelected: boolean = false;
+  selectedBeds: any = [];
 
   constructor(private cookie: CookieService, private service: AppService) {
     this.minSize = this.SizeminValue;
@@ -281,6 +287,7 @@ export class TransactionDataComponent implements OnInit {
       this.selectedDistrict = [];
       this.allDistrictSelected = false;
     }
+    this.loadProjects();
   }
   getDistrict(e: any) {
     this.selectedDistrict = [];
@@ -297,6 +304,23 @@ export class TransactionDataComponent implements OnInit {
       }
       this.selectedDistrict = temp;
     }
+    if(!this.allDistrictSelected) {
+      this.loadProjects();
+    }
+  }
+  loadProjects() {
+    let temp: any = [];
+    for (let item of this.selectedDistrict) {
+      if (item != "All") {
+        temp.push(item);
+      }
+    }
+    this.service.GetProjects({ "DistrictIds": temp }).subscribe((result: any) => {
+      this.filteredPropertyOnly = result.data;
+    })
+    this.service.TransactionSequence().subscribe((result: any) => {
+      this.filteredsales = result.data;
+    })
   }
   selectAllPropertyType() {
     if (!this.allPropertyTypeSelected) {
@@ -325,6 +349,93 @@ export class TransactionDataComponent implements OnInit {
         }
       }
       this.selectedPropertyType = temp;
+    }
+  }
+  selectAllProject() {
+    if (!this.allProjectSelected) {
+      this.selectedProject = [];
+      this.selectedProject.push("All");
+      for (let item of this.filteredPropertyOnly) {
+        this.selectedProject.push(item.id);
+      }
+      this.allProjectSelected = true;
+    } else {
+      this.selectedProject = [];
+      this.allProjectSelected = false;
+    }
+  }
+  getProject(e: any) {
+    this.selectedProject = [];
+    for (let item of e.value) {
+      this.selectedProject.push(item);
+    }
+    if (e.value.indexOf("All") != -1) {
+      this.allProjectSelected = false;
+      let temp: any = [];
+      for (let item of this.selectedProject) {
+        if (item != "All") {
+          temp.push(item);
+        }
+      }
+      this.selectedProject = temp;
+    }
+  }
+  selectAllTransactionType() {
+    if (!this.allTransactionTypeSelected) {
+      this.selectedTransactionType = [];
+      this.selectedTransactionType.push("All");
+      for (let item of this.filteredsales) {
+        this.selectedTransactionType.push(item.id);
+      }
+      this.allTransactionTypeSelected = true;
+    } else {
+      this.selectedTransactionType = [];
+      this.allTransactionTypeSelected = false;
+    }
+  }
+  getTransactionType(e: any) {
+    this.selectedTransactionType = [];
+    for (let item of e.value) {
+      this.selectedTransactionType.push(item);
+    }
+    if (e.value.indexOf("All") != -1) {
+      this.allTransactionTypeSelected = false;
+      let temp: any = [];
+      for (let item of this.selectedTransactionType) {
+        if (item != "All") {
+          temp.push(item);
+        }
+      }
+      this.selectedTransactionType = temp;
+    }
+  }
+  selectAllBeds() {
+    if (!this.allBedsSelected) {
+      this.selectedBeds = [];
+      this.selectedBeds.push("All");
+      for (let item of this.allbedsfield) {
+        this.selectedBeds.push(item);
+      }
+      this.allBedsSelected = true;
+    } else {
+      this.selectedBeds = [];
+      this.allBedsSelected = false;
+    }
+  }
+  getBeds(e: any) {
+    this.selectedBeds = [];
+    for (let item of e.value) {
+      this.selectedBeds.push(item);
+    }
+    if (e.value.indexOf("All") != -1) {
+      this.allBedsSelected = false;
+      let temp: any = [];
+      for (let item of this.selectedBeds) {
+        if (item != "All") {
+          temp.push(item);
+        }
+      }
+      this.selectedBeds = temp;
     }
   }
   getMinSize(e: any) {
@@ -427,18 +538,6 @@ export class TransactionDataComponent implements OnInit {
     this.CommunityCtrl.setValue(null);
     this.loadProjects();
     this.loadData();
-  }
-  loadProjects() {
-    let temp: any = [];
-    for (let item of this.communityfield) {
-      temp.push(item.id)
-    }
-    this.service.GetProjects({ "DistrictIds": temp }).subscribe((result: any) => {
-      this.filteredPropertyOnly = result.data;
-    })
-    this.service.TransactionSequence().subscribe((result: any) => {
-      this.filteredsales = result.data;
-    })
   }
   add1(event: MatChipInputEvent): void {
     const value1 = (event.value || '').trim();

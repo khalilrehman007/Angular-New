@@ -69,13 +69,13 @@
                   </div>
                 </div>
                 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-2">
-                  <div class="dashboard-data-select-box">
+                  <div class="dashboard-data-select-box" [ngClass]="filteredPropertyOnly.length > 0 ? '' : 'disabled'">
                     <label>Projects</label>
                     <mat-form-field>
                       <mat-label>Add Projects</mat-label>
-                      <mat-select multiple>
-                        <mat-option value="All">Select All</mat-option>
-                        <mat-option *ngFor="let property of Profield" [value]="property.name">
+                      <mat-select multiple (selectionChange)="getProject($event)" [(value)]="selectedProject">
+                          <mat-option value="All" (click)="selectAllProject()">Select All</mat-option>
+                        <mat-option *ngFor="let property of filteredPropertyOnly" [value]="property.id">
                           {{property.name}}
                         </mat-option>
                       </mat-select>
@@ -83,13 +83,13 @@
                   </div>
                 </div>
                 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-2">
-                  <div class="dashboard-data-select-box">
+                  <div class="dashboard-data-select-box" [ngClass]="filteredsales.length > 0 ? '' : 'disabled'">
                     <label>Transaction Type</label>
                     <mat-form-field>
                       <mat-label>Add Transaction Type</mat-label>
-                      <mat-select multiple>
-                        <mat-option value="All">Select All</mat-option>
-                        <mat-option *ngFor="let transaction of Transactionfield" [value]="transaction.name">
+                      <mat-select multiple (selectionChange)="getTransactionType($event)" [(value)]="selectedTransactionType">
+                          <mat-option value="All" (click)="selectAllTransactionType()">Select All</mat-option>
+                        <mat-option *ngFor="let transaction of filteredsales" [value]="transaction.id">
                           {{transaction.name}}
                         </mat-option>
                       </mat-select>
@@ -129,9 +129,9 @@
                     <label>BEDROOM</label>
                     <mat-form-field>
                       <mat-label>Add Bedroom</mat-label>
-                      <mat-select multiple>
-                        <mat-option value="All">Select All</mat-option>
-                        <mat-option *ngFor="let beds of bedsfield" [value]="beds">
+                      <mat-select multiple (selectionChange)="getBeds($event)" [(value)]="selectedBeds">
+                          <mat-option value="All" (click)="selectAllBeds()">Select All</mat-option>
+                        <mat-option *ngFor="let beds of allbedsfield" [value]="beds">
                           {{beds}}
                         </mat-option>
                       </mat-select>
