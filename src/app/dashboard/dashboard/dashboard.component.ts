@@ -1046,7 +1046,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             unitNo: element.unitNo, totalFloor: element.totalFloor, floorNo: element.floorNo, propertyDescription: element.propertyDescription,
             requestedDate: element.requestedDate, furnishingType: element.furnishingType, propertyPrice: element.propertyPrice,
             requestedDateFormat: element.requestedDateFormat, propertyType: element.propertyType.typeDescription,
-            expiredDateFormat: element.expiredDateFormat, rentType: rentTypeName, currency: element.country.currency
+            expiredDateFormat: element.expiredDateFormat, rentType: rentTypeName, currency: element.country.currency,recentRentTxns: element.recentRentTxns,
+            startRentPrice: element.startRentPrice, endRentPrice: element.endRentPrice, avgRentPrice: element.avgRentPrice, country: element.country, city: element.city,
           }
         );
       })
