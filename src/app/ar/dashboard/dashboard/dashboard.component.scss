@@ -162,7 +162,7 @@ $btncolor: #0B26AD;
 
         p {
             color: $color_8;
-            font-weight: 300;
+                font-weight: 300;
         }
 
         .counts-wrap {
@@ -314,9 +314,9 @@ $btncolor: #0B26AD;
             a.facebook {
                 img{
                     width: 9px;
-                    margin-left: 17px;
+                    margin-right: 17px;
                     position: relative;
-                    right: 3px;
+                    left: 3px;
                 }
             }
             .logout-link {
@@ -704,9 +704,9 @@ $btncolor: #0B26AD;
 
                     &-link {
                         color: var(--primary-color);
-                        font-size: 17px;
+                        font-size: 18px;
                         line-height: normal;
-                        font-weight: 600;
+                        font-weight: 500;
 
                         span {
                             font-size: 13px;
@@ -744,12 +744,11 @@ $btncolor: #0B26AD;
                             width: 16px;
                             position: relative;
                             bottom: 2px;
-
                         }
                     }
 
                     &-type {
-                        margin-top: 10px;
+                        margin-top: 5px;
                         margin-bottom: 0;
                         font-size: 14px;
                         line-height: 20px;
@@ -772,7 +771,7 @@ $btncolor: #0B26AD;
 
                     img {
                         display: inline-block;
-                        margin-left: 4px;
+                        margin-right: 4px;
                         width: 16px;
                         filter: grayscale(1);
                         position: relative;
@@ -1152,12 +1151,10 @@ $btncolor: #0B26AD;
 .type-activity-status .checkbox-design input:checked~.recent-search-item {
     display: block !important;
 }
-
 .my-wallet-list-img img {
     width: 100%;
     height: auto;
 }
-
 .my-wallet-list-wrapper {
     background-color: #F0F3F5;
     width: 100%;
@@ -1165,11 +1162,9 @@ $btncolor: #0B26AD;
     border-radius: 8px;
     padding: 30px;
 }
-
 .my-wallet-list-img img {
     width: 100%;
 }
-
 .exisitng-amount h6 {
     margin-bottom: 0px;
     font-size: 16px;
@@ -1177,12 +1172,10 @@ $btncolor: #0B26AD;
     color: #000;
     opacity: 0.4;
 }
-
 .exisitng-amount p {
     margin-bottom: 15px;
     margin-top: 5px;
 }
-
 .recharge-now-btn>.cursor-pointer {
     border: none;
     background: #ec3d38;
@@ -1190,31 +1183,27 @@ $btncolor: #0B26AD;
     font-size: 14px;
     padding: 10px 17px;
     border-radius: 7px;
-    min-width: 92px;
+    width: 100%;
     text-align: center;
     font-weight: 600;
     display: inline-block;
+    margin-bottom: 15px;
 }
-
 .recharge-now-btn>.cursor-pointer:hover {
     background-color: #0f2ead;
 }
-
 .my-wallet-list-design {
     padding-left: 20px;
 }
-
 .my-wallet-list-wrapper.referral-code-block {
     position: relative;
     padding-top: 60px;
 }
-
 .my-wallet-list-wrapper.referral-code-block .pro-contact-details {
     position: absolute;
     top: 15px;
     right: 15px;
 }
-
 .my-wallet-list-wrapper.referral-code-block .pro-contact-details .dropdown>button {
     background-color: #fff;
     border: none;
@@ -1222,16 +1211,13 @@ $btncolor: #0B26AD;
     width: 30px;
     height: 30px;
 }
-
 .my-wallet-list-wrapper.referral-code-block .pro-contact-details button img {
     position: relative;
     bottom: 1px;
 }
-
 .my-wallet-list-wrapper.referral-code-block .pro-contact-details button:hover {
-    background-color: rgba(15, 46, 173, 0.1) !important;
+    background-color: rgba(15,46,173,0.1) !important;
 }
-
 .referral-copy .mat-icon {
     width: 15px;
     height: 15px;
@@ -1240,7 +1226,6 @@ $btncolor: #0B26AD;
     position: relative;
     top: 3px;
 }
-
 .referral-copy {
     background-color: #fff;
     border: none;
@@ -1249,28 +1234,42 @@ $btncolor: #0B26AD;
     margin-top: 15px;
     font-size: 14px;
 }
-
 .referral-copy:hover {
     background-color: #0f2ead;
     color: #fff;
 }
-
 .value_span {
     font-weight: 500;
     padding-left: 5px;
 }
+.btn-design-packages {
+    border: none;
+    background: #0f2ead;
+    color: #fff;
+    font-size: 12px;
+    padding: 10px 10px;
+    border-radius: 7px;
+    min-width: 92px;
+    text-align: center;
+}
+.btn-design-packages:hover {
+    background-color: #4a565f;
+}
+.package-validity p{
+    color: #FF0000 !important;
+}
 .recharge_row-wallet-flex {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    padding-right: 18px;
+    padding-left: 18px;
 }
-.recharge_row-wallet-flex>.transfer-now-btn {
-    margin-left: 15px;
+.my-wallet-existing-block {
+    background-color: #F0F3F5;
+    border-radius: 6px;
+    padding: 15px;
+    width: 100%;
+    max-width: 500px;
+    margin-top: 20px;
 }
-.agent-details__property-detail-list-item.bath>img {
-    bottom: 2px !important;
-}
+
 .agent-details__property-detail-list-item.bath>img {
     bottom: 2px !important;
 }
@@ -1279,4 +1278,27 @@ $btncolor: #0B26AD;
     font-weight: 400;
     margin-bottom: 5px;
     color: #000929;
+}
+.property-action-hdr {
+    display: flex;
+    justify-content: flex-end;
+}
+.property-action-hdr .pro-contact-details {
+    margin-right: 15px;
+}
+.sub-bold-text.property-title>a {
+    color: #000929;
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+.building-name-list {
+    margin-bottom: 0px;
+    font-size: 15px;
+    font-weight: 400;
+}
+.lisiting-status-reports {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }

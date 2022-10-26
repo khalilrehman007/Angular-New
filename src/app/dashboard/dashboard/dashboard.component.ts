@@ -56,7 +56,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   whatsapp = '../../../assets/images/icons/whatsapp.svg'
   share = '../../../assets/images/icons/share-1.png'
   refrell = '../../../assets/images/refrell-code.png'
-  loggedInUser:any = localStorage.getItem('user')
+  loggedInUser: any = localStorage.getItem('user')
   user: any;
   greet: any;
   country: any = [];
@@ -79,9 +79,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   activityViewData: any = [];
   minDate = new Date();
   plus = '../../../../assets/images/plus.svg';
-  showSuccess:boolean = false;
-  success:any = "";
-  successResponse(data:any) {
+  showSuccess: boolean = false;
+  success: any = "";
+  successResponse(data: any) {
     this.showSuccess = false;
   }
   errorResponse(data: any) {
@@ -203,8 +203,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   parentTabId: any = "";
   childTabId: any = "";
   url: any = "";
-  countryData:any = "";
-  
+  countryData: any = "";
+
   constructor(private authService: AuthService,
     private datePipe: DatePipe,
     private service: AppService,
@@ -212,139 +212,139 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     private notifyService: NotificationService,
     private modalService: NgbModal,
     private cookie: CookieService) {
-        this.url = this.route.url.split("/");
-        $(window).scrollTop(0);
-        this.loggedInUser = JSON.parse(this.loggedInUser);
-        this.getUser();
-        this.userId = this.user.id;
-        this.getloadDashboardData();
-        this.getLoadListing()
-        this.getTabCount();
-        this.LoadvaluationDashboard();
-        this.getLoadMyValuaionListing();
-        this.getSpokenLanguages();
-        this.getExpertIn();
-        this.getNationality();
-        this.lordMyActivityListingView();
-        this.lordMyActivityAgentView();
-        this.getViewCount();
-        this.getEnquiredCount();
-        this.getCountData('');
-        this.getWishlisting();
-        let temp: any = localStorage.getItem("user");
-        this.service.UserProfile(JSON.parse(temp).id).subscribe((result: any) => {
-          this.userData = result.data;
-          this.professionalType = result.data.professionalTypeId;
-          if (this.professionalType == null) {
-            this.professionalType = 0;
-          }
-          localStorage.setItem("user", JSON.stringify(this.userData));
-          if(this.userData.gender == "Male") {
-            this.getGender(1)
-          } else if(this.userData.gender == "Female") {
-            this.getGender(2)
-          }
-          this.onCountrySelect({value:this.userData.countryId})
-          this.onCitySelect({value:this.userData.cityId});
-          if (this.userData.imageUrl == null) {
-            this.proAvatar = '../../assets/images/user.png';
-          } else {
-            this.proAvatar = this.baseUrl + this.userData.imageUrl;
-          }
-          this.service.MyActivityPropertyListingViewForAgent({ "UserId": this.userData.id, "PropertyCategoryId": "" }).subscribe((result: any) => {
-            this.activityViewData = result.data;
-          })
-          this.service.SummaryLeads({ "UserId": this.userData.id, "PropertyCategoryId": "1" }).subscribe((result: any) => {
-            if (result.data.length > 0) {
-              this.leadSummary = result.data;
-              for (let i = 0; i < this.leadSummary.length; i++) {
-                if (this.leadSummary[i].propertyListing.propertyCategory.categoryName == "Residential") {
-                  this.leadsResidentialSummary.push(this.leadSummary[i]);
-                } else {
-                  this.leadsCommercialSummary.push(this.leadSummary[i])
-                }
-              }
+    this.url = this.route.url.split("/");
+    $(window).scrollTop(0);
+    this.loggedInUser = JSON.parse(this.loggedInUser);
+    this.getUser();
+    this.userId = this.user.id;
+    this.getloadDashboardData();
+    this.getLoadListing()
+    this.getTabCount();
+    this.LoadvaluationDashboard();
+    this.getLoadMyValuaionListing();
+    this.getSpokenLanguages();
+    this.getExpertIn();
+    this.getNationality();
+    this.lordMyActivityListingView();
+    this.lordMyActivityAgentView();
+    this.getViewCount();
+    this.getEnquiredCount();
+    this.getCountData('');
+    this.getWishlisting();
+    let temp: any = localStorage.getItem("user");
+    this.service.UserProfile(JSON.parse(temp).id).subscribe((result: any) => {
+      this.userData = result.data;
+      this.professionalType = result.data.professionalTypeId;
+      if (this.professionalType == null) {
+        this.professionalType = 0;
+      }
+      localStorage.setItem("user", JSON.stringify(this.userData));
+      if (this.userData.gender == "Male") {
+        this.getGender(1)
+      } else if (this.userData.gender == "Female") {
+        this.getGender(2)
+      }
+      this.onCountrySelect({ value: this.userData.countryId })
+      this.onCitySelect({ value: this.userData.cityId });
+      if (this.userData.imageUrl == null) {
+        this.proAvatar = '../../assets/images/user.png';
+      } else {
+        this.proAvatar = this.baseUrl + this.userData.imageUrl;
+      }
+      this.service.MyActivityPropertyListingViewForAgent({ "UserId": this.userData.id, "PropertyCategoryId": "" }).subscribe((result: any) => {
+        this.activityViewData = result.data;
+      })
+      this.service.SummaryLeads({ "UserId": this.userData.id, "PropertyCategoryId": "1" }).subscribe((result: any) => {
+        if (result.data.length > 0) {
+          this.leadSummary = result.data;
+          for (let i = 0; i < this.leadSummary.length; i++) {
+            if (this.leadSummary[i].propertyListing.propertyCategory.categoryName == "Residential") {
+              this.leadsResidentialSummary.push(this.leadSummary[i]);
             } else {
-              this.leadSummary = "temp";
-            }
-            setTimeout(() => {
-              if (this.url[2] == "wallet") {
-                $(".dashboard-tabs .wallet-btn").click();
-              } else if (this.url[2] == "my-listing") {
-                $(".dashboard-tabs .my-listing-btn").click();
-              }
-            }, 500);
-            this.showLoader = false;
-          })
-          this.service.MyPackages(this.userData.id).subscribe((result: any) => {
-            this.myPackages = result.data;
-          })
-          this.service.MyActivitySavedSearchProperty({ "UserId": this.userData.id, "PropertyListingTypeId": "" }).subscribe((result: any) => {
-            this.activitySavedSearch = result.data;
-          })
-        })
-        this.service.LoadPropertyListingTypes().subscribe(e => {
-          let temp: any = e;
-          if (temp.message == "Property Listing Type List fetched successfully") {
-            this.rent = temp.data[0].name;
-            this.buy = temp.data[1].name;
-          }
-        });
-        this.service.LoadCountries().subscribe(e => {
-          let temp: any = e;
-          if (temp.message == "Country list fetched successfully") {
-            for (let country of temp.data) {
-              this.country.push({ viewValue: country.name, value: country.id });
+              this.leadsCommercialSummary.push(this.leadSummary[i])
             }
           }
-        });
-        this.service.LoadDashboardData(this.user.id).subscribe(e => {
-          let temp: any = e;
-          let jsonData: any = JSON.stringify(temp.data)
-          let jsonParsDate: any = JSON.parse(jsonData);
-          this.dashboard = jsonParsDate
-          this.lastPropertyLastingDate = this.dashboard.lastPropertyLastingDate
-          this.totalRestentailPropertyListing = this.dashboard.totalRestentailPropertyListing
-          this.totalCommercialPropertyListing = this.dashboard.totalCommercialPropertyListing
-          this.lastValuationDate = this.dashboard.lastValuationDate
-          this.totalRestValuation = this.dashboard.totalRestValuation
-          this.totalCommValuation = this.dashboard.totalCommValuation
-        });
-        this.LoadLeads("", "");
-        this.userFormData = localStorage.getItem("user");
-        this.userFormData = JSON.parse(this.userFormData);
-        this.detailForm.patchValue({
-          firstName: this.userFormData.firstName,
-          lastName: this.userFormData.lastName,
-          address: this.userFormData.address,
-          dob: this.userFormData.dateOfBirth
-        })
-        this.service.MyValuations(JSON.parse(temp).id).subscribe((result: any) => {
-          this.myValuation = result.data;
-          for (let i = 0; i < this.myValuation.length; i++) {
-            if (this.myValuation[i].propertyCategory.categoryName == "Residential") {
-              this.myValuationResidential.push(this.myValuation[i]);
-            } else {
-              this.myValuationCommercial.push(this.myValuation[i]);
-            }
+        } else {
+          this.leadSummary = "temp";
+        }
+        setTimeout(() => {
+          if (this.url[2] == "wallet") {
+            $(".dashboard-tabs .wallet-btn").click();
+          } else if (this.url[2] == "my-listing") {
+            $(".dashboard-tabs .my-listing-btn").click();
           }
-        })
-        this.getPoints();
-        this.service.GetPoints(1).subscribe((result: any) => {
-          this.pointsData = result.data;
-        })
-        this.service.PointTransaction(this.loggedInUser.id).subscribe((result: any) => {
-          this.pointsHistory = result.data;
-        })
+        }, 500);
+        this.showLoader = false;
+      })
+      this.service.MyPackages(this.userData.id).subscribe((result: any) => {
+        this.myPackages = result.data;
+      })
+      this.service.MyActivitySavedSearchProperty({ "UserId": this.userData.id, "PropertyListingTypeId": "" }).subscribe((result: any) => {
+        this.activitySavedSearch = result.data;
+      })
+    })
+    this.service.LoadPropertyListingTypes().subscribe(e => {
+      let temp: any = e;
+      if (temp.message == "Property Listing Type List fetched successfully") {
+        this.rent = temp.data[0].name;
+        this.buy = temp.data[1].name;
+      }
+    });
+    this.service.LoadCountries().subscribe(e => {
+      let temp: any = e;
+      if (temp.message == "Country list fetched successfully") {
+        for (let country of temp.data) {
+          this.country.push({ viewValue: country.name, value: country.id });
+        }
+      }
+    });
+    this.service.LoadDashboardData(this.user.id).subscribe(e => {
+      let temp: any = e;
+      let jsonData: any = JSON.stringify(temp.data)
+      let jsonParsDate: any = JSON.parse(jsonData);
+      this.dashboard = jsonParsDate
+      this.lastPropertyLastingDate = this.dashboard.lastPropertyLastingDate
+      this.totalRestentailPropertyListing = this.dashboard.totalRestentailPropertyListing
+      this.totalCommercialPropertyListing = this.dashboard.totalCommercialPropertyListing
+      this.lastValuationDate = this.dashboard.lastValuationDate
+      this.totalRestValuation = this.dashboard.totalRestValuation
+      this.totalCommValuation = this.dashboard.totalCommValuation
+    });
+    this.LoadLeads("", "");
+    this.userFormData = localStorage.getItem("user");
+    this.userFormData = JSON.parse(this.userFormData);
+    this.detailForm.patchValue({
+      firstName: this.userFormData.firstName,
+      lastName: this.userFormData.lastName,
+      address: this.userFormData.address,
+      dob: this.userFormData.dateOfBirth
+    })
+    this.service.MyValuations(JSON.parse(temp).id).subscribe((result: any) => {
+      this.myValuation = result.data;
+      for (let i = 0; i < this.myValuation.length; i++) {
+        if (this.myValuation[i].propertyCategory.categoryName == "Residential") {
+          this.myValuationResidential.push(this.myValuation[i]);
+        } else {
+          this.myValuationCommercial.push(this.myValuation[i]);
+        }
+      }
+    })
+    this.getPoints();
+    this.service.GetPoints(1).subscribe((result: any) => {
+      this.pointsData = result.data;
+    })
+    this.service.PointTransaction(this.loggedInUser.id).subscribe((result: any) => {
+      this.pointsHistory = result.data;
+    })
   }
   ngAfterViewInit(): void {
     let a = setInterval(() => {
-      if(this.cookie.get("countryData")) {
+      if (this.cookie.get("countryData")) {
         this.countryData = JSON.parse(this.cookie.get("countryData"));
         this.LoadBlogs();
         clearInterval(a);
       }
-    },100);
+    }, 100);
   }
   getPoints() {
     this.service.MyWallet(this.loggedInUser.id).subscribe((result: any) => {
@@ -1046,7 +1046,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             unitNo: element.unitNo, totalFloor: element.totalFloor, floorNo: element.floorNo, propertyDescription: element.propertyDescription,
             requestedDate: element.requestedDate, furnishingType: element.furnishingType, propertyPrice: element.propertyPrice,
             requestedDateFormat: element.requestedDateFormat, propertyType: element.propertyType.typeDescription,
-            expiredDateFormat: element.expiredDateFormat, rentType: rentTypeName, currency: element.country.currency,recentRentTxns: element.recentRentTxns,
+            expiredDateFormat: element.expiredDateFormat, rentType: rentTypeName, currency: element.country.currency, recentRentTxns: element.recentRentTxns,
             startRentPrice: element.startRentPrice, endRentPrice: element.endRentPrice, avgRentPrice: element.avgRentPrice, country: element.country, city: element.city,
           }
         );
@@ -1343,7 +1343,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       this.error = "Please Enter Card Holder Name";
       this.showError = true;
     }
-    let temp:any = {};
+    let temp: any = {};
     temp.UserId = this.loggedInUser.id;
     temp.Email = this.loggedInUser.email;
     temp.PointId = this.seletedPackage.id;
@@ -1357,8 +1357,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     temp.Currency = this.seletedPackage.country.currency;
     temp.DescriptionPayment = "Point Package";
     this.showLoader = true;
-    this.service.PointPayment(temp).subscribe((result:any) => {
-      if(result.message == "Purchasing Point is completed successfully") {
+    this.service.PointPayment(temp).subscribe((result: any) => {
+      if (result.message == "Purchasing Point is completed successfully") {
         this.showLoader = false;
         this.getPoints();
         $(".payment-cancel-btn").click();

@@ -23,14 +23,14 @@ interface ItemsPerPage {
 export class RentDataResidentialComponent implements OnInit {
 
   showLoader: boolean = false;
-  page:any = 1;
-  itemsPerPage:any = 10;
-  totalLength:any = 0;
+  page: any = 1;
+  itemsPerPage: any = 10;
+  totalLength: any = 0;
   pageitems: ItemsPerPage[] = [
-    {value: '10', viewValue: '10'},
-    {value: '20', viewValue: '20'},
-    {value: '50', viewValue: '50'},
-    {value: '100', viewValue: '100'}
+    { value: '10', viewValue: '10' },
+    { value: '20', viewValue: '20' },
+    { value: '50', viewValue: '50' },
+    { value: '100', viewValue: '100' }
   ];
   PageNumbers = this.pageitems[0].value;
 
@@ -84,7 +84,7 @@ export class RentDataResidentialComponent implements OnInit {
 
   // Transaction Type Filter
   TransactionCtrl = new FormControl('');
-  filteredTransaction: any;
+  filteredTransaction: any = [];
   Transactionfield: any = [];
   allTransactionfield: string[] = ['Transaction', 'Dubai', 'Dubai'];
 
@@ -202,23 +202,23 @@ export class RentDataResidentialComponent implements OnInit {
       this.filteredTransaction = result.data;
     })
   }
-  pageChanged(e:any) {
+  pageChanged(e: any) {
     this.page = e;
   }
-  getItems(e:any) {
+  getItems(e: any) {
     this.itemsPerPage = e.value;
   }
-  formatNumber(e:any) {
-    if(e >= 1000000000000) {
-      return (Math.round(e/10000000000) / 100) + "T";
-    } else if(e >= 1000000000) {
-      return (Math.round(e/10000000) / 100) + "B";
-    } else if(e >= 1000000) {
-      return (Math.round(e/10000) / 100) + "M";
-    } else if(e >= 1000) {
-      return (Math.round(e/10) / 100) + "k";
+  formatNumber(e: any) {
+    if (e >= 1000000000000) {
+      return (Math.round(e / 10000000000) / 100) + "T";
+    } else if (e >= 1000000000) {
+      return (Math.round(e / 10000000) / 100) + "B";
+    } else if (e >= 1000000) {
+      return (Math.round(e / 10000) / 100) + "M";
+    } else if (e >= 1000) {
+      return (Math.round(e / 10) / 100) + "k";
     } else {
-      return (Math.round(e*100) / 100);
+      return (Math.round(e * 100) / 100);
     }
   }
   getDate(e: any) {
@@ -278,7 +278,7 @@ export class RentDataResidentialComponent implements OnInit {
       }
       this.selectedCity = temp;
     }
-    if(!this.allCitiesSelected) {
+    if (!this.allCitiesSelected) {
       this.loadDistrict();
     }
   }
@@ -311,6 +311,7 @@ export class RentDataResidentialComponent implements OnInit {
       this.allDistrictSelected = false;
     }
     this.loadProjects();
+    this.loadData();
   }
   getDistrict(e: any) {
     this.selectedDistrict = [];
@@ -327,8 +328,9 @@ export class RentDataResidentialComponent implements OnInit {
       }
       this.selectedDistrict = temp;
     }
-    if(!this.allDistrictSelected) {
+    if (!this.allDistrictSelected) {
       this.loadProjects();
+      this.loadData();
     }
   }
   loadProjects() {
@@ -344,6 +346,7 @@ export class RentDataResidentialComponent implements OnInit {
     this.service.TransactionSequence().subscribe((result: any) => {
       this.filteredsales = result.data;
     })
+    this.loadData();
   }
   selectAllPropertyType() {
     if (!this.allPropertyTypeSelected) {
@@ -357,6 +360,7 @@ export class RentDataResidentialComponent implements OnInit {
       this.selectedPropertyType = [];
       this.allPropertyTypeSelected = false;
     }
+    this.loadData();
   }
   getPropertyType(e: any) {
     this.selectedPropertyType = [];
@@ -373,6 +377,7 @@ export class RentDataResidentialComponent implements OnInit {
       }
       this.selectedPropertyType = temp;
     }
+    this.loadData();
   }
   selectAllProject() {
     if (!this.allProjectSelected) {
@@ -386,6 +391,7 @@ export class RentDataResidentialComponent implements OnInit {
       this.selectedProject = [];
       this.allProjectSelected = false;
     }
+    this.loadData();
   }
   getProject(e: any) {
     this.selectedProject = [];
@@ -402,12 +408,13 @@ export class RentDataResidentialComponent implements OnInit {
       }
       this.selectedProject = temp;
     }
+    this.loadData();
   }
   selectAllTransactionType() {
     if (!this.allTransactionTypeSelected) {
       this.selectedTransactionType = [];
       this.selectedTransactionType.push("All");
-      for (let item of this.filteredsales) {
+      for (let item of this.filteredTransaction) {
         this.selectedTransactionType.push(item.id);
       }
       this.allTransactionTypeSelected = true;
@@ -415,6 +422,7 @@ export class RentDataResidentialComponent implements OnInit {
       this.selectedTransactionType = [];
       this.allTransactionTypeSelected = false;
     }
+    this.loadData();
   }
   getTransactionType(e: any) {
     this.selectedTransactionType = [];
@@ -431,6 +439,7 @@ export class RentDataResidentialComponent implements OnInit {
       }
       this.selectedTransactionType = temp;
     }
+    this.loadData();
   }
   selectAllBeds() {
     if (!this.allBedsSelected) {
@@ -444,6 +453,7 @@ export class RentDataResidentialComponent implements OnInit {
       this.selectedBeds = [];
       this.allBedsSelected = false;
     }
+    this.loadData();
   }
   getBeds(e: any) {
     this.selectedBeds = [];
@@ -460,6 +470,7 @@ export class RentDataResidentialComponent implements OnInit {
       }
       this.selectedBeds = temp;
     }
+    this.loadData();
   }
   getMinSize(e: any) {
     this.minSize = e;
@@ -478,7 +489,7 @@ export class RentDataResidentialComponent implements OnInit {
     this.loadData();
   }
   loadData() {
-    if (this.startDate == "" || this.endDate == "" || this.communityfield.length == 0) {
+    if (this.startDate == "" || this.endDate == "" || this.selectedDistrict.length == 0) {
       return;
     }
     this.showLoader = true;
@@ -490,22 +501,22 @@ export class RentDataResidentialComponent implements OnInit {
     temp.StartPrice = this.minPrice;
     temp.EndPrice = this.maxPrice;
     temp.DistrictIds = [];
-    for (let item of this.communityfield) {
+    for (let item of this.selectedDistrict) {
       temp.DistrictIds.push(item.id)
     }
-    if (this.ProTypefield.length != 0) {
+    if (this.selectedPropertyType.length != 0) {
       temp.PropertyTypeIds = [];
       for (let item of this.ProTypefield) {
         temp.PropertyTypeIds.push(item.id)
       }
     }
-    if (this.Profield.length != 0) {
+    if (this.selectedProject.length != 0) {
       temp.ProjectIds = [];
       for (let item of this.Profield) {
         temp.ProjectIds.push(item.id)
       }
     }
-    if (this.Transactionfield.length != 0) {
+    if (this.selectedTransactionType.length != 0) {
       temp.TransactionTypeIds = [];
       for (let item of this.Transactionfield) {
         temp.TransactionTypeIds.push(item.id)
@@ -523,7 +534,7 @@ export class RentDataResidentialComponent implements OnInit {
     if (this.maxEndDate != "") {
       temp.MaxEndDate = this.maxEndDate;
     }
-    if (this.bedsfield.length != 0) {
+    if (this.selectedBeds.length != 0) {
       temp.BedroomList = [];
       for (let item of this.bedsfield) {
         temp.BedroomList.push(item.id)
