@@ -4,7 +4,7 @@
             <div ngClass="flex-column flex-column-1">
                 <div ngClass="block-wrapper">
                     <mat-form-field class="example-chip-list input-design searh_input-design" appearance="fill">
-                        <mat-label>المواقع</mat-label>
+                        <mat-label>موقع</mat-label>
                         <mat-chip-list #chipList aria-label="Fruit selection">
                             <mat-chip *ngFor="let fruit of fruits" (removed)="remove(fruit)">
                                 {{fruit}}
