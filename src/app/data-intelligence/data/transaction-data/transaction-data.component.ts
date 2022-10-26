@@ -85,7 +85,7 @@ export class TransactionDataComponent implements OnInit {
 
   // Transaction Type Filter
   TransactionCtrl = new FormControl('');
-  filteredTransaction: any;
+  filteredTransaction: any = [];
   Transactionfield: any = [];
   allTransactionfield: string[] = ['Transaction', 'Dubai', 'Dubai'];
 
@@ -98,7 +98,7 @@ export class TransactionDataComponent implements OnInit {
 
   // Developers Filter
   DevelopersCtrl = new FormControl('');
-  filteredDevelopers: any;
+  filteredDevelopers: any = [];
   Developersfield: any = [];
   allDevelopersfield: string[] = ['All Developers', 'Developers', 'Developers'];
 
@@ -148,6 +148,10 @@ export class TransactionDataComponent implements OnInit {
   selectedProject: any = [];
   allTransactionTypeSelected: boolean = false;
   selectedTransactionType: any = [];
+  allSalesSequenceSelected: boolean = false;
+  selectedSalesSequence: any = [];
+  allDevelopersSelected: boolean = false;
+  selectedDevelopers: any = [];
   allBedsSelected: boolean = false;
   selectedBeds: any = [];
 
@@ -254,8 +258,8 @@ export class TransactionDataComponent implements OnInit {
         }
       }
       this.selectedCity = temp;
-    } 
-    if(!this.allCitiesSelected) {
+    }
+    if (!this.allCitiesSelected) {
       this.loadDistrict();
     }
   }
@@ -304,7 +308,7 @@ export class TransactionDataComponent implements OnInit {
       }
       this.selectedDistrict = temp;
     }
-    if(!this.allDistrictSelected) {
+    if (!this.allDistrictSelected) {
       this.loadProjects();
     }
   }
@@ -384,7 +388,7 @@ export class TransactionDataComponent implements OnInit {
     if (!this.allTransactionTypeSelected) {
       this.selectedTransactionType = [];
       this.selectedTransactionType.push("All");
-      for (let item of this.filteredsales) {
+      for (let item of this.filteredTransaction) {
         this.selectedTransactionType.push(item.id);
       }
       this.allTransactionTypeSelected = true;
@@ -407,6 +411,64 @@ export class TransactionDataComponent implements OnInit {
         }
       }
       this.selectedTransactionType = temp;
+    }
+  }
+  selectAllSalesSequence() {
+    if (!this.allSalesSequenceSelected) {
+      this.selectedSalesSequence = [];
+      this.selectedSalesSequence.push("All");
+      for (let item of this.filteredsales) {
+        this.selectedSalesSequence.push(item.id);
+      }
+      this.allSalesSequenceSelected = true;
+    } else {
+      this.selectedSalesSequence = [];
+      this.allSalesSequenceSelected = false;
+    }
+  }
+  getSalesSequence(e: any) {
+    this.selectedSalesSequence = [];
+    for (let item of e.value) {
+      this.selectedSalesSequence.push(item);
+    }
+    if (e.value.indexOf("All") != -1) {
+      this.allSalesSequenceSelected = false;
+      let temp: any = [];
+      for (let item of this.selectedSalesSequence) {
+        if (item != "All") {
+          temp.push(item);
+        }
+      }
+      this.selectedSalesSequence = temp;
+    }
+  }
+  selectAllDevelopers() {
+    if (!this.allDevelopersSelected) {
+      this.selectedDevelopers = [];
+      this.selectedDevelopers.push("All");
+      for (let item of this.filteredDevelopers) {
+        this.selectedDevelopers.push(item.id);
+      }
+      this.allDevelopersSelected = true;
+    } else {
+      this.selectedDevelopers = [];
+      this.allDevelopersSelected = false;
+    }
+  }
+  getDevelopers(e: any) {
+    this.selectedDevelopers = [];
+    for (let item of e.value) {
+      this.selectedDevelopers.push(item);
+    }
+    if (e.value.indexOf("All") != -1) {
+      this.allDevelopersSelected = false;
+      let temp: any = [];
+      for (let item of this.selectedDevelopers) {
+        if (item != "All") {
+          temp.push(item);
+        }
+      }
+      this.selectedDevelopers = temp;
     }
   }
   selectAllBeds() {
