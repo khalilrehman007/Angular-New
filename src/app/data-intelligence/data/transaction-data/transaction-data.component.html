@@ -30,24 +30,24 @@
                   <div class="dashboard-data-select-box" *ngIf="citiesData.length > 0">
                     <label>City</label>
                     <mat-form-field>
-                    <mat-label>Add City</mat-label>
-                    <mat-select multiple>
-                        <mat-option value="All">Select All</mat-option>
-                      <mat-option *ngFor="let city of Cityfield" [value]="city.name">
-                        {{city.name}}
-                      </mat-option>
-                    </mat-select>
-                  </mat-form-field>
+                      <mat-label>Add City</mat-label>
+                      <mat-select multiple (selectionChange)="getCity($event)" [(value)]="selectedCity">
+                        <mat-option value="All" (click)="selectAllCity()">Select All</mat-option>
+                        <mat-option *ngFor="let city of citiesData" [value]="city.id">
+                          {{city.name}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
                   </div>
                 </div>
                 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-2">
-                  <div class="dashboard-data-select-box">
+                  <div class="dashboard-data-select-box" [ngClass]="communityfield.length > 0 ? '' : 'disabled'">
                     <label>District</label>
                     <mat-form-field>
                       <mat-label>Add District</mat-label>
-                      <mat-select multiple>
-                          <mat-option value="All">Select All</mat-option>
-                        <mat-option *ngFor="let community of communityfield" [value]="community.name">
+                      <mat-select multiple (selectionChange)="getDistrict($event)" [(value)]="selectedDistrict">
+                        <mat-option value="All" (click)="selectAllDistrict()">Select All</mat-option>
+                        <mat-option *ngFor="let community of communityfield" [value]="community.id">
                           {{community.name}}
                         </mat-option>
                       </mat-select>
@@ -59,23 +59,23 @@
                     <label>Property Type</label>
                     <mat-form-field>
                       <mat-label>Add Property Type</mat-label>
-                      <mat-select multiple>
-                          <mat-option value="All">Select All</mat-option>
-                        <mat-option *ngFor="let protype of ProTypefield" [value]="protype.name">
-                          {{protype.name}}
+                      <mat-select multiple (selectionChange)="getPropertyType($event)" [(value)]="selectedPropertyType">
+                        <mat-option value="All" (click)="selectAllPropertyType()">Select All</mat-option>
+                        <mat-option *ngFor="let protype of filteredProperty" [value]="protype.id">
+                          {{protype.typeDescription}}
                         </mat-option>
                       </mat-select>
                     </mat-form-field>
                   </div>
                 </div>
                 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-2">
-                  <div class="dashboard-data-select-box">
+                  <div class="dashboard-data-select-box" [ngClass]="filteredPropertyOnly.length > 0 ? '' : 'disabled'">
                     <label>Projects</label>
                     <mat-form-field>
                       <mat-label>Add Projects</mat-label>
-                      <mat-select multiple>
-                          <mat-option value="All">Select All</mat-option>
-                        <mat-option *ngFor="let property of Profield" [value]="property.name">
+                      <mat-select multiple (selectionChange)="getProject($event)" [(value)]="selectedProject">
+                          <mat-option value="All" (click)="selectAllProject()">Select All</mat-option>
+                        <mat-option *ngFor="let property of filteredPropertyOnly" [value]="property.id">
                           {{property.name}}
                         </mat-option>
                       </mat-select>
@@ -83,13 +83,13 @@
                   </div>
                 </div>
                 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-2">
-                  <div class="dashboard-data-select-box">
+                  <div class="dashboard-data-select-box" [ngClass]="filteredsales.length > 0 ? '' : 'disabled'">
                     <label>Transaction Type</label>
                     <mat-form-field>
                       <mat-label>Add Transaction Type</mat-label>
-                      <mat-select multiple>
-                          <mat-option value="All">Select All</mat-option>
-                        <mat-option *ngFor="let transaction of Transactionfield" [value]="transaction.name">
+                      <mat-select multiple (selectionChange)="getTransactionType($event)" [(value)]="selectedTransactionType">
+                          <mat-option value="All" (click)="selectAllTransactionType()">Select All</mat-option>
+                        <mat-option *ngFor="let transaction of filteredsales" [value]="transaction.id">
                           {{transaction.name}}
                         </mat-option>
                       </mat-select>
@@ -102,7 +102,7 @@
                     <mat-form-field>
                       <mat-label>Add Sales Sequence</mat-label>
                       <mat-select multiple>
-                          <mat-option value="All">Select All</mat-option>
+                        <mat-option value="All">Select All</mat-option>
                         <mat-option *ngFor="let sale of salesfield" [value]="sale.name">
                           {{sale.name}}
                         </mat-option>
@@ -116,7 +116,7 @@
                     <mat-form-field>
                       <mat-label>Add Developers</mat-label>
                       <mat-select multiple>
-                          <mat-option value="All">Select All</mat-option>
+                        <mat-option value="All">Select All</mat-option>
                         <mat-option *ngFor="let developer of Developersfield" [value]="developer.name">
                           {{developer.name}}
                         </mat-option>
@@ -129,9 +129,9 @@
                     <label>BEDROOM</label>
                     <mat-form-field>
                       <mat-label>Add Bedroom</mat-label>
-                      <mat-select multiple>
-                          <mat-option value="All">Select All</mat-option>
-                        <mat-option *ngFor="let beds of bedsfield" [value]="beds">
+                      <mat-select multiple (selectionChange)="getBeds($event)" [(value)]="selectedBeds">
+                          <mat-option value="All" (click)="selectAllBeds()">Select All</mat-option>
+                        <mat-option *ngFor="let beds of allbedsfield" [value]="beds">
                           {{beds}}
                         </mat-option>
                       </mat-select>
@@ -284,7 +284,8 @@
                   <p>Items Per Page 10</p>
                   <div ngClass="select-design-language">
                     <mat-form-field appearance="fill">
-                      <mat-select [disableOptionCentering]="true" [(value)]="PageNumbers" (selectionChange)="getItems($event)">
+                      <mat-select [disableOptionCentering]="true" [(value)]="PageNumbers"
+                        (selectionChange)="getItems($event)">
                         <mat-option [value]="option.value" *ngFor="let option of pageitems">
                           {{option.viewValue }}
                         </mat-option>

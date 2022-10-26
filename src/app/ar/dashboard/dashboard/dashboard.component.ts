@@ -21,6 +21,8 @@ blogs: any;
   pdf = 'assets/images/icons/pdf.png'
   logoutimg = '../../../assets/images/logout-popup-banner.png'
   proAvatar: any = '../../../assets/images/user.png'
+  share1 = 'assets/images/icons/share-1.png'
+  ovverified = 'assets/images/icons/ov-verified.svg'
   proClose = '../../../assets/images/profile/close.png'
   proImgEdit = '../../../assets/images/profile/edit.png'
   proEdit = '../../../assets/images/profile/create.png'
@@ -977,9 +979,11 @@ blogs: any;
             unitNo: element.unitNo, totalFloor: element.totalFloor, floorNo: element.floorNo, propertyDescription: element.propertyDescription,
             requestedDate: element.requestedDate, furnishingType: element.furnishingType, propertyPrice: element.propertyPrice,
             requestedDateFormat: element.requestedDateFormat, propertyType: element.propertyType.typeDescriptionAr,
-            expiredDateFormat: element.expiredDateFormat, rentType: rentTypeName, currency: element.country.currencyAr
+            expiredDateFormat: element.expiredDateFormat, rentType: rentTypeName, currency: element.country.currencyAr, recentRentTxns: element.recentRentTxns,
+            startRentPrice: element.startRentPrice, endRentPrice: element.endRentPrice, avgRentPrice: element.avgRentPrice, country: element.country, city: element.city,
           }
         );
+        
       })
       this.totalLength = tempData.length
       this.myActivityListingView = tempData;

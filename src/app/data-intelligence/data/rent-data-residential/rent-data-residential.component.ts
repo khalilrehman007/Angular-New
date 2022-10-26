@@ -105,7 +105,7 @@ export class RentDataResidentialComponent implements OnInit {
   bedsCtrl = new FormControl('');
   filteredbeds: any;
   bedsfield: any = [];
-  allbedsfield: any = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  allbedsfield: any = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   // City Filter
   CityCtrl = new FormControl('');
@@ -145,6 +145,18 @@ export class RentDataResidentialComponent implements OnInit {
   minPrice: any = "";
   maxPrice: any = "";
   transactionData: any = "";
+  allCitiesSelected: boolean = false;
+  selectedCity: any = [];
+  allDistrictSelected: boolean = false;
+  selectedDistrict: any = [];
+  allPropertyTypeSelected: boolean = false;
+  selectedPropertyType: any = [];
+  allProjectSelected: boolean = false;
+  selectedProject: any = [];
+  allTransactionTypeSelected: boolean = false;
+  selectedTransactionType: any = [];
+  allBedsSelected: boolean = false;
+  selectedBeds: any = [];
 
   constructor(private cookie: CookieService, private service: AppService) {
     this.minSize = this.SizeminValue;
@@ -235,6 +247,219 @@ export class RentDataResidentialComponent implements OnInit {
   getMaxEndDate(e: any) {
     this.maxEndDate = this.getDate(e);
     this.loadData();
+  }
+  selectAllCity() {
+    if (!this.allCitiesSelected) {
+      this.selectedCity = [];
+      this.selectedCity.push("All");
+      for (let item of this.citiesData) {
+        this.selectedCity.push(item.id);
+      }
+      this.allCitiesSelected = true;
+    } else {
+      this.selectedCity = [];
+      this.allCitiesSelected = false;
+      this.communityfield = [];
+    }
+    this.loadDistrict();
+  }
+  getCity(e: any) {
+    this.selectedCity = [];
+    for (let item of e.value) {
+      this.selectedCity.push(item);
+    }
+    if (e.value.indexOf("All") != -1) {
+      this.allCitiesSelected = false;
+      let temp: any = [];
+      for (let item of this.selectedCity) {
+        if (item != "All") {
+          temp.push(item);
+        }
+      }
+      this.selectedCity = temp;
+    }
+    if(!this.allCitiesSelected) {
+      this.loadDistrict();
+    }
+  }
+  loadDistrict() {
+    let temp: any = [];
+    for (let item of this.selectedCity) {
+      if (item != "All") {
+        temp.push(item);
+      }
+    }
+    this.communityfield = [];
+    for (let i = 0; i < temp.length; i++) {
+      this.service.FindDistricts({ "CityId": temp[i], "Locations": [] }).subscribe((result: any) => {
+        for (let item of result.data) {
+          this.communityfield.push(item);
+        }
+      })
+    }
+  }
+  selectAllDistrict() {
+    if (!this.allDistrictSelected) {
+      this.selectedDistrict = [];
+      this.selectedDistrict.push("All");
+      for (let item of this.communityfield) {
+        this.selectedDistrict.push(item.id);
+      }
+      this.allDistrictSelected = true;
+    } else {
+      this.selectedDistrict = [];
+      this.allDistrictSelected = false;
+    }
+    this.loadProjects();
+  }
+  getDistrict(e: any) {
+    this.selectedDistrict = [];
+    for (let item of e.value) {
+      this.selectedDistrict.push(item);
+    }
+    if (e.value.indexOf("All") != -1) {
+      this.allDistrictSelected = false;
+      let temp: any = [];
+      for (let item of this.selectedDistrict) {
+        if (item != "All") {
+          temp.push(item);
+        }
+      }
+      this.selectedDistrict = temp;
+    }
+    if(!this.allDistrictSelected) {
+      this.loadProjects();
+    }
+  }
+  loadProjects() {
+    let temp: any = [];
+    for (let item of this.selectedDistrict) {
+      if (item != "All") {
+        temp.push(item);
+      }
+    }
+    this.service.GetProjects({ "DistrictIds": temp }).subscribe((result: any) => {
+      this.filteredPropertyOnly = result.data;
+    })
+    this.service.TransactionSequence().subscribe((result: any) => {
+      this.filteredsales = result.data;
+    })
+  }
+  selectAllPropertyType() {
+    if (!this.allPropertyTypeSelected) {
+      this.selectedPropertyType = [];
+      this.selectedPropertyType.push("All");
+      for (let item of this.filteredProperty) {
+        this.selectedPropertyType.push(item.id);
+      }
+      this.allPropertyTypeSelected = true;
+    } else {
+      this.selectedPropertyType = [];
+      this.allPropertyTypeSelected = false;
+    }
+  }
+  getPropertyType(e: any) {
+    this.selectedPropertyType = [];
+    for (let item of e.value) {
+      this.selectedPropertyType.push(item);
+    }
+    if (e.value.indexOf("All") != -1) {
+      this.allPropertyTypeSelected = false;
+      let temp: any = [];
+      for (let item of this.selectedPropertyType) {
+        if (item != "All") {
+          temp.push(item);
+        }
+      }
+      this.selectedPropertyType = temp;
+    }
+  }
+  selectAllProject() {
+    if (!this.allProjectSelected) {
+      this.selectedProject = [];
+      this.selectedProject.push("All");
+      for (let item of this.filteredPropertyOnly) {
+        this.selectedProject.push(item.id);
+      }
+      this.allProjectSelected = true;
+    } else {
+      this.selectedProject = [];
+      this.allProjectSelected = false;
+    }
+  }
+  getProject(e: any) {
+    this.selectedProject = [];
+    for (let item of e.value) {
+      this.selectedProject.push(item);
+    }
+    if (e.value.indexOf("All") != -1) {
+      this.allProjectSelected = false;
+      let temp: any = [];
+      for (let item of this.selectedProject) {
+        if (item != "All") {
+          temp.push(item);
+        }
+      }
+      this.selectedProject = temp;
+    }
+  }
+  selectAllTransactionType() {
+    if (!this.allTransactionTypeSelected) {
+      this.selectedTransactionType = [];
+      this.selectedTransactionType.push("All");
+      for (let item of this.filteredsales) {
+        this.selectedTransactionType.push(item.id);
+      }
+      this.allTransactionTypeSelected = true;
+    } else {
+      this.selectedTransactionType = [];
+      this.allTransactionTypeSelected = false;
+    }
+  }
+  getTransactionType(e: any) {
+    this.selectedTransactionType = [];
+    for (let item of e.value) {
+      this.selectedTransactionType.push(item);
+    }
+    if (e.value.indexOf("All") != -1) {
+      this.allTransactionTypeSelected = false;
+      let temp: any = [];
+      for (let item of this.selectedTransactionType) {
+        if (item != "All") {
+          temp.push(item);
+        }
+      }
+      this.selectedTransactionType = temp;
+    }
+  }
+  selectAllBeds() {
+    if (!this.allBedsSelected) {
+      this.selectedBeds = [];
+      this.selectedBeds.push("All");
+      for (let item of this.allbedsfield) {
+        this.selectedBeds.push(item);
+      }
+      this.allBedsSelected = true;
+    } else {
+      this.selectedBeds = [];
+      this.allBedsSelected = false;
+    }
+  }
+  getBeds(e: any) {
+    this.selectedBeds = [];
+    for (let item of e.value) {
+      this.selectedBeds.push(item);
+    }
+    if (e.value.indexOf("All") != -1) {
+      this.allBedsSelected = false;
+      let temp: any = [];
+      for (let item of this.selectedBeds) {
+        if (item != "All") {
+          temp.push(item);
+        }
+      }
+      this.selectedBeds = temp;
+    }
   }
   getMinSize(e: any) {
     this.minSize = e;
@@ -334,20 +559,7 @@ export class RentDataResidentialComponent implements OnInit {
     this.communityfield.push({ "id": event.option.value, "name": event.option.viewValue });
     this.ComunityInput.nativeElement.value = '';
     this.CommunityCtrl.setValue(null);
-    this.loadProjects();
     this.loadData();
-  }
-  loadProjects() {
-    let temp: any = [];
-    for (let item of this.communityfield) {
-      temp.push(item.id)
-    }
-    this.service.GetProjects({ "DistrictIds": temp }).subscribe((result: any) => {
-      this.filteredPropertyOnly = result.data;
-    })
-    this.service.TransactionSequence().subscribe((result: any) => {
-      this.filteredsales = result.data;
-    })
   }
   add1(event: MatChipInputEvent): void {
     const value1 = (event.value || '').trim();
@@ -440,16 +652,6 @@ export class RentDataResidentialComponent implements OnInit {
     }
     event.chipInput!.clear();
     this.CityCtrl.setValue(null);
-  }
-  loadDistrict() {
-    this.filteredcommunity = [];
-    for (let i = 0; i < this.Cityfield.length; i++) {
-      this.service.FindDistricts({ "CityId": this.Cityfield[i].id, "Locations": [] }).subscribe((result: any) => {
-        for (let item of result.data) {
-          this.filteredcommunity.push(item);
-        }
-      })
-    }
   }
   remove7(city: any): void {
     this.communityfield = [];

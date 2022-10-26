@@ -72,13 +72,15 @@
                         <button class="nav-link" id="pills-leads-tab" data-bs-toggle="pill"
                             data-bs-target="#pills-leads" type="button" role="tab" aria-controls="pills-leads"
                             aria-selected="false"
-                            *ngIf="professionalType == 1 || professionalType == 2 || professionalType == 3">عملائي المحتملين</button>
+                            *ngIf="professionalType == 1 || professionalType == 2 || professionalType == 3">عملائي
+                            المحتملين</button>
                     </li>
                     <li class="nav-item" role="presentation">
                         <button class="nav-link my-listing-btn" id="pills-listing-tab" data-bs-toggle="pill"
                             data-bs-target="#pills-listing" type="button" role="tab" aria-controls="pills-listing"
                             aria-selected="false"
-                            *ngIf="professionalType == 1 || professionalType == 2 || professionalType == 3">القوائم الخاصة بي</button>
+                            *ngIf="professionalType == 1 || professionalType == 2 || professionalType == 3">القوائم
+                            الخاصة بي</button>
                     </li>
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="pills-valuation-tab" data-bs-toggle="pill"
@@ -97,7 +99,8 @@
                     </li>
                     <li class="nav-item" role="presentation">
                         <div ngbDropdown class="d-inline-block">
-                            <button mat-icon-button ngClass="action-btn" id="dropdownBasic1" ngbDropdownToggle>أكثر</button>
+                            <button mat-icon-button ngClass="action-btn" id="dropdownBasic1"
+                                ngbDropdownToggle>أكثر</button>
                             <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
                                 <button ngbDropdownItem><a href="/ar"><img src="{{web}}"> اذهب إلى Ovaluate</a></button>
                                 <button ngbDropdownItem><a href="" data-bs-toggle="pill" data-bs-target="#pills-profile"
@@ -108,7 +111,8 @@
                                 <!-- <button ngbDropdownItem><a href=""><img src="{{acsetting}}"> Account
                                         Settings</a></button> -->
                                 <button ngbDropdownItem>
-                                    <a ngClass="logout-link logout-popup" (click)="logOutPopup(content)"><img src="{{aclogout}}"> تسجيل خروج </a>
+                                    <a ngClass="logout-link logout-popup" (click)="logOutPopup(content)"><img
+                                            src="{{aclogout}}"> تسجيل خروج </a>
                                 </button>
                             </div>
                         </div>
@@ -258,7 +262,8 @@
                                             <div class="col base-info-col">
                                                 <h4 class="name" *ngIf="data && data.nameAr">{{data.nameAr}}</h4>
                                                 <p *ngIf="data && data.leadDate">{{data.leadDate.split("T")[0]}}</p>
-                                                <p *ngIf="data.propertyListing.city && data.propertyListing.city.nameAr">
+                                                <p
+                                                    *ngIf="data.propertyListing.city && data.propertyListing.city.nameAr">
                                                     {{data.propertyListing.city.nameAr}}, الامارات</p>
                                             </div>
                                             <div class="col ">
@@ -317,7 +322,8 @@
                                             <div class="col base-info-col">
                                                 <h4 class="name" *ngIf="data && data.nameAr">{{data.nameAr}}</h4>
                                                 <p *ngIf="data && data.leadDate">{{data.leadDate.split("T")[0]}}</p>
-                                                <p *ngIf="data.propertyListing.city && data.propertyListing.city.nameAr">
+                                                <p
+                                                    *ngIf="data.propertyListing.city && data.propertyListing.city.nameAr">
                                                     {{data.propertyListing.city.nameAr}}, الامارات</p>
                                             </div>
                                             <div class="col ">
@@ -431,7 +437,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="agent-details__tabs">
+                                    <!-- <div class="agent-details__tabs">
                                         <div class="row">
                                             <div class="col-lg-9 col-md-10">
                                                 <ul class="agent-details__property-list">
@@ -445,7 +451,9 @@
                                                             <div class="col-lg-10">
                                                                 <div class="row">
                                                                     <div class="col-7">
-                                                                        <a routerLink="/ar/property/detail" [queryParams]="{id: viewList.id}" class="agent-details__property-list-item-link cursor-pointer">{{viewList.propertyPrice}}
+                                                                        <a routerLink="/ar/property/detail"
+                                                                            [queryParams]="{id: viewList.id}"
+                                                                            class="agent-details__property-list-item-link cursor-pointer">{{viewList.propertyPrice}}
                                                                             {{viewList.currency}}
                                                                             <span>{{viewList.rentType}}</span>
                                                                         </a>
@@ -454,7 +462,8 @@
                                                                         <h4 class="sub-bold-text">
                                                                             {{viewList.propertyTitle}}</h4>
                                                                         <p
-                                                                            class="agent-details__property-list-item-date">مدرج في{{viewList.requestedDateFormat}}</p>
+                                                                            class="agent-details__property-list-item-date">
+                                                                            مدرج في{{viewList.requestedDateFormat}}</p>
                                                                     </div>
                                                                 </div>
                                                                 <h6>{{viewList.buildingName}}</h6>
@@ -504,7 +513,164 @@
                                                 </ul>
                                             </div>
                                         </div>
-                                        
+
+                                    </div> -->
+                                    <div class="agent-details__tabs">
+                                        <div class="row">
+                                            <div class="col-lg-9 col-md-10">
+                                                <ul class="agent-details__property-list">
+                                                    <li class="agent-details__property-list-item"
+                                                        *ngFor=" let viewList of myActivityListingView | paginate: { itemsPerPage: 10, currentPage: page, totalItems:totalLength }">
+                                                        <div class="row">
+                                                            <div class="col-lg-4">
+                                                                <a routerLink="/property/detail"
+                                                                    [queryParams]="{id: viewList.id}"><img
+                                                                        src="{{viewList.img}}" alt=""
+                                                                        class="img-fluid agent-details__property-list-item-img"></a>
+                                                            </div>
+                                                            <div class="col-lg-8">
+                                                                <div class="row">
+                                                                    <div class="col-7">
+                                                                        <a routerLink="/property/detail"
+                                                                            [queryParams]="{id: viewList.id}"
+                                                                            class="agent-details__property-list-item-link cursor-pointer">{{viewList.propertyPrice}}
+                                                                            {{viewList.currency}}
+                                                                            <span>{{viewList.rentType}}</span>
+                                                                        </a>
+                                                                        <h4 class="sub-bold-text property-title">
+                                                                            <a routerLink="/property/detail"
+                                                                                [queryParams]="{id: viewList.id}"
+                                                                                class="agent-details__property-list-item-link cursor-pointer">{{viewList.propertyTitle}}</a>
+                                                                        </h4>
+                                                                    </div>
+                                                                    <div class="col-5 text-end">
+                                                                        <div ngClass="property-action-hdr">
+                                                                            <button ngClass="ov-verified-btn"><img
+                                                                                    src="{{ovverified}}">
+                                                                                OV-RV-100049</button>
+                                                                            <div ngClass="pro-contact-details">
+                                                                                <div ngbDropdown class="d-inline-block">
+                                                                                    <button ngClass="circle-btn"
+                                                                                        id="dropdownBasic21"
+                                                                                        ngbDropdownToggle><img
+                                                                                            src="{{share1}}"></button>
+                                                                                    <div ngbDropdownMenu
+                                                                                        aria-labelledby="dropdownBasic21">
+                                                                                        <h5>شارك مع:</h5>
+                                                                                        <button ngbDropdownItem><a
+                                                                                                target="_blank"
+                                                                                                href="https://facebook.com"
+                                                                                                ngClass="facebook"><img
+                                                                                                    src="{{fb}}">
+                                                                                                فيسبوك</a></button>
+                                                                                        <button ngbDropdownItem><a
+                                                                                                target="_blank"
+                                                                                                href="https://web.whatsapp.com/"
+                                                                                                ngClass="whatsapp"><img
+                                                                                                    src="{{whatsapp}}">
+                                                                                                واتساب</a></button>
+                                                                                        <button ngbDropdownItem><a
+                                                                                                target="_blank"
+                                                                                                href="https://twitter.com/"
+                                                                                                ngClass="twitter"><img
+                                                                                                    src="{{twitter}}">
+                                                                                                تويتر</a></button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <button ngClass="favourite-btn">
+                                                                                <svg width="22" height="23"
+                                                                                    viewBox="0 0 22 23" fill="#595ad4"
+                                                                                    xmlns="http://www.w3.org/2000/svg">
+                                                                                    <path
+                                                                                        d="M4.39376 6.23844C4.02517 6.63167 3.73279 7.0985 3.53331 7.61228C3.33383 8.12605 3.23116 8.67672 3.23116 9.23283C3.23116 9.78894 3.33383 10.3396 3.53331 10.8534C3.73279 11.3672 4.02517 11.834 4.39376 12.2272L11.1699 19.4563L17.946 12.2272C18.6904 11.433 19.1086 10.3559 19.1086 9.23283C19.1086 8.10972 18.6904 7.0326 17.946 6.23844C17.2016 5.44429 16.1919 4.99813 15.1392 4.99813C14.0865 4.99813 13.0768 5.44429 12.3324 6.23844L11.1699 7.47873L10.0073 6.23844C9.63871 5.84521 9.20113 5.53329 8.71954 5.32047C8.23796 5.10766 7.72179 4.99812 7.20053 4.99812C6.67926 4.99812 6.1631 5.10766 5.68152 5.32047C5.19993 5.53329 4.76235 5.84521 4.39376 6.23844V6.23844Z"
+                                                                                        stroke-width="2"
+                                                                                        stroke-linecap="round"
+                                                                                        stroke-linejoin="round" />
+                                                                                </svg>
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <h6 class="building-name-list">{{viewList.buildingName}}
+                                                                </h6>
+                                                                <p class="agent-details__property-list-item-text">
+                                                                    <img src="assets/images/home-location.svg" alt=""
+                                                                        class="img-fluid agent-details__property-list-item-text-icon">
+                                                                    {{viewList.propertyAddress}}
+                                                                </p>
+                                                                <p class="agent-details__property-list-item-type">
+                                                                    {{viewList.propertyType}}</p>
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+                                                                        <ul class="agent-details__property-detail-list">
+                                                                            <li
+                                                                                class="agent-details__property-detail-list-item beds">
+                                                                                <img src="assets/images/icons/Bed.svg"
+                                                                                    alt="">
+                                                                                {{viewList.bedrooms}} غرفة نوم
+                                                                            </li>
+                                                                            <li
+                                                                                class="agent-details__property-detail-list-item bath">
+                                                                                <img src="assets/images/icons/Bath-tub.svg"
+                                                                                    alt="">
+                                                                                {{viewList.bathrooms}} حمام
+                                                                            </li>
+                                                                            <li
+                                                                                class="agent-details__property-detail-list-item sqft">
+                                                                                <img src="assets/images/icons/Square Meters.svg"
+                                                                                    alt="">
+                                                                                {{viewList.carpetArea}} قدم مربع
+                                                                            </li>
+                                                                            <li
+                                                                                class="agent-details__property-detail-list-item furnising">
+                                                                                <img src="assets/images/icons/furnishing.svg"
+                                                                                    alt="">
+                                                                                {{viewList.furnishingType}}  
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                                <div ngClass="key-tags">
+                                                                    <span> 24 Hours Concierge </span>
+                                                                </div>
+                                                                <div ngClass="data-inteligence-text">
+                                                                    <h6>OV Data Intelligence - {{viewList.city.name}}, {{viewList.country.name}}
+                                                                    </h6>
+                                                                    <div ngClass="property-range-bar d-flex">
+                                                                        <div ngClass="pro-range-whie-box">
+                                                                            <p>Recent Rent Transactions</p>
+                                                                            <h6>{{viewList.recentRentTxns}} in last 1 year</h6>
+                                                                        </div>
+                                                                        <div ngClass="pro-range-whie-box">
+                                                                            <p>Rent Price Range</p>
+                                                                            <h6>{{viewList.startRentPrice}} {{viewList.currency}} - {{viewList.endRentPrice}} {{viewList.currency}}</h6>
+                                                                        </div>
+                                                                        <div ngClass="pro-range-whie-box">
+                                                                            <p>Avg. Rent/ Sq. Ft.</p>
+                                                                            <h6>{{viewList.avgRentPrice}} {{viewList.currency}}</h6>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="lisiting-status-reports">
+                                                                    <p class="agent-details__property-list-item-date">
+                                                                        مدرج على
+                                                                        {{viewList.requestedDateFormat}}</p>
+                                                                    <div class="property-uploader-img">
+                                                                        <img src="assets/images/better-home.svg" alt="">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <section class="agent-pagination-wrapper">
+                                            <pagination-controls (pageChange)="pageChanged($event)"
+                                                class="text-center my-pagination">
+                                            </pagination-controls>
+                                        </section>
                                     </div>
                                     <section class="agent-landing-featured">
 
@@ -535,7 +701,8 @@
                                                                                 routerLink=#>إعرض الخريطة</a>
                                                                             <p
                                                                                 class="agent-landing-featured__property-text">
-                                                                                مؤسسة التنظيم العقاري# {{agentView.reraNo}}</p>
+                                                                                مؤسسة التنظيم العقاري#
+                                                                                {{agentView.reraNo}}</p>
                                                                             <p
                                                                                 class="agent-landing-featured__property-text">
                                                                                 شهادة# {{agentView.premitNo}}
@@ -619,24 +786,43 @@
                                                         *ngFor=" let viewList of activityViewData | paginate: { itemsPerPage: 10, currentPage: page, totalItems:activityViewData.length }">
                                                         <div class="row">
                                                             <div class="col-lg-2">
-                                                                <img *ngIf="viewList.documents.length > 0" src="https://beta.ovaluate.com/{{viewList.documents[0].fileUrl}}" alt=""
+                                                                <img *ngIf="viewList.documents.length > 0"
+                                                                    src="https://beta.ovaluate.com/{{viewList.documents[0].fileUrl}}"
+                                                                    alt=""
                                                                     class="img-fluid agent-details__property-list-item-img">
-                                                                <img *ngIf="viewList.documents.length == 0" src="assets/images/placeholder.png" alt=""
+                                                                <img *ngIf="viewList.documents.length == 0"
+                                                                    src="assets/images/placeholder.png" alt=""
                                                                     class="img-fluid agent-details__property-list-item-img">
                                                             </div>
                                                             <div class="col-lg-10">
                                                                 <div class="row">
                                                                     <div class="col-7">
-                                                                        <a routerLink="/ar/property/detail" [queryParams]="{id: viewList.id}" class="agent-details__property-list-item-link cursor-pointer">{{viewList.propertyPrice}}
+                                                                        <a routerLink="/ar/property/detail"
+                                                                            [queryParams]="{id: viewList.id}"
+                                                                            class="agent-details__property-list-item-link cursor-pointer">{{viewList.propertyPrice}}
                                                                             {{viewList.country.currencyAr}}
-                                                                            <span *ngIf="viewList.rentType">/{{viewList.rentType.nameAr}}</span>
+                                                                            <span
+                                                                                *ngIf="viewList.rentType">/{{viewList.rentType.nameAr}}</span>
                                                                         </a>
                                                                     </div>
                                                                     <div class="col-5 text-end">
-                                                                        <h4 class="sub-bold-text">{{viewList.propertyTitle}}</h4>
-                                                                        <p class="agent-details__property-list-item-date">مدرج في: <span class="value_span">{{viewList.requestedDateFormat}}</span></p>
-                                                                        <p class="agent-details__property-list-item-date">تم إدراجه على القائمة المختصرة بواسطة: <span class="value_span">{{viewList.numberOfUsershortListedProperty}} الأشخاص</span></p>
-                                                                        <p class="agent-details__property-list-item-date">تمت مشاهدته من قبل: <span class="value_span">{{viewList.numberOfUserSeeingProperty}} الأشخاص</span></p>
+                                                                        <h4 class="sub-bold-text">
+                                                                            {{viewList.propertyTitle}}</h4>
+                                                                        <p
+                                                                            class="agent-details__property-list-item-date">
+                                                                            مدرج في: <span
+                                                                                class="value_span">{{viewList.requestedDateFormat}}</span>
+                                                                        </p>
+                                                                        <p
+                                                                            class="agent-details__property-list-item-date">
+                                                                            تم إدراجه على القائمة المختصرة بواسطة: <span
+                                                                                class="value_span">{{viewList.numberOfUsershortListedProperty}}
+                                                                                الأشخاص</span></p>
+                                                                        <p
+                                                                            class="agent-details__property-list-item-date">
+                                                                            تمت مشاهدته من قبل: <span
+                                                                                class="value_span">{{viewList.numberOfUserSeeingProperty}}
+                                                                                الأشخاص</span></p>
                                                                     </div>
                                                                 </div>
                                                                 <h6>{{viewList.buildingName}}</h6>
@@ -721,7 +907,8 @@
                                                                                 routerLink=#>إعرض الخريطة</a>
                                                                             <p
                                                                                 class="agent-landing-featured__property-text">
-                                                                                مؤسسة التنظيم العقاري# {{agentView.reraNo}}</p>
+                                                                                مؤسسة التنظيم العقاري#
+                                                                                {{agentView.reraNo}}</p>
                                                                             <p
                                                                                 class="agent-landing-featured__property-text">
                                                                                 شهادة# {{agentView.premitNo}}
@@ -906,7 +1093,8 @@
                                                     class="checkbox-design position-relative">
                                                     <input type="radio" id="Unfurnished" name="property-types"
                                                         value="Rent">
-                                                    <button class="checkbox-btn">استئجار ({{enquiredRentCount}})</button>
+                                                    <button class="checkbox-btn">استئجار
+                                                        ({{enquiredRentCount}})</button>
                                                 </div>
                                                 <div (click)="getEnquiredCountChange(2)"
                                                     class="checkbox-design position-relative">
@@ -1401,16 +1589,19 @@
                                                                                 aria-labelledby="dropdownBasic2">
                                                                                 <!-- <h5>Share with:</h5> -->
                                                                                 <button ngbDropdownItem><a href=""><img
-                                                                                            src="{{profile}}"> مشاهدة العملاء المتوقعين</a></button>
+                                                                                            src="{{profile}}"> مشاهدة
+                                                                                        العملاء المتوقعين</a></button>
                                                                                 <button ngbDropdownItem><a href=""><img
                                                                                             src="{{shareimg}}">
-                                                                                            شارك</a></button>
+                                                                                        شارك</a></button>
                                                                                 <button ngbDropdownItem><a href=""><img
                                                                                             src="{{deleteimg}}">
-                                                                                            حذف</a></button>
-                                                                                <button ngbDropdownItem><a routerLink="/ar/add-property/edit/{{listing.id}}/listingproperty" target="_blank"><img
+                                                                                        حذف</a></button>
+                                                                                <button ngbDropdownItem><a
+                                                                                        routerLink="/ar/add-property/edit/{{listing.id}}/listingproperty"
+                                                                                        target="_blank"><img
                                                                                             src="{{editimg}}">
-                                                                                            يحرر</a></button>
+                                                                                        يحرر</a></button>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -1536,16 +1727,17 @@
                                                                                 aria-labelledby="dropdownBasic2">
                                                                                 <!-- <h5>Share with:</h5> -->
                                                                                 <button ngbDropdownItem><a href=""><img
-                                                                                            src="{{profile}}"> عرض الرصاص</a></button>
+                                                                                            src="{{profile}}"> عرض
+                                                                                        الرصاص</a></button>
                                                                                 <button ngbDropdownItem><a href=""><img
                                                                                             src="{{shareimg}}">
-                                                                                            شارك مع</a></button>
+                                                                                        شارك مع</a></button>
                                                                                 <button ngbDropdownItem><a href=""><img
                                                                                             src="{{deleteimg}}">
-                                                                                            حذف</a></button>
+                                                                                        حذف</a></button>
                                                                                 <button ngbDropdownItem><a href=""><img
                                                                                             src="{{editimg}}">
-                                                                                            يحرر</a></button>
+                                                                                        يحرر</a></button>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -1671,16 +1863,17 @@
                                                                                 aria-labelledby="dropdownBasic2">
                                                                                 <!-- <h5>Share with:</h5> -->
                                                                                 <button ngbDropdownItem><a href=""><img
-                                                                                            src="{{profile}}"> عرض الرصاص</a></button>
+                                                                                            src="{{profile}}"> عرض
+                                                                                        الرصاص</a></button>
                                                                                 <button ngbDropdownItem><a href=""><img
                                                                                             src="{{shareimg}}">
-                                                                                            شارك مع</a></button>
+                                                                                        شارك مع</a></button>
                                                                                 <button ngbDropdownItem><a href=""><img
                                                                                             src="{{deleteimg}}">
-                                                                                            حذف</a></button>
+                                                                                        حذف</a></button>
                                                                                 <button ngbDropdownItem><a href=""><img
                                                                                             src="{{editimg}}">
-                                                                                            يحرر</a></button>
+                                                                                        يحرر</a></button>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -1741,9 +1934,11 @@
                                                 <p ngClass="payment pending">انتظار الدفع</p>
                                             </div>
                                             <div ngClass="my_valuation-inner-div payemnt"
-                                            *ngIf="item.valuationStatus.statusDescription == 'Payment Pending'">
-                                            <a class="pay-now-btn cursor-pointer" routerLink="/ar/PropertyPayment"><mat-icon>payment</mat-icon> ادفع الآن</a>
-                                        </div>
+                                                *ngIf="item.valuationStatus.statusDescription == 'Payment Pending'">
+                                                <a class="pay-now-btn cursor-pointer" routerLink="/ar/PropertyPayment">
+                                                    <mat-icon>payment</mat-icon> ادفع الآن
+                                                </a>
+                                            </div>
                                             <div ngClass="my_valuation-inner-div payemnt"
                                                 *ngIf="item.valuationStatus.statusDescription != 'Payment Pending'">
                                                 <p ngClass="payment success">
@@ -1751,10 +1946,11 @@
                                                 </p>
                                             </div>
                                             <div ngClass="my_valuation-inner-div payemnt"
-                                            *ngIf="item.valuationStatus.statusDescription != 'Payment Pending'">
-                                            <a class="download-pdf cursor-pointer"
-                                                (click)="downloadReport(item.reportNumberCode)"><img src="{{pdf}}"></a>
-                                        </div>
+                                                *ngIf="item.valuationStatus.statusDescription != 'Payment Pending'">
+                                                <a class="download-pdf cursor-pointer"
+                                                    (click)="downloadReport(item.reportNumberCode)"><img
+                                                        src="{{pdf}}"></a>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="pagination-wrapper">
@@ -1798,9 +1994,11 @@
                                                 <p ngClass="payment pending">انتظار الدفع</p>
                                             </div>
                                             <div ngClass="my_valuation-inner-div payemnt"
-                                            *ngIf="item.valuationStatus.statusDescription == 'Payment Pending'">
-                                            <a class="pay-now-btn cursor-pointer" routerLink="/ar/PropertyPayment"><mat-icon>payment</mat-icon> ادفع الآن</a>
-                                        </div>
+                                                *ngIf="item.valuationStatus.statusDescription == 'Payment Pending'">
+                                                <a class="pay-now-btn cursor-pointer" routerLink="/ar/PropertyPayment">
+                                                    <mat-icon>payment</mat-icon> ادفع الآن
+                                                </a>
+                                            </div>
                                             <div ngClass="my_valuation-inner-div payemnt"
                                                 *ngIf="item.valuationStatus.statusDescription != 'Payment Pending'">
                                                 <p ngClass="payment success">
@@ -1808,9 +2006,10 @@
                                                 </p>
                                             </div>
                                             <div ngClass="my_valuation-inner-div payemnt"
-                                            *ngIf="item.valuationStatus.statusDescription != 'Payment Pending'">
-                                            <a routerLink="/ar/PropertyDownloadReport" ngClass="download-pdf"><img src="{{pdf}}"></a>
-                                        </div>
+                                                *ngIf="item.valuationStatus.statusDescription != 'Payment Pending'">
+                                                <a routerLink="/ar/PropertyDownloadReport" ngClass="download-pdf"><img
+                                                        src="{{pdf}}"></a>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="agent-pagination-wrapper">
@@ -1854,9 +2053,11 @@
                                                 <p ngClass="payment pending">انتظار الدفع</p>
                                             </div>
                                             <div ngClass="my_valuation-inner-div payemnt"
-                                            *ngIf="item.valuationStatus.statusDescription == 'Payment Pending'">
-                                            <a class="pay-now-btn cursor-pointer" routerLink="/ar/PropertyPayment"><mat-icon>payment</mat-icon> ادفع الآن</a>
-                                        </div>
+                                                *ngIf="item.valuationStatus.statusDescription == 'Payment Pending'">
+                                                <a class="pay-now-btn cursor-pointer" routerLink="/ar/PropertyPayment">
+                                                    <mat-icon>payment</mat-icon> ادفع الآن
+                                                </a>
+                                            </div>
                                             <div ngClass="my_valuation-inner-div payemnt"
                                                 *ngIf="item.valuationStatus.statusDescription != 'Payment Pending'">
                                                 <p ngClass="payment success">
@@ -1864,9 +2065,10 @@
                                                 </p>
                                             </div>
                                             <div ngClass="my_valuation-inner-div payemnt"
-                                            *ngIf="item.valuationStatus.statusDescription != 'Payment Pending'">
-                                            <a routerLink="/ar/PropertyDownloadReport" ngClass="download-pdf"><img src="{{pdf}}"></a>
-                                        </div>
+                                                *ngIf="item.valuationStatus.statusDescription != 'Payment Pending'">
+                                                <a routerLink="/ar/PropertyDownloadReport" ngClass="download-pdf"><img
+                                                        src="{{pdf}}"></a>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="agent-pagination-wrapper">
@@ -1916,31 +2118,33 @@
                                 <mat-tab label="محفظتى">
                                     <div ngClass="my-wallet-list-wrapper">
                                         <div class="row align-items-center">
-                                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-                                            <div ngClass="my-wallet-list-img">
-                                                <img src="{{wallet}}">
+                                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                                                <div ngClass="my-wallet-list-img">
+                                                    <img src="{{wallet}}">
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12">
-                                        <div ngClass="my-wallet-list-design">
-                                            <div ngClass="exisitng-amount">
-                                                <h6>المبلغ الحالي</h6>
-                                                <p>100 AED</p>
+                                            <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12">
+                                                <div ngClass="my-wallet-list-design">
+                                                    <div ngClass="exisitng-amount">
+                                                        <h6>المبلغ الحالي</h6>
+                                                        <p>100 AED</p>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                                                            <div ngClass="recharge-now-btn">
+                                                                <a class="cursor-pointer"
+                                                                    (click)="rechargePopup(rechargemodal)">اشحن الآن</a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                                                            <div ngClass="transfer-now-btn">
+                                                                <a class="cursor-pointer"
+                                                                    (click)="TransferPopup(TransferModal)">Transfer</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="row">
-                                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-                                                <div ngClass="recharge-now-btn">
-                                                    <a class="cursor-pointer" (click)="rechargePopup(rechargemodal)">اشحن الآن</a>
-                                                </div>
-                                                </div>
-                                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-                                                <div ngClass="transfer-now-btn">
-                                                    <a class="cursor-pointer" (click)="TransferPopup(TransferModal)">Transfer</a>
-                                                </div>
-                                                </div>
-                                                </div>
-                                        </div>
-                                        </div>
                                         </div>
                                     </div>
                                 </mat-tab>
@@ -1986,40 +2190,41 @@
                         </div>
                         <div ngClass="my-wallet-list-wrapper referral-code-block">
                             <div class="row align-items-center">
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                                <div ngClass="my-wallet-list-img">
-                                    <img src="{{refrell}}">
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                    <div ngClass="my-wallet-list-img">
+                                        <img src="{{refrell}}">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                            <div ngClass="my-wallet-list-design">
-                                <div ngClass="exisitng-amount">
-                                    <h6>رمز الإحالة الخاص بي</h6>
-                                    <button class="referral-copy" (click)="copyCode()">{{userData.referralCode}} <mat-icon>file_copy</mat-icon></button>
-                                </div>
-                                <div ngClass="pro-contact-details">
-                                    <div ngbDropdown class="d-inline-block">
-                                        <button ngClass="circle-btn" id="dropdownBasic21"
-                                            ngbDropdownToggle><img src="{{share}}"></button>
-                                        <div ngbDropdownMenu aria-labelledby="dropdownBasic21">
-                                            <h5>شارك مع:</h5>
-                                            <button ngbDropdownItem><a target="_blank"
-                                                    href="https://facebook.com"
-                                                    ngClass="facebook"><img src="{{fb}}">
-                                                    فيسبوك</a></button>
-                                            <button ngbDropdownItem><a target="_blank"
-                                                    href="https://web.whatsapp.com/"
-                                                    ngClass="whatsapp"><img src="{{whatsapp}}">
-                                                    واتساب</a></button>
-                                            <button ngbDropdownItem><a target="_blank"
-                                                    href="https://twitter.com/"
-                                                    ngClass="twitter"><img src="{{twitter}}">
-                                                    تويتر</a></button>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                    <div ngClass="my-wallet-list-design">
+                                        <div ngClass="exisitng-amount">
+                                            <h6>رمز الإحالة الخاص بي</h6>
+                                            <button class="referral-copy" (click)="copyCode()">{{userData.referralCode}}
+                                                <mat-icon>file_copy</mat-icon></button>
+                                        </div>
+                                        <div ngClass="pro-contact-details">
+                                            <div ngbDropdown class="d-inline-block">
+                                                <button ngClass="circle-btn" id="dropdownBasic21" ngbDropdownToggle><img
+                                                        src="{{share}}"></button>
+                                                <div ngbDropdownMenu aria-labelledby="dropdownBasic21">
+                                                    <h5>شارك مع:</h5>
+                                                    <button ngbDropdownItem><a target="_blank"
+                                                            href="https://facebook.com" ngClass="facebook"><img
+                                                                src="{{fb}}">
+                                                            فيسبوك</a></button>
+                                                    <button ngbDropdownItem><a target="_blank"
+                                                            href="https://web.whatsapp.com/" ngClass="whatsapp"><img
+                                                                src="{{whatsapp}}">
+                                                            واتساب</a></button>
+                                                    <button ngbDropdownItem><a target="_blank"
+                                                            href="https://twitter.com/" ngClass="twitter"><img
+                                                                src="{{twitter}}">
+                                                            تويتر</a></button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            </div>
                             </div>
                         </div>
                     </div>
@@ -2097,7 +2302,7 @@
                                                                         <mat-form-field appearance="fill"
                                                                             class="full-width select-form input-design-2">
                                                                             <mat-label>حدد المنطقة</mat-label>
-                                                                            <mat-select [disableOptionCentering]="true" 
+                                                                            <mat-select [disableOptionCentering]="true"
                                                                                 (selectionChange)="onCountrySelect($event);">
                                                                                 <mat-option *ngFor="let list of country"
                                                                                     [value]="list.value">
@@ -2113,7 +2318,7 @@
                                                                         <mat-form-field appearance="fill"
                                                                             class="full-width select-form input-design-2">
                                                                             <mat-label>اختر الدولة</mat-label>
-                                                                            <mat-select [disableOptionCentering]="true" 
+                                                                            <mat-select [disableOptionCentering]="true"
                                                                                 (selectionChange)="onCitySelect($event);">
                                                                                 <mat-option
                                                                                     *ngFor="let listcity of city"
@@ -2205,7 +2410,7 @@
                                                                         <mat-form-field appearance="fill"
                                                                             class="full-width select-form input-design-2">
                                                                             <mat-label>اختر الجنسية</mat-label>
-                                                                            <mat-select [disableOptionCentering]="true" 
+                                                                            <mat-select [disableOptionCentering]="true"
                                                                                 (selectionChange)="onChangeNationality($event)">
                                                                                 <mat-option [value]="list.id"
                                                                                     *ngFor="let list of Nationality">
@@ -2248,7 +2453,9 @@
                                                                                     <mat-form-field appearance="fill">
                                                                                         <mat-label> حدد المناطق
                                                                                         </mat-label>
-                                                                                        <mat-select [disableOptionCentering]="true"  multiple
+                                                                                        <mat-select
+                                                                                            [disableOptionCentering]="true"
+                                                                                            multiple
                                                                                             [(value)]="areaData"
                                                                                             (selectionChange)="getAreaData($event)">
                                                                                             <mat-option
@@ -2280,7 +2487,10 @@
                                                                                             ngClass="outpup-filename">{{
                                                                                             emirate[1] }}</span> <img
                                                                                             src="{{upload}}">
-                                                                                        <span ngClass="btn-txt">هوية الإمارات العربية المتحدة (الواجهة الامامية)</span></button>
+                                                                                        <span ngClass="btn-txt">هوية
+                                                                                            الإمارات العربية المتحدة
+                                                                                            (الواجهة
+                                                                                            الامامية)</span></button>
                                                                                 </div>
 
                                                                             </div>
@@ -2304,7 +2514,10 @@
                                                                                             ngClass="outpup-filename">{{
                                                                                             emirate[2] }}</span> <img
                                                                                             src="{{upload}}">
-                                                                                        <span ngClass="btn-txt">هوية الإمارات العربية المتحدة (الواجهة الامامية)</span></button>
+                                                                                        <span ngClass="btn-txt">هوية
+                                                                                            الإمارات العربية المتحدة
+                                                                                            (الواجهة
+                                                                                            الامامية)</span></button>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -2324,7 +2537,10 @@
                                                                                             ngClass="outpup-filename">{{
                                                                                             emirate[3] }}</span> <img
                                                                                             src="{{upload}}">
-                                                                                        <span ngClass="btn-txt">هوية الإمارات العربية المتحدة (الواجهة الامامية)</span></button>
+                                                                                        <span ngClass="btn-txt">هوية
+                                                                                            الإمارات العربية المتحدة
+                                                                                            (الواجهة
+                                                                                            الامامية)</span></button>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -2372,7 +2588,8 @@
                                                                 </div>
                                                                 <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                                                     <div ngClass="block-wrapper mb-4">
-                                                                        <label class="h6-design">رقم الرخصة التجارية</label>
+                                                                        <label class="h6-design">رقم الرخصة
+                                                                            التجارية</label>
                                                                         <mat-form-field appearance="fill"
                                                                             class="full-width input-design-2">
                                                                             <input matInput
@@ -2426,7 +2643,7 @@
                                                                         <mat-form-field appearance="fill"
                                                                             class="full-width select-form input-design-2">
                                                                             <mat-label>اختر الدولة</mat-label>
-                                                                            <mat-select [disableOptionCentering]="true" 
+                                                                            <mat-select [disableOptionCentering]="true"
                                                                                 (selectionChange)="onCountrySelect($event);">
                                                                                 <mat-option *ngFor="let list of country"
                                                                                     [value]="list.value">
@@ -2445,7 +2662,7 @@
                                                                         <mat-form-field appearance="fill"
                                                                             class="full-width select-form input-design-2">
                                                                             <mat-label>اختر مدينة</mat-label>
-                                                                            <mat-select [disableOptionCentering]="true" 
+                                                                            <mat-select [disableOptionCentering]="true"
                                                                                 (selectionChange)="onCitySelect($event);">
                                                                                 <mat-option
                                                                                     *ngFor="let listcity of city"
@@ -2487,7 +2704,8 @@
                                                                                             ngClass="outpup-filename">{{
                                                                                             emirate[0] }}</span> <img
                                                                                             src="{{upload}}">
-                                                                                        <span ngClass="btn-txt">وثيقة الرخصة التجارية</span>
+                                                                                        <span ngClass="btn-txt">وثيقة
+                                                                                            الرخصة التجارية</span>
                                                                                     </button>
                                                                                 </div>
                                                                             </div>
@@ -2518,7 +2736,8 @@
                                                                                             Picture: Permit No
                                                                                             Document</span>
                                                                                         <img src="{{upload}}"> <span -->
-                                                                                        <span ngClass="btn-txt">رقم تصريح الملف</span>
+                                                                                        <span ngClass="btn-txt">رقم
+                                                                                            تصريح الملف</span>
                                                                                     </button>
                                                                                 </div>
                                                                             </div>
@@ -2545,7 +2764,8 @@
                                                                                             ngClass="outpup-filename">
                                                                                             Picture: ORN Document
                                                                                         </span> <img src="{{upload}}"> -->
-                                                                                        <span ngClass="btn-txt">Picture: ORN Document</span>
+                                                                                        <span ngClass="btn-txt">Picture:
+                                                                                            ORN Document</span>
                                                                                     </button>
                                                                                 </div>
                                                                             </div>
@@ -2575,7 +2795,8 @@
                                                                                             ngClass="outpup-filename">
                                                                                             Picture: REREA Document
                                                                                         </span> <img src="{{upload}}"> -->
-                                                                                        <span ngClass="btn-txt">Picture: RERA Document</span>
+                                                                                        <span ngClass="btn-txt">Picture:
+                                                                                            RERA Document</span>
                                                                                     </button>
                                                                                 </div>
                                                                             </div>
@@ -2625,7 +2846,8 @@
                                                                 <div ngClass="col-xl-6 col-lg-6 col-sm-12"></div>
                                                                 <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                                                     <div ngClass="block-wrapper mb-4">
-                                                                        <label class="h6-design">تأكيد كلمة المرور</label>
+                                                                        <label class="h6-design">تأكيد كلمة
+                                                                            المرور</label>
                                                                         <mat-form-field appearance="fill"
                                                                             class="full-width input-design-2">
                                                                             <input matInput
@@ -2674,13 +2896,15 @@
                                                                     <div ngClass="block-wrapper mb-4">
                                                                         <div class="d-flex justify-content-between">
                                                                             <div>
-                                                                            <h3 class="sub-title">اعدادات اللغة</h3>
-                                                                            <label class="h6-design">حدد لغتك المفضلة</label>
+                                                                                <h3 class="sub-title">اعدادات اللغة</h3>
+                                                                                <label class="h6-design">حدد لغتك
+                                                                                    المفضلة</label>
                                                                             </div>
                                                                             <mat-form-field appearance="fill"
                                                                                 class="select-form input-design-2">
                                                                                 <mat-label>اختيار اللغة</mat-label>
-                                                                                <mat-select [disableOptionCentering]="true" >
+                                                                                <mat-select
+                                                                                    [disableOptionCentering]="true">
                                                                                     <mat-option [value]="city">
                                                                                         تقرير مالي
                                                                                     </mat-option>
@@ -2697,8 +2921,10 @@
                                                                     <div ngClass="block-wrapper mb-4">
                                                                         <div class="d-flex justify-content-between">
                                                                             <div>
-                                                                            <h3 class="sub-title">ضبط الإشعارات</h3>
-                                                                            <label class="h6-design">احصل على إشعارات من أوفالويت للبقاء على اطلاع دائم</label>
+                                                                                <h3 class="sub-title">ضبط الإشعارات</h3>
+                                                                                <label class="h6-design">احصل على
+                                                                                    إشعارات من أوفالويت للبقاء على اطلاع
+                                                                                    دائم</label>
                                                                             </div>
                                                                             <div class="form-check form-switch">
                                                                                 <mat-slide-toggle></mat-slide-toggle>
@@ -2711,17 +2937,21 @@
                                                                     <div ngClass="block-wrapper mb-4">
                                                                         <div class="d-flex justify-content-between">
                                                                             <div>
-                                                                            <h3 class="sub-title">حذف الحساب</h3>
-                                                                            <label class="h6-design">احذف حسابك وجميع البيانات</label>
+                                                                                <h3 class="sub-title">حذف الحساب</h3>
+                                                                                <label class="h6-design">احذف حسابك
+                                                                                    وجميع البيانات</label>
                                                                             </div>
-                                                                            <a href="#" class="btn btn-delete-act">حذف الحساب</a>
+                                                                            <a href="#" class="btn btn-delete-act">حذف
+                                                                                الحساب</a>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                                 <div ngClass="col-xl-6 col-lg-6 col-sm-12"></div>
                                                                 <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                                                     <div ngClass="block-wrapper mb-4 setting-logout">
-                                                                        <a ngClass="sub-title" (click)="logOutPopup(content)"><img src="{{logoutIcon}}"> تسجيل خروج </a>
+                                                                        <a ngClass="sub-title"
+                                                                            (click)="logOutPopup(content)"><img
+                                                                                src="{{logoutIcon}}"> تسجيل خروج </a>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -3149,7 +3379,7 @@
                                                                         <h4 class="sub-bold-text">Olga Pikina</h4>
                                                                         <p
                                                                             class="agent-details__property-list-item-date">
-                                                                            Listed on 05
+                                                                            مدرج على on 05
                                                                             May, 2022</p>
                                                                     </div>
                                                                 </div>
@@ -3188,7 +3418,7 @@
                                                                                 class="agent-details__property-detail-list-item">
                                                                                 <img src="assets/images/icons/Bed.svg"
                                                                                     alt="">
-                                                                                Furnished
+                                                                                 
                                                                             </li>
                                                                         </ul>
                                                                     </div>
@@ -3218,7 +3448,7 @@
                                                                         <h4 class="sub-bold-text">Olga Pikina</h4>
                                                                         <p
                                                                             class="agent-details__property-list-item-date">
-                                                                            Listed on 05
+                                                                            مدرج على on 05
                                                                             May, 2022</p>
                                                                     </div>
                                                                 </div>
@@ -3257,7 +3487,7 @@
                                                                                 class="agent-details__property-detail-list-item">
                                                                                 <img src="assets/images/icons/Bed.svg"
                                                                                     alt="">
-                                                                                Furnished
+                                                                                 
                                                                             </li>
                                                                         </ul>
                                                                     </div>
@@ -3287,7 +3517,7 @@
                                                                         <h4 class="sub-bold-text">Olga Pikina</h4>
                                                                         <p
                                                                             class="agent-details__property-list-item-date">
-                                                                            Listed on 05
+                                                                            مدرج على on 05
                                                                             May, 2022</p>
                                                                     </div>
                                                                 </div>
@@ -3326,7 +3556,7 @@
                                                                                 class="agent-details__property-detail-list-item">
                                                                                 <img src="assets/images/icons/Bed.svg"
                                                                                     alt="">
-                                                                                Furnished
+                                                                                 
                                                                             </li>
                                                                         </ul>
                                                                     </div>
@@ -3356,7 +3586,7 @@
                                                                         <h4 class="sub-bold-text">Olga Pikina</h4>
                                                                         <p
                                                                             class="agent-details__property-list-item-date">
-                                                                            Listed on 05
+                                                                            مدرج على on 05
                                                                             May, 2022</p>
                                                                     </div>
                                                                 </div>
@@ -3395,7 +3625,7 @@
                                                                                 class="agent-details__property-detail-list-item">
                                                                                 <img src="assets/images/icons/Bed.svg"
                                                                                     alt="">
-                                                                                Furnished
+                                                                                 
                                                                             </li>
                                                                         </ul>
                                                                     </div>
@@ -3425,7 +3655,7 @@
                                                                         <h4 class="sub-bold-text">Olga Pikina</h4>
                                                                         <p
                                                                             class="agent-details__property-list-item-date">
-                                                                            Listed on 05
+                                                                            مدرج على on 05
                                                                             May, 2022</p>
                                                                     </div>
                                                                 </div>
@@ -3464,7 +3694,7 @@
                                                                                 class="agent-details__property-detail-list-item">
                                                                                 <img src="assets/images/icons/Bed.svg"
                                                                                     alt="">
-                                                                                Furnished
+                                                                                 
                                                                             </li>
                                                                         </ul>
                                                                     </div>
@@ -3494,7 +3724,7 @@
                                                                         <h4 class="sub-bold-text">Olga Pikina</h4>
                                                                         <p
                                                                             class="agent-details__property-list-item-date">
-                                                                            Listed on 05
+                                                                            مدرج على on 05
                                                                             May, 2022</p>
                                                                     </div>
                                                                 </div>
@@ -3533,7 +3763,7 @@
                                                                                 class="agent-details__property-detail-list-item">
                                                                                 <img src="assets/images/icons/Bed.svg"
                                                                                     alt="">
-                                                                                Furnished
+                                                                                 
                                                                             </li>
                                                                         </ul>
                                                                     </div>
@@ -3733,7 +3963,7 @@
                                                                             <h4 class="sub-bold-text">Olga Pikina</h4>
                                                                             <p
                                                                                 class="agent-details__property-list-item-date">
-                                                                                Listed on 05
+                                                                                مدرج على on 05
                                                                                 May, 2022</p>
                                                                         </div>
                                                                     </div>
@@ -3774,7 +4004,7 @@
                                                                                     class="agent-details__property-detail-list-item">
                                                                                     <img src="assets/images/icons/Bed.svg"
                                                                                         alt="">
-                                                                                    Furnished
+                                                                                     
                                                                                 </li>
                                                                             </ul>
                                                                         </div>
@@ -3814,7 +4044,7 @@
                                                                             <h4 class="sub-bold-text">Olga Pikina</h4>
                                                                             <p
                                                                                 class="agent-details__property-list-item-date">
-                                                                                Listed on 05
+                                                                                مدرج على on 05
                                                                                 May, 2022</p>
                                                                         </div>
                                                                     </div>
@@ -3855,7 +4085,7 @@
                                                                                     class="agent-details__property-detail-list-item">
                                                                                     <img src="assets/images/icons/Bed.svg"
                                                                                         alt="">
-                                                                                    Furnished
+                                                                                     
                                                                                 </li>
                                                                             </ul>
                                                                         </div>
@@ -3895,7 +4125,7 @@
                                                                             <h4 class="sub-bold-text">Olga Pikina</h4>
                                                                             <p
                                                                                 class="agent-details__property-list-item-date">
-                                                                                Listed on 05
+                                                                                مدرج على on 05
                                                                                 May, 2022</p>
                                                                         </div>
                                                                     </div>
@@ -3936,7 +4166,7 @@
                                                                                     class="agent-details__property-detail-list-item">
                                                                                     <img src="assets/images/icons/Bed.svg"
                                                                                         alt="">
-                                                                                    Furnished
+                                                                                     
                                                                                 </li>
                                                                             </ul>
                                                                         </div>
@@ -4009,7 +4239,7 @@
                                                                         <h4 class="sub-bold-text">Olga Pikina</h4>
                                                                         <p
                                                                             class="agent-details__property-list-item-date">
-                                                                            Listed on 05
+                                                                            مدرج على on 05
                                                                             May, 2022</p>
                                                                     </div>
                                                                 </div>
@@ -4048,7 +4278,7 @@
                                                                                 class="agent-details__property-detail-list-item">
                                                                                 <img src="assets/images/icons/Bed.svg"
                                                                                     alt="">
-                                                                                Furnished
+                                                                                 
                                                                             </li>
                                                                         </ul>
                                                                     </div>
@@ -4078,7 +4308,7 @@
                                                                         <h4 class="sub-bold-text">Olga Pikina</h4>
                                                                         <p
                                                                             class="agent-details__property-list-item-date">
-                                                                            Listed on 05
+                                                                            مدرج على on 05
                                                                             May, 2022</p>
                                                                     </div>
                                                                 </div>
@@ -4117,7 +4347,7 @@
                                                                                 class="agent-details__property-detail-list-item">
                                                                                 <img src="assets/images/icons/Bed.svg"
                                                                                     alt="">
-                                                                                Furnished
+                                                                                 
                                                                             </li>
                                                                         </ul>
                                                                     </div>
@@ -4147,7 +4377,7 @@
                                                                         <h4 class="sub-bold-text">Olga Pikina</h4>
                                                                         <p
                                                                             class="agent-details__property-list-item-date">
-                                                                            Listed on 05
+                                                                            مدرج على on 05
                                                                             May, 2022</p>
                                                                     </div>
                                                                 </div>
@@ -4186,7 +4416,7 @@
                                                                                 class="agent-details__property-detail-list-item">
                                                                                 <img src="assets/images/icons/Bed.svg"
                                                                                     alt="">
-                                                                                Furnished
+                                                                                 
                                                                             </li>
                                                                         </ul>
                                                                     </div>
@@ -4216,7 +4446,7 @@
                                                                         <h4 class="sub-bold-text">Olga Pikina</h4>
                                                                         <p
                                                                             class="agent-details__property-list-item-date">
-                                                                            Listed on 05
+                                                                            مدرج على on 05
                                                                             May, 2022</p>
                                                                     </div>
                                                                 </div>
@@ -4255,7 +4485,7 @@
                                                                                 class="agent-details__property-detail-list-item">
                                                                                 <img src="assets/images/icons/Bed.svg"
                                                                                     alt="">
-                                                                                Furnished
+                                                                                 
                                                                             </li>
                                                                         </ul>
                                                                     </div>
@@ -4285,7 +4515,7 @@
                                                                         <h4 class="sub-bold-text">Olga Pikina</h4>
                                                                         <p
                                                                             class="agent-details__property-list-item-date">
-                                                                            Listed on 05
+                                                                            مدرج على on 05
                                                                             May, 2022</p>
                                                                     </div>
                                                                 </div>
@@ -4324,7 +4554,7 @@
                                                                                 class="agent-details__property-detail-list-item">
                                                                                 <img src="assets/images/icons/Bed.svg"
                                                                                     alt="">
-                                                                                Furnished
+                                                                                 
                                                                             </li>
                                                                         </ul>
                                                                     </div>
@@ -4354,7 +4584,7 @@
                                                                         <h4 class="sub-bold-text">Olga Pikina</h4>
                                                                         <p
                                                                             class="agent-details__property-list-item-date">
-                                                                            Listed on 05
+                                                                            مدرج على on 05
                                                                             May, 2022</p>
                                                                     </div>
                                                                 </div>
@@ -4393,7 +4623,7 @@
                                                                                 class="agent-details__property-detail-list-item">
                                                                                 <img src="assets/images/icons/Bed.svg"
                                                                                     alt="">
-                                                                                Furnished
+                                                                                 
                                                                             </li>
                                                                         </ul>
                                                                     </div>
@@ -4694,7 +4924,7 @@
                                                                                 class="agent-details__property-detail-list-item">
                                                                                 <img src="assets/images/icons/Bed.svg"
                                                                                     alt="">
-                                                                                Furnished
+                                                                                 
                                                                             </li>
                                                                         </ul>
                                                                     </div>
@@ -4788,7 +5018,7 @@
                                                                                 class="agent-details__property-detail-list-item">
                                                                                 <img src="assets/images/icons/Bed.svg"
                                                                                     alt="">
-                                                                                Furnished
+                                                                                 
                                                                             </li>
                                                                         </ul>
                                                                     </div>
@@ -4850,8 +5080,9 @@
                                 <button ngbDropdownItem><a href=""><img src="{{acsetting}}"> Account
                                         Settings</a></button>
                                 <button ngbDropdownItem>
-                                        <a ngClass="logout-link" (click)="logOutPopup(content)"><img src="{{aclogout}}"> Logout </a>
-                                    </button>
+                                    <a ngClass="logout-link" (click)="logOutPopup(content)"><img src="{{aclogout}}">
+                                        Logout </a>
+                                </button>
                             </div>
                         </div>
                         <!-- <button mat-icon-button>
@@ -4860,7 +5091,7 @@
                     </ng-template>
                 </mat-tab>
             </mat-tab-group>
-            
+
             <!-- <div ngbDropdown class="d-inline-block">
   <button ngClass="grey-bordered-btn action-btn" id="dropdownBasic1" ngbDropdownToggle>
     More</button>
@@ -4874,141 +5105,129 @@
   </div> -->
         </div>
     </div>
-<div ngClass="logout-modal">
-    <ng-template #content let-modal>
-        <div class="modal-body logout-modal-design">
-            <div ngClass="logout-banner-popup">
-                <img src="{{logoutimg}}">
+    <div ngClass="logout-modal">
+        <ng-template #content let-modal>
+            <div class="modal-body logout-modal-design">
+                <div ngClass="logout-banner-popup">
+                    <img src="{{logoutimg}}">
+                </div>
+                <div ngClass="logout-banner-cntnt text-center">
+                    <h4>هل أنت متأكد أنك تريد تسجيل الخروج؟</h4>
+                    <p>بانتظار عودتك!</p>
+                </div>
+                <div ngClass="logout-banner-footer">
+                    <button type="button" class="btn-cancel" aria-label="Close"
+                        (click)="modal.dismiss('Cross click')">إلغاء</button>
+                    <button #noListItemTmpl *ngIf="user !== null" (click)="modal.dismiss('Cross click')">
+                        <a ngClass="nav-link" (click)="logout();modal.dismiss('Cross click')"> تسجيل خروج </a>
+                    </button>
+                </div>
             </div>
-            <div ngClass="logout-banner-cntnt text-center">
-                <h4>هل أنت متأكد أنك تريد تسجيل الخروج؟</h4>
-                <p>بانتظار عودتك!</p>
-            </div>
-            <div ngClass="logout-banner-footer">
-                <button type="button" class="btn-cancel" aria-label="Close"
-                    (click)="modal.dismiss('Cross click')">إلغاء</button>
-                <button #noListItemTmpl *ngIf="user !== null" (click)="modal.dismiss('Cross click')">
-                    <a ngClass="nav-link" (click)="logout();modal.dismiss('Cross click')"> تسجيل خروج </a>
-                </button>
-            </div>
-        </div>
-    </ng-template>
-</div>
-<div ngClass="wallet-modal">
-    <ng-template #rechargemodal let-modal>
-        <div class="modal-body wallet-modal-design">
-            <form>
-           <div class="wallet-modal-list">
-             <h5 class="h5-design mb-4">Please select</h5>
-             <div class="wallet-form-design">
-                    <div class="wallet-radio-design position-relative mb-3">
-                        <input type="radio" name="recharge-points">
-                        <button class="cstm-wallet-btn">10000 Points = 100 AED</button>
-                    </div>
-             </div>
-           </div>
-           <div class="wallet-btn-flex">
-              <button class="recharge-btn" (click)="PaymentPopup(PaymentPopupModal)" aria-label="Close"
-              (click)="modal.dismiss('Cross click')">Buy Now</button>
-              <button class="cancel-btn" aria-label="Close"
-              (click)="modal.dismiss('Cross click')">Cancel</button>
-           </div>
-        </form>
-        </div>
-    </ng-template>
-</div>
-<div ngClass="wallet-modal payment-modal-wrap">
-    <ng-template #PaymentPopupModal let-modal>
-        <div class="modal-body wallet-modal-design payment-modal-design">
-            <form>
-           <div class="payment-modal-list">
-             <h5 class="h5-design mb-2">Payment</h5>
-             <p ngClass="mb-4">Please fill your payment details for proceed further</p>
-             <div class="paymentmodal-form-design">
+        </ng-template>
+    </div>
+    <div ngClass="wallet-modal">
+        <ng-template #rechargemodal let-modal>
+            <div class="modal-body wallet-modal-design">
                 <form>
-                <div ngClass="block-wrapper mb-3">
-                    <label>Card Number</label>
-                    <mat-form-field class="full-width input-design-2"
-                    appearance="fill">
-                    <input matInput type="number"
-                        placeholder="1234 1234 1234 1234"
-                        formControlName="cardNumber">
-                </mat-form-field>
-                </div>
-                <div ngClass="block-wrapper mb-3">
-                    <label>Expiry</label>
-                    <mat-form-field class="full-width input-design-2"
-                        appearance="fill">
-                        <input matInput type="text" placeholder="MM/YY"
-                            formControlName="expiryDate">
-                    </mat-form-field>
-                </div>
-                <div ngClass="block-wrapper mb-3">
-                    <label>CVV</label>
-                    <mat-form-field class="full-width input-design-2"
-                        appearance="fill">
-                        <input matInput type="number" placeholder="CVV"
-                            formControlName="cvv">
-                    </mat-form-field>
-                </div>
-                <div ngClass="block-wrapper mb-3">
-                    <label>Name on Card</label>
-                    <mat-form-field class="full-width input-design-2"
-                        appearance="fill">
-                        <input matInput type="text" placeholder="Name"
-                            formControlName="cardName">
-                    </mat-form-field>
-                </div>
+                    <div class="wallet-modal-list">
+                        <h5 class="h5-design mb-4">Please select</h5>
+                        <div class="wallet-form-design">
+                            <div class="wallet-radio-design position-relative mb-3">
+                                <input type="radio" name="recharge-points">
+                                <button class="cstm-wallet-btn">10000 Points = 100 AED</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="wallet-btn-flex">
+                        <button class="recharge-btn" (click)="PaymentPopup(PaymentPopupModal)" aria-label="Close"
+                            (click)="modal.dismiss('Cross click')">Buy Now</button>
+                        <button class="cancel-btn" aria-label="Close"
+                            (click)="modal.dismiss('Cross click')">Cancel</button>
+                    </div>
                 </form>
-             </div>
-           </div>
-           <div class="wallet-btn-flex">
-              <button class="recharge-btn">Proceed to Pay</button>
-              <button class="cancel-btn" aria-label="Close"
-              (click)="modal.dismiss('Cross click')">Cancel</button>
-           </div>
-        </form>
-        </div>
-    </ng-template>
-</div>
-<div ngClass="wallet-modal payment-modal-wrap">
-    <ng-template #TransferModal let-modal>
-        <div class="modal-body wallet-modal-design payment-modal-design">
-            <form>
-           <div class="payment-modal-list">
-             <h5 class="h5-design mb-2">Transfer Points</h5>
-             <div class="paymentmodal-form-design">
-                <div ngClass="block-wrapper mb-3">
-                    <label>The total number of points transferred</label>
-                    <mat-form-field class="full-width input-design-2"
-                    appearance="fill">
-                    <input matInput type="number"
-                        placeholder="10000"
-                        formControlName="PointsNumber">
-                </mat-form-field>
-                </div>
-                <div ngClass="block-wrapper mb-3 refrell-overlay-block">
-                    <label>Referral Code</label>
-                    <div ngClass="position-relative">
-                    <mat-form-field class="full-width input-design-2"
-                        appearance="fill">
-                        <input matInput type="text" placeholder="82500038"
-                            formControlName="ReferralCode">
-                    </mat-form-field>
-                    <span ngClass="ovrc">OVRC-</span>
-                </div>
-                </div>
-             </div>
-           </div>
-           <div class="wallet-btn-flex">
-              <button class="recharge-btn">Proceed to Pay</button>
-              <button class="cancel-btn" aria-label="Close"
-              (click)="modal.dismiss('Cross click')">Cancel</button>
-           </div>
-        </form>
-        </div>
-    </ng-template>
-</div>
-<app-footer></app-footer>
+            </div>
+        </ng-template>
+    </div>
+    <div ngClass="wallet-modal payment-modal-wrap">
+        <ng-template #PaymentPopupModal let-modal>
+            <div class="modal-body wallet-modal-design payment-modal-design">
+                <form>
+                    <div class="payment-modal-list">
+                        <h5 class="h5-design mb-2">Payment</h5>
+                        <p ngClass="mb-4">Please fill your payment details for proceed further</p>
+                        <div class="paymentmodal-form-design">
+                            <form>
+                                <div ngClass="block-wrapper mb-3">
+                                    <label>Card Number</label>
+                                    <mat-form-field class="full-width input-design-2" appearance="fill">
+                                        <input matInput type="number" placeholder="1234 1234 1234 1234"
+                                            formControlName="cardNumber">
+                                    </mat-form-field>
+                                </div>
+                                <div ngClass="block-wrapper mb-3">
+                                    <label>Expiry</label>
+                                    <mat-form-field class="full-width input-design-2" appearance="fill">
+                                        <input matInput type="text" placeholder="MM/YY" formControlName="expiryDate">
+                                    </mat-form-field>
+                                </div>
+                                <div ngClass="block-wrapper mb-3">
+                                    <label>CVV</label>
+                                    <mat-form-field class="full-width input-design-2" appearance="fill">
+                                        <input matInput type="number" placeholder="CVV" formControlName="cvv">
+                                    </mat-form-field>
+                                </div>
+                                <div ngClass="block-wrapper mb-3">
+                                    <label>Name on Card</label>
+                                    <mat-form-field class="full-width input-design-2" appearance="fill">
+                                        <input matInput type="text" placeholder="Name" formControlName="cardName">
+                                    </mat-form-field>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="wallet-btn-flex">
+                        <button class="recharge-btn">Proceed to Pay</button>
+                        <button class="cancel-btn" aria-label="Close"
+                            (click)="modal.dismiss('Cross click')">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </ng-template>
+    </div>
+    <div ngClass="wallet-modal payment-modal-wrap">
+        <ng-template #TransferModal let-modal>
+            <div class="modal-body wallet-modal-design payment-modal-design">
+                <form>
+                    <div class="payment-modal-list">
+                        <h5 class="h5-design mb-2">Transfer Points</h5>
+                        <div class="paymentmodal-form-design">
+                            <div ngClass="block-wrapper mb-3">
+                                <label>The total number of points transferred</label>
+                                <mat-form-field class="full-width input-design-2" appearance="fill">
+                                    <input matInput type="number" placeholder="10000" formControlName="PointsNumber">
+                                </mat-form-field>
+                            </div>
+                            <div ngClass="block-wrapper mb-3 refrell-overlay-block">
+                                <label>Referral Code</label>
+                                <div ngClass="position-relative">
+                                    <mat-form-field class="full-width input-design-2" appearance="fill">
+                                        <input matInput type="text" placeholder="82500038"
+                                            formControlName="ReferralCode">
+                                    </mat-form-field>
+                                    <span ngClass="ovrc">OVRC-</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="wallet-btn-flex">
+                        <button class="recharge-btn">Proceed to Pay</button>
+                        <button class="cancel-btn" aria-label="Close"
+                            (click)="modal.dismiss('Cross click')">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </ng-template>
+    </div>
+    <app-footer></app-footer>
 </section>
 <app-loader *ngIf="showLoader"></app-loader>
