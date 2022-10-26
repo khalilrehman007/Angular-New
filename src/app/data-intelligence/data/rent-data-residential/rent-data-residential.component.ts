@@ -407,7 +407,7 @@ export class RentDataResidentialComponent implements OnInit {
     if (!this.allTransactionTypeSelected) {
       this.selectedTransactionType = [];
       this.selectedTransactionType.push("All");
-      for (let item of this.filteredsales) {
+      for (let item of this.filteredTransaction) {
         this.selectedTransactionType.push(item.id);
       }
       this.allTransactionTypeSelected = true;
