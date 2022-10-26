@@ -438,10 +438,6 @@
                                         </div>
                                     </div>
 
-                                    <div class="no-data-found" *ngIf="myActivityListingView.length == 0">
-                                        <mat-icon>file_copy</mat-icon>
-                                        <p>عذراً، لا توجد بيانات</p>
-                                    </div>
                                     <div class="agent-details__tabs">
                                         <div class="row">
                                             <div class="col-lg-9 col-md-10">
@@ -553,7 +549,7 @@
                                                                                 class="agent-details__property-detail-list-item furnising">
                                                                                 <img src="assets/images/icons/furnishing.svg"
                                                                                     alt="">
-                                                                                {{viewList.furnishingType}}  
+                                                                                {{viewList.furnishingType}}
                                                                             </li>
                                                                         </ul>
                                                                     </div>
@@ -562,20 +558,26 @@
                                                                     <span> 24 Hours Concierge </span>
                                                                 </div>
                                                                 <div ngClass="data-inteligence-text">
-                                                                    <h6>OV Data Intelligence - {{viewList.city.name}}, {{viewList.country.name}}
+                                                                    <h6>OV Data Intelligence - {{viewList.city.name}},
+                                                                        {{viewList.country.name}}
                                                                     </h6>
                                                                     <div ngClass="property-range-bar d-flex">
                                                                         <div ngClass="pro-range-whie-box">
                                                                             <p>Recent Rent Transactions</p>
-                                                                            <h6>{{viewList.recentRentTxns}} in last 1 year</h6>
+                                                                            <h6>{{viewList.recentRentTxns}} in last 1
+                                                                                year</h6>
                                                                         </div>
                                                                         <div ngClass="pro-range-whie-box">
                                                                             <p>Rent Price Range</p>
-                                                                            <h6>{{viewList.startRentPrice}} {{viewList.currency}} - {{viewList.endRentPrice}} {{viewList.currency}}</h6>
+                                                                            <h6>{{viewList.startRentPrice}}
+                                                                                {{viewList.currency}} -
+                                                                                {{viewList.endRentPrice}}
+                                                                                {{viewList.currency}}</h6>
                                                                         </div>
                                                                         <div ngClass="pro-range-whie-box">
                                                                             <p>Avg. Rent/ Sq. Ft.</p>
-                                                                            <h6>{{viewList.avgRentPrice}} {{viewList.currency}}</h6>
+                                                                            <h6>{{viewList.avgRentPrice}}
+                                                                                {{viewList.currency}}</h6>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -593,71 +595,67 @@
                                                 </ul>
                                             </div>
                                         </div>
-                                        <section class="agent-pagination-wrapper">
-                                            <pagination-controls (pageChange)="pageChanged($event)"
-                                                class="text-center my-pagination">
-                                            </pagination-controls>
-                                        </section>
-                                    </div>
-                                    <section class="agent-landing-featured">
+                                        <section class="agent-landing-featured">
 
-                                        <div class="row">
-                                            <div class="col-lg-9 col-md-10">
-                                                <div class="row">
-                                                    <div class="col-lg-6" *ngFor="let agentView of myActivityAgentView">
-                                                        <div class="agent-landing-featured__agent">
-                                                            <div class="agent-landing-featured__property-wrapper">
-                                                                <img src="assets/images/tag/featured.png" alt=""
-                                                                    class="agent-landing-featured__property-tag">
-                                                                <div class="row">
-                                                                    <div class="col-5 d-flex align-items-center">
-                                                                        <img src="{{agentView.img}}" alt=""
-                                                                            class="img-fluid agent-landing-featured__property-img">
-                                                                    </div>
-                                                                    <div class="col-7">
-                                                                        <div
-                                                                            class="agent-landing-featured__agent-right-panel">
-                                                                            <h6 class="agent-landing-featured__property-heading"
-                                                                                routerLink="/ar/agent-details/1">
-                                                                                {{agentView.company}}</h6>
-                                                                            <p
-                                                                                class="agent-landing-featured__property-text">
-                                                                                {{agentView.aboutCompany}}
-                                                                            </p>
-                                                                            <a class="agent-landing-featured__property-link"
-                                                                                routerLink=#>إعرض الخريطة</a>
-                                                                            <p
-                                                                                class="agent-landing-featured__property-text">
-                                                                                مؤسسة التنظيم العقاري#
-                                                                                {{agentView.reraNo}}</p>
-                                                                            <p
-                                                                                class="agent-landing-featured__property-text">
-                                                                                شهادة# {{agentView.premitNo}}
-                                                                            </p>
-                                                                            <ul
-                                                                                class="agent-landing-featured__property-details-list">
-                                                                                <li
-                                                                                    class="agent-landing-featured__property-details-list-item">
-                                                                                    <p
-                                                                                        class="agent-landing-featured__property-details-list-text">
-                                                                                        {{agentView.salePropertyListingCount}}<br>بيع
-                                                                                    </p>
-                                                                                </li>
-                                                                                <li
-                                                                                    class="agent-landing-featured__property-details-list-item">
-                                                                                    <p
-                                                                                        class="agent-landing-featured__property-details-list-text">
-                                                                                        {{agentView.rentPropertyListingCount}}<br>إيجار
-                                                                                    </p>
-                                                                                </li>
-                                                                                <li
-                                                                                    class="agent-landing-featured__property-details-list-item">
-                                                                                    <p
-                                                                                        class="agent-landing-featured__property-details-list-text">
-                                                                                        {{agentView.commercialPropertyListingCount}}<br>تجارية
-                                                                                    </p>
-                                                                                </li>
-                                                                            </ul>
+                                            <div class="row">
+                                                <div class="col-lg-9 col-md-10">
+                                                    <div class="row">
+                                                        <div class="col-lg-6"
+                                                            *ngFor="let agentView of myActivityAgentView">
+                                                            <div class="agent-landing-featured__agent">
+                                                                <div class="agent-landing-featured__property-wrapper">
+                                                                    <img src="assets/images/tag/featured.png" alt=""
+                                                                        class="agent-landing-featured__property-tag">
+                                                                    <div class="row">
+                                                                        <div class="col-5 d-flex align-items-center">
+                                                                            <img src="{{agentView.img}}" alt=""
+                                                                                class="img-fluid agent-landing-featured__property-img">
+                                                                        </div>
+                                                                        <div class="col-7">
+                                                                            <div
+                                                                                class="agent-landing-featured__agent-right-panel">
+                                                                                <h6 class="agent-landing-featured__property-heading"
+                                                                                    routerLink="/ar/agent-details/1">
+                                                                                    {{agentView.company}}</h6>
+                                                                                <p
+                                                                                    class="agent-landing-featured__property-text">
+                                                                                    {{agentView.aboutCompany}}
+                                                                                </p>
+                                                                                <a class="agent-landing-featured__property-link"
+                                                                                    routerLink=#>إعرض الخريطة</a>
+                                                                                <p
+                                                                                    class="agent-landing-featured__property-text">
+                                                                                    مؤسسة التنظيم العقاري#
+                                                                                    {{agentView.reraNo}}</p>
+                                                                                <p
+                                                                                    class="agent-landing-featured__property-text">
+                                                                                    شهادة# {{agentView.premitNo}}
+                                                                                </p>
+                                                                                <ul
+                                                                                    class="agent-landing-featured__property-details-list">
+                                                                                    <li
+                                                                                        class="agent-landing-featured__property-details-list-item">
+                                                                                        <p
+                                                                                            class="agent-landing-featured__property-details-list-text">
+                                                                                            {{agentView.salePropertyListingCount}}<br>بيع
+                                                                                        </p>
+                                                                                    </li>
+                                                                                    <li
+                                                                                        class="agent-landing-featured__property-details-list-item">
+                                                                                        <p
+                                                                                            class="agent-landing-featured__property-details-list-text">
+                                                                                            {{agentView.rentPropertyListingCount}}<br>إيجار
+                                                                                        </p>
+                                                                                    </li>
+                                                                                    <li
+                                                                                        class="agent-landing-featured__property-details-list-item">
+                                                                                        <p
+                                                                                            class="agent-landing-featured__property-details-list-text">
+                                                                                            {{agentView.commercialPropertyListingCount}}<br>تجارية
+                                                                                        </p>
+                                                                                    </li>
+                                                                                </ul>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -666,13 +664,13 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </section>
-                                    <section class="agent-pagination-wrapper">
-                                        <pagination-controls (pageChange)="pageChanged($event)"
-                                            class="text-center my-pagination">
-                                        </pagination-controls>
-                                    </section>
+                                        </section>
+                                        <section class="agent-pagination-wrapper">
+                                            <pagination-controls (pageChange)="pageChanged($event)"
+                                                class="text-center my-pagination">
+                                            </pagination-controls>
+                                        </section>
+                                    </div>
                                 </mat-tab>
                                 <mat-tab label="منظر">
                                     <div class="type-activity-status">
@@ -800,70 +798,70 @@
                                             </div>
                                         </div>
                                         <section class="agent-pagination-wrapper">
-                                            <pagination-controls (pageChange)="pageChanged($event)"
-                                                class="text-center my-pagination">
-                                            </pagination-controls>
-                                        </section>
-                                    </div>
-                                    <section class="agent-landing-featured">
+                                            <section class="agent-landing-featured">
 
-                                        <div class="row">
-                                            <div class="col-lg-9 col-md-10">
                                                 <div class="row">
-                                                    <div class="col-lg-6" *ngFor="let agentView of myActivityAgentView">
-                                                        <div class="agent-landing-featured__agent">
-                                                            <div class="agent-landing-featured__property-wrapper">
-                                                                <img src="assets/images/tag/featured.png" alt=""
-                                                                    class="agent-landing-featured__property-tag">
-                                                                <div class="row">
-                                                                    <div class="col-5 d-flex align-items-center">
-                                                                        <img src="{{agentView.img}}" alt=""
-                                                                            class="img-fluid agent-landing-featured__property-img">
-                                                                    </div>
-                                                                    <div class="col-7">
-                                                                        <div
-                                                                            class="agent-landing-featured__agent-right-panel">
-                                                                            <h6 class="agent-landing-featured__property-heading"
-                                                                                routerLink="/ar/agent-details/1">
-                                                                                {{agentView.company}}</h6>
-                                                                            <p
-                                                                                class="agent-landing-featured__property-text">
-                                                                                {{agentView.aboutCompany}}
-                                                                            </p>
-                                                                            <a class="agent-landing-featured__property-link"
-                                                                                routerLink=#>إعرض الخريطة</a>
-                                                                            <p
-                                                                                class="agent-landing-featured__property-text">
-                                                                                مؤسسة التنظيم العقاري#
-                                                                                {{agentView.reraNo}}</p>
-                                                                            <p
-                                                                                class="agent-landing-featured__property-text">
-                                                                                شهادة# {{agentView.premitNo}}
-                                                                            </p>
-                                                                            <ul
-                                                                                class="agent-landing-featured__property-details-list">
-                                                                                <li
-                                                                                    class="agent-landing-featured__property-details-list-item">
+                                                    <div class="col-lg-9 col-md-10">
+                                                        <div class="row">
+                                                            <div class="col-lg-6"
+                                                                *ngFor="let agentView of myActivityAgentView">
+                                                                <div class="agent-landing-featured__agent">
+                                                                    <div
+                                                                        class="agent-landing-featured__property-wrapper">
+                                                                        <img src="assets/images/tag/featured.png" alt=""
+                                                                            class="agent-landing-featured__property-tag">
+                                                                        <div class="row">
+                                                                            <div
+                                                                                class="col-5 d-flex align-items-center">
+                                                                                <img src="{{agentView.img}}" alt=""
+                                                                                    class="img-fluid agent-landing-featured__property-img">
+                                                                            </div>
+                                                                            <div class="col-7">
+                                                                                <div
+                                                                                    class="agent-landing-featured__agent-right-panel">
+                                                                                    <h6 class="agent-landing-featured__property-heading"
+                                                                                        routerLink="/ar/agent-details/1">
+                                                                                        {{agentView.company}}</h6>
                                                                                     <p
-                                                                                        class="agent-landing-featured__property-details-list-text">
-                                                                                        {{agentView.salePropertyListingCount}}<br>بيع
+                                                                                        class="agent-landing-featured__property-text">
+                                                                                        {{agentView.aboutCompany}}
                                                                                     </p>
-                                                                                </li>
-                                                                                <li
-                                                                                    class="agent-landing-featured__property-details-list-item">
+                                                                                    <a class="agent-landing-featured__property-link"
+                                                                                        routerLink=#>إعرض الخريطة</a>
                                                                                     <p
-                                                                                        class="agent-landing-featured__property-details-list-text">
-                                                                                        {{agentView.rentPropertyListingCount}}<br>الإيجار
-                                                                                    </p>
-                                                                                </li>
-                                                                                <li
-                                                                                    class="agent-landing-featured__property-details-list-item">
+                                                                                        class="agent-landing-featured__property-text">
+                                                                                        مؤسسة التنظيم العقاري#
+                                                                                        {{agentView.reraNo}}</p>
                                                                                     <p
-                                                                                        class="agent-landing-featured__property-details-list-text">
-                                                                                        {{agentView.commercialPropertyListingCount}}<br>التجارية
+                                                                                        class="agent-landing-featured__property-text">
+                                                                                        شهادة# {{agentView.premitNo}}
                                                                                     </p>
-                                                                                </li>
-                                                                            </ul>
+                                                                                    <ul
+                                                                                        class="agent-landing-featured__property-details-list">
+                                                                                        <li
+                                                                                            class="agent-landing-featured__property-details-list-item">
+                                                                                            <p
+                                                                                                class="agent-landing-featured__property-details-list-text">
+                                                                                                {{agentView.salePropertyListingCount}}<br>بيع
+                                                                                            </p>
+                                                                                        </li>
+                                                                                        <li
+                                                                                            class="agent-landing-featured__property-details-list-item">
+                                                                                            <p
+                                                                                                class="agent-landing-featured__property-details-list-text">
+                                                                                                {{agentView.rentPropertyListingCount}}<br>الإيجار
+                                                                                            </p>
+                                                                                        </li>
+                                                                                        <li
+                                                                                            class="agent-landing-featured__property-details-list-item">
+                                                                                            <p
+                                                                                                class="agent-landing-featured__property-details-list-text">
+                                                                                                {{agentView.commercialPropertyListingCount}}<br>التجارية
+                                                                                            </p>
+                                                                                        </li>
+                                                                                    </ul>
+                                                                                </div>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -871,9 +869,12 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </section>
+                                            </section>
+                                            <pagination-controls (pageChange)="pageChanged($event)"
+                                                class="text-center my-pagination">
+                                            </pagination-controls>
+                                        </section>
+                                    </div>
                                 </mat-tab>
                                 <mat-tab label="القائمة المختصرة">
                                     <div class="type-activity-status">
@@ -2127,7 +2128,8 @@
                                         <div ngClass="exisitng-amount">
                                             <h6>رمز الإحالة الخاص بي</h6>
                                             <button class="referral-copy" (click)="copyCode()">{{userData.referralCode}}
-                                                <mat-icon>file_copy</mat-icon></button>
+                                                <mat-icon>file_copy</mat-icon>
+                                            </button>
                                         </div>
                                         <div ngClass="pro-contact-details">
                                             <div ngbDropdown class="d-inline-block">
@@ -3345,7 +3347,7 @@
                                                                                 class="agent-details__property-detail-list-item">
                                                                                 <img src="assets/images/icons/Bed.svg"
                                                                                     alt="">
-                                                                                 
+
                                                                             </li>
                                                                         </ul>
                                                                     </div>
@@ -3414,7 +3416,7 @@
                                                                                 class="agent-details__property-detail-list-item">
                                                                                 <img src="assets/images/icons/Bed.svg"
                                                                                     alt="">
-                                                                                 
+
                                                                             </li>
                                                                         </ul>
                                                                     </div>
@@ -3483,7 +3485,7 @@
                                                                                 class="agent-details__property-detail-list-item">
                                                                                 <img src="assets/images/icons/Bed.svg"
                                                                                     alt="">
-                                                                                 
+
                                                                             </li>
                                                                         </ul>
                                                                     </div>
@@ -3552,7 +3554,7 @@
                                                                                 class="agent-details__property-detail-list-item">
                                                                                 <img src="assets/images/icons/Bed.svg"
                                                                                     alt="">
-                                                                                 
+
                                                                             </li>
                                                                         </ul>
                                                                     </div>
@@ -3621,7 +3623,7 @@
                                                                                 class="agent-details__property-detail-list-item">
                                                                                 <img src="assets/images/icons/Bed.svg"
                                                                                     alt="">
-                                                                                 
+
                                                                             </li>
                                                                         </ul>
                                                                     </div>
@@ -3690,7 +3692,7 @@
                                                                                 class="agent-details__property-detail-list-item">
                                                                                 <img src="assets/images/icons/Bed.svg"
                                                                                     alt="">
-                                                                                 
+
                                                                             </li>
                                                                         </ul>
                                                                     </div>
@@ -3931,7 +3933,7 @@
                                                                                     class="agent-details__property-detail-list-item">
                                                                                     <img src="assets/images/icons/Bed.svg"
                                                                                         alt="">
-                                                                                     
+
                                                                                 </li>
                                                                             </ul>
                                                                         </div>
@@ -4012,7 +4014,7 @@
                                                                                     class="agent-details__property-detail-list-item">
                                                                                     <img src="assets/images/icons/Bed.svg"
                                                                                         alt="">
-                                                                                     
+
                                                                                 </li>
                                                                             </ul>
                                                                         </div>
@@ -4093,7 +4095,7 @@
                                                                                     class="agent-details__property-detail-list-item">
                                                                                     <img src="assets/images/icons/Bed.svg"
                                                                                         alt="">
-                                                                                     
+
                                                                                 </li>
                                                                             </ul>
                                                                         </div>
@@ -4205,7 +4207,7 @@
                                                                                 class="agent-details__property-detail-list-item">
                                                                                 <img src="assets/images/icons/Bed.svg"
                                                                                     alt="">
-                                                                                 
+
                                                                             </li>
                                                                         </ul>
                                                                     </div>
@@ -4274,7 +4276,7 @@
                                                                                 class="agent-details__property-detail-list-item">
                                                                                 <img src="assets/images/icons/Bed.svg"
                                                                                     alt="">
-                                                                                 
+
                                                                             </li>
                                                                         </ul>
                                                                     </div>
@@ -4343,7 +4345,7 @@
                                                                                 class="agent-details__property-detail-list-item">
                                                                                 <img src="assets/images/icons/Bed.svg"
                                                                                     alt="">
-                                                                                 
+
                                                                             </li>
                                                                         </ul>
                                                                     </div>
@@ -4412,7 +4414,7 @@
                                                                                 class="agent-details__property-detail-list-item">
                                                                                 <img src="assets/images/icons/Bed.svg"
                                                                                     alt="">
-                                                                                 
+
                                                                             </li>
                                                                         </ul>
                                                                     </div>
@@ -4481,7 +4483,7 @@
                                                                                 class="agent-details__property-detail-list-item">
                                                                                 <img src="assets/images/icons/Bed.svg"
                                                                                     alt="">
-                                                                                 
+
                                                                             </li>
                                                                         </ul>
                                                                     </div>
@@ -4550,7 +4552,7 @@
                                                                                 class="agent-details__property-detail-list-item">
                                                                                 <img src="assets/images/icons/Bed.svg"
                                                                                     alt="">
-                                                                                 
+
                                                                             </li>
                                                                         </ul>
                                                                     </div>
@@ -4851,7 +4853,7 @@
                                                                                 class="agent-details__property-detail-list-item">
                                                                                 <img src="assets/images/icons/Bed.svg"
                                                                                     alt="">
-                                                                                 
+
                                                                             </li>
                                                                         </ul>
                                                                     </div>
@@ -4945,7 +4947,7 @@
                                                                                 class="agent-details__property-detail-list-item">
                                                                                 <img src="assets/images/icons/Bed.svg"
                                                                                     alt="">
-                                                                                 
+
                                                                             </li>
                                                                         </ul>
                                                                     </div>
