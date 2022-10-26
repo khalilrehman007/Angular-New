@@ -292,6 +292,7 @@ export class TransactionDataComponent implements OnInit {
       this.allDistrictSelected = false;
     }
     this.loadProjects();
+    this.loadData();
   }
   getDistrict(e: any) {
     this.selectedDistrict = [];
@@ -310,6 +311,7 @@ export class TransactionDataComponent implements OnInit {
     }
     if (!this.allDistrictSelected) {
       this.loadProjects();
+      this.loadData();
     }
   }
   loadProjects() {
@@ -325,6 +327,7 @@ export class TransactionDataComponent implements OnInit {
     this.service.TransactionSequence().subscribe((result: any) => {
       this.filteredsales = result.data;
     })
+    this.loadData();
   }
   selectAllPropertyType() {
     if (!this.allPropertyTypeSelected) {
@@ -338,6 +341,7 @@ export class TransactionDataComponent implements OnInit {
       this.selectedPropertyType = [];
       this.allPropertyTypeSelected = false;
     }
+    this.loadData();
   }
   getPropertyType(e: any) {
     this.selectedPropertyType = [];
@@ -354,6 +358,7 @@ export class TransactionDataComponent implements OnInit {
       }
       this.selectedPropertyType = temp;
     }
+    this.loadData();
   }
   selectAllProject() {
     if (!this.allProjectSelected) {
@@ -367,6 +372,7 @@ export class TransactionDataComponent implements OnInit {
       this.selectedProject = [];
       this.allProjectSelected = false;
     }
+    this.loadData();
   }
   getProject(e: any) {
     this.selectedProject = [];
@@ -383,6 +389,7 @@ export class TransactionDataComponent implements OnInit {
       }
       this.selectedProject = temp;
     }
+    this.loadData();
   }
   selectAllTransactionType() {
     if (!this.allTransactionTypeSelected) {
@@ -396,6 +403,7 @@ export class TransactionDataComponent implements OnInit {
       this.selectedTransactionType = [];
       this.allTransactionTypeSelected = false;
     }
+    this.loadData();
   }
   getTransactionType(e: any) {
     this.selectedTransactionType = [];
@@ -412,6 +420,7 @@ export class TransactionDataComponent implements OnInit {
       }
       this.selectedTransactionType = temp;
     }
+    this.loadData();
   }
   selectAllSalesSequence() {
     if (!this.allSalesSequenceSelected) {
@@ -425,6 +434,7 @@ export class TransactionDataComponent implements OnInit {
       this.selectedSalesSequence = [];
       this.allSalesSequenceSelected = false;
     }
+    this.loadData();
   }
   getSalesSequence(e: any) {
     this.selectedSalesSequence = [];
@@ -441,6 +451,7 @@ export class TransactionDataComponent implements OnInit {
       }
       this.selectedSalesSequence = temp;
     }
+    this.loadData();
   }
   selectAllDevelopers() {
     if (!this.allDevelopersSelected) {
@@ -454,6 +465,7 @@ export class TransactionDataComponent implements OnInit {
       this.selectedDevelopers = [];
       this.allDevelopersSelected = false;
     }
+    this.loadData();
   }
   getDevelopers(e: any) {
     this.selectedDevelopers = [];
@@ -470,6 +482,7 @@ export class TransactionDataComponent implements OnInit {
       }
       this.selectedDevelopers = temp;
     }
+    this.loadData();
   }
   selectAllBeds() {
     if (!this.allBedsSelected) {
@@ -483,6 +496,7 @@ export class TransactionDataComponent implements OnInit {
       this.selectedBeds = [];
       this.allBedsSelected = false;
     }
+    this.loadData();
   }
   getBeds(e: any) {
     this.selectedBeds = [];
@@ -499,6 +513,7 @@ export class TransactionDataComponent implements OnInit {
       }
       this.selectedBeds = temp;
     }
+    this.loadData();
   }
   getMinSize(e: any) {
     this.minSize = e;
@@ -517,7 +532,7 @@ export class TransactionDataComponent implements OnInit {
     this.loadData();
   }
   loadData() {
-    if (this.startDate == "" || this.endDate == "" || this.communityfield.length == 0) {
+    if (this.startDate == "" || this.endDate == "" || this.selectedDistrict.length == 0) {
       return;
     }
     this.showLoader = true;
@@ -529,43 +544,57 @@ export class TransactionDataComponent implements OnInit {
     temp.StartPrice = this.minPrice;
     temp.EndPrice = this.maxPrice;
     temp.DistrictIds = [];
-    for (let item of this.communityfield) {
-      temp.DistrictIds.push(item.id)
+    for (let item of this.selectedDistrict) {
+      if (item != "All") {
+        temp.DistrictIds.push(item)
+      }
     }
-    if (this.ProTypefield.length != 0) {
+    if (this.selectedPropertyType.length != 0) {
       temp.PropertyTypeIds = [];
-      for (let item of this.ProTypefield) {
-        temp.PropertyTypeIds.push(item.id)
+      for (let item of this.selectedPropertyType) {
+        if (item != "All") {
+          temp.PropertyTypeIds.push(item)
+        }
       }
     }
-    if (this.Profield.length != 0) {
+    if (this.selectedProject.length != 0) {
       temp.ProjectIds = [];
-      for (let item of this.Profield) {
-        temp.ProjectIds.push(item.id)
+      for (let item of this.selectedProject) {
+        if (item != "All") {
+          temp.ProjectIds.push(item)
+        }
       }
     }
-    if (this.Transactionfield.length != 0) {
+    if (this.selectedTransactionType.length != 0) {
       temp.TransactionTypeIds = [];
-      for (let item of this.Transactionfield) {
-        temp.TransactionTypeIds.push(item.id)
+      for (let item of this.selectedTransactionType) {
+        if (item != "All") {
+          temp.TransactionTypeIds.push(item)
+        }
       }
     }
-    if (this.salesfield.length != 0) {
+    if (this.selectedSalesSequence.length != 0) {
       temp.TransactionSequenceIds = [];
-      for (let item of this.salesfield) {
-        temp.TransactionSequenceIds.push(item.id)
+      for (let item of this.selectedSalesSequence) {
+        if (item != "All") {
+          temp.TransactionSequenceIds.push(item)
+        }
       }
     }
-    if (this.Developersfield.length != 0) {
+    if (this.selectedDevelopers.length != 0) {
       temp.PropertyDeveloperIds = [];
-      for (let item of this.Developersfield) {
-        temp.PropertyDeveloperIds.push(item.id)
+      for (let item of this.selectedDevelopers) {
+        if (item != "All") {
+          temp.PropertyDeveloperIds.push(item)
+        }
       }
     }
-    if (this.bedsfield.length != 0) {
+    if (this.selectedBeds.length != 0) {
       temp.BedroomList = [];
-      for (let item of this.bedsfield) {
-        temp.BedroomList.push(item)
+      for (let item of this.selectedBeds) {
+        if (item != "All") {
+          temp.BedroomList.push(item);
+        }
       }
     }
     this.service.GetResidentialTransactionData(temp).subscribe((result: any) => {
