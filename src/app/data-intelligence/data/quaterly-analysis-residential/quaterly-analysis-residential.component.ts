@@ -366,7 +366,7 @@ export class QuaterlyAnalysisResidentialComponent implements OnInit {
     this.minPrice = this.PriceminValue;
     this.maxPrice = this.PricemaxValue;
     let temp: any = new Date();
-    temp.setFullYear(temp.getFullYear() - 2);
+    temp.setFullYear(temp.getFullYear() - 4);
     this.range.patchValue({
       start: temp,
       end: this.currentDate
