@@ -67,9 +67,7 @@ export class TransactionDataComponent implements OnInit {
 
   separatorKeysCodes: number[] = [ENTER, COMMA];
   CommunityCtrl = new FormControl('');
-  filteredcommunity: any = [];
   communityfield: any = [];
-  allcommunityfield: string[] = ['Dubai Community', 'Dubai Community', 'Dubai Community'];
 
   // Property Type Filter
   PropertyTypCtrl = new FormControl('');
@@ -106,7 +104,7 @@ export class TransactionDataComponent implements OnInit {
   bedsCtrl = new FormControl('');
   filteredbeds: any;
   bedsfield: any = [];
-  allbedsfield: any = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  allbedsfield: any = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   // City Filter
   CityCtrl = new FormControl('');
@@ -154,6 +152,7 @@ export class TransactionDataComponent implements OnInit {
   selectedDevelopers: any = [];
   allBedsSelected: boolean = false;
   selectedBeds: any = [];
+  first: boolean = true;
 
   constructor(private cookie: CookieService, private service: AppService) {
     this.minSize = this.SizeminValue;
@@ -171,16 +170,8 @@ export class TransactionDataComponent implements OnInit {
     this.countryData = JSON.parse(this.cookie.get("countryData"));
     this.service.FindCities({ "CountryId": this.countryData.id, "Locations": [] }).subscribe((result: any) => {
       this.citiesData = result.data;
-      this.Cityfield.push({ "id": this.citiesData[0].id, "name": this.citiesData[0].name });
+      this.selectedCity.push(this.citiesData[0].id);
       this.loadDistrict();
-      let a = setInterval(() => {
-        if (this.filteredcommunity.length > 0) {
-          this.communityfield.push({ "id": this.filteredcommunity[0].id, "name": this.filteredcommunity[0].name });
-          this.loadProjects();
-          this.loadData();
-          clearInterval(a);
-        }
-      })
     })
     this.service.GetDevelopers(this.countryData.id).subscribe((result: any) => {
       this.filteredDevelopers = result.data;
@@ -275,6 +266,12 @@ export class TransactionDataComponent implements OnInit {
       this.service.FindDistricts({ "CityId": temp[i], "Locations": [] }).subscribe((result: any) => {
         for (let item of result.data) {
           this.communityfield.push(item);
+        }
+        if (this.first) {
+          this.first = false;
+          this.selectedDistrict.push(this.communityfield[0].id);
+          this.loadProjects();
+          this.loadData();
         }
       })
     }
@@ -605,190 +602,8 @@ export class TransactionDataComponent implements OnInit {
       }
     });
   }
-  add(event: MatChipInputEvent): void {
-    const value = (event.value || '').trim();
-    if (value) {
-      this.communityfield.push(value);
-    }
-    event.chipInput!.clear();
-    this.CommunityCtrl.setValue(null);
-  }
-  remove(community: string): void {
-    this.Profield = [];
-    this.salesfield = [];
-    const index = this.communityfield.indexOf(community);
-    if (index >= 0) {
-      this.communityfield.splice(index, 1);
-    }
-    this.loadProjects();
-    this.loadData();
-  }
-  selected(event: MatAutocompleteSelectedEvent): void {
-    this.communityfield.push({ "id": event.option.value, "name": event.option.viewValue });
-    this.ComunityInput.nativeElement.value = '';
-    this.CommunityCtrl.setValue(null);
-    this.loadProjects();
-    this.loadData();
-  }
-  add1(event: MatChipInputEvent): void {
-    const value1 = (event.value || '').trim();
-    if (value1) {
-      this.ProTypefield.push(value1);
-    }
-    event.chipInput!.clear();
-    this.PropertyTypCtrl.setValue(null);
-  }
-  remove1(protype: string): void {
-    const index1 = this.ProTypefield.indexOf(protype);
-    if (index1 >= 0) {
-      this.ProTypefield.splice(index1, 1);
-    }
-    this.loadData();
-  }
-  selected1(event: MatAutocompleteSelectedEvent): void {
-    this.ProTypefield.push({ "id": event.option.value, "name": event.option.viewValue });
-    this.PropertyTypeInput.nativeElement.value = '';
-    this.PropertyTypCtrl.setValue(null);
-    this.loadData();
-  }
-  add2(event: MatChipInputEvent): void {
-    const value2 = (event.value || '').trim();
-    if (value2) {
-      this.Profield.push(value2);
-    }
-    event.chipInput!.clear();
-    this.PropertyCtrl.setValue(null);
-  }
-  remove2(property: string): void {
-    const index2 = this.Profield.indexOf(property);
-    if (index2 >= 0) {
-      this.Profield.splice(index2, 1);
-    }
-    this.loadData();
-  }
-  selected2(event: MatAutocompleteSelectedEvent): void {
-    this.Profield.push({ "id": event.option.value, "name": event.option.viewValue });
-    this.PropertyInput.nativeElement.value = '';
-    this.PropertyCtrl.setValue(null);
-    this.loadData();
-  }
-  add3(event: MatChipInputEvent): void {
-    const value3 = (event.value || '').trim();
-    if (value3) {
-      this.Transactionfield.push(value3);
-    }
-    event.chipInput!.clear();
-    this.TransactionCtrl.setValue(null);
-  }
-  remove3(transaction: string): void {
-    const index3 = this.Transactionfield.indexOf(transaction);
-    if (index3 >= 0) {
-      this.Transactionfield.splice(index3, 1);
-    }
-    this.loadData();
-  }
-  selected3(event: MatAutocompleteSelectedEvent): void {
-    this.Transactionfield.push({ "id": event.option.value, "name": event.option.viewValue });
-    this.TransactionInput.nativeElement.value = '';
-    this.TransactionCtrl.setValue(null);
-    this.loadData();
-  }
-  add4(event: MatChipInputEvent): void {
-    const value4 = (event.value || '').trim();
-    if (value4) {
-      this.salesfield.push(value4);
-    }
-    event.chipInput!.clear();
-    this.salesCtrl.setValue(null);
-  }
-  remove4(sale: string): void {
-    const index4 = this.salesfield.indexOf(sale);
-    if (index4 >= 0) {
-      this.salesfield.splice(index4, 1);
-    }
-    this.loadData();
-  }
-  selected4(event: MatAutocompleteSelectedEvent): void {
-    this.salesfield.push({ "id": event.option.value, "name": event.option.viewValue });
-    this.SalesInput.nativeElement.value = '';
-    this.salesCtrl.setValue(null);
-    this.loadData();
-  }
-  add5(event: MatChipInputEvent): void {
-    const value5 = (event.value || '').trim();
-    if (value5) {
-      this.Developersfield.push(value5);
-    }
-    event.chipInput!.clear();
-    this.DevelopersCtrl.setValue(null);
-  }
-  remove5(developer: string): void {
-    const index5 = this.Developersfield.indexOf(developer);
-    if (index5 >= 0) {
-      this.Developersfield.splice(index5, 1);
-    }
-    this.loadData();
-  }
-  selected5(event: MatAutocompleteSelectedEvent): void {
-    this.Developersfield.push({ "id": event.option.value, "name": event.option.viewValue });
-    this.developersInput.nativeElement.value = '';
-    this.DevelopersCtrl.setValue(null);
-    this.loadData();
-  }
-  add6(event: MatChipInputEvent): void {
-    const value6 = (event.value || '').trim();
-    if (value6) {
-      this.bedsfield.push(value6);
-    }
-    event.chipInput!.clear();
-    this.bedsCtrl.setValue(null);
-  }
-  remove6(beds: string): void {
-    const index6 = this.bedsfield.indexOf(beds);
-    if (index6 >= 0) {
-      this.bedsfield.splice(index6, 1);
-    }
-    this.loadData();
-  }
-  selected6(event: MatAutocompleteSelectedEvent): void {
-    this.bedsfield.push(event.option.viewValue);
-    this.bedInput.nativeElement.value = '';
-    this.bedsCtrl.setValue(null);
-    this.loadData();
-  }
-  add7(event: MatChipInputEvent): void {
-    const value7 = (event.value || '').trim();
-    if (value7) {
-      this.Cityfield.push(value7);
-    }
-    event.chipInput!.clear();
-    this.CityCtrl.setValue(null);
-  }
-  remove7(city: any): void {
-    this.communityfield = [];
-    this.Profield = [];
-    const index7 = this.Cityfield.indexOf(city);
-    if (index7 >= 0) {
-      this.Cityfield.splice(index7, 1);
-    }
-    this.loadDistrict();
-  }
-  selected7(event: any): void {
-    this.Cityfield.push({ "id": event.option.value, "name": event.option.viewValue });
-    this.CityInput.nativeElement.value = '';
-    this.CityCtrl.setValue(null);
-    this.loadDistrict();
-  }
   ngOnInit(): void {
   }
   ngAfterViewInit() {
-  }
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
   }
 }

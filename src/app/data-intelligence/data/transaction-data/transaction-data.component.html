@@ -74,7 +74,7 @@
                     <mat-form-field>
                       <mat-label>Add Projects</mat-label>
                       <mat-select multiple (selectionChange)="getProject($event)" [(value)]="selectedProject">
-                          <mat-option value="All" (click)="selectAllProject()">Select All</mat-option>
+                        <mat-option value="All" (click)="selectAllProject()">Select All</mat-option>
                         <mat-option *ngFor="let property of filteredPropertyOnly" [value]="property.id">
                           {{property.name}}
                         </mat-option>
@@ -87,8 +87,9 @@
                     <label>Transaction Type</label>
                     <mat-form-field>
                       <mat-label>Add Transaction Type</mat-label>
-                      <mat-select multiple (selectionChange)="getTransactionType($event)" [(value)]="selectedTransactionType">
-                          <mat-option value="All" (click)="selectAllTransactionType()">Select All</mat-option>
+                      <mat-select multiple (selectionChange)="getTransactionType($event)"
+                        [(value)]="selectedTransactionType">
+                        <mat-option value="All" (click)="selectAllTransactionType()">Select All</mat-option>
                         <mat-option *ngFor="let transaction of filteredTransaction" [value]="transaction.id">
                           {{transaction.name}}
                         </mat-option>
@@ -101,7 +102,8 @@
                     <label>Sales Sequence</label>
                     <mat-form-field>
                       <mat-label>Add Sales Sequence</mat-label>
-                      <mat-select multiple (selectionChange)="getSalesSequence($event)" [(value)]="selectedSalesSequence">
+                      <mat-select multiple (selectionChange)="getSalesSequence($event)"
+                        [(value)]="selectedSalesSequence">
                         <mat-option value="All" (click)="selectAllSalesSequence()">Select All</mat-option>
                         <mat-option *ngFor="let sale of filteredsales" [value]="sale.id">
                           {{sale.name}}
@@ -130,7 +132,7 @@
                     <mat-form-field>
                       <mat-label>Add Bedroom</mat-label>
                       <mat-select multiple (selectionChange)="getBeds($event)" [(value)]="selectedBeds">
-                          <mat-option value="All" (click)="selectAllBeds()">Select All</mat-option>
+                        <mat-option value="All" (click)="selectAllBeds()">Select All</mat-option>
                         <mat-option *ngFor="let beds of allbedsfield" [value]="beds">
                           {{beds}}
                         </mat-option>
@@ -167,17 +169,18 @@
               </div>
             </div>
           </form>
-          <div class="dashboard-data-blue-boxes mt-3" *ngIf="totalLength != 0">
+          <div class="dashboard-data-blue-boxes mt-3">
             <div class="row dashbpard-reports-inof-blocks">
               <div class="col-xl-3 p-2">
-                <div class="card bg-2">
+                <div class="card bg-2 position-relative">
+                  <app-loader *ngIf="showLoader"></app-loader>
                   <div class="row">
                     <div class="col-12 text-center">
                       <h6 class="text-small">Ready Property Transactions</h6>
                       <p style="margin-bottom: 12px;"></p>
                       <div class="custom-box">
                         <span>
-                          <h3>{{formatNumber(transactionData.transactionsCount)}}</h3>
+                          <h3>{{totalLength != 0 ? formatNumber(transactionData.transactionsCount) : 0}}</h3>
                           <p>TRANSACTIONS</p>
                         </span>
                       </div>
@@ -186,14 +189,15 @@
                 </div>
               </div>
               <div class="col-xl-3 p-2">
-                <div class="card bg-3">
+                <div class="card bg-2 position-relative">
+                  <app-loader *ngIf="showLoader"></app-loader>
                   <div class="row">
                     <div class="col-12 text-center">
                       <h6 class="text-small">Off-plan property transactions</h6>
                       <p style="margin-bottom: 12px;"></p>
                       <div class="custom-box">
                         <span>
-                          <h3>{{formatNumber(transactionData.medianPricePerSqft)}}</h3>
+                          <h3>{{totalLength != 0 ? formatNumber(transactionData.medianPricePerSqft) : 0}}</h3>
                           <p>Median {{countryData.currency}}/{{countryData.unitType}}</p>
                         </span>
                       </div>
@@ -202,13 +206,14 @@
                 </div>
               </div>
               <div class="col-xl-3 p-2">
-                <div class="card bg-2">
+                <div class="card bg-2 position-relative">
+                  <app-loader *ngIf="showLoader"></app-loader>
                   <div class="row">
                     <div class="col-12 text-center">
                       <h6 class="text-small">Sales listings </h6>
                       <div class="custom-box">
                         <span>
-                          <h3>{{formatNumber(transactionData.medianPrice)}}</h3>
+                          <h3>{{totalLength != 0 ? formatNumber(transactionData.medianPrice) : 0}}</h3>
                           <p>Median Value ({{countryData.currency}})</p>
                         </span>
                       </div>
@@ -217,13 +222,14 @@
                 </div>
               </div>
               <div class="col-xl-3 p-2">
-                <div class="card bg-3">
+                <div class="card bg-2 position-relative">
+                  <app-loader *ngIf="showLoader"></app-loader>
                   <div class="row">
                     <div class="col-12 text-center">
                       <h6 class="text-small">Rent listings</h6>
                       <div class="custom-box">
                         <span>
-                          <h3>{{formatNumber(transactionData.totalPrice)}}</h3>
+                          <h3>{{totalLength != 0 ? formatNumber(transactionData.totalPrice) : 0}}</h3>
                           <p>Total Value ({{countryData.currency}})</p>
                         </span>
                       </div>
@@ -233,9 +239,10 @@
               </div>
             </div>
           </div>
-          <div class="dash-table-box-layout" *ngIf="totalLength != 0">
+          <div class="dash-table-box-layout">
             <div class="table-responsive">
-              <table class="table table-striped">
+              <table class="table table-striped position-relative">
+                <app-loader *ngIf="showLoader"></app-loader>
                 <thead>
                   <tr>
                     <th>Type</th>
@@ -306,6 +313,5 @@
         <p class="text-center text-muted mb-0">Copyright &#169; <a routerLink="">Ovaluate</a></p>
       </footer>
     </div>
-    <app-loader *ngIf="showLoader"></app-loader>
   </div>
 </div>
