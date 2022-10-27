@@ -7,7 +7,7 @@ import { ShortTermRentComponent } from './short-term-rent/short-term-rent.compon
 import { NewHomesComponent } from './new-homes/new-homes.component';
 
 const routes: Routes = [
-  { path: "new-homes", component: NewHomesComponent},
+  { path: "", component: NewHomesComponent},
   { path: "search", component: SearchComponent },
   { path: "search/:type", component: SearchComponent },
   { path: "detail", component: PropertyDetailComponent },
