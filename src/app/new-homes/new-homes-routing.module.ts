@@ -4,8 +4,10 @@ import { PropertyDetailComponent } from './property-detail/property-detail.compo
 import { SearchComponent } from './search/search.component';
 import { ViewmapComponent } from './viewmap/viewmap.component';
 import { ShortTermRentComponent } from './short-term-rent/short-term-rent.component';
+import { NewHomesComponent } from './new-homes/new-homes.component';
 
 const routes: Routes = [
+  { path: "new-homes", component: NewHomesComponent},
   { path: "search", component: SearchComponent },
   { path: "search/:type", component: SearchComponent },
   { path: "detail", component: PropertyDetailComponent },
