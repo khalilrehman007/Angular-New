@@ -25,7 +25,6 @@ export class AppComponent implements DoCheck, OnInit, AfterViewInit {
     this.route.events.subscribe((val: any) => {
       if (val instanceof NavigationEnd) {
         let temp: any = val.url.split("/");
-        console.log(temp);
         if(temp[1] == "data-intelligence") {
           $("body").addClass("select-di-dropdown");
         } else {
