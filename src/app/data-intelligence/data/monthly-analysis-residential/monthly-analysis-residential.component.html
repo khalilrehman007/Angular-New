@@ -87,8 +87,9 @@
                     <label>Transaction Type</label>
                     <mat-form-field>
                       <mat-label>Add Transaction Type</mat-label>
-                      <mat-select multiple (selectionChange)="getTransactionType($event)" [(value)]="selectedTransactionType">
-                          <mat-option value="All" (click)="selectAllTransactionType()">Select All</mat-option>
+                      <mat-select multiple (selectionChange)="getTransactionType($event)"
+                        [(value)]="selectedTransactionType">
+                        <mat-option value="All" (click)="selectAllTransactionType()">Select All</mat-option>
                         <mat-option *ngFor="let transaction of filteredTransaction" [value]="transaction.id">
                           {{transaction.name}}
                         </mat-option>
@@ -101,7 +102,8 @@
                     <label>Sales Sequence</label>
                     <mat-form-field>
                       <mat-label>Add Sales Sequence</mat-label>
-                      <mat-select multiple (selectionChange)="getSalesSequence($event)" [(value)]="selectedSalesSequence">
+                      <mat-select multiple (selectionChange)="getSalesSequence($event)"
+                        [(value)]="selectedSalesSequence">
                         <mat-option value="All" (click)="selectAllSalesSequence()">Select All</mat-option>
                         <mat-option *ngFor="let sale of filteredsales" [value]="sale.id">
                           {{sale.name}}
@@ -116,7 +118,7 @@
                     <mat-form-field>
                       <mat-label>Add Bedroom</mat-label>
                       <mat-select multiple (selectionChange)="getBeds($event)" [(value)]="selectedBeds">
-                          <mat-option value="All" (click)="selectAllBeds()">Select All</mat-option>
+                        <mat-option value="All" (click)="selectAllBeds()">Select All</mat-option>
                         <mat-option *ngFor="let beds of allbedsfield" [value]="beds">
                           {{beds}}
                         </mat-option>
@@ -157,8 +159,9 @@
       </div>
       <div class="dashboard-data-charts">
         <div class="row">
-          <div class="col-12 mb-24" *ngIf="showTBT">
-            <div class="card">
+          <div class="col-12 mb-24">
+            <div class="card position-relative">
+              <app-loader *ngIf="showLoader"></app-loader>
               <div class="card-header">
                 <h6>Total Number of Transactions by Transaction Type</h6>
                 <button class="download-reprt">
@@ -173,8 +176,9 @@
               </div>
             </div>
           </div>
-          <div class="col-12 mb-24" *ngIf="showTBS">
-            <div class="card">
+          <div class="col-12 mb-24">
+            <div class="card position-relative">
+              <app-loader *ngIf="showLoader"></app-loader>
               <div class="card-header">
                 <h6>Total Number of Transactions by Sales Sequence</h6>
                 <button class="download-reprt">
@@ -189,8 +193,9 @@
               </div>
             </div>
           </div>
-          <div class="col-12 mb-24" *ngIf="showTVB">
-            <div class="card">
+          <div class="col-12 mb-24">
+            <div class="card position-relative">
+              <app-loader *ngIf="showLoader"></app-loader>
               <div class="card-header">
                 <h6>Total Value of Transactions by Transaction Type</h6>
                 <button class="download-reprt">
@@ -205,8 +210,9 @@
               </div>
             </div>
           </div>
-          <div class="col-12 mb-24" *ngIf="showTVBS">
-            <div class="card">
+          <div class="col-12 mb-24">
+            <div class="card position-relative">
+              <app-loader *ngIf="showLoader"></app-loader>
               <div class="card-header">
                 <h6>Total Value of Transactions by Sales Sequence</h6>
                 <button class="download-reprt">
@@ -221,8 +227,9 @@
               </div>
             </div>
           </div>
-          <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-24" *ngIf="showMPOT">
-            <div class="card">
+          <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-24">
+            <div class="card position-relative">
+              <app-loader *ngIf="showLoader"></app-loader>
               <div class="card-header">
                 <h6>Median Price of Transactions</h6>
                 <button class="download-reprt">
@@ -237,8 +244,9 @@
               </div>
             </div>
           </div>
-          <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-24" *ngIf="showMAPT">
-            <div class="card">
+          <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-24">
+            <div class="card position-relative">
+              <app-loader *ngIf="showLoader"></app-loader>
               <div class="card-header">
                 <h6>Median AED/Sqf Price of Transactions</h6>
                 <button class="download-reprt">
@@ -261,6 +269,5 @@
         <p class="text-center text-muted mb-0">Copyright &#169; <a routerLink="">Ovaluate</a></p>
       </footer>
     </div>
-    <app-loader *ngIf="showLoader"></app-loader>
   </div>
 </div>
