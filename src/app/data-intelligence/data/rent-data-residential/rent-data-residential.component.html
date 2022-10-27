@@ -16,8 +16,10 @@
                     <mat-form-field>
                       <mat-label>Enter a date range</mat-label>
                       <mat-date-range-input [rangePicker]="picker">
-                        <input matStartDate matInput placeholder="Start date" formControlName="start" (dateChange)="getStartDate($event)">
-                        <input matEndDate matInput placeholder="End date" formControlName="end" (dateChange)="getEndDate($event)">
+                        <input matStartDate matInput placeholder="Start date" formControlName="start"
+                          (dateChange)="getStartDate($event)">
+                        <input matEndDate matInput placeholder="End date" formControlName="end"
+                          (dateChange)="getEndDate($event)">
                       </mat-date-range-input>
                       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                       <mat-date-range-picker #picker></mat-date-range-picker>
@@ -29,7 +31,7 @@
                     <label>City</label>
                     <mat-form-field>
                       <mat-label>Add City</mat-label>
-                      <mat-select multiple (selectionChange)="getCity($event)" [(value)]="selectedCity">
+                      <mat-select [disableOptionCentering]="true" multiple (selectionChange)="getCity($event)" [(value)]="selectedCity">
                         <mat-option value="All" (click)="selectAllCity()">Select All</mat-option>
                         <mat-option *ngFor="let city of citiesData" [value]="city.id">
                           {{city.name}}
@@ -43,7 +45,7 @@
                     <label>District</label>
                     <mat-form-field>
                       <mat-label>Add District</mat-label>
-                      <mat-select multiple (selectionChange)="getDistrict($event)" [(value)]="selectedDistrict">
+                      <mat-select [disableOptionCentering]="true" multiple (selectionChange)="getDistrict($event)" [(value)]="selectedDistrict">
                         <mat-option value="All" (click)="selectAllDistrict()">Select All</mat-option>
                         <mat-option *ngFor="let community of communityfield" [value]="community.id">
                           {{community.name}}
@@ -57,7 +59,7 @@
                     <label>Property Type</label>
                     <mat-form-field>
                       <mat-label>Add Property Type</mat-label>
-                      <mat-select multiple (selectionChange)="getPropertyType($event)" [(value)]="selectedPropertyType">
+                      <mat-select [disableOptionCentering]="true" multiple (selectionChange)="getPropertyType($event)" [(value)]="selectedPropertyType">
                         <mat-option value="All" (click)="selectAllPropertyType()">Select All</mat-option>
                         <mat-option *ngFor="let protype of filteredProperty" [value]="protype.id">
                           {{protype.typeDescription}}
@@ -71,8 +73,8 @@
                     <label>Projects</label>
                     <mat-form-field>
                       <mat-label>Add Projects</mat-label>
-                      <mat-select multiple (selectionChange)="getProject($event)" [(value)]="selectedProject">
-                          <mat-option value="All" (click)="selectAllProject()">Select All</mat-option>
+                      <mat-select [disableOptionCentering]="true" multiple (selectionChange)="getProject($event)" [(value)]="selectedProject">
+                        <mat-option value="All" (click)="selectAllProject()">Select All</mat-option>
                         <mat-option *ngFor="let property of filteredPropertyOnly" [value]="property.id">
                           {{property.name}}
                         </mat-option>
@@ -86,8 +88,10 @@
                     <mat-form-field>
                       <mat-label>Date</mat-label>
                       <mat-date-range-input [rangePicker]="startpicker">
-                        <input matStartDate matInput placeholder="Start date" formControlName="minStart" (dateChange)="getMinStartDate($event)">
-                        <input matEndDate matInput placeholder="End date" formControlName="maxStart" (dateChange)="getMaxStartDate($event)">
+                        <input matStartDate matInput placeholder="Start date" formControlName="minStart"
+                          (dateChange)="getMinStartDate($event)">
+                        <input matEndDate matInput placeholder="End date" formControlName="maxStart"
+                          (dateChange)="getMaxStartDate($event)">
                       </mat-date-range-input>
                       <mat-datepicker-toggle matSuffix [for]="startpicker"></mat-datepicker-toggle>
                       <mat-date-range-picker #startpicker></mat-date-range-picker>
@@ -100,8 +104,10 @@
                     <mat-form-field>
                       <mat-label>Date</mat-label>
                       <mat-date-range-input [rangePicker]="endpicker">
-                        <input matStartDate matInput placeholder="Start date" formControlName="minEnd" (dateChange)="getMinEndDate($event)">
-                        <input matEndDate matInput placeholder="End date" formControlName="maxEnd" (dateChange)="getMaxEndDate($event)">
+                        <input matStartDate matInput placeholder="Start date" formControlName="minEnd"
+                          (dateChange)="getMinEndDate($event)">
+                        <input matEndDate matInput placeholder="End date" formControlName="maxEnd"
+                          (dateChange)="getMaxEndDate($event)">
                       </mat-date-range-input>
                       <mat-datepicker-toggle matSuffix [for]="endpicker"></mat-datepicker-toggle>
                       <mat-date-range-picker #endpicker></mat-date-range-picker>
@@ -113,8 +119,9 @@
                     <label>Transaction Type</label>
                     <mat-form-field>
                       <mat-label>Add Transaction Type</mat-label>
-                      <mat-select multiple (selectionChange)="getTransactionType($event)" [(value)]="selectedTransactionType">
-                          <mat-option value="All" (click)="selectAllTransactionType()">Select All</mat-option>
+                      <mat-select [disableOptionCentering]="true" multiple (selectionChange)="getTransactionType($event)"
+                        [(value)]="selectedTransactionType">
+                        <mat-option value="All" (click)="selectAllTransactionType()">Select All</mat-option>
                         <mat-option *ngFor="let transaction of filteredTransaction" [value]="transaction.id">
                           {{transaction.name}}
                         </mat-option>
@@ -127,8 +134,8 @@
                     <label>BEDROOM</label>
                     <mat-form-field>
                       <mat-label>Add Bedroom</mat-label>
-                      <mat-select multiple (selectionChange)="getBeds($event)" [(value)]="selectedBeds">
-                          <mat-option value="All" (click)="selectAllBeds()">Select All</mat-option>
+                      <mat-select [disableOptionCentering]="true" multiple (selectionChange)="getBeds($event)" [(value)]="selectedBeds">
+                        <mat-option value="All" (click)="selectAllBeds()">Select All</mat-option>
                         <mat-option *ngFor="let beds of allbedsfield" [value]="beds">
                           {{beds}}
                         </mat-option>
@@ -143,7 +150,8 @@
                     <h4>Size Range ({{countryData.unitType}})</h4>
                     <div ngClass="price-range_sec">
                       <div ngClass="range-slider">
-                        <ngx-slider [(value)]="SizeminValue" [(highValue)]="SizemaxValue" [options]="Sizeoptions" (valueChange)="getMinSize($event)" (highValueChange)="getMaxSize($event)">
+                        <ngx-slider [(value)]="SizeminValue" [(highValue)]="SizemaxValue" [options]="Sizeoptions"
+                          (valueChange)="getMinSize($event)" (highValueChange)="getMaxSize($event)">
                         </ngx-slider>
                       </div>
                     </div>
@@ -154,7 +162,8 @@
                     <h4>Price Range ({{countryData.currency}})</h4>
                     <div ngClass="price-range_sec">
                       <div ngClass="range-slider">
-                        <ngx-slider [(value)]="PriceminValue" [(highValue)]="PricemaxValue" [options]="Priceoptions" (valueChange)="getMinPrice($event)" (highValueChange)="getMaxPrice($event)">
+                        <ngx-slider [(value)]="PriceminValue" [(highValue)]="PricemaxValue" [options]="Priceoptions"
+                          (valueChange)="getMinPrice($event)" (highValueChange)="getMaxPrice($event)">
                         </ngx-slider>
                       </div>
                     </div>
@@ -163,17 +172,18 @@
               </div>
             </div>
           </form>
-          <div class="dashboard-data-blue-boxes mt-3" *ngIf="totalLength != 0">
+          <div class="dashboard-data-blue-boxes mt-3">
             <div class="row dashbpard-reports-inof-blocks">
               <div class="col-xl-3 p-2">
-                <div class="card bg-2">
+                <div class="card bg-2 position-relative overflow-hidden">
+                  <app-loader *ngIf="showLoader"></app-loader>
                   <div class="row">
                     <div class="col-12 text-center">
                       <h6 class="text-small">Ready Property Transactions</h6>
                       <p style="margin-bottom: 12px;"></p>
                       <div class="custom-box">
                         <span>
-                          <h3>{{formatNumber(transactionData.transactionsCount)}}</h3>
+                          <h3>{{totalLength != 0 ? formatNumber(transactionData.transactionsCount) : 0}}</h3>
                           <p>TRANSACTIONS</p>
                         </span>
                       </div>
@@ -182,14 +192,15 @@
                 </div>
               </div>
               <div class="col-xl-3 p-2">
-                <div class="card bg-3">
+                <div class="card bg-2 position-relative overflow-hidden">
+                  <app-loader *ngIf="showLoader"></app-loader>
                   <div class="row">
                     <div class="col-12 text-center">
                       <h6 class="text-small">Off-plan property transactions</h6>
                       <p style="margin-bottom: 12px;"></p>
                       <div class="custom-box">
                         <span>
-                          <h3>{{formatNumber(transactionData.medianPricePerSqft)}}</h3>
+                          <h3>{{totalLength != 0 ? formatNumber(transactionData.medianPricePerSqft) : 0}}</h3>
                           <p>Median {{countryData.currency}}/{{countryData.unitType}}</p>
                         </span>
                       </div>
@@ -198,13 +209,14 @@
                 </div>
               </div>
               <div class="col-xl-3 p-2">
-                <div class="card bg-2">
+                <div class="card bg-2 position-relative overflow-hidden">
+                  <app-loader *ngIf="showLoader"></app-loader>
                   <div class="row">
                     <div class="col-12 text-center">
                       <h6 class="text-small">Sales listings </h6>
                       <div class="custom-box">
                         <span>
-                          <h3>{{formatNumber(transactionData.medianPrice)}}</h3>
+                          <h3>{{totalLength != 0 ? formatNumber(transactionData.medianPrice) : 0}}</h3>
                           <p>Median Value ({{countryData.currency}})</p>
                         </span>
                       </div>
@@ -213,13 +225,14 @@
                 </div>
               </div>
               <div class="col-xl-3 p-2">
-                <div class="card bg-3">
+                <div class="card bg-2 position-relative overflow-hidden">
+                  <app-loader *ngIf="showLoader"></app-loader>
                   <div class="row">
                     <div class="col-12 text-center">
                       <h6 class="text-small">Rent listings</h6>
                       <div class="custom-box">
                         <span>
-                          <h3>{{formatNumber(transactionData.totalPrice)}}</h3>
+                          <h3>{{totalLength != 0 ? formatNumber(transactionData.totalPrice) : 0}}</h3>
                           <p>Total Value ({{countryData.currency}})</p>
                         </span>
                       </div>
@@ -229,10 +242,11 @@
               </div>
             </div>
           </div>
-          <div class="dash-table-box-layout" *ngIf="totalLength != 0">
+          <div class="dash-table-box-layout">
             <div class="table-responsive">
-              <table class="table table-striped">
-                <thead>
+              <table class="table table-striped position-relative overflow-hidden">
+                  <app-loader *ngIf="showLoader"></app-loader>
+                  <thead>
                   <tr>
                     <th>Version</th>
                     <th>Date</th>
@@ -253,7 +267,8 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let item of transactionData.transactions | paginate: { itemsPerPage: itemsPerPage, currentPage: page, totalItems:totalLength }">
+                  <tr
+                    *ngFor="let item of transactionData.transactions | paginate: { itemsPerPage: itemsPerPage, currentPage: page, totalItems:totalLength }">
                     <td>{{item.transactionType != null ? item.transactionType.name : "N/A"}}</td>
                     <td>{{item.transactionDate != null ? item.transactionDate.split("T")[0] : "N/A"}}</td>
                     <td>{{item.startDate != null ? item.startDate.split("T")[0] : "N/A"}}</td>
@@ -278,7 +293,8 @@
                   <p>Items Per Page 10</p>
                   <div ngClass="select-design-language">
                     <mat-form-field appearance="fill">
-                      <mat-select [disableOptionCentering]="true" [(value)]="PageNumbers" (selectionChange)="getItems($event)">
+                      <mat-select [disableOptionCentering]="true" [(value)]="PageNumbers"
+                        (selectionChange)="getItems($event)">
                         <mat-option [value]="option.value" *ngFor="let option of pageitems">
                           {{option.viewValue }}
                         </mat-option>
@@ -299,6 +315,5 @@
         <p class="text-center text-muted mb-0">Copyright &#169; <a routerLink="">Ovaluate</a></p>
       </footer>
     </div>
-    <app-loader *ngIf="showLoader"></app-loader>
   </div>
 </div>

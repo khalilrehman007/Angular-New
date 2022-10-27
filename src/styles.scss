@@ -8887,7 +8887,7 @@ li.agent-details__property-list-item {
 .lsited-by-details {
     align-items: center;
 }
-.table td {
+.table td,.table th {
     font-weight: 300;
     border: none;
     font-size: 14px;
@@ -12232,7 +12232,7 @@ background: transparent !important;
     position: relative;
     top: 26px;
 }
-.mat-select-panel-wrap .mat-select-panel{
+.mat-select-panel-wrap .mat-select-panel:not(.select-di-dropdown .mat-select-panel-wrap .mat-select-panel)l{
     min-width: calc(100% + 12px) !important;
     transform: translateX(4px) !important
 }
@@ -12739,6 +12739,15 @@ input:focus{
     max-width: 100%;
     margin-top: 0px;
 	position: absolute !important;
+	z-index: 99 !important;
+	.mat-progress-spinner {
+		width: 40px !important;
+		height: 40px !important;
+		svg{
+			width: 40px !important;
+		height: 40px !important;
+		}
+	}
 }
 .mat-option-text {
     font-weight: 300;

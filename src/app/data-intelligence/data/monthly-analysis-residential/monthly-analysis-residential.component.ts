@@ -15,8 +15,6 @@ import DatalabelsPlugin from 'chartjs-plugin-datalabels';
 import { ChartConfiguration, ChartData, ChartEvent, ChartType, Chart } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 import { default as Annotation } from 'chartjs-plugin-annotation';
-
-
 @Component({
   selector: 'app-monthly-analysis-residential',
   templateUrl: './monthly-analysis-residential.component.html',
@@ -69,7 +67,7 @@ export class MonthlyAnalysisResidentialComponent implements OnInit {
   bedsCtrl = new FormControl('');
   filteredbeds: any = "";
   bedsfield: any = [];
-  allbedsfield: any = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  allbedsfield: any = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   currentDate: any = new Date();
   range = new FormGroup({
     start: new FormControl(),
@@ -348,6 +346,20 @@ export class MonthlyAnalysisResidentialComponent implements OnInit {
   showTVBS: boolean = false;
   showMPOT: boolean = false;
   showMAPT: boolean = false;
+  allCitiesSelected: boolean = false;
+  selectedCity: any = [];
+  allDistrictSelected: boolean = false;
+  selectedDistrict: any = [];
+  allPropertyTypeSelected: boolean = false;
+  selectedPropertyType: any = [];
+  allTransactionTypeSelected: boolean = false;
+  selectedTransactionType: any = [];
+  allSalesSequenceSelected: boolean = false;
+  selectedSalesSequence: any = [];
+  allDevelopersSelected: boolean = false;
+  selectedDevelopers: any = [];
+  allBedsSelected: boolean = false;
+  selectedBeds: any = [];
   constructor(private cookie: CookieService, private service: AppService) {
     this.minSize = this.SizeminValue;
     this.maxSize = this.SizemaxValue;
@@ -364,6 +376,11 @@ export class MonthlyAnalysisResidentialComponent implements OnInit {
     this.countryData = JSON.parse(this.cookie.get("countryData"));
     this.service.TransactionSequence().subscribe((result: any) => {
       this.filteredsales = result.data;
+      this.allSalesSequenceSelected = true;
+      this.selectedSalesSequence.push("All");
+      for (let item of this.filteredsales) {
+        this.selectedSalesSequence.push(item.id);
+      }
     })
     this.service.FindCities({ "CountryId": this.countryData.id, "Locations": [] }).subscribe((result: any) => {
       this.citiesData = result.data;
@@ -389,6 +406,11 @@ export class MonthlyAnalysisResidentialComponent implements OnInit {
     })
     this.service.GetTransactionType().subscribe((result: any) => {
       this.filteredTransaction = result.data;
+      this.allTransactionTypeSelected = true;
+      this.selectedTransactionType.push("All");
+      for (let item of this.filteredTransaction) {
+        this.selectedTransactionType.push(item.id);
+      }
       this.loadData();
     })
   }
@@ -397,6 +419,248 @@ export class MonthlyAnalysisResidentialComponent implements OnInit {
   }
   getEndDate(e: any) {
     this.endDate = this.getDate(e);
+    this.loadData();
+  }
+  selectAllCity() {
+    if (!this.allCitiesSelected) {
+      this.selectedCity = [];
+      this.selectedCity.push("All");
+      for (let item of this.citiesData) {
+        this.selectedCity.push(item.id);
+      }
+      this.allCitiesSelected = true;
+    } else {
+      this.selectedCity = [];
+      this.allCitiesSelected = false;
+      this.communityfield = [];
+    }
+    this.loadDistrict();
+  }
+  getCity(e: any) {
+    this.selectedCity = [];
+    for (let item of e.value) {
+      this.selectedCity.push(item);
+    }
+    if (e.value.indexOf("All") != -1) {
+      this.allCitiesSelected = false;
+      let temp: any = [];
+      for (let item of this.selectedCity) {
+        if (item != "All") {
+          temp.push(item);
+        }
+      }
+      this.selectedCity = temp;
+    }
+    if (!this.allCitiesSelected) {
+      this.loadDistrict();
+    }
+  }
+  loadDistrict() {
+    let temp: any = [];
+    for (let item of this.selectedCity) {
+      if (item != "All") {
+        temp.push(item);
+      }
+    }
+    this.communityfield = [];
+    for (let i = 0; i < temp.length; i++) {
+      this.service.FindDistricts({ "CityId": temp[i], "Locations": [] }).subscribe((result: any) => {
+        for (let item of result.data) {
+          this.communityfield.push(item);
+        }
+      })
+    }
+  }
+  selectAllDistrict() {
+    if (!this.allDistrictSelected) {
+      this.selectedDistrict = [];
+      this.selectedDistrict.push("All");
+      for (let item of this.communityfield) {
+        this.selectedDistrict.push(item.id);
+      }
+      this.allDistrictSelected = true;
+    } else {
+      this.selectedDistrict = [];
+      this.allDistrictSelected = false;
+    }
+    this.loadData();
+  }
+  getDistrict(e: any) {
+    this.selectedDistrict = [];
+    for (let item of e.value) {
+      this.selectedDistrict.push(item);
+    }
+    if (e.value.indexOf("All") != -1) {
+      this.allDistrictSelected = false;
+      let temp: any = [];
+      for (let item of this.selectedDistrict) {
+        if (item != "All") {
+          temp.push(item);
+        }
+      }
+      this.selectedDistrict = temp;
+    }
+    if (!this.allDistrictSelected) {
+      this.loadData();
+    }
+  }
+  selectAllPropertyType() {
+    if (!this.allPropertyTypeSelected) {
+      this.selectedPropertyType = [];
+      this.selectedPropertyType.push("All");
+      for (let item of this.filteredProperty) {
+        this.selectedPropertyType.push(item.id);
+      }
+      this.allPropertyTypeSelected = true;
+    } else {
+      this.selectedPropertyType = [];
+      this.allPropertyTypeSelected = false;
+    }
+    this.loadData();
+  }
+  getPropertyType(e: any) {
+    this.selectedPropertyType = [];
+    for (let item of e.value) {
+      this.selectedPropertyType.push(item);
+    }
+    if (e.value.indexOf("All") != -1) {
+      this.allPropertyTypeSelected = false;
+      let temp: any = [];
+      for (let item of this.selectedPropertyType) {
+        if (item != "All") {
+          temp.push(item);
+        }
+      }
+      this.selectedPropertyType = temp;
+    }
+    this.loadData();
+  }
+  selectAllTransactionType() {
+    if (!this.allTransactionTypeSelected) {
+      this.selectedTransactionType = [];
+      this.selectedTransactionType.push("All");
+      for (let item of this.filteredTransaction) {
+        this.selectedTransactionType.push(item.id);
+      }
+      this.allTransactionTypeSelected = true;
+      this.loadData();
+    } else {
+      this.selectedTransactionType = [];
+      this.allTransactionTypeSelected = false;
+    }
+  }
+  getTransactionType(e: any) {
+    this.selectedTransactionType = [];
+    for (let item of e.value) {
+      this.selectedTransactionType.push(item);
+    }
+    if (e.value.indexOf("All") != -1) {
+      this.allTransactionTypeSelected = false;
+      let temp: any = [];
+      for (let item of this.selectedTransactionType) {
+        if (item != "All") {
+          temp.push(item);
+        }
+      }
+      this.selectedTransactionType = temp;
+    }
+    if (!this.allTransactionTypeSelected && e.value.length > 0) {
+      this.loadData();
+    }
+  }
+  selectAllSalesSequence() {
+    if (!this.allSalesSequenceSelected) {
+      this.selectedSalesSequence = [];
+      this.selectedSalesSequence.push("All");
+      for (let item of this.filteredsales) {
+        this.selectedSalesSequence.push(item.id);
+      }
+      this.allSalesSequenceSelected = true;
+      this.loadData();
+    } else {
+      this.selectedSalesSequence = [];
+      this.allSalesSequenceSelected = false;
+    }
+  }
+  getSalesSequence(e: any) {
+    this.selectedSalesSequence = [];
+    for (let item of e.value) {
+      this.selectedSalesSequence.push(item);
+    }
+    if (e.value.indexOf("All") != -1) {
+      this.allSalesSequenceSelected = false;
+      let temp: any = [];
+      for (let item of this.selectedSalesSequence) {
+        if (item != "All") {
+          temp.push(item);
+        }
+      }
+      this.selectedSalesSequence = temp;
+    }
+    if (!this.allSalesSequenceSelected && e.value.length > 0) {
+      this.loadData();
+    }
+  }
+  selectAllDevelopers() {
+    if (!this.allDevelopersSelected) {
+      this.selectedDevelopers = [];
+      this.selectedDevelopers.push("All");
+      for (let item of this.filteredDevelopers) {
+        this.selectedDevelopers.push(item.id);
+      }
+      this.allDevelopersSelected = true;
+    } else {
+      this.selectedDevelopers = [];
+      this.allDevelopersSelected = false;
+    }
+    this.loadData();
+  }
+  getDevelopers(e: any) {
+    this.selectedDevelopers = [];
+    for (let item of e.value) {
+      this.selectedDevelopers.push(item);
+    }
+    if (e.value.indexOf("All") != -1) {
+      this.allDevelopersSelected = false;
+      let temp: any = [];
+      for (let item of this.selectedDevelopers) {
+        if (item != "All") {
+          temp.push(item);
+        }
+      }
+      this.selectedDevelopers = temp;
+    }
+    this.loadData();
+  }
+  selectAllBeds() {
+    if (!this.allBedsSelected) {
+      this.selectedBeds = [];
+      this.selectedBeds.push("All");
+      for (let item of this.allbedsfield) {
+        this.selectedBeds.push(item);
+      }
+      this.allBedsSelected = true;
+    } else {
+      this.selectedBeds = [];
+      this.allBedsSelected = false;
+    }
+    this.loadData();
+  }
+  getBeds(e: any) {
+    this.selectedBeds = [];
+    for (let item of e.value) {
+      this.selectedBeds.push(item);
+    }
+    if (e.value.indexOf("All") != -1) {
+      this.allBedsSelected = false;
+      let temp: any = [];
+      for (let item of this.selectedBeds) {
+        if (item != "All") {
+          temp.push(item);
+        }
+      }
+      this.selectedBeds = temp;
+    }
     this.loadData();
   }
   getDate(e: any) {
@@ -423,7 +687,6 @@ export class MonthlyAnalysisResidentialComponent implements OnInit {
     if (this.startDate == "" || this.endDate == "") {
       return;
     }
-    this.showLoader = true;
     let temp: any = {};
     temp.StartDate = this.startDate;
     temp.EndDate = this.endDate;
@@ -431,52 +694,55 @@ export class MonthlyAnalysisResidentialComponent implements OnInit {
     temp.EndSize = this.maxSize;
     temp.StartPrice = this.minPrice;
     temp.EndPrice = this.maxPrice;
-    if (this.communityfield.length != 0) {
+    if (this.selectedDistrict.length != 0) {
       temp.DistrictIds = [];
-      for (let item of this.communityfield) {
-        temp.DistrictIds.push(item.id)
+      for (let item of this.selectedDistrict) {
+        if (item != "All") {
+          temp.DistrictIds.push(item)
+        }
       }
     }
-    if (this.ProTypefield.length != 0) {
+    if (this.selectedPropertyType.length != 0) {
       temp.PropertyTypeIds = [];
-      for (let item of this.ProTypefield) {
-        temp.PropertyTypeIds.push(item.id)
+      for (let item of this.selectedPropertyType) {
+        if (item != "All") {
+          temp.PropertyTypeIds.push(item)
+        }
       }
     }
-    if (this.Transactionfield.length != 0) {
+    if (this.selectedTransactionType.length != 0) {
       temp.TransactionTypeIds = [];
-      for (let item of this.Transactionfield) {
-        temp.TransactionTypeIds.push(item.id)
-      }
-    } else {
-      temp.TransactionTypeIds = [];
-      for (let item of this.filteredTransaction) {
-        temp.TransactionTypeIds.push(item.id)
+      for (let item of this.selectedTransactionType) {
+        if (item != "All") {
+          temp.TransactionTypeIds.push(item)
+        }
       }
     }
-    if (this.salesfield.length != 0) {
+    if (this.selectedSalesSequence.length != 0) {
       temp.TransactionSequenceIds = [];
-      for (let item of this.salesfield) {
-        temp.TransactionSequenceIds.push(item.id)
-      }
-    } else {
-      temp.TransactionSequenceIds = [];
-      for (let item of this.filteredsales) {
-        temp.TransactionSequenceIds.push(item.id)
+      for (let item of this.selectedSalesSequence) {
+        if (item != "All") {
+          temp.TransactionSequenceIds.push(item)
+        }
       }
     }
-    if (this.Developersfield.length != 0) {
+    if (this.selectedDevelopers.length != 0) {
       temp.PropertyDeveloperIds = [];
-      for (let item of this.Developersfield) {
-        temp.PropertyDeveloperIds.push(item.id)
+      for (let item of this.selectedDevelopers) {
+        if (item != "All") {
+          temp.PropertyDeveloperIds.push(item)
+        }
       }
     }
-    if (this.bedsfield.length != 0) {
+    if (this.selectedBeds.length != 0) {
       temp.BedroomList = [];
-      for (let item of this.bedsfield) {
-        temp.BedroomList.push(item)
+      for (let item of this.selectedBeds) {
+        if (item != "All") {
+          temp.BedroomList.push(item)
+        }
       }
     }
+    this.showLoader = true;
     this.service.GetResidentialMonthlyTransactionAnalysis(temp).subscribe((result: any) => {
       if (result.message == "Residential Monthly Transaction Analysis fetched successfully") {
         this.transactionData = result.data;
@@ -632,16 +898,6 @@ export class MonthlyAnalysisResidentialComponent implements OnInit {
     event.chipInput!.clear();
     this.CityCtrl.setValue(null);
   }
-  loadDistrict() {
-    this.filteredcommunity = [];
-    for (let i = 0; i < this.Cityfield.length; i++) {
-      this.service.FindDistricts({ "CityId": this.Cityfield[i].id, "Locations": [] }).subscribe((result: any) => {
-        for (let item of result.data) {
-          this.filteredcommunity.push(item);
-        }
-      })
-    }
-  }
   remove7(city: any): void {
     this.communityfield = [];
     const index7 = this.Cityfield.indexOf(city);
@@ -709,19 +965,13 @@ export class MonthlyAnalysisResidentialComponent implements OnInit {
       labels: [],
       datasets: []
     };
-    let tempLabel: any = []
+    let tempLabel: any = [];
     for (let item of this.transactionTypeChartData) {
       tempLabel.push(item.date);
     }
     tempChartData.labels = tempLabel;
     let tempDataset: any = [];
-    let tempArray: any = "";
-    if (this.Transactionfield.length == 0) {
-      tempArray = this.filteredTransaction;
-    } else {
-      tempArray = this.Transactionfield;
-    }
-    for (let item of tempArray) {
+    for (let item of this.selectedTransactionType) {
       let opacity = opacityData.pop()
       let tempData: any = {
         label: '',
@@ -734,53 +984,53 @@ export class MonthlyAnalysisResidentialComponent implements OnInit {
           "#0f2ead"
         ]
       };
-      if (item.name == "Sales - Ready") {
+      if (item == 2) {
         for (let item2 of this.transactionTypeChartData) {
           tempData.data.push(item2.salesReady)
         }
-        tempData.label = item.name;
+        tempData.label = "Sales - Ready";
         tempDataset.push(tempData);
-      } else if (item.name == "Mortgage - Ready") {
+      } else if (item == 3) {
         for (let item2 of this.transactionTypeChartData) {
           tempData.data.push(item2.mortageReady)
         }
-        tempData.label = item.name;
+        tempData.label = "Mortgage - Ready";
         tempDataset.push(tempData);
-      } else if (item.name == "Sales - Off-Plan") {
+      } else if (item == 4) {
         for (let item2 of this.transactionTypeChartData) {
           tempData.data.push(item2.salesOffPlan)
         }
-        tempData.label = item.name;
+        tempData.label = "Sales - Off-Plan";
         tempDataset.push(tempData);
-      } else if (item.name == "Mortgage - Off-Plan") {
+      } else if (item == 5) {
         for (let item2 of this.transactionTypeChartData) {
           tempData.data.push(item2.mortageOffPlan)
         }
-        tempData.label = item.name;
+        tempData.label = "Mortgage - Off-Plan";
         tempDataset.push(tempData);
-      } else if (item.name == "Gifts - Ready") {
+      } else if (item == 6) {
         for (let item2 of this.transactionTypeChartData) {
           tempData.data.push(item2.giftsReady)
         }
-        tempData.label = item.name;
+        tempData.label = "Gifts - Ready";
         tempDataset.push(tempData);
-      } else if (item.name == "Renewed") {
+      } else if (item == 7) {
         for (let item2 of this.transactionTypeChartData) {
           tempData.data.push(item2.renewed)
         }
-        tempData.label = item.name;
+        tempData.label = "Renewed";
         tempDataset.push(tempData);
-      } else if (item.name == "New") {
+      } else if (item == 8) {
         for (let item2 of this.transactionTypeChartData) {
           tempData.data.push(item2.new)
         }
-        tempData.label = item.name;
+        tempData.label = "New";
         tempDataset.push(tempData);
-      } else if (item.name == "Gifts - Off-Plan") {
+      } else if (item == 9) {
         for (let item2 of this.transactionTypeChartData) {
           tempData.data.push(item2.giftsOffPlan)
         }
-        tempData.label = item.name;
+        tempData.label = "Gifts - Off-Plan";
         tempDataset.push(tempData);
       }
     }
@@ -791,7 +1041,7 @@ export class MonthlyAnalysisResidentialComponent implements OnInit {
   filterSequenceData() {
     let tempData: any = [];
     let found: boolean = false;
-    for (let item of this.transactionData.transactionValueBySaleSequence) {
+    for (let item of this.transactionData.transactionBySaleSequence) {
       found = false;
       for (let item2 of tempData) {
         if (item2.date == item.transactionDate) {
@@ -803,13 +1053,13 @@ export class MonthlyAnalysisResidentialComponent implements OnInit {
         tempData.push({ date: item.transactionDate, primary: "", secondary: "" })
       }
     }
-    for (let item of this.transactionData.transactionValueBySaleSequence) {
+    for (let item of this.transactionData.transactionBySaleSequence) {
       for (let i = 0; i < tempData.length; i++) {
         if (tempData[i].date == item.transactionDate) {
           if (item.transactionSequence == "Primary") {
-            tempData[i].primary = item.transactionValue;
+            tempData[i].primary = item.transactionCount;
           } else if (item.transactionSequence == "Secondary") {
-            tempData[i].secondary = item.transactionValue;
+            tempData[i].secondary = item.transactionCount;
           }
         }
       }
@@ -829,13 +1079,7 @@ export class MonthlyAnalysisResidentialComponent implements OnInit {
     }
     tempChartData.labels = tempLabel;
     let tempDataset: any = [];
-    let tempArray: any = "";
-    if (this.salesfield.length == 0) {
-      tempArray = this.filteredsales;
-    } else {
-      tempArray = this.salesfield;
-    }
-    for (let item of tempArray) {
+    for (let item of this.selectedSalesSequence) {
       let opacity = opacityData.pop()
       let tempData: any = {
         label: '',
@@ -848,17 +1092,17 @@ export class MonthlyAnalysisResidentialComponent implements OnInit {
           '#0f2ead'
         ]
       };
-      if (item.name == "Primary") {
+      if (item == 1) {
         for (let item2 of this.transactionSequenceChartData) {
           tempData.data.push(item2.primary)
         }
-        tempData.label = item.name;
+        tempData.label = "Primary";
         tempDataset.push(tempData);
-      } else if (item.name == "Secondary") {
+      } else if (item == 2) {
         for (let item2 of this.transactionSequenceChartData) {
           tempData.data.push(item2.secondary)
         }
-        tempData.label = item.name;
+        tempData.label = "Secondary";
         tempDataset.push(tempData);
       }
     }
@@ -914,18 +1158,12 @@ export class MonthlyAnalysisResidentialComponent implements OnInit {
       datasets: []
     };
     let tempLabel: any = []
-    for (let item of this.transactionTypeChartData) {
+    for (let item of this.transactionTypeValueChartData) {
       tempLabel.push(item.date);
     }
     tempChartData.labels = tempLabel;
     let tempDataset: any = [];
-    let tempArray: any = "";
-    if (this.Transactionfield.length == 0) {
-      tempArray = this.filteredTransaction;
-    } else {
-      tempArray = this.Transactionfield;
-    }
-    for (let item of tempArray) {
+    for (let item of this.selectedTransactionType) {
       let opacity = opacityData.pop()
       let tempData: any = {
         label: '',
@@ -938,53 +1176,53 @@ export class MonthlyAnalysisResidentialComponent implements OnInit {
           "#0f2ead"
         ]
       };
-      if (item.name == "Sales - Ready") {
-        for (let item2 of this.transactionTypeChartData) {
+      if (item == 2) {
+        for (let item2 of this.transactionTypeValueChartData) {
           tempData.data.push(item2.salesReady)
         }
-        tempData.label = item.name;
+        tempData.label = "Sales - Ready";
         tempDataset.push(tempData);
-      } else if (item.name == "Mortgage - Ready") {
-        for (let item2 of this.transactionTypeChartData) {
+      } else if (item == 3) {
+        for (let item2 of this.transactionTypeValueChartData) {
           tempData.data.push(item2.mortageReady)
         }
-        tempData.label = item.name;
+        tempData.label = "Mortgage - Ready";
         tempDataset.push(tempData);
-      } else if (item.name == "Sales - Off-Plan") {
-        for (let item2 of this.transactionTypeChartData) {
+      } else if (item == 4) {
+        for (let item2 of this.transactionTypeValueChartData) {
           tempData.data.push(item2.salesOffPlan)
         }
-        tempData.label = item.name;
+        tempData.label = "Sales - Off-Plan";
         tempDataset.push(tempData);
-      } else if (item.name == "Mortgage - Off-Plan") {
-        for (let item2 of this.transactionTypeChartData) {
+      } else if (item == 5) {
+        for (let item2 of this.transactionTypeValueChartData) {
           tempData.data.push(item2.mortageOffPlan)
         }
-        tempData.label = item.name;
+        tempData.label = "Mortgage - Off-Plan";
         tempDataset.push(tempData);
-      } else if (item.name == "Gifts - Ready") {
-        for (let item2 of this.transactionTypeChartData) {
+      } else if (item == 6) {
+        for (let item2 of this.transactionTypeValueChartData) {
           tempData.data.push(item2.giftsReady)
         }
-        tempData.label = item.name;
+        tempData.label = "Gifts - Ready";
         tempDataset.push(tempData);
-      } else if (item.name == "Renewed") {
-        for (let item2 of this.transactionTypeChartData) {
+      } else if (item == 7) {
+        for (let item2 of this.transactionTypeValueChartData) {
           tempData.data.push(item2.renewed)
         }
-        tempData.label = item.name;
+        tempData.label = "Renewed";
         tempDataset.push(tempData);
-      } else if (item.name == "New") {
-        for (let item2 of this.transactionTypeChartData) {
+      } else if (item == 8) {
+        for (let item2 of this.transactionTypeValueChartData) {
           tempData.data.push(item2.new)
         }
-        tempData.label = item.name;
+        tempData.label = "New";
         tempDataset.push(tempData);
-      } else if (item.name == "Gifts - Off-Plan") {
-        for (let item2 of this.transactionTypeChartData) {
+      } else if (item == 9) {
+        for (let item2 of this.transactionTypeValueChartData) {
           tempData.data.push(item2.giftsOffPlan)
         }
-        tempData.label = item.name;
+        tempData.label = "Gifts - Off-Plan";
         tempDataset.push(tempData);
       }
     }
@@ -1022,24 +1260,18 @@ export class MonthlyAnalysisResidentialComponent implements OnInit {
     this.createSequenceValueChartData();
   }
   createSequenceValueChartData() {
-    let opacityData =  ['#ebb342', '#1e2f4c', '#7eafa8', '#d1475b', '#e48a74', '#497893', '#7cbad1', '#f7c576'];
+    let opacityData = ['#ebb342', '#1e2f4c', '#7eafa8', '#d1475b', '#e48a74', '#497893', '#7cbad1', '#f7c576'];
     let tempChartData: ChartData<'bar'> = {
       labels: [],
       datasets: []
     };
     let tempLabel: any = []
-    for (let item of this.transactionTypeChartData) {
+    for (let item of this.transactionSequencevalueChartData) {
       tempLabel.push(item.date);
     }
     tempChartData.labels = tempLabel;
     let tempDataset: any = [];
-    let tempArray: any = "";
-    if (this.salesfield.length == 0) {
-      tempArray = this.filteredsales;
-    } else {
-      tempArray = this.salesfield;
-    }
-    for (let item of tempArray) {
+    for (let item of this.selectedSalesSequence) {
       let opacity = opacityData.pop()
       let tempData: any = {
         label: '',
@@ -1049,20 +1281,20 @@ export class MonthlyAnalysisResidentialComponent implements OnInit {
         minBarLength: 10,
         backgroundColor: opacity,
         hoverBackgroundColor: [
-          "#0f2ead"
+          '#0f2ead'
         ]
       };
-      if (item.name == "Primary") {
-        for (let item2 of this.transactionSequenceChartData) {
+      if (item == 1) {
+        for (let item2 of this.transactionSequencevalueChartData) {
           tempData.data.push(item2.primary)
         }
-        tempData.label = item.name;
+        tempData.label = "Primary";
         tempDataset.push(tempData);
-      } else if (item.name == "Secondary") {
-        for (let item2 of this.transactionSequenceChartData) {
+      } else if (item == 2) {
+        for (let item2 of this.transactionSequencevalueChartData) {
           tempData.data.push(item2.secondary)
         }
-        tempData.label = item.name;
+        tempData.label = "Secondary";
         tempDataset.push(tempData);
       }
     }
@@ -1117,19 +1349,13 @@ export class MonthlyAnalysisResidentialComponent implements OnInit {
       labels: [],
       datasets: []
     };
-    let tempLabel: any = []
+    let tempLabel: any = [];
     for (let item of this.transactionMedianTypeChartData) {
       tempLabel.push(item.date);
     }
     tempChartData.labels = tempLabel;
     let tempDataset: any = [];
-    let tempArray: any = "";
-    if (this.Transactionfield.length == 0) {
-      tempArray = this.filteredTransaction;
-    } else {
-      tempArray = this.Transactionfield;
-    }
-    for (let item of tempArray) {
+    for (let item of this.selectedTransactionType) {
       let opacity = opacityData.pop()
       let tempData: any = {
         label: '',
@@ -1142,53 +1368,53 @@ export class MonthlyAnalysisResidentialComponent implements OnInit {
           "#0f2ead"
         ]
       };
-      if (item.name == "Sales - Ready") {
+      if (item == 2) {
         for (let item2 of this.transactionMedianTypeChartData) {
           tempData.data.push(item2.salesReady)
         }
-        tempData.label = item.name;
+        tempData.label = "Sales - Ready";
         tempDataset.push(tempData);
-      } else if (item.name == "Mortgage - Ready") {
+      } else if (item == 3) {
         for (let item2 of this.transactionMedianTypeChartData) {
           tempData.data.push(item2.mortageReady)
         }
-        tempData.label = item.name;
+        tempData.label = "Mortgage - Ready";
         tempDataset.push(tempData);
-      } else if (item.name == "Sales - Off-Plan") {
+      } else if (item == 4) {
         for (let item2 of this.transactionMedianTypeChartData) {
           tempData.data.push(item2.salesOffPlan)
         }
-        tempData.label = item.name;
+        tempData.label = "Sales - Off-Plan";
         tempDataset.push(tempData);
-      } else if (item.name == "Mortgage - Off-Plan") {
+      } else if (item == 5) {
         for (let item2 of this.transactionMedianTypeChartData) {
           tempData.data.push(item2.mortageOffPlan)
         }
-        tempData.label = item.name;
+        tempData.label = "Mortgage - Off-Plan";
         tempDataset.push(tempData);
-      } else if (item.name == "Gifts - Ready") {
+      } else if (item == 6) {
         for (let item2 of this.transactionMedianTypeChartData) {
           tempData.data.push(item2.giftsReady)
         }
-        tempData.label = item.name;
+        tempData.label = "Gifts - Ready";
         tempDataset.push(tempData);
-      } else if (item.name == "Renewed") {
+      } else if (item == 7) {
         for (let item2 of this.transactionMedianTypeChartData) {
           tempData.data.push(item2.renewed)
         }
-        tempData.label = item.name;
+        tempData.label = "Renewed";
         tempDataset.push(tempData);
-      } else if (item.name == "New") {
+      } else if (item == 8) {
         for (let item2 of this.transactionMedianTypeChartData) {
           tempData.data.push(item2.new)
         }
-        tempData.label = item.name;
+        tempData.label = "New";
         tempDataset.push(tempData);
-      } else if (item.name == "Gifts - Off-Plan") {
+      } else if (item == 9) {
         for (let item2 of this.transactionMedianTypeChartData) {
           tempData.data.push(item2.giftsOffPlan)
         }
-        tempData.label = item.name;
+        tempData.label = "Gifts - Off-Plan";
         tempDataset.push(tempData);
       }
     }
@@ -1249,13 +1475,7 @@ export class MonthlyAnalysisResidentialComponent implements OnInit {
     }
     tempChartData.labels = tempLabel;
     let tempDataset: any = [];
-    let tempArray: any = "";
-    if (this.Transactionfield.length == 0) {
-      tempArray = this.filteredTransaction;
-    } else {
-      tempArray = this.Transactionfield;
-    }
-    for (let item of tempArray) {
+    for (let item of this.selectedTransactionType) {
       let opacity = opacityData.pop()
       let tempData: any = {
         label: '',
@@ -1268,53 +1488,53 @@ export class MonthlyAnalysisResidentialComponent implements OnInit {
           "#0f2ead"
         ]
       };
-      if (item.name == "Sales - Ready") {
+      if (item == 2) {
         for (let item2 of this.transactionMedianAreaChartData) {
           tempData.data.push(item2.salesReady)
         }
-        tempData.label = item.name;
+        tempData.label = "Sales - Ready";
         tempDataset.push(tempData);
-      } else if (item.name == "Mortgage - Ready") {
+      } else if (item == 3) {
         for (let item2 of this.transactionMedianAreaChartData) {
           tempData.data.push(item2.mortageReady)
         }
-        tempData.label = item.name;
+        tempData.label = "Mortgage - Ready";
         tempDataset.push(tempData);
-      } else if (item.name == "Sales - Off-Plan") {
+      } else if (item == 4) {
         for (let item2 of this.transactionMedianAreaChartData) {
           tempData.data.push(item2.salesOffPlan)
         }
-        tempData.label = item.name;
+        tempData.label = "Sales - Off-Plan";
         tempDataset.push(tempData);
-      } else if (item.name == "Mortgage - Off-Plan") {
+      } else if (item == 5) {
         for (let item2 of this.transactionMedianAreaChartData) {
           tempData.data.push(item2.mortageOffPlan)
         }
-        tempData.label = item.name;
+        tempData.label = "Mortgage - Off-Plan";
         tempDataset.push(tempData);
-      } else if (item.name == "Gifts - Ready") {
+      } else if (item == 6) {
         for (let item2 of this.transactionMedianAreaChartData) {
           tempData.data.push(item2.giftsReady)
         }
-        tempData.label = item.name;
+        tempData.label = "Gifts - Ready";
         tempDataset.push(tempData);
-      } else if (item.name == "Renewed") {
+      } else if (item == 7) {
         for (let item2 of this.transactionMedianAreaChartData) {
           tempData.data.push(item2.renewed)
         }
-        tempData.label = item.name;
+        tempData.label = "Renewed";
         tempDataset.push(tempData);
-      } else if (item.name == "New") {
+      } else if (item == 8) {
         for (let item2 of this.transactionMedianAreaChartData) {
           tempData.data.push(item2.new)
         }
-        tempData.label = item.name;
+        tempData.label = "New";
         tempDataset.push(tempData);
-      } else if (item.name == "Gifts - Off-Plan") {
+      } else if (item == 9) {
         for (let item2 of this.transactionMedianAreaChartData) {
           tempData.data.push(item2.giftsOffPlan)
         }
-        tempData.label = item.name;
+        tempData.label = "Gifts - Off-Plan";
         tempDataset.push(tempData);
       }
     }
