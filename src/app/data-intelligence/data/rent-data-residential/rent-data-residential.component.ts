@@ -157,6 +157,7 @@ export class RentDataResidentialComponent implements OnInit {
   selectedTransactionType: any = [];
   allBedsSelected: boolean = false;
   selectedBeds: any = [];
+  first:boolean = true;
 
   constructor(private cookie: CookieService, private service: AppService) {
     this.minSize = this.SizeminValue;
@@ -174,16 +175,8 @@ export class RentDataResidentialComponent implements OnInit {
     this.countryData = JSON.parse(this.cookie.get("countryData"));
     this.service.FindCities({ "CountryId": this.countryData.id, "Locations": [] }).subscribe((result: any) => {
       this.citiesData = result.data;
-      this.Cityfield.push({ "id": this.citiesData[0].id, "name": this.citiesData[0].name });
+      this.selectedCity.push(this.citiesData[0].id);
       this.loadDistrict();
-      let a = setInterval(() => {
-        if (this.filteredcommunity.length > 0) {
-          this.communityfield.push({ "id": this.filteredcommunity[0].id, "name": this.filteredcommunity[0].name });
-          this.loadProjects();
-          this.loadData();
-          clearInterval(a);
-        }
-      })
     })
     this.service.GetDevelopers(this.countryData.id).subscribe((result: any) => {
       this.filteredDevelopers = result.data;
@@ -294,6 +287,12 @@ export class RentDataResidentialComponent implements OnInit {
       this.service.FindDistricts({ "CityId": temp[i], "Locations": [] }).subscribe((result: any) => {
         for (let item of result.data) {
           this.communityfield.push(item);
+        }
+        if (this.first) {
+          this.first = false;
+          this.selectedDistrict.push(this.communityfield[0].id);
+          this.loadProjects();
+          this.loadData();
         }
       })
     }
@@ -502,24 +501,24 @@ export class RentDataResidentialComponent implements OnInit {
     temp.EndPrice = this.maxPrice;
     temp.DistrictIds = [];
     for (let item of this.selectedDistrict) {
-      temp.DistrictIds.push(item.id)
+      temp.DistrictIds.push(item)
     }
     if (this.selectedPropertyType.length != 0) {
       temp.PropertyTypeIds = [];
       for (let item of this.ProTypefield) {
-        temp.PropertyTypeIds.push(item.id)
+        temp.PropertyTypeIds.push(item)
       }
     }
     if (this.selectedProject.length != 0) {
       temp.ProjectIds = [];
       for (let item of this.Profield) {
-        temp.ProjectIds.push(item.id)
+        temp.ProjectIds.push(item)
       }
     }
     if (this.selectedTransactionType.length != 0) {
       temp.TransactionTypeIds = [];
       for (let item of this.Transactionfield) {
-        temp.TransactionTypeIds.push(item.id)
+        temp.TransactionTypeIds.push(item)
       }
     }
     if (this.minStartDate != "") {
@@ -537,7 +536,7 @@ export class RentDataResidentialComponent implements OnInit {
     if (this.selectedBeds.length != 0) {
       temp.BedroomList = [];
       for (let item of this.bedsfield) {
-        temp.BedroomList.push(item.id)
+        temp.BedroomList.push(item)
       }
     }
     this.service.GetResidentialRentData(temp).subscribe((result: any) => {
@@ -548,149 +547,8 @@ export class RentDataResidentialComponent implements OnInit {
       }
     });
   }
-  add(event: MatChipInputEvent): void {
-    const value = (event.value || '').trim();
-    if (value) {
-      this.communityfield.push(value);
-    }
-    event.chipInput!.clear();
-    this.CommunityCtrl.setValue(null);
-  }
-  remove(community: string): void {
-    this.Profield = [];
-    this.salesfield = [];
-    const index = this.communityfield.indexOf(community);
-    if (index >= 0) {
-      this.communityfield.splice(index, 1);
-    }
-    this.loadProjects();
-    this.loadData();
-  }
-  selected(event: MatAutocompleteSelectedEvent): void {
-    this.communityfield.push({ "id": event.option.value, "name": event.option.viewValue });
-    this.ComunityInput.nativeElement.value = '';
-    this.CommunityCtrl.setValue(null);
-    this.loadData();
-  }
-  add1(event: MatChipInputEvent): void {
-    const value1 = (event.value || '').trim();
-    if (value1) {
-      this.ProTypefield.push(value1);
-    }
-    event.chipInput!.clear();
-    this.PropertyTypCtrl.setValue(null);
-  }
-  remove1(protype: string): void {
-    const index1 = this.ProTypefield.indexOf(protype);
-    if (index1 >= 0) {
-      this.ProTypefield.splice(index1, 1);
-    }
-    this.loadData();
-  }
-  selected1(event: MatAutocompleteSelectedEvent): void {
-    this.ProTypefield.push({ "id": event.option.value, "name": event.option.viewValue });
-    this.PropertyTypeInput.nativeElement.value = '';
-    this.PropertyTypCtrl.setValue(null);
-    this.loadData();
-  }
-  add2(event: MatChipInputEvent): void {
-    const value2 = (event.value || '').trim();
-    if (value2) {
-      this.Profield.push(value2);
-    }
-    event.chipInput!.clear();
-    this.PropertyCtrl.setValue(null);
-  }
-  remove2(property: string): void {
-    const index2 = this.Profield.indexOf(property);
-    if (index2 >= 0) {
-      this.Profield.splice(index2, 1);
-    }
-    this.loadData();
-  }
-  selected2(event: MatAutocompleteSelectedEvent): void {
-    this.Profield.push({ "id": event.option.value, "name": event.option.viewValue });
-    this.PropertyInput.nativeElement.value = '';
-    this.PropertyCtrl.setValue(null);
-    this.loadData();
-  }
-  add3(event: MatChipInputEvent): void {
-    const value3 = (event.value || '').trim();
-    if (value3) {
-      this.Transactionfield.push(value3);
-    }
-    event.chipInput!.clear();
-    this.TransactionCtrl.setValue(null);
-  }
-  remove3(transaction: string): void {
-    const index3 = this.Transactionfield.indexOf(transaction);
-    if (index3 >= 0) {
-      this.Transactionfield.splice(index3, 1);
-    }
-    this.loadData();
-  }
-  selected3(event: MatAutocompleteSelectedEvent): void {
-    this.Transactionfield.push({ "id": event.option.value, "name": event.option.viewValue });
-    this.TransactionInput.nativeElement.value = '';
-    this.TransactionCtrl.setValue(null);
-    this.loadData();
-  }
-  add6(event: MatChipInputEvent): void {
-    const value6 = (event.value || '').trim();
-    if (value6) {
-      this.bedsfield.push(value6);
-    }
-    event.chipInput!.clear();
-    this.bedsCtrl.setValue(null);
-  }
-  remove6(beds: string): void {
-    const index6 = this.bedsfield.indexOf(beds);
-    if (index6 >= 0) {
-      this.bedsfield.splice(index6, 1);
-    }
-    this.loadData();
-  }
-  selected6(event: MatAutocompleteSelectedEvent): void {
-    this.bedsfield.push(event.option.viewValue);
-    this.bedInput.nativeElement.value = '';
-    this.bedsCtrl.setValue(null);
-    this.loadData();
-  }
-  add7(event: MatChipInputEvent): void {
-    const value7 = (event.value || '').trim();
-    if (value7) {
-      this.Cityfield.push(value7);
-    }
-    event.chipInput!.clear();
-    this.CityCtrl.setValue(null);
-  }
-  remove7(city: any): void {
-    this.communityfield = [];
-    this.Profield = [];
-    const index7 = this.Cityfield.indexOf(city);
-    if (index7 >= 0) {
-      this.Cityfield.splice(index7, 1);
-    }
-    this.loadDistrict();
-    this.loadData();
-  }
-  selected7(event: any): void {
-    this.Cityfield.push({ "id": event.option.value, "name": event.option.viewValue });
-    this.CityInput.nativeElement.value = '';
-    this.CityCtrl.setValue(null);
-    this.loadDistrict();
-    this.loadData();
-  }
   ngOnInit(): void {
   }
   ngAfterViewInit() {
-  }
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
   }
 }
