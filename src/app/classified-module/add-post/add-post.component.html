@@ -157,10 +157,10 @@
                             <label class="h6-design">Pin the Location of your ad listing <span
                                     ngClass="required-span">*</span></label>
                             <div ngClass="position-relative">
-                                <div style="width: 100%">
+                                <div style="width: 100%;">
                                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d462562.6509516108!2d54.94729613679833!3d25.07575945545691!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f43496ad9c645%3A0xbde66e5084295162!2sDubai%20-%20United%20Arab%20Emirates!5e0!3m2!1sen!2sin!4v1666784711777!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                                 </div>
-                                <div ngClass="locate-me-sec">
+                                <!-- <div ngClass="locate-me-sec">
                                     <div ngClass="add-adrees-sec">
                                         <div class="input-wrapper">
                                             <input matInput type="text" placeholder="Search for your location"
@@ -168,7 +168,7 @@
                                                 formControlName="address" />
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                             <div ngClass="confirm-location-sec text-right">
                                 <button ngClass="confirm-location-btn">
@@ -177,12 +177,15 @@
                             </div>
                         </div>
                     </div>
-                    <div class="text-right save-continue-sec justify-content-end">
+                    <div class="selection-cntnt">
+                        <p>You have selected <span class="s-cat-name">Motors</span></p>
+                    </div>
+                    <div class="text-right save-continue-sec justify-content-center">
                         <mat-card-actions>
-                            <a class="save-continue-btn cursor-pointer">Next</a>
+                            <a class="save-continue-btn cursor-pointer" routerLink="/classified/motor-ad-details">Next</a>
                         </mat-card-actions>
                     </div>
-                    <div class="text-right question-div">
+                    <div class="text-center question-div">
                         <p><a href="tel:+97150 8960006">Question? Call +97150 8960006</a></p>
                     </div>
                 </form>

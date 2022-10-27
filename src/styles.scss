@@ -2260,7 +2260,7 @@ input[type=number] {
 .input-design-2 {
 	.mat-form-field-flex {
 		background: #fff;
-		border: 0.5px solid #D3DBFF;
+		border: 0.5px solid #e5e3e3;
 		border-radius: 8px !important;
 		padding-top: 8px !important;
 
@@ -8807,14 +8807,14 @@ li.agent-details__property-list-item {
     width: 100% !important;
 }
 .select2-design .select2 .select2-selection>.select2-selection__rendered {
-    font-size: 14px;
-    color: #4A565F;
-    font-weight: 400;
-	padding-left: 0px;
+	font-size: 14px;
+    color: #000;
+    font-weight: 300;
+    padding-left: 0px;
 }
 .select2-design .select2 .select2-selection {
     display: block;
-    background-color: #f0f3f6;
+    background-color: whitesmoke;
     border: none;
     border-radius: 8px;
     padding: 10px 45px 10px 12px;
@@ -8852,11 +8852,11 @@ li.agent-details__property-list-item {
     font-size: 14px;
 }
 .select2-container--default .select2-results__option--highlighted.select2-results__option--selectable {
-    background-color: #f0f3f7 !important;
+    background-color: whitesmoke !important;
     color: #000 !important;
 }
 .select2-container--default .select2-results__option--selected {
-    background-color: #f0f3f7 !important;
+    background-color: whitesmoke !important;
 }
 .select2-dropdown .select2-search input:focus{
 	outline: none !important;
@@ -11559,7 +11559,7 @@ body .header-section .navbar-nav .sell-or-rent-property .blue-bordered-btn {
 	background-color: transparent;
 	padding: 0px 7px 0px 7px;
 	height: 42px;
-	border-right: 1px solid #d3dbfc;
+	border-right: 0.5px solid #e5e3e3;
 	border-radius: 0px !important;
 }
 
@@ -12893,4 +12893,8 @@ input:focus{
 	background-image: url(./assets/images/icons/Range-1.svg);
 	padding-top: 17% !important;
     background-position: center;
+}
+.input-design-2 .mat-form-field-flex .mat-form-field-infix textarea {
+    font-size: 14px;
+    font-weight: 400;
 }

@@ -24,6 +24,8 @@ import {NgChartsModule} from "ng2-charts";
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BreadcrumbsModule } from '../breadcrumbs/breadcrumbs.module';
+import { MotorsAdDetailsComponent } from './motors-ad-details/motors-ad-details.component';
+import { MotorsAdPaymentComponent } from './motors-ad-payment/motors-ad-payment.component';
 
 
 @NgModule({
@@ -33,6 +35,8 @@ import { BreadcrumbsModule } from '../breadcrumbs/breadcrumbs.module';
     JobSearchComponent,
     AddPostComponent,
     DetailsComponent,
+    MotorsAdDetailsComponent,
+    MotorsAdPaymentComponent,
   ],
   imports: [
     CommonModule,

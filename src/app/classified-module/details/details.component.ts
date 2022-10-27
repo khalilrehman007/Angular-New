@@ -14,6 +14,8 @@ import { NgxGalleryOptions } from '@kolkov/ngx-gallery';
 import { NgxGalleryImage } from '@kolkov/ngx-gallery';
 import { NgxGalleryAnimation } from '@kolkov/ngx-gallery';
 import 'hammerjs';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+import { OwlOptions } from 'ngx-owl-carousel-o';
 
 
 declare const google: any;
@@ -67,15 +69,16 @@ export class DetailsComponent implements OnInit {
     this.status = !this.status;
     this.status1 = false;
     this.status2 = false;
-    this.status3 = false;
-    this.status4 = false;
   }
   Location() {
     this.status = false;
-    this.status1 = false;
+    this.status1 = !this.status1;
     this.status2 = false;
-    this.status4 = !this.status4;
-    this.status3 = false;
+  }
+  overview() {
+    this.status = false;
+    this.status2 = !this.status2;
+    this.status1 = false;
   }
 
   eventlist = [
@@ -130,7 +133,6 @@ export class DetailsComponent implements OnInit {
           userId = this.user.id;
         }
         this.userId = userId;
-        this.LoadSimilarProperty();
         this.getloadDashboardData();
       }
     });
@@ -177,48 +179,19 @@ export class DetailsComponent implements OnInit {
 
     this.galleryImages = [
       {
-        small: 'assets/images/slider.png',
-        medium: 'assets/images/slider.png',
-        big: 'assets/images/slider.png'
+        small: 'assets/images/car-demo.jpg',
+        medium: 'assets/images/car-demo.jpg',
+        big: 'assets/images/car-demo.jpg'
       },
       {
-        small: 'assets/images/slider.png',
-        medium: 'assets/images/slider.png',
-        big: 'assets/images/slider.png'
+        small: 'assets/images/car-demo.jpg',
+        medium: 'assets/images/car-demo.jpg',
+        big: 'assets/images/car-demo.jpg'
       },
       {
-        small: 'assets/images/slider.png',
-        medium: 'assets/images/slider.png',
-        big: 'assets/images/slider.png'
-      },{
-        small: 'assets/images/slider.png',
-        medium: 'assets/images/slider.png',
-        big: 'assets/images/slider.png'
-      },
-      {
-        small: 'assets/images/slider.png',
-        medium: 'assets/images/slider.png',
-        big: 'assets/images/slider.png'
-      },
-      {
-        small: 'assets/images/slider.png',
-        medium: 'assets/images/slider.png',
-        big: 'assets/images/slider.png'
-      },
-      {
-        small: 'assets/images/slider.png',
-        medium: 'assets/images/slider.png',
-        big: 'assets/images/slider.png'
-      },
-      {
-        small: 'assets/images/slider.png',
-        medium: 'assets/images/slider.png',
-        big: 'assets/images/slider.png'
-      },
-      {
-        small: 'assets/images/slider.png',
-        medium: 'assets/images/slider.png',
-        big: 'assets/images/slider.png'
+        small: 'assets/images/car-demo.jpg',
+        medium: 'assets/images/car-demo.jpg',
+        big: 'assets/images/car-demo.jpg'
       }
     ];
   }
@@ -252,107 +225,6 @@ export class DetailsComponent implements OnInit {
           .setHTML(this.buildingName)
       ).togglePopup();
 
-      let tenantType: any = '';
-      if (jsonParsDate.propertyListing.tenantType !== null && jsonParsDate.propertyListing.tenantType.name !== null && jsonParsDate.propertyListing.tenantType.name !== undefined) {
-        tenantType = jsonParsDate.propertyListing.tenantType.name
-      }
-
-      let occupancyStatus: any = '';
-      if (jsonParsDate.propertyListing.occupancyStatus !== null && jsonParsDate.propertyListing.occupancyStatus.name !== null && jsonParsDate.propertyListing.occupancyStatus.name !== undefined) {
-        occupancyStatus = jsonParsDate.propertyListing.occupancyStatus.name
-      }
-      let propertyManage: any = '';
-      if (jsonParsDate.propertyListing.propertyManage !== null && jsonParsDate.propertyListing.propertyManage.name !== null && jsonParsDate.propertyListing.propertyManage.name !== undefined) {
-        propertyManage = jsonParsDate.propertyListing.propertyManage.name
-      }
-
-      let rentType: any = '';
-      if (jsonParsDate.propertyListing.rentType !== null && jsonParsDate.propertyListing.rentType.name !== null && jsonParsDate.propertyListing.rentType.name !== undefined && jsonParsDate.propertyListing.propertyListingTypeId != 2) {
-        rentType = jsonParsDate.propertyListing.rentType.name
-      }
-
-      if (jsonParsDate.propertyListing != null) {
-        this.propertyDetailData.propertyPrice = (jsonParsDate.propertyListing.propertyPrice !== undefined) ? jsonParsDate.propertyListing.propertyPrice : ''
-        this.propertyDetailData.currency = (jsonParsDate.propertyListing.country.currency !== undefined) ? jsonParsDate.propertyListing.country.currency : ''
-        // this.propertyDetailData.rentType = (jsonParsDate.propertyListing.rentType !== undefined) ? jsonParsDate.propertyListing.rentType : ''
-        this.propertyDetailData.securityDepositPrice = (jsonParsDate.propertyListing.securityDepositPrice !== undefined) ? jsonParsDate.propertyListing.securityDepositPrice : ''
-        this.propertyDetailData.brokerageChargePrice = (jsonParsDate.propertyListing.brokerageChargePrice !== undefined) ? jsonParsDate.propertyListing.brokerageChargePrice : ''
-        this.propertyDetailData.buildingName = (jsonParsDate.propertyListing.buildingName !== undefined) ? jsonParsDate.propertyListing.buildingName : ''
-        this.propertyDetailData.documents = (jsonParsDate.propertyListing.documents !== undefined) ? jsonParsDate.propertyListing.documents : []
-        this.propertyDetailData.propertyAddress = (jsonParsDate.propertyListing.propertyAddress !== undefined) ? jsonParsDate.propertyListing.propertyAddress : ''
-        this.propertyDetailData.bedrooms = (jsonParsDate.propertyListing.bedrooms !== undefined) ? jsonParsDate.propertyListing.bedrooms : ''
-        this.propertyDetailData.bathrooms = (jsonParsDate.propertyListing.bathrooms !== undefined) ? jsonParsDate.propertyListing.bathrooms : ''
-        this.propertyDetailData.carpetArea = (jsonParsDate.propertyListing.carpetArea !== undefined) ? jsonParsDate.propertyListing.carpetArea : ''
-        this.propertyDetailData.unitType = (jsonParsDate.propertyListing.country.unitType !== undefined) ? jsonParsDate.propertyListing.country.unitType : ''
-        this.propertyDetailData.furnishingType = (jsonParsDate.propertyListing.propertyAddress !== undefined) ? jsonParsDate.propertyListing.propertyAddress : ''
-        this.propertyDetailData.propertyDescription = (jsonParsDate.propertyListing.propertyDescription !== undefined) ? jsonParsDate.propertyListing.propertyDescription : ''
-        // this.propertyDetailData.propertyDescription = (jsonParsDate.propertyListing.propertyDescription !== undefined) ? jsonParsDate.propertyListing.propertyDescription : ''
-        this.propertyDetailData.propertyFeatures = (jsonParsDate.propertyListing.propertyFeatures !== undefined) ? jsonParsDate.propertyListing.propertyFeatures : ''
-        // this.propertyDetailData.propertyType = (jsonParsDate.propertyListing.propertyType !== undefined) ? jsonParsDate.propertyListing.propertyType : ''
-        this.propertyDetailData.requestedDateFormat = (jsonParsDate.propertyListing.requestedDateFormat !== undefined) ? jsonParsDate.propertyListing.requestedDateFormat : ''
-        this.propertyDetailData.buildingType = (jsonParsDate.propertyListing.propertyCategory.categoryName !== undefined) ? jsonParsDate.propertyListing.propertyCategory.categoryName : ''
-        this.propertyDetailData.propertyType = (jsonParsDate.propertyListing.propertyType.typeDescription !== undefined) ? jsonParsDate.propertyListing.propertyType.typeDescription : ''
-        this.propertyDetailData.buildingName = (jsonParsDate.propertyListing.buildingName !== undefined) ? jsonParsDate.propertyListing.buildingName : ''
-        this.propertyDetailData.totalFloor = (jsonParsDate.propertyListing.totalFloor !== undefined) ? jsonParsDate.propertyListing.totalFloor : ''
-        this.propertyDetailData.floorNo = (jsonParsDate.propertyListing.floorNo !== undefined) ? jsonParsDate.propertyListing.floorNo : ''
-        this.propertyDetailData.unitNo = (jsonParsDate.propertyListing.unitNo !== undefined) ? jsonParsDate.propertyListing.unitNo : ''
-        this.propertyDetailData.bedrooms = (jsonParsDate.propertyListing.bedrooms !== undefined) ? jsonParsDate.propertyListing.bedrooms : ''
-        this.propertyDetailData.bathrooms = (jsonParsDate.propertyListing.bathrooms !== undefined) ? jsonParsDate.propertyListing.bathrooms : ''
-        this.propertyDetailData.furnishingType = (jsonParsDate.propertyListing.furnishingType !== undefined) ? jsonParsDate.propertyListing.furnishingType : ''
-        this.propertyDetailData.fittingType = (jsonParsDate.propertyListing.fittingType !== undefined) ? jsonParsDate.propertyListing.fittingType : ''
-        this.propertyDetailData.tenantType = tenantType
-        this.propertyDetailData.gender = (jsonParsDate.propertyListing.gender !== undefined) ? jsonParsDate.propertyListing.gender : ''
-        this.propertyDetailData.parkings = (jsonParsDate.propertyListing.parkings !== undefined) ? jsonParsDate.propertyListing.parkings : ''
-        this.propertyDetailData.carpetArea = (jsonParsDate.propertyListing.carpetArea !== undefined) ? jsonParsDate.propertyListing.carpetArea : ''
-        this.propertyDetailData.buildupArea = (jsonParsDate.propertyListing.buildupArea !== undefined) ? jsonParsDate.propertyListing.buildupArea : ''
-        this.propertyDetailData.occupancyStatus = occupancyStatus
-        this.propertyDetailData.propertyManage = propertyManage
-        this.propertyDetailData.rentType = rentType
-        this.propertyDetailData.securityDepositPrice = (jsonParsDate.propertyListing.securityDepositPrice !== undefined) ? jsonParsDate.propertyListing.securityDepositPrice : ''
-        this.propertyDetailData.brokerageChargePrice = (jsonParsDate.propertyListing.brokerageChargePrice !== undefined) ? jsonParsDate.propertyListing.brokerageChargePrice : ''
-        this.propertyDetailData.availableDate = (jsonParsDate.propertyListing.availableDate !== undefined) ? jsonParsDate.propertyListing.availableDate : ''
-        this.propertyDetailData.noticePeriod = (jsonParsDate.propertyListing.noticePeriod !== undefined) ? jsonParsDate.propertyListing.noticePeriod : ''
-        this.propertyDetailData.lockingPeriod = (jsonParsDate.propertyListing.lockingPeriod !== undefined) ? jsonParsDate.propertyListing.lockingPeriod : ''
-        this.propertyDetailData.propertyLat = (jsonParsDate.propertyListing.propertyLat !== undefined) ? jsonParsDate.propertyListing.propertyLat : ''
-        this.propertyDetailData.propertyLong = (jsonParsDate.propertyListing.propertyLong !== undefined) ? jsonParsDate.propertyListing.propertyLong : ''
-        this.propertyDetailData.id = (jsonParsDate.propertyListing.id !== undefined) ? jsonParsDate.propertyListing.id : ''
-        this.propertyDetailData.favorite = (jsonParsDate.propertyListing.favorite !== undefined) ? jsonParsDate.propertyListing.favorite : ''
-
-        // share url concatination
-
-        this.shareURL += this.propertyDetailData.id;
-
-        //gallery images
-        let ree = "https://maps.google.com/maps?q=" + this.propertyDetailData.propertyLat + "," + this.propertyDetailData.propertyLong + "&hl=es&z=14&amp;output=embed"
-        let resp: any = this.domSanitizer.bypassSecurityTrustUrl(ree);
-        this.locationAddress1 = resp
-
-
-        if (this.propertyDetail.propertyListing.documents.length == 0) {
-          this.documentCheck = false;
-        }
-
-        if (this.propertyDetail.propertyListing.documents[0].fileUrl != null && this.propertyDetail.propertyListing.documents[0].fileUrl !== undefined) {
-          this.thumb1 = this.baseUrl + this.propertyDetail.propertyListing.documents[0].fileUrl;
-        }
-
-        console.clear();
-        this.propertyValidationData = e.data.propertyListing.propertyType;
-
-      } else {
-        //if property not found redirect home page
-        this.notifyService.showError('Property No found!', "");
-        this.route.navigate(['/'])
-        ///end
-      }
-      if (jsonParsDate.user != null && jsonParsDate.user != undefined && jsonParsDate.user.imageUrl != null) {
-        this.propertyDetailData.userImageUrl = (jsonParsDate.user.imageUrl !== undefined) ? this.baseUrl + jsonParsDate.user.imageUrl : '../assets/images/user.png'
-        this.propertyDetailData.userfullName = (jsonParsDate.user.fullName !== undefined) ? jsonParsDate.user.fullName : ''
-      } else {
-        this.propertyDetailData.userImageUrl = '../assets/images/user.png'
-        this.propertyDetailData.userfullName = ''
-      }
-
     });
   }
   SubmitForm = new FormGroup({
@@ -379,38 +251,6 @@ export class DetailsComponent implements OnInit {
       })
     }
   }
-  similarPropertyDetails: any = []
-
-  LoadSimilarProperty() {
-    let tempData: Array<Object> = []
-    this.service.LoadSimilarProperty({ "UserId": this.userId, "PropertyListingId": this.propertyId }).subscribe(data => {
-      let response: any = data;
-      response.data.forEach((element: any, i: any) => {
-        let image = 'assets/images/placeholder.png'
-        if (element.documents.length > 1) {
-          image = this.baseUrl + element.documents[0].fileUrl
-        }
-
-        tempData.push(
-          {
-            title: element.propertyTitle,
-            price: element.propertyPrice,
-            rentType: element.rentType.name,
-            currency: element.country.currency,
-            favorite: element.favorite,
-            propertyAddress: element.propertyAddress,
-            id: element.id,
-            alt: element.propertyTitle,
-            src: image,
-            bedrooms: element.bedrooms,
-            bathrooms: element.bathrooms,
-            buildingName: element.buildingName,
-            carpetArea: element.carpetArea,
-          });
-      })
-    });
-    this.similarPropertyDetails = tempData
-  }
 
   getUser() {
     this.user = localStorage.getItem('user');
@@ -419,38 +259,71 @@ export class DetailsComponent implements OnInit {
     }
     return this.user;
   }
-  title = 'ng2-charts-demo';
-
-  wishlistStatus: any;
-  AddToFavorite(id: any, status: any) {
-    if (this.userId == '') {
-      this.notifyService.showSuccess('First you need to login', "");
-      this.route.navigate(['/login'])
-    }
-    if (!this.authService.isAuthenticated()) {
-      this.notifyService.showError('You not having access', "");
-      this.route.navigate(['login']);
-    }
-
-    this.service.FavoriteAddRemove(status, { "UserId": this.userId, "PropertyListingId": id }).subscribe(data => {
-      let responsedata: any = data
-      if (responsedata.message == "Favorite is Removed successfully") {
-        this.wishlistStatus = "Favorite is Removed successfully"
-        this.notifyService.showSuccess('Favorite is Removed successfully', "");
-        setTimeout(() => {
-          this.getUser();
-          this.getloadDashboardData();
-          this.LoadSimilarProperty();
-        }, 1000);
-      } else {
-        this.wishlistStatus = "Favorite is added successfully"
-        this.notifyService.showSuccess('Favorite is added successfully', "");
-        setTimeout(() => {
-          this.getUser();
-          this.getloadDashboardData();
-          this.LoadSimilarProperty();
-        }, 1000);
+  customOptions: OwlOptions = {
+    loop: false,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
+    dots: true,
+    navSpeed: 700,
+    responsive: {
+      0: {
+        items: 1
+      },
+      576: {
+        items: 2
+      },
+      992: {
+        items: 3
+      },
+      1200: {
+        items: 4
       }
-    });
+    },
+    nav: false
   }
+  CarsList = [
+    {
+      src: '../../../assets/images/cars/car1.jpeg',
+      price: '58,657 AED',
+      PropertyName: 'Bentley Flying Spur',
+      link: '',
+      address: 'Etihad Tower 4, Etihad Towers,  ',
+    },
+    {
+      src: '../../../assets/images/cars/car2.jpeg',
+      price: '69,098 AED',
+      PropertyName: 'Mercedes-Benz AMG G 63',
+      link: '',
+      address: 'Etihad Tower 4, Etihad Towers,',
+    },
+    {
+      src: '../../../assets/images/cars/car3.jpeg',
+      price: '42,000 AED',
+      PropertyName: 'Ferrari SF90',
+      link: '',
+      address: 'Etihad Tower 4, Etihad Towers,',
+    },
+    {
+      src: '../../../assets/images/cars/car1.jpeg',
+      price: '58,657 AED',
+      PropertyName: 'Bentley Flying Spur',
+      link: '',
+      address: 'Etihad Tower 4, Etihad Towers,  ',
+    },
+    {
+      src: '../../../assets/images/cars/car2.jpeg',
+      price: '69,098 AED',
+      PropertyName: 'Mercedes-Benz AMG G 63',
+      link: '',
+      address: 'Etihad Tower 4, Etihad Towers,',
+    },
+    {
+      src: '../../../assets/images/cars/car3.jpeg',
+      price: '42,000 AED',
+      PropertyName: 'Ferrari SF90',
+      link: '',
+      address: 'Etihad Tower 4, Etihad Towers,',
+    },
+  ]
 }
