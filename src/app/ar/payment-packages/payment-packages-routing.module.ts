@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { PaymentPackagesComponent } from './payment-packages/payment-packages.component';
 
 const routes: Routes = [
-  { path:"", component:PaymentPackagesComponent}
+  { path: "", component: PaymentPackagesComponent }
 ];
 
 @NgModule({
