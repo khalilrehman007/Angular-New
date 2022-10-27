@@ -15,8 +15,6 @@ import DatalabelsPlugin from 'chartjs-plugin-datalabels';
 import { ChartConfiguration, ChartData, ChartEvent, ChartType, Chart } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 import { default as Annotation } from 'chartjs-plugin-annotation';
-
-
 @Component({
   selector: 'app-monthly-analysis-residential',
   templateUrl: './monthly-analysis-residential.component.html',
