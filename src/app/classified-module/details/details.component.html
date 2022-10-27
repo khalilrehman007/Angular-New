@@ -1,0 +1,303 @@
+<app-header></app-header>
+<section [ngClass]="'inner-cntnt-wrapper slide-left-bar'">
+    <section [ngClass]="'property-listing-inner-wrapper'">
+        <div [ngClass]="'container_1280px'">
+            <div ngClass="property-details-header">
+                <div ngClass="d-flex justify-content-spacebw">
+                    <div ngClass="black-text-breadcrumb">
+                        <app-breadcrumbs></app-breadcrumbs>
+                    </div>
+                    <div ngClass="last-updated-details">
+                        <p>Posted On <span ngClass="update-id">27 Oct 2022</span></p>
+                        <p>Listing ID <span ngClass="update-id">#OV-4003021</span></p>
+                    </div>
+                </div>
+            </div>
+            <div ngClass="property-price-buttons-sec">
+                <div ngClass="row">
+                    <div ngClass="col-xl-9 col-lg-9 col-md-12 col-sm-12">
+                        <div ngClass="property-name_detals">
+                            <h4>Bentley Flying Spur</h4>
+                            <div ngClass="property-addresss">
+                                <p><img src="{{homelocationsvg}}"> Etihad Tower 4, Etihad Towers,</p>
+                                <!-- <p class="price"><img src="assets/images/icons/price-tag.svg"> 58,657 AED</p> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div ngClass="col-xl-3 col-lg-4 col-md-12 col-sm-12">
+                        <div ngClass="property-action_detals text-right">
+                            <div ngClass="pro-contact-details">
+                                <div ngbDropdown class="d-inline-block">
+                                    <button ngClass="grey-bordered-btn" id="dropdownBasic2" ngbDropdownToggle><img
+                                            src="{{dots}}"></button>
+                                    <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
+                                        <h5>Share with:</h5>
+                                        <button ngbDropdownItem><a target="_blank" href="https://facebook.com"
+                                                ngClass="facebook"><img src="{{fb}}"> Facebook</a></button>
+                                        <button ngbDropdownItem><a target="_blank" href="whatsapp://send?{{shareURL}}"
+                                                ngClass="whatsapp"><img src="{{whatsapp}}"> WhatsAPP</a></button>
+                                        <button ngbDropdownItem><a target="_blank" href="https://twitter.com/"
+                                                ngClass="twitter"><img src="{{twitter}}"> Twitter</a></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <button
+                                [ngClass]="propertyDetailData.favorite == true ? 'grey-bordered-btn red-fill' : 'grey-bordered-btn'"
+                                (click)="AddToFavorite(propertyDetailData.id,propertyDetailData.favorite)">
+                                <svg width="22" height="23" viewBox="0 0 22 23" fill="#595ad4"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M4.39376 6.23844C4.02517 6.63167 3.73279 7.0985 3.53331 7.61228C3.33383 8.12605 3.23116 8.67672 3.23116 9.23283C3.23116 9.78894 3.33383 10.3396 3.53331 10.8534C3.73279 11.3672 4.02517 11.834 4.39376 12.2272L11.1699 19.4563L17.946 12.2272C18.6904 11.433 19.1086 10.3559 19.1086 9.23283C19.1086 8.10972 18.6904 7.0326 17.946 6.23844C17.2016 5.44429 16.1919 4.99813 15.1392 4.99813C14.0865 4.99813 13.0768 5.44429 12.3324 6.23844L11.1699 7.47873L10.0073 6.23844C9.63871 5.84521 9.20113 5.53329 8.71954 5.32047C8.23796 5.10766 7.72179 4.99812 7.20053 4.99812C6.67926 4.99812 6.1631 5.10766 5.68152 5.32047C5.19993 5.53329 4.76235 5.84521 4.39376 6.23844V6.23844Z"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </button>
+                            <button ngClass="grey-bordered-btn text-btn" (click)="scroll(NearLsiting)">Browse Nearby
+                                Lisitng</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div ngClass="property-gallery-main-sec">
+                <div ngClass="property-gallery-main-slider">
+                    <ngx-gallery [options]="galleryOptions" [images]="galleryImages" class="ngx-gallery"></ngx-gallery>
+                </div>
+            </div>
+            <div ngClass="property-tabs-content">
+                <div ngClass="row">
+                    <div ngClass="col-xl-8 col-lg-8 col-md-12 col-sm-12">
+                        <div ngClass="blogs-link-list">
+                            <ul ngClass="list-unstyled d-flex justify-content-start">
+                                <li [ngClass]="status ? 'tactive' : 'thide'" (click)="keyhighlight()"><a
+                                        (click)="scroll(keyHighligh)">Descriptions</a></li>
+                                <li [ngClass]="status4 ? 'tactive' : 'thide'" (click)="Location()"><a
+                                        (click)="scroll(locationScroll)">Location</a></li>
+                            </ul>
+                        </div>
+                        <div class="key_highlight mt-5" #keyHighligh>
+                            <div ngClass="tabs-heading-div">
+                                <h5>Descriptions</h5>
+                            </div>
+                            <div ngClass="description-block-design">
+                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                                </p>
+                            </div>
+                            <div ngClass="topkey-highlights">
+                                <h6>{{propertyDetailData.typeDescription}}</h6>
+                                <div ngClass="property-details-highlights">
+                                    <span ngClass="bed" *ngIf="propertyDetailData.bedrooms != 0">
+                                        <img src="{{bedsvg}}" alt="">{{propertyDetailData.bedrooms}} Beds
+                                    </span>
+                                    <span ngClass="bath" *ngIf="propertyDetailData.bathrooms != 0">
+                                        <img src="{{bathsvg}}" alt="">{{propertyDetailData.bathrooms}} Bath
+                                    </span>
+                                    <span ngClass="area">
+                                        <img src="{{squaremetersvg}}"
+                                            alt="">{{propertyDetailData.carpetArea}}{{propertyDetailData.unitType}}
+                                    </span>
+                                    <span ngClass="furnishing">
+                                        <img src="{{furnishing}}" alt="">{{propertyDetailData.furnishingType}}
+                                    </span>
+                                </div>
+                            </div>
+                            <div ngClass="key-tags">
+                                <span *ngFor="let data of propertyDetailData.propertyFeatures">
+                                    {{data.propertyFeature.featureName}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="locarions_wrapper mt-5" #locationScroll>
+                            <div ngClass="tabs-heading-div">
+                                <h5>Location</h5>
+                            </div>
+                            <div class="property-near-map" id="property-near-map" style="width: 100%; height: 400px; border-radius: 12px;">
+                            </div>
+                        </div>
+                    </div>
+                    <div ngClass="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+                        <div ngClass="property-owner-details">
+                            <div ngClass="property-listed-by-details d-flex">
+                                <div ngClass="property-listedby-img position-relative">
+                                    <div ngClass="white-circle-outline">
+                                        <img src="/assets/images/services/furniture-assembly.jpeg">
+                                    </div>
+                                    <button ngClass="agent-or-owner-btn">Owner</button>
+                                </div>
+                                <div ngClass="property-listedby-cntnt">
+                                    <h5 ngClass="propertier-name">{{propertyDetailData.userfullName}}</h5>
+                                    <p ngClass="propertier-type">Sales Director</p>
+                                    <p ngClass="properties-name">
+                                        Better Homes Properties
+                                    </p>
+                                    <p ngClass="rera"> RERA# 11899</p>
+                                    <p ngClass="permit">Permit# 7187842740</p>
+                                    <a routerLink="/agent-details/{{userData.id}}" ngClass="properties-listed-no"
+                                        *ngIf="userData != ''">47 - Active Properties Listed</a>
+                                </div>
+                            </div>
+                            <div ngClass="contact-propertier-form">
+                                <form [formGroup]="SubmitForm">
+                                    <div ngClass="form-grouph input-design white-input-design">
+                                        <mat-form-field class="example-full-width" appearance="fill">
+                                            <mat-label>Name</mat-label>
+                                            <input type="text" formControlName="name" matInput
+                                                placeholder="Name">
+                                        </mat-form-field>
+                                        <p style="color: red" *ngIf="nameError !=''">{{nameError}}</p>
+                                    </div>
+                                    <div ngClass="form-grouph input-design white-input-design">
+                                        <mat-form-field class="example-full-width" appearance="fill">
+                                            <mat-label>Email</mat-label>
+                                            <input type="email" formControlName="email" matInput
+                                                placeholder="Email">
+                                        </mat-form-field>
+                                        <p style="color: red" *ngIf="emailError !=''">{{emailError}}</p>
+                                    </div>
+
+
+                                    <div ngClass="form-grouph input-design white-input-design">
+                                        <mat-form-field class="example-full-width" appearance="fill">
+                                            <mat-label>Phone No.</mat-label>
+                                            <input matInput type="number" (input)="checkLength()"
+                                                formControlName="phone" required ngModel  placeholder="Phone Number">
+                                            <!-- <input matInput type="number" (input)="checkLength()" formControlName="PhoneNumber" required ngModel> -->
+                                        </mat-form-field>
+                                        <p style="color: red" *ngIf="phoneError !=''">{{phoneError}}</p>
+                                    </div>
+
+
+
+                                    <div ngClass="form-grouph textarea-design white-input-design">
+                                        <mat-form-field class="example-full-width" appearance="fill">
+                                            <mat-label>Message</mat-label>
+                                            <textarea matInput formControlName="message"
+                                                placeholder="I would like to inquire about the property OV - R8986. Please contact me at your earliest convenience."></textarea>
+                                        </mat-form-field>
+                                        <p style="color: red" *ngIf="messageError !=''">{{messageError}}</p>
+                                    </div>
+                                    <div ngClass="form-grouph submit-design submit-design-email-send">
+                                        <button type="button" ngClass="btn-design-3">Send
+                                            Email</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div ngClass="contact-list-details">
+                                <div ngClass="row">
+                                    <div ngClass="col-xl-6 col-lg-12 col-md-12 col-sm-12">
+                                        <button ngClass=""><img src="{{call}}"> Call
+                                            Owner</button>
+                                    </div>
+                                    <div ngClass="col-xl-6 col-lg-12 col-md-12 col-sm-12">
+                                        <button ngClass=""><a href="https://web.whatsapp.com/" target="_blank"><img
+                                                    src="{{whatsapp}}"> Whats APP </a></button>
+                                    </div>
+                                    <div ngClass="col-xl-6 col-lg-12 col-md-12 col-sm-12">
+                                        <button ngClass=""><img src="{{chat}}"> Chat with
+                                            Owner</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section ngClass="similer-properties-sec" #NearLsiting>
+        <div [ngClass]="'container_1220px'">
+            <div ngClass="section-custom-title-left">
+                <h4>Similar properties in the same area</h4>
+                <p *ngIf="similarPropertyDetails.length < 1">No similar properties....</p>
+            </div>
+            <div ngClass="row">
+                <div ngClass="col-xl-3 col-lg-3 col-md-6 col-sm-12" *ngFor="let slide of similarPropertyDetails">
+                    <div ngClass="property-item position-relative">
+                        <img [src]="slide.src" [alt]="slide.alt" [title]="slide.title">
+                        <div ngClass="brand-logo">
+                            <img src="{{slide.src}}" alt="">
+                        </div>
+                        <button
+                            [ngClass]="slide.favorite == true ? 'property-whistlist red-fill' : 'property-whistlist'"
+                            (click)="AddToFavorite(slide.id,slide.favorite)">
+                            <svg width="22" height="23" viewBox="0 0 22 23" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M4.39376 6.23844C4.02517 6.63167 3.73279 7.0985 3.53331 7.61228C3.33383 8.12605 3.23116 8.67672 3.23116 9.23283C3.23116 9.78894 3.33383 10.3396 3.53331 10.8534C3.73279 11.3672 4.02517 11.834 4.39376 12.2272L11.1699 19.4563L17.946 12.2272C18.6904 11.433 19.1086 10.3559 19.1086 9.23283C19.1086 8.10972 18.6904 7.0326 17.946 6.23844C17.2016 5.44429 16.1919 4.99813 15.1392 4.99813C14.0865 4.99813 13.0768 5.44429 12.3324 6.23844L11.1699 7.47873L10.0073 6.23844C9.63871 5.84521 9.20113 5.53329 8.71954 5.32047C8.23796 5.10766 7.72179 4.99812 7.20053 4.99812C6.67926 4.99812 6.1631 5.10766 5.68152 5.32047C5.19993 5.53329 4.76235 5.84521 4.39376 6.23844V6.23844Z"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </button>
+                        <div ngClass="property-info">
+                            <span ngClass="property-pricing"><span>{{ slide.price }} {{ slide.currency }}</span> /
+                                <span>{{slide.rentType}}</span></span>
+                            <span ngClass="property-name">{{slide.buildingName}}</span>
+                            <p ngClass="property-location"><img src="{{homelocationsvg}}" width="14"
+                                    alt="">{{slide.propertyAddress}} </p>
+                            <div ngClass="property-details">
+                                <span ngClass="bed">
+                                    <img src="{{bedsvg}}" alt="">{{slide.bedrooms}} Beds
+                                </span>
+                                <span ngClass="bath">
+                                    <img src="{{bathsvg}}" alt="">{{slide.bathrooms}} Bath
+                                </span>
+                                <span ngClass="area">
+                                    <img src="{{squaremetersvg}}" alt="">{{slide.carpetArea}} sqft
+                                </span>
+                            </div>
+                        </div>
+                        <a [routerLink]="['/property/detail']" [queryParams]="{id: slide.id}"
+                            ngClass="linK_overlay"></a>
+                        <button ngClass="tag_btn blue"><img src="{{tagicn}}"> POPULAR</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<div ngClass="gallery-modal-design">
+    <ng-template #content let-modal>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+        <div class="modal-body gallery-design">
+            <div ngClass="property-price-buttons-sec">
+                <div ngClass="row">
+                    <div ngClass="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+                        <div ngClass="property-price_detals">
+                            <h4>{{propertyDetailData.propertyPrice}} {{propertyDetailData.currency}}
+                                <small>/{{propertyDetailData.rentType}}</small>
+                            </h4>
+                            <div ngClass="property-tags d-flex flex-wrap">
+                                <span ngClass="tags-bg-grey">Brokrage: {{propertyDetailData.brokerageChargePrice}}
+                                    {{propertyDetailData.currency}}</span>
+                                <span ngClass="tags-bg-grey">Security deposit:
+                                    {{propertyDetailData.securityDepositPrice}} {{propertyDetailData.currency}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                        <div ngClass="property-name_detals">
+                            <h4>{{propertyDetailData.buildingName}}</h4>
+                            <div ngClass="property-addresss">
+                                <p><img src="{{homeLoc}}"> {{propertyDetailData.propertyAddress}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div ngClass="col-xl-2 col-lg-2 col-md-12 col-sm-12">
+                        <div ngClass="property-action_detals text-right">
+                            <button ngClass="contact-seller-btn" routerLink="/agent-details/{{userData.id}}"
+                                (click)="modal.dismiss('Cross click')">Contact Seller</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <ngb-carousel *ngIf="documentCheck" [showNavigationIndicators]="false">
+                <ng-template ngbSlide *ngFor="let event of propertyDetailData.documents">
+                    <img [src]="baseUrl+event.fileUrl" alt="Random slide">
+                </ng-template>
+            </ngb-carousel>
+            <ngb-carousel *ngIf="documentCheck == false" [showNavigationIndicators]="false">
+                <ng-template ngbSlide>
+                    <img src="{{thumb1}}" alt="Random slide">
+                </ng-template>
+            </ngb-carousel>
+        </div>
+    </ng-template>
+</div>
+<app-footer></app-footer>
+</section>

@@ -19,6 +19,11 @@ import {MatInputModule} from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddPostComponent } from './add-post/add-post.component';
 import { MatCardModule } from '@angular/material/card';
+import { DetailsComponent } from './details/details.component';
+import {NgChartsModule} from "ng2-charts";
+import { NgxGalleryModule } from '@kolkov/ngx-gallery';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BreadcrumbsModule } from '../breadcrumbs/breadcrumbs.module';
 
 
 @NgModule({
@@ -26,7 +31,8 @@ import { MatCardModule } from '@angular/material/card';
     ClassifiedHomeComponent,
     AllSearchComponent,
     JobSearchComponent,
-    AddPostComponent
+    AddPostComponent,
+    DetailsComponent,
   ],
   imports: [
     CommonModule,
@@ -45,7 +51,11 @@ import { MatCardModule } from '@angular/material/card';
     MatInputModule,
     FormsModule,
     ReactiveFormsModule,
-    MatCardModule
+    MatCardModule,
+    NgChartsModule,
+    NgxGalleryModule,
+    NgbModule,
+    BreadcrumbsModule
   ],
   exports: [
     ClassifiedHomeComponent,
