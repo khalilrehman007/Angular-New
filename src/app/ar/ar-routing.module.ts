@@ -20,7 +20,9 @@ const routes: Routes = [
   { path: "classified", loadChildren: () => import('./classified-module/classified-module.module').then(module => module.ClassifiedModuleModule) },
   { path: "dashboard-reports", loadChildren: () => import('./dashboard-module/dashboard-module.module').then(module => module.DashboardModuleModule) },
   { path: "add-property", loadChildren: () => import('./add-property-listing/add-property-listing.module').then(module => module.AddPropertyListingModule) },
-  {path:"valuation", loadChildren:()=>import('./property-valuation/property-valuation.module').then(module => module.PropertyValuationModule)},
+  { path: "valuation", loadChildren: () => import('./property-valuation/property-valuation.module').then(module => module.PropertyValuationModule) },
+  { path: "payment-packages", loadChildren: () => import('./payment-packages/payment-packages.module').then(module => module.PaymentPackagesModule) },
+
 ];
 
 @NgModule({
