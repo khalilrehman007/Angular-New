@@ -6,11 +6,11 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {AppService} from "../../service/app.service";
 
 @Component({
-  selector: 'app-property-compare',
-  templateUrl: './property-compare.component.html',
-  styleUrls: ['./property-compare.component.scss']
+  selector: 'app-compare-listings',
+  templateUrl: './compare-listings.component.html',
+  styleUrls: ['./compare-listings.component.scss']
 })
-export class PropertyCompareComponent implements OnInit {
+export class CompareListingsComponent implements OnInit {
   trash = '/assets/images/icons/Trash-dotted.svg'
   swimm = '/assets/images/icons/swimming.svg'
   properties = [

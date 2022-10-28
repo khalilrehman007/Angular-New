@@ -1,5 +1,19 @@
-<div ngClass="light-bg-body">
-    <app-header2></app-header2>
+<app-header></app-header>
+<section [ngClass]="'slide-left-bar compare-page-sec'">
+<section class="compare-banner" style="background-image: url('https://beta.ovaluate.com/Attchments/PrivacyPolicyImage/about-banner1%20(1).png')">
+    <div class="container_1280px">
+     <div class="baner-compare-heading">
+         <h2>Have a look through your compare results</h2>
+     </div>
+    </div>
+  </section>
+  <section class="compare-breadcrumbs">
+    <div class="container_1280px">
+            <div class="breadcrumb-dark">
+                <app-breadcrumbs></app-breadcrumbs>
+        </div>
+    </div>
+    </section>
     <section ngClass="properties-comparison-sec">
         <div ngClass="container_1280px">
             <div ngClass="property_compare-header">
@@ -17,11 +31,11 @@
                                 <tr>
                                     <td ngClass="first-td-design">
                                         <div ngClass="property-cparison-heading">
-                                            <h4>Rental Property Comparision</h4>
+                                            <h4>Property Comparision</h4>
                                         </div>
                                     </td>
                                     <td *ngFor="let property of properties">
-                                        <div ngClass="property-comparison-block position-relative">
+                                        <div ngClass="property-comparison-block position-relative cursor-pointer" routerLink="">
                                             <div ngClass="com-img">
                                                 <img src="{{property.img}}">
                                             </div>
@@ -52,7 +66,7 @@
                                         Building Name / Project Name
                                     </td>
                                     <td *ngFor="let property of properties">
-                                        <strong>{{property.title}}</strong>
+                                        {{property.title}}
                                     </td>
                                 </tr>
                                 <tr>
@@ -200,4 +214,5 @@
             </div>
         </div>
     </section>
-</div>
+<app-footer></app-footer>
+</section>
