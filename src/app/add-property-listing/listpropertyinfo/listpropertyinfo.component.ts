@@ -445,7 +445,11 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
     console.log($(".features-select").val());
   }
   onSubmit() {
-    this.featuresFormData = $(".features-select").val();
+    if(this.selectedPropertyType.hasPropertyFeature && $(".features-select")) {
+      this.featuresFormData = $(".features-select").val();
+    } else {
+      this.featuresFormData = [];
+    }
     if (this.listingTypeId == 0) {
       this.currentField = "listing-type-input";
       this.error = "Select Listing Type";
