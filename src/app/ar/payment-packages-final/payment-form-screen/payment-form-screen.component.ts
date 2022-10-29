@@ -36,7 +36,7 @@ export class PaymentFormScreenComponent implements OnInit {
   }
   constructor(private authService: AuthService, private datePipe: DatePipe, private service: AppService, private modalService: NgbModal, private router : Router) {
     if(!localStorage.getItem("seletedPackage")) {
-      this.router.navigate(["/payment-packages"])
+      this.router.navigate(["/ar/payment-packages"])
     }
     this.seletedPackage = localStorage.getItem("seletedPackage");
     this.seletedPackage = JSON.parse(this.seletedPackage);
