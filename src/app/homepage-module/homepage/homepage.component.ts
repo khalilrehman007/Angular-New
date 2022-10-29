@@ -239,8 +239,6 @@ export class HomepageComponent implements OnInit, AfterViewInit {
       userId = this.user.id;
     }
     this.userId = userId;
-    this.oldData2();
-    this.oldData1();
     this.service.PropertyListingTypes().subscribe(data => {
       this.propertyType = data;
       this.propertyType = this.propertyType.data;
@@ -271,6 +269,8 @@ export class HomepageComponent implements OnInit, AfterViewInit {
     let a = setInterval(() => {
       if(this.cookie.get("countryData")) {
         this.countryData = JSON.parse(this.cookie.get("countryData"));
+        this.oldData2();
+        this.oldData1();
         this.service.NearPlaces(this.countryData.id).subscribe((result: any) => {
           this.explorePlaces = result.data;
         });

@@ -85,9 +85,9 @@ export class SearchComponent implements OnInit {
   Bathrooms: any;
   KeyWordsParams: any;
   headingPropertyType: any = "Properties";
-  halfList:any = 0;
-  currency:any = "";
-  listingImage:any;
+  halfList: any = 0;
+  currency: any = "";
+  listingImage: any;
   constructor(private authService: AuthService, private notifyService: NotificationService, private activeRoute: ActivatedRoute, private service: AppService, private api: AppService, private route: Router, private modalService: NgbModal) {
     $(window).scrollTop(0);
     this.route.events.subscribe((e: any) => {
@@ -207,21 +207,21 @@ export class SearchComponent implements OnInit {
 
   allSearch() {
 
-    this.type                 = ''
-    this.PropertyCategoryId   = ''
-    this.RentTypeId           = ''
-    this.PropertyListingTypeId =''
-    this.PropertyAddress       = ''
-    this.PriceStart            = 10
-    this.PriceEnd              = 50000000
-    this.Bedrooms              = ''
-    this.Bathrooms             =''
-    this.MinCarpetArea         =''
-    this.MaxCarpetArea        =''
-    this.FurnishingTypeId     =''
-    this.KeyWords             = []
-    this.propertyTypes        = []
-    this.PropertyFeatureIds   = []
+    this.type = ''
+    this.PropertyCategoryId = ''
+    this.RentTypeId = ''
+    this.PropertyListingTypeId = ''
+    this.PropertyAddress = ''
+    this.PriceStart = 10
+    this.PriceEnd = 50000000
+    this.Bedrooms = ''
+    this.Bathrooms = ''
+    this.MinCarpetArea = ''
+    this.MaxCarpetArea = ''
+    this.FurnishingTypeId = ''
+    this.KeyWords = []
+    this.propertyTypes = []
+    this.PropertyFeatureIds = []
 
     let params: any = {
       type: '', "PropertyTypeIds": [], "PropertyAddress": '', "RentTypeId": '',
@@ -263,7 +263,7 @@ export class SearchComponent implements OnInit {
     });
   }
 
-  sortedBy(event:any) {
+  sortedBy(event: any) {
     this.sortedById = event.value
     let params: any = {
       MinCarpetArea: this.MinCarpetArea, MaxCarpetArea: this.MaxCarpetArea, PropertyFeatureIds: this.PropertyFeatureIds, KeyWords: this.KeyWords,
@@ -341,7 +341,7 @@ export class SearchComponent implements OnInit {
         localStorage.setItem('listingForMap', JSON.stringify(data))
       }, 1000);
 
-      response.data.propertyListings.forEach((element:any, i:any) => {
+      response.data.propertyListings.forEach((element: any, i: any) => {
         let documentsCheck: any = true;
         let rentTypeName = ''
         if (element.rentType != null && this.PropertyListingTypeId != 2) {
@@ -365,7 +365,7 @@ export class SearchComponent implements OnInit {
 
         tempData.push(
           {
-            buildupArea: element.buildupArea, 
+            buildupArea: element.buildupArea,
             id: element.id, favorite: element.favorite, userImage: userImage, fullName: fullName, userId: userId,
             StartRentPrice: element.startRentPrice, EndRentPrice: element.endRentPrice, AvgRentPrice: element.avgRentPrice, RecentRentTxns: element.recentRentTxns,
             documents: documents, propertyFeatures: element.propertyFeatures, propertyType: element.propertyType,
@@ -379,7 +379,7 @@ export class SearchComponent implements OnInit {
         );
       })
       this.searchListing = tempData;
-      this.listingImage = this.searchListing.documents[0].propertyImage;
+      // this.listingImage = this.searchListing.documents[0].propertyImage;
       console.log(this.searchListing)
       this.currency = response.data.propertyListings[0].country.currency;
       this.halfList = Math.floor(this.searchListing.length / 2);
