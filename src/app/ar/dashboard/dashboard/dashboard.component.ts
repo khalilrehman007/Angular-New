@@ -306,11 +306,6 @@ blogs: any;
       this.pointsHistory = result.data;
     })
   }
-  getPoints() {
-    this.service.MyWallet(this.loggedInUser.id).subscribe((result: any) => {
-      this.myBalance = result.data;
-    })
-  }
   ngAfterViewInit(): void {
     let a = setInterval(() => {
       if(this.cookie.get("countryData")) {
@@ -319,6 +314,11 @@ blogs: any;
         clearInterval(a);
       }
     },100);
+  }
+  getPoints() {
+    this.service.MyWallet(this.loggedInUser.id).subscribe((result: any) => {
+      this.myBalance = result.data;
+    })
   }
   downloadReport(e: any) {
     this.showLoader = true;

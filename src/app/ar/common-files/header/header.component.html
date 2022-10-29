@@ -1,8 +1,8 @@
 <header>
-    <div id="sidebar">
+    <div id="sidebar" [ngClass]="status6 ? 'active' : 'notactive'">
         <ul ngClass="nav-tabs list-unstyled">
             <li ngClass="toggle-li">
-                <button ngClass="sidebar-toggle" (click)="changeBodyClass()">
+                <button ngClass="sidebar-toggle" (click)="clickEvent6()">
                     <img src={{togglesvg}} ngClass="icon toggle_icn" alt="">
                     <img src={{close}} ngClass="icon close_icn hide" alt="">
                 </button>
@@ -509,7 +509,7 @@
                             </li>
                             <li ngClass="nav-item classified">
                                 <a ngClass="nav-link blue-bordered-btn" [routerLink]="['/compare']">
-                                    Compare 
+                                    مقارنة 
                                     <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 20.76"><defs><style>.cls-1{fill:#7c7e7e;}</style></defs><title>Compare</title><path class="cls-1" d="M254.37,259.66a.69.69,0,0,0-1.18.49v1.39h-.87a1.22,1.22,0,0,1-1.21-1.21V251.5a2.77,2.77,0,1,0-3.76-1.08,2.88,2.88,0,0,0,1,1v8.88a4,4,0,0,0,4,4h.87v1.38a.69.69,0,0,0,.69.69.68.68,0,0,0,.49-.2l2.77-2.77a.69.69,0,0,0,0-1Zm-4.6-12a1.39,1.39,0,1,1-1.38,1.39A1.39,1.39,0,0,1,249.77,247.69Z" transform="translate(-247 -245.62)"/><path class="cls-1" d="M263.62,260.53v-8.86a4,4,0,0,0-4-4h-.87v-1.38a.69.69,0,0,0-.69-.69.68.68,0,0,0-.49.2l-2.77,2.77a.69.69,0,0,0,0,1l2.77,2.77a.69.69,0,0,0,1.18-.49v-1.39h.87a1.22,1.22,0,0,1,1.21,1.21v8.86a2.77,2.77,0,1,0,3.78,1A2.72,2.72,0,0,0,263.62,260.53Zm-1.39,3.78a1.39,1.39,0,1,1,1.39-1.39A1.38,1.38,0,0,1,262.23,264.31Z" transform="translate(-247 -245.62)"/></svg>
                                 </a>
                             </li>
@@ -525,12 +525,12 @@
                             </li>
                             <li ngClass="nav-item">
                                 <a ngClass="nav-link blue-bordered-btn red-fill-btn" routerLink="/ar/valuation">
-                                    لتقييم <span ngClass="ai-tag">AI</span>
+                                    التقييم العقاري<span ngClass="ai-tag">AI</span>
                                 </a>
                             </li>
                             <li ngClass="nav-item">
                                 <a ngClass="nav-link blue-bordered-btn blue-fill-btn"
-                                    routerLink="/ar/dashboard-reports">
+                                    routerLink="/ar/data-intelligence/data/transaction-data">
                                     <!-- <a ngClass="nav-link blue-bordered-btn"
                                     href="https://dx1.in/data-Intelligence/dashboard/"> -->
                                     <span ngClass="ai-tag">AI</span> ذكاء البيانات <span ngClass="icon-di"><img
@@ -579,5 +579,5 @@
             </div>
         </ng-template>
     </div>
-    <div ngClass="overlay_counter" (click)="changeBodyClass()"></div>
+    <div ngClass="overlay_counter" (click)="clickEvent6()"></div>
 </header>

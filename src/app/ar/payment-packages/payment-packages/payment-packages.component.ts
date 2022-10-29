@@ -107,7 +107,7 @@ export class PaymentPackagesComponent implements OnInit {
     } else {
       console.log(this.selectedPackageByPoints)
       localStorage.setItem("seletedPackage", JSON.stringify(this.selectedPackageByPoints));
-      this.router.navigate(["/add-property/listingproperty"]);
+      this.router.navigate(["/ar/add-property/listingproperty"]);
       
       // this.showLoader = true;
       // let temp: any = localStorage.getItem("user");
@@ -127,7 +127,7 @@ export class PaymentPackagesComponent implements OnInit {
   proceedPayment() {
     if (this.selectedPackage != "") {
       localStorage.setItem("seletedPackage", JSON.stringify(this.selectedPackage));
-      this.router.navigate(["/payment-form"]);
+      this.router.navigate(["/ar/payment-form"]);
     } else {
       this.error = "Please Select a points package type";
       this.showError = true;

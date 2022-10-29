@@ -4,7 +4,8 @@
         <section [ngClass]="'rent-propoerties-main-sec'">
             <div ngClass="properties-file-container-shadow">
                 <div ngClass="properties-file-container">
-                    <app-propertyfilter [totalRecord]="totalRecord" (childToParentDataLoad)="childToParentDataLoad($event)"></app-propertyfilter>
+                    <app-propertyfilter [totalRecord]="totalRecord"
+                        (childToParentDataLoad)="childToParentDataLoad($event)"></app-propertyfilter>
                 </div>
             </div>
             <div [ngClass]="'container_1280px'">
@@ -17,9 +18,11 @@
                             </div>
                         </div>
                         <div ngClass="heading-apragraph-design mt-4">
-                            <h2>{{selectedPropertyTypeName}} {{headingPropertyType}} للإي {{type}} في الإمارات العربية المتحدة</h2>
+                            <h2>{{selectedPropertyTypeName}} {{headingPropertyType}} للإي {{type}} في الإمارات العربية
+                                المتحدة</h2>
                             <p>عرض {{totalRecord}} {{headingPropertyType}} للإي {{type}} في الإمارات العربية المتحدة</p>
-                            <p>عقارات ل {{type}} في الإمارات العربية المتحدة.  القوائم التي تم التحقق منها. منزلك المثالي موجود على Property Finder! مكتشف الملكية: عقارات
+                            <p>عقارات ل {{type}} في الإمارات العربية المتحدة. القوائم التي تم التحقق منها. منزلك المثالي
+                                موجود على Property Finder! مكتشف الملكية: عقارات
                             </p>
                         </div>
                         <div ngClass="properties-filtr-values d-flex justify-content-spacebw">
@@ -31,8 +34,10 @@
                                 <div ngClass="block-wrapper">
                                     <mat-form-field appearance="fill" class="select-design">
                                         <mat-label><img src="{{videotiour}}">جولة بالفيديو</mat-label>
-                                        <mat-select [disableOptionCentering]="true"  (selectionChange)="videoSorting($event)">
-                                            <mat-option value="{{item.id}}" *ngFor="let item of videoTour">{{item.nameAr}}
+                                        <mat-select [disableOptionCentering]="true"
+                                            (selectionChange)="videoSorting($event)">
+                                            <mat-option value="{{item.id}}" *ngFor="let item of videoTour">
+                                                {{item.nameAr}}
                                             </mat-option>
                                         </mat-select>
                                     </mat-form-field>
@@ -46,7 +51,8 @@
                                 <div ngClass="block-wrapper">
                                     <mat-form-field appearance="fill" class="select-design">
                                         <mat-label>تصنيف حسب</mat-label>
-                                        <mat-select [disableOptionCentering]="true"  (selectionChange)="sortedBy($event)">
+                                        <mat-select [disableOptionCentering]="true"
+                                            (selectionChange)="sortedBy($event)">
                                             <mat-option *ngFor="let SortBy of PropertySortBy" value="{{SortBy.id}}">
                                                 {{SortBy.name}}
                                             </mat-option>
@@ -60,18 +66,21 @@
                                 *ngFor=" let list of searchData | paginate: { itemsPerPage: 10, currentPage: page ,totalItems:totalRecord }; let i = index">
                                 <div ngClass="row">
                                     <div ngClass="col-xl-4 col-md-4 col-lg-4 col-sm-12">
-                                        <div ngClass="properties-list_slider" *ngIf="list.documents.length > 0">
-                                            <!-- <ngb-carousel>
-                                                <ng-template ngbSlide *ngFor="let event of list.documents">
-                                                    <img [src]="baseUrl+event.fileUrl" [routerLink]="['/ar/property/detail']"
-                                                    [queryParams]="{id: list.id}">
-                                                </ng-template>
-                                            </ngb-carousel> -->
-                                            <img src="assets/images/placeholder.png">
-                                        </div>
-                                        <div ngClass="properties-list_slider" *ngIf="list.documents.length == 0">
-                                            <img src="assets/images/placeholder.png">
-                                        </div>
+                                            <div ngClass="properties-list_slider"
+                                                >
+                                                <!-- <ngb-carousel>
+                                                    <ng-template ngbSlide *ngFor="let event of list.documents">
+                                                        <img [src]="baseUrl+event.fileUrl"
+                                                            [routerLink]="['/property/detail']"
+                                                            [queryParams]="{id: list.id}">
+                                                    </ng-template>
+                                                </ngb-carousel> -->
+                                                <!-- <img src="assets/images/placeholder.png"> -->
+                                                <div>
+                                                    <img *ngIf="list.documents.length > 0 && list.documents[0].fileUrl != null" src="https://beta.ovaluate.com/{{list.documents[0].fileUrl}}">
+                                                    <img  *ngIf="list.documents.length == 0 || list.documents[0].fileUrl == null" src="assets/images/placeholder.png">
+                                                </div>
+                                            </div>
                                     </div>
                                     <div ngClass="col-xl-8 col-md-8 col-lg-8 col-sm-12">
                                         <div ngClass="properties-list_cntnts position-relative">
@@ -80,7 +89,8 @@
                                                     [routerLink]="['/ar/property/detail']"
                                                     [queryParams]="{id: list.id}">
                                                     <h4>{{list.propertyPrice}} {{list.country.currencyAr}} <small
-                                                            *ngIf="list.rentType != null">/{{list.rentType.nameAr}}</small></h4>
+                                                            *ngIf="list.rentType != null">/{{list.rentType.nameAr}}</small>
+                                                    </h4>
                                                     <div ngClass="property-tags d-flex flex-wrap">
                                                         <span ngClass="tags-bg-grey">الوساطة:
                                                             {{list.brokerageChargePrice}} {{currency}}</span>
@@ -143,7 +153,8 @@
                                                         <img src="{{bathsvg}}" alt="">{{list.bathrooms}} الحمامات
                                                     </span>
                                                     <span ngClass="area">
-                                                        <img src="{{squaremetersvg}}" alt="">{{list.buildupArea}} قدم مربع
+                                                        <img src="{{squaremetersvg}}" alt="">{{list.buildupArea}} قدم
+                                                        مربع
                                                     </span>
                                                     <span ngClass="furnishing">
                                                         <img src="{{furnishing}}" alt="">{{list.furnishingType}}
@@ -175,12 +186,14 @@
                                             </div>
                                             <div ngClass="property-footer-block">
                                                 <div ngClass="row align-items-center">
-                                                    <div ngClass="col-xl-5 col-lg-12 col-md-12 col-sm-12">
+                                                    <div ngClass="col-xl-4 col-lg-12 col-md-12 col-sm-12">
                                                         <div ngClass="lsited-by-details d-flex">
-                                                            <div ngClass="list_cntnt-img" *ngIf="list.user.imageUrl != null">
+                                                            <div ngClass="list_cntnt-img"
+                                                                *ngIf="list.user.imageUrl != null">
                                                                 <img src="{{baseUrl + list.user.imageUrl}}">
                                                             </div>
-                                                            <div ngClass="list_cntnt-img" *ngIf="list.user.imageUrl == null">
+                                                            <div ngClass="list_cntnt-img"
+                                                                *ngIf="list.user.imageUrl == null">
                                                                 <img src="assets/images/user.png">
                                                             </div>
                                                             <div ngClass="list_cntnt-blcok">
@@ -192,29 +205,39 @@
                                                     <div ngClass="col-xl-8 col-lg-12 col-md-12 col-sm-12 text-right">
                                                         <div ngClass="property-contact-buttons">
                                                             <a class="call">
-                                                                <mat-icon> call</mat-icon>                                                                                                
-                                                                Call</a>
+                                                                <mat-icon> call</mat-icon>
+                                                                إتصال
+                                                            </a>
                                                             <a routerLink="" class="chat">
                                                                 <svg fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                    <path d="M16.5 10.6671V14.0004C16.5 14.5308 16.2893 15.0395 15.9142 15.4146C15.5391 15.7897 15.0304 16.0004 14.5 16.0004H11.1667C10.2314 15.9994 9.31282 15.7525 8.5031 15.2845C7.69337 14.8165 7.02096 14.1437 6.55333 13.3337C7.05591 13.3301 7.55678 13.2747 8.048 13.1684C8.4221 13.6362 8.89666 14.0137 9.43652 14.2732C9.97638 14.5326 10.5677 14.6672 11.1667 14.6671H14.5C14.6768 14.6671 14.8464 14.5968 14.9714 14.4718C15.0964 14.3468 15.1667 14.1772 15.1667 14.0004V10.6671C15.1665 10.0679 15.0315 9.47644 14.7716 8.93656C14.5117 8.39669 14.1336 7.92224 13.6653 7.54841C13.7726 7.05728 13.8289 6.55641 13.8333 6.05374C14.6433 6.52137 15.316 7.19378 15.7841 8.00351C16.2521 8.81323 16.499 9.7318 16.5 10.6671ZM12.4847 6.43441C12.547 5.5755 12.4237 4.71324 12.1232 3.90621C11.8227 3.09918 11.352 2.36629 10.743 1.75736C10.1341 1.14842 9.40123 0.677702 8.5942 0.377185C7.78717 0.0766685 6.9249 -0.0466028 6.066 0.0157475C4.54394 0.189569 3.13795 0.913864 2.11278 2.05224C1.08762 3.19062 0.514018 4.66452 0.5 6.19641L0.5 9.5564C0.5 11.2444 1.50467 12.0004 2.5 12.0004H6.3C7.83253 11.9872 9.30733 11.414 10.4465 10.3888C11.5857 9.36354 12.3106 7.95708 12.4847 6.43441ZM9.8 2.70108C10.2733 3.17541 10.6392 3.74588 10.8729 4.37387C11.1066 5.00186 11.2027 5.67273 11.1547 6.34107C11.0124 7.53019 10.4403 8.62628 9.54621 9.42303C8.6521 10.2198 7.49759 10.6622 6.3 10.6671H2.5C1.88133 10.6671 1.83333 9.81707 1.83333 9.5564V6.19641C1.83889 4.99933 2.28176 3.84555 3.07861 2.9522C3.87545 2.05885 4.97133 1.48752 6.16 1.34575C6.27066 1.33775 6.38133 1.33375 6.492 1.33375C7.10618 1.33317 7.71445 1.45364 8.28205 1.68825C8.84966 1.92286 9.36546 2.26703 9.8 2.70108Z" fill="#4A565F"/>
-                                                                    </svg> 
-                                                                Chat</a>
+                                                                    <path
+                                                                        d="M16.5 10.6671V14.0004C16.5 14.5308 16.2893 15.0395 15.9142 15.4146C15.5391 15.7897 15.0304 16.0004 14.5 16.0004H11.1667C10.2314 15.9994 9.31282 15.7525 8.5031 15.2845C7.69337 14.8165 7.02096 14.1437 6.55333 13.3337C7.05591 13.3301 7.55678 13.2747 8.048 13.1684C8.4221 13.6362 8.89666 14.0137 9.43652 14.2732C9.97638 14.5326 10.5677 14.6672 11.1667 14.6671H14.5C14.6768 14.6671 14.8464 14.5968 14.9714 14.4718C15.0964 14.3468 15.1667 14.1772 15.1667 14.0004V10.6671C15.1665 10.0679 15.0315 9.47644 14.7716 8.93656C14.5117 8.39669 14.1336 7.92224 13.6653 7.54841C13.7726 7.05728 13.8289 6.55641 13.8333 6.05374C14.6433 6.52137 15.316 7.19378 15.7841 8.00351C16.2521 8.81323 16.499 9.7318 16.5 10.6671ZM12.4847 6.43441C12.547 5.5755 12.4237 4.71324 12.1232 3.90621C11.8227 3.09918 11.352 2.36629 10.743 1.75736C10.1341 1.14842 9.40123 0.677702 8.5942 0.377185C7.78717 0.0766685 6.9249 -0.0466028 6.066 0.0157475C4.54394 0.189569 3.13795 0.913864 2.11278 2.05224C1.08762 3.19062 0.514018 4.66452 0.5 6.19641L0.5 9.5564C0.5 11.2444 1.50467 12.0004 2.5 12.0004H6.3C7.83253 11.9872 9.30733 11.414 10.4465 10.3888C11.5857 9.36354 12.3106 7.95708 12.4847 6.43441ZM9.8 2.70108C10.2733 3.17541 10.6392 3.74588 10.8729 4.37387C11.1066 5.00186 11.2027 5.67273 11.1547 6.34107C11.0124 7.53019 10.4403 8.62628 9.54621 9.42303C8.6521 10.2198 7.49759 10.6622 6.3 10.6671H2.5C1.88133 10.6671 1.83333 9.81707 1.83333 9.5564V6.19641C1.83889 4.99933 2.28176 3.84555 3.07861 2.9522C3.87545 2.05885 4.97133 1.48752 6.16 1.34575C6.27066 1.33775 6.38133 1.33375 6.492 1.33375C7.10618 1.33317 7.71445 1.45364 8.28205 1.68825C8.84966 1.92286 9.36546 2.26703 9.8 2.70108Z"
+                                                                        fill="#4A565F" />
+                                                                </svg>
+                                                                شات</a>
                                                             <a href="" class="email">
                                                                 <svg fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                    <path d="M11.0833 0.583984H2.91667C2.1434 0.584911 1.40207 0.892499 0.855295 1.43928C0.308514 1.98606 0.00092625 2.72739 0 3.50065L0 10.5007C0.00092625 11.2739 0.308514 12.0153 0.855295 12.562C1.40207 13.1088 2.1434 13.4164 2.91667 13.4173H11.0833C11.8566 13.4164 12.5979 13.1088 13.1447 12.562C13.6915 12.0153 13.9991 11.2739 14 10.5007V3.50065C13.9991 2.72739 13.6915 1.98606 13.1447 1.43928C12.5979 0.892499 11.8566 0.584911 11.0833 0.583984ZM2.91667 1.75065H11.0833C11.4326 1.75134 11.7737 1.85654 12.0627 2.0527C12.3517 2.24887 12.5754 2.52704 12.705 2.8514L8.23783 7.31916C7.90908 7.64659 7.46399 7.83043 7 7.83043C6.536 7.83043 6.09091 7.64659 5.76216 7.31916L1.295 2.8514C1.42459 2.52704 1.64827 2.24887 1.93728 2.0527C2.22628 1.85654 2.56737 1.75134 2.91667 1.75065ZM11.0833 12.2507H2.91667C2.45254 12.2507 2.00742 12.0663 1.67923 11.7381C1.35104 11.4099 1.16667 10.9648 1.16667 10.5007V4.37565L4.93733 8.14399C5.48486 8.69014 6.22665 8.99685 7 8.99685C7.77335 8.99685 8.51513 8.69014 9.06266 8.14399L12.8333 4.37565V10.5007C12.8333 10.9648 12.649 11.4099 12.3208 11.7381C11.9926 12.0663 11.5475 12.2507 11.0833 12.2507Z" fill="#4A565F"/>
-                                                                    </svg>                                                                 
-                                                                Email</a>
+                                                                    <path
+                                                                        d="M11.0833 0.583984H2.91667C2.1434 0.584911 1.40207 0.892499 0.855295 1.43928C0.308514 1.98606 0.00092625 2.72739 0 3.50065L0 10.5007C0.00092625 11.2739 0.308514 12.0153 0.855295 12.562C1.40207 13.1088 2.1434 13.4164 2.91667 13.4173H11.0833C11.8566 13.4164 12.5979 13.1088 13.1447 12.562C13.6915 12.0153 13.9991 11.2739 14 10.5007V3.50065C13.9991 2.72739 13.6915 1.98606 13.1447 1.43928C12.5979 0.892499 11.8566 0.584911 11.0833 0.583984ZM2.91667 1.75065H11.0833C11.4326 1.75134 11.7737 1.85654 12.0627 2.0527C12.3517 2.24887 12.5754 2.52704 12.705 2.8514L8.23783 7.31916C7.90908 7.64659 7.46399 7.83043 7 7.83043C6.536 7.83043 6.09091 7.64659 5.76216 7.31916L1.295 2.8514C1.42459 2.52704 1.64827 2.24887 1.93728 2.0527C2.22628 1.85654 2.56737 1.75134 2.91667 1.75065ZM11.0833 12.2507H2.91667C2.45254 12.2507 2.00742 12.0663 1.67923 11.7381C1.35104 11.4099 1.16667 10.9648 1.16667 10.5007V4.37565L4.93733 8.14399C5.48486 8.69014 6.22665 8.99685 7 8.99685C7.77335 8.99685 8.51513 8.69014 9.06266 8.14399L12.8333 4.37565V10.5007C12.8333 10.9648 12.649 11.4099 12.3208 11.7381C11.9926 12.0663 11.5475 12.2507 11.0833 12.2507Z"
+                                                                        fill="#4A565F" />
+                                                                </svg>
+                                                                ايميل</a>
                                                             <a href="" class="whatsapp">
                                                                 <svg fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M14.1419 2.32532C12.6446 0.82666 10.654 0.000666662 8.53333 0C4.16338 0 0.606752 3.55597 0.604752 7.92794C0.604085 9.32526 0.969414 10.6893 1.66341 11.8919L0.538086 15.9999L4.74071 14.8972C5.89869 15.5292 7.20268 15.8619 8.52933 15.8625H8.53266C12.9019 15.8625 16.4592 12.3059 16.4612 7.93394C16.4626 5.81596 15.6386 3.8233 14.1419 2.32532ZM8.53333 14.5232H8.53066C7.34801 14.5232 6.18869 14.2052 5.1767 13.6046L4.93604 13.4619L2.44207 14.1159L3.10806 11.6839L2.95139 11.4346C2.2914 10.3853 1.9434 9.1726 1.94407 7.92794C1.9454 4.29463 4.90204 1.33866 8.53666 1.33866C10.2966 1.33866 11.9513 2.02532 13.1953 3.27064C14.4393 4.51663 15.1239 6.17195 15.1233 7.93261C15.1213 11.5672 12.1653 14.5232 8.53333 14.5232ZM12.148 9.58793C11.95 9.48859 10.976 9.00926 10.794 8.94326C10.6126 8.87726 10.4806 8.84393 10.348 9.04193C10.2153 9.23993 9.83665 9.68659 9.72065 9.81926C9.60532 9.95126 9.48932 9.96792 9.29132 9.86859C9.09332 9.76926 8.45466 9.56059 7.69801 8.88527C7.10935 8.35994 6.71135 7.71127 6.59602 7.51261C6.48069 7.31394 6.58402 7.20728 6.68268 7.10861C6.77202 7.01995 6.88068 6.87728 6.98001 6.76128C7.08001 6.64662 7.11268 6.56395 7.17935 6.43128C7.24535 6.29929 7.21268 6.18329 7.16268 6.08395C7.11268 5.98529 6.71668 5.00996 6.55202 4.6133C6.39135 4.22663 6.22802 4.2793 6.10602 4.2733C5.99069 4.2673 5.85869 4.26663 5.72603 4.26663C5.59403 4.26663 5.37937 4.31597 5.19803 4.51463C5.0167 4.7133 4.50471 5.19263 4.50471 6.16729C4.50471 7.14261 5.2147 8.0846 5.31337 8.2166C5.41203 8.3486 6.71002 10.3499 8.69733 11.2079C9.16999 11.4119 9.53932 11.5339 9.82665 11.6252C10.3013 11.7759 10.7333 11.7546 11.0746 11.7039C11.4553 11.6472 12.2466 11.2246 12.412 10.7619C12.5773 10.2993 12.5773 9.90192 12.5273 9.81992C12.478 9.73659 12.346 9.68726 12.148 9.58793Z" fill="#4A565F"/>
-                                                                </svg>                                                                        
-                                                                Whatsapp</a>
+                                                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                                                        d="M14.1419 2.32532C12.6446 0.82666 10.654 0.000666662 8.53333 0C4.16338 0 0.606752 3.55597 0.604752 7.92794C0.604085 9.32526 0.969414 10.6893 1.66341 11.8919L0.538086 15.9999L4.74071 14.8972C5.89869 15.5292 7.20268 15.8619 8.52933 15.8625H8.53266C12.9019 15.8625 16.4592 12.3059 16.4612 7.93394C16.4626 5.81596 15.6386 3.8233 14.1419 2.32532ZM8.53333 14.5232H8.53066C7.34801 14.5232 6.18869 14.2052 5.1767 13.6046L4.93604 13.4619L2.44207 14.1159L3.10806 11.6839L2.95139 11.4346C2.2914 10.3853 1.9434 9.1726 1.94407 7.92794C1.9454 4.29463 4.90204 1.33866 8.53666 1.33866C10.2966 1.33866 11.9513 2.02532 13.1953 3.27064C14.4393 4.51663 15.1239 6.17195 15.1233 7.93261C15.1213 11.5672 12.1653 14.5232 8.53333 14.5232ZM12.148 9.58793C11.95 9.48859 10.976 9.00926 10.794 8.94326C10.6126 8.87726 10.4806 8.84393 10.348 9.04193C10.2153 9.23993 9.83665 9.68659 9.72065 9.81926C9.60532 9.95126 9.48932 9.96792 9.29132 9.86859C9.09332 9.76926 8.45466 9.56059 7.69801 8.88527C7.10935 8.35994 6.71135 7.71127 6.59602 7.51261C6.48069 7.31394 6.58402 7.20728 6.68268 7.10861C6.77202 7.01995 6.88068 6.87728 6.98001 6.76128C7.08001 6.64662 7.11268 6.56395 7.17935 6.43128C7.24535 6.29929 7.21268 6.18329 7.16268 6.08395C7.11268 5.98529 6.71668 5.00996 6.55202 4.6133C6.39135 4.22663 6.22802 4.2793 6.10602 4.2733C5.99069 4.2673 5.85869 4.26663 5.72603 4.26663C5.59403 4.26663 5.37937 4.31597 5.19803 4.51463C5.0167 4.7133 4.50471 5.19263 4.50471 6.16729C4.50471 7.14261 5.2147 8.0846 5.31337 8.2166C5.41203 8.3486 6.71002 10.3499 8.69733 11.2079C9.16999 11.4119 9.53932 11.5339 9.82665 11.6252C10.3013 11.7759 10.7333 11.7546 11.0746 11.7039C11.4553 11.6472 12.2466 11.2246 12.412 10.7619C12.5773 10.2993 12.5773 9.90192 12.5273 9.81992C12.478 9.73659 12.346 9.68726 12.148 9.58793Z"
+                                                                        fill="#4A565F" />
+                                                                </svg>
+                                                                واتساب</a>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <button _ngcontent-ekm-c201="" ngclass="tag_btn blue" ng-reflect-ng-class="tag_btn blue" class="tag_btn blue"><img _ngcontent-ekm-c201="" src="../../../assets/images/icons/tag-icn.svg"> مميز\ فاخر</button>
+                                        <button _ngcontent-ekm-c201="" ngclass="tag_btn blue"
+                                            ng-reflect-ng-class="tag_btn blue" class="tag_btn blue"><img
+                                                _ngcontent-ekm-c201="" src="../../../assets/images/icons/tag-icn.svg">
+                                            مميز\ فاخر</button>
                                     </div>
                                 </div>
                                 <div ngClass="notification-box mt-4" *ngIf="i == halfList">
@@ -247,13 +270,15 @@
                                     <img src="{{mapview}}">
                                 </div>
                                 <div ngClass="see-my-lisitng">
-                                    <a ngClass="see-listing-btn" (click)="viewMap()"><img src="{{loc}}"> انظر القائمة في عرض الخريطة</a>
+                                    <a ngClass="see-listing-btn" (click)="viewMap()"><img src="{{loc}}"> انظر القائمة في
+                                        عرض الخريطة</a>
                                 </div>
                             </div>
                         </div>
                         <div ngClass="popular-searches" *ngIf="trendTitle.length > 0">
                             <div class="d-block dropdown" [ngClass]="status2 ? 'notshow' : 'show'">
-                                <button type="button" class="btn btn-outline-primary" id="popularSearches" (click)="clickEvent2()">عمليات البحث الشائعة</button>
+                                <button type="button" class="btn btn-outline-primary" id="popularSearches"
+                                    (click)="clickEvent2()">عمليات البحث الشائعة</button>
                                 <div class="dropdown-menu" [ngClass]="status2 ? 'notshow' : 'show'">
                                     <button class="dropdown-item"
                                         *ngFor="let item of trendTitle[0].trendTitleDetail; let i = index"
@@ -268,38 +293,40 @@
                 </div>
             </div>
         </section>
-    <footer ngClass="footer-sec">
-        <app-footer></app-footer>
-    </footer>
-    <div ngClass="gallery-modal-design alert-email-box-wrapper">
-        <ng-template #content let-modal>
-            <button type="button" class="btn-close email-close-modal" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
-            <div class="modal-body alert-email-box">
-               <div ngClass="alert-logo-div">
-               <a routerLink=""><img src="{{logo}}"></a>
-               </div>
-               <div ngClass="alert-logo-content">
-                  <h5>تسجيل الدخول أو التسجيل لحفظ المنازل المفضلة لديك ونتائج البحث</h5>
-                  <div ngClass="alert_form-box">
-                    <form>
-                        <div ngClass="form-group input-design-3">
-                            <input type="email" placeholder="أدخل بريدك الإلكتروني للاشتراك">
+        <footer ngClass="footer-sec">
+            <app-footer></app-footer>
+        </footer>
+        <div ngClass="gallery-modal-design alert-email-box-wrapper">
+            <ng-template #content let-modal>
+                <button type="button" class="btn-close email-close-modal" aria-label="Close"
+                    (click)="modal.dismiss('Cross click')"></button>
+                <div class="modal-body alert-email-box">
+                    <div ngClass="alert-logo-div">
+                        <a routerLink=""><img src="{{logo}}"></a>
+                    </div>
+                    <div ngClass="alert-logo-content">
+                        <h5>تسجيل الدخول أو التسجيل لحفظ المنازل المفضلة لديك ونتائج البحث</h5>
+                        <div ngClass="alert_form-box">
+                            <form>
+                                <div ngClass="form-group input-design-3">
+                                    <input type="email" placeholder="أدخل بريدك الإلكتروني للاشتراك">
+                                </div>
+                                <div ngClass="form-group submit-design-3">
+                                    <input type="submit" value="يكمل">
+                                </div>
+                                <div ngClass="form-group terms-contioning">
+                                    <p>من خلال المتابعة، فإنك توافق على الهزاع <a routerLink="/ar/term-condition">الشروط
+                                            والأحكام</a> و <a routerLink="/ar/privacy-policy">سياسة الخصوصية</a></p>
+                                </div>
+                            </form>
                         </div>
-                        <div ngClass="form-group submit-design-3">
-                            <input type="submit" value="يكمل">
-                        </div>
-                        <div ngClass="form-group terms-contioning">
-                         <p>من خلال المتابعة، فإنك توافق على الهزاع <a routerLink="/ar/term-condition">الشروط والأحكام</a> و <a routerLink="/ar/privacy-policy">سياسة الخصوصية</a></p>
-                        </div>
-                    </form>
-                  </div>
-               </div>
-               <div ngClass="alert-modal-footer">
-                  <h4>هل أنت وكيل؟</h4>
-                  <p>سجل الدخول إلى مركز Ovaluate هنا: <a routerLink="/ar/login">تسجيل دخول الوكيل</a></p>
-               </div>
-            </div>
-        </ng-template>
-    </div>
-</section>
+                    </div>
+                    <div ngClass="alert-modal-footer">
+                        <h4>هل أنت وكيل؟</h4>
+                        <p>سجل الدخول إلى مركز Ovaluate هنا: <a routerLink="/ar/login">تسجيل دخول الوكيل</a></p>
+                    </div>
+                </div>
+            </ng-template>
+        </div>
+    </section>
 </div>
