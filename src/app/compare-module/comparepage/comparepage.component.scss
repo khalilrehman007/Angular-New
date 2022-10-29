@@ -233,6 +233,9 @@
         color: #000;
         margin-bottom: 0px;
         font-weight: 300;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
 	}
 }
 .com-img {
@@ -308,6 +311,16 @@
 .selection-checkbox input:checked+.add-property-cstm::after {
     opacity: 1;
 }
+.property-pcompare-cntnt address img {
+    filter: grayscale(1);
+}
+.com-cntnt address img {
+    filter: grayscale(1);
+    width: 15px !important;
+    display: inline-block !important;
+    margin-right: 5px;
+}
+
 
 
 @media (min-width: 1200px){
