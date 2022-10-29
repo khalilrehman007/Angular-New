@@ -44,8 +44,10 @@ export class HomepageComponent implements OnInit, AfterViewInit {
   id: any = 1;
   propertyDetails: any;
   oldData1() {
+    console.log(this.countryData.id,this.userId)
     this.service.LatestPropertiesListingResidential({"CountryId":this.countryData.id, "UserId": this.userId, "propertyListingTypeId": "1" }).subscribe((response:any) => {
       this.dynamicSlides1 = response.data;
+      console.log(response)
     });
   }
   newData1() {
@@ -239,8 +241,6 @@ export class HomepageComponent implements OnInit, AfterViewInit {
       userId = this.user.id;
     }
     this.userId = userId;
-    this.oldData2();
-    this.oldData1();
     this.service.PropertyListingTypes().subscribe(data => {
       this.propertyType = data;
       this.propertyType = this.propertyType.data;
@@ -271,6 +271,8 @@ export class HomepageComponent implements OnInit, AfterViewInit {
     let a = setInterval(() => {
       if(this.cookie.get("countryData")) {
         this.countryData = JSON.parse(this.cookie.get("countryData"));
+        this.oldData2();
+        this.oldData1();
         this.service.NearPlaces(this.countryData.id).subscribe((result: any) => {
           this.explorePlaces = result.data;
         });
