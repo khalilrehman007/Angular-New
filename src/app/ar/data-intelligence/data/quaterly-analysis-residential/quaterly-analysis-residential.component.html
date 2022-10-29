@@ -1,0 +1,273 @@
+<div class="light-theme dashboard-data-sec">
+  <app-header></app-header>
+  <div class="dashboard-reports-inner-wrapper">
+    <div class="container">
+      <div class="dashboard-data-main-wrapper">
+        <div class="dashboard-data-scnd-header">
+          <app-di-sidebar-component></app-di-sidebar-component>
+        </div>
+        <div class="dashboard-data-main-contents">
+          <form [formGroup]="range">
+            <div class="dashboard-dat-filter-box">
+              <div class="row">
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-2">
+                  <div class="dashboard-date-range-box">
+                    <label>Date Range</label>
+                    <mat-form-field>
+                      <mat-label>Enter a date range</mat-label>
+                      <mat-date-range-input [rangePicker]="picker">
+                        <input matStartDate matInput placeholder="Start date" formControlName="start"
+                          (dateChange)="getStartDate($event)">
+                        <input matEndDate matInput placeholder="End date" formControlName="end"
+                          (dateChange)="getEndDate($event)">
+                      </mat-date-range-input>
+                      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                      <mat-date-range-picker #picker></mat-date-range-picker>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-2">
+                  <div class="dashboard-data-select-box" *ngIf="citiesData.length > 0">
+                    <label>City</label>
+                    <mat-form-field>
+                      <mat-label>Add City</mat-label>
+                      <mat-select [disableOptionCentering]="true" multiple (selectionChange)="getCity($event)" [(value)]="selectedCity">
+                        <mat-option value="All" (click)="selectAllCity()">Select All</mat-option>
+                        <mat-option *ngFor="let city of citiesData" [value]="city.id">
+                          {{city.name}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-2">
+                  <div class="dashboard-data-select-box" [ngClass]="communityfield.length > 0 ? '' : 'disabled'">
+                    <label>District</label>
+                    <mat-form-field>
+                      <mat-label>Add District</mat-label>
+                      <mat-select [disableOptionCentering]="true" multiple (selectionChange)="getDistrict($event)" [(value)]="selectedDistrict">
+                        <mat-option value="All" (click)="selectAllDistrict()">Select All</mat-option>
+                        <mat-option *ngFor="let community of communityfield" [value]="community.id">
+                          {{community.name}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-2">
+                  <div class="dashboard-data-select-box">
+                    <label>Property Type</label>
+                    <mat-form-field>
+                      <mat-label>Add Property Type</mat-label>
+                      <mat-select [disableOptionCentering]="true" multiple (selectionChange)="getPropertyType($event)" [(value)]="selectedPropertyType">
+                        <mat-option value="All" (click)="selectAllPropertyType()">Select All</mat-option>
+                        <mat-option *ngFor="let protype of filteredProperty" [value]="protype.id">
+                          {{protype.typeDescription}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-2">
+                  <div class="dashboard-data-select-box">
+                    <label>Developers</label>
+                    <mat-form-field>
+                      <mat-label>Add Developers</mat-label>
+                      <mat-select [disableOptionCentering]="true" multiple (selectionChange)="getDevelopers($event)" [(value)]="selectedDevelopers">
+                        <mat-option value="All" (click)="selectAllDevelopers()">Select All</mat-option>
+                        <mat-option *ngFor="let developer of filteredDevelopers" [value]="developer.id">
+                          {{developer.name}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-2">
+                  <div class="dashboard-data-select-box" [ngClass]="filteredTransaction.length > 0 ? '' : 'disabled'">
+                    <label>Transaction Type</label>
+                    <mat-form-field>
+                      <mat-label>Add Transaction Type</mat-label>
+                      <mat-select [disableOptionCentering]="true" multiple (selectionChange)="getTransactionType($event)"
+                        [(value)]="selectedTransactionType">
+                        <mat-option value="All" (click)="selectAllTransactionType()">Select All</mat-option>
+                        <mat-option *ngFor="let transaction of filteredTransaction" [value]="transaction.id">
+                          {{transaction.name}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-2">
+                  <div class="dashboard-data-select-box" [ngClass]="filteredsales.length > 0 ? '' : 'disabled'">
+                    <label>Sales Sequence</label>
+                    <mat-form-field>
+                      <mat-label>Add Sales Sequence</mat-label>
+                      <mat-select [disableOptionCentering]="true" multiple (selectionChange)="getSalesSequence($event)"
+                        [(value)]="selectedSalesSequence">
+                        <mat-option value="All" (click)="selectAllSalesSequence()">Select All</mat-option>
+                        <mat-option *ngFor="let sale of filteredsales" [value]="sale.id">
+                          {{sale.name}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-2">
+                  <div class="dashboard-data-select-box">
+                    <label>BEDROOM</label>
+                    <mat-form-field>
+                      <mat-label>Add Bedroom</mat-label>
+                      <mat-select [disableOptionCentering]="true" multiple (selectionChange)="getBeds($event)" [(value)]="selectedBeds">
+                        <mat-option value="All" (click)="selectAllBeds()">Select All</mat-option>
+                        <mat-option *ngFor="let beds of allbedsfield" [value]="beds">
+                          {{beds}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-2">
+                  <div ngClass="di-rangle-block">
+                    <h4>Size Range ({{countryData.unitType}})</h4>
+                    <div ngClass="price-range_sec">
+                      <div ngClass="range-slider">
+                        <ngx-slider [(value)]="SizeminValue" [(highValue)]="SizemaxValue" [options]="Sizeoptions"
+                          (valueChange)="getMinSize($event)" (highValueChange)="getMaxSize($event)">
+                        </ngx-slider>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-2">
+                  <div ngClass="di-rangle-block">
+                    <h4>Price Range ({{countryData.currency}})</h4>
+                    <div ngClass="price-range_sec">
+                      <div ngClass="range-slider">
+                        <ngx-slider [(value)]="PriceminValue" [(highValue)]="PricemaxValue" [options]="Priceoptions"
+                          (valueChange)="getMinPrice($event)" (highValueChange)="getMaxPrice($event)">
+                        </ngx-slider>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="dashboard-data-charts">
+        <div class="row">
+          <div class="col-12 mb-24">
+            <div class="card position-relative overflow-hidden">
+              <app-loader *ngIf="showLoader"></app-loader>
+              <div class="card-header">
+                <h6>Total Number of Transactions by Transaction Type</h6>
+                <button class="download-reprt">
+                  <img src="{{downloadreport}}" class="img-fluid" alt="">
+                </button>
+              </div>
+              <div class="card-body">
+                <div class="chart supply-chart">
+                  <canvas baseChart [data]="tbtData" [options]="tbtOptions" [plugins]="tbtPlugins" [type]="tbtType">
+                  </canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 mb-24">
+            <div class="card position-relative overflow-hidden">
+              <app-loader *ngIf="showLoader"></app-loader>
+              <div class="card-header">
+                <h6>Total Number of Transactions by Sales Sequence</h6>
+                <button class="download-reprt">
+                  <img src="{{downloadreport}}" class="img-fluid" alt="">
+                </button>
+              </div>
+              <div class="card-body">
+                <div class="chart supply-chart">
+                  <canvas baseChart [data]="tbsData" [options]="tbsOptions" [plugins]="tbsPlugins" [type]="tbsType">
+                  </canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 mb-24">
+            <div class="card position-relative overflow-hidden">
+              <app-loader *ngIf="showLoader"></app-loader>
+              <div class="card-header">
+                <h6>Total Value of Transactions by Transaction Type</h6>
+                <button class="download-reprt">
+                  <img src="{{downloadreport}}" class="img-fluid" alt="">
+                </button>
+              </div>
+              <div class="card-body">
+                <div class="chart supply-chart">
+                  <canvas baseChart [data]="tvbtData" [options]="tvbtOptions" [plugins]="tvbtPlugins" [type]="tvbtType">
+                  </canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 mb-24">
+            <div class="card position-relative overflow-hidden">
+              <app-loader *ngIf="showLoader"></app-loader>
+              <div class="card-header">
+                <h6>Total Value of Transactions by Sales Sequence</h6>
+                <button class="download-reprt">
+                  <img src="{{downloadreport}}" class="img-fluid" alt="">
+                </button>
+              </div>
+              <div class="card-body">
+                <div class="chart supply-chart">
+                  <canvas baseChart [data]="tvbsData" [options]="tvbsOptions" [plugins]="tvbsPlugins" [type]="tvbsType">
+                  </canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-24">
+            <div class="card position-relative overflow-hidden">
+              <app-loader *ngIf="showLoader"></app-loader>
+              <div class="card-header">
+                <h6>Median Price of Transactions</h6>
+                <button class="download-reprt">
+                  <img src="{{downloadreport}}" class="img-fluid" alt="">
+                </button>
+              </div>
+              <div class="card-body">
+                <div class="chart supply-chart">
+                  <canvas baseChart [data]="mpotData" [options]="mpotOptions" [plugins]="mpotPlugins" [type]="mpotType">
+                  </canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-24">
+            <div class="card position-relative overflow-hidden">
+              <app-loader *ngIf="showLoader"></app-loader>
+              <div class="card-header">
+                <h6>Median AED/Sqf Price of Transactions</h6>
+                <button class="download-reprt">
+                  <img src="{{downloadreport}}" class="img-fluid" alt="">
+                </button>
+              </div>
+              <div class="card-body">
+                <div class="chart supply-chart">
+                  <canvas baseChart [data]="maptData" [options]="maptOptions" [plugins]="maptPlugins" [type]="maptType">
+                  </canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="dahboard-data-f0oter">
+      <footer>
+        <p class="text-center text-muted mb-0">Copyright &#169; <a routerLink="">Ovaluate</a></p>
+      </footer>
+    </div>
+  </div>
+</div>

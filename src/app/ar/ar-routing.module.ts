@@ -23,6 +23,7 @@ const routes: Routes = [
   { path: "valuation", loadChildren: () => import('./property-valuation/property-valuation.module').then(module => module.PropertyValuationModule) },
   { path: "payment-packages", loadChildren: () => import('./payment-packages/payment-packages.module').then(module => module.PaymentPackagesModule) },
   { path: "payment-form", loadChildren: () => import('./payment-packages-final/payment-packages-final.module').then(module => module.PaymentPackagesFinalModule) },
+  { path: "data-intelligence/data", loadChildren: () => import('./data-intelligence/data/data.module').then(module => module.DataModule) },
 
 ];
 
