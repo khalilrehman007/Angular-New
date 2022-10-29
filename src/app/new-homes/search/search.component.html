@@ -1,6 +1,6 @@
 <app-header></app-header>
 <div ngClass="light-bg-body">
-    
+    <section [ngClass]="'inner-cntnt-wrapper slide-left-bar'">
     <section [ngClass]="'explore-banner-sec position-relative'"
       style="background-image: url('assets/images/areas-banner.webp')">
       <div [ngClass]="'container_1280px'">
@@ -9,7 +9,6 @@
         </div>
       </div>
     </section>
-    <section [ngClass]="'inner-cntnt-wrapper slide-left-bar'">
         <section [ngClass]="'rent-propoerties-main-sec'">
             <div ngClass="properties-file-container-shadow">
                 <div ngClass="properties-file-container">
@@ -26,14 +25,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- <div ngClass="heading-apragraph-design mt-4">
-                            <h2>{{selectedPropertyTypeName}} {{headingPropertyType}} for {{type}} in UAE</h2>
-                            <p>Showing {{totalRecord}} {{headingPropertyType}} for {{type}} in UAE</p>
-                            <p>Properties For {{type}} in UAE. Verified Listings. Your Perfect Home is on Property
-                                Finder! Property
-                                Finder: Real Estate...
-                            </p>
-                        </div> -->
                         <div ngClass="properties-filtr-values d-flex justify-content-spacebw">
                             <div ngClass="properties-filtr-values-left d-flex justify-content-spacebw">
                                 <div (click)="allSearch()" class="checkbox-design position-relative">
@@ -74,13 +65,6 @@
                                     <div ngClass="row">
                                         <div ngClass="col-xl-3 col-md-4 col-lg-4 col-sm-12">
                                             <div ngClass="properties-list_slider" *ngIf="list.documentsCheck">
-                                                <!-- <ngb-carousel>
-                                                    <ng-template ngbSlide *ngFor="let event of list.documents">
-                                                        <img [src]="baseUrl+event.fileUrl"
-                                                            [routerLink]="['/property/detail']"
-                                                            [queryParams]="{id: list.id}">
-                                                    </ng-template>
-                                                </ngb-carousel> -->
                                                 <img src="assets/images/placeholder.png">
                                             </div>
                                             <div ngClass="properties-list_slider" *ngIf="list.documentsCheck == false">
@@ -94,18 +78,7 @@
                                                         [routerLink]="['/new-homes/detail']"
                                                         [queryParams]="{id: list.id}">
                                                         <h4>{{list.propertyPrice}} {{list.currency}} 
-                                                            <!-- <small
-                                                                *ngIf="list.rentType != ''">/{{list.rentType}}</small> -->
                                                         </h4>
-                                                        <!-- <div ngClass="property-tags d-flex flex-wrap">
-                                                            <span ngClass="tags-bg-grey"
-                                                                *ngIf="list.brokerageChargePrice != null">Brokrage:
-                                                                {{list.brokerageChargePrice}} {{currency}}</span>
-                                                            <span ngClass="tags-bg-grey"
-                                                                *ngIf="list.securityDepositPrice != null">Security
-                                                                deposit:
-                                                                {{list.securityDepositPrice}} {{currency}}</span>
-                                                        </div> -->
                                                     </div>
                                                     <div ngClass="property-action-hdr">
                                                         <button ngClass="ov-verified-btn"><img src="{{ovverified}}">
@@ -169,46 +142,7 @@
                                                           </span>
                                                         </div>
                                                     </div>
-                                                    <!-- <h6>{{list.propertyType.typeDescription}},</h6>
-                                                    <div ngClass="property-details-highlights">
-                                                        <span *ngIf="list.bedrooms != 0" ngClass="bed">
-                                                            <img src="{{bedsvg}}" alt="">{{list.bedrooms}} Beds
-                                                        </span>
-                                                        <span *ngIf="list.bathrooms != 0" ngClass="bath">
-                                                            <img src="{{bathsvg}}" alt="">{{list.bathrooms}} Bath
-                                                        </span>
-                                                        <span ngClass="area">
-                                                            <img src="{{squaremetersvg}}" alt="">{{list.buildupArea}}
-                                                            sqft
-                                                        </span>
-                                                        <span ngClass="furnishing">
-                                                            <img src="{{furnishing}}" alt="">{{list.furnishingType}}
-                                                        </span>
-                                                    </div> -->
                                                 </div>
-                                                <!-- <div ngClass="key-tags">
-                                                    <span *ngFor="let features of list.propertyFeatures">
-                                                        {{features.propertyFeature.featureName}}
-                                                    </span>
-                                                </div> -->
-                                                <!-- <div ngClass="data-inteligence-text">
-                                                    <h6>OV Data Intelligence - Corniche Road, Abu Dhabi </h6>
-                                                    <div ngClass="property-range-bar d-flex">
-                                                        <div ngClass="pro-range-whie-box">
-                                                            <p>Recent Rent Transactions</p>
-                                                            <h6>{{list.RecentRentTxns}} in last 1 year</h6>
-                                                        </div>
-                                                        <div ngClass="pro-range-whie-box">
-                                                            <p>Rent Price Range</p>
-                                                            <h6>{{list.StartRentPrice}} {{list.currency}} -
-                                                                {{list.EndRentPrice}} {{list.currency}}</h6>
-                                                        </div>
-                                                        <div ngClass="pro-range-whie-box">
-                                                            <p>Avg. Rent/ Sq. Ft.</p>
-                                                            <h6>{{list.AvgRentPrice}} {{list.currency}}</h6>
-                                                        </div>
-                                                    </div>
-                                                </div> -->
                                                 <div ngClass="property-footer-block">
                                                     <div ngClass="row align-items-center">
                                                         <div ngClass="col-xl-4 col-lg-12 col-md-12 col-sm-12">
@@ -274,35 +208,6 @@
                             </section>
                         </div>
                     </div>
-                    <!-- <div ngClass="col-xl-3 col-lg-3 col-md-12 col-sm-12">
-                        <div ngClass="properties-list-sidebar">
-                            <div ngClass="lisitng-map-view">
-                                <div ngClass="listing-view-map-frame">
-                                    <img src="{{mapview}}">
-                                </div>
-                                <div ngClass="see-my-lisitng">
-                                    <a ngClass="see-listing-btn" (click)="viewMap()"><img src="{{loc}}"> See the Listing
-                                        on Map View</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div ngClass="popular-searches" *ngIf="trendTitle.length > 0">
-                            <div class="d-block dropdown" [ngClass]="status2 ? 'notshow' : 'show'">
-                                <button type="button" class="btn btn-outline-primary" id="popularSearches"
-                                    (click)="clickEvent2()">Popular Searches</button>
-                                <div class="dropdown-menu" [ngClass]="status2 ? 'notshow' : 'show'">
-                                    <button class="dropdown-item"
-                                        *ngFor="let item of trendTitle[0].trendTitleDetail; let i = index"
-                                        (click)="onTrendClick(1,i)">{{item.detail}}</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div ngClass="adds-blck-sec">
-                            <script async
-                                src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6409412786140093"
-                                crossorigin="anonymous"></script>
-                        </div>
-                    </div> -->
                 </div>
             </div>
         </section>

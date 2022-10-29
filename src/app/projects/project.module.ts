@@ -21,6 +21,15 @@ import { ScoresComponent } from './scores/scores.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 // Import ng-circle-progress
 import { NgCircleProgressModule } from 'ng-circle-progress';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { MatTabsModule } from '@angular/material/tabs';
+import { NgxSliderModule } from "@angular-slider/ngx-slider";
+import { NgxGalleryModule } from '@kolkov/ngx-gallery';
+import { HttpClientModule } from '@angular/common/http';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { ProjectFilterComponent } from './project-filter/project-filter.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +38,8 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
     // DetailsComponent,
     LuxuryComponent,
     UltraLuxuryComponent,
-    ScoresComponent
+    ScoresComponent,
+    ProjectFilterComponent
   ],
   imports: [
     CommonModule,
@@ -45,6 +55,14 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
     MatAutocompleteModule,
     BreadcrumbsModule,
     CarouselModule,
+    NgbModule,
+    NgxPaginationModule,
+    MatTabsModule,
+    NgxSliderModule,
+    NgxGalleryModule,
+    HttpClientModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     // Specify ng-circle-progress as an import
     NgCircleProgressModule.forRoot({
       // set defaults here
