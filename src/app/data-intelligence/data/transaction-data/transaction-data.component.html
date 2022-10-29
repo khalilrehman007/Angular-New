@@ -239,10 +239,10 @@
               </div>
             </div>
           </div>
-          <div class="dash-table-box-layout">
+          <div class="dash-table-box-layout position-relative overflow-hidden">
+            <app-loader *ngIf="showLoader"></app-loader>
             <div class="table-responsive">
-              <table class="table table-striped position-relative overflow-hidden">
-                <app-loader *ngIf="showLoader"></app-loader>
+              <table class="table table-striped overflow-hidden">
                 <thead>
                   <tr>
                     <th>Type</th>
@@ -286,23 +286,23 @@
                   </tr>
                 </tbody>
               </table>
-              <div class="pagination-controls d-flex justify-content-spacebw">
-                <div class="pagination-page-per-item d-flex align-items-center">
-                  <p>Items Per Page 10</p>
-                  <div ngClass="select-design-language">
-                    <mat-form-field appearance="fill">
-                      <mat-select [disableOptionCentering]="true" [(value)]="PageNumbers"
-                        (selectionChange)="getItems($event)">
-                        <mat-option [value]="option.value" *ngFor="let option of pageitems">
-                          {{option.viewValue }}
-                        </mat-option>
-                      </mat-select>
-                    </mat-form-field>
-                  </div>
+            </div>
+            <div class="pagination-controls d-flex justify-content-spacebw">
+              <div class="pagination-page-per-item d-flex align-items-center">
+                <p>Items Per Page 10</p>
+                <div ngClass="select-design-language">
+                  <mat-form-field appearance="fill">
+                    <mat-select [disableOptionCentering]="true" [(value)]="PageNumbers"
+                      (selectionChange)="getItems($event)">
+                      <mat-option [value]="option.value" *ngFor="let option of pageitems">
+                        {{option.viewValue }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
                 </div>
-                <pagination-controls (pageChange)="pageChanged($event)" class="text-center my-pagination">
-                </pagination-controls>
               </div>
+              <pagination-controls (pageChange)="pageChanged($event)" class="text-center my-pagination">
+              </pagination-controls>
             </div>
           </div>
         </div>
