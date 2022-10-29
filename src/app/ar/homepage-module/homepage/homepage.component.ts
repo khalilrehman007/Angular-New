@@ -244,8 +244,6 @@ export class HomepageComponent implements OnInit, AfterViewInit {
       userId = this.user.id;
     }
     this.userId = userId;
-    this.oldData2();
-    this.oldData1();
     this.service.PropertyListingTypes().subscribe(data => {
       this.propertyType = data;
       this.propertyType = this.propertyType.data;
@@ -291,6 +289,8 @@ export class HomepageComponent implements OnInit, AfterViewInit {
         this.service.TrendTitle(this.countryData.id).subscribe((result: any) => {
           this.trendTitle = result.data
         });
+        this.oldData2();
+        this.oldData1();
         this.LoadBanners();
         this.LoadBlogs();
         clearInterval(a);
