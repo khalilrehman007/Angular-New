@@ -312,7 +312,6 @@ export class RentSearchComponent implements OnInit {
         for (let list of temp.data) {
           this.rentTypes.push({ name: list.name, id: list.id });
         }
-        console.log(this.rentTypes);
       }
     });
   }
