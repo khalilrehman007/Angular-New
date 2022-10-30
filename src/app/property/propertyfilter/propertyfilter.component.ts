@@ -93,7 +93,7 @@ export class PropertyfilterComponent implements OnInit {
 
     // this.videoTourSorting    = this.activeRoute.snapshot.queryParamMap.get('videoTourSorting');
     this.totalPropertyRecord = localStorage.getItem('propertyListingTotalRecord');
-    this.type                 = this.activeRoute.snapshot.queryParamMap.get('type');
+    this.type                 = this.activeRoute.snapshot.queryParamMap.get('type') || "";
     this.PropertyCategoryId   = this.activeRoute.snapshot.queryParamMap.get('PropertyCategoryId');
     this.RentTypeId           = this.activeRoute.snapshot.queryParamMap.get('RentTypeId');
     let  PropertyTypeIds :any  = this.activeRoute.snapshot.queryParamMap.get('PropertyTypeIds');
