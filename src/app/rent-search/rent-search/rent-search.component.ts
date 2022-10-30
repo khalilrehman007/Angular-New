@@ -20,10 +20,8 @@ export interface KeywordString {
   styleUrls: ['./rent-search.component.scss']
 })
 export class RentSearchComponent implements OnInit {
-
   @Output() childToParentDataLoad: EventEmitter<any> = new EventEmitter<any>()
   @Input() totalRecord: any;
-
   type: any;
   PropertyCategoryId: any;
   RentTypeId: any;
@@ -50,19 +48,13 @@ export class RentSearchComponent implements OnInit {
   postedByOption: any;
   DistrictsId: any = [];
   DistrictsValue: any = [];
-
   residential: any;
   residentialId: any;
   commercial: any;
   commercialId: any;
   rentType: any = []
-
   ngOnInit(): void {
-    //parent method
-    // this.childToParentDataLoad.emit('hikmat')
   }
-
-
   separatorKeysCodes1: number[] = [ENTER, COMMA];
   fruitCtrl = new FormControl('');
   filteredFruits: Observable<string[]>;
@@ -73,24 +65,16 @@ export class RentSearchComponent implements OnInit {
   propertyTypeCommercial: any;
   propertyTypeResdential: any;
   PropertyTypeIds: any;
-  // videoTourSorting :any;
-
-
   @ViewChild('fruitInput') fruitInput: any;
   routeCheck: any;
   totalPropertyRecord: any;
   maxLimit: any;
-
   options: any = {};
   propertyFeatureIds: any = [];
-
   constructor(private activeRoute: ActivatedRoute, private service: AppService, private api: AppService, private route: Router, private modalService: NgbModal, public router: Router) {
-
     let url = this.route.url.replace("/", "");
     url = this.route.url.split('?')[0];
     this.routeCheck = url
-
-    // this.videoTourSorting    = this.activeRoute.snapshot.queryParamMap.get('videoTourSorting');
     this.totalPropertyRecord = localStorage.getItem('propertyListingTotalRecord');
     this.type = this.activeRoute.snapshot.queryParamMap.get('type');
     this.PropertyCategoryId = this.activeRoute.snapshot.queryParamMap.get('PropertyCategoryId');
@@ -104,7 +88,6 @@ export class RentSearchComponent implements OnInit {
     this.selectedBeds = this.Bedrooms;
     this.Bathrooms = this.activeRoute.snapshot.queryParamMap.get('Bathrooms');
     this.selectedBaths = this.Bathrooms;
-
     this.PropertyTypeIds = JSON.parse(PropertyTypeIds)
     let DistrictsId: any = this.activeRoute.snapshot.queryParamMap.get('DistrictIds');
     let DistrictsValue: any = this.activeRoute.snapshot.queryParamMap.get('DistrictsValue');
@@ -116,7 +99,6 @@ export class RentSearchComponent implements OnInit {
     let MaxCarpetArea: any = this.activeRoute.snapshot.queryParamMap.get('MaxCarpetArea');
     let FurnishingTypeId: any = this.activeRoute.snapshot.queryParamMap.get('FurnishingTypeId');
     this.KeyWords = JSON.parse(KeyWords)
-
     if (PropertyFeatureIds == null) {
       PropertyFeatureIds = []
     } else {
@@ -131,21 +113,16 @@ export class RentSearchComponent implements OnInit {
     this.minCarpet = MinCarpetArea
     this.maxCarpet = MaxCarpetArea
     this.furnishedType = FurnishingTypeId
-
     this.getLoaction({ "Searching": "", "CountryId": "1" });
-
     if (this.DistrictsValue !== null) {
       this.fruits = this.DistrictsValue
     }
-
     this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
       startWith(null),
       map((fruit: string | null) => (fruit ? this._filter(fruit) : this.allFruits.slice())),
     );
-
     this.minValue = this.PriceStart;
     this.maxValue = 50000000;
-
     if (this.type == null) {
       this.activeRoute.params.subscribe(params => {
         if (params['type'] == 'Buy') {
@@ -157,7 +134,6 @@ export class RentSearchComponent implements OnInit {
         }
       });
     }
-
     this.api.FurnishingTypes().subscribe((result: any) => {
       this.furnishingType = result.data;
     });
@@ -167,15 +143,11 @@ export class RentSearchComponent implements OnInit {
     this.api.ProfessionalTypes().subscribe((result: any) => {
       this.postedByOption = result.data;
     });
-
-    // this.route.routeReuseStrategy.shouldReuseRoute = () => false;
-
     this.SubmitForm.controls.Name.setValue(this.PropertyAddress);
     this.loadType();
     this.service.RentTypes().subscribe((data: any) => {
       this.rentType = data.data;
     });
-
     this.rentTypeIdCheck()
     this.CategoriesTypes();
     this.api.LoadType(2).subscribe((result) => {
@@ -185,11 +157,8 @@ export class RentSearchComponent implements OnInit {
     this.api.LoadType(1).subscribe((result) => {
       this.propertyTypeResdential = result;
       this.propertyTypeResdential = this.propertyTypeResdential.data
-
     });
-
     if (this.PropertyListingTypeId == 1) {
-      // this.maxLimit = 1000000
       this.options = {
         floor: 10,
         ceil: 1000000,
@@ -198,7 +167,6 @@ export class RentSearchComponent implements OnInit {
         }
       }
     } else {
-      // this.maxLimit = 50000000
       this.options = {
         floor: 10,
         ceil: 50000000,
@@ -208,8 +176,6 @@ export class RentSearchComponent implements OnInit {
       }
     }
   }
-
-
   locationOnSearchData: any = []
   getLoaction(data: any) {
     let tempData: any = []
@@ -224,45 +190,30 @@ export class RentSearchComponent implements OnInit {
     this.allFruits = tempData
     this.locationOnSearchData = tempCompleteData
   }
-
-
-
   add1(event: MatChipInputEvent): void {
-
     const value = (event.value || '').trim();
-
-    // Add our fruit
     if (value) {
       this.fruits.push(value);
     }
-
-    // Clear the input value
     event.chipInput!.clear();
-
     this.fruitCtrl.setValue(null);
   }
-
   remove1(fruit: string): void {
-
     let removeId: any;
     this.locationOnSearchData.forEach((element: any, i: any) => {
       if (element.value == fruit) {
         removeId = element.id
       }
     })
-
     let companyIndex: number = this.DistrictsId.indexOf(removeId);
     if (companyIndex !== -1) {
       this.DistrictsId.splice(companyIndex, 1);
     }
-
     const index = this.fruits.indexOf(fruit);
-
     if (index >= 0) {
       this.fruits.splice(index, 1);
     }
   }
-
   selected(event: MatAutocompleteSelectedEvent): void {
     if (this.DistrictsId == null) {
       this.DistrictsId = []
@@ -276,18 +227,12 @@ export class RentSearchComponent implements OnInit {
     this.fruitInput.nativeElement.value = '';
     this.fruitCtrl.setValue(null);
   }
-
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
     return this.allFruits.filter(fruit => fruit.toLowerCase().includes(filterValue));
   }
-
-
   RentTypeIndexId: any;
   public rentTypeIdCheck() {
-    // const tabCount = 3;
-    // this.RentTypeId = (this.RentTypeId + 1) % tabCount;
-
     let RentTypeIndexId: number = 0;
     if (this.RentTypeId == 2) {
       RentTypeIndexId = 1;
@@ -295,14 +240,7 @@ export class RentSearchComponent implements OnInit {
       RentTypeIndexId = 2;
     }
     this.RentTypeIndexId = RentTypeIndexId;
-
   }
-
-  // public options2 = [
-  //   {"id": 1, "name": "Rent"},
-  //   {"id": 2, "name": "Buy"}
-  // ]
-
   rentTypes: any = []
   selectedRentType: any;
   loadType() {
@@ -315,7 +253,6 @@ export class RentSearchComponent implements OnInit {
       }
     });
   }
-
   SubmitForm = new FormGroup({
     Name: new FormControl(""),
     PriceStart: new FormControl(""),
@@ -323,8 +260,6 @@ export class RentSearchComponent implements OnInit {
     minCarpet: new FormControl(""),
     maxCarpet: new FormControl(""),
   });
-
-
   status: boolean = false;
   clickEvent() {
     this.status = !this.status;
@@ -348,12 +283,9 @@ export class RentSearchComponent implements OnInit {
       }
     });
   }
-
-
   changeType(event: any) {
     this.PropertyListingTypeId = event.value
     this.selectedRentType = event.value
-
     this.service.LoadPropertyListingTypes().subscribe(e => {
       let temp: any = e;
       if (temp.message == "Property Listing Type List fetched successfully") {
@@ -365,9 +297,7 @@ export class RentSearchComponent implements OnInit {
         }
       }
     });
-
     if (event.value == 1) {
-      // this.maxLimit = 1000000
       this.options = {
         floor: 10,
         ceil: 1000000,
@@ -376,7 +306,6 @@ export class RentSearchComponent implements OnInit {
         }
       }
     } else {
-      // this.maxLimit = 50000000
       this.options = {
         floor: 10,
         ceil: 50000000,
@@ -389,7 +318,6 @@ export class RentSearchComponent implements OnInit {
   propertyType(id: any) {
     this.PropertyCategoryId = id
   }
-
   baths(event: any) {
     this.Bathrooms = event.value
   }
@@ -407,25 +335,18 @@ export class RentSearchComponent implements OnInit {
       }
     }
   }
-
-
   proceedSearch() {
-
     let keywordsData: any = [];
     this.Keywords.forEach((element, i) => {
       keywordsData.push(element.name)
     })
     let PropertyTypeIds: any = [];
     if (this.propertyCategory == 1) {
-      //residential
       PropertyTypeIds = this.PropertyTypeResidentialIds
     } else if (this.propertyCategory == 2) {
-      //commercial
       PropertyTypeIds = this.PropertyTypeCommercialIds
     }
-
     let PropertyTypeIdsParams: any = JSON.stringify(PropertyTypeIds);
-
     let params: any = {
       type: this.type, "PropertyTypeIds": PropertyTypeIdsParams, "RentTypeId": this.RentTypeId,
       "PropertyCategoryId": this.PropertyCategoryId, PriceStart: this.SubmitForm.value.PriceStart, PriceEnd: this.SubmitForm.value.PriceEnd,
@@ -445,7 +366,6 @@ export class RentSearchComponent implements OnInit {
     this.route.navigate(['/property/search'], { queryParams: params })
     this.childToParentDataLoad.emit(objects)
   }
-
   clearSearch() {
     this.type = ''
     this.PropertyCategoryId = ''
@@ -466,28 +386,17 @@ export class RentSearchComponent implements OnInit {
     this.PropertyTypeIds = []
     this.PropertyTypeResidentialIds = []
     this.PropertyTypeCommercialIds = []
-
     this.keyWordsUrlValue.forEach((element: any, i: any) => {
       setTimeout(() => {
         this.remove(element)
       }, 1000);
     })
-
     this.SubmitForm.controls.Name.setValue('');
     this.SubmitForm.controls.PriceStart.setValue('10');
     this.SubmitForm.controls.PriceEnd.setValue('50000000');
-
-
     this.selectedPropertyType = null
     this.propertyTypes = []
     this.LoadPropertyCategories();
-
-    // let params :any = {type:'',"PropertyTypeIds":"[]", "PropertyAddress":'',"RentTypeId":'',
-    //   "PropertyCategoryId":'',PriceStart:'',PriceEnd:'', Bedrooms:'',Bathrooms:'',
-    //   "PropertyListingTypeId":'',CurrentPage:1,DistrictIds:JSON.stringify([]),DistrictsValue:JSON.stringify(this.fruits)
-    // }
-
-
     let params: any = {
       type: this.type, "PropertyTypeIds": JSON.stringify([]), "RentTypeId": '',
       "PropertyCategoryId": '', PriceStart: this.PriceStart, PriceEnd: this.PriceEnd,
@@ -496,7 +405,6 @@ export class RentSearchComponent implements OnInit {
       DistrictsValue: JSON.stringify([]), KeyWords: JSON.stringify([]), PropertyFeatureIds: JSON.stringify([]),
       MinCarpetArea: '', MaxCarpetArea: '', FurnishingTypeId: '', videoTourSorting: ''
     }
-
     let object: any = {
       type: this.type, "PropertyTypeIds": [], "RentTypeId": '',
       "PropertyCategoryId": '', PriceStart: this.PriceStart, PriceEnd: this.PriceEnd,
@@ -505,44 +413,30 @@ export class RentSearchComponent implements OnInit {
       DistrictsValue: [], KeyWords: [], PropertyFeatureIds: [],
       MinCarpetArea: '', MaxCarpetArea: '', FurnishingTypeId: '', videoTourSorting: ''
     }
-
-
     if (this.routeCheck == '/property/search') {
       this.route.navigate(['/property/search'], { queryParams: params })
       this.childToParentDataLoad.emit(object)
-      // this.proceedSearch()
     } else {
       this.proceedSearchViewMap()
     }
-
   }
   modelPropertyPictures: any = []
   openVerticallyCentered(content: any) {
     this.SubmitForm.controls.minCarpet.setValue(this.minCarpet);
     this.SubmitForm.controls.maxCarpet.setValue(this.maxCarpet);
-
-
     this.modalService.open(content, { centered: true });
   }
-
-  // Keywords
   addOnBlur = true;
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
   Keywords: KeywordString[] = this.keyWordsUrlValue;
-
   add(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
-    // Add our fruit
     if (value) {
       this.Keywords.push({ name: value });
     }
-
-    // Clear the input value
     event.chipInput!.clear();
     this.proceedSearch()
-
   }
-
   remove(fruit: KeywordString): void {
     const index = this.Keywords.indexOf(fruit);
 
@@ -551,15 +445,11 @@ export class RentSearchComponent implements OnInit {
     }
     this.proceedSearch()
   }
-
-
-
   furnishedType: any = '';
   furnishedTypeChange(data: any) {
     this.furnishedType = data
     this.proceedSearch()
   }
-
   propertyFeatureChange(data: any) {
     let checkExists: any = true;
     if (this.propertyFeatureIds == null) {
@@ -570,8 +460,6 @@ export class RentSearchComponent implements OnInit {
         checkExists = false;
       }
     })
-
-
     if (checkExists) {
       this.propertyFeatureIds.push(data)
     } else {
@@ -582,8 +470,6 @@ export class RentSearchComponent implements OnInit {
     }
     this.proceedSearch()
   }
-
-
   minCarpet: any = ''
   minCarpetAreaChange(searchValue: any): void {
     this.minCarpet = searchValue
@@ -594,13 +480,11 @@ export class RentSearchComponent implements OnInit {
     this.maxCarpet = searchValue
     this.proceedSearch()
   }
-
   status1: boolean = false;
   clickEvent1() {
     this.status1 = !this.status1;
     this.status = false;
   }
-
   propertyCategory: any = 1;
   residentialfun(id: any) {
     this.propertyCategory = id
@@ -609,7 +493,6 @@ export class RentSearchComponent implements OnInit {
     document.getElementsByClassName('residential-tabs')[0].classList.remove('hide');
     document.getElementsByClassName('commertial-tabs')[0].classList.add('hide');
   }
-  // sell(){
   commertialfun(id: any) {
     this.propertyCategory = id
     document.getElementsByClassName('residential')[0].classList.remove('active');
@@ -617,11 +500,8 @@ export class RentSearchComponent implements OnInit {
     document.getElementsByClassName('residential-tabs')[0].classList.add('hide');
     document.getElementsByClassName('commertial-tabs')[0].classList.remove('hide');
   }
-
   PropertyTypeResidentialIds: any = []
   getPropertyType(e: number) {
-    // this.PropertyTypeResidentialIds.push(e)
-
     let checkExists: any = true;
     this.PropertyTypeResidentialIds.forEach((element: any, i: any) => {
       if (element == e) {
@@ -639,7 +519,6 @@ export class RentSearchComponent implements OnInit {
   }
   PropertyTypeCommercialIds: any = []
   getPropertyCommercialType(e: number) {
-    // this.PropertyTypeCommercialIds.push(e)
     let checkExists: any = true;
     this.PropertyTypeCommercialIds.forEach((element: any, i: any) => {
       if (element == e) {
@@ -696,6 +575,5 @@ export class RentSearchComponent implements OnInit {
     }
     this.route.navigate(['/property/mapview'], { queryParams: params })
     this.childToParentDataLoad.emit(objects)
-
   }
 }
