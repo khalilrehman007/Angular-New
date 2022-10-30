@@ -359,6 +359,9 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
       let a = setInterval(() => {
         if (this.featuresData.length > 0) {
           $('.select2').select2();
+          $('.features-select').select2({
+            placeholder: "Select Features"
+        });
           clearInterval(a);
         }
       }, 50);

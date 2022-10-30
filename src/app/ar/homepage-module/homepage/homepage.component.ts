@@ -236,7 +236,7 @@ export class HomepageComponent implements OnInit, AfterViewInit {
     this.LoadPropertyCategories()
     this.getLoadFeedback();
     this.loadCountriesData();
-    this.ValuationTransactions();
+    // this.ValuationTransactions();
     this.getOvaluateFeatures();
     this.getUser();
     let userId = '';
