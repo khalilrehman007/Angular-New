@@ -72,7 +72,6 @@ export class AppComponent implements DoCheck, OnInit, AfterViewInit {
         console.clear();
         let length: any = res.results.length - 1;
         this.currentCountry = res.results[length].address_components[0].short_name;
-        console.log(res.results[length].address_components[0].long_name);
         this.loadCountryData();
       }
     });
