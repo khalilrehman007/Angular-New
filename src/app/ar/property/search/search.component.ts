@@ -341,6 +341,7 @@ export class SearchComponent implements OnInit {
         localStorage.setItem('listingForMap', JSON.stringify(data))
       }, 1000);
       this.searchData = response.data.propertyListings;
+      console.log(this.searchData);
       response.data.propertyListings.forEach((element:any, i:any) => {
         let documentsCheck: any = true;
         let rentTypeName = ''
