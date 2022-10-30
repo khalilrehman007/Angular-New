@@ -253,7 +253,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     {
       src: '../../../assets/images/icons/compare.png',
       class: 'nav-items my-wallet',
-      text: 'Compare',
+      text: 'مقارنة',
       link: 'compare',
     }
   ]
@@ -406,6 +406,16 @@ overnextIdx(): number {
     this.status = false;
     this.status3 = false;
     this.status4 = false;
+  }
+  status6: boolean = false;
+  clickEvent6() {
+    this.status6 = !this.status6;
+    this.status1 = false;
+    this.status2 = false;
+    this.status = false;
+    this.status3 = false;
+    this.status4 = false;
+    this.status5 = false;
   }
   status3: boolean = false;
   clickEvent3() {
