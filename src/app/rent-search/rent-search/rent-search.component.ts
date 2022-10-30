@@ -22,7 +22,7 @@ export interface KeywordString {
 export class RentSearchComponent implements OnInit {
   @Output() childToParentDataLoad: EventEmitter<any> = new EventEmitter<any>()
   @Input() totalRecord: any;
-  type: any;
+  type: any = "Rent";
   PropertyCategoryId: any;
   RentTypeId: any = 1;
   PropertyListingTypeId: any;
@@ -75,45 +75,44 @@ export class RentSearchComponent implements OnInit {
   constructor(private activeRoute: ActivatedRoute, private service: AppService, private api: AppService, private route: Router, private modalService: NgbModal, public router: Router) {
     let url = this.route.url.replace("/", "");
     url = this.route.url.split('?')[0];
-    this.routeCheck = url
-    this.totalPropertyRecord = localStorage.getItem('propertyListingTotalRecord');
-    this.type = this.activeRoute.snapshot.queryParamMap.get('type');
-    this.PropertyCategoryId = this.activeRoute.snapshot.queryParamMap.get('PropertyCategoryId');
-    this.RentTypeId = this.activeRoute.snapshot.queryParamMap.get('RentTypeId');
-    let PropertyTypeIds: any = this.activeRoute.snapshot.queryParamMap.get('PropertyTypeIds');
-    this.PropertyListingTypeId = this.activeRoute.snapshot.queryParamMap.get('PropertyListingTypeId');
-    this.PropertyAddress = this.activeRoute.snapshot.queryParamMap.get('PropertyAddress');
-    this.PriceStart = this.activeRoute.snapshot.queryParamMap.get('PriceStart');
-    this.PriceEnd = this.activeRoute.snapshot.queryParamMap.get('PriceEnd');
-    this.Bedrooms = this.activeRoute.snapshot.queryParamMap.get('Bedrooms');
-    this.selectedBeds = this.Bedrooms;
-    this.Bathrooms = this.activeRoute.snapshot.queryParamMap.get('Bathrooms');
-    this.selectedBaths = this.Bathrooms;
-    this.PropertyTypeIds = JSON.parse(PropertyTypeIds)
-    let DistrictsId: any = this.activeRoute.snapshot.queryParamMap.get('DistrictIds');
-    let DistrictsValue: any = this.activeRoute.snapshot.queryParamMap.get('DistrictsValue');
-    this.DistrictsId = JSON.parse(DistrictsId)
-    this.DistrictsValue = JSON.parse(DistrictsValue)
-    let KeyWords: any = this.activeRoute.snapshot.queryParamMap.get('KeyWords');
-    let PropertyFeatureIds: any = this.activeRoute.snapshot.queryParamMap.get('PropertyFeatureIds');
-    let MinCarpetArea: any = this.activeRoute.snapshot.queryParamMap.get('MinCarpetArea');
-    let MaxCarpetArea: any = this.activeRoute.snapshot.queryParamMap.get('MaxCarpetArea');
-    let FurnishingTypeId: any = this.activeRoute.snapshot.queryParamMap.get('FurnishingTypeId');
-    this.KeyWords = JSON.parse(KeyWords)
-    if (PropertyFeatureIds == null) {
-      PropertyFeatureIds = []
-    } else {
-      PropertyFeatureIds = JSON.parse(PropertyFeatureIds)
-    }
+    // this.routeCheck = url
+    // this.totalPropertyRecord = localStorage.getItem('propertyListingTotalRecord');
+    // this.PropertyCategoryId = this.activeRoute.snapshot.queryParamMap.get('PropertyCategoryId');
+    // this.RentTypeId = this.activeRoute.snapshot.queryParamMap.get('RentTypeId');
+    // let PropertyTypeIds: any = this.activeRoute.snapshot.queryParamMap.get('PropertyTypeIds');
+    // this.PropertyListingTypeId = this.activeRoute.snapshot.queryParamMap.get('PropertyListingTypeId');
+    // this.PropertyAddress = this.activeRoute.snapshot.queryParamMap.get('PropertyAddress');
+    // this.PriceStart = this.activeRoute.snapshot.queryParamMap.get('PriceStart');
+    // this.PriceEnd = this.activeRoute.snapshot.queryParamMap.get('PriceEnd');
+    // this.Bedrooms = this.activeRoute.snapshot.queryParamMap.get('Bedrooms');
+    // this.selectedBeds = this.Bedrooms;
+    // this.Bathrooms = this.activeRoute.snapshot.queryParamMap.get('Bathrooms');
+    // this.selectedBaths = this.Bathrooms;
+    // this.PropertyTypeIds = JSON.parse(PropertyTypeIds)
+    // let DistrictsId: any = this.activeRoute.snapshot.queryParamMap.get('DistrictIds');
+    // let DistrictsValue: any = this.activeRoute.snapshot.queryParamMap.get('DistrictsValue');
+    // this.DistrictsId = JSON.parse(DistrictsId)
+    // this.DistrictsValue = JSON.parse(DistrictsValue)
+    // let KeyWords: any = this.activeRoute.snapshot.queryParamMap.get('KeyWords');
+    // let PropertyFeatureIds: any = this.activeRoute.snapshot.queryParamMap.get('PropertyFeatureIds');
+    // let MinCarpetArea: any = this.activeRoute.snapshot.queryParamMap.get('MinCarpetArea');
+    // let MaxCarpetArea: any = this.activeRoute.snapshot.queryParamMap.get('MaxCarpetArea');
+    // let FurnishingTypeId: any = this.activeRoute.snapshot.queryParamMap.get('FurnishingTypeId');
+    // this.KeyWords = JSON.parse(KeyWords)
+    // if (PropertyFeatureIds == null) {
+    //   PropertyFeatureIds = []
+    // } else {
+    //   PropertyFeatureIds = JSON.parse(PropertyFeatureIds)
+    // }
     if (this.KeyWords !== null) {
       this.KeyWords.forEach((element: any, i: any) => {
         this.keyWordsUrlValue.push({ name: element })
       })
     }
-    this.propertyFeatureIds = PropertyFeatureIds
-    this.minCarpet = MinCarpetArea
-    this.maxCarpet = MaxCarpetArea
-    this.furnishedType = FurnishingTypeId
+    // this.propertyFeatureIds = PropertyFeatureIds
+    // this.minCarpet = MinCarpetArea
+    // this.maxCarpet = MaxCarpetArea
+    // this.furnishedType = FurnishingTypeId
     this.getLoaction({ "Searching": "", "CountryId": "1" });
     if (this.DistrictsValue !== null) {
       this.fruits = this.DistrictsValue
@@ -235,7 +234,7 @@ export class RentSearchComponent implements OnInit {
     return this.allFruits.filter(fruit => fruit.toLowerCase().includes(filterValue));
   }
   rentTypes: any = []
-  selectedRentType: any;
+  selectedRentType: any = 1;
   loadType() {
     this.service.LoadPropertyListingTypes().subscribe(e => {
       let temp: any = e;
@@ -357,6 +356,7 @@ export class RentSearchComponent implements OnInit {
       MinCarpetArea: this.minCarpet, MaxCarpetArea: this.maxCarpet
     }
     this.route.navigate(['/property/search'], { queryParams: params })
+    // console.log(params);
     this.childToParentDataLoad.emit(objects)
   }
   clearSearch() {
