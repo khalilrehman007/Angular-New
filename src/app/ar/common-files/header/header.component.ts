@@ -236,7 +236,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
       src: '../../../assets/images/icons/data-intelligence.svg',
       class: 'nav-items data-intelligence',
       text: 'ذكاء البيانات',
-      link: 'dashboard-reports',
+      link: 'data-intelligence/data/transaction-data',
     },
     {
       src: '../../../assets/images/icons/classified.svg',
