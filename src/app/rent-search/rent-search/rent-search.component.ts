@@ -24,7 +24,7 @@ export class RentSearchComponent implements OnInit {
   @Input() totalRecord: any;
   type: any;
   PropertyCategoryId: any;
-  RentTypeId: any;
+  RentTypeId: any = 1;
   PropertyListingTypeId: any;
   PropertyAddress: any;
   PriceStart: any;
@@ -71,6 +71,7 @@ export class RentSearchComponent implements OnInit {
   maxLimit: any;
   options: any = {};
   propertyFeatureIds: any = [];
+  selectedTabIndex:any = 1;
   constructor(private activeRoute: ActivatedRoute, private service: AppService, private api: AppService, private route: Router, private modalService: NgbModal, public router: Router) {
     let url = this.route.url.replace("/", "");
     url = this.route.url.split('?')[0];
@@ -147,8 +148,10 @@ export class RentSearchComponent implements OnInit {
     this.loadType();
     this.service.RentTypes().subscribe((data: any) => {
       this.rentType = data.data;
+      setTimeout(() => {
+        this.selectedTabIndex = 1;
+      },100);
     });
-    this.rentTypeIdCheck()
     this.CategoriesTypes();
     this.api.LoadType(2).subscribe((result) => {
       this.propertyTypeCommercial = result;
@@ -176,7 +179,7 @@ export class RentSearchComponent implements OnInit {
       }
     }
   }
-  locationOnSearchData: any = []
+  locationOnSearchData: any = [];
   getLoaction(data: any) {
     let tempData: any = []
     let tempCompleteData: any = []
@@ -230,16 +233,6 @@ export class RentSearchComponent implements OnInit {
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
     return this.allFruits.filter(fruit => fruit.toLowerCase().includes(filterValue));
-  }
-  RentTypeIndexId: any;
-  public rentTypeIdCheck() {
-    let RentTypeIndexId: number = 0;
-    if (this.RentTypeId == 2) {
-      RentTypeIndexId = 1;
-    } else if (this.RentTypeId == 3) {
-      RentTypeIndexId = 2;
-    }
-    this.RentTypeIndexId = RentTypeIndexId;
   }
   rentTypes: any = []
   selectedRentType: any;

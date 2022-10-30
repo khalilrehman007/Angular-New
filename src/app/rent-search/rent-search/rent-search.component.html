@@ -193,9 +193,9 @@
                             <div ngClass="price-range_sec">
                                 <div ngClass="extra-controls form-inline">
                                     <div ngClass="form-group">
-                                        <input type="number" formControlName="PriceStart" [(ngModel)]="minValue"
+                                        <input type="number" formControlName="PriceStart"
                                             placeholder="100,000">
-                                        <input type="number" formControlName="PriceEnd" [(ngModel)]="maxValue"
+                                        <input type="number" formControlName="PriceEnd"
                                             placeholder="Any">
                                     </div>
                                 </div>
@@ -207,7 +207,7 @@
                                     <h5 ngClass="h5-design">Rental Type</h5>
                                 </div>
                             </div>
-                            <mat-tab-group *ngIf="PropertyListingTypeId != 2" [(selectedIndex)]="RentTypeIndexId"
+                            <mat-tab-group *ngIf="PropertyListingTypeId != 2" [(selectedIndex)]="selectedTabIndex"
                                 (selectedTabChange)="getRentalType($event)">
                                 <mat-tab *ngFor="let item of rentType" label={{item.name}}>
                                 </mat-tab>
