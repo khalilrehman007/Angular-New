@@ -788,28 +788,8 @@
                                             <div class="col-sm-12 pb-4" *ngIf="selectedPropertyType.hasPropertyFeature">
                                                 <div ngClass="select-design select2-design select2-design-full">
                                                 <h6 class="h6-design">Select Features</h6>
-                                                <!-- <div class="inneR-border-wrap">
-                                                    <div class="checkbox-flex-box autoflex-layout feature-input">
-                                                        <div class="checkbox-design position-relative"
-                                                            *ngFor="let item of featuresData"
-                                                            (click)="getFeaturesData(item.propertyFeature.id)">
-                                                            <input type="checkbox" id={{item.propertyFeature.id}}
-                                                                name={{item.propertyFeature.featureName}}
-                                                                value={{item.propertyFeature.featureName}}
-                                                                *ngIf="featuresFormData.indexOf(item.propertyFeature.id) != -1"
-                                                                checked>
-                                                            <input type="checkbox" id={{item.propertyFeature.id}}
-                                                                name={{item.propertyFeature.featureName}}
-                                                                value={{item.propertyFeature.featureName}}
-                                                                *ngIf="featuresFormData.indexOf(item.propertyFeature.id) == -1">
-                                                            <button
-                                                                class="checkbox-btn">{{item.propertyFeature.featureName}}</button>
-                                                        </div>
-                                                    </div>
-                                                </div> -->
                                                 <div class="features-select-wrapper">
                                                     <select class="select2 features-select" multiple="multiple">
-                                                        <option value="0">Select Features</option>
                                                         <option *ngFor="let item of featuresData" [value]="item.propertyFeature.id"> {{item.propertyFeature.featureName}}</option>
                                                     </select>
                                                 </div>
