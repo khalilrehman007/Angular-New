@@ -41,13 +41,13 @@
                     </div>
                 </div>
                 <div ngClass="col-md-4">
-                    <div class="user-image">
+                    <div class="user-image position-relative">
                         <img src="{{proAvatar}}" *ngIf="proAvatar != ''" alt="" class="user-img">
+                        <label for="proImg" class="edit-pro-img">
+                            <input type="file" id="proImg" (change)="getImage($event)">
+                            <img src="{{proImgEdit}}" alt="">
+                        </label>
                     </div>
-                    <label for="proImg" class="edit-pro-img">
-                        <input type="file" id="proImg" (change)="getImage($event)">
-                        <img src="{{proImgEdit}}" alt="">
-                    </label>
                 </div>
             </div>
         </div>
