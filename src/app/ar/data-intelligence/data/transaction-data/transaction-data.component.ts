@@ -599,7 +599,6 @@ export class TransactionDataComponent implements OnInit {
         this.showLoader = false;
         this.transactionData = result.data;
         this.totalLength = this.transactionData.transactions.length
-        console.log(this.transactionData);
       }
     });
   }
