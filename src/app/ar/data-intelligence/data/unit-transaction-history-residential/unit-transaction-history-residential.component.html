@@ -148,9 +148,9 @@
                   <tbody>
                     <tr
                       *ngFor="let item of transactionData.saleTransactions | paginate: { itemsPerPage: salesItemsPerPage, currentPage: salesPage, totalItems:salestotalLength }">
-                      <td>{{item.transactionType.nameAr != null ? item.transactionType.nameAr : "N/A"}}</td>
-                      <td>{{item.transactionSubType.nameAr != null ? item.transactionSubType.nameAr : "N/A"}}</td>
-                      <td>{{item.transactionSequence.nameAr != null ? item.transactionSequence.nameAr : "N/A"}}</td>
+                      <td>{{item.transactionType && item.transactionType.nameAr != null ? item.transactionType.nameAr : "N/A"}}</td>
+                      <td>{{item.transactionSubType && item.transactionSubType.nameAr != null ? item.transactionSubType.nameAr : "N/A"}}</td>
+                      <td>{{item.transactionSequence && item.transactionSequence.nameAr != null ? item.transactionSequence.nameAr : "N/A"}}</td>
                       <td>{{item.transactionDate != null ? item.transactionDate.split("T")[0] : "N/A"}}</td>
                       <td>{{item.amount != null ? item.amount : "N/A"}}</td>
                       <td>{{item.amountSqft != null ? item.amountSqft : "N/A"}}</td>
