@@ -275,11 +275,11 @@ export class AppService {
   FindCities(data: any) {
     return this.http.post(this.apiurl + 'FindCities', data);
   }
-  BlogLatestNews() {
-    return this.http.get(this.apiurl + 'BlogLatestNews');
+  BlogLatestNews(data:any) {
+    return this.http.get(this.apiurl + 'BlogLatestNews/' + data);
   }
-  BlogFeatures() {
-    return this.http.get(this.apiurl + 'BlogFeatures');
+  BlogFeatures(data:any) {
+    return this.http.get(this.apiurl + 'BlogFeatures/' + data);
   }
   BlogCategories() {
     return this.http.get(this.apiurl + 'BlogCategories');

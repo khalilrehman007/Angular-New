@@ -304,7 +304,7 @@ export class BuySearchComponent implements OnInit {
   // ]
 
   rentTypes: any = []
-  selectedRentType: any;
+  selectedRentType: any = 2;
   loadType() {
     this.service.LoadPropertyListingTypes().subscribe(e => {
       let temp: any = e;

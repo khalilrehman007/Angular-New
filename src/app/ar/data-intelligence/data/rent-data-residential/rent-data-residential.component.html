@@ -7,6 +7,9 @@
           <app-di-sidebar-component></app-di-sidebar-component>
         </div>
         <div class="dashboard-data-main-contents">
+          <div class="di-inner-header">
+            <h4>Rent Data - Residential</h4>
+          </div>
           <form [formGroup]="range">
             <div class="dashboard-dat-filter-box">
               <div class="row">
@@ -271,13 +274,13 @@
                 <tbody>
                   <tr
                     *ngFor="let item of transactionData.transactions | paginate: { itemsPerPage: itemsPerPage, currentPage: page, totalItems:totalLength }">
-                    <td>{{item.transactionType.nameAr != null ? item.transactionType.nameAr : "N/A"}}</td>
+                    <td>{{item.transactionType != null && item.transactionType.nameAr != null ? item.transactionType.nameAr : "N/A"}}</td>
                     <td>{{item.transactionDate != null ? item.transactionDate.split("T")[0] : "N/A"}}</td>
                     <td>{{item.startDate != null ? item.startDate.split("T")[0] : "N/A"}}</td>
                     <td>{{item.endDate != null ? item.endDate.split("T")[0] : "N/A"}}</td>
-                    <td>{{item.district.nameAr != null ? item.district.nameAr : "N/A"}}</td>
-                    <td>{{item.project.nameAr != null ? item.project.nameAr : "N/A"}}</td>
-                    <td>{{item.propertyType.typeDescriptionAr != null ? item.propertyType.typeDescriptionAr : "N/A"}}</td>
+                    <td>{{item.district && item.district.nameAr != null ? item.district.nameAr : "N/A"}}</td>
+                    <td>{{item.project && item.project.nameAr != null ? item.project.nameAr : "N/A"}}</td>
+                    <td>{{item.propertyType && item.propertyType.typeDescriptionAr != null ? item.propertyType.typeDescriptionAr : "N/A"}}</td>
                     <td>{{item.unit != null ? item.unit : "N/A"}}</td>
                     <td>{{item.bedRoom != null ? item.bedRoom : "N/A"}}</td>
                     <td>{{item.floor != null ? item.floor : "N/A"}}</td>
