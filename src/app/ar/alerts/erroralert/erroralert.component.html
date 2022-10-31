@@ -1,0 +1,12 @@
+<div class="alert_box-design" [ngClass]="hideAlertNg ? 'active' : 'hide'">
+    <div ngClass="alert-message-wrap position-relative" style="background-image: url('assets/images/icons/Animal.png')">
+        <div class="message-block-design">
+        <h2>خطأ</h2>
+        <p>{{error}}</p>
+        <button ngClass="ok-btn" (click)="sendData()">واخا</button>
+        </div>
+        <div class="close-icon">
+            <button class="close" (click)="sendData()"><mat-icon>close</mat-icon></button>
+        </div>
+    </div>
+</div>
