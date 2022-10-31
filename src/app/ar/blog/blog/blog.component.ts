@@ -61,14 +61,6 @@ export class BlogComponent implements OnInit, AfterViewInit {
   countryData: any = "";
   constructor(private service: AppService, private cookie: CookieService) {
     $(window).scrollTop(0);
-    this.service.BlogLatestNews().subscribe((result: any) => {
-      this.latestNews.push(result.data[0]);
-      this.latestNews.push(result.data[1]);
-      this.latestNews.push(result.data[2]);
-    })
-    this.service.BlogFeatures().subscribe((result: any) => {
-      this.featureBlogs = result.data;
-    })
     this.service.BlogCategories().subscribe((result: any) => {
       this.categoryBlogs = result.data;
     })
@@ -80,6 +72,14 @@ export class BlogComponent implements OnInit, AfterViewInit {
     let a = setInterval(() => {
       if (this.cookie.get("countryData")) {
         this.countryData = JSON.parse(this.cookie.get("countryData"));
+        this.service.BlogLatestNews(this.countryData.id).subscribe((result: any) => {
+          this.latestNews.push(result.data[0]);
+          this.latestNews.push(result.data[1]);
+          this.latestNews.push(result.data[2]);
+        })
+        this.service.BlogFeatures(this.countryData.id).subscribe((result: any) => {
+          this.featureBlogs = result.data;
+        })
         this.LoadBlogs();
         clearInterval(a);
       }
