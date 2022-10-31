@@ -126,8 +126,8 @@ export class AppService {
   PropertySortBy() {
     return this.http.get(this.apiurl + 'PropertySortBy/');
   }
-  ValuationTransactions() {
-    return this.http.get(this.apiurl + 'ValuationTransactions/');
+  ValuationTransactions(data:any) {
+    return this.http.get(this.apiurl + 'ValuationTransactions/' + data);
   }
   LoadProfessionalTypes() {
     return this.http.get(this.apiurl + 'ProfessionalTypes');
