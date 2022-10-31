@@ -1,0 +1,535 @@
+<app-header></app-header>
+<section [ngClass]="'inner-cntnt-wrapper slide-left-bar'">
+    <section [ngClass]="'explore-banner-sec position-relative'"
+      style="background-image: url('assets/images/areas-banner.webp')">
+      <div [ngClass]="'container_1280px'">
+        <div ngClass="inner-banner-heading text-center">
+          <h2>Projects scores</h2>
+        </div>
+      </div>
+    </section>
+    <section ngClass="all-scores-sec">
+      <div [ngClass]="'container_1280px'">
+        <div ngClass="explore-breadcrumb-wrapper black-text-breadcrumb">
+          <app-breadcrumbs></app-breadcrumbs>
+        </div>
+        <div ngClass="explore-word-sec" *ngIf="selectedCountry">
+          <!-- <div ngClass="d-flex justify-content-spacebw mb-4">
+            <div ngClass="hp-design">
+              <h4>Ultra Luxury Projects</h4>
+              <p>When it comes to finding out about new projects, which are almost nearing completion or ready to occupy new developments and off-plan projects, which have been just launched, or those under-construction in Dubai, our ‘Home Finder section’ is just what you need. Home to Dubai’s comprehensive list of real estate projects every project listing provides in-depth details starting from artistic, live images and video gallery, fact sheet, location map, frequently asked questions (FAQs), and more on sub communities within the projects, their features and nearby places. Our aim to provide as much information as possible to help you understand thoroughly as you progress with your home buying and investments.</p>
+              <p>Use our search tool to select your preferences in order to view the best properties available. Or give us a call for immediate service at <a href="#"> 800-326- 800.</a>
+              </p>
+            </div>
+          </div> -->
+          <!-- <div ngClass="explore-locations-block-designs">
+            <div ngClass="hp-design mb-4">
+              <h4>{{selectedCountry.viewValue}}</h4>
+            </div>
+            <div ngClass="explore-locations-lists">
+              <div class="row" *ngIf="cityData.length > 0">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-4" *ngFor="let item of cityData"
+                  [ngClass]="checkCity(item.name) ? 'd-none' : ''">
+                  <div ngClass="loc-div-block position-relative">
+                    <div ngClass="loc-img-design">
+                      <img src="https://beta.ovaluate.com/{{item.cityDocument.fileUrl}}">
+                    </div>
+                    <div ngClass="loc-img-cntnt">
+                      <div ngClass="d-flex justify-content-spacebw align-items-center">
+                        <div ngClass="hp-design white">
+                          <h4 ngClass="city-name">{{item.name}}</h4>
+                          <p ngClass="country-name">{{item.country.name}}</p>
+                        </div>
+                        <div ngClass="explore-link">
+                          <a routerLink="/explore/city/{{item.id}}">Explore <mat-icon>keyboard_arrow_right</mat-icon></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> -->
+          <!-- <div ngClass="explore-description_sec mt-4 mb-5" *ngIf="selectedCountry">
+            <div ngClass="hp-design hp-explore-spacing">
+              <h4>Explore {{selectedCountry.viewValue}}</h4>
+              <p>{{selectedCountry.desc}}.</p>
+            </div>
+          </div> -->
+        </div>
+
+              
+      <div class="row">
+          <div class="col-md-6 col-sm-12">              
+          <div>
+            <div ngClass="properties-list-block-design">
+                  <div class="project-scr-card">
+                    <div class="pro-imf">
+                      <img src="https://www.e-architect.com/wp-content/uploads/2020/05/38-morsim-road-hyde-park-johannesburg-d270520-10.jpg" alt="">
+                    </div>
+                    <div class="score-dtls">
+                      <h2 class="prjct-name">Madinat Jumeirah Living (MJL)</h2>
+                      <p><img src="{{homelocationsvg}}"> Dubai - UNITED ARAB EMIRATES</p>
+                      <div class="row">
+                        <div class="col-xl-6 col-md-6 col-sm-12">
+                          <div class="text-center">
+                          <!-- You can now use it in app.component.html -->
+                          <circle-progress
+                          [percent]="100"
+                          [radius]="65"
+                          [space]="-7"
+                          [outerStrokeWidth]="7"
+                          [innerStrokeWidth]="7"
+                          [backgroundPadding]="0"
+                          [backgroundColor]="'#ffffff'"
+                          [title]= "'10/10'"
+                          [showSubtitle]= "false"
+                          [showUnits]= "false"
+                          [outerStrokeColor]="'#6A8DA6'"
+                          [innerStrokeColor]="'#fff'"
+                          [titleColor]="'#8C8988'"
+                          [animation]="true"
+                          [titleFontSize]="'22'"
+                          [titleFontWeight]="'500'"
+                          [animationDuration]="300"
+                          ></circle-progress>
+                          <p class="lbl-name">Money Value</p>
+                        </div>
+                        </div>
+                        <div class="col-xl-6 col-md-6 col-sm-12">
+                          <div class="text-center">
+                          <!-- You can now use it in app.component.html -->
+                          <circle-progress
+                          [percent]="100"
+                          [radius]="65"
+                          [space]="-7"
+                          [outerStrokeWidth]="7"
+                          [innerStrokeWidth]="7"
+                          [backgroundPadding]="0"
+                          [backgroundColor]="'#ffffff'"
+                          [title]= "'10/10'"
+                          [showSubtitle]= "false"
+                          [showUnits]= "false"
+                          [outerStrokeColor]="'#6A8DA6'"
+                          [innerStrokeColor]="'#fff'"
+                          [titleColor]="'#8C8988'"
+                          [animation]="true"
+                          [titleFontSize]="'22'"
+                          [titleFontWeight]="'500'"
+                          [animationDuration]="300"
+                          ></circle-progress>
+                          <p class="lbl-name">Income Generating</p>
+                        </div>
+                        </div>
+                        <div class="col-xl-6 col-md-6 col-sm-12">
+                          <div class="text-center">
+                          <!-- You can now use it in app.component.html -->
+                          <circle-progress
+                          [percent]="100"
+                          [radius]="65"
+                          [space]="-7"
+                          [outerStrokeWidth]="7"
+                          [innerStrokeWidth]="7"
+                          [backgroundPadding]="0"
+                          [backgroundColor]="'#ffffff'"
+                          [title]= "'10/10'"
+                          [showSubtitle]= "false"
+                          [showUnits]= "false"
+                          [outerStrokeColor]="'#6A8DA6'"
+                          [innerStrokeColor]="'#fff'"
+                          [titleColor]="'#8C8988'"
+                          [animation]="true"
+                          [titleFontSize]="'22'"
+                          [titleFontWeight]="'500'"
+                          [animationDuration]="300"
+                          ></circle-progress>
+                          <p class="lbl-name">Capital Appreciation</p>
+                        </div>
+                        </div>
+                        <div class="col-xl-6 col-md-6 col-sm-12">
+                          <div class="text-center">
+                          <!-- You can now use it in app.component.html -->
+                          <circle-progress
+                          [percent]="100"
+                          [radius]="65"
+                          [space]="-7"
+                          [outerStrokeWidth]="7"
+                          [innerStrokeWidth]="7"
+                          [backgroundPadding]="0"
+                          [backgroundColor]="'#ffffff'"
+                          [title]= "'10/10'"
+                          [showSubtitle]= "false"
+                          [showUnits]= "false"
+                          [outerStrokeColor]="'#6A8DA6'"
+                          [innerStrokeColor]="'#fff'"
+                          [titleColor]="'#8C8988'"
+                          [animation]="true"
+                          [titleFontSize]="'22'"
+                          [titleFontWeight]="'500'"
+                          [animationDuration]="300"
+                          ></circle-progress>
+                          <p class="lbl-name">Overall</p>
+                        </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+          <div class="col-md-6 col-sm-12">              
+            <div>
+              <div ngClass="properties-list-block-design">
+                    <div class="project-scr-card">
+                      <div class="pro-imf">
+                        <img src="https://www.e-architect.com/wp-content/uploads/2020/05/38-morsim-road-hyde-park-johannesburg-d270520-10.jpg" alt="">
+                      </div>
+                      <div class="score-dtls">
+                        <h2 class="prjct-name">Madinat Jumeirah Living (MJL)</h2>
+                        <p><img src="{{homelocationsvg}}"> Dubai - UNITED ARAB EMIRATES</p>
+                        <div class="row">
+                          <div class="col-xl-6 col-md-6 col-sm-12">
+                            <div class="text-center">
+                            <!-- You can now use it in app.component.html -->
+                            <circle-progress
+                            [percent]="100"
+                            [radius]="65"
+                            [space]="-7"
+                            [outerStrokeWidth]="7"
+                            [innerStrokeWidth]="7"
+                            [backgroundPadding]="0"
+                            [backgroundColor]="'#ffffff'"
+                            [title]= "'10/10'"
+                            [showSubtitle]= "false"
+                            [showUnits]= "false"
+                            [outerStrokeColor]="'#6A8DA6'"
+                            [innerStrokeColor]="'#fff'"
+                            [titleColor]="'#8C8988'"
+                            [animation]="true"
+                            [titleFontSize]="'22'"
+                            [titleFontWeight]="'500'"
+                            [animationDuration]="300"
+                            ></circle-progress>
+                            <p class="lbl-name">Money Value</p>
+                          </div>
+                          </div>
+                          <div class="col-xl-6 col-md-6 col-sm-12">
+                            <div class="text-center">
+                            <!-- You can now use it in app.component.html -->
+                            <circle-progress
+                            [percent]="100"
+                            [radius]="65"
+                            [space]="-7"
+                            [outerStrokeWidth]="7"
+                            [innerStrokeWidth]="7"
+                            [backgroundPadding]="0"
+                            [backgroundColor]="'#ffffff'"
+                            [title]= "'10/10'"
+                            [showSubtitle]= "false"
+                            [showUnits]= "false"
+                            [outerStrokeColor]="'#6A8DA6'"
+                            [innerStrokeColor]="'#fff'"
+                            [titleColor]="'#8C8988'"
+                            [animation]="true"
+                            [titleFontSize]="'22'"
+                            [titleFontWeight]="'500'"
+                            [animationDuration]="300"
+                            ></circle-progress>
+                            <p class="lbl-name">Income Generating</p>
+                          </div>
+                          </div>
+                          <div class="col-xl-6 col-md-6 col-sm-12">
+                            <div class="text-center">
+                            <!-- You can now use it in app.component.html -->
+                            <circle-progress
+                            [percent]="100"
+                            [radius]="65"
+                            [space]="-7"
+                            [outerStrokeWidth]="7"
+                            [innerStrokeWidth]="7"
+                            [backgroundPadding]="0"
+                            [backgroundColor]="'#ffffff'"
+                            [title]= "'10/10'"
+                            [showSubtitle]= "false"
+                            [showUnits]= "false"
+                            [outerStrokeColor]="'#6A8DA6'"
+                            [innerStrokeColor]="'#fff'"
+                            [titleColor]="'#8C8988'"
+                            [animation]="true"
+                            [titleFontSize]="'22'"
+                            [titleFontWeight]="'500'"
+                            [animationDuration]="300"
+                            ></circle-progress>
+                            <p class="lbl-name">Capital Appreciation</p>
+                          </div>
+                          </div>
+                          <div class="col-xl-6 col-md-6 col-sm-12">
+                            <div class="text-center">
+                            <!-- You can now use it in app.component.html -->
+                            <circle-progress
+                            [percent]="100"
+                            [radius]="65"
+                            [space]="-7"
+                            [outerStrokeWidth]="7"
+                            [innerStrokeWidth]="7"
+                            [backgroundPadding]="0"
+                            [backgroundColor]="'#ffffff'"
+                            [title]= "'10/10'"
+                            [showSubtitle]= "false"
+                            [showUnits]= "false"
+                            [outerStrokeColor]="'#6A8DA6'"
+                            [innerStrokeColor]="'#fff'"
+                            [titleColor]="'#8C8988'"
+                            [animation]="true"
+                            [titleFontSize]="'22'"
+                            [titleFontWeight]="'500'"
+                            [animationDuration]="300"
+                            ></circle-progress>
+                            <p class="lbl-name">Overall</p>
+                          </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+          </div>
+          <div class="col-md-6 col-sm-12">              
+            <div>
+              <div ngClass="properties-list-block-design">
+                    <div class="project-scr-card">
+                      <div class="pro-imf">
+                        <img src="https://www.e-architect.com/wp-content/uploads/2020/05/38-morsim-road-hyde-park-johannesburg-d270520-10.jpg" alt="">
+                      </div>
+                      <div class="score-dtls">
+                        <h2 class="prjct-name">Madinat Jumeirah Living (MJL)</h2>
+                        <p><img src="{{homelocationsvg}}"> Dubai - UNITED ARAB EMIRATES</p>
+                        <div class="row">
+                          <div class="col-xl-6 col-md-6 col-sm-12">
+                            <div class="text-center">
+                            <!-- You can now use it in app.component.html -->
+                            <circle-progress
+                            [percent]="100"
+                            [radius]="65"
+                            [space]="-7"
+                            [outerStrokeWidth]="7"
+                            [innerStrokeWidth]="7"
+                            [backgroundPadding]="0"
+                            [backgroundColor]="'#ffffff'"
+                            [title]= "'10/10'"
+                            [showSubtitle]= "false"
+                            [showUnits]= "false"
+                            [outerStrokeColor]="'#6A8DA6'"
+                            [innerStrokeColor]="'#fff'"
+                            [titleColor]="'#8C8988'"
+                            [animation]="true"
+                            [titleFontSize]="'22'"
+                            [titleFontWeight]="'500'"
+                            [animationDuration]="300"
+                            ></circle-progress>
+                            <p class="lbl-name">Money Value</p>
+                          </div>
+                          </div>
+                          <div class="col-xl-6 col-md-6 col-sm-12">
+                            <div class="text-center">
+                            <!-- You can now use it in app.component.html -->
+                            <circle-progress
+                            [percent]="100"
+                            [radius]="65"
+                            [space]="-7"
+                            [outerStrokeWidth]="7"
+                            [innerStrokeWidth]="7"
+                            [backgroundPadding]="0"
+                            [backgroundColor]="'#ffffff'"
+                            [title]= "'10/10'"
+                            [showSubtitle]= "false"
+                            [showUnits]= "false"
+                            [outerStrokeColor]="'#6A8DA6'"
+                            [innerStrokeColor]="'#fff'"
+                            [titleColor]="'#8C8988'"
+                            [animation]="true"
+                            [titleFontSize]="'22'"
+                            [titleFontWeight]="'500'"
+                            [animationDuration]="300"
+                            ></circle-progress>
+                            <p class="lbl-name">Income Generating</p>
+                          </div>
+                          </div>
+                          <div class="col-xl-6 col-md-6 col-sm-12">
+                            <div class="text-center">
+                            <!-- You can now use it in app.component.html -->
+                            <circle-progress
+                            [percent]="100"
+                            [radius]="65"
+                            [space]="-7"
+                            [outerStrokeWidth]="7"
+                            [innerStrokeWidth]="7"
+                            [backgroundPadding]="0"
+                            [backgroundColor]="'#ffffff'"
+                            [title]= "'10/10'"
+                            [showSubtitle]= "false"
+                            [showUnits]= "false"
+                            [outerStrokeColor]="'#6A8DA6'"
+                            [innerStrokeColor]="'#fff'"
+                            [titleColor]="'#8C8988'"
+                            [animation]="true"
+                            [titleFontSize]="'22'"
+                            [titleFontWeight]="'500'"
+                            [animationDuration]="300"
+                            ></circle-progress>
+                            <p class="lbl-name">Capital Appreciation</p>
+                          </div>
+                          </div>
+                          <div class="col-xl-6 col-md-6 col-sm-12">
+                            <div class="text-center">
+                            <!-- You can now use it in app.component.html -->
+                            <circle-progress
+                            [percent]="100"
+                            [radius]="65"
+                            [space]="-7"
+                            [outerStrokeWidth]="7"
+                            [innerStrokeWidth]="7"
+                            [backgroundPadding]="0"
+                            [backgroundColor]="'#ffffff'"
+                            [title]= "'10/10'"
+                            [showSubtitle]= "false"
+                            [showUnits]= "false"
+                            [outerStrokeColor]="'#6A8DA6'"
+                            [innerStrokeColor]="'#fff'"
+                            [titleColor]="'#8C8988'"
+                            [animation]="true"
+                            [titleFontSize]="'22'"
+                            [titleFontWeight]="'500'"
+                            [animationDuration]="300"
+                            ></circle-progress>
+                            <p class="lbl-name">Overall</p>
+                          </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+          </div>
+          <div class="col-md-6 col-sm-12">              
+            <div>
+              <div ngClass="properties-list-block-design">
+                    <div class="project-scr-card">
+                      <div class="pro-imf">
+                        <img src="https://www.e-architect.com/wp-content/uploads/2020/05/38-morsim-road-hyde-park-johannesburg-d270520-10.jpg" alt="">
+                      </div>
+                      <div class="score-dtls">
+                        <h2 class="prjct-name">Madinat Jumeirah Living (MJL)</h2>
+                        <p><img src="{{homelocationsvg}}"> Dubai - UNITED ARAB EMIRATES</p>
+                        <div class="row">
+                          <div class="col-xl-6 col-md-6 col-sm-12">
+                            <div class="text-center">
+                            <!-- You can now use it in app.component.html -->
+                            <circle-progress
+                            [percent]="100"
+                            [radius]="65"
+                            [space]="-7"
+                            [outerStrokeWidth]="7"
+                            [innerStrokeWidth]="7"
+                            [backgroundPadding]="0"
+                            [backgroundColor]="'#ffffff'"
+                            [title]= "'10/10'"
+                            [showSubtitle]= "false"
+                            [showUnits]= "false"
+                            [outerStrokeColor]="'#6A8DA6'"
+                            [innerStrokeColor]="'#fff'"
+                            [titleColor]="'#8C8988'"
+                            [animation]="true"
+                            [titleFontSize]="'22'"
+                            [titleFontWeight]="'500'"
+                            [animationDuration]="300"
+                            ></circle-progress>
+                            <p class="lbl-name">Money Value</p>
+                          </div>
+                          </div>
+                          <div class="col-xl-6 col-md-6 col-sm-12">
+                            <div class="text-center">
+                            <!-- You can now use it in app.component.html -->
+                            <circle-progress
+                            [percent]="100"
+                            [radius]="65"
+                            [space]="-7"
+                            [outerStrokeWidth]="7"
+                            [innerStrokeWidth]="7"
+                            [backgroundPadding]="0"
+                            [backgroundColor]="'#ffffff'"
+                            [title]= "'10/10'"
+                            [showSubtitle]= "false"
+                            [showUnits]= "false"
+                            [outerStrokeColor]="'#6A8DA6'"
+                            [innerStrokeColor]="'#fff'"
+                            [titleColor]="'#8C8988'"
+                            [animation]="true"
+                            [titleFontSize]="'22'"
+                            [titleFontWeight]="'500'"
+                            [animationDuration]="300"
+                            ></circle-progress>
+                            <p class="lbl-name">Income Generating</p>
+                          </div>
+                          </div>
+                          <div class="col-xl-6 col-md-6 col-sm-12">
+                            <div class="text-center">
+                            <!-- You can now use it in app.component.html -->
+                            <circle-progress
+                            [percent]="100"
+                            [radius]="65"
+                            [space]="-7"
+                            [outerStrokeWidth]="7"
+                            [innerStrokeWidth]="7"
+                            [backgroundPadding]="0"
+                            [backgroundColor]="'#ffffff'"
+                            [title]= "'10/10'"
+                            [showSubtitle]= "false"
+                            [showUnits]= "false"
+                            [outerStrokeColor]="'#6A8DA6'"
+                            [innerStrokeColor]="'#fff'"
+                            [titleColor]="'#8C8988'"
+                            [animation]="true"
+                            [titleFontSize]="'22'"
+                            [titleFontWeight]="'500'"
+                            [animationDuration]="300"
+                            ></circle-progress>
+                            <p class="lbl-name">Capital Appreciation</p>
+                          </div>
+                          </div>
+                          <div class="col-xl-6 col-md-6 col-sm-12">
+                            <div class="text-center">
+                            <!-- You can now use it in app.component.html -->
+                            <circle-progress
+                            [percent]="100"
+                            [radius]="65"
+                            [space]="-7"
+                            [outerStrokeWidth]="7"
+                            [innerStrokeWidth]="7"
+                            [backgroundPadding]="0"
+                            [backgroundColor]="'#ffffff'"
+                            [title]= "'10/10'"
+                            [showSubtitle]= "false"
+                            [showUnits]= "false"
+                            [outerStrokeColor]="'#6A8DA6'"
+                            [innerStrokeColor]="'#fff'"
+                            [titleColor]="'#8C8988'"
+                            [animation]="true"
+                            [titleFontSize]="'22'"
+                            [titleFontWeight]="'500'"
+                            [animationDuration]="300"
+                            ></circle-progress>
+                            <p class="lbl-name">Overall</p>
+                          </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+          </div>
+      </div>
+      </div>
+    </section>
+<app-footer></app-footer>
+</section>
