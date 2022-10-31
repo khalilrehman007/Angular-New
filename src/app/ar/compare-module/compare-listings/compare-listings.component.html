@@ -1,0 +1,218 @@
+<app-header></app-header>
+<section [ngClass]="'slide-left-bar compare-page-sec'">
+<section class="compare-banner" style="background-image: url('https://beta.ovaluate.com/Attchments/PrivacyPolicyImage/about-banner1%20(1).png')">
+    <div class="container_1280px">
+     <div class="baner-compare-heading">
+         <h2>Have a look through your compare results</h2>
+     </div>
+    </div>
+  </section>
+  <section class="compare-breadcrumbs">
+    <div class="container_1280px">
+            <div class="breadcrumb-dark">
+                <app-breadcrumbs></app-breadcrumbs>
+        </div>
+    </div>
+    </section>
+    <section ngClass="properties-comparison-sec">
+        <div ngClass="container_1280px">
+            <div ngClass="property_compare-header">
+                <ul>
+                    <li (click)="scroll(target)">Location</li>
+                    <li (click)="scroll(property_info)">Property Info</li>
+                    <li (click)="scroll(other_details)">Other Details</li>
+                </ul>
+            </div>
+            <div ngClass="property-compare-box">
+                <div ngClass="compare-block">
+                    <div ngClass="table-responsive table-design">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td ngClass="first-td-design">
+                                        <div ngClass="property-cparison-heading">
+                                            <h4>Property Comparision</h4>
+                                        </div>
+                                    </td>
+                                    <td *ngFor="let property of properties">
+                                        <div ngClass="property-comparison-block position-relative cursor-pointer" routerLink="">
+                                            <div ngClass="com-img">
+                                                <img src="{{property.img}}">
+                                            </div>
+                                            <div ngClass="com-cntnt">
+                                                <h4> {{property.price}} AED
+                                                    <small>/Monthly</small></h4>
+                                                <h5>{{property.title}}</h5>
+                                                <address>{{property.address}}</address>
+                                            </div>
+                                            <button ngClass="delete-property"><img
+                                                    src="{{trash}}"></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div ngClass="grey-heading" #target>
+                    <h2>Location</h2>
+                </div>
+                <div ngClass="compare-block">
+                    <div ngClass="table-responsive table-design">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td ngClass="first-td-design">
+                                        Building Name / Project Name
+                                    </td>
+                                    <td *ngFor="let property of properties">
+                                        {{property.title}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td ngClass="first-td-design">
+                                        Locality
+                                    </td>
+                                    <td *ngFor="let property of properties">
+                                        {{property.address}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td ngClass="first-td-design">
+                                        City
+                                    </td>
+                                    <td *ngFor="let property of properties">
+                                        {{property.city}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div ngClass="grey-heading" #property_info>
+                    <h2>Property Info</h2>
+                </div>
+                <div ngClass="compare-block">
+                    <div ngClass="table-responsive table-design">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td ngClass="first-td-design">
+                                        Apartment Size
+                                    </td>
+                                    <td *ngFor="let property of properties">
+                                        {{property.carpetArea}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td ngClass="first-td-design">
+                                        Bedrooms
+                                    </td>
+                                    <td *ngFor="let property of properties">
+                                        {{property.bedrooms}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td ngClass="first-td-design">
+                                        Bathrooms
+                                    </td>
+                                    <td *ngFor="let property of properties">
+                                        {{property.bathrooms}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td ngClass="first-td-design">
+                                        Available Parking
+                                    </td>
+                                    <td *ngFor="let property of properties">
+                                        {{property.parkings}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td ngClass="first-td-design">
+                                        Construction Age
+                                    </td>
+                                    <td *ngFor="let property of properties">
+                                        {{property.propertyAge}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td ngClass="first-td-design">
+                                        Floor Number
+                                    </td>
+                                    <td *ngFor="let property of properties">
+                                        {{property.floorNo}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td ngClass="first-td-design">
+                                        Total Floors
+                                    </td>
+                                    <td *ngFor="let property of properties">
+                                        {{property.totalFloor}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td ngClass="first-td-design">
+                                        Tower Block
+                                    </td>
+                                    <td *ngFor="let property of properties">
+                                        {{property.towerBlock}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td ngClass="first-td-design">
+                                        Unit No
+                                    </td>
+                                    <td *ngFor="let property of properties">
+                                        {{property.unitNo}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div ngClass="grey-heading" #other_details>
+                    <h2>Other Details</h2>
+                </div>
+                <div ngClass="compare-block">
+                    <div ngClass="table-responsive table-design">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td ngClass="first-td-design">
+                                        Furnishing Status
+                                    </td>
+                                    <td *ngFor="let property of properties">
+                                        {{property.furnishingType}}
+                                    </td>
+                                </tr>
+                                <!-- <tr>
+                                    <td ngClass="first-td-design">
+                                        Property Features
+                                    </td>
+                                    <td *ngFor="let property of properties">
+                                        <ul ngClass="list-unstyled">
+                                            <li *ngFor="let data of properties">
+                                                <img height="40px" width="40px"
+                                                    src="{{baseUrl+data.propertyFeature.document.fileUrl}}">
+                                                {{data.propertyFeature.featureName}}
+                                            </li>
+
+                                            <div ngClass="proprty-View-detials">
+                                                <a [routerLink]="['/PropertDetailsPage']"
+                                                    [queryParams]="{id: property.id}" ngClass="grey-bordered-btn">View
+                                                    Details</a>
+                                            </div>
+                                        </ul>
+                                    </td>
+                                </tr> -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<app-footer></app-footer>
+</section>
