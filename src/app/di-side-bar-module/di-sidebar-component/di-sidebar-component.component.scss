@@ -353,10 +353,10 @@ $color_1: #4A4A4A;
     border-right: 2px solid #646262;
     transform: rotate(45deg);
 }
-.btn-has-dropdown:hover,.btn-has-dropdown.active{
+.btn-has-dropdown:hover,.btn-has-dropdown.active,.dashboard-data-side-links ul>li>button:hover{
 background-color: whitesmoke;
 }
-.dashboard-data-side-links ul>li .dropdown-design-main>.btn-has-dropdown:hover,.dashboard-data-side-links ul>li .dropdown-design-main>.btn-has-dropdown.active{
+.dashboard-data-side-links ul>li .dropdown-design-main>.btn-has-dropdown:hover,.dashboard-data-side-links ul>li .dropdown-design-main>.btn-has-dropdown.active,.dashboard-data-side-links ul>li>button:hover{
 	padding-left: 5px !important;
     transition: all 0.5s ease-in-out;
 }
@@ -404,6 +404,21 @@ background-color: whitesmoke;
 }
 .sub-menu>.dropdown-design.dropdown-design-sub-menu:first-child {
     margin-top: 10px;
+}
+.dashboard-data-side-links ul>li>button {
+    width: 100%;
+    border: none;
+    text-align: left;
+    padding: 5px 10px 5px 0px;
+    text-transform: uppercase;
+    color: #3A3A3A;
+    font-weight: 500;
+    font-size: 14px;
+    margin-bottom: 0px;
+    background-color: transparent;
+    transition: all 0.5s ease-in-out;
+    position: relative;
+    transition: all 0.5s ease-in-out;
 }
 
 
