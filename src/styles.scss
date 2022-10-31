@@ -8999,9 +8999,6 @@ margin-right: 0px;
 	.properties-list-block-design {
 		margin-bottom: 20px !important;
 	}
-	.property-price_detals {
-		margin-bottom: 15px;
-	}
 	.property-gallery-div-sec {
 		.mobile-gallery_flex {
 			display: flex;
@@ -9650,6 +9647,28 @@ margin-right: 0px;
 }
 
 @media (max-width: 767px) {
+	.property-price_detals {
+		margin-top: 10px;
+	}
+	.property-contact-buttons {
+		flex-wrap: wrap;
+		justify-content: space-between !important;
+	}
+	.property-contact-buttons > a {
+		padding-left: 32px;
+		position: relative;
+		color: #595ad5;
+		text-align: center !important;
+		width: 48%;
+		margin-right: 0px !important;
+		margin-bottom: 10px;
+		padding: 4px 15px !important;
+	}
+	.property-contact-buttons > a.call .mat-icon {
+		position: relative !important;
+		left: -5px !important;
+		top: 3px !important;
+	}
 	.explore-places-col {
 		margin-bottom: 20px;
 
@@ -10302,8 +10321,8 @@ margin-right: 0px;
 	}
 
 	.properties-list_cntnts {
-		padding-left: 15px;
-		padding-right: 15px;
+		padding-left: 5px;
+		padding-right: 5px;
 	}
 
 	.listing-links {
@@ -10801,7 +10820,7 @@ margin-right: 0px;
 	}
 
 	.property-action-hdr {
-		padding-top: 10px;
+		padding-top: 0px;
 	}
 
 	.property-range-bar.d-flex {
@@ -11102,6 +11121,10 @@ margin-right: 0px;
 @media (max-width: 767px) {
 	.checkbox-flex-box.four-column {
 		flex-wrap: wrap;
+	}
+	.property-details-highlights > span {
+		margin-right: 9px;
+		margin-bottom: 5px;
 	}
 	.property-filter-wrap .block-item .block-wrapper.mb-4 {
 		margin-bottom: 5px !important;
@@ -11879,6 +11902,9 @@ background: transparent !important;
 	.property_info-row .row > div {
 		padding-bottom: 8px;
 		margin-bottom: 8px;
+	}
+	.property-price_detals h4 {
+		line-height: 25px !important;
 	}
 	.pointss_lists .payment_box_cnntn .box-price {
 		font-size: 30px !important;
@@ -12912,4 +12938,29 @@ input:focus{
 }
 .properties-list_slider>div {
     height: 100%;
+}
+.property-price_detals .property-tags:empty {
+    display: none !important;
+}
+.adds-blck-sec img {
+    width: 100%;
+}
+.Overflow-hidden .rent-propoerties-main-sec {
+    display: none;
+}
+
+
+
+@media (max-width: 1280px){
+	.property-footer-block>.row>div {
+		width: 100%;
+	}
+	.property-footer-block .lsited-by-details {
+		margin-bottom: 8px;
+	}
+}
+@media (max-width: 1280px) and (min-width: 768px){
+	.property-contact-buttons {
+		justify-content: flex-start !important;
+	}
 }
