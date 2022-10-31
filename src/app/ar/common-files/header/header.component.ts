@@ -40,7 +40,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   availableClasses: string[] = ["sidebar-active", "nosidebar"];
   overFlowClasses: string[] = ["overflow-shown", "Overflow-hidden"];
   currentClassIdx: number = 0;
-  headerCountries: any;
+  headerCountries: any='';
   userId: any;
   baseUrl = 'https://beta.ovaluate.com/'
 
