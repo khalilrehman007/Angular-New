@@ -76,44 +76,11 @@ export class RentSearchComponent implements OnInit {
   constructor(private activeRoute: ActivatedRoute, private service: AppService, private api: AppService, private route: Router, private modalService: NgbModal, public router: Router) {
     let url = this.route.url.replace("/", "");
     url = this.route.url.split('?')[0];
-    // this.routeCheck = url
-    // this.totalPropertyRecord = localStorage.getItem('propertyListingTotalRecord');
-    // this.PropertyCategoryId = this.activeRoute.snapshot.queryParamMap.get('PropertyCategoryId');
-    // this.RentTypeId = this.activeRoute.snapshot.queryParamMap.get('RentTypeId');
-    // let PropertyTypeIds: any = this.activeRoute.snapshot.queryParamMap.get('PropertyTypeIds');
-    // this.PropertyListingTypeId = this.activeRoute.snapshot.queryParamMap.get('PropertyListingTypeId');
-    // this.PropertyAddress = this.activeRoute.snapshot.queryParamMap.get('PropertyAddress');
-    // this.PriceStart = this.activeRoute.snapshot.queryParamMap.get('PriceStart');
-    // this.PriceEnd = this.activeRoute.snapshot.queryParamMap.get('PriceEnd');
-    // this.Bedrooms = this.activeRoute.snapshot.queryParamMap.get('Bedrooms');
-    // this.selectedBeds = this.Bedrooms;
-    // this.Bathrooms = this.activeRoute.snapshot.queryParamMap.get('Bathrooms');
-    // this.selectedBaths = this.Bathrooms;
-    // this.PropertyTypeIds = JSON.parse(PropertyTypeIds)
-    // let DistrictsId: any = this.activeRoute.snapshot.queryParamMap.get('DistrictIds');
-    // let DistrictsValue: any = this.activeRoute.snapshot.queryParamMap.get('DistrictsValue');
-    // this.DistrictsId = JSON.parse(DistrictsId)
-    // this.DistrictsValue = JSON.parse(DistrictsValue)
-    // let KeyWords: any = this.activeRoute.snapshot.queryParamMap.get('KeyWords');
-    // let PropertyFeatureIds: any = this.activeRoute.snapshot.queryParamMap.get('PropertyFeatureIds');
-    // let MinCarpetArea: any = this.activeRoute.snapshot.queryParamMap.get('MinCarpetArea');
-    // let MaxCarpetArea: any = this.activeRoute.snapshot.queryParamMap.get('MaxCarpetArea');
-    // let FurnishingTypeId: any = this.activeRoute.snapshot.queryParamMap.get('FurnishingTypeId');
-    // this.KeyWords = JSON.parse(KeyWords)
-    // if (PropertyFeatureIds == null) {
-    //   PropertyFeatureIds = []
-    // } else {
-    //   PropertyFeatureIds = JSON.parse(PropertyFeatureIds)
-    // }
     if (this.KeyWords !== null) {
       this.KeyWords.forEach((element: any, i: any) => {
         this.keyWordsUrlValue.push({ name: element })
       })
     }
-    // this.propertyFeatureIds = PropertyFeatureIds
-    // this.minCarpet = MinCarpetArea
-    // this.maxCarpet = MaxCarpetArea
-    // this.furnishedType = FurnishingTypeId
     this.getLoaction({ "Searching": "", "CountryId": "1" });
     if (this.DistrictsValue !== null) {
       this.fruits = this.DistrictsValue
@@ -356,8 +323,7 @@ export class RentSearchComponent implements OnInit {
       , PropertyFeatureIds: this.propertyFeatureIds, FurnishingTypeId: this.furnishedType,
       MinCarpetArea: this.minCarpet, MaxCarpetArea: this.maxCarpet
     }
-    this.route.navigate(['/property/search'], { queryParams: params })
-    // console.log(params);
+    this.route.navigate(['/ar/property/search'], { queryParams: params })
     this.childToParentDataLoad.emit(objects)
   }
   clearSearch() {
@@ -407,12 +373,8 @@ export class RentSearchComponent implements OnInit {
       DistrictsValue: [], KeyWords: [], PropertyFeatureIds: [],
       MinCarpetArea: '', MaxCarpetArea: '', FurnishingTypeId: '', videoTourSorting: ''
     }
-    if (this.routeCheck == '/property/search') {
-      this.route.navigate(['/property/search'], { queryParams: params })
+      this.route.navigate(['/ar/property/search'], { queryParams: params })
       this.childToParentDataLoad.emit(object)
-    } else {
-      this.proceedSearchViewMap()
-    }
   }
   modelPropertyPictures: any = []
   openVerticallyCentered(content: any) {
@@ -536,38 +498,5 @@ export class RentSearchComponent implements OnInit {
       this.commercial = response.data[1].categoryNameAr;
       this.commercialId = response.data[1].id;
     });
-  }
-  proceedSearchViewMap() {
-    let keywordsData: any = [];
-    this.Keywords.forEach((element, i) => {
-      keywordsData.push(element.name)
-    })
-    let PropertyTypeIds: any = [];
-    if (this.propertyCategory == 1) {
-      //residential
-      PropertyTypeIds = this.PropertyTypeResidentialIds
-    } else if (this.propertyCategory == 2) {
-      //commercial
-      PropertyTypeIds = this.PropertyTypeCommercialIds
-    }
-    let PropertyTypeIdsParams: any = JSON.stringify(PropertyTypeIds);
-    let params: any = {
-      type: this.type, "PropertyTypeIds": PropertyTypeIdsParams, "RentTypeId": this.RentTypeId,
-      "PropertyCategoryId": this.PropertyCategoryId, PriceStart: this.SubmitForm.value.PriceStart, PriceEnd: this.SubmitForm.value.PriceEnd,
-      Bedrooms: this.Bedrooms, Bathrooms: this.Bathrooms, PropertyAddress: this.SubmitForm.value.Name,
-      "PropertyListingTypeId": this.PropertyListingTypeId, CurrentPage: 1, DistrictIds: JSON.stringify(this.DistrictsId),
-      DistrictsValue: JSON.stringify(this.DistrictsValue), KeyWords: JSON.stringify(keywordsData), PropertyFeatureIds: JSON.stringify(this.propertyFeatureIds),
-      MinCarpetArea: this.minCarpet, MaxCarpetArea: this.maxCarpet, FurnishingTypeId: this.furnishedType
-    }
-    let objects: any = {
-      type: this.type, "PropertyTypeIds": PropertyTypeIds, "RentTypeId": this.RentTypeId,
-      "PropertyCategoryId": this.PropertyCategoryId, PriceStart: this.SubmitForm.value.PriceStart, PriceEnd: this.SubmitForm.value.PriceEnd,
-      Bedrooms: this.Bedrooms, Bathrooms: this.Bathrooms, PropertyAddress: this.SubmitForm.value.Name,
-      "PropertyListingTypeId": this.PropertyListingTypeId, CurrentPage: 1, DistrictIds: this.DistrictsId, KeyWords: keywordsData
-      , PropertyFeatureIds: this.propertyFeatureIds, FurnishingTypeId: this.furnishedType,
-      MinCarpetArea: this.minCarpet, MaxCarpetArea: this.maxCarpet
-    }
-    this.route.navigate(['/property/mapview'], { queryParams: params })
-    this.childToParentDataLoad.emit(objects)
   }
 }

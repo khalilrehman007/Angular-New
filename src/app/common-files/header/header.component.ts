@@ -351,7 +351,6 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     $(".language-select").on("change", () => {
-      console.log($(".language-select").val())
       // if ($(".language-select").val() == "Arabic") {
       //   this.route.navigate(["/ar"])
       // }

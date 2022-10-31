@@ -33,7 +33,7 @@
                                     <button (click)="clickEvent2()" (click)="overFlowClass()"><img src="{{close}}"></button>
                                     <div ngClass="countries_dropdown-list" *ngFor="let data of headerCountries; let i = index">
                                     <ul ngClass="list-unstyled">
-                                        <li class="country-dropdown-item" (click)="selectCountry(data,i)"><img src="{{flags[i]}}">{{data.name}} ({{data.currency}} | {{data.unitType}})</li>
+                                        <li class="country-dropdown-item" (click)="selectCountry(data,i)"><img src="{{flags[i]}}">{{data.name}} ({{data.currency}})</li>
                                     </ul>
                                     </div>
                                 </div>
@@ -437,7 +437,7 @@
                                     <button (click)="clickEvent2()"><img src="{{close}}"></button>
                                     <div ngClass="countries_dropdown-list" *ngFor="let data of headerCountries; let i=index">
                                     <ul ngClass="list-unstyled">
-                                        <li class="country-dropdown-item" (click)="selectCountry(data,i)"><img src="{{flags[i]}}">{{data.name}} ({{data.currency}} | {{data.unitType}})</li>
+                                        <li class="country-dropdown-item" (click)="selectCountry(data,i)"><img src="{{flags[i]}}">{{data.name}} ({{data.currency}})</li>
                                     </ul>
                                     </div>
                                 </div>
