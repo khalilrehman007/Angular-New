@@ -175,7 +175,7 @@ export class PropertyTypesComponent implements OnInit {
               for (let i = 0; i < this.formData.PropertyFeatures.length; i++) {
                 $(".features-item-" + this.formData.PropertyFeatures[i].PropertyFeatureId).attr("selected", "selected");
               }
-              $('.select2').select2({ placeholder: "Click here to add more" });
+              $('.select2').select2({ placeholder: "انقر هنا لإضافة المزيد" });
               clearInterval(interval);
             }
           }, 100);
@@ -241,7 +241,7 @@ export class PropertyTypesComponent implements OnInit {
       this.showLoader = false;
       let interval: any = setInterval(() => {
         if (this.featuresData.length > 0) {
-          $('.select2').select2({ placeholder: "Click here to add more" });
+          $('.select2').select2({ placeholder: "انقر هنا لإضافة المزيد" });
           clearInterval(interval);
         }
       }, 100);

@@ -39,8 +39,8 @@
                                 <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                                     <div ngClass="reports-download-thanku text-center">
                                         <h5>شكراً!</h5>
-                                        <p>Your transaction has been completed successfully.</p>
-                                        <p>Please click the dowload button below for the property ID</p>
+                                        <p>تمت معاملتك بنجاح.</p>
+                                        <p>الرجاء النقر فوق زر التنزيل أدناه لتنزيل التقرير</p>
                                         <h4 ngClass="report-id">{{this.valuationResponse.reportNumberCode}}</h4>
                                         <button ngClass="download-report-btn" (click)="downloadReport()">تنزيل التقرير</button>
                                         <div ngClass="download_animation">
@@ -49,10 +49,10 @@
                                         <div ngClass="report-print-icon">
                                             <button ngClass="print-report-btn"><img src="{{report}}"></button>
                                         </div>
-                                        <p>The report has been mail to <a
+                                        <p>تم إرسال التقرير بالبريد إلى <a
                                                 href="mailto:myname@email.com">{{this.valuationResponse.emailAddress}}</a>
                                         </p>
-                                        <a routerLink="" ngClass="go-to-dahboard">Go to Dashboard</a>
+                                        <a routerLink="/ar/profile" ngClass="go-to-dahboard">الذهاب إلى لوحة القيادة</a>
                                     </div>
                                 </div>
                             </div>
