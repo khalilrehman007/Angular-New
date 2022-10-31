@@ -122,7 +122,7 @@ export class RentSearchComponent implements OnInit {
       startWith(null),
       map((fruit: string | null) => (fruit ? this._filter(fruit) : this.allFruits.slice())),
     );
-    this.minValue = this.PriceStart;
+    this.minValue = 10;
     this.maxValue = 50000000;
     if (this.type == null) {
       this.activeRoute.params.subscribe(params => {
