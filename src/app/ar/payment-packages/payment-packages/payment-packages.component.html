@@ -5,9 +5,8 @@
     <div [ngClass]="'container_1280px'">
       <app-breadcrumbs></app-breadcrumbs>
       <div ngClass="inner-banner-heading text-center">
-        <h2>Ovaluate Points and Packages</h2>
-        <p>First time on ovaluate and want to sell or rent your property really fast, simply subscibe to one of our paid
-          packages and get super benefits.</p>
+        <h2>نقاط وباقات اوفاليوت </h2>
+        <p>لأول مرة على شكل بيضاوي وتريد بيع أو تأجير الممتلكات الخاصة بك؟ ببساطة اشترك في إحدى باقاتنا المدفوعة واحصل على جميع المزايا اليوم!</p>
       </div>
     </div>
   </section>
@@ -15,7 +14,7 @@
     <div ngClass="container_1280px">
       <div class="package_lists">
         <div class="packages-point-heading text-center">
-          <h2>Packages</h2>
+          <h2>الباقات</h2>
         </div>
         <div ngClass="row" *ngIf="packagesType.length > 0">
           <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12" *ngFor="let packages of packagesType">
@@ -26,13 +25,13 @@
               </div>
               <div class="payment_box_hdr">
                 <h4>{{packages.nameAr}}</h4>
-                <p>Price: {{packages.price}} Points</p>
+                <p>سعر: {{packages.price}} نقاط </p>
               </div>
               <div class="payment_box_cnntn">
                 <ul class="list-unstyled" *ngFor="let property of packages.propertyListingPackageFeatures; let i = index">
                   <li>{{property.detailAr}}</li>
                 </ul>
-                <button class="view-more-modal" (click)="premiumPopup(premiumcontent)" *ngIf="validateButton(packages.propertyListingPackageFeatures)">View More</button>
+                <button class="view-more-modal" (click)="premiumPopup(premiumcontent)" *ngIf="validateButton(packages.propertyListingPackageFeatures)">الاطلاع علي المزيد </button>
 
               </div>
             </div>
@@ -117,7 +116,7 @@
         </div>
       </div>
       <div class="text-center mt-5">
-        <button class="buy-now-btn" (click)="proceedPackagePayment()">Buy Now</button>
+        <button class="buy-now-btn" (click)="proceedPackagePayment()">اشهر الان</button>
       </div>
     </div>
   </section>
@@ -125,7 +124,7 @@
     <div ngClass="container_1280px">
       <div class="pointss_lists">
         <div class="packages-point-heading text-center">
-          <h2>Points</h2>
+          <h2>نقاط </h2>
         </div>
         <div ngClass="row">
           <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12" *ngFor="let data of points">
@@ -139,8 +138,8 @@
               </div>
               <div class="payment_box_cnntn">
                 <h2 class="box-price">{{data.price}} {{data.country.currencyAr}}</h2>
-                <p class="ads-points">{{data.pointValue}} Points</p>
-                <p class="validity-days">30 days validity</p>
+                <p class="ads-points">{{data.pointValue}} نقاط </p>
+                <p class="validity-days">صلاحية ٣٠ يوم </p>
               </div>
             </div>
           </div>
@@ -179,7 +178,7 @@
         </div>
       </div>
       <div class="text-center mt-5">
-        <button class="buy-now-btn" (click)="proceedPayment()">Buy Now</button>
+        <button class="buy-now-btn" (click)="proceedPayment()">اشهر الان</button>
       </div>
     </div>
   </section>
