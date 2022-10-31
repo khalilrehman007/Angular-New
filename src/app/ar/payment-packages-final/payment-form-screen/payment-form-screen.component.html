@@ -5,7 +5,7 @@
         <div [ngClass]="'container_1280px'">
             <app-breadcrumbs></app-breadcrumbs>
             <div ngClass="inner-banner-heading text-center">
-                <h2>Payment</h2>
+                <h2>الدفع</h2>
             </div>
         </div>
     </section>
@@ -18,9 +18,9 @@
                             <div ngClass="detail-box d-flex justify-content-spacebw">
                                 <div ngClass="pay-heading-block">
                                     <h6>Points Package Type</h6>
-                                    <p>{{seletedPackage.name}}</p>
+                                    <p>{{seletedPackage.nameAr}}</p>
                                 </div>
-                                <p ngClass="price">{{seletedPackage.country.currency}} {{seletedPackage.price}}</p>
+                                <p ngClass="price">{{seletedPackage.country.currencyAr}} {{seletedPackage.price}}</p>
                             </div>
                             <div ngClass="tax-box d-flex justify-content-spacebw">
                                 <div ngClass="pay-heading-block">
@@ -32,7 +32,7 @@
                                 <div ngClass="pay-heading-block">
                                     <h6>Total Due</h6>
                                 </div>
-                                <p ngClass="price">{{seletedPackage.country.currency}} {{seletedPackage.price}}</p>
+                                <p ngClass="price">{{seletedPackage.country.currencyAr}} {{seletedPackage.price}}</p>
                             </div>
                         </div>
                         <div ngClass="strip-btn-div">
@@ -43,7 +43,7 @@
                 <!-- <ng-template #PaymentPopupModal let-modal> -->
                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                     <div class="payment-form-list">
-                        <h5 class="h5-design mb-2">Payment</h5>
+                        <h5 class="h5-design mb-2">الدفع</h5>
                         <p ngClass="mb-4">Please fill your payment details for proceed further</p>
                         <div class="paymentmodal-form-design">
                             <form [formGroup]="cardForm">
