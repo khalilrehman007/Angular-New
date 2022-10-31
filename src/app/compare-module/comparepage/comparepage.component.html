@@ -105,12 +105,12 @@
                         <h4><img src="/assets/images/logo.svg"><strong>Ovaluate</strong> Recomended</h4>
                         <h3>Not Sure, Which property to buy?</h3>
                         <p>Let us help you find the dream property</p>
-                        <button class="compare-now-btn">View Featured Properties</button>
+                        <button class="compare-now-btn" (click)="scroll(property_info)">View Featured Properties</button>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="featured-car-comparisons">
+        <div class="featured-car-comparisons" #property_info>
             <div ngClass="compare-header">
                 <h4 class="h4-design">Featured Properties</h4>
                 <p>You Could choose 3 properties from here and compare</p>

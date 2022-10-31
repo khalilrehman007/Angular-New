@@ -341,7 +341,7 @@ html[dir="rtl"]{
 }
 .listing-property-ul .mat-list .mat-list-item a > span {
     margin-right: 0px;
-    margin-left: 4px;
+    margin-left: 8px;
 }
 .listing-property-ul .mat-list .mat-list-item:first-child:after{
 	display: none;
@@ -481,10 +481,10 @@ html[dir="rtl"]{
     text-align: right !important;
 }
 .dashboard-data-side-lists .dropdown .dropdown-toggle::before {
-    left: 0;
+	left: 10px;
     right: initial !important;
     transform: rotate(227deg) !important;
-    top: 5px !important;
+    top: 11px !important;
 }
 select.nice-select {
     background-position: 5% !important;
@@ -547,7 +547,31 @@ select.nice-select {
     padding-left: 0px !important;
     padding-right: 6px !important;
 }
-
+.header-section .navbar-nav .blue-bordered-btn .mat-icon {
+    top: 8px !important;
+}
+.header-section .navbar-nav .blue-bordered-btn svg {
+    top: 8px !important;
+}
+#main-header .my-account-li{
+    margin-left: 5px !important;
+    margin-right: 2px !important;
+}
+.dashboard-data-side-links ul li .mat-icon{
+	margin-right: 0px !important;
+	margin-left: 8px;
+}
+.dashboard-data-select-box .mat-form-field-infix label {
+    padding-left: 0px !important;
+    padding-right: 15px;
+}
+.dashboard-data-select-box .mat-form-field-appearance-legacy.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
+    margin-left: 0px !important;
+    margin-right: 4px !important;
+}
+.dashboard-date-range-box .mat-form-field-flex .mat-form-field-suffix {
+    right: -8px !important;
+}
 
     @media (max-width: 767px){
 		.properties-list_cntnts {
