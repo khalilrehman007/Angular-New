@@ -69,7 +69,7 @@ export class ComparepageComponent implements OnInit {
       price2: '68,657',
       PropertyName1: 'Sultan Building',
       PropertyName2: 'Sultan New Building',
-      link: '',
+      link: '/compare/view',
       address1: 'Etihad Tower 4, Etihad Towers,',
       address2: 'Etihad Tower 4, Etihad Towers,',
     },
@@ -80,7 +80,7 @@ export class ComparepageComponent implements OnInit {
       price2: '68,657',
       PropertyName1: 'Sultan Building',
       PropertyName2: 'Sultan New Building',
-      link: '',
+      link: '/compare/view',
       address1: 'Etihad Tower 4, Etihad Towers,',
       address2: 'Etihad Tower 4, Etihad Towers,',
     },
@@ -91,7 +91,7 @@ export class ComparepageComponent implements OnInit {
       price2: '68,657',
       PropertyName1: 'Sultan Building',
       PropertyName2: 'Sultan New Building',
-      link: '',
+      link: '/compare/view',
       address1: 'Etihad Tower 4, Etihad Towers,',
       address2: 'Etihad Tower 4, Etihad Towers,',
     },
@@ -102,7 +102,7 @@ export class ComparepageComponent implements OnInit {
       price2: '68,657',
       PropertyName1: 'Sultan Building',
       PropertyName2: 'Sultan New Building',
-      link: '',
+      link: '/compare/view',
       address1: 'Etihad Tower 4, Etihad Towers,',
       address2: 'Etihad Tower 4, Etihad Towers,',
     },
@@ -113,7 +113,7 @@ export class ComparepageComponent implements OnInit {
       price2: '68,657',
       PropertyName1: 'Sultan Building',
       PropertyName2: 'Sultan New Building',
-      link: '',
+      link: '/compare/view',
       address1: 'Etihad Tower 4, Etihad Towers,',
       address2: 'Etihad Tower 4, Etihad Towers,',
     },
@@ -128,4 +128,7 @@ export class ComparepageComponent implements OnInit {
     {img: '/assets/images/pro-comparison.png',price: '350,000',title: 'Blue Wave Tower',address: 'Etihad Tower 4, Etihad Towers, Corniche Road, Abu Dhabi',city: 'Dubai',carpetArea: '1200',bedrooms: '2',bathrooms: '1',parkings: 'No',propertyAge:'10 yeras',floorNo: '10',totalFloor: '25',towerBlock: 'yes',unitNo: '123',furnishingType:'Furnished'},
     {img: '/assets/images/pro-comparison.png',price: '350,000',title: 'Blue Wave Tower',address: 'Etihad Tower 4, Etihad Towers, Corniche Road, Abu Dhabi',city: 'Dubai',carpetArea: '1200',bedrooms: '2',bathrooms: '1',parkings: 'No',propertyAge:'10 yeras',floorNo: '10',totalFloor: '25',towerBlock: 'yes',unitNo: '123',furnishingType:'Furnished'}
   ];
+  scroll(el: HTMLElement) {
+    el.scrollIntoView();
+  }
 }
