@@ -322,7 +322,7 @@ export class PropertyDocumentsComponent implements OnInit {
       this.status1 = !this.status1;
     } else {
       this.currentField = "required-docs";
-      this.error = "Please Upload the required Documents.";
+      this.error = "يرجى تحميل المستندات المطلوبة";
       this.showError = true;
     }
   }
@@ -352,36 +352,36 @@ export class PropertyDocumentsComponent implements OnInit {
   Nextshow2() {
     if (!this.formData.ReportPackageId) {
       this.currentField = "package-type-input";
-      this.error = "Select Package Type";
+      this.error = "حدد نوع الحزمة";
       this.showError = true;
       return;
     } else if (!this.formData.ReportLanguage) {
       this.currentField = "language-input";
-      this.error = "Select Report Language";
+      this.error = "حدد لغة التقرير";
       this.showError = true;
       return;
     } else if (this.reportForm.value.name == "") {
       this.currentField = "name-input";
-      this.error = "Please Enter Owner Name";
+      this.error = "الرجاء إدخال اسم المالك";
       this.showError = true;
       return;
     } else if (this.reportForm.value.phone == "") {
       this.currentField = "phone-input";
-      this.error = "Please Enter Owner Phone Number";
+      this.error = "الرجاء إدخال رقم هاتف المالك";
       this.showError = true;
       return;
     } else if (!this.termsAccepted) {
       this.currentField = "accept-terms-input";
-      this.error = "Please Accept Terms and Conditions";
+      this.error = "الرجاء قبول الشروط والأحكام";
       this.showError = true;
       return;
     } else if (this.formData.InspectionRequired && $("#formDate").val() == "") {
-      this.error = "Please Enter Inspection Date";
+      this.error = "الرجاء إدخال تاريخ الفحص";
       this.showError = true;
       return;
     }
     this.showLoader = true;
-    this.publishText = "Please Wait...";
+    this.publishText = "أرجو الإنتظار...";
     this.formData.CustomerName = this.reportForm.value.name;
     let temp: any = this.countriesList.value
     this.formData.PhoneNumber = temp + this.reportForm.value.phone;
@@ -558,47 +558,47 @@ export class PropertyDocumentsComponent implements OnInit {
     let currentDate: any = this.datePipe.transform(this.minDate, 'yyyy-MM-dd')?.split("-");
     if (this.paymentForm.value.cardNumber == "") {
       this.currentField = "card-number-input";
-      this.error = "Please Enter Card Number";
+      this.error = "الرجاء إدخال رقم البطاقة";
       this.showError = true;
       return;
     } else if (number.toString().length < 16) {
       this.currentField = "card-number-input";
-      this.error = "Please Enter a Valid Card Number";
+      this.error = "الرجاء إدخال رقم بطاقة سارية المفعول";
       this.showError = true;
       return;
     } else if (this.paymentForm.value.expiryDate == "") {
       this.currentField = "expiry-input";
-      this.error = "Please Enter Card Expiry";
+      this.error = "الرجاء إدخال انتهاء صلاحية البطاقة";
       this.showError = true;
       return;
     } else if (date.toString().length < 5) {
       this.currentField = "expiry-input";
-      this.error = "Please Enter a Valid Card Expiry";
+      this.error = "الرجاء إدخال بطاقة صالحة منتهية الصلاحية";
       this.showError = true;
       return;
     } else if (this.paymentForm.value.cvv == "") {
       this.currentField = "cvv-input";
-      this.error = "Please Enter CVV";
+      this.error = "الرجاء إدخال CVV";
       this.showError = true;
       return;
     } else if (cvv.toString().length < 3) {
       this.currentField = "cvv-input";
-      this.error = "Please Enter a valid CVV";
+      this.error = "الرجاء إدخال رمز CVV صالح";
       this.showError = true;
       return;
     } else if ("20" + date.toString().split("/")[1] < currentDate[0]) {
       this.currentField = "expiry-input";
-      this.error = "Please Enter a Valid Card Expiry";
+      this.error = "الرجاء إدخال بطاقة صالحة منتهية الصلاحية";
       this.showError = true;
       return;
     } else if ("20" + date.toString().split("/")[1] == currentDate[0] && date.toString().split("/")[0] < currentDate[1] || date.toString().split("/")[0] > 12) {
       this.currentField = "expiry-input";
-      this.error = "Please Enter a Valid Card Expiry";
+      this.error = "الرجاء إدخال بطاقة صالحة منتهية الصلاحية";
       this.showError = true;
       return;
     } else if (this.paymentForm.value.cardName = "") {
       this.currentField = "card-name-input";
-      this.error = "Please Enter a Card Holder Name";
+      this.error = "الرجاء إدخال اسم حامل البطاقة";
       this.showError = true;
       return;
     }
