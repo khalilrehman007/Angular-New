@@ -310,7 +310,7 @@ export class BuySearchComponent implements OnInit {
       let temp: any = e;
       if (temp.message == "Property Listing Type List fetched successfully") {
         for (let list of temp.data) {
-          this.rentTypes.push({ name: list.name, id: list.id });
+          this.rentTypes.push({ name: list.nameAr, id: list.id });
         }
       }
     });

@@ -54,8 +54,8 @@
                             <img [src]="item.src2" ngClass="img-fluid" alt="">
                         </span> -->
                         <div ngClass="blog-title-content">
-                            <h5 *ngIf="item && item.blogTitle">{{item.blogTitleAr}}</h5>
-                            <span *ngIf="item && item.blogData">{{item.blogDate.split("T")[0]}}</span>
+                            <h5 *ngIf="item && item.blogTitleAr">{{item.blogTitleAr}}</h5>
+                            <span *ngIf="item && item.blogDateFormatAr">{{item.blogDateFormatAr.split("T")[0]}}</span>
                         </div>
                     </a>
                 </div>

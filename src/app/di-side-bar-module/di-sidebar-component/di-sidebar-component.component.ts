@@ -28,9 +28,24 @@ export class DiSidebarComponentComponent implements OnInit {
   trash = '../../../assets/images/icons/Trash-dotted.svg'
   logoutimg = '../../../assets/images/logout-popup-banner.png'
   profileimg = '../../../assets/images/icons/profile-icon.png'
+  active:any = 0;
 
   constructor(config: NgbDropdownConfig, private router: Router) {
     config.autoClose = false;
+    let temp:any = this.router.url.split("/")[3];
+    if(temp == "transaction-data") {
+      this.active = 1;
+    } else if(temp == "rent-data-residential") {
+      this.active = 2;
+    } else if(temp == "unit-transaction-residential") {
+      this.active = 3;
+    } else if(temp == "monthly-analysis-residential") {
+      this.active = 4;
+    } else if(temp == "quaterly-analysis-residential") {
+      this.active = 5;
+    } else if(temp == "yearly-analysis-residential") {
+      this.active = 6;
+    }
   }
   ngOnInit(): void {
   }

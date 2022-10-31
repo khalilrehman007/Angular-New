@@ -25,12 +25,12 @@
                 <button class="cstm-btn-pay-points"></button>
               </div>
               <div class="payment_box_hdr">
-                <h4>{{packages.name}}</h4>
+                <h4>{{packages.nameAr}}</h4>
                 <p>Price: {{packages.price}} Points</p>
               </div>
               <div class="payment_box_cnntn">
                 <ul class="list-unstyled" *ngFor="let property of packages.propertyListingPackageFeatures; let i = index">
-                  <li>{{property.detail}}</li>
+                  <li>{{property.detailAr}}</li>
                 </ul>
                 <button class="view-more-modal" (click)="premiumPopup(premiumcontent)" *ngIf="validateButton(packages.propertyListingPackageFeatures)">View More</button>
 
@@ -135,10 +135,10 @@
                 <button class="cstm-btn-pay-points"></button>
               </div>
               <div class="payment_box_hdr">
-                <h4>{{data.name}}</h4>
+                <h4>{{data.nameAr}}</h4>
               </div>
               <div class="payment_box_cnntn">
-                <h2 class="box-price">{{data.price}} {{data.country.currency}}</h2>
+                <h2 class="box-price">{{data.price}} {{data.country.currencyAr}}</h2>
                 <p class="ads-points">{{data.pointValue}} Points</p>
                 <p class="validity-days">30 days validity</p>
               </div>

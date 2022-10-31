@@ -37,15 +37,15 @@
             <div ngbDropdown class="dropdown-design dropdown-design-sub-menu">
               <button type="button" class="btn btn-outline-primary" id="dropdownBasictransactindata" ngbDropdownToggle>Transaction Data</button>
               <div ngbDropdownMenu aria-labelledby="dropdownBasictransactindata">
-                <button ngbDropdownItem><a (click)="btnClicked('/data-intelligence/data/transaction-data')">Transaction Data</a></button>
-                <button ngbDropdownItem><a (click)="btnClicked('/data-intelligence/data/rent-data-residential')">Rent Data</a></button>
-                <button ngbDropdownItem><a (click)="btnClicked('/data-intelligence/data/unit-transaction-residential')">Unit Transaction History</a></button>
+                <button ngbDropdownItem><a (click)="btnClicked('/ar/data-intelligence/data/transaction-data')" [ngClass]="active == 1 ? 'active' : ''">Transaction Data</a></button>
+                <button ngbDropdownItem><a (click)="btnClicked('/ar/data-intelligence/data/rent-data-residential')" [ngClass]="active == 2 ? 'active' : ''">Rent Data</a></button>
+                <button ngbDropdownItem><a (click)="btnClicked('/ar/data-intelligence/data/unit-transaction-residential')" [ngClass]="active == 3 ? 'active' : ''">Unit Transaction History</a></button>
                 <div ngbDropdown class="dropdown-design dropdown-design-sub-menu">
                   <button type="button" class="btn btn-outline-primary" id="dropdownBasictransactinanalysis" ngbDropdownToggle>Transaction Analysis </button>
                   <div ngbDropdownMenu aria-labelledby="dropdownBasictransactinanalysis">
-                    <button ngbDropdownItem><a (click)="btnClicked('/data-intelligence/data/monthly-analysis-residential')">Monthly Analysis</a></button>
-                    <button ngbDropdownItem><a (click)="btnClicked('/data-intelligence/data/quaterly-analysis-residential')">Quarterly Analysis</a></button>
-                    <button ngbDropdownItem><a (click)="btnClicked('/data-intelligence/data/yearly-analysis-residential')">Yearly Analysis</a></button>
+                    <button ngbDropdownItem><a (click)="btnClicked('/ar/data-intelligence/data/monthly-analysis-residential')" [ngClass]="active == 4 ? 'active' : ''">Monthly Analysis</a></button>
+                    <button ngbDropdownItem><a (click)="btnClicked('/ar/data-intelligence/data/quaterly-analysis-residential')" [ngClass]="active == 5 ? 'active' : ''">Quarterly Analysis</a></button>
+                    <button ngbDropdownItem><a (click)="btnClicked('/ar/data-intelligence/data/yearly-analysis-residential')" [ngClass]="active == 6 ? 'active' : ''">Yearly Analysis</a></button>
                   </div>
                 </div>
               </div>

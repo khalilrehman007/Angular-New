@@ -34,7 +34,7 @@
                       <mat-select [disableOptionCentering]="true" multiple (selectionChange)="getCity($event)" [(value)]="selectedCity">
                         <mat-option value="All" (click)="selectAllCity()">Select All</mat-option>
                         <mat-option *ngFor="let city of citiesData" [value]="city.id">
-                          {{city.name}}
+                          {{city.nameAr}}
                         </mat-option>
                       </mat-select>
                     </mat-form-field>
@@ -48,7 +48,7 @@
                       <mat-select [disableOptionCentering]="true" multiple (selectionChange)="getDistrict($event)" [(value)]="selectedDistrict">
                         <mat-option value="All" (click)="selectAllDistrict()">Select All</mat-option>
                         <mat-option *ngFor="let community of communityfield" [value]="community.id">
-                          {{community.name}}
+                          {{community.nameAr}}
                         </mat-option>
                       </mat-select>
                     </mat-form-field>
@@ -62,7 +62,7 @@
                       <mat-select [disableOptionCentering]="true" multiple (selectionChange)="getPropertyType($event)" [(value)]="selectedPropertyType">
                         <mat-option value="All" (click)="selectAllPropertyType()">Select All</mat-option>
                         <mat-option *ngFor="let protype of filteredProperty" [value]="protype.id">
-                          {{protype.typeDescription}}
+                          {{protype.typeDescriptionAr}}
                         </mat-option>
                       </mat-select>
                     </mat-form-field>
@@ -76,7 +76,7 @@
                       <mat-select [disableOptionCentering]="true" multiple (selectionChange)="getProject($event)" [(value)]="selectedProject">
                         <mat-option value="All" (click)="selectAllProject()">Select All</mat-option>
                         <mat-option *ngFor="let property of filteredPropertyOnly" [value]="property.id">
-                          {{property.name}}
+                          {{property.nameAr}}
                         </mat-option>
                       </mat-select>
                     </mat-form-field>
@@ -91,7 +91,7 @@
                         [(value)]="selectedTransactionType">
                         <mat-option value="All" (click)="selectAllTransactionType()">Select All</mat-option>
                         <mat-option *ngFor="let transaction of filteredTransaction" [value]="transaction.id">
-                          {{transaction.name}}
+                          {{transaction.nameAr}}
                         </mat-option>
                       </mat-select>
                     </mat-form-field>
@@ -106,7 +106,7 @@
                         [(value)]="selectedSalesSequence">
                         <mat-option value="All" (click)="selectAllSalesSequence()">Select All</mat-option>
                         <mat-option *ngFor="let sale of filteredsales" [value]="sale.id">
-                          {{sale.name}}
+                          {{sale.nameAr}}
                         </mat-option>
                       </mat-select>
                     </mat-form-field>
@@ -120,7 +120,7 @@
                       <mat-select [disableOptionCentering]="true" multiple (selectionChange)="getDevelopers($event)" [(value)]="selectedDevelopers">
                         <mat-option value="All" (click)="selectAllDevelopers()">Select All</mat-option>
                         <mat-option *ngFor="let developer of filteredDevelopers" [value]="developer.id">
-                          {{developer.name}}
+                          {{developer.nameAr}}
                         </mat-option>
                       </mat-select>
                     </mat-form-field>
@@ -269,13 +269,13 @@
                 <tbody>
                   <tr
                     *ngFor="let item of transactionData.transactions | paginate: { itemsPerPage: itemsPerPage, currentPage: page, totalItems:totalLength }">
-                    <td>{{item.transactionType != null ? item.transactionType.name : "N/A"}}</td>
-                    <td>{{item.transactionSubType != null ? item.transactionSubType.name : "N/A"}}</td>
-                    <td>{{item.transactionSequence != null ? item.transactionSequence.name : "N/A"}}</td>
+                    <td>{{item.transactionType.nameAr != null ? item.transactionType.nameAr : "N/A"}}</td>
+                    <td>{{item.transactionSubType.nameAr != null ? item.transactionSubType.nameAr : "N/A"}}</td>
+                    <td>{{item.transactionSequence.nameAr != null ? item.transactionSequence.nameAr : "N/A"}}</td>
                     <td>{{item.transactionDate != null ? item.transactionDate.split("T")[0] : "N/A"}}</td>
-                    <td>{{item.district != null ? item.district.name : "N/A"}}</td>
-                    <td>{{item.propertyType != null ? item.propertyType.typeDescription : "N/A"}}</td>
-                    <td>{{item.project != null ? item.project.name : "N/A"}}</td>
+                    <td>{{item.district != null ? item.district.nameAr : "N/A"}}</td>
+                    <td>{{item.propertyType.typeDescriptionAr != null ? item.propertyType.typeDescriptionAr : "N/A"}}</td>
+                    <td>{{item.project.nameAr != null ? item.project.nameAr : "N/A"}}</td>
                     <td>{{item.unit != null ? item.unit : "N/A"}}</td>
                     <td>{{item.bedRoom != null ? item.bedRoom : "N/A"}}</td>
                     <td>{{item.floor != null ? item.floor : "N/A"}}</td>
@@ -284,7 +284,7 @@
                     <td>{{item.landSizeSqft != null ? item.landSizeSqft : "N/A"}}</td>
                     <td>{{item.amount != null ? item.amount : "N/A"}}</td>
                     <td>{{item.amountSqft != null ? item.amountSqft : "N/A"}}</td>
-                    <td>{{item.propertyDeveloper != null ? item.propertyDeveloper.name : "N/A"}}</td>
+                    <td>{{item.propertyDeveloper.nameAr != null ? item.propertyDeveloper.nameAr : "N/A"}}</td>
                   </tr>
                 </tbody>
               </table>
