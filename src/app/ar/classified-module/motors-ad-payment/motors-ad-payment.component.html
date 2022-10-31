@@ -1,0 +1,338 @@
+<app-header></app-header>
+<section [ngClass]="'slide-left-bar ads-page-sec'">
+    <section [ngClass]="'ads-banner-wrapper'">
+        <div [ngClass]="'container_1280px'">
+            <div ngClass="heading-title-sec text-center">
+                <h2>Ovaluate Ad Classified</h2>
+                <p>Include as much details and pictures as possible, and set the right price!</p>
+            </div>
+        </div>
+    </section>
+    <section class="ads-form-design-section" style="background-image: url('assets/images/background/bg-1.png');">
+        <div class="container_1280px">
+            <div class="ads-form-design">
+                <form>
+                    <div class="list-property-header">
+                        <h5 class="h5-heading">You’re almost!</h5>
+                    </div>
+                    <div class="attraction-block-wrap text-center">
+                        <img src="{{advertize}}">
+                        <p>Attract more buyers with a free CarReport badge <br>Enter your VIN / Chassis number</p>
+                        <div ngClass="block-wrapper mb-4 position-relative icon-right-input">
+                            <mat-form-field class="full-width input-design-2" appearance="fill">
+                                <input matInput type="text" placeholder="Enter VIN / Chassis Number"
+                                    lang="en" />
+                            </mat-form-field>
+                            <button class="abs-btn-icn" (click)="clickEvent1()"><img src="{{info}}"></button>
+                            <p class="p-text hide" [ngClass]="status1 ? 'active' : 'notactive'">This number will not show on your ad</p>
+                    </div>
+                    </div>
+                    <div class="lsiting-summary-block mb-3">
+                        <div class="listing-summary">
+                        <h6 class="h6-design">Listing Summary</h6>
+                        <a routerLink="">Edit</a>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+                                <div class="pro-details-info-blocks">
+                                    <h6>Model</h6>
+                                    <p>Porchse 911</p>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+                                <div class="pro-details-info-blocks">
+                                    <h6>Trim</h6>
+                                    <p>Standard</p>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+                                <div class="pro-details-info-blocks">
+                                    <h6>Reginoal Specs</h6>
+                                    <p>GCC Specs</p>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+                                <div class="pro-details-info-blocks">
+                                    <h6>Year</h6>
+                                    <p>2010</p>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+                                <div class="pro-details-info-blocks">
+                                    <h6>Mileage</h6>
+                                    <p>95,000 KM</p>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+                                <div class="pro-details-info-blocks">
+                                    <h6>Price</h6>
+                                    <p>AED 67,000</p>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+                                <div class="pro-details-info-blocks">
+                                    <h6>Phone Number</h6>
+                                    <p>050891111111</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div ngClass="propery-pictures-sec mb-4">
+                        <div class="inneR-border-wrap position-relative">
+                            <div ngClass="div_thumb-wrapper img_upload">
+                                <label class="btn btn-default p-0 upload-label">
+                                    <input type="file" accept=".jpg, .png, .jpeg," multiple
+                                        class="input-file" />
+                                    <button ngClass="black-upload-btn"><span
+                                            ngClass="plus_icon-div">+</span> Upload Pictures</button>
+                                </label>
+                                <div ngClass="upload-preview-images">
+                                    <img ngClass="img-thumb-icon"
+                                        src="../../../../assets/images/image-gallery-thumbnail.png">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+                            <div ngClass="block-wrapper mb-3">
+                                    <label>Title</label>
+                                    <mat-form-field class="full-width input-design-2" appearance="fill">
+                                        <input matInput type="text" placeholder="Enter Title"
+                                            lang="en" />
+                                    </mat-form-field>
+                            </div>
+                        </div>
+                        <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+                            <div ngClass="block-wrapper mb-3 position-relative optional-text">
+                                    <label>360 Tour URL</label>
+                                    <mat-form-field class="full-width input-design-2" appearance="fill">
+                                        <input matInput type="text" placeholder="360 Tour URL"
+                                            lang="en" />
+                                    </mat-form-field>
+                                    <span class="optional-span">*Optional</span>
+                                    <p class="option-info-text">Learn more about our accepted 360 tour providers</p>
+                            </div>
+                        </div>
+                        <div ngClass="col-xl-12 col-lg-12 col-sm-12">
+                            <div ngClass="block-wrapper mb-3">
+                                    <label>Describe your Used Cars for Sale</label>
+                                    <mat-form-field class="full-width input-design-2" appearance="fill">
+                                    <textarea matInput placeholder="Describe your Used Cars for Sale"></textarea>
+                                    </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                    <div ngClass="select-boxes">
+                        <div ngClass="row">
+                            <div ngClass="col-xl-4 col-lg-4 col-sm-12">
+                                <div ngClass="block-wrapper mb-4">
+                                    <div ngClass="select-design select2-design">
+                                        <label>Fuel Type</label>
+                                        <select class="select2 country-select">
+                                            <option value="0"> Select Fuel Type</option>
+                                            <option>Petrol</option>
+                                            <option>Diesel</option>
+                                            <option>LPG/Autogas</option>
+                                            <option>Hydrogen</option>
+                                            <option>Electric</option>
+                                            <option>Hybrid</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ngClass="col-xl-4 col-lg-4 col-sm-12">
+                                <div ngClass="block-wrapper mb-4">
+                                    <div ngClass="select-design select2-design">
+                                        <label>Body Condition</label>
+                                        <select class="select2 country-select">
+                                            <option value="0"> Select Body Condition</option>
+                                            <option>Convertible</option>
+                                            <option>Coupe</option>
+                                            <option>Hatchback</option>
+                                            <option>SUV</option>
+                                            <option>Sedan</option>
+                                            <option>Truck</option>
+                                            <option>Van/Minivan</option>
+                                            <option>Station wagon</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ngClass="col-xl-4 col-lg-4 col-sm-12">
+                                <div ngClass="block-wrapper mb-4">
+                                    <div ngClass="select-design select2-design">
+                                        <label>Mechanical Condition</label>
+                                        <select class="select2 country-select">
+                                            <option value="0"> Select</option>
+                                            <option class="country-item">Standard</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ngClass="col-xl-4 col-lg-4 col-sm-12">
+                                <div ngClass="block-wrapper mb-4">
+                                    <div ngClass="select-design select2-design">
+                                        <label>Color</label>
+                                        <select class="select2 country-select">
+                                            <option value="0"> Select</option>
+                                            <option>white</option>
+                                            <option>Black</option>
+                                            <option>Red</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ngClass="col-xl-4 col-lg-4 col-sm-12">
+                                <div ngClass="block-wrapper mb-4">
+                                    <div ngClass="select-design select2-design">
+                                        <label>Warranty</label>
+                                        <select class="select2 country-select">
+                                            <option value="0"> Select</option>
+                                            <option>10 Years</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ngClass="col-xl-4 col-lg-4 col-sm-12">
+                                <div ngClass="block-wrapper mb-4">
+                                    <div ngClass="select-design select2-design">
+                                        <label>Doors</label>
+                                        <select class="select2 country-select">
+                                            <option value="0"> Select</option>
+                                            <option>2</option>
+                                            <option>4</option>
+                                            <option>6</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ngClass="col-xl-4 col-lg-4 col-sm-12">
+                                <div ngClass="block-wrapper mb-4">
+                                    <div ngClass="select-design select2-design full-width-select2">
+                                        <label>No. Of Cylinders</label>
+                                        <select class="select2 country-select">
+                                            <option value="0"> Select</option>
+                                            <option>2</option>
+                                            <option>4</option>
+                                            <option>6</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ngClass="col-xl-4 col-lg-4 col-sm-12">
+                                <div ngClass="block-wrapper mb-4">
+                                    <div ngClass="select-design select2-design full-width-select2">
+                                        <label>Transmission Type</label>
+                                        <select class="select2 country-select">
+                                            <option value="0"> Select</option>
+                                            <option>Automatic</option>
+                                            <option>Manual</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ngClass="col-xl-4 col-lg-4 col-sm-12">
+                                <div ngClass="block-wrapper mb-4">
+                                    <div ngClass="select-design select2-design full-width-select2">
+                                        <label>Body Type</label>
+                                        <select class="select2 country-select">
+                                            <option value="0"> Select</option>
+                                            <option>SUV</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ngClass="col-xl-4 col-lg-4 col-sm-12">
+                                <div ngClass="block-wrapper mb-4">
+                                    <div ngClass="select-design select2-design full-width-select2">
+                                        <label>Horsepower</label>
+                                        <select class="select2 country-select">
+                                            <option value="0"> Select</option>
+                                            <option>1000 Horsepower</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ngClass="col-xl-4 col-lg-4 col-sm-12">
+                                <div ngClass="block-wrapper mb-4">
+                                    <div ngClass="select-design select2-design full-width-select2">
+                                        <label>Steering Side</label>
+                                        <select class="select2 country-select">
+                                            <option value="0"> Select</option>
+                                            <option>Left hand side</option>
+                                            <option>Right hand side</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ngClass="col-xl-4 col-lg-4 col-sm-12">
+                                <div ngClass="block-wrapper mb-4">
+                                    <label>Extras</label>
+                                    <div ngClass="cstm_dropdown-list dropdown-design-2 position-relative drodown_with-img">
+                                        <button ngClass="drop-down_btn" (click)="clickEvent2()">Specialties</button>
+                                        <div class="cstm_dropdown-menu" [ngClass]="status2 ? 'active' : 'notactive'">
+                                            <ul ngClass="list-unstyled residentails-unit-list">
+                                                <li ngClass="d-flex position-relative">
+                                                    <div>
+                                                        <input checked type="radio" name="ExpertIn"
+                                                            value="English">
+                                                        <span ngClass="property_sel"></span>
+                                                    </div>
+                                                    <div ngClass="proprty_name">
+                                                        <p>Climate Control</p>
+                                                    </div>
+                                                </li>
+                                                <li ngClass="d-flex position-relative">
+                                                    <div>
+                                                        <input checked type="radio" name="ExpertIn"
+                                                            value="English">
+                                                        <span ngClass="property_sel"></span>
+                                                    </div>
+                                                    <div ngClass="proprty_name">
+                                                        <p>Climate Control</p>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <button (click)="clickEvent2()" ngClass="overlay_dropdown-btn"></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div ngClass="col-xl-12 col-lg-12 col-sm-12">
+                            <div ngClass="block-wrapper mb-3 position-relative optional-text">
+                                    <label>Locate your car</label>
+                                    <mat-form-field class="full-width input-design-2" appearance="fill">
+                                        <input matInput type="text" placeholder="Locate your car"
+                                            lang="en" />
+                                    </mat-form-field>
+                                    <span class="optional-span">*Optional</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div ngClass="address-sec">
+                        <div ngClass="block-wrapper-address">
+                            <label class="h6-design">Is the pin in the right location? </label>
+                            <p class="under-label-text">Click and drag the pin to the exact spot. Users are more likely to respond to ads that are correctly shown on the map</p>
+                            <div ngClass="position-relative">
+                                <div style="width: 100%;">
+                                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d462562.6509516108!2d54.94729613679833!3d25.07575945545691!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f43496ad9c645%3A0xbde66e5084295162!2sDubai%20-%20United%20Arab%20Emirates!5e0!3m2!1sen!2sin!4v1666784711777!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                </div>
+                            </div>
+                            <p class="under-label-text">Make sure the car information you have entered is correct. You will only be able to make select changes once the ad is live.</p>
+                        </div>
+                    </div>
+                    <div class="text-right save-continue-sec justify-content-center">
+                        <mat-card-actions>
+                            <button class="save-continue-btn cursor-pointer">Pay Now</button>
+                        </mat-card-actions>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+<app-footer></app-footer>
+</section>                                   
