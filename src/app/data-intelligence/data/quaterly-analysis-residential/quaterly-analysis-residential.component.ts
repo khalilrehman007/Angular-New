@@ -371,8 +371,8 @@ export class QuaterlyAnalysisResidentialComponent implements OnInit {
       start: temp,
       end: this.currentDate
     })
-    this.startDate = temp.getMonth() + "-" + temp.getDate() + "-" + temp.getFullYear();
-    this.endDate = this.currentDate.getMonth() + "-" + this.currentDate.getDate() + "-" + this.currentDate.getFullYear();
+    this.startDate = temp.getMonth() + 1 + "-" + temp.getDate() + "-" + temp.getFullYear();
+    this.endDate = this.currentDate.getMonth() + 1 + "-" + this.currentDate.getDate() + "-" + this.currentDate.getFullYear();
     this.countryData = JSON.parse(this.cookie.get("countryData"));
     this.service.TransactionSequence().subscribe((result: any) => {
       this.filteredsales = result.data;
@@ -665,7 +665,7 @@ export class QuaterlyAnalysisResidentialComponent implements OnInit {
   }
   getDate(e: any) {
     let temp: any = new Date(e.value)
-    return temp.getMonth() + "-" + temp.getDate() + "-" + temp.getFullYear();
+    return temp.getMonth() + 1 + "-" + temp.getDate() + "-" + temp.getFullYear();
   }
   getMinSize(e: any) {
     this.minSize = e;
