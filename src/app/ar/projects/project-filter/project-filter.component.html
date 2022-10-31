@@ -3,9 +3,9 @@
         <div ngClass="block-item block-item-4">
             <div ngClass="block-wrapper">
                 <div ngClass="cstm_dropdown-list dropdown-design-2 position-relative drodown_with-img">
-                    <button ngClass="drop-down_btn" (click)="clickEvent1()">Property Type</button>
+                    <button ngClass="drop-down_btn" (click)="clickEvent1()">نوع العقار</button>
                     <div class="cstm_dropdown-menu" [ngClass]="status1 ? 'active' : 'notactive'">
-                        <h4 ngClass="drop_label">Property Type</h4>
+                        <h4 ngClass="drop_label">نوع العقار</h4>
                         <div ngClass="property-types-heading">
                             <ul ngClass="nav nav-tabs" role="tablist">
                                 <li ngClass="nav-item" (click)="propertyType(residentialId)">
@@ -23,7 +23,7 @@
                         <div ngClass="property-types-cntnts">
                             <div id="Residentials"
                                 [ngClass]="PropertyCategoryId == residentialId ? 'residential-tabs' : 'hide residential-tabs'">
-                                <h5 ngClass="h5-heading">Residential Unit Type</h5>
+                                <h5 ngClass="h5-heading">Residential نوع الوحدة</h5>
                                 <ul ngClass="list-unstyled residentails-unit-list">
                                     <li ngClass="d-flex position-relative" *ngFor="let item of propertyTypeResdential">
                                         <div>
@@ -38,7 +38,7 @@
                             </div>
                             <div id="Commercial"
                                 [ngClass]="PropertyCategoryId == commercialId ? 'commertial-tabs' : 'hide commertial-tabs'">
-                                <h5 ngClass="h5-heading">Commercial Unit Type</h5>
+                                <h5 ngClass="h5-heading">نوع الوحدة التجارية</h5>
                                 <ul ngClass="list-unstyled residentails-unit-list">
                                     <li ngClass="d-flex position-relative" *ngFor="let item of propertyTypeCommercial">
                                         <div>
@@ -60,10 +60,10 @@
         <div class="block-item block-item-4">
             <div ngClass="block-wrapper mb-4">
                 <mat-form-field appearance="fill" class="select-design">
-                    <mat-label>Projects</mat-label>
+                    <mat-label>المشاريع</mat-label>
                     <mat-select [disableOptionCentering]="true">
                         <mat-option value="">
-                            All Projects
+                            كل المشاريع
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
@@ -72,10 +72,10 @@
         <div class="block-item block-item-4">
             <div ngClass="block-wrapper mb-4">
                 <mat-form-field appearance="fill" class="select-design">
-                    <mat-label>Area</mat-label>
+                    <mat-label>المناطق</mat-label>
                     <mat-select [disableOptionCentering]="true">
                         <mat-option value="">
-                            All Areas
+                            المناطق
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
@@ -84,10 +84,10 @@
         <div class="block-item block-item-4">
             <div ngClass="block-wrapper mb-4">
                 <mat-form-field appearance="fill" class="select-design">
-                    <mat-label>Developers</mat-label>
+                    <mat-label>المطورين</mat-label>
                     <mat-select [disableOptionCentering]="true">
                         <mat-option value="">
-                            All Developers
+                            جميع المطورين
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
@@ -95,7 +95,7 @@
         </div>
         <div ngClass="block-item seven-block">
             <div ngClass="block-wrapper">
-                <button ngClass="clear-btn">Clear</button>
+                <button ngClass="clear-btn">واضح</button>
             </div>
         </div>
         <div ngClass="block-item eight-block">
