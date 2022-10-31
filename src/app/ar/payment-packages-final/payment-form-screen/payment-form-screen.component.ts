@@ -74,7 +74,7 @@ export class PaymentFormScreenComponent implements OnInit {
   }
   PaymentPopup(PaymentPopupModal: any) {
     if (this.seletedPackage == "") {
-      this.error = "Please Select a Package";
+      this.error = "الرجاء اختيار نوع النقاط للباقات  ";
       this.showError = true;
       return;
     }
@@ -90,40 +90,40 @@ export class PaymentFormScreenComponent implements OnInit {
     let cvv: any = this.cardForm.value.cvv;
     let currentDate: any = this.datePipe.transform(this.minDate, 'yyyy-MM-dd')?.split("-");
     if (this.cardForm.value.cardNumber == "" || this.cardForm.value.cardNumber == null) {
-      this.error = "Please Enter Card Number";
+      this.error = "الرجاء ادخال رقم البطاقة ";
       this.showError = true;
       return;
     } else if (number.toString().length < 16) {
-      this.error = "Please Enter a Valid Card Number";
+      this.error = "الرجاء ادخال رقم بطاقة فعالة ";
       this.showError = true;
       return;
     } else if (this.cardForm.value.expiryDate == "") {
-      this.error = "Please Enter Card Expiry";
+      this.error = "الرجاء ادخال تاريخ انتهاء البطاقة ";
       this.showError = true;
       return;
     } else if (date.toString().length < 5) {
-      this.error = "Please Enter a Valid Card Expiry";
+      this.error = "الرجاء ادخال تاريخ رقم البطاقة الفعالة ";
       this.showError = true;
       return;
     } else if ("20" + date.toString().split("/")[1] < currentDate[0]) {
-      this.error = "Please Enter a Valid Card Expiry";
+      this.error = "الرجاء ادخال تاريخ رقم البطاقة الفعالة ";
       this.showError = true;
       return;
     } else if ("20" + date.toString().split("/")[1] == currentDate[0] && date.toString().split("/")[0] < currentDate[1] || date.toString().split("/")[0] > 12) {
-      this.error = "Please Enter a Valid Card Expiry";
+      this.error = "الرجاء ادخال تاريخ رقم البطاقة الفعالة ";
       this.showError = true;
       return;
     } else if (this.cardForm.value.cvv == "" || this.cardForm.value.cvv == null) {
-      this.error = "Please Enter CVV";
+      this.error = "الرجاء ادخال الرمز ";
       this.showError = true;
       return;
     } else if (cvv.toString().length < 3) {
-      this.error = "Please Enter a valid CVV";
+      this.error = "الرجاء ادخال الرمز الفعال ";
       this.showError = true;
       return;
     } else if (this.cardForm.value.cardName == "" || this.cardForm.value.cardName == null) {
       console.log(this.cardForm.value.cardName);
-      this.error = "Please Enter Card Holder Name";
+      this.error = "الرجاء ادخال اسم حامل البطاقة";
       this.showError = true;
     }
     this.showLoader = true;

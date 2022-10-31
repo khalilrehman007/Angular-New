@@ -17,20 +17,20 @@
                         <div ngClass="payment-another-info">
                             <div ngClass="detail-box d-flex justify-content-spacebw">
                                 <div ngClass="pay-heading-block">
-                                    <h6>Points Package Type</h6>
+                                    <h6>نوع النقاط للباقة </h6>
                                     <p>{{seletedPackage.nameAr}}</p>
                                 </div>
                                 <p ngClass="price">{{seletedPackage.country.currencyAr}} {{seletedPackage.price}}</p>
                             </div>
                             <div ngClass="tax-box d-flex justify-content-spacebw">
                                 <div ngClass="pay-heading-block">
-                                    <h6>Tax</h6>
+                                    <h6>ضريبة </h6>
                                 </div>
-                                <p ngClass="tax-cost">Included</p>
+                                <p ngClass="tax-cost">شامل </p>
                             </div>
                             <div ngClass="totel-due-box d-flex justify-content-spacebw">
                                 <div ngClass="pay-heading-block">
-                                    <h6>Total Due</h6>
+                                    <h6>المبلغ الاجمالي </h6>
                                 </div>
                                 <p ngClass="price">{{seletedPackage.country.currencyAr}} {{seletedPackage.price}}</p>
                             </div>
@@ -44,39 +44,39 @@
                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                     <div class="payment-form-list">
                         <h5 class="h5-design mb-2">الدفع</h5>
-                        <p ngClass="mb-4">Please fill your payment details for proceed further</p>
+                        <p ngClass="mb-4">الرجاء ادخال بيانات الدفع للخطوة التالية </p>
                         <div class="paymentmodal-form-design">
                             <form [formGroup]="cardForm">
                                 <div ngClass="block-wrapper mb-3">
-                                    <label>Card Number</label>
+                                    <label>رقم البطاقة</label>
                                     <mat-form-field class="full-width input-design-2" appearance="fill">
                                         <input matInput type="number" placeholder="1234 1234 1234 1234"
                                             formControlName="cardNumber" (input)="checkLength(1, false)">
                                     </mat-form-field>
                                 </div>
                                 <div ngClass="block-wrapper mb-3">
-                                    <label>Expiry</label>
+                                    <label>الانتهاء</label>
                                     <mat-form-field class="full-width input-design-2" appearance="fill">
-                                        <input matInput type="text" placeholder="MM/YY" formControlName="expiryDate"
+                                        <input matInput type="text" placeholder="مم مم/ص ص" formControlName="expiryDate"
                                             (input)="checkLength(3, true)" (keypress)="onKeypressEvent($event)">
                                     </mat-form-field>
                                 </div>
                                 <div ngClass="block-wrapper mb-3">
-                                    <label>CVV</label>
+                                    <label>رمز البطاقة</label>
                                     <mat-form-field class="full-width input-design-2" appearance="fill">
-                                        <input matInput type="number" placeholder="CVV" formControlName="cvv"
+                                        <input matInput type="number" placeholder="رمز البطاقة" formControlName="cvv"
                                             (input)="checkLength(2, false)">
                                     </mat-form-field>
                                 </div>
                                 <div ngClass="block-wrapper mb-3">
-                                    <label>Name on Card</label>
+                                    <label>اسم البطاقة </label>
                                     <mat-form-field class="full-width input-design-2" appearance="fill">
-                                        <input matInput type="text" placeholder="Name" formControlName="cardName">
+                                        <input matInput type="text" placeholder="اسم البطاقة " formControlName="cardName">
                                     </mat-form-field>
                                 </div>
                                 <div class="wallet-btn-flex">
                                     <!-- <button class="recharge-btn">Proceed to Pay</button> -->
-                                    <button class="recharge-btn" (click)="purchasePoints()">Proceed to Pay</button>
+                                    <button class="recharge-btn" (click)="purchasePoints()">مواصلة الدفع </button>
                                 </div>
                             </form>
                         </div>
