@@ -330,7 +330,7 @@ export class HomepageComponent implements OnInit, AfterViewInit {
         PropertyTypeIds: JSON.stringify(propertyTypeId)
       }
     };
-    this.route.navigate(['/property/search'], params)
+    this.route.navigate(['/ar/property/search'], params)
   }
   getUser() {
     this.user = localStorage.getItem('user');
@@ -539,7 +539,7 @@ export class HomepageComponent implements OnInit, AfterViewInit {
   AddToFavorite(id: any, status: any, part: any) {
     if (this.userId == '') {
       this.notifyService.showSuccess('First you need to login', "");
-      this.route.navigate(['/login'])
+      this.route.navigate(['/ar/login'])
     }
 
     if (!this.authService.isAuthenticated()) {
