@@ -55,12 +55,12 @@
                         <img *ngIf="item.blogDocument && item.blogDocument.fileUrl"
                             src="https://beta.ovaluate.com/{{item.blogDocument.fileUrl}}"
                             ngClass="img-fluid blog-image-homepage" alt="">
-                        <!-- <span ngClass="blog-tag">
+                        <span ngClass="blog-tag">
                             <img [src]="item.src2" ngClass="img-fluid" alt="">
-                        </span> -->
+                        </span>
                         <div ngClass="blog-title-content">
                             <h5 *ngIf="item && item.blogTitle">{{item.blogTitle}}</h5>
-                            <span *ngIf="item && item.blogData">{{item.blogDate.split("T")[0]}}</span>
+                            <span *ngIf="item && item.blogDateFormat">{{item.blogDateFormat.split("T")[0]}}</span>
                         </div>
                     </a>
                 </div>
