@@ -58,8 +58,6 @@ export class BuySearchComponent implements OnInit {
   rentType: any = []
 
   ngOnInit(): void {
-    //parent method
-    // this.childToParentDataLoad.emit('hikmat')
   }
 
 
@@ -89,8 +87,6 @@ export class BuySearchComponent implements OnInit {
     let url = this.route.url.replace("/", "");
     url = this.route.url.split('?')[0];
     this.routeCheck = url
-
-    // this.videoTourSorting    = this.activeRoute.snapshot.queryParamMap.get('videoTourSorting');
     this.totalPropertyRecord = localStorage.getItem('propertyListingTotalRecord');
     this.type = this.activeRoute.snapshot.queryParamMap.get('type');
     this.PropertyCategoryId = this.activeRoute.snapshot.queryParamMap.get('PropertyCategoryId');
@@ -304,7 +300,7 @@ export class BuySearchComponent implements OnInit {
   // ]
 
   rentTypes: any = []
-  selectedRentType: any;
+  selectedRentType: any = 2;
   loadType() {
     this.service.LoadPropertyListingTypes().subscribe(e => {
       let temp: any = e;
@@ -442,7 +438,7 @@ export class BuySearchComponent implements OnInit {
       , PropertyFeatureIds: this.propertyFeatureIds, FurnishingTypeId: this.furnishedType,
       MinCarpetArea: this.minCarpet, MaxCarpetArea: this.maxCarpet
     }
-    this.route.navigate(['/property/search'], { queryParams: params })
+    this.route.navigate(['/ar/property/search'], { queryParams: params })
     this.childToParentDataLoad.emit(objects)
   }
 
@@ -472,22 +468,12 @@ export class BuySearchComponent implements OnInit {
         this.remove(element)
       }, 1000);
     })
-
     this.SubmitForm.controls.Name.setValue('');
     this.SubmitForm.controls.PriceStart.setValue('10');
     this.SubmitForm.controls.PriceEnd.setValue('50000000');
-
-
     this.selectedPropertyType = null
     this.propertyTypes = []
     this.LoadPropertyCategories();
-
-    // let params :any = {type:'',"PropertyTypeIds":"[]", "PropertyAddress":'',"RentTypeId":'',
-    //   "PropertyCategoryId":'',PriceStart:'',PriceEnd:'', Bedrooms:'',Bathrooms:'',
-    //   "PropertyListingTypeId":'',CurrentPage:1,DistrictIds:JSON.stringify([]),DistrictsValue:JSON.stringify(this.fruits)
-    // }
-
-
     let params: any = {
       type: this.type, "PropertyTypeIds": JSON.stringify([]), "RentTypeId": '',
       "PropertyCategoryId": '', PriceStart: this.PriceStart, PriceEnd: this.PriceEnd,
@@ -496,7 +482,6 @@ export class BuySearchComponent implements OnInit {
       DistrictsValue: JSON.stringify([]), KeyWords: JSON.stringify([]), PropertyFeatureIds: JSON.stringify([]),
       MinCarpetArea: '', MaxCarpetArea: '', FurnishingTypeId: '', videoTourSorting: ''
     }
-
     let object: any = {
       type: this.type, "PropertyTypeIds": [], "RentTypeId": '',
       "PropertyCategoryId": '', PriceStart: this.PriceStart, PriceEnd: this.PriceEnd,
@@ -505,27 +490,15 @@ export class BuySearchComponent implements OnInit {
       DistrictsValue: [], KeyWords: [], PropertyFeatureIds: [],
       MinCarpetArea: '', MaxCarpetArea: '', FurnishingTypeId: '', videoTourSorting: ''
     }
-
-
-    if (this.routeCheck == '/property/search') {
-      this.route.navigate(['/property/search'], { queryParams: params })
+      this.route.navigate(['/ar/property/search'], { queryParams: params })
       this.childToParentDataLoad.emit(object)
-      // this.proceedSearch()
-    } else {
-      this.proceedSearchViewMap()
-    }
-
   }
   modelPropertyPictures: any = []
   openVerticallyCentered(content: any) {
     this.SubmitForm.controls.minCarpet.setValue(this.minCarpet);
     this.SubmitForm.controls.maxCarpet.setValue(this.maxCarpet);
-
-
     this.modalService.open(content, { centered: true });
   }
-
-  // Keywords
   addOnBlur = true;
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
   Keywords: KeywordString[] = this.keyWordsUrlValue;
