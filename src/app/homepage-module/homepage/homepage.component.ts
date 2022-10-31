@@ -40,27 +40,27 @@ export class HomepageComponent implements OnInit, AfterViewInit {
   clientFeedback: any = [];
   slider: any = [];
   user: any
-  countryData:any = "";
+  countryData: any = "";
   id: any = 1;
   propertyDetails: any;
   oldData1() {
-    this.service.LatestPropertiesListingResidential({"CountryId":this.countryData.id, "UserId": this.userId, "propertyListingTypeId": "1" }).subscribe((response:any) => {
+    this.service.LatestPropertiesListingResidential({ "CountryId": this.countryData.id, "UserId": this.userId, "propertyListingTypeId": "1" }).subscribe((response: any) => {
       this.dynamicSlides1 = response.data;
     });
   }
   newData1() {
-    this.service.LatestPropertiesListingResidential({"CountryId":this.countryData.id, "UserId": this.userId, "propertyListingTypeId": "2" }).subscribe((response:any) => {
+    this.service.LatestPropertiesListingResidential({ "CountryId": this.countryData.id, "UserId": this.userId, "propertyListingTypeId": "2" }).subscribe((response: any) => {
       this.dynamicSlides1 = response.data;
     });
   }
 
   oldData2() {
-    this.service.LatestPropertiesListingCommercial({"CountryId":this.countryData.id, "UserId": this.userId, "propertyListingTypeId": "1" }).subscribe((response:any) => {
+    this.service.LatestPropertiesListingCommercial({ "CountryId": this.countryData.id, "UserId": this.userId, "propertyListingTypeId": "1" }).subscribe((response: any) => {
       this.dynamicSlides2 = response.data;
     });
   }
   newData2() {
-    this.service.LatestPropertiesListingCommercial({"CountryId":this.countryData.id, "UserId": this.userId, "propertyListingTypeId": "2" }).subscribe((response:any) => {
+    this.service.LatestPropertiesListingCommercial({ "CountryId": this.countryData.id, "UserId": this.userId, "propertyListingTypeId": "2" }).subscribe((response: any) => {
       this.dynamicSlides2 = response.data;
     });
   }
@@ -103,7 +103,7 @@ export class HomepageComponent implements OnInit, AfterViewInit {
     loop: false,
     mouseDrag: true,
     touchDrag: true,
-    autoWidth:false,
+    autoWidth: false,
     pullDrag: true,
     dots: true,
     navText: ['<i class="fa fa-chevron-left" aria-hidden="true"></i>', '<i class="fa fa-chevron-right" aria-hidden="true"></i>'],
@@ -231,7 +231,6 @@ export class HomepageComponent implements OnInit, AfterViewInit {
     this.LoadPropertyCategories()
     this.getLoadFeedback();
     this.loadCountriesData();
-    // this.ValuationTransactions();
     this.getOvaluateFeatures();
     this.getUser();
     let userId = '';
@@ -267,7 +266,7 @@ export class HomepageComponent implements OnInit, AfterViewInit {
   }
   ngAfterViewInit(): void {
     let a = setInterval(() => {
-      if(this.cookie.get("countryData")) {
+      if (this.cookie.get("countryData")) {
         this.countryData = JSON.parse(this.cookie.get("countryData"));
         this.oldData2();
         this.oldData1();
@@ -278,6 +277,7 @@ export class HomepageComponent implements OnInit, AfterViewInit {
           this.trendTitle = result.data
         });
         this.LoadBanners();
+        this.ValuationTransactions();
         this.LoadBlogs();
         clearInterval(a);
       }
@@ -328,7 +328,7 @@ export class HomepageComponent implements OnInit, AfterViewInit {
 
   ValuationTransactions() {
     let tempData: Array<Object> = []
-    this.service.ValuationTransactions().subscribe(data => {
+    this.service.ValuationTransactions(this.countryData.id).subscribe(data => {
       let response: any = data;
       response.data.forEach((element: any, i: any) => {
         tempData.push(

@@ -40,27 +40,27 @@ export class HomepageComponent implements OnInit, AfterViewInit {
   clientFeedback: any = [];
   slider: any = [];
   user: any;
-  countryData:any = "";
+  countryData: any = "";
   id: any = 1;
   propertyDetails: any;
   oldData1() {
-    this.service.LatestPropertiesListingResidential({"CountryId":this.countryData.id, "UserId": this.userId, "propertyListingTypeId": "1" }).subscribe((response:any) => {
+    this.service.LatestPropertiesListingResidential({ "CountryId": this.countryData.id, "UserId": this.userId, "propertyListingTypeId": "1" }).subscribe((response: any) => {
       this.dynamicSlides1 = response.data;
     });
   }
   newData1() {
-    this.service.LatestPropertiesListingResidential({"CountryId":this.countryData.id, "UserId": this.userId, "propertyListingTypeId": "2" }).subscribe((response:any) => {
+    this.service.LatestPropertiesListingResidential({ "CountryId": this.countryData.id, "UserId": this.userId, "propertyListingTypeId": "2" }).subscribe((response: any) => {
       this.dynamicSlides1 = response.data;
     });
   }
 
   oldData2() {
-    this.service.LatestPropertiesListingCommercial({"CountryId":this.countryData.id, "UserId": this.userId, "propertyListingTypeId": "1" }).subscribe((response:any) => {
+    this.service.LatestPropertiesListingCommercial({ "CountryId": this.countryData.id, "UserId": this.userId, "propertyListingTypeId": "1" }).subscribe((response: any) => {
       this.dynamicSlides2 = response.data;
     });
   }
   newData2() {
-    this.service.LatestPropertiesListingCommercial({"CountryId":this.countryData.id, "UserId": this.userId, "propertyListingTypeId": "2" }).subscribe((response:any) => {
+    this.service.LatestPropertiesListingCommercial({ "CountryId": this.countryData.id, "UserId": this.userId, "propertyListingTypeId": "2" }).subscribe((response: any) => {
       this.dynamicSlides2 = response.data;
     });
   }
@@ -103,7 +103,7 @@ export class HomepageComponent implements OnInit, AfterViewInit {
 
   customOptions: OwlOptions = {
     loop: false,
-    rtl:true,
+    rtl: true,
     mouseDrag: true,
     touchDrag: true,
     pullDrag: true,
@@ -129,7 +129,7 @@ export class HomepageComponent implements OnInit, AfterViewInit {
   easyslider: OwlOptions = {
     loop: true,
     mouseDrag: true,
-    rtl:true,
+    rtl: true,
     center: true,
     touchDrag: true,
     pullDrag: true,
@@ -156,7 +156,7 @@ export class HomepageComponent implements OnInit, AfterViewInit {
   sellrentproperty: OwlOptions = {
     loop: true,
     mouseDrag: true,
-    rtl:true,
+    rtl: true,
     touchDrag: true,
     pullDrag: true,
     dots: true,
@@ -182,7 +182,7 @@ export class HomepageComponent implements OnInit, AfterViewInit {
     loop: true,
     mouseDrag: true,
     touchDrag: true,
-    rtl:true,
+    rtl: true,
     pullDrag: true,
     autoplay: true,
     dots: true,
@@ -236,7 +236,6 @@ export class HomepageComponent implements OnInit, AfterViewInit {
     this.LoadPropertyCategories()
     this.getLoadFeedback();
     this.loadCountriesData();
-    // this.ValuationTransactions();
     this.getOvaluateFeatures();
     this.getUser();
     let userId = '';
@@ -281,7 +280,7 @@ export class HomepageComponent implements OnInit, AfterViewInit {
   }
   ngAfterViewInit(): void {
     let a = setInterval(() => {
-      if(this.cookie.get("countryData")) {
+      if (this.cookie.get("countryData")) {
         this.countryData = JSON.parse(this.cookie.get("countryData"));
         this.service.NearPlaces(this.countryData.id).subscribe((result: any) => {
           this.explorePlaces = result.data;
@@ -293,6 +292,7 @@ export class HomepageComponent implements OnInit, AfterViewInit {
         this.oldData1();
         this.LoadBanners();
         this.LoadBlogs();
+        this.ValuationTransactions();
         clearInterval(a);
       }
     })
@@ -342,7 +342,7 @@ export class HomepageComponent implements OnInit, AfterViewInit {
 
   ValuationTransactions() {
     let tempData: Array<Object> = []
-    this.service.ValuationTransactions().subscribe(data => {
+    this.service.ValuationTransactions(this.countryData.id).subscribe(data => {
       let response: any = data;
       response.data.forEach((element: any, i: any) => {
         tempData.push(

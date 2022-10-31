@@ -165,8 +165,8 @@ export class TransactionDataComponent implements OnInit {
       start: temp,
       end: this.currentDate
     })
-    this.startDate = temp.getMonth() + "-" + temp.getDate() + "-" + temp.getFullYear();
-    this.endDate = this.currentDate.getMonth() + "-" + this.currentDate.getDate() + "-" + this.currentDate.getFullYear();
+    this.startDate = temp.getMonth() + 1 + "-" + temp.getDate() + "-" + temp.getFullYear();
+    this.endDate = this.currentDate.getMonth() + 1 + "-" + this.currentDate.getDate() + "-" + this.currentDate.getFullYear();
     this.countryData = JSON.parse(this.cookie.get("countryData"));
     this.service.FindCities({ "CountryId": this.countryData.id, "Locations": [] }).subscribe((result: any) => {
       this.citiesData = result.data;
@@ -211,7 +211,7 @@ export class TransactionDataComponent implements OnInit {
   }
   getDate(e: any) {
     let temp: any = new Date(e.value)
-    return temp.getMonth() + "-" + temp.getDate() + "-" + temp.getFullYear();
+    return temp.getMonth() + 1 + "-" + temp.getDate() + "-" + temp.getFullYear();
   }
   getStartDate(e: any) {
     this.startDate = this.getDate(e);
