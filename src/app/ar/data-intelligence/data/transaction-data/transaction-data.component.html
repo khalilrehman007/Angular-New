@@ -269,13 +269,13 @@
                 <tbody>
                   <tr
                     *ngFor="let item of transactionData.transactions | paginate: { itemsPerPage: itemsPerPage, currentPage: page, totalItems:totalLength }">
-                    <td>{{item.transactionType != null ? item.transactionType.nameAr : "N/A"}}</td>
-                    <td>{{item.transactionSubType != null ? item.transactionSubType.nameAr : "N/A"}}</td>
-                    <td>{{item.transactionSequence != null ? item.transactionSequence.nameAr : "N/A"}}</td>
+                    <td>{{item.transactionType.nameAr != null ? item.transactionType.nameAr : "N/A"}}</td>
+                    <td>{{item.transactionSubType.nameAr != null ? item.transactionSubType.nameAr : "N/A"}}</td>
+                    <td>{{item.transactionSequence.nameAr != null ? item.transactionSequence.nameAr : "N/A"}}</td>
                     <td>{{item.transactionDate != null ? item.transactionDate.split("T")[0] : "N/A"}}</td>
                     <td>{{item.district != null ? item.district.nameAr : "N/A"}}</td>
-                    <td>{{item.propertyType != null ? item.propertyType.typeDescriptionAr : "N/A"}}</td>
-                    <td>{{item.project != null ? item.project.nameAr : "N/A"}}</td>
+                    <td>{{item.propertyType.typeDescriptionAr != null ? item.propertyType.typeDescriptionAr : "N/A"}}</td>
+                    <td>{{item.project.nameAr != null ? item.project.nameAr : "N/A"}}</td>
                     <td>{{item.unit != null ? item.unit : "N/A"}}</td>
                     <td>{{item.bedRoom != null ? item.bedRoom : "N/A"}}</td>
                     <td>{{item.floor != null ? item.floor : "N/A"}}</td>
@@ -284,7 +284,7 @@
                     <td>{{item.landSizeSqft != null ? item.landSizeSqft : "N/A"}}</td>
                     <td>{{item.amount != null ? item.amount : "N/A"}}</td>
                     <td>{{item.amountSqft != null ? item.amountSqft : "N/A"}}</td>
-                    <td>{{item.propertyDeveloper != null ? item.propertyDeveloper.name : "N/A"}}</td>
+                    <td>{{item.propertyDeveloper.nameAr != null ? item.propertyDeveloper.nameAr : "N/A"}}</td>
                   </tr>
                 </tbody>
               </table>

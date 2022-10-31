@@ -14,7 +14,7 @@
                   <div class="dashboard-data-select-box">
                     <label>City</label>
                     <select class="select2 city-select unit-number-select">
-                      <option *ngFor="let item of citiesData" value="{{item.id}}">{{item.name}}</option>
+                      <option *ngFor="let item of citiesData" value="{{item.id}}">{{item.nameAr}}</option>
                     </select>
                   </div>
                 </div>
@@ -22,7 +22,7 @@
                   <div class="dashboard-data-select-box">
                     <label>District</label>
                     <select class="select2 district-select unit-number-select">
-                      <option *ngFor="let item of districtData" value="{{item.id}}">{{item.name}}</option>
+                      <option *ngFor="let item of districtData" value="{{item.id}}">{{item.nameAr}}</option>
                     </select>
                   </div>
                 </div>
@@ -30,7 +30,7 @@
                   <div class="dashboard-data-select-box">
                     <label>Property Type</label>
                     <select class="select2 property-type-select unit-number-select">
-                      <option *ngFor="let item of propertyType" value="{{item.id}}">{{item.typeDescription}}</option>
+                      <option *ngFor="let item of propertyType" value="{{item.id}}">{{item.typeDescriptionAr}}</option>
                     </select>
                   </div>
                 </div>
@@ -38,7 +38,7 @@
                   <div class="dashboard-data-select-box">
                     <label>Project</label>
                     <select class="select2 project-select unit-number-select">
-                      <option *ngFor="let item of projectsData" value="{{item.id}}">{{item.name}}</option>
+                      <option *ngFor="let item of projectsData" value="{{item.id}}">{{item.nameAr}}</option>
                     </select>
                   </div>
                 </div>
@@ -70,7 +70,7 @@
                   <div class="unit_value-box">
                     <h5 class="unit-value-label">Property Name</h5>
                     <button class="unit-value-btn">{{transactionData.unitDetail.project != null ?
-                      transactionData.unitDetail.project.name : "N/A"}}</button>
+                      transactionData.unitDetail.project.nameAr : "N/A"}}</button>
                   </div>
                 </div>
                 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
@@ -145,9 +145,9 @@
                   <tbody>
                     <tr
                       *ngFor="let item of transactionData.saleTransactions | paginate: { itemsPerPage: salesItemsPerPage, currentPage: salesPage, totalItems:salestotalLength }">
-                      <td>{{item.transactionType != null ? item.transactionType.name : "N/A"}}</td>
-                      <td>{{item.transactionSubType != null ? item.transactionSubType.name : "N/A"}}</td>
-                      <td>{{item.transactionSequence != null ? item.transactionSequence.name : "N/A"}}</td>
+                      <td>{{item.transactionType.nameAr != null ? item.transactionType.nameAr : "N/A"}}</td>
+                      <td>{{item.transactionSubType.nameAr != null ? item.transactionSubType.nameAr : "N/A"}}</td>
+                      <td>{{item.transactionSequence.nameAr != null ? item.transactionSequence.nameAr : "N/A"}}</td>
                       <td>{{item.transactionDate != null ? item.transactionDate.split("T")[0] : "N/A"}}</td>
                       <td>{{item.amount != null ? item.amount : "N/A"}}</td>
                       <td>{{item.amountSqft != null ? item.amountSqft : "N/A"}}</td>
@@ -194,7 +194,7 @@
                   <tbody>
                     <tr
                       *ngFor="let item of transactionData.rentTransactions | paginate: { itemsPerPage: rentItemsPerPage, currentPage: rentPage, totalItems:renttotalLength }">
-                      <td>{{item.transactionType != null ? item.transactionType.name : "N/A"}}</td>
+                      <td>{{item.transactionType.nameAr != null ? item.transactionType.nameAr : "N/A"}}</td>
                       <td>{{item.transactionDate != null ? item.transactionDate.split("T")[0] : "N/A"}}</td>
                       <td>{{item.startDate != null ? item.startDate.split("T")[0] : "N/A"}}</td>
                       <td>{{item.endDate != null ? item.endDate.split("T")[0] : "N/A"}}</td>
@@ -240,8 +240,8 @@
                   </thead>
                   <tbody>
                     <tr *ngFor="let item of transactionData.mortgageTransactions | paginate: { itemsPerPage: mortageItemsPerPage, currentPage: mortagePage, totalItems:mortagetotalLength }">
-                      <td>{{item.transactionType != null ? item.transactionType.name : "N/A"}}</td>
-                      <td>{{item.transactionSubType != null ? item.transactionSubType.name : "N/A"}}</td>
+                      <td>{{item.transactionType.nameAr != null ? item.transactionType.nameAr : "N/A"}}</td>
+                      <td>{{item.transactionSubType.nameAr != null ? item.transactionSubType.nameAr : "N/A"}}</td>
                       <td>{{item.transactionDate != null ? item.transactionDate.split("T")[0] : "N/A"}}</td>
                       <td>{{item.amount != null ? item.amount : "N/A"}}</td>
                       <td>{{item.amountSqft != null ? item.amountSqft : "N/A"}}</td>
