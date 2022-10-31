@@ -84,7 +84,7 @@ export class SearchComponent implements OnInit {
   Bedrooms: any;
   Bathrooms: any;
   KeyWordsParams: any;
-  headingPropertyType: any = "Properties";
+  headingPropertyType: any = "عقارات";
   searchData:any = [];
   halfList:any = 0;
   currency:any = "";
@@ -297,8 +297,8 @@ export class SearchComponent implements OnInit {
       for (let list of temp.data) {
         if (this.selectedPropertyTypeName == null) {
           if (list.id == this.PropertyCategoryId) {
-            this.selectedPropertyTypeName = list.categoryName;
-            this.selectedPropertyTypeDiscription = list.details;
+            this.selectedPropertyTypeName = list.categoryNameAr;
+            this.selectedPropertyTypeDiscription = list.detailsAr;
           }
         }
         this.propertyTypes.push({ name: list.categoryName, id: list.id });
@@ -341,7 +341,6 @@ export class SearchComponent implements OnInit {
         localStorage.setItem('listingForMap', JSON.stringify(data))
       }, 1000);
       this.searchData = response.data.propertyListings;
-      console.log(this.searchData);
       response.data.propertyListings.forEach((element:any, i:any) => {
         let documentsCheck: any = true;
         let rentTypeName = ''
