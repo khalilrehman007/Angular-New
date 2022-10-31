@@ -124,7 +124,7 @@ export class ListpropertymediaComponent implements OnInit {
   }
   selectFiles(event: any): void {
     if (event.target.files.length > 5) {
-      alert("You can choose maximun 5 files");
+      alert("يمكنك اختيار 5 ملفات بحد أقصى");
       return;
     }
     let temp: number = 0;
@@ -133,7 +133,7 @@ export class ListpropertymediaComponent implements OnInit {
     }
     temp = temp / 1048576
     if (temp > 10) {
-      alert("Maximun size allowed is 10MB");
+      alert("الحجم الأقصى المسموح به هو 10 ميغا بايت");
       return;
     }
     this.imageData = [];
@@ -161,7 +161,7 @@ export class ListpropertymediaComponent implements OnInit {
   }
   onSelectFile(event: any) {
     if (event.target.files[0].size / 1048576 > 30) {
-      alert("Maximun size allowed is 30MB");
+      alert("الحجم الأقصى المسموح به هو 30 ميغا بايت");
       return;
     }
     this.videoData = [];
@@ -231,7 +231,7 @@ export class ListpropertymediaComponent implements OnInit {
   onSubmit() {
     if (!this.titledeedUploaded) {
       this.currentField = "title-deed-image-input";
-      this.error = "Plese Upload Title Deed Image";
+      this.error = "يرجى تحميل صورة سند الملكية";
       this.showError = true;
       return;
     }
