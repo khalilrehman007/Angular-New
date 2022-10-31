@@ -279,7 +279,7 @@ $color_1: #4A4A4A;
     background-color: #ffffff;
     z-index: 999;
     bottom: 0;
-    height: calc(100vh - 99px);
+    height: calc(100vh - 97px);
     overflow: auto;
 }
 .dashboard-data-side-header h2 {
@@ -393,6 +393,10 @@ $color_1: #4A4A4A;
     display: block;
 	padding: 5px 10px;
 	text-transform: uppercase;
+	a.active{
+		color: #595ad5;
+		font-weight: 400;
+	}
 }
 .dashboard-data-side-links ul li .dropdown.show>button::before {
     transform: rotate(137deg) !important;
