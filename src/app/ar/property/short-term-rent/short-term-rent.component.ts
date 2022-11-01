@@ -84,7 +84,7 @@ export class ShortTermRentComponent implements OnInit {
   Bedrooms: any;
   Bathrooms: any;
   KeyWordsParams: any;
-  headingPropertyType: any = "Properties";
+  headingPropertyType: any = "عقارات";
   constructor(private authService: AuthService, private notifyService: NotificationService, private activeRoute: ActivatedRoute, private service: AppService, private api: AppService, private route: Router, private modalService: NgbModal) {
     $(window).scrollTop(0);
     this.route.events.subscribe((e: any) => {
@@ -225,7 +225,7 @@ export class ShortTermRentComponent implements OnInit {
       "PropertyCategoryId": '', PriceStart: '', PriceEnd: '', Bedrooms: '', Bathrooms: '',
       "PropertyListingTypeId": '', CurrentPage: 1
     }
-    this.route.navigate(['/search'], { queryParams: params })
+    this.route.navigate(['/ar/search'], { queryParams: params })
     this.loadListingProperty(params);
   }
 
@@ -369,7 +369,7 @@ export class ShortTermRentComponent implements OnInit {
             propertyTitle: element.propertyTitle, propertyAddress: element.propertyAddressArabic, documentsCheck: documentsCheck,
             buildingName: element.buildingName, bedrooms: element.bedrooms, bathrooms: element.bathrooms, carpetArea: element.carpetArea,
             unitNo: element.unitNo, totalFloorgit: element.totalFloor, floorNo: element.floorNo, propertyDescription: element.propertyDescription,
-            requestedDate: element.requestedDate, furnishingType: element.furnishingType, propertyPrice: element.propertyPrice,
+            requestedDate: element.requestedDate, furnishingType: element.furnishingTypeAr, propertyPrice: element.propertyPrice,
             requestedDateFormat: element.requestedDateFormat, brokerageChargePrice: element.brokerageChargePrice, securityDepositPrice: element.securityDepositPrice,
             expiredDateFormat: element.expiredDateFormat, rentType: rentTypeName, currency: element.country.currencyAr, propertyCode: element.propertyCode
           }
@@ -393,11 +393,11 @@ export class ShortTermRentComponent implements OnInit {
   AddToFavorite(id: any, status: any) {
     if (this.userId == '') {
       this.notifyService.showSuccess('First you need to login', "");
-      this.route.navigate(['/login'])
+      this.route.navigate(['/ar/login'])
     }
     if (!this.authService.isAuthenticated()) {
       this.notifyService.showError("you don't have access", "");
-      this.route.navigate(['login']);
+      this.route.navigate(['/ar/login']);
     }
 
     let params: any = {
@@ -444,7 +444,7 @@ export class ShortTermRentComponent implements OnInit {
       MinCarpetArea: this.MinCarpetArea, MaxCarpetArea: this.MaxCarpetArea, FurnishingTypeId: this.FurnishingTypeId
     }
 
-    this.route.navigate(['/property/mapview'], { queryParams: params })
+    this.route.navigate(['/ar/property/mapview'], { queryParams: params })
 
   }
 }
