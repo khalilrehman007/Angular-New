@@ -47,11 +47,7 @@ export class DiSidebarComponentComponent implements OnInit {
       this.active = 6;
     }
   }
-  ngOnInit() {
-    $('.btn-has-dropdown').click(function(){
-      $(this).toggleClass('active');
-      $(this).next('.sub-menu').toggleClass('active');
-    });
+  ngOnInit(): void {
   }
   status1: boolean = true;
   clickEvent1() {

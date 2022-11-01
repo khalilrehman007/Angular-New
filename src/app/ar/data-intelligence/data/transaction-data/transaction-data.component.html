@@ -8,20 +8,20 @@
         </div>
         <div class="dashboard-data-main-contents">
           <div class="di-inner-header">
-            <h4>Transaction Data - Residential</h4>
+            <h4>بيانات المعاملات - سكني</h4>
           </div>
           <form [formGroup]="range">
             <div class="dashboard-dat-filter-box">
               <div class="row">
                 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-2">
                   <div class="dashboard-date-range-box">
-                    <label>Date Range</label>
+                    <label>نطاق الموعد</label>
                     <mat-form-field>
-                      <mat-label>Enter a date range</mat-label>
+                      <mat-label>أدخل النطاق الزمني</mat-label>
                       <mat-date-range-input [rangePicker]="picker">
-                        <input matStartDate matInput placeholder="Start date" formControlName="start"
+                        <input matStartDate matInput placeholder="تاريخ البدء" formControlName="start"
                           (dateChange)="getStartDate($event)">
-                        <input matEndDate matInput placeholder="End date" formControlName="end"
+                        <input matEndDate matInput placeholder="تاريخ الانتهاء" formControlName="end"
                           (dateChange)="getEndDate($event)">
                       </mat-date-range-input>
                       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -31,11 +31,11 @@
                 </div>
                 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-2">
                   <div class="dashboard-data-select-box" *ngIf="citiesData.length > 0">
-                    <label>City</label>
+                    <label>مدينة</label>
                     <mat-form-field>
-                      <mat-label>Add City</mat-label>
+                      <mat-label>أضف مدينة</mat-label>
                       <mat-select [disableOptionCentering]="true" multiple (selectionChange)="getCity($event)" [(value)]="selectedCity">
-                        <mat-option value="All" (click)="selectAllCity()">Select All</mat-option>
+                        <mat-option value="All" (click)="selectAllCity()">اختر الكل</mat-option>
                         <mat-option *ngFor="let city of citiesData" [value]="city.id">
                           {{city.nameAr}}
                         </mat-option>
@@ -45,11 +45,11 @@
                 </div>
                 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-2">
                   <div class="dashboard-data-select-box" [ngClass]="communityfield.length > 0 ? '' : 'disabled'">
-                    <label>District</label>
+                    <label>المنطقة</label>
                     <mat-form-field>
-                      <mat-label>Add District</mat-label>
+                      <mat-label>أضف المنطقة</mat-label>
                       <mat-select [disableOptionCentering]="true" multiple (selectionChange)="getDistrict($event)" [(value)]="selectedDistrict">
-                        <mat-option value="All" (click)="selectAllDistrict()">Select All</mat-option>
+                        <mat-option value="All" (click)="selectAllDistrict()">اختر الكل</mat-option>
                         <mat-option *ngFor="let community of communityfield" [value]="community.id">
                           {{community.nameAr}}
                         </mat-option>
@@ -59,11 +59,11 @@
                 </div>
                 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-2">
                   <div class="dashboard-data-select-box">
-                    <label>Property Type</label>
+                    <label>نوع الملكية</label>
                     <mat-form-field>
-                      <mat-label>Add Property Type</mat-label>
+                      <mat-label>إضافة نوع لملكية </mat-label>
                       <mat-select [disableOptionCentering]="true" multiple (selectionChange)="getPropertyType($event)" [(value)]="selectedPropertyType">
-                        <mat-option value="All" (click)="selectAllPropertyType()">Select All</mat-option>
+                        <mat-option value="All" (click)="selectAllPropertyType()">اختر الكل</mat-option>
                         <mat-option *ngFor="let protype of filteredProperty" [value]="protype.id">
                           {{protype.typeDescriptionAr}}
                         </mat-option>
@@ -73,11 +73,11 @@
                 </div>
                 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-2">
                   <div class="dashboard-data-select-box" [ngClass]="filteredPropertyOnly.length > 0 ? '' : 'disabled'">
-                    <label>Projects</label>
+                    <label>المشاريع</label>
                     <mat-form-field>
-                      <mat-label>Add Projects</mat-label>
+                      <mat-label>أضف مشاريع</mat-label>
                       <mat-select [disableOptionCentering]="true" multiple (selectionChange)="getProject($event)" [(value)]="selectedProject">
-                        <mat-option value="All" (click)="selectAllProject()">Select All</mat-option>
+                        <mat-option value="All" (click)="selectAllProject()">اختر الكل</mat-option>
                         <mat-option *ngFor="let property of filteredPropertyOnly" [value]="property.id">
                           {{property.nameAr}}
                         </mat-option>
@@ -87,12 +87,12 @@
                 </div>
                 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-2">
                   <div class="dashboard-data-select-box" [ngClass]="filteredTransaction.length > 0 ? '' : 'disabled'">
-                    <label>Transaction Type</label>
+                    <label>نوع المعاملة</label>
                     <mat-form-field>
-                      <mat-label>Add Transaction Type</mat-label>
+                      <mat-label>أضف نوع المعاملة</mat-label>
                       <mat-select [disableOptionCentering]="true" multiple (selectionChange)="getTransactionType($event)"
                         [(value)]="selectedTransactionType">
-                        <mat-option value="All" (click)="selectAllTransactionType()">Select All</mat-option>
+                        <mat-option value="All" (click)="selectAllTransactionType()">اختر الكل</mat-option>
                         <mat-option *ngFor="let transaction of filteredTransaction" [value]="transaction.id">
                           {{transaction.nameAr}}
                         </mat-option>
@@ -102,12 +102,12 @@
                 </div>
                 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-2">
                   <div class="dashboard-data-select-box" [ngClass]="filteredsales.length > 0 ? '' : 'disabled'">
-                    <label>Sales Sequence</label>
+                    <label>تسلسل المبيعات</label>
                     <mat-form-field>
-                      <mat-label>Add Sales Sequence</mat-label>
+                      <mat-label>أضف تسلسل المبيعات</mat-label>
                       <mat-select [disableOptionCentering]="true" multiple (selectionChange)="getSalesSequence($event)"
                         [(value)]="selectedSalesSequence">
-                        <mat-option value="All" (click)="selectAllSalesSequence()">Select All</mat-option>
+                        <mat-option value="All" (click)="selectAllSalesSequence()">اختر الكل</mat-option>
                         <mat-option *ngFor="let sale of filteredsales" [value]="sale.id">
                           {{sale.nameAr}}
                         </mat-option>
@@ -117,11 +117,11 @@
                 </div>
                 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-2">
                   <div class="dashboard-data-select-box">
-                    <label>Developers</label>
+                    <label>المطورين</label>
                     <mat-form-field>
-                      <mat-label>Add Developers</mat-label>
+                      <mat-label>أضف المطورين</mat-label>
                       <mat-select [disableOptionCentering]="true" multiple (selectionChange)="getDevelopers($event)" [(value)]="selectedDevelopers">
-                        <mat-option value="All" (click)="selectAllDevelopers()">Select All</mat-option>
+                        <mat-option value="All" (click)="selectAllDevelopers()">اختر الكل</mat-option>
                         <mat-option *ngFor="let developer of filteredDevelopers" [value]="developer.id">
                           {{developer.nameAr}}
                         </mat-option>
@@ -131,11 +131,11 @@
                 </div>
                 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-2">
                   <div class="dashboard-data-select-box">
-                    <label>BEDROOM</label>
+                    <label>غرفة نوم</label>
                     <mat-form-field>
-                      <mat-label>Add Bedroom</mat-label>
+                      <mat-label>أضف غرفة نوم</mat-label>
                       <mat-select [disableOptionCentering]="true" multiple (selectionChange)="getBeds($event)" [(value)]="selectedBeds">
-                        <mat-option value="All" (click)="selectAllBeds()">Select All</mat-option>
+                        <mat-option value="All" (click)="selectAllBeds()">اختر الكل</mat-option>
                         <mat-option *ngFor="let beds of allbedsfield" [value]="beds">
                           {{beds}}
                         </mat-option>
@@ -148,7 +148,7 @@
               <div class="row">
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-2">
                   <div ngClass="di-rangle-block">
-                    <h4>Size Range ({{countryData.unitType}})</h4>
+                    <h4>نطاق الحجم ({{countryData.unitType}})</h4>
                     <div ngClass="price-range_sec">
                       <div ngClass="range-slider">
                         <ngx-slider [(value)]="SizeminValue" [(highValue)]="SizemaxValue" [options]="Sizeoptions"
@@ -160,7 +160,7 @@
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-2">
                   <div ngClass="di-rangle-block">
-                    <h4>Price Range ({{countryData.currency}})</h4>
+                    <h4>نطاق السعر ({{countryData.currencyAr}})</h4>
                     <div ngClass="price-range_sec">
                       <div ngClass="range-slider">
                         <ngx-slider [(value)]="PriceminValue" [(highValue)]="PricemaxValue" [options]="Priceoptions"
@@ -181,12 +181,12 @@
                   <app-loader *ngIf="showLoader"></app-loader>
                   <div class="row">
                     <div class="col-12 text-center">
-                      <h6 class="text-small">Ready Property Transactions</h6>
+                      <h6 class="text-small">معاملات العقارات الجاهزة</h6>
                       <p style="margin-bottom: 12px;"></p>
                       <div class="custom-box">
                         <span>
                           <h3>{{totalLength != 0 ? formatNumber(transactionData.transactionsCount) : 0}}</h3>
-                          <p>TRANSACTIONS</p>
+                          <p>المعاملات</p>
                         </span>
                       </div>
                     </div>
@@ -198,12 +198,12 @@
                   <app-loader *ngIf="showLoader"></app-loader>
                   <div class="row">
                     <div class="col-12 text-center">
-                      <h6 class="text-small">Off-plan property transactions</h6>
+                      <h6 class="text-small">معاملات الملكية خارج الخطة</h6>
                       <p style="margin-bottom: 12px;"></p>
                       <div class="custom-box">
                         <span>
                           <h3>{{totalLength != 0 ? formatNumber(transactionData.medianPricePerSqft) : 0}}</h3>
-                          <p>Median {{countryData.currency}}/{{countryData.unitType}}</p>
+                          <p>الوسيط {{countryData.currencyAr}}/{{countryData.unitType}}</p>
                         </span>
                       </div>
                     </div>
@@ -215,11 +215,11 @@
                   <app-loader *ngIf="showLoader"></app-loader>
                   <div class="row">
                     <div class="col-12 text-center">
-                      <h6 class="text-small">Sales listings </h6>
+                      <h6 class="text-small">قوائم المبيعات </h6>
                       <div class="custom-box">
                         <span>
                           <h3>{{totalLength != 0 ? formatNumber(transactionData.medianPrice) : 0}}</h3>
-                          <p>Median Value ({{countryData.currency}})</p>
+                          <p>قيمة الوسيط ({{countryData.currencyAr}})</p>
                         </span>
                       </div>
                     </div>
@@ -231,11 +231,11 @@
                   <app-loader *ngIf="showLoader"></app-loader>
                   <div class="row">
                     <div class="col-12 text-center">
-                      <h6 class="text-small">Rent listings</h6>
+                      <h6 class="text-small">قوائم الإيجار</h6>
                       <div class="custom-box">
                         <span>
                           <h3>{{totalLength != 0 ? formatNumber(transactionData.totalPrice) : 0}}</h3>
-                          <p>Total Value ({{countryData.currency}})</p>
+                          <p>القيمة الإجمالية ({{countryData.currencyAr}})</p>
                         </span>
                       </div>
                     </div>
@@ -250,23 +250,23 @@
               <table class="table table-striped overflow-hidden">
                 <thead>
                   <tr>
-                    <th>Type</th>
-                    <th>Sub Type</th>
-                    <th>Sequence</th>
-                    <th>Date</th>
-                    <th>Location</th>
-                    <th>Property Type</th>
-                    <th>Project Name</th>
-                    <th>Unit</th>
-                    <th>Bedrooms</th>
-                    <th>Floor</th>
-                    <th>Parking</th>
-                    <th>Balcony Area</th>
-                    <th>Size</th>
-                    <th>Land Size</th>
-                    <th>Amount</th>
-                    <th>AED</th>
-                    <th>Developer</th>
+                    <th>نوع</th>
+                    <th>النوع الفرعي</th>
+                    <th>تسلسل</th>
+                    <th>تاريخ</th>
+                    <th>المواقع</th>
+                    <th>نوع الملكية</th>
+                    <th>اسم المشروع</th>
+                    <th>الوحدة</th>
+                    <th>غرفة نوم</th>
+                    <th>أرضية</th>
+                    <th>موقف سيارات</th>
+                    <th>منطقة الشرفة</th>
+                    <th>بحجم</th>
+                    <th>مساحة الارض</th>
+                    <th>مقدار</th>
+                    <th>درهم</th>
+                    <th>مطور</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -295,7 +295,7 @@
             </div>
             <div class="pagination-controls d-flex justify-content-spacebw">
               <div class="pagination-page-per-item d-flex align-items-center">
-                <p>Items Per Page 10</p>
+                <p>عدد العناصر في الصفحة 10</p>
                 <div ngClass="select-design-language">
                   <mat-form-field appearance="fill">
                     <mat-select [disableOptionCentering]="true" [(value)]="PageNumbers"
