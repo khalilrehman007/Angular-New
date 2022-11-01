@@ -188,7 +188,7 @@ html[dir="rtl"]{
     right: -24px;
 }
 .property-action-hdr {
-	padding-left: 10px;
+	padding-left: 0px;
 }
 .property-action-hdr > button:last-child {
     margin-right: 15px;
@@ -576,19 +576,40 @@ select.nice-select {
     padding-left: 0px !important;
     padding-right: 23px;
 }
+.property-action-hdr > button {
+    margin-right: 0px;
+}
+.navbar-brand {
+    margin-right: 0px !important;
+}
+.ico-dtls .icn {
+    margin-right: 0px !important;
+    margin-left: 10px !important;
+}
+.new-home-page .searc-input-combination .mat-form-field:first-child{
+margin-left: 0px !important;
+}
+.blogs_sliders-cntnt-bg .blog-title-content {
+    padding-left: 0px !important;
+    padding-right: 60px;
+}
 
 
     @media (max-width: 767px){
-		.properties-list_cntnts {
-			padding-right: 15px !important;
-		}
 		.call-now_link > .grey-bordered-btn {
 			font-size: 13px;
 			padding-left: 10px;
 			padding-right: 10px;
 		}
+		.property-contact-buttons > a svg {
+			left: 3px !important;
+			position: relative;
+		}
 		.pro-contact-details {
 			text-align: right !important;
+		}
+		.property-contact-buttons > a.call .mat-icon {
+			right: 0px !important;
 		}
 	}
 	@media (max-width: 1199px){
@@ -652,5 +673,9 @@ select.nice-select {
 			display: block !important;
 		}
 	}
-
+@media (max-width: 991px){
+	.blogs_sliders-cntnt-bg .blog-title-content{
+		padding-right: 0px !important;
+	}
+}
 }
