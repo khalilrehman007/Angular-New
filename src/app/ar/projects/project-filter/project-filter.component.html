@@ -23,7 +23,7 @@
                         <div ngClass="property-types-cntnts">
                             <div id="Residentials"
                                 [ngClass]="PropertyCategoryId == residentialId ? 'residential-tabs' : 'hide residential-tabs'">
-                                <h5 ngClass="h5-heading">Residential نوع الوحدة</h5>
+                                <h5 ngClass="h5-heading">نوع الوحدة السكنية </h5>
                                 <ul ngClass="list-unstyled residentails-unit-list">
                                     <li ngClass="d-flex position-relative" *ngFor="let item of propertyTypeResdential">
                                         <div>
@@ -31,7 +31,7 @@
                                             <span ngClass="property_sel"></span>
                                         </div>
                                         <div ngClass="proprty_name">
-                                            <p>{{item.typeDescription}}</p>
+                                            <p>{{item.typeDescriptionAr}}</p>
                                         </div>
                                     </li>
                                 </ul>
@@ -46,7 +46,7 @@
                                             <span ngClass="property_sel"></span>
                                         </div>
                                         <div ngClass="proprty_name">
-                                            <p>{{item.typeDescription}}</p>
+                                            <p>{{item.typeDescriptionAr}}</p>
                                         </div>
                                     </li>
                                 </ul>

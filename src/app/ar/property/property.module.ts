@@ -20,9 +20,11 @@ import { NgxSliderModule } from "@angular-slider/ngx-slider";
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { PropertyDetailComponent } from './property-detail/property-detail.component';
 import { ViewmapComponent } from './viewmap/viewmap.component';
-import {NgChartsModule} from "ng2-charts";
+import { NgChartsModule } from "ng2-charts";
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
-import { HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 
@@ -53,7 +55,9 @@ import { HttpClientModule} from '@angular/common/http';
     NgxSliderModule,
     MatAutocompleteModule,
     NgxGalleryModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ]
 })
 export class PropertyModule { }

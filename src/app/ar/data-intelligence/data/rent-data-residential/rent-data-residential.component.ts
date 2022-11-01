@@ -50,6 +50,7 @@ export class RentDataResidentialComponent implements OnInit {
     ceil: 10000000,
     translate: (value: number): string => {
       return value + this.countryData.unitType;
+  
     }
   };
 
@@ -60,7 +61,7 @@ export class RentDataResidentialComponent implements OnInit {
     floor: 10,
     ceil: 10000000,
     translate: (value: number): string => {
-      return value + this.countryData.currency;
+      return value + this.countryData.currencyAr;
     }
   };
 
@@ -195,6 +196,7 @@ export class RentDataResidentialComponent implements OnInit {
       this.filteredTransaction = result.data;
     })
   }
+  
   pageChanged(e: any) {
     this.page = e;
   }
@@ -551,4 +553,5 @@ export class RentDataResidentialComponent implements OnInit {
   }
   ngAfterViewInit() {
   }
+  
 }

@@ -3,7 +3,7 @@
 <section class="compare-banner" style="background-image: url('https://beta.ovaluate.com/Attchments/PrivacyPolicyImage/about-banner1%20(1).png')">
     <div class="container_1280px">
      <div class="baner-compare-heading">
-         <h2>Have a look through your compare results</h2>
+         <h2>إلقاء نظرة من خلال مقارنة النتائج الخاصة بك</h2>
      </div>
     </div>
   </section>
@@ -18,9 +18,9 @@
         <div ngClass="container_1280px">
             <div ngClass="property_compare-header">
                 <ul>
-                    <li (click)="scroll(target)">Location</li>
-                    <li (click)="scroll(property_info)">Property Info</li>
-                    <li (click)="scroll(other_details)">Other Details</li>
+                    <li (click)="scroll(target)">الموقع</li>
+                    <li (click)="scroll(property_info)">معلومات الملكية</li>
+                    <li (click)="scroll(other_details)">تفاصيل أخرى</li>
                 </ul>
             </div>
             <div ngClass="property-compare-box">
@@ -31,17 +31,17 @@
                                 <tr>
                                     <td ngClass="first-td-design">
                                         <div ngClass="property-cparison-heading">
-                                            <h4>Property Comparision</h4>
+                                            <h4>مقارنة الخصائص</h4>
                                         </div>
                                     </td>
                                     <td *ngFor="let property of properties">
-                                        <div ngClass="property-comparison-block position-relative cursor-pointer" routerLink="">
+                                        <div ngClass="property-comparison-block position-relative cursor-pointer" routerLink="/ar">
                                             <div ngClass="com-img">
                                                 <img src="{{property.img}}">
                                             </div>
                                             <div ngClass="com-cntnt">
-                                                <h4> {{property.price}} AED
-                                                    <small>/Monthly</small></h4>
+                                                <h4> {{property.price}} إ.د
+                                                    <small>/شهري</small></h4>
                                                 <h5>{{property.title}}</h5>
                                                 <address>{{property.address}}</address>
                                             </div>
@@ -55,7 +55,7 @@
                     </div>
                 </div>
                 <div ngClass="grey-heading" #target>
-                    <h2>Location</h2>
+                    <h2>الموقع</h2>
                 </div>
                 <div ngClass="compare-block">
                     <div ngClass="table-responsive table-design">
@@ -63,7 +63,7 @@
                             <tbody>
                                 <tr>
                                     <td ngClass="first-td-design">
-                                        Building Name / Project Name
+                                        اسم المبنى / اسم المشروع
                                     </td>
                                     <td *ngFor="let property of properties">
                                         {{property.title}}
@@ -71,7 +71,7 @@
                                 </tr>
                                 <tr>
                                     <td ngClass="first-td-design">
-                                        Locality
+                                        المنطقة
                                     </td>
                                     <td *ngFor="let property of properties">
                                         {{property.address}}
@@ -79,7 +79,7 @@
                                 </tr>
                                 <tr>
                                     <td ngClass="first-td-design">
-                                        City
+                                        المدينة
                                     </td>
                                     <td *ngFor="let property of properties">
                                         {{property.city}}
@@ -90,7 +90,7 @@
                     </div>
                 </div>
                 <div ngClass="grey-heading" #property_info>
-                    <h2>Property Info</h2>
+                    <h2>معلومات الملكية</h2>
                 </div>
                 <div ngClass="compare-block">
                     <div ngClass="table-responsive table-design">
@@ -98,7 +98,7 @@
                             <tbody>
                                 <tr>
                                     <td ngClass="first-td-design">
-                                        Apartment Size
+                                        حجم الشقة
                                     </td>
                                     <td *ngFor="let property of properties">
                                         {{property.carpetArea}}
@@ -106,7 +106,7 @@
                                 </tr>
                                 <tr>
                                     <td ngClass="first-td-design">
-                                        Bedrooms
+                                        غرف نوم
                                     </td>
                                     <td *ngFor="let property of properties">
                                         {{property.bedrooms}}
@@ -114,7 +114,7 @@
                                 </tr>
                                 <tr>
                                     <td ngClass="first-td-design">
-                                        Bathrooms
+                                        الحمامات
                                     </td>
                                     <td *ngFor="let property of properties">
                                         {{property.bathrooms}}
@@ -122,7 +122,7 @@
                                 </tr>
                                 <tr>
                                     <td ngClass="first-td-design">
-                                        Available Parking
+                                        المواقف المتاحة
                                     </td>
                                     <td *ngFor="let property of properties">
                                         {{property.parkings}}
@@ -130,7 +130,7 @@
                                 </tr>
                                 <tr>
                                     <td ngClass="first-td-design">
-                                        Construction Age
+                                        عمر البناء
                                     </td>
                                     <td *ngFor="let property of properties">
                                         {{property.propertyAge}}
@@ -138,7 +138,7 @@
                                 </tr>
                                 <tr>
                                     <td ngClass="first-td-design">
-                                        Floor Number
+                                        رقم الطابق
                                     </td>
                                     <td *ngFor="let property of properties">
                                         {{property.floorNo}}
@@ -146,7 +146,7 @@
                                 </tr>
                                 <tr>
                                     <td ngClass="first-td-design">
-                                        Total Floors
+                                        مجموع الطوابق
                                     </td>
                                     <td *ngFor="let property of properties">
                                         {{property.totalFloor}}
@@ -154,7 +154,7 @@
                                 </tr>
                                 <tr>
                                     <td ngClass="first-td-design">
-                                        Tower Block
+                                        منطقة الابراج
                                     </td>
                                     <td *ngFor="let property of properties">
                                         {{property.towerBlock}}
@@ -162,7 +162,7 @@
                                 </tr>
                                 <tr>
                                     <td ngClass="first-td-design">
-                                        Unit No
+                                        رقم الوحدة
                                     </td>
                                     <td *ngFor="let property of properties">
                                         {{property.unitNo}}
@@ -173,7 +173,7 @@
                     </div>
                 </div>
                 <div ngClass="grey-heading" #other_details>
-                    <h2>Other Details</h2>
+                    <h2>تفاصيل أخرى</h2>
                 </div>
                 <div ngClass="compare-block">
                     <div ngClass="table-responsive table-design">
@@ -181,7 +181,7 @@
                             <tbody>
                                 <tr>
                                     <td ngClass="first-td-design">
-                                        Furnishing Status
+                                        حالة الاثاث
                                     </td>
                                     <td *ngFor="let property of properties">
                                         {{property.furnishingType}}

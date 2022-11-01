@@ -188,7 +188,7 @@ $color_1: #4A4A4A;
 	display: inline-block;
 	margin-left: 0.255em;
 	vertical-align: 0.255em;
-	content: url(/assets/images/icons/arrow-dropdown.svg);
+	content: url(../../../../assets/images/icons/arrow-dropdown.svg);
 	border: 0;
 	left: 0;
 	position: absolute;
@@ -295,9 +295,128 @@ $color_1: #4A4A4A;
     margin-bottom: 0px;
     font-weight: 500;
 }
+.dashboard-data-side-links ul>li {
+    display: block;
+    font-size: 14px;
+    color: #3A3A3A;
+    font-weight: 400;
+    margin-bottom: 3px;
+	text-transform: uppercase;
+}
+.dashboard-data-side-links ul>li>.dropdown-item {
+    width: 100%;
+    border: none;
+    text-align: left;
+    padding: 5px 10px 5px 0px;
+    text-transform: uppercase;
+    color: #3A3A3A;
+    font-weight: 500;
+    font-size: 14px;
+    margin-bottom: 0px;
+    background-color: transparent;
+	transition: all 0.5s ease-in-out;
+}
+.dashboard-data-side-links ul>li>.dropdown-item:hover{
+	padding-left: 5px !important;
+	transition: all 0.5s ease-in-out;
+	background-color: whitesmoke !important;
+}
+.dashboard-data-side-links ul li .dropdown-design-main>button {
+    width: 100%;
+    border: none;
+    text-align: left;
+    padding: 5px 0px 5px 10px;
+    text-transform: uppercase;
+    color: #3A3A3A;
+    font-weight: 500;
+    font-size: 14px;
+    margin-bottom: 0px;
+	background-color: transparent;
+	transition: all 0.5s ease-in-out;
+}
+.dashboard-data-side-links ul li .dropdown-design-main>button:hover,.dashboard-data-side-links ul li .dropdown-design-main.show>button {
+    padding-right: 5px !important;
+	transition: all 0.5s ease-in-out;
+}
+.dashboard-data-side-links ul li .dropdown-design-main .dropdown-toggle:hover,.dashboard-data-side-links ul li .show>.dropdown-toggle{
+	background-color: whitesmoke !important;
+}
+.dropdown-design-sub-menu>button {
+    width: 100%;
+    border: none;
+    text-align: left;
+    padding: 5px 10px;
+    text-transform: uppercase;
+    color: #3A3A3A;
+    font-weight: 400;
+    font-size: 13px;
+    margin-bottom: 0px;
+    background-color: transparent !important;
+}
+.dashboard-data-side-links ul li .dropdown>button::after{
+	display: none;
+}
+.dashboard-data-side-links ul li .dropdown>button::before {
+    content: "";
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 7px;
+    height: 7px;
+    border-top: 2px solid #646262;
+    border-right: 2px solid #646262;
+    transform: rotate(45deg);
+}
+.dashboard-data-side-links ul li .dropdown>button:hover{
+	background-color: transparent;
+}
+.dashboard-data-side-links ul li .dropdown .dropdown-menu {
+    position: relative !important;
+    border: none;
+    background: transparent;
+    transform: none !important;
+	padding-top: 5px;
+    padding-bottom: 5px;
+	padding-left: 10px;
+}
+.dropdown-design-sub-menu>.dropdown-menu>.dropdown-item {
+	text-transform: capitalize !important;
+	font-weight: 300 !important;
+}
+.dropdown-design-sub-menu>.dropdown-menu .dropdown-design-sub-menu>button {
+	text-transform: capitalize !important;
+}
+.dashboard-data-side-links ul li .dropdown .dropdown-menu>.dropdown-item {
+	font-size: 13px;
+    color: #3A3A3A;
+    font-weight: 400;
+    display: block;
+	padding: 5px 10px;
+	text-transform: uppercase;
+	a.active{
+		color: #595ad5;
+		font-weight: 400;
+	}
+}
+.dashboard-data-side-links ul li .dropdown.show>button::before {
+    transform: rotate(137deg) !important;
+}
+.dashboard-data-side-links ul li .dropdown>button:active{
+	background-color: transparent !important;
+}
 .white-header-wrap {
     padding: 30px 0px;
     margin-top: 15px;
+}
+.dashboard-data-side-links ul li .dropdown .dropdown-menu>.dropdown-item:hover{
+	color: #595AD4;
+}
+.dashboard-data-side-links ul li button:hover{
+	background: transparent !important;
+}
+.dashboard-data-side-links ul>li:hover{
+	color: #595AD4 !important;
+	cursor: pointer;
 }
 .font-weight-bold{
 	font-weight: 700 !important;
@@ -316,109 +435,6 @@ $color_1: #4A4A4A;
     padding: 10px 15px;
     margin-bottom: 25px;
     border-radius: 50px;
-}
-.sub-menu {
-    display: none;
-    transition: all 0.5s ease-in-out;
-	padding-left: 10px;
-	margin-top: 6px;
-    margin-bottom: 6px;
-}
-.sub-menu.active {
-    display: block;
-}
-.btn-has-dropdown{
-	width: 100%;
-    border: none;
-    text-align: right;
-    padding: 5px 0px 5px 10px;
-    text-transform: uppercase;
-    color: #3A3A3A;
-    font-weight: 500;
-    font-size: 14px;
-    margin-bottom: 0px;
-    background-color: transparent;
-    transition: all 0.5s ease-in-out;
-	position: relative;
-	transition: all 0.5s ease-in-out;
-}
-.btn-has-dropdown::before{
-	position: absolute;
-    left: 10px;
-    top: 11px;
-    width: 7px;
-    height: 7px;
-    border-top: 2px solid #646262;
-    border-right: 2px solid #646262;
-    transform: rotate(230deg);
-	content: '';
-}
-.btn-has-dropdown:hover,.btn-has-dropdown.active,.dashboard-data-side-links ul>li>button:hover{
-background-color: whitesmoke;
-}
-.dashboard-data-side-links ul>li .dropdown-design-main>.btn-has-dropdown:hover,.dashboard-data-side-links ul>li .dropdown-design-main>.btn-has-dropdown.active,.dashboard-data-side-links ul>li>button:hover{
-	padding-right: 5px !important;
-    transition: all 0.5s ease-in-out;
-}
-.sub-menu .sub-menu>button>a {
-    font-weight: 300;
-	text-transform: initial;
-}
-.sub-menu .sub-menu>button {
-    background: transparent;
-    border: none;
-    width: 100%;
-    text-align: right;
-}
-.sub-menu>button {
-    width: 100%;
-    text-align: right;
-    background: transparent;
-    border: none;
-}
-.sub-menu>button>a {
-    width: 100%;
-    color: #3A3A3A;
-    font-size: 13px;
-    text-transform: uppercase;
-    font-weight: 400;
-	display: block;
-	padding: 5px 10px;
-    width: 100%;
-}
-.sub-menu .btn-has-dropdown {
-    padding-right: 10px !important;
-    font-size: 13px;
-    font-weight: 400;
-	margin-bottom: 2px;
-}
-.dropdown-design-sub-menu a.active {
-    color: #0f2ead !important;
-    font-weight: 400 !important;
-}
-.dropdown-design-sub-menu a:hover {
-    color: #0f2ead !important;
-}
-.btn-has-dropdown.active::before{
-	transform: rotate(136deg) !important;
-}
-.sub-menu>.dropdown-design.dropdown-design-sub-menu:first-child {
-    margin-top: 10px;
-}
-.dashboard-data-side-links ul>li>button {
-    width: 100%;
-    border: none;
-    text-align: right;
-    padding: 5px 0px 5px 10px;
-    text-transform: uppercase;
-    color: #3A3A3A;
-    font-weight: 500;
-    font-size: 14px;
-    margin-bottom: 0px;
-    background-color: transparent;
-    transition: all 0.5s ease-in-out;
-    position: relative;
-    transition: all 0.5s ease-in-out;
 }
 
 
