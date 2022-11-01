@@ -231,13 +231,13 @@
         <div ngClass="block-item six1-block" *ngIf="router.url === '/ar/property/short-term-rent'">
             <div ngClass="block-wrapper">
                 <div ngClass="cstm_dropdown-list dropdown-design-2 position-relative drodown_with-img">
-                    <button ngClass="drop-down_btn" (click)="clickEvent2()">Availability</button>
+                    <button ngClass="drop-down_btn" (click)="clickEvent2()">التوفر</button>
                     <div class="cstm_dropdown-menu" [ngClass]="status2 ? 'active' : 'notactive'">
-                        <h4 ngClass="drop_label">Availability</h4>
+                        <h4 ngClass="drop_label">التوفر</h4>
                         <div ngClass="availity-sec-design">
                             <div ngClass="availity-from input-date-picker input-design">
                             <mat-form-field appearance="fill">
-                                <mat-label>Availability From</mat-label>
+                                <mat-label>التوفر من</mat-label>
                                 <input matInput [matDatepicker]="pickerFrom">
                                 <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
                                 <mat-datepicker #pickerFrom></mat-datepicker>
@@ -245,7 +245,7 @@
                               </div>
                              <div ngClass="availity-to input-date-picker input-design">
                                 <mat-form-field appearance="fill">
-                                    <mat-label>Availability To</mat-label>
+                                    <mat-label>توافر ل</mat-label>
                                     <input matInput [matDatepicker]="pickerTo">
 
                                     <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
