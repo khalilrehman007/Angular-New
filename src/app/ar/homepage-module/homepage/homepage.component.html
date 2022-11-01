@@ -163,8 +163,8 @@
                                         </p>
                                         <div ngClass="property-details">
                                             <span ngClass="bed" *ngIf="slide.propertyType.hasBed">
-                                                <img src="{{ bedsvg }}" alt="" />{{ slide.bedrooms }}
-                                                غرفة نوم
+                                                <img src="{{ bedsvg }}" alt="" /><span *ngIf="slide.bedrooms != 0">{{ slide.bedrooms }} غرفة نوم</span>
+                                                <span *ngIf="slide.bedrooms == 0">استديو</span>
                                             </span>
                                             <span ngClass="bath" *ngIf="slide.propertyType.hasBath">
                                                 <img src="{{ bathsvg }}" alt="" />{{ slide.bathrooms }}
@@ -274,8 +274,8 @@
                                         </p>
                                         <div ngClass="property-details">
                                             <span ngClass="bed" *ngIf="slide.propertyType.hasBed">
-                                                <img src="{{ bedsvg }}" alt="" />{{ slide.bedrooms }}
-                                                غرفة نوم
+                                                <img src="{{ bedsvg }}" alt="" /><span *ngIf="slide.bedrooms != 0">{{ slide.bedrooms }} غرفة نوم</span>
+                                                <span *ngIf="slide.bedrooms == 0">استديو</span>
                                             </span>
                                             <span ngClass="bath" *ngIf="slide.propertyType.hasBath">
                                                 <img src="{{ bathsvg }}" alt="" />{{ slide.bathrooms }}
