@@ -508,10 +508,10 @@
                                                         <div class="pet-policy-input">
                                                             <mat-form-field appearance="fill">
                                                                 <mat-label> Select the pet policy</mat-label>
-                                                                <mat-select [disableOptionCentering]="true"  multiple [(value)]="petPolicyData"
+                                                                <mat-select [disableOptionCentering]="true" multiple [(value)]="petPolicyData"
                                                                     (selectionChange)="getPetPolicy($event)">
-                                                                    <mat-option *ngFor="let item of petPolicy"
-                                                                        value="{{item.id}}">{{item.name}}</mat-option>
+                                                                    <mat-option *ngFor="let item of petPolicy; let i = index"
+                                                                        value="{{item.id}}" [disabled]="disabled.indexOf(i) != -1" (click)="getPolicyOption(i)">{{item.name}}</mat-option>
                                                                 </mat-select>
                                                             </mat-form-field>
                                                         </div>
