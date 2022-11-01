@@ -239,7 +239,7 @@ export class NewHomesComponent implements OnInit {
     this.service.PropertySortBy().subscribe(e => {
       let temp: any = e;
       for (let list of temp.data) {
-        this.PropertySortBy.push({ name: list.name, id: list.id });
+        this.PropertySortBy.push({ name: list.nameAr, id: list.id });
       }
     });
   }
@@ -370,12 +370,12 @@ export class NewHomesComponent implements OnInit {
             id: element.id, favorite: element.favorite, userImage: userImage, fullName: fullName, userId: userId,
             StartRentPrice: element.startRentPrice, EndRentPrice: element.endRentPrice, AvgRentPrice: element.avgRentPrice, RecentRentTxns: element.recentRentTxns,
             documents: documents, propertyFeatures: element.propertyFeatures, propertyType: element.propertyType,
-            propertyTitle: element.propertyTitle, propertyAddress: element.propertyAddress, documentsCheck: documentsCheck,
+            propertyTitle: element.propertyTitle, propertyAddress: element.propertyAddressArabic, documentsCheck: documentsCheck,
             buildingName: element.buildingName, bedrooms: element.bedrooms, bathrooms: element.bathrooms, carpetArea: element.carpetArea,
             unitNo: element.unitNo, totalFloorgit: element.totalFloor, floorNo: element.floorNo, propertyDescription: element.propertyDescription,
             requestedDate: element.requestedDate, furnishingType: element.furnishingType, propertyPrice: element.propertyPrice,
             requestedDateFormat: element.requestedDateFormat, brokerageChargePrice: element.brokerageChargePrice, securityDepositPrice: element.securityDepositPrice,
-            expiredDateFormat: element.expiredDateFormat, rentType: rentTypeName, currency: element.country.currency, propertyCode: element.propertyCode
+            expiredDateFormat: element.expiredDateFormat, rentType: rentTypeName, currency: element.country.currencyAr, propertyCode: element.propertyCode
           }
         );
       })
