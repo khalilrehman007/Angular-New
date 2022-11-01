@@ -287,43 +287,43 @@ export class PropertyDetailsComponent implements OnInit {
   getData() {
     if ($(".country-select").val() == 0) {
       this.currentField = "country-select + .select2";
-      this.error = "Select Country";
+      this.error = "حدد الدولة";
       this.showError = true;
       return;
     } else if ($(".city-select").val() == 0) {
       this.currentField = "city-select + .select2";
-      this.error = "Select City";
+      this.error = "اختر مدينة";
       this.showError = true;
       return;
     } else if ($(".district-select").val() == 0) {
       this.currentField = "district-select + .select2";
-      this.error = "Select District";
+      this.error = "حدد المنطقة";
       this.showError = true;
       return;
     } else if ($("#searchLocation").val() == "" || !this.locationSelected) {
       this.currentField = "input-wrapper";
       this.changeInfo();
-      this.error = "Enter Address";
+      this.error = "أدخل العنوان";
       this.showError = true;
       return;
     } else if (this.propertyDetails.value.titleDeed == "") {
       this.currentField = "title-deed-input";
-      this.error = "Enter Title Deed No";
+      this.error = "أدخل رقم سند الملكية";
       this.showError = true;
       return;
     } else if (this.titleDeedType == -1) {
       this.currentField = "title-deed-type-input";
-      this.error = "Select Title Deed Type";
+      this.error = "حدد نوع سند الملكية";
       this.showError = true;
       return;
     } else if (this.propertyDetails.value.muncipality == "") {
       this.currentField = "municipality-input";
-      this.error = "Enter Muncipality/Affection No";
+      this.error = "أدخل البلدية / رقم العاطفة";
       this.showError = true;
       return;
     } else if (this.propertyInsured == -1) {
       this.currentField = "property-insured-input";
-      this.error = "Select Property Insurance Type";
+      this.error = "حدد نوع التأمين على الممتلكات";
       this.showError = true;
       return;
     } else {
