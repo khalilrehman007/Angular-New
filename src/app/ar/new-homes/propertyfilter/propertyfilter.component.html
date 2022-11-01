@@ -10,7 +10,7 @@
                 </mat-form-field> -->
 
                 <mat-form-field class="example-chip-list input-design searh_input-design mat-inner-chip-design" appearance="fill">
-                    <mat-label>Locations...</mat-label>
+                    <mat-label>المواقع</mat-label>
                     <mat-chip-list #chipList aria-label="Fruit selection">
                         <div ngClass="mat-chip-input-limited">
                             <mat-chip *ngFor="let fruit of fruits" (removed)="remove1(fruit)">
@@ -20,7 +20,7 @@
                                 </button>
                             </mat-chip>
                             </div>
-                        <input placeholder="Add Location.." #fruitInput [formControl]="fruitCtrl"
+                        <input placeholder="المواقع" #fruitInput [formControl]="fruitCtrl"
                             [matAutocomplete]="auto1" [matChipInputFor]="chipList"
                             [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="add1($event)">
                     </mat-chip-list>
@@ -44,9 +44,9 @@
         <div ngClass="block-item scnd-block">
             <div ngClass="block-wrapper">
                 <div ngClass="cstm_dropdown-list dropdown-design-2 position-relative drodown_with-img">
-                    <button ngClass="drop-down_btn" (click)="clickEvent1()">Property Type</button>
+                    <button ngClass="drop-down_btn" (click)="clickEvent1()">نوع العقار</button>
                     <div class="cstm_dropdown-menu" [ngClass]="status1 ? 'active' : 'notactive'">
-                        <h4 ngClass="drop_label">Property Type</h4>
+                        <h4 ngClass="drop_label">نوع العقار</h4>
                         <div ngClass="property-types-heading">
                             <ul ngClass="nav nav-tabs" role="tablist">
                                 <li ngClass="nav-item" (click)="propertyType(residentialId)">
@@ -64,7 +64,7 @@
                         <div ngClass="property-types-cntnts">
                             <div id="Residentials"
                                 [ngClass]="PropertyCategoryId == residentialId ? 'residential-tabs' : 'hide residential-tabs'">
-                                <h5 ngClass="h5-heading">Residential Unit Type</h5>
+                                <h5 ngClass="h5-heading">نوع الوحدة السكنية</h5>
                                 <ul ngClass="list-unstyled residentails-unit-list">
                                     <li ngClass="d-flex position-relative" *ngFor="let item of propertyTypeResdential">
                                         <div>
@@ -72,14 +72,14 @@
                                             <span ngClass="property_sel"></span>
                                         </div>
                                         <div ngClass="proprty_name">
-                                            <p>{{item.typeDescription}}</p>
+                                            <p>{{item.typeDescriptionAr}}</p>
                                         </div>
                                     </li>
                                 </ul>
                             </div>
                             <div id="Commercial"
                                 [ngClass]="PropertyCategoryId == commercialId ? 'commertial-tabs' : 'hide commertial-tabs'">
-                                <h5 ngClass="h5-heading">Commercial Unit Type</h5>
+                                <h5 ngClass="h5-heading">نوع الوحدة التجارية</h5>
                                 <ul ngClass="list-unstyled residentails-unit-list">
                                     <li ngClass="d-flex position-relative" *ngFor="let item of propertyTypeCommercial">
                                         <div>
@@ -87,7 +87,7 @@
                                             <span ngClass="property_sel"></span>
                                         </div>
                                         <div ngClass="proprty_name">
-                                            <p>{{item.typeDescription}}</p>
+                                            <p>{{item.typeDescriptionAr}}</p>
                                         </div>
                                     </li>
                                 </ul>
@@ -102,7 +102,7 @@
         <div ngClass="block-item scnd2-block">
             <div ngClass="block-wrapper mb-4">
                 <mat-form-field appearance="fill" class="select-design">
-                    <mat-label>Handover</mat-label>
+                    <mat-label>التسليم في</mat-label>
                     <mat-select [disableOptionCentering]="true"  [(value)]="selectedBeds" (selectionChange)="beds($event)">
                         <mat-option value="">
                             0
@@ -372,7 +372,7 @@
         </div> -->
         <div ngClass="block-item seven-block">
             <div ngClass="block-wrapper">
-                <button ngClass="clear-btn" (click)="clearSearch()">Clear</button>
+                <button ngClass="clear-btn" (click)="clearSearch()">صافي</button>
             </div>
         </div>
         <div ngClass="block-item eight-block">
