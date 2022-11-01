@@ -363,10 +363,8 @@
             </div>
 
             <div ngClass="row">
-                <!-- let blogs of Blogsec -->
                 <div ngClass="col-lg-4 col-md-6 blog-places-col" *ngFor="let blog of blogs">
                     <a routerLink="/blog/details/{{blog.slugName}}" ngClass="position-relative">
-                        <!-- blog.blogDocument.fileUrl -->
                         <img [src]="'https://beta.ovaluate.com/' + blog.blogDocument.fileUrl"
                             ngClass="img-fluid blog-image-homepage" alt="" />
                         <span ngClass="blog-tag">
@@ -374,7 +372,7 @@
                         </span>
                         <div ngClass="blog-title-content">
                             <h5>{{ blog.blogTitle }}</h5>
-                            <span>{{ blog.blogDateFormat.split("T")[0] }}</span>
+                            <span>{{ blog.blogDate.split("T")[0] }}</span>
                         </div>
                         <button ngClass="tag_btn blue">{{blog.blogCategory.categoryName}}</button>
                     </a>
