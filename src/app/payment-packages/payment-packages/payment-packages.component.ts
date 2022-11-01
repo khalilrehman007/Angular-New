@@ -99,11 +99,11 @@ export class PaymentPackagesComponent implements OnInit {
   }
   proceedPackagePayment() {
     if (this.selectedPackageByPoints == "") {
-      this.error = "الرجاء تحديد نوع الحزمة";
+      this.error = "Please Select a package type";
       this.showError = true;
       return;
     } else if (this.packages < this.selectedPackageByPoints.price) {
-      this.error = "رصيد حسابك غير كاف ، يرجى إعادة الشحن";
+      this.error = "Your account balance is not enough please recharge";
       this.showError = true;
       this.scroll = true;
       return;
