@@ -88,11 +88,11 @@ export class BuySearchComponent implements OnInit {
     url = this.route.url.split('?')[0];
     this.routeCheck = url
     this.totalPropertyRecord = localStorage.getItem('propertyListingTotalRecord');
-    this.type = this.activeRoute.snapshot.queryParamMap.get('type');
+    this.type = "Buy";
     this.PropertyCategoryId = this.activeRoute.snapshot.queryParamMap.get('PropertyCategoryId');
     this.RentTypeId = this.activeRoute.snapshot.queryParamMap.get('RentTypeId');
     let PropertyTypeIds: any = this.activeRoute.snapshot.queryParamMap.get('PropertyTypeIds');
-    this.PropertyListingTypeId = this.activeRoute.snapshot.queryParamMap.get('PropertyListingTypeId');
+    this.PropertyListingTypeId = "2";
     this.PropertyAddress = this.activeRoute.snapshot.queryParamMap.get('PropertyAddress');
     this.PriceStart = this.activeRoute.snapshot.queryParamMap.get('PriceStart');
     this.PriceEnd = this.activeRoute.snapshot.queryParamMap.get('PriceEnd');
