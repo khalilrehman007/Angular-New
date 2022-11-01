@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { AppService } from "../../service/app.service";
+import { AppService } from "../../../service/app.service";
 import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
-import { NotificationService } from "../../service/notification.service";
+import { NotificationService } from "../../../service/notification.service";
 import { ChartConfiguration, ChartOptions, ChartType } from "chart.js";
 import { DomSanitizer } from "@angular/platform-browser";
-import { AuthService } from "../../service/auth.service";
+import { AuthService } from "../../../service/auth.service";
 import * as mapboxgl from 'mapbox-gl';
 import { environment } from 'src/environments/environment';
 import { NgxGalleryOptions } from '@kolkov/ngx-gallery';
@@ -49,11 +49,11 @@ export class DetailsComponent implements OnInit {
   videocall = 'assets/images/icons/video-call.svg'
   virtual = 'assets/images/icons/virtual-tour.svg'
   homeaddress = 'assets/images/icons/home-location-white.svg'
-  twitter = '../../../assets/images/icons/twiiter-share.svg'
-  qr = '../../../assets/images/icons/qr-share.svg'
-  fb = '../../../assets/images/icons/fb-share.svg'
-  tagicn = '../../../assets/images/icons/tag-icn.svg'
-  homeLoc = '../../../assets/images/home-location.svg'
+  twitter = '../../../../assets/images/icons/twiiter-share.svg'
+  qr = '../../../../assets/images/icons/qr-share.svg'
+  fb = '../../../../assets/images/icons/fb-share.svg'
+  tagicn = '../../../../assets/images/icons/tag-icn.svg'
+  homeLoc = '../../../../assets/images/home-location.svg'
   user: any
   baseUrl = 'https://beta.ovaluate.com/'
   status: boolean = true;

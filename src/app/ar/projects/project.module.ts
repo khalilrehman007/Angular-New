@@ -13,8 +13,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-// import { CityComponent } from './city/city.component';
-// import { DetailsComponent } from './details/details.component';
+import { CityComponent } from './city/city.component';
+import { DetailsComponent } from './details/details.component';
 import { LuxuryComponent } from './luxury/luxury.component';
 import { UltraLuxuryComponent } from './ultraluxury/ultraluxury.component';
 import { ScoresComponent } from './scores/scores.component';
@@ -31,11 +31,12 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { ProjectFilterComponent } from './project-filter/project-filter.component';
 
+
 @NgModule({
   declarations: [
     ProjectComponent,
-    // CityComponent,
-    // DetailsComponent,
+    CityComponent,
+    DetailsComponent,
     LuxuryComponent,
     UltraLuxuryComponent,
     ScoresComponent,
