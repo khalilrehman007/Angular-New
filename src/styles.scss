@@ -3812,11 +3812,11 @@ input[type=number] {
 			span {
 				font-size: 17px;
 				color: $color_29;
-				font-weight: 500;
+				font-weight: 700;
 			}
 			span:last-child {
 				color: #000;
-				font-weight: 400;
+				font-weight: 500;
 				font-size: 13px;
 			}
 		}
@@ -4383,7 +4383,7 @@ img {
 	h4 {
 		font-size: 18px;
 		color: #595ad4;
-		font-weight: 500;
+		font-weight: 700;
 		margin-bottom: 0px;
 		line-height: 30px;
 	}
@@ -4408,9 +4408,9 @@ img {
 
 .property-name_detals {
 	h4 {
-		color: $color_15;
-		font-size: 24px;
-		margin-bottom: 10px;
+		color: #000000;
+		font-size: 20px;
+		margin-bottom: 8px;
 	}
 
 	.property-name_detals {
@@ -5440,7 +5440,6 @@ img {
 
 	.checkbox-design {
 		.checkbox-btn {
-			border: none;
             min-width: 60px;
 			img {
 				margin-right: 5px;
@@ -7000,13 +6999,15 @@ img {
 }
 .blue_tag {
 	background: #595ad4;
-	border-radius: 4px;
-	color: $color_5  !important;
-	text-transform: uppercase;
-	padding: 1px 10px;
-	font-size: 10px !important;
-	letter-spacing: 1px;
-	margin-right: 5px;
+    border-radius: 4px;
+    color: #fff !important;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    font-size: 14px !important;
+    letter-spacing: normal;
+    margin-right: 5px;
+    display: inline-block;
+    margin-top: 5px;
 }
 
 .catogries-sec-wrapper {
@@ -11298,7 +11299,7 @@ margin-right: 0px;
 }
 .property-price_detals h4 small {
     color: #000;
-    font-weight: 400;
+    font-weight: 500;
     font-size: 13px;
 }
 .shortlisted-tabs_list .agent-details__property-list-item .selection-checkbox-selector input:checked+.cstm-selection-btn {
@@ -11797,7 +11798,6 @@ p:empty {
     font-size: 14px;
     color: rgba(0, 22, 25, 0.7);
     font-weight: 400;
-    font-family: "Cairo", sans-serif;
 }
 .country-code-select-design .iti .country-dropdown {
     width: 376px !important;
@@ -12970,7 +12970,10 @@ input:focus{
 .Overflow-hidden .rent-propoerties-main-sec {
     display: none;
 }
-
+.catogries-sec-wrapper {
+    max-width: 100%;
+    overflow-x: hidden;
+}
 
 
 @media (max-width: 1280px){
