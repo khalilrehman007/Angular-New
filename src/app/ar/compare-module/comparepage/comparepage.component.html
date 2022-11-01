@@ -3,7 +3,7 @@
  <section class="compare-banner" style="background-image: url('https://beta.ovaluate.com/Attchments/PrivacyPolicyImage/about-banner1%20(1).png')">
    <div class="container_1280px">
     <div class="baner-compare-heading">
-        <h2>Confused? Easy way to compare properties</h2>
+        <h2>مشوش? طريقة سهلة لمقارنة العقارات</h2>
     </div>
    </div>
  </section>
@@ -20,33 +20,31 @@
             <div class="row">
                 <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
                     <div class="add-compare-div">
-                        <button class="select-compare-btn"><span class="plus-icn">+</span> <span class="select-text">Select</span></button>
+                        <button class="select-compare-btn"><span class="plus-icn">+</span> <span class="select-text">اختر</span></button>
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
                     <div class="add-compare-div">
-                        <button class="select-compare-btn"><span class="plus-icn">+</span> <span class="select-text">Select the same detail
-                            by selecting different area</span> </button>
+                        <button class="select-compare-btn"><span class="plus-icn">+</span> <span class="select-text">حدد نفس التفاصيل عن طريق تحديد منطقة مختلفة</span> </button>
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
                     <div class="add-compare-div">
-                        <button class="select-compare-btn"><span class="plus-icn">+</span> <span class="select-text">Select the same detail
-                            by selecting different area</span> </button>
+                        <button class="select-compare-btn"><span class="plus-icn">+</span> <span class="select-text">حدد نفس التفاصيل عن طريق تحديد منطقة مختلفة</span> </button>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                     <div class="compare-now-btn-block">
-                        <button class="compare-now-btn" routerLink="/compare/view">Compare Now</button>
+                        <button class="compare-now-btn" routerLink="/ar/compare/view">قارن الآن</button>
                     </div>
                 </div>
             </div>
         </div>
         <div class="popular-car-comparisons">
             <div ngClass="compare-header">
-                <h4 class="h4-design">Popular properties comparison</h4>
+                <h4 class="h4-design">مقارنة الخصائص الشعبية</h4>
             </div>
             <div class="popular-car-comparisons-slider">
                 <owl-carousel-o [options]="popularComparisonOptions">
@@ -61,8 +59,8 @@
                                 <div class="property-pcompare-cntnt">
                                     <h4>
                                         <span class="property_name_span">{{pc.price1}}</span>
-                                        <span class="property_currency_span">AED</span>
-                                        <span class="term_badge">/ Monthly</span>
+                                        <span class="property_currency_span">إ.د</span>
+                                        <span class="term_badge">/ شهري</span>
                                     </h4>
                                     <p class="price_pcompare">{{pc.PropertyName1}}</p>
                                     <address><img src="/assets/images/home-location.svg"> {{pc.address1}}</address>
@@ -75,8 +73,8 @@
                                 <div class="property-pcompare-cntnt">
                                     <h4>
                                         <span class="property_name_span">{{pc.price2}}</span>
-                                        <span class="property_currency_span">AED</span>
-                                        <span class="term_badge">/ Monthly</span>
+                                        <span class="property_currency_span">إ.د</span>
+                                        <span class="term_badge">/ شهري</span>
                                     </h4>
                                     <p class="price_pcompare">{{pc.PropertyName2}}</p>
                                     <address><img src="/assets/images/home-location.svg"> {{pc.address2}}</address>
@@ -85,7 +83,7 @@
                             <p class="vs-tag">VS</p>
                            </div>
                            <div class="pcomparison-details-btn">
-                            <a routerLink="{{pc.link}}">View Details</a>
+                            <a routerLink="{{pc.link}}">عرض التفاصيل</a>
                         </div>
                         </div>
                         </ng-template>
@@ -102,30 +100,30 @@
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                     <div class="comparision-banner-cntnt">
-                        <h4><img src="/assets/images/logo.svg"><strong>Ovaluate</strong> Recomended</h4>
-                        <h3>Not Sure, Which property to buy?</h3>
-                        <p>Let us help you find the dream property</p>
-                        <button class="compare-now-btn" (click)="scroll(property_info)">View Featured Properties</button>
+                        <h4><img src="/assets/images/logo.svg"><strong>اوفاليويت</strong> أوصت</h4>
+                        <h3>غير متأكد, التي الممتلكات لشراء?</h3>
+                        <p>دعنا نساعدك في العثور على عقار الأحلام</p>
+                        <button class="compare-now-btn" (click)="scroll(property_info)">عرض الخصائص المميزة</button>
                     </div>
                 </div>
             </div>
         </div>
         <div class="featured-car-comparisons" #property_info>
             <div ngClass="compare-header">
-                <h4 class="h4-design">Featured Properties</h4>
-                <p>You Could choose 3 properties from here and compare</p>
+                <h4 class="h4-design">خصائص مميزة</h4>
+                <p>يمكنك اختيار 3 خصائص من هنا والمقارنة</p>
             </div>
             <div class="popular-car-comparisons-slider">
                 <owl-carousel-o [options]="featuredOptions">
                     <ng-container *ngFor="let property of Featuredproperties">
                         <ng-template carouselSlide>
                             <div ngClass="property-comparison-block position-relative">
-                                <div ngClass="com-img cursor-pointer" routerLink="">
+                                <div ngClass="com-img cursor-pointer" routerLink="/ar">
                                     <img src="{{property.img}}">
                                 </div>
-                                <div ngClass="com-cntnt cursor-pointer" routerLink="">
-                                    <h4> {{property.price}} AED
-                                        <small>/Monthly</small></h4>
+                                <div ngClass="com-cntnt cursor-pointer" routerLink="/ar">
+                                    <h4> {{property.price}} إ.د
+                                        <small>/شهري</small></h4>
                                     <h5>{{property.title}}</h5>
                                     <address><img src="/assets/images/home-location.svg">  {{property.address}}</address>
                                 </div>
