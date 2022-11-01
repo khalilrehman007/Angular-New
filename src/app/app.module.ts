@@ -18,6 +18,7 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { environment } from 'src/environments/environment';
 import { Header2Module } from './header2/header2.module';
+import { LoaderModule } from './loader/loader.module';
 // import { ChatComponent } from './chat/chat.component';
 // import { CometChatUI } from "../cometchat/CometChatWorkspace/src/components/CometChatUI/CometChat-Ui/cometchat-ui.module";
 initializeApp(environment.firebase);
@@ -39,6 +40,7 @@ initializeApp(environment.firebase);
     AngularFireDatabaseModule,
     RouterModule,
     Header2Module,
+    LoaderModule,
     // CometChatUI,
     ToastrModule.forRoot({
       timeOut: 2000,

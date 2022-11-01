@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, DoCheck, OnInit } from '@angular/core';
 import { environment } from "../environments/environment";
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router, RouteConfigLoadStart, RouteConfigLoadEnd  } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { NotificationService } from './service/notification.service'
 import { getMessaging, getToken, onMessage } from "firebase/messaging";
@@ -21,16 +21,22 @@ export class AppComponent implements DoCheck, OnInit, AfterViewInit {
   longitude: any = "";
   currentCountry: any = "";
   countryData: any = "";
+  showLoader:boolean = false;
   constructor(private cookie: CookieService, private service: AppService, private route: Router, private notifyService: NotificationService) {
     this.route.events.subscribe((val: any) => {
+      if (val instanceof RouteConfigLoadStart) {
+        this.showLoader = true
+      } else if (val instanceof RouteConfigLoadEnd) {
+        this.showLoader = false;
+      }
       if (val instanceof NavigationEnd) {
         let temp: any = val.url.split("/");
-        if(temp[1] == "data-intelligence") {
+        if (temp[1] == "data-intelligence") {
           $("body").addClass("select-di-dropdown");
         } else {
           $("body").removeClass("select-di-dropdown");
         }
-        if(temp[1] == "" || temp[1] == "property") {
+        if (temp[1] == "" || temp[1] == "property") {
           $("body").addClass("drop-align");
         } else {
           $("body").removeClass("drop-align");
