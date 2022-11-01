@@ -97,27 +97,27 @@
                                                     <div ngClass="property-action-hdr">
                                                         <button ngClass="ov-verified-btn"><img src="{{ovverified}}">
                                                             {{list.propertyCode}}</button>
-                                                        <div ngClass="pro-contact-details">
-                                                            <div ngbDropdown class="d-inline-block">
-                                                                <button ngClass="circle-btn" id="dropdownBasic21"
-                                                                    ngbDropdownToggle><img src="{{share}}"></button>
-                                                                <div ngbDropdownMenu aria-labelledby="dropdownBasic21">
-                                                                    <h5>شارك مع:</h5>
-                                                                    <button ngbDropdownItem><a target="_blank"
-                                                                            href="https://facebook.com"
-                                                                            ngClass="facebook"><img src="{{fb}}">
-                                                                            فيسبوك</a></button>
-                                                                    <button ngbDropdownItem><a target="_blank"
-                                                                            href="https://web.whatsapp.com/"
-                                                                            ngClass="whatsapp"><img src="{{whatsapp}}">
-                                                                            واتساب</a></button>
-                                                                    <button ngbDropdownItem><a target="_blank"
-                                                                            href="https://twitter.com/"
-                                                                            ngClass="twitter"><img src="{{twitter}}">
-                                                                            تويتر</a></button>
+                                                            <div ngClass="pro-contact-details">
+                                                                <div ngbDropdown class="d-inline-block">
+                                                                    <button ngClass="circle-btn" id="dropdownBasic21" ngbDropdownToggle><img
+                                                                            src="{{share}}"></button>
+                                                                    <div ngbDropdownMenu aria-labelledby="dropdownBasic21">
+                                                                        <h5>شارك مع:</h5>
+                                                                        <button ngbDropdownItem><a target="_blank"
+                                                                                href="https://facebook.com" ngClass="facebook"><img
+                                                                                    src="{{fb}}">
+                                                                                فيسبوك</a></button>
+                                                                        <button ngbDropdownItem><a target="_blank"
+                                                                                href="https://web.whatsapp.com/" ngClass="whatsapp"><img
+                                                                                    src="{{whatsapp}}">
+                                                                                واتساب</a></button>
+                                                                        <button ngbDropdownItem><a target="_blank"
+                                                                                href="https://twitter.com/" ngClass="twitter"><img
+                                                                                    src="{{twitter}}">
+                                                                                تويتر</a></button>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
                                                         <button
                                                             [ngClass]="list.favorite == true ? 'favourite-btn red-fill' : 'favourite-btn'"
                                                             (click)="AddToFavorite(list.id,list.favorite)">
