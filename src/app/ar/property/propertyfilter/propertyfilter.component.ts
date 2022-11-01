@@ -85,7 +85,7 @@ export class PropertyfilterComponent implements OnInit {
   options: any = {};
   propertyFeatureIds :any = [];
 
-  constructor(private activeRoute: ActivatedRoute,private service:AppService,private api: AppService,private route:Router,private modalService: NgbModal) {
+  constructor(private activeRoute: ActivatedRoute,private service:AppService,private api: AppService,private route:Router,private modalService: NgbModal, public router:Router) {
 
     let url = this.route.url.replace("/ar/", "");
     url = this.route.url.split('?')[0];
@@ -694,6 +694,11 @@ export class PropertyfilterComponent implements OnInit {
       this.commercial = response.data[1].categoryNameAr;
       this.commercialId = response.data[1].id;
     });
+  }
+  
+  status2: boolean = false;
+  clickEvent2(){
+    this.status2 = !this.status2;
   }
   proceedSearchViewMap(){
     let keywordsData :any = [];
