@@ -352,7 +352,7 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
     this.selectedPropertyType = this.propertyType.filter((item: any) => item.id == e.value)[0];
     this.propertyTypeCheck = true;
     this.data.PropertyTypeId = e.value;
-    this.api.PropertyFeatures(1).subscribe((result: any) => {
+    this.api.PropertyFeatures(this.selectedPropertyType.id).subscribe((result: any) => {
       this.featuresData = result.data;
       let a = setInterval(() => {
         if (this.featuresData.length > 0) {
