@@ -194,6 +194,19 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
           this.showLoader = false;
           this.selectedPropertyType = this.propertyType.filter((item: any) => item.id == this.data.PropertyTypeId)[0];
           this.propertyTypeCheck = true;
+          this.api.PropertyFeatures(this.selectedPropertyType.id).subscribe((result: any) => {
+            this.featuresData = result.data;
+            console.log(this.featuresData);
+            let a = setInterval(() => {
+              if (this.featuresData.length > 0) {
+                $('.select2').select2();
+                $('.features-select').select2({
+                  placeholder: "Select Features"
+              });
+                clearInterval(a);
+              }
+            }, 50);
+          });
           if (this.selectedPropertyType.hasTotalFloor) {
             this.SubmitForm.patchValue({
               TotalFloor: this.data.TotalFloor
@@ -355,7 +368,7 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
     this.propertyTypeCheck = true;
     this.data.PropertyTypeId = e.value;
     this.loadFurnishingType();
-    this.api.PropertyFeatures(1).subscribe((result: any) => {
+    this.api.PropertyFeatures(this.selectedPropertyType.id).subscribe((result: any) => {
       this.featuresData = result.data;
       let a = setInterval(() => {
         if (this.featuresData.length > 0) {
