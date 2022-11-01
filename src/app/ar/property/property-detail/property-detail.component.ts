@@ -412,10 +412,10 @@ export class PropertyDetailComponent implements OnInit {
         this.propertyDetailData.unitNo = (jsonParsDate.propertyListing.unitNo !== undefined) ? jsonParsDate.propertyListing.unitNo : ''
         this.propertyDetailData.bedrooms = (jsonParsDate.propertyListing.bedrooms !== undefined) ? jsonParsDate.propertyListing.bedrooms : ''
         this.propertyDetailData.bathrooms = (jsonParsDate.propertyListing.bathrooms !== undefined) ? jsonParsDate.propertyListing.bathrooms : ''
-        this.propertyDetailData.furnishingType = (jsonParsDate.propertyListing.furnishingType !== undefined) ? jsonParsDate.propertyListing.furnishingType : ''
-        this.propertyDetailData.fittingType = (jsonParsDate.propertyListing.fittingType !== undefined) ? jsonParsDate.propertyListing.fittingType : ''
+        this.propertyDetailData.furnishingType = (jsonParsDate.propertyListing.fittingTypeAr !== undefined) ? jsonParsDate.propertyListing.fittingTypeAr : ''
+        this.propertyDetailData.fittingType = (jsonParsDate.propertyListing.fittingTypeAr !== undefined) ? jsonParsDate.propertyListing.fittingTypeAr : ''
         this.propertyDetailData.tenantType = tenantType
-        this.propertyDetailData.gender = (jsonParsDate.propertyListing.gender !== undefined) ? jsonParsDate.propertyListing.gender : ''
+        this.propertyDetailData.gender = (jsonParsDate.propertyListing.genderAr !== undefined) ? jsonParsDate.propertyListing.genderAr : ''
         this.propertyDetailData.parkings = (jsonParsDate.propertyListing.parkings !== undefined) ? jsonParsDate.propertyListing.parkings : ''
         this.propertyDetailData.carpetArea = (jsonParsDate.propertyListing.carpetArea !== undefined) ? jsonParsDate.propertyListing.carpetArea : ''
         this.propertyDetailData.buildupArea = (jsonParsDate.propertyListing.buildupArea !== undefined) ? jsonParsDate.propertyListing.buildupArea : ''
