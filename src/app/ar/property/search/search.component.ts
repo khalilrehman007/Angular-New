@@ -92,7 +92,11 @@ export class SearchComponent implements OnInit {
     $(window).scrollTop(0);
     this.route.events.subscribe((e: any) => {
       if (e instanceof NavigationEnd) {
-        this.type = this.activeRoute.snapshot.queryParamMap.get('type');
+        if(this.activeRoute.snapshot.queryParamMap.get('type') == "Buy") {
+          this.type = "شراء";
+        } else if(this.activeRoute.snapshot.queryParamMap.get('type') == "Rent") {
+          this.type = "إيجار";
+        }
         this.PropertyCategoryId = this.activeRoute.snapshot.queryParamMap.get('PropertyCategoryId');
         this.RentTypeId = this.activeRoute.snapshot.queryParamMap.get('RentTypeId');
         this.PropertyListingTypeId = this.activeRoute.snapshot.queryParamMap.get('PropertyListingTypeId');
