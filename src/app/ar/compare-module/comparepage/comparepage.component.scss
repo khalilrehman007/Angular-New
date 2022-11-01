@@ -100,7 +100,7 @@
 .property_currency_span {
     color: #595ad6;
     font-weight: 400;
-    padding-left: 2px;
+    padding-right: 2px;
 }
 .vs-tag {
     position: absolute;
@@ -154,7 +154,7 @@
     font-weight: 300;
     font-size: 12px;
     display: inline-block;
-    padding-left: 2px;
+    padding-right: 2px;
 }
 .compare-now-btn-block {
     text-align: center;
@@ -326,5 +326,19 @@
 @media (min-width: 1200px){
     .comparision-banner-cntnt {
         padding-left: 65px;
+    }
+}
+@media (max-width: 991px){
+    .add-compare-div {
+        margin-bottom: 15px;
+    }
+    .comparision-banner-cntnt {
+        text-align: center;
+    }
+    .compare-wrapper-sec-main {
+        padding-top: 30px !important;
+    }
+    .compare-banner {
+        padding: 60px 0px !important;
     }
 }
