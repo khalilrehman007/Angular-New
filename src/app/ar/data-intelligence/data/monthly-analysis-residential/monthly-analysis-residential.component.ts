@@ -37,7 +37,7 @@ export class MonthlyAnalysisResidentialComponent implements OnInit {
     floor: 10,
     ceil: 1000000,
     translate: (value: number): string => {
-      return value + 'AED';
+      return value + this.countryData.currencyAr;
     }
   };
   showLoader: boolean = false;
@@ -127,7 +127,7 @@ export class MonthlyAnalysisResidentialComponent implements OnInit {
       },
       title: {
         display: true,
-        text: 'Transactions',
+        text: 'المعاملات',
         position: 'left',
         font: {
           size: 10
@@ -168,7 +168,7 @@ export class MonthlyAnalysisResidentialComponent implements OnInit {
       },
       title: {
         display: true,
-        text: 'Transactions',
+        text: 'المعاملات',
         position: 'left',
         font: {
           size: 10
@@ -209,7 +209,7 @@ export class MonthlyAnalysisResidentialComponent implements OnInit {
       },
       title: {
         display: true,
-        text: 'Totel Value (AED)',
+        text: 'القيمة الإجمالية (درهم)',
         position: 'left',
         font: {
           size: 10
@@ -250,7 +250,7 @@ export class MonthlyAnalysisResidentialComponent implements OnInit {
       },
       title: {
         display: true,
-        text: 'Totel Value (AED)',
+        text: 'القيمة الإجمالية (درهم)',
         position: 'left',
         font: {
           size: 10
@@ -287,7 +287,7 @@ export class MonthlyAnalysisResidentialComponent implements OnInit {
       },
       title: {
         display: true,
-        text: 'Average Value (AED)',
+        text: 'متوسط ​​القيمة (درهم)',
         position: 'left',
         font: {
           size: 10
@@ -324,7 +324,7 @@ export class MonthlyAnalysisResidentialComponent implements OnInit {
       },
       title: {
         display: true,
-        text: 'AED/Sqft',
+        text: 'درهم / قدم مربع',
         position: 'left',
         font: {
           size: 10
