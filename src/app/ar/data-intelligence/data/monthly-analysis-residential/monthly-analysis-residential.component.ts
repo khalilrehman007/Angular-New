@@ -324,7 +324,7 @@ export class MonthlyAnalysisResidentialComponent implements OnInit {
       },
       title: {
         display: true,
-        text: 'درهم / قدم مربع',
+        text: 'AED/Sqft',
         position: 'left',
         font: {
           size: 10
@@ -938,6 +938,7 @@ export class MonthlyAnalysisResidentialComponent implements OnInit {
         if (item2.date == item.transactionDate) {
           if (item.transactionType == "Sales - Ready") {
             item2.salesReady = item.transactionCount;
+            
           } else if (item.transactionType == "Mortgage - Ready") {
             item2.mortageReady = item.transactionCount;
           } else if (item.transactionType == "Sales - Off-Plan") {
@@ -988,49 +989,49 @@ export class MonthlyAnalysisResidentialComponent implements OnInit {
         for (let item2 of this.transactionTypeChartData) {
           tempData.data.push(item2.salesReady)
         }
-        tempData.label = "Sales - Ready";
+        tempData.label = "مبيعات - جاهز";
         tempDataset.push(tempData);
       } else if (item == 3) {
         for (let item2 of this.transactionTypeChartData) {
           tempData.data.push(item2.mortageReady)
         }
-        tempData.label = "Mortgage - Ready";
+        tempData.label = "رهن عقاري - جاهز";
         tempDataset.push(tempData);
       } else if (item == 4) {
         for (let item2 of this.transactionTypeChartData) {
           tempData.data.push(item2.salesOffPlan)
         }
-        tempData.label = "Sales - Off-Plan";
+        tempData.label = "المبيعات - على الخارطة";
         tempDataset.push(tempData);
       } else if (item == 5) {
         for (let item2 of this.transactionTypeChartData) {
           tempData.data.push(item2.mortageOffPlan)
         }
-        tempData.label = "Mortgage - Off-Plan";
+        tempData.label = "الرهن العقاري - على الخارطة";
         tempDataset.push(tempData);
       } else if (item == 6) {
         for (let item2 of this.transactionTypeChartData) {
           tempData.data.push(item2.giftsReady)
         }
-        tempData.label = "Gifts - Ready";
+        tempData.label = "الهدايا - جاهز";
         tempDataset.push(tempData);
       } else if (item == 7) {
         for (let item2 of this.transactionTypeChartData) {
           tempData.data.push(item2.renewed)
         }
-        tempData.label = "Renewed";
+        tempData.label = "متجدد";
         tempDataset.push(tempData);
       } else if (item == 8) {
         for (let item2 of this.transactionTypeChartData) {
           tempData.data.push(item2.new)
         }
-        tempData.label = "New";
+        tempData.label = "جديد";
         tempDataset.push(tempData);
       } else if (item == 9) {
         for (let item2 of this.transactionTypeChartData) {
           tempData.data.push(item2.giftsOffPlan)
         }
-        tempData.label = "Gifts - Off-Plan";
+        tempData.label = "الهدايا - على الخارطة";
         tempDataset.push(tempData);
       }
     }
@@ -1096,13 +1097,13 @@ export class MonthlyAnalysisResidentialComponent implements OnInit {
         for (let item2 of this.transactionSequenceChartData) {
           tempData.data.push(item2.primary)
         }
-        tempData.label = "Primary";
+        tempData.label = "الأولية";
         tempDataset.push(tempData);
       } else if (item == 2) {
         for (let item2 of this.transactionSequenceChartData) {
           tempData.data.push(item2.secondary)
         }
-        tempData.label = "Secondary";
+        tempData.label = "ثانوي";
         tempDataset.push(tempData);
       }
     }
@@ -1180,49 +1181,49 @@ export class MonthlyAnalysisResidentialComponent implements OnInit {
         for (let item2 of this.transactionTypeValueChartData) {
           tempData.data.push(item2.salesReady)
         }
-        tempData.label = "Sales - Ready";
+        tempData.label = "مبيعات - جاهز";
         tempDataset.push(tempData);
       } else if (item == 3) {
         for (let item2 of this.transactionTypeValueChartData) {
           tempData.data.push(item2.mortageReady)
         }
-        tempData.label = "Mortgage - Ready";
+        tempData.label = "رهن عقاري - جاهز";
         tempDataset.push(tempData);
       } else if (item == 4) {
         for (let item2 of this.transactionTypeValueChartData) {
           tempData.data.push(item2.salesOffPlan)
         }
-        tempData.label = "Sales - Off-Plan";
+        tempData.label = "المبيعات - على الخارطة";
         tempDataset.push(tempData);
       } else if (item == 5) {
         for (let item2 of this.transactionTypeValueChartData) {
           tempData.data.push(item2.mortageOffPlan)
         }
-        tempData.label = "Mortgage - Off-Plan";
+        tempData.label = "الرهن العقاري - على الخارطة";
         tempDataset.push(tempData);
       } else if (item == 6) {
         for (let item2 of this.transactionTypeValueChartData) {
           tempData.data.push(item2.giftsReady)
         }
-        tempData.label = "Gifts - Ready";
+        tempData.label = "الهدايا - جاهز";
         tempDataset.push(tempData);
       } else if (item == 7) {
         for (let item2 of this.transactionTypeValueChartData) {
           tempData.data.push(item2.renewed)
         }
-        tempData.label = "Renewed";
+        tempData.label = "متجدد";
         tempDataset.push(tempData);
       } else if (item == 8) {
         for (let item2 of this.transactionTypeValueChartData) {
           tempData.data.push(item2.new)
         }
-        tempData.label = "New";
+        tempData.label = "جديد";
         tempDataset.push(tempData);
       } else if (item == 9) {
         for (let item2 of this.transactionTypeValueChartData) {
           tempData.data.push(item2.giftsOffPlan)
         }
-        tempData.label = "Gifts - Off-Plan";
+        tempData.label = "الهدايا - على الخارطة";
         tempDataset.push(tempData);
       }
     }
@@ -1288,13 +1289,13 @@ export class MonthlyAnalysisResidentialComponent implements OnInit {
         for (let item2 of this.transactionSequencevalueChartData) {
           tempData.data.push(item2.primary)
         }
-        tempData.label = "Primary";
+        tempData.label = "الأولية";
         tempDataset.push(tempData);
       } else if (item == 2) {
         for (let item2 of this.transactionSequencevalueChartData) {
           tempData.data.push(item2.secondary)
         }
-        tempData.label = "Secondary";
+        tempData.label = "ثانوي";
         tempDataset.push(tempData);
       }
     }
@@ -1372,49 +1373,49 @@ export class MonthlyAnalysisResidentialComponent implements OnInit {
         for (let item2 of this.transactionMedianTypeChartData) {
           tempData.data.push(item2.salesReady)
         }
-        tempData.label = "Sales - Ready";
+        tempData.label = "مبيعات - جاهز";
         tempDataset.push(tempData);
       } else if (item == 3) {
         for (let item2 of this.transactionMedianTypeChartData) {
           tempData.data.push(item2.mortageReady)
         }
-        tempData.label = "Mortgage - Ready";
+        tempData.label = "رهن عقاري - جاهز";
         tempDataset.push(tempData);
       } else if (item == 4) {
         for (let item2 of this.transactionMedianTypeChartData) {
           tempData.data.push(item2.salesOffPlan)
         }
-        tempData.label = "Sales - Off-Plan";
+        tempData.label = "المبيعات - على الخارطة";
         tempDataset.push(tempData);
       } else if (item == 5) {
         for (let item2 of this.transactionMedianTypeChartData) {
           tempData.data.push(item2.mortageOffPlan)
         }
-        tempData.label = "Mortgage - Off-Plan";
+        tempData.label = "الرهن العقاري - على الخارطة";
         tempDataset.push(tempData);
       } else if (item == 6) {
         for (let item2 of this.transactionMedianTypeChartData) {
           tempData.data.push(item2.giftsReady)
         }
-        tempData.label = "Gifts - Ready";
+        tempData.label = "الهدايا - جاهز";
         tempDataset.push(tempData);
       } else if (item == 7) {
         for (let item2 of this.transactionMedianTypeChartData) {
           tempData.data.push(item2.renewed)
         }
-        tempData.label = "Renewed";
+        tempData.label = "متجدد";
         tempDataset.push(tempData);
       } else if (item == 8) {
         for (let item2 of this.transactionMedianTypeChartData) {
           tempData.data.push(item2.new)
         }
-        tempData.label = "New";
+        tempData.label = "جديد";
         tempDataset.push(tempData);
       } else if (item == 9) {
         for (let item2 of this.transactionMedianTypeChartData) {
           tempData.data.push(item2.giftsOffPlan)
         }
-        tempData.label = "Gifts - Off-Plan";
+        tempData.label = "الهدايا - على الخارطة";
         tempDataset.push(tempData);
       }
     }
@@ -1492,49 +1493,49 @@ export class MonthlyAnalysisResidentialComponent implements OnInit {
         for (let item2 of this.transactionMedianAreaChartData) {
           tempData.data.push(item2.salesReady)
         }
-        tempData.label = "Sales - Ready";
+        tempData.label = "مبيعات - جاهز";
         tempDataset.push(tempData);
       } else if (item == 3) {
         for (let item2 of this.transactionMedianAreaChartData) {
           tempData.data.push(item2.mortageReady)
         }
-        tempData.label = "Mortgage - Ready";
+        tempData.label = "رهن عقاري - جاهز";
         tempDataset.push(tempData);
       } else if (item == 4) {
         for (let item2 of this.transactionMedianAreaChartData) {
           tempData.data.push(item2.salesOffPlan)
         }
-        tempData.label = "Sales - Off-Plan";
+        tempData.label = "المبيعات - على الخارطة";
         tempDataset.push(tempData);
       } else if (item == 5) {
         for (let item2 of this.transactionMedianAreaChartData) {
           tempData.data.push(item2.mortageOffPlan)
         }
-        tempData.label = "Mortgage - Off-Plan";
+        tempData.label = "الرهن العقاري - على الخارطة";
         tempDataset.push(tempData);
       } else if (item == 6) {
         for (let item2 of this.transactionMedianAreaChartData) {
           tempData.data.push(item2.giftsReady)
         }
-        tempData.label = "Gifts - Ready";
+        tempData.label = "الهدايا - جاهز";
         tempDataset.push(tempData);
       } else if (item == 7) {
         for (let item2 of this.transactionMedianAreaChartData) {
           tempData.data.push(item2.renewed)
         }
-        tempData.label = "Renewed";
+        tempData.label = "متجدد";
         tempDataset.push(tempData);
       } else if (item == 8) {
         for (let item2 of this.transactionMedianAreaChartData) {
           tempData.data.push(item2.new)
         }
-        tempData.label = "New";
+        tempData.label = "جديد";
         tempDataset.push(tempData);
       } else if (item == 9) {
         for (let item2 of this.transactionMedianAreaChartData) {
           tempData.data.push(item2.giftsOffPlan)
         }
-        tempData.label = "Gifts - Off-Plan";
+        tempData.label = "الهدايا - على الخارطة";
         tempDataset.push(tempData);
       }
     }
