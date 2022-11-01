@@ -51,6 +51,9 @@ export class PaymentPackagesComponent implements OnInit {
     this.loadPropertyListingTypes();
     this.professionalTypeTab = localStorage.getItem('user');
     this.professionalTypeTab = JSON.parse(this.professionalTypeTab);
+    this.service.MyWallet(this.professionalTypeTab.id).subscribe((result: any) => {
+      this.packages = result.data;
+    })
     this.service.PropertyListingPackages(1).subscribe((result: any) => {
       this.packagesType = result.data;
       // this.packagesType.push(result.data[0]);
@@ -96,11 +99,11 @@ export class PaymentPackagesComponent implements OnInit {
   }
   proceedPackagePayment() {
     if (this.selectedPackageByPoints == "") {
-      this.error = "Please Select a package type";
+      this.error = "الرجاء تحديد نوع الحزمة";
       this.showError = true;
       return;
-    } else if (this.packages.pointsBalance < this.selectedPackageByPoints.price) {
-      this.error = "Your account balance is not enough please recharge";
+    } else if (this.packages < this.selectedPackageByPoints.price) {
+      this.error = "رصيد حسابك غير كاف ، يرجى إعادة الشحن";
       this.showError = true;
       this.scroll = true;
       return;

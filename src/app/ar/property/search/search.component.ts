@@ -92,7 +92,11 @@ export class SearchComponent implements OnInit {
     $(window).scrollTop(0);
     this.route.events.subscribe((e: any) => {
       if (e instanceof NavigationEnd) {
-        this.type = this.activeRoute.snapshot.queryParamMap.get('type');
+        if(this.activeRoute.snapshot.queryParamMap.get('type') == "Buy") {
+          this.type = "شراء";
+        } else if(this.activeRoute.snapshot.queryParamMap.get('type') == "Rent") {
+          this.type = "إيجار";
+        }
         this.PropertyCategoryId = this.activeRoute.snapshot.queryParamMap.get('PropertyCategoryId');
         this.RentTypeId = this.activeRoute.snapshot.queryParamMap.get('RentTypeId');
         this.PropertyListingTypeId = this.activeRoute.snapshot.queryParamMap.get('PropertyListingTypeId');
@@ -372,7 +376,7 @@ export class SearchComponent implements OnInit {
             propertyTitle: element.propertyTitle, propertyAddress: element.propertyAddressArabic, documentsCheck: documentsCheck,
             buildingName: element.buildingName, bedrooms: element.bedrooms, bathrooms: element.bathrooms, carpetArea: element.carpetArea,
             unitNo: element.unitNo, totalFloorgit: element.totalFloor, floorNo: element.floorNo, propertyDescription: element.propertyDescription,
-            requestedDate: element.requestedDate, furnishingType: element.furnishingType, propertyPrice: element.propertyPrice,
+            requestedDate: element.requestedDate, furnishingType: element.furnishingTypeAr, propertyPrice: element.propertyPrice,
             requestedDateFormat: element.requestedDateFormat, brokerageChargePrice: element.brokerageChargePrice, securityDepositPrice: element.securityDepositPrice,
             expiredDateFormat: element.expiredDateFormat, rentType: rentTypeName, currency: element.country.currency, propertyCode: element.propertyCode
           }
