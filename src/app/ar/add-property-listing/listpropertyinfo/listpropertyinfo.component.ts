@@ -89,6 +89,7 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
   get validate() {
     return this.SubmitForm.controls;
   }
+  disabled:any = [];
   constructor(private api: AppService, private service: AuthService, private route: Router, private notifyService: NotificationService) {
     this.currency = localStorage.getItem("currency");
     this.api.PropertyListingRentBuy({ "Lat": this.data.PropertyLat, "Long": this.data.PropertyLong }).subscribe((result: any) => {
@@ -384,6 +385,14 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
   }
   getParking(e: string) {
     this.data.Parkings = e;
+  }
+  getPolicyOption(e:any) {
+    if(e == 0 && this.disabled.length == 0) {
+      this.petPolicyData = ["1"];
+      this.disabled = [1,2,3];
+    } else {
+      this.disabled = [];
+    }
   }
   getPetPolicy(e: any) {
     this.petPolicyData = e.value;
