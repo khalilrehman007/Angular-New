@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { PropertyRoutingModule } from './new-homes-routing.module';
 import { NewHomesComponent } from './new-homes/new-homes.component';
 import { SearchComponent } from './search/search.component';
+import { DetailsComponent } from './details/details.component';
 import { CommonFilesModule } from '../common-files/common-files.module';
 import { PropertyfilterComponent } from './propertyfilter/propertyfilter.component';
 import { BreadcrumbsModule } from '../breadcrumbs/breadcrumbs.module';
@@ -35,7 +36,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     PropertyfilterComponent,
     PropertyDetailComponent,
     ViewmapComponent,
-    ShortTermRentComponent
+    ShortTermRentComponent,
+    DetailsComponent
   ],
   imports: [
     CommonModule,
