@@ -200,7 +200,7 @@ export class PropertyTypesComponent implements OnInit {
       this.propertyType = result.data;
       console.log(this.propertyType);
       if (this.propertyType.length == 0) {
-        this.error = "We don't have data in the selected location";
+        this.error = "ليس لدينا بيانات في الموقع المحدد";
         this.showError = true;
       }
       this.showLoader = false;
@@ -313,7 +313,7 @@ export class PropertyTypesComponent implements OnInit {
   getValue() {
     let age: any = this.propertyTypeForm.value.constructionAge;
     if (age > 40) {
-      this.error = "The construction age can't be greater than 40 years.";
+      this.error = "لا يمكن أن يكون عمر البناء أكبر من 40 عاما.";
       this.propertyTypeForm.patchValue({
         constructionAge: "40"
       })

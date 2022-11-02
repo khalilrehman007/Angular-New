@@ -540,7 +540,7 @@ export class PropertyDocumentsComponent implements OnInit {
         })
       }
     } else {
-      this.error = "Select Report Language";
+      this.error = "حدد لغة التقرير";
       this.showError = true;
       return;
     }
