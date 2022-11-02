@@ -283,22 +283,22 @@ export class EditComponent implements OnInit {
   onSubmit() {
     if ($(".country-select").val() == 0) {
       this.currentField = "country-select + .select2";
-      this.error = "Select Country";
+      this.error = "حدد الدولة";
       this.showError = true;
       return;
     } else if ($(".city-select").val() == 0) {
       this.currentField = "city-select + .select2";
-      this.error = "Select City";
+      this.error = "اختر مدينة";
       this.showError = true;
       return;
     } else if ($(".district-select").val() == 0) {
       this.currentField = "district-select + .select2";
-      this.error = "Select District";
+      this.error = "حدد المنطقة";
       this.showError = true;
       return;
     } else if (this.SubmitForm.value.address == "") {
       this.currentField = "add-adrees-sec";
-      this.error = "Select Address";
+      this.error = "اختر العنوان";
       this.showError = true;
       return;
     }

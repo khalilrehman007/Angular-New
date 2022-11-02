@@ -257,7 +257,7 @@ export class EditListInfoComponent implements OnInit {
         });
       }
     } else {
-      this.route.navigate(['/add-property/listingproperty'])
+      this.route.navigate(['/ar/add-property/listingproperty'])
     }
   }
   validateLength(type: any) {
@@ -411,7 +411,7 @@ export class EditListInfoComponent implements OnInit {
     if (type == 1) {
       let temp: any = this.SubmitForm.value.TotalFloor;
       if (temp > 200) {
-        this.error = "Max floors allowes is 200";
+        this.error = "الحد الأقصى المسموح به هو 200";
         this.showError = true;
         this.SubmitForm.patchValue({
           TotalFloor: "200"
@@ -421,7 +421,7 @@ export class EditListInfoComponent implements OnInit {
       let temp: any = this.SubmitForm.value.FloorNo;
       let total: any = this.SubmitForm.value.TotalFloor;
       if (temp > total) {
-        this.error = "Floor number cannot be greater than Total Floors";
+        this.error = "لا يمكن أن يكون رقم الطابق أكبر من إجمالي الطوابق";
         this.showError = true;
         this.SubmitForm.patchValue({
           FloorNo: this.SubmitForm.value.TotalFloor
@@ -436,191 +436,191 @@ export class EditListInfoComponent implements OnInit {
     this.featuresFormData = $(".features-select").val();
     if (this.listingTypeId == 0) {
       this.currentField = "listing-type-input";
-      this.error = "Select Listing Type";
+      this.error = "اختر نوع القائمة";
       this.showError = true;
       return;
     } else if (this.categoryID == 0) {
       this.currentField = "category-input";
-      this.error = "Select Category ID";
+      this.error = "حدد معرف الفئة";
       this.showError = true;
       return;
     } else if (!this.data.PropertyTypeId) {
       this.currentField = "type-input";
-      this.error = "Select Property Type";
+      this.error = "حدد نوع الملكية";
       this.showError = true;
       return;
     } else if (this.SubmitForm.value.PropertyAge == "") {
       this.currentField = "property-age-input";
-      this.error = "Enter Property Age";
+      this.error = "أدخل عمر العقار";
       this.showError = true;
       return;
     } else if (this.SubmitForm.value.BuildingName == "") {
       this.currentField = "building-name-input";
-      this.error = "Enter Building Name";
+      this.error = "أدخل اسم المبنى";
       this.showError = true;
       return;
     } else if (this.SubmitForm.value.UnitNo == "") {
       this.currentField = "unit-no-input";
-      this.error = "Enter Unit No";
+      this.error = "أدخل رقم الوحدة";
       this.showError = true;
       return;
     } else if (this.SubmitForm.value.TotalFloor == "" && this.selectedPropertyType.hasTotalFloor) {
       this.currentField = "total-floors-input";
-      this.error = "Enter Total Floors";
+      this.error = "أدخل إجمالي عدد الطوابق";
       this.showError = true;
       return;
     } else if (this.SubmitForm.value.FloorNo == "" && this.selectedPropertyType.hasFloorNo) {
       this.currentField = "floor-no-input";
-      this.error = "Enter Floors No.";
+      this.error = "أدخل عدد الطوابق";
       this.showError = true;
       return;
     } else if (this.selectedPropertyType.hasBed && !this.data.BedRooms) {
       this.currentField = "bedroom-input";
-      this.error = "Select Bedrooms";
+      this.error = "حدد عدد غرف النوم";
       this.showError = true;
       return;
     } else if (this.selectedPropertyType.hasBath && !this.data.BathRooms) {
       this.currentField = "bathroom-input";
-      this.error = "Select BathRooms";
+      this.error = "حدد عدد الحمامات";
       this.showError = true;
       return;
     } else if (this.selectedPropertyType.hasFurnishing && !this.data.FurnishingType) {
       this.currentField = "furnishing-input";
-      this.error = "Select Furnishing Type";
+      this.error = "اختر نوع الأثاث";
       this.showError = true;
       return;
     } else if (this.selectedPropertyType.hasFitting && !this.data.FittingType) {
       this.currentField = "fitting-input";
-      this.error = "Select Fitting Type";
+      this.error = "حدد نوع المناسب";
       this.showError = true;
       return;
     } else if (this.selectedPropertyType.hasCarpetArea && this.SubmitForm.value.carpetArea == "") {
       this.currentField = "carpet-input";
-      this.error = "Enter Carpet Area";
+      this.error = "أدخل منطقة السجاد";
       this.showError = true;
       return;
     } else if (this.selectedPropertyType.hasBuildUpArea && this.SubmitForm.value.buildupArea == "") {
       this.currentField = "buildup-input";
-      this.error = "Enter BuildUp Area";
+      this.error = "أدخل منطقة تراكم";
       this.showError = true;
       return;
     } else if (!this.data.TenantTypeId && this.listingTypeId == 1) {
       this.currentField = "tenant-input";
-      this.error = "Select Tenant Type";
+      this.error = "اختر نوع المستأجر";
       this.showError = true;
       return;
     } else if (!this.data.Gender && this.listingTypeId == 1 && this.data.TenantTypeId == 2) {
       this.currentField = "gender-input";
-      this.error = "Select Gender";
+      this.error = "اختر الجنس";
       this.showError = true;
       return;
     } else if (!this.data.PropertyManageId && this.listingTypeId == 1) {
       this.currentField = "property-manage-input";
-      this.error = "Select Property Manager";
+      this.error = "اختر مدير العقارات";
       this.showError = true;
       return;
     } else if (this.listingTypeId == 1 && !this.data.OccupancyStatusId) {
       this.currentField = "occupanycy-input";
-      this.error = "Select Occupancy Status";
+      this.error = "حدد حالة الإشغال";
       this.showError = true;
       return;
     } else if (this.categoryID == 1 && !this.data.Balcony) {
       this.currentField = "balcony-input";
-      this.error = "Select Balcony";
+      this.error = "اختر شرفة";
       this.showError = true;
       return;
     } else if (this.categoryID == 1 && !this.data.Parkings) {
       this.currentField = "parking-input";
-      this.error = "Select Parking";
+      this.error = "اختر موقف سيارات";
       this.showError = true;
       return;
     } else if (this.listingTypeId == 2 && !this.data.PropertyTransactionTypeId) {
       this.currentField = "transaction-type-input";
-      this.error = "Select Transaction Type";
+      this.error = "حدد نوع المعاملة";
       this.showError = true;
       return;
     } else if (this.listingTypeId == 2 && !this.data.PropertyCompletionStatusId) {
       this.currentField = "completion-status-input";
-      this.error = "Select Completetion Status";
+      this.error = "حدد حالة الإكمال";
       this.showError = true;
       return;
     } else if (this.listingTypeId == 1 && this.petPolicyData.length == 0) {
       this.currentField = "pet-policy-input";
-      this.error = "Select Pet Policy";
+      this.error = "حدد حالة الإكمال";
       this.showError = true;
       return;
     } else if (this.listingTypeId == 2 && $("#sell-residential-datepicker").val() == "") {
       this.currentField = "handover-on-input";
-      this.error = "Enter Handover Date";
+      this.error = "أدخل تاريخ التسليم";
       this.showError = true;
       return;
     } else if (this.listingTypeId == 2 && this.categoryID == 2 && !this.data.ownershipType) {
       this.currentField = "ownership-input";
-      this.error = "Select Ownership Type";
+      this.error = "اختر نوع الملكية";
       this.showError = true;
       return;
     } else if (this.SubmitForm.value.price == "") {
       this.currentField = "price-input";
-      this.error = "Enter Price";
+      this.error = "أدخل السعر";
       this.showError = true;
       return;
     } else if (this.listingTypeId == 1 && !this.data.RentTypeId) {
       this.currentField = "rent-type-input";
-      this.error = "Select Rent Type";
+      this.error = "اختر نوع الإيجار";
       this.showError = true;
       return;
     } else if (this.listingTypeId == 1 && !this.data.SecurityDeposit) {
       this.currentField = "security-deposit-input";
-      this.error = "Select Security Deposit";
+      this.error = "حدد مبلغ التأمين";
       this.showError = true;
       return;
     } else if (this.data.SecurityDeposit == "true" && this.SubmitForm.value.AED == "") {
       this.currentField = "security-price-input";
-      this.error = "Enter Security Deposit Price";
+      this.error = "أدخل سعر وديعة التأمين";
       this.showError = true;
       return;
     } else if (this.listingTypeId == 1 && !this.data.BrokerageCharge) {
       this.currentField = "brokage-type-input";
-      this.error = "Select Brokerage Type";
+      this.error = "اختر نوع الوساطة";
       this.showError = true;
       return;
     } else if (this.data.BrokerageCharge == "true" && this.SubmitForm.value.brokerageAed == "") {
       this.currentField = "brokage-price-input";
-      this.error = "Enter Brokerage Price";
+      this.error = "أدخل سعر الوساطة";
       this.showError = true;
       return;
     } else if (this.listingTypeId == 1 && this.SubmitForm.value.availablefrom == "") {
       this.currentField = "available-input";
-      this.error = "Enter Available Date";
+      this.error = "أدخل التاريخ المتاح";
       this.showError = true;
       return;
     } else if (this.listingTypeId == 1 && this.SubmitForm.value.noticePeriod == "") {
       this.currentField = "notice-input";
-      this.error = "Enter Notice Days";
+      this.error = "أدخل أيام الإشعار";
       this.showError = true;
       return;
     } else if (this.listingTypeId == 1 && this.SubmitForm.value.lockingPeriod == "") {
       this.currentField = "locking-input";
-      this.error = "Enter Locking Days";
+      this.error = "أدخل أيام القفل";
       this.showError = true;
       return;
     } else if (this.locatedNearData.length == 0) {
       this.currentField = "located-near-input";
-      this.error = "Select Near Location";
+      this.error = "حدد بالقرب من الموقع";
       this.showError = true;
       return;
     } else if (this.listingTypeId == 1 && this.SubmitForm.value.propertyTitle == "") {
       this.currentField = "title-input";
-      this.error = "Enter Property Title";
+      this.error = "أدخل عنوان العقار";
       this.showError = true;
       return;
     } else if (this.listingTypeId == 1 && this.SubmitForm.value.propertyDescription == "") {
-      this.error = "Enter Property Description";
+      this.error = "أدخل وصف العقار";
       this.showError = true;
       return;
     } else if (this.selectedPropertyType.hasPropertyFeature && this.featuresFormData.length == 0) {
       this.currentField = "features-select-wrapper";
-      this.error = "Select Property Features";
+      this.error = "حدد خصائص العقار";
       this.showError = true;
       return;
     }
@@ -695,6 +695,6 @@ export class EditListInfoComponent implements OnInit {
     console.log(this.data);
     localStorage.setItem('propertyData', JSON.stringify(this.data));
     localStorage.setItem('listingData', JSON.stringify(this.data));
-    this.route.navigate(['/add-property/listpropertymedia'])
+    this.route.navigate(['/ar/add-property/listpropertymedia'])
   }
 }
