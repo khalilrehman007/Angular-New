@@ -8,8 +8,8 @@
                         <app-breadcrumbs></app-breadcrumbs>
                     </div>
                     <div ngClass="last-updated-details">
-                        <p>Posted On <span ngClass="update-id">27 Oct 2022</span></p>
-                        <p>Listing ID <span ngClass="update-id">#OV-4003021</span></p>
+                        <p>نشر على <span ngClass="update-id">27 Oct 2022</span></p>
+                        <p>معرف القائمة <span ngClass="update-id">#OV-4003021</span></p>
                     </div>
                 </div>
             </div>
@@ -17,7 +17,7 @@
                 <div ngClass="row">
                     <div ngClass="col-xl-9 col-lg-9 col-md-12 col-sm-12">
                         <div ngClass="property-name_detals">
-                            <h4>Bentley Flying Spur</h4>
+                            <h4>بنتلي فلاينج سبير</h4>
                             <div ngClass="property-addresss">
                                 <p><img src="{{homelocationsvg}}"> Etihad Tower 4, Etihad Towers,</p>
                             </div>
@@ -29,15 +29,16 @@
                                 <div ngbDropdown class="d-inline-block">
                                     <button ngClass="grey-bordered-btn" id="dropdownBasic2" ngbDropdownToggle><img
                                             src="{{dots}}"></button>
-                                    <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
-                                        <h5>Share with:</h5>
-                                        <button ngbDropdownItem><a target="_blank" href="https://facebook.com"
-                                                ngClass="facebook"><img src="{{fb}}"> Facebook</a></button>
-                                        <button ngbDropdownItem><a target="_blank" href="whatsapp://send?{{shareURL}}"
-                                                ngClass="whatsapp"><img src="{{whatsapp}}"> WhatsAPP</a></button>
-                                        <button ngbDropdownItem><a target="_blank" href="https://twitter.com/"
-                                                ngClass="twitter"><img src="{{twitter}}"> Twitter</a></button>
-                                    </div>
+                                            <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
+                                                <h5>شارك مع:</h5>
+                                                <button ngbDropdownItem><a target="_blank" href="https://facebook.com"
+                                                        ngClass="facebook"><img src="{{fb}}"> فيسبوك</a></button>
+                                                <!-- <button ngbDropdownItem><a target="_blank" href="whatsapp://send?{{shareURL}}" -->
+                                                <button ngbDropdownItem><a target="_blank" href="javascript:void(0)"
+                                                        ngClass="whatsapp"><img src="{{whatsapp}}"> واتساب</a></button>
+                                                <button ngbDropdownItem><a target="_blank" href="https://twitter.com/"
+                                                        ngClass="twitter"><img src="{{twitter}}"> تويتر</a></button>
+                                            </div>
                                 </div>
                             </div>
                             <button ngClass="grey-bordered-btn">
@@ -48,8 +49,7 @@
                                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                                 </svg>
                             </button>
-                            <button ngClass="grey-bordered-btn text-btn" (click)="scroll(NearLsiting)">Browse Nearby
-                                Lisitng</button>
+                            <button ngClass="grey-bordered-btn text-btn" (click)="scroll(NearLsiting)">تصفح ليسيتنغ القريبة</button>
                         </div>
                     </div>
                 </div>
@@ -65,44 +65,44 @@
                         <div ngClass="blogs-link-list">
                             <ul ngClass="list-unstyled d-flex justify-content-start">
                                 <li [ngClass]="status ? 'tactive' : 'thide'" (click)="keyhighlight()"><a
-                                        (click)="scroll(keyHighligh)">Descriptions</a></li>
+                                        (click)="scroll(keyHighligh)">الأوصاف</a></li>
                                 <li [ngClass]="status2 ? 'tactive' : 'thide'" (click)="overview()"><a
-                                    (click)="scroll(overviewList)">Overview</a></li>
+                                    (click)="scroll(overviewList)">نظرة عامة</a></li>
                                 <li [ngClass]="status1 ? 'tactive' : 'thide'" (click)="Location()"><a
-                                        (click)="scroll(locationScroll)">Location</a></li>
+                                        (click)="scroll(locationScroll)">الموقع</a></li>
                             </ul>
                         </div>
                         <div class="key_highlight mt-5" #keyHighligh>
                             <div ngClass="tabs-heading-div">
-                                <h5>Descriptions</h5>
+                                <h5>الأوصاف</h5>
                             </div>
                             <div ngClass="description-block-design">
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                                <p>أبجد هوز هو مجرد نص وهمية لصناعة الطباعة والتنضيد. كان لوريم إيبسوم هو النص الوهمي القياسي في الصناعة منذ عام 1500 ، عندما أخذت طابعة غير معروفة مطبخا من النوع وسارعته لعمل كتاب عينة من النوع. وقد نجا ليس فقط خمسة قرون ، ولكن أيضا قفزة في التنضيد الإلكتروني ، وتبقى دون تغيير أساسا. وقد شاع في عام 1960 مع إصدار أوراق ليتراسيت التي تحتوي على مقاطع لوريم إيبسوم ، ومؤخرا مع برامج النشر المكتبي مثل ألدوس باجميكر بما في ذلك إصدارات لوريم إيبسوم.
                                 </p>
                             </div>
                         </div>
                         <div class="key_highlight mt-3" #overviewList>
                             <div ngClass="tabs-heading-div">
-                                <h5>Overview</h5>
+                                <h5>نظرة عامة</h5>
                             </div>
                             <div ngClass="property_infor-div-sec">
                                 <div ngClass="property_info-row">
                                     <div ngClass="row">
                                         <div ngClass="col-xl-3 col-lg-3 col-md-12 col-sm-12">
                                             <div ngClass="property_info-text">
-                                                <p>Listed On</p>
-                                                <h6>27 Oct 2022</h6>
+                                                <p>المدرجة في</p>
+                                                <h6>27 أكتوبر 2022</h6>
                                             </div>
                                         </div>
                                         <div ngClass="col-xl-3 col-lg-3 col-md-12 col-sm-12">
                                             <div ngClass="property_info-text">
-                                                <p>Owner</p>
+                                                <p>المالك</p>
                                                 <h6>1st</h6>
                                             </div>
                                         </div>
                                         <div ngClass="col-xl-3 col-lg-3 col-md-12 col-sm-12">
                                             <div ngClass="property_info-text">
-                                                <p>Location</p>
+                                                <p>الموقع</p>
                                                 <h6>Etihad Tower 4, Etihad Towers,</h6>
                                             </div>
                                         </div>
@@ -112,7 +112,7 @@
                         </div>
                         <div class="locarions_wrapper mt-3" #locationScroll>
                             <div ngClass="tabs-heading-div">
-                                <h5>Location</h5>
+                                <h5>الموقع</h5>
                             </div>
                             <div class="property-near-map" id="property-near-map" style="width: 100%; height: 400px; border-radius: 12px;overflow: hidden;">
                                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d462562.6509516108!2d54.94729613679833!3d25.07575945545691!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f43496ad9c645%3A0xbde66e5084295162!2sDubai%20-%20United%20Arab%20Emirates!5e0!3m2!1sen!2sin!4v1666784711777!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
@@ -122,9 +122,9 @@
                     <div ngClass="col-xl-4 col-lg-4 col-md-12 col-sm-12">
                         <div class="property-owner-details mb-4">
                             <div class="price-box-right">
-                                <h2><img src="assets/images/icons/price-tag.svg"> 58,657 AED</h2>
+                                <h2><img src="assets/images/icons/price-tag.svg"> 58,657 إ.د</h2>
                             </div>
-                            <button class="make-oofer-btn">Make Offer</button>
+                            <button class="make-oofer-btn">تقديم العرض</button>
                         </div>
                         <div ngClass="property-owner-details">
                             <div ngClass="property-listed-by-details d-flex">
@@ -132,29 +132,29 @@
                                     <div ngClass="white-circle-outline">
                                         <img src="/assets/images/services/furniture-assembly.jpeg">
                                     </div>
-                                    <button ngClass="agent-or-owner-btn">Owner</button>
+                                    <button ngClass="agent-or-owner-btn">المالك</button>
                                 </div>
                                 <div ngClass="property-listedby-cntnt">
-                                    <h5 ngClass="propertier-name">Owner Name</h5>
-                                    <p ngClass="posted-on">Posted On : 10/19/2022</p>
-                                    <a routerLink="" ngClass="properties-listed-no">47 - Active Listings</a>
+                                    <h5 ngClass="propertier-name">اسم المالك</h5>
+                                    <p ngClass="posted-on">نشر على : 10/19/2022</p>
+                                    <a routerLink="/ar" ngClass="properties-listed-no">47 - القوائم النشطة</a>
                                 </div>
                             </div>
                             <div ngClass="contact-propertier-form">
                                 <form [formGroup]="SubmitForm">
                                     <div ngClass="form-grouph input-design white-input-design">
                                         <mat-form-field class="example-full-width" appearance="fill">
-                                            <mat-label>Name</mat-label>
+                                            <mat-label>الاسم</mat-label>
                                             <input type="text" formControlName="name" matInput
-                                                placeholder="Name">
+                                                placeholder="الاسم">
                                         </mat-form-field>
                                         <p style="color: red" *ngIf="nameError !=''">{{nameError}}</p>
                                     </div>
                                     <div ngClass="form-grouph input-design white-input-design">
                                         <mat-form-field class="example-full-width" appearance="fill">
-                                            <mat-label>Email</mat-label>
+                                            <mat-label>البريد الإلكتروني</mat-label>
                                             <input type="email" formControlName="email" matInput
-                                                placeholder="Email">
+                                                placeholder="البريد الإلكتروني">
                                         </mat-form-field>
                                         <p style="color: red" *ngIf="emailError !=''">{{emailError}}</p>
                                     </div>
@@ -162,9 +162,9 @@
 
                                     <div ngClass="form-grouph input-design white-input-design">
                                         <mat-form-field class="example-full-width" appearance="fill">
-                                            <mat-label>Phone No.</mat-label>
+                                            <mat-label>رقم الهاتف.</mat-label>
                                             <input matInput type="number" (input)="checkLength()"
-                                                formControlName="phone" required ngModel  placeholder="Phone Number">
+                                                formControlName="phone" required ngModel  placeholder="رقم الهاتف">
                                             <!-- <input matInput type="number" (input)="checkLength()" formControlName="PhoneNumber" required ngModel> -->
                                         </mat-form-field>
                                         <p style="color: red" *ngIf="phoneError !=''">{{phoneError}}</p>
@@ -174,31 +174,29 @@
 
                                     <div ngClass="form-grouph textarea-design white-input-design">
                                         <mat-form-field class="example-full-width" appearance="fill">
-                                            <mat-label>Message</mat-label>
+                                            <mat-label>رسالة</mat-label>
                                             <textarea matInput formControlName="message"
-                                                placeholder="I would like to inquire about the property OV - R8986. Please contact me at your earliest convenience."></textarea>
+                                                placeholder="الرجاء وضع رسالتك هنا"></textarea>
                                         </mat-form-field>
                                         <p style="color: red" *ngIf="messageError !=''">{{messageError}}</p>
                                     </div>
                                     <div ngClass="form-grouph submit-design submit-design-email-send">
-                                        <button type="button" ngClass="btn-design-3">Send
-                                            Email</button>
+                                        <button type="button" ngClass="btn-design-3">إرسال البريد الإلكتروني</button>
                                     </div>
                                 </form>
                             </div>
                             <div ngClass="contact-list-details">
                                 <div ngClass="row">
                                     <div ngClass="col-xl-6 col-lg-12 col-md-12 col-sm-12">
-                                        <button ngClass=""><img src="{{call}}"> Call with Seller
+                                        <button ngClass=""><img src="{{call}}"> اتصل مع البائع
                                             </button>
                                     </div>
                                     <div ngClass="col-xl-6 col-lg-12 col-md-12 col-sm-12">
                                         <button ngClass=""><a href="https://web.whatsapp.com/" target="_blank"><img
-                                                    src="{{whatsapp}}"> Whats APP </a></button>
+                                                    src="{{whatsapp}}"> واتساب </a></button>
                                     </div>
                                     <div ngClass="col-xl-6 col-lg-12 col-md-12 col-sm-12">
-                                        <button ngClass=""><img src="{{chat}}"> Chat with
-                                            Seller</button>
+                                        <button ngClass=""><img src="{{chat}}"> الدردشة مع البائع</button>
                                     </div>
                                 </div>
                             </div>
@@ -211,7 +209,7 @@
     <section ngClass="similer-properties-sec properties-slider slider-shadow" #NearLsiting>
         <div ngClass="container_1280px">
             <div ngClass="h4_design">
-                <h4>Similar Listings</h4>
+                <h4>قوائم مماثلة</h4>
             </div>
             <div class="popular-residential-searches slider-shoecase-design">
                 <owl-carousel-o [options]="customOptions">
@@ -228,7 +226,7 @@
                                         <img src="{{ homelocationsvg }}" width="14" alt="" />{{cars.address}}
                                     </p>
                                 </div>
-                                <a routerLink="/{{cars.link}}" ngClass="linK_overlay"></a>
+                                <a routerLink="/ar/{{cars.link}}" ngClass="linK_overlay"></a>
                             </div>
                         </ng-template>
                     </ng-container>
