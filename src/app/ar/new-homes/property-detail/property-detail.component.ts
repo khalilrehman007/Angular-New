@@ -506,110 +506,137 @@ export class PropertyDetailComponent implements OnInit {
   getPropertyInfo() {
     this.propertyinfo = [
       {
+        show: true,
         label: 'مدرج في',
-        value: this.propertyDetailData.requestedDateFormat,
+        value: 'empty',
       },
       {
+        show: true,
         label: 'تم التحقق من الرمز التحقق',
         value: this.propertyDetailData.requestedDateFormat,
       },
       {
+        show: true,
         label: 'نوع البناية',
-        value: this.propertyDetailData.propertyCategory.categoryNameAr,
+        value: this.propertyDetailData.buildingType,
       },
       {
+        show: true,
         label: 'نوع العقار',
-        value: this.propertyDetailData.propertyType.typeDescriptionAr,
+        value: this.propertyDetailData.propertyTypeAr,
       },
       {
+        show: true,
         label: 'رقم البرج / اسم المبنى',
         value: this.propertyDetailData.buildingName,
       },
       {
+        show: this.propertyValidationData.hasTotalFloor,
         label: 'مجموع عدد الطوابق في المبنى',
         value: this.propertyDetailData.totalFloor,
       },
       {
+        show: this.propertyValidationData.hasFloorNo,
         label: 'رقم الطابق',
         value: this.propertyDetailData.floorNo,
       },
       {
+        show: true,
         label: 'رقم الوحدة',
         value: this.propertyDetailData.unitNo,
       },
       {
+        show: this.propertyValidationData.hasBed,
         label: 'غرفة نوم',
         value: this.propertyDetailData.bedrooms,
       },
       {
+        show: this.propertyValidationData.hasBath,
         label: 'حمام',
         value: this.propertyDetailData.bathrooms,
       },
       {
+        show: this.propertyValidationData.hasFurnishing,
         label: 'نوع الاثاث',
         value: this.propertyDetailData.furnishingType,
       },
       {
+        show: this.propertyValidationData.hasFitting,
         label: 'نوع التجهيزات',
         value: this.propertyDetailData.fittingType,
       },
       {
+        show: this.propertyValidationData.hasTenantType,
         label: 'نوع المستأجر المفضل',
-        value: this.propertyDetailData.tenantType.nameAr,
+        value: this.propertyDetailData.tenantType,
       },
       {
+        show: this.propertyValidationData.hasGenderType,
         label: 'نوع الجنس المفضل',
         value: this.propertyDetailData.gender,
       },
       {
+        show: this.propertyValidationData.hasParking,
         label: 'المواقف المتاحة',
         value: this.propertyDetailData.parkings,
       },
       {
+        show: this.propertyValidationData.hasPetPolicy,
         label: 'سياسة الحيوانات الأليفة',
-        value: "-",
+        value: 'empty',
       },
       {
         label: 'منطقة التأجير',
+        show: this.propertyValidationData.hasCarpetArea,
         value: this.propertyDetailData.carpetArea,
       },
       {
+        show: this.propertyValidationData.hasBuildUpArea,
         label: 'المساحة الإجمالية للبناء',
         value: this.propertyDetailData.buildupArea,
       },
       {
+        show: true,
         label: 'حالة الإشغال الحالية',
-        value: this.propertyDetailData.occupancyStatus.nameAr,
+        value: this.propertyDetailData.occupancyStatus,
       },
       {
-        label: 'الملكية تدار من قبل',
-        value: this.propertyDetailData.propertyManage.nameAr,
+        show: this.propertyValidationData.hasPropertyManaged,
+        label: 'إدارة الملكية',
+        value: this.propertyDetailData.propertyManage,
       },
       {
+        show: true,
         label: 'سعر',
-        value: this.propertyDetailData.propertyPrice + ' ' + this.propertyDetailData.country.currencyAr,
+        value: this.propertyDetailData.propertyPrice + ' ' + this.propertyDetailData.currency,
       },
       {
+        show: true,
         label: 'نوع الإيجار',
-        value: this.propertyDetailData.propertyPrice + ' ' + this.propertyDetailData.country.currencyAr,
+        value: this.propertyDetailData.propertyPrice + ' ' + this.propertyDetailData.currency,
       },
       {
+        show: true,
         label: 'مبلغ التأمين',
-        value: this.propertyDetailData.securityDepositPrice + ' ' + this.propertyDetailData.country.currencyAr,
+        value: this.propertyDetailData.securityDepositPrice + ' ' + this.propertyDetailData.currency,
       },
       {
+        show: true,
         label: 'إيداع الوساطة',
-        value: this.propertyDetailData.brokerageChargePrice + ' ' + this.propertyDetailData.country.currencyAr,
+        value: this.propertyDetailData.brokerageChargePrice + ' ' + this.propertyDetailData.currency,
       },
       {
+        show: true,
         label: 'متاح من',
         value: this.propertyDetailData.availableDate.split("T")[0],
       },
       {
+        show: true,
         label: 'فترة إشعار',
         value: this.propertyDetailData.noticePeriod,
       },
       {
+        show: true,
         label: 'الإغلاق',
         value: this.propertyDetailData.lockingPeriod,
       },
