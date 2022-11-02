@@ -365,17 +365,17 @@ export class PropertyDetailComponent implements OnInit {
       ).togglePopup();
 
       let tenantType: any = '';
-      if (jsonParsDate.propertyListing.tenantType !== null && jsonParsDate.propertyListing.tenantType.name !== null && jsonParsDate.propertyListing.tenantType.name !== undefined) {
-        tenantType = jsonParsDate.propertyListing.tenantType.name
+      if (jsonParsDate.propertyListing.tenantType !== null && jsonParsDate.propertyListing.tenantType.nameAr !== null && jsonParsDate.propertyListing.tenantType.nameAr !== undefined) {
+        tenantType = jsonParsDate.propertyListing.tenantType.nameAr
       }
 
       let occupancyStatus: any = '';
-      if (jsonParsDate.propertyListing.occupancyStatus !== null && jsonParsDate.propertyListing.occupancyStatus.name !== null && jsonParsDate.propertyListing.occupancyStatus.name !== undefined) {
-        occupancyStatus = jsonParsDate.propertyListing.occupancyStatus.name
+      if (jsonParsDate.propertyListing.occupancyStatus !== null && jsonParsDate.propertyListing.occupancyStatus.nameAr !== null && jsonParsDate.propertyListing.occupancyStatus.nameAr !== undefined) {
+        occupancyStatus = jsonParsDate.propertyListing.occupancyStatus.nameAr
       }
       let propertyManage: any = '';
-      if (jsonParsDate.propertyListing.propertyManage !== null && jsonParsDate.propertyListing.propertyManage.name !== null && jsonParsDate.propertyListing.propertyManage.name !== undefined) {
-        propertyManage = jsonParsDate.propertyListing.propertyManage.name
+      if (jsonParsDate.propertyListing.propertyManage !== null && jsonParsDate.propertyListing.propertyManage.nameAr !== null && jsonParsDate.propertyListing.propertyManage.nameAr !== undefined) {
+        propertyManage = jsonParsDate.propertyListing.propertyManage.nameAr
       }
 
       let rentType: any = '';
@@ -385,7 +385,7 @@ export class PropertyDetailComponent implements OnInit {
 
       if (jsonParsDate.propertyListing != null) {
         this.propertyDetailData.propertyPrice = (jsonParsDate.propertyListing.propertyPrice !== undefined) ? jsonParsDate.propertyListing.propertyPrice : ''
-        this.propertyDetailData.currency = (jsonParsDate.propertyListing.country.currency !== undefined) ? jsonParsDate.propertyListing.country.currency : ''
+        this.propertyDetailData.currency = (jsonParsDate.propertyListing.country.currency !== undefined) ? jsonParsDate.propertyListing.country.currencyAr : ''
         // this.propertyDetailData.rentType = (jsonParsDate.propertyListing.rentType !== undefined) ? jsonParsDate.propertyListing.rentType : ''
         this.propertyDetailData.securityDepositPrice = (jsonParsDate.propertyListing.securityDepositPrice !== undefined) ? jsonParsDate.propertyListing.securityDepositPrice : ''
         this.propertyDetailData.brokerageChargePrice = (jsonParsDate.propertyListing.brokerageChargePrice !== undefined) ? jsonParsDate.propertyListing.brokerageChargePrice : ''
@@ -402,18 +402,18 @@ export class PropertyDetailComponent implements OnInit {
         this.propertyDetailData.propertyFeatures = (jsonParsDate.propertyListing.propertyFeatures !== undefined) ? jsonParsDate.propertyListing.propertyFeatures : ''
         // this.propertyDetailData.propertyType = (jsonParsDate.propertyListing.propertyType !== undefined) ? jsonParsDate.propertyListing.propertyType : ''
         this.propertyDetailData.requestedDateFormat = (jsonParsDate.propertyListing.requestedDateFormat !== undefined) ? jsonParsDate.propertyListing.requestedDateFormat : ''
-        this.propertyDetailData.buildingType = (jsonParsDate.propertyListing.propertyCategory.categoryName !== undefined) ? jsonParsDate.propertyListing.propertyCategory.categoryName : ''
-        this.propertyDetailData.propertyType = (jsonParsDate.propertyListing.propertyType.typeDescription !== undefined) ? jsonParsDate.propertyListing.propertyType.typeDescription : ''
+        this.propertyDetailData.buildingType = (jsonParsDate.propertyListing.propertyCategory.categoryName !== undefined) ? jsonParsDate.propertyListing.propertyCategory.categoryNameAr : ''
+        this.propertyDetailData.propertyType = (jsonParsDate.propertyListing.propertyType.typeDescription !== undefined) ? jsonParsDate.propertyListing.propertyType.typeDescriptionAr : ''
         this.propertyDetailData.buildingName = (jsonParsDate.propertyListing.buildingName !== undefined) ? jsonParsDate.propertyListing.buildingName : ''
         this.propertyDetailData.totalFloor = (jsonParsDate.propertyListing.totalFloor !== undefined) ? jsonParsDate.propertyListing.totalFloor : ''
         this.propertyDetailData.floorNo = (jsonParsDate.propertyListing.floorNo !== undefined) ? jsonParsDate.propertyListing.floorNo : ''
         this.propertyDetailData.unitNo = (jsonParsDate.propertyListing.unitNo !== undefined) ? jsonParsDate.propertyListing.unitNo : ''
         this.propertyDetailData.bedrooms = (jsonParsDate.propertyListing.bedrooms !== undefined) ? jsonParsDate.propertyListing.bedrooms : ''
         this.propertyDetailData.bathrooms = (jsonParsDate.propertyListing.bathrooms !== undefined) ? jsonParsDate.propertyListing.bathrooms : ''
-        this.propertyDetailData.furnishingType = (jsonParsDate.propertyListing.furnishingType !== undefined) ? jsonParsDate.propertyListing.furnishingType : ''
-        this.propertyDetailData.fittingType = (jsonParsDate.propertyListing.fittingType !== undefined) ? jsonParsDate.propertyListing.fittingType : ''
+        this.propertyDetailData.furnishingType = (jsonParsDate.propertyListing.furnishingType !== undefined) ? jsonParsDate.propertyListing.furnishingTypeAr : ''
+        this.propertyDetailData.fittingType = (jsonParsDate.propertyListing.fittingType !== undefined) ? jsonParsDate.propertyListing.fittingTypeAr : ''
         this.propertyDetailData.tenantType = tenantType
-        this.propertyDetailData.gender = (jsonParsDate.propertyListing.gender !== undefined) ? jsonParsDate.propertyListing.gender : ''
+        this.propertyDetailData.gender = (jsonParsDate.propertyListing.gender !== undefined) ? jsonParsDate.propertyListing.genderAr : ''
         this.propertyDetailData.parkings = (jsonParsDate.propertyListing.parkings !== undefined) ? jsonParsDate.propertyListing.parkings : ''
         this.propertyDetailData.carpetArea = (jsonParsDate.propertyListing.carpetArea !== undefined) ? jsonParsDate.propertyListing.carpetArea : ''
         this.propertyDetailData.buildupArea = (jsonParsDate.propertyListing.buildupArea !== undefined) ? jsonParsDate.propertyListing.buildupArea : ''
@@ -504,6 +504,7 @@ export class PropertyDetailComponent implements OnInit {
     });
   }
   getPropertyInfo() {
+    console.log(this.propertyDetailData)
     this.propertyinfo = [
       {
         show: true,
@@ -523,7 +524,7 @@ export class PropertyDetailComponent implements OnInit {
       {
         show: true,
         label: 'نوع العقار',
-        value: this.propertyDetailData.propertyTypeAr,
+        value: this.propertyDetailData.propertyType,
       },
       {
         show: true,
@@ -583,7 +584,7 @@ export class PropertyDetailComponent implements OnInit {
       {
         show: this.propertyValidationData.hasPetPolicy,
         label: 'سياسة الحيوانات الأليفة',
-        value: 'empty',
+        value: 'فارغة',
       },
       {
         label: 'منطقة التأجير',
