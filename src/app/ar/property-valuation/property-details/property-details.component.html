@@ -96,14 +96,14 @@
                                     </div>
                                     <div ngClass="confirm-location-sec text-right" (click)="confirmLocation()">
                                         <button ngClass="confirm-location-btn">
-                                            قم بتأكيد موقع
+                                            قم بتأكيد الموقع
                                         </button>
                                     </div>
                                 </div>
                             </div>
                             <div ngClass="location-information" [ngClass]="showMap ? '' : 'd-none'">
                                 <div ngClass="block-wrapper mb-4">
-                                    <h6 ngClass="h6-design">معلومات موقع<span ngClass="required-span">*</span>
+                                    <h6 ngClass="h6-design">معلومات الموقع<span ngClass="required-span">*</span>
                                     </h6>
                                     <div ngClass="location-info-lists" *ngIf="locationInformation.city">
                                         <mat-list>
@@ -153,7 +153,7 @@
                                                         value="Quaterly" *ngIf="oldData.TitleDeedType == 2" checked />
                                                     <input type="radio" id="Quaterly" name="titleDeed-type"
                                                         value="Quaterly" *ngIf="oldData.TitleDeedType != 2" />
-                                                    <button class="checkbox-btn">مجهول</button>
+                                                    <button class="checkbox-btn">التملك بموجب مدة معينة</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -164,7 +164,7 @@
                                 <div ngClass="row">
                                     <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                         <div ngClass="block-wrapper mb-4">
-                                            <label class="h6-design">البلدية / رقم العاطفة<span
+                                            <label class="h6-design">البلدية / رقم المخطط<span
                                                     ngClass="required-span">*</span> <span ngClass="small-label">(أدخل "0" إذا لم يكن لديك No)</span></label>
                                             <div class="municipality-input">
                                                 <mat-form-field class="full-width input-design-2" appearance="fill">
