@@ -194,7 +194,7 @@
                                                                     (selectionChange)="getBedroom($event)">
                                                                     <mat-option *ngFor="let item of room"
                                                                         value="{{item}}">
-                                                                        {{item}}
+                                                                        {{item}} <span *ngIf="item == 0">(استديو)</span>
                                                                     </mat-option>
                                                                 </mat-select>
                                                             </mat-form-field>

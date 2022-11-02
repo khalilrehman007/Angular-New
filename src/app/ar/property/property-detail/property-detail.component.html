@@ -141,7 +141,7 @@
                                             *ngFor="let pro of propertyinfo">
                                             <div ngClass="property_info-text">
                                                 <p>{{pro.label}}</p>
-                                                <h6>{{pro.value}}</h6>
+                                                <h6 >{{pro.label == 'غرفة نوم' && pro.value == 0 ? "استديو": pro.value}}</h6>
                                             </div>
                                         </div>
                                     </div>

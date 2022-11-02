@@ -29,6 +29,7 @@ export class PaymentFormScreenComponent implements OnInit {
   showSuccess: boolean = false;
   success: any = "";
   successResponse(data: any) {
+    this.router.navigate(["/ar/payment-packages"]);
     this.showSuccess = false;
   }
   errorResponse(data: any) {
