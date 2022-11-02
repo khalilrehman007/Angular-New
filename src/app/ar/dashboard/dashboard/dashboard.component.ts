@@ -460,7 +460,7 @@ blogs: any;
             propertyTitle: element.propertyTitle, propertyAddress: element.propertyAddress, img: image,
             buildingName: element.buildingName, bedrooms: element.bedrooms, bathrooms: element.bathrooms, carpetArea: element.carpetArea,
             unitNo: element.unitNo, totalFloorgit: element.totalFloor, floorNo: element.floorNo, propertyDescription: element.propertyDescription,
-            requestedDate: element.requestedDate, furnishingType: element.furnishingType, propertyPrice: element.propertyPrice,
+            requestedDate: element.requestedDate, furnishingType: element.furnishingTypeAr, propertyPrice: element.propertyPrice,
             requestedDateFormat: element.requestedDateFormat,
             expiredDateFormat: element.expiredDateFormat, rentType: rentTypeName
           }
@@ -691,7 +691,7 @@ blogs: any;
             id: element.id, propertyTitle: element.propertyTitle, propertyAddress: element.propertyAddressArabic, img: image,
             buildingName: element.buildingName, bedrooms: element.bedrooms, bathrooms: element.bathrooms, carpetArea: element.carpetArea,
             unitNo: element.unitNo, totalFloor: element.totalFloor, floorNo: element.floorNo, propertyDescription: element.propertyDescription,
-            requestedDate: element.requestedDate, furnishingType: element.furnishingType, propertyPrice: element.propertyPrice,
+            requestedDate: element.requestedDate, furnishingType: element.furnishingTypeAr, propertyPrice: element.propertyPrice,
             requestedDateFormat: element.requestedDateFormat,
             expiredDateFormat: element.expiredDateFormat, rentType: rentTypeName, currency: element.country.currencyAr
           }
@@ -988,7 +988,7 @@ blogs: any;
             id:element.id, propertyTitle: element.propertyTitle, propertyAddress: element.propertyAddressArabic, img: image,
             buildingName: element.buildingName, bedrooms: element.bedrooms, bathrooms: element.bathrooms, carpetArea: element.carpetArea,
             unitNo: element.unitNo, totalFloor: element.totalFloor, floorNo: element.floorNo, propertyDescription: element.propertyDescription,
-            requestedDate: element.requestedDate, furnishingType: element.furnishingType, propertyPrice: element.propertyPrice,
+            requestedDate: element.requestedDate, furnishingType: element.furnishingTypeAr, propertyPrice: element.propertyPrice,
             requestedDateFormat: element.requestedDateFormat, propertyType: element.propertyType.typeDescriptionAr,
             expiredDateFormat: element.expiredDateFormat, rentType: rentTypeName, currency: element.country.currencyAr, recentRentTxns: element.recentRentTxns,
             startRentPrice: element.startRentPrice, endRentPrice: element.endRentPrice, avgRentPrice: element.avgRentPrice, country: element.country, city: element.city,
@@ -1107,7 +1107,7 @@ blogs: any;
             buildingName: element.buildingName,
             carpetArea: element.carpetArea,
             requestedDateFormat: element.requestedDateFormat,
-            furnishingType: element.furnishingType
+            furnishingType: element.furnishingTypeAr
           });
       })
     });
@@ -1258,7 +1258,7 @@ blogs: any;
             buildingName: element.buildingName,
             carpetArea: element.carpetArea,
             requestedDateFormat: element.requestedDateFormat,
-            furnishingType: element.furnishingType
+            furnishingType: element.furnishingTypeAr
           });
       })
     });
