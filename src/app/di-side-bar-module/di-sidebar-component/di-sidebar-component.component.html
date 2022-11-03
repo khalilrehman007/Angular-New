@@ -32,17 +32,17 @@
      <ul class="list-unstyled">
       <li>
         <div class="dropdown-design dropdown-design-main">
-          <button type="button" class="btn btn-has-dropdown"><mat-icon>home</mat-icon>RESIDENTIAL</button>
-          <div class="sub-menu">
+          <button type="button" class="btn btn-has-dropdown" [ngClass]="active >= 1 && active <= 11 ? 'active' : ''"><mat-icon>home</mat-icon>RESIDENTIAL</button>
+          <div class="sub-menu" [ngClass]="active >= 1 && active <= 11 ? 'active' : ''">
             <div class="dropdown-design dropdown-design-sub-menu">
-              <button type="button" class="btn btn-has-dropdown">Transaction Data</button>
-              <div class="sub-menu">
+              <button type="button" class="btn btn-has-dropdown" [ngClass]="active >= 1 && active <= 6 ? 'active' : ''">Transaction Data</button>
+              <div class="sub-menu" [ngClass]="active >= 1 && active <= 6 ? 'active' : ''">
                 <button><a (click)="btnClicked('/data-intelligence/data/transaction-data')" [ngClass]="active == 1 ? 'active' : ''">Transaction Data</a></button>
                 <button><a (click)="btnClicked('/data-intelligence/data/rent-data-residential')" [ngClass]="active == 2 ? 'active' : ''">Rent Data</a></button>
                 <button><a (click)="btnClicked('/data-intelligence/data/unit-transaction-residential')" [ngClass]="active == 3 ? 'active' : ''">Unit Transaction History</a></button>
                 <div class="dropdown-design dropdown-design-sub-menu">
-                  <button type="button" class="btn btn-has-dropdown">Transaction Analysis </button>
-                  <div class="sub-menu">
+                  <button type="button" class="btn btn-has-dropdown" [ngClass]="active >= 4 && active <= 6 ? 'active' : ''">Transaction Analysis </button>
+                  <div class="sub-menu" [ngClass]="active >= 4 && active <= 6 ? 'active' : ''">
                     <button><a (click)="btnClicked('/data-intelligence/data/monthly-analysis-residential')" [ngClass]="active == 4 ? 'active' : ''">Monthly Analysis</a></button>
                     <button><a (click)="btnClicked('/data-intelligence/data/quaterly-analysis-residential')" [ngClass]="active == 5 ? 'active' : ''">Quarterly Analysis</a></button>
                     <button><a (click)="btnClicked('/data-intelligence/data/yearly-analysis-residential')" [ngClass]="active == 6 ? 'active' : ''">Yearly Analysis</a></button>
@@ -53,7 +53,7 @@
             <div class="dropdown-design dropdown-design-sub-menu">
               <button type="button" class="btn btn-has-dropdown">Listing Data </button>
               <div class="sub-menu">
-                <button><a routerLink="">Listing Monitor</a></button>
+                <button><a (click)="btnClicked('/data-intelligence/data/listing-monitor-residential')" [ngClass]="active == 7 ? 'active' : ''">Listing Monitor</a></button>
                 <button><a routerLink="">Listing Data</a></button>
               </div>
             </div>
