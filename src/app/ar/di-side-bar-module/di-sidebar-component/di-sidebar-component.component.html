@@ -22,83 +22,83 @@
   </div>
   <div class="dashboard-data-side-bar" [ngClass]="status5 ? 'active' : 'notactive'">
    <div class="dashboard-data-side-header">
-    <h2>DATA INTELLEGENT DASHBOARD</h2>
+    <h2>لوحة معلومات ذكاء البيانات</h2>
    </div>
    <div class="dashboard-data-side-lists">
     <div class="dashboard-data-side-links data" [ngClass]="status1 ? 'show' : 'hide'">
      <div class="dashboard-data-side-subheader">
-      <h4>DATA</h4>
+      <h4>بيانات</h4>
      </div>
      <ul class="list-unstyled">
       <li>
         <div ngbDropdown class="dropdown-design dropdown-design-main">
-          <button type="button" class="btn btn-outline-primary" id="dropdownBasicResedential" ngbDropdownToggle><mat-icon>home</mat-icon>RESIDENTIAL</button>
+          <button type="button" class="btn btn-outline-primary" id="dropdownBasicResedential" ngbDropdownToggle><mat-icon>home</mat-icon>سكني</button>
           <div ngbDropdownMenu aria-labelledby="dropdownBasicResedential">
             <div ngbDropdown class="dropdown-design dropdown-design-sub-menu">
-              <button type="button" class="btn btn-outline-primary" id="dropdownBasictransactindata" ngbDropdownToggle>Transaction Data</button>
+              <button type="button" class="btn btn-outline-primary" id="dropdownBasictransactindata" ngbDropdownToggle>بيانات المعاملات</button>
               <div ngbDropdownMenu aria-labelledby="dropdownBasictransactindata">
-                <button ngbDropdownItem><a (click)="btnClicked('/ar/data-intelligence/data/transaction-data')" [ngClass]="active == 1 ? 'active' : ''">Transaction Data</a></button>
-                <button ngbDropdownItem><a (click)="btnClicked('/ar/data-intelligence/data/rent-data-residential')" [ngClass]="active == 2 ? 'active' : ''">Rent Data</a></button>
-                <button ngbDropdownItem><a (click)="btnClicked('/ar/data-intelligence/data/unit-transaction-residential')" [ngClass]="active == 3 ? 'active' : ''">Unit Transaction History</a></button>
+                <button ngbDropdownItem><a (click)="btnClicked('/ar/data-intelligence/data/transaction-data')" [ngClass]="active == 1 ? 'active' : ''">بيانات المعاملات</a></button>
+                <button ngbDropdownItem><a (click)="btnClicked('/ar/data-intelligence/data/rent-data-residential')" [ngClass]="active == 2 ? 'active' : ''">بيانات الإيجار</a></button>
+                <button ngbDropdownItem><a (click)="btnClicked('/ar/data-intelligence/data/unit-transaction-residential')" [ngClass]="active == 3 ? 'active' : ''">تاريخ معاملات الوحدة</a></button>
                 <div ngbDropdown class="dropdown-design dropdown-design-sub-menu">
-                  <button type="button" class="btn btn-outline-primary" id="dropdownBasictransactinanalysis" ngbDropdownToggle>Transaction Analysis </button>
+                  <button type="button" class="btn btn-outline-primary" id="dropdownBasictransactinanalysis" ngbDropdownToggle>تحليل المعاملات</button>
                   <div ngbDropdownMenu aria-labelledby="dropdownBasictransactinanalysis">
-                    <button ngbDropdownItem><a (click)="btnClicked('/ar/data-intelligence/data/monthly-analysis-residential')" [ngClass]="active == 4 ? 'active' : ''">Monthly Analysis</a></button>
-                    <button ngbDropdownItem><a (click)="btnClicked('/ar/data-intelligence/data/quaterly-analysis-residential')" [ngClass]="active == 5 ? 'active' : ''">Quarterly Analysis</a></button>
-                    <button ngbDropdownItem><a (click)="btnClicked('/ar/data-intelligence/data/yearly-analysis-residential')" [ngClass]="active == 6 ? 'active' : ''">Yearly Analysis</a></button>
+                    <button ngbDropdownItem><a (click)="btnClicked('/ar/data-intelligence/data/monthly-analysis-residential')" [ngClass]="active == 4 ? 'active' : ''">التحليل الشهري</a></button>
+                    <button ngbDropdownItem><a (click)="btnClicked('/ar/data-intelligence/data/quaterly-analysis-residential')" [ngClass]="active == 5 ? 'active' : ''">تحليل ربع سنوي</a></button>
+                    <button ngbDropdownItem><a (click)="btnClicked('/ar/data-intelligence/data/yearly-analysis-residential')" [ngClass]="active == 6 ? 'active' : ''">التحليل السنوي</a></button>
                   </div>
                 </div>
               </div>
             </div>
             <div ngbDropdown class="dropdown-design dropdown-design-sub-menu">
-              <button type="button" class="btn btn-outline-primary" id="dropdownBasiclistindata" ngbDropdownToggle>Listing Data </button>
+              <button type="button" class="btn btn-outline-primary" id="dropdownBasiclistindata" ngbDropdownToggle>سرد البيانات</button>
               <div ngbDropdownMenu aria-labelledby="dropdownBasiclistindata">
-                <button ngbDropdownItem><a routerLink="">Listing Monitor</a></button>
-                <button ngbDropdownItem><a routerLink="">Listing Data</a></button>
+                <button ngbDropdownItem><a routerLink="">مراقبة القوائم</a></button>
+                <button ngbDropdownItem><a routerLink="">بيانات القائمة</a></button>
               </div>
             </div>
-            <button ngbDropdownItem><a routerLink="">Supply Data</a></button>
-            <button ngbDropdownItem><a routerLink="">Occupancy Rate Data</a></button>
-            <button ngbDropdownItem><a routerLink="">Service Charges Data</a></button>
+            <button ngbDropdownItem><a routerLink="">بيانات التوريد</a></button>
+            <button ngbDropdownItem><a routerLink="">بيانات معدل شغل الوظائف</a></button>
+            <button ngbDropdownItem><a routerLink="">بيانات رسوم الخدمة</a></button>
           </div>
         </div>
       </li>
       <li>
         <div ngbDropdown class="dropdown-design dropdown-design-main">
-          <button type="button" class="btn btn-outline-primary" id="dropdownBasiccommertial" ngbDropdownToggle><mat-icon>shopping_cart</mat-icon>COMMERCIAL</button>
+          <button type="button" class="btn btn-outline-primary" id="dropdownBasiccommertial" ngbDropdownToggle><mat-icon>shopping_cart</mat-icon>تجاري</button>
           <div ngbDropdownMenu aria-labelledby="dropdownBasiccommertial">
             <div ngbDropdown class="dropdown-design dropdown-design-sub-menu">
-              <button type="button" class="btn btn-outline-primary" id="dropdownBasictransactindataCom" ngbDropdownToggle>Transaction Data</button>
+              <button type="button" class="btn btn-outline-primary" id="dropdownBasictransactindataCom" ngbDropdownToggle>بيانات المعاملات</button>
               <div ngbDropdownMenu aria-labelledby="dropdownBasictransactindataCom">
-                <button ngbDropdownItem><a routerLink="">Transaction Data</a></button>
-                <button ngbDropdownItem><a routerLink="">Rent Data</a></button>
-                <button ngbDropdownItem><a routerLink="">Unit Transaction History</a></button>
+                <button ngbDropdownItem><a routerLink="">بيانات المعاملات</a></button>
+                <button ngbDropdownItem><a routerLink="">بيانات الإيجار</a></button>
+                <button ngbDropdownItem><a routerLink="">تاريخ معاملات الوحدة</a></button>
                 <div ngbDropdown class="dropdown-design dropdown-design-sub-menu">
-                  <button type="button" class="btn btn-outline-primary" id="dropdownBasictransactinanalysisCom" ngbDropdownToggle>Transaction Analysis </button>
+                  <button type="button" class="btn btn-outline-primary" id="dropdownBasictransactinanalysisCom" ngbDropdownToggle>تحليل المعاملات</button>
                   <div ngbDropdownMenu aria-labelledby="dropdownBasictransactinanalysisCom">
-                    <button ngbDropdownItem><a routerLink="#">Monthly Analysis</a></button>
-                    <button ngbDropdownItem><a routerLink="#">Quarterly Analysis</a></button>
-                    <button ngbDropdownItem><a routerLink="#">Yearly Analysis</a></button>
+                    <button ngbDropdownItem><a routerLink="#">التحليل الشهري</a></button>
+                    <button ngbDropdownItem><a routerLink="#">تحليل ربع سنوي</a></button>
+                    <button ngbDropdownItem><a routerLink="#">التحليل السنوي</a></button>
                   </div>
                 </div>
               </div>
             </div>
             <div ngbDropdown class="dropdown-design dropdown-design-sub-menu">
-              <button type="button" class="btn btn-outline-primary" id="dropdownBasiclistindataCom" ngbDropdownToggle>Listing Data </button>
+              <button type="button" class="btn btn-outline-primary" id="dropdownBasiclistindataCom" ngbDropdownToggle>سرد البيانات </button>
               <div ngbDropdownMenu aria-labelledby="dropdownBasiclistindataCom">
-                <button ngbDropdownItem><a routerLink="">Listing Monitor</a></button>
-                <button ngbDropdownItem><a routerLink="">Listing Data</a></button>
+                <button ngbDropdownItem><a routerLink="">مراقبة القوائم</a></button>
+                <button ngbDropdownItem><a routerLink="">سرد البيانات</a></button>
               </div>
             </div>
             <div ngbDropdown class="dropdown-design dropdown-design-sub-menu">
-              <button type="button" class="btn btn-outline-primary" id="dropdownBasicsuplydataCom" ngbDropdownToggle>Listing Data </button>
+              <button type="button" class="btn btn-outline-primary" id="dropdownBasicsuplydataCom" ngbDropdownToggle>سرد البيانات </button>
               <div ngbDropdownMenu aria-labelledby="dropdownBasicsuplydataCom">
-                <button ngbDropdownItem><a routerLink="">Office Supply</a></button>
-                <button ngbDropdownItem><a routerLink="">Retail Supply</a></button>
+                <button ngbDropdownItem><a routerLink="">مكتب توريد</a></button>
+                <button ngbDropdownItem><a routerLink="">توريد التجزئة</a></button>
               </div>
             </div>
-            <button ngbDropdownItem><a routerLink="">Occupancy Rate Data</a></button>
-            <button ngbDropdownItem><a routerLink="">Service Charges Data</a></button>
+            <button ngbDropdownItem><a routerLink="">بيانات معدل شغل الوظائف</a></button>
+            <button ngbDropdownItem><a routerLink="">بيانات رسوم الخدمة</a></button>
           </div>
         </div>
       </li>
@@ -106,32 +106,32 @@
      </div>
      <div class="dashboard-data-side-links reports" [ngClass]="status2 ? 'show' : 'hide'">
       <div class="dashboard-data-side-subheader">
-       <h4>REPORTS</h4>
+       <h4>التقارير</h4>
       </div>
       <ul class="list-unstyled">
         <li>
           <div ngbDropdown class="dropdown-design dropdown-design-main">
-            <button type="button" class="btn btn-outline-primary" id="dropdownBasicResedentialReport" ngbDropdownToggle><mat-icon>home</mat-icon>RESIDENTIAL</button>
+            <button type="button" class="btn btn-outline-primary" id="dropdownBasicResedentialReport" ngbDropdownToggle><mat-icon>home</mat-icon>سكني</button>
             <div ngbDropdownMenu aria-labelledby="dropdownBasicResedentialReport">
-              <button ngbDropdownItem><a routerLink="">CITY REPORT</a></button>
-              <button ngbDropdownItem><a routerLink="">AREA REPORT</a></button>
-              <button ngbDropdownItem><a routerLink="">PROPERTY REPORT</a></button>
-              <button ngbDropdownItem><a routerLink="">DEVELOPER REPORT</a></button>
+              <button ngbDropdownItem><a routerLink="">تقرير المدينة</a></button>
+              <button ngbDropdownItem><a routerLink="">تقرير المنطقة</a></button>
+              <button ngbDropdownItem><a routerLink="">تقرير الملكية</a></button>
+              <button ngbDropdownItem><a routerLink="">تقرير المطور</a></button>
               <div ngbDropdown class="dropdown-design dropdown-design-sub-menu">
-                <button type="button" class="btn btn-outline-primary" id="dropdownBasicmarketreport" ngbDropdownToggle>Market Report</button>
+                <button type="button" class="btn btn-outline-primary" id="dropdownBasicmarketreport" ngbDropdownToggle>تقارير السوق</button>
                 <div ngbDropdownMenu aria-labelledby="dropdownBasicmarketreport">
-                  <button ngbDropdownItem><a routerLink="">Price Report</a></button>
-                  <button ngbDropdownItem><a routerLink="">Occupancy Report</a></button>
-                  <button ngbDropdownItem><a routerLink="">Service Charge Report</a></button>
+                  <button ngbDropdownItem><a routerLink="">تقرير الأسعا</a></button>
+                  <button ngbDropdownItem><a routerLink="">تقرير شغل</a></button>
+                  <button ngbDropdownItem><a routerLink="">تقرير رسوم الخدمة</a></button>
                 </div>
               </div>
               <div ngbDropdown class="dropdown-design dropdown-design-sub-menu">
-                <button type="button" class="btn btn-outline-primary" id="dropdownBasicoffplanreports" ngbDropdownToggle>OFF-PLAN REPORTS </button>
+                <button type="button" class="btn btn-outline-primary" id="dropdownBasicoffplanreports" ngbDropdownToggle>تقاريرخارج الخطة</button>
                 <div ngbDropdownMenu aria-labelledby="dropdownBasicoffplanreports">
-                  <button ngbDropdownItem><a routerLink="">Off-Plan Price Report</a></button>
-                  <button ngbDropdownItem><a routerLink="">Supply Report</a></button>
-                  <button ngbDropdownItem><a routerLink="">Construction Status Report</a></button>
-                  <button ngbDropdownItem><a routerLink="">Payment Plans Report</a></button>
+                  <button ngbDropdownItem><a routerLink="">تقرير سعر خارج الخطة</a></button>
+                  <button ngbDropdownItem><a routerLink="">تقرير التوريد</a></button>
+                  <button ngbDropdownItem><a routerLink="">تقرير حالة البناء</a></button>
+                  <button ngbDropdownItem><a routerLink="">تقرير خطط الدفع</a></button>
                 </div>
               </div>
             </div>
@@ -139,91 +139,91 @@
         </li>
         <li>
           <div ngbDropdown class="dropdown-design dropdown-design-main">
-            <button type="button" class="btn btn-outline-primary" id="dropdownBasicResedentialReport" ngbDropdownToggle><mat-icon>shopping_cart</mat-icon>COMMERCIAL</button>
+            <button type="button" class="btn btn-outline-primary" id="dropdownBasicResedentialReport" ngbDropdownToggle><mat-icon>shopping_cart</mat-icon>تجاري</button>
             <div ngbDropdownMenu aria-labelledby="dropdownBasicResedentialReport">
               <div ngbDropdown class="dropdown-design dropdown-design-sub-menu">
-                <button type="button" class="btn btn-outline-primary" id="dropdownBasicmarketreport" ngbDropdownToggle>OFFICE MARKET</button>
+                <button type="button" class="btn btn-outline-primary" id="dropdownBasicmarketreport" ngbDropdownToggle>سوق المكاتب</button>
                 <div ngbDropdownMenu aria-labelledby="dropdownBasicmarketreport">
-                  <button ngbDropdownItem><a routerLink="">Area Report</a></button>
-                  <button ngbDropdownItem><a routerLink="">Property Report</a></button>
+                  <button ngbDropdownItem><a routerLink="">تقرير المنطقة</a></button>
+                  <button ngbDropdownItem><a routerLink="">تقرير الملكية</a></button>
                   <div ngbDropdown class="dropdown-design dropdown-design-sub-menu">
-                    <button type="button" class="btn btn-outline-primary" id="dropdownBasicmarketreport" ngbDropdownToggle>Market Report </button>
+                    <button type="button" class="btn btn-outline-primary" id="dropdownBasicmarketreport" ngbDropdownToggle>تقرير السوق</button>
                     <div ngbDropdownMenu aria-labelledby="dropdownBasicmarketreport">
-                      <button ngbDropdownItem><a routerLink="">Office Price Report</a></button>
-                      <button ngbDropdownItem><a routerLink="">Occupancy Report</a></button>
-                      <button ngbDropdownItem><a routerLink="">Service Charge Report</a></button>
+                      <button ngbDropdownItem><a routerLink="">تقرير سعر المكتب</a></button>
+                      <button ngbDropdownItem><a routerLink="">تقرير شغل</a></button>
+                      <button ngbDropdownItem><a routerLink="">تقرير رسوم الخدمة</a></button>
                     </div>
                   </div>
                 </div>
               </div>
-              <button ngbDropdownItem><a routerLink="">RETAIL MARKET</a></button>
-              <button ngbDropdownItem><a routerLink="">HOTEL MARKET</a></button>
-              <button ngbDropdownItem><a routerLink="">LAND MARKET</a></button>
-              <button ngbDropdownItem><a routerLink="">INDUSTRIAL MARKET</a></button>
-              <button ngbDropdownItem><a routerLink="">LABOR CAMPS</a></button>
+              <button ngbDropdownItem><a routerLink="">سوق التجزئة</a></button>
+              <button ngbDropdownItem><a routerLink="">سوق الفنادق</a></button>
+              <button ngbDropdownItem><a routerLink="">سوق الأراضي</a></button>
+              <button ngbDropdownItem><a routerLink="">السوق الصناعي</a></button>
+              <button ngbDropdownItem><a routerLink="">معسكرات العمل</a></button>
             </div>
           </div>
         </li>
         <li>
           <div ngbDropdown class="dropdown-design dropdown-design-main">
-            <button type="button" class="btn btn-outline-primary" id="dropdownBasiceconomyReport" ngbDropdownToggle><mat-icon> insert_chart</mat-icon>ECONOMY REPORTS</button>
+            <button type="button" class="btn btn-outline-primary" id="dropdownBasiceconomyReport" ngbDropdownToggle><mat-icon> insert_chart</mat-icon>التقارير الاقتصادية</button>
             <div ngbDropdownMenu aria-labelledby="dropdownBasiceconomyReport">
               <div ngbDropdown class="dropdown-design dropdown-design-sub-menu">
-                <button type="button" class="btn btn-outline-primary" id="dropdowndemographicreport" ngbDropdownToggle>DEMOGRAPHICS</button>
+                <button type="button" class="btn btn-outline-primary" id="dropdowndemographicreport" ngbDropdownToggle>الديموغرافيا</button>
                 <div ngbDropdownMenu aria-labelledby="dropdowndemographicreport">
-                  <button ngbDropdownItem><a routerLink="">Population Trends</a></button>
+                  <button ngbDropdownItem><a routerLink="">اتجاه السكان</a></button>
                 </div>
               </div>
               <div ngbDropdown class="dropdown-design dropdown-design-sub-menu">
-                <button type="button" class="btn btn-outline-primary" id="dropdownfinance" ngbDropdownToggle>FINANCE</button>
+                <button type="button" class="btn btn-outline-primary" id="dropdownfinance" ngbDropdownToggle>المالية</button>
                 <div ngbDropdownMenu aria-labelledby="dropdownfinance">
-                  <button ngbDropdownItem><a routerLink="">Mortgage Rates</a></button>
+                  <button ngbDropdownItem><a routerLink="">معدلات الرهن العقاري</a></button>
                 </div>
               </div>
-              <button ngbDropdownItem><a routerLink="">PRICES</a></button>
+              <button ngbDropdownItem><a routerLink="">الأسعار</a></button>
             </div>
           </div>
         </li>
-        <li><button ngbDropdownItem><a routerLink=""><mat-icon> insert_drive_file</mat-icon>REIDIN REPORTS</a></button></li>
-        <li><button ngbDropdownItem><a routerLink=""><mat-icon>update</mat-icon>PRODUCT UPDATES</a></button></li>
+        <li><button ngbDropdownItem><a routerLink=""><mat-icon> insert_drive_file</mat-icon>تقارير ريدين</a></button></li>
+        <li><button ngbDropdownItem><a routerLink=""><mat-icon>update</mat-icon>تحديثات المنتج</a></button></li>
       </ul>
       </div>
       <div class="dashboard-data-side-links rankings" [ngClass]="status3 ? 'show' : 'hide'">
         <div class="dashboard-data-side-subheader">
-         <h4>RANKINGS</h4>
+         <h4>الترتيب</h4>
         </div>
         <ul class="list-unstyled">
           <li>
             <div ngbDropdown class="dropdown-design dropdown-design-main">
-              <button type="button" class="btn btn-outline-primary" id="dropdownBasicResedentialReportRed" ngbDropdownToggle><mat-icon>home</mat-icon>RESIDENTIAL</button>
+              <button type="button" class="btn btn-outline-primary" id="dropdownBasicResedentialReportRed" ngbDropdownToggle><mat-icon>home</mat-icon>سكني</button>
               <div ngbDropdownMenu aria-labelledby="dropdownBasicResedentialReport">
                 <div ngbDropdown class="dropdown-design dropdown-design-sub-menu">
-                  <button type="button" class="btn btn-outline-primary" id="dropdownBasicarearankingRes" ngbDropdownToggle>AREA RANKINGS </button>
+                  <button type="button" class="btn btn-outline-primary" id="dropdownBasicarearankingRes" ngbDropdownToggle>تصنيفات المنطقة</button>
                   <div ngbDropdownMenu aria-labelledby="dropdownBasicarearanking">
-                    <button ngbDropdownItem><a routerLink="">Sales</a></button>
-                    <button ngbDropdownItem><a routerLink="">Rental</a></button>
-                    <button ngbDropdownItem><a routerLink="">Rental Yields</a></button>
-                    <button ngbDropdownItem><a routerLink="">Residential Supply</a></button>
-                    <button ngbDropdownItem><a routerLink="">Occupancy Rates</a></button>
-                    <button ngbDropdownItem><a routerLink="">Service Charges</a></button>
+                    <button ngbDropdownItem><a routerLink="">مبيعات</a></button>
+                    <button ngbDropdownItem><a routerLink="">تأجير</a></button>
+                    <button ngbDropdownItem><a routerLink="">معدلات الإيجار</a></button>
+                    <button ngbDropdownItem><a routerLink="">التوريد السكني</a></button>
+                    <button ngbDropdownItem><a routerLink="">معدلات الإشغال</a></button>
+                    <button ngbDropdownItem><a routerLink="">رسوم الخدمات</a></button>
                   </div>
                 </div>
                 <div ngbDropdown class="dropdown-design dropdown-design-sub-menu">
-                  <button type="button" class="btn btn-outline-primary" id="dropdownBasicpropertyRankingRed" ngbDropdownToggle>PROPERTY RANKINGS </button>
+                  <button type="button" class="btn btn-outline-primary" id="dropdownBasicpropertyRankingRed" ngbDropdownToggle>تصنيفات الملكية</button>
                   <div ngbDropdownMenu aria-labelledby="dropdownBasicpropertyRankingRed">
-                    <button ngbDropdownItem><a routerLink="">Sales</a></button>
-                    <button ngbDropdownItem><a routerLink="">Rental</a></button>
-                    <button ngbDropdownItem><a routerLink="">Rental Yields</a></button>
-                    <button ngbDropdownItem><a routerLink="">Residential Supply</a></button>
-                    <button ngbDropdownItem><a routerLink="">Occupancy Rates</a></button>
-                    <button ngbDropdownItem><a routerLink="">Service Charges</a></button>
+                    <button ngbDropdownItem><a routerLink="">مبيعات</a></button>
+                    <button ngbDropdownItem><a routerLink="">تأجير</a></button>
+                    <button ngbDropdownItem><a routerLink="">معدلات الإيجار</a></button>
+                    <button ngbDropdownItem><a routerLink="">التوريد السكني</a></button>
+                    <button ngbDropdownItem><a routerLink="">معدلات الإشغال</a></button>
+                    <button ngbDropdownItem><a routerLink="">رسوم الخدمات</a></button>
                   </div>
                 </div>
                 <div ngbDropdown class="dropdown-design dropdown-design-sub-menu">
-                  <button type="button" class="btn btn-outline-primary" id="dropdownBasicpropertyRankingRed" ngbDropdownToggle>BROKERAGE RANKINGS </button>
+                  <button type="button" class="btn btn-outline-primary" id="dropdownBasicpropertyRankingRed" ngbDropdownToggle>تصنيفات الوساطة </button>
                   <div ngbDropdownMenu aria-labelledby="dropdownBasicpropertyRankingRed">
-                    <button ngbDropdownItem><a routerLink="">Brokerage Rankings</a></button>
-                    <button ngbDropdownItem><a routerLink="">Brokerage Analytics</a></button>
+                    <button ngbDropdownItem><a routerLink="">تصنيفات الوساطة</a></button>
+                    <button ngbDropdownItem><a routerLink="">تحليلات السمسرة</a></button>
                   </div>
                 </div>
               </div>
@@ -231,38 +231,38 @@
           </li>
           <li>
             <div ngbDropdown class="dropdown-design dropdown-design-main">
-              <button type="button" class="btn btn-outline-primary" id="dropdownBasicResedentialReport" ngbDropdownToggle><mat-icon>shopping_cart</mat-icon>COMMERCIAL</button>
+              <button type="button" class="btn btn-outline-primary" id="dropdownBasicResedentialReport" ngbDropdownToggle><mat-icon>shopping_cart</mat-icon>تجاري</button>
               <div ngbDropdownMenu aria-labelledby="dropdownBasicResedentialReport">
                 <div ngbDropdown class="dropdown-design dropdown-design-sub-menu">
-                  <button type="button" class="btn btn-outline-primary" id="dropdownBasicofficecom1" ngbDropdownToggle>OFFICE</button>
+                  <button type="button" class="btn btn-outline-primary" id="dropdownBasicofficecom1" ngbDropdownToggle>مكتب</button>
                   <div ngbDropdownMenu aria-labelledby="dropdownBasicofficecom1">
                     <div ngbDropdown class="dropdown-design dropdown-design-sub-menu">
-                      <button type="button" class="btn btn-outline-primary" id="dropdownBasicofficecom12" ngbDropdownToggle>Area Rankings</button>
+                      <button type="button" class="btn btn-outline-primary" id="dropdownBasicofficecom12" ngbDropdownToggle>تصنيفات المنطقة</button>
                       <div ngbDropdownMenu aria-labelledby="dropdownBasicofficecom12">
-                        <button ngbDropdownItem><a routerLink="">Sales</a></button>
-                        <button ngbDropdownItem><a routerLink="">Rent</a></button>
-                        <button ngbDropdownItem><a routerLink="">Office Supply</a></button>
-                        <button ngbDropdownItem><a routerLink="">Occupancy Rates</a></button>
-                        <button ngbDropdownItem><a routerLink="">Service Charges</a></button>
+                        <button ngbDropdownItem><a routerLink="">مبيعات</a></button>
+                        <button ngbDropdownItem><a routerLink="">تأجير</a></button>
+                        <button ngbDropdownItem><a routerLink="">مكتب توريد</a></button>
+                        <button ngbDropdownItem><a routerLink="">معدلات الإشغال</a></button>
+                        <button ngbDropdownItem><a routerLink="">رسوم الخدمات</a></button>
                       </div>
                     </div>
                     <div ngbDropdown class="dropdown-design dropdown-design-sub-menu">
-                      <button type="button" class="btn btn-outline-primary" id="dropdownBasicofficecom13" ngbDropdownToggle>Property Rankings </button>
+                      <button type="button" class="btn btn-outline-primary" id="dropdownBasicofficecom13" ngbDropdownToggle>تصنيفات الملكية</button>
                       <div ngbDropdownMenu aria-labelledby="dropdownBasicofficecom13">
-                        <button ngbDropdownItem><a routerLink="">Sales</a></button>
-                        <button ngbDropdownItem><a routerLink="">Rent</a></button>
-                        <button ngbDropdownItem><a routerLink="">Office Supply</a></button>
-                        <button ngbDropdownItem><a routerLink="">Occupancy Rates</a></button>
-                        <button ngbDropdownItem><a routerLink="">Service Charges</a></button>
+                        <button ngbDropdownItem><a routerLink="">مبيعات</a></button>
+                        <button ngbDropdownItem><a routerLink="">تأجير</a></button>
+                        <button ngbDropdownItem><a routerLink="">مكتب توريد</a></button>
+                        <button ngbDropdownItem><a routerLink="">معدلات الإشغال</a></button>
+                        <button ngbDropdownItem><a routerLink="">رسوم الخدمات</a></button>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div ngbDropdown class="dropdown-design dropdown-design-sub-menu">
-                  <button type="button" class="btn btn-outline-primary" id="dropdownBasicofficecom14" ngbDropdownToggle>Brokerage Rankings</button>
+                  <button type="button" class="btn btn-outline-primary" id="dropdownBasicofficecom14" ngbDropdownToggle>تصنيفات السمسرة</button>
                   <div ngbDropdownMenu aria-labelledby="dropdownBasicofficecom14">
-                    <button ngbDropdownItem><a routerLink="">Brokerage Rankings</a></button>
-                    <button ngbDropdownItem><a routerLink="">Brokerage Analytics</a></button>
+                    <button ngbDropdownItem><a routerLink="">تصنيفات السمسرة</a></button>
+                    <button ngbDropdownItem><a routerLink="">تحليلات السمسرة</a></button>
                   </div>
                 </div>
               </div>
@@ -272,49 +272,49 @@
       </div>
       <div class="dashboard-data-side-links trends" [ngClass]="status4 ? 'show' : 'hide'">
         <div class="dashboard-data-side-subheader">
-         <h4>TRENDS</h4>
+         <h4>اتجاهات</h4>
         </div>
         <ul class="list-unstyled">
           <li>
             <div ngbDropdown class="dropdown-design dropdown-design-main">
-              <button type="button" class="btn btn-outline-primary" id="dropdownBasicResedentialReport" ngbDropdownToggle><mat-icon>home</mat-icon>RESIDENTIAL</button>
+              <button type="button" class="btn btn-outline-primary" id="dropdownBasicResedentialReport" ngbDropdownToggle><mat-icon>home</mat-icon>سكني</button>
               <div ngbDropdownMenu aria-labelledby="dropdownBasicResedentialReport">
                 <div ngbDropdown class="dropdown-design dropdown-design-sub-menu">
-                  <button type="button" class="btn btn-outline-primary" id="dropdowntrends1" ngbDropdownToggle>TRENDS</button>
+                  <button type="button" class="btn btn-outline-primary" id="dropdowntrends1" ngbDropdownToggle>اتجاهات</button>
                   <div ngbDropdownMenu aria-labelledby="dropdowntrends1">
                     <div ngbDropdown class="dropdown-design dropdown-design-sub-menu">
-                      <button type="button" class="btn btn-outline-primary" id="dropdowntrends12" ngbDropdownToggle>Sales Price Trends </button>
+                      <button type="button" class="btn btn-outline-primary" id="dropdowntrends12" ngbDropdownToggle>اتجاهات أسعار المبيعات</button>
                       <div ngbDropdownMenu aria-labelledby="dropdowntrends12">
-                        <button ngbDropdownItem><a routerLink="">Residential Sales</a></button>
-                        <button ngbDropdownItem><a routerLink="">Serviced/Hotel Apartment Sales</a></button>
+                        <button ngbDropdownItem><a routerLink="">المبيعات السكنية</a></button>
+                        <button ngbDropdownItem><a routerLink="">مبيعات الخدمات / الشقق الفندقية</a></button>
                       </div>
                     </div>
-                    <button ngbDropdownItem><a routerLink="">Rent Price Trends</a></button>
-                    <button ngbDropdownItem><a routerLink="">Rental Yields</a></button>
-                    <button ngbDropdownItem><a routerLink="">Supply Trends</a></button>
+                    <button ngbDropdownItem><a routerLink="">اتجاهات أسعار الإيجار</a></button>
+                    <button ngbDropdownItem><a routerLink="">معدلات الإيجار</a></button>
+                    <button ngbDropdownItem><a routerLink="">اتجاهات التوريد</a></button>
                   </div>
                 </div>
                 <div ngbDropdown class="dropdown-design dropdown-design-sub-menu">
-                  <button type="button" class="btn btn-outline-primary" id="dropdowntrends13" ngbDropdownToggle>INDICES </button>
+                  <button type="button" class="btn btn-outline-primary" id="dropdowntrends13" ngbDropdownToggle>المؤشرات</button>
                   <div ngbDropdownMenu aria-labelledby="dropdowntrends13">
                     <div ngbDropdown class="dropdown-design dropdown-design-sub-menu">
-                      <button type="button" class="btn btn-outline-primary" id="dropdowntrends14" ngbDropdownToggle>Sales Price Indices </button>
+                      <button type="button" class="btn btn-outline-primary" id="dropdowntrends14" ngbDropdownToggle>مؤشرات أسعار المبيعات</button>
                       <div ngbDropdownMenu aria-labelledby="dropdowntrends14">
-                        <button ngbDropdownItem><a routerLink="">Residential Sales</a></button>
-                        <button ngbDropdownItem><a routerLink="">Prime Residential Sales</a></button>
-                        <button ngbDropdownItem><a routerLink="">Off-Plan Sales Prices</a></button>
-                        <button ngbDropdownItem><a routerLink="">Serviced/Hotel Apartment Sales</a></button>
+                        <button ngbDropdownItem><a routerLink="">المبيعات السكنية</a></button>
+                        <button ngbDropdownItem><a routerLink="">المبيعات السكنية الرئيسية</a></button>
+                        <button ngbDropdownItem><a routerLink="">OFF - أسعار بيع الخطة</a></button>
+                        <button ngbDropdownItem><a routerLink="">مبيعات الشقق المخدومة / الفندقية</a></button>
                       </div>
                     </div>
                     <div ngbDropdown class="dropdown-design dropdown-design-sub-menu">
-                      <button type="button" class="btn btn-outline-primary" id="dropdowntrends15" ngbDropdownToggle>Rent Price Indices</button>
+                      <button type="button" class="btn btn-outline-primary" id="dropdowntrends15" ngbDropdownToggle>مؤشرات أسعار الإيجار</button>
                       <div ngbDropdownMenu aria-labelledby="dropdowntrends15">
-                        <button ngbDropdownItem><a routerLink="">Residential Rent</a></button>
-                        <button ngbDropdownItem><a routerLink="">Prime Residential Rent</a></button>
+                        <button ngbDropdownItem><a routerLink="">إيجار سكني</a></button>
+                        <button ngbDropdownItem><a routerLink="">إيجار سكني رئيسي</a></button>
                       </div>
                     </div>
-                    <button ngbDropdownItem><a routerLink="">Housing & Rental Affordability</a></button>
-                    <button ngbDropdownItem><a routerLink="">Buildings Scores</a></button>
+                    <button ngbDropdownItem><a routerLink="">القدرة على تحمل تكاليف الإسكان والإيجارات</a></button>
+                    <button ngbDropdownItem><a routerLink="">درجات البناء</a></button>
                   </div>
                 </div>
               </div>
@@ -322,45 +322,45 @@
           </li>
           <li>
             <div ngbDropdown class="dropdown-design dropdown-design-main">
-              <button type="button" class="btn btn-outline-primary" id="dropdownBasicResedentialReport" ngbDropdownToggle><mat-icon>shopping_cart</mat-icon>COMMERCIAL</button>
+              <button type="button" class="btn btn-outline-primary" id="dropdownBasicResedentialReport" ngbDropdownToggle><mat-icon>shopping_cart</mat-icon>تجاري</button>
               <div ngbDropdownMenu aria-labelledby="dropdownBasicResedentialReport">
                 <div ngbDropdown class="dropdown-design dropdown-design-sub-menu">
-                  <button type="button" class="btn btn-outline-primary" id="dropdowntrenscomm16" ngbDropdownToggle>OFFICE</button>
+                  <button type="button" class="btn btn-outline-primary" id="dropdowntrenscomm16" ngbDropdownToggle>مكتب</button>
                   <div ngbDropdownMenu aria-labelledby="dropdowntrenscomm16">
                     <div ngbDropdown class="dropdown-design dropdown-design-sub-menu">
-                      <button type="button" class="btn btn-outline-primary" id="dropdowntrenscomm17" ngbDropdownToggle>Trends</button>
+                      <button type="button" class="btn btn-outline-primary" id="dropdowntrenscomm17" ngbDropdownToggle>اتجاهات</button>
                       <div ngbDropdownMenu aria-labelledby="dropdowntrenscomm17">
-                        <button ngbDropdownItem><a routerLink="">Rent Price Trends</a></button>
-                        <button ngbDropdownItem><a routerLink="">Supply Trends</a></button>
+                        <button ngbDropdownItem><a routerLink="">اتجاهات أسعار الإيجار</a></button>
+                        <button ngbDropdownItem><a routerLink="">اتجاهات التوريد</a></button>
                       </div>
                     </div>
                     <div ngbDropdown class="dropdown-design dropdown-design-sub-menu">
-                      <button type="button" class="btn btn-outline-primary" id="dropdowntrenscomm18" ngbDropdownToggle>Indices</button>
+                      <button type="button" class="btn btn-outline-primary" id="dropdowntrenscomm18" ngbDropdownToggle>المؤشرات</button>
                       <div ngbDropdownMenu aria-labelledby="dropdowntrenscomm18">
-                        <button ngbDropdownItem><a routerLink="">Rent Price Indices</a></button>
+                        <button ngbDropdownItem><a routerLink="">مؤشرات أسعار الإيجار</a></button>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div ngbDropdown class="dropdown-design dropdown-design-sub-menu">
-                  <button type="button" class="btn btn-outline-primary" id="dropdowntrenscomm19" ngbDropdownToggle>RETAIL </button>
+                  <button type="button" class="btn btn-outline-primary" id="dropdowntrenscomm19" ngbDropdownToggle>بيع بالتجزئة</button>
                   <div ngbDropdownMenu aria-labelledby="dropdowntrenscomm19">
-                    <button ngbDropdownItem><a routerLink="">Supply Trends</a></button>
+                    <button ngbDropdownItem><a routerLink="">اتجاهات التوريد</a></button>
                   </div>
                 </div>
                 <div ngbDropdown class="dropdown-design dropdown-design-sub-menu">
-                  <button type="button" class="btn btn-outline-primary" id="dropdowntrenscomm20" ngbDropdownToggle>LAND </button>
+                  <button type="button" class="btn btn-outline-primary" id="dropdowntrenscomm20" ngbDropdownToggle>اتجاهات التوريد</button>
                   <div ngbDropdownMenu aria-labelledby="dropdowntrenscomm20">
                     <div ngbDropdown class="dropdown-design dropdown-design-sub-menu">
-                      <button type="button" class="btn btn-outline-primary" id="dropdowntrenscomm21" ngbDropdownToggle>Trends</button>
+                      <button type="button" class="btn btn-outline-primary" id="dropdowntrenscomm21" ngbDropdownToggle>اتجاهات</button>
                       <div ngbDropdownMenu aria-labelledby="dropdowntrenscomm21">
-                        <button ngbDropdownItem><a routerLink="">Sale Price Trends</a></button>
+                        <button ngbDropdownItem><a routerLink="">اتجاه سعر المبيعات</a></button>
                       </div>
                     </div>
                     <div ngbDropdown class="dropdown-design dropdown-design-sub-menu">
-                      <button type="button" class="btn btn-outline-primary" id="dropdowntrenscomm22" ngbDropdownToggle>Indices</button>
+                      <button type="button" class="btn btn-outline-primary" id="dropdowntrenscomm22" ngbDropdownToggle>المؤشرات</button>
                       <div ngbDropdownMenu aria-labelledby="dropdowntrenscomm22">
-                        <button ngbDropdownItem><a routerLink="">Sale Price Indices</a></button>
+                        <button ngbDropdownItem><a routerLink="">مؤشر أسعار المبيعات</a></button>
                       </div>
                     </div>
                   </div>
