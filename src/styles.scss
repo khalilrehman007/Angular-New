@@ -8888,12 +8888,35 @@ li.agent-details__property-list-item {
     align-items: center;
 }
 .table td,.table th {
-    font-weight: 300;
+	font-weight: 300;
     border: none;
     font-size: 14px;
     min-width: 150px;
     line-height: 18px;
     padding: 10px !important;
+    max-width: 140px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.table td .active-status {
+    font-weight: 400;
+    color: #16ad16;
+}
+.table td .passive-status {
+    color: #4344ac;
+    font-weight: 400;
+}
+.table td .price-change {
+	padding: 1px 10px;
+    border-radius: 50px;
+    color: #fff;
+}
+.table td .price-change.increase {
+    background-color: #50ae2b;
+}
+.table td .price-change.decrease {
+    background-color: #e76056;
 }
 .table th {
     font-weight: 400;
@@ -12943,10 +12966,8 @@ input:focus{
     bottom: 3px;
 }
 .dashboard-dat-filter-box .range-slider {
-    background-image: url(/assets/images/Range.svg);
-    padding-top: 4% !important;
-    background-position: center -5px;
-    background-size: auto;
+	background-image: none !important;
+    padding-top: 0px !important;
 }
 .input-design-2 .mat-form-field-flex .mat-form-field-infix textarea {
     font-size: 14px;
@@ -12977,6 +12998,21 @@ input:focus{
 .catogries-sec-wrapper {
     max-width: 100%;
     overflow-x: hidden;
+}
+.dashboard-dat-filter-box .range-slider ngx-slider {
+    margin-top: 22px !important;
+}
+.dashboard-data-select-box .mat-form-field-wrapper {
+    padding-bottom: 0px !important;
+}
+.dashboard-date-range-box .mat-form-field-wrapper {
+    padding-bottom: 0px !important;
+}
+.dashboard-date-range-box {
+    margin-bottom: 15px;
+}
+.dashboard-data-select-box {
+    margin-bottom: 15px;
 }
 
 

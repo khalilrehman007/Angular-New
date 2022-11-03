@@ -24,6 +24,9 @@ import { YearlyAnalysisResidentialComponent } from './yearly-analysis-residentia
 import { MatSelectModule } from '@angular/material/select';
 import { LoaderModule } from 'src/app/loader/loader.module';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ListingMonitorResComponent } from './listing-monitor-res/listing-monitor-res.component';
+import { ListingDataResComponent } from './listing-data-res/listing-data-res.component';
+import { NgCircleProgressModule } from 'ng-circle-progress';
 
 
 @NgModule({
@@ -33,7 +36,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
     UnitTransactionHistoryResidentialComponent,
     MonthlyAnalysisResidentialComponent,
     QuaterlyAnalysisResidentialComponent,
-    YearlyAnalysisResidentialComponent
+    YearlyAnalysisResidentialComponent,
+    ListingMonitorResComponent,
+    ListingDataResComponent
   ],
   imports: [
     CommonModule,
@@ -54,7 +59,18 @@ import { NgxPaginationModule } from 'ngx-pagination';
     DiSideBarModuleModule,
     MatSelectModule,
     LoaderModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+      // Specify ng-circle-progress as an import
+      NgCircleProgressModule.forRoot({
+        // set defaults here
+        radius: 100,
+        outerStrokeWidth: 16,
+        innerStrokeWidth: 8,
+        outerStrokeColor: "#78C000",
+        innerStrokeColor: "#C7E596",
+        animationDuration: 300,
+        titleFontWeight: "700"
+      })
   ]
 })
 export class DataModule { }
