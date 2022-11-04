@@ -390,7 +390,8 @@
 
                             <div ngClass="row">
                                 <div ngClass="col-lg-4 col-md-6 blog-places-col" *ngFor=" let blog of blogs">
-                                    <a [routerLink]="['/blogs-details/' + blog.id]" ngClass="position-relative">
+                                    
+                                    <a routerLink="/blog/details/{{blog.slugName}}" ngClass="position-relative">
                                         <img [src]="'https://www.ovaluate.com/'+blog.blogDocument.fileUrl"
                                             ngClass="img-fluid blog-image-homepage" alt="">
                                         <span ngClass="blog-tag">
