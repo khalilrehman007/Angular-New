@@ -379,7 +379,6 @@ export class PropertyDetailsComponent implements OnInit {
       $('.select2').select2();
     }
     $(".country-select").on("change", () => {
-      console.log($(".country-select").val());
       this.onCountrySelect($(".country-select").val());
     });
     $(".city-select").on("change", () => {
@@ -388,6 +387,9 @@ export class PropertyDetailsComponent implements OnInit {
     $(".district-select").on("change", () => {
       this.onDistrictSelect($(".district-select").val());
     });
+    if(this.oldData != "") {
+      this.getLocation();
+    }
   }
   onPlaceChanged() {
     let temp: any = document.getElementById("searchLocation");
@@ -524,7 +526,7 @@ export class PropertyDetailsComponent implements OnInit {
       let areabounds = new google.maps.LatLngBounds(southWest, northEast);
       this.options.bounds = areabounds;
       let lat: any = localStorage.getItem("lat");
-      let lng: any = localStorage.getItem("lng")
+      let lng: any = localStorage.getItem("lng");
       this.map = new google.maps.Map($(".property-details__map")[0], {
         center: { "lat": parseFloat(lat), "lng": parseFloat(lng) },
         zoom: 6,
