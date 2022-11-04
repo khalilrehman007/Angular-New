@@ -6,6 +6,8 @@ import { UnitTransactionHistoryResidentialComponent } from './unit-transaction-h
 import { MonthlyAnalysisResidentialComponent } from './monthly-analysis-residential/monthly-analysis-residential.component';
 import { QuaterlyAnalysisResidentialComponent } from './quaterly-analysis-residential/quaterly-analysis-residential.component';
 import { YearlyAnalysisResidentialComponent } from './yearly-analysis-residential/yearly-analysis-residential.component';
+import { ListingMonitorResComponent } from './listing-monitor-res/listing-monitor-res.component';
+import { ListingDataResComponent } from './listing-data-res/listing-data-res.component';
 
 const routes: Routes = [
   {path: "", redirectTo: "/data-intelligence/data/transaction-data", pathMatch: "full"},
@@ -14,7 +16,9 @@ const routes: Routes = [
   {path: "unit-transaction-residential", component: UnitTransactionHistoryResidentialComponent},
   {path: "monthly-analysis-residential", component: MonthlyAnalysisResidentialComponent},
   {path: "quaterly-analysis-residential", component: QuaterlyAnalysisResidentialComponent},
-  {path: "yearly-analysis-residential", component: YearlyAnalysisResidentialComponent}
+  {path: "yearly-analysis-residential", component: YearlyAnalysisResidentialComponent},
+  {path: "listing-monitor-residential", component: ListingMonitorResComponent},
+  {path: "listing-data-residential", component: ListingDataResComponent}
 ];
 
 @NgModule({
