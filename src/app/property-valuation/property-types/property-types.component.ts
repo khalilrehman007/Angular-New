@@ -166,6 +166,7 @@ export class PropertyTypesComponent implements OnInit {
           this.purposeOfValuation = result;
           this.purposeOfValuation = this.purposeOfValuation.data;
         });
+        this.loadFurnishingType();
         this.service.PropertyFeatures(this.propertyData.id).subscribe((result: any) => {
           this.featuresData = result.data;
           this.showLoader = false;
