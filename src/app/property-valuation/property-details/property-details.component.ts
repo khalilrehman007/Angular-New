@@ -207,7 +207,7 @@ export class PropertyDetailsComponent implements OnInit {
       });
       this.countryName = temp[0].viewValue;
       localStorage.setItem("currency", temp[0].currency)
-      this.getLocationDetails(temp[0].viewValue, false);
+      // this.getLocationDetails(temp[0].viewValue, false);
       this.countryId = e;
       this.city = [];
       this.service.LoadCities(e).subscribe(e => {
@@ -235,7 +235,7 @@ export class PropertyDetailsComponent implements OnInit {
         return c.value == e
       })
       this.cityName = temp[0].viewValue;
-      this.getLocationDetails(temp[0].viewValue, false);
+      // this.getLocationDetails(temp[0].viewValue, false);
       this.cityId = e;
       this.service.LoadDistrict(e).subscribe(e => {
         let temp: any = e;
