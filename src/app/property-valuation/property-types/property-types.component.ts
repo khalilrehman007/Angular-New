@@ -142,7 +142,6 @@ export class PropertyTypesComponent implements OnInit {
       this.service.PropertyStatuses().subscribe((result: any) => {
         this.propertyStatusData = result.data
       })
-      console.log(this.formData);
       this.roadCount = this.formData.NoOfRoads;
       this.bedrooms = this.formData.Bedrooms;
       this.bathrooms = this.formData.Bathrooms;
@@ -246,6 +245,7 @@ export class PropertyTypesComponent implements OnInit {
       }, 100);
     })
     this.typeSelected = true;
+    console.log(this.formData);
   }
   loadFurnishingType() {
     this.service.FurnishingTypes().subscribe((result: any) => {
@@ -330,8 +330,20 @@ export class PropertyTypesComponent implements OnInit {
   }
   clearData() {
     this.formData = {};
-    this.formData = (window.localStorage.getItem('valuationData'));
-    this.formData = JSON.parse(this.formData);
+    let temp:any = (window.localStorage.getItem('valuationData'));
+    temp = JSON.parse(temp);
+    this.formData.CityId = temp.CityId;
+    this.formData.CountryId = temp.CountryId;
+    this.formData.DistrictId = temp.DistrictId;
+    this.formData.MunicipalityNo = temp.MunicipalityNo;
+    this.formData.PropertyAddress = temp.PropertyAddress;
+    this.formData.PropertyCategoryId = temp.PropertyCategoryId;
+    this.formData.PropertyInsured = temp.PropertyInsured;
+    this.formData.PropertyLat = temp.PropertyLat;
+    this.formData.PropertyLong = temp.PropertyLong;
+    this.formData.PropertyTypeId = temp.PropertyTypeId;
+    this.formData.TitleDeedNo = temp.TitleDeedNo;
+    this.formData.TitleDeedType = temp.TitleDeedType;
     this.propertyTypeForm.patchValue({
       apartmentNo: "",
       constructionAge: "",
