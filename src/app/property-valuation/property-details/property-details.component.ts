@@ -43,7 +43,7 @@ export class PropertyDetailsComponent implements OnInit {
   propertyInsured: number = -1;
   autocomplete: any;
   marker: any;
-  countryName: any;
+  countryName: any = "";
   cityName: any;
   tempAddress: any;
   locationInformation: any = {};
@@ -74,7 +74,7 @@ export class PropertyDetailsComponent implements OnInit {
   }
 
   constructor(private http: HttpClient, private notifyService: NotificationService, private service: AppService, private router: Router) {
-    if(!localStorage.getItem("user")) {
+    if (!localStorage.getItem("user")) {
       this.notifyService.showError("You need to register/login", "");
       this.router.navigate(["/login"]);
     }
@@ -197,59 +197,78 @@ export class PropertyDetailsComponent implements OnInit {
     this.propertyInsured = e;
   }
   onCountrySelect(e: any) {
-    this.showMap = false;
-    this.city = this.district = [];
-    this.cityId = this.districtId = -1;
-    this.showLoader = true;
-    let temp = this.country.filter(function (c: any) {
-      return c.value == e
-    });
-    console.log(temp);
-    this.countryName = temp[0].viewValue;
-    localStorage.setItem("currency", temp[0].currency)
-    this.getLocationDetails(temp[0].viewValue, false);
-    this.countryId = e;
-    this.city = [];
-    this.service.LoadCities(e).subscribe(e => {
-      let temp: any = e;
-      if (temp.message == "City list fetched successfully") {
-        for (let city of temp.data) {
-          this.city.push({ viewValue: city.name, value: city.id });
+    if (e != 0) {
+      this.city = [];
+      this.district = [];
+      this.cityId = this.districtId = -1;
+      this.showLoader = true;
+      let temp = this.country.filter(function (c: any) {
+        return c.value == e
+      });
+      this.countryName = temp[0].viewValue;
+      localStorage.setItem("currency", temp[0].currency)
+      this.getLocationDetails(temp[0].viewValue, false);
+      this.countryId = e;
+      this.city = [];
+      this.service.LoadCities(e).subscribe(e => {
+        let temp: any = e;
+        if (temp.message == "City list fetched successfully") {
+          for (let city of temp.data) {
+            this.city.push({ viewValue: city.name, value: city.id });
+          }
+          this.showLoader = false;
         }
-        this.showLoader = false;
-      }
-    });
+      });
+    } else {
+      this.city = [];
+      this.district = [];
+      this.countryId = -1;
+      this.countryName = "";
+    }
+    this.showMap = false;
   }
   onCitySelect(e: any) {
-    this.showMap = false;
-    this.district = [];
-    this.districtId = -1;
-    let temp = this.city.filter(function (c: any) {
-      return c.value == e
-    })
-    this.cityName = temp[0].viewValue;
-    this.getLocationDetails(temp[0].viewValue, false);
-    this.cityId = e;
-    this.service.LoadDistrict(e).subscribe(e => {
-      let temp: any = e;
-      if (temp.message == "District list fetched successfully") {
-        for (let district of temp.data) {
-          this.district.push({ viewValue: district.name, value: district.id });
+    if(e != 0) {
+      this.district = [];
+      this.districtId = -1;
+      let temp = this.city.filter(function (c: any) {
+        return c.value == e
+      })
+      this.cityName = temp[0].viewValue;
+      this.getLocationDetails(temp[0].viewValue, false);
+      this.cityId = e;
+      this.service.LoadDistrict(e).subscribe(e => {
+        let temp: any = e;
+        if (temp.message == "District list fetched successfully") {
+          for (let district of temp.data) {
+            this.district.push({ viewValue: district.name, value: district.id });
+          }
+          this.showLoader = false;
         }
-        this.showLoader = false;
-      }
-    });
+      });
+    } else {
+      this.district = [];
+      this.cityId = -1;
+      this.cityName = "";
+    }
+    this.showMap = false;
   }
   onDistrictSelect(e: any) {
-    this.showMap = true;
-    this.locationSelected = false;
-    $("#searchLocation").val("");
-    let temp = this.district.filter(function (c: any) {
-      return c.value == e
-    })
-    this.getLocationDetails(temp[0].viewValue, true);
-    this.districtName = temp[0].viewValue;
-    this.districtId = e;
+    if(e != 0) {
+      this.locationSelected = false;
+      $("#searchLocation").val("");
+      let temp = this.district.filter(function (c: any) {
+        return c.value == e
+      })
+      this.getLocationDetails(temp[0].viewValue, true);
+      this.districtName = temp[0].viewValue;
+      this.districtId = e;
+      this.showMap = true;
+    } else {
+      this.showMap = false;
+      this.districtId = -1;
+      this.districtName = "";
+    }
   }
   getMapImage() {
     let staticMapUrl: any = "https://maps.googleapis.com/maps/api/staticmap";
@@ -278,7 +297,7 @@ export class PropertyDetailsComponent implements OnInit {
     $("." + this.currentField).addClass("blink");
     $("." + this.currentField).on("click", () => {
       $("." + this.currentField).removeClass("blink");
-      this.currentField = "";
+      this.currentField = "temp";
     })
     $(window).scrollTop(temp - 100);
   }
