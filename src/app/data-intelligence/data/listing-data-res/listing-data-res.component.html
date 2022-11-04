@@ -1,1 +1,376 @@
-<p>listing-data-res works!</p>
+<div class="light-theme dashboard-data-sec">
+    <app-header></app-header>
+    <div class="dashboard-reports-inner-wrapper">
+      <div class="container">
+        <div class="dashboard-data-main-wrapper">
+          <div class="dashboard-data-scnd-header">
+            <app-di-sidebar-component></app-di-sidebar-component>
+          </div>
+          <div class="dashboard-data-main-contents">
+            <div class="di-inner-header">
+              <h4>Listing Data - Residential</h4>
+            </div>
+            <form [formGroup]="range">
+              <div class="dashboard-dat-filter-box">
+                <div class="row">
+                  <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-2">
+                    <div class="dashboard-date-range-box">
+                      <label>Publish Date</label>
+                      <mat-form-field>
+                        <mat-label>Enter a date range</mat-label>
+                        <mat-date-range-input [rangePicker]="picker">
+                          <input matStartDate matInput placeholder="Start date" formControlName="start"
+                            (dateChange)="getStartDate($event)">
+                          <input matEndDate matInput placeholder="End date" formControlName="end"
+                            (dateChange)="getEndDate($event)">
+                        </mat-date-range-input>
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-date-range-picker #picker></mat-date-range-picker>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-2">
+                    <div class="dashboard-data-select-box" *ngIf="citiesData.length > 0">
+                      <label>City</label>
+                      <mat-form-field>
+                        <mat-label>Add City</mat-label>
+                        <mat-select [disableOptionCentering]="true" multiple (selectionChange)="getCity($event)" [(value)]="selectedCity">
+                          <mat-option value="All" (click)="selectAllCity()">Select All</mat-option>
+                          <mat-option *ngFor="let city of citiesData" [value]="city.id">
+                            {{city.name}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-2">
+                    <div class="dashboard-data-select-box" [ngClass]="communityfield.length > 0 ? '' : 'disabled'">
+                      <label>Area</label>
+                      <mat-form-field>
+                        <mat-label>Add Area</mat-label>
+                        <mat-select [disableOptionCentering]="true" multiple (selectionChange)="getDistrict($event)" [(value)]="selectedDistrict">
+                          <mat-option value="All" (click)="selectAllDistrict()">Select All</mat-option>
+                          <mat-option *ngFor="let community of communityfield" [value]="community.id">
+                            {{community.name}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-2">
+                    <div class="dashboard-data-select-box">
+                      <label>Community</label>
+                      <mat-form-field>
+                        <mat-label>Add Community</mat-label>
+                        <mat-select [disableOptionCentering]="true" multiple (selectionChange)="getPropertyType($event)" [(value)]="selectedPropertyType">
+                          <mat-option value="All" (click)="selectAllPropertyType()">Select All</mat-option>
+                          <mat-option *ngFor="let protype of filteredProperty" [value]="protype.id">
+                            {{protype.typeDescription}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-2">
+                    <div class="dashboard-data-select-box">
+                        <label>Listing Type</label>
+                        <select class="select2 listing-type search-placeholder">
+                          <option>Sale</option>
+                          <option>Rent</option>
+                        </select>
+                      </div>
+                  </div>
+                  <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-2">
+                    <div class="dashboard-data-select-box">
+                      <label>Property Subtype</label>
+                      <mat-form-field>
+                        <mat-label>Add Property Subtype</mat-label>
+                        <mat-select [disableOptionCentering]="true" multiple (selectionChange)="getPropertyType($event)" [(value)]="selectedPropertyType">
+                          <mat-option value="All" (click)="selectAllPropertyType()">Select All</mat-option>
+                          <mat-option *ngFor="let protype of filteredProperty" [value]="protype.id">
+                            {{protype.typeDescription}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-2">
+                    <div class="dashboard-data-select-box">
+                        <label>Bedroom</label>
+                        <select class="select2 verified-lsiting-select search-placeholder">
+                          <option>01</option>
+                          <option>02</option>
+                        </select>
+                      </div>
+                  </div>
+                  <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-2">
+                    <div class="dashboard-data-select-box">
+                      <label>Property</label>
+                      <mat-form-field>
+                        <mat-label>Add Property</mat-label>
+                        <mat-select [disableOptionCentering]="true" multiple (selectionChange)="getPropertyType($event)" [(value)]="selectedPropertyType">
+                          <mat-option value="All" (click)="selectAllPropertyType()">Select All</mat-option>
+                          <mat-option *ngFor="let protype of filteredProperty" [value]="protype.id">
+                            {{protype.typeDescription}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-2">
+                    <div ngClass="di-rangle-block">
+                      <h4>Size Range ({{countryData.unitType}})</h4>
+                      <div ngClass="price-range_sec">
+                        <div ngClass="range-slider">
+                          <ngx-slider [(value)]="SizeminValue" [(highValue)]="SizemaxValue" [options]="Sizeoptions"
+                            (valueChange)="getMinSize($event)" (highValueChange)="getMaxSize($event)">
+                          </ngx-slider>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-2">
+                    <div ngClass="di-rangle-block">
+                        <h4>Price Range ({{countryData.currency}})</h4>
+                        <div ngClass="price-range_sec">
+                          <div ngClass="range-slider">
+                            <ngx-slider [(value)]="PriceminValue" [(highValue)]="PricemaxValue" [options]="Priceoptions"
+                              (valueChange)="getMinPrice($event)" (highValueChange)="getMaxPrice($event)">
+                            </ngx-slider>
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-2">
+                    <div class="dashboard-data-select-box">
+                        <label>Price Update</label>
+                        <select class="select2 verified-lsiting-select search-placeholder">
+                          <option>Increased</option>
+                          <option>Decreased</option>
+                        </select>
+                      </div>
+                  </div>
+                  <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-2">
+                    <div class="dashboard-data-select-box">
+                        <label>Source</label>
+                        <select class="select2 verified-lsiting-select search-placeholder">
+                          <option>Property finder</option>
+                        </select>
+                      </div>
+                  </div>
+                  <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-2">
+                    <div class="dashboard-data-select-box">
+                        <label>Furnished</label>
+                        <select class="select2 verified-lsiting-select search-placeholder">
+                          <option>Furnished</option>
+                          <option>Unfurnished</option>
+                        </select>
+                      </div>
+                  </div>
+                  <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-2">
+                    <div class="dashboard-data-select-box">
+                        <label>View</label>
+                        <select class="select2 verified-lsiting-select search-placeholder">
+                          <option>View</option>
+                          <option>View</option>
+                        </select>
+                      </div>
+                  </div>
+                  <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-2">
+                    <div class="dashboard-data-select-box">
+                        <label>Study Room</label>
+                        <select class="select2 verified-lsiting-select search-placeholder">
+                          <option>Yes</option>
+                          <option>No</option>
+                        </select>
+                      </div>
+                  </div>
+                  <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-2">
+                    <div class="dashboard-data-select-box">
+                        <label>Maid Room</label>
+                        <select class="select2 verified-lsiting-select search-placeholder">
+                          <option>Yes</option>
+                          <option>No</option>
+                        </select>
+                      </div>
+                  </div>
+                  <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-2">
+                    <div class="dashboard-data-select-box">
+                        <label>Terrace</label>
+                        <select class="select2 verified-lsiting-select search-placeholder">
+                          <option>Yes</option>
+                          <option>No</option>
+                        </select>
+                      </div>
+                  </div>
+                  <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-2">
+                    <div class="dashboard-data-select-box">
+                        <label>Bathroom</label>
+                        <select class="select2 verified-lsiting-select search-placeholder">
+                          <option>01</option>
+                          <option>02</option>
+                        </select>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+            <div class="dashboard-data-blue-boxes mt-3">
+              <div class="row dashbpard-reports-inof-blocks">
+                <div class="col-xl-3 p-2">
+                  <div class="card bg-2 position-relative overflow-hidden">
+                    <app-loader *ngIf="showLoader"></app-loader>
+                    <div class="row">
+                      <div class="col-12 text-center">
+                        <h6 class="text-small">Ready Property Transactions</h6>
+                        <p style="margin-bottom: 12px;"></p>
+                        <div class="custom-box">
+                          <span>
+                            <h3>{{totalLength != 0 ? formatNumber(transactionData.transactionsCount) : 0}}</h3>
+                            <p>TRANSACTIONS</p>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-3 p-2">
+                  <div class="card bg-2 position-relative overflow-hidden">
+                    <app-loader *ngIf="showLoader"></app-loader>
+                    <div class="row">
+                      <div class="col-12 text-center">
+                        <h6 class="text-small">Off-plan property transactions</h6>
+                        <p style="margin-bottom: 12px;"></p>
+                        <div class="custom-box">
+                          <span>
+                            <h3>{{totalLength != 0 ? formatNumber(transactionData.medianPricePerSqft) : 0}}</h3>
+                            <p>Median {{countryData.currency}}/{{countryData.unitType}}</p>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-3 p-2">
+                  <div class="card bg-2 position-relative overflow-hidden">
+                    <app-loader *ngIf="showLoader"></app-loader>
+                    <div class="row">
+                      <div class="col-12 text-center">
+                        <h6 class="text-small">Sales listings </h6>
+                        <div class="custom-box">
+                          <span>
+                            <h3>{{totalLength != 0 ? formatNumber(transactionData.medianPrice) : 0}}</h3>
+                            <p>Median Value ({{countryData.currency}})</p>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-3 p-2">
+                  <div class="card bg-2 position-relative overflow-hidden">
+                    <app-loader *ngIf="showLoader"></app-loader>
+                    <div class="row">
+                      <div class="col-12 text-center">
+                        <h6 class="text-small">Rent listings</h6>
+                        <div class="custom-box">
+                          <span>
+                            <h3>{{totalLength != 0 ? formatNumber(transactionData.totalPrice) : 0}}</h3>
+                            <p>Total Value ({{countryData.currency}})</p>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="dash-table-box-layout position-relative overflow-hidden">
+              <app-loader *ngIf="showLoader"></app-loader>
+              <div class="table-responsive">
+                <table class="table table-striped overflow-hidden">
+                  <thead>
+                    <tr>
+                      <th>Listing Status</th>
+                      <th> Price Status </th>
+                      <th> Property Name </th>
+                      <th> Community </th>
+                      <th> Property Type </th>
+                      <th> No of Rooms </th>
+                      <th> Publish Date </th>
+                      <th> Size (Sqf) </th>
+                      <th> Price (AED) </th>
+                      <th> Last Availability </th>
+                      <th> Latest Price </th>
+                      <th> Price Change </th>
+                      <th> Days on Market </th>
+                      <th> Brokerage </th>
+                      <th>URL</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                     <td> <span class="active-status">Active</span> </td>
+                     <td> Decreased </td>
+                     <td> 23 Marina Tower </td>
+                     <td> Dubai Marina </td>
+                     <td> Apartment </td>
+                     <td>3 Bedrooms</td>
+                     <td> 17-10-2022 </td>
+                     <td> 5,644 </td>
+                     <td> 7,800,000 </td>
+                     <td> 27-10-2022 </td>
+                     <td> 7,700,000 </td>
+                     <td><span class="price-change decrease"> − 100,000 </span></td>
+                     <td>9</td>
+                     <td> District Real Estate </td>
+                     <td> https://www.propertyfinder.ae/en/plp/buy/apartment-for-sale-dubai-dubai-marina-23-marina-9059420.html </td>
+                    </tr>
+                    <tr>
+                        <td> <span class="passive-status">Passive</span> </td>
+                        <td> Decreased </td>
+                        <td> 23 Marina Tower </td>
+                        <td> Dubai Marina </td>
+                        <td> Apartment </td>
+                        <td>3 Bedrooms</td>
+                        <td> 17-10-2022 </td>
+                        <td> 5,644 </td>
+                        <td> 7,800,000 </td>
+                        <td> 27-10-2022 </td>
+                        <td> 7,700,000 </td>
+                        <td><span class="price-change increase"> + 100,000 </span></td>
+                        <td>9</td>
+                        <td> District Real Estate </td>
+                        <td> https://www.propertyfinder.ae/en/plp/buy/apartment-for-sale-dubai-dubai-marina-23-marina-9059420.html </td>
+                       </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="pagination-controls d-flex justify-content-spacebw">
+                <div class="pagination-page-per-item d-flex align-items-center">
+                  <p>Items Per Page 10</p>
+                  <div ngClass="select-design-language">
+                    <mat-form-field appearance="fill">
+                      <mat-select [disableOptionCentering]="true" [(value)]="PageNumbers"
+                        (selectionChange)="getItems($event)">
+                        <mat-option [value]="option.value" *ngFor="let option of pageitems">
+                          {{option.viewValue }}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <pagination-controls (pageChange)="pageChanged($event)" class="text-center my-pagination">
+                </pagination-controls>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="dahboard-data-f0oter">
+        <footer>
+          <p class="text-center text-muted mb-0">Copyright &#169; <a routerLink="">Ovaluate</a></p>
+        </footer>
+      </div>
+    </div>
+  </div>
