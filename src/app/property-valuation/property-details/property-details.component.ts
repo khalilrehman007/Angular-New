@@ -228,7 +228,7 @@ export class PropertyDetailsComponent implements OnInit {
     this.showMap = false;
   }
   onCitySelect(e: any) {
-    if(e != 0) {
+    if (e != 0) {
       this.district = [];
       this.districtId = -1;
       let temp = this.city.filter(function (c: any) {
@@ -254,7 +254,7 @@ export class PropertyDetailsComponent implements OnInit {
     this.showMap = false;
   }
   onDistrictSelect(e: any) {
-    if(e != 0) {
+    if (e != 0) {
       this.locationSelected = false;
       $("#searchLocation").val("");
       let temp = this.district.filter(function (c: any) {
@@ -407,8 +407,29 @@ export class PropertyDetailsComponent implements OnInit {
         })
         this.marker = new google.maps.Marker({
           position: area,
-          map: this.map
-        })
+          map: this.map,
+          draggable: true,
+        });
+        google.maps.event.addListener(this.marker, 'dragend', (e:any) => {
+          let pos: any = this.marker.getPosition();
+          let geocoder = new google.maps.Geocoder();
+          geocoder.geocode
+            ({
+              latLng: pos
+            },
+              (results: any, status: any) => {
+                if (status == google.maps.GeocoderStatus.OK) {
+                  localStorage.setItem("lat", e.latLng.lat());
+                  localStorage.setItem("lng", e.latLng.lng());
+                  $(".searchLocation").val(results[0].formatted_address);
+                }
+                else {
+                  this.error = "Cannot determine address at this location.";
+                  this.showError = true;
+                }
+              }
+            );
+        });
       }
     });
   }
@@ -437,7 +458,11 @@ export class PropertyDetailsComponent implements OnInit {
         })
         this.marker = new google.maps.Marker({
           position: area,
-          map: this.map
+          map: this.map,
+          draggable: true,
+        });
+        google.maps.event.addListener(this.marker, 'dragend', (e:any) => {
+          this.geocodePosition(this.marker.getPosition());
         });
         this.autocomplete = new google.maps.places.Autocomplete(this.searchElement.nativeElement, this.options);
         this.autocomplete.addListener('place_changed', this.onPlaceChanged);
@@ -445,6 +470,23 @@ export class PropertyDetailsComponent implements OnInit {
         this.locationSelected = status;
       }
     });
+  }
+  geocodePosition(pos: any) {
+    let geocoder = new google.maps.Geocoder();
+    geocoder.geocode
+      ({
+        latLng: pos
+      },
+        (results: any, status: any) => {
+          if (status == google.maps.GeocoderStatus.OK) {
+            $(".searchLocation").val(results[0].formatted_address);
+          }
+          else {
+            this.error = "Cannot determine address at this location.";
+            this.showError = true;
+          }
+        }
+      );
   }
   getLocation() {
     if (this.oldData == "") {
