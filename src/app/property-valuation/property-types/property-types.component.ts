@@ -308,16 +308,6 @@ export class PropertyTypesComponent implements OnInit {
       }
     }
   }
-  getValue() {
-    let age: any = this.propertyTypeForm.value.constructionAge;
-    if (age > 40) {
-      this.error = "The construction age can't be greater than 40 years.";
-      this.propertyTypeForm.patchValue({
-        constructionAge: "40"
-      })
-      this.showError = true;
-    }
-  }
   animate() {
     let temp: any = $("." + this.currentField).offset()?.top;
     $("." + this.currentField).addClass("blink");
@@ -329,7 +319,7 @@ export class PropertyTypesComponent implements OnInit {
   }
   clearData() {
     this.formData = {};
-    let temp:any = (window.localStorage.getItem('valuationData'));
+    let temp: any = (window.localStorage.getItem('valuationData'));
     temp = JSON.parse(temp);
     this.formData.CityId = temp.CityId;
     this.formData.CountryId = temp.CountryId;
@@ -504,24 +494,76 @@ export class PropertyTypesComponent implements OnInit {
     localStorage.removeItem("valuationFromFooter");
     this.router.navigate(['/valuation/PropertyDocument']);
   }
-  validateInput(e:any) {
-    if(e.key.charCodeAt(0) >= 48 && e.key.charCodeAt(0) <= 57 || e.key.charCodeAt(0) >= 65 && e.key.charCodeAt(0) <= 90 || e.key.charCodeAt(0) >= 97 && e.key.charCodeAt(0) <= 122) {
+  validateInput(e: any) {
+    if (e.key.charCodeAt(0) >= 48 && e.key.charCodeAt(0) <= 57 || e.key.charCodeAt(0) >= 65 && e.key.charCodeAt(0) <= 90 || e.key.charCodeAt(0) >= 97 && e.key.charCodeAt(0) <= 122) {
       setTimeout(() => {
         this.getInput(e.key, true);
-      },100);
+      }, 100);
     }
   }
-  getInput(e:any, type:boolean) {
-    if(!type) {
-      let temp:any = this.propertyTypeForm.value.apartmentNo
+  getInput(e: any, type: boolean) {
+    if (!type) {
+      let temp: any = this.propertyTypeForm.value.apartmentNo
       this.propertyTypeForm.patchValue({
         apartmentNo: temp.toString().slice(0, -1)
       })
     } else {
-      let temp:any = this.propertyTypeForm.value.apartmentNo
+      let temp: any = this.propertyTypeForm.value.apartmentNo
       this.propertyTypeForm.patchValue({
         apartmentNo: temp.toString() + e
       })
+    }
+  }
+  validateSizeInput(e: any) {
+    if (e.key.charCodeAt(0) >= 48 && e.key.charCodeAt(0) <= 57) {
+      setTimeout(() => {
+        this.getSizeInput(e.key, true);
+      }, 100);
+    }
+  }
+  getSizeInput(e: any, type: boolean) {
+    if (!type) {
+      let temp: any = this.propertyTypeForm.value.apartmentSize
+      this.propertyTypeForm.patchValue({
+        apartmentSize: temp.toString().slice(0, -1)
+      })
+    } else {
+      let temp: any = this.propertyTypeForm.value.apartmentSize
+      this.propertyTypeForm.patchValue({
+        apartmentSize: temp.toString() + e
+      })
+    }
+  }
+  validateAgeInput(e: any) {
+    setTimeout(() => {
+      let age: any = this.propertyTypeForm.value.constructionAge;
+      if (age <= 40) {
+        if (e.key.charCodeAt(0) >= 48 && e.key.charCodeAt(0) <= 57) {
+          this.getValue(e.key, true);
+        }
+      }
+    }, 100);
+  }
+  getValue(e: any, type: boolean) {
+    let age: any = this.propertyTypeForm.value.constructionAge;
+    if (age > 40) {
+      this.error = "The construction age can't be greater than 40 years.";
+      this.propertyTypeForm.patchValue({
+        constructionAge: "40"
+      })
+      this.showError = true;
+    } else if (age < 40){
+      if (!type) {
+        let temp: any = this.propertyTypeForm.value.constructionAge
+        this.propertyTypeForm.patchValue({
+          constructionAge: temp.toString().slice(0, -1)
+        })
+      } else {
+        let temp: any = this.propertyTypeForm.value.constructionAge
+        this.propertyTypeForm.patchValue({
+          constructionAge: temp.toString() + e
+        })
+      }
     }
   }
 }
