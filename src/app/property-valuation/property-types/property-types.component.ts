@@ -535,30 +535,37 @@ export class PropertyTypesComponent implements OnInit {
     }
   }
   validateAgeInput(e: any) {
-    setTimeout(() => {
-      let age: any = this.propertyTypeForm.value.constructionAge;
-      if (age <= 40) {
-        if (e.key.charCodeAt(0) >= 48 && e.key.charCodeAt(0) <= 57) {
+    let age: any = this.propertyTypeForm.value.constructionAge;
+    if (age <= 40) {
+      if (e.key.charCodeAt(0) >= 48 && e.key.charCodeAt(0) <= 57) {
+        setTimeout(() => {
           this.getValue(e.key, true);
-        }
+        }, 100);
       }
-    }, 100);
+    }
   }
   getValue(e: any, type: boolean) {
     let age: any = this.propertyTypeForm.value.constructionAge;
-    if (age > 40) {
-      this.error = "The construction age can't be greater than 40 years.";
+    if (!type) {
+      let temp: any = this.propertyTypeForm.value.constructionAge
       this.propertyTypeForm.patchValue({
-        constructionAge: "40"
+        constructionAge: temp.toString().slice(0, -1)
       })
-      this.showError = true;
-    } else if (age < 40){
-      if (!type) {
-        let temp: any = this.propertyTypeForm.value.constructionAge
+      if (age > 40) {
+        this.error = "The construction age can't be greater than 40 years.";
         this.propertyTypeForm.patchValue({
-          constructionAge: temp.toString().slice(0, -1)
+          constructionAge: "40"
         })
-      } else {
+        this.showError = true;
+      }
+    } else {
+      if (age > 40) {
+        this.error = "The construction age can't be greater than 40 years.";
+        this.propertyTypeForm.patchValue({
+          constructionAge: "40"
+        })
+        this.showError = true;
+      } else if (age < 40) {
         let temp: any = this.propertyTypeForm.value.constructionAge
         this.propertyTypeForm.patchValue({
           constructionAge: temp.toString() + e

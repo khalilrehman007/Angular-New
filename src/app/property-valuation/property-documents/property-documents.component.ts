@@ -3,6 +3,7 @@ import { AppService } from 'src/app/service/app.service';
 import { DatePipe } from '@angular/common';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { E } from '@angular/cdk/keycodes';
 
 @Component({
   selector: 'app-property-documents',
@@ -121,104 +122,128 @@ export class PropertyDocumentsComponent implements OnInit {
     }
   }
   handleChange(files: FileList, index: number) {
-    if (files && files.length) {
-      this.titleDeedImage = files[0];
-      this.file = files[0].name;
-    }
-    const reader = new FileReader();
-    reader.readAsDataURL(files[0]);
-    reader.onload = () => {
-      let found = -1;
-      for (let i = 0; i < this.uploadedDocuments.length; i++) {
-        if (this.uploadedDocuments[i].index == index) {
-          found = i;
-        }
+    if(files[0].size / 1048576 > 2) {
+      this.error = "Maximum upload size is 2MB";
+      this.showError = true;
+
+    } else {
+      if (files && files.length) {
+        this.titleDeedImage = files[0];
+        this.file = files[0].name;
       }
-      if (found == -1) {
-        this.uploadedDocuments.push({ index: index, documentName: "Title Deed", fileName: files[0].name, imgsrc: reader.result });
-      } else {
-        this.uploadedDocuments[found].fileName = files[0].name;
-        this.uploadedDocuments[found].imgsrc = reader.result;
-      }
-    };
-    this.documentcount++;
-  }
-  affection(files: FileList, index: number) {
-    if (files && files.length) {
-      this.affectionImage = files[0];
-      this.affecton = files[0].name;
-    }
-    const reader = new FileReader();
-    reader.readAsDataURL(files[0]);
-    reader.onload = () => {
-      let found = -1;
-      for (let i = 0; i < this.uploadedDocuments.length; i++) {
-        if (this.uploadedDocuments[i].index == index) {
-          found = i;
-        }
-      }
-      if (found == -1) {
-        this.uploadedDocuments.push({ index: index, documentName: "Affection Plan", fileName: files[0].name, imgsrc: reader.result });
-      } else {
-        this.uploadedDocuments[found].fileName = files[0].name;
-        this.uploadedDocuments[found].imgsrc = reader.result;
-      }
-    };
-    this.documentcount++;
-  }
-  property(files: FileList, index: number) {
-    if (files && files.length) {
-      this.propertyImage = files[0];
-      this.propertys = files[0].name;
-    }
-    const reader = new FileReader();
-    reader.readAsDataURL(files[0]);
-    reader.onload = () => {
-      let found = -1;
-      for (let i = 0; i < this.uploadedDocuments.length; i++) {
-        if (this.uploadedDocuments[i].index == index) {
-          found = i;
-        }
-      }
-      if (found == -1) {
-        this.uploadedDocuments.push({ index: index, documentName: "Picture: Front View", fileName: files[0].name, imgsrc: reader.result });
-      } else {
-        this.uploadedDocuments[found].fileName = files[0].name;
-        this.uploadedDocuments[found].imgsrc = reader.result;
-      }
-    };
-    this.documentcount++;
-  }
-  emiratesfun(files: FileList, index: number, id: any) {
-    if (files && files.length) {
-      let found: number = -1;
-      for (let i = 0; i < this.otherImages.length; i++) {
-        if (this.otherImages[i].index == index) {
-          found = i;
-        }
-      }
-      if (found == -1) {
-        this.otherImages.push({ index: index, file: files[0], id: id });
-      } else {
-        this.otherImages[found].file = files[0];
-      }
-      this.emirate[index] = files[0].name;
       const reader = new FileReader();
       reader.readAsDataURL(files[0]);
       reader.onload = () => {
-        found = -1;
+        let found = -1;
         for (let i = 0; i < this.uploadedDocuments.length; i++) {
           if (this.uploadedDocuments[i].index == index) {
             found = i;
           }
         }
         if (found == -1) {
-          this.uploadedDocuments.push({ index: index, documentName: "Other Documents", fileName: files[0].name, imgsrc: reader.result });
+          this.uploadedDocuments.push({ index: index, documentName: "Title Deed", fileName: files[0].name, imgsrc: reader.result });
         } else {
           this.uploadedDocuments[found].fileName = files[0].name;
           this.uploadedDocuments[found].imgsrc = reader.result;
         }
       };
+      this.documentcount++;
+    }
+  }
+  affection(files: FileList, index: number) {
+    if(files[0].size / 1048576 > 2) {
+      this.error = "Maximum upload size is 2MB";
+      this.showError = true;
+
+    } else {
+      if (files && files.length) {
+        this.affectionImage = files[0];
+        this.affecton = files[0].name;
+      }
+      const reader = new FileReader();
+      reader.readAsDataURL(files[0]);
+      reader.onload = () => {
+        let found = -1;
+        for (let i = 0; i < this.uploadedDocuments.length; i++) {
+          if (this.uploadedDocuments[i].index == index) {
+            found = i;
+          }
+        }
+        if (found == -1) {
+          this.uploadedDocuments.push({ index: index, documentName: "Affection Plan", fileName: files[0].name, imgsrc: reader.result });
+        } else {
+          this.uploadedDocuments[found].fileName = files[0].name;
+          this.uploadedDocuments[found].imgsrc = reader.result;
+        }
+      };
+      this.documentcount++;
+    }
+  }
+  property(files: FileList, index: number) {
+    if(files[0].size / 1048576 > 2) {
+      this.error = "Maximum upload size is 2MB";
+      this.showError = true;
+
+    } else {
+      if (files && files.length) {
+        this.propertyImage = files[0];
+        this.propertys = files[0].name;
+      }
+      const reader = new FileReader();
+      reader.readAsDataURL(files[0]);
+      reader.onload = () => {
+        let found = -1;
+        for (let i = 0; i < this.uploadedDocuments.length; i++) {
+          if (this.uploadedDocuments[i].index == index) {
+            found = i;
+          }
+        }
+        if (found == -1) {
+          this.uploadedDocuments.push({ index: index, documentName: "Picture: Front View", fileName: files[0].name, imgsrc: reader.result });
+        } else {
+          this.uploadedDocuments[found].fileName = files[0].name;
+          this.uploadedDocuments[found].imgsrc = reader.result;
+        }
+      };
+      this.documentcount++;
+    }
+  }
+  emiratesfun(files: FileList, index: number, id: any) {
+    if(files[0].size / 1048576 > 2) {
+      this.error = "Maximum upload size is 2MB";
+      this.showError = true;
+
+    } else {
+      if (files && files.length) {
+        let found: number = -1;
+        for (let i = 0; i < this.otherImages.length; i++) {
+          if (this.otherImages[i].index == index) {
+            found = i;
+          }
+        }
+        if (found == -1) {
+          this.otherImages.push({ index: index, file: files[0], id: id });
+        } else {
+          this.otherImages[found].file = files[0];
+        }
+        this.emirate[index] = files[0].name;
+        const reader = new FileReader();
+        reader.readAsDataURL(files[0]);
+        reader.onload = () => {
+          found = -1;
+          for (let i = 0; i < this.uploadedDocuments.length; i++) {
+            if (this.uploadedDocuments[i].index == index) {
+              found = i;
+            }
+          }
+          if (found == -1) {
+            this.uploadedDocuments.push({ index: index, documentName: "Other Documents", fileName: files[0].name, imgsrc: reader.result });
+          } else {
+            this.uploadedDocuments[found].fileName = files[0].name;
+            this.uploadedDocuments[found].imgsrc = reader.result;
+          }
+        };
+      }
     }
   }
 
