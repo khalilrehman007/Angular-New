@@ -20,13 +20,17 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { CompareFilterComponent } from './compare-filter/compare-filter.component';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [
     ComparepageComponent,
     CompareListingsComponent,
-    CompareListingSelectionComponent
+    CompareListingSelectionComponent,
+    CompareFilterComponent
   ],
   imports: [
     CommonModule,
@@ -46,7 +50,10 @@ import { MatSelectModule } from '@angular/material/select';
     MatNativeDateModule,
     MatFormFieldModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    MatAutocompleteModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class CompareModuleModule { }

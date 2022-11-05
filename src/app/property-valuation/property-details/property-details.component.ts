@@ -43,7 +43,7 @@ export class PropertyDetailsComponent implements OnInit {
   propertyInsured: number = -1;
   autocomplete: any;
   marker: any;
-  countryName: any;
+  countryName: any = "";
   cityName: any;
   tempAddress: any;
   locationInformation: any = {};
@@ -74,7 +74,7 @@ export class PropertyDetailsComponent implements OnInit {
   }
 
   constructor(private http: HttpClient, private notifyService: NotificationService, private service: AppService, private router: Router) {
-    if(!localStorage.getItem("user")) {
+    if (!localStorage.getItem("user")) {
       this.notifyService.showError("You need to register/login", "");
       this.router.navigate(["/login"]);
     }
@@ -197,59 +197,78 @@ export class PropertyDetailsComponent implements OnInit {
     this.propertyInsured = e;
   }
   onCountrySelect(e: any) {
-    this.showMap = false;
-    this.city = this.district = [];
-    this.cityId = this.districtId = -1;
-    this.showLoader = true;
-    let temp = this.country.filter(function (c: any) {
-      return c.value == e
-    });
-    console.log(temp);
-    this.countryName = temp[0].viewValue;
-    localStorage.setItem("currency", temp[0].currency)
-    this.getLocationDetails(temp[0].viewValue, false);
-    this.countryId = e;
-    this.city = [];
-    this.service.LoadCities(e).subscribe(e => {
-      let temp: any = e;
-      if (temp.message == "City list fetched successfully") {
-        for (let city of temp.data) {
-          this.city.push({ viewValue: city.name, value: city.id });
+    if (e != 0) {
+      this.city = [];
+      this.district = [];
+      this.cityId = this.districtId = -1;
+      this.showLoader = true;
+      let temp = this.country.filter(function (c: any) {
+        return c.value == e
+      });
+      this.countryName = temp[0].viewValue;
+      localStorage.setItem("currency", temp[0].currency)
+      // this.getLocationDetails(temp[0].viewValue, false);
+      this.countryId = e;
+      this.city = [];
+      this.service.LoadCities(e).subscribe(e => {
+        let temp: any = e;
+        if (temp.message == "City list fetched successfully") {
+          for (let city of temp.data) {
+            this.city.push({ viewValue: city.name, value: city.id });
+          }
+          this.showLoader = false;
         }
-        this.showLoader = false;
-      }
-    });
+      });
+    } else {
+      this.city = [];
+      this.district = [];
+      this.countryId = -1;
+      this.countryName = "";
+    }
+    this.showMap = false;
   }
   onCitySelect(e: any) {
-    this.showMap = false;
-    this.district = [];
-    this.districtId = -1;
-    let temp = this.city.filter(function (c: any) {
-      return c.value == e
-    })
-    this.cityName = temp[0].viewValue;
-    this.getLocationDetails(temp[0].viewValue, false);
-    this.cityId = e;
-    this.service.LoadDistrict(e).subscribe(e => {
-      let temp: any = e;
-      if (temp.message == "District list fetched successfully") {
-        for (let district of temp.data) {
-          this.district.push({ viewValue: district.name, value: district.id });
+    if (e != 0) {
+      this.district = [];
+      this.districtId = -1;
+      let temp = this.city.filter(function (c: any) {
+        return c.value == e
+      })
+      this.cityName = temp[0].viewValue;
+      // this.getLocationDetails(temp[0].viewValue, false);
+      this.cityId = e;
+      this.service.LoadDistrict(e).subscribe(e => {
+        let temp: any = e;
+        if (temp.message == "District list fetched successfully") {
+          for (let district of temp.data) {
+            this.district.push({ viewValue: district.name, value: district.id });
+          }
+          this.showLoader = false;
         }
-        this.showLoader = false;
-      }
-    });
+      });
+    } else {
+      this.district = [];
+      this.cityId = -1;
+      this.cityName = "";
+    }
+    this.showMap = false;
   }
   onDistrictSelect(e: any) {
-    this.showMap = true;
-    this.locationSelected = false;
-    $("#searchLocation").val("");
-    let temp = this.district.filter(function (c: any) {
-      return c.value == e
-    })
-    this.getLocationDetails(temp[0].viewValue, true);
-    this.districtName = temp[0].viewValue;
-    this.districtId = e;
+    if (e != 0) {
+      this.locationSelected = false;
+      $("#searchLocation").val("");
+      let temp = this.district.filter(function (c: any) {
+        return c.value == e
+      })
+      this.getLocationDetails(temp[0].viewValue, true);
+      this.districtName = temp[0].viewValue;
+      this.districtId = e;
+      this.showMap = true;
+    } else {
+      this.showMap = false;
+      this.districtId = -1;
+      this.districtName = "";
+    }
   }
   getMapImage() {
     let staticMapUrl: any = "https://maps.googleapis.com/maps/api/staticmap";
@@ -278,7 +297,7 @@ export class PropertyDetailsComponent implements OnInit {
     $("." + this.currentField).addClass("blink");
     $("." + this.currentField).on("click", () => {
       $("." + this.currentField).removeClass("blink");
-      this.currentField = "";
+      this.currentField = "temp";
     })
     $(window).scrollTop(temp - 100);
   }
@@ -360,7 +379,6 @@ export class PropertyDetailsComponent implements OnInit {
       $('.select2').select2();
     }
     $(".country-select").on("change", () => {
-      console.log($(".country-select").val());
       this.onCountrySelect($(".country-select").val());
     });
     $(".city-select").on("change", () => {
@@ -369,6 +387,9 @@ export class PropertyDetailsComponent implements OnInit {
     $(".district-select").on("change", () => {
       this.onDistrictSelect($(".district-select").val());
     });
+    if(this.oldData != "") {
+      this.getLocation();
+    }
   }
   onPlaceChanged() {
     let temp: any = document.getElementById("searchLocation");
@@ -388,8 +409,29 @@ export class PropertyDetailsComponent implements OnInit {
         })
         this.marker = new google.maps.Marker({
           position: area,
-          map: this.map
-        })
+          map: this.map,
+          draggable: true,
+        });
+        google.maps.event.addListener(this.marker, 'dragend', (e:any) => {
+          let pos: any = this.marker.getPosition();
+          let geocoder = new google.maps.Geocoder();
+          geocoder.geocode
+            ({
+              latLng: pos
+            },
+              (results: any, status: any) => {
+                if (status == google.maps.GeocoderStatus.OK) {
+                  localStorage.setItem("lat", e.latLng.lat());
+                  localStorage.setItem("lng", e.latLng.lng());
+                  $(".searchLocation").val(results[0].formatted_address);
+                }
+                else {
+                  this.error = "Cannot determine address at this location.";
+                  this.showError = true;
+                }
+              }
+            );
+        });
       }
     });
   }
@@ -418,7 +460,11 @@ export class PropertyDetailsComponent implements OnInit {
         })
         this.marker = new google.maps.Marker({
           position: area,
-          map: this.map
+          map: this.map,
+          draggable: true,
+        });
+        google.maps.event.addListener(this.marker, 'dragend', (e:any) => {
+          this.geocodePosition(this.marker.getPosition());
         });
         this.autocomplete = new google.maps.places.Autocomplete(this.searchElement.nativeElement, this.options);
         this.autocomplete.addListener('place_changed', this.onPlaceChanged);
@@ -426,6 +472,23 @@ export class PropertyDetailsComponent implements OnInit {
         this.locationSelected = status;
       }
     });
+  }
+  geocodePosition(pos: any) {
+    let geocoder = new google.maps.Geocoder();
+    geocoder.geocode
+      ({
+        latLng: pos
+      },
+        (results: any, status: any) => {
+          if (status == google.maps.GeocoderStatus.OK) {
+            $(".searchLocation").val(results[0].formatted_address);
+          }
+          else {
+            this.error = "Cannot determine address at this location.";
+            this.showError = true;
+          }
+        }
+      );
   }
   getLocation() {
     if (this.oldData == "") {
@@ -463,7 +526,7 @@ export class PropertyDetailsComponent implements OnInit {
       let areabounds = new google.maps.LatLngBounds(southWest, northEast);
       this.options.bounds = areabounds;
       let lat: any = localStorage.getItem("lat");
-      let lng: any = localStorage.getItem("lng")
+      let lng: any = localStorage.getItem("lng");
       this.map = new google.maps.Map($(".property-details__map")[0], {
         center: { "lat": parseFloat(lat), "lng": parseFloat(lng) },
         zoom: 6,

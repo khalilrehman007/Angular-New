@@ -1,15 +1,15 @@
 <app-header></app-header>
-<div ngClass="light-bg-body">
+<div ngClass="light-bg-body compare-listing-selection">
     <section [ngClass]="'inner-cntnt-wrapper slide-left-bar'">
         <section [ngClass]="'rent-propoerties-main-sec'">
             <div ngClass="properties-file-container-shadow">
                 <div ngClass="properties-file-container">
-                   
+                   <app-compare-filter></app-compare-filter>
                 </div>
             </div>
             <div [ngClass]="'container_1280px'">
                 <div ngClass="row">
-                    <div ngClass="col-xl-9 col-lg-9 col-md-12 col-sm-12">
+                    <div ngClass="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                         <div ngClass="property-details-header">
                             <div ngClass="d-flex justify-content-spacebw">
                                 <div ngClass="black-text-breadcrumb">
@@ -17,7 +17,7 @@
                             </div>
                         </div>
                         <div ngClass="heading-apragraph-design mt-4">
-                            <h2>{{selectedPropertyTypeName}} {{headingPropertyType}} for {{type}} in UAE</h2>
+                            <h2>Please Select Properties for Compare</h2>
                             <p>Showing {{totalRecord}} {{headingPropertyType}} for {{type}} in UAE</p>
                             <p>Properties For {{type}} in UAE. Verified Listings.
                             </p>
@@ -57,10 +57,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div ngClass="properties-list-design">
+                        <div ngClass="properties-list-design compare-property_list-design">
                             <div
                                 *ngFor=" let list of searchListing | paginate: { itemsPerPage: 10, currentPage: page ,totalItems:totalRecord }; let i = index">
-                                <div ngClass="properties-list-block-design">
+                                <div ngClass="properties-list-block-design position-relative">
                                     <div ngClass="row">
                                         <div ngClass="col-xl-4 col-md-4 col-lg-4 col-sm-12">
                                             <div ngClass="properties-list_slider"
@@ -236,6 +236,10 @@
                                                     src="../../../assets/images/icons/tag-icn.svg"> PREMIUM</button>
                                         </div>
                                     </div>
+                                    <div class="selection-checkbox">
+                                        <input type="checkbox" name="featured-selection">
+                                        <button ngClass="add-property-cstm"></button>
+                                    </div>
                                 </div>
                                 <div ngClass="notification-box mb-4" *ngIf="i == halfList">
                                     <div ngClass="d-flex align-items-center">
@@ -259,10 +263,8 @@
                                 </pagination-controls>
                             </section>
                         </div>
-                    </div>
-                    <div ngClass="col-xl-3 col-lg-3 col-md-12 col-sm-12">
-                        <div ngClass="adds-blck-sec">
-                            <img src="../../../../assets/images/ads.png">
+                        <div class="add-property-floating-button">
+                            <button class="add-property-btn">+ Add Property</button>
                         </div>
                     </div>
                 </div>
