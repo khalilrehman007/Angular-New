@@ -121,7 +121,7 @@
                                                     ngClass="required-span">*</span></label>
                                             <div class="apartment-no-input">
                                                 <mat-form-field class="full-width input-design-2" appearance="fill">
-                                                    <input matInput type="text"
+                                                    <input matInput type="text" (keypress)="validateInput($event)" (input)="getInput($event, false)"
                                                         placeholder="Enter {{propertyData.numberLabel}} no e.g. 999"
                                                         formControlName="apartmentNo">
                                                 </mat-form-field>

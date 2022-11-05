@@ -245,7 +245,6 @@ export class PropertyTypesComponent implements OnInit {
       }, 100);
     })
     this.typeSelected = true;
-    console.log(this.formData);
   }
   loadFurnishingType() {
     this.service.FurnishingTypes().subscribe((result: any) => {
@@ -504,5 +503,25 @@ export class PropertyTypesComponent implements OnInit {
     localStorage.setItem('valuationData', JSON.stringify(this.formData));
     localStorage.removeItem("valuationFromFooter");
     this.router.navigate(['/valuation/PropertyDocument']);
+  }
+  validateInput(e:any) {
+    if(e.key.charCodeAt(0) >= 48 && e.key.charCodeAt(0) <= 57 || e.key.charCodeAt(0) >= 65 && e.key.charCodeAt(0) <= 90 || e.key.charCodeAt(0) >= 97 && e.key.charCodeAt(0) <= 122) {
+      setTimeout(() => {
+        this.getInput(e.key, true);
+      },100);
+    }
+  }
+  getInput(e:any, type:boolean) {
+    if(!type) {
+      let temp:any = this.propertyTypeForm.value.apartmentNo
+      this.propertyTypeForm.patchValue({
+        apartmentNo: temp.toString().slice(0, -1)
+      })
+    } else {
+      let temp:any = this.propertyTypeForm.value.apartmentNo
+      this.propertyTypeForm.patchValue({
+        apartmentNo: temp.toString() + e
+      })
+    }
   }
 }
