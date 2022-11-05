@@ -10,12 +10,23 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { CompareListingsComponent } from './compare-listings/compare-listings.component';
 import { BreadcrumbsModule } from '../breadcrumbs/breadcrumbs.module';
+import { CompareListingSelectionComponent } from './compare-listing-selection/compare-listing-selection.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatTabsModule } from '@angular/material/tabs';
+import { HttpClientModule} from '@angular/common/http';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 
 
 @NgModule({
   declarations: [
     ComparepageComponent,
-    CompareListingsComponent
+    CompareListingsComponent,
+    CompareListingSelectionComponent
   ],
   imports: [
     CommonModule,
@@ -26,7 +37,16 @@ import { BreadcrumbsModule } from '../breadcrumbs/breadcrumbs.module';
     NgxGalleryModule,
     NgbModule,
     CarouselModule,
-    BreadcrumbsModule
+    BreadcrumbsModule,
+    NgxPaginationModule,
+    MatChipsModule,
+    MatTabsModule,
+    HttpClientModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule
   ]
 })
 export class CompareModuleModule { }
