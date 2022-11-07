@@ -60,7 +60,7 @@
                                             <div ngClass="upload-files-design">
                                                 <div class="greybordered-btn position-relative title-deed-image-input">
                                                     <input type="file" #fileInput class="input-file"
-                                                        (change)='handleChange($any($event.target).files)'>
+                                                        (change)='handleChange($any($event.target).files)' accept="image/jpeg, image/jpg, image/png, application/pdf">
                                                     <button mat-button (click)="fileInput.click()"><img
                                                             src="{{upload1}}"> Upload Title Deed</button>
                                                 </div>

@@ -216,12 +216,18 @@ export class ListpropertymediaComponent implements OnInit {
     }
   }
   handleChange(files: any) {
-    this.titledeedUploaded = true;
-    this.file = files[0].name;
-    if (files && files.length) {
-      let extension: any = files[0].name.split(".");
-      extension = extension[extension.length - 1];
-      this.documentBase = { "FileName": files[0].name, "Extension": extension, file: files };
+    if(files[0].size / 1048576 > 2) {
+      this.error = "Maximum upload size is 2MB";
+      this.showError = true;
+
+    } else {
+      this.titledeedUploaded = true;
+      this.file = files[0].name;
+      if (files && files.length) {
+        let extension: any = files[0].name.split(".");
+        extension = extension[extension.length - 1];
+        this.documentBase = { "FileName": files[0].name, "Extension": extension, file: files };
+      }
     }
   }
   SubmitForm = new FormGroup({
