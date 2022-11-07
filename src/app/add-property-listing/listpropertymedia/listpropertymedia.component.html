@@ -60,7 +60,7 @@
                                             <div ngClass="upload-files-design">
                                                 <div class="greybordered-btn position-relative title-deed-image-input">
                                                     <input type="file" #fileInput class="input-file"
-                                                        (change)='handleChange($any($event.target).files)'>
+                                                        (change)='handleChange($any($event.target).files)' accept="image/jpeg, image/jpg, image/png, application/pdf">
                                                     <button mat-button (click)="fileInput.click()"><img
                                                             src="{{upload1}}"> Upload Title Deed</button>
                                                 </div>
@@ -92,7 +92,7 @@
                                     <div class="inneR-border-wrap position-relative">
                                         <div ngClass="div_thumb-wrapper img_upload">
                                             <label class="btn btn-default p-0 upload-label">
-                                                <input type="file" accept=".jpg, .png, .jpeg," multiple
+                                                <input type="file" accept=".jpg, .png, .jpeg, .mp4" multiple
                                                     class="input-file" (change)="selectFiles($event);imgCheck=true" />
                                                 <button ngClass="black-upload-btn"><span
                                                         ngClass="plus_icon-div">+</span> Upload Pictures</button>
@@ -109,6 +109,43 @@
                                                     10 MB</p>
                                             </div>
                                         </div>
+                                    </div>
+                                </div>
+                                <div ngClass="upload_documents-div frame-border-inner">
+                                    <div ngClass="small-blue-black-heading">
+                                        <h6>Uploaded Documents</h6>
+                                        <p>List of the documents uploaded</p>
+                                    </div>
+                                    <div ngClass="upload-documents-list">
+                                        <!-- <div ngClass="doc-list-div d-flex justify-content-spacebq align-items-center"
+                                            *ngFor="let item of uploadedDocuments">
+                                            <div ngClass="d-flex doc-list-name align-items-center">
+                                                <div ngClass="document_img">
+                                                    <img src="{{item.imgsrc}}">
+                                                </div>
+                                                <div ngClass="doc-text-details">
+                                                    <h6>Document Name</h6>
+                                                    <p>{{item.documentName}}</p>
+                                                </div>
+                                            </div>
+                                            <div ngClass="doc-list-file">
+                                                <div ngClass="doc-text-details">
+                                                    <h6>File Name</h6>
+                                                    <p>{{item.fileName}}</p>
+                                                </div>
+                                            </div>
+                                            <div ngClass="doc-list-action">
+                                                <div ngClass="doc-text-actions">
+                                                    <h6>Action</h6>
+                                                    <div ngClass="action-text-btns">
+                                                        <a (click)="viewImage(item.imgsrc)"
+                                                            class="view-image-btn">View</a>
+                                                        <a (click)="deleteImage(item.index)"
+                                                            class="view-image-btn">Delete</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> -->
                                     </div>
                                 </div>
                                 <div ngClass="propery-videos-sec" *ngIf="packageData.videoInListing">

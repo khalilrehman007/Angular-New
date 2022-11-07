@@ -785,12 +785,12 @@
                                                     </mat-form-field>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-12 pb-4" *ngIf="selectedPropertyType.hasPropertyFeature">
+                                            <div class="col-sm-12 pb-4" *ngIf="selectedPropertyType.hasPropertyFeature && featuresData.length > 0">
                                                 <div ngClass="select-design select2-design select2-design-full">
                                                 <h6 class="h6-design">Select Features</h6>
                                                 <div class="features-select-wrapper">
                                                     <select class="select2 features-select" multiple="multiple">
-                                                        <option *ngFor="let item of featuresData" [value]="item.propertyFeature.id"> {{item.propertyFeature.featureName}}</option>
+                                                        <option *ngFor="let item of featuresData" [value]="item.propertyFeature.id" class="features-item-{{item.propertyFeatureId}}"> {{item.propertyFeature.featureName}}</option>
                                                     </select>
                                                 </div>
                                                 </div>
