@@ -182,7 +182,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
       src: '../../../assets/images/icons/login.svg',
       class: 'nav-items sign-in',
       text: this.loggedInUser == null ? 'تسجيل الدخول' : JSON.parse(this.loggedInUser).fullName,
-      link: this.loggedInUser == null ? '/ar/login' : '/profile',
+      link: this.loggedInUser == null ? '/login' : '/profile',
     },
     {
       src: '../../../assets/images/icons/ioi.svg',
