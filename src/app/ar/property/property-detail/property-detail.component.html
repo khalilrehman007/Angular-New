@@ -18,19 +18,7 @@
             </div>
             <div ngClass="property-price-buttons-sec" *ngIf="propertyData != ''">
                 <div ngClass="row">
-                    <div ngClass="col-xl-4 col-lg-4 col-md-12 col-sm-12">
-                        <div ngClass="property-price_detals">
-                            <h4>{{propertyDetailData.propertyPrice}}
-                                {{propertyData.country.currencyAr}}<small *ngIf="propertyDetailData.rentType != ''">/{{propertyData.rentType.nameAr}}</small></h4>
-                            <div ngClass="property-tags d-flex flex-wrap">
-                                <span ngClass="tags-bg-grey">الوساطة: {{propertyDetailData.brokerageChargePrice}}
-                                    {{propertyData.country.currencyAr}}</span>
-                                <span ngClass="tags-bg-grey">مبلغ التأمين:
-                                    {{propertyDetailData.securityDepositPrice}} {{propertyData.country.currencyAr}}</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div ngClass="col-xl-5 col-lg-4 col-md-12 col-sm-12">
+                    <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                         <div ngClass="property-name_detals">
                             <h4>{{propertyDetailData.buildingName}}</h4>
                             <div ngClass="property-addresss">
@@ -38,7 +26,7 @@
                             </div>
                         </div>
                     </div>
-                    <div ngClass="col-xl-3 col-lg-4 col-md-12 col-sm-12">
+                    <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                         <div ngClass="property-action_detals text-right">
                             <div ngClass="pro-contact-details">
                                 <div ngbDropdown class="d-inline-block">
@@ -74,6 +62,22 @@
             <div ngClass="property-gallery-main-sec">
                 <div ngClass="property-gallery-main-slider">
                     <ngx-gallery [options]="galleryOptions" [images]="galleryImages" class="ngx-gallery"></ngx-gallery>
+                </div>
+            </div>
+            <div ngClass="property-price-buttons-sec mt-5 mb-3" *ngIf="propertyData != ''">
+                <div ngClass="row">
+                    <div ngClass="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+                        <div ngClass="property-price_detals">
+                            <h4>{{propertyDetailData.propertyPrice}}
+                                {{propertyData.country.currencyAr}}<small *ngIf="propertyDetailData.rentType != ''">/{{propertyData.rentType.nameAr}}</small></h4>
+                            <div ngClass="property-tags d-flex flex-wrap">
+                                <span ngClass="tags-bg-grey">الوساطة: {{propertyDetailData.brokerageChargePrice}}
+                                    {{propertyData.country.currencyAr}}</span>
+                                <span ngClass="tags-bg-grey">مبلغ التأمين:
+                                    {{propertyDetailData.securityDepositPrice}} {{propertyData.country.currencyAr}}</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div ngClass="property-tabs-content">

@@ -3810,7 +3810,7 @@ input[type=number] {
 			font-weight: 400;
 
 			span {
-				font-size: 17px;
+				font-size: 22px;
 				color: $color_29;
 				font-weight: 700;
 			}
@@ -4381,7 +4381,7 @@ img {
 
 .property-price_detals {
 	h4 {
-		font-size: 18px;
+		font-size: 26px;
 		color: #595ad4;
 		font-weight: 700;
 		margin-bottom: 0px;
@@ -4392,7 +4392,13 @@ img {
 		margin-top: 4px;
 	}
 }
-
+.property-price-buttons-sec .property-price_detals h4 {
+    font-size: 45px;
+    margin-bottom: 14px;
+}
+.property-price-buttons-sec .tags-bg-grey {
+    font-size: 12px;
+}
 .tags-bg-grey {
 	color: $color_7;
 	font-size: 10px;
@@ -4409,8 +4415,9 @@ img {
 .property-name_detals {
 	h4 {
 		color: #000000;
-		font-size: 20px;
-		margin-bottom: 8px;
+		font-size: 45px;
+		margin-bottom: 5px;
+		font-weight: 600;
 	}
 
 	.property-name_detals {
@@ -7125,9 +7132,10 @@ img {
 		padding-left: 21px;
 
 		li {
-			font-size: 14px;
-			color: $color_10;
+			font-size: 16px;
+			color: #000;
 			font-weight: 300;
+			margin-bottom: 5px;
 		}
 	}
 }
@@ -7136,7 +7144,7 @@ img {
 	p {
 		a {
 			color: $color_2;
-			font-size: 14px;
+			font-size: 16px;
 			text-decoration: underline;
 			font-weight: 600;
 		}
@@ -7144,7 +7152,7 @@ img {
 
 	.heading-32px-design {
 		p {
-			font-size: 14px;
+			font-size: 16px;
 			color: $color_46;
 		}
 	}
@@ -7153,10 +7161,14 @@ img {
 .blog-post-content {
 	p {
 		color: $color_3;
-		font-size: 14px;
+		font-size: 16px;
 		font-weight: 300;
 	}
-
+	span {
+		color: $color_3;
+		font-size: 16px;
+		font-weight: 300;
+	}
 	h4 {
 		font-size: 24px;
 		color: $color_10;
@@ -7181,7 +7193,7 @@ img {
 
 	p {
 		color: $color_10;
-		font-size: 14px;
+		font-size: 16px;
 		font-weight: 300;
 	}
 }
@@ -7750,8 +7762,9 @@ li.agent-details__property-list-item {
 			}
 
 			p {
-				color: $color_50;
-				font-size: 14px;
+				color: #000;
+				font-size: 16px;
+				font-weight: 300;
 			}
 		}
 	}
@@ -7765,8 +7778,9 @@ li.agent-details__property-list-item {
 			}
 
 			p {
-				color: $color_50;
-				font-size: 14px;
+				color: #000;
+				font-size: 16px;
+				font-weight: 300;
 			}
 		}
 	}
@@ -7872,8 +7886,9 @@ li.agent-details__property-list-item {
 		}
 
 		p {
-			color: $color_50;
-			font-size: 14px;
+			color: #000;
+			font-size: 16px;
+			font-weight: 300;
 		}
 	}
 
@@ -11321,12 +11336,17 @@ margin-right: 0px;
 	width: 100%;
 }
 .property-price_detals h4 small {
-    color: #000;
+	color: #000;
     font-weight: 500;
-    font-size: 13px;
+    font-size: 14px;
+    position: relative;
+    bottom: 3px;
 }
 .shortlisted-tabs_list .agent-details__property-list-item .selection-checkbox-selector input:checked+.cstm-selection-btn {
 	background-color: #595ad4 !important;
+}
+.property-price-buttons-sec .property-price_detals h4 small {
+    font-size: 18px;
 }
 
 .compare-btn.btn {
@@ -13013,6 +13033,12 @@ input:focus{
 }
 .dashboard-data-select-box {
     margin-bottom: 15px;
+}
+.compare-listing-selection .inner-cntnt-wrapper {
+    padding-bottom: 80px !important;
+}
+.blog_details-img img {
+    border-radius: 10px;
 }
 
 
