@@ -313,13 +313,12 @@ export class PropertyinfoComponent implements OnInit {
     let address: any = temp.value;
     localStorage.setItem("address", address);
     $.ajax({
-      url: "https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyBPSEz52-AfPEVbmV_3yuGUGol_KiLb3GU&language=ar",
+      url: "https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyBPSEz52-AfPEVbmV_3yuGUGol_KiLb3GU",
       method: "get",
       success: (res) => {
         let area = res.results[0].geometry.location;
         localStorage.setItem("lat", area.lat);
         localStorage.setItem("lng", area.lng);
-        localStorage.setItem("arabicAddress", res.results[0].formatted_address);
         this.locationSelected = true;
         this.map = new google.maps.Map($(".property-details__map")[0], {
           center: area,
@@ -327,8 +326,29 @@ export class PropertyinfoComponent implements OnInit {
         })
         this.marker = new google.maps.Marker({
           position: area,
-          map: this.map
-        })
+          map: this.map,
+          draggable: true,
+        });
+        google.maps.event.addListener(this.marker, 'dragend', (e:any) => {
+          let pos: any = this.marker.getPosition();
+          let geocoder = new google.maps.Geocoder();
+          geocoder.geocode
+            ({
+              latLng: pos
+            },
+              (results: any, status: any) => {
+                if (status == google.maps.GeocoderStatus.OK) {
+                  localStorage.setItem("lat", e.latLng.lat());
+                  localStorage.setItem("lng", e.latLng.lng());
+                  $(".searchLocation").val(results[0].formatted_address);
+                }
+                else {
+                  this.error = "Cannot determine address at this location.";
+                  this.showError = true;
+                }
+              }
+            );
+        });
       }
     });
   }
@@ -357,7 +377,11 @@ export class PropertyinfoComponent implements OnInit {
         })
         this.marker = new google.maps.Marker({
           position: area,
-          map: this.map
+          map: this.map,
+          draggable: true,
+        });
+        google.maps.event.addListener(this.marker, 'dragend', (e:any) => {
+          this.geocodePosition(this.marker.getPosition());
         });
         this.autocomplete = new google.maps.places.Autocomplete(this.searchElement.nativeElement, this.options);
         this.autocomplete.addListener('place_changed', this.onPlaceChanged);
@@ -365,6 +389,23 @@ export class PropertyinfoComponent implements OnInit {
         this.locationSelected = status;
       }
     });
+  }
+  geocodePosition(pos: any) {
+    let geocoder = new google.maps.Geocoder();
+    geocoder.geocode
+      ({
+        latLng: pos
+      },
+        (results: any, status: any) => {
+          if (status == google.maps.GeocoderStatus.OK) {
+            $(".searchLocation").val(results[0].formatted_address);
+          }
+          else {
+            this.error = "Cannot determine address at this location.";
+            this.showError = true;
+          }
+        }
+      );
   }
   getLocation() {
     if (this.oldData == "") {
@@ -402,7 +443,7 @@ export class PropertyinfoComponent implements OnInit {
       let areabounds = new google.maps.LatLngBounds(southWest, northEast);
       this.options.bounds = areabounds;
       let lat: any = localStorage.getItem("lat");
-      let lng: any = localStorage.getItem("lng")
+      let lng: any = localStorage.getItem("lng");
       this.map = new google.maps.Map($(".property-details__map")[0], {
         center: { "lat": parseFloat(lat), "lng": parseFloat(lng) },
         zoom: 6,
@@ -417,35 +458,5 @@ export class PropertyinfoComponent implements OnInit {
       this.autocomplete.addListener('place_changed', this.onPlaceChanged);
       this.autocomplete.setBounds(this.bounds);
     }
-  }
-  PackageModal(packageContent: any) {
-    this.modalService.open(packageContent, { centered: true });
-  }
-  NoPackageModal(NopackageContent: any) {
-    this.modalService.open(NopackageContent, { centered: true });
-  }
-  PackageOptions: OwlOptions = {
-    loop: false,
-    mouseDrag: true,
-    touchDrag: true,
-    autoWidth: false,
-    pullDrag: true,
-    dots: true,
-    navSpeed: 700,
-    responsive: {
-      0: {
-        items: 1
-      },
-      576: {
-        items: 2
-      },
-      992: {
-        items: 4
-      },
-      1200: {
-        items: 4
-      }
-    },
-    nav: false
   }
 }
