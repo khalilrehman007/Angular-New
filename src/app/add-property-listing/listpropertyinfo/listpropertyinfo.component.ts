@@ -41,7 +41,7 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
   locatedNearData: any = [];
   rentTypes: any;
   room: any = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  featuresData: any;
+  featuresData: any = [];
   featuresFormData: any = [];
   minDate = new Date();
   propertyListingBuy: any;
@@ -90,7 +90,7 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
   get validate() {
     return this.SubmitForm.controls;
   }
-  disabled:any = [];
+  disabled: any = [];
   constructor(private api: AppService, private service: AuthService, private route: Router, private notifyService: NotificationService) {
     this.api.PropertyListingRentBuy({ "Lat": this.data.PropertyLat, "Long": this.data.PropertyLong }).subscribe((result: any) => {
       this.propertyListingBuy = result.data.propertyListingBuy;
@@ -146,7 +146,6 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
   }
   ngOnInit() {
     $(".start-date-input").on("click", function () {
-      console.log($(this).find(".mat-datepicker-toggle"));
       $(this).find(".mat-datepicker-toggle").click();
     })
   }
@@ -196,17 +195,27 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
           this.propertyTypeCheck = true;
           this.api.PropertyFeatures(this.selectedPropertyType.id).subscribe((result: any) => {
             this.featuresData = result.data;
-            console.log(this.featuresData);
-            let a = setInterval(() => {
+            this.showLoader = false;
+            let interval: any = setInterval(() => {
               if (this.featuresData.length > 0) {
-                $('.select2').select2();
-                $('.features-select').select2({
-                  placeholder: "Select Features"
-              });
-                clearInterval(a);
+                for (let i = 0; i < this.data.PropertyFeatures.length; i++) {
+                  $(".features-item-" + this.data.PropertyFeatures[i].PropertyFeatureId).attr("selected", "selected");
+                }
+                $('.select2').select2({ placeholder: "Click here to add more" });
+                clearInterval(interval);
               }
-            }, 50);
+            }, 100);
           });
+          this.SubmitForm.patchValue({
+            PropertyAge: this.data.PropertyAge,
+            BuildingName: this.data.BuildingName,
+            UnitNo: this.data.UnitNo
+          })
+          if (this.selectedPropertyType.hasTotalFloor) {
+            this.SubmitForm.patchValue({
+              TotalFloor: this.data.TotalFloor
+            })
+          }
           if (this.selectedPropertyType.hasTotalFloor) {
             this.SubmitForm.patchValue({
               TotalFloor: this.data.TotalFloor
@@ -308,8 +317,8 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
     if (id == 2) {
       this.api.PropertyTransactionTypes().subscribe((result: any) => {
         this.transactionType = result.data;
-        let a = setInterval(()=> {
-        },50);
+        let a = setInterval(() => {
+        }, 50);
       })
       this.api.LoadCompletionStatus().subscribe((result: any) => {
         this.completionStatus = result.data;
@@ -375,7 +384,7 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
           $('.select2').select2();
           $('.features-select').select2({
             placeholder: "Select Features"
-        });
+          });
           clearInterval(a);
         }
       }, 50);
@@ -405,10 +414,10 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
   getParking(e: string) {
     this.data.Parkings = e;
   }
-  getPolicyOption(e:any) {
-    if(e == 0 && this.disabled.length == 0) {
+  getPolicyOption(e: any) {
+    if (e == 0 && this.disabled.length == 0) {
       this.petPolicyData = ["1"];
-      this.disabled = [1,2,3];
+      this.disabled = [1, 2, 3];
     } else {
       this.disabled = [];
     }
@@ -466,11 +475,8 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
       }
     }
   }
-  tempFunction() {
-    console.log($(".features-select").val());
-  }
   onSubmit() {
-    if(this.selectedPropertyType.hasPropertyFeature && $(".features-select")) {
+    if (this.selectedPropertyType.hasPropertyFeature && $(".features-select")) {
       this.featuresFormData = $(".features-select").val();
     } else {
       this.featuresFormData = [];
@@ -733,7 +739,6 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
       temp.push({ PropertyFeatureId: this.featuresFormData[i] });
     }
     this.data.PropertyFeatures = temp;
-    console.log(this.data);
     localStorage.setItem('propertyData', JSON.stringify(this.data));
     localStorage.setItem('listingData', JSON.stringify(this.data));
     this.route.navigate(['/add-property/listpropertymedia'])
