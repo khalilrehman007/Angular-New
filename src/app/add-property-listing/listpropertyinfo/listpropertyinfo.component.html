@@ -56,7 +56,8 @@
                                 <div class="row pb-4">
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                                         <h6 class="h6-design">Want to List for</h6>
-                                        <div class="listing-links d-flex justify-content-between listing-type-input max-240">
+                                        <div
+                                            class="listing-links d-flex justify-content-between listing-type-input max-240">
                                             <div class="checkbox-design w-100 position-relative me-1"
                                                 (click)="onListTypeSelect(1)">
                                                 <input type="radio" value="1" name="list-type"
@@ -79,7 +80,8 @@
                                 <div class="row pb-4" *ngIf="listingTypeId != 0">
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                                         <h6 class="h6-design">Building Type</h6>
-                                        <div class="listing-links d-flex justify-content-between category-input max-240">
+                                        <div
+                                            class="listing-links d-flex justify-content-between category-input max-240">
                                             <div class="checkbox-design w-100 position-relative me-1"
                                                 (click)="getCategory(1)">
                                                 <input type="radio" value="1" name="property-category"
@@ -105,7 +107,8 @@
                                                 <div class="type-input">
                                                     <mat-form-field appearance="fill">
                                                         <mat-label>Select type of property</mat-label>
-                                                        <mat-select [disableOptionCentering]="true"  [(value)]="data.PropertyTypeId"
+                                                        <mat-select [disableOptionCentering]="true"
+                                                            [(value)]="data.PropertyTypeId"
                                                             (selectionChange)="getPropertyType($event)">
                                                             <mat-option *ngFor="let item of propertyType"
                                                                 value="{{item.id}}">
@@ -127,9 +130,10 @@
                                                     <div class="position-relative property-age-input">
                                                         <mat-form-field class="full-width input-design"
                                                             appearance="fill">
-                                                            <input matInput type="number" formControlName="PropertyAge"
+                                                            <input matInput type="text" formControlName="PropertyAge"
                                                                 placeholder="Please mention the Yrs."
-                                                                (input)="validateLength(1)">
+                                                                (keypress)="validateAgeInput($event)"
+                                                                (input)="getValue($event, false)">
                                                         </mat-form-field>
                                                     </div>
                                                 </div>
@@ -194,7 +198,8 @@
                                                         <div class="bedroom-input">
                                                             <mat-form-field appearance="fill">
                                                                 <mat-label>Select Number Of Bedrooms</mat-label>
-                                                                <mat-select [disableOptionCentering]="true"  [(value)]="data.BedRooms"
+                                                                <mat-select [disableOptionCentering]="true"
+                                                                    [(value)]="data.BedRooms"
                                                                     (selectionChange)="getBedroom($event)">
                                                                     <mat-option *ngFor="let item of room"
                                                                         value="{{item}}">
@@ -214,7 +219,8 @@
                                                         <div class="bathroom-input">
                                                             <mat-form-field appearance="fill">
                                                                 <mat-label>Select Number Of Bathrooms</mat-label>
-                                                                <mat-select [disableOptionCentering]="true"  [(value)]="data.BathRooms"
+                                                                <mat-select [disableOptionCentering]="true"
+                                                                    [(value)]="data.BathRooms"
                                                                     (selectionChange)="getBathroom($event)">
                                                                     <mat-option *ngFor="let item of room"
                                                                         value="{{item}}">
@@ -508,10 +514,15 @@
                                                         <div class="pet-policy-input">
                                                             <mat-form-field appearance="fill">
                                                                 <mat-label> Select the pet policy</mat-label>
-                                                                <mat-select [disableOptionCentering]="true" multiple [(value)]="petPolicyData"
+                                                                <mat-select [disableOptionCentering]="true" multiple
+                                                                    [(value)]="petPolicyData"
                                                                     (selectionChange)="getPetPolicy($event)">
-                                                                    <mat-option *ngFor="let item of petPolicy; let i = index"
-                                                                        value="{{item.id}}" [disabled]="disabled.indexOf(i) != -1" (click)="getPolicyOption(i)">{{item.name}}</mat-option>
+                                                                    <mat-option
+                                                                        *ngFor="let item of petPolicy; let i = index"
+                                                                        value="{{item.id}}"
+                                                                        [disabled]="disabled.indexOf(i) != -1"
+                                                                        (click)="getPolicyOption(i)">{{item.name}}
+                                                                    </mat-option>
                                                                 </mat-select>
                                                             </mat-form-field>
                                                         </div>
@@ -556,7 +567,9 @@
                                                     <div class="position-relative price-input">
                                                         <mat-form-field class="full-width input-design"
                                                             appearance="fill">
-                                                            <input matInput type="number" formControlName="price">
+                                                            <input matInput type="text" formControlName="price"
+                                                                (keypress)="validatePriceInput($event)"
+                                                                (input)="getPriceValue($event, false)">
                                                         </mat-form-field>
                                                         <span class="area-sq">AED</span>
                                                     </div>
@@ -715,8 +728,9 @@
                                                     <div class="position-relative notice-input">
                                                         <mat-form-field class="full-width input-design"
                                                             appearance="fill">
-                                                            <input matInput type="number"
-                                                                formControlName="noticePeriod">
+                                                            <input matInput type="text" formControlName="noticePeriod"
+                                                                (keypress)="validateNoticeInput($event)"
+                                                                (input)="getNoticeValue($event, false)">
                                                         </mat-form-field>
                                                         <span class="area-sq">Days</span>
                                                     </div>
@@ -729,8 +743,10 @@
                                                     <div class="position-relative locking-input">
                                                         <mat-form-field class="full-width input-design"
                                                             appearance="fill">
-                                                            <input matInput type="number"
-                                                                formControlName="lockingPeriod">
+                                                            <input matInput type="text"
+                                                                formControlName="lockingPeriod"
+                                                                (keypress)="validateLockingInput($event)"
+                                                                (input)="getLockingValue($event, false)">
                                                         </mat-form-field>
                                                         <span class="area-sq">Days</span>
                                                     </div>
@@ -743,7 +759,8 @@
                                                         <div class="located-near-input">
                                                             <mat-form-field appearance="fill">
                                                                 <mat-label> Select Near Locations</mat-label>
-                                                                <mat-select [disableOptionCentering]="true"  multiple [(value)]="locatedNearData"
+                                                                <mat-select [disableOptionCentering]="true" multiple
+                                                                    [(value)]="locatedNearData"
                                                                     (selectionChange)="getLocatedNear($event)">
                                                                     <mat-option *ngFor="let item of locatedNear"
                                                                         value="{{item.id}}">{{item.name}}</mat-option>
@@ -785,14 +802,18 @@
                                                     </mat-form-field>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-12 pb-4" *ngIf="selectedPropertyType.hasPropertyFeature && featuresData.length > 0">
+                                            <div class="col-sm-12 pb-4"
+                                                *ngIf="selectedPropertyType.hasPropertyFeature && featuresData.length > 0">
                                                 <div ngClass="select-design select2-design select2-design-full">
-                                                <h6 class="h6-design">Select Features</h6>
-                                                <div class="features-select-wrapper">
-                                                    <select class="select2 features-select" multiple="multiple">
-                                                        <option *ngFor="let item of featuresData" [value]="item.propertyFeature.id" class="features-item-{{item.propertyFeatureId}}"> {{item.propertyFeature.featureName}}</option>
-                                                    </select>
-                                                </div>
+                                                    <h6 class="h6-design">Select Features</h6>
+                                                    <div class="features-select-wrapper">
+                                                        <select class="select2 features-select" multiple="multiple">
+                                                            <option *ngFor="let item of featuresData"
+                                                                [value]="item.propertyFeature.id"
+                                                                class="features-item-{{item.propertyFeatureId}}">
+                                                                {{item.propertyFeature.featureName}}</option>
+                                                        </select>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

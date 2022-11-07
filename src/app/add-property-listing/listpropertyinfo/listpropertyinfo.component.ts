@@ -743,4 +743,87 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
     localStorage.setItem('listingData', JSON.stringify(this.data));
     this.route.navigate(['/add-property/listpropertymedia'])
   }
+  validateAgeInput(e: any) {
+    if (e.key.charCodeAt(0) >= 48 && e.key.charCodeAt(0) <= 57) {
+      setTimeout(() => {
+        this.getValue(e.key, true);
+      }, 100);
+    }
+  }
+  getValue(e: any, type: boolean) {
+    if (!type) {
+      let temp: any = this.SubmitForm.value.PropertyAge
+      this.SubmitForm.patchValue({
+        PropertyAge: temp.toString().slice(0, -1)
+      })
+    } else {
+      let temp: any = this.SubmitForm.value.PropertyAge
+      this.SubmitForm.patchValue({
+        PropertyAge: temp.toString() + e
+      })
+    }
+  }
+  validatePriceInput(e: any) {
+    if (e.key.charCodeAt(0) >= 48 && e.key.charCodeAt(0) <= 57) {
+      setTimeout(() => {
+        console.log(e.key);
+        this.getPriceValue(e.key, true);
+      }, 100);
+    }
+  }
+  getPriceValue(e: any, type: boolean) {
+    if (!type) {
+      let temp: any = this.SubmitForm.value.price
+      this.SubmitForm.patchValue({
+        price: temp.toString().slice(0, -1)
+      })
+    } else {
+      let temp: any = this.SubmitForm.value.price
+      this.SubmitForm.patchValue({
+        price: temp.toString() + e
+      })
+    }
+  }
+  validateNoticeInput(e: any) {
+    if (e.key.charCodeAt(0) >= 48 && e.key.charCodeAt(0) <= 57) {
+      setTimeout(() => {
+        console.log(e.key);
+        this.getNoticeValue(e.key, true);
+      }, 100);
+    }
+  }
+  getNoticeValue(e: any, type: boolean) {
+    if (!type) {
+      let temp: any = this.SubmitForm.value.noticePeriod
+      this.SubmitForm.patchValue({
+        noticePeriod: temp.toString().slice(0, -1)
+      })
+    } else {
+      let temp: any = this.SubmitForm.value.noticePeriod
+      this.SubmitForm.patchValue({
+        noticePeriod: temp.toString() + e
+      })
+    }
+  }
+  validateLockingInput(e: any) {
+    if (e.key.charCodeAt(0) >= 48 && e.key.charCodeAt(0) <= 57) {
+      setTimeout(() => {
+        console.log(e.key);
+        this.getLockingValue(e.key, true);
+      }, 100);
+    }
+  }
+  getLockingValue(e: any, type: boolean) {
+    if (!type) {
+      let temp: any = this.SubmitForm.value.lockingPeriod
+      this.SubmitForm.patchValue({
+        lockingPeriod: temp.toString().slice(0, -1)
+      })
+    } else {
+      let temp: any = this.SubmitForm.value.lockingPeriod
+      this.SubmitForm.patchValue({
+        lockingPeriod: temp.toString() + e
+      })
+    }
+  }
 }
