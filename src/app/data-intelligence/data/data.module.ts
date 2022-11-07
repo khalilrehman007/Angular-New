@@ -27,6 +27,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { ListingMonitorResComponent } from './listing-monitor-res/listing-monitor-res.component';
 import { ListingDataResComponent } from './listing-data-res/listing-data-res.component';
 import { NgCircleProgressModule } from 'ng-circle-progress';
+import { SupplyDataResComponent } from './supply-data-res/supply-data-res.component';
+import { OccupancyDataResComponent } from './occupancy-data-res/occupancy-data-res.component';
+import { ServiceChargesDataResComponent } from './service-charges-data-res/service-charges-data-res.component';
 
 
 @NgModule({
@@ -38,7 +41,10 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
     QuaterlyAnalysisResidentialComponent,
     YearlyAnalysisResidentialComponent,
     ListingMonitorResComponent,
-    ListingDataResComponent
+    ListingDataResComponent,
+    SupplyDataResComponent,
+    OccupancyDataResComponent,
+    ServiceChargesDataResComponent
   ],
   imports: [
     CommonModule,

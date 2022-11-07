@@ -8,6 +8,9 @@ import { QuaterlyAnalysisResidentialComponent } from './quaterly-analysis-reside
 import { YearlyAnalysisResidentialComponent } from './yearly-analysis-residential/yearly-analysis-residential.component';
 import { ListingMonitorResComponent } from './listing-monitor-res/listing-monitor-res.component';
 import { ListingDataResComponent } from './listing-data-res/listing-data-res.component';
+import { SupplyDataResComponent } from './supply-data-res/supply-data-res.component';
+import { OccupancyDataResComponent } from './occupancy-data-res/occupancy-data-res.component';
+import { ServiceChargesDataResComponent } from './service-charges-data-res/service-charges-data-res.component';
 
 const routes: Routes = [
   {path: "", redirectTo: "/data-intelligence/data/transaction-data", pathMatch: "full"},
@@ -18,7 +21,10 @@ const routes: Routes = [
   {path: "quaterly-analysis-residential", component: QuaterlyAnalysisResidentialComponent},
   {path: "yearly-analysis-residential", component: YearlyAnalysisResidentialComponent},
   {path: "listing-monitor-residential", component: ListingMonitorResComponent},
-  {path: "listing-data-residential", component: ListingDataResComponent}
+  {path: "listing-data-residential", component: ListingDataResComponent},
+  {path: "supply-data-residential", component: SupplyDataResComponent},
+  {path: "occupancy-data-residential", component: OccupancyDataResComponent},
+  {path: "service-data-residential", component: ServiceChargesDataResComponent}
 ];
 
 @NgModule({
