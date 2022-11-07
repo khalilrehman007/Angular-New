@@ -121,7 +121,7 @@
                                                     ngClass="required-span">*</span></label>
                                             <div class="apartment-no-input">
                                                 <mat-form-field class="full-width input-design-2" appearance="fill">
-                                                    <input matInput type="text"
+                                                    <input matInput type="text" (keypress)="validateInput($event)" (input)="getInput($event, false)"
                                                         placeholder="Enter {{propertyData.numberLabel}} no e.g. 999"
                                                         formControlName="apartmentNo">
                                                 </mat-form-field>
@@ -203,9 +203,9 @@
                                                     ngClass="required-span">*</span></label>
                                             <div ngClass="position-relative constructionAge-input">
                                                 <mat-form-field class="full-width input-design-2" appearance="fill">
-                                                    <input matInput type="number" formControlName="constructionAge"
-                                                        placeholder="Enter costruction age e.g. 10"
-                                                        (input)="getValue()">
+                                                    <input matInput type="text" formControlName="constructionAge"
+                                                        placeholder="Enter costruction age e.g. 10" (keypress)="validateAgeInput($event)" 
+                                                        (input)="getValue($event, false)">
                                                 </mat-form-field>
                                                 <p ngClass="input-overlay-layer">Yrs.</p>
                                             </div>
@@ -231,7 +231,7 @@
                                                 <span ngClass="required-span">*</span></label>
                                             <div ngClass="position-relative apartment-size-input">
                                                 <mat-form-field class="full-width input-design-2" appearance="fill">
-                                                    <input matInput type="number" formControlName="apartmentSize"
+                                                    <input matInput type="text" formControlName="apartmentSize" (keypress)="validateSizeInput($event)" (input)="getSizeInput($event, false)"
                                                         placeholder="{{propertyData.typeDescription}} Size in Sq.Ft.">
                                                 </mat-form-field>
                                                 <p ngClass="input-overlay-layer">Sq. Ft.</p>
