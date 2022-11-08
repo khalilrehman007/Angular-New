@@ -344,7 +344,7 @@ a {
 
 .container_1280px {
 	width: 100%;
-	max-width: 1280px;
+	max-width: 1330px;
 	padding: 0px 15px;
 	margin: 0 auto;
 }
@@ -3812,7 +3812,7 @@ input[type=number] {
 			span {
 				font-size: 22px;
 				color: $color_29;
-				font-weight: 700;
+				font-weight: 800;
 			}
 			span:last-child {
 				color: #000;
@@ -3833,12 +3833,12 @@ input[type=number] {
 	}
 
 	.property-location {
-		color: #000;
+	    color: rgba(0,0,0,0.7);
 		display: flex !important;
 		align-items: flex-start;
 		font-size: 13.5px;
 		margin-bottom: 10px;
-		font-weight: 300;
+		font-weight: 400;
 
 		img {
 			margin-right: 7px;
@@ -3871,10 +3871,10 @@ input[type=number] {
 		margin: 0px;
 		display: flex;
 		align-items: center;
-		font-size: 12.5px;
+		font-size: 13px;
 		flex-wrap: nowrap;
-		font-weight: 300;
-		color: #000;
+		font-weight: 400;
+		color: rgba(0,0,0,0.7);
 
 		img {
 			margin-right: 5px;
@@ -6955,7 +6955,7 @@ img {
 }
 
 .blogs_sliders-cntnt-bg {
-	background: #4A565F;
+	background: whitesmoke;
     padding: 30px 30px 30px 30px;
     border-radius: 8px;
 
@@ -6964,7 +6964,6 @@ img {
 		padding-bottom: 60px;
 
 		h5 {
-			color: $color_5  !important;
 			font-size: 32px !important;
 			font-weight: 700 !important;
 			line-height: 40px !important;
@@ -6972,7 +6971,6 @@ img {
 		}
 
 		p {
-			color: $color_5;
 			font-size: 14px;
 			font-weight: 400;
 			margin-top: 25px;
@@ -6990,6 +6988,7 @@ img {
 		bottom: 0;
 		right: 45px;
 		width: auto;
+		filter: brightness(0);
 	}
 
 	.carousel-control-next {
@@ -6999,6 +6998,7 @@ img {
 		bottom: 0;
 		right: 0px;
 		width: auto;
+		filter: brightness(0);
 	}
 }
 .blogs_cntnt-img img {
@@ -7538,6 +7538,7 @@ li.agent-details__property-list-item {
 				height: 100%;
 				min-height: 400px;
 				object-fit: cover;
+				max-height: 595px;
 			}
 		}
 
@@ -10640,7 +10641,7 @@ margin-right: 0px;
 	.properties-slider {
 		.owl-carousel {
 			.owl-item {
-				max-width: 309px;
+				max-width: 325px;
 			}
 		}
 	}
@@ -13059,4 +13060,44 @@ input:focus{
     font-size: 20px;
     width: 20px;
     height: 20px;
+}
+
+.property-item .property-details .bed svg {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+    fill: #aaaaaa;
+    margin-right: 5px;
+    position: relative;
+    bottom: 1px;
+}
+.property-item .property-details .bath svg {
+	font-size: 15px;
+    width: 15px;
+    height: 15px;
+    fill: #aaaaaa;
+    margin-right: 5px;
+    position: relative;
+    bottom: 3px;
+}
+.property-item .property-location svg {
+    width: 16px;
+    height: 16px;
+    fill: #aaaaaa;
+    position: relative;
+    top: 2px;
+    margin-right: 5px;
+}
+.property-item .property-details .area svg {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+    fill: #aaaaaa;
+    margin-right: 5px;
+    position: relative;
+    bottom: 0px;
+}
+.property-item .property-details .area svg path {
+	fill: #aaaaaa;
+	stroke: #aaaaaa;
 }
