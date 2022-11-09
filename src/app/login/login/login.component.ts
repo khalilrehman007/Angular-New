@@ -1,4 +1,4 @@
-import { Component, DoCheck, ElementRef, ViewChild, OnInit } from '@angular/core';
+import { Component, DoCheck, ElementRef, ViewChild, OnInit, AfterViewInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/service/auth.service';
 import { Router } from '@angular/router';
@@ -10,7 +10,7 @@ import { AppService } from 'src/app/service/app.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, AfterViewInit {
   goggle = '../../../../assets/images/btns/google-1.svg'
   apple = '../../../../assets/images/btns/apple-1.svg'
   emailFormControl = new FormControl('', [Validators.required, Validators.email]);
@@ -25,6 +25,9 @@ export class LoginComponent implements OnInit {
   @ViewChild('loginRef', { static: true }) loginElement!: ElementRef;
 
   constructor(private service: AuthService, private route: Router, private notifyService: NotificationService, private _location: Location, private api: AppService) {
+  }
+  ngAfterViewInit(): void {
+    $(".back-tag").addClass("d-none");
   }
   Login = new FormGroup({
     Email: new FormControl("", Validators.required),
