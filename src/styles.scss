@@ -12663,6 +12663,38 @@ color: green !important;
 .package_row .owl-stage {
 	display: flex;
   }
+  .date-range-flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+.date-range-flex>.date-range-flex-item {
+    width: 48%;
+}
+.date-range-flex>.date-range-flex-item .mat-form-field-flex {
+    padding: 0px;
+    border-radius: 50px;
+	background-color: #fff;
+}
+.date-range-flex > .date-range-flex-item .mat-form-field-flex label {
+    font-size: 14px;
+    color: rgba(0,0,0,.54);
+}
+.date-range-flex > .date-range-flex-item .mat-form-field-flex label {
+    font-size: 14px;
+    color: rgba(0,0,0,.54);
+    padding-left: 20px;
+    padding-top: 7px;
+}
+.date-range-flex > .date-range-flex-item .mat-button-wrapper svg {
+    width: 17px !important;
+    height: 17px !important;
+}
+.date-range-flex > .date-range-flex-item .mat-form-field-flex input {
+    font-size: 13px;
+    padding-left: 14px;
+}
 @media (min-width: 1200px){
 .short-term-rent-page .six1-block {
     width: 8% !important;
@@ -12691,34 +12723,6 @@ color: green !important;
 .dashboard-reports-inner-wrapper .searh_input-design .mat-form-field-flex {
   background-color: #fff !important;
   border-radius: 50px !important;
-}
-.dashboard-date-range-box .mat-form-field-flex {
-  background-color: #fff;
-  border-radius: 50px;
-}
-.dashboard-date-range-box .mat-form-field-flex .mat-form-field-infix {
-  border: none;
-  padding: 14px 15px;
-}
-.dashboard-date-range-box .mat-form-field-flex label {
-    padding-left: 23px;
-    padding-top: 12px;
-    font-size: 14px;
-    font-weight: 400;
-    opacity: 0.8;
-}
-.dashboard-date-range-box .mat-form-field-appearance-legacy.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label{
-	display: none !important;
-}
-.dashboard-date-range-box .mat-form-field-flex input {
-    font-size: 13px;
-    color: #000;
-	bottom: 0;
-	height: 19px;
-}
-.dashboard-date-range-box .mat-form-field-flex .mat-form-field-suffix {
-    position: relative;
-    right: 15px;
 }
 .text-limit-chip {
     max-width: 50px;

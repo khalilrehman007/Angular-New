@@ -30,6 +30,8 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
 import { SupplyDataResComponent } from './supply-data-res/supply-data-res.component';
 import { OccupancyDataResComponent } from './occupancy-data-res/occupancy-data-res.component';
 import { ServiceChargesDataResComponent } from './service-charges-data-res/service-charges-data-res.component';
+import { MatInputModule } from '@angular/material/input';
+
 
 
 @NgModule({
@@ -64,6 +66,7 @@ import { ServiceChargesDataResComponent } from './service-charges-data-res/servi
     CommonFilesModule,
     DiSideBarModuleModule,
     MatSelectModule,
+    MatInputModule,
     LoaderModule,
     NgxPaginationModule,
       // Specify ng-circle-progress as an import
