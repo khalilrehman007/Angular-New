@@ -372,7 +372,7 @@ a {
 	padding: 0px;
 	border: 0.5px solid var(--stroke-color);
 	border-radius: 10px;
-	background: whitesmoke;
+	background: #f6f6f6;
 	overflow: hidden;
 	.owl-stage-outer {
 		padding-bottom: 0px !important;
@@ -1267,7 +1267,7 @@ input[type=number] {
 	align-items: center;
 
 	.save-continue-btn {
-		background: $btncolor;
+		background: #4a565f;
 		color: $color_5;
 		border: none;
 		font-size: 16px;
@@ -2318,10 +2318,10 @@ input[type=number] {
 	display: flex;
 	align-items: center;
 	color: $color_6;
-	border-left: 0.5px solid rgba(0, 0, 0, 0.2);
+	border-left: 0.5px solid #e5e3e3;
 	padding: 0px 5px;
 	background: #fff;
-	border: 0.5px solid #D3DBFF;
+	border: 0.5px solid #e5e3e3;
 	border-top-right-radius: 8px;
 	border-bottom-right-radius: 8px;
 	margin-bottom: 0px;
@@ -2330,7 +2330,9 @@ input[type=number] {
 	font-size: 14px;
 	font-weight: 500;
 }
-
+.select-design>label.h6-design {
+    margin-bottom: 10px;
+}
 .grey-input-bg {
 	.mat-form-field-flex {
 		background: #F8F8F8;
@@ -2530,12 +2532,17 @@ input[type=number] {
 		color: $color_7;
 		font-size: 14px;
 		margin-bottom: 0px;
+		width: 100%;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
 	}
 }
 
 .doc-list-name {
 	.doc-text-details {
 		padding-left: 15px;
+		width: calc(100% - 50px);
 	}
 }
 
@@ -4478,6 +4485,7 @@ img {
 		height: 50px;
 		border-radius: 50%;
 		border: 1px solid #e7e7e7;
+		padding: 10px;
 	}
 }
 
@@ -7209,7 +7217,7 @@ img {
 		.mat-form-field-flex {
 			background-color: $background-color_3  !important;
 			height: 42px;
-			border: 0.5px solid #D3DBFF;
+			border:0.5px solid #e5e3e3;
 
 			.mat-form-field-infix {
 				border: none;
@@ -7257,7 +7265,7 @@ img {
 
 	.unit_add-more {
 		position: relative;
-		top: 33px;
+		top: 40px;
 	}
 }
 
@@ -7720,8 +7728,9 @@ li.agent-details__property-list-item {
 	}
 }
 
-.required-span {
+.required-span, .required {
 	color: $color_49;
+	padding-left: 3px;
 }
 
 .sell-faq-css {
@@ -8850,6 +8859,7 @@ li.agent-details__property-list-item {
 }
 .select2-design-full.select2-design .select2 .select2-selection{
 	background-position: 98% center !important;
+	display: flex;
 }
 .select2-design .select2 .select2-selection .select2-selection__arrow {
     display: none;
@@ -10588,11 +10598,6 @@ margin-right: 0px;
 		padding-left: 0px !important;
 		padding-right: 0px !important;
 	}
-
-	.doc-list-div {
-		padding-right: 15%;
-	}
-
 	.property-valuation-sec {
 		.col-xl-7 {
 			>.row {
@@ -10697,6 +10702,10 @@ margin-right: 0px;
 	.payment-left-form-sec {
 		padding-right: 25px;
 		border-right: 1.5px solid #F0EFFB;
+	}
+	.doc-list-div>div {
+		width: 33.3%;
+		padding-right: 15px;
 	}
 	.slider-shadow {
 		position: relative;
@@ -11829,6 +11838,7 @@ p:empty {
     border-radius: 5px;
     transform: translate(-2px, -2px);
     outline-offset: 0px;
+	z-index: 9;
 	}
 }
 
@@ -12288,9 +12298,12 @@ background: transparent !important;
     border: none !important;
 }
 .select2-design .select2 .select2-selection > .select2-selection__rendered {
-    width: 100%;
-    max-width: 100%;
+	max-width: 90%;
     margin-bottom: 0px !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: inline-block;
 }
 .select2-container--default .select2-selection--multiple .select2-selection__choice {
     font-size: 12px;
