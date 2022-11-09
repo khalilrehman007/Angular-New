@@ -293,6 +293,9 @@ export class PropertyinfoComponent implements OnInit {
       return;
     }
 
+    let tempPackage:any = localStorage.getItem("seletedPackage");
+    tempPackage = JSON.parse(tempPackage);
+    this.data.PackageId = tempPackage.id;
     this.data.CountryId = this.countryId;
     this.data.CityId = this.cityId;
     this.data.DistrictId = this.districtId;
@@ -401,11 +404,11 @@ export class PropertyinfoComponent implements OnInit {
         this.marker = new google.maps.Marker({
           position: area,
           map: this.map,
-          draggable: true,
+          // draggable: true,
         });
-        google.maps.event.addListener(this.marker, 'dragend', (e:any) => {
-          this.geocodePosition(this.marker.getPosition());
-        });
+        // google.maps.event.addListener(this.marker, 'dragend', (e:any) => {
+        //   this.geocodePosition(this.marker.getPosition());
+        // });
         this.autocomplete = new google.maps.places.Autocomplete(this.searchElement.nativeElement, this.options);
         this.autocomplete.addListener('place_changed', this.onPlaceChanged);
         this.autocomplete.setBounds(this.bounds);
