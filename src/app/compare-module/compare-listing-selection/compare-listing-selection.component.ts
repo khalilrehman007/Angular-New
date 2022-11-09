@@ -390,6 +390,10 @@ export class CompareListingSelectionComponent implements OnInit {
     this.modalService.open(content, { centered: true });
   }
 
+  sendPropertyData(propertyData:any){
+    console.log(propertyData)
+  }
+
   ngOnInit(): void {
 
   }
