@@ -293,6 +293,9 @@ export class PropertyinfoComponent implements OnInit {
       return;
     }
 
+    let tempPackage:any = localStorage.getItem("seletedPackage");
+    tempPackage = JSON.parse(tempPackage);
+    this.data.PackageId = tempPackage.id;
     this.data.CountryId = this.countryId;
     this.data.CityId = this.cityId;
     this.data.DistrictId = this.districtId;

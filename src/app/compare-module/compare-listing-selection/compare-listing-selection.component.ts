@@ -391,13 +391,19 @@ export class CompareListingSelectionComponent implements OnInit {
     this.modalService.open(content, { centered: true });
   }
 
-  sendPropertyData(propertyData:any){
+  selectPropertyData(propertyData:any){
     if (!this.clicked) {
       console.log(propertyData);
+      
     } else{
       console.log('empty');
     }
     this.clicked = !this.clicked;
+  }
+  
+  sendPropertyData(propertyData:any){
+    localStorage.setItem('propertyData', JSON.stringify(propertyData));
+
   }
 
   ngOnInit(): void {

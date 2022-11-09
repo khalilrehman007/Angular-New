@@ -424,6 +424,7 @@ export class PropertyDetailsComponent implements OnInit {
                   localStorage.setItem("lat", e.latLng.lat());
                   localStorage.setItem("lng", e.latLng.lng());
                   $(".searchLocation").val(results[0].formatted_address);
+                  this.locationInformation = "";
                 }
                 else {
                   this.error = "Cannot determine address at this location.";
