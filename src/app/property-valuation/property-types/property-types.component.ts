@@ -344,7 +344,7 @@ export class PropertyTypesComponent implements OnInit {
     })
   }
   getData() {
-    if (this.propertyData.hasPropertyFeature && this.featuresData.length > 0) {
+    if ($(".features-select").length > 0 && this.propertyData.hasPropertyFeature && this.featuresData.length > 0 ) {
       this.featuresFormData = $(".features-select").val();
     }
     if (!this.formData.PropertyCategoryId) {
@@ -572,5 +572,7 @@ export class PropertyTypesComponent implements OnInit {
         })
       }
     }
+    
   }
+  
 }
