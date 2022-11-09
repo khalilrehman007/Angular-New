@@ -1,56 +1,7 @@
-.property-compare-box {
-	background-color: #fff;
-    border-radius: 8px;
-    overflow: hidden;
-}
 .light-bg-body {
 	background: #F4F6FF;
 }
-.table-design {
-	tbody {
-		tr {
-			>td {
-				width: 18%;
-				padding: 20px;
-                border-right: 0.5px solid #f4f4f4;
-				border-bottom: none;
-				color: #000929;
-				font-size: 14px;
-				font-weight: 300;
-				min-width: 200px;
-				ul {
-					li {
-						color: #000000;
-						font-size: 14px;
-						margin-bottom: 5px;
-						img {
-							margin-right: 5px;
-						}
-					}
-				}
-				.proprty-View-detials {
-					.grey-bordered-btn {
-						display: inline-block;
-					}
-					margin-top: 50px;
-					text-align: center;
-				}
-			}
-            >td:last-child{
-                border: none;
-            }
-            >td:first-child{
-                font-weight: 400 !important;
-            }
-			>td.first-td-design {
-				width: 22%;
-			}
-		}
-	}
-	table {
-		width: 100%;
-	}
-}
+
 .grey-heading {
 	h2 {
 		color: #000929;
@@ -84,13 +35,13 @@
 	h4 {
         color: #595ad4;
         font-size: 16px;
-        font-weight: 500;
+        font-weight: 700;
         margin-bottom: 2px;
         margin-top: 4px;
 		small {
 			color: #000;
 			font-size: 14px;
-			font-weight: 300;
+			font-weight: 500;
 		}
 	}
 	h5 {
@@ -112,10 +63,11 @@
 		background: transparent;
 		border: none;
 		position: absolute;
-		top: -8px;
+		top: 2px;
 		right: 0;
 	}
-	padding-top: 25px;
+	padding-top: 32px;
+	padding-bottom: 15px;
 }
 .properties-comparison-sec {
 	padding-top: 25px;
@@ -157,6 +109,52 @@
 	background-color: #595ad5;
 	color: #fff;
 	border-color: #595ad5;
+}
+.compare-block-list {
+    display: flex;
+    flex-direction: row;
+	justify-content: center;
+}
+.compare-block-list>.comparen-list-item {
+	width: 25%;
+    background-color: #fff;
+	padding: 0px 15px;
+    margin: 0px 10px;
+    min-width: 305px;
+}
+.title-description {
+	font-weight: 300;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+.first-td-design p {
+    margin-bottom: 10px;
+	font-size: 16px;
+}
+.comparen-list-item .property-cparison-heading {
+    display: flex;
+    height: 100%;
+    align-items: center;
+}
+.property-compare-box>.compare-block-list:first-child {
+    border-bottom: 1px solid whitesmoke;
+}
+.property-compare-box>.compare-block-list:nth-child(2) .comparen-list-item {
+    padding-top: 20px;
+}
+.property-compare-box>.compare-block-list:first-child>.comparen-list-item {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.property-compare-box>.compare-block-list:last-child>.comparen-list-item {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+	padding-bottom: 20px;
+}
+.property-compare-box {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
 }
 @media (max-width: 991px){
     .compare-banner {

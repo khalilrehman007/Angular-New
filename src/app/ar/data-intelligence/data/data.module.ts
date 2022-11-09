@@ -24,6 +24,7 @@ import { YearlyAnalysisResidentialComponent } from './yearly-analysis-residentia
 import { MatSelectModule } from '@angular/material/select';
 import { LoaderModule } from 'src/app/loader/loader.module';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { MatInputModule } from '@angular/material/input';
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     DiSideBarModuleModule,
     MatSelectModule,
     LoaderModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    MatInputModule
   ]
 })
 export class DataModule { }

@@ -3,35 +3,36 @@
     <section [ngClass]="'property-listing-inner-wrapper'">
         <div [ngClass]="'container_1280px'">
             <div ngClass="property-details-header">
-                <div ngClass="d-flex justify-content-spacebw">
-                    <div ngClass="black-text-breadcrumb">
+                <div ngClass="d-flex justify-content-end">
+                    <!-- <div ngClass="black-text-breadcrumb">
                         <app-breadcrumbs></app-breadcrumbs>
                         <a class="back-to-text cursor-pointer" (click)="goBack()">
                             <mat-icon>keyboard_arrow_left</mat-icon> Back to Search
                         </a>
-                    </div>
-                    <div ngClass="last-updated-details">
-                        <!-- <p>Last Updated: <span ngClass="update-date">April 19, 2022</span></p> -->
-                        <p>Listing ID <span ngClass="update-id">#OV-4003021</span></p>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div ngClass="property-price-buttons-sec">
-                <div ngClass="row">
+                <div ngClass="row align-items-center">
                     <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                         <div ngClass="property-name_detals">
                             <h4>{{propertyDetailData.buildingName}}</h4>
-                            <div ngClass="property-addresss">
-                                <p><img src="{{homelocationsvg}}"> {{propertyDetailData.propertyAddress}}</p>
+                            <div class="d-flex align-items-center property_details-new-header">
+                            <div ngClass="property-price_detals">
+                            <h4>{{propertyDetailData.propertyPrice}}
+                                {{propertyDetailData.currency}}<small *ngIf="propertyDetailData.rentType != ''">/ {{propertyDetailData.rentType}}</small></h4>
+                            </div>
+                            <div ngClass="last-updated-details">
+                                <p>Listing ID <span ngClass="update-id">#OV-4003021</span></p>
+                            </div>
                             </div>
                         </div>
                     </div>
                     <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-                        <div ngClass="property-action_detals text-right">
+                        <div ngClass="d-flex justify-content-end">
                             <div ngClass="pro-contact-details">
                                 <div ngbDropdown class="d-inline-block">
-                                    <button ngClass="grey-bordered-btn" id="dropdownBasic2" ngbDropdownToggle><img
-                                            src="{{dots}}"></button>
+                                    <button ngClass="share-btn" id="dropdownBasic2" ngbDropdownToggle><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M384 24c0-9.6 5.7-18.2 14.5-22s19-2 26 4.6l144 136c4.8 4.5 7.5 10.8 7.5 17.4s-2.7 12.9-7.5 17.4l-144 136c-7 6.6-17.2 8.4-26 4.6s-14.5-12.5-14.5-22V224H352 337.5c-45 0-81.5 36.5-81.5 81.5c0 22.3 10.3 34.3 19.2 40.5c6.8 4.7 12.8 12 12.8 20.3c0 9.8-8 17.8-17.8 17.8h-2.5c-2.4 0-4.8-.4-7.1-1.4C242.8 374.8 160 333.4 160 240c0-79.5 64.5-144 144-144h80V24zM0 144C0 99.8 35.8 64 80 64H96c17.7 0 32 14.3 32 32s-14.3 32-32 32H80c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16H368c8.8 0 16-7.2 16-16V416c0-17.7 14.3-32 32-32s32 14.3 32 32v16c0 44.2-35.8 80-80 80H80c-44.2 0-80-35.8-80-80V144z"/></svg> Share</button>
                                     <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
                                         <h5>Share with:</h5>
                                         <button ngbDropdownItem><a target="_blank" href="https://facebook.com"
@@ -43,18 +44,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <button
-                                [ngClass]="propertyDetailData.favorite == true ? 'grey-bordered-btn red-fill' : 'grey-bordered-btn'"
-                                (click)="AddToFavorite(propertyDetailData.id,propertyDetailData.favorite)">
-                                <svg width="22" height="23" viewBox="0 0 22 23" fill="#595ad4"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M4.39376 6.23844C4.02517 6.63167 3.73279 7.0985 3.53331 7.61228C3.33383 8.12605 3.23116 8.67672 3.23116 9.23283C3.23116 9.78894 3.33383 10.3396 3.53331 10.8534C3.73279 11.3672 4.02517 11.834 4.39376 12.2272L11.1699 19.4563L17.946 12.2272C18.6904 11.433 19.1086 10.3559 19.1086 9.23283C19.1086 8.10972 18.6904 7.0326 17.946 6.23844C17.2016 5.44429 16.1919 4.99813 15.1392 4.99813C14.0865 4.99813 13.0768 5.44429 12.3324 6.23844L11.1699 7.47873L10.0073 6.23844C9.63871 5.84521 9.20113 5.53329 8.71954 5.32047C8.23796 5.10766 7.72179 4.99812 7.20053 4.99812C6.67926 4.99812 6.1631 5.10766 5.68152 5.32047C5.19993 5.53329 4.76235 5.84521 4.39376 6.23844V6.23844Z"
-                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
-                            </button>
-                            <button ngClass="grey-bordered-btn text-btn" (click)="scroll(NearLsiting)">Browse Nearby
-                                Lisitng</button>
                         </div>
                     </div>
                 </div>
@@ -66,16 +55,46 @@
             </div>
             <div ngClass="property-price-buttons-sec mt-5 mb-3">
             <div class="row">
-            <div ngClass="col-xl-4 col-lg-4 col-md-12 col-sm-12">
-                <div ngClass="property-price_detals">
-                    <h4>{{propertyDetailData.propertyPrice}}
-                        {{propertyDetailData.currency}}<small *ngIf="propertyDetailData.rentType != ''">/{{propertyDetailData.rentType}}</small></h4>
+            <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                    <div ngClass="property-addresss">
+                                <p><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M256 0c17.7 0 32 14.3 32 32V66.7C368.4 80.1 431.9 143.6 445.3 224H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H445.3C431.9 368.4 368.4 431.9 288 445.3V480c0 17.7-14.3 32-32 32s-32-14.3-32-32V445.3C143.6 431.9 80.1 368.4 66.7 288H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H66.7C80.1 143.6 143.6 80.1 224 66.7V32c0-17.7 14.3-32 32-32zM128 256c0 70.7 57.3 128 128 128s128-57.3 128-128s-57.3-128-128-128s-128 57.3-128 128zm128 80c-44.2 0-80-35.8-80-80s35.8-80 80-80s80 35.8 80 80s-35.8 80-80 80z"/></svg> {{propertyDetailData.propertyAddress}}</p>
+                    </div>
                     <div ngClass="property-tags d-flex flex-wrap">
                         <span ngClass="tags-bg-grey">Brokrage: {{propertyDetailData.brokerageChargePrice}}
                             {{propertyDetailData.currency}}</span>
                         <span ngClass="tags-bg-grey">Security deposit:
                             {{propertyDetailData.securityDepositPrice}} {{propertyDetailData.currency}}</span>
                     </div>
+            </div>
+            <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                <div ngClass="property-action_detals text-right">
+                    <!-- <div ngClass="pro-contact-details">
+                        <div ngbDropdown class="d-inline-block">
+                            <button ngClass="grey-bordered-btn" id="dropdownBasic2" ngbDropdownToggle><img
+                                    src="{{dots}}"></button>
+                            <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
+                                <h5>Share with:</h5>
+                                <button ngbDropdownItem><a target="_blank" href="https://facebook.com"
+                                        ngClass="facebook"><img src="{{fb}}"> Facebook</a></button>
+                                <button ngbDropdownItem><a target="_blank" href="whatsapp://send?{{shareURL}}"
+                                        ngClass="whatsapp"><img src="{{whatsapp}}"> WhatsAPP</a></button>
+                                <button ngbDropdownItem><a target="_blank" href="https://twitter.com/"
+                                        ngClass="twitter"><img src="{{twitter}}"> Twitter</a></button>
+                            </div>
+                        </div>
+                    </div> -->
+                    <button
+                        [ngClass]="propertyDetailData.favorite == true ? 'grey-bordered-btn red-fill' : 'grey-bordered-btn'"
+                        (click)="AddToFavorite(propertyDetailData.id,propertyDetailData.favorite)">
+                        <svg width="22" height="23" viewBox="0 0 22 23" fill="#595ad4"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M4.39376 6.23844C4.02517 6.63167 3.73279 7.0985 3.53331 7.61228C3.33383 8.12605 3.23116 8.67672 3.23116 9.23283C3.23116 9.78894 3.33383 10.3396 3.53331 10.8534C3.73279 11.3672 4.02517 11.834 4.39376 12.2272L11.1699 19.4563L17.946 12.2272C18.6904 11.433 19.1086 10.3559 19.1086 9.23283C19.1086 8.10972 18.6904 7.0326 17.946 6.23844C17.2016 5.44429 16.1919 4.99813 15.1392 4.99813C14.0865 4.99813 13.0768 5.44429 12.3324 6.23844L11.1699 7.47873L10.0073 6.23844C9.63871 5.84521 9.20113 5.53329 8.71954 5.32047C8.23796 5.10766 7.72179 4.99812 7.20053 4.99812C6.67926 4.99812 6.1631 5.10766 5.68152 5.32047C5.19993 5.53329 4.76235 5.84521 4.39376 6.23844V6.23844Z"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <!-- <button ngClass="grey-bordered-btn text-btn" (click)="scroll(NearLsiting)">Browse Nearby
+                        Lisitng</button> -->
                 </div>
             </div>
             </div>
@@ -358,17 +377,25 @@
                             <span ngClass="property-pricing"><span>{{ slide.price }} {{ slide.currency }}</span> /
                                 <span>{{slide.rentType}}</span></span>
                             <span ngClass="property-name">{{slide.buildingName}}</span>
-                            <p ngClass="property-location"><img src="{{homelocationsvg}}" width="14"
-                                    alt="">{{slide.propertyAddress}} </p>
+                            <p ngClass="property-location">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 256c-35.3 0-64-28.7-64-64s28.7-64 64-64s64 28.7 64 64s-28.7 64-64 64z"/></svg>
+                                {{slide.propertyAddress}} </p>
                             <div ngClass="property-details">
                                 <span ngClass="bed">
-                                    <img src="{{bedsvg}}" alt="">{{slide.bedrooms}} Beds
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M32 32c17.7 0 32 14.3 32 32V320H288V160c0-17.7 14.3-32 32-32H544c53 0 96 43 96 96V448c0 17.7-14.3 32-32 32s-32-14.3-32-32V416H352 320 64v32c0 17.7-14.3 32-32 32s-32-14.3-32-32V64C0 46.3 14.3 32 32 32zM176 288c-44.2 0-80-35.8-80-80s35.8-80 80-80s80 35.8 80 80s-35.8 80-80 80z"/></svg>
+                                    {{slide.bedrooms}} Beds
                                 </span>
                                 <span ngClass="bath">
-                                    <img src="{{bathsvg}}" alt="">{{slide.bathrooms}} Bath
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M96 77.3c0-7.3 5.9-13.3 13.3-13.3c3.5 0 6.9 1.4 9.4 3.9l14.9 14.9C130 91.8 128 101.7 128 112c0 19.9 7.2 38 19.2 52c-5.3 9.2-4 21.1 3.8 29c9.4 9.4 24.6 9.4 33.9 0L289 89c9.4-9.4 9.4-24.6 0-33.9c-7.9-7.9-19.8-9.1-29-3.8C246 39.2 227.9 32 208 32c-10.3 0-20.2 2-29.2 5.5L163.9 22.6C149.4 8.1 129.7 0 109.3 0C66.6 0 32 34.6 32 77.3V256c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H96V77.3zM32 352v16c0 28.4 12.4 54 32 71.6V480c0 17.7 14.3 32 32 32s32-14.3 32-32V464H384v16c0 17.7 14.3 32 32 32s32-14.3 32-32V439.6c19.6-17.6 32-43.1 32-71.6V352H32z"/></svg>
+                                    {{slide.bathrooms}} Bath
                                 </span>
                                 <span ngClass="area">
-                                    <img src="{{squaremetersvg}}" alt="">{{slide.carpetArea}} sqft
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M8.83148 15.5437L3.45631 10.1685C2.8479 9.56011 2.8479 8.43989 3.45631 7.83148L8.83148 2.45631C9.43989 1.8479 10.5601 1.8479 11.1685 2.45631L16.5437 7.83148C17.1521 8.43989 17.1521 9.56011 16.5437 10.1685L11.1685 15.5437C10.5601 16.1521 9.43989 16.1521 8.83148 15.5437Z" fill="#616161" stroke="#616161" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M2 13.1719L6.36371 17.5356" stroke="#616161" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M13.6367 17.5356L18.0004 13.1719" stroke="#616161" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg> 
+                                    {{slide.carpetArea}} sqft
                                 </span>
                             </div>
                         </div>

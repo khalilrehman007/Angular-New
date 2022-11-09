@@ -16,7 +16,7 @@
                 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-2">
                   <div class="dashboard-date-range-box">
                     <label>Date Range</label>
-                    <mat-form-field>
+                 <!-- <mat-form-field>
                       <mat-label>Enter a date range</mat-label>
                       <mat-date-range-input [rangePicker]="picker">
                         <input matStartDate matInput placeholder="Start date" formControlName="start"
@@ -26,7 +26,26 @@
                       </mat-date-range-input>
                       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                       <mat-date-range-picker #picker></mat-date-range-picker>
-                    </mat-form-field>
+                    </mat-form-field> -->
+                    <div ngClass="date-range-flex">
+                      <div ngClass="date-range-flex-item from-date">
+                      <mat-form-field appearance="fill">
+                          <mat-label>From</mat-label>
+                          <input matInput [matDatepicker]="pickerFrom">
+                          <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
+                          <mat-datepicker #pickerFrom></mat-datepicker>
+                        </mat-form-field>
+                        </div>
+                       <div ngClass="date-range-flex-item to-date">
+                          <mat-form-field appearance="fill">
+                              <mat-label>To</mat-label>
+                              <input matInput [matDatepicker]="pickerTo">
+
+                              <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
+                              <mat-datepicker #pickerTo></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                  </div>
                   </div>
                 </div>
                 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-2">
