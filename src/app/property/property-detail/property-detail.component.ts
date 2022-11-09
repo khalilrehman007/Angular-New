@@ -406,6 +406,7 @@ export class PropertyDetailComponent implements OnInit {
         this.propertyDetailData.propertyType = (jsonParsDate.propertyListing.propertyType.typeDescription !== undefined) ? jsonParsDate.propertyListing.propertyType.typeDescription : ''
         this.propertyDetailData.buildingName = (jsonParsDate.propertyListing.buildingName !== undefined) ? jsonParsDate.propertyListing.buildingName : ''
         this.propertyDetailData.totalFloor = (jsonParsDate.propertyListing.totalFloor !== undefined) ? jsonParsDate.propertyListing.totalFloor : ''
+        this.propertyDetailData.totalFloor = (jsonParsDate.propertyListing.petPolicies !== undefined) ? jsonParsDate.propertyListing.petPolicies : ''
         this.propertyDetailData.floorNo = (jsonParsDate.propertyListing.floorNo !== undefined) ? jsonParsDate.propertyListing.floorNo : ''
         this.propertyDetailData.unitNo = (jsonParsDate.propertyListing.unitNo !== undefined) ? jsonParsDate.propertyListing.unitNo : ''
         this.propertyDetailData.bedrooms = (jsonParsDate.propertyListing.bedrooms !== undefined) ? jsonParsDate.propertyListing.bedrooms : ''
@@ -583,7 +584,7 @@ export class PropertyDetailComponent implements OnInit {
       {
         show: this.propertyValidationData.hasPetPolicy,
         label: 'Pet Policy',
-        value: 'empty',
+        value: this.propertyDetailData.petPolicies,
       },
       {
         label: 'Carpet Area',
