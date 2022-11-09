@@ -83,6 +83,7 @@ export class CompareListingSelectionComponent implements OnInit {
   trendTitle: any = [];
   Bedrooms: any;
   Bathrooms: any;
+  clicked = false;
   KeyWordsParams: any;
   headingPropertyType: any = "Properties";
   halfList: any = 0;
@@ -391,7 +392,12 @@ export class CompareListingSelectionComponent implements OnInit {
   }
 
   sendPropertyData(propertyData:any){
-    console.log(propertyData)
+    if (!this.clicked) {
+      console.log(propertyData);
+    } else{
+      console.log('empty');
+    }
+    this.clicked = !this.clicked;
   }
 
   ngOnInit(): void {
