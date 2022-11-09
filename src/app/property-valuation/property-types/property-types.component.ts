@@ -344,6 +344,9 @@ export class PropertyTypesComponent implements OnInit {
     })
   }
   getData() {
+    if ($(".features-select").length > 0 && this.propertyData.hasPropertyFeature && this.featuresData.length > 0 ) {
+      this.featuresFormData = $(".features-select").val();
+    }
     if (!this.formData.PropertyCategoryId) {
       this.currentField = "property-cateogary-input";
       this.error = "Please Select Property Category";
@@ -424,15 +427,12 @@ export class PropertyTypesComponent implements OnInit {
       this.error = "Please Enter Total Expense";
       this.showError = true;
       return;
-    } else if (this.propertyData && this.featuresFormData.length == 0) {
+    } else if (this.propertyData.hasPropertyFeature && this.featuresFormData.length == 0) {
       if (!this.proceed) {
         this.confirmMessage = "By not selecting any of the features, your property value may result to lower than market value";
         this.showConfirm = true;
         return;
       }
-    }
-    if (this.propertyData.hasPropertyFeature && this.featuresData.length > 0) {
-      this.featuresFormData = $(".features-select").val();
     }
     this.formData.Bedrooms = this.bedrooms;
     this.formData.Bathrooms = this.bathrooms;
