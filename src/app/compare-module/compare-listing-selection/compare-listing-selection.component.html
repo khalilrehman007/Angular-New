@@ -237,7 +237,7 @@
                                         </div>
                                     </div>
                                     <div class="selection-checkbox">
-                                        <input type="checkbox" name="featured-selection" (click)="sendPropertyData(list)">
+                                        <input type="checkbox" name="featured-selection" (click)="selectPropertyData(list)">
                                         <button ngClass="add-property-cstm"></button>
                                     </div>
                                 </div>
@@ -264,7 +264,7 @@
                             </section>
                         </div>
                         <div class="add-property-floating-button">
-                            <button class="add-property-btn">+ Add Property</button>
+                            <button class="add-property-btn" onclick="sendProperty(list)" >+ Add Property</button>
                         </div>
                     </div>
                 </div>
