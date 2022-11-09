@@ -424,7 +424,7 @@ export class PropertyTypesComponent implements OnInit {
       this.error = "Please Enter Total Expense";
       this.showError = true;
       return;
-    } else if (this.propertyData.hasPropertyFeature && this.featuresFormData.length == 0) {
+    } else if (this.propertyData && this.featuresFormData.length == 0) {
       if (!this.proceed) {
         this.confirmMessage = "By not selecting any of the features, your property value may result to lower than market value";
         this.showConfirm = true;
@@ -572,5 +572,7 @@ export class PropertyTypesComponent implements OnInit {
         })
       }
     }
+    
   }
+  
 }
