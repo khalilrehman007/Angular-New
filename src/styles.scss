@@ -4979,6 +4979,7 @@ img {
 	background-color: #f6f6f6;
 	padding: 20px;
 	border-radius: 10px;
+	transition: all 0.5s ease-in-out;
 }
 
 .property-listed-by {
@@ -13161,5 +13162,22 @@ input:focus{
     border-radius: 8px;
     font-weight: 200;
 }
-
+.multiselect-search .mat-optgroup-label {
+    height: auto;
+	margin-top: 15px;
+}
+.multiselect-search.input-design-2 label {
+    font-size: 13px;
+    padding: 0px 12px;
+}
+.multiselect-search.input-design-2 .mat-form-field-flex .mat-form-field-infix input {
+    box-sizing: border-box;
+    padding: 0px 12px;
+}
+.multiselect-search.input-design-2 .mat-form-field.mat-focused label {
+    display: none !important;
+}
+.multiselect-search.input-design-2 .mat-form-field-appearance-legacy.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
+    display: none !important;
+}
 
