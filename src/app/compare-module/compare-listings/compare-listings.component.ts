@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthService} from "../../service/auth.service";
-import {Router} from "@angular/router";
-import {NotificationService} from "../../service/notification.service";
-import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
-import {AppService} from "../../service/app.service";
+import { AuthService } from "../../service/auth.service";
+import { Router } from "@angular/router";
+import { NotificationService } from "../../service/notification.service";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { AppService } from "../../service/app.service";
 
 @Component({
   selector: 'app-compare-listings',
@@ -14,13 +14,18 @@ export class CompareListingsComponent implements OnInit {
   trash = '/assets/images/icons/Trash-dotted.svg'
   swimm = '/assets/images/icons/swimming.svg'
   properties = [
-    {img: '/assets/images/pro-comparison.png',price: '350,000',title: 'Blue Wave Tower',address: 'Etihad Tower 4, Etihad Towers, Corniche Road, Abu Dhabi',city: 'Dubai',carpetArea: '1200',bedrooms: '2',bathrooms: '1',parkings: 'No',propertyAge:'10 yeras',floorNo: '10',totalFloor: '25',towerBlock: 'yes',unitNo: '123',furnishingType:'Furnished'},
-    {img: '/assets/images/pro-comparison.png',price: '350,000',title: 'Blue Wave Tower',address: 'Etihad Tower 4, Etihad Towers, Corniche Road, Abu Dhabi',city: 'Dubai',carpetArea: '1200',bedrooms: '2',bathrooms: '1',parkings: 'No',propertyAge:'10 yeras',floorNo: '10',totalFloor: '25',towerBlock: 'yes',unitNo: '123',furnishingType:'Furnished'},
-    {img: '/assets/images/pro-comparison.png',price: '350,000',title: 'Blue Wave Tower',address: 'Etihad Tower 4, Etihad Towers, Corniche Road, Abu Dhabi',city: 'Dubai',carpetArea: '1200',bedrooms: '2',bathrooms: '1',parkings: 'No',propertyAge:'10 yeras',floorNo: '10',totalFloor: '25',towerBlock: 'yes',unitNo: '123',furnishingType:'Furnished'}
+    { img: '/assets/images/pro-comparison.png', price: '350,000', title: 'Blue Wave Tower', address: 'Etihad Tower 4, Etihad Towers, Corniche Road, Abu Dhabi', city: 'Dubai', carpetArea: '1200', bedrooms: '2', bathrooms: '1', parkings: 'No', propertyAge: '10 yeras', floorNo: '10', totalFloor: '25', towerBlock: 'yes', unitNo: '123', furnishingType: 'Furnished' },
+    { img: '/assets/images/pro-comparison.png', price: '350,000', title: 'Blue Wave Tower', address: 'Etihad Tower 4, Etihad Towers, Corniche Road, Abu Dhabi', city: 'Dubai', carpetArea: '1200', bedrooms: '2', bathrooms: '1', parkings: 'No', propertyAge: '10 yeras', floorNo: '10', totalFloor: '25', towerBlock: 'yes', unitNo: '123', furnishingType: 'Furnished' },
+    { img: '/assets/images/pro-comparison.png', price: '350,000', title: 'Blue Wave Tower', address: 'Etihad Tower 4, Etihad Towers, Corniche Road, Abu Dhabi', city: 'Dubai', carpetArea: '1200', bedrooms: '2', bathrooms: '1', parkings: 'No', propertyAge: '10 yeras', floorNo: '10', totalFloor: '25', towerBlock: 'yes', unitNo: '123', furnishingType: 'Furnished' }
   ];
+  propertyDetails: any = [];
 
-  constructor(private authService:AuthService,private route:Router,private notifyService : NotificationService,private modalService: NgbModal, private service:AppService) {
-    
+  constructor(private authService: AuthService, private route: Router, private notifyService: NotificationService, private modalService: NgbModal, private service: AppService) {
+    this.service.ComparableProperties([{ "Id": "31" }, { "Id": "32" }, { "Id": "33" }]).subscribe((result: any) => {
+      this.propertyDetails = result.data;
+      console.log(this.propertyDetails)
+    })
+
   }
 
   ngOnInit(): void {

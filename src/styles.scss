@@ -588,13 +588,13 @@ textarea {
 .green-btn {
 	padding: 13px 32px;
 	color: $color_4;
-	background: var(--light-green);
+	background: #4a565f;
 	font-size: 14px;
 	border-radius: 8px;
 	display: inline-block;
 
 	&:hover {
-		background: #595ad4 !important;
+		background: #000 !important;
 		color: $color_5  !important;
 	}
 }
@@ -770,7 +770,7 @@ textarea {
 }
 
 .submit-btn {
-	background: $btncolor;
+	background: #4a565f;
 	border-radius: 8px;
 	width: 100%;
 	border: none;
@@ -1028,7 +1028,7 @@ input[type=number] {
 				>span {
 					width: 28px;
 					height: 28px;
-					background: #D3DBFF;
+					background: #d6d6d6;
 					display: inline-flex;
 					border-radius: 50%;
 					align-items: center;
@@ -1077,7 +1077,7 @@ input[type=number] {
 		.mat-list-item.active {
 			a {
 				>span {
-					background: $btncolor;
+					background: #4a565f;
 					color: $color_5;
 				}
 			}
@@ -1251,7 +1251,7 @@ input[type=number] {
 	border-radius: 5px;
 
 	&:hover {
-		background: #0f2ead;
+		background: #4a565f;
 		color: $color_5  !important;
 	}
 }
@@ -2511,7 +2511,7 @@ input[type=number] {
 }
 
 .doc-list-div {
-	background-color: $background-color_5;
+	background-color: #f6f6f6;
 	border-radius: 6px;
 	padding: 12px 20px;
 	margin-bottom: 10px;
@@ -4392,7 +4392,7 @@ img {
 .property-price_detals {
 	h4 {
 		font-size: 26px;
-		color: #595ad4;
+		color: #242a2f;
 		font-weight: 700;
 		margin-bottom: 0px;
 		line-height: 30px;
@@ -4403,10 +4403,10 @@ img {
 	}
 }
 .property-price-buttons-sec .property-price_detals h4 {
-	font-size: 23px;
+    font-size: 22px;
     margin-bottom: 0px;
-    font-weight: 200;
-	color: #0f2ead;
+    font-weight: 700;
+    color: #0f2ead;
 }
 .property-price-buttons-sec .tags-bg-grey {
     font-size: 12px;
@@ -4429,7 +4429,7 @@ img {
 		color: #000000;
 		font-size: 32px;
 		margin-bottom: 5px;
-		font-weight: 300;
+		font-weight: 700;
 	}
 
 	.property-name_detals {
@@ -7761,10 +7761,13 @@ li.agent-details__property-list-item {
 		a {
 			padding: 13px 32px;
 			color: $color_4;
-			background: var(--light-green);
+			background: #4a565f;
 			font-size: 14px;
 			border-radius: 8px;
 			display: inline-block;
+			&:hover{
+				background-color: #000;
+			}
 		}
 	}
 
@@ -13115,26 +13118,26 @@ input:focus{
     font-size: 18px;
     width: 18px;
     height: 18px;
-    fill: #aaaaaa;
+    fill: #414040;
     margin-right: 5px;
     position: relative;
     bottom: 1px;
 }
 .property-item .property-details .bath svg {
-	font-size: 15px;
-    width: 15px;
-    height: 15px;
-    fill: #aaaaaa;
+    font-size: 15px;
+    width: 17px;
+    height: 17px;
+    fill: #414040;
     margin-right: 5px;
     position: relative;
     bottom: 3px;
 }
 .property-item .property-location svg {
-    width: 16px;
-    height: 16px;
-    fill: #aaaaaa;
+	width: 20px;
+    height: 20px;
+    fill: #414040;
     position: relative;
-    top: 2px;
+    top: 0px;
     margin-right: 5px;
 }
 .property-item .property-details .area svg {
@@ -13147,8 +13150,8 @@ input:focus{
     bottom: 0px;
 }
 .property-item .property-details .area svg path {
-	fill: #aaaaaa;
-	stroke: #aaaaaa;
+	fill: #414040;
+	stroke: #414040;
 }
 .property-price-buttons-sec .property-tags .tags-bg-grey {
     border: 1px solid #ccc;
