@@ -264,7 +264,7 @@
                             </section>
                         </div>
                         <div class="add-property-floating-button">
-                            <button class="add-property-btn" onclick="sendProperty(list)" >+ Add Property</button>
+                            <button class="add-property-btn" (click)="sendPropertyData()">+ Add Property</button>
                         </div>
                     </div>
                 </div>
@@ -307,3 +307,4 @@
         </ng-template>
     </div>
 </div>
+<app-erroralert [error]="error" (errorResponse)="errorResponse($event)" *ngIf="showError"></app-erroralert>

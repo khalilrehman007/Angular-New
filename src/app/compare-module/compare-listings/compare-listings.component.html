@@ -1,42 +1,45 @@
 <app-header></app-header>
 <section [ngClass]="'slide-left-bar compare-page-sec'">
-<section class="compare-banner" style="background-image: url('https://beta.ovaluate.com/Attchments/PrivacyPolicyImage/about-banner1%20(1).png')">
-    <div class="container_1280px">
-     <div class="baner-compare-heading">
-         <h2>Have a look through your compare results</h2>
-     </div>
-    </div>
-  </section>
-  <section class="compare-breadcrumbs">
-    <div class="container_1280px">
+    <section class="compare-banner"
+        style="background-image: url('https://beta.ovaluate.com/Attchments/PrivacyPolicyImage/about-banner1%20(1).png')">
+        <div class="container_1280px">
+            <div class="baner-compare-heading">
+                <h2>Have a look through your compare results</h2>
+            </div>
+        </div>
+    </section>
+    <section class="compare-breadcrumbs">
+        <div class="container_1280px">
             <div class="breadcrumb-dark">
                 <app-breadcrumbs></app-breadcrumbs>
+            </div>
         </div>
-    </div>
     </section>
     <section ngClass="properties-comparison-sec">
         <div ngClass="container_1280px">
             <div ngClass="property-compare-box">
                 <div ngClass="compare-block-list">
-                   <div class="comparen-list-item">
-                    <div ngClass="property-cparison-heading">
-                        <h4>Property Comparision</h4>
-                    </div>
-                   </div>
-                   <div class="comparen-list-item" *ngFor="let property of properties"> 
-                    <div ngClass="property-comparison-block position-relative cursor-pointer" routerLink="">
-                        <div ngClass="com-img">
-                            <img src="{{property.img}}">
+                    <div class="comparen-list-item">
+                        <div ngClass="property-cparison-heading">
+                            <h4>Property Comparision</h4>
                         </div>
-                        <div ngClass="com-cntnt">
-                            <h4> {{property.price}} AED
-                                <small>/Monthly</small></h4>
-                            <h5>{{property.title}}</h5>
-                            <address>{{property.address}}</address>
-                        </div>
-                        <button ngClass="delete-property"><img
-                                src="{{trash}}"></button>
                     </div>
+                    <div class="comparen-list-item" *ngFor="let property of propertyDetails">
+                        <div ngClass="property-comparison-block position-relative cursor-pointer" [routerLink]="['/property/detail']" [queryParams]="{id: property.id}">
+                            <div ngClass="com-img">
+                                <!-- <img src="{{property.img}}"> -->
+                                <img *ngIf="property.documents.length > 0 && property.documents[0].fileUrl != null" src="https://beta.ovaluate.com/{{property.documents[0].fileUrl}}">
+                                <img  *ngIf="property.documents.length == 0 || property.documents[0].fileUrl == null" src="assets/images/placeholder.png">
+                            </div>
+                            <div ngClass="com-cntnt">
+                                <h4> {{property.propertyPrice}} {{property.country.currency}}
+                                    <small *ngIf="property.rentType != ''">/{{property.rentType.name}}</small>
+                                </h4>
+                                <h5>{{property.title}}</h5>
+                                <address>{{property.address}}</address>
+                            </div>
+                            <button ngClass="delete-property"><img src="{{trash}}"></button>
+                        </div>
                     </div>
                 </div>
                 <div ngClass="compare-block-list">
@@ -45,132 +48,132 @@
                             <p>Building Name / Project Name</p>
                         </div>
                     </div>
-                    <div class="comparen-list-item title" *ngFor="let property of properties"> 
-                        <p class="title-description">{{property.title}}</p>
-                     </div>
-                 </div>
-                 <div ngClass="compare-block-list">
+                    <div class="comparen-list-item title" *ngFor="let property of propertyDetails">
+                        <p class="title-description">{{property.propertyTitle}}</p>
+                    </div>
+                </div>
+                <div ngClass="compare-block-list">
                     <div class="comparen-list-item first-block">
                         <div ngClass="first-td-design">
                             <p>Locality</p>
                         </div>
                     </div>
-                    <div class="comparen-list-item address" *ngFor="let property of properties"> 
-                        <p class="title-description"> {{property.address}}</p>
-                     </div>
-                 </div>
-                 <div ngClass="compare-block-list">
+                    <div class="comparen-list-item address" *ngFor="let property of propertyDetails">
+                        <p class="title-description"> {{property.propertyAddress}}</p>
+                    </div>
+                </div>
+                <div ngClass="compare-block-list">
                     <div class="comparen-list-item first-block">
                         <div ngClass="first-td-design">
                             <p>City</p>
                         </div>
                     </div>
-                    <div class="comparen-list-item city" *ngFor="let property of properties"> 
-                        <p class="title-description"> {{property.city}}</p>
-                     </div>
-                 </div>
+                    <div class="comparen-list-item city" *ngFor="let property of propertyDetails">
+                        <p class="title-description"> {{property.city.name}}</p>
+                    </div>
+                </div>
                 <div ngClass="compare-block-list">
                     <div class="comparen-list-item first-block">
                         <div ngClass="first-td-design">
                             <p> Apartment Size</p>
                         </div>
                     </div>
-                    <div class="comparen-list-item apartment-size" *ngFor="let property of properties"> 
+                    <div class="comparen-list-item apartment-size" *ngFor="let property of propertyDetails">
                         <p class="title-description">{{property.carpetArea}}</p>
-                     </div>
-                 </div>
-                 <div ngClass="compare-block-list">
+                    </div>
+                </div>
+                <div ngClass="compare-block-list">
                     <div class="comparen-list-item first-block">
                         <div ngClass="first-td-design">
                             <p> Bedrooms</p>
                         </div>
                     </div>
-                    <div class="comparen-list-item bedrooms" *ngFor="let property of properties"> 
+                    <div class="comparen-list-item bedrooms" *ngFor="let property of propertyDetails">
                         <p class="title-description">{{property.bedrooms}}</p>
-                     </div>
-                 </div>
-                 <div ngClass="compare-block-list">
+                    </div>
+                </div>
+                <div ngClass="compare-block-list">
                     <div class="comparen-list-item first-block">
                         <div ngClass="first-td-design">
                             <p> Bathrooms</p>
                         </div>
                     </div>
-                    <div class="comparen-list-item bedrooms" *ngFor="let property of properties"> 
+                    <div class="comparen-list-item bedrooms" *ngFor="let property of propertyDetails">
                         <p class="title-description">{{property.bathrooms}}</p>
-                     </div>
-                 </div>
-                 <div ngClass="compare-block-list">
+                    </div>
+                </div>
+                <div ngClass="compare-block-list">
                     <div class="comparen-list-item first-block">
                         <div ngClass="first-td-design">
                             <p> Available Parking</p>
                         </div>
                     </div>
-                    <div class="comparen-list-item bedrooms" *ngFor="let property of properties"> 
+                    <div class="comparen-list-item bedrooms" *ngFor="let property of propertyDetails">
                         <p class="title-description">{{property.parkings}}</p>
-                     </div>
-                 </div>
-                 <div ngClass="compare-block-list">
+                    </div>
+                </div>
+                <div ngClass="compare-block-list">
                     <div class="comparen-list-item first-block">
                         <div ngClass="first-td-design">
                             <p> Construction Age</p>
                         </div>
                     </div>
-                    <div class="comparen-list-item bedrooms" *ngFor="let property of properties"> 
+                    <div class="comparen-list-item bedrooms" *ngFor="let property of propertyDetails">
                         <p class="title-description">{{property.propertyAge}}</p>
-                     </div>
-                 </div>
-                 <div ngClass="compare-block-list">
+                    </div>
+                </div>
+                <div ngClass="compare-block-list">
                     <div class="comparen-list-item first-block">
                         <div ngClass="first-td-design">
                             <p>Floor Number</p>
                         </div>
                     </div>
-                    <div class="comparen-list-item bedrooms" *ngFor="let property of properties"> 
+                    <div class="comparen-list-item bedrooms" *ngFor="let property of propertyDetails">
                         <p class="title-description">{{property.floorNo}}</p>
-                     </div>
-                 </div>
-                 <div ngClass="compare-block-list">
+                    </div>
+                </div>
+                <div ngClass="compare-block-list">
                     <div class="comparen-list-item first-block">
                         <div ngClass="first-td-design">
                             <p> Total Floors</p>
                         </div>
                     </div>
-                    <div class="comparen-list-item bedrooms" *ngFor="let property of properties"> 
+                    <div class="comparen-list-item bedrooms" *ngFor="let property of propertyDetails">
                         <p class="title-description">{{property.totalFloor}}</p>
-                     </div>
-                 </div>
-                 <div ngClass="compare-block-list">
+                    </div>
+                </div>
+                <div ngClass="compare-block-list">
                     <div class="comparen-list-item first-block">
                         <div ngClass="first-td-design">
                             <p>Tower Block</p>
                         </div>
                     </div>
-                    <div class="comparen-list-item bedrooms" *ngFor="let property of properties"> 
+                    <div class="comparen-list-item bedrooms" *ngFor="let property of properties">
                         <p class="title-description">{{property.towerBlock}}</p>
-                     </div>
-                 </div>
-                 <div ngClass="compare-block-list">
+                    </div>
+                </div>
+                <div ngClass="compare-block-list">
                     <div class="comparen-list-item first-block">
                         <div ngClass="first-td-design">
                             <p> Unit No</p>
                         </div>
                     </div>
-                    <div class="comparen-list-item bedrooms" *ngFor="let property of properties"> 
+                    <div class="comparen-list-item bedrooms" *ngFor="let property of propertyDetails">
                         <p class="title-description">{{property.unitNo}}</p>
-                     </div>
-                 </div>
+                    </div>
+                </div>
                 <div ngClass="compare-block-list">
                     <div class="comparen-list-item first-block">
                         <div ngClass="first-td-design">
                             <p>Furnishing Status</p>
                         </div>
                     </div>
-                    <div class="comparen-list-item bedrooms" *ngFor="let property of properties"> 
+                    <div class="comparen-list-item bedrooms" *ngFor="let property of propertyDetails">
                         <p class="title-description">{{property.furnishingType}}</p>
-                     </div>
-                 </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
-<app-footer></app-footer>
+    <app-footer></app-footer>
 </section>
