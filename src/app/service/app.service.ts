@@ -368,7 +368,7 @@ export class AppService {
     return this.http.post(this.apiurl + 'MyPropertyListings', data, { headers: this.headers });
   }
   ComparableProperties(data: any) {
-    return this.http.post(this.apiurl + 'ComparableProperties', data, { headers: this.headers });
+    return this.http.post(this.apiurl + 'ComparableProperties', data);
   }
 
   MyActivityViewCount(id: any) {

@@ -583,7 +583,7 @@ export class PropertyDetailComponent implements OnInit,AfterViewInit {
       {
         show: true,
         label: 'Rent Type',
-        value: this.propertyDetailData.propertyPrice + ' ' + this.propertyDetailData.currency,
+        value: this.propertyDetailData.rentType.name,
       },
       {
         show: true,
