@@ -6,6 +6,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NotificationService } from "../../service/notification.service";
 import { AuthService } from "../../service/auth.service";
 import { JsonpInterceptor } from "@angular/common/http";
+import { limitToFirst } from 'firebase/database';
 
 @Component({
   selector: 'app-compare-listing-selection',
@@ -13,6 +14,13 @@ import { JsonpInterceptor } from "@angular/common/http";
   styleUrls: ['./compare-listing-selection.component.scss']
 })
 export class CompareListingSelectionComponent implements OnInit {
+  response = "";
+  error: any = ""
+  showError: boolean = false;
+  errorResponse(data: any) {
+    this.showError = false;
+  }
+
   videotiour = '../../../assets/images/icons/video-tour.svg'
   lsitedby = '../../../assets/images/icons/listed-by.svg'
   ovverified = '../../../assets/images/icons/ov-verified.svg'
@@ -55,6 +63,7 @@ export class CompareListingSelectionComponent implements OnInit {
       img: '../../../assets/images/slider.png',
     },
   ]
+  
   type: any;
   PropertyCategoryId: any;
   RentTypeId: any;
@@ -83,7 +92,7 @@ export class CompareListingSelectionComponent implements OnInit {
   trendTitle: any = [];
   Bedrooms: any;
   Bathrooms: any;
-  clicked = false;
+  clickedProperty: any = "";
   KeyWordsParams: any;
   headingPropertyType: any = "Properties";
   halfList: any = 0;
@@ -206,6 +215,7 @@ export class CompareListingSelectionComponent implements OnInit {
     }
   }
 
+  
   allSearch() {
 
     this.type = ''
@@ -392,18 +402,23 @@ export class CompareListingSelectionComponent implements OnInit {
   }
 
   selectPropertyData(propertyData:any){
-    if (!this.clicked) {
-      console.log(propertyData);
+    if (this.clickedProperty == propertyData) {
+      this.clickedProperty = "";
       
     } else{
-      console.log('empty');
+      this.clickedProperty = propertyData;
     }
-    this.clicked = !this.clicked;
+    // console.log(propertyData);
   }
   
-  sendPropertyData(propertyData:any){
-    localStorage.setItem('propertyData', JSON.stringify(propertyData));
-
+  sendPropertyData(){
+    // console.log("abc");
+        
+    if (this.clickedProperty == "" ){
+        alert("Please Select a Property"); 
+      } else {
+        console.log(this.clickedProperty)
+      }
   }
 
   ngOnInit(): void {

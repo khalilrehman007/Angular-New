@@ -23,7 +23,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { CompareFilterComponent } from './compare-filter/compare-filter.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { AlertsModule } from '../alerts/alerts.module';
 
 @NgModule({
   declarations: [
@@ -53,7 +53,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatSelectModule,
     MatAutocompleteModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AlertsModule
   ]
 })
 export class CompareModuleModule { }
