@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
@@ -23,7 +23,7 @@ declare const google: any;
   templateUrl: './property-detail.component.html',
   styleUrls: ['./property-detail.component.scss']
 })
-export class PropertyDetailComponent implements OnInit {
+export class PropertyDetailComponent implements OnInit,AfterViewInit {
   homelocationsvg = 'assets/images/home-location.svg'
   bedsvg = 'assets/images/icons/Bed.svg'
   bathsvg = 'assets/images/icons/Bath-tub.svg'
@@ -249,6 +249,19 @@ export class PropertyDetailComponent implements OnInit {
     this.galleryOptions = [];
     this.galleryImages = [];
   }
+  scrollfix: boolean= false;
+  ngAfterViewInit(): void {
+    $(window).on("scroll", () => {
+      let temp: any=$(window).scrollTop();
+      console.log($(window).scrollTop());
+      if(temp >= 1030 && temp < 2100){
+        this.scrollfix= true;
+      }
+      else{
+        this.scrollfix= false;
+      }
+    });
+  }
   goBack() {
     this.location.back();
   }
@@ -287,52 +300,7 @@ export class PropertyDetailComponent implements OnInit {
       }
     ];
 
-    // this.galleryImages = [
-    //   {
-    //     small: 'assets/images/slider.png',
-    //     medium: 'assets/images/slider.png',
-    //     big: 'assets/images/slider.png'
-    //   },
-    //   {
-    //     small: 'assets/images/slider.png',
-    //     medium: 'assets/images/slider.png',
-    //     big: 'assets/images/slider.png'
-    //   },
-    //   {
-    //     small: 'assets/images/slider.png',
-    //     medium: 'assets/images/slider.png',
-    //     big: 'assets/images/slider.png'
-    //   },{
-    //     small: 'assets/images/slider.png',
-    //     medium: 'assets/images/slider.png',
-    //     big: 'assets/images/slider.png'
-    //   },
-    //   {
-    //     small: 'assets/images/slider.png',
-    //     medium: 'assets/images/slider.png',
-    //     big: 'assets/images/slider.png'
-    //   },
-    //   {
-    //     small: 'assets/images/slider.png',
-    //     medium: 'assets/images/slider.png',
-    //     big: 'assets/images/slider.png'
-    //   },
-    //   {
-    //     small: 'assets/images/slider.png',
-    //     medium: 'assets/images/slider.png',
-    //     big: 'assets/images/slider.png'
-    //   },
-    //   {
-    //     small: 'assets/images/slider.png',
-    //     medium: 'assets/images/slider.png',
-    //     big: 'assets/images/slider.png'
-    //   },
-    //   {
-    //     small: 'assets/images/slider.png',
-    //     medium: 'assets/images/slider.png',
-    //     big: 'assets/images/slider.png'
-    //   }
-    // ];
+  
   }
 
 
@@ -814,4 +782,6 @@ export class PropertyDetailComponent implements OnInit {
       }
     });
   }
+
+  
 }

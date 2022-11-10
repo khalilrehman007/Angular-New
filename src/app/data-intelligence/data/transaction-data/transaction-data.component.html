@@ -54,6 +54,13 @@
                     <mat-form-field>
                       <mat-label>Add City</mat-label>
                       <mat-select [disableOptionCentering]="true" multiple (selectionChange)="getCity($event)" [(value)]="selectedCity">
+                        <div class="multiselect-search input-design-2">
+                        <mat-optgroup>
+                        <mat-form-field>
+                          <input #search autocomplete="off" placeholder="Search..." aria-label="Search" matInput>
+                        </mat-form-field>
+                          </mat-optgroup>
+                          </div>
                         <mat-option value="All" (click)="selectAllCity()">Select All</mat-option>
                         <mat-option *ngFor="let city of citiesData" [value]="city.id">
                           {{city.name}}

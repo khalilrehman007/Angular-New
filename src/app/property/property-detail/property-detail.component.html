@@ -250,7 +250,7 @@
                         </div>
                     </div>
                     <div ngClass="col-xl-4 col-lg-4 col-md-12 col-sm-12">
-                        <div ngClass="property-owner-details">
+                        <div class="property-owner-details" [ngClass]="scrollfix?'scrollsticky':'noscroll'">
                             <div ngClass="property-listed-by">
                                 <h4>Property Listed by</h4>
                                 <img src="{{propertylistedbrand}}">
