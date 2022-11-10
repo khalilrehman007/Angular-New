@@ -395,6 +395,7 @@ export class PropertyDetailsComponent implements OnInit {
     let temp: any = document.getElementById("searchLocation");
     let address: any = temp.value;
     localStorage.setItem("address", address);
+    console.log(address);
     $.ajax({
       url: "https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyBPSEz52-AfPEVbmV_3yuGUGol_KiLb3GU",
       method: "get",
@@ -424,7 +425,7 @@ export class PropertyDetailsComponent implements OnInit {
                   localStorage.setItem("lat", e.latLng.lat());
                   localStorage.setItem("lng", e.latLng.lng());
                   $(".searchLocation").val(results[0].formatted_address);
-                  this.locationInformation = "";
+                  localStorage.setItem("address", results[0].formatted_address);
                 }
                 else {
                   this.error = "Cannot determine address at this location.";
