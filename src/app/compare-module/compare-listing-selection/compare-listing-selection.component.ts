@@ -417,7 +417,16 @@ export class CompareListingSelectionComponent implements OnInit {
     if (this.clickedProperty == "" ){
         alert("Please Select a Property"); 
       } else {
-        console.log(this.clickedProperty)
+       let temp: any = localStorage.getItem("compareIndex");
+        // console.log(temp);
+        if(temp == "1"){
+          localStorage.setItem("clickProprtyOne", JSON.stringify(this.clickedProperty))
+        } else if(temp == "2"){
+          localStorage.setItem("clickProprtyTwo", JSON.stringify(this.clickedProperty))
+        } else if(temp == "3"){
+          localStorage.setItem("clickProprtyThree", JSON.stringify(this.clickedProperty))
+        }
+        this.route.navigate(['/compare'])
       }
   }
 

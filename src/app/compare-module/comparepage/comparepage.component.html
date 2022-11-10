@@ -21,8 +21,8 @@
                 <div class="row">
                     <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
                         <div class="add-compare-div">
-                            <button class="select-compare-btn" routerLink="/compare/selection"><span
-                                    class="plus-icn">+</span> <span class="select-text">Select</span></button>
+                            <button class="select-compare-btn"><span
+                                    class="plus-icn" (click)="selectProperty(1)">+</span> <span class="select-text">Select</span></button>
                             <div ngClass="property-comparison-block position-relative hide">
                                 <div ngClass="com-img cursor-pointer" routerLink="">
                                     <img src="/assets/images/property/1.png">
@@ -40,8 +40,8 @@
                     </div>
                     <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
                         <div class="add-compare-div">
-                            <button class="select-compare-btn" routerLink="/compare/selection"><span
-                                    class="plus-icn">+</span> <span class="select-text">Select the same detail
+                            <button class="select-compare-btn" ><span
+                                    class="plus-icn"  (click)="selectProperty(2)">+</span> <span class="select-text">Select the same detail
                                     by selecting different area</span> </button>
                             <div ngClass="property-comparison-block position-relative hide">
                                 <div ngClass="com-img cursor-pointer" routerLink="">
@@ -60,8 +60,8 @@
                     </div>
                     <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
                         <div class="add-compare-div">
-                            <button class="select-compare-btn" routerLink="/compare/selection"><span
-                                    class="plus-icn">+</span> <span class="select-text">Select the same detail
+                            <button class="select-compare-btn"><span
+                                    class="plus-icn" (click)="selectProperty(3)">+</span> <span class="select-text" >Select the same detail
                                     by selecting different area</span> </button>
                             <div ngClass="property-comparison-block position-relative hide">
                                 <div ngClass="com-img cursor-pointer" routerLink="">

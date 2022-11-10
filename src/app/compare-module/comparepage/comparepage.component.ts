@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 
 @Component({
@@ -7,8 +8,27 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
   styleUrls: ['./comparepage.component.scss']
 })
 export class ComparepageComponent implements OnInit {
+  viewPropertyOne: any = "";
+  viewPropertyTwo: any = "";
+  viewPropertyThree: any = "";
 
-  constructor() { }
+  constructor(private route: Router) {
+     
+    if (localStorage.getItem("clickProprtyOne")){
+      this.viewPropertyOne = localStorage.getItem("clickProprtyOne");
+      this.viewPropertyOne = JSON.parse(this.viewPropertyOne);
+    }
+     
+    if (localStorage.getItem("clickProprtyTwo")){
+      this.viewPropertyTwo = localStorage.getItem("clickProprtyTwo");
+      this.viewPropertyTwo = JSON.parse(this.viewPropertyTwo);
+    }
+     
+    if (localStorage.getItem("clickProprtyThree")){
+      this.viewPropertyThree = localStorage.getItem("clickProprtyThree");
+      this.viewPropertyThree = JSON.parse(this.viewPropertyThree);
+    }
+  }
 
   ngOnInit(): void {
   }
@@ -61,6 +81,10 @@ export class ComparepageComponent implements OnInit {
     nav: true
   }
 
+  selectProperty(compare:any){
+    localStorage.setItem("compareIndex", compare)
+    this.route.navigate(['/compare/selection'])
+  }
   PopularComparisonList = [
     {
       src1: '/assets/images/property/1.png',
