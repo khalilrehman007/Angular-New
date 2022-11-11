@@ -18,15 +18,16 @@ export class ComparepageComponent implements OnInit {
       this.viewPropertyOne = localStorage.getItem("clickProprtyOne");
       this.viewPropertyOne = JSON.parse(this.viewPropertyOne);
     }
-     
+    
     if (localStorage.getItem("clickProprtyTwo")){
       this.viewPropertyTwo = localStorage.getItem("clickProprtyTwo");
       this.viewPropertyTwo = JSON.parse(this.viewPropertyTwo);
     }
-     
+    
     if (localStorage.getItem("clickProprtyThree")){
       this.viewPropertyThree = localStorage.getItem("clickProprtyThree");
       this.viewPropertyThree = JSON.parse(this.viewPropertyThree);
+      console.log(this.viewPropertyThree)
     }
   }
 

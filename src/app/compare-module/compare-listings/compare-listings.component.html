@@ -36,7 +36,7 @@
                                     <small *ngIf="property.rentType != ''">/{{property.rentType.name}}</small>
                                 </h4>
                                 <h5>{{property.title}}</h5>
-                                <address>{{property.address}}</address>
+                                <address><img src="/assets/images/home-location.svg">{{property.propertyAddress}}</address>
                             </div>
                             <button ngClass="delete-property"><img src="{{trash}}"></button>
                         </div>

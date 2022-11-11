@@ -23,17 +23,18 @@
                         <div class="add-compare-div">
                             <button class="select-compare-btn"><span
                                     class="plus-icn" (click)="selectProperty(1)">+</span> <span class="select-text">Select</span></button>
-                            <div ngClass="property-comparison-block position-relative hide">
+                            <div ngClass="property-comparison-block position-relative">
                                 <div ngClass="com-img cursor-pointer" routerLink="">
-                                    <img src="/assets/images/property/1.png">
+                                    <!-- <img src="/assets/images/property/1.png"> -->
+                                    <img *ngIf="viewPropertyOne.documents.length > 0 && viewPropertyOne.documents[0].fileUrl != null" src="https://beta.ovaluate.com/{{viewPropertyOne.documents[0].fileUrl}}">
+                                    <img  *ngIf="viewPropertyOne.documents.length == 0 || viewPropertyOne.documents[0].fileUrl == null" src="assets/images/placeholder.png">
                                 </div>
                                 <div ngClass="com-cntnt cursor-pointer" routerLink="">
-                                    <h4> 100 AED
-                                        <small>/Monthly</small>
+                                    <h4> {{viewPropertyOne.propertyPrice}} {{viewPropertyOne.currency}}
+                                        <small *ngIf="viewPropertyOne.rentType != ''">/{{viewPropertyOne.rentType}}</small>
                                     </h4>
-                                    <h5>Blue Wave Tower</h5>
-                                    <address><img src="/assets/images/home-location.svg"> Etihad Tower 4, Etihad Towers,
-                                        Corniche Road, Abu Dhabi</address>
+                                    <h5>{{viewPropertyOne.buildingName}}</h5>
+                                    <address><img src="/assets/images/home-location.svg">{{viewPropertyOne.propertyAddress}}</address>
                                 </div>
                             </div>
                         </div>
@@ -43,17 +44,18 @@
                             <button class="select-compare-btn" ><span
                                     class="plus-icn"  (click)="selectProperty(2)">+</span> <span class="select-text">Select the same detail
                                     by selecting different area</span> </button>
-                            <div ngClass="property-comparison-block position-relative hide">
+                            <div ngClass="property-comparison-block position-relative">
                                 <div ngClass="com-img cursor-pointer" routerLink="">
-                                    <img src="/assets/images/property/1.png">
+                                    <!-- <img src="/assets/images/property/1.png"> -->
+                                    <img *ngIf="viewPropertyTwo.documents.length > 0 && viewPropertyTwo.documents[0].fileUrl != null" src="https://beta.ovaluate.com/{{viewPropertyTwo.documents[0].fileUrl}}">
+                                    <img  *ngIf="viewPropertyTwo.documents.length == 0 || viewPropertyTwo.documents[0].fileUrl == null" src="assets/images/placeholder.png">
                                 </div>
                                 <div ngClass="com-cntnt cursor-pointer" routerLink="">
-                                    <h4> 100 AED
-                                        <small>/Monthly</small>
+                                    <h4> {{viewPropertyTwo.propertyPrice}} {{viewPropertyTwo.currency}}
+                                        <small *ngIf="viewPropertyTwo.rentType != ''">/{{viewPropertyTwo.rentType}}</small>
                                     </h4>
-                                    <h5>Blue Wave Tower</h5>
-                                    <address><img src="/assets/images/home-location.svg"> Etihad Tower 4, Etihad Towers,
-                                        Corniche Road, Abu Dhabi</address>
+                                    <h5>{{viewPropertyTwo.buildingName}}</h5>   
+                                    <address><img src="/assets/images/home-location.svg">{{viewPropertyTwo.propertyAddress}}</address>
                                 </div>
                             </div>
                         </div>
@@ -63,17 +65,18 @@
                             <button class="select-compare-btn"><span
                                     class="plus-icn" (click)="selectProperty(3)">+</span> <span class="select-text" >Select the same detail
                                     by selecting different area</span> </button>
-                            <div ngClass="property-comparison-block position-relative hide">
+                            <div ngClass="property-comparison-block position-relative ">
                                 <div ngClass="com-img cursor-pointer" routerLink="">
-                                    <img src="/assets/images/property/1.png">
+                                    <!-- <img src="/assets/images/property/1.png"> -->
+                                    <img *ngIf="viewPropertyThree.documents.length > 0 && viewPropertyThree.documents[0].fileUrl != null" src="https://beta.ovaluate.com/{{viewPropertyThree.documents[0].fileUrl}}">
+                                    <img  *ngIf="viewPropertyThree.documents.length == 0 || viewPropertyThree.documents[0].fileUrl == null" src="assets/images/placeholder.png">
                                 </div>
                                 <div ngClass="com-cntnt cursor-pointer" routerLink="">
-                                    <h4> 100 AED
-                                        <small>/Monthly</small>
+                                    <h4> {{viewPropertyThree.propertyPrice}} {{viewPropertyThree.currency}}
+                                        <small *ngIf="viewPropertyThree.rentType != ''">/{{viewPropertyThree.rentType}}</small>
                                     </h4>
-                                    <h5>Blue Wave Tower</h5>
-                                    <address><img src="/assets/images/home-location.svg"> Etihad Tower 4, Etihad Towers,
-                                        Corniche Road, Abu Dhabi</address>
+                                    <h5>{{viewPropertyThree.buildingName}}</h5>   
+                                    <address><img src="/assets/images/home-location.svg">{{viewPropertyThree.propertyAddress}}</address>
                                 </div>
                             </div>
                         </div>
