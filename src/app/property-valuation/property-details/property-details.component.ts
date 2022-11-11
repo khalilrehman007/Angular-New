@@ -134,6 +134,9 @@ export class PropertyDetailsComponent implements OnInit {
                 if (this.country.length > 0) {
                   $(".district-item-" + this.oldData.DistrictId).attr("selected", "selected");
                   $(".district-select").select2();
+                  $(".district-select").on("change", () => {
+                    this.onDistrictSelect($(".district-select").val());
+                  });
                   clearInterval(interval);
                 }
               }, 100);
