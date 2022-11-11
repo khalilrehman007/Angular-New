@@ -11,6 +11,7 @@ export class ComparepageComponent implements OnInit {
   viewPropertyOne: any = "";
   viewPropertyTwo: any = "";
   viewPropertyThree: any = "";
+  length = 0;
 
   constructor(private route: Router) {
      
