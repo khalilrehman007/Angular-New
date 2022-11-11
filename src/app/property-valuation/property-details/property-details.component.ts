@@ -132,7 +132,7 @@ export class PropertyDetailsComponent implements OnInit {
               this.showLoader = false;
               let interval: any = setInterval(() => {
                 if (this.country.length > 0) {
-                  $(".district-item-" + this.oldData.CityId).attr("selected", "selected");
+                  $(".district-item-" + this.oldData.DistrictId).attr("selected", "selected");
                   $(".district-select").select2();
                   clearInterval(interval);
                 }
