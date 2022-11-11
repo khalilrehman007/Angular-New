@@ -58,8 +58,8 @@
                             </div>
                         </div>
                         <div ngClass="properties-list-design compare-property_list-design">
-                            <div
-                                *ngFor=" let list of searchListing | paginate: { itemsPerPage: 10, currentPage: page ,totalItems:totalRecord }; let i = index">
+                            <div *ngFor=" let list of searchListing | paginate: { itemsPerPage: 10, currentPage: page ,totalItems:totalRecord }; let i = index">
+                            <div *ngIf=" checkPropertyOne.id != list.id && checkPropertyTwo.id != list.id && checkPropertyThree.id != list.id">
                                 <div ngClass="properties-list-block-design position-relative">
                                     <div ngClass="row">
                                         <div ngClass="col-xl-4 col-md-4 col-lg-4 col-sm-12">
@@ -256,6 +256,7 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
                             </div>
                             <section class="agent-pagination-wrapper">
                                 <pagination-controls (pageChange)="pageChanged($event)"
