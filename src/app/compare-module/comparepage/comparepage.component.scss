@@ -134,6 +134,9 @@
     padding: 10px 25px;
     display: inline-block;
     font-size: 14px;
+    &:hover{
+        background-color: #000;
+    }
 }
 .pcomparison-details-btn {
     margin-bottom: 15px;
@@ -178,12 +181,6 @@
 .price_pcompare {
     font-size: 14px;
     margin-bottom: 3px;
-}
-.pcomparison-details-btn>a:hover {
-    background-color: #0f2ead !important;
-}
-.compare-now-btn:hover {
-    background-color: #4a565f !important;
 }
 .compare-header .h4-design {
     font-size: 20px;
@@ -240,6 +237,9 @@
         white-space: nowrap;
         text-overflow: ellipsis;
         overflow: hidden;
+        svg{
+            margin-right: 5px;
+        }
 	}
 }
 .com-img {
@@ -334,6 +334,9 @@
     background-color: #fff;
     border-radius: 50%;
     box-shadow: 1px 1px 13px -3px grey;
+}
+.property-pcompare-cntnt svg {
+    margin-right: 5px;
 }
 
 
