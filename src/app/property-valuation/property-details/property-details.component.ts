@@ -46,7 +46,7 @@ export class PropertyDetailsComponent implements OnInit {
   countryName: any = "";
   cityName: any;
   tempAddress: any;
-  locationInformation: any = {};
+  // locationInformation: any = {};
   formDetailData: any = {};
   showLoader: boolean = false;
   bounds: any;
@@ -122,7 +122,7 @@ export class PropertyDetailsComponent implements OnInit {
           let a = this.city.filter(function (c: any) {
             return c.value == id;
           });
-          this.locationInformation.city = a[0].viewValue;
+          // this.locationInformation.city = a[0].viewValue;
           this.service.LoadDistrict(this.cityId).subscribe(e => {
             let temp: any = e;
             if (temp.message == "District list fetched successfully") {
@@ -142,7 +142,7 @@ export class PropertyDetailsComponent implements OnInit {
           this.districtId = this.oldData.DistrictId;
         }
       });
-      this.locationInformation.address = this.oldData.PropertyAddress;
+      // this.locationInformation.address = this.oldData.PropertyAddress;
       this.titleDeedType = this.oldData.TitleDeedType;
       this.propertyInsured = this.oldData.PropertyInsured;
       this.locationSelected = true;
@@ -156,11 +156,11 @@ export class PropertyDetailsComponent implements OnInit {
     temp = temp.top;
     $(window).scrollTop(temp - 200);
   }
-  confirmLocation() {
-    this.locationInformation.country = this.countryName;
-    this.locationInformation.city = this.cityName;
-    this.locationInformation.address = localStorage.getItem("address");
-  }
+  // confirmLocation() {
+  //   this.locationInformation.country = this.countryName;
+  //   this.locationInformation.city = this.cityName;
+  //   this.locationInformation.address = localStorage.getItem("address");
+  // }
   loadCountriesData() {
     this.showLoader = true;
     this.service.LoadCountries().subscribe(e => {
@@ -176,7 +176,7 @@ export class PropertyDetailsComponent implements OnInit {
         let a = this.country.filter(function (c: any) {
           return c.value == id;
         });
-        this.locationInformation.country = a[0].viewValue;
+        // this.locationInformation.country = a[0].viewValue;
       }
     });
   }
@@ -205,7 +205,7 @@ export class PropertyDetailsComponent implements OnInit {
       let temp = this.country.filter(function (c: any) {
         return c.value == e
       });
-      this.countryName = temp[0].viewValue;
+      // this.countryName = temp[0].viewValue;
       localStorage.setItem("currency", temp[0].currency)
       // this.getLocationDetails(temp[0].viewValue, false);
       this.countryId = e;
@@ -223,7 +223,7 @@ export class PropertyDetailsComponent implements OnInit {
       this.city = [];
       this.district = [];
       this.countryId = -1;
-      this.countryName = "";
+      // this.countryName = "";
     }
     this.showMap = false;
   }
@@ -234,8 +234,8 @@ export class PropertyDetailsComponent implements OnInit {
       let temp = this.city.filter(function (c: any) {
         return c.value == e
       })
-      this.cityName = temp[0].viewValue;
-      // this.getLocationDetails(temp[0].viewValue, false);
+      // this.cityName = temp[0].viewValue;
+      this.getLocationDetails(temp[0].viewValue, false);
       this.cityId = e;
       this.service.LoadDistrict(e).subscribe(e => {
         let temp: any = e;
@@ -249,7 +249,7 @@ export class PropertyDetailsComponent implements OnInit {
     } else {
       this.district = [];
       this.cityId = -1;
-      this.cityName = "";
+      // this.cityName = "";
     }
     this.showMap = false;
   }
