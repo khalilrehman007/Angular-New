@@ -30,6 +30,16 @@ export class ComparepageComponent implements OnInit {
     }
   }
 
+  checkProperty(){
+    if (this.viewPropertyOne.length == 0 || this.viewPropertyTwo.length == 0 || this.viewPropertyThree.length == 0){
+      alert("Select all three properties")
+      return;
+    } else {
+      this.route.navigate(['/compare/view'])
+      return;
+    }
+  }
+
   ngOnInit(): void {
   }
   popularComparisonOptions: OwlOptions = {
