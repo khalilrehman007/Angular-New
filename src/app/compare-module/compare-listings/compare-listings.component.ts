@@ -40,7 +40,7 @@ export class CompareListingsComponent implements OnInit {
       console.log(this.viewPropertyThree)
     }
     
-    this.service.ComparableProperties([{ "Id": "31" }, { "Id": "32" }, { "Id": "33" }]).subscribe((result: any) => {
+    this.service.ComparableProperties([{ "Id": this.viewPropertyOne.id }, { "Id": this.viewPropertyTwo.id }, { "Id": this.viewPropertyThree.id }]).subscribe((result: any) => {
       this.propertyDetails = result.data;
       console.log(this.propertyDetails)
     })
