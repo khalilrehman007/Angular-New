@@ -95,6 +95,18 @@ export class ComparepageComponent implements OnInit {
     localStorage.setItem("compareIndex", compare)
     this.route.navigate(['/compare/selection'])
   }
+  removeProperty(){
+    localStorage.removeItem("clickProprtyOne")
+    this.viewPropertyOne = "";
+  }
+  removePropertyTwo(){
+    localStorage.removeItem("clickProprtyTwo")
+    this.viewPropertyTwo = "";
+  }
+  removePropertyThree(){
+    localStorage.removeItem("clickProprtyThree")
+    this.viewPropertyThree = "";
+  }
   PopularComparisonList = [
     {
       src1: '/assets/images/property/1.png',
