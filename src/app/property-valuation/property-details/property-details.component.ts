@@ -134,6 +134,12 @@ export class PropertyDetailsComponent implements OnInit {
                 if (this.country.length > 0) {
                   $(".district-item-" + this.oldData.DistrictId).attr("selected", "selected");
                   $(".district-select").select2();
+                  $(".country-select").on("change", () => {
+                    this.onCountrySelect($(".country-select").val());
+                  });
+                  $(".city-select").on("change", () => {
+                    this.onCitySelect($(".city-select").val());
+                  });
                   $(".district-select").on("change", () => {
                     this.onDistrictSelect($(".district-select").val());
                   });
@@ -237,7 +243,6 @@ export class PropertyDetailsComponent implements OnInit {
       let temp = this.city.filter(function (c: any) {
         return c.value == e
       })
-      // this.cityName = temp[0].viewValue;
       this.getLocationDetails(temp[0].viewValue, false);
       this.cityId = e;
       this.service.LoadDistrict(e).subscribe(e => {
@@ -252,7 +257,6 @@ export class PropertyDetailsComponent implements OnInit {
     } else {
       this.district = [];
       this.cityId = -1;
-      // this.cityName = "";
     }
     this.showMap = false;
   }

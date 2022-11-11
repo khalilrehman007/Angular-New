@@ -24,6 +24,7 @@
                             <button class="select-compare-btn" *ngIf="viewPropertyOne == ''"><span
                                     class="plus-icn" (click)="selectProperty(1)">+</span> <span class="select-text">Select</span></button>
                             <div ngClass="property-comparison-block position-relative" *ngIf="viewPropertyOne != ''">
+                                <button ngClass="delete-property"><img src="{{trash}}"></button>
                                 <div ngClass="com-img cursor-pointer" >
                                     <!-- <img src="/assets/images/property/1.png"> -->
                                     <img *ngIf="viewPropertyOne.documents.length > 0 && viewPropertyOne.documents[0].fileUrl != null" src="https://beta.ovaluate.com/{{viewPropertyOne.documents[0].fileUrl}}">
@@ -45,6 +46,7 @@
                                     class="plus-icn"  (click)="selectProperty(2)">+</span> <span class="select-text">Select the same detail
                                     by selecting different area</span> </button>
                             <div ngClass="property-comparison-block position-relative" *ngIf="viewPropertyTwo != ''">
+                                <button ngClass="delete-property"><img src="{{trash}}"></button>
                                 <div ngClass="com-img cursor-pointer" >
                                     <!-- <img src="/assets/images/property/1.png"> -->
                                     <img *ngIf="viewPropertyTwo.documents.length > 0 && viewPropertyTwo.documents[0].fileUrl != null" src="https://beta.ovaluate.com/{{viewPropertyTwo.documents[0].fileUrl}}">
@@ -66,6 +68,7 @@
                                     class="plus-icn" (click)="selectProperty(3)">+</span> <span class="select-text" >Select the same detail
                                     by selecting different area</span> </button>
                             <div ngClass="property-comparison-block position-relative" *ngIf="viewPropertyThree != ''">
+                                <button ngClass="delete-property"><img src="{{trash}}"></button>
                                 <div ngClass="com-img cursor-pointer" >
                                     <!-- <img src="/assets/images/property/1.png"> -->
                                     <img *ngIf="viewPropertyThree.documents.length > 0 && viewPropertyThree.documents[0].fileUrl != null" src="https://beta.ovaluate.com/{{viewPropertyThree.documents[0].fileUrl}}">
