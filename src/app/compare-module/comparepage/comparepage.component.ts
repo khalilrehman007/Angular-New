@@ -11,7 +11,6 @@ export class ComparepageComponent implements OnInit {
   viewPropertyOne: any = "";
   viewPropertyTwo: any = "";
   viewPropertyThree: any = "";
-  length = 0;
 
   constructor(private route: Router) {
      
@@ -28,7 +27,6 @@ export class ComparepageComponent implements OnInit {
     if (localStorage.getItem("clickProprtyThree")){
       this.viewPropertyThree = localStorage.getItem("clickProprtyThree");
       this.viewPropertyThree = JSON.parse(this.viewPropertyThree);
-      console.log(this.viewPropertyThree)
     }
   }
 
