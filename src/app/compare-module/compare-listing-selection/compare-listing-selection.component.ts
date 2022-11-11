@@ -64,6 +64,9 @@ export class CompareListingSelectionComponent implements OnInit {
     },
   ]
   
+  checkPropertyOne: any = "";
+  checkPropertyTwo: any = "";
+  checkPropertyThree: any = "";
   type: any;
   PropertyCategoryId: any;
   RentTypeId: any;
@@ -101,6 +104,21 @@ export class CompareListingSelectionComponent implements OnInit {
   constructor(private authService: AuthService, private notifyService: NotificationService, private activeRoute: ActivatedRoute, private service: AppService, private api: AppService, private route: Router, private modalService: NgbModal) {
     $(window).scrollTop(0);
     this.route.events.subscribe((e: any) => {
+        
+    if (localStorage.getItem("clickProprtyOne")){
+      this.checkPropertyOne = localStorage.getItem("clickProprtyOne");
+      this.checkPropertyOne = JSON.parse(this.checkPropertyOne);
+    }
+    
+    if (localStorage.getItem("clickProprtyTwo")){
+      this.checkPropertyTwo = localStorage.getItem("clickProprtyTwo");
+      this.checkPropertyTwo = JSON.parse(this.checkPropertyTwo);
+    }
+    
+    if (localStorage.getItem("clickProprtyThree")){
+      this.checkPropertyThree = localStorage.getItem("clickProprtyThree");
+      this.checkPropertyThree = JSON.parse(this.checkPropertyThree);
+    }
       if (e instanceof NavigationEnd) {
         this.type = this.activeRoute.snapshot.queryParamMap.get('type');
         this.PropertyCategoryId = this.activeRoute.snapshot.queryParamMap.get('PropertyCategoryId');
@@ -170,6 +188,7 @@ export class CompareListingSelectionComponent implements OnInit {
         })
       }
     });
+    
   }
 
   onTrendClick(typeID: any, titleID: any) {
