@@ -13,7 +13,7 @@ export class ComparepageComponent implements OnInit {
   viewPropertyThree: any = "";
 
   constructor(private route: Router) {
-     
+    $(window).scrollTop(0); 
     if (localStorage.getItem("clickProprtyOne")){
       this.viewPropertyOne = localStorage.getItem("clickProprtyOne");
       this.viewPropertyOne = JSON.parse(this.viewPropertyOne);
@@ -31,8 +31,8 @@ export class ComparepageComponent implements OnInit {
   }
 
   checkProperty(){
-    if (this.viewPropertyOne.length == 0 || this.viewPropertyTwo.length == 0 || this.viewPropertyThree.length == 0){
-      alert("Select all three properties")
+    if (this.viewPropertyOne.length == 0 || this.viewPropertyTwo.length == 0){
+      alert("Select atleast 2 properties")
       return;
     } else {
       this.route.navigate(['/compare/view'])
