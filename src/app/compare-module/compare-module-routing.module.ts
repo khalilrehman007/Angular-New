@@ -8,8 +8,8 @@ import { AuthGuard } from '../shared/auth.guard';
 
 const routes: Routes = [
   { path: "", component: ComparepageComponent },
-  { path: "view", component: CompareListingsComponent, canActivate: [AuthGuard]},
-  { path: "selection", component: CompareListingSelectionComponent }
+  { path: "view", component: CompareListingsComponent},
+  { path: "selection", component: CompareListingSelectionComponent,canActivate: [AuthGuard] }
 ];
 
 @NgModule({
