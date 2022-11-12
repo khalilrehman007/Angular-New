@@ -24,7 +24,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   ovverified = 'assets/images/icons/ov-verified.svg'
   share1 = 'assets/images/icons/share-1.png'
   logoutimg = '../../assets/images/logout-popup-banner.png'
-  proAvatar: any = '../../assets/images/user.png'
+  proAvatar: any = ''
   proClose = '../../assets/images/profile/close.png'
   proImgEdit = '../../assets/images/profile/edit.png'
   proEdit = '../../assets/images/profile/create.png'
