@@ -86,6 +86,7 @@ export class PaymentPackagesComponent implements OnInit {
       name: 'Ovaluate',
       description: 'Fill Up Your Details',
       amount: amount * 100,
+      currency:"aed"
     });
   }
   invokeStripe() {
