@@ -11,6 +11,11 @@ export class ComparepageComponent implements OnInit {
   viewPropertyOne: any = "";
   viewPropertyTwo: any = "";
   viewPropertyThree: any = "";
+  error: any = "";
+  showError: boolean = false;
+  errorResponse(data: any) {
+    this.showError = false;
+  }
 
   constructor(private route: Router) {
     $(window).scrollTop(0); 
@@ -32,7 +37,8 @@ export class ComparepageComponent implements OnInit {
 
   checkProperty(){
     if (this.viewPropertyOne.length == 0 || this.viewPropertyTwo.length == 0){
-      alert("Select atleast 2 properties")
+      this.error = "Select atleast 2 properties";
+      this.showError = true;
       return;
     } else {
       this.route.navigate(['/compare/view'])

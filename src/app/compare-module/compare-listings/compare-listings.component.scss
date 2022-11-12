@@ -55,6 +55,9 @@
         color: #000;
         margin-bottom: 0px;
         font-weight: 300;
+		svg{
+			margin-right: 5px;
+		}
 	}
 }
 .property-comparison-block {
@@ -121,6 +124,8 @@
 	padding: 0px 15px;
     margin: 0px 10px;
     min-width: 305px;
+	border-left: 1px solid #dfdfdf;
+    border-right: 1px solid #dfdfdf;
 }
 .title-description {
 	font-weight: 300;
@@ -145,11 +150,13 @@
 .property-compare-box>.compare-block-list:first-child>.comparen-list-item {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
+	border-top: 1px solid #dfdfdf;
 }
 .property-compare-box>.compare-block-list:last-child>.comparen-list-item {
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
 	padding-bottom: 20px;
+	border-bottom: 1px solid #dfdfdf;
 }
 .property-compare-box {
     width: 100%;
