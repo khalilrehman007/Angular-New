@@ -29,6 +29,7 @@ export class PaymentPackagesComponent implements OnInit {
   selectedPackageByPoints: any = "";
   error: any = ""
   scroll: boolean = false;
+  paymentHandler: any = null;
   showError: boolean = false;
   success: any = "";
   showSuccess: boolean = false;
@@ -67,8 +68,44 @@ export class PaymentPackagesComponent implements OnInit {
 
 
   }
-
+  
   ngOnInit(): void {
+    this.invokeStripe();
+  }
+
+  makePayment(amount: any) {
+    const paymentHandler = (<any>window).StripeCheckout.configure({
+      key: 'pk_test_51KdqxdBjsMxFtgBeSKmSXVjwG6yqKIUT89jWGFrZcON2gxqhtfhH6EFSHYVdrqPAU4UxEsIlAUEhnmPAlkvxMkzK0009RlNxWJ',
+      locale: 'auto',
+      token: function (stripeToken: any) {
+        console.log(stripeToken);
+        alert('Stripe token generated!');
+      },
+    });
+    paymentHandler.open({
+      name: 'Ovaluate',
+      description: 'Fill Up Your Details',
+      amount: amount * 100,
+    });
+  }
+  invokeStripe() {
+    if (!window.document.getElementById('stripe-script')) {
+      const script = window.document.createElement('script');
+      script.id = 'stripe-script';
+      script.type = 'text/javascript';
+      script.src = 'https://checkout.stripe.com/checkout.js';
+      script.onload = () => {
+        this.paymentHandler = (<any>window).StripeCheckout.configure({
+          key: 'pk_test_51KdqxdBjsMxFtgBeSKmSXVjwG6yqKIUT89jWGFrZcON2gxqhtfhH6EFSHYVdrqPAU4UxEsIlAUEhnmPAlkvxMkzK0009RlNxWJ',
+          locale: 'auto',
+          token: function (stripeToken: any) {
+            console.log(stripeToken);
+            alert('Payment has been successfull!');
+          },
+        });
+      };
+      window.document.body.appendChild(script);
+    }
   }
 
   loadProfessionalTypes() {
@@ -129,8 +166,9 @@ export class PaymentPackagesComponent implements OnInit {
   }
   proceedPayment() {
     if (this.selectedPackage != "") {
-      localStorage.setItem("seletedPackage", JSON.stringify(this.selectedPackage));
-      this.router.navigate(["/payment-form"]);
+      // localStorage.setItem("seletedPackage", JSON.stringify(this.selectedPackage));
+      // this.router.navigate(["/payment-form"]);
+      this.makePayment(this.selectedPackage.price,)    
     } else {
       this.error = "Please Select a points package type";
       this.showError = true;
