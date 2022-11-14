@@ -141,7 +141,7 @@ export class ShortTermRentComponent implements OnInit {
           FurnishingTypeId: this.FurnishingTypeId, MinCarpetArea: this.MinCarpetArea, MaxCarpetArea: this.MaxCarpetArea,
           PropertyFeatureIds: this.PropertyFeatureIds, KeyWords: this.KeyWords
         }
-
+        console.log(params);
         this.LoadPropertyCategories();
         this.loadListingProperty(params);
         this.LoadPropertySortBy();

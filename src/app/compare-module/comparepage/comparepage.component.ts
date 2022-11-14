@@ -99,7 +99,15 @@ export class ComparepageComponent implements OnInit {
 
   selectProperty(compare:any){
     localStorage.setItem("compareIndex", compare)
-    this.route.navigate(['/compare/selection'])
+    if(this.viewPropertyOne == "") {
+      this.route.navigate(['/compare/selection'])
+    } else if(this.viewPropertyOne.rentType == "") {
+      this.route.navigate(['/compare/selection'], { queryParams: {type:"Buy",PropertyListingTypeId:2} })
+    } else if (this.viewPropertyOne.rentType == "Short Term ") {
+      this.route.navigate(['/compare/selection'], { queryParams: {RentTypeId:1} })
+    } else {
+      this.route.navigate(['/compare/selection'], { queryParams: {type:"Rent",PropertyListingTypeId:1} })
+    }
   }
   removeProperty(){
     localStorage.removeItem("clickProprtyOne")
