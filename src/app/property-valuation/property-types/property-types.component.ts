@@ -49,6 +49,8 @@ export class PropertyTypesComponent implements OnInit {
   proceed: boolean = false;
   elevationValue: any;
   currentField: any;
+  locatedNearData: any = [];
+  locatedNear: any = [];
   propertyStatusData: any = [];
   errorResponse(data: any) {
     this.showError = false;
@@ -76,6 +78,7 @@ export class PropertyTypesComponent implements OnInit {
   ];
   propertyTypeForm = new FormGroup({
     apartmentNo: new FormControl("", Validators.required),
+    parking: new FormControl("", Validators.required),
     constructionAge: new FormControl("", Validators.required),
     elevation: new FormControl("", Validators.required),
     apartmentSize: new FormControl("", Validators.required),
@@ -195,7 +198,7 @@ export class PropertyTypesComponent implements OnInit {
     this.formData.PropertyCategoryId = e;
     this.typeSelected = false;
     this.propertyType = [];
-    this.service.LoadTypebyLatLng({ id: e, lat: this.formData.PropertyLat, lng: this.formData.PropertyLong }).subscribe((result) => {
+    this.service.LoadType(e).subscribe((result) => {
       this.propertyType = result;
       this.propertyType = this.propertyType.data;
       if (this.propertyType.length == 0) {
@@ -223,6 +226,7 @@ export class PropertyTypesComponent implements OnInit {
     this.purposeOfValuation = [];
     this.featuresData = [];
     this.propertyData = this.propertyType.filter((item: any) => item.id == e.value)[0];
+    console.log(this.propertyData);
     if (this.propertyData.hasUnits) {
       this.unitHMTL = [{ show: true, id: 1 }];
     }
@@ -232,6 +236,9 @@ export class PropertyTypesComponent implements OnInit {
     });
     this.service.PropertyStatuses().subscribe((result: any) => {
       this.propertyStatusData = result.data
+    })
+    this.service.LocatedNear().subscribe((result: any) => {
+      this.locatedNear = result.data;
     })
     this.loadFurnishingType();
     this.service.PropertyFeatures(this.propertyData.id).subscribe((result: any) => {
@@ -300,6 +307,10 @@ export class PropertyTypesComponent implements OnInit {
   }
   addUnits() {
     this.unitHMTL.push({ show: true, id: this.unitHMTL[this.unitHMTL.length - 1].id + 1 });
+    $(".btn-add-unit").parent().parent().addClass("d-none");
+  }
+  getLocatedNear(e: any) {
+    this.locatedNearData = e.value;
   }
   removeUnits(e: any) {
     for (let i = 0; i < this.unitHMTL.length; i++) {
@@ -307,6 +318,8 @@ export class PropertyTypesComponent implements OnInit {
         this.unitHMTL[i].show = false;
       }
     }
+    let temp:any = $(".btn-add-unit").length - 2;
+    $($(".btn-add-unit")[temp]).parent().parent().removeClass("d-none");
   }
   animate() {
     let temp: any = $("." + this.currentField).offset()?.top;
@@ -392,6 +405,11 @@ export class PropertyTypesComponent implements OnInit {
       this.error = "Please Enter Plot Size";
       this.showError = true;
       return;
+    } else if (this.propertyData.hasParking && this.propertyTypeForm.value.parking == "") {
+      this.currentField = "parking-input";
+      this.error = "Please Enter Parking";
+      this.showError = true;
+      return;
     } else if (this.propertyTypeForm.value.buildupArea == "" && this.propertyData.hasBuildUpArea) {
       this.currentField = "buildup-area-input";
       this.error = "Please Enter Buildup Area";
@@ -444,10 +462,16 @@ export class PropertyTypesComponent implements OnInit {
     } else {
       this.formDetailData.elevation = 0;
     }
+    let tempData:any = "";
+    for (let i = 0; i < this.locatedNearData.length; i++) {
+      tempData.push({ "LocatedNearId": this.locatedNearData[i] });
+    }
+    this.formData.PropertyListingLocatedNears = tempData;
     this.formData.ConstructionAge = this.propertyTypeForm.value.constructionAge;
     this.formDetailData.PlotSize = this.propertyTypeForm.value.apartmentSize;
     this.formDetailData.BuildupArea = 0;
 
+    this.formData.Parkings = this.propertyTypeForm.value.parking;
     this.formData.PlotNo = this.propertyTypeForm.value.apartmentNo;
     this.formData.PlotSize = this.propertyTypeForm.value.apartmentSize;
     this.formData.BuildupArea = this.propertyTypeForm.value.buildupArea;
@@ -573,6 +597,5 @@ export class PropertyTypesComponent implements OnInit {
       }
     }
     
-  }
-  
+  } 
 }
