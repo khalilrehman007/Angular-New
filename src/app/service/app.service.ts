@@ -486,4 +486,7 @@ export class AppService {
   GetTransactionType() {
     return this.http.get(this.apiurl + 'TransactionType');
   }
+  ValuationDataIsExists(data:any) {
+    return this.http.post(this.apiurl + 'ValuationDataIsExists', data);
+  }
 }
