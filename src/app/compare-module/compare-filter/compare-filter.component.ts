@@ -446,8 +446,8 @@ export class CompareFilterComponent implements OnInit {
       ,PropertyFeatureIds:this.propertyFeatureIds,FurnishingTypeId:this.furnishedType,
       MinCarpetArea:this.minCarpet,MaxCarpetArea:this.maxCarpet
     }
-    if(this.routeCheck == '/property/search'){
-      this.route.navigate(['/property/search'],{queryParams:params})
+    if(this.routeCheck == 'compare/selection'){
+      this.route.navigate(['compare/selection'],{queryParams:params})
       this.childToParentDataLoad.emit(objects)
       // this.proceedSearch()
     }else{
@@ -514,8 +514,8 @@ export class CompareFilterComponent implements OnInit {
     }
 
 
-    if(this.routeCheck == '/property/search'){
-      this.route.navigate(['/property/search'],{queryParams:params})
+    if(this.routeCheck == 'compare/selection'){
+      this.route.navigate(['compare/selection'],{queryParams:params})
       this.childToParentDataLoad.emit(object)
       // this.proceedSearch()
     }else{
@@ -547,7 +547,7 @@ export class CompareFilterComponent implements OnInit {
     // Clear the input value
     event.chipInput!.clear();
 
-    if(this.routeCheck == '/property/search'){
+    if(this.routeCheck == 'compare/selection'){
       this.proceedSearch()
     }else{
       this.proceedSearchViewMap()
@@ -561,7 +561,7 @@ export class CompareFilterComponent implements OnInit {
     if (index >= 0) {
       this.Keywords.splice(index, 1);
     }
-    if(this.routeCheck == '/property/search'){
+    if(this.routeCheck == 'compare/selection'){
       this.proceedSearch()
     }else{
       this.proceedSearchViewMap()
@@ -574,7 +574,7 @@ export class CompareFilterComponent implements OnInit {
   furnishedType :any = '';
   furnishedTypeChange(data :any){
     this.furnishedType = data
-    if(this.routeCheck == '/property/search'){
+    if(this.routeCheck == 'compare/selection'){
       this.proceedSearch()
     }else{
       this.proceedSearchViewMap()
@@ -602,7 +602,7 @@ export class CompareFilterComponent implements OnInit {
       }
     }
 
-    if(this.routeCheck == '/property/search'){
+    if(this.routeCheck == 'compare/selection'){
       this.proceedSearch()
     }else{
       this.proceedSearchViewMap()
@@ -614,7 +614,7 @@ export class CompareFilterComponent implements OnInit {
   minCarpet : any = ''
   minCarpetAreaChange(searchValue: any): void {
     this.minCarpet = searchValue
-    if(this.routeCheck == '/property/search'){
+    if(this.routeCheck == 'compare/selection'){
       this.proceedSearch()
     }else{
       this.proceedSearchViewMap()
@@ -624,7 +624,7 @@ export class CompareFilterComponent implements OnInit {
   maxCarpet : any = ''
   maxCarpetAreaChange(searchValue: any): void {
     this.maxCarpet = searchValue
-    if(this.routeCheck == '/property/search'){
+    if(this.routeCheck == 'compare/selection'){
       this.proceedSearch()
     }else{
       this.proceedSearchViewMap()
@@ -728,7 +728,7 @@ export class CompareFilterComponent implements OnInit {
       ,PropertyFeatureIds:this.propertyFeatureIds,FurnishingTypeId:this.furnishedType,
       MinCarpetArea:this.minCarpet,MaxCarpetArea:this.maxCarpet
     }
-    this.route.navigate(['/property/mapview'],{queryParams:params})
+    this.route.navigate(['compare/selection'],{queryParams:params})
     this.childToParentDataLoad.emit(objects)
 
   }
