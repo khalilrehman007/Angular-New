@@ -486,4 +486,10 @@ export class AppService {
   GetTransactionType() {
     return this.http.get(this.apiurl + 'TransactionType');
   }
+  GetPopularListingsComparison(data:any) {
+    return this.http.get(this.apiurl + 'GetPopularListingsComparison/' + data);
+  }
+  ValuationDataIsExists(data:any) {
+    return this.http.post(this.apiurl + 'ValuationDataIsExists', data);
+  }
 }

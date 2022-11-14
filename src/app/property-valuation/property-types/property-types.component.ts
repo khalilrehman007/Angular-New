@@ -49,6 +49,8 @@ export class PropertyTypesComponent implements OnInit {
   proceed: boolean = false;
   elevationValue: any;
   currentField: any;
+  locatedNearData: any = [];
+  locatedNear: any = [];
   propertyStatusData: any = [];
   errorResponse(data: any) {
     this.showError = false;
@@ -195,7 +197,7 @@ export class PropertyTypesComponent implements OnInit {
     this.formData.PropertyCategoryId = e;
     this.typeSelected = false;
     this.propertyType = [];
-    this.service.LoadTypebyLatLng({ id: e, lat: this.formData.PropertyLat, lng: this.formData.PropertyLong }).subscribe((result) => {
+    this.service.LoadType(e).subscribe((result) => {
       this.propertyType = result;
       this.propertyType = this.propertyType.data;
       if (this.propertyType.length == 0) {
@@ -223,6 +225,7 @@ export class PropertyTypesComponent implements OnInit {
     this.purposeOfValuation = [];
     this.featuresData = [];
     this.propertyData = this.propertyType.filter((item: any) => item.id == e.value)[0];
+    console.log(this.propertyData);
     if (this.propertyData.hasUnits) {
       this.unitHMTL = [{ show: true, id: 1 }];
     }
@@ -232,6 +235,9 @@ export class PropertyTypesComponent implements OnInit {
     });
     this.service.PropertyStatuses().subscribe((result: any) => {
       this.propertyStatusData = result.data
+    })
+    this.service.LocatedNear().subscribe((result: any) => {
+      this.locatedNear = result.data;
     })
     this.loadFurnishingType();
     this.service.PropertyFeatures(this.propertyData.id).subscribe((result: any) => {
@@ -300,6 +306,10 @@ export class PropertyTypesComponent implements OnInit {
   }
   addUnits() {
     this.unitHMTL.push({ show: true, id: this.unitHMTL[this.unitHMTL.length - 1].id + 1 });
+    $(".btn-add-unit").parent().parent().addClass("d-none");
+  }
+  getLocatedNear(e: any) {
+    this.locatedNearData = e.value;
   }
   removeUnits(e: any) {
     for (let i = 0; i < this.unitHMTL.length; i++) {
@@ -307,6 +317,8 @@ export class PropertyTypesComponent implements OnInit {
         this.unitHMTL[i].show = false;
       }
     }
+    let temp:any = $(".btn-add-unit").length - 2;
+    $($(".btn-add-unit")[temp]).parent().parent().removeClass("d-none");
   }
   animate() {
     let temp: any = $("." + this.currentField).offset()?.top;
@@ -434,65 +446,89 @@ export class PropertyTypesComponent implements OnInit {
         return;
       }
     }
-    this.formData.Bedrooms = this.bedrooms;
-    this.formData.Bathrooms = this.bathrooms;
-    this.formData.FurnishingType = this.furnishing;
-    this.formData.FittingType = this.fitting;
-    this.formDetailData.PlotNo = this.propertyTypeForm.value.apartmentNo;
-    if (this.propertyData.hasElevation) {
-      this.formDetailData.elevation = $(".elevation-input").val();
-    } else {
-      this.formDetailData.elevation = 0;
-    }
-    this.formData.ConstructionAge = this.propertyTypeForm.value.constructionAge;
-    this.formDetailData.PlotSize = this.propertyTypeForm.value.apartmentSize;
-    this.formDetailData.BuildupArea = 0;
-
-    this.formData.PlotNo = this.propertyTypeForm.value.apartmentNo;
-    this.formData.PlotSize = this.propertyTypeForm.value.apartmentSize;
-    this.formData.BuildupArea = this.propertyTypeForm.value.buildupArea;
-    this.formData.Elevation = this.propertyTypeForm.value.elevation;
-    this.formData.NoOfRoads = this.roadCount;
-    this.formData.ValuationPropertyUnits = "";
-    if (this.formData.PropertyStatusId == 2) {
-      this.formData.Income = this.propertyTypeForm.value.income;
-      this.formData.Expense = this.propertyTypeForm.value.expense;
-    } else {
-      this.formData.Income = 0;
-      this.formData.Expense = 0;
-    }
-    if (this.propertyData.hasUnits) {
-      this.formData.Expense = this.propertyTypeForm.value.expense;
-      this.propertyStatus(0, "-");
-    }
-    let temp: any = [];
-    for (let i = 0; i < this.unitHMTL.length; i++) {
-      if (this.unitHMTL[i].show) {
-        temp.push({ PropertyUnitTypeId: $("#unit-wrapper-" + this.unitHMTL[i].id).find(".mat-select-min-line").text(), NumberOfUnit: $("#unit-wrapper-" + this.unitHMTL[i].id).find(".no-of-units").val(), Vacant: $("#unit-wrapper-" + this.unitHMTL[i].id).find(".vacant").val(), UnitSize: $("#unit-wrapper-" + this.unitHMTL[i].id).find(".size-sq-ft").val(), NumberOfBeds: $("#unit-wrapper-" + this.unitHMTL[i].id).find(".bedroom").val(), RentValue: $("#unit-wrapper-" + this.unitHMTL[i].id).find(".rent-value").val() });
+    let checkData:any = {};
+    checkData.CityId = this.formData.CityId;
+    checkData.DistrictId = this.formData.DistrictId;
+    checkData.PropertyTypeId = this.formData.PropertyTypeId;
+    checkData.PropertyLat = this.formData.PropertyLat;
+    checkData.PropertyLong = this.formData.PropertyLong;
+    checkData.Bedrooms = this.formData.Bedrooms;
+    checkData.Bathrooms = this.formData.Bathrooms;
+    checkData.PlotSize = this.propertyTypeForm.value.apartmentSize;
+    checkData.BuildupArea = this.propertyTypeForm.value.buildupArea;
+    this.showLoader = true;
+    this.service.ValuationDataIsExists(checkData).subscribe((result:any) => {
+      if(result.message == "Valauation data is not Exists") {
+        this.error = "Valauation data does not Exists";
+      } else {
+        this.showError = true;
+        this.showLoader = false;
+        this.formData.Bedrooms = this.bedrooms;
+        this.formData.Bathrooms = this.bathrooms;
+        this.formData.FurnishingType = this.furnishing;
+        this.formData.FittingType = this.fitting;
+        this.formDetailData.PlotNo = this.propertyTypeForm.value.apartmentNo;
+        if (this.propertyData.hasElevation) {
+          this.formDetailData.elevation = $(".elevation-input").val();
+        } else {
+          this.formDetailData.elevation = 0;
+        }
+        let tempData:any = "";
+        for (let i = 0; i < this.locatedNearData.length; i++) {
+          tempData.push({ "LocatedNearId": this.locatedNearData[i] });
+        }
+        this.formData.ValuationLocatedNears = tempData;
+        this.formData.ConstructionAge = this.propertyTypeForm.value.constructionAge;
+        this.formDetailData.PlotSize = this.propertyTypeForm.value.apartmentSize;
+        this.formDetailData.BuildupArea = 0;
+    
+        this.formData.PlotNo = this.propertyTypeForm.value.apartmentNo;
+        this.formData.PlotSize = this.propertyTypeForm.value.apartmentSize;
+        this.formData.BuildupArea = this.propertyTypeForm.value.buildupArea;
+        this.formData.Elevation = this.propertyTypeForm.value.elevation;
+        this.formData.NoOfRoads = this.roadCount;
+        this.formData.ValuationPropertyUnits = "";
+        if (this.formData.PropertyStatusId == 2) {
+          this.formData.Income = this.propertyTypeForm.value.income;
+          this.formData.Expense = this.propertyTypeForm.value.expense;
+        } else {
+          this.formData.Income = 0;
+          this.formData.Expense = 0;
+        }
+        if (this.propertyData.hasUnits) {
+          this.formData.Expense = this.propertyTypeForm.value.expense;
+          this.propertyStatus(0, "-");
+        }
+        let temp: any = [];
+        for (let i = 0; i < this.unitHMTL.length; i++) {
+          if (this.unitHMTL[i].show) {
+            temp.push({ PropertyUnitTypeId: $("#unit-wrapper-" + this.unitHMTL[i].id).find(".mat-select-min-line").text(), NumberOfUnit: $("#unit-wrapper-" + this.unitHMTL[i].id).find(".no-of-units").val(), Vacant: $("#unit-wrapper-" + this.unitHMTL[i].id).find(".vacant").val(), UnitSize: $("#unit-wrapper-" + this.unitHMTL[i].id).find(".size-sq-ft").val(), NumberOfBeds: $("#unit-wrapper-" + this.unitHMTL[i].id).find(".bedroom").val(), RentValue: $("#unit-wrapper-" + this.unitHMTL[i].id).find(".rent-value").val() });
+          }
+        }
+        let unitName: any = [];
+        let unitID: any = [];
+        for (let i = 0; i < this.propertyUnits.length; i++) {
+          unitName.push(this.propertyUnits[i].name);
+          unitID.push(this.propertyUnits[i].id);
+        }
+        for (let i = 0; i < temp.length; i++) {
+          temp[i].PropertyUnitTypeId = unitID[unitName.indexOf(temp[i].PropertyUnitTypeId)];
+        }
+        this.formDetailData.ValuationPropertyUnits = temp;
+        this.formData.ValuationPropertyUnits = temp;
+        temp = [];
+        for (let i = 0; i < this.featuresFormData.length; i++) {
+          temp.push({ PropertyFeatureId: this.featuresFormData[i] });
+        }
+        this.formDetailData.PropertyFeatures = this.featuresFormName;
+        this.formData.PropertyFeatures = temp;
+        localStorage.setItem('valuationDetailData', JSON.stringify(this.formDetailData));
+        localStorage.setItem('propertyTypeData', JSON.stringify(this.formData));
+        localStorage.setItem('valuationData', JSON.stringify(this.formData));
+        localStorage.removeItem("valuationFromFooter");
+        this.router.navigate(['/valuation/PropertyDocument']);
       }
-    }
-    let unitName: any = [];
-    let unitID: any = [];
-    for (let i = 0; i < this.propertyUnits.length; i++) {
-      unitName.push(this.propertyUnits[i].name);
-      unitID.push(this.propertyUnits[i].id);
-    }
-    for (let i = 0; i < temp.length; i++) {
-      temp[i].PropertyUnitTypeId = unitID[unitName.indexOf(temp[i].PropertyUnitTypeId)];
-    }
-    this.formDetailData.ValuationPropertyUnits = temp;
-    this.formData.ValuationPropertyUnits = temp;
-    temp = [];
-    for (let i = 0; i < this.featuresFormData.length; i++) {
-      temp.push({ PropertyFeatureId: this.featuresFormData[i] });
-    }
-    this.formDetailData.PropertyFeatures = this.featuresFormName;
-    this.formData.PropertyFeatures = temp;
-    localStorage.setItem('valuationDetailData', JSON.stringify(this.formDetailData));
-    localStorage.setItem('propertyTypeData', JSON.stringify(this.formData));
-    localStorage.setItem('valuationData', JSON.stringify(this.formData));
-    localStorage.removeItem("valuationFromFooter");
-    this.router.navigate(['/valuation/PropertyDocument']);
+    })
   }
   validateInput(e: any) {
     if (e.key.charCodeAt(0) >= 48 && e.key.charCodeAt(0) <= 57 || e.key.charCodeAt(0) >= 65 && e.key.charCodeAt(0) <= 90 || e.key.charCodeAt(0) >= 97 && e.key.charCodeAt(0) <= 122) {
@@ -573,6 +609,5 @@ export class PropertyTypesComponent implements OnInit {
       }
     }
     
-  }
-  
+  } 
 }
