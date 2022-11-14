@@ -251,6 +251,37 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div ngClass="col-xl-6 col-lg-6 col-sm-12" *ngIf="propertyData.hasParking">
+                                        <div ngClass="block-wrapper mb-4">
+                                            <label class="h6-design">Parking <span
+                                                    ngClass="required-span">*</span></label>
+                                            <div class="parking-input">
+                                                <mat-form-field class="full-width input-design-2" appearance="fill">
+                                                    <input matInput type="text" (keypress)="validateInput($event)" (input)="getInput($event, false)"
+                                                        placeholder="Parking"
+                                                        formControlName="parking">
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4" *ngIf="propertyData.marHasLocatedNear">
+                                        <div ngClass="block-wrapper">
+                                            <div ngClass="select-design">
+                                                <label>Located Near</label>
+                                                <div class="located-near-input">
+                                                    <mat-form-field appearance="fill">
+                                                        <mat-label> Select Near Locations</mat-label>
+                                                        <mat-select [disableOptionCentering]="true" multiple
+                                                            [(value)]="locatedNearData"
+                                                            (selectionChange)="getLocatedNear($event)">
+                                                            <mat-option *ngFor="let item of locatedNear"
+                                                                value="{{item.id}}">{{item.name}}</mat-option>
+                                                        </mat-select>
+                                                    </mat-form-field>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div ngClass="col-xl-6 col-lg-6 col-sm-12" *ngIf="propertyData.hasBed">
                                         <div ngClass="block-wrapper mb-4 select-design">
                                             <label class="h6-design">Bedroom</label>
@@ -401,14 +432,14 @@
                                                 </div>
                                             </div>
                                             <div ngClass="col-xl-3 col-lg-3 col-sm-12">
-                                                <div ngClass="unit_add-more" (click)="addUnits()">
-                                                    <button ngClass="add_unit-btn"><img src="{{plus}}">Add More
+                                                <div class="unit_add-more" (click)="addUnits()">
+                                                    <button class="add_unit-btn btn-add-unit"><img src="{{plus}}">Add More
                                                         Unit</button>
                                                 </div>
                                             </div>
                                             <div ngClass="col-xl-3 col-lg-3 col-sm-12" *ngIf="item.id != 1">
                                                 <div ngClass="unit_add-more" (click)="removeUnits(item.id)">
-                                                    <button ngClass="add_unit-btn"><img src="{{minus}}">Remove
+                                                    <button ngClass="add_unit-btn btn-remove-unit"><img src="{{minus}}">Remove
                                                         Unit</button>
                                                 </div>
                                             </div>
@@ -445,7 +476,7 @@
                                         <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                             <div ngClass="block-wrapper mb-4">
                                                 <label class="h6-design">Totel Expense per Annum <span
-                                                        ngClass="required-span">*</span></label>
+                                                        ngClass="required-span">*</span><span ngClass="small-label">(Insert "0" if paid by tenants)</span></label>
                                                 <div class="expense-input">
                                                     <mat-form-field class="full-width input-design-2" appearance="fill">
                                                         <input matInput type="number" formControlName="expense"
