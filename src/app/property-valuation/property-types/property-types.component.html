@@ -251,19 +251,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div ngClass="col-xl-6 col-lg-6 col-sm-12" *ngIf="propertyData.hasParking">
-                                        <div ngClass="block-wrapper mb-4">
-                                            <label class="h6-design">Parking <span
-                                                    ngClass="required-span">*</span></label>
-                                            <div class="parking-input">
-                                                <mat-form-field class="full-width input-design-2" appearance="fill">
-                                                    <input matInput type="text" (keypress)="validateInput($event)" (input)="getInput($event, false)"
-                                                        placeholder="Parking"
-                                                        formControlName="parking">
-                                                </mat-form-field>
-                                            </div>
-                                        </div>
-                                    </div>
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4" *ngIf="propertyData.marHasLocatedNear">
                                         <div ngClass="block-wrapper">
                                             <div ngClass="select-design">
