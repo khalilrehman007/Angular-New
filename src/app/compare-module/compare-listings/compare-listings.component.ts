@@ -50,6 +50,10 @@ export class CompareListingsComponent implements OnInit {
   scroll(el: HTMLElement) {
     el.scrollIntoView();
   }
-
-
+  removeProperty(e:any) {
+    console.log(e);
+    let temp:any = [];
+    temp = this.propertyDetails.filter((item: any) => item.id != e);
+    this.propertyDetails = temp;
+  }
 }
