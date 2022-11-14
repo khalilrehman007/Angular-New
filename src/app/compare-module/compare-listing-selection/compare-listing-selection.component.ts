@@ -440,6 +440,7 @@ export class CompareListingSelectionComponent implements OnInit {
         // console.log(temp);
         if(temp == "1"){
           localStorage.setItem("clickProprtyOne", JSON.stringify(this.clickedProperty))
+          console.log(this.clickedProperty)
         } else if(temp == "2"){
           localStorage.setItem("clickProprtyTwo", JSON.stringify(this.clickedProperty))
         } else if(temp == "3"){
