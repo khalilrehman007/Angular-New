@@ -6,6 +6,7 @@ import * as mapboxgl from 'mapbox-gl';
 import { environment } from 'src/environments/environment';
 import { NotificationService } from "../../service/notification.service";
 import { AuthService } from "../../service/auth.service";
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-details',
@@ -30,6 +31,7 @@ export class DetailsComponent implements OnInit {
   blogs: any;
   submitted = false;
   responsedata: any;
+  content: any;
   dynamicSlides1: any = [];
   // dynamicSlides2: any = [];
   commercialdynamicSlides: any = [];
@@ -215,7 +217,7 @@ export class DetailsComponent implements OnInit {
   userId: any;
   user: any
 
-  constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute, private service: AppService, private notifyService: NotificationService) {
+  constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute, private service: AppService, private notifyService: NotificationService,private modalService: NgbModal) {
     $(window).scrollTop(0);
     this.route.params.subscribe(params => {
       this.id = params['id'];
@@ -345,5 +347,8 @@ export class DetailsComponent implements OnInit {
         this.newData2();
       }, 1000);
     }
+  }
+  openVerticallyCentered(content: any) {
+    this.modalService.open(content, { centered: true });
   }
 }
