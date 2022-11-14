@@ -113,9 +113,8 @@
                                     <div class="pcompare-properties-flex d-flex">
                                         <div class="pcompare-properties-first">
                                             <div class="property-pcompare-img">
-                                                <!-- <img src="{{pc.src1}}"> -->
-                                                <img *ngIf="pc.documents.length > 0 && pc.documents[0].fileUrl != null" src="https://beta.ovaluate.com/{{pc.documents[0].fileUrl}}">
-                                                <img  *ngIf="pc.documents.length == 0 || pc.documents[0].fileUrl == null" src="assets/images/placeholder.png">
+                                                <img *ngIf="pc[0].documents.length > 0 && pc[0].documents[0].fileUrl != null" src="https://beta.ovaluate.com/{{pc[0].documents[0].fileUrl}}">
+                                                <img  *ngIf="pc[0].documents.length == 0 || pc[0].documents[0].fileUrl == null" src="assets/images/placeholder.png">
                                             </div>
                                             <div class="property-pcompare-cntnt">
                                                 <h4>
@@ -135,7 +134,8 @@
                                         </div>
                                         <div class="pcompare-properties-second">
                                             <div class="property-pcompare-img">
-                                                <img src="{{pc.src2}}">
+                                                <img *ngIf="pc[1].documents.length > 0 && pc[1].documents[0].fileUrl != null" src="https://beta.ovaluate.com/{{pc[1].documents[0].fileUrl}}">
+                                                <img  *ngIf="pc[1].documents.length == 0 || pc[1].documents[0].fileUrl == null" src="assets/images/placeholder.png">
                                             </div>
                                             <div class="property-pcompare-cntnt">
                                                 <h4>
@@ -155,7 +155,8 @@
                                         </div>
                                         <div class="pcompare-properties-third">
                                             <div class="property-pcompare-img">
-                                                <img src="{{pc.src2}}">
+                                                <img *ngIf="pc[1].documents.length > 0 && pc[1].documents[0].fileUrl != null" src="https://beta.ovaluate.com/{{pc[1].documents[0].fileUrl}}">
+                                                <img  *ngIf="pc[1].documents.length == 0 || pc[1].documents[0].fileUrl == null" src="assets/images/placeholder.png">
                                             </div>
                                             <div class="property-pcompare-cntnt">
                                                 <h4>
