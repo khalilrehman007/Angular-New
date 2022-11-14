@@ -37,12 +37,10 @@ export class CompareListingsComponent implements OnInit {
     if (localStorage.getItem("clickProprtyThree")){
       this.viewPropertyThree = localStorage.getItem("clickProprtyThree");
       this.viewPropertyThree = JSON.parse(this.viewPropertyThree);
-      console.log(this.viewPropertyThree)
     }
     
     this.service.ComparableProperties([{ "Id": this.viewPropertyOne.id }, { "Id": this.viewPropertyTwo.id }, { "Id": this.viewPropertyThree.id }]).subscribe((result: any) => {
       this.propertyDetails = result.data;
-      console.log(this.propertyDetails)
     })
 
   }
