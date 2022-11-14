@@ -64,10 +64,10 @@ export class ComparepageComponent implements OnInit {
         items: 2
       },
       992: {
-        items: 3
+        items: 2
       },
       1200: {
-        items: 3
+        items: 2
       }
     },
     nav: true
