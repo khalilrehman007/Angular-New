@@ -3721,7 +3721,6 @@ input[type=number] {
     position: relative;
 	&:hover{
 		border-color: #aaaaab !important;
-		cursor: pointer;
 		bottom: 10px;
 	}
 	>img {
@@ -3791,8 +3790,8 @@ input[type=number] {
 	}
 	.property-amenties-details span {
 		font-size: 16px;
-		font-weight: 400;
-		color: #212529;
+		font-weight: 300;
+		color: #000;
 	}
 	.property-info {
 		padding: 15px 15px 45px 15px;
@@ -4034,9 +4033,9 @@ input[type=number] {
 
 	p {
 		color: #fff;
-		font-size: 14px;
+		font-size: 16px;
 		font-weight: 300;
-		line-height: 22px;
+		line-height: 24px;
 		margin-bottom: 0px;
 		min-height: 90px;
 	}
@@ -4065,7 +4064,7 @@ input[type=number] {
 		color: #fff;
 		font-size: 16px;
 		font-weight: 300;
-		line-height: 22px;
+		line-height: 24px;
 		margin-bottom: 0px;
 		min-height: 90px;
 	}
@@ -13177,9 +13176,13 @@ input:focus{
 }
 .property_heading .property-name {
     color: #0A0A0B;
-    font-weight: 500;
+    font-weight: 400;
     font-size: 18px;
 	margin-bottom: 0px;
+	width: 75%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 .property_hdr-actions .property-whistlist {
     padding: 0px;
@@ -13204,6 +13207,8 @@ input:focus{
     width: 25px;
     height: 25px;
     margin-right: 7px;
+	position: relative;
+    bottom: 1px;
 }
 .property-amenties-details .bath svg {
     width: 25px;
@@ -13216,6 +13221,8 @@ input:focus{
     width: 20px;
     height: 20px;
     margin-right: 5px;
+	position: relative;
+    bottom: 1px;
 }
 .property-amenties-details>span:not(:last-child) {
     margin-right: 10px;
@@ -13226,8 +13233,8 @@ input:focus{
 }
 .property_location address {
     font-size: 16px;
-    font-weight: 400;
-    color: #212529;
+    font-weight: 300;
+    color: #000;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -13239,12 +13246,25 @@ input:focus{
 }
 .property_pricing .currency_type, .property_pricing .rent_type {
     font-size: 16px;
-    font-weight: 400;
+    font-weight: 300;
+	color: #000;
+}
+.btn-close.share-close-modal {
+    position: initial !important;
+    display: block !important;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: right;
+    padding: 22px 0px;
+    max-width: 409px;
+    margin-left: auto;
+    margin-right: auto;
+    background-size: 30px;
 }
 .property_pricing .price_value {
     font-size: 24px;
     vertical-align: middle;
-    padding: 0px 4px;
+    padding: 0px 6px;
     position: relative;
     bottom: 1px;
 }

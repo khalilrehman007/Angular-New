@@ -70,10 +70,6 @@ $btncolor: #0B26AD;
     }
 
     .edit-pro-img {
-        position: absolute;
-        left: 0px;
-        bottom: 25px;
-        cursor: pointer;
 
         input {
             opacity: 0;
@@ -1324,4 +1320,22 @@ $btncolor: #0B26AD;
     width: 18px;
     height: 18px;
     fill: #fff;
+}
+.user-info-sec .pro-contact-details button {
+    background: transparent;
+    border: none;
+}
+.user-info-sec .pro-contact-details {
+    position: absolute;
+    left: 5px;
+    bottom: 13px;
+}
+.user-info-sec .pro-contact-details .dropdown-item:not(:last-child) {
+    border-bottom: 1px solid #edecec !important;
+    cursor: pointer;
+}
+.user-info-sec .pro-contact-details .dropdown-item label {
+    display: block;
+    width: 100%;
+    cursor: pointer;
 }
