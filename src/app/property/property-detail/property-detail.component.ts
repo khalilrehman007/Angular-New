@@ -13,6 +13,7 @@ import { environment } from 'src/environments/environment';
 import { NgxGalleryOptions } from '@kolkov/ngx-gallery';
 import { NgxGalleryImage } from '@kolkov/ngx-gallery';
 import { NgxGalleryAnimation } from '@kolkov/ngx-gallery';
+import { OwlOptions } from 'ngx-owl-carousel-o';
 import 'hammerjs';
 
 
@@ -254,7 +255,7 @@ export class PropertyDetailComponent implements OnInit,AfterViewInit {
     $(window).on("scroll", () => {
       let temp: any=$(window).scrollTop();
       console.log($(window).scrollTop());
-      if(temp >= 1030 && temp < 2100){
+      if(temp >= 1030 && temp < 2600){
         this.scrollfix= true;
       }
       else{
@@ -265,8 +266,8 @@ export class PropertyDetailComponent implements OnInit,AfterViewInit {
   goBack() {
     this.location.back();
   }
-  openVerticallyCentered(content: any) {
-    this.modalService.open(content, { centered: true });
+  openVerticallyCentered(sharemodal: any) {
+    this.modalService.open(sharemodal, { centered: true });
   }
   locationAddress1 = '';
   galleryOptions: NgxGalleryOptions[];
@@ -783,5 +784,29 @@ export class PropertyDetailComponent implements OnInit,AfterViewInit {
     });
   }
 
-  
+  SpSliderOptions: OwlOptions = {
+    loop: false,
+    mouseDrag: true,
+    touchDrag: true,
+    autoWidth: false,
+    pullDrag: true,
+    dots: true,
+    navText: ['<i class="fa fa-chevron-left" aria-hidden="true"></i>', '<i class="fa fa-chevron-right" aria-hidden="true"></i>'],
+    navSpeed: 700,
+    responsive: {
+      0: {
+        items: 1
+      },
+      576: {
+        items: 2
+      },
+      992: {
+        items: 3
+      },
+      1200: {
+        items: 3
+      }
+    },
+    nav: true
+  }  
 }
