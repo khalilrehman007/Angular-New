@@ -214,11 +214,11 @@
                         <ng-container *ngFor="let property of featurePorperty1">
                             <ng-template carouselSlide>
                                 <div ngClass="property-comparison-block position-relative">
-                                    <div ngClass="com-img cursor-pointer" routerLink="">
+                                    <div ngClass="com-img cursor-pointer">
                                         <img *ngIf="property.documents.length > 0 && property.documents[0].fileUrl != null" src="https://beta.ovaluate.com/{{property.documents[0].fileUrl}}">
                                         <img  *ngIf="property.documents.length == 0 || property.documents[0].fileUrl == null" src="assets/images/placeholder.png">
                                     </div>
-                                    <div ngClass="com-cntnt cursor-pointer" routerLink="">
+                                    <div ngClass="com-cntnt cursor-pointer" [routerLink]="['/property/detail']" [queryParams]="{id: property.id}">
                                         <h4> {{property.propertyPrice}} {{property.country.currency}}
                                             <small>/{{property.rentType.name}}</small>
                                         </h4>
