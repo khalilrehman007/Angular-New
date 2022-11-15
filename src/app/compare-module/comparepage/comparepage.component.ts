@@ -26,20 +26,24 @@ export class ComparepageComponent implements OnInit {
   featurePorperty2: any = [];
   featurePorperty3: any = [];
   featurePorperty4: any = [];
+  count: number = 0;
 
   constructor(private route: Router, private authService: AuthService, private service: AppService, private cookie: CookieService) {
     $(window).scrollTop(0); 
     if (localStorage.getItem("clickProprtyOne")){
+      this.count++
       this.viewPropertyOne = localStorage.getItem("clickProprtyOne");
       this.viewPropertyOne = JSON.parse(this.viewPropertyOne);
     }
     
     if (localStorage.getItem("clickProprtyTwo")){
+      this.count++
       this.viewPropertyTwo = localStorage.getItem("clickProprtyTwo");
       this.viewPropertyTwo = JSON.parse(this.viewPropertyTwo);
     }
     
     if (localStorage.getItem("clickProprtyThree")){
+      this.count++
       this.viewPropertyThree = localStorage.getItem("clickProprtyThree");
       this.viewPropertyThree = JSON.parse(this.viewPropertyThree);
     }
@@ -51,6 +55,7 @@ export class ComparepageComponent implements OnInit {
     }
     
     this.service.GetPopularListingsComparison(this.countryData.id).subscribe((result:any)=>{
+      console.log(result.data)
       if (result.data.appartments != null){
         this.popularLisitng.push(result.data.appartments)
       }
@@ -71,8 +76,8 @@ export class ComparepageComponent implements OnInit {
 
     this.service.LatestPropertiesListingResidential({ "CountryId": this.countryData.id, "UserId": this.userData.id, "propertyListingTypeId": "1" }).subscribe((response: any) => {
       this.featurePorperty1 = response.data;
+      console.log(this.featurePorperty1)
     });
-
     this.service.LatestPropertiesListingResidential({ "CountryId": this.countryData.id, "UserId": this.userData.id, "propertyListingTypeId": "2" }).subscribe((response: any) => {
       this.featurePorperty2 = response.data;
     });
@@ -85,7 +90,7 @@ export class ComparepageComponent implements OnInit {
   }
 
   checkProperty(){
-    if (this.viewPropertyOne.length == 0 || this.viewPropertyTwo.length == 0){
+    if (this.count < 2){
       this.error = "Select atleast 2 properties";
       this.showError = true;
       return;

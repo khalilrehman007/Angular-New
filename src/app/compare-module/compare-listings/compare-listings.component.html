@@ -18,7 +18,7 @@
                         </div>
                     </div>
                     <div class="comparen-list-item" *ngFor="let property of propertyDetails">
-                        <div ngClass="property-comparison-block position-relative cursor-pointer" [routerLink]="['/property/detail']" [queryParams]="{id: property.id}">
+                        <div ngClass="property-comparison-block position-relative cursor-pointer">
                             <div ngClass="com-img">
                                 <!-- <img src="{{property.img}}"> -->
                                 <img *ngIf="property.documents.length > 0 && property.documents[0].fileUrl != null" src="https://beta.ovaluate.com/{{property.documents[0].fileUrl}}">
@@ -36,7 +36,7 @@
                                     </svg> 
                                     {{property.propertyAddress}}</address>
                             </div>
-                            <button ngClass="delete-property"><img src="{{trash}}"></button>
+                            <button ngClass="delete-property" (click)="removeProperty(property.id)"><img src="{{trash}}"></button>
                         </div>
                     </div>
                 </div>
@@ -147,7 +147,7 @@
                         </div>
                     </div>
                     <div class="comparen-list-item bedrooms" *ngFor="let property of properties">
-                        <p class="title-description">{{property.towerBlock}}</p>
+                        <p class="title-description">{{property.totalFloor}}</p>
                     </div>
                 </div>
                 <div ngClass="compare-block-list">
@@ -157,7 +157,7 @@
                         </div>
                     </div>
                     <div class="comparen-list-item bedrooms" *ngFor="let property of properties">
-                        <p class="title-description">{{property.towerBlock}}</p>
+                        <p class="title-description">{{property.totalFloor}}</p>
                     </div>
                 </div>
                 <div ngClass="compare-block-list">

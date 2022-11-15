@@ -460,8 +460,9 @@ export class PropertyTypesComponent implements OnInit {
     this.service.ValuationDataIsExists(checkData).subscribe((result:any) => {
       if(result.message == "Valauation data is not Exists") {
         this.error = "Valauation data does not Exists";
-      } else {
         this.showError = true;
+        this.showLoader = false;
+      } else {
         this.showLoader = false;
         this.formData.Bedrooms = this.bedrooms;
         this.formData.Bathrooms = this.bathrooms;

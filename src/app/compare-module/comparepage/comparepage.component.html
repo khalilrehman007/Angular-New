@@ -122,7 +122,7 @@
                                                     <span class="property_currency_span">{{pc[0].country.currency}}</span>
                                                     <span class="term_badge">/ {{pc[0].rentType.name}}</span>
                                                 </h4>
-                                                <p class="price_pcompare">{{pc[0].propertyAddress}}</p>
+                                                <p class="price_pcompare">{{pc[0].propertyTitle}}</p>
                                                 <address>
                                                     <svg width="16" height="21" viewBox="0 0 16 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                         <path d="M8.26455 0.949341C3.9992 0.949341 0.529114 4.41942 0.529114 8.68478C0.529114 10.4448 1.10589 12.1023 2.19711 13.4782C3.61003 15.2597 7.71886 19.4895 7.89306 19.6687L8.2645 20.0508L8.63599 19.6687C8.81029 19.4895 12.9204 15.2587 14.3335 13.4766C15.4237 12.1019 16 10.4449 16 8.68478C16 4.41942 12.5299 0.949341 8.26455 0.949341ZM13.5215 12.8328C12.3839 14.2673 9.32888 17.4585 8.26455 18.5622C7.20032 17.4585 4.14635 14.2683 3.00901 12.8343C2.06457 11.6434 1.56536 10.2086 1.56536 8.68478C1.56536 4.99081 4.57059 1.98559 8.26455 1.98559C11.9585 1.98559 14.9637 4.99081 14.9637 8.68478C14.9637 10.2087 14.465 11.6431 13.5215 12.8328Z" fill="#645BD1"/>
@@ -143,7 +143,7 @@
                                                     <span class="property_currency_span">{{pc[1].country.currency}}</span>
                                                     <span class="term_badge">/ {{pc[1].rentType.name}}</span>
                                                 </h4>
-                                                <p class="price_pcompare">{{pc[1].propertyAddress}}</p>
+                                                <p class="price_pcompare">{{pc[1].propertyTitle}}</p>
                                                 <address>
                                                     <svg width="16" height="21" viewBox="0 0 16 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                         <path d="M8.26455 0.949341C3.9992 0.949341 0.529114 4.41942 0.529114 8.68478C0.529114 10.4448 1.10589 12.1023 2.19711 13.4782C3.61003 15.2597 7.71886 19.4895 7.89306 19.6687L8.2645 20.0508L8.63599 19.6687C8.81029 19.4895 12.9204 15.2587 14.3335 13.4766C15.4237 12.1019 16 10.4449 16 8.68478C16 4.41942 12.5299 0.949341 8.26455 0.949341ZM13.5215 12.8328C12.3839 14.2673 9.32888 17.4585 8.26455 18.5622C7.20032 17.4585 4.14635 14.2683 3.00901 12.8343C2.06457 11.6434 1.56536 10.2086 1.56536 8.68478C1.56536 4.99081 4.57059 1.98559 8.26455 1.98559C11.9585 1.98559 14.9637 4.99081 14.9637 8.68478C14.9637 10.2087 14.465 11.6431 13.5215 12.8328Z" fill="#645BD1"/>
@@ -164,7 +164,7 @@
                                                     <span class="property_currency_span">{{pc[2].country.currency}}</span>
                                                     <span class="term_badge">/ {{pc[2].rentType.name}}</span>
                                                 </h4>
-                                                <p class="price_pcompare">{{pc[2].propertyAddress}}</p>
+                                                <p class="price_pcompare">{{pc[2].propertyTitle}}</p>
                                                 <address>
                                                     <svg width="16" height="21" viewBox="0 0 16 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                         <path d="M8.26455 0.949341C3.9992 0.949341 0.529114 4.41942 0.529114 8.68478C0.529114 10.4448 1.10589 12.1023 2.19711 13.4782C3.61003 15.2597 7.71886 19.4895 7.89306 19.6687L8.2645 20.0508L8.63599 19.6687C8.81029 19.4895 12.9204 15.2587 14.3335 13.4766C15.4237 12.1019 16 10.4449 16 8.68478C16 4.41942 12.5299 0.949341 8.26455 0.949341ZM13.5215 12.8328C12.3839 14.2673 9.32888 17.4585 8.26455 18.5622C7.20032 17.4585 4.14635 14.2683 3.00901 12.8343C2.06457 11.6434 1.56536 10.2086 1.56536 8.68478C1.56536 4.99081 4.57059 1.98559 8.26455 1.98559C11.9585 1.98559 14.9637 4.99081 14.9637 8.68478C14.9637 10.2087 14.465 11.6431 13.5215 12.8328Z" fill="#645BD1"/>
@@ -211,23 +211,24 @@
                 </div>
                 <div class="popular-car-comparisons-slider">
                     <owl-carousel-o [options]="featuredOptions">
-                        <ng-container *ngFor="let property of Featuredproperties">
+                        <ng-container *ngFor="let property of featurePorperty1">
                             <ng-template carouselSlide>
                                 <div ngClass="property-comparison-block position-relative">
                                     <div ngClass="com-img cursor-pointer" routerLink="">
-                                        <img src="{{property.img}}">
+                                        <img *ngIf="property.documents.length > 0 && property.documents[0].fileUrl != null" src="https://beta.ovaluate.com/{{property.documents[0].fileUrl}}">
+                                        <img  *ngIf="property.documents.length == 0 || property.documents[0].fileUrl == null" src="assets/images/placeholder.png">
                                     </div>
                                     <div ngClass="com-cntnt cursor-pointer" routerLink="">
-                                        <h4> {{property.price}} AED
-                                            <small>/Monthly</small>
+                                        <h4> {{property.propertyPrice}} {{property.country.currency}}
+                                            <small>/{{property.rentType.name}}</small>
                                         </h4>
-                                        <h5>{{property.title}}</h5>
+                                        <h5>{{property.propertyTitle}}</h5>
                                         <address>
                                             <svg width="16" height="21" viewBox="0 0 16 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M8.26455 0.949341C3.9992 0.949341 0.529114 4.41942 0.529114 8.68478C0.529114 10.4448 1.10589 12.1023 2.19711 13.4782C3.61003 15.2597 7.71886 19.4895 7.89306 19.6687L8.2645 20.0508L8.63599 19.6687C8.81029 19.4895 12.9204 15.2587 14.3335 13.4766C15.4237 12.1019 16 10.4449 16 8.68478C16 4.41942 12.5299 0.949341 8.26455 0.949341ZM13.5215 12.8328C12.3839 14.2673 9.32888 17.4585 8.26455 18.5622C7.20032 17.4585 4.14635 14.2683 3.00901 12.8343C2.06457 11.6434 1.56536 10.2086 1.56536 8.68478C1.56536 4.99081 4.57059 1.98559 8.26455 1.98559C11.9585 1.98559 14.9637 4.99081 14.9637 8.68478C14.9637 10.2087 14.465 11.6431 13.5215 12.8328Z" fill="#645BD1"/>
                                                 <path d="M8.26478 4.02002C5.73996 4.02002 3.68591 6.07407 3.68591 8.59889C3.68591 11.1237 5.74002 13.1778 8.26478 13.1778C10.7895 13.1778 12.8437 11.1237 12.8437 8.59889C12.8437 6.07412 10.7896 4.02002 8.26478 4.02002ZM8.26478 12.1415C6.31135 12.1415 4.72216 10.5523 4.72216 8.59889C4.72216 6.64546 6.3114 5.05627 8.26478 5.05627C10.2182 5.05627 11.8074 6.64551 11.8074 8.59889C11.8074 10.5523 10.2182 12.1415 8.26478 12.1415Z" fill="#645BD1"/>
                                             </svg>  
-                                            {{property.address}}
+                                            {{property.propertyAddress}}
                                         </address>
                                     </div>
                                 </div>

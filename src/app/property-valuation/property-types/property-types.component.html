@@ -234,7 +234,14 @@
                                                     <input matInput type="text" formControlName="apartmentSize" (keypress)="validateSizeInput($event)" (input)="getSizeInput($event, false)"
                                                         placeholder="{{propertyData.typeDescription}} Size in Sq.Ft.">
                                                 </mat-form-field>
-                                                <p ngClass="input-overlay-layer">Sq. Ft.</p>
+                                                <div ngClass="input-overlay-layer select-design">
+                                                    <mat-form-field appearance="fill">
+                                                        <mat-select [(value)]="selected">
+                                                            <mat-option value="option1">Sq. Ft.</mat-option>
+                                                            <mat-option value="option2">Sq. Ft.</mat-option>
+                                                        </mat-select>
+                                                    </mat-form-field>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
