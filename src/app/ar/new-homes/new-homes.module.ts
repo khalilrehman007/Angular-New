@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { PropertyRoutingModule } from './new-homes-routing.module';
 import { NewHomesComponent } from './new-homes/new-homes.component';
 import { SearchComponent } from './search/search.component';
-import { DetailsComponent } from './details/details.component';
 import { CommonFilesModule } from '../common-files/common-files.module';
 import { PropertyfilterComponent } from './propertyfilter/propertyfilter.component';
 import { BreadcrumbsModule } from '../breadcrumbs/breadcrumbs.module';
@@ -37,8 +36,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     PropertyfilterComponent,
     PropertyDetailComponent,
     ViewmapComponent,
-    ShortTermRentComponent,
-    DetailsComponent
+    ShortTermRentComponent
   ],
   imports: [
     CommonModule,

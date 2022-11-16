@@ -2,16 +2,16 @@
 <section [ngClass]="'inner-cntnt-wrapper slide-left-bar'">
     <section [ngClass]="'property-listing-inner-wrapper'">
         <div [ngClass]="'container_1280px'">
-            <div ngClass="property-details-header">
+            <!-- <div ngClass="property-details-header">
                 <div ngClass="d-flex justify-content-end">
-                    <!-- <div ngClass="black-text-breadcrumb">
+                    <div ngClass="black-text-breadcrumb">
                         <app-breadcrumbs></app-breadcrumbs>
                         <a class="back-to-text cursor-pointer" (click)="goBack()">
                             <mat-icon>keyboard_arrow_left</mat-icon> Back to Search
                         </a>
-                    </div> -->
+                    </div>
                 </div>
-            </div>
+            </div> -->
             <div ngClass="property-price-buttons-sec">
                 <div ngClass="row align-items-center">
                     <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12">
@@ -68,21 +68,6 @@
             </div>
             <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                 <div ngClass="property-action_detals text-right">
-                    <!-- <div ngClass="pro-contact-details">
-                        <div ngbDropdown class="d-inline-block">
-                            <button ngClass="grey-bordered-btn" id="dropdownBasic2" ngbDropdownToggle><img
-                                    src="{{dots}}"></button>
-                            <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
-                                <h5>Share with:</h5>
-                                <button ngbDropdownItem><a target="_blank" href="https://facebook.com"
-                                        ngClass="facebook"><img src="{{fb}}"> Facebook</a></button>
-                                <button ngbDropdownItem><a target="_blank" href="whatsapp://send?{{shareURL}}"
-                                        ngClass="whatsapp"><img src="{{whatsapp}}"> WhatsAPP</a></button>
-                                <button ngbDropdownItem><a target="_blank" href="https://twitter.com/"
-                                        ngClass="twitter"><img src="{{twitter}}"> Twitter</a></button>
-                            </div>
-                        </div>
-                    </div> -->
                     <button
                         [ngClass]="propertyDetailData.favorite == true ? 'grey-bordered-btn red-fill' : 'grey-bordered-btn'"
                         (click)="AddToFavorite(propertyDetailData.id,propertyDetailData.favorite)">
@@ -93,8 +78,6 @@
                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                     </button>
-                    <!-- <button ngClass="grey-bordered-btn text-btn" (click)="scroll(NearLsiting)">Browse Nearby
-                        Lisitng</button> -->
                 </div>
             </div>
             </div>

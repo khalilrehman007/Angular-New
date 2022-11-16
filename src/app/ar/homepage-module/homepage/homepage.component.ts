@@ -11,6 +11,7 @@ import { NotificationService } from 'src/app/service/notification.service';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/service/auth.service';
 import { CookieService } from 'ngx-cookie-service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-homepage',
@@ -118,10 +119,10 @@ export class HomepageComponent implements OnInit, AfterViewInit {
         items: 2
       },
       992: {
-        items: 4
+        items: 3
       },
       1200: {
-        items: 4
+        items: 3
       }
     },
     nav: true
@@ -231,7 +232,7 @@ export class HomepageComponent implements OnInit, AfterViewInit {
   userId: any;
   explorePlaces: any;
   trendTitle: any = [];
-  constructor(private cookie: CookieService, private authService: AuthService, private service: AppService, private route: Router, private notifyService: NotificationService) {
+  constructor(private cookie: CookieService, private authService: AuthService, private service: AppService, private route: Router, private notifyService: NotificationService,private modalService: NgbModal) {
     $(window).scrollTop(0);
     this.LoadPropertyCategories()
     this.getLoadFeedback();
@@ -574,5 +575,8 @@ export class HomepageComponent implements OnInit, AfterViewInit {
         this.newData2();
       }, 1000);
     }
+  }
+  openVerticallyCentered(content: any) {
+    this.modalService.open(content, { centered: true });
   }
 }
