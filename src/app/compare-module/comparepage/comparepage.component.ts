@@ -71,12 +71,12 @@ export class ComparepageComponent implements OnInit {
       if (result.data.villas != null){
         this.popularLisitng.push(result.data.villas)
       }
-      console.log(this.popularLisitng)
+      // console.log(this.popularLisitng)
     })
 
     this.service.LatestPropertiesListingResidential({ "CountryId": this.countryData.id, "UserId": this.userData.id, "propertyListingTypeId": "1" }).subscribe((response: any) => {
       this.featurePorperty1 = response.data;
-      console.log(this.featurePorperty1)
+      // console.log(this.featurePorperty1)
     });
     this.service.LatestPropertiesListingResidential({ "CountryId": this.countryData.id, "UserId": this.userData.id, "propertyListingTypeId": "2" }).subscribe((response: any) => {
       this.featurePorperty2 = response.data;
