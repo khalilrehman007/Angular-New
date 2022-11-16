@@ -127,7 +127,7 @@
                         </div>
                     </div>
                     <div class="comparen-list-item bedrooms" *ngFor="let property of propertyDetails">
-                        <p class="title-description">{{property.floorNo}}</p>
+                        <p class="title-description">{{property.floorNo != null ? property.floorNo : "0"}}</p>
                     </div>
                 </div>
                 <div ngClass="compare-block-list">
@@ -137,7 +137,7 @@
                         </div>
                     </div>
                     <div class="comparen-list-item bedrooms" *ngFor="let property of propertyDetails">
-                        <p class="title-description">{{property.totalFloor}}</p>
+                        <p class="title-description">{{property.totalFloor != null ? property.totalFloor : "0"}}</p>
                     </div>
                 </div>
                 <!-- <div ngClass="compare-block-list">
@@ -187,7 +187,7 @@
                         </div>
                     </div>
                     <div class="comparen-list-item bedrooms" *ngFor="let property of propertyDetails">
-                        <p class="title-description">{{property.priceToIncomeRatio}}</p>
+                        <p class="title-description">{{property.priceToIncomeRatio != null ? property.priceToIncomeRatio : "0"}}</p>
                     </div>
                 </div>
                 <div ngClass="compare-block-list">
@@ -207,7 +207,7 @@
                         </div>
                     </div>
                     <div class="comparen-list-item bedrooms" *ngFor="let property of propertyDetails">
-                        <p class="title-description">{{property.grossRentalYield}}</p>
+                        <p class="title-description">{{property.grossRentalYield != null ? property.grossRentalYield : "0"}}</p>
                     </div>
                 </div>
                 <div ngClass="compare-block-list">
@@ -217,7 +217,7 @@
                         </div>
                     </div>
                     <div class="comparen-list-item bedrooms" *ngFor="let property of propertyDetails">
-                        <p class="title-description">{{property.capRate}}</p>
+                        <p class="title-description">{{property.capRate != null ? property.capRate : "0"}}</p>
                     </div>
                 </div>
                 <div ngClass="compare-block-list">
@@ -227,7 +227,7 @@
                         </div>
                     </div>
                     <div class="comparen-list-item bedrooms" *ngFor="let property of propertyDetails">
-                        <p class="title-description">{{property.serviceCharges}}</p>
+                        <p class="title-description">{{property.serviceCharges != null ? property.serviceCharges : "0"}}</p>
                     </div>
                 </div>
                 <div ngClass="compare-block-list">
