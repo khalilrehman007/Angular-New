@@ -13,6 +13,7 @@ import { environment } from 'src/environments/environment';
 import { NgxGalleryOptions } from '@kolkov/ngx-gallery';
 import { NgxGalleryImage } from '@kolkov/ngx-gallery';
 import { NgxGalleryAnimation } from '@kolkov/ngx-gallery';
+import { OwlOptions } from 'ngx-owl-carousel-o';
 import 'hammerjs';
 
 
@@ -781,4 +782,30 @@ export class PropertyDetailComponent implements OnInit {
       }
     });
   }
+  SpSliderOptions: OwlOptions = {
+    loop: false,
+    rtl: true,
+    mouseDrag: true,
+    touchDrag: true,
+    autoWidth: false,
+    pullDrag: true,
+    dots: true,
+    navText: ['<i class="fa fa-chevron-left" aria-hidden="true"></i>', '<i class="fa fa-chevron-right" aria-hidden="true"></i>'],
+    navSpeed: 700,
+    responsive: {
+      0: {
+        items: 1
+      },
+      576: {
+        items: 2
+      },
+      992: {
+        items: 3
+      },
+      1200: {
+        items: 3
+      }
+    },
+    nav: true
+  } 
 }

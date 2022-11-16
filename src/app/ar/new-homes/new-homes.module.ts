@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { PropertyRoutingModule } from './new-homes-routing.module';
 import { NewHomesComponent } from './new-homes/new-homes.component';
 import { SearchComponent } from './search/search.component';
-import { DetailsComponent } from './details/details.component';
 import { CommonFilesModule } from '../common-files/common-files.module';
 import { PropertyfilterComponent } from './propertyfilter/propertyfilter.component';
 import { BreadcrumbsModule } from '../breadcrumbs/breadcrumbs.module';
@@ -27,6 +26,7 @@ import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { HttpClientModule } from '@angular/common/http';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 
 @NgModule({
@@ -36,8 +36,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     PropertyfilterComponent,
     PropertyDetailComponent,
     ViewmapComponent,
-    ShortTermRentComponent,
-    DetailsComponent
+    ShortTermRentComponent
   ],
   imports: [
     CommonModule,
@@ -60,7 +59,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     NgxGalleryModule,
     HttpClientModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    CarouselModule
   ]
 })
 export class PropertyModule { }

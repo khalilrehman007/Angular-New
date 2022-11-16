@@ -13,6 +13,7 @@ import { environment } from 'src/environments/environment';
 import { NgxGalleryOptions } from '@kolkov/ngx-gallery';
 import { NgxGalleryImage } from '@kolkov/ngx-gallery';
 import { NgxGalleryAnimation } from '@kolkov/ngx-gallery';
+import { OwlOptions } from 'ngx-owl-carousel-o';
 import 'hammerjs';
 
 
@@ -251,9 +252,6 @@ export class PropertyDetailComponent implements OnInit {
   }
   goBack() {
     this.location.back();
-  }
-  openVerticallyCentered(content: any) {
-    this.modalService.open(content, { centered: true });
   }
   locationAddress1 = '';
   galleryOptions: NgxGalleryOptions[];
@@ -812,4 +810,33 @@ export class PropertyDetailComponent implements OnInit {
       }
     });
   }
+  openVerticallyCentered(sharemodal: any) {
+    this.modalService.open(sharemodal, { centered: true });
+  }
+
+  SpSliderOptions: OwlOptions = {
+    loop: false,
+    mouseDrag: true,
+    touchDrag: true,
+    autoWidth: false,
+    pullDrag: true,
+    dots: true,
+    navText: ['<i class="fa fa-chevron-left" aria-hidden="true"></i>', '<i class="fa fa-chevron-right" aria-hidden="true"></i>'],
+    navSpeed: 700,
+    responsive: {
+      0: {
+        items: 1
+      },
+      576: {
+        items: 2
+      },
+      992: {
+        items: 3
+      },
+      1200: {
+        items: 3
+      }
+    },
+    nav: true
+  } 
 }
