@@ -48,14 +48,15 @@
                                 <button ngClass="circle-btn" id="dropdownBasic21"
                                     ngbDropdownToggle><img src="{{proImgEdit}}" alt=""></button>
                                 <div ngbDropdownMenu aria-labelledby="dropdownBasic21">
-                                   <button ngbDropdownItem class="postiion-relative take-photo">Take a Photo</button>
+                                   <button ngbDropdownItem class="postiion-relative take-photo" type="file" accept="image/*" capture="environment">
+                                    Take a Photo</button>
                                    <button ngbDropdownItem class="postiion-relative choose-photo">
                                     <label for="proImg" class="edit-pro-img">
                                         <input type="file" id="proImg"   accept="image/png, image/jpeg, image/jpg" (change)="getImage($event)" >
                                         Choose Photo        
                                     </label>
                                     </button>
-                                   <button ngbDropdownItem class="postiion-relative delete-photo">Delete Photo</button>
+                                   <button ngbDropdownItem class="postiion-relative delete-photo" (click)="deletePhoto()">Delete Photo</button>
                                 </div>
                             </div>
                         </div>
