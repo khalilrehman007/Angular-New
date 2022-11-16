@@ -1411,4 +1411,16 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       }
     }
   }
+  deletePhoto() {
+    let temp: any = localStorage.getItem("user");
+    temp = JSON.parse(temp);
+    let imageData = new FormData();
+    imageData.append("ProfileRequest", JSON.stringify({ "Id": temp.id }))
+    this.service.UpdateImage(imageData).subscribe((result: any) => {
+      if (result.message == "User  fetched successfully") {
+        localStorage.setItem("user", JSON.stringify(result.data));
+        this.proAvatar = '../../assets/images/user.png';
+      }
+    })    
+  }
 }
