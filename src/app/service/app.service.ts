@@ -492,4 +492,7 @@ export class AppService {
   ValuationDataIsExists(data:any) {
     return this.http.post(this.apiurl + 'ValuationDataIsExists', data);
   }
+  PropertyListingDetailComparison(id: any) {
+    return this.http.get(this.apiurl + 'PropertyListingDetailComparison/' + id);
+  }
 }
