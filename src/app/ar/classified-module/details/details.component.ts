@@ -261,6 +261,7 @@ export class DetailsComponent implements OnInit {
   }
   customOptions: OwlOptions = {
     loop: false,
+    rtl: true,
     mouseDrag: true,
     touchDrag: true,
     pullDrag: true,

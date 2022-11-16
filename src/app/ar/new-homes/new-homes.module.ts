@@ -27,6 +27,7 @@ import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { HttpClientModule } from '@angular/common/http';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 
 @NgModule({
@@ -60,7 +61,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     NgxGalleryModule,
     HttpClientModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    CarouselModule
   ]
 })
 export class PropertyModule { }

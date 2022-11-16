@@ -2,7 +2,7 @@
 <section [ngClass]="'inner-cntnt-wrapper slide-left-bar'">
     <section [ngClass]="'property-listing-inner-wrapper'">
         <div [ngClass]="'container_1280px'">
-            <div ngClass="property-details-header">
+            <!-- <div ngClass="property-details-header">
                 <div ngClass="d-flex justify-content-spacebw">
                     <div ngClass="black-text-breadcrumb">
                         <app-breadcrumbs></app-breadcrumbs>
@@ -12,23 +12,26 @@
                         <p>Listing ID <span ngClass="update-id">#OV-4003021</span></p>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div ngClass="property-price-buttons-sec">
-                <div ngClass="row">
+                <div ngClass="row align-items-center">
                     <div ngClass="col-xl-9 col-lg-9 col-md-12 col-sm-12">
                         <div ngClass="property-name_detals">
                             <h4>Bentley Flying Spur</h4>
                             <div ngClass="property-addresss">
-                                <p><img src="{{homelocationsvg}}"> Etihad Tower 4, Etihad Towers,</p>
+                                <p> <svg width="16" height="21" viewBox="0 0 16 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M8.26455 0.949341C3.9992 0.949341 0.529114 4.41942 0.529114 8.68478C0.529114 10.4448 1.10589 12.1023 2.19711 13.4782C3.61003 15.2597 7.71886 19.4895 7.89306 19.6687L8.2645 20.0508L8.63599 19.6687C8.81029 19.4895 12.9204 15.2587 14.3335 13.4766C15.4237 12.1019 16 10.4449 16 8.68478C16 4.41942 12.5299 0.949341 8.26455 0.949341ZM13.5215 12.8328C12.3839 14.2673 9.32888 17.4585 8.26455 18.5622C7.20032 17.4585 4.14635 14.2683 3.00901 12.8343C2.06457 11.6434 1.56536 10.2086 1.56536 8.68478C1.56536 4.99081 4.57059 1.98559 8.26455 1.98559C11.9585 1.98559 14.9637 4.99081 14.9637 8.68478C14.9637 10.2087 14.465 11.6431 13.5215 12.8328Z" fill="#645BD1"/>
+                                    <path d="M8.26478 4.02002C5.73996 4.02002 3.68591 6.07407 3.68591 8.59889C3.68591 11.1237 5.74002 13.1778 8.26478 13.1778C10.7895 13.1778 12.8437 11.1237 12.8437 8.59889C12.8437 6.07412 10.7896 4.02002 8.26478 4.02002ZM8.26478 12.1415C6.31135 12.1415 4.72216 10.5523 4.72216 8.59889C4.72216 6.64546 6.3114 5.05627 8.26478 5.05627C10.2182 5.05627 11.8074 6.64551 11.8074 8.59889C11.8074 10.5523 10.2182 12.1415 8.26478 12.1415Z" fill="#645BD1"/>
+                                </svg> 
+                                 Etihad Tower 4, Etihad Towers,</p>
                             </div>
                         </div>
                     </div>
                     <div ngClass="col-xl-3 col-lg-4 col-md-12 col-sm-12">
-                        <div ngClass="property-action_detals text-right">
-                            <div ngClass="pro-contact-details">
+                        <div ngClass="d-flex justify-content-end align-items-center">
+                        <div ngClass="pro-contact-details me-3">
                                 <div ngbDropdown class="d-inline-block">
-                                    <button ngClass="grey-bordered-btn" id="dropdownBasic2" ngbDropdownToggle><img
-                                            src="{{dots}}"></button>
+                                    <button ngClass="share-btn" id="dropdownBasic2" ngbDropdownToggle><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M384 24c0-9.6 5.7-18.2 14.5-22s19-2 26 4.6l144 136c4.8 4.5 7.5 10.8 7.5 17.4s-2.7 12.9-7.5 17.4l-144 136c-7 6.6-17.2 8.4-26 4.6s-14.5-12.5-14.5-22V224H352 337.5c-45 0-81.5 36.5-81.5 81.5c0 22.3 10.3 34.3 19.2 40.5c6.8 4.7 12.8 12 12.8 20.3c0 9.8-8 17.8-17.8 17.8h-2.5c-2.4 0-4.8-.4-7.1-1.4C242.8 374.8 160 333.4 160 240c0-79.5 64.5-144 144-144h80V24zM0 144C0 99.8 35.8 64 80 64H96c17.7 0 32 14.3 32 32s-14.3 32-32 32H80c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16H368c8.8 0 16-7.2 16-16V416c0-17.7 14.3-32 32-32s32 14.3 32 32v16c0 44.2-35.8 80-80 80H80c-44.2 0-80-35.8-80-80V144z"/></svg> Share</button>
                                     <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
                                         <h5>Share with:</h5>
                                         <button ngbDropdownItem><a target="_blank" href="https://facebook.com"
@@ -39,8 +42,9 @@
                                                 ngClass="twitter"><img src="{{twitter}}"> Twitter</a></button>
                                     </div>
                                 </div>
-                            </div>
-                            <button ngClass="grey-bordered-btn">
+                        </div>
+                        <div ngClass="property-action_detals text-right">
+                            <button [ngClass]="'grey-bordered-btn'">
                                 <svg width="22" height="23" viewBox="0 0 22 23" fill="#595ad4"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -48,9 +52,9 @@
                                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                                 </svg>
                             </button>
-                            <button ngClass="grey-bordered-btn text-btn" (click)="scroll(NearLsiting)">Browse Nearby
-                                Lisitng</button>
+
                         </div>
+                    </div>
                     </div>
                 </div>
             </div>
@@ -224,8 +228,12 @@
                                 <div ngClass="property-info">
                                     <span ngClass="property-pricing"><span>{{cars.price}}</span></span>
                                     <span ngClass="property-name">{{cars.PropertyName}}</span>
-                                    <p ngClass="property-location">
-                                        <img src="{{ homelocationsvg }}" width="14" alt="" />{{cars.address}}
+                                    <p ngClass="property-location property-location-classified">
+                                        <svg width="16" height="21" viewBox="0 0 16 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M8.26455 0.949341C3.9992 0.949341 0.529114 4.41942 0.529114 8.68478C0.529114 10.4448 1.10589 12.1023 2.19711 13.4782C3.61003 15.2597 7.71886 19.4895 7.89306 19.6687L8.2645 20.0508L8.63599 19.6687C8.81029 19.4895 12.9204 15.2587 14.3335 13.4766C15.4237 12.1019 16 10.4449 16 8.68478C16 4.41942 12.5299 0.949341 8.26455 0.949341ZM13.5215 12.8328C12.3839 14.2673 9.32888 17.4585 8.26455 18.5622C7.20032 17.4585 4.14635 14.2683 3.00901 12.8343C2.06457 11.6434 1.56536 10.2086 1.56536 8.68478C1.56536 4.99081 4.57059 1.98559 8.26455 1.98559C11.9585 1.98559 14.9637 4.99081 14.9637 8.68478C14.9637 10.2087 14.465 11.6431 13.5215 12.8328Z" fill="#645BD1"/>
+                                            <path d="M8.26478 4.02002C5.73996 4.02002 3.68591 6.07407 3.68591 8.59889C3.68591 11.1237 5.74002 13.1778 8.26478 13.1778C10.7895 13.1778 12.8437 11.1237 12.8437 8.59889C12.8437 6.07412 10.7896 4.02002 8.26478 4.02002ZM8.26478 12.1415C6.31135 12.1415 4.72216 10.5523 4.72216 8.59889C4.72216 6.64546 6.3114 5.05627 8.26478 5.05627C10.2182 5.05627 11.8074 6.64551 11.8074 8.59889C11.8074 10.5523 10.2182 12.1415 8.26478 12.1415Z" fill="#645BD1"/>
+                                        </svg> 
+                                        {{cars.address}}
                                     </p>
                                 </div>
                                 <a routerLink="/{{cars.link}}" ngClass="linK_overlay"></a>

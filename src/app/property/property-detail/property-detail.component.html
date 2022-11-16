@@ -487,54 +487,6 @@
         </div>
     </section>
 <div ngClass="gallery-modal-design">
-    <ng-template #content let-modal>
-        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
-        <div class="modal-body gallery-design">
-            <div ngClass="property-price-buttons-sec">
-                <div ngClass="row">
-                    <div ngClass="col-xl-4 col-lg-4 col-md-12 col-sm-12">
-                        <div ngClass="property-price_detals">
-                            <h4>{{propertyDetailData.propertyPrice}} {{propertyDetailData.currency}}
-                                <small>/{{propertyDetailData.rentType}}</small>
-                            </h4>
-                            <div ngClass="property-tags d-flex flex-wrap">
-                                <span ngClass="tags-bg-grey">Brokrage: {{propertyDetailData.brokerageChargePrice}}
-                                    {{propertyDetailData.currency}}</span>
-                                <span ngClass="tags-bg-grey">Security deposit:
-                                    {{propertyDetailData.securityDepositPrice}} {{propertyDetailData.currency}}</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-                        <div ngClass="property-name_detals">
-                            <h4>{{propertyDetailData.buildingName}}</h4>
-                            <div ngClass="property-addresss">
-                                <p><img src="{{homeLoc}}"> {{propertyDetailData.propertyAddress}}</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div ngClass="col-xl-2 col-lg-2 col-md-12 col-sm-12">
-                        <div ngClass="property-action_detals text-right">
-                            <button ngClass="contact-seller-btn" routerLink="/agent-details/{{userData.id}}"
-                                (click)="modal.dismiss('Cross click')">Contact Seller</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <ngb-carousel *ngIf="documentCheck" [showNavigationIndicators]="false">
-                <ng-template ngbSlide *ngFor="let event of propertyDetailData.documents">
-                    <img [src]="baseUrl+event.fileUrl" alt="Random slide">
-                </ng-template>
-            </ngb-carousel>
-            <ngb-carousel *ngIf="documentCheck == false" [showNavigationIndicators]="false">
-                <ng-template ngbSlide>
-                    <img src="{{thumb1}}" alt="Random slide">
-                </ng-template>
-            </ngb-carousel>
-        </div>
-    </ng-template>
-</div>
-<div ngClass="gallery-modal-design">
     <ng-template #sharemodal let-modal>
         <button type="button" class="btn-close share-close-modal" aria-label="Close"
             (click)="modal.dismiss('Cross click')"></button>
