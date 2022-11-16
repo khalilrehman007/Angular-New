@@ -22,6 +22,9 @@ export class CompareListingsComponent implements OnInit {
   viewPropertyOne: any = "";
   viewPropertyTwo: any = "";
   viewPropertyThree: any = "";
+  property1: any = "";
+  property2: any = "";
+  property3: any = "";
 
   constructor(private authService: AuthService, private route: Router, private notifyService: NotificationService, private modalService: NgbModal, private service: AppService) {
     if (localStorage.getItem("clickProprtyOne")){
@@ -39,11 +42,24 @@ export class CompareListingsComponent implements OnInit {
       this.viewPropertyThree = JSON.parse(this.viewPropertyThree);
     }
     
-    this.service.ComparableProperties([{ "Id": this.viewPropertyOne.id }, { "Id": this.viewPropertyTwo.id }, { "Id": this.viewPropertyThree.id }]).subscribe((result: any) => {
-      this.propertyDetails = result.data;
-    })
+    // this.service.ComparableProperties([{ "Id": this.viewPropertyOne.id }, { "Id": this.viewPropertyTwo.id }, { "Id": this.viewPropertyThree.id }]).subscribe((result: any) => {
+    //   this.propertyDetails = result.data;
+    // })
+    this.service.PropertyListingDetailComparison(this.viewPropertyOne.id).subscribe((response: any) => {
+      this.property1 = response.data;
+   
+      
+    });
+    this.service.PropertyListingDetailComparison(this.viewPropertyTwo.id).subscribe((response: any) => {
+      this.property2 = response.data;
+      
+    });
+    this.service.PropertyListingDetailComparison(this.viewPropertyThree.id).subscribe((response: any) => {
+      this.property3 = response.data;
+      
+  });
 
-  }
+}
 
   ngOnInit(): void {
   }
