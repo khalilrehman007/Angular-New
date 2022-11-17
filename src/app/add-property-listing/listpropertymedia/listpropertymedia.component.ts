@@ -44,7 +44,6 @@ export class ListpropertymediaComponent implements OnInit {
   responsedata: any;
   oldData: any;
   priviousFormCheck: any;
-  documentBase: any = [];
   data: any = {};
   images: any = [];
   imageData: any = [];
@@ -250,8 +249,6 @@ export class ListpropertymediaComponent implements OnInit {
       tempDoc.push(this.videoData[i].file);
     }
     start = temp.length;
-    temp.push({ "FileId": start + 1, "ListingDocumentTypeId": "2", "FileName": this.documentBase.FileName, "Extension": this.documentBase.Extension });
-    tempDoc.push(this.documentBase.file[0]);
     let userData: any = localStorage.getItem("user");
     this.data.ProfessionalTypeId = JSON.parse(userData).professionalTypeId;
     this.data.Documents = temp;
