@@ -77,12 +77,10 @@ export class PropertyinfoComponent implements OnInit {
       this.packagesType = result.data;
     })
     this.service.PointTransaction(335).subscribe((result: any) => {
-      // console.log(result.data)
       if (result.message == "Points Transaction has been fetched successfully") {
         for (let i = 0; i < result.data.length; i++) {
           this.selectedPackageName.push(result.data[i].point.id);
         }
-        // console.log(this.selectedPackageName);
       }
     })
     this.loadCountriesData();
@@ -95,7 +93,6 @@ export class PropertyinfoComponent implements OnInit {
     config.keyboard = false;
   }
   checkPackage(e:any) {
-    // console.log(this.selectedPackageName, e);
     if(this.selectedPackageName.indexOf(e) != -1) {
       return true;
     } else {
@@ -333,7 +330,6 @@ export class PropertyinfoComponent implements OnInit {
       $('.select2').select2();
     }
     $(".country-select").on("change", () => {
-      console.log($(".country-select").val());
       this.onCountrySelect($(".country-select").val());
     });
     $(".city-select").on("change", () => {
@@ -348,12 +344,13 @@ export class PropertyinfoComponent implements OnInit {
     let address: any = temp.value;
     localStorage.setItem("address", address);
     $.ajax({
-      url: "https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyBPSEz52-AfPEVbmV_3yuGUGol_KiLb3GU",
+      url: "https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyBPSEz52-AfPEVbmV_3yuGUGol_KiLb3GU&language=ar",
       method: "get",
       success: (res) => {
         let area = res.results[0].geometry.location;
         localStorage.setItem("lat", area.lat);
         localStorage.setItem("lng", area.lng);
+        localStorage.setItem("arabicAddress", res.results[0].formatted_address);
         this.locationSelected = true;
         this.map = new google.maps.Map($(".property-details__map")[0], {
           center: area,
