@@ -460,7 +460,9 @@ export class CompareFilterComponent implements OnInit {
   }
 
   clearSearch(){
-    this.type                 = ''
+    if(localStorage.getItem("clickProprtyOne") || localStorage.getItem("clickProprtyTwo") || localStorage.getItem("clickProprtyThree")) {
+      this.type                 = ''
+    }
     this.PropertyCategoryId   = ''
     this.RentTypeId           = ''
     this.PropertyListingTypeId =''
@@ -470,8 +472,8 @@ export class CompareFilterComponent implements OnInit {
     this.Bedrooms              = ''
     this.Bathrooms             =''
     this.selectedRentType      =''
-    this.selectedBeds          =''
-    this.selectedBaths         =''
+    this.selectedBeds          = '-1'
+    this.selectedBaths         ='-1'
     this.minCarpet             =''
     this.maxCarpet             =''
     this.furnishedType         =''
