@@ -48,7 +48,7 @@
                                 <button ngClass="circle-btn" id="dropdownBasic21"
                                     ngbDropdownToggle><img src="{{proImgEdit}}" alt=""></button>
                                 <div ngbDropdownMenu aria-labelledby="dropdownBasic21">
-                                   <button ngbDropdownItem class="postiion-relative take-photo" type="file" accept="image/*" capture="environment">
+                                   <button ngbDropdownItem class="postiion-relative take-photo" type="file" accept="image/*" capture="environment" (change)="getImage($event)">
                                     Take a Photo</button>
                                    <button ngbDropdownItem class="postiion-relative choose-photo">
                                     <label for="proImg" class="edit-pro-img">
