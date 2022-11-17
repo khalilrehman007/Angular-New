@@ -3,6 +3,7 @@ import { AppService } from 'src/app/service/app.service';
 import { ActivatedRoute, Router } from "@angular/router";
 import { NotificationService } from "../../../service/notification.service";
 import { AuthService } from "../../../service/auth.service";
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 declare const google: any;
 
 @Component({
@@ -91,7 +92,7 @@ export class ViewmapComponent implements OnInit {
   Bedrooms: any;
   Bathrooms: any;
   selectedPropertyTypeName: any;
-  constructor(private authService: AuthService, private notifyService: NotificationService, private service: AppService, private activeRoute: ActivatedRoute, private route: Router) {
+  constructor(private authService: AuthService, private notifyService: NotificationService, private service: AppService, private activeRoute: ActivatedRoute, private route: Router,private modalService: NgbModal) {
     $(window).scrollTop(0);
     this.totalRecord = this.activeRoute.snapshot.queryParamMap.get('totalRecord');
     this.selectedPropertyTypeName = this.activeRoute.snapshot.queryParamMap.get('selectedPropertyTypeName');
@@ -361,5 +362,8 @@ export class ViewmapComponent implements OnInit {
         }, 1000);
       }
     });
+  }
+  openVerticallyCentered(sharemodal: any) {
+    this.modalService.open(sharemodal, { centered: true });
   }
 }
