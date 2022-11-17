@@ -94,10 +94,20 @@
                                                 <button ngClass="black-upload-btn"><span
                                                         ngClass="plus_icon-div">+</span>تحميل الصور</button>
                                             </label>
-                                            <div ngClass="upload-preview-images">
+                                            <div ngClass="upload-preview-images position-relative">
+                                                <button class="dlt-img hide">
+                                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M16.875 4.38281H3.125" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"/>
+                                                        <path d="M8.125 8.12109V13.1211" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"/>
+                                                        <path d="M11.875 8.12109V13.1211" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"/>
+                                                        <path d="M15.625 4.38281V16.2578C15.625 16.4236 15.5592 16.5825 15.4419 16.6998C15.3247 16.817 15.1658 16.8828 15 16.8828H5C4.83424 16.8828 4.67527 16.817 4.55806 16.6998C4.44085 16.5825 4.375 16.4236 4.375 16.2578V4.38281" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"/>
+                                                        <path d="M13.126 4.37305V3.12305C13.126 2.79153 12.9943 2.47358 12.7599 2.23916C12.5254 2.00474 12.2075 1.87305 11.876 1.87305H8.12598C7.79446 1.87305 7.47651 2.00474 7.24209 2.23916C7.00767 2.47358 6.87598 2.79153 6.87598 3.12305V4.37305" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    </svg>                                                        
+                                                </button>
                                                 <img *ngFor='let preview of previews' [src]="preview" class="preview">
                                                 <img ngClass="img-thumb-icon"
                                                     src="../../../../assets/images/image-gallery-thumbnail.png">
+                                                    <p class="main_pic-tag hide">Main Picture</p>
                                             </div>
                                             <div ngClass="image-thumb-cntnt">
                                                 <p> درج العقارات التي تحتوي على أكثر من 5 صور على عدد مشاهدات أكبر بمقدار 3 أضعاف.<br />
