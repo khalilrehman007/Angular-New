@@ -38,6 +38,7 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
   occupancy: any;
   petPolicy: any;
   petPolicyData: any = [];
+  developerData: any = [];
   locatedNearData: any = [];
   rentTypes: any;
   room: any = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -64,6 +65,7 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
   securityCheck: boolean = false;
   transactionType: any = [];
   completionStatus: any = [];
+  developer: any = [];
   locatedNear: any = [];
   ownershipType: any = [{ id: 1, name: "Freehold" }, { id: 2, name: "Leasehold" }];
   currentField: any;
@@ -78,7 +80,8 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
     carpetArea: new FormControl("", [Validators.required]),
     buildupArea: new FormControl("", [Validators.required]),
     price: new FormControl("", [Validators.required]),
-    AED: new FormControl("",),
+    maintenance: new FormControl("", [Validators.required]),
+    AED: new FormControl(""),
     brokerageAed: new FormControl("",),
     availablefrom: new FormControl("", [Validators.required]),
     handOverOn: new FormControl("", [Validators.required]),
@@ -153,11 +156,15 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
     if (localStorage.getItem("propertyData")) {
       let temp: any = localStorage.getItem("propertyData");
       this.data = JSON.parse(temp);
-
+      this.api.DeveloperbyCountry(this.data.CountryId).subscribe((result: any) => {
+        this.developer = result.data;
+      })
+      
       if (localStorage.getItem("listingData")) {
         temp = localStorage.getItem("listingData");
         this.data = JSON.parse(temp);
-
+        this.developerData = this.data.PropertyDeveloperId;
+        console.log(this.data);
         this.listingTypeId = this.data.PropertyListingTypeId;
         if (this.listingTypeId == 2) {
           this.api.PropertyTransactionTypes().subscribe((result: any) => {
@@ -292,6 +299,27 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
       this.route.navigate(['/add-property/listingproperty'])
     }
   }
+  validateInput(e: any) {
+    // if (e.key.charCodeAt(0) >= 48 && e.key.charCodeAt(0) <= 57 || e.key.charCodeAt(0) >= 65 && e.key.charCodeAt(0) <= 90 || e.key.charCodeAt(0) >= 97 && e.key.charCodeAt(0) <= 122) {
+    if (e.key.charCodeAt(0) >= 48 && e.key.charCodeAt(0) <= 57 || e.key.charCodeAt(0) == 44 || e.key.charCodeAt(0) == 46) {
+      setTimeout(() => {
+        this.getInput(e.key, true);
+      }, 100);
+    }
+  }
+  getInput(e: any, type: boolean) {
+    if (!type) {
+      let temp: any = this.SubmitForm.value.UnitNo
+      this.SubmitForm.patchValue({
+        UnitNo: temp.toString().slice(0, -1)
+      })
+    } else {
+      let temp: any = this.SubmitForm.value.UnitNo
+      this.SubmitForm.patchValue({
+        UnitNo: temp.toString() + e
+      })
+    }
+  }
   validateLength(type: any) {
     if (type == 1) {
       let temp: any = this.SubmitForm.value.PropertyAge;
@@ -374,6 +402,7 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
   }
   getPropertyType(e: any) {
     this.selectedPropertyType = this.propertyType.filter((item: any) => item.id == e.value)[0];
+    console.log(this.selectedPropertyType);
     this.propertyTypeCheck = true;
     this.data.PropertyTypeId = e.value;
     this.loadFurnishingType();
@@ -434,6 +463,9 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
   getCompletionStatus(e: number) {
     this.data.PropertyCompletionStatusId = e;
   }
+  getDeveloper(e: any) {
+    this.data.PropertyDeveloperId = e.value;
+  }
   getLocatedNear(e: any) {
     this.locatedNearData = e.value;
   }
@@ -475,11 +507,92 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
       }
     }
   }
-  onSubmit() {
-    if (this.selectedPropertyType.hasPropertyFeature && $(".features-select")) {
-      this.featuresFormData = $(".features-select").val();
+  validateAgeInput(e: any) {
+    if (e.key.charCodeAt(0) >= 48 && e.key.charCodeAt(0) <= 57) {
+      setTimeout(() => {
+        this.getValue(e.key, true);
+      }, 100);
+    }
+  }
+  getValue(e: any, type: boolean) {
+    if (!type) {
+      let temp: any = this.SubmitForm.value.PropertyAge
+      this.SubmitForm.patchValue({
+        PropertyAge: temp.toString().slice(0, -1)
+      })
     } else {
-      this.featuresFormData = [];
+      let temp: any = this.SubmitForm.value.PropertyAge
+      this.SubmitForm.patchValue({
+        PropertyAge: temp.toString() + e
+      })
+    }
+  }
+  validatePriceInput(e: any) {
+    if (e.key.charCodeAt(0) >= 48 && e.key.charCodeAt(0) <= 57) {
+      setTimeout(() => {
+        console.log(e.key);
+        this.getPriceValue(e.key, true);
+      }, 100);
+    }
+  }
+  getPriceValue(e: any, type: boolean) {
+    if (!type) {
+      let temp: any = this.SubmitForm.value.price
+      this.SubmitForm.patchValue({
+        price: temp.toString().slice(0, -1)
+      })
+    } else {
+      let temp: any = this.SubmitForm.value.price
+      this.SubmitForm.patchValue({
+        price: temp.toString() + e
+      })
+    }
+  }
+  validateNoticeInput(e: any) {
+    if (e.key.charCodeAt(0) >= 48 && e.key.charCodeAt(0) <= 57) {
+      setTimeout(() => {
+        console.log(e.key);
+        this.getNoticeValue(e.key, true);
+      }, 100);
+    }
+  }
+  getNoticeValue(e: any, type: boolean) {
+    if (!type) {
+      let temp: any = this.SubmitForm.value.noticePeriod
+      this.SubmitForm.patchValue({
+        noticePeriod: temp.toString().slice(0, -1)
+      })
+    } else {
+      let temp: any = this.SubmitForm.value.noticePeriod
+      this.SubmitForm.patchValue({
+        noticePeriod: temp.toString() + e
+      })
+    }
+  }
+  validateLockingInput(e: any) {
+    if (e.key.charCodeAt(0) >= 48 && e.key.charCodeAt(0) <= 57) {
+      setTimeout(() => {
+        console.log(e.key);
+        this.getLockingValue(e.key, true);
+      }, 100);
+    }
+  }
+  getLockingValue(e: any, type: boolean) {
+    if (!type) {
+      let temp: any = this.SubmitForm.value.lockingPeriod
+      this.SubmitForm.patchValue({
+        lockingPeriod: temp.toString().slice(0, -1)
+      })
+    } else {
+      let temp: any = this.SubmitForm.value.lockingPeriod
+      this.SubmitForm.patchValue({
+        lockingPeriod: temp.toString() + e
+      })
+    }
+  }
+  onSubmit() {
+    if ($(".features-select").length > 0 && this.selectedPropertyType.hasPropertyFeature && this.featuresData.length > 0 ) {
+      this.featuresFormData = $(".features-select").val();
     }
     if (this.listingTypeId == 0) {
       this.currentField = "listing-type-input";
@@ -496,12 +609,12 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
       this.error = "Select Property Type";
       this.showError = true;
       return;
-    } else if (this.SubmitForm.value.PropertyAge == "") {
+    } else if (this.selectedPropertyType.hasPropertyAge && this.SubmitForm.value.PropertyAge == "") {
       this.currentField = "property-age-input";
       this.error = "Enter Property Age";
       this.showError = true;
       return;
-    } else if (this.SubmitForm.value.BuildingName == "") {
+    } else if (this.selectedPropertyType.hasBuilding && this.SubmitForm.value.BuildingName == "") {
       this.currentField = "building-name-input";
       this.error = "Enter Building Name";
       this.showError = true;
@@ -611,6 +724,11 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
       this.error = "Enter Price";
       this.showError = true;
       return;
+    } else if (this.selectedPropertyType.hasMaintenanceCharges && this.SubmitForm.value.maintenance == "") {
+      this.currentField = "maintenance-input";
+      this.error = "Enter Maintenance Price";
+      this.showError = true;
+      return;
     } else if (this.listingTypeId == 1 && !this.data.RentTypeId) {
       this.currentField = "rent-type-input";
       this.error = "Select Rent Type";
@@ -690,6 +808,9 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
     if (this.selectedPropertyType.hasFloorNo) {
       this.data.FloorNo = this.SubmitForm.value.FloorNo;
     }
+    if (this.selectedPropertyType.hasMaintenanceCharges) {
+      this.data.MaintenanceCharges = this.SubmitForm.value.maintenance;
+    }
     this.data.PropertyListingTypeId = this.listingTypeId;
     this.data.PropertyCategoryId = this.categoryID;
     if (this.selectedPropertyType.hasCarpetArea) {
@@ -742,88 +863,5 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
     localStorage.setItem('propertyData', JSON.stringify(this.data));
     localStorage.setItem('listingData', JSON.stringify(this.data));
     this.route.navigate(['/add-property/listpropertymedia'])
-  }
-  validateAgeInput(e: any) {
-    if (e.key.charCodeAt(0) >= 48 && e.key.charCodeAt(0) <= 57) {
-      setTimeout(() => {
-        this.getValue(e.key, true);
-      }, 100);
-    }
-  }
-  getValue(e: any, type: boolean) {
-    if (!type) {
-      let temp: any = this.SubmitForm.value.PropertyAge
-      this.SubmitForm.patchValue({
-        PropertyAge: temp.toString().slice(0, -1)
-      })
-    } else {
-      let temp: any = this.SubmitForm.value.PropertyAge
-      this.SubmitForm.patchValue({
-        PropertyAge: temp.toString() + e
-      })
-    }
-  }
-  validatePriceInput(e: any) {
-    if (e.key.charCodeAt(0) >= 48 && e.key.charCodeAt(0) <= 57) {
-      setTimeout(() => {
-        console.log(e.key);
-        this.getPriceValue(e.key, true);
-      }, 100);
-    }
-  }
-  getPriceValue(e: any, type: boolean) {
-    if (!type) {
-      let temp: any = this.SubmitForm.value.price
-      this.SubmitForm.patchValue({
-        price: temp.toString().slice(0, -1)
-      })
-    } else {
-      let temp: any = this.SubmitForm.value.price
-      this.SubmitForm.patchValue({
-        price: temp.toString() + e
-      })
-    }
-  }
-  validateNoticeInput(e: any) {
-    if (e.key.charCodeAt(0) >= 48 && e.key.charCodeAt(0) <= 57) {
-      setTimeout(() => {
-        console.log(e.key);
-        this.getNoticeValue(e.key, true);
-      }, 100);
-    }
-  }
-  getNoticeValue(e: any, type: boolean) {
-    if (!type) {
-      let temp: any = this.SubmitForm.value.noticePeriod
-      this.SubmitForm.patchValue({
-        noticePeriod: temp.toString().slice(0, -1)
-      })
-    } else {
-      let temp: any = this.SubmitForm.value.noticePeriod
-      this.SubmitForm.patchValue({
-        noticePeriod: temp.toString() + e
-      })
-    }
-  }
-  validateLockingInput(e: any) {
-    if (e.key.charCodeAt(0) >= 48 && e.key.charCodeAt(0) <= 57) {
-      setTimeout(() => {
-        console.log(e.key);
-        this.getLockingValue(e.key, true);
-      }, 100);
-    }
-  }
-  getLockingValue(e: any, type: boolean) {
-    if (!type) {
-      let temp: any = this.SubmitForm.value.lockingPeriod
-      this.SubmitForm.patchValue({
-        lockingPeriod: temp.toString().slice(0, -1)
-      })
-    } else {
-      let temp: any = this.SubmitForm.value.lockingPeriod
-      this.SubmitForm.patchValue({
-        lockingPeriod: temp.toString() + e
-      })
-    }
   }
 }
