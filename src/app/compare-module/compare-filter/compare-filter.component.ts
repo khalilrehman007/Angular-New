@@ -73,6 +73,7 @@ export class CompareFilterComponent implements OnInit {
   propertyTypeCommercial: any;
   propertyTypeResdential: any;
   PropertyTypeIds: any;
+  disableType:boolean = false;
   // videoTourSorting :any;
 
 
@@ -86,6 +87,9 @@ export class CompareFilterComponent implements OnInit {
 
   constructor(private activeRoute: ActivatedRoute,private service:AppService,private api: AppService,private route:Router,private modalService: NgbModal,public router: Router) {
 
+    if(localStorage.getItem("clickProprtyOne") || localStorage.getItem("clickProprtyTwo") || localStorage.getItem("clickProprtyThree")) {
+      this.disableType = true;
+    }
     let url = this.route.url.replace("/", "");
     url = this.route.url.split('?')[0];
     this.routeCheck = url

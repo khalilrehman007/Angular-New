@@ -2,7 +2,7 @@
     <div ngClass="property-filter-wrap d-flex justify-content-spacebw">
         <div ngClass="block-item first-block">
             <div ngClass="block-wrapper mb-4 position-relative d-flex searc-input-combination">
-                <mat-form-field appearance="fill" class="select-design">
+                <mat-form-field appearance="fill" class="select-design" [ngClass]="disableType ? 'disabled': ''">
                     <mat-label>Type</mat-label>
                     <mat-select [disableOptionCentering]="true"  [(value)]="selectedRentType" (selectionChange)="changeType($event)">
                         <mat-option *ngFor="let option of rentTypes" [value]="option.id">{{ option.name }}</mat-option>
