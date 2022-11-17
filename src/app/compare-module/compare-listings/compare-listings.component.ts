@@ -22,27 +22,34 @@ export class CompareListingsComponent implements OnInit {
   viewPropertyOne: any = "";
   viewPropertyTwo: any = "";
   viewPropertyThree: any = "";
+  property1: any = "";
+  property2: any = "";
+  property3: any = "";
 
   constructor(private authService: AuthService, private route: Router, private notifyService: NotificationService, private modalService: NgbModal, private service: AppService) {
-    if (localStorage.getItem("clickProprtyOne")){
+    if (localStorage.getItem("clickProprtyOne")) {
       this.viewPropertyOne = localStorage.getItem("clickProprtyOne");
       this.viewPropertyOne = JSON.parse(this.viewPropertyOne);
+      this.service.PropertyListingDetailComparison(this.viewPropertyOne.id).subscribe((response: any) => {
+        this.propertyDetails.push(response.data);
+      });
     }
     
-    if (localStorage.getItem("clickProprtyTwo")){
+    if (localStorage.getItem("clickProprtyTwo")) {
       this.viewPropertyTwo = localStorage.getItem("clickProprtyTwo");
       this.viewPropertyTwo = JSON.parse(this.viewPropertyTwo);
+      this.service.PropertyListingDetailComparison(this.viewPropertyTwo.id).subscribe((response: any) => {
+        this.propertyDetails.push(response.data);
+      });
     }
     
-    if (localStorage.getItem("clickProprtyThree")){
+    if (localStorage.getItem("clickProprtyThree")) {
       this.viewPropertyThree = localStorage.getItem("clickProprtyThree");
       this.viewPropertyThree = JSON.parse(this.viewPropertyThree);
+      this.service.PropertyListingDetailComparison(this.viewPropertyThree.id).subscribe((response: any) => {
+        this.propertyDetails.push(response.data);
+      });
     }
-    
-    this.service.ComparableProperties([{ "Id": this.viewPropertyOne.id }, { "Id": this.viewPropertyTwo.id }, { "Id": this.viewPropertyThree.id }]).subscribe((result: any) => {
-      this.propertyDetails = result.data;
-    })
-
   }
 
   ngOnInit(): void {
@@ -50,9 +57,9 @@ export class CompareListingsComponent implements OnInit {
   scroll(el: HTMLElement) {
     el.scrollIntoView();
   }
-  removeProperty(e:any) {
+  removeProperty(e: any) {
     console.log(e);
-    let temp:any = [];
+    let temp: any = [];
     temp = this.propertyDetails.filter((item: any) => item.id != e);
     this.propertyDetails = temp;
   }

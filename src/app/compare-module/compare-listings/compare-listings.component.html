@@ -127,7 +127,7 @@
                         </div>
                     </div>
                     <div class="comparen-list-item bedrooms" *ngFor="let property of propertyDetails">
-                        <p class="title-description">{{property.floorNo}}</p>
+                        <p class="title-description">{{property.floorNo != null ? property.floorNo : "0"}}</p>
                     </div>
                 </div>
                 <div ngClass="compare-block-list">
@@ -137,7 +137,7 @@
                         </div>
                     </div>
                     <div class="comparen-list-item bedrooms" *ngFor="let property of propertyDetails">
-                        <p class="title-description">{{property.totalFloor}}</p>
+                        <p class="title-description">{{property.totalFloor != null ? property.totalFloor : "0"}}</p>
                     </div>
                 </div>
                 <!-- <div ngClass="compare-block-list">
@@ -183,11 +183,11 @@
                 <div ngClass="compare-block-list">
                     <div class="comparen-list-item first-block">
                         <div ngClass="first-td-design">
-                            <p>Price to income ration</p>
+                            <p>Price to income ratio</p>
                         </div>
                     </div>
                     <div class="comparen-list-item bedrooms" *ngFor="let property of propertyDetails">
-                        <p class="title-description">{{property.unitNo}}</p>
+                        <p class="title-description">{{property.priceToIncomeRatio != null ? property.priceToIncomeRatio : "0"}}</p>
                     </div>
                 </div>
                 <div ngClass="compare-block-list">
@@ -203,11 +203,11 @@
                 <div ngClass="compare-block-list">
                     <div class="comparen-list-item first-block">
                         <div ngClass="first-td-design">
-                            <p>Gross rental Tield</p>
+                            <p>Gross rental Yield</p>
                         </div>
                     </div>
                     <div class="comparen-list-item bedrooms" *ngFor="let property of propertyDetails">
-                        <p class="title-description">{{property.unitNo}}</p>
+                        <p class="title-description">{{property.grossRentalYield != null ? property.grossRentalYield : "0"}}</p>
                     </div>
                 </div>
                 <div ngClass="compare-block-list">
@@ -217,7 +217,7 @@
                         </div>
                     </div>
                     <div class="comparen-list-item bedrooms" *ngFor="let property of propertyDetails">
-                        <p class="title-description">{{property.unitNo}}</p>
+                        <p class="title-description">{{property.capRate != null ? property.capRate : "0"}}</p>
                     </div>
                 </div>
                 <div ngClass="compare-block-list">
@@ -227,7 +227,7 @@
                         </div>
                     </div>
                     <div class="comparen-list-item bedrooms" *ngFor="let property of propertyDetails">
-                        <p class="title-description">{{property.unitNo}}</p>
+                        <p class="title-description">{{property.serviceCharges != null ? property.serviceCharges : "0"}}</p>
                     </div>
                 </div>
                 <div ngClass="compare-block-list">

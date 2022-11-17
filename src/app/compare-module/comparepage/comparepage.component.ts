@@ -55,7 +55,7 @@ export class ComparepageComponent implements OnInit {
     }
     
     this.service.GetPopularListingsComparison(this.countryData.id).subscribe((result:any)=>{
-      console.log(result.data)
+      // console.log(result.data)
       if (result.data.appartments != null){
         this.popularLisitng.push(result.data.appartments)
       }
