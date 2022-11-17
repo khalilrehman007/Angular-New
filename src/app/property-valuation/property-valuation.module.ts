@@ -21,7 +21,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { NgxMaskModule } from 'ngx-mask';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { MatIconModule } from '@angular/material/icon';
-
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,9 @@ import { MatIconModule } from '@angular/material/icon';
     MatIconModule,
     MatCardModule,
     MatCheckboxModule,
+    MatDatepickerModule,
     MatAutocompleteModule,
+    MatNativeDateModule,
     NgxMaskModule.forRoot()
   ]
 })

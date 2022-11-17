@@ -283,6 +283,19 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4"
+                                        *ngIf="!propertyData.hasLastRenovatedDate">
+                                        <h6 class="h6-design">Last Renovated on</h6>
+                                        <div class="input-date-picker input-design renovated-input">
+                                            <mat-form-field appearance="fill">
+                                                <input matInput [matDatepicker]="picker" [max]="maxDate"
+                                                    id="formDate" formControlName="renovatedDate">
+                                                <mat-datepicker-toggle matSuffix [for]="picker">
+                                                </mat-datepicker-toggle>
+                                                <mat-datepicker #picker></mat-datepicker>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
                                     <div ngClass="col-xl-6 col-lg-6 col-sm-12" *ngIf="propertyData.hasBed">
                                         <div ngClass="block-wrapper mb-4 select-design">
                                             <label class="h6-design">Bedroom</label>

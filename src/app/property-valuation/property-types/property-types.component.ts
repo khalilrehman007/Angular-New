@@ -40,6 +40,7 @@ export class PropertyTypesComponent implements OnInit {
   showLoader: boolean = false;
   mask = ["A", "A+9", "A+99", "A+A+9", "A+A+99"];
   unitHMTL: any = [];
+  maxDate = new Date();
   error: any = "";
   confirmMessage: any = "";
   showError: boolean = false;
@@ -78,6 +79,7 @@ export class PropertyTypesComponent implements OnInit {
   ];
   propertyTypeForm = new FormGroup({
     apartmentNo: new FormControl("", Validators.required),
+    renovatedDate: new FormControl("", Validators.required),
     constructionAge: new FormControl("", Validators.required),
     elevation: new FormControl("", Validators.required),
     apartmentSize: new FormControl("", Validators.required),
@@ -157,7 +159,8 @@ export class PropertyTypesComponent implements OnInit {
         constructionAge: this.formData.ConstructionAge,
         elevation: this.formData.Elevation,
         apartmentSize: this.formData.PlotSize,
-        buildupArea: this.formData.BuildupArea
+        buildupArea: this.formData.BuildupArea,
+        renovatedDate: this.formData.renovatedDate
       })
       this.service.LoadTypebyLatLng({ id: this.formData.PropertyCategoryId, lat: parseFloat(this.formData.PropertyLat), lng: parseFloat(this.formData.PropertyLong) }).subscribe((result: any) => {
         this.propertyType = result.data;
@@ -409,6 +412,11 @@ export class PropertyTypesComponent implements OnInit {
       this.error = "Please Enter Buildup Area";
       this.showError = true;
       return;
+    } else if (this.propertyData.hasLastRenovatedDate && this.propertyTypeForm.value.renovatedDate == "") {
+      this.currentField = "renovated-input";
+      this.error = "Please Enter Last Renovated Date";
+      this.showError = true;
+      return;
     } else if (this.bedrooms == 0 && this.propertyData.hasBed) {
       this.currentField = "bedrooms-input";
       this.error = "Please Select Bedrooms";
@@ -495,6 +503,10 @@ export class PropertyTypesComponent implements OnInit {
         } else {
           this.formData.Income = 0;
           this.formData.Expense = 0;
+        }
+        if (this.propertyData.hasLastRenovatedDate) {
+          this.formData.LastRenovatedDate  = this.propertyTypeForm.value.renovatedDate;
+          this.propertyStatus(0, "-");
         }
         if (this.propertyData.hasUnits) {
           this.formData.Expense = this.propertyTypeForm.value.expense;
