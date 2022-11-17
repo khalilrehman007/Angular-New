@@ -123,9 +123,23 @@
                                             <h6 ngClass="h6-design">Video Link</h6>
                                             <div ngClass="textarea-design">
                                                 <mat-form-field class="full-width input-design" appearance="fill">
-                                                    <mat-label>Paste Youtube/Vemio or any video link below</mat-label>
+                                                    <mat-label>Paste Youtube/Vemio or any video link here</mat-label>
                                                     <input matInput formControlName="videoLink" type="text"
-                                                        (change)="videoCheck=true" placeholder="Eg. https://www.YT.com">
+                                                        (change)="videoCheck=true" placeholder="Eg. https://www.example.com">
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div ngClass="property-offers" *ngIf="packageData.videoTour360">
+                                    <div ngClass="row">
+                                        <div ngClass="col-sm-12">
+                                            <h6 ngClass="h6-design">360 Video Link</h6>
+                                            <div ngClass="textarea-design">
+                                                <mat-form-field class="full-width input-design" appearance="fill">
+                                                    <mat-label>Paste video link here</mat-label>
+                                                    <input matInput formControlName="videoLink" type="text"
+                                                        (change)="videoCheck=true" placeholder="Eg. https://www.example.com">
                                                 </mat-form-field>
                                             </div>
                                         </div>
