@@ -51,37 +51,6 @@
                                 <h5 ngClass="h5-heading">Verify Property</h5>
                                 <p>Kindly confirm some facts about the property</p>
                             </div>
-                            <div ngClass="list-new-proerty-cntnt">
-                                <div ngClass="upload-document_div">
-                                    <h6 ngClass="h6-design mb-4">Upload Documents</h6>
-                                    <div ngClass="blue-upload-box">
-                                        <div ngClass="blue-upload-bordered-btn">
-                                            <h6 ngClass="blue-heading">Title Deed</h6>
-                                            <div ngClass="upload-files-design">
-                                                <div class="greybordered-btn position-relative title-deed-image-input">
-                                                    <input type="file" #fileInput class="input-file"
-                                                        (change)='handleChange($any($event.target).files)' accept="image/jpeg, image/jpg, image/png, application/pdf">
-                                                    <button mat-button (click)="fileInput.click()"><img
-                                                            src="{{upload1}}"> Upload Title Deed</button>
-                                                </div>
-                                                <div ngClass="uploded-output">
-                                                    <span ngClass="outpup-filename">{{ file }}</span>
-                                                    <div ngClass="action-btns">
-                                                        <button ngClass="trash" (click)="deleteImage()"><img
-                                                                src="{{trash}}"></button>
-                                                    </div>
-                                                    <p ngClass="drag-drop-text">Drag & drop file here or Browse
-                                                    </p>
-                                                    <button ngClass="succesfull-uploaded"><img src="{{checkmark}}">
-                                                        Uploaded</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <p ngClass="accepted-file-text">Accepted File Type: .doc, .pdf, .jpg,
-                                            .jpeg, .png</p>
-                                    </div>
-                                </div>
-                            </div>
                             <div ngClass="list-property-header">
                                 <h5 ngClass="h5-heading">Property Pictures & Videos</h5>
                                 <p>Kindly confirm some facts about the property</p>
@@ -106,46 +75,9 @@
                                                 <p>Property Listings with more than 5 images get 3x more views. <br />
                                                     More Images = Higher chances of Leads.</p>
                                                 <p>Accepted formats are .jpg, .gif, .bmp & .png and Maximum size allowed
-                                                    10 MB</p>
+                                                    2 MB per image</p>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div ngClass="upload_documents-div frame-border-inner">
-                                    <div ngClass="small-blue-black-heading">
-                                        <h6>Uploaded Documents</h6>
-                                        <p>List of the documents uploaded</p>
-                                    </div>
-                                    <div ngClass="upload-documents-list">
-                                        <!-- <div ngClass="doc-list-div d-flex justify-content-spacebq align-items-center"
-                                            *ngFor="let item of uploadedDocuments">
-                                            <div ngClass="d-flex doc-list-name align-items-center">
-                                                <div ngClass="document_img">
-                                                    <img src="{{item.imgsrc}}">
-                                                </div>
-                                                <div ngClass="doc-text-details">
-                                                    <h6>Document Name</h6>
-                                                    <p>{{item.documentName}}</p>
-                                                </div>
-                                            </div>
-                                            <div ngClass="doc-list-file">
-                                                <div ngClass="doc-text-details">
-                                                    <h6>File Name</h6>
-                                                    <p>{{item.fileName}}</p>
-                                                </div>
-                                            </div>
-                                            <div ngClass="doc-list-action">
-                                                <div ngClass="doc-text-actions">
-                                                    <h6>Action</h6>
-                                                    <div ngClass="action-text-btns">
-                                                        <a (click)="viewImage(item.imgsrc)"
-                                                            class="view-image-btn">View</a>
-                                                        <a (click)="deleteImage(item.index)"
-                                                            class="view-image-btn">Delete</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div> -->
                                     </div>
                                 </div>
                                 <div ngClass="propery-videos-sec" *ngIf="packageData.videoInListing">
