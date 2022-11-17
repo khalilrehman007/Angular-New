@@ -99,11 +99,6 @@ export class ListpropertymediaComponent implements OnInit {
     })
     $(window).scrollTop(temp - 100);
   }
-  deleteImage() {
-    this.titledeedUploaded = false;
-    this.file = "";
-    this.documentBase = {};
-  }
   upload(idx: number, file: File): void {
     this.progressInfos[idx] = { value: 0, fileName: file.name };
 
@@ -129,39 +124,47 @@ export class ListpropertymediaComponent implements OnInit {
     }
   }
   selectFiles(event: any): void {
-    if (event.target.files.length > this.packageData.numberOfPhoto) {
-      alert("You can choose maximun " + this.packageData.numberOfPhoto + " files");
+    let check = true;
+    if (event.target.files.length + this.imageData.length > this.packageData.numberOfPhoto) {
+      this.error = "You can choose maximun " + this.packageData.numberOfPhoto + " files";
+      this.showError = true;
       return;
     }
     let temp: number = 0;
     for (let i = 0; i < event.target.files.length; i++) {
-      temp += event.target.files[i].size
+      if(event.target.files[i].size / 1048576 > 2) {
+        this.error = "Maximun size allowed is 2MB per Image";
+        this.showError = true;
+        check = false;
+        return;
+      }
+      // temp += event.target.files[i].size
     }
-    temp = temp / 1048576
-    if (temp > 10) {
-      alert("Maximun size allowed is 10MB");
-      return;
-    }
-    this.imageData = [];
-    this.message = [];
-    this.progressInfos = [];
-    this.selectedFiles = event.target.files;
-    for (let i = 0; i < this.selectedFiles.length; i++) {
-      let extension: any = this.selectedFiles[i].name.split(".");
-      extension = extension[extension.length - 1];
-      this.imageData.push({ "FileName": this.selectedFiles[i].name, "Extension": extension, file: this.selectedFiles[i] });
-    }
-
-    this.previews = [];
-    if (this.selectedFiles && this.selectedFiles[0]) {
-      const numberOfFiles = this.selectedFiles.length;
-      for (let i = 0; i < numberOfFiles; i++) {
-        const reader = new FileReader();
-        reader.onload = (e: any) => {
-          this.previews.push(e.target.result);
-        };
-
-        reader.readAsDataURL(this.selectedFiles[i]);
+    if(check) {
+      temp = temp / 1048576
+      if (temp > 10) {
+        alert("Maximun size allowed is 10MB");
+        return;
+      }
+      this.message = [];
+      this.progressInfos = [];
+      this.selectedFiles = event.target.files;
+      for (let i = 0; i < this.selectedFiles.length; i++) {
+        let extension: any = this.selectedFiles[i].name.split(".");
+        extension = extension[extension.length - 1];
+        this.imageData.push({ "FileName": this.selectedFiles[i].name, "Extension": extension, file: this.selectedFiles[i] });
+      }
+      console.log(this.imageData);
+      if (this.selectedFiles && this.selectedFiles[0]) {
+        const numberOfFiles = this.selectedFiles.length;
+        for (let i = 0; i < numberOfFiles; i++) {
+          const reader = new FileReader();
+          reader.onload = (e: any) => {
+            this.previews.push(e.target.result);
+          };
+  
+          reader.readAsDataURL(this.selectedFiles[i]);
+        }
       }
     }
   }
@@ -215,21 +218,6 @@ export class ListpropertymediaComponent implements OnInit {
       }
     }
   }
-  handleChange(files: any) {
-    if(files[0].size / 1048576 > 2) {
-      this.error = "Maximum upload size is 2MB";
-      this.showError = true;
-
-    } else {
-      this.titledeedUploaded = true;
-      this.file = files[0].name;
-      if (files && files.length) {
-        let extension: any = files[0].name.split(".");
-        extension = extension[extension.length - 1];
-        this.documentBase = { "FileName": files[0].name, "Extension": extension, file: files };
-      }
-    }
-  }
   SubmitForm = new FormGroup({
     videoLink: new FormControl(""),
   });
@@ -241,9 +229,9 @@ export class ListpropertymediaComponent implements OnInit {
   imgCheck: boolean = false;
   videoCheck: boolean = false;
   onSubmit() {
-    if (!this.titledeedUploaded) {
+    if (this.imageData < this.packageData.numberOfPhoto) {
       this.currentField = "title-deed-image-input";
-      this.error = "Plese Upload Title Deed Image";
+      this.error = "Plese Upload " + this.packageData.numberOfPhoto + " Photos";
       this.showError = true;
       return;
     }
@@ -284,7 +272,6 @@ export class ListpropertymediaComponent implements OnInit {
       },
       dataType: "json",
       success: (res) => {
-        // console.log(res)
         if (res.message == "Property Listing request completed successfully") {
           localStorage.removeItem("propertyData");
           this.showLoader = true;
@@ -304,7 +291,6 @@ export class ListpropertymediaComponent implements OnInit {
         }
       },
       error: (err) => {
-        console.log(err);
       }
     });
   }
