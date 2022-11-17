@@ -50,6 +50,9 @@ export class CompareListingsComponent implements OnInit {
         this.propertyDetails.push(response.data);
       });
     }
+    if (!localStorage.getItem("user")){
+      this.route.navigate(['/login'])
+    }
   }
 
   ngOnInit(): void {

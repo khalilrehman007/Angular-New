@@ -751,7 +751,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     reraNo: new FormControl(""),
     companyAddress: new FormControl("")
   })
-
+  openCamera() {
+    $(".camera-image").click();
+}
   ExpertIn: any = [];
   getExpertIn() {
     let tempData: Array<Object> = []

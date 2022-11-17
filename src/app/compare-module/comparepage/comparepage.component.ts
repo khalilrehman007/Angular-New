@@ -53,7 +53,9 @@ export class ComparepageComponent implements OnInit {
       this.userData = JSON.parse(this.userData);
       this.countryData = JSON.parse(this.cookie.get("countryData"));
     }
-    
+    if (!localStorage.getItem("user")){
+      this.route.navigate(['/login'])
+    }
     this.service.GetPopularListingsComparison(this.countryData.id).subscribe((result:any)=>{
       // console.log(result.data)
       if (result.data.appartments != null){

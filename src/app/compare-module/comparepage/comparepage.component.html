@@ -51,7 +51,7 @@
                                     <img  *ngIf="viewPropertyTwo.documents.length == 0 || viewPropertyTwo.documents[0].fileUrl == null" src="assets/images/placeholder.png">
                                 </div>
                                 <div ngClass="com-cntnt cursor-pointer" >
-                                    <h4> {{viewPropertyTwo.propertyPrice}} {{viewPropertyTwo.country?.currency?viewPropertyTwo.country?.currency:viewPropertyTwo.country}}  
+                                    <h4> {{viewPropertyTwo.propertyPrice}} {{viewPropertyTwo.currency}}  
                                         <small *ngIf="viewPropertyTwo.rentType != ''">/{{viewPropertyTwo.rentType?.name?viewPropertyTwo.rentType?.name:viewPropertyTwo.rentType}}</small>
                                     </h4>
                                     <h5>{{viewPropertyTwo.propertyTitle}}</h5>   
