@@ -50,6 +50,20 @@ export class CompareListingsComponent implements OnInit {
         this.propertyDetails.push(response.data);
       });
     }
+    if (localStorage.getItem("compareProperty")) {
+      let temp:any = localStorage.getItem("compareProperty");
+      temp = JSON.parse(temp);
+      this.service.PropertyListingDetailComparison(temp[0].id).subscribe((response: any) => {
+        this.propertyDetails.push(response.data);
+      });
+      this.service.PropertyListingDetailComparison(temp[1].id).subscribe((response: any) => {
+        this.propertyDetails.push(response.data);
+      });
+      this.service.PropertyListingDetailComparison(temp[2].id).subscribe((response: any) => {
+        this.propertyDetails.push(response.data);
+        console.log(this.propertyDetails)
+      });
+    }
     if (!localStorage.getItem("user")){
       this.route.navigate(['/login'])
     }

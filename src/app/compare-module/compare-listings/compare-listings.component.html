@@ -26,7 +26,7 @@
                             </div>
                             <div ngClass="com-cntnt">
                                 <h4> {{property.propertyPrice}} {{property.country.currency}}
-                                    <small *ngIf="property.rentType != ''">/{{property.rentType.name}}</small>
+                                    <small *ngIf="property.rentType != null && property.rentType != ''">/{{property.rentType.name}}</small>
                                 </h4>
                                 <h5>{{property.title}}</h5>
                                 <address>

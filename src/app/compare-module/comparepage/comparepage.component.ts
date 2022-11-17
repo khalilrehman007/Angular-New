@@ -248,9 +248,11 @@ export class ComparepageComponent implements OnInit {
     el.scrollIntoView();
   }
   compareProperty(e:any) {
-    localStorage.setItem("clickProprtyOne", JSON.stringify(e[0]));
-    localStorage.setItem("clickProprtyTwo", JSON.stringify(e[1]));
-    localStorage.setItem("clickProprtyThree", JSON.stringify(e[2]));
+    let temp:any = [];
+    temp.push(e[0]);
+    temp.push(e[1]);
+    temp.push(e[2]);
+    localStorage.setItem("compareProperty", JSON.stringify(temp));
     this.route.navigate(['/compare/view'])
   }
 }
