@@ -124,7 +124,8 @@
                                 <div *ngIf="propertyTypeCheck">
                                     <div class="property-dropdowns-list">
                                         <div class="row">
-                                            <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4">
+                                            <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4"
+                                            *ngIf="selectedPropertyType.hasPropertyAge">
                                                 <h6 class="h6-design">Property Age</h6>
                                                 <div class="input-flaoted-right-text">
                                                     <div class="position-relative property-age-input">
@@ -138,7 +139,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4">
+                                            <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4" *ngIf="selectedPropertyType.hasBuilding">
                                                 <h6 class="h6-design">Building Name / Project Name</h6>
                                                 <div class="input-flaoted-right-text">
                                                     <div class="position-relative building-name-input">
@@ -156,9 +157,9 @@
                                                     <div class="position-relative unit-no-input">
                                                         <mat-form-field class="full-width input-design"
                                                             appearance="fill">
-                                                            <input matInput type="number" formControlName="UnitNo"
+                                                            <input matInput type="text" formControlName="UnitNo"
                                                                 placeholder="Enter Unit No."
-                                                                (input)="validateLength(1)">
+                                                                (keypress)="validateInput($event)" (input)="getInput($event, false)">
                                                         </mat-form-field>
                                                     </div>
                                                 </div>
@@ -575,6 +576,20 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4" *ngIf="selectedPropertyType.hasMaintenanceCharges">
+                                                <h6 class="h6-design">Maintenance Fee</h6>
+                                                <div class="input-flaoted-left-text">
+                                                    <div class="position-relative maintenance-input">
+                                                        <mat-form-field class="full-width input-design"
+                                                            appearance="fill">
+                                                            <input matInput type="text" formControlName="maintenance"
+                                                                (keypress)="validatePriceInput($event)"
+                                                                (input)="getPriceValue($event, false)">
+                                                        </mat-form-field>
+                                                        <span class="area-sq">AED</span>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4"
                                                 *ngIf="listingTypeId == 1">
                                                 <h6 class="h6-design">Rent Type</h6>
@@ -749,6 +764,24 @@
                                                                 (input)="getLockingValue($event, false)">
                                                         </mat-form-field>
                                                         <span class="area-sq">Days</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4">
+                                                <div ngClass="block-wrapper">
+                                                    <div ngClass="select-design">
+                                                        <label>Developer</label>
+                                                        <div class="located-near-input">
+                                                            <mat-form-field appearance="fill">
+                                                                <mat-label>Select Developer</mat-label>
+                                                                <mat-select [disableOptionCentering]="true"
+                                                                    [(value)]="developerData"
+                                                                    (selectionChange)="getDeveloper($event)">
+                                                                    <mat-option *ngFor="let item of developer"
+                                                                        value="{{item.id}}">{{item.name}}</mat-option>
+                                                                </mat-select>
+                                                            </mat-form-field>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
