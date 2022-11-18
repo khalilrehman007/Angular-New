@@ -237,13 +237,13 @@ export class ListpropertymediaComponent implements OnInit {
       this.showError = true;
       return;
     }
-    this.showLoader = true;
+    // this.showLoader = true;
     this.btnText = "Please Wait...";
     this.data.VideoLink = this.SubmitForm.value.videoLink;
     let temp: any = [];
     let tempDoc: any = [];
     for (let i = 0; i < this.imageData.length; i++) {
-      temp.push({ "FileId": i + 1, "ListingDocumentTypeId": "1", "FileName": this.imageData[i].FileName, "Extension": this.imageData[i].Extension });
+      temp.push({ "FileId": i + 1, "ListingDocumentTypeId": "2", "FileName": this.imageData[i].FileName, "Extension": this.imageData[i].Extension });
       tempDoc.push(this.imageData[i].file);
     }
     let start: number = temp.length;
