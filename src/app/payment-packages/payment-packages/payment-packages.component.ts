@@ -167,9 +167,9 @@ export class PaymentPackagesComponent implements OnInit {
   }
   proceedPayment() {
     if (this.selectedPackage != "") {
-      // localStorage.setItem("seletedPackage", JSON.stringify(this.selectedPackage));
-      // this.router.navigate(["/payment-form"]);
-      this.makePayment(this.selectedPackage.price,)    
+      localStorage.setItem("seletedPackage", JSON.stringify(this.selectedPackage));
+      this.router.navigate(["/payment-form"]);
+      // this.makePayment(this.selectedPackage.price,)    
     } else {
       this.error = "Please Select a points package type";
       this.showError = true;
