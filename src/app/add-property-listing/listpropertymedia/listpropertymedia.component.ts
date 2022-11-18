@@ -57,6 +57,7 @@ export class ListpropertymediaComponent implements OnInit {
   currentField: any;
   packageData: any;
   success: any = "";
+  mainImage:any = 0;
   showSuccess: boolean = false;
 
   constructor(private api: AppService, private uploadService: FileUploadService, private route: Router) {
@@ -131,7 +132,7 @@ export class ListpropertymediaComponent implements OnInit {
     }
     let temp: number = 0;
     for (let i = 0; i < event.target.files.length; i++) {
-      if(event.target.files[i].size / 1048576 > 2) {
+      if (event.target.files[i].size / 1048576 > 2) {
         this.error = "Maximun size allowed is 2MB per Image";
         this.showError = true;
         check = false;
@@ -139,7 +140,7 @@ export class ListpropertymediaComponent implements OnInit {
       }
       // temp += event.target.files[i].size
     }
-    if(check) {
+    if (check) {
       temp = temp / 1048576
       if (temp > 10) {
         alert("Maximun size allowed is 10MB");
@@ -161,10 +162,11 @@ export class ListpropertymediaComponent implements OnInit {
           reader.onload = (e: any) => {
             this.previews.push(e.target.result);
           };
-  
+
           reader.readAsDataURL(this.selectedFiles[i]);
         }
       }
+      $(".image-input").val("");
     }
   }
   onSelectFile(event: any) {
@@ -228,7 +230,8 @@ export class ListpropertymediaComponent implements OnInit {
   imgCheck: boolean = false;
   videoCheck: boolean = false;
   onSubmit() {
-    if (this.imageData < this.packageData.numberOfPhoto) {
+    // if (this.imageData.length < this.packageData.numberOfPhoto) {
+    if (this.imageData.length < 1) {
       this.currentField = "title-deed-image-input";
       this.error = "Plese Upload " + this.packageData.numberOfPhoto + " Photos";
       this.showError = true;
@@ -258,37 +261,46 @@ export class ListpropertymediaComponent implements OnInit {
     }
     let token: any = localStorage.getItem("token");
     token = JSON.parse(token);
-    $.ajax({
-      url: "https://beta.ovaluate.com/api/AddPropertyListing",
-      method: "post",
-      contentType: false,
-      processData: false,
-      data: this.documentData,
-      headers: {
-        "Authorization": 'bearer ' + token
-      },
-      dataType: "json",
-      success: (res) => {
-        if (res.message == "Property Listing request completed successfully") {
-          localStorage.removeItem("propertyData");
-          this.showLoader = true;
-          let temp: any = localStorage.getItem("user");
-          temp = JSON.parse(temp);
-          this.api.PurchasePackage({ "UserId": temp.id, "PackageId": this.packageData.id }).subscribe((result: any) => {
-            if (result.message == "Package has been purchased") {
-              this.showLoader = false;
-              this.success = "Your package has been purchsed successfully";
-              this.showSuccess = true;
-            } else {
-              this.error = "Something went wrong please try again";
-              this.showError = true;
-            }
-          })
-          this.route.navigate(['/add-property/listpropertypublish'])
-        }
-      },
-      error: (err) => {
-      }
-    });
+    console.log(this.data);
+    // $.ajax({
+    //   url: "https://beta.ovaluate.com/api/AddPropertyListing",
+    //   method: "post",
+    //   contentType: false,
+    //   processData: false,
+    //   data: this.documentData,
+    //   headers: {
+    //     "Authorization": 'bearer ' + token
+    //   },
+    //   dataType: "json",
+    //   success: (res) => {
+    //     if (res.message == "Property Listing request completed successfully") {
+    //       localStorage.removeItem("propertyData");
+    //       this.showLoader = true;
+    //       let temp: any = localStorage.getItem("user");
+    //       temp = JSON.parse(temp);
+    //       this.api.PurchasePackage({ "UserId": temp.id, "PackageId": this.packageData.id }).subscribe((result: any) => {
+    //         if (result.message == "Package has been purchased") {
+    //           this.showLoader = false;
+    //           this.success = "Your package has been purchsed successfully";
+    //           this.showSuccess = true;
+    //         } else {
+    //           this.error = "Something went wrong please try again";
+    //           this.showError = true;
+    //         }
+    //       })
+    //       this.route.navigate(['/add-property/listpropertypublish'])
+    //     }
+    //   },
+    //   error: (err) => {
+    //   }
+    // });
+  }
+  removeImage(index: any) {
+    this.mainImage = 0;
+    console.log(index);
+    this.previews.splice(index, 1);
+  }
+  changeMainImg(index:any) {
+    this.mainImage = index;
   }
 }

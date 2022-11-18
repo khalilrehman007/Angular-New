@@ -85,31 +85,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div ngClass="confirm-location-sec text-right" (click)="confirmLocation()">
-                                            <button ngClass="confirm-location-btn">
-                                                Confirm Location
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div ngClass="location-information" *ngIf="locationInformation.city">
-                                    <div ngClass="block-wrapper mb-4">
-                                        <h6 ngClass="h6-design">Location Information</h6>
-                                        <div ngClass="location-info-lists">
-                                            <mat-list>
-                                                <mat-list-item ngClass="d-flex justify-content-spacebw" if>
-                                                    <div ngClass="location-div-block">
-                                                        <h4 ngClass="loc-heading">{{locationInformation.city}},
-                                                            {{locationInformation.country}}</h4>
-                                                        <p>{{locationInformation.address}}</p>
-                                                        <img src="../../../../assets/images/MapPin.svg" />
-                                                    </div>
-                                                    <div ngClass="change-btn-block" (click)="changeInfo()">
-                                                        <button ngClass="change-btn">Change</button>
-                                                    </div>
-                                                </mat-list-item>
-                                            </mat-list>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
