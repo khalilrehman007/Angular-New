@@ -89,7 +89,7 @@
                                             <div ngClass="properties-list_cntnts position-relative">
                                                 <div ngClass="properties-list_hdr d-flex justify-content-spacebw">
                                                     <div ngClass="property-price_detals cursor-pointer"
-                                                        [routerLink]="['/new-homes/detail']"
+                                                        [routerLink]="['/project/details']"
                                                         [queryParams]="{id: list.id}">
                                                         <h4>{{list.propertyPrice}} {{list.currency}} 
                                                         </h4>
@@ -132,7 +132,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div ngClass="property-name_detals" [routerLink]="['/new-homes/detail']"
+                                                <div ngClass="property-name_detals" [routerLink]="['/project/details']"
                                                     [queryParams]="{id: list.id}">
                                                     <h4>{{list.buildingName}}</h4>
                                                     <div ngClass="property-addresss">

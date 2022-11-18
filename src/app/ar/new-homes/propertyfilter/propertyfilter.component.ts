@@ -5,7 +5,6 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {AppService} from "../../../service/app.service";
 import {FormControl, FormGroup} from "@angular/forms";
 import { Options } from '@angular-slider/ngx-slider';
-import {SearchComponent} from "../search/search.component";
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {Observable} from "rxjs";
 import {map, startWith} from "rxjs/operators";
