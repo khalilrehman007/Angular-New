@@ -411,6 +411,9 @@ export class AppService {
   LocatedNear() {
     return this.http.get(this.apiurl + 'LocatedNear');
   }
+  Permit() {
+    return this.http.get(this.apiurl + 'PermitFor');
+  }
   AddUpdateAgentDetails(data: any) {
     return this.http.post(this.apiurl + 'AddUpdateAgentDetails', data);
   }

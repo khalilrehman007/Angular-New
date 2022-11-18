@@ -283,8 +283,26 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4" *ngIf="propertyData.hasLandPermit">
+                                        <div ngClass="block-wrapper">
+                                            <div ngClass="select-design">
+                                                <label>Select Permit Type</label>
+                                                <div class="permit-input">
+                                                    <mat-form-field appearance="fill">
+                                                        <mat-label>Select Permit Type</mat-label>
+                                                        <mat-select [disableOptionCentering]="true"
+                                                            [(value)]="permitData"
+                                                            (selectionChange)="getPermit($event)">
+                                                            <mat-option *ngFor="let item of permitLsit"
+                                                                value="{{item.id}}">{{item.name}}</mat-option>
+                                                        </mat-select>
+                                                    </mat-form-field>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4"
-                                        *ngIf="!propertyData.hasLastRenovatedDate">
+                                        *ngIf="propertyData.hasLastRenovatedDate">
                                         <h6 class="h6-design">Last Renovated on</h6>
                                         <div class="input-date-picker input-design renovated-input">
                                             <mat-form-field appearance="fill">
