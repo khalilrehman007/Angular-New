@@ -66,6 +66,10 @@
                                                 <button ngClass="black-upload-btn"><span
                                                         ngClass="plus_icon-div">+</span> Upload Pictures</button>
                                             </label>
+                                            <div class="thumbnail_img">
+                                            <img ngClass="img-thumb-icon"
+                                            src="../../../../assets/images/image-gallery-thumbnail.png">
+                                            </div>
                                             <div ngClass="upload-preview-images position-relative">
                                                 <span *ngFor='let preview of previews'>
                                                     <button class="dlt-img">
@@ -78,8 +82,6 @@
                                                             </svg>                                                        
                                                     </button>
                                                     <img [src]="preview" class="preview">
-                                                    <img ngClass="img-thumb-icon"
-                                                        src="../../../../assets/images/image-gallery-thumbnail.png">
                                                     <p class="main_pic-tag hide">Main Picture</p>
                                                 </span>
                                             </div>
