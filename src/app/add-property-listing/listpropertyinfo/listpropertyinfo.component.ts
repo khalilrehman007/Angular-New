@@ -164,7 +164,6 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
         temp = localStorage.getItem("listingData");
         this.data = JSON.parse(temp);
         this.developerData = this.data.PropertyDeveloperId;
-        console.log(this.data);
         this.listingTypeId = this.data.PropertyListingTypeId;
         if (this.listingTypeId == 2) {
           this.api.PropertyTransactionTypes().subscribe((result: any) => {
@@ -177,6 +176,9 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
         this.clearData();
 
         if (this.data.PetPolicies) {
+          if(this.data.PetPolicies[0].PetPolicyId == "1") {
+            this.disabled = [1, 2, 3];
+          }
           for (let i = 0; i < this.data.PetPolicies.length; i++) {
             this.petPolicyData.push(this.data.PetPolicies[i].PetPolicyId)
           }
@@ -447,7 +449,7 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
     if (e == 0 && this.disabled.length == 0) {
       this.petPolicyData = ["1"];
       this.disabled = [1, 2, 3];
-    } else {
+    } else if (e == 0 && this.disabled.length > 0){
       this.disabled = [];
     }
   }
@@ -530,7 +532,6 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
   validatePriceInput(e: any) {
     if (e.key.charCodeAt(0) >= 48 && e.key.charCodeAt(0) <= 57) {
       setTimeout(() => {
-        console.log(e.key);
         this.getPriceValue(e.key, true);
       }, 100);
     }
@@ -551,7 +552,6 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
   validateNoticeInput(e: any) {
     if (e.key.charCodeAt(0) >= 48 && e.key.charCodeAt(0) <= 57) {
       setTimeout(() => {
-        console.log(e.key);
         this.getNoticeValue(e.key, true);
       }, 100);
     }
@@ -572,7 +572,6 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
   validateLockingInput(e: any) {
     if (e.key.charCodeAt(0) >= 48 && e.key.charCodeAt(0) <= 57) {
       setTimeout(() => {
-        console.log(e.key);
         this.getLockingValue(e.key, true);
       }, 100);
     }
