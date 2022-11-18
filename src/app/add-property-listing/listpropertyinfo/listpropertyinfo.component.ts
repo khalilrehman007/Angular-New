@@ -703,7 +703,7 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
       this.error = "Select Completetion Status";
       this.showError = true;
       return;
-    } else if (this.listingTypeId == 1 && this.petPolicyData.length == 0) {
+    } else if (this.selectedPropertyType.hasPetPolicy && this.petPolicyData.length == 0) {
       this.currentField = "pet-policy-input";
       this.error = "Select Pet Policy";
       this.showError = true;
