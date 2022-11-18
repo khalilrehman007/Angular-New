@@ -287,7 +287,14 @@
                                                             appearance="fill">
                                                             <input matInput type="number" formControlName="buildupArea">
                                                         </mat-form-field>
-                                                        <span class="area-sq">Sq. Ft.</span>
+                                                        <div ngClass="input-overlay-layer select-design">
+                                                            <mat-form-field appearance="fill">
+                                                                <mat-select [(value)]="selected">
+                                                                    <mat-option value="option1">Sq. Ft.</mat-option>
+                                                                    <mat-option value="option2">Sq. M.</mat-option>
+                                                                </mat-select>
+                                                            </mat-form-field>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>

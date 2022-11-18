@@ -13,7 +13,7 @@ import { Select2 } from 'select2';
   styleUrls: ['./listpropertyinfo.component.scss']
 })
 export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
-
+  selected = 'option1';
   error: any = ""
   showError: boolean = false;
   errorResponse(data: any) {
