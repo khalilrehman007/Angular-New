@@ -55,7 +55,58 @@ $outline-color_1: #595ad4;
 }
 .property-action_detals {
     display: flex;
+	justify-content: flex-end;
 }
 .property-action_detals .pro-contact-details {
     margin-right: 5px;
+}
+.property-new-details{
+    padding: 30px 0px;
+    .ico-dtls{
+        display: flex;
+        background-color: #F0F3F5;
+        padding: 20px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        .icn{
+            width: 35px;
+            margin-right: 10px;
+        }
+        .txt{
+            display: flex;
+            flex-direction: column;
+            line-height: 22px;
+            b{
+                font-size: 22px;
+            }
+        }
+    }
+    .download-brochure{
+        height: calc(100% - 20px);
+        flex-direction: column;
+        align-items: center;
+        .dwnlod-btn{
+            flex-direction: row;
+            border-radius: 6px;
+            background: #fff;
+            color: #4A565F !important;
+            padding: 9px 10px 9px 40px;
+            font-size: 14px;
+            width: 100%;
+            position: relative;
+            justify-content: center;
+            border: none;
+            color: #fff;
+            .icn-btn{
+                width: 25px;
+                height: 25px;
+                margin-right: 10px;
+            }
+        }
+        .bro-icn{
+            width: 150px;
+            height: 150px;
+            object-fit: contain;
+        }
+    }
 }

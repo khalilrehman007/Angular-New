@@ -30,12 +30,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { ProjectFilterComponent } from './project-filter/project-filter.component';
+import { DetailsComponent } from './details/details.component';
+import { NgChartsModule } from "ng2-charts";
 
 @NgModule({
   declarations: [
     ProjectComponent,
     // CityComponent,
-    // DetailsComponent,
+    DetailsComponent,
     LuxuryComponent,
     UltraLuxuryComponent,
     ScoresComponent,
@@ -62,6 +64,7 @@ import { ProjectFilterComponent } from './project-filter/project-filter.componen
     NgxGalleryModule,
     HttpClientModule,
     MatDatepickerModule,
+    NgChartsModule,
     MatNativeDateModule,
     // Specify ng-circle-progress as an import
     NgCircleProgressModule.forRoot({
