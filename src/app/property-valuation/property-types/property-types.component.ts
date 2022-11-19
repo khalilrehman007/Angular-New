@@ -52,6 +52,8 @@ export class PropertyTypesComponent implements OnInit {
   currentField: any;
   locatedNearData: any = [];
   locatedNear: any = [];
+  permitData: any = "";
+  permitLsit: any = [];
   propertyStatusData: any = [];
   errorResponse(data: any) {
     this.showError = false;
@@ -242,6 +244,9 @@ export class PropertyTypesComponent implements OnInit {
     this.service.LocatedNear().subscribe((result: any) => {
       this.locatedNear = result.data;
     })
+    this.service.Permit().subscribe((result: any) => {
+      this.permitLsit = result.data;
+    })
     this.loadFurnishingType();
     this.service.PropertyFeatures(this.propertyData.id).subscribe((result: any) => {
       this.featuresData = result.data;
@@ -314,13 +319,17 @@ export class PropertyTypesComponent implements OnInit {
   getLocatedNear(e: any) {
     this.locatedNearData = e.value;
   }
+  getPermit(e: any) {
+    this.permitData = e.value;
+    console.log(this.permitData)
+  }
   removeUnits(e: any) {
     for (let i = 0; i < this.unitHMTL.length; i++) {
       if (this.unitHMTL[i].id == e) {
         this.unitHMTL[i].show = false;
       }
     }
-    let temp:any = $(".btn-add-unit").length - 2;
+    let temp: any = $(".btn-add-unit").length - 2;
     $($(".btn-add-unit")[temp]).parent().parent().removeClass("d-none");
   }
   animate() {
@@ -432,6 +441,11 @@ export class PropertyTypesComponent implements OnInit {
       this.error = "Please Select Furnishing Type";
       this.showError = true;
       return;
+    } else if (this.propertyData.hasLandPermit && this.permitData == "") {
+      this.currentField = "permit-inputfurnishing-input";
+      this.error = "Please Select Permit Type";
+      this.showError = true;
+      return;
     } else if (this.propertyData.hasFitting && this.fitting == 0) {
       this.currentField = "fitting-input";
       this.error = "Please Select Fitting Type";
@@ -454,7 +468,7 @@ export class PropertyTypesComponent implements OnInit {
         return;
       }
     }
-    let checkData:any = {};
+    let checkData: any = {};
     checkData.CityId = this.formData.CityId;
     checkData.DistrictId = this.formData.DistrictId;
     checkData.PropertyTypeId = this.formData.PropertyTypeId;
@@ -465,8 +479,8 @@ export class PropertyTypesComponent implements OnInit {
     checkData.PlotSize = this.propertyTypeForm.value.apartmentSize;
     checkData.BuildupArea = this.propertyTypeForm.value.buildupArea;
     this.showLoader = true;
-    this.service.ValuationDataIsExists(checkData).subscribe((result:any) => {
-      if(result.message == "Valauation data is not Exists") {
+    this.service.ValuationDataIsExists(checkData).subscribe((result: any) => {
+      if (result.message == "Valauation data is not Exists") {
         this.error = "Valauation data does not Exists";
         this.showError = true;
         this.showLoader = false;
@@ -482,7 +496,7 @@ export class PropertyTypesComponent implements OnInit {
         } else {
           this.formDetailData.elevation = 0;
         }
-        let tempData:any = "";
+        let tempData: any = "";
         for (let i = 0; i < this.locatedNearData.length; i++) {
           tempData.push({ "LocatedNearId": this.locatedNearData[i] });
         }
@@ -490,7 +504,7 @@ export class PropertyTypesComponent implements OnInit {
         this.formData.ConstructionAge = this.propertyTypeForm.value.constructionAge;
         this.formDetailData.PlotSize = this.propertyTypeForm.value.apartmentSize;
         this.formDetailData.BuildupArea = 0;
-    
+
         this.formData.PlotNo = this.propertyTypeForm.value.apartmentNo;
         this.formData.PlotSize = this.propertyTypeForm.value.apartmentSize;
         this.formData.BuildupArea = this.propertyTypeForm.value.buildupArea;
@@ -505,7 +519,7 @@ export class PropertyTypesComponent implements OnInit {
           this.formData.Expense = 0;
         }
         if (this.propertyData.hasLastRenovatedDate) {
-          this.formData.LastRenovatedDate  = this.propertyTypeForm.value.renovatedDate;
+          this.formData.LastRenovatedDate = this.propertyTypeForm.value.renovatedDate;
           this.propertyStatus(0, "-");
         }
         if (this.propertyData.hasUnits) {
@@ -621,6 +635,6 @@ export class PropertyTypesComponent implements OnInit {
         })
       }
     }
-    
-  } 
+
+  }
 }

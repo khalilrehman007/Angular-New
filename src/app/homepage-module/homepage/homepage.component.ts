@@ -51,6 +51,7 @@ export class HomepageComponent implements OnInit, AfterViewInit {
   oldData1() {
     this.service.LatestPropertiesListingResidential({ "CountryId": this.countryData.id, "UserId": this.userId, "propertyListingTypeId": "1" }).subscribe((response: any) => {
       this.dynamicSlides1 = response.data;
+      console.log(this.dynamicSlides1);
     });
   }
   newData1() {

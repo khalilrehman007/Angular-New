@@ -137,7 +137,9 @@
                             <ng-template carouselSlide [id]="slide.id">
                                 <div ngClass="property-item position-relative">
                                     <div class="property-img-wrap">
-                                    <img src="https://beta.ovaluate.com/{{slide.documents[0].fileUrl}}"
+                                    <img *ngIf="slide.documents.length > 0" src="https://beta.ovaluate.com/{{slide.documents[0].fileUrl}}"
+                                        [alt]="slide.propertyTitle" [title]="slide.propertyTitle" />
+                                    <img *ngIf="slide.documents.length == 0" src="assets/images/placeholder.png"
                                         [alt]="slide.propertyTitle" [title]="slide.propertyTitle" />
                                     </div>
                                     <div ngClass="brand-logo">
@@ -324,8 +326,10 @@
                             <ng-template carouselSlide [id]="slide.id">
                                 <div ngClass="property-item position-relative">
                                     <div class="property-img-wrap">
-                                        <img src="https://beta.ovaluate.com/{{slide.documents[0].fileUrl}}"
+                                        <img *ngIf="slide.documents.length > 0" src="https://beta.ovaluate.com/{{slide.documents[0].fileUrl}}"
                                         [alt]="slide.propertyTitle" [title]="slide.propertyTitle" />
+                                        <img *ngIf="slide.documents.length == 0" src="assets/images/placeholder.png"
+                                            [alt]="slide.propertyTitle" [title]="slide.propertyTitle" />
                                     </div>
                                     <div ngClass="brand-logo">
                                         <img src="{{ brandimg }}" alt="" />
