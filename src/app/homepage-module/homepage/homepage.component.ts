@@ -121,10 +121,10 @@ export class HomepageComponent implements OnInit, AfterViewInit {
         items: 2
       },
       992: {
-        items: 3
+        items: 4
       },
       1200: {
-        items: 3
+        items: 4
       }
     },
     nav: true

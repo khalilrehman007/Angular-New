@@ -19,13 +19,15 @@ import {MatInputModule} from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddPostComponent } from './add-post/add-post.component';
 import { MatCardModule } from '@angular/material/card';
-import { DetailsComponent } from './details/details.component';
 import {NgChartsModule} from "ng2-charts";
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BreadcrumbsModule } from '../breadcrumbs/breadcrumbs.module';
 import { MotorsAdDetailsComponent } from './motors-ad-details/motors-ad-details.component';
 import { MotorsAdPaymentComponent } from './motors-ad-payment/motors-ad-payment.component';
+import { CarDetailsComponent } from './car-details/car-details.component';
+import { CarAddDetailsFirstComponent } from './car-add-details-first/car-add-details-first.component';
+import { CarAddDetailsSecondComponent } from './car-add-details-second/car-add-details-second.component';
 
 
 @NgModule({
@@ -34,9 +36,11 @@ import { MotorsAdPaymentComponent } from './motors-ad-payment/motors-ad-payment.
     AllSearchComponent,
     JobSearchComponent,
     AddPostComponent,
-    DetailsComponent,
     MotorsAdDetailsComponent,
     MotorsAdPaymentComponent,
+    CarDetailsComponent,
+    CarAddDetailsFirstComponent,
+    CarAddDetailsSecondComponent,
   ],
   imports: [
     CommonModule,

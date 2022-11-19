@@ -25,7 +25,7 @@ initializeApp(environment.firebase);
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
     // ChatComponent
   ],
   imports: [

@@ -21,11 +21,11 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 declare const google: any;
 
 @Component({
-  selector: 'app-details',
-  templateUrl: './details.component.html',
-  styleUrls: ['./details.component.scss']
+  selector: 'app-car-details',
+  templateUrl: './car-details.component.html',
+  styleUrls: ['./car-details.component.scss']
 })
-export class DetailsComponent implements OnInit {
+export class CarDetailsComponent implements OnInit {
   homelocationsvg = 'assets/images/home-location.svg'
   bedsvg = 'assets/images/icons/Bed.svg'
   bathsvg = 'assets/images/icons/Bath-tub.svg'
