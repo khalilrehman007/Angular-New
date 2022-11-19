@@ -23,8 +23,6 @@ import {NgChartsModule} from "ng2-charts";
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BreadcrumbsModule } from '../breadcrumbs/breadcrumbs.module';
-import { MotorsAdDetailsComponent } from './motors-ad-details/motors-ad-details.component';
-import { MotorsAdPaymentComponent } from './motors-ad-payment/motors-ad-payment.component';
 import { CarDetailsComponent } from './car-details/car-details.component';
 import { CarAddDetailsFirstComponent } from './car-add-details-first/car-add-details-first.component';
 import { CarAddDetailsSecondComponent } from './car-add-details-second/car-add-details-second.component';
@@ -36,8 +34,6 @@ import { CarAddDetailsSecondComponent } from './car-add-details-second/car-add-d
     AllSearchComponent,
     JobSearchComponent,
     AddPostComponent,
-    MotorsAdDetailsComponent,
-    MotorsAdPaymentComponent,
     CarDetailsComponent,
     CarAddDetailsFirstComponent,
     CarAddDetailsSecondComponent,

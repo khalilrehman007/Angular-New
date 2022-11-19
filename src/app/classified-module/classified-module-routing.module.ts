@@ -3,15 +3,15 @@ import { RouterModule, Routes } from '@angular/router';
 import { ClassifiedHomeComponent } from './classified-home/classified-home.component';
 import { AddPostComponent } from './add-post/add-post.component';
 import { CarDetailsComponent } from './car-details/car-details.component';
-import { MotorsAdDetailsComponent } from './motors-ad-details/motors-ad-details.component';
-import { MotorsAdPaymentComponent } from './motors-ad-payment/motors-ad-payment.component';
+import { CarAddDetailsFirstComponent } from './car-add-details-first/car-add-details-first.component';
+import { CarAddDetailsSecondComponent } from './car-add-details-second/car-add-details-second.component';
 
 const routes: Routes = [
   { path: "", component: ClassifiedHomeComponent },
-  { path: "add-post", component: AddPostComponent },
+  { path: "ad-post", component: AddPostComponent },
   { path: "car-details", component: CarDetailsComponent },
-  { path: "motor-ad-details", component: MotorsAdDetailsComponent },
-  { path: "motor-ad-payment", component: MotorsAdPaymentComponent }
+  { path: "car-ad-details", component: CarAddDetailsFirstComponent },
+  { path: "car-ad-submission", component: CarAddDetailsSecondComponent }
 ];
 
 @NgModule({

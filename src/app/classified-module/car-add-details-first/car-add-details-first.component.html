@@ -1,1 +1,143 @@
-<p>car-add-details-first works!</p>
+<app-header></app-header>
+<section [ngClass]="'slide-left-bar ads-page-sec'">
+    <section [ngClass]="'ads-banner-wrapper'">
+        <div [ngClass]="'container_1280px'">
+            <div ngClass="heading-title-sec text-center">
+                <h2>Ovaluate Ad Classified</h2>
+                <p>Tell us about your car?</p>
+            </div>
+        </div>
+    </section>
+    <section class="ads-form-design-section" style="background-image: url('assets/images/background/bg-1.png');">
+        <div class="container_1280px">
+            <div class="ads-form-design">
+                <form>
+                    <div class="list-property-header">
+                        <h5 class="h5-heading">Please Fill your Car Details</h5>
+                    </div>
+                    <div ngClass="select-boxes">
+                        <div ngClass="row">
+                            <div ngClass="col-xl-4 col-lg-4 col-sm-12">
+                                <div ngClass="block-wrapper mb-4">
+                                    <div ngClass="select-design select2-design">
+                                        <label>Emirates</label>
+                                        <select class="select2 country-select">
+                                            <option value="0"> Select Emirates</option>
+                                            <option class="country-item">Dubai</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ngClass="col-xl-4 col-lg-4 col-sm-12">
+                                <div ngClass="block-wrapper mb-4">
+                                    <div ngClass="select-design select2-design">
+                                        <label>Make & Model </label>
+                                        <select class="select2 country-select">
+                                            <option value="0"> Select Make & Model </option>
+                                            <option class="country-item">Porsche Carrera 911</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ngClass="col-xl-4 col-lg-4 col-sm-12">
+                                <div ngClass="block-wrapper mb-4">
+                                    <div ngClass="select-design select2-design">
+                                        <label>Trim</label>
+                                        <select class="select2 country-select">
+                                            <option value="0"> Select Trim</option>
+                                            <option class="country-item">Standard</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ngClass="col-xl-4 col-lg-4 col-sm-12">
+                                <div ngClass="block-wrapper mb-4">
+                                    <div ngClass="select-design select2-design">
+                                        <label>Regional Spec</label>
+                                        <select class="select2 country-select">
+                                            <option value="0"> Select Regional Spec</option>
+                                            <option class="country-item">GCC Spec</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ngClass="col-xl-4 col-lg-4 col-sm-12">
+                                <div ngClass="block-wrapper mb-4">
+                                    <div ngClass="select-design select2-design">
+                                        <label>Trim</label>
+                                        <select class="select2 country-select">
+                                            <option value="0"> Select Trim</option>
+                                            <option class="country-item">Standard</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ngClass="col-xl-4 col-lg-4 col-sm-12">
+                                <div ngClass="block-wrapper mb-4">
+                                    <div ngClass="select-design select2-design">
+                                        <label>Year</label>
+                                        <select class="select2 country-select">
+                                            <option value="0"> Select Year</option>
+                                            <option class="country-item">2010</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ngClass="col-xl-12 col-lg-12 col-sm-12">
+                                <div ngClass="block-wrapper mb-4">
+                                    <div ngClass="select-design select2-design full-width-select2">
+                                        <label>Is your car insured in UAE?</label>
+                                        <select class="select2 country-select">
+                                            <option value="0"> Select</option>
+                                            <option class="country-item">Yes</option>
+                                            <option class="country-item">No</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ngClass="col-xl-4 col-lg-4 col-sm-12">
+                                <div ngClass="block-wrapper mb-4">
+                                        <label>Kilometers</label>
+                                        <mat-form-field class="full-width input-design-2" appearance="fill">
+                                            <input matInput type="text" placeholder="Enter Totel Kilometers"
+                                                lang="en" />
+                                        </mat-form-field>
+                                </div>
+                            </div>
+                            <div ngClass="col-xl-4 col-lg-4 col-sm-12">
+                                <div ngClass="block-wrapper mb-4">
+                                        <label>Price</label>
+                                        <mat-form-field class="full-width input-design-2" appearance="fill">
+                                            <input matInput type="number" placeholder="Enter Price"
+                                                lang="en" />
+                                        </mat-form-field>
+                                </div>
+                            </div>
+                            <div ngClass="col-xl-4 col-lg-4 col-sm-12">
+                                <div ngClass="block-wrapper mb-4">
+                                        <label>Phone Number</label>
+                                        <mat-form-field class="full-width input-design-2" appearance="fill">
+                                            <input matInput type="number" placeholder="Enter Phone Number"
+                                                lang="en" />
+                                        </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-right save-continue-sec justify-content-spacebw">
+                        <mat-card-actions>
+                            <a class="back-btn cursor-pointer" routerLink="/classified/ad-post">Back</a>
+                        </mat-card-actions>
+                        <mat-card-actions>
+                            <a class="save-continue-btn cursor-pointer" routerLink="/classified/car-ad-submission">Next</a>
+                        </mat-card-actions>
+                    </div>
+                    <div class="text-center question-div">
+                        <p><a href="tel:+97150 8960006">Question? Call +97150 8960006</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+<app-footer></app-footer>
+</section>
