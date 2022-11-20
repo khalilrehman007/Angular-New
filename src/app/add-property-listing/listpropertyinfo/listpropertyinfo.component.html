@@ -578,9 +578,9 @@
                                                     <mat-form-field class="example-full-width" appearance="fill">
                                                         <mat-label>Property Description</mat-label>
                                                         <textarea formControlName="propertyDescription" matInput
-                                                            placeholder="Eg. 30"></textarea>
+                                                            placeholder="Eg. 30" (input)="validateDescLength($event)"></textarea>
                                                     </mat-form-field>
-                                                    <p class="textraea-hint text-right">320 words left</p>
+                                                    <p class="textraea-hint text-right">{{descLength}} words left</p>
                                                 </div>
                                             </div>
                                             <div class="col-sm-12 pb-4">

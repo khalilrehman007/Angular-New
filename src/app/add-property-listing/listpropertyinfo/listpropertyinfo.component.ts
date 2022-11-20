@@ -41,6 +41,7 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
   developerData: any = [];
   locatedNearData: any = [];
   rentTypes: any;
+  descLength:number = 320;
   room: any = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   featuresData: any = [];
   featuresFormData: any = [];
@@ -445,6 +446,17 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
       let temp: any = this.SubmitForm.value.price
       this.SubmitForm.patchValue({
         price: temp.toString() + e
+      })
+    }
+  }
+  validateDescLength(e:any) {
+    let temp:any = this.SubmitForm.value.propertyDescription?.length;
+    if(temp <= 320) {
+      this.descLength = 320 - temp;
+      console.log(this.SubmitForm.value.propertyDescription?.length);
+    } else {
+      this.SubmitForm.patchValue({
+        propertyDescription: this.SubmitForm.value.propertyDescription?.toString().slice(0, 320)
       })
     }
   }
