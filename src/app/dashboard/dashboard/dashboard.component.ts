@@ -342,6 +342,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       if (this.cookie.get("countryData")) {
         this.countryData = JSON.parse(this.cookie.get("countryData"));
         this.LoadBlogs();
+        this.getDistricts()
         clearInterval(a);
       }
     }, 100);
@@ -818,7 +819,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   districts: any = [];
   getDistricts() {
     let tempData: Array<Object> = []
-    this.service.LoadDistrict(1).subscribe(data => {
+    this.service.LoadDistrict(this.countryData.id).subscribe(data => {
       let response: any = data;
       response.data.forEach((element: any, i: any) => {
         tempData.push(
