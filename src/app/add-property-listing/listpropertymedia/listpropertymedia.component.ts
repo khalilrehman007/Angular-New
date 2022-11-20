@@ -237,13 +237,17 @@ export class ListpropertymediaComponent implements OnInit {
       this.showError = true;
       return;
     }
-    // this.showLoader = true;
+    this.showLoader = true;
     this.btnText = "Please Wait...";
     this.data.VideoLink = this.SubmitForm.value.videoLink;
     let temp: any = [];
     let tempDoc: any = [];
     for (let i = 0; i < this.imageData.length; i++) {
-      temp.push({ "FileId": i + 1, "ListingDocumentTypeId": "2", "FileName": this.imageData[i].FileName, "Extension": this.imageData[i].Extension });
+      if(this.mainImage == i) {
+        temp.push({ "FileId": i + 1, "ListingDocumentTypeId": "2", "FileName": this.imageData[i].FileName, "Extension": this.imageData[i].Extension, "isscreenshot":"true" });
+      } else {
+        temp.push({ "FileId": i + 1, "ListingDocumentTypeId": "2", "FileName": this.imageData[i].FileName, "Extension": this.imageData[i].Extension, "isscreenshot":"false" });
+      }
       tempDoc.push(this.imageData[i].file);
     }
     let start: number = temp.length;
@@ -262,42 +266,41 @@ export class ListpropertymediaComponent implements OnInit {
     let token: any = localStorage.getItem("token");
     token = JSON.parse(token);
     console.log(this.data);
-    // $.ajax({
-    //   url: "https://beta.ovaluate.com/api/AddPropertyListing",
-    //   method: "post",
-    //   contentType: false,
-    //   processData: false,
-    //   data: this.documentData,
-    //   headers: {
-    //     "Authorization": 'bearer ' + token
-    //   },
-    //   dataType: "json",
-    //   success: (res) => {
-    //     if (res.message == "Property Listing request completed successfully") {
-    //       localStorage.removeItem("propertyData");
-    //       this.showLoader = true;
-    //       let temp: any = localStorage.getItem("user");
-    //       temp = JSON.parse(temp);
-    //       this.api.PurchasePackage({ "UserId": temp.id, "PackageId": this.packageData.id }).subscribe((result: any) => {
-    //         if (result.message == "Package has been purchased") {
-    //           this.showLoader = false;
-    //           this.success = "Your package has been purchsed successfully";
-    //           this.showSuccess = true;
-    //         } else {
-    //           this.error = "Something went wrong please try again";
-    //           this.showError = true;
-    //         }
-    //       })
-    //       this.route.navigate(['/add-property/listpropertypublish'])
-    //     }
-    //   },
-    //   error: (err) => {
-    //   }
-    // });
+    $.ajax({
+      url: "https://beta.ovaluate.com/api/AddPropertyListing",
+      method: "post",
+      contentType: false,
+      processData: false,
+      data: this.documentData,
+      headers: {
+        "Authorization": 'bearer ' + token
+      },
+      dataType: "json",
+      success: (res) => {
+        if (res.message == "Property Listing request completed successfully") {
+          localStorage.removeItem("propertyData");
+          this.showLoader = true;
+          let temp: any = localStorage.getItem("user");
+          temp = JSON.parse(temp);
+          this.api.PurchasePackage({ "UserId": temp.id, "PackageId": this.packageData.id }).subscribe((result: any) => {
+            if (result.message == "Package has been purchased") {
+              this.showLoader = false;
+              this.success = "Your package has been purchsed successfully";
+              this.showSuccess = true;
+            } else {
+              this.error = "Something went wrong please try again";
+              this.showError = true;
+            }
+          })
+          this.route.navigate(['/add-property/listpropertypublish'])
+        }
+      },
+      error: (err) => {
+      }
+    });
   }
   removeImage(index: any) {
     this.mainImage = 0;
-    console.log(index);
     this.previews.splice(index, 1);
   }
   changeMainImg(index:any) {
