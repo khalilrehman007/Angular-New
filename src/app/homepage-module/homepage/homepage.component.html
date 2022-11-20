@@ -231,8 +231,7 @@
                                                     </defs>
                                                     </svg>
                                                                                                       
-                                                {{slide.carpetArea}}
-                                                Sqft
+                                                {{slide.plotSize != null ? slide.plotSize : 0}} Sqft
                                             </span>
                                         </div>
                                     </div>
@@ -257,7 +256,7 @@
                                         </button>
                                     </div>
                                     </div>
-                                    <button ngClass="tag_btn blue">PREMIUM</button>
+                                    <button ngClass="tag_btn blue">{{slide.package.name}}</button>
                                 </div>
                             </ng-template>
                         </ng-container>
@@ -419,8 +418,7 @@
                                                     </clipPath>
                                                     </defs>
                                                 </svg>                                                      
-                                                {{slide.carpetArea}}
-                                                Sqft
+                                                {{slide.plotSize != null ? slide.plotSize : 0}} Sqft
                                             </span>
                                         </div>
                                     </div>
@@ -445,7 +443,7 @@
                                         </button>
                                     </div>
                                     </div>
-                                    <button ngClass="tag_btn blue">PREMIUM</button>
+                                    <button ngClass="tag_btn blue">{{slide.package.name}}</button>
                                 </div>
                             </ng-template>
                         </ng-container>
