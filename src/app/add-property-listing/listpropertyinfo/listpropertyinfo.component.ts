@@ -162,14 +162,6 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
         }
         this.clearData();
 
-        if (this.data.PetPolicies) {
-          if(this.data.PetPolicies[0].PetPolicyId == "1") {
-            this.disabled = [1, 2, 3];
-          }
-          for (let i = 0; i < this.data.PetPolicies.length; i++) {
-            this.petPolicyData.push(this.data.PetPolicies[i].PetPolicyId)
-          }
-        }
         if (this.data.PropertyListingLocatedNears) {
           for (let i = 0; i < this.data.PropertyListingLocatedNears.length; i++) {
             this.locatedNearData.push(this.data.PropertyListingLocatedNears[i].LocatedNearId)
@@ -214,6 +206,16 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
           if (this.selectedPropertyType.hasBuildUpArea) {
             this.SubmitForm.patchValue({
               buildupArea: this.data.BuildupArea
+            })
+          }
+          if (this.selectedPropertyType.hasListingPlotSize) {
+            this.SubmitForm.patchValue({
+              size: this.data.BuildupArea
+            })
+          }
+          if (this.selectedPropertyType.hasMaintenanceCharges) {
+            this.SubmitForm.patchValue({
+              maintenance: this.data.MaintenanceCharges
             })
           }
           if (this.data.SecurityDeposit == "true") {
@@ -519,6 +521,11 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
       this.error = "Enter BuildUp Area";
       this.showError = true;
       return;
+    } else if (this.selectedPropertyType.hasListingPlotSize && this.SubmitForm.value.size == "") {
+      this.currentField = "size-input";
+      this.error = "Enter Size";
+      this.showError = true;
+      return;
     } else if (this.listingConditions.hasOccupancyStatus && !this.data.OccupancyStatusId) {
       this.currentField = "occupanycy-input";
       this.error = "Select Occupancy Status";
@@ -609,6 +616,9 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
     }
     if (this.selectedPropertyType.hasMaintenanceCharges) {
       this.data.MaintenanceCharges = this.SubmitForm.value.maintenance;
+    }
+    if (this.selectedPropertyType.hasListingPlotSize) {
+      this.data.PlotSize = this.SubmitForm.value.size;
     }
     this.data.PropertyListingTypeId = this.listingTypeId;
     this.data.PropertyCategoryId = this.categoryID;
