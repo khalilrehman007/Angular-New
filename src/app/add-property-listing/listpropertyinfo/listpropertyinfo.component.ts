@@ -531,6 +531,11 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
       this.error = "Select Occupancy Status";
       this.showError = true;
       return;
+    } else if (!this.data.Balcony) {
+      this.currentField = "balcony-input";
+      this.error = "Select Balcony";
+      this.showError = true;
+      return;
     } else if (this.selectedPropertyType.hasListingParking && !this.data.Parkings) {
       this.currentField = "parking-input";
       this.error = "Select Parking";

@@ -297,6 +297,61 @@
                                                 </div>
                                             </div>
                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4"
+                                                *ngIf="selectedPropertyType.hasListingBalocny">
+                                                <h6 class="h6-design">Balcony</h6>
+                                                <div
+                                                    class="checkbox-flex-box six-column button-same-select balcony-input">
+                                                    <div class="checkbox-design position-relative"
+                                                        (click)="getBalcony('0')">
+                                                        <input type="radio" value="0" name="balcony"
+                                                            *ngIf="data.Balcony == 0" checked>
+                                                        <input type="radio" value="0" name="balcony"
+                                                            *ngIf="data.Balcony != 0">
+                                                        <button class="checkbox-btn">0</button>
+                                                    </div>
+                                                    <div class="checkbox-design position-relative"
+                                                        (click)="getBalcony('1')">
+                                                        <input type="radio" value="1" name="balcony"
+                                                            *ngIf="data.Balcony == 1" checked>
+                                                        <input type="radio" value="1" name="balcony"
+                                                            *ngIf="data.Balcony != 1">
+                                                        <button class="checkbox-btn">1</button>
+                                                    </div>
+                                                    <div class="checkbox-design position-relative"
+                                                        (click)="getBalcony('2')">
+                                                        <input type="radio" value="2" name="balcony"
+                                                            *ngIf="data.Balcony == 2" checked>
+                                                        <input type="radio" value="2" name="balcony"
+                                                            *ngIf="data.Balcony != 2">
+                                                        <button class="checkbox-btn">2</button>
+                                                    </div>
+                                                    <div class="checkbox-design position-relative"
+                                                        (click)="getBalcony('3')">
+                                                        <input type="radio" value="3" name="balcony"
+                                                            *ngIf="data.Balcony == 3" checked>
+                                                        <input type="radio" value="3" name="balcony"
+                                                            *ngIf="data.Balcony != 3">
+                                                        <button class="checkbox-btn">3</button>
+                                                    </div>
+                                                    <div class="checkbox-design position-relative"
+                                                        (click)="getBalcony('4')">
+                                                        <input type="radio" value="4" name="balcony"
+                                                            *ngIf="data.Balcony == 4" checked>
+                                                        <input type="radio" value="4" name="balcony"
+                                                            *ngIf="data.Balcony != 4">
+                                                        <button class="checkbox-btn">4</button>
+                                                    </div>
+                                                    <div class="checkbox-design position-relative"
+                                                        (click)="getBalcony('5')">
+                                                        <input type="radio" value="5" name="balcony"
+                                                            *ngIf="data.Balcony == 5" checked>
+                                                        <input type="radio" value="5" name="balcony"
+                                                            *ngIf="data.Balcony != 5">
+                                                        <button class="checkbox-btn">5</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4"
                                                 *ngIf="selectedPropertyType.hasListingParking">
                                                 <h6 class="h6-design">Available Parking </h6>
                                                 <div
