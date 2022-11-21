@@ -27,6 +27,10 @@ import { CarDetailsComponent } from './car-details/car-details.component';
 import { CarAddDetailsFirstComponent } from './car-add-details-first/car-add-details-first.component';
 import { CarAddDetailsSecondComponent } from './car-add-details-second/car-add-details-second.component';
 import { MotorcycleDetailFormComponent } from './motorcycle-detail-form/motorcycle-detail-form.component';
+import { AutoAccessoriesPartsComponent } from './auto-accessories-parts/auto-accessories-parts.component';
+import { HeavyVehiclesComponent } from './heavy-vehicles/heavy-vehicles.component';
+import { BoatsComponent } from './boats/boats.component';
+import { NumberPlatesComponent } from './number-plates/number-plates.component';
 
 
 @NgModule({
@@ -39,6 +43,10 @@ import { MotorcycleDetailFormComponent } from './motorcycle-detail-form/motorcyc
     CarAddDetailsFirstComponent,
     CarAddDetailsSecondComponent,
     MotorcycleDetailFormComponent,
+    AutoAccessoriesPartsComponent,
+    HeavyVehiclesComponent,
+    BoatsComponent,
+    NumberPlatesComponent,
   ],
   imports: [
     CommonModule,

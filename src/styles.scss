@@ -3791,9 +3791,12 @@ input[type=number] {
 		}
 	}
 	.property-amenties-details span {
-		font-size: 15px;
+		font-size: 14px;
 		font-weight: 300;
 		color: #000;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		overflow: hidden;
 	}
 	.property-info {
 		padding: 15px 15px 15px 15px;
@@ -5429,12 +5432,6 @@ img {
 		margin-bottom: 15px;
 		width: 100%;
 		max-width: 755px;
-
-		p {
-			&:last-child {
-				font-size: 14px;
-			}
-		}
 	}
 }
 
@@ -8835,7 +8832,7 @@ li.agent-details__property-list-item {
     padding-left: 0px;
 }
 .select2-design .select2 .select2-selection {
-    display: block;
+    display: flex;
     background-color: whitesmoke;
     border: none;
     border-radius: 8px;
@@ -8845,6 +8842,7 @@ li.agent-details__property-list-item {
     background-repeat: no-repeat;
     background-position: 94% center;
 	height: 48px;
+	align-items: center;
 }
 .select2-design-full.select2-design .select2 .select2-selection{
 	background-position: 98% center !important;
@@ -8871,14 +8869,33 @@ li.agent-details__property-list-item {
     padding: 8px 15px;
 }
 .select2-results li {
-    font-size: 14px;
+	font-size: 14px;
+    padding-left: 28px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    position: relative;
+}
+.select2-results li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 15px;
+    height: 15px;
+    border: 1px solid #9b9b9b;
+    border-radius: 3px;
+    top: 8px;
+}
+.select2-container--default .select2-results__option--selected::before,.select2-results li:hover:before {
+    background-color: #49555e;
+    border-color: #49555e;
 }
 .select2-container--default .select2-results__option--highlighted.select2-results__option--selectable {
-    background-color: whitesmoke !important;
+    background-color: transparent !important;
     color: #000 !important;
 }
 .select2-container--default .select2-results__option--selected {
-    background-color: whitesmoke !important;
+    background-color: transparent !important;
 }
 .select2-dropdown .select2-search input:focus{
 	outline: none !important;
@@ -12319,6 +12336,7 @@ background: transparent !important;
 }
 .select2-container--default .select2-selection--multiple .select2-selection__choice__display {
     color: #fff;
+	font-weight: 400;
 }
 .select2-search.select2-search--inline textarea {
     font-size: 14px !important;
@@ -12328,9 +12346,10 @@ background: transparent !important;
 	color: #4A565F;
 }
 .select2-search.select2-search--inline {
-    height: 28px !important;
-    padding-top: 5px;
-    display: inline-block;
+	display: inline-block;
+    position: relative;
+    bottom: 0;
+    padding-top: 4px;
 }
 .mat-select-panel-wrap{
     position: relative;
@@ -12347,9 +12366,10 @@ background: transparent !important;
     max-height: 35px;
 }
 .select2-container--default .select2-search--inline .select2-search__field {
-    margin-top: 0px !important;
+	margin-top: 0px !important;
     position: relative;
     bottom: 6px;
+    font-family: 'Dubai' !important;
 }
 .inspection-required-block.input-design-2 .mat-form-field-infix input {
     font-size: 14px !important;
@@ -13171,11 +13191,11 @@ input:focus{
     padding: 28px 20px 15px 20px;
 }
 .property_heading .property-name {
-    color: #0A0A0B;
+	color: #242a2f;
     font-weight: 400;
-    font-size: 18px;
-	margin-bottom: 0px;
-	width: 75%;
+    font-size: 16px;
+    margin-bottom: 0px;
+    width: 75%;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
@@ -13199,25 +13219,19 @@ input:focus{
     align-items: center;
 }
 .property_hdr-actions>.property-whistlist {
-    margin-right: 8px;
+    margin-right: 10px;
 }
 .property-amenties-details .bed svg {
-    width: 20px;
-    height: 20px;
     margin-right: 7px;
 	position: relative;
-    bottom: 0px;
+    bottom: 1px;
 }
 .property-amenties-details .bath svg {
-    width: 20px;
-    height: 20px;
     margin-right: 5px;
     position: relative;
     bottom: 2px;
 }
 .property-amenties-details .area svg {
-    width: 15px;
-    height: 15px;
     margin-right: 5px;
 	position: relative;
     bottom: 1px;
@@ -13226,21 +13240,23 @@ input:focus{
     margin-right: 10px;
 }
 .property-amenties-details {
-    padding-top: 10px;
+    padding-top: 8px;
     padding-bottom: 10px;
+	display: flex;
 }
 .property_location address {
-    font-size: 15px;
+	font-size: 14px;
     font-weight: 300;
-    color: #000;
+    color: #000000;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
+    margin-bottom: 5px;
 }
 .property_location address svg {
     margin-right: 5px;
     position: relative;
-    bottom: 1px;
+    bottom: 2px;
 }
 .property_pricing .currency_type, .property_pricing .rent_type {
     font-size: 16px;
@@ -13271,8 +13287,8 @@ input:focus{
     border: none;
     padding: 0px;
     font-size: 16px;
-    color: #645BD1;
-    font-weight: 300;
+    color: #000000;
+    font-weight: 400;
 }
 .modal-body.share-modal-design {
     background-color: #fff;
@@ -13329,9 +13345,6 @@ input:focus{
     right: 0;
     top: 8px;
     background-size: 12px;
-}
-.property_location address svg path {
-    stroke: #9e9e9e;
 }
 .property-location.property-location-classified {
     margin-bottom: 0px;
@@ -13392,5 +13405,10 @@ input:focus{
 }
 .aed-text .mat-form-field-flex {
     padding-left: 60px !important;
+}
+.property_det-btn svg {
+    margin-left: 4px;
+    position: relative;
+    bottom: 1px;
 }
 

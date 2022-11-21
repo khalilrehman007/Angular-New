@@ -18,7 +18,7 @@
                     <div class="class-fied-breadcrumbs">
                         <ul class="list-unstyled d-flex">
                             <li><a routerLink="/classified/ad-post">Ad Post</a></li>
-                            <li>Motorcycle <span class="divider-bread">/</span> Sports Bike</li>
+                            <li>Auto Accessories & Parts <span class="divider-bread">/</span> Motorcyle Parts</li>
                         </ul>
                     </div>
                     <div ngClass="select-boxes">
@@ -73,15 +73,6 @@
                                 </div>
                             </div>
                             <div ngClass="col-xl-12 col-lg-12 col-sm-12">
-                                <div ngClass="block-wrapper mb-4">
-                                        <label>kilometers <span class="required-span">*</span></label>
-                                        <mat-form-field class="full-width input-design-2" appearance="fill">
-                                            <input matInput type="number" placeholder="Enter kilometers"
-                                                lang="en" />
-                                        </mat-form-field>
-                                </div>
-                            </div>
-                            <div ngClass="col-xl-12 col-lg-12 col-sm-12">
                             <div ngClass="propery-pictures-sec mb-4">
                                 <div class="inneR-border-wrap position-relative">
                                     <div ngClass="div_thumb-wrapper img_upload">
@@ -116,10 +107,10 @@
                             <div ngClass="col-xl-4 col-lg-4 col-sm-12">
                                 <div ngClass="block-wrapper mb-4">
                                     <div ngClass="select-design select2-design">
-                                        <label>Year <span class="required-span">*</span></label>
+                                        <label>Condition <span class="required-span">*</span></label>
                                         <select class="select2 country-select">
-                                            <option value="2021"> 2021 </option>
-                                            <option value="2022">2022</option>
+                                            <option value="0"> New</option>
+                                            <option value="1">Second Hand</option>
                                         </select>
                                     </div>
                                 </div>
@@ -136,62 +127,14 @@
                                     </div>
                                 </div>
                             </div>
-                            <div ngClass="col-xl-4 col-lg-4 col-sm-12">
+                            <div ngClass="col-xl-12 col-lg-12 col-sm-12">
                                 <div ngClass="block-wrapper mb-4">
-                                    <div ngClass="select-design select2-design">
-                                        <label>Warranty <span class="required-span">*</span></label>
-                                        <select class="select2 country-select">
-                                            <option value="yes"> Yes</option>
-                                            <option value="no">No</option>
-                                            <option value="do-npt-apply">Does not apply</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div ngClass="col-xl-4 col-lg-4 col-sm-12">
-                                <div ngClass="block-wrapper mb-4">
-                                    <div ngClass="select-design select2-design">
-                                        <label>Final Drive System <span class="required-span">*</span></label>
-                                        <select class="select2 country-select">
-                                            <option value="Belt">Belt</option>
-                                            <option value="Chain">Chain</option>
-                                            <option value="Belt">Shaft</option>
-                                            <option value="Chain">Does not apply</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div ngClass="col-xl-4 col-lg-4 col-sm-12">
-                                <div ngClass="block-wrapper mb-4">
-                                    <div ngClass="select-design select2-design">
-                                        <label>Wheels <span class="required-span">*</span></label>
-                                        <select class="select2 country-select">
-                                            <option value="wheels">2 wheels</option>
-                                            <option value="wheels">3 wheels</option>
-                                            <option value="wheels">4 wheels</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div ngClass="col-xl-4 col-lg-4 col-sm-12">
-                                <div ngClass="block-wrapper mb-4">
-                                    <div ngClass="select-design select2-design">
-                                        <label>Manufacturer <span class="required-span">*</span></label>
-                                        <select class="select2 country-select">
-                                            <option value="0"> Access Motor</option>
-                                            <option class="country-item">Aprillia</option>
-                                            <option class="country-item">Asiawing</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div ngClass="col-xl-4 col-lg-4 col-sm-12">
-                                <div ngClass="block-wrapper mb-4">
-                                    <div ngClass="select-design select2-design">
-                                        <label>Engine Size <span class="required-span">*</span></label>
-                                        <select class="select2 country-select">
-                                            <option value="0">Less than 250cc</option>
-                                            <option class="country-item">250cc - 499cc</option>
+                                    <div ngClass="select-design select2-design full-width-select2">
+                                        <label>Select Company <span class="required-span">*</span></label>
+                                        <select class="select2 country-select" multiple>
+                                            <option value="Owner"> All Motorcycles</option>
+                                            <option value="Dealer">Bajaj</option>
+                                            <option value="Dealership"> BMW Motorcycle</option>
                                         </select>
                                     </div>
                                 </div>
@@ -201,7 +144,7 @@
                     <div class="row">
                         <div ngClass="col-xl-12 col-lg-12 col-sm-12">
                             <div ngClass="block-wrapper mb-3 position-relative optional-text">
-                                    <label>Locate your car</label>
+                                    <label>Locate your accessory</label>
                                     <mat-form-field class="full-width input-design-2" appearance="fill">
                                         <input matInput type="text" placeholder="Locate your car"
                                             lang="en" />
