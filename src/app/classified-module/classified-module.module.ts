@@ -26,6 +26,7 @@ import { BreadcrumbsModule } from '../breadcrumbs/breadcrumbs.module';
 import { CarDetailsComponent } from './car-details/car-details.component';
 import { CarAddDetailsFirstComponent } from './car-add-details-first/car-add-details-first.component';
 import { CarAddDetailsSecondComponent } from './car-add-details-second/car-add-details-second.component';
+import { MotorcycleDetailFormComponent } from './motorcycle-detail-form/motorcycle-detail-form.component';
 
 
 @NgModule({
@@ -37,6 +38,7 @@ import { CarAddDetailsSecondComponent } from './car-add-details-second/car-add-d
     CarDetailsComponent,
     CarAddDetailsFirstComponent,
     CarAddDetailsSecondComponent,
+    MotorcycleDetailFormComponent,
   ],
   imports: [
     CommonModule,
