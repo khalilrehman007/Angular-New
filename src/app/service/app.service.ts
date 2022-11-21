@@ -501,4 +501,7 @@ export class AppService {
   PropertyListingDetailComparison(id: any) {
     return this.http.get(this.apiurl + 'PropertyListingDetailComparison/' + id);
   }
+  PropertyListingType(id: any) {
+    return this.http.get(this.apiurl + 'PropertyListingType/' + id);
+  }
 }

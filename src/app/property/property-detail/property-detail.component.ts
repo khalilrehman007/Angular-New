@@ -254,7 +254,6 @@ export class PropertyDetailComponent implements OnInit,AfterViewInit {
   ngAfterViewInit(): void {
     $(window).on("scroll", () => {
       let temp: any=$(window).scrollTop();
-      console.log($(window).scrollTop());
       if(temp >= 1030 && temp < 2600){
         this.scrollfix= true;
       }
@@ -312,6 +311,7 @@ export class PropertyDetailComponent implements OnInit,AfterViewInit {
   getloadDashboardData() {
     return this.service.DisplayPropertyListing({ "PropertyListingId": this.propertyId, "LoginUserId": this.userId }).subscribe((e: any) => {
       let temp: any = e;
+      console.log(temp.data);
       this.userData = temp.data.user;
       this.propertyLat = temp.data.propertyListing.propertyLat;
       this.propertyLng = temp.data.propertyListing.propertyLong;
@@ -334,18 +334,12 @@ export class PropertyDetailComponent implements OnInit,AfterViewInit {
       ).togglePopup();
 
       let tenantType: any = '';
-      if (jsonParsDate.propertyListing.tenantType !== null && jsonParsDate.propertyListing.tenantType.name !== null && jsonParsDate.propertyListing.tenantType.name !== undefined) {
-        tenantType = jsonParsDate.propertyListing.tenantType.name
-      }
 
       let occupancyStatus: any = '';
       if (jsonParsDate.propertyListing.occupancyStatus !== null && jsonParsDate.propertyListing.occupancyStatus.name !== null && jsonParsDate.propertyListing.occupancyStatus.name !== undefined) {
         occupancyStatus = jsonParsDate.propertyListing.occupancyStatus.name
       }
       let propertyManage: any = '';
-      if (jsonParsDate.propertyListing.propertyManage !== null && jsonParsDate.propertyListing.propertyManage.name !== null && jsonParsDate.propertyListing.propertyManage.name !== undefined) {
-        propertyManage = jsonParsDate.propertyListing.propertyManage.name
-      }
 
       let rentType: any = '';
       if (jsonParsDate.propertyListing.rentType !== null && jsonParsDate.propertyListing.rentType.name !== null && jsonParsDate.propertyListing.rentType.name !== undefined && jsonParsDate.propertyListing.propertyListingTypeId != 2) {
@@ -388,8 +382,6 @@ export class PropertyDetailComponent implements OnInit,AfterViewInit {
         this.propertyDetailData.parkings = (jsonParsDate.propertyListing.parkings !== undefined) ? jsonParsDate.propertyListing.parkings : ''
         this.propertyDetailData.carpetArea = (jsonParsDate.propertyListing.carpetArea !== undefined) ? jsonParsDate.propertyListing.carpetArea : ''
         this.propertyDetailData.buildupArea = (jsonParsDate.propertyListing.buildupArea !== undefined) ? jsonParsDate.propertyListing.buildupArea : ''
-        this.propertyDetailData.occupancyStatus = occupancyStatus
-        this.propertyDetailData.propertyManage = propertyManage
         this.propertyDetailData.rentType = rentType
         this.propertyDetailData.securityDepositPrice = (jsonParsDate.propertyListing.securityDepositPrice !== undefined) ? jsonParsDate.propertyListing.securityDepositPrice : ''
         this.propertyDetailData.brokerageChargePrice = (jsonParsDate.propertyListing.brokerageChargePrice !== undefined) ? jsonParsDate.propertyListing.brokerageChargePrice : ''
@@ -436,7 +428,6 @@ export class PropertyDetailComponent implements OnInit,AfterViewInit {
           })
         }
 
-        console.clear();
         this.propertyValidationData = e.data.propertyListing.propertyType;
         this.getPropertyInfo();
 
@@ -495,11 +486,6 @@ export class PropertyDetailComponent implements OnInit,AfterViewInit {
         show: true,
         label: 'Property Type',
         value: this.propertyDetailData.propertyType,
-      },
-      {
-        show: true,
-        label: 'Tower No. / Building Name',
-        value: this.propertyDetailData.buildingName,
       },
       {
         show: this.propertyValidationData.hasTotalFloor,

@@ -148,7 +148,7 @@
                                     <div class="pro_cntnt-main-wrap">
                                     <div class="property-cntnt_wrap">
                                         <div class="property_heading d-flex justify-content-spacebw">
-                                            <h5 ngClass="property-name">{{ slide.buildingName }}</h5>
+                                            <h5 ngClass="property-name">{{ slide.propertyTitle }}</h5>
                                             <div class="property_hdr-actions">
                                                 <button
                                                 [ngClass]="slide.favorite == true ? 'property-whistlist red-fill' : 'property-whistlist'"
@@ -231,8 +231,7 @@
                                                     </defs>
                                                     </svg>
                                                                                                       
-                                                {{slide.carpetArea}}
-                                                Sqft
+                                                {{slide.plotSize != null ? slide.plotSize : 0}} Sqft
                                             </span>
                                         </div>
                                     </div>
@@ -257,7 +256,7 @@
                                         </button>
                                     </div>
                                     </div>
-                                    <button ngClass="tag_btn blue">PREMIUM</button>
+                                    <button ngClass="tag_btn blue">{{slide.package.name}}</button>
                                 </div>
                             </ng-template>
                         </ng-container>
@@ -337,7 +336,7 @@
                                     <div class="pro_cntnt-main-wrap">
                                     <div class="property-cntnt_wrap">
                                         <div class="property_heading d-flex justify-content-spacebw">
-                                            <h5 ngClass="property-name">{{ slide.buildingName }}</h5>
+                                            <h5 ngClass="property-name">{{ slide.propertyTitle }}</h5>
                                             <div class="property_hdr-actions">
                                                 <button
                                                 [ngClass]="slide.favorite == true ? 'property-whistlist red-fill' : 'property-whistlist'"
@@ -419,8 +418,7 @@
                                                     </clipPath>
                                                     </defs>
                                                 </svg>                                                      
-                                                {{slide.carpetArea}}
-                                                Sqft
+                                                {{slide.plotSize != null ? slide.plotSize : 0}} Sqft
                                             </span>
                                         </div>
                                     </div>
@@ -445,7 +443,7 @@
                                         </button>
                                     </div>
                                     </div>
-                                    <button ngClass="tag_btn blue">PREMIUM</button>
+                                    <button ngClass="tag_btn blue">{{slide.package.name}}</button>
                                 </div>
                             </ng-template>
                         </ng-container>
