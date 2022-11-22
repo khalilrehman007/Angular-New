@@ -22,8 +22,8 @@
                                     ngClass="required-span">*</span></label>
                             <div class="category-selection-flex">
                                 <div class="category-selection-box motors">
-                                    <input type="radio" name="category-sel">
-                                    <button class="" *ngIf="classifiedCategories[0] && classifiedCategories[0].name">
+                                    <input type="radio" name="category-sel" click>
+                                    <button class="" *ngIf="classifiedCategories[0] && classifiedCategories[0].name" >
                                         <span class="svg-wrap-span">
                                             <svg width="30" height="20" viewBox="0 0 30 20" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
@@ -189,7 +189,7 @@
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
                                 <label>Choose a Category <span ngClass="required-span">*</span></label>
-                                <select class="select2">
+                                <select class="select2 category-select">
                                     <option value="Cars">Cars</option>
                                     <option value="Motorcycles">Motorcycles</option>
                                     <option value="Cars">Auto Accessories & Parts</option>

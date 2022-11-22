@@ -328,6 +328,9 @@ export class AddPostComponent implements OnInit {
     $(".country-select").on("change", () => {
       this.onCountrySelect($(".country-select").val());
     });
+    $(".category-select").on("change", () => {
+      this.onCountrySelect($(".category-select").val());
+    });
     $(".city-select").on("change", () => {
       this.onCitySelect($(".city-select").val());
     });
