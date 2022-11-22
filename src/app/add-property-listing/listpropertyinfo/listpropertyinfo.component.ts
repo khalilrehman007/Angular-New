@@ -79,6 +79,7 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
     carpetArea: new FormControl("", [Validators.required]),
     buildupArea: new FormControl("", [Validators.required]),
     size: new FormControl("", [Validators.required]),
+    UnitNo: new FormControl("", [Validators.required]),
     price: new FormControl("", [Validators.required]),
     maintenance: new FormControl("", [Validators.required]),
     AED: new FormControl(""),
@@ -208,6 +209,11 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
               buildupArea: this.data.BuildupArea
             })
           }
+          if (this.selectedPropertyType.hasListingUnitNumber) {
+            this.SubmitForm.patchValue({
+              UnitNo: this.data.UnitNumber
+            })
+          }
           if (this.selectedPropertyType.hasListingPlotSize) {
             this.SubmitForm.patchValue({
               size: this.data.BuildupArea
@@ -250,6 +256,27 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
       }
     } else {
       this.route.navigate(['/add-property/listingproperty'])
+    }
+  }
+  validateInput(e: any) {
+    // if (e.key.charCodeAt(0) >= 48 && e.key.charCodeAt(0) <= 57 || e.key.charCodeAt(0) >= 65 && e.key.charCodeAt(0) <= 90 || e.key.charCodeAt(0) >= 97 && e.key.charCodeAt(0) <= 122) {
+    if (e.key.charCodeAt(0) >= 48 && e.key.charCodeAt(0) <= 57 || e.key.charCodeAt(0) == 44 || e.key.charCodeAt(0) == 46) {
+      setTimeout(() => {
+        this.getInput(e.key, true);
+      }, 100);
+    }
+  }
+  getInput(e: any, type: boolean) {
+    if (!type) {
+      let temp: any = this.SubmitForm.value.UnitNo
+      this.SubmitForm.patchValue({
+        UnitNo: temp.toString().slice(0, -1)
+      })
+    } else {
+      let temp: any = this.SubmitForm.value.UnitNo
+      this.SubmitForm.patchValue({
+        UnitNo: temp.toString() + e
+      })
     }
   }
   validateLength(type: any) {
@@ -491,6 +518,11 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
       this.error = "Enter Building Name";
       this.showError = true;
       return;
+    } else if (this.selectedPropertyType.hasListingUnitNumber && this.SubmitForm.value.UnitNo == "") {
+      this.currentField = "unit-no-input";
+      this.error = "Enter Unit No";
+      this.showError = true;
+      return;
     } else if (this.selectedPropertyType.hasListingBed && !this.data.BedRooms) {
       this.currentField = "bedroom-input";
       this.error = "Select Bedrooms";
@@ -624,6 +656,9 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
     }
     if (this.selectedPropertyType.hasListingPlotSize) {
       this.data.PlotSize = this.SubmitForm.value.size;
+    }
+    if (this.selectedPropertyType.hasListingBuilding) {
+      this.data.UnitNumber = this.SubmitForm.value.UnitNo;
     }
     this.data.PropertyListingTypeId = this.listingTypeId;
     this.data.PropertyCategoryId = this.categoryID;
