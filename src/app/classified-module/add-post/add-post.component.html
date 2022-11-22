@@ -18,11 +18,12 @@
                     </div>
                     <div class="category-selecton-box">
                         <div ngClass="block-wrapper mb-4">
-                            <label>Select the area that best suits your ad <span ngClass="required-span">*</span></label>
+                            <label>Select the area that best suits your ad <span
+                                    ngClass="required-span">*</span></label>
                             <div class="category-selection-flex">
                                 <div class="category-selection-box motors">
                                     <input type="radio" name="category-sel">
-                                    <button class="">
+                                    <button class="" *ngIf="classifiedCategories[0] && classifiedCategories[0].name">
                                         <span class="svg-wrap-span">
                                             <svg width="30" height="20" viewBox="0 0 30 20" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
@@ -31,7 +32,7 @@
                                                     fill="#505876" />
                                             </svg>
                                         </span>
-                                        Motors
+                                        {{classifiedCategories[0].name}}
                                     </button>
                                 </div>
                                 <div class="category-selection-box appliances">
@@ -59,7 +60,7 @@
                                 </div>
                                 <div class="category-selection-box jobs">
                                     <input type="radio" name="category-sel">
-                                    <button class="">
+                                    <button class="" *ngIf="classifiedCategories[2] && classifiedCategories[2].name">
                                         <span class="svg-wrap-span">
                                             <svg width="23" height="23" viewBox="0 0 23 23" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
@@ -70,12 +71,12 @@
                                                     fill="#242F54" fill-opacity="0.8" />
                                             </svg>
                                         </span>
-                                        Jobs
+                                        {{classifiedCategories[2].name}}
                                     </button>
                                 </div>
                                 <div class="category-selection-box furniture">
                                     <input type="radio" name="category-sel">
-                                    <button class="">
+                                    <button class="" *ngIf="classifiedCategories[3] && classifiedCategories[3].name">
                                         <span class="svg-wrap-span">
                                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
@@ -84,7 +85,7 @@
                                                     fill="#242F54" fill-opacity="0.8" />
                                             </svg>
                                         </span>
-                                        Furniture
+                                        {{classifiedCategories[3].name}}
                                     </button>
                                 </div>
                                 <div class="category-selection-box freelancer">
@@ -185,19 +186,19 @@
                         </div>
                     </div>
                     <div ngClass="select-boxes">
-                                <div ngClass="block-wrapper mb-4">
-                                    <div ngClass="select-design select2-design full-width-select2">
-                                        <label>Choose a Category <span ngClass="required-span">*</span></label>
-                                        <select class="select2">
-                                            <option value="Cars">Cars</option>
-                                            <option value="Motorcycles">Motorcycles</option>
-                                            <option value="Cars">Auto Accessories & Parts</option>
-                                            <option value="Motorcycles">Heavy Vehicles</option>
-                                            <option value="Cars">Boats</option>
-                                            <option value="Motorcycles">Number Plates</option>
-                                        </select>
-                                    </div>
-                                </div>
+                        <div ngClass="block-wrapper mb-4">
+                            <div ngClass="select-design select2-design full-width-select2">
+                                <label>Choose a Category <span ngClass="required-span">*</span></label>
+                                <select class="select2">
+                                    <option value="Cars">Cars</option>
+                                    <option value="Motorcycles">Motorcycles</option>
+                                    <option value="Cars">Auto Accessories & Parts</option>
+                                    <option value="Motorcycles">Heavy Vehicles</option>
+                                    <option value="Cars">Boats</option>
+                                    <option value="Motorcycles">Number Plates</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
                     <div ngClass="select-boxes">
                         <div ngClass="row">
@@ -268,8 +269,7 @@
                     </div>
                     <div class="text-right save-continue-sec justify-content-center">
                         <mat-card-actions>
-                            <a class="save-continue-btn cursor-pointer"
-                                routerLink="/classified/car-ad-details">Next</a>
+                            <a class="save-continue-btn cursor-pointer" routerLink="/classified/car-ad-details">Next</a>
                         </mat-card-actions>
                     </div>
                     <div class="text-center question-div">

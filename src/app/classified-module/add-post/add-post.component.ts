@@ -66,6 +66,7 @@ export class AddPostComponent implements OnInit {
   selectedPackage: any = [];
   selectedPackageName: any = [];
   districtName: any;
+  classifiedCategories: any = [];
 
   constructor(private route: Router, private notifyService: NotificationService, private service: AppService, private modalService: NgbModal, config: NgbModalConfig) {
     if (!localStorage.getItem("user")) {
@@ -74,6 +75,10 @@ export class AddPostComponent implements OnInit {
     }
     this.service.PropertyListingPackages(1).subscribe((result: any) => {
       this.packagesType = result.data;
+    })
+    this.service.ClassifiedCategories().subscribe((result: any) => {
+      this.classifiedCategories = result.data;
+      console.log(this.classifiedCategories)
     })
     this.service.PointTransaction(335).subscribe((result: any) => {
       if (result.message == "Points Transaction has been fetched successfully") {
