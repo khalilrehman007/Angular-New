@@ -143,8 +143,8 @@
                             <div ngClass="property_infor-div-sec">
                                 <div ngClass="property_info-row">
                                     <div ngClass="row">
-                                        <div ngClass="col-xl-3 col-lg-3 col-md-12 col-sm-12"
-                                            *ngFor="let pro of propertyinfo">
+                                        <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12"
+                                            *ngFor="let pro of propertyinfo" [ngClass]="pro.value == '' ? 'd-none' : ''">
                                             <div ngClass="property_info-text" *ngIf="pro.show">
                                                 <p>{{pro.label}}</p>
                                                 <h6 >{{pro.label == 'Bedroom' && pro.value == 0 ? "Studio": pro.value}}</h6>
@@ -228,8 +228,7 @@
                             <div ngClass="tabs-heading-div">
                                 <h5>Location</h5>
                             </div>
-                            <div class="property-near-map" id="property-near-map" style="width: 100%; height: 400px; border-radius: 12px;">
-                            </div>
+                            <div #propertyDetails__map class="property-details__map"></div>
                         </div>
                     </div>
                     <div ngClass="col-xl-4 col-lg-4 col-md-12 col-sm-12">
