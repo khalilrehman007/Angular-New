@@ -24,13 +24,17 @@ import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BreadcrumbsModule } from '../breadcrumbs/breadcrumbs.module';
 import { CarDetailsComponent } from './car-details/car-details.component';
-import { CarAddDetailsFirstComponent } from './car-add-details-first/car-add-details-first.component';
-import { CarAddDetailsSecondComponent } from './car-add-details-second/car-add-details-second.component';
-import { MotorcycleDetailFormComponent } from './motorcycle-detail-form/motorcycle-detail-form.component';
-import { AutoAccessoriesPartsComponent } from './auto-accessories-parts/auto-accessories-parts.component';
-import { HeavyVehiclesComponent } from './heavy-vehicles/heavy-vehicles.component';
-import { BoatsComponent } from './boats/boats.component';
-import { NumberPlatesComponent } from './number-plates/number-plates.component';
+import { CarAddDetailsFirstComponent } from './motors/car-add-details-first/car-add-details-first.component';
+import { CarAddDetailsSecondComponent } from './motors/car-add-details-second/car-add-details-second.component';
+import { MotorcycleDetailFormComponent } from './motors/motorcycle-detail-form/motorcycle-detail-form.component';
+import { AutoAccessoriesPartsComponent } from './motors/auto-accessories-parts/auto-accessories-parts.component';
+import { HeavyVehiclesComponent } from './motors/heavy-vehicles/heavy-vehicles.component';
+import { BoatsComponent } from './motors/boats/boats.component';
+import { NumberPlatesComponent } from './motors/number-plates/number-plates.component';
+import { JobHiringComponent } from './jobs/job-hiring/job-hiring.component';
+import { JobHiringPersonalComponent } from './jobs/job-hiring-personal/job-hiring-personal.component';
+import { JobHiringCompanyComponent } from './jobs/job-hiring-company/job-hiring-company.component';
+import { JobRequirementComponent } from './jobs/job-requirement/job-requirement.component';
 
 
 @NgModule({
@@ -47,6 +51,10 @@ import { NumberPlatesComponent } from './number-plates/number-plates.component';
     HeavyVehiclesComponent,
     BoatsComponent,
     NumberPlatesComponent,
+    JobHiringComponent,
+    JobHiringPersonalComponent,
+    JobHiringCompanyComponent,
+    JobRequirementComponent,
   ],
   imports: [
     CommonModule,

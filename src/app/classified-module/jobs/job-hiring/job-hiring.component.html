@@ -1,0 +1,40 @@
+<app-header></app-header>
+<section [ngClass]="'slide-left-bar ads-page-sec'" style="background-image: url('assets/images/background/bg-1.png');">
+    <section [ngClass]="'ads-banner-wrapper'">
+        <div [ngClass]="'container_1280px'">
+            <div ngClass="heading-title-sec text-center">
+                <h2>Who are you hiring for?</h2>
+                <p>Tell us about your listing?</p>
+            </div>
+        </div>
+    </section>
+    <section class="ads-form-design-section">
+        <div class="container_1280px">
+           <div class="row justify-content-center">
+            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+                <div class="looking-for-div">
+                    <div class="looking-for-img">
+                        <img src="{{hirepersonal}}">
+                    </div>
+                    <div class="looking-for-cntnt">
+                        <a routerLink="" class="looking-for-btn">Personal</a>
+                        <p>Source candidates for individual services. Eg: Drivers, Tutors, House help etc.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+                <div class="looking-for-div">
+                    <div class="looking-for-img">
+                        <img src="{{hirecompany}}">
+                    </div>
+                    <div class="looking-for-cntnt">
+                        <a routerLink="" class="looking-for-btn">Company</a>
+                        <p>Source candidates for individual services. Eg: Drivers, Tutors, House help etc.</p>
+                    </div>
+                </div>
+            </div>
+           </div>
+        </div>
+    </section>
+<app-footer></app-footer>
+</section>
