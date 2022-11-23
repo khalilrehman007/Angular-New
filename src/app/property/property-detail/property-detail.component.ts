@@ -170,8 +170,8 @@ export class PropertyDetailComponent implements OnInit,AfterViewInit {
   dataLoaded: boolean = false;
   propertyId: any;
   userId: any;
-  propertyLat: number = 0;
-  propertyLng: number = 0;
+  propertyLat: any = 0;
+  propertyLng: any = 0;
   buildingName: any;
   map: any;
   bounds: any = [];
@@ -321,18 +321,19 @@ export class PropertyDetailComponent implements OnInit,AfterViewInit {
       this.propertyDetail = jsonParsDate
       this.isload = true
 
-      this.map = new mapboxgl.Map({
-        accessToken: environment.mapbox.accessToken,
-        container: 'property-near-map',
-        style: 'mapbox://styles/mapbox/streets-v11',
-        center: [this.propertyLng, this.propertyLat],
-        zoom: 11,
-      })
-      let marker = new mapboxgl.Marker({ color: "#FF0000", draggable: false }).setLngLat([this.propertyLng, this.propertyLat]).addTo(this.map).setPopup(
-        new mapboxgl.Popup({ offset: 25, focusAfterOpen: false }) // add popups
-          .setHTML(this.buildingName)
-      ).togglePopup();
-
+      this.map = new google.maps.Map($(".property-details__map")[0], {
+        center: { "lat": parseFloat(this.propertyLat), "lng": parseFloat(this.propertyLng) },
+        zoom: 16,
+        disableDefaultUI: true,
+      });
+      let marker = new google.maps.Marker({
+        position: { "lat": parseFloat(this.propertyLat), "lng": parseFloat(this.propertyLng) },
+        map: this.map,
+        label: {
+          className: 'map-marker-label',
+          text: this.buildingName
+        },
+      });
       let tenantType: any = '';
 
       let occupancyStatus: any = '';
