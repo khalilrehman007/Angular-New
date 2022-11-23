@@ -504,4 +504,7 @@ export class AppService {
   PropertyListingType(id: any) {
     return this.http.get(this.apiurl + 'PropertyListingType/' + id);
   }
+  ClassifiedCategories() {
+    return this.http.get(this.apiurl + 'ClassifiedCategories');
+  }
 }
