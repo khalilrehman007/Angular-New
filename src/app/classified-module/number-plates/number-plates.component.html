@@ -1,1 +1,229 @@
-<p>number-plates works!</p>
+<app-header></app-header>
+<section [ngClass]="'slide-left-bar ads-page-sec'">
+    <section [ngClass]="'ads-banner-wrapper'">
+        <div [ngClass]="'container_1280px'">
+            <div ngClass="heading-title-sec text-center">
+                <h2>Ovaluate Ad Classified</h2>
+                <p>Tell us about your listing?</p>
+            </div>
+        </div>
+    </section>
+    <section class="ads-form-design-section" style="background-image: url('assets/images/background/bg-1.png');">
+        <div class="container_1280px">
+            <div class="ads-form-design">
+                <form>
+                    <div class="list-property-header">
+                        <h5 class="h5-heading">Please Fill your Lisitng Details</h5>
+                    </div>
+                    <div class="class-fied-breadcrumbs">
+                        <ul class="list-unstyled d-flex">
+                            <li><a routerLink="/classified/ad-post">Ad Post</a></li>
+                            <li>Boats <span class="divider-bread">/</span> Fishing Boat</li>
+                        </ul>
+                    </div>
+                    <div ngClass="select-boxes">
+                        <div ngClass="row">
+                            <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+                                <div ngClass="block-wrapper mb-4">
+                                        <label>Title <span class="required-span">*</span></label>
+                                        <mat-form-field class="full-width input-design-2" appearance="fill">
+                                            <input matInput type="text" placeholder="Enter Title"
+                                                lang="en" />
+                                        </mat-form-field>
+                                </div>
+                            </div>
+                            <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+                                <div ngClass="block-wrapper mb-4 position-relative optional-text">
+                                        <label>Phone Number</label>
+                                        <mat-form-field class="full-width input-design-2" appearance="fill">
+                                            <input matInput type="number" placeholder="Enter Phone Number"
+                                                lang="en" />
+                                        </mat-form-field>
+                                        <span class="optional-span">*Optional</span>
+                                </div>
+                            </div>
+                            <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+                                <div ngClass="block-wrapper mb-4">
+                                        <div ngClass="select-design select2-design full-width-select2">
+                                            <label>Do you want to show or hide your phone number?</label>
+                                            <select class="select2 country-select">
+                                                <option value="yes"> Show Number </option>
+                                                <option value="no">Hide Number</option>
+                                            </select>
+                                        </div>
+                                </div>
+                            </div>
+                            <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+                                <div ngClass="block-wrapper mb-4">
+                                        <div ngClass="select-design select2-design full-width-select2">
+                                            <label>Plate Code</label>
+                                            <select class="select2 country-select">
+                                                <option value="A">A</option>
+                                                <option value="B">B</option>
+                                            </select>
+                                        </div>
+                                </div>
+                            </div>
+                            <div ngClass="col-xl-12 col-lg-12 col-sm-12">
+                                <div ngClass="block-wrapper mb-4">
+                                        <label>Plate Number <span class="required-span">*</span></label>
+                                        <mat-form-field class="full-width input-design-2" appearance="fill">
+                                            <input matInput type="number" placeholder="Enter Plate Number"
+                                                lang="en" />
+                                        </mat-form-field>
+                                </div>
+                            </div>
+                            <div ngClass="col-xl-12 col-lg-12 col-sm-12">
+                                <div ngClass="platest-design-block mb-4">
+                                        <div class="plates-btn-flex">
+                                            <button class="plates-btn_design">Classic Design</button>
+                                            <button class="plates-btn_design">New Design</button>
+                                        </div>
+                                        <div class="plates-no-output">
+                                            <div class="">
+                                                
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                            <div ngClass="col-xl-12 col-lg-12 col-sm-12">
+                                <div ngClass="block-wrapper mb-4">
+                                        <label>Description <span class="required-span">*</span></label>
+                                        <mat-form-field class="full-width input-design-2 textarea-design-2" appearance="fill">
+                                            <textarea matInput type="number" placeholder="Enter Description Here...."
+                                                ></textarea>
+                                        </mat-form-field>
+                                </div>
+                            </div>
+                            <div ngClass="col-xl-12 col-lg-12 col-sm-12">
+                            <div ngClass="propery-pictures-sec mb-4">
+                                <div class="inneR-border-wrap position-relative">
+                                    <div ngClass="div_thumb-wrapper img_upload">
+                                        <label class="btn btn-default p-0 upload-label">
+                                            <input type="file" accept=".jpg, .png, .jpeg," multiple
+                                                class="input-file" />
+                                            <button ngClass="black-upload-btn"><span
+                                                    ngClass="plus_icon-div">+</span> Upload Pictures</button>
+                                        </label>
+                                        <div ngClass="upload-preview-images">
+                                            <img ngClass="img-thumb-icon"
+                                                src="../../../../assets/images/image-gallery-thumbnail.png">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                            <div ngClass="col-xl-4 col-lg-4 col-sm-12">
+                                <div ngClass="block-wrapper mb-4">
+                                    <div ngClass="select-design select2-design">
+                                        <label>Age <span class="required-span">*</span></label>
+                                        <select class="select2 country-select">
+                                            <option value="0"> Brand New</option>
+                                            <option value="1">0-1 month</option>
+                                            <option value="0"> 1-6 months</option>
+                                            <option value="1">6-12 months</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ngClass="col-xl-4 col-lg-4 col-sm-12">
+                                <div ngClass="block-wrapper mb-4">
+                                    <div ngClass="select-design select2-design">
+                                        <label>Usage <span class="required-span">*</span></label>
+                                        <select class="select2 country-select">
+                                            <option value="0"> Still with the dealer</option>
+                                            <option value="1">Only used once since it was purchased new</option>
+                                            <option value="0"> Used only a few times since it was purchased new</option>
+                                            <option value="1">Used once or twice a month since purchased</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ngClass="col-xl-4 col-lg-4 col-sm-12">
+                                <div ngClass="block-wrapper mb-4">
+                                    <div ngClass="select-design select2-design">
+                                        <label>Condition <span class="required-span">*</span></label>
+                                        <select class="select2 country-select">
+                                            <option value="0"> Perfect inside and out</option>
+                                            <option value="1">No accidents, very few faults</option>
+                                            <option value="0"> A bit of wear & tear, all repaired</option>
+                                            <option value="1">Normal wear & tear, a few issues</option>
+                                            <option value="0"> Lots of wear & tear to the body</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ngClass="col-xl-4 col-lg-4 col-sm-12">
+                                <div ngClass="block-wrapper mb-4">
+                                    <div ngClass="select-design select2-design">
+                                        <label>Seller type <span class="required-span">*</span></label>
+                                        <select class="select2 country-select">
+                                            <option value="Owner">Owner</option>
+                                            <option value="Dealer">Dealer</option>
+                                            <option value="Dealership">Dealership/Certified Pre-Owned</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ngClass="col-xl-4 col-lg-4 col-sm-12">
+                                <div ngClass="block-wrapper mb-4">
+                                    <div ngClass="select-design select2-design">
+                                        <label>Warranty <span class="required-span">*</span></label>
+                                        <select class="select2 country-select">
+                                            <option value="no">No</option>
+                                            <option value="Yes">Yes</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ngClass="col-xl-4 col-lg-4 col-sm-12">
+                                <div ngClass="block-wrapper mb-4">
+                                    <div ngClass="select-design select2-design">
+                                        <label>Length <span class="required-span">*</span></label>
+                                        <select class="select2 country-select">
+                                            <option value="2">Under 10 ft.</option>
+                                            <option value="3">10-14 ft.</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div ngClass="col-xl-12 col-lg-12 col-sm-12">
+                            <div ngClass="block-wrapper mb-3 position-relative optional-text">
+                                    <label>Locate your item</label>
+                                    <mat-form-field class="full-width input-design-2" appearance="fill">
+                                        <input matInput type="text" placeholder="Locate your item"
+                                            lang="en" />
+                                    </mat-form-field>
+                                    <span class="optional-span">*Optional</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div ngClass="address-sec">
+                        <div ngClass="block-wrapper-address">
+                            <label class="h6-design">Is the pin in the right location? </label>
+                            <p class="under-label-text">Click and drag the pin to the exact spot. Users are more likely to respond to ads that are correctly shown on the map</p>
+                            <div ngClass="position-relative">
+                                <div style="width: 100%;">
+                                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d462562.6509516108!2d54.94729613679833!3d25.07575945545691!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f43496ad9c645%3A0xbde66e5084295162!2sDubai%20-%20United%20Arab%20Emirates!5e0!3m2!1sen!2sin!4v1666784711777!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                </div>
+                            </div>
+                            <p class="under-label-text">Make sure the car information you have entered is correct. You will only be able to make select changes once the ad is live.</p>
+                        </div>
+                    </div>
+                    <div class="text-right save-continue-sec justify-content-center">
+                        <mat-card-actions>
+                            <button class="save-continue-btn cursor-pointer">Next</button>
+                        </mat-card-actions>
+                    </div>
+                    <div class="text-center question-div">
+                        <p><a href="tel:+97150 8960006">Question? Call +97150 8960006</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+<app-footer></app-footer>
+</section>
