@@ -754,7 +754,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   })
   openCamera() {
     $(".camera-image").click();
-}
+  }
   ExpertIn: any = [];
   getExpertIn() {
     let tempData: Array<Object> = []
@@ -894,29 +894,32 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     for (let i = 0; i < 4; i++) {
       valuationData.append(i + 1 + "_" + this.otherImages[i].file.name, this.otherImages[i].file);
     }
+    console.log(this.companyFormData);
 
 
     // if ( this.data.CompanyName = this.companyDetailsFormData.value.companyName )
     let token: any = localStorage.getItem("token");
-    // token = JSON.parse(token);
-    // $.ajax({
-    //   url: "https://beta.ovaluate.com/api/AddUpdateCompany",
-    //   method: "post",
-    //   contentType: false,
-    //   processData: false,
-    //   headers: {
-    //     "Authorization": 'bearer ' + token
-    //   },
-    //   dataType: "json",
-    //   success: (res) => {
-    //     this.companyDetailsFormData = res.data.id;
-    //     this.notifyService.showSuccess(res.message, "Company details updated successfully");
-    //   },
-    //   error: (err) => {
-    //     this.notifyService.showError(err, "");
+    token = JSON.parse(token);
+    $.ajax({
+      url: "https://beta.ovaluate.com/api/AddUpdateCompany",
+      method: "post",
+      contentType: false,
+      processData: false,
+      data: valuationData,
+      headers: {
+        "Authorization": 'bearer ' + token
+      },
+      dataType: "json",
+      success: (res) => {
+        console.log(res)
+        this.companyDetailsFormData = res.data.id;
+        // this.notifyService.showSuccess(res.message, "Company details updated successfully");
+      },
+      error: (err) => {
+        this.notifyService.showError(err, "");
 
-    //   }
-    // })
+      }
+    })
 
   }
 
@@ -1424,6 +1427,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         localStorage.setItem("user", JSON.stringify(result.data));
         this.proAvatar = '../../assets/images/user.png';
       }
-    })    
+    })
   }
 }

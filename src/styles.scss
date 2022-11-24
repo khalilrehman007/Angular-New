@@ -3177,7 +3177,7 @@ input[type=number] {
 
 	.ngx-slider-selection-bar {
 		.ngx-slider-bar {
-			background: #595ad4;
+			background: #4a565f;
 		}
 	}
 }
@@ -9032,15 +9032,18 @@ margin-right: 0px;
 
 
 
-@media (min-widthh: 1200px) {
-	.tenants-sec-wrapper {
-		.owl-stage-outer.ng-star-inserted {
-			overflow: visible;
-		}
+@media (min-width: 1200px) {
+	// .tenants-sec-wrapper {
+	// 	.owl-stage-outer.ng-star-inserted {
+	// 		overflow: visible;
+	// 	}
 
-		.owl-item {
-			min-width: 500px;
-		}
+	// 	.owl-item {
+	// 		min-width: 500px;
+	// 	}
+	// }
+	.featured-car-comparisons .owl-item {
+		max-width: 300px;
 	}
 }
 

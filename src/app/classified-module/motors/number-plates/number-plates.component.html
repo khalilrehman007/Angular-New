@@ -1,0 +1,138 @@
+<app-header></app-header>
+<section [ngClass]="'slide-left-bar ads-page-sec'">
+    <section [ngClass]="'ads-banner-wrapper'">
+        <div [ngClass]="'container_1280px'">
+            <div ngClass="heading-title-sec text-center">
+                <h2>Ovaluate Ad Classified</h2>
+                <p>Tell us about your listing?</p>
+            </div>
+        </div>
+    </section>
+    <section class="ads-form-design-section" style="background-image: url('assets/images/background/bg-1.png');">
+        <div class="container_1280px">
+            <div class="ads-form-design">
+                <form>
+                    <div class="list-property-header">
+                        <h5 class="h5-heading">Please Fill your Lisitng Details</h5>
+                    </div>
+                    <div class="class-fied-breadcrumbs">
+                        <ul class="list-unstyled d-flex">
+                            <li><a routerLink="/classified/ad-post">Ad Post</a></li>
+                            <li>Number Plates <span class="divider-bread">/</span> Dubai <span class="divider-bread">/</span> Private</li>
+                        </ul>
+                    </div>
+                    <div ngClass="select-boxes">
+                        <div ngClass="row">
+                            <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+                                <div ngClass="block-wrapper mb-4">
+                                        <label>Title <span class="required-span">*</span></label>
+                                        <mat-form-field class="full-width input-design-2" appearance="fill">
+                                            <input matInput type="text" placeholder="Enter Title"
+                                                lang="en" />
+                                        </mat-form-field>
+                                </div>
+                            </div>
+                            <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+                                <div ngClass="block-wrapper mb-4 position-relative optional-text">
+                                        <label>Phone Number</label>
+                                        <mat-form-field class="full-width input-design-2" appearance="fill">
+                                            <input matInput type="number" placeholder="Enter Phone Number"
+                                                lang="en" />
+                                        </mat-form-field>
+                                        <span class="optional-span">*Optional</span>
+                                </div>
+                            </div>
+                            <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+                                <div ngClass="block-wrapper mb-4">
+                                        <div ngClass="select-design select2-design full-width-select2">
+                                            <label>Do you want to show or hide your phone number?</label>
+                                            <select class="select2 country-select">
+                                                <option value="yes"> Show Number </option>
+                                                <option value="no">Hide Number</option>
+                                            </select>
+                                        </div>
+                                </div>
+                            </div>
+                            <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+                                <div ngClass="block-wrapper mb-4">
+                                        <div ngClass="select-design select2-design full-width-select2">
+                                            <label>Plate Code</label>
+                                            <select class="select2 country-select">
+                                                <option value="A">A</option>
+                                                <option value="B">B</option>
+                                            </select>
+                                        </div>
+                                </div>
+                            </div>
+                            <div ngClass="col-xl-12 col-lg-12 col-sm-12">
+                                <div ngClass="block-wrapper mb-4">
+                                        <label>Plate Number <span class="required-span">*</span></label>
+                                        <mat-form-field class="full-width input-design-2" appearance="fill">
+                                            <input matInput type="number" placeholder="Enter Plate Number"
+                                                lang="en" />
+                                        </mat-form-field>
+                                </div>
+                            </div>
+                            <div ngClass="col-xl-12 col-lg-12 col-sm-12">
+                                <div ngClass="platest-design-block mb-4">
+                                        <div class="plates-btn-flex">
+                                            <button class="plates-btn_design" (click)="clickEvent()" [ngClass]="status ? 'active' : 'noactive'">Classic Design</button>
+                                            <button class="plates-btn_design" (click)="clickEvent1()" [ngClass]="status1 ? 'active' : 'noactive'">New Design</button>
+                                        </div>
+                                        <div class="plates-no-output">
+                                            <div class="plate-design-1 position-relative" [ngClass]="status ? 'show' : 'hide'">
+                                               <div class="plate-design-img">
+                                                <img src="{{plateclassic}}">
+                                               </div>
+                                               <div class="plate-design-cntnt">
+                                                <h4 clas="plate-code">B</h4>
+                                                <h4 clas="plate-number">2022</h4>
+                                               </div>
+                                            </div>
+                                            <div class="plate-design-2 position-relative" [ngClass]="status1 ? 'show' : 'hide'">
+                                                <div class="plate-design-img">
+                                                 <img src="{{platenew}}">
+                                                </div>
+                                                <div class="plate-design-cntnt">
+                                                 <h4 clas="plate-code">B</h4>
+                                                 <h4 clas="plate-number">2022</h4>
+                                                </div>
+                                             </div>
+                                        </div>
+                                </div>
+                            </div>
+                            <div ngClass="col-xl-12 col-lg-12 col-sm-12">
+                                <div ngClass="block-wrapper mb-4 aed-text position-relative">
+                                        <label>Price <span class="required-span">*</span></label>
+                                        <mat-form-field class="full-width input-design-2" appearance="fill">
+                                            <input matInput type="number" placeholder="Enter Price"
+                                                lang="en" />
+                                        </mat-form-field>
+                                        <span class="price-tag-input">AED</span>
+                                </div>
+                            </div>
+                            <div ngClass="col-xl-12 col-lg-12 col-sm-12">
+                                <div ngClass="block-wrapper mb-4">
+                                        <label>Description <span class="required-span">*</span></label>
+                                        <mat-form-field class="full-width input-design-2 textarea-design-2" appearance="fill">
+                                            <textarea matInput type="number" placeholder="Enter Description Here...."
+                                                ></textarea>
+                                        </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-right save-continue-sec justify-content-center">
+                        <mat-card-actions>
+                            <button class="save-continue-btn cursor-pointer">Next</button>
+                        </mat-card-actions>
+                    </div>
+                    <div class="text-center question-div">
+                        <p><a href="tel:+97150 8960006">Question? Call +97150 8960006</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+<app-footer></app-footer>
+</section>
