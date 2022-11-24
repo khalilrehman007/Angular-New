@@ -63,7 +63,7 @@
     position: relative;
 }
 .pcompare-properties-flex>div {
-    width: 50%;
+    width: 33.3%;
 }
 .property-pcompare-img {
     width: 100%;
@@ -75,7 +75,7 @@
     object-fit: cover;
 }
 .property-pcompare-cntnt h4 {
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 500;
     display: flex;
     align-items: center;
@@ -98,17 +98,15 @@
     margin-bottom: 5px;
 }
 .property_currency_span {
-    color: #595ad6;
-    font-weight: 400;
-    padding-right: 2px;
+    color: #242a2f;
+    font-weight: 700;
+    padding-left: 2px;
 }
 .vs-tag {
     position: absolute;
-    left: 0;
-    right: 0;
     margin-bottom: 0px;
-    width: 40px;
-    height: 40px;
+    width: 25px;
+    height: 25px;
     background-color: #595ad5;
     color: #fff;
     display: flex;
@@ -117,7 +115,14 @@
     border-radius: 50%;
     margin-left: auto;
     margin-right: auto;
-    top: 23%;
+    top: 26%;
+    font-size: 13px;
+}
+.vs-tag.vs-tag-1 {
+    left: 31.5%;
+}
+.vs-tag.vs-tag-2 {
+    right: 31%;
 }
 .pcompare-slider-container {
     background-color: #fff;
@@ -134,6 +139,9 @@
     padding: 10px 25px;
     display: inline-block;
     font-size: 14px;
+    &:hover{
+        background-color: #000;
+    }
 }
 .pcomparison-details-btn {
     margin-bottom: 15px;
@@ -142,19 +150,20 @@
     margin-top: 15px;
 }
 .property-pcompare-cntnt .property_name_span {
-    color: #595ad6;
-    font-weight: 400;
-    max-width: 90px;
+    color: #242a2f;
+    font-weight: 700;
+    max-width: 60px;
     overflow: hidden;
     display: inline-block;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 .property-pcompare-cntnt .term_badge {
-    font-weight: 300;
+    font-weight: 500;
     font-size: 12px;
     display: inline-block;
-    padding-right: 2px;
+    padding-left: 2px;
+    color: #242a2f;
 }
 .compare-now-btn-block {
     text-align: center;
@@ -177,12 +186,6 @@
 .price_pcompare {
     font-size: 14px;
     margin-bottom: 3px;
-}
-.pcomparison-details-btn>a:hover {
-    background-color: #0f2ead !important;
-}
-.compare-now-btn:hover {
-    background-color: #4a565f !important;
 }
 .compare-header .h4-design {
     font-size: 20px;
@@ -214,15 +217,15 @@
 	text-align: left;
     padding: 15px 60px 15px 15px;
 	h4 {
-        color: #595ad4;
+        color: #242a2f;
         font-size: 16px;
-        font-weight: 500;
-        margin-bottom: 2px;
+        font-weight: 700;
+        margin-bottom: 5px;
         margin-top: 4px;
 		small {
-			color: #000;
-			font-size: 14px;
-			font-weight: 300;
+		    color: #242a2f;
+            font-size: 13px;
+            font-weight: 500;
 		}
 	}
 	h5 {
@@ -242,6 +245,9 @@
         white-space: nowrap;
         text-overflow: ellipsis;
         overflow: hidden;
+        svg{
+            margin-right: 5px;
+        }
 	}
 }
 .com-img {
@@ -256,6 +262,10 @@
     padding-right: 1px;
 }
 .pcompare-properties-second {
+    padding-left: 1px;
+    padding-right: 1px;
+}
+.pcompare-properties-third {
     padding-left: 1px;
 }
 .property-comparison-block {
@@ -326,6 +336,21 @@
     display: inline-block !important;
     margin-right: 5px;
 }
+.property-comparison-block .delete-property {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    width: 30px;
+    height: 30px;
+    border: none;
+    background-color: #fff;
+    border-radius: 50%;
+    box-shadow: 1px 1px 13px -3px grey;
+}
+.property-pcompare-cntnt svg {
+    margin-right: 5px;
+}
+
 
 
 
