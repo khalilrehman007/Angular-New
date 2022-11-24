@@ -165,7 +165,7 @@
                                             *ngFor="let amenities of propertyDetailData.propertyFeatures">
                                             <div ngClass="amenties_info-text">
                                                 <img height="40px" width="40px"
-                                                    src="{{baseUrl+amenities.propertyFeature.document.fileUrl}}">
+                                                    src="{{baseUrl+amenities.propertyFeature.documents.fileUrl}}">
                                                 <p>{{amenities.propertyFeature.featureName}}</p>
                                                 <button ngClass="see-more-amenties">{{amenities.btnvalue}}</button>
                                             </div>
