@@ -507,17 +507,6 @@ ul.package-listing-details-inner {
   text-align: right;
   font-size: 30px;
 }
-.payment_box_wrap::before {
-  content: "";
-  position: absolute;
-  right: -20px;
-  top: -20px;
-  width: 250px;
-  height: 250px;
-  background-color: #fbfbfb;
-  border-radius: 50%;
-  z-index: -1;
-}
 .box_list-pay {
   text-align: right;
 }
@@ -546,25 +535,34 @@ ul.package-listing-details-inner {
 .payment_box_wrap>input:checked+.box_list-pay .cstm-btn-pay-points {
   background-color: #4a565f;
 }
-.payment_box_wrap.standard, .payment_box_wrap.free {
+.payment_box_wrap.Free {
   border-top: 7px solid #4a565f;
 }
-.payment_box_wrap.platinum {
+.payment_box_wrap.Standard {
+  border-top: 7px solid #2DB57D;
+}
+.payment_box_wrap.Featured{
   border-top: 7px solid purple;
 }
-.payment_box_wrap.premium{
-  border-top: 7px solid #2DB57D;
+.payment_box_wrap.Featured{
+  border-top: 7px solid purple;
+}
+.Custom.payment_box_wrap {
+  border-top: 7px solid #7a89c5;
 }
 .payment_box_wrap:hover {
   box-shadow: 0px 0 61px -36px #000929;
   cursor: pointer;
   bottom: 10px;
 }
-.payment_box_wrap.platinum>input:checked+.box_list-pay .cstm-btn-pay-points {
+.payment_box_wrap.Standard>input:checked+.box_list-pay .cstm-btn-pay-points {
+  background-color: #2DB57D;
+}
+.payment_box_wrap.Featured>input:checked+.box_list-pay .cstm-btn-pay-points{
   background-color: purple;
 }
-.payment_box_wrap.premium>input:checked+.box_list-pay .cstm-btn-pay-points{
-  background-color: #2DB57D;
+.payment_box_wrap.Custom>input:checked+.box_list-pay .cstm-btn-pay-points{
+  background-color: #7a89c5;
 }
 .packages-point-heading h2 {
   text-transform: uppercase;
@@ -588,26 +586,32 @@ ul.package-listing-details-inner {
   padding-top: 60px;
   padding-bottom: 60px;
 }
-.packagepoints-wrapper-2 .payment_box_wrap.platinum .box-price {
-  color: #812b80;
-}
-.payment_box_wrap.standard h4,.payment_box_wrap.free h4 {
-  color: #4a565f;
-}
-.payment_box_wrap.platinum h4 {
-  color: #812b80;
-}
-.payment_box_wrap.premium h4{
-  color: #2DB57D;
-}
-.pointss_lists .payment_box_wrap.standard .box-price {
-  color: #4a565f;
-}
-.pointss_lists .payment_box_wrap.premium .box-price {
+.packagepoints-wrapper-2 .payment_box_wrap.Standard .box-price {
   color: #51b67e;
 }
+.payment_box_wrap.Free h4,.payment_box_wrap.Free h4 {
+  color: #4a565f;
+}
+.payment_box_wrap.Standard h4 {
+  color: #2DB57D;
+}
+.payment_box_wrap.Featured h4{
+  color: #812b80;
+}
+.pointss_lists .payment_box_wrap.Free .box-price {
+  color: #4a565f;
+}
+.pointss_lists .payment_box_wrap.Featured .box-price {
+  color: #812b80;
+}
+.pointss_lists .payment_box_wrap.Custom .box-price {
+  color: #7a89c5;
+}
+.payment_box_wrap.Custom h4{
+  color: #7a89c5;
+}
 .buy-now-btn {
-  background-color: #4a565f;
+  background-color: #0f2ead;
   color: #fff;
   border: none;
   padding: 14px 50px;
@@ -656,4 +660,43 @@ ul.package-listing-details-inner {
 }
 .payment-text-modal-design .payment_box_cnntn li {
   font-size: 16px !important;
+}
+
+.STANDARD.payment_box_wrap {
+  border-top: 7px solid #4a565f;
+}
+.STANDARD.payment_box_wrap .payment_box_hdr h4 {
+  color: #4a565f;
+}
+.STANDARD.payment_box_wrap .payment_box_cnntn .box-price {
+  color: #4a565f;
+}
+.STANDARD.payment_box_wrap input:checked+.box_list-pay .cstm-btn-pay-points {
+  background-color: #4a565f;
+}
+
+.PLATINUM.payment_box_wrap {
+  border-top: 7px solid #2DB57D;
+}
+.PLATINUM.payment_box_wrap .payment_box_hdr h4 {
+  color: #2DB57D;
+}
+.PLATINUM.payment_box_wrap .payment_box_cnntn .box-price {
+  color: #2DB57D;
+}
+.PLATINUM.payment_box_wrap input:checked+.box_list-pay .cstm-btn-pay-points {
+  background-color: #2DB57D;
+}
+
+.PREMIUM.payment_box_wrap {
+  border-top: 7px solid #812b80;
+}
+.PREMIUM.payment_box_wrap .payment_box_hdr h4 {
+  color: #812b80;
+}
+.PREMIUM.payment_box_wrap .payment_box_cnntn .box-price {
+  color: #812b80;
+}
+.PREMIUM.payment_box_wrap input:checked+.box_list-pay .cstm-btn-pay-points {
+  background-color: #812b80;
 }

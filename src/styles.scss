@@ -3643,7 +3643,7 @@ input[type=number] {
 	a {
 		color: $color_32;
 		text-decoration: none;
-		font-size: 14px;
+		font-size: 16px;
 		margin: 0;
 		font-weight: 400;
 	}
@@ -3963,7 +3963,10 @@ input[type=number] {
 
 	h5 {
 		font-size: 18px;
-		color: $color_27;
+		color: var(--black);
+		text-overflow: ellipsis;
+		overflow: hidden;
+		white-space: nowrap;
 	}
 
 	p {
@@ -4002,20 +4005,6 @@ input[type=number] {
 	left: 6px;
 }
 
-.blog-title-content {
-	h5 {
-		font-size: 16px;
-		color: $color_27;
-		line-height: 24px;
-		margin-bottom: 2px;
-	}
-
-	span {
-		color: #000;
-		font-size: 14px;
-		font-weight: 300;
-	}
-}
 
 .virtual-tour {
 	display: flex;
@@ -7745,13 +7734,14 @@ li.agent-details__property-list-item {
 
 		a {
 			padding: 13px 32px;
-			color: $color_4;
-			background: #4a565f;
+			color: #1c1c71;
+			background: #fff;
 			font-size: 14px;
 			border-radius: 8px;
 			display: inline-block;
 			&:hover{
 				background-color: #000;
+				color: #fff;
 			}
 		}
 	}
@@ -11047,10 +11037,10 @@ margin-right: 0px;
     margin-right: auto;
     padding: 30px;
     background: #F0F1F5;
-    border-radius: 20px 20px 0px 0px;
+    border-radius: 20px 20px 20px 20px;
     background-size: auto;
     background-repeat: no-repeat;
-    background-position: 34px -3px;
+    background-position: 17px -5px;
 }
 .alert_box-design.confirm-box .confirm-msg {
     padding-bottom: 0px;
@@ -11105,7 +11095,7 @@ margin-right: 0px;
 .alert-message-wrap p {
     font-size: 15px;
     margin-bottom: 0px;
-    padding: 5px 0px 15px 0px;
+    padding: 5px 0px 30px 0px;
     color: #5E6870;
     font-weight: 300;
 }
@@ -13448,4 +13438,16 @@ input:focus{
 }
 .thanku-header-sec .auth-header .back-tag {
     display: none;
+}
+.blog-title-content h5 {
+    font-size: 18px;
+    color: #000;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.blog-title-content span {
+    color: #000;
+    font-weight: 300;
+    font-size: 14px;
 }
