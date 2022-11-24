@@ -6278,6 +6278,8 @@ img {
 	img {
 		width: 100%;
 		height: 100%;
+		max-height: 500px;
+		object-fit: cover;
 	}
 
 	&::after {
@@ -13443,4 +13445,7 @@ input:focus{
 	padding: 4px 8px;
 	margin-top: -48px;
 	box-shadow: 1px 1px 10px rgba($color: #000000, $alpha: 0.2);
+}
+.thanku-header-sec .auth-header .back-tag {
+    display: none;
 }
