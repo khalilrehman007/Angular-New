@@ -18,7 +18,7 @@
         </div>
         <div ngClass="row" *ngIf="packagesType.length > 0">
           <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12" *ngFor="let packages of packagesType">
-            <div class="payment_box_wrap standard">
+            <div class="payment_box_wrap {{packages.name}}">
               <input type="radio" name="payment" (click)="getPackageByPoints(packages)">
               <div class="box_list-pay">
                 <button class="cstm-btn-pay-points"></button>
@@ -128,7 +128,7 @@
         </div>
         <div ngClass="row">
           <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12" *ngFor="let data of points">
-            <div class="payment_box_wrap standard" >
+            <div class="payment_box_wrap {{data.name}}" >
               <input type="radio" name="payment" (click)="getPackage(data)">
               <div class="box_list-pay">
                 <button class="cstm-btn-pay-points"></button>
