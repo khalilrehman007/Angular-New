@@ -258,7 +258,7 @@ export class CompareListingSelectionComponent implements OnInit {
       "PropertyCategoryId": '', PriceStart: '', PriceEnd: '', Bedrooms: '', Bathrooms: '',
       "PropertyListingTypeId": '', CurrentPage: 1
     }
-    this.route.navigate(['/search'], { queryParams: params })
+    this.route.navigate(['/ar/search'], { queryParams: params })
     this.loadListingProperty(params);
   }
 
@@ -446,7 +446,7 @@ export class CompareListingSelectionComponent implements OnInit {
         } else if(temp == "3"){
           localStorage.setItem("clickProprtyThree", JSON.stringify(this.clickedProperty))
         }
-        this.route.navigate(['/compare'])
+        this.route.navigate(['/ar/compare'])
       }
   }
 
@@ -458,7 +458,7 @@ export class CompareListingSelectionComponent implements OnInit {
   AddToFavorite(id: any, status: any) {
     if (this.userId == '') {
       this.notifyService.showSuccess('First you need to login', "");
-      this.route.navigate(['/login'])
+      this.route.navigate(['/ar/login'])
     }
     if (!this.authService.isAuthenticated()) {
       this.notifyService.showError("you don't have access", "");
@@ -509,7 +509,7 @@ export class CompareListingSelectionComponent implements OnInit {
       MinCarpetArea: this.MinCarpetArea, MaxCarpetArea: this.MaxCarpetArea, FurnishingTypeId: this.FurnishingTypeId
     }
 
-    this.route.navigate(['/property/mapview'], { queryParams: params })
+    this.route.navigate(['/ar/property/mapview'], { queryParams: params })
 
   }
   status2: boolean = false;

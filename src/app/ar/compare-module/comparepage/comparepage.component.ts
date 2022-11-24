@@ -54,7 +54,7 @@ export class ComparepageComponent implements OnInit {
       this.countryData = JSON.parse(this.cookie.get("countryData"));
     }
     if (!localStorage.getItem("user")){
-      this.route.navigate(['/login'])
+      this.route.navigate(['/ar/login'])
     }
     this.service.GetPopularListingsComparison(this.countryData.id).subscribe((result:any)=>{
       // console.log(result.data)
@@ -97,7 +97,7 @@ export class ComparepageComponent implements OnInit {
       this.showError = true;
       return;
     } else {
-      this.route.navigate(['/compare/view'])
+      this.route.navigate(['/ar/compare/view'])
       return;
     }
   }
@@ -156,13 +156,13 @@ export class ComparepageComponent implements OnInit {
   selectProperty(compare:any){
     localStorage.setItem("compareIndex", compare)
     if(this.viewPropertyOne == "") {
-      this.route.navigate(['/compare/selection'])
+      this.route.navigate(['/ar/compare/selection'])
     } else if(this.viewPropertyOne.rentType == "") {
-      this.route.navigate(['/compare/selection'], { queryParams: {type:"Buy",PropertyListingTypeId:2} })
+      this.route.navigate(['/ar/compare/selection'], { queryParams: {type:"Buy",PropertyListingTypeId:2} })
     } else if (this.viewPropertyOne.rentType == "Short Term ") {
-      this.route.navigate(['/compare/selection'], { queryParams: {RentTypeId:1} })
+      this.route.navigate(['/ar/compare/selection'], { queryParams: {RentTypeId:1} })
     } else {
-      this.route.navigate(['/compare/selection'], { queryParams: {type:"Rent",PropertyListingTypeId:1} })
+      this.route.navigate(['/ar/compare/selection'], { queryParams: {type:"Rent",PropertyListingTypeId:1} })
     }
   }
   removeProperty(){
@@ -253,6 +253,6 @@ export class ComparepageComponent implements OnInit {
     temp.push(e[1]);
     temp.push(e[2]);
     localStorage.setItem("compareProperty", JSON.stringify(temp));
-    this.route.navigate(['/compare/view'])
+    this.route.navigate(['/ar/compare/view'])
   }
 }

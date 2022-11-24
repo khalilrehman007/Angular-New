@@ -83,7 +83,7 @@
                                             <div ngClass="properties-list_cntnts position-relative">
                                                 <div ngClass="properties-list_hdr d-flex justify-content-spacebw">
                                                     <div ngClass="property-price_detals cursor-pointer"
-                                                        [routerLink]="['/property/detail']"
+                                                        [routerLink]="['/ar/property/detail']"
                                                         [queryParams]="{id: list.id}">
                                                         <h4>{{list.propertyPrice}} {{list.currency}} <small
                                                                 *ngIf="list.rentType != ''">/{{list.rentType}}</small>
@@ -136,7 +136,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div ngClass="property-name_detals" [routerLink]="['/property/detail']"
+                                                <div ngClass="property-name_detals" [routerLink]="['/ar/property/detail']"
                                                     [queryParams]="{id: list.id}">
                                                     <h4>{{list.buildingName}}</h4>
                                                     <div ngClass="property-addresss">
@@ -295,14 +295,14 @@
                             </div>
                             <div ngClass="form-group terms-contioning">
                                 <p>By continuing, you agree to houza's <a routerLink="/term-condition">Term and
-                                        Conditions</a> & <a routerLink="/privacy-policy">Privacy Policy</a></p>
+                                        Conditions</a> & <a routerLink="/ar/privacy-policy">Privacy Policy</a></p>
                             </div>
                         </form>
                     </div>
                 </div>
                 <div ngClass="alert-modal-footer">
                     <h4>Are you an agent?</h4>
-                    <p>Log in to the Ovaluate hub here: <a routerLink="/login">Agent log in</a></p>
+                    <p>Log in to the Ovaluate hub here: <a routerLink="/ar/login">Agent log in</a></p>
                 </div>
             </div>
         </ng-template>

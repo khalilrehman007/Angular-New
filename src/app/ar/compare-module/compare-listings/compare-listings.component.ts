@@ -65,7 +65,7 @@ export class CompareListingsComponent implements OnInit {
       });
     }
     if (!localStorage.getItem("user")){
-      this.route.navigate(['/login'])
+      this.route.navigate(['/ar/login'])
     }
   }
 
