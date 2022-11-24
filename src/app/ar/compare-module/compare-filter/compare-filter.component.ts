@@ -320,7 +320,7 @@ export class CompareFilterComponent implements OnInit {
                 this.selectedRentType = list.id;
               }
             }
-            this.rentTypes.push({ name: list.name, id: list.id });
+            this.rentTypes.push({ name: list.nameAr, id: list.id });
           }
       }
     });
@@ -700,9 +700,9 @@ export class CompareFilterComponent implements OnInit {
   CategoriesTypes(){
     this.service.PropertyCategories().subscribe(data=>{
       let response:any = data;
-      this.residential = response.data[0].categoryName;
+      this.residential = response.data[0].categoryNameAr;
       this.residentialId = response.data[0].id;
-      this.commercial = response.data[1].categoryName;
+      this.commercial = response.data[1].categoryNameAr;
       this.commercialId = response.data[1].id;
     });
   }
