@@ -157,6 +157,7 @@ export class ComparepageComponent implements OnInit {
     localStorage.setItem("compareIndex", compare)
     if(this.viewPropertyOne == "") {
       this.route.navigate(['/ar/compare/selection'])
+      console.log(this.viewPropertyOne)
     } else if(this.viewPropertyOne.rentType == "") {
       this.route.navigate(['/ar/compare/selection'], { queryParams: {type:"Buy",PropertyListingTypeId:2} })
     } else if (this.viewPropertyOne.rentType == "Short Term ") {

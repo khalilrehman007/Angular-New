@@ -4,7 +4,7 @@
         style="background-image: url('https://beta.ovaluate.com/Attchments/PrivacyPolicyImage/about-banner1%20(1).png')">
         <div class="container_1280px">
             <div class="baner-compare-heading">
-                <h2>Confused? Easy way to compare properties</h2>
+                <h2>مشوش? طريقة سهلة لمقارنة العقارات</h2>
             </div>
         </div>
     </section>
@@ -15,7 +15,7 @@
                     <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
                         <div class="add-compare-div">
                             <button class="select-compare-btn" *ngIf="viewPropertyOne == ''"><span
-                                    class="plus-icn" (click)="selectProperty(1)">+</span> <span class="select-text">Select</span></button>
+                                    class="plus-icn" (click)="selectProperty(1)">+</span> <span class="select-text">اختر</span></button>
                             <div ngClass="property-comparison-block position-relative" *ngIf="viewPropertyOne != ''">
                                 <button ngClass="delete-property" (click)="removeProperty()"><img src="{{trash}}"></button>
                                 <div ngClass="com-img cursor-pointer" >
@@ -41,8 +41,7 @@
                     <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
                         <div class="add-compare-div">
                             <button class="select-compare-btn" *ngIf="viewPropertyTwo == ''"><span
-                                    class="plus-icn"  (click)="selectProperty(2)">+</span> <span class="select-text">Select the same detail
-                                    by selecting different area</span> </button>
+                                    class="plus-icn"  (click)="selectProperty(2)">+</span> <span class="select-text">حدد نفس التفاصيل عن طريق تحديد منطقة مختلفة</span> </button>
                             <div ngClass="property-comparison-block position-relative" *ngIf="viewPropertyTwo != ''">
                                 <button ngClass="delete-property" (click)="removePropertyTwo()"><img src="{{trash}}"></button>
                                 <div ngClass="com-img cursor-pointer" >
@@ -68,8 +67,7 @@
                     <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
                         <div class="add-compare-div">
                             <button class="select-compare-btn" *ngIf="viewPropertyThree == ''"><span
-                                    class="plus-icn" (click)="selectProperty(3)">+</span> <span class="select-text" >Select the same detail
-                                    by selecting different area</span> </button>
+                                    class="plus-icn" (click)="selectProperty(3)">+</span> <span class="select-text" >حدد نفس التفاصيل عن طريق تحديد منطقة مختلفة</span> </button>
                             <div ngClass="property-comparison-block position-relative" *ngIf="viewPropertyThree != ''">
                                 <button ngClass="delete-property" (click)="removePropertyThree()"><img src="{{trash}}"></button>
                                 <div ngClass="com-img cursor-pointer" >
@@ -97,14 +95,14 @@
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                         <div class="compare-now-btn-block">
-                            <button class="compare-now-btn" (click)="checkProperty()">Compare Now</button>
+                            <button class="compare-now-btn" (click)="checkProperty()">قارن الآن</button>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="popular-car-comparisons">
                 <div ngClass="compare-header">
-                    <h4 class="h4-design">Popular properties comparison</h4>
+                    <h4 class="h4-design">مقارنة الخصائص الشعبية</h4>
                 </div>
                 <div class="popular-car-comparisons-slider">
                     <owl-carousel-o [options]="popularComparisonOptions">
@@ -175,11 +173,11 @@
                                                 </address>
                                             </div>
                                         </div>
-                                        <p class="vs-tag vs-tag-1">VS</p>
-                                        <p class="vs-tag vs-tag-2">VS</p>
+                                        <p class="vs-tag vs-tag-1">مقابل</p>
+                                        <p class="vs-tag vs-tag-2">مقابل</p>
                                     </div>
                                     <div class="pcomparison-details-btn">
-                                        <a (click)="compareProperty(pc)">View Details</a>
+                                        <a (click)="compareProperty(pc)">عرض التفاصيل</a>
                                     </div>
                                 </div>
                             </ng-template>
@@ -196,18 +194,17 @@
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                         <div class="comparision-banner-cntnt">
-                            <h4><img src="/assets/images/logo.svg"><strong>Ovaluate</strong> Recomended</h4>
-                            <h3>Not Sure, Which property to buy?</h3>
-                            <p>Let us help you find the dream property</p>
-                            <button class="compare-now-btn" (click)="scroll(property_info)">View Featured
-                                Properties</button>
+                            <h4><img src="/assets/images/logo.svg"><strong>أوفالويت</strong> أوصت</h4>
+                            <h3>غير متأكد, التي الممتلكات لشراء?</h3>
+                            <p>دعنا نساعدك في العثور على عقار الأحلام</p>
+                            <button class="compare-now-btn" (click)="scroll(property_info)">عرض الخصائص المميزة</button>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="featured-car-comparisons" #property_info>
                 <div ngClass="compare-header">
-                    <h4 class="h4-design">Featured Properties</h4>
+                    <h4 class="h4-design">خصائص مميزة</h4>
                     <!-- <p>You Could choose 3 properties from here and compare</p> -->
                 </div>
                 <div class="popular-car-comparisons-slider">
@@ -220,8 +217,8 @@
                                         <img  *ngIf="property.documents.length == 0 || property.documents[0].fileUrl == null" src="assets/images/placeholder.png">
                                     </div>
                                     <div ngClass="com-cntnt cursor-pointer" [routerLink]="['/ar/property/detail']" [queryParams]="{id: property.id}">
-                                        <h4> {{property.propertyPrice}} {{property.country.currency}}
-                                            <small>/{{property.rentType.name}}</small>
+                                        <h4> {{property.propertyPrice}} {{property.country.currencyAr}}
+                                            <small>/{{property.rentType.nameAr}}</small>
                                         </h4>
                                         <h5>{{property.propertyTitle}}</h5>
                                         <address>
@@ -229,7 +226,7 @@
                                                 <path d="M8.26455 0.949341C3.9992 0.949341 0.529114 4.41942 0.529114 8.68478C0.529114 10.4448 1.10589 12.1023 2.19711 13.4782C3.61003 15.2597 7.71886 19.4895 7.89306 19.6687L8.2645 20.0508L8.63599 19.6687C8.81029 19.4895 12.9204 15.2587 14.3335 13.4766C15.4237 12.1019 16 10.4449 16 8.68478C16 4.41942 12.5299 0.949341 8.26455 0.949341ZM13.5215 12.8328C12.3839 14.2673 9.32888 17.4585 8.26455 18.5622C7.20032 17.4585 4.14635 14.2683 3.00901 12.8343C2.06457 11.6434 1.56536 10.2086 1.56536 8.68478C1.56536 4.99081 4.57059 1.98559 8.26455 1.98559C11.9585 1.98559 14.9637 4.99081 14.9637 8.68478C14.9637 10.2087 14.465 11.6431 13.5215 12.8328Z" fill="#645BD1"/>
                                                 <path d="M8.26478 4.02002C5.73996 4.02002 3.68591 6.07407 3.68591 8.59889C3.68591 11.1237 5.74002 13.1778 8.26478 13.1778C10.7895 13.1778 12.8437 11.1237 12.8437 8.59889C12.8437 6.07412 10.7896 4.02002 8.26478 4.02002ZM8.26478 12.1415C6.31135 12.1415 4.72216 10.5523 4.72216 8.59889C4.72216 6.64546 6.3114 5.05627 8.26478 5.05627C10.2182 5.05627 11.8074 6.64551 11.8074 8.59889C11.8074 10.5523 10.2182 12.1415 8.26478 12.1415Z" fill="#645BD1"/>
                                             </svg>  
-                                            {{property.propertyAddress}}
+                                            {{property.propertyAddressArabic}}
                                         </address>
                                     </div>
                                 </div>
