@@ -17,23 +17,23 @@
                             </div>
                         </div>
                         <div ngClass="heading-apragraph-design mt-4">
-                            <h2>Please Select Properties for Compare</h2>
-                            <p>Showing {{totalRecord}} {{headingPropertyType}} for {{type}} in UAE</p>
-                            <p>Properties For {{type}} in UAE. Verified Listings.
-                            </p>
+                            <h2>الرجاء تحديد خصائص للمقارنة</h2>
+                            <p>عرض {{totalRecord}} {{headingPropertyType}} للإي {{type}} في الإمارات العربية المتحدة</p>
+                            <p>عقارات ل {{type}} في الإمارات العربية المتحدة. القوائم التي تم التحقق منها.</p>
                         </div>
                         <div ngClass="properties-filtr-values d-flex justify-content-spacebw">
                             <div ngClass="properties-filtr-values-left d-flex justify-content-spacebw">
                                 <div (click)="allSearch()" class="checkbox-design position-relative">
                                     <input type="checkbox" id="Furnished" name="property-types" value="Furnished">
-                                    <button class="checkbox-btn">All</button>
+                                    <button class="checkbox-btn">الجميع</button>
                                 </div>
                                 <div ngClass="block-wrapper">
                                     <mat-form-field appearance="fill" class="select-design">
-                                        <mat-label><img src="{{videotiour}}"> Video Tour</mat-label>
+                                        <mat-label><img src="{{videotiour}}">جولة بالفيديو</mat-label>
                                         <mat-select [disableOptionCentering]="true"
                                             (selectionChange)="videoSorting($event)">
-                                            <mat-option value="{{item.id}}" *ngFor="let item of videoTour">{{item.name}}
+                                            <mat-option value="{{item.id}}" *ngFor="let item of videoTour">
+                                                {{item.nameAr}}
                                             </mat-option>
                                         </mat-select>
                                     </mat-form-field>
@@ -42,11 +42,11 @@
                             <div ngClass="properties-filtr-values-right d-flex justify-content-spacebw">
                                 <div class="checkbox-design position-relative">
                                     <input type="checkbox" id="OV-Verified" name="property-types" value="OV-Verified">
-                                    <button class="checkbox-btn"><img src="{{ovverified}}"> OV-Verified</button>
+                                    <button class="checkbox-btn"><img src="{{ovverified}}">OV التحقق</button>
                                 </div>
                                 <div ngClass="block-wrapper">
                                     <mat-form-field appearance="fill" class="select-design">
-                                        <mat-label>Sort by</mat-label>
+                                        <mat-label>تصنيف حسب</mat-label>
                                         <mat-select [disableOptionCentering]="true"
                                             (selectionChange)="sortedBy($event)">
                                             <mat-option *ngFor="let SortBy of PropertySortBy" value="{{SortBy.id}}">
