@@ -468,94 +468,94 @@ export class PropertyTypesComponent implements OnInit {
         return;
       }
     }
-    let checkData: any = {};
-    checkData.CityId = this.formData.CityId;
-    checkData.DistrictId = this.formData.DistrictId;
-    checkData.PropertyTypeId = this.formData.PropertyTypeId;
-    checkData.PropertyLat = this.formData.PropertyLat;
-    checkData.PropertyLong = this.formData.PropertyLong;
-    checkData.Bedrooms = this.formData.Bedrooms;
-    checkData.Bathrooms = this.formData.Bathrooms;
-    checkData.PlotSize = this.propertyTypeForm.value.apartmentSize;
-    checkData.BuildupArea = this.propertyTypeForm.value.buildupArea;
-    this.showLoader = true;
-    this.service.ValuationDataIsExists(checkData).subscribe((result: any) => {
-      if (result.message == "Valauation data is not Exists") {
-        this.error = "Valauation data does not Exists";
-        this.showError = true;
-        this.showLoader = false;
-      } else {
-        this.showLoader = false;
-        this.formData.Bedrooms = this.bedrooms;
-        this.formData.Bathrooms = this.bathrooms;
-        this.formData.FurnishingType = this.furnishing;
-        this.formData.FittingType = this.fitting;
-        this.formDetailData.PlotNo = this.propertyTypeForm.value.apartmentNo;
-        if (this.propertyData.hasElevation) {
-          this.formDetailData.elevation = $(".elevation-input").val();
-        } else {
-          this.formDetailData.elevation = 0;
-        }
-        let tempData: any = "";
-        for (let i = 0; i < this.locatedNearData.length; i++) {
-          tempData.push({ "LocatedNearId": this.locatedNearData[i] });
-        }
-        this.formData.ValuationLocatedNears = tempData;
-        this.formData.ConstructionAge = this.propertyTypeForm.value.constructionAge;
-        this.formDetailData.PlotSize = this.propertyTypeForm.value.apartmentSize;
-        this.formDetailData.BuildupArea = 0;
+    // let checkData: any = {};
+    // checkData.CityId = this.formData.CityId;
+    // checkData.DistrictId = this.formData.DistrictId;
+    // checkData.PropertyTypeId = this.formData.PropertyTypeId;
+    // checkData.PropertyLat = this.formData.PropertyLat;
+    // checkData.PropertyLong = this.formData.PropertyLong;
+    // checkData.Bedrooms = this.formData.Bedrooms;
+    // checkData.Bathrooms = this.formData.Bathrooms;
+    // checkData.PlotSize = this.propertyTypeForm.value.apartmentSize;
+    // checkData.BuildupArea = this.propertyTypeForm.value.buildupArea;
+    // this.showLoader = true;
+    // this.service.ValuationDataIsExists(checkData).subscribe((result: any) => {
+    //   if (result.message == "Valauation data is not Exists") {
+    //     this.error = "Valauation data does not Exists";
+    //     this.showError = true;
+    //     this.showLoader = false;
+    //   } else {
+    //   }
+    // })
+    this.showLoader = false;
+    this.formData.Bedrooms = this.bedrooms;
+    this.formData.Bathrooms = this.bathrooms;
+    this.formData.FurnishingType = this.furnishing;
+    this.formData.FittingType = this.fitting;
+    this.formDetailData.PlotNo = this.propertyTypeForm.value.apartmentNo;
+    if (this.propertyData.hasElevation) {
+      this.formDetailData.elevation = $(".elevation-input").val();
+    } else {
+      this.formDetailData.elevation = 0;
+    }
+    let tempData: any = [];
+    for (let i = 0; i < this.locatedNearData.length; i++) {
+      tempData.push({ "LocatedNearId": this.locatedNearData[i] });
+    }
+    this.formData.ValuationLocatedNears = tempData;
+    this.formData.ConstructionAge = this.propertyTypeForm.value.constructionAge;
+    this.formDetailData.PlotSize = this.propertyTypeForm.value.apartmentSize;
+    this.formDetailData.BuildupArea = 0;
 
-        this.formData.PlotNo = this.propertyTypeForm.value.apartmentNo;
-        this.formData.PlotSize = this.propertyTypeForm.value.apartmentSize;
-        this.formData.BuildupArea = this.propertyTypeForm.value.buildupArea;
-        this.formData.Elevation = this.propertyTypeForm.value.elevation;
-        this.formData.NoOfRoads = this.roadCount;
-        this.formData.ValuationPropertyUnits = "";
-        if (this.formData.PropertyStatusId == 2) {
-          this.formData.Income = this.propertyTypeForm.value.income;
-          this.formData.Expense = this.propertyTypeForm.value.expense;
-        } else {
-          this.formData.Income = 0;
-          this.formData.Expense = 0;
-        }
-        if (this.propertyData.hasLastRenovatedDate) {
-          this.formData.LastRenovatedDate = this.propertyTypeForm.value.renovatedDate;
-          this.propertyStatus(0, "-");
-        }
-        if (this.propertyData.hasUnits) {
-          this.formData.Expense = this.propertyTypeForm.value.expense;
-          this.propertyStatus(0, "-");
-        }
-        let temp: any = [];
-        for (let i = 0; i < this.unitHMTL.length; i++) {
-          if (this.unitHMTL[i].show) {
-            temp.push({ PropertyUnitTypeId: $("#unit-wrapper-" + this.unitHMTL[i].id).find(".mat-select-min-line").text(), NumberOfUnit: $("#unit-wrapper-" + this.unitHMTL[i].id).find(".no-of-units").val(), Vacant: $("#unit-wrapper-" + this.unitHMTL[i].id).find(".vacant").val(), UnitSize: $("#unit-wrapper-" + this.unitHMTL[i].id).find(".size-sq-ft").val(), NumberOfBeds: $("#unit-wrapper-" + this.unitHMTL[i].id).find(".bedroom").val(), RentValue: $("#unit-wrapper-" + this.unitHMTL[i].id).find(".rent-value").val() });
-          }
-        }
-        let unitName: any = [];
-        let unitID: any = [];
-        for (let i = 0; i < this.propertyUnits.length; i++) {
-          unitName.push(this.propertyUnits[i].name);
-          unitID.push(this.propertyUnits[i].id);
-        }
-        for (let i = 0; i < temp.length; i++) {
-          temp[i].PropertyUnitTypeId = unitID[unitName.indexOf(temp[i].PropertyUnitTypeId)];
-        }
-        this.formDetailData.ValuationPropertyUnits = temp;
-        this.formData.ValuationPropertyUnits = temp;
-        temp = [];
-        for (let i = 0; i < this.featuresFormData.length; i++) {
-          temp.push({ PropertyFeatureId: this.featuresFormData[i] });
-        }
-        this.formDetailData.PropertyFeatures = this.featuresFormName;
-        this.formData.PropertyFeatures = temp;
-        localStorage.setItem('valuationDetailData', JSON.stringify(this.formDetailData));
-        localStorage.setItem('propertyTypeData', JSON.stringify(this.formData));
-        localStorage.setItem('valuationData', JSON.stringify(this.formData));
-        localStorage.removeItem("valuationFromFooter");
-        this.router.navigate(['/valuation/PropertyDocument']);
+    this.formData.PlotNo = this.propertyTypeForm.value.apartmentNo;
+    this.formData.PlotSize = this.propertyTypeForm.value.apartmentSize;
+    this.formData.BuildupArea = this.propertyTypeForm.value.buildupArea;
+    this.formData.Elevation = this.propertyTypeForm.value.elevation;
+    this.formData.NoOfRoads = this.roadCount;
+    this.formData.ValuationPropertyUnits = "";
+    if (this.formData.PropertyStatusId == 2) {
+      this.formData.Income = this.propertyTypeForm.value.income;
+      this.formData.Expense = this.propertyTypeForm.value.expense;
+    } else {
+      this.formData.Income = 0;
+      this.formData.Expense = 0;
+    }
+    if (this.propertyData.hasLastRenovatedDate) {
+      this.formData.LastRenovatedDate = this.propertyTypeForm.value.renovatedDate;
+      this.propertyStatus(0, "-");
+    }
+    if (this.propertyData.hasUnits) {
+      this.formData.Expense = this.propertyTypeForm.value.expense;
+      this.propertyStatus(0, "-");
+    }
+    let temp: any = [];
+    for (let i = 0; i < this.unitHMTL.length; i++) {
+      if (this.unitHMTL[i].show) {
+        temp.push({ PropertyUnitTypeId: $("#unit-wrapper-" + this.unitHMTL[i].id).find(".mat-select-min-line").text(), NumberOfUnit: $("#unit-wrapper-" + this.unitHMTL[i].id).find(".no-of-units").val(), Vacant: $("#unit-wrapper-" + this.unitHMTL[i].id).find(".vacant").val(), UnitSize: $("#unit-wrapper-" + this.unitHMTL[i].id).find(".size-sq-ft").val(), NumberOfBeds: $("#unit-wrapper-" + this.unitHMTL[i].id).find(".bedroom").val(), RentValue: $("#unit-wrapper-" + this.unitHMTL[i].id).find(".rent-value").val() });
       }
-    })
+    }
+    let unitName: any = [];
+    let unitID: any = [];
+    for (let i = 0; i < this.propertyUnits.length; i++) {
+      unitName.push(this.propertyUnits[i].name);
+      unitID.push(this.propertyUnits[i].id);
+    }
+    for (let i = 0; i < temp.length; i++) {
+      temp[i].PropertyUnitTypeId = unitID[unitName.indexOf(temp[i].PropertyUnitTypeId)];
+    }
+    this.formDetailData.ValuationPropertyUnits = temp;
+    this.formData.ValuationPropertyUnits = temp;
+    temp = [];
+    for (let i = 0; i < this.featuresFormData.length; i++) {
+      temp.push({ PropertyFeatureId: this.featuresFormData[i] });
+    }
+    this.formDetailData.PropertyFeatures = this.featuresFormName;
+    this.formData.PropertyFeatures = temp;
+    localStorage.setItem('valuationDetailData', JSON.stringify(this.formDetailData));
+    localStorage.setItem('propertyTypeData', JSON.stringify(this.formData));
+    localStorage.setItem('valuationData', JSON.stringify(this.formData));
+    localStorage.removeItem("valuationFromFooter");
+    this.router.navigate(['/valuation/PropertyDocument']);
   }
   validateInput(e: any) {
     if (e.key.charCodeAt(0) >= 48 && e.key.charCodeAt(0) <= 57 || e.key.charCodeAt(0) >= 65 && e.key.charCodeAt(0) <= 90 || e.key.charCodeAt(0) >= 97 && e.key.charCodeAt(0) <= 122) {

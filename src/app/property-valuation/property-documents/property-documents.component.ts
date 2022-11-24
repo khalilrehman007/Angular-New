@@ -446,7 +446,7 @@ export class PropertyDocumentsComponent implements OnInit {
       },
       dataType: "json",
       success: (res) => {
-        if (res.message == "valuation request completed successfully") {
+        if (res.message == "Valuation Request Submitted Successfully.") {
           this.valuationResponse = res.data;
           let tempUser:any = localStorage.getItem("user");
           let tempToken:any = localStorage.getItem("token");
@@ -456,6 +456,7 @@ export class PropertyDocumentsComponent implements OnInit {
           let temp:any = {};
           temp.reportNumberCode = this.valuationResponse.reportNumberCode;
           temp.emailAddress = this.valuationResponse.emailAddress;
+          console.log(this.valuationResponse);
           localStorage.setItem("valuationResponse", JSON.stringify(temp));
           this.showPayment = true;
           this.status3 = !this.status3;
@@ -465,6 +466,9 @@ export class PropertyDocumentsComponent implements OnInit {
           $(window).scrollTop(0);
         } else {
           console.log(res);
+          this.showLoader = false;
+          this.error = "Valuation Request not Submitted. Please Try Again";
+          this.showError = true;
         }
       },
       error: (err) => {
