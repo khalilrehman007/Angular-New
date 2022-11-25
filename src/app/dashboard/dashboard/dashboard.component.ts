@@ -1429,4 +1429,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       }
     })
   }
+  goToPayment() {
+    localStorage.setItem("comingFrom", "dashboard");
+    this.route.navigate(["/payment-packages"]);
+  }
 }

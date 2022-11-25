@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { AppService } from "../../service/app.service";
 import * as $ from 'jquery';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   templateUrl: './payment-packages.component.html',
   styleUrls: ['./payment-packages.component.scss']
 })
-export class PaymentPackagesComponent implements OnInit {
+export class PaymentPackagesComponent implements OnInit, AfterViewInit {
   rightarrow = '../../../assets/images/icons/right-arrow.svg'
   renttab = '../../../assets/images/icons/rent-tab.svg'
   selltab = '../../../assets/images/icons/sell-property-tab.svg'
@@ -47,7 +47,14 @@ export class PaymentPackagesComponent implements OnInit {
   }
 
   constructor(private service: AppService, private modalService: NgbModal, private router: Router) {
-    $(window).scrollTop(0);
+    if (localStorage.getItem("comingFrom") != "dashboard") {
+      $(window).scrollTop(0);
+    } else {
+      // let temp: any = $(".packagepoints-wrapper-2").offset()?.top;
+      // $('html, body').animate({
+      //   scrollTop: temp - 200
+      // });
+    }
     this.loadProfessionalTypes();
     this.loadPropertyListingTypes();
     this.professionalTypeTab = localStorage.getItem('user');
@@ -68,7 +75,18 @@ export class PaymentPackagesComponent implements OnInit {
 
 
   }
-  
+  ngAfterViewInit(): void {
+    if (localStorage.getItem("comingFrom") == "dashboard") {
+      localStorage.removeItem("comingFrom");
+      setTimeout(() => {
+        let temp: any = $(".packagepoints-wrapper-2").offset()?.top;
+        $('html, body').animate({
+          scrollTop: temp
+        });
+      },300);
+    }
+  }
+
   ngOnInit(): void {
     this.invokeStripe();
   }
@@ -86,7 +104,7 @@ export class PaymentPackagesComponent implements OnInit {
       name: 'Ovaluate',
       description: 'Fill Up Your Details',
       amount: amount * 100,
-      currency:"aed"
+      currency: "aed"
     });
   }
   invokeStripe() {
@@ -149,7 +167,7 @@ export class PaymentPackagesComponent implements OnInit {
       console.log(this.selectedPackageByPoints)
       localStorage.setItem("seletedPackage", JSON.stringify(this.selectedPackageByPoints));
       this.router.navigate(["/add-property/listingproperty"]);
-      
+
       // this.showLoader = true;
       // let temp: any = localStorage.getItem("user");
       // temp = JSON.parse(temp);
