@@ -401,11 +401,11 @@ export class PropertyDetailComponent implements OnInit,AfterViewInit {
         this.shareURL += this.propertyDetailData.id;
 
         //gallery images
-        for (let i = 0; i < this.propertyDetails.documents.length; i++) {
+        for (let i = 0; i < this.propertyDetails.propertyListing.documents.length; i++) {
           this.galleryImages.push({
-            small: this.baseUrl + this.propertyDetails.documents[0].fileUrl.replaceAll("\\", "/"),
-            medium: this.baseUrl + this.propertyDetails.documents[0].fileUrl.replaceAll("\\", "/"),
-            big: this.baseUrl + this.propertyDetails.documents[0].fileUrl.replaceAll("\\", "/")
+            small: this.baseUrl + this.propertyDetails.propertyListing.documents[i].fileUrl.replaceAll("\\", "/"),
+            medium: this.baseUrl + this.propertyDetails.propertyListing.documents[i].fileUrl.replaceAll("\\", "/"),
+            big: this.baseUrl + this.propertyDetails.propertyListing.documents[i].fileUrl.replaceAll("\\", "/")
           });
         }
 
