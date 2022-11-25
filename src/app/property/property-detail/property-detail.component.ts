@@ -182,6 +182,7 @@ export class PropertyDetailComponent implements OnInit,AfterViewInit {
   }
   chartLabel: any = []
   chartData: any = []
+  propertyDetails: any = [];
 
 
   public lineChartData: any = {
@@ -309,9 +310,10 @@ export class PropertyDetailComponent implements OnInit,AfterViewInit {
 
   documentCheck: any = true
   getloadDashboardData() {
-    return this.service.DisplayPropertyListing({ "PropertyListingId": this.propertyId, "LoginUserId": this.userId }).subscribe((e: any) => {
-      let temp: any = e;
-      console.log(temp.data);
+    return this.service.DisplayPropertyListing({ "PropertyListingId": this.propertyId, "LoginUserId": this.userId }).subscribe((result: any) => {
+      this.propertyDetails = result.data;
+      console.log(this.propertyDetails);
+      let temp: any = result;
       this.userData = temp.data.user;
       this.propertyLat = temp.data.propertyListing.propertyLat;
       this.propertyLng = temp.data.propertyListing.propertyLong;
@@ -399,11 +401,11 @@ export class PropertyDetailComponent implements OnInit,AfterViewInit {
         this.shareURL += this.propertyDetailData.id;
 
         //gallery images
-        for (let i = 0; i < this.propertyDetailData.documents.length; i++) {
+        for (let i = 0; i < this.propertyDetails.documents.length; i++) {
           this.galleryImages.push({
-            small: this.baseUrl + this.propertyDetailData.documents[i].fileUrl.replaceAll("\\", "/"),
-            medium: this.baseUrl + this.propertyDetailData.documents[i].fileUrl.replaceAll("\\", "/"),
-            big: this.baseUrl + this.propertyDetailData.documents[i].fileUrl.replaceAll("\\", "/")
+            small: this.baseUrl + this.propertyDetails.documents[0].fileUrl.replaceAll("\\", "/"),
+            medium: this.baseUrl + this.propertyDetails.documents[0].fileUrl.replaceAll("\\", "/"),
+            big: this.baseUrl + this.propertyDetails.documents[0].fileUrl.replaceAll("\\", "/")
           });
         }
 
@@ -429,7 +431,7 @@ export class PropertyDetailComponent implements OnInit,AfterViewInit {
           })
         }
 
-        this.propertyValidationData = e.data.propertyListing.propertyType;
+        this.propertyValidationData = result.data.propertyListing.propertyType;
         this.getPropertyInfo();
 
       } else {
