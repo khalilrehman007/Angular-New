@@ -371,17 +371,17 @@
             <owl-carousel-o [options]="SpSliderOptions" ngClass="slider-shadow">
                 <ng-container *ngFor="let slide of similarPropertyDetails">
                     <ng-template carouselSlide [id]="slide.id">
-                        <div ngClass="property-item position-relative">
-                            <div class="property-img-wrap">
+                        <div ngClass="property-item position-relative cursor-pointer">
+                            <div class="property-img-wrap" [routerLink]="['/detail']" [queryParams]="{id: slide.id}">
                                 <img [src]="slide.src" [alt]="slide.alt" [title]="slide.title">
                             </div>
-                            <div ngClass="brand-logo">
+                            <div ngClass="brand-logo" [routerLink]="['/detail']" [queryParams]="{id: slide.id}">
                                 <img src="{{slide.src}}" alt="">
                             </div>
                             <div class="pro_cntnt-main-wrap">
                             <div class="property-cntnt_wrap">
                                 <div class="property_heading d-flex justify-content-spacebw">
-                                    <h5 ngClass="property-name">{{ slide.buildingName }}</h5>
+                                    <h5 ngClass="property-name" [routerLink]="['/detail']" [queryParams]="{id: slide.id}">{{ slide.buildingName }}</h5>
                                     <div class="property_hdr-actions">
                                         <button
                                         [ngClass]="slide.favorite == true ? 'property-whistlist red-fill' : 'property-whistlist'"
@@ -410,7 +410,7 @@
                                     </div>
                                     </div>
                                 </div>
-                                <div ngClass="property-amenties-details">
+                                <div ngClass="property-amenties-details" [routerLink]="['/detail']" [queryParams]="{id: slide.id}">
                                     <span ngClass="bed">
                                         <svg width="18" height="13" viewBox="0 0 18 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M17.1 5.36714V2.78571C17.1 1.25357 15.885 0 14.4 0H10.8C10.107 0 9.477 0.278572 9 0.724286C8.523 0.278572 7.893 0 7.2 0H3.6C2.115 0 0.9 1.25357 0.9 2.78571V5.36714C0.351 5.87786 0 6.61143 0 7.42857V13H1.8V11.1429H16.2V13H18V7.42857C18 6.61143 17.649 5.87786 17.1 5.36714ZM10.8 1.85714H14.4C14.895 1.85714 15.3 2.275 15.3 2.78571V4.64286H9.9V2.78571C9.9 2.275 10.305 1.85714 10.8 1.85714ZM2.7 2.78571C2.7 2.275 3.105 1.85714 3.6 1.85714H7.2C7.695 1.85714 8.1 2.275 8.1 2.78571V4.64286H2.7V2.78571ZM1.8 9.28571V7.42857C1.8 6.91786 2.205 6.5 2.7 6.5H15.3C15.795 6.5 16.2 6.91786 16.2 7.42857V9.28571H1.8Z" fill="#242A2F"/>
@@ -436,19 +436,19 @@
                                     </span>
                                 </div>
                             </div>
-                            <div ngClass="property_location">
+                            <div ngClass="property_location" [routerLink]="['/detail']" [queryParams]="{id: slide.id}">
                                 <address>
                                     <svg _ngcontent-cbt-c257="" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width: 18px;height: 18px;"><path _ngcontent-cbt-c257="" d="M256 0c17.7 0 32 14.3 32 32V66.7C368.4 80.1 431.9 143.6 445.3 224H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H445.3C431.9 368.4 368.4 431.9 288 445.3V480c0 17.7-14.3 32-32 32s-32-14.3-32-32V445.3C143.6 431.9 80.1 368.4 66.7 288H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H66.7C80.1 143.6 143.6 80.1 224 66.7V32c0-17.7 14.3-32 32-32zM128 256c0 70.7 57.3 128 128 128s128-57.3 128-128s-57.3-128-128-128s-128 57.3-128 128zm128 80c-44.2 0-80-35.8-80-80s35.8-80 80-80s80 35.8 80 80s-35.8 80-80 80z" fill="#242A2F"></path></svg> 
                                     {{slide.propertyAddress}}
                                 </address>
                             </div>
-                            <div ngClass="property_footer-details d-flex justify-content-spacebw">
+                            <div ngClass="property_footer-details d-flex justify-content-spacebw" [routerLink]="['/detail']" [queryParams]="{id: slide.id}">
                                 <div ngClass="property_pricing">
                                     <span class="currency_type">{{slide.currency}}</span>
                                     <span class="price_value">{{ slide.price }}</span>
                                     <span *ngIf="slide.rentType != null" class="rent_type">{{slide.rentType}}</span>
                                 </div>
-                                <button class="property_det-btn" [routerLink]="['/detail']" [queryParams]="{id: slide.id}">Details 
+                                <button class="property_det-btn">Details 
                                     <svg width="6" height="13" viewBox="0 0 6 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <mask id="path-1-inside-1_8_5" fill="white">
                                         <path d="M5.83589 6.7132C5.83243 6.38469 5.76426 6.06009 5.63527 5.75794C5.50628 5.4558 5.319 5.18204 5.08415 4.95233L0.949139 0.917959C0.853835 0.824974 0.725495 0.773657 0.592355 0.775297C0.459214 0.776938 0.332178 0.8314 0.239193 0.926705C0.146208 1.02201 0.0948915 1.15035 0.0965317 1.28349C0.0981719 1.41663 0.152635 1.54367 0.247939 1.63665L4.38295 5.67102C4.66729 5.94879 4.82975 6.32806 4.83465 6.72553C4.83955 7.123 4.68648 7.50616 4.40906 7.79085L0.374696 11.9259C0.281711 12.0212 0.230394 12.1495 0.232034 12.2826C0.233675 12.4158 0.288138 12.5428 0.383442 12.6358C0.478746 12.7288 0.607086 12.7801 0.740226 12.7785C0.873367 12.7768 1.0004 12.7224 1.09339 12.6271L5.12775 8.49205C5.35688 8.25662 5.53736 7.97833 5.65886 7.6731C5.78037 7.36787 5.84053 7.04169 5.83589 6.7132V6.7132Z"/>
@@ -459,7 +459,7 @@
                                 </button>
                             </div>
                             </div>
-                            <button ngClass="tag_btn blue">PREMIUM</button>
+                            <button ngClass="tag_btn blue" [routerLink]="['/detail']" [queryParams]="{id: slide.id}">PREMIUM</button>
                         </div>
                     </ng-template>
                 </ng-container>
