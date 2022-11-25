@@ -17,6 +17,7 @@ import { OtpComponent } from './otp/otp.component';
 import { ThankYouComponent } from './thank-you/thank-you.component';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatIconModule,
     MatSelectModule,
     NgxIntlTelInputModule,
-    
+    NgbModule
   ]
 })
 export class SignupModule { }

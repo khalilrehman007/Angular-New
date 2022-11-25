@@ -10,6 +10,7 @@ import { SearchCountryField, CountryISO, PhoneNumberFormat } from 'ngx-intl-tel-
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import * as i5 from "ngx-bootstrap/dropdown";
 import { CookieService } from 'ngx-cookie-service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-signup',
@@ -44,7 +45,7 @@ export class SignupComponent implements OnInit, AfterViewInit {
   });
   @ViewChild('signupRef', { static: true }) signupElement!: ElementRef;
 
-  constructor(private service: AuthService, private route: Router, private notifyService: NotificationService, private _location: Location, private response: AppService, private cookie: CookieService) {
+  constructor(private service: AuthService, private route: Router, private notifyService: NotificationService, private _location: Location, private response: AppService, private cookie: CookieService,private modalService: NgbModal) {
     localStorage.clear();
     this.response.ProfessionalTypes().subscribe((result: any) => {
       this.signUpPropertytype = result.data;
@@ -225,4 +226,10 @@ export class SignupComponent implements OnInit, AfterViewInit {
   }
 
   //End Phone number List
+
+
+
+  openVerticallyCentered(content: any) {
+    this.modalService.open(content, { centered: true });
+  }
 }
