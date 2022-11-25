@@ -122,6 +122,7 @@ export class PaymentFormScreenComponent implements OnInit {
       console.log(this.cardForm.value.cardName);
       this.error = "Please Enter Card Holder Name";
       this.showError = true;
+      return;
     }
     this.showLoader = true;
     let temp: any = {};

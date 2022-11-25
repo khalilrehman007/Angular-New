@@ -219,7 +219,7 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
               size: this.data.BuildupArea
             })
           }
-          if (this.selectedPropertyType.hasMaintenanceCharges) {
+          if (this.selectedPropertyType.hasListingMaintenanceCharges) {
             this.SubmitForm.patchValue({
               maintenance: this.data.MaintenanceCharges
             })
@@ -478,6 +478,26 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
       })
     }
   }
+  validateMaintenanceInput(e: any) {
+    if (e.key.charCodeAt(0) >= 48 && e.key.charCodeAt(0) <= 57) {
+      setTimeout(() => {
+        this.getMaintenanceValue(e.key, true);
+      }, 100);
+    }
+  }
+  getMaintenanceValue(e: any, type: boolean) {
+    if (!type) {
+      let temp: any = this.SubmitForm.value.maintenance
+      this.SubmitForm.patchValue({
+        maintenance: temp.toString().slice(0, -1)
+      })
+    } else {
+      let temp: any = this.SubmitForm.value.maintenance
+      this.SubmitForm.patchValue({
+        maintenance: temp.toString() + e
+      })
+    }
+  }
   validateDescLength(e:any) {
     let temp:any = this.SubmitForm.value.propertyDescription?.length;
     if(temp <= 320) {
@@ -651,7 +671,7 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
     if (userData.professionalTypeId) {
       this.data.ProfessionalTypeId = userData.professionalTypeId;
     }
-    if (this.selectedPropertyType.hasMaintenanceCharges) {
+    if (this.selectedPropertyType.hasListingMaintenanceCharges) {
       this.data.MaintenanceCharges = this.SubmitForm.value.maintenance;
     }
     if (this.selectedPropertyType.hasListingPlotSize) {
@@ -677,11 +697,11 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
       for (let i = 0; i < this.petPolicyData.length; i++) {
         temp.push({ "PetPolicyId": this.petPolicyData[i] });
       }
-      this.data.PetPolicies = temp;
-      this.data.PropertyTitle = this.SubmitForm.value.propertyTitle;
-      this.data.PropertyDescription = this.SubmitForm.value.propertyDescription;
-      this.data.PropertyOffer = this.SubmitForm.value.propertyOffers;
     }
+    this.data.PetPolicies = temp;
+    this.data.PropertyTitle = this.SubmitForm.value.propertyTitle;
+    this.data.PropertyDescription = this.SubmitForm.value.propertyDescription;
+    this.data.PropertyOffer = this.SubmitForm.value.propertyOffers;
     temp = [];
     for (let i = 0; i < this.locatedNearData.length; i++) {
       temp.push({ "LocatedNearId": this.locatedNearData[i] });
