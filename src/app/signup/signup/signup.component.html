@@ -120,22 +120,5 @@
             </div>
         </form>
     </div>
-    <div ngClass="gallery-modal-design signup-thankyou">
-        <ng-template #content let-modal>
-            <button type="button" class="btn-close btn-thanku-div" aria-label="Close"
-                (click)="modal.dismiss('Cross click')"></button>
-            <div class="modal-body signup-thankyou-div">
-               <div class="signup-thanku-img">
-                <img src="/assets/images/Sign up-amico.svg">
-               </div>
-               <div class="signup-thanku-cntnt">
-                 <p>Thank you for signing up with Ovaluate. Start Exploring!</p>
-                 <a routerLink="">Explore Now</a>
-                </div>
-            </div>
-        </ng-template>
-    </div>
 </section>
 <app-erroralert [error]="error" (errorResponse)="errorResponse($event)" *ngIf="showError"></app-erroralert>
-
-<button class="demo-btn" (click)="openVerticallyCentered(content)">Demo Popup</button>
