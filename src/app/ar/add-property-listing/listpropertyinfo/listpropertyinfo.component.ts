@@ -3,7 +3,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from "../../../service/auth.service";
 import { Router } from "@angular/router";
 import { NotificationService } from "../../../service/notification.service";
+import { disableDebugTools } from "@angular/platform-browser";
 import { AppService } from 'src/app/service/app.service';
+import { F } from '@angular/cdk/keycodes';
 import { Select2 } from 'select2';
 @Component({
   selector: 'app-listpropertyinfo',
@@ -18,7 +20,7 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
     this.showError = false;
     this.animate();
   }
-  plus = '../../../../assets/images/plus.svg'
+  plus = '../../../../../assets/images/plus.svg'
   messageclass = ''
   message = ''
   Customerid: any;
@@ -36,10 +38,12 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
   occupancy: any;
   petPolicy: any;
   petPolicyData: any = [];
+  developerData: any = [];
   locatedNearData: any = [];
   rentTypes: any;
+  descLength:number = 320;
   room: any = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  featuresData: any;
+  featuresData: any = [];
   featuresFormData: any = [];
   minDate = new Date();
   propertyListingBuy: any;
@@ -62,57 +66,41 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
   securityCheck: boolean = false;
   transactionType: any = [];
   completionStatus: any = [];
+  developer: any = [];
   locatedNear: any = [];
   ownershipType: any = [{ id: 1, name: "Freehold" }, { id: 2, name: "Leasehold" }];
   currentField: any;
+  listingConditions:any = "";
   showLoader: boolean = false;
-  currency:any;
   SubmitForm = new FormGroup({
     PropertyAge: new FormControl("", [Validators.required]),
     BuildingName: new FormControl("", [Validators.required]),
-    UnitNo: new FormControl("", [Validators.required]),
-    TotalFloor: new FormControl("", [Validators.required]),
-    FloorNo: new FormControl("", [Validators.required]),
     propertyTitle: new FormControl("", [Validators.required]),
     carpetArea: new FormControl("", [Validators.required]),
     buildupArea: new FormControl("", [Validators.required]),
+    size: new FormControl("", [Validators.required]),
+    UnitNo: new FormControl("", [Validators.required]),
     price: new FormControl("", [Validators.required]),
-    AED: new FormControl("",),
+    maintenance: new FormControl("", [Validators.required]),
+    AED: new FormControl(""),
     brokerageAed: new FormControl("",),
-    availablefrom: new FormControl("", [Validators.required]),
-    handOverOn: new FormControl("", [Validators.required]),
-    noticePeriod: new FormControl("", [Validators.required]),
-    lockingPeriod: new FormControl("", [Validators.required]),
     propertyDescription: new FormControl("", [Validators.required]),
     propertyOffers: new FormControl(""),
   });
   get validate() {
     return this.SubmitForm.controls;
   }
-  disabled:any = [];
+  disabled: any = [];
   constructor(private api: AppService, private service: AuthService, private route: Router, private notifyService: NotificationService) {
-    this.currency = localStorage.getItem("currency");
     this.api.PropertyListingRentBuy({ "Lat": this.data.PropertyLat, "Long": this.data.PropertyLong }).subscribe((result: any) => {
       this.propertyListingBuy = result.data.propertyListingBuy;
       this.propertyListingRent = result.data.propertyListingRent;
-    })
-    this.api.FurnishingTypes().subscribe((result: any) => {
-      this.furnishingType = result.data;
     });
     this.api.FittingTypes().subscribe((result: any) => {
       this.fittingType = result.data;
     });
-    this.api.LoadTenantTypes().subscribe((result: any) => {
-      this.tenantType = result.data;
-    });
     this.api.LoadGenders().subscribe((result: any) => {
       this.genders = result.data;
-    });
-    this.api.LoadPropertyManages().subscribe((result: any) => {
-      this.propertyManages = result.data;
-    });
-    this.api.LoadPetPolicy().subscribe((result: any) => {
-      this.petPolicy = result.data;
     });
     this.api.LoadRentTypes().subscribe((result: any) => {
       this.rentTypes = result.data;
@@ -131,6 +119,20 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
     this.data.CarpetArea = 0;
     this.loadOldData();
   }
+  loadFurnishingType() {
+    this.api.FurnishingTypes().subscribe((result: any) => {
+      this.furnishingType = result.data;
+      if (this.data.PropertyTypeId != 29) {
+        let temp: any = [];
+        for (let i = 0; i < this.furnishingType.length; i++) {
+          if (this.furnishingType[i].name != "ShellAndCore") {
+            temp.push(this.furnishingType[i]);
+          }
+        }
+        this.furnishingType = temp;
+      }
+    })
+  }
   ngAfterViewInit(): void {
   }
   ngOnInit() {
@@ -142,11 +144,14 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
     if (localStorage.getItem("propertyData")) {
       let temp: any = localStorage.getItem("propertyData");
       this.data = JSON.parse(temp);
-
+      this.api.DeveloperbyCountry(this.data.CountryId).subscribe((result: any) => {
+        this.developer = result.data;
+      })
+      
       if (localStorage.getItem("listingData")) {
         temp = localStorage.getItem("listingData");
         this.data = JSON.parse(temp);
-
+        this.developerData = this.data.PropertyDeveloperId;
         this.listingTypeId = this.data.PropertyListingTypeId;
         if (this.listingTypeId == 2) {
           this.api.PropertyTransactionTypes().subscribe((result: any) => {
@@ -158,29 +163,16 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
         }
         this.clearData();
 
-        if (this.data.PetPolicies) {
-          for (let i = 0; i < this.data.PetPolicies.length; i++) {
-            this.petPolicyData.push(this.data.PetPolicies[i].PetPolicyId)
-          }
-        }
         if (this.data.PropertyListingLocatedNears) {
           for (let i = 0; i < this.data.PropertyListingLocatedNears.length; i++) {
             this.locatedNearData.push(this.data.PropertyListingLocatedNears[i].LocatedNearId)
           }
         }
-        this.api.PropertyFeatures(this.data.PropertyTypeId).subscribe((result: any) => {
-          this.featuresData = result.data;
-          this.showLoader = false;
-          let interval: any = setInterval(() => {
-            if (this.featuresData.length > 0) {
-              for (let i = 0; i < this.data.PropertyFeatures.length; i++) {
-                $(".features-item-" + this.data.PropertyFeatures[i].PropertyFeatureId).attr("selected", "selected");
-              }
-              $('.select2').select2({ placeholder: "Click here to add more" });
-              clearInterval(interval);
-            }
-          }, 100);
-        })
+        if (this.data.PropertyFeatures) {
+          for (let i = 0; i < this.data.PropertyFeatures.length; i++) {
+            this.featuresFormData.push(this.data.PropertyFeatures[i].PropertyFeatureId)
+          }
+        }
 
         this.showLoader = true;
         this.categoryID = this.data.PropertyCategoryId;
@@ -190,16 +182,23 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
           this.showLoader = false;
           this.selectedPropertyType = this.propertyType.filter((item: any) => item.id == this.data.PropertyTypeId)[0];
           this.propertyTypeCheck = true;
-          if (this.selectedPropertyType.hasTotalFloor) {
-            this.SubmitForm.patchValue({
-              TotalFloor: this.data.TotalFloor
-            })
-          }
-          if (this.selectedPropertyType.hasFloorNo) {
-            this.SubmitForm.patchValue({
-              FloorNo: this.data.FloorNo
-            })
-          }
+          this.api.PropertyFeatures(this.selectedPropertyType.id).subscribe((result: any) => {
+            this.featuresData = result.data;
+            this.showLoader = false;
+            let interval: any = setInterval(() => {
+              if (this.featuresData.length > 0) {
+                for (let i = 0; i < this.data.PropertyFeatures.length; i++) {
+                  $(".features-item-" + this.data.PropertyFeatures[i].PropertyFeatureId).attr("selected", "selected");
+                }
+                $('.select2').select2({ placeholder: "Click here to add more" });
+                clearInterval(interval);
+              }
+            }, 100);
+          });
+          this.SubmitForm.patchValue({
+            PropertyAge: this.data.PropertyAge,
+            BuildingName: this.data.BuildingName,
+          })
           if (this.selectedPropertyType.hasCarpetArea) {
             this.SubmitForm.patchValue({
               carpetArea: this.data.CarpetArea
@@ -210,6 +209,21 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
               buildupArea: this.data.BuildupArea
             })
           }
+          if (this.selectedPropertyType.hasListingUnitNumber) {
+            this.SubmitForm.patchValue({
+              UnitNo: this.data.UnitNumber
+            })
+          }
+          if (this.selectedPropertyType.hasListingPlotSize) {
+            this.SubmitForm.patchValue({
+              size: this.data.BuildupArea
+            })
+          }
+          if (this.selectedPropertyType.hasMaintenanceCharges) {
+            this.SubmitForm.patchValue({
+              maintenance: this.data.MaintenanceCharges
+            })
+          }
           if (this.data.SecurityDeposit == "true") {
             this.SubmitForm.patchValue({
               AED: this.data.SecurityDepositPrice
@@ -218,28 +232,6 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
           if (this.data.BrokerageCharge == "true") {
             this.SubmitForm.patchValue({
               brokerageAed: this.data.BrokerageChargePrice
-            })
-          }
-          if (this.data.AvailableDate) {
-            let temp: any = new Date(this.data.AvailableDate);
-            this.SubmitForm.patchValue({
-              availablefrom: temp
-            })
-          }
-          if (this.data.HandoverOn) {
-            let temp: any = new Date(this.data.HandoverOn);
-            this.SubmitForm.patchValue({
-              handOverOn: temp
-            })
-          }
-          if (this.data.NoticePeriod) {
-            this.SubmitForm.patchValue({
-              noticePeriod: this.data.NoticePeriod
-            })
-          }
-          if (this.data.LockingPeriod) {
-            this.SubmitForm.patchValue({
-              lockingPeriod: this.data.LockingPeriod
             })
           }
           if (this.data.PropertyTitle) {
@@ -257,17 +249,34 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
               propertyOffers: this.data.PropertyOffer
             })
           }
-          console.log(this.data)
           this.SubmitForm.patchValue({
-            PropertyAge: this.data.PropertyAge,
-            BuildingName: this.data.BuildingName,
-            price: this.data.PropertyPrice,
-            UnitNo: this.data.UnitNo,
+            price: this.data.PropertyPrice
           })
         });
       }
     } else {
       this.route.navigate(['/add-property/listingproperty'])
+    }
+  }
+  validateInput(e: any) {
+    // if (e.key.charCodeAt(0) >= 48 && e.key.charCodeAt(0) <= 57 || e.key.charCodeAt(0) >= 65 && e.key.charCodeAt(0) <= 90 || e.key.charCodeAt(0) >= 97 && e.key.charCodeAt(0) <= 122) {
+    if (e.key.charCodeAt(0) >= 48 && e.key.charCodeAt(0) <= 57 || e.key.charCodeAt(0) == 44 || e.key.charCodeAt(0) == 46) {
+      setTimeout(() => {
+        this.getInput(e.key, true);
+      }, 100);
+    }
+  }
+  getInput(e: any, type: boolean) {
+    if (!type) {
+      let temp: any = this.SubmitForm.value.UnitNo
+      this.SubmitForm.patchValue({
+        UnitNo: temp.toString().slice(0, -1)
+      })
+    } else {
+      let temp: any = this.SubmitForm.value.UnitNo
+      this.SubmitForm.patchValue({
+        UnitNo: temp.toString() + e
+      })
     }
   }
   validateLength(type: any) {
@@ -278,16 +287,13 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
           PropertyAge: temp.toString().slice(0, -1)
         })
       }
-    } else if (type == 2) {
-      let temp: any = this.SubmitForm.value.UnitNo;
-      if (temp.toString().length > 10) {
-        this.SubmitForm.patchValue({
-          UnitNo: temp.toString().slice(0, -1)
-        })
-      }
     }
   }
   onListTypeSelect(id: any) {
+    this.api.PropertyListingType(id).subscribe((result:any) => {
+      this.listingConditions = result.data;
+      console.log(this.listingConditions);
+    })
     this.listingTypeId = 0;
     setTimeout(() => {
       this.listingTypeId = id;
@@ -295,6 +301,8 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
     if (id == 2) {
       this.api.PropertyTransactionTypes().subscribe((result: any) => {
         this.transactionType = result.data;
+        let a = setInterval(() => {
+        }, 50);
       })
       this.api.LoadCompletionStatus().subscribe((result: any) => {
         this.completionStatus = result.data;
@@ -314,9 +322,6 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
       price: "",
       AED: "",
       brokerageAed: "",
-      availablefrom: "",
-      noticePeriod: "",
-      lockingPeriod: "",
       propertyDescription: "",
       propertyOffers: "",
     });
@@ -350,13 +355,18 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
   }
   getPropertyType(e: any) {
     this.selectedPropertyType = this.propertyType.filter((item: any) => item.id == e.value)[0];
+    console.log(this.selectedPropertyType);
     this.propertyTypeCheck = true;
     this.data.PropertyTypeId = e.value;
+    this.loadFurnishingType();
     this.api.PropertyFeatures(this.selectedPropertyType.id).subscribe((result: any) => {
       this.featuresData = result.data;
       let a = setInterval(() => {
         if (this.featuresData.length > 0) {
           $('.select2').select2();
+          $('.features-select').select2({
+            placeholder: "Select Features"
+          });
           clearInterval(a);
         }
       }, 50);
@@ -386,11 +396,11 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
   getParking(e: string) {
     this.data.Parkings = e;
   }
-  getPolicyOption(e:any) {
-    if(e == 0 && this.disabled.length == 0) {
+  getPolicyOption(e: any) {
+    if (e == 0 && this.disabled.length == 0) {
       this.petPolicyData = ["1"];
-      this.disabled = [1,2,3];
-    } else {
+      this.disabled = [1, 2, 3];
+    } else if (e == 0 && this.disabled.length > 0){
       this.disabled = [];
     }
   }
@@ -405,6 +415,9 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
   }
   getCompletionStatus(e: number) {
     this.data.PropertyCompletionStatusId = e;
+  }
+  getDeveloper(e: any) {
+    this.data.PropertyDeveloperId = e.value;
   }
   getLocatedNear(e: any) {
     this.locatedNearData = e.value;
@@ -425,227 +438,209 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
       this.featuresFormData = this.featuresFormData.filter((e: any) => e != id)
     }
   }
-  checkLength(type: number) {
-    if (type == 1) {
-      let temp: any = this.SubmitForm.value.TotalFloor;
-      if (temp > 200) {
-        this.error = "الحد الأقصى لعدد الطوابق المسموح بها هو 200";
-        this.showError = true;
-        this.SubmitForm.patchValue({
-          TotalFloor: "200"
-        })
-      }
-    } else if (type == 2) {
-      let temp: any = this.SubmitForm.value.FloorNo;
-      let total: any = this.SubmitForm.value.TotalFloor;
-      if (temp > total) {
-        this.error = "لا يمكن أن يكون رقم الطابق أكبر من إجمالي عدد الطوابق";
-        this.showError = true;
-        this.SubmitForm.patchValue({
-          FloorNo: this.SubmitForm.value.TotalFloor
-        })
-      }
+  validateAgeInput(e: any) {
+    if (e.key.charCodeAt(0) >= 48 && e.key.charCodeAt(0) <= 57) {
+      setTimeout(() => {
+        this.getValue(e.key, true);
+      }, 100);
+    }
+  }
+  getValue(e: any, type: boolean) {
+    if (!type) {
+      let temp: any = this.SubmitForm.value.PropertyAge
+      this.SubmitForm.patchValue({
+        PropertyAge: temp.toString().slice(0, -1)
+      })
+    } else {
+      let temp: any = this.SubmitForm.value.PropertyAge
+      this.SubmitForm.patchValue({
+        PropertyAge: temp.toString() + e
+      })
+    }
+  }
+  validatePriceInput(e: any) {
+    if (e.key.charCodeAt(0) >= 48 && e.key.charCodeAt(0) <= 57) {
+      setTimeout(() => {
+        this.getPriceValue(e.key, true);
+      }, 100);
+    }
+  }
+  getPriceValue(e: any, type: boolean) {
+    if (!type) {
+      let temp: any = this.SubmitForm.value.price
+      this.SubmitForm.patchValue({
+        price: temp.toString().slice(0, -1)
+      })
+    } else {
+      let temp: any = this.SubmitForm.value.price
+      this.SubmitForm.patchValue({
+        price: temp.toString() + e
+      })
+    }
+  }
+  validateDescLength(e:any) {
+    let temp:any = this.SubmitForm.value.propertyDescription?.length;
+    if(temp <= 320) {
+      this.descLength = 320 - temp;
+      console.log(this.SubmitForm.value.propertyDescription?.length);
+    } else {
+      this.SubmitForm.patchValue({
+        propertyDescription: this.SubmitForm.value.propertyDescription?.toString().slice(0, 320)
+      })
     }
   }
   onSubmit() {
-    if(this.selectedPropertyType.hasPropertyFeature && $(".features-select")) {
+    if ($(".features-select").length > 0 && this.selectedPropertyType.hasPropertyFeature && this.featuresData.length > 0 ) {
       this.featuresFormData = $(".features-select").val();
-    } else {
-      this.featuresFormData = [];
     }
     if (this.listingTypeId == 0) {
       this.currentField = "listing-type-input";
-      this.error = "حدد نوع القائمة";
+      this.error = "Select Listing Type";
       this.showError = true;
       return;
     } else if (this.categoryID == 0) {
       this.currentField = "category-input";
-      this.error = "اختر الفئة";
+      this.error = "Select Category ID";
       this.showError = true;
       return;
     } else if (!this.data.PropertyTypeId) {
       this.currentField = "type-input";
-      this.error = "حدد نوع الخاصية";
+      this.error = "Select Property Type";
       this.showError = true;
       return;
-    } else if (this.SubmitForm.value.PropertyAge == "") {
+    } else if (this.listingConditions.hasPropertyAge && this.SubmitForm.value.PropertyAge == "") {
       this.currentField = "property-age-input";
-      this.error = "أدخل عمر العقار";
+      this.error = "Enter Property Age";
       this.showError = true;
       return;
-    } else if (this.SubmitForm.value.BuildingName == "") {
+    } else if (this.selectedPropertyType.hasListingBuilding && this.SubmitForm.value.BuildingName == "") {
       this.currentField = "building-name-input";
-      this.error = "أدخل اسم المبنى";
+      this.error = "Enter Building Name";
       this.showError = true;
       return;
-    } else if (this.SubmitForm.value.UnitNo == "") {
+    } else if (this.selectedPropertyType.hasListingUnitNumber && this.SubmitForm.value.UnitNo == "") {
       this.currentField = "unit-no-input";
-      this.error = "أدخل رقم الوحدة";
+      this.error = "Enter Unit No";
       this.showError = true;
       return;
-    } else if (this.SubmitForm.value.TotalFloor == "" && this.selectedPropertyType.hasTotalFloor) {
-      this.currentField = "total-floors-input";
-      this.error = "أدخل إجمالي عدد الطوابق";
-      this.showError = true;
-      return;
-    } else if (this.SubmitForm.value.FloorNo == "" && this.selectedPropertyType.hasFloorNo) {
-      this.currentField = "floor-no-input";
-      this.error = "أدخل عدد الطوابق";
-      this.showError = true;
-      return;
-    } else if (this.selectedPropertyType.hasBed && !this.data.BedRooms) {
+    } else if (this.selectedPropertyType.hasListingBed && !this.data.BedRooms) {
       this.currentField = "bedroom-input";
-      this.error = "حدد غرف النوم";
+      this.error = "Select Bedrooms";
       this.showError = true;
       return;
-    } else if (this.selectedPropertyType.hasBath && !this.data.BathRooms) {
+    } else if (this.selectedPropertyType.hasListingBath && !this.data.BathRooms) {
       this.currentField = "bathroom-input";
-      this.error = "اختر الحمامات";
+      this.error = "Select BathRooms";
       this.showError = true;
       return;
-    } else if (this.selectedPropertyType.hasFurnishing && !this.data.FurnishingType) {
+    } else if (this.selectedPropertyType.hasListingFurnishing && !this.data.FurnishingType) {
       this.currentField = "furnishing-input";
-      this.error = "حدد نوع الأثاث";
+      this.error = "Select Furnishing Type";
       this.showError = true;
       return;
-    } else if (this.selectedPropertyType.hasFitting && !this.data.FittingType) {
+    } else if (this.selectedPropertyType.hasListingFitting && !this.data.FittingType) {
       this.currentField = "fitting-input";
-      this.error = "حدد نوع المناسب";
+      this.error = "Select Fitting Type";
       this.showError = true;
       return;
-    } else if (this.selectedPropertyType.hasCarpetArea && this.SubmitForm.value.carpetArea == "") {
+    } else if (this.selectedPropertyType.hasListingCarpetArea && this.SubmitForm.value.carpetArea == "") {
       this.currentField = "carpet-input";
-      this.error = "أدخل منطقة السجاد";
+      this.error = "Enter Carpet Area";
       this.showError = true;
       return;
-    } else if (this.selectedPropertyType.hasBuildUpArea && this.SubmitForm.value.buildupArea == "") {
+    } else if (this.selectedPropertyType.hasListingBuildUpArea && this.SubmitForm.value.buildupArea == "") {
       this.currentField = "buildup-input";
-      this.error = "أدخل منطقة البناء";
+      this.error = "Enter BuildUp Area";
       this.showError = true;
       return;
-    } else if (!this.data.TenantTypeId && this.listingTypeId == 1) {
-      this.currentField = "tenant-input";
-      this.error = "حدد نوع المستأجر";
+    } else if (this.selectedPropertyType.hasListingPlotSize && this.SubmitForm.value.size == "") {
+      this.currentField = "size-input";
+      this.error = "Enter Size";
       this.showError = true;
       return;
-    } else if (!this.data.Gender && this.listingTypeId == 1 && this.data.TenantTypeId == 2) {
-      this.currentField = "gender-input";
-      this.error = "حدد نوع الجنس";
-      this.showError = true;
-      return;
-    } else if (!this.data.PropertyManageId && this.listingTypeId == 1) {
-      this.currentField = "property-manage-input";
-      this.error = "حدد مدير الممتلكات";
-      this.showError = true;
-      return;
-    } else if (this.listingTypeId == 1 && !this.data.OccupancyStatusId) {
+    } else if (this.listingConditions.hasOccupancyStatus && !this.data.OccupancyStatusId) {
       this.currentField = "occupanycy-input";
-      this.error = "حدد حالة الإشغال";
+      this.error = "Select Occupancy Status";
       this.showError = true;
       return;
-    } else if (this.categoryID == 1 && !this.data.Balcony) {
+    } else if (this.selectedPropertyType.hasListingBalocny && !this.data.Balcony) {
       this.currentField = "balcony-input";
-      this.error = "حدد الشرفة";
+      this.error = "Select Balcony";
       this.showError = true;
       return;
-    } else if (this.categoryID == 1 && !this.data.Parkings) {
+    } else if (this.selectedPropertyType.hasListingParking && !this.data.Parkings) {
       this.currentField = "parking-input";
-      this.error = "حدد وقوف السيارات";
+      this.error = "Select Parking";
       this.showError = true;
       return;
-    } else if (this.listingTypeId == 2 && !this.data.PropertyTransactionTypeId) {
+    } else if (this.listingConditions.hasTransactionType && !this.data.PropertyTransactionTypeId) {
       this.currentField = "transaction-type-input";
-      this.error = "حدد نوع المعاملة";
+      this.error = "Select Transaction Type";
       this.showError = true;
       return;
-    } else if (this.listingTypeId == 2 && !this.data.PropertyCompletionStatusId) {
+    } else if (this.listingConditions.hasCompletionStatus && !this.data.PropertyCompletionStatusId) {
       this.currentField = "completion-status-input";
-      this.error = "حدد حالة الإكمال";
-      this.showError = true;
-      return;
-    } else if (this.listingTypeId == 1 && this.petPolicyData.length == 0) {
-      this.currentField = "pet-policy-input";
-      this.error = "حدد نهج الحيوانات الأليفة";
-      this.showError = true;
-      return;
-    } else if (this.listingTypeId == 2 && $("#sell-residential-datepicker").val() == "") {
-      this.currentField = "handover-on-input";
-      this.error = "أدخل تاريخ التسليم";
-      this.showError = true;
-      return;
-    } else if (this.listingTypeId == 2 && this.categoryID == 2 && !this.data.ownershipType) {
-      this.currentField = "ownership-input";
-      this.error = "حدد نوع الملكية";
+      this.error = "Select Completetion Status";
       this.showError = true;
       return;
     } else if (this.SubmitForm.value.price == "") {
       this.currentField = "price-input";
-      this.error = "أدخل السعر";
+      this.error = "Enter Price";
       this.showError = true;
       return;
-    } else if (this.listingTypeId == 1 && !this.data.RentTypeId) {
+    } else if (this.selectedPropertyType.hasListingMaintenanceCharges && this.SubmitForm.value.maintenance == "") {
+      this.currentField = "maintenance-input";
+      this.error = "Enter Maintenance Price";
+      this.showError = true;
+      return;
+    } else if (this.listingConditions.hasRentType && !this.data.RentTypeId) {
       this.currentField = "rent-type-input";
-      this.error = "حدد نوع الإيجار";
+      this.error = "Select Rent Type";
       this.showError = true;
       return;
-    } else if (this.listingTypeId == 1 && !this.data.SecurityDeposit) {
+    } else if (this.listingConditions.hasSecurityDeposit && !this.data.SecurityDeposit) {
       this.currentField = "security-deposit-input";
-      this.error = "حدد إيداع الضمان";
+      this.error = "Select Security Deposit";
       this.showError = true;
       return;
     } else if (this.data.SecurityDeposit == "true" && this.SubmitForm.value.AED == "") {
       this.currentField = "security-price-input";
-      this.error = "أدخل سعر إيداع الضمان";
+      this.error = "Enter Security Deposit Price";
       this.showError = true;
       return;
-    } else if (this.listingTypeId == 1 && !this.data.BrokerageCharge) {
+    } else if (this.listingConditions.hasBrokerageCharge && !this.data.BrokerageCharge) {
       this.currentField = "brokage-type-input";
-      this.error = "حدد نوع الوساطة";
+      this.error = "Select Brokerage Type";
       this.showError = true;
       return;
     } else if (this.data.BrokerageCharge == "true" && this.SubmitForm.value.brokerageAed == "") {
       this.currentField = "brokage-price-input";
-      this.error = "أدخل سعر الوساطة";
-      this.showError = true;
-      return;
-    } else if (this.listingTypeId == 1 && this.SubmitForm.value.availablefrom == "") {
-      this.currentField = "available-input";
-      this.error = "أدخل التاريخ المتاح";
-      this.showError = true;
-      return;
-    } else if (this.listingTypeId == 1 && this.SubmitForm.value.noticePeriod == "") {
-      this.currentField = "notice-input";
-      this.error = "أدخل أيام الإخطار";
-      this.showError = true;
-      return;
-    } else if (this.listingTypeId == 1 && this.SubmitForm.value.lockingPeriod == "") {
-      this.currentField = "locking-input";
-      this.error = "أدخل أيام القفل";
+      this.error = "Enter Brokerage Price";
       this.showError = true;
       return;
     } else if (this.locatedNearData.length == 0) {
       this.currentField = "located-near-input";
-      this.error = "حدد بالقرب من الموقع";
+      this.error = "Select Near Location";
       this.showError = true;
       return;
-    } else if (this.listingTypeId == 1 && this.SubmitForm.value.propertyTitle == "") {
+    } else if (this.SubmitForm.value.propertyTitle == "") {
       this.currentField = "title-input";
-      this.error = "أدخل عنوان الخاصية";
+      this.error = "Enter Property Title";
       this.showError = true;
       return;
-    } else if (this.listingTypeId == 1 && this.SubmitForm.value.propertyDescription == "") {
-      this.error = "أدخل وصف الخاصية";
+    } else if (this.SubmitForm.value.propertyDescription == "") {
+      this.currentField = "desc-input";
+      this.error = "Enter Property Description";
       this.showError = true;
       return;
     } else if (this.selectedPropertyType.hasPropertyFeature && this.featuresFormData.length == 0) {
       this.currentField = "features-select-wrapper";
-      this.error = "حدد ميزات الخاصية";
+      this.error = "Select Property Features";
       this.showError = true;
       return;
     }
     this.data.PropertyAge = this.SubmitForm.value.PropertyAge;
     this.data.BuildingName = this.SubmitForm.value.BuildingName;
-    this.data.UnitNo = this.SubmitForm.value.UnitNo;
     let userData: any = localStorage.getItem("user");
     userData = JSON.parse(userData);
     if (this.data.RentTypeId == 1) {
@@ -656,11 +651,14 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
     if (userData.professionalTypeId) {
       this.data.ProfessionalTypeId = userData.professionalTypeId;
     }
-    if (this.selectedPropertyType.hasTotalFloor) {
-      this.data.TotalFloor = this.SubmitForm.value.TotalFloor;
+    if (this.selectedPropertyType.hasMaintenanceCharges) {
+      this.data.MaintenanceCharges = this.SubmitForm.value.maintenance;
     }
-    if (this.selectedPropertyType.hasFloorNo) {
-      this.data.FloorNo = this.SubmitForm.value.FloorNo;
+    if (this.selectedPropertyType.hasListingPlotSize) {
+      this.data.PlotSize = this.SubmitForm.value.size;
+    }
+    if (this.selectedPropertyType.hasListingBuilding) {
+      this.data.UnitNumber = this.SubmitForm.value.UnitNo;
     }
     this.data.PropertyListingTypeId = this.listingTypeId;
     this.data.PropertyCategoryId = this.categoryID;
@@ -680,9 +678,6 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
         temp.push({ "PetPolicyId": this.petPolicyData[i] });
       }
       this.data.PetPolicies = temp;
-      this.data.AvailableDate = $("#formDate").val();
-      this.data.NoticePeriod = this.SubmitForm.value.noticePeriod;
-      this.data.LockingPeriod = this.SubmitForm.value.lockingPeriod;
       this.data.PropertyTitle = this.SubmitForm.value.propertyTitle;
       this.data.PropertyDescription = this.SubmitForm.value.propertyDescription;
       this.data.PropertyOffer = this.SubmitForm.value.propertyOffers;
@@ -711,9 +706,8 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
       temp.push({ PropertyFeatureId: this.featuresFormData[i] });
     }
     this.data.PropertyFeatures = temp;
-    // console.log(this.data);
     localStorage.setItem('propertyData', JSON.stringify(this.data));
     localStorage.setItem('listingData', JSON.stringify(this.data));
-    this.route.navigate(['/ar/add-property/listpropertymedia'])
+    this.route.navigate(['/add-property/listpropertymedia'])
   }
 }

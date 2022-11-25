@@ -28,7 +28,7 @@ export class EditComponent implements OnInit {
   searchLocaation: any;
   @ViewChild('searchLocation') searchElement: any;
 
-  Locate = '../../../../assets/images/icons/locate.svg'
+  Locate = '../../../../../assets/images/icons/locate.svg'
 
   country: any = [];
   city: any = [];
@@ -283,22 +283,22 @@ export class EditComponent implements OnInit {
   onSubmit() {
     if ($(".country-select").val() == 0) {
       this.currentField = "country-select + .select2";
-      this.error = "حدد الدولة";
+      this.error = "Select Country";
       this.showError = true;
       return;
     } else if ($(".city-select").val() == 0) {
       this.currentField = "city-select + .select2";
-      this.error = "اختر مدينة";
+      this.error = "Select City";
       this.showError = true;
       return;
     } else if ($(".district-select").val() == 0) {
       this.currentField = "district-select + .select2";
-      this.error = "حدد المنطقة";
+      this.error = "Select District";
       this.showError = true;
       return;
     } else if (this.SubmitForm.value.address == "") {
       this.currentField = "add-adrees-sec";
-      this.error = "اختر العنوان";
+      this.error = "Select Address";
       this.showError = true;
       return;
     }

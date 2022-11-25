@@ -22,9 +22,9 @@ export class ListpropertymediaComponent implements OnInit {
     this.showError = false;
     this.animate();
   }
-  uploadimg = '../../../../assets/images/icons/upload-icon.svg'
-  geolocation = '../../../../assets/images/icons/geo-location.svg'
-  awayproperty = '../../../../assets/images/icons/away-property.svg'
+  uploadimg = '../../../../../assets/images/icons/upload-icon.svg'
+  geolocation = '../../../../../assets/images/icons/geo-location.svg'
+  awayproperty = '../../../../../assets/images/icons/away-property.svg'
   selectedFiles: any;
   selectedVideo: any;
   selectedDoc?: FileList;
@@ -44,20 +44,26 @@ export class ListpropertymediaComponent implements OnInit {
   responsedata: any;
   oldData: any;
   priviousFormCheck: any;
-  documentBase: any = [];
   data: any = {};
   images: any = [];
   imageData: any = [];
   videoData: any = [];
   documentData = new FormData();
-  btnText: string = "نشر";
+  btnText: string = "Publish";
   propertyListingBuy: any;
   propertyListingRent: any;
   titledeedUploaded: boolean = false;
   showLoader: boolean = false;
   currentField: any;
+  packageData: any;
+  success: any = "";
+  mainImage:any = 0;
+  showSuccess: boolean = false;
 
   constructor(private api: AppService, private uploadService: FileUploadService, private route: Router) {
+    this.packageData = localStorage.getItem('seletedPackage');
+    this.packageData = JSON.parse(this.packageData);
+    console.log(this.packageData)
     this.priviousFormCheck = localStorage.getItem('propertyData');
     if (this.priviousFormCheck == '' || this.priviousFormCheck == null) {
       this.priviousFormCheck = JSON.parse(this.priviousFormCheck);
@@ -93,11 +99,6 @@ export class ListpropertymediaComponent implements OnInit {
     })
     $(window).scrollTop(temp - 100);
   }
-  deleteImage() {
-    this.titledeedUploaded = false;
-    this.file = "";
-    this.documentBase = {};
-  }
   upload(idx: number, file: File): void {
     this.progressInfos[idx] = { value: 0, fileName: file.name };
 
@@ -123,45 +124,54 @@ export class ListpropertymediaComponent implements OnInit {
     }
   }
   selectFiles(event: any): void {
-    if (event.target.files.length > 5) {
-      alert("يمكنك اختيار 5 ملفات بحد أقصى");
+    let check = true;
+    if (event.target.files.length + this.imageData.length > this.packageData.numberOfPhoto) {
+      this.error = "You can choose maximun " + this.packageData.numberOfPhoto + " files";
+      this.showError = true;
       return;
     }
     let temp: number = 0;
     for (let i = 0; i < event.target.files.length; i++) {
-      temp += event.target.files[i].size
-    }
-    temp = temp / 1048576
-    if (temp > 10) {
-      alert("الحجم الأقصى المسموح به هو 10 ميغا بايت");
-      return;
-    }
-    this.imageData = [];
-    this.message = [];
-    this.progressInfos = [];
-    this.selectedFiles = event.target.files;
-    for (let i = 0; i < this.selectedFiles.length; i++) {
-      let extension: any = this.selectedFiles[i].name.split(".");
-      extension = extension[extension.length - 1];
-      this.imageData.push({ "FileName": this.selectedFiles[i].name, "Extension": extension, file: this.selectedFiles[i] });
-    }
-
-    this.previews = [];
-    if (this.selectedFiles && this.selectedFiles[0]) {
-      const numberOfFiles = this.selectedFiles.length;
-      for (let i = 0; i < numberOfFiles; i++) {
-        const reader = new FileReader();
-        reader.onload = (e: any) => {
-          this.previews.push(e.target.result);
-        };
-
-        reader.readAsDataURL(this.selectedFiles[i]);
+      if (event.target.files[i].size / 1048576 > 2) {
+        this.error = "Maximun size allowed is 2MB per Image";
+        this.showError = true;
+        check = false;
+        return;
       }
+      // temp += event.target.files[i].size
+    }
+    if (check) {
+      temp = temp / 1048576
+      if (temp > 10) {
+        alert("Maximun size allowed is 10MB");
+        return;
+      }
+      this.message = [];
+      this.progressInfos = [];
+      this.selectedFiles = event.target.files;
+      for (let i = 0; i < this.selectedFiles.length; i++) {
+        let extension: any = this.selectedFiles[i].name.split(".");
+        extension = extension[extension.length - 1];
+        this.imageData.push({ "FileName": this.selectedFiles[i].name, "Extension": extension, file: this.selectedFiles[i] });
+      }
+      console.log(this.imageData);
+      if (this.selectedFiles && this.selectedFiles[0]) {
+        const numberOfFiles = this.selectedFiles.length;
+        for (let i = 0; i < numberOfFiles; i++) {
+          const reader = new FileReader();
+          reader.onload = (e: any) => {
+            this.previews.push(e.target.result);
+          };
+
+          reader.readAsDataURL(this.selectedFiles[i]);
+        }
+      }
+      $(".image-input").val("");
     }
   }
   onSelectFile(event: any) {
     if (event.target.files[0].size / 1048576 > 30) {
-      alert("الحجم الأقصى المسموح به هو 30 ميغا بايت");
+      alert("Maximun size allowed is 30MB");
       return;
     }
     this.videoData = [];
@@ -209,15 +219,6 @@ export class ListpropertymediaComponent implements OnInit {
       }
     }
   }
-  handleChange(files: any) {
-    this.titledeedUploaded = true;
-    this.file = files[0].name;
-    if (files && files.length) {
-      let extension: any = files[0].name.split(".");
-      extension = extension[extension.length - 1];
-      this.documentBase = { "FileName": files[0].name, "Extension": extension, file: files };
-    }
-  }
   SubmitForm = new FormGroup({
     videoLink: new FormControl(""),
   });
@@ -229,19 +230,24 @@ export class ListpropertymediaComponent implements OnInit {
   imgCheck: boolean = false;
   videoCheck: boolean = false;
   onSubmit() {
-    if (!this.titledeedUploaded) {
+    // if (this.imageData.length < this.packageData.numberOfPhoto) {
+    if (this.imageData.length < 1) {
       this.currentField = "title-deed-image-input";
-      this.error = "يرجى تحميل صورة سند الملكية";
+      this.error = "Plese Upload " + this.packageData.numberOfPhoto + " Photos";
       this.showError = true;
       return;
     }
     this.showLoader = true;
-    this.btnText = "أرجو الإنتظار...";
+    this.btnText = "Please Wait...";
     this.data.VideoLink = this.SubmitForm.value.videoLink;
     let temp: any = [];
     let tempDoc: any = [];
     for (let i = 0; i < this.imageData.length; i++) {
-      temp.push({ "FileId": i + 1, "ListingDocumentTypeId": "1", "FileName": this.imageData[i].FileName, "Extension": this.imageData[i].Extension });
+      if(this.mainImage == i) {
+        temp.push({ "FileId": i + 1, "ListingDocumentTypeId": "2", "FileName": this.imageData[i].FileName, "Extension": this.imageData[i].Extension, "isscreenshot":"true" });
+      } else {
+        temp.push({ "FileId": i + 1, "ListingDocumentTypeId": "2", "FileName": this.imageData[i].FileName, "Extension": this.imageData[i].Extension, "isscreenshot":"false" });
+      }
       tempDoc.push(this.imageData[i].file);
     }
     let start: number = temp.length;
@@ -250,8 +256,6 @@ export class ListpropertymediaComponent implements OnInit {
       tempDoc.push(this.videoData[i].file);
     }
     start = temp.length;
-    temp.push({ "FileId": start + 1, "ListingDocumentTypeId": "2", "FileName": this.documentBase.FileName, "Extension": this.documentBase.Extension });
-    tempDoc.push(this.documentBase.file[0]);
     let userData: any = localStorage.getItem("user");
     this.data.ProfessionalTypeId = JSON.parse(userData).professionalTypeId;
     this.data.Documents = temp;
@@ -261,6 +265,7 @@ export class ListpropertymediaComponent implements OnInit {
     }
     let token: any = localStorage.getItem("token");
     token = JSON.parse(token);
+    console.log(this.data);
     $.ajax({
       url: "https://beta.ovaluate.com/api/AddPropertyListing",
       method: "post",
@@ -274,12 +279,31 @@ export class ListpropertymediaComponent implements OnInit {
       success: (res) => {
         if (res.message == "Property Listing request completed successfully") {
           localStorage.removeItem("propertyData");
-          this.route.navigate(['/ar/add-property/listpropertypublish'])
+          this.showLoader = true;
+          let temp: any = localStorage.getItem("user");
+          temp = JSON.parse(temp);
+          this.api.PurchasePackage({ "UserId": temp.id, "PackageId": this.packageData.id }).subscribe((result: any) => {
+            if (result.message == "Package has been purchased") {
+              this.showLoader = false;
+              this.success = "Your package has been purchsed successfully";
+              this.showSuccess = true;
+            } else {
+              this.error = "Something went wrong please try again";
+              this.showError = true;
+            }
+          })
+          this.route.navigate(['/add-property/listpropertypublish'])
         }
       },
       error: (err) => {
-        console.log(err);
       }
     });
+  }
+  removeImage(index: any) {
+    this.mainImage = 0;
+    this.previews.splice(index, 1);
+  }
+  changeMainImg(index:any) {
+    this.mainImage = index;
   }
 }

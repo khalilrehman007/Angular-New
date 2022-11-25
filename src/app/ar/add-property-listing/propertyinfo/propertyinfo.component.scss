@@ -5,6 +5,7 @@ span {
   .property-details__map {
     width:100%;
     height:225px;
+    border-radius: 12px;
   }
   .searchLocation {
     top: 12px !important;
@@ -19,4 +20,166 @@ span {
   .locate-me-sec {
     top: 30px;
   }
-  
+  .packages-modal-design {
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 30px;
+    width: 100%;
+    max-width: fit-content;
+    margin: 0 auto;
+}
+.packages-list-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+.want-to-upgrade {
+  background-color: #0ea60e;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  padding: 10px 15px;
+  border-radius: 7px;
+  margin-right: 10px;
+}
+.want-to-upgrade:hover {
+  background-color: #4A565F;
+}
+.continue-with-this {
+  background-color: #4A565F;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  padding: 10px 15px;
+  border-radius: 7px;
+}
+.packages-list-modal-inner {
+  display: flex;
+  flex-direction: row;
+}
+.packages-list-modal-inner.column-1>.packages-list-modal-list {
+  width: 100%;
+}
+.packages-list-modal-list {
+  width: 100%;
+  border: 1px solid #e3e6e7;
+  border-radius: 10px;
+  padding: 20px;
+  height: 100%;
+}
+.packages-list-modal-list .package-tag h4 {
+  font-size: 14px;
+  margin-bottom: 0px;
+  color: #fff;
+}
+.packages-list-modal-list .package-tag {
+  position: absolute;
+  top: -10px;
+  right: 10px;
+  padding: 3px 15px;
+  border-radius: 5px;
+}
+.packages-list-modal-list.Free .package-tag {
+background-color: #4A565F;
+}
+.packages-list-modal-list.Standard .package-tag {
+  background-color: #4A565F;
+  }
+.packages-list-modal-list.Premium .package-tag {
+    background-color: #51b67e;
+}
+.packages-list-modal-list.Platinum .package-tag {
+  background-color: #812b80;
+}
+.cstm-radio_btn {
+  width: 12px;
+  height: 12px;
+  border: none;
+  border-radius: 50%;
+  background-color: transparent;
+  outline: 1px solid #D3D5DA;
+  outline-offset: 4px;
+}
+.packages-list-modal-radio {
+  position: relative;
+  padding-bottom: 15px;
+}
+.packages-list-modal-radio input {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  left: -4px;
+  z-index: 9;
+  cursor: pointer;
+  opacity: 0;
+}
+.packages-list-modal-content li {
+  font-size: 14px;
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 10px;
+}
+.packages-list-modal-content li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 5px;
+  width: 10px;
+  height: 6px;
+  border-top: 2px solid #9a9c9d;
+  border-right: 2px solid #9a9c9d;
+  transform: rotate(132deg);
+}
+.packages-list-modal-hdr h2 {
+  font-size: 22px;
+}
+.nopackages-modal-design{
+  width: 100%;
+  border: 1px solid #e3e6e7;
+  border-radius: 10px;
+  padding: 20px;
+}
+.nopackages-modal-design {
+  background-color: #fff;
+  border: none;
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+}
+.nopackages-modal-design img {
+  width: 100%;
+  max-width: 300px;
+  margin-bottom: 30px;
+}
+.nopackages-modal-design {
+  text-align: center;
+}
+.nopackages-modal-design .packages-list-modal-cntnt p {
+  font-size: 18px;
+  margin-bottom: 20px;
+  padding: 0px 60px;
+}
+.packages-list-modal-radio>input:checked+.cstm-radio_btn{
+  background: #0f2ead;
+}
+.packages-list-modal-list.disabled {
+  filter: grayscale(1);
+  opacity: 0.6;
+  pointer-events: none;
+}
+.packages-list-modal-content .view-more-btn {
+  background-color: transparent;
+  border: none;
+  font-size: 14px;
+  color: #0B26AD;
+  padding-left: 21px;
+}
+.nopackages-modal-design {
+  padding: 40px !important;
+}
+
+
+@media (min-width: 1200px){
+  .packages-modal-design {
+    min-width: 500px;
+}
+}
