@@ -311,7 +311,7 @@ export class PropertyDetailComponent implements OnInit,AfterViewInit {
   documentCheck: any = true
   getloadDashboardData() {
     return this.service.DisplayPropertyListing({ "PropertyListingId": this.propertyId, "LoginUserId": this.userId }).subscribe((result: any) => {
-      this.propertyDetails = result.data;
+      this.propertyDetails = result.data.propertyListing;
       console.log(this.propertyDetails);
       let temp: any = result;
       this.userData = temp.data.user;
@@ -401,11 +401,11 @@ export class PropertyDetailComponent implements OnInit,AfterViewInit {
         this.shareURL += this.propertyDetailData.id;
 
         //gallery images
-        for (let i = 0; i < this.propertyDetails.propertyListing.documents.length; i++) {
+        for (let i = 0; i < this.propertyDetails.documents.length; i++) {
           this.galleryImages.push({
-            small: this.baseUrl + this.propertyDetails.propertyListing.documents[i].fileUrl.replaceAll("\\", "/"),
-            medium: this.baseUrl + this.propertyDetails.propertyListing.documents[i].fileUrl.replaceAll("\\", "/"),
-            big: this.baseUrl + this.propertyDetails.propertyListing.documents[i].fileUrl.replaceAll("\\", "/")
+            small: this.baseUrl + this.propertyDetails.documents[i].fileUrl.replaceAll("\\", "/"),
+            medium: this.baseUrl + this.propertyDetails.documents[i].fileUrl.replaceAll("\\", "/"),
+            big: this.baseUrl + this.propertyDetails.documents[i].fileUrl.replaceAll("\\", "/")
           });
         }
 
