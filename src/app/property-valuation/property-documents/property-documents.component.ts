@@ -446,7 +446,7 @@ export class PropertyDocumentsComponent implements OnInit {
       },
       dataType: "json",
       success: (res) => {
-        if (res.message == "Valuation Request Submitted Successfully.") {
+        if (res.message == "Valuation Request Submitted Successfully.Data Found For Valuation") {
           this.valuationResponse = res.data;
           let tempUser:any = localStorage.getItem("user");
           let tempToken:any = localStorage.getItem("token");
@@ -638,7 +638,9 @@ export class PropertyDocumentsComponent implements OnInit {
         localStorage.removeItem("valuationData");
         localStorage.removeItem("mapImg");
         this.showLoader = false;
-        this.router.navigate(['//valuation/PropertyDownloadReport']);
+        localStorage.setItem("navigateTo", "valuation/PropertyDownloadReport");
+        this.router.navigate(["/thanku"]);
+        // this.router.navigate(['/valuation/PropertyDownloadReport']);
       } else {
         this.showLoader = false;
         this.error = result.error;

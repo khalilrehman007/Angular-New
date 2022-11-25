@@ -28,10 +28,6 @@ export class PaymentFormScreenComponent implements OnInit {
   myBalance: any = 0;
   showSuccess: boolean = false;
   success: any = "";
-  successResponse(data: any) {
-    this.router.navigate(["/payment-packages"]);
-    this.showSuccess = false;
-  }
   errorResponse(data: any) {
     this.showError = false;
   }
@@ -144,8 +140,8 @@ export class PaymentFormScreenComponent implements OnInit {
     this.service.PointPayment(temp).subscribe((result:any) => {
       if(result.message == "Purchasing Point is completed successfully") {
         this.showLoader = false;
-        this.success = "Payment Successful"
-        this.showSuccess = true;
+        localStorage.setItem("navigateTo", "profile/wallet");
+        this.router.navigate(["/thanku"]);
       } else {
         this.error = result.message;
         this.showError = true;
