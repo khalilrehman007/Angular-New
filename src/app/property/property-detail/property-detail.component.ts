@@ -312,7 +312,7 @@ export class PropertyDetailComponent implements OnInit,AfterViewInit {
   getloadDashboardData() {
     return this.service.DisplayPropertyListing({ "PropertyListingId": this.propertyId, "LoginUserId": this.userId }).subscribe((result: any) => {
       this.propertyDetails = result.data.propertyListing;
-      console.log(this.propertyDetails);
+      // console.log(this.propertyDetails);
       let temp: any = result;
       this.userData = temp.data.user;
       this.propertyLat = temp.data.propertyListing.propertyLat;
