@@ -16,7 +16,7 @@
                 <div ngClass="row align-items-center">
                     <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                         <div ngClass="property-name_detals">
-                            <h4>{{propertyDetailData.buildingName}}</h4>
+                            <h4>{{propertyDetails.buildingName}}</h4>
                             <div class="d-flex align-items-center property_details-new-header">
                             <div ngClass="property-price_detals">
                             <h4>{{propertyDetailData.propertyPrice}}
@@ -162,12 +162,12 @@
                                 <div ngClass="amenties_info-row">
                                     <div ngClass="row">
                                         <div ngClass="col-xl-3 col-lg-3 col-md-12 col-sm-12"
-                                            *ngFor="let amenities of propertyDetailData.propertyFeatures">
+                                            *ngFor="let data of propertyDetailData">
                                             <div ngClass="amenties_info-text">
                                                 <img height="40px" width="40px"
-                                                    src="{{baseUrl+amenities.propertyFeature.documents.fileUrl}}">
-                                                <p>{{amenities.propertyFeature.featureName}}</p>
-                                                <button ngClass="see-more-amenties">{{amenities.btnvalue}}</button>
+                                                    src="https://beta.ovaluate.com/{{data.propertyFeature.documents.fileUrl}}">
+                                                <p>{{data.propertyFeature.featureName}}</p>
+                                                <button ngClass="see-more-amenties">{{data.btnvalue}}</button>
                                             </div>
                                         </div>
                                     </div>
@@ -336,7 +336,7 @@
         <div [ngClass]="'container_1280px'">
             <div ngClass="section-custom-title-left">
                 <h4>Similar properties in the same area</h4>
-                <p *ngIf="similarPropertyDetails.length < 1">No similar properties....</p>
+                <p *ngIf="similarPropertyDetails.length < 1"></p>
             </div>
             <div ngClass="similer-properties-slider properties-slider">
                 <owl-carousel-o [options]="SpSliderOptions" ngClass="slider-shadow">

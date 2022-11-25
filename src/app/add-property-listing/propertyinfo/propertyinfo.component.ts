@@ -381,7 +381,12 @@ export class PropertyinfoComponent implements OnInit {
       url: "https://maps.googleapis.com/maps/api/geocode/json?address=" + e + "&key=AIzaSyBPSEz52-AfPEVbmV_3yuGUGol_KiLb3GU",
       method: "get",
       success: (res) => {
-        let temp = res.results[0].geometry.bounds;
+        let temp:any = "";
+        if(res.results[0].geometry.bounds) {
+          temp = res.results[0].geometry.bounds;
+        } else {
+          temp = res.results[0].geometry.viewport;
+        }
         this.bounds = { east: temp.northeast.lng, west: temp.southwest.lng, north: temp.northeast.lat, south: temp.southwest.lat };
         localStorage.setItem("bounds", JSON.stringify(this.bounds));
         let northEast = new google.maps.LatLng(temp.northeast.lat, temp.northeast.lng);

@@ -272,6 +272,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             $(".dashboard-tabs .wallet-btn").click();
           } else if (this.url[2] == "my-listing") {
             $(".dashboard-tabs .my-listing-btn").click();
+          } else if (this.url[2] == "my-valuation") {
+            $(".dashboard-tabs .my-valuation-btn").click();
           }
         }, 500);
         this.showLoader = false;

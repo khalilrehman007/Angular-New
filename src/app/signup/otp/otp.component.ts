@@ -1,16 +1,18 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { data } from 'jquery';
 import { AppService } from 'src/app/service/app.service';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/service/auth.service';
 import { NotificationService } from 'src/app/service/notification.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-otp',
   templateUrl: './otp.component.html',
   styleUrls: ['./otp.component.scss']
 })
 export class OtpComponent implements OnInit, AfterViewInit {
+  @ViewChild('content') content: any;
   error: any = ""
   showError: boolean = false;
   errorResponse(data: any) {
@@ -64,7 +66,7 @@ export class OtpComponent implements OnInit, AfterViewInit {
             localStorage.setItem('token', JSON.stringify(responsedata.data.refreshToken))
             localStorage.setItem('user', JSON.stringify(responsedata.data))
             this.notifyService.showSuccess(responsedata.message, "");
-            this.router.navigate(['/signup/thank-you']);
+            $(".success-popup-btn").click();
           } else {
             this.notifyService.showError(responsedata.error.value, "");
           }
@@ -78,7 +80,7 @@ export class OtpComponent implements OnInit, AfterViewInit {
       return;
     }
   }
-  constructor(private service: AppService, private router: Router, private auth: AuthService, private notifyService: NotificationService) {
+  constructor(private service: AppService, private router: Router, private auth: AuthService, private notifyService: NotificationService, private modalService: NgbModal) {
     if (localStorage.getItem("signupData")) {
       this.verificationData = localStorage.getItem("signupData");
       this.verificationData = JSON.parse(this.verificationData);
@@ -119,5 +121,9 @@ export class OtpComponent implements OnInit, AfterViewInit {
   }
   ngOnInit(): void {
     this.startInternal();
+  }
+
+  openVerticallyCentered(content: any) {
+    this.modalService.open(content, { centered: true });
   }
 }

@@ -365,6 +365,7 @@ export class CompareListingSelectionComponent implements OnInit {
   loadListingProperty(data: any) {
     let tempData: Array<Object> = []
     this.service.LoadSearchListing(data).subscribe((response: any) => {
+      console.log(response)
       this.totalRecord = response.data.totalRecord;
       setTimeout(() => {
         // localStorage.setItem('propertyListingTotalRecord', this.totalRecord);
@@ -399,17 +400,17 @@ export class CompareListingSelectionComponent implements OnInit {
             id: element.id, favorite: element.favorite, userImage: userImage, fullName: fullName, userId: userId,
             StartRentPrice: element.startRentPrice, EndRentPrice: element.endRentPrice, AvgRentPrice: element.avgRentPrice, RecentRentTxns: element.recentRentTxns,
             documents: documents, propertyFeatures: element.propertyFeatures, propertyType: element.propertyType,
-            propertyTitle: element.propertyTitle, propertyAddress: element.propertyAddress, documentsCheck: documentsCheck,
+            propertyTitle: element.propertyTitle, propertyAddress: element.propertyAddressArabic, documentsCheck: documentsCheck,
             buildingName: element.buildingName, bedrooms: element.bedrooms, bathrooms: element.bathrooms, carpetArea: element.carpetArea,
             unitNo: element.unitNo, totalFloorgit: element.totalFloor, floorNo: element.floorNo, propertyDescription: element.propertyDescription,
-            requestedDate: element.requestedDate, furnishingType: element.furnishingType, propertyPrice: element.propertyPrice,
+            requestedDate: element.requestedDate, furnishingType: element.furnishingTypeAr, propertyPrice: element.propertyPrice,
             requestedDateFormat: element.requestedDateFormat, brokerageChargePrice: element.brokerageChargePrice, securityDepositPrice: element.securityDepositPrice,
-            expiredDateFormat: element.expiredDateFormat, rentType: rentTypeName, currency: element.country.currency, propertyCode: element.propertyCode
+            expiredDateFormat: element.expiredDateFormat, rentType: rentTypeName, currency: element.country.currencyAr, propertyCode: element.propertyCode
           }
         );
       })
       this.searchListing = tempData;
-      this.currency = response.data.propertyListings[0].country.currency;
+      this.currency = response.data.propertyListings[0].country.currencyAr;
       this.halfList = Math.floor(this.searchListing.length / 2);
     });
 

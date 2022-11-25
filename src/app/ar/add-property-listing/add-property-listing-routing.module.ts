@@ -6,7 +6,7 @@ import { ListpropertyinfoComponent } from './listpropertyinfo/listpropertyinfo.c
 import { ListpropertymediaComponent } from './listpropertymedia/listpropertymedia.component';
 import { ListpropertypublishComponent } from './listpropertypublish/listpropertypublish.component';
 import { PropertyinfoComponent } from './propertyinfo/propertyinfo.component';
-import { AuthGuard } from '../../shared/auth.guard';
+import { AuthGuard } from '../shared/auth.guard';
 
 const routes: Routes = [
   {path: "", redirectTo: "/add-property/listingproperty", pathMatch: "full"},

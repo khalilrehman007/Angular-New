@@ -4,18 +4,19 @@
 <section ngClass="list-properties-sec">
     <div ngClass="listing-container">
         <div ngClass="heading-title-sec text-center">
-            <h2>أعلن عن عقار جديد</h2>
-            <p>تأكد من ملء جميع الحقول اللازمة وتحميل جميع الملفات المطلوبة.</p>
+            <h2>List New Property</h2>
+            <p>Make sure you filled in all the necessary fields and have uploaded all the required files.</p>
         </div>
         <div ngClass="listing-property-form-sec pusblished-sec">
             <div ngClass="listing-property-ul">
                 <mat-list>
-                    <mat-list-item ngClass="active"> <a routerLink="/ar/listingproperty"><span ngClass="">1</span>معلومات العقار</a> </mat-list-item>
-                    <mat-list-item ngClass="active"><a routerLink=""><span ngClass="">2</span>معلومات الإدراج</a>
+                    <mat-list-item ngClass="active"> <a routerLink="/listingproperty"><span ngClass="">1</span> Property
+                            Info</a> </mat-list-item>
+                    <mat-list-item ngClass="active"><a routerLink=""><span ngClass="">2</span> Listing Info</a>
                     </mat-list-item>
-                    <mat-list-item ngClass="active"> <a routerLink=""><span ngClass="">3</span>وسائل الإعلام</a>
+                    <mat-list-item ngClass="active"> <a routerLink=""><span ngClass="">3</span> Media</a>
                     </mat-list-item>
-                    <mat-list-item ngClass="active"> <a routerLink=""><span ngClass="">4</span>نشر</a>
+                    <mat-list-item ngClass="active"> <a routerLink=""><span ngClass="">4</span> Publish</a>
                     </mat-list-item>
                 </mat-list>
             </div>
@@ -24,23 +25,23 @@
                     <form action="">
                         <div ngClass="form-border-wrapper">
                             <div ngClass="list-property-header">
-                                <h5 ngClass="h5-heading">نشرت</h5>
-                                <p>يرجى تأكيد بعض الحقائق عن العقار</p>
+                                <h5 ngClass="h5-heading">Published</h5>
+                                <p>Kindly confirm some facts about the property</p>
                             </div>
                             <div ngClass="succesfully-addd-property">
                                 <div ngClass="checkmark_icon">
                                     <img src="{{checkmark}}">
                                 </div>
-                                <h2>تمت إضافة عقارك بنجاح</h2>
-                                <p>لقد تلقينا تفاصيل عقارك وسيتم عرضه بعد إجراء فحوصات الجودة في غضون 48 ساعة القادمة.
-سيصلك إشعار بذلك عن طريق البريد الإلكتروني أو الرسائل القصيرة</p>
+                                <h2>Successfully Added Your Property</h2>
+                                <p>We have received your property details. It will go live after performing quality checks within the next 48 hours. quality checks
+                                    within next 48 hours. You will be notified by email or SMS.</p>
                             </div>
                             <div ngClass="list-new-proerty-cntnt">
                                 <div ngClass="publishing-pictures-sec">
                                     <div ngClass="new_listing-btn">
-                                        <button routerLink="/ar/profile/my-listing" ngClass="blue-listing-btn mb-3">عرض القوائم الخاصة بك</button>
-                                        <button routerLink="/ar/add-property/listingproperty" ngClass="blue-listing-btn"><span
-                                                ngClass="plus_icon-div">+</span>إدراج المزيد من العقارات</button>
+                                        <button routerLink="/profile/my-listing" ngClass="blue-listing-btn mb-3">View Your Listings</button>
+                                        <button routerLink="/add-property/listingproperty" ngClass="blue-listing-btn"><span
+                                                ngClass="plus_icon-div">+</span> Add More Listing</button>
                                     </div>
                                 </div>
                             </div>
