@@ -1433,4 +1433,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     localStorage.setItem("comingFrom", "dashboard");
     this.route.navigate(["/payment-packages"]);
   }
+  openVerticallyCentered(sharecontent: any) {
+    this.modalService.open(sharecontent, { centered: true });
+  }
 }

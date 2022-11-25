@@ -11,9 +11,8 @@ import { HeavyVehiclesComponent } from './motors/heavy-vehicles/heavy-vehicles.c
 import { BoatsComponent } from './motors/boats/boats.component';
 import { NumberPlatesComponent } from './motors/number-plates/number-plates.component';
 import { JobHiringComponent } from './jobs/job-hiring/job-hiring.component';
-import { JobHiringPersonalComponent } from './jobs/job-hiring-personal/job-hiring-personal.component';
-import { JobHiringCompanyComponent } from './jobs/job-hiring-company/job-hiring-company.component';
-import { JobRequirementComponent } from './jobs/job-requirement/job-requirement.component';
+import { JobsHiringFormComponent } from './jobs/jobs-hiring-form/jobs-hiring-form.component';
+import { JobsWantedFormComponent } from './jobs/jobs-wanted-form/jobs-wanted-form.component';
 
 const routes: Routes = [
   { path: "", component: ClassifiedHomeComponent },
@@ -27,9 +26,8 @@ const routes: Routes = [
   { path: "boats-ad-details", component: BoatsComponent },
   { path: "number-plates-ad-details", component: NumberPlatesComponent },
   { path: "job-type-selection", component: JobHiringComponent },
-  { path: "job-hire-personal", component: JobHiringPersonalComponent },
-  { path: "job-hire-company", component: JobHiringCompanyComponent },
-  { path: "job-requirement", component: JobRequirementComponent }
+   { path: "job-hiring", component: JobsHiringFormComponent },
+  { path: "job-requirement", component: JobsWantedFormComponent }
 ];
 
 @NgModule({

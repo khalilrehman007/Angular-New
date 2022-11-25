@@ -32,9 +32,8 @@ import { HeavyVehiclesComponent } from './motors/heavy-vehicles/heavy-vehicles.c
 import { BoatsComponent } from './motors/boats/boats.component';
 import { NumberPlatesComponent } from './motors/number-plates/number-plates.component';
 import { JobHiringComponent } from './jobs/job-hiring/job-hiring.component';
-import { JobHiringPersonalComponent } from './jobs/job-hiring-personal/job-hiring-personal.component';
-import { JobHiringCompanyComponent } from './jobs/job-hiring-company/job-hiring-company.component';
-import { JobRequirementComponent } from './jobs/job-requirement/job-requirement.component';
+import { JobsHiringFormComponent } from './jobs/jobs-hiring-form/jobs-hiring-form.component';
+import { JobsWantedFormComponent } from './jobs/jobs-wanted-form/jobs-wanted-form.component';
 
 
 @NgModule({
@@ -52,9 +51,8 @@ import { JobRequirementComponent } from './jobs/job-requirement/job-requirement.
     BoatsComponent,
     NumberPlatesComponent,
     JobHiringComponent,
-    JobHiringPersonalComponent,
-    JobHiringCompanyComponent,
-    JobRequirementComponent,
+    JobsHiringFormComponent,
+    JobsWantedFormComponent
   ],
   imports: [
     CommonModule,
