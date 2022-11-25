@@ -4,8 +4,8 @@ import { CommonModule } from '@angular/common';
 import { AddPropertyListingRoutingModule } from './add-property-listing-routing.module';
 import { PropertyinfoComponent } from './propertyinfo/propertyinfo.component';
 import { Header2Module } from '../header2/header2.module';
-import { AlertsModule } from '../../alerts/alerts.module';
-import { LoaderModule } from '../../loader/loader.module';
+import { AlertsModule } from '../alerts/alerts.module';
+import { LoaderModule } from 'src/app/loader/loader.module';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatListModule } from '@angular/material/list';
@@ -20,6 +20,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { ListpropertypublishComponent } from './listpropertypublish/listpropertypublish.component';
 import { EditComponent } from './edit/edit.component';
 import { EditListInfoComponent } from './edit-list-info/edit-list-info.component';
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { EditListInfoComponent } from './edit-list-info/edit-list-info.component
     MatCardModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    CarouselModule
   ]
 })
 export class AddPropertyListingModule { }
