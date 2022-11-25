@@ -162,8 +162,13 @@ export class PropertyTypesComponent implements OnInit {
         elevation: this.formData.Elevation,
         apartmentSize: this.formData.PlotSize,
         buildupArea: this.formData.BuildupArea,
-        renovatedDate: this.formData.renovatedDate
       })
+      this.service.LocatedNear().subscribe((result: any) => {
+        this.locatedNear = result.data;
+      })
+      for (let i = 0; i < this.formData.ValuationLocatedNears.length; i++) {
+        this.locatedNearData.push(this.formData.ValuationLocatedNears[i].LocatedNearId)
+      }
       this.service.LoadTypebyLatLng({ id: this.formData.PropertyCategoryId, lat: parseFloat(this.formData.PropertyLat), lng: parseFloat(this.formData.PropertyLong) }).subscribe((result: any) => {
         this.propertyType = result.data;
         this.showLoader = false;
@@ -174,6 +179,7 @@ export class PropertyTypesComponent implements OnInit {
         });
         this.loadFurnishingType();
         this.service.PropertyFeatures(this.propertyData.id).subscribe((result: any) => {
+          $("#formDate").val(this.formData.LastRenovatedDate);
           this.featuresData = result.data;
           this.showLoader = false;
           let interval: any = setInterval(() => {
@@ -421,7 +427,7 @@ export class PropertyTypesComponent implements OnInit {
       this.error = "Please Enter Buildup Area";
       this.showError = true;
       return;
-    } else if (this.propertyData.hasLastRenovatedDate && this.propertyTypeForm.value.renovatedDate == "") {
+    } else if (this.propertyData.hasLastRenovatedDate && $("#formDate").val() == "") {
       this.currentField = "renovated-input";
       this.error = "Please Enter Last Renovated Date";
       this.showError = true;
@@ -521,8 +527,7 @@ export class PropertyTypesComponent implements OnInit {
       this.formData.Expense = 0;
     }
     if (this.propertyData.hasLastRenovatedDate) {
-      this.formData.LastRenovatedDate = this.propertyTypeForm.value.renovatedDate;
-      this.propertyStatus(0, "-");
+      this.formData.LastRenovatedDate = $("#formDate").val();
     }
     if (this.propertyData.hasUnits) {
       this.formData.Expense = this.propertyTypeForm.value.expense;
