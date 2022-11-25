@@ -640,7 +640,6 @@ export class PropertyDocumentsComponent implements OnInit {
         this.showLoader = false;
         localStorage.setItem("navigateTo", "valuation/PropertyDownloadReport");
         this.router.navigate(["/thanku"]);
-        // this.router.navigate(['/valuation/PropertyDownloadReport']);
       } else {
         this.showLoader = false;
         this.error = result.error;
