@@ -420,6 +420,9 @@ export class AppService {
   AddUpdateCompany(data: any) {
     return this.http.post(this.apiurl + 'AddUpdateCompany', data);
   }
+  GetAgentProfile(id: any) {
+    return this.http.get(this.apiurl + 'UserAgentProfile/' + id);
+  }
   UserAgentProfile(id: any) {
     return this.http.get(this.apiurl + 'AddUpdateCompany/' + id);
   }

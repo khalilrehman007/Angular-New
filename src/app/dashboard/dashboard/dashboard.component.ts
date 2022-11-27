@@ -81,6 +81,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   plus = '../../../../assets/images/plus.svg';
   showSuccess: boolean = false;
   success: any = "";
+  agentDetails:any = "";
+  agentLanguages:any = [];
+  agentAreas:any = [];
   successResponse(data: any) {
     this.showSuccess = false;
   }
@@ -232,6 +235,23 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.getCountData('');
     this.getWishlisting();
     let temp: any = localStorage.getItem("user");
+    this.service.GetAgentProfile(JSON.parse(temp).id).subscribe((result:any) => {
+      this.agentDetails = result.data;
+      this.agentBroker.patchValue({
+        agentAboutMe: this.agentDetails.agentDetails.aboutMe,
+        BRNNo: this.agentDetails.agentDetails.brnNo
+      })
+      if(this.agentDetails.agentDetails.agentLanguages.length > 0) {
+        for(let item of this.agentDetails.agentDetails.agentLanguages) {
+          this.agentLanguages.push(item.spokenLanguageId);
+        }
+      }
+      if(this.agentDetails.agentDetails.agentAreas.length > 0) {
+        for(let item of this.agentDetails.agentDetails.agentAreas) {
+          this.agentAreas.push(item.districtId);
+        }
+      }
+    })
     this.service.UserProfile(JSON.parse(temp).id).subscribe((result: any) => {
       this.userData = result.data;
       this.professionalType = result.data.professionalTypeId;

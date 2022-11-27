@@ -2361,7 +2361,13 @@
                                                                                     <input type="radio"
                                                                                         id="{{list.name}}"
                                                                                         name="expert-in"
-                                                                                        value="{{list.id}}">
+                                                                                        value="{{list.id}}"
+                                                                                        *ngIf="list.name == agentDetails.agentDetails.expertIn" checked>
+                                                                                    <input type="radio"
+                                                                                        id="{{list.name}}"
+                                                                                        name="expert-in"
+                                                                                        value="{{list.id}}"
+                                                                                        *ngIf="list.name != agentDetails.agentDetails.expertIn">
                                                                                     <button
                                                                                         class="checkbox-btn">{{list.name}}</button>
                                                                                 </div>
@@ -2376,7 +2382,8 @@
                                                                             class="full-width select-form input-design-2">
                                                                             <mat-label>Select Nationality</mat-label>
                                                                             <mat-select [disableOptionCentering]="true"
-                                                                                (selectionChange)="onChangeNationality($event)">
+                                                                                (selectionChange)="onChangeNationality($event)"
+                                                                                [(value)]="agentDetails.agentDetails.nationalityId">
                                                                                 <mat-option [value]="list.id"
                                                                                     *ngFor="let list of Nationality">
                                                                                     {{list.name}}
@@ -2399,7 +2406,13 @@
                                                                                     <input type="checkbox"
                                                                                         id="{{list.name}}"
                                                                                         name="{{list.name}}"
-                                                                                        value="{{list.id}}">
+                                                                                        value="{{list.id}}"
+                                                                                        *ngIf="agentLanguages.indexOf(list.id) != -1" checked>
+                                                                                    <input type="checkbox"
+                                                                                        id="{{list.name}}"
+                                                                                        name="{{list.name}}"
+                                                                                        value="{{list.id}}"
+                                                                                        *ngIf="agentLanguages.indexOf(list.id) == -1">
                                                                                     <button
                                                                                         class="checkbox-btn">{{list.name}}</button>
                                                                                 </div>
@@ -2421,7 +2434,7 @@
                                                                                         <mat-select
                                                                                             [disableOptionCentering]="true"
                                                                                             multiple
-                                                                                            [(value)]="areaData"
+                                                                                            [(value)]="agentAreas"
                                                                                             (selectionChange)="getAreaData($event)">
                                                                                             <mat-option
                                                                                                 *ngFor="let item of districts"
