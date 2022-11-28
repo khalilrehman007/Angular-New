@@ -1028,7 +1028,6 @@ input[type=number] {
 				>span {
 					width: 28px;
 					height: 28px;
-					background: #d6d6d6;
 					display: inline-flex;
 					border-radius: 50%;
 					align-items: center;
@@ -1268,7 +1267,7 @@ input[type=number] {
 	align-items: center;
 
 	.save-continue-btn {
-		background: #4a565f;
+		background: #595ad5;
 		color: $color_5;
 		border: none;
 		font-size: 16px;
@@ -5421,7 +5420,6 @@ img {
 		border-bottom: 1px solid #E5E7EB;
 		margin-bottom: 15px;
 		width: 100%;
-		max-width: 755px;
 	}
 }
 
@@ -13520,4 +13518,58 @@ input:focus{
 }
 .packaged-details-right .upgrade-btn:hover{
 	background-color: #000;
+}
+
+
+.property-valuation-sec{
+	.mat-list-base .mat-list-item:first-child a>span {
+		background: rgba(118,155,183,0.2);
+	}
+	.mat-list-base .mat-list-item.active:first-child a>span {
+		background: #769bb7;
+		color: #fff;
+	}
+	.mat-list-base .mat-list-item:nth-child(2) a>span {
+		background-color: rgba(16,195,160,0.3);
+	}
+	.mat-list-base .mat-list-item.active:nth-child(2) a>span {
+		background-color: #10c3a0;
+		color: #fff;
+	}
+	.mat-list-base .mat-list-item:nth-child(3) a>span {
+		background-color: rgba(107,201,212,0.2);
+	}
+	.mat-list-base .mat-list-item.active:nth-child(3) a>span {
+	    background-color: #6bc9d4;
+        color: #fff;
+	}
+	.mat-list-base .mat-list-item:nth-child(4) a>span {
+		background-color: rgb(82,131,230,0.2);
+	}
+	.mat-list-base .mat-list-item.active:nth-child(4) a>span {
+		background-color: #5283e6;
+		color: #fff;
+	}
+	.mat-list-base .mat-list-item:nth-child(5) a>span {
+		background-color: rgb(218,152,47,0.2);
+	}
+	.mat-list-base .mat-list-item.active:nth-child(5) a>span {
+		background-color: #da982f;
+		color: #fff;
+	}
+	.mat-list-base .mat-list-item:nth-child(6) a>span {
+		background-color: rgba(135,34,196,0.2);
+	}
+	.mat-list-base .mat-list-item.active:nth-child(6) a>span {
+		background-color: #8722c4;
+		color: #fff;
+	}
+	.mat-list-base .mat-list-item:nth-child(7) a>span {
+		background-color: rgb(64,186,14,0.2);
+	}
+	.mat-list-base .mat-list-item.active:nth-child(7) a>span {
+		background-color: #40ba0e;
+		color: #fff;
+	}
+
 }
