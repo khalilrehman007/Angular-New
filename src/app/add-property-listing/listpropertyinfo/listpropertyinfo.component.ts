@@ -446,12 +446,12 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
     }
   }
   getValue(e: any, type: boolean) {
-    if (!type) {
+    if (!type && e.inputType != "deleteContentBackward" && e.inputType != "deleteContentForward") {
       let temp: any = this.SubmitForm.value.PropertyAge
       this.SubmitForm.patchValue({
         PropertyAge: temp.toString().slice(0, -1)
       })
-    } else {
+    } else if(type) {
       let temp: any = this.SubmitForm.value.PropertyAge
       this.SubmitForm.patchValue({
         PropertyAge: temp.toString() + e
@@ -466,12 +466,12 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
     }
   }
   getPriceValue(e: any, type: boolean) {
-    if (!type) {
+    if (!type && e.inputType != "deleteContentBackward" && e.inputType != "deleteContentForward") {
       let temp: any = this.SubmitForm.value.price
       this.SubmitForm.patchValue({
         price: temp.toString().slice(0, -1)
       })
-    } else {
+    } else if(type) {
       let temp: any = this.SubmitForm.value.price
       this.SubmitForm.patchValue({
         price: temp.toString() + e
@@ -486,12 +486,12 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
     }
   }
   getMaintenanceValue(e: any, type: boolean) {
-    if (!type) {
+    if (!type && e.inputType != "deleteContentBackward" && e.inputType != "deleteContentForward") {
       let temp: any = this.SubmitForm.value.maintenance
       this.SubmitForm.patchValue({
         maintenance: temp.toString().slice(0, -1)
       })
-    } else {
+    } else if(type) {
       let temp: any = this.SubmitForm.value.maintenance
       this.SubmitForm.patchValue({
         maintenance: temp.toString() + e
@@ -502,12 +502,14 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
     let temp:any = this.SubmitForm.value.propertyDescription?.length;
     if(temp <= 320) {
       this.descLength = 320 - temp;
-      console.log(this.SubmitForm.value.propertyDescription?.length);
     } else {
       this.SubmitForm.patchValue({
         propertyDescription: this.SubmitForm.value.propertyDescription?.toString().slice(0, 320)
       })
     }
+  }
+  disablePaste(e:any) {
+    e.preventDefault();
   }
   onSubmit() {
     if ($(".features-select").length > 0 && this.selectedPropertyType.hasPropertyFeature && this.featuresData.length > 0 ) {
