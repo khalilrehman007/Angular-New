@@ -2672,8 +2672,7 @@
                                                                 </div>
                                                             </div>
 
-
-                                                            <div ngClass="other-document-upload mb-4">
+                                                            <div ngClass="other-document-upload mt-4">
                                                                 <h6 ngClass="h6-design mb-3">Douments Upload</h6>
                                                                 <div ngClass="row">
                                                                     <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12">
@@ -2683,31 +2682,22 @@
                                                                                     <input type="file" hidden
                                                                                         #emirateInput0
                                                                                         accept=".doc, .pdf, .jpg, .jpeg, .png"
-                                                                                        (change)='emiratesfun($any($event.target).files, 0)'>
+                                                                                        (change)='emiratesfun($any($event.target).files, 1)'>
                                                                                     <button mat-button
                                                                                         (click)="emirateInput0.click()"><span
                                                                                             ngClass="outpup-filename">{{
-                                                                                            emirate[0] }}</span> <img
+                                                                                            emirate[1] }}</span> <img
                                                                                             src="{{upload}}">
-                                                                                        <!-- <input type="file" hidden
-                                                                                        #emirateInput>
-                                                                                    <button mat-button><span
-                                                                                            ngClass="outpup-filename">
-                                                                                            Picture: Trade License
-                                                                                            Document </span>
-                                                                                        <img src="{{upload}}"> -->
-                                                                                        <span ngClass="btn-txt">Picture:
-                                                                                            Trade License
-                                                                                            Document</span>
-                                                                                    </button>
+                                                                                        <span ngClass="btn-txt">Picture: Trade License Document</span></button>
                                                                                 </div>
+
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                     <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                                                                        <!-- <span class="staus-emoji">
-                                                                            <img src="{{approvedEmo}}" alt="">
-                                                                        </span> -->
+                                                                        <span class="staus-emoji">
+                                                                            <!--                                      <img src="{{approvedEmo}}" alt="">-->
+                                                                        </span>
                                                                     </div>
                                                                     <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                                                                         <div ngClass="blue-upload-box">
@@ -2716,22 +2706,13 @@
                                                                                     <input type="file" hidden
                                                                                         #emirateInput1
                                                                                         accept=".doc, .pdf, .jpg, .jpeg, .png"
-                                                                                        (change)='emiratesfun($any($event.target).files, 1)'>
+                                                                                        (change)='emiratesfun($any($event.target).files, 2)'>
                                                                                     <button mat-button
                                                                                         (click)="emirateInput1.click()"><span
                                                                                             ngClass="outpup-filename">{{
-                                                                                            emirate[1] }}</span> <img
+                                                                                            emirate[2] }}</span> <img
                                                                                             src="{{upload}}">
-                                                                                        <!-- <input type="file" hidden
-                                                                                        #emirateInput>
-                                                                                    <button mat-button><span
-                                                                                            ngClass="outpup-filename">
-                                                                                            Picture: Permit No
-                                                                                            Document</span>
-                                                                                        <img src="{{upload}}"> <span -->
-                                                                                        <span ngClass="btn-txt">Picture:
-                                                                                            Permit No Document</span>
-                                                                                    </button>
+                                                                                        <span ngClass="btn-txt">Picture: Permit No Document</span></button>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -2745,63 +2726,26 @@
                                                                                     <input type="file" hidden
                                                                                         #emirateInput2
                                                                                         accept=".doc, .pdf, .jpg, .jpeg, .png"
-                                                                                        (change)='emiratesfun($any($event.target).files, 2)'>
+                                                                                        (change)='emiratesfun($any($event.target).files, 3)'>
                                                                                     <button mat-button
                                                                                         (click)="emirateInput2.click()"><span
                                                                                             ngClass="outpup-filename">{{
-                                                                                            emirate[2] }}</span> <img
-                                                                                            src="{{upload}}">
-                                                                                        <!-- <input type="file" hidden
-                                                                                        #emirateInput>
-                                                                                    <button mat-button><span
-                                                                                            ngClass="outpup-filename">
-                                                                                            Picture: ORN Document
-                                                                                        </span> <img src="{{upload}}"> -->
-                                                                                        <span ngClass="btn-txt">Picture:
-                                                                                            ORN Document</span>
-                                                                                    </button>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                                                                        <!-- <span class="staus-emoji">
-                                                                            <img src="{{penfingEmo}}" alt="">
-                                                                        </span> -->
-                                                                    </div>
-                                                                    <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                                                                        <div ngClass="blue-upload-box">
-                                                                            <div ngClass="upload-files-design">
-                                                                                <div ngClass="greybordered-btn">
-                                                                                    <input type="file" hidden
-                                                                                        #emirateInput3
-                                                                                        accept=".doc, .pdf, .jpg, .jpeg, .png"
-                                                                                        (change)='emiratesfun($any($event.target).files, 3)'>
-                                                                                    <button mat-button
-                                                                                        (click)="emirateInput3.click()"><span
-                                                                                            ngClass="outpup-filename">{{
                                                                                             emirate[3] }}</span> <img
                                                                                             src="{{upload}}">
-                                                                                        <!-- <input type="file" hidden
-                                                                                        #emirateInput>
-                                                                                    <button mat-button><span
-                                                                                            ngClass="outpup-filename">
-                                                                                            Picture: REREA Document
-                                                                                        </span> <img src="{{upload}}"> -->
-                                                                                        <span ngClass="btn-txt">Picture:
-                                                                                            RERA Document</span>
-                                                                                    </button>
+                                                                                        <span ngClass="btn-txt">Picture: ORN Document</span></button>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                     <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                                                                        <!-- <span class="staus-emoji">
-                                                                            <img src="{{penfingEmo}}" alt="">
-                                                                        </span> -->
+                                                                        <span class="staus-emoji">
+                                                                            <!--                                      <img src="{{penfingEmo}}" alt="">-->
+                                                                        </span>
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                            
+                                                            
 
                                                             <div class="save-continue-sec">
                                                                 <mat-card-actions (click)="getCompanyData()">
