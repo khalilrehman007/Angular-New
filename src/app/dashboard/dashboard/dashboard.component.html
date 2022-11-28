@@ -173,11 +173,11 @@
                                         <p>{{lastPropertyLastingDate}}</p>
                                         <ul class="counts-wrap">
                                             <li>
-                                                <h3 class="count">{{ totalRestentailPropertyListing }}</h3>
+                                                <h3 class="count">{{ totalRestentailPropertyListing | number }}</h3>
                                                 <p>Residential</p>
                                             </li>
                                             <li>
-                                                <h3 class="count">{{ totalCommercialPropertyListing }}</h3>
+                                                <h3 class="count">{{ totalCommercialPropertyListing | number }}</h3>
                                                 <p>Commercial</p>
                                             </li>
                                         </ul>
@@ -194,11 +194,11 @@
                                         <p>{{ lastValuationDate }}</p>
                                         <ul class="counts-wrap">
                                             <li>
-                                                <h3 class="count">{{ totalRestentailValuation }}</h3>
+                                                <h3 class="count">{{ totalRestentailValuation | number }}</h3>
                                                 <p>Residential</p>
                                             </li>
                                             <li>
-                                                <h3 class="count">{{ totalCommercialValuation }}</h3>
+                                                <h3 class="count">{{ totalCommercialValuation | number }}</h3>
                                                 <p>Commercial</p>
                                             </li>
                                         </ul>
@@ -473,7 +473,7 @@
                                                                     <div class="col-7">
                                                                         <a routerLink="/property/detail"
                                                                             [queryParams]="{id: viewList.id}"
-                                                                            class="agent-details__property-list-item-link cursor-pointer">{{viewList.propertyPrice}}
+                                                                            class="agent-details__property-list-item-link cursor-pointer">{{viewList.propertyPrice | number}}
                                                                             {{viewList.currency}}
                                                                             <span>{{viewList.rentType}}</span>
                                                                         </a>
@@ -560,7 +560,7 @@
                                                                                 class="agent-details__property-detail-list-item sqft">
                                                                                 <img src="assets/images/icons/Square Meters.svg"
                                                                                     alt="">
-                                                                                {{viewList.carpetArea}} Sq.Ft.
+                                                                                {{viewList.buildupArea | number}} Sq.Ft.
                                                                             </li>
                                                                             <li
                                                                                 class="agent-details__property-detail-list-item furnising">
@@ -736,7 +736,7 @@
                                                                     <div class="col-7">
                                                                         <a routerLink="/property/detail"
                                                                             [queryParams]="{id: viewList.id}"
-                                                                            class="agent-details__property-list-item-link cursor-pointer">{{viewList.propertyPrice}}
+                                                                            class="agent-details__property-list-item-link cursor-pointer">{{viewList.propertyPrice | number}}
                                                                             {{viewList.country.currency}}
                                                                             <span
                                                                                 *ngIf="viewList.rentType">/{{viewList.rentType.name}}</span>
@@ -789,7 +789,7 @@
                                                                                 class="agent-details__property-detail-list-item sqft">
                                                                                 <img src="assets/images/icons/Square Meters.svg"
                                                                                     alt="">
-                                                                                {{viewList.carpetArea}} Sq.Ft.
+                                                                                {{viewList.buildupArea | number}} Sq.Ft.
                                                                             </li>
                                                                             <li
                                                                                 class="agent-details__property-detail-list-item furnising">
@@ -934,7 +934,7 @@
                                                                     <div class="row">
                                                                         <div class="col-7">
                                                                             <a
-                                                                                class="agent-details__property-list-item-link cursor-pointer">{{wishData.price}}
+                                                                                class="agent-details__property-list-item-link cursor-pointer">{{wishData.price | number}}
                                                                                 {{wishData.currency}}
                                                                                 <span>{{wishData.rentType}}</span>
                                                                             </a>
@@ -977,7 +977,7 @@
                                                                                     class="agent-details__property-detail-list-item sqft">
                                                                                     <img src="assets/images/icons/Square Meters.svg"
                                                                                         alt="">
-                                                                                    {{wishData.carpetArea}} Sq.Ft.
+                                                                                    {{wishData.buildupArea | number}} Sq.Ft.
                                                                                 </li>
                                                                                 <li
                                                                                     class="agent-details__property-detail-list-item furnising">
@@ -1452,7 +1452,7 @@
                                                                     [queryParams]="{id: listing.id}">
                                                                     <div class="col-7">
                                                                         <a
-                                                                            class="agent-details__property-list-item-link cursor-pointer">{{listing.propertyPrice}}
+                                                                            class="agent-details__property-list-item-link cursor-pointer">{{listing.propertyPrice | number}}
                                                                             {{listing.currency}}<small
                                                                                 *ngIf="listing.rentType != ''">{{listing.rentType}}</small>
                                                                         </a>
@@ -1495,7 +1495,7 @@
                                                                                 class="agent-details__property-detail-list-item sqft">
                                                                                 <img src="assets/images/icons/Square Meters.svg"
                                                                                     alt="">
-                                                                                {{listing.carpetArea}} Sq.Ft.
+                                                                                {{listing.buildupArea | number}} Sq.Ft.
                                                                             </li>
                                                                             <li
                                                                                 class="agent-details__property-detail-list-item furnising">
@@ -2025,7 +2025,7 @@
                                                     <div ngClass="my-wallet-list-design">
                                                         <div ngClass="exisitng-amount">
                                                             <h6>Existing Points</h6>
-                                                            <p>{{myBalance}}</p>
+                                                            <p>{{myBalance | number}}</p>
                                                         </div>
                                                     </div>
                                                     <div class="recharge_row-wallet">
@@ -2052,15 +2052,15 @@
                                                 </div>
                                                 <div ngClass="my_valuation-inner-div place">
                                                     <h6>Purchased Points</h6>
-                                                    <p>{{data.totalPoints}}</p>
+                                                    <p>{{data.totalPoints | number}}</p>
                                                 </div>
                                                 <div ngClass="my_valuation-inner-div property_type">
                                                     <h6>Points Used</h6>
-                                                    <p>{{data.totalPoints-data.remainigPoints}}</p>
+                                                    <p>{{data.totalPoints-data.remainigPoints | number}}</p>
                                                 </div>
                                                 <div ngClass="my_valuation-inner-div remaning-point">
                                                     <h6>Remaining Points </h6>
-                                                    <p>{{data.remainigPoints}}</p>
+                                                    <p>{{data.remainigPoints | number}}</p>
                                                 </div>
                                                 <div ngClass="my_valuation-inner-div expired-point">
                                                     <h6>Expired Date</h6>

@@ -379,6 +379,7 @@ export class SearchComponent implements OnInit {
         );
       })
       this.searchListing = tempData;
+      console.log(tempData)
       this.currency = response.data.propertyListings[0].country.currency;
       this.halfList = Math.floor(this.searchListing.length / 2);
     });

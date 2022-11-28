@@ -16,10 +16,10 @@
                 <div ngClass="row align-items-center">
                     <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                         <div ngClass="property-name_detals">
-                            <h4>{{propertyDetails.buildingName}}</h4>
+                            <h4>{{propertyDetails.propertyTitle}}</h4>
                             <div class="d-flex align-items-center property_details-new-header">
                             <div ngClass="property-price_detals">
-                            <h4>{{propertyDetailData.propertyPrice}}
+                            <h4>{{propertyDetailData.propertyPrice | number}}
                                 {{propertyDetailData.currency}}<small *ngIf="propertyDetailData.rentType != ''">/ {{propertyDetailData.rentType}}</small></h4>
                             </div>
                             <div ngClass="last-updated-details">
@@ -114,7 +114,7 @@
                                     </span>
                                     <span ngClass="area">
                                         <img src="{{squaremetersvg}}"
-                                            alt="">{{propertyDetailData.carpetArea}}{{propertyDetailData.unitType}}
+                                            alt="">{{propertyDetailData.buildupArea | number}} {{propertyDetailData.unitType}}
                                     </span>
                                     <span ngClass="furnishing">
                                         <img src="{{furnishing}}" alt="">{{propertyDetailData.furnishingType}}
@@ -164,8 +164,8 @@
                                         <div ngClass="col-xl-3 col-lg-3 col-md-12 col-sm-12"
                                             *ngFor="let data of propertyDetails.propertyFeatures">
                                             <div ngClass="amenties_info-text">
-                                                <img height="40px" width="40px"
-                                                    src="https://beta.ovaluate.com/{{data.propertyFeature.document.fileUrl}}">
+                                                <!-- <img height="40px" width="40px"
+                                                    src="https://beta.ovaluate.com/{{data.propertyFeature.document.fileUrl}}"> -->
                                                 <p>{{data.propertyFeature.featureName}}</p>
                                                 <!-- <button ngClass="see-more-amenties">{{data.btnvalue}}</button> -->
                                             </div>
@@ -402,7 +402,7 @@
                                                 <path d="M1.8 11.8542L5.72734 15.7816" stroke="#242A2F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                                 <path d="M12.2726 15.7816L16.1999 11.8542" stroke="#242A2F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                             </svg>                                                     
-                                            {{slide.carpetArea}}
+                                            {{slide.buildupArea | number}}
                                             Sqft
                                         </span>
                                     </div>
@@ -416,7 +416,7 @@
                                 <div ngClass="property_footer-details d-flex justify-content-spacebw" [routerLink]="['/property/detail']" [queryParams]="{id: slide.id}">
                                     <div ngClass="property_pricing">
                                         <span class="currency_type">{{slide.currency}}</span>
-                                        <span class="price_value">{{ slide.price }}</span>
+                                        <span class="price_value">{{ slide.price | number }}</span>
                                         <span *ngIf="slide.rentType != null" class="rent_type">{{slide.rentType}}</span>
                                     </div>
                                     <button class="property_det-btn">Details 

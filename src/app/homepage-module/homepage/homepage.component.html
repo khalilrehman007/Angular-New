@@ -210,7 +210,7 @@
                                     <div ngClass="property_footer-details d-flex justify-content-spacebw" [routerLink]="['/property/detail']" [queryParams]="{id: slide.id}">
                                         <div ngClass="property_pricing">
                                             <span class="currency_type">{{slide.country.currency }}</span>
-                                            <span class="price_value">{{ slide.propertyPrice }}</span>
+                                            <span class="price_value">{{ slide.propertyPrice | number }}</span>
                                             <span *ngIf="slide.rentType != null" class="rent_type">{{slide.rentType.name}}</span>
                                         </div>
                                         <button class="property_det-btn">Details 
@@ -366,7 +366,7 @@
                                     <div ngClass="property_footer-details d-flex justify-content-spacebw" [routerLink]="['/property/detail']" [queryParams]="{id: slide.id}">
                                         <div ngClass="property_pricing">
                                             <span class="currency_type">{{slide.country.currency }}</span>
-                                            <span class="price_value">{{ slide.propertyPrice }}</span>
+                                            <span class="price_value">{{ slide.propertyPrice | number }}</span>
                                             <span *ngIf="slide.rentType != null" class="rent_type">{{slide.rentType.name}}</span>
                                         </div>
                                         <button class="property_det-btn">Details 

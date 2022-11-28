@@ -743,7 +743,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         tempData.push(
           {
             id: element.id, propertyTitle: element.propertyTitle, propertyAddress: element.propertyAddress, img: image,
-            buildingName: element.buildingName, bedrooms: element.bedrooms, bathrooms: element.bathrooms, carpetArea: element.carpetArea,
+            buildingName: element.buildingName, bedrooms: element.bedrooms, bathrooms: element.bathrooms, carpetArea: element.carpetArea, buildupArea: element.buildupArea,
             unitNo: element.unitNo, totalFloor: element.totalFloor, floorNo: element.floorNo, propertyDescription: element.propertyDescription,
             requestedDate: element.requestedDate, furnishingType: element.furnishingType, propertyPrice: element.propertyPrice,
             requestedDateFormat: element.requestedDateFormat,
@@ -1070,7 +1070,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         tempData.push(
           {
             id: element.id, propertyTitle: element.propertyTitle, propertyAddress: element.propertyAddress, img: image,
-            buildingName: element.buildingName, bedrooms: element.bedrooms, bathrooms: element.bathrooms, carpetArea: element.carpetArea,
+            buildingName: element.buildingName, bedrooms: element.bedrooms, bathrooms: element.bathrooms, carpetArea: element.carpetArea, buildupArea: element.buildupArea,
             unitNo: element.unitNo, totalFloor: element.totalFloor, floorNo: element.floorNo, propertyDescription: element.propertyDescription,
             requestedDate: element.requestedDate, furnishingType: element.furnishingType, propertyPrice: element.propertyPrice,
             requestedDateFormat: element.requestedDateFormat, propertyType: element.propertyType.typeDescription,
@@ -1193,6 +1193,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             bathrooms: element.bathrooms,
             buildingName: element.buildingName,
             carpetArea: element.carpetArea,
+            buildupArea: element.buildupArea,
             requestedDateFormat: element.requestedDateFormat,
             furnishingType: element.furnishingType
           });
