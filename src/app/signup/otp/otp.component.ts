@@ -5,7 +5,7 @@ import { AppService } from 'src/app/service/app.service';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/service/auth.service';
 import { NotificationService } from 'src/app/service/notification.service';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-otp',
   templateUrl: './otp.component.html',
@@ -80,13 +80,14 @@ export class OtpComponent implements OnInit, AfterViewInit {
       return;
     }
   }
-  constructor(private service: AppService, private router: Router, private auth: AuthService, private notifyService: NotificationService, private modalService: NgbModal) {
+  constructor(private service: AppService, private router: Router, private auth: AuthService, private notifyService: NotificationService, private modalService: NgbModal,config: NgbModalConfig) {
     if (localStorage.getItem("signupData")) {
       this.verificationData = localStorage.getItem("signupData");
       this.verificationData = JSON.parse(this.verificationData);
       this.code = this.verificationData.code;
     }
-
+    config.backdrop = 'static';
+		config.keyboard = false;
   }
   ngAfterViewInit(): void {
     setTimeout(() => {

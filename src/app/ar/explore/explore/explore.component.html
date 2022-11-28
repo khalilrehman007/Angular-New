@@ -64,10 +64,16 @@
           <app-breadcrumbs></app-breadcrumbs>
         </div>
         <div ngClass="explore-word-sec" *ngIf="selectedCountry">
-          <div ngClass="d-flex justify-content-spacebw mb-4">
+          <!-- <div ngClass="d-flex justify-content-spacebw mb-4">
             <div ngClass="hp-design">
               <h4>اكتشف العالم</h4>
               <p>الوجهة التي جذبت الناس من جميع أنحاء العالم</p>
+            </div>
+          </div> -->
+          <div ngClass="explore-description_sec mb-4" *ngIf="selectedCountry">
+            <div ngClass="hp-design hp-explore-spacing">
+              <h4>اكتشف المزيد {{selectedCountry.viewValue}}</h4>
+              <p>{{selectedCountry.desc}}.</p>
             </div>
           </div>
           <div ngClass="explore-locations-block-designs">
@@ -96,12 +102,6 @@
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-          <div ngClass="explore-description_sec mt-4 mb-5" *ngIf="selectedCountry">
-            <div ngClass="hp-design hp-explore-spacing">
-              <h4>اكتشف المزيد {{selectedCountry.viewValue}}</h4>
-              <p>{{selectedCountry.desc}}.</p>
             </div>
           </div>
         </div>
