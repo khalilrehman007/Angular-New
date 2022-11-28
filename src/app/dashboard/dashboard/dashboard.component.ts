@@ -237,6 +237,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     let temp: any = localStorage.getItem("user");
     this.service.GetAgentProfile(JSON.parse(temp).id).subscribe((result:any) => {
       this.agentDetails = result.data;
+      console.log(this.agentDetails);
+      this.NationalityId = this.agentDetails.agentDetails.nationalityId
       this.agentBroker.patchValue({
         agentAboutMe: this.agentDetails.agentDetails.aboutMe,
         BRNNo: this.agentDetails.agentDetails.brnNo
@@ -961,7 +963,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     } else {
 
       if (this.NationalityId == null || this.NationalityId == undefined) {
-        // this.notifyService.showError('Please select Nationality', "Error");
+        this.notifyService.showError('Please select Nationality', "Error");
+        return;
       }
       let langObject: any = []
       this.languagesArray.forEach((element: any, i: any) => {
