@@ -548,12 +548,12 @@ export class PropertyDetailComponent implements OnInit,AfterViewInit {
       {
         label: 'Carpet Area',
         show: this.propertyValidationData.hasCarpetArea,
-        value: this.propertyDetailData.carpetArea,
+        value: this.propertyDetailData.carpetArea?.toLocaleString(),
       },
       {
         show: this.propertyValidationData.hasBuildUpArea,
         label: 'Build-up Area',
-        value: this.propertyDetailData.buildupArea,
+        value: this.propertyDetailData.buildupArea?.toLocaleString(),
       },
       {
         show: true,
@@ -568,7 +568,7 @@ export class PropertyDetailComponent implements OnInit,AfterViewInit {
       {
         show: true,
         label: 'Price',
-        value: this.propertyDetailData.propertyPrice + ' ' + this.propertyDetailData.currency,
+        value: this.propertyDetailData.propertyPrice?.toLocaleString() + ' ' + this.propertyDetailData.currency,
       },
       {
         show: true,
@@ -578,12 +578,12 @@ export class PropertyDetailComponent implements OnInit,AfterViewInit {
       {
         show: true,
         label: 'Security Deposit',
-        value: this.propertyDetailData.securityDepositPrice + ' ' + this.propertyDetailData.currency,
+        value: this.propertyDetailData.securityDepositPrice?.toLocaleString() + ' ' + this.propertyDetailData.currency,
       },
       {
         show: true,
         label: 'Brokerage Deposit',
-        value: this.propertyDetailData.brokerageChargePrice + ' ' + this.propertyDetailData.currency,
+        value: this.propertyDetailData.brokerageChargePrice?.toLocaleString() + ' ' + this.propertyDetailData.currency,
       },
       {
         show: true,

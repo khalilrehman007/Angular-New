@@ -14,6 +14,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class OtpComponent implements OnInit, AfterViewInit {
   @ViewChild('content') content: any;
   error: any = ""
+  isAgent:boolean=false;
   showError: boolean = false;
   errorResponse(data: any) {
     this.showError = false;
@@ -63,6 +64,7 @@ export class OtpComponent implements OnInit, AfterViewInit {
         if (result.message == "You are successfully logged in") {
           let responsedata: any = result;
           if (responsedata.data !== undefined) {
+            this.isAgent=responsedata.data.professionalTypeId==2?true:false;
             localStorage.setItem('token', JSON.stringify(responsedata.data.refreshToken))
             localStorage.setItem('user', JSON.stringify(responsedata.data))
             this.notifyService.showSuccess(responsedata.message, "");

@@ -8,6 +8,7 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
   styleUrls: ['./classified-home.component.scss']
 })
 export class ClassifiedHomeComponent implements OnInit {
+  isDisabled: boolean = false;
   pricetag = '../../../assets/images/icons/price-tag.svg'
   applestore = '../../../assets/images/apple-store.png'
   playstore = '../../../assets/images/play-store.png'
@@ -41,7 +42,7 @@ export class ClassifiedHomeComponent implements OnInit {
       text: 'Avg Price AED100 - AED120',
       link: '',
     },
-      {
+    {
       src: '../../../assets/images/services/furniture-assembly.jpeg',
       title: 'Furniture Assembly',
       text: 'Avg Price AED100 - AED120',
@@ -268,6 +269,15 @@ export class ClassifiedHomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    let user: any = localStorage.getItem("signupData");
+    user=JSON.parse(user);
+    if(user==null || user == undefined){
+      user=localStorage.getItem("user");
+      user=JSON.parse(user)
+      this.isDisabled = user?.professionalTypeId == 2 ? true : false;
+    }else{
+      this.isDisabled = user?.ProfessionalTypeId == 2 ? true : false;
+    }
   }
 
 }

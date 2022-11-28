@@ -53,7 +53,8 @@
                </div>
                <div class="signup-thanku-cntnt">
                  <p>Thank you for signing up with Ovaluate. Start Exploring!</p>
-                 <a routerLink="/" (click)="modal.dismiss('Cross click')">Explore Now</a>
+                 <a *ngIf="isAgent" routerLink="/sellrent" (click)="modal.dismiss('Cross click')">Explore Now</a>
+                 <a *ngIf="!isAgent" routerLink="/" (click)="modal.dismiss('Cross click')">Explore Now</a>
                 </div>
             </div>
         </ng-template>

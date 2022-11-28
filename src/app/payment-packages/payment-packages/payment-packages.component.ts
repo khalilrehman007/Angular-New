@@ -151,6 +151,7 @@ export class PaymentPackagesComponent implements OnInit, AfterViewInit {
     this.selectedPackage = e;
   }
   getPackageByPoints(e: any) {
+    console.log("package",e);
     this.selectedPackageByPoints = e;
   }
   proceedPackagePayment() {

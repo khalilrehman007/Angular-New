@@ -19,7 +19,7 @@
                             <h4>{{propertyDetails.buildingName}}</h4>
                             <div class="d-flex align-items-center property_details-new-header">
                             <div ngClass="property-price_detals">
-                            <h4>{{propertyDetailData.propertyPrice}}
+                            <h4>{{propertyDetailData.propertyPrice | number}}
                                 {{propertyDetailData.currency}}<small *ngIf="propertyDetailData.rentType != ''">/ {{propertyDetailData.rentType}}</small></h4>
                             </div>
                             <div ngClass="last-updated-details">
