@@ -342,13 +342,12 @@ export class PropertyTypesComponent implements OnInit {
     $($(".btn-add-unit")[temp]).parent().parent().removeClass("d-none");
   }
   animate() {
-    let temp: any = $("." + this.currentField).offset()?.top;
-    $("." + this.currentField).addClass("blink");
-    $("." + this.currentField).on("click", () => {
-      $("." + this.currentField).removeClass("blink");
-      this.currentField = "";
-    })
-    $(window).scrollTop(temp - 100);
+      let temp: any = $("." + this.currentField).offset()?.top;
+      $("." + this.currentField).addClass("blink");
+      $("." + this.currentField).on("click", () => {
+        $("." + this.currentField).removeClass("blink");
+      })
+      $(window).scrollTop(temp - 100);
   }
   clearData() {
     this.formData = {};
@@ -460,12 +459,12 @@ export class PropertyTypesComponent implements OnInit {
       this.error = "Please Select Fitting Type";
       this.showError = true;
       return;
-    } else if (this.formData.PropertyStatusId == 2 && this.propertyTypeForm.value.income == "") {
+    } else if (this.formData.PropertyStatusId == 2 && this.propertyTypeForm.value.income?.toString.length == 0 || this.formData.PropertyStatusId == 2 && this.propertyTypeForm.value.income == null) {
       this.currentField = "income-input";
       this.error = "Please Enter Total Income";
       this.showError = true;
       return;
-    } else if (this.formData.PropertyStatusId == 2 && this.propertyTypeForm.value.expense == "" || this.propertyData.hasUnits && this.propertyTypeForm.value.expense == "") {
+    } else if (this.formData.PropertyStatusId == 2 && this.propertyTypeForm.value.expense?.toString.length == 0  || this.propertyData.hasUnits && this.propertyTypeForm.value.expense?.toString.length == 0 || this.formData.PropertyStatusId == 2 && this.propertyTypeForm.value.expense == null  || this.propertyData.hasUnits && this.propertyTypeForm.value.expense == null) {
       this.currentField = "expense-input";
       this.error = "Please Enter Total Expense";
       this.showError = true;

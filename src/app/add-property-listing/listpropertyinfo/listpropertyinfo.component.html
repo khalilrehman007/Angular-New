@@ -646,7 +646,7 @@
                                                 <div class="textarea-design desc-input">
                                                     <mat-form-field class="example-full-width" appearance="fill">
                                                         <mat-label>Property Description</mat-label>
-                                                        <textarea formControlName="propertyDescription" matInput
+                                                        <textarea formControlName="propertyDescription" matInput (paste)="disablePaste($event)"
                                                             placeholder="Eg. 30" (input)="validateDescLength($event)"></textarea>
                                                     </mat-form-field>
                                                     <p class="textraea-hint text-right">{{descLength}} words left</p>

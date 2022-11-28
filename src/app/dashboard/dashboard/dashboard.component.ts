@@ -237,6 +237,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     let temp: any = localStorage.getItem("user");
     this.service.GetAgentProfile(JSON.parse(temp).id).subscribe((result:any) => {
       this.agentDetails = result.data;
+      console.log(this.agentDetails);
+      this.NationalityId = this.agentDetails.agentDetails.nationalityId
       this.agentBroker.patchValue({
         agentAboutMe: this.agentDetails.agentDetails.aboutMe,
         BRNNo: this.agentDetails.agentDetails.brnNo
@@ -461,14 +463,14 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         alert("Something went wrong");
       }
     });
-    // this.data.BRNNo = this.agentDetailsFormData.value.agentBrnNo;
-    // this.data.agentAboutMe = this.agentDetailsFormData.value.agentAboutMe;
-    // this.data.CompanyName = this.companyDetailsFormData.value.companyName;
-    // this.data.TradeLicenseNo = this.companyDetailsFormData.value.tradeLicenseNo;
-    // this.data.PermitNo = this.companyDetailsFormData.value.permitNo;
-    // this.data.ORNNo = this.companyDetailsFormData.value.ornNo;
-    // this.data.RERANo = this.companyDetailsFormData.value.reraNo;
-    // this.data.CompanyAddress = this.companyDetailsFormData.value.companyAddress;
+    this.data.BRNNo = this.agentDetailsFormData.value.agentBrnNo;
+    this.data.agentAboutMe = this.agentDetailsFormData.value.agentAboutMe;
+    this.data.CompanyName = this.companyDetailsFormData.value.companyName;
+    this.data.TradeLicenseNo = this.companyDetailsFormData.value.tradeLicenseNo;
+    this.data.PermitNo = this.companyDetailsFormData.value.permitNo;
+    this.data.ORNNo = this.companyDetailsFormData.value.ornNo;
+    this.data.RERANo = this.companyDetailsFormData.value.reraNo;
+    this.data.CompanyAddress = this.companyDetailsFormData.value.companyAddress;
   }
 
   LoadvaluationDashboard() {
@@ -743,7 +745,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         tempData.push(
           {
             id: element.id, propertyTitle: element.propertyTitle, propertyAddress: element.propertyAddress, img: image,
-            buildingName: element.buildingName, bedrooms: element.bedrooms, bathrooms: element.bathrooms, carpetArea: element.carpetArea,
+            buildingName: element.buildingName, bedrooms: element.bedrooms, bathrooms: element.bathrooms, carpetArea: element.carpetArea, buildupArea: element.buildupArea,
             unitNo: element.unitNo, totalFloor: element.totalFloor, floorNo: element.floorNo, propertyDescription: element.propertyDescription,
             requestedDate: element.requestedDate, furnishingType: element.furnishingType, propertyPrice: element.propertyPrice,
             requestedDateFormat: element.requestedDateFormat,
@@ -873,6 +875,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     })
   }
 
+  companyDataId: any;
+  imageObjectCompany: any = [];
   getCompanyData() {
     if (this.companyFormData.companyName) {
       this.error = "Enter Company Name";
@@ -899,7 +903,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       this.showError = true;
       return;
     } else if (this.otherImages.length < 4) {
-      this.notifyService.showError('Please select all images', "Error");
+      // this.notifyService.showError('Please select all images', "Error");
+      this.error = "Please select all images";
+      this.showError = true;
       return;
     }
 
@@ -932,9 +938,13 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         "Authorization": 'bearer ' + token
       },
       dataType: "json",
-      success: (res) => {
+      success: (res: any) => {
         console.log(res)
-        this.companyDetailsFormData = res.data.id;
+        this.companyDataId = res.data.id;
+        this.notifyService.showSuccess(res.message, "Company details updated successfully");
+        // if (res.message == "company request completed successfully") {
+        // }
+        // this.companyDetailsFormData = res.data.id;
         // this.notifyService.showSuccess(res.message, "Company details updated successfully");
       },
       error: (err) => {
@@ -946,14 +956,15 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
 
   agentBrokerId: any;
-  imageObject: any = []
+  imageObject: any = [];
   getAgentData() {
     if (this.otherImages.length < 3) {
       this.notifyService.showError('Please enter all data', "Error");
     } else {
 
       if (this.NationalityId == null || this.NationalityId == undefined) {
-        // this.notifyService.showError('Please select Nationality', "Error");
+        this.notifyService.showError('Please select Nationality', "Error");
+        return;
       }
       let langObject: any = []
       this.languagesArray.forEach((element: any, i: any) => {
@@ -1070,7 +1081,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         tempData.push(
           {
             id: element.id, propertyTitle: element.propertyTitle, propertyAddress: element.propertyAddress, img: image,
-            buildingName: element.buildingName, bedrooms: element.bedrooms, bathrooms: element.bathrooms, carpetArea: element.carpetArea,
+            buildingName: element.buildingName, bedrooms: element.bedrooms, bathrooms: element.bathrooms, carpetArea: element.carpetArea, buildupArea: element.buildupArea,
             unitNo: element.unitNo, totalFloor: element.totalFloor, floorNo: element.floorNo, propertyDescription: element.propertyDescription,
             requestedDate: element.requestedDate, furnishingType: element.furnishingType, propertyPrice: element.propertyPrice,
             requestedDateFormat: element.requestedDateFormat, propertyType: element.propertyType.typeDescription,
@@ -1193,6 +1204,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             bathrooms: element.bathrooms,
             buildingName: element.buildingName,
             carpetArea: element.carpetArea,
+            buildupArea: element.buildupArea,
             requestedDateFormat: element.requestedDateFormat,
             furnishingType: element.furnishingType
           });

@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { Location } from '@angular/common';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
@@ -14,6 +14,7 @@ import { NgxGalleryOptions } from '@kolkov/ngx-gallery';
 import { NgxGalleryImage } from '@kolkov/ngx-gallery';
 import { NgxGalleryAnimation } from '@kolkov/ngx-gallery';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { DecimalPipe } from '@angular/common';
 import 'hammerjs';
 
 
@@ -22,9 +23,13 @@ declare const google: any;
 @Component({
   selector: 'app-property-detail',
   templateUrl: './property-detail.component.html',
-  styleUrls: ['./property-detail.component.scss']
+  styleUrls: ['./property-detail.component.scss'],
+  providers: [DecimalPipe]
 })
 export class PropertyDetailComponent implements OnInit,AfterViewInit {
+
+  @ViewChild('propertyDetails__map') mapElement: any;
+
   homelocationsvg = 'assets/images/home-location.svg'
   bedsvg = 'assets/images/icons/Bed.svg'
   bathsvg = 'assets/images/icons/Bath-tub.svg'
@@ -225,7 +230,7 @@ export class PropertyDetailComponent implements OnInit,AfterViewInit {
   };
   public lineChartLegend = true;
 
-  constructor(private location: Location, private authService: AuthService, private domSanitizer: DomSanitizer, private activeRoute: ActivatedRoute, private modalService: NgbModal, private service: AppService, private route: Router, private notifyService: NotificationService) {
+  constructor(private decimalPipe: DecimalPipe, private location: Location, private authService: AuthService, private domSanitizer: DomSanitizer, private activeRoute: ActivatedRoute, private modalService: NgbModal, private service: AppService, private route: Router, private notifyService: NotificationService) {
     let temp: any = window.location.href;
     temp = temp.split("/");
     temp[1] = "//";
@@ -323,7 +328,7 @@ export class PropertyDetailComponent implements OnInit,AfterViewInit {
       this.propertyDetail = jsonParsDate
       this.isload = true
 
-      this.map = new google.maps.Map($(".property-details__map")[0], {
+      this.map = new google.maps.Map(this.mapElement.nativeElement, {
         center: { "lat": parseFloat(this.propertyLat), "lng": parseFloat(this.propertyLng) },
         zoom: 16,
         disableDefaultUI: true,
@@ -548,12 +553,12 @@ export class PropertyDetailComponent implements OnInit,AfterViewInit {
       {
         label: 'Carpet Area',
         show: this.propertyValidationData.hasCarpetArea,
-        value: this.propertyDetailData.carpetArea?.toLocaleString(),
+        value: this.decimalPipe.transform(this.propertyDetailData.carpetArea),
       },
       {
         show: this.propertyValidationData.hasBuildUpArea,
         label: 'Build-up Area',
-        value: this.propertyDetailData.buildupArea?.toLocaleString(),
+        value: this.decimalPipe.transform(this.propertyDetailData.buildupArea),
       },
       {
         show: true,
@@ -568,7 +573,7 @@ export class PropertyDetailComponent implements OnInit,AfterViewInit {
       {
         show: true,
         label: 'Price',
-        value: this.propertyDetailData.propertyPrice?.toLocaleString() + ' ' + this.propertyDetailData.currency,
+        value: this.decimalPipe.transform(this.propertyDetailData.propertyPrice) + ' ' + this.propertyDetailData.currency,
       },
       {
         show: true,
@@ -578,12 +583,12 @@ export class PropertyDetailComponent implements OnInit,AfterViewInit {
       {
         show: true,
         label: 'Security Deposit',
-        value: this.propertyDetailData.securityDepositPrice?.toLocaleString() + ' ' + this.propertyDetailData.currency,
+        value: this.decimalPipe.transform(this.propertyDetailData.securityDepositPrice) + ' ' + this.propertyDetailData.currency,
       },
       {
         show: true,
         label: 'Brokerage Deposit',
-        value: this.propertyDetailData.brokerageChargePrice?.toLocaleString() + ' ' + this.propertyDetailData.currency,
+        value: this.decimalPipe.transform(this.propertyDetailData.brokerageChargePrice) + ' ' + this.propertyDetailData.currency,
       },
       {
         show: true,
@@ -725,6 +730,7 @@ export class PropertyDetailComponent implements OnInit,AfterViewInit {
             bathrooms: element.bathrooms,
             buildingName: element.buildingName,
             carpetArea: element.carpetArea,
+            buildupArea: element.buildupArea,
           });
       })
     });
