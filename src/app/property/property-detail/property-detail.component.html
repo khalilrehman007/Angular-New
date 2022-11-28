@@ -162,12 +162,12 @@
                                 <div ngClass="amenties_info-row">
                                     <div ngClass="row">
                                         <div ngClass="col-xl-3 col-lg-3 col-md-12 col-sm-12"
-                                            *ngFor="let data of propertyDetailData">
+                                            *ngFor="let data of propertyDetails.documents">
                                             <div ngClass="amenties_info-text">
                                                 <img height="40px" width="40px"
-                                                    src="https://beta.ovaluate.com/{{data.propertyFeature.documents.fileUrl}}">
-                                                <p>{{data.propertyFeature.featureName}}</p>
-                                                <button ngClass="see-more-amenties">{{data.btnvalue}}</button>
+                                                    src="https://beta.ovaluate.com/{{data.fileUrl}}">
+                                                <!-- <p>{{data.propertyFeature.featureName}}</p>
+                                                <button ngClass="see-more-amenties">{{data.btnvalue}}</button> -->
                                             </div>
                                         </div>
                                     </div>
