@@ -173,11 +173,11 @@
                                         <p>{{lastPropertyLastingDate}}</p>
                                         <ul class="counts-wrap">
                                             <li>
-                                                <h3 class="count">{{ totalRestentailPropertyListing | number }}</h3>
+                                                <h3 class="count">{{ totalRestentailPropertyListing }}</h3>
                                                 <p>Residential</p>
                                             </li>
                                             <li>
-                                                <h3 class="count">{{ totalCommercialPropertyListing | number }}</h3>
+                                                <h3 class="count">{{ totalCommercialPropertyListing }}</h3>
                                                 <p>Commercial</p>
                                             </li>
                                         </ul>
@@ -194,11 +194,11 @@
                                         <p>{{ lastValuationDate }}</p>
                                         <ul class="counts-wrap">
                                             <li>
-                                                <h3 class="count">{{ totalRestentailValuation | number }}</h3>
+                                                <h3 class="count">{{ totalRestentailValuation }}</h3>
                                                 <p>Residential</p>
                                             </li>
                                             <li>
-                                                <h3 class="count">{{ totalCommercialValuation | number }}</h3>
+                                                <h3 class="count">{{ totalCommercialValuation }}</h3>
                                                 <p>Commercial</p>
                                             </li>
                                         </ul>
@@ -473,7 +473,7 @@
                                                                     <div class="col-7">
                                                                         <a routerLink="/property/detail"
                                                                             [queryParams]="{id: viewList.id}"
-                                                                            class="agent-details__property-list-item-link cursor-pointer">{{viewList.propertyPrice | number}}
+                                                                            class="agent-details__property-list-item-link cursor-pointer">{{viewList.propertyPrice}}
                                                                             {{viewList.currency}}
                                                                             <span>{{viewList.rentType}}</span>
                                                                         </a>
@@ -560,7 +560,7 @@
                                                                                 class="agent-details__property-detail-list-item sqft">
                                                                                 <img src="assets/images/icons/Square Meters.svg"
                                                                                     alt="">
-                                                                                {{viewList.buildupArea | number}} Sq.Ft.
+                                                                                {{viewList.carpetArea}} Sq.Ft.
                                                                             </li>
                                                                             <li
                                                                                 class="agent-details__property-detail-list-item furnising">
@@ -736,7 +736,7 @@
                                                                     <div class="col-7">
                                                                         <a routerLink="/property/detail"
                                                                             [queryParams]="{id: viewList.id}"
-                                                                            class="agent-details__property-list-item-link cursor-pointer">{{viewList.propertyPrice | number}}
+                                                                            class="agent-details__property-list-item-link cursor-pointer">{{viewList.propertyPrice}}
                                                                             {{viewList.country.currency}}
                                                                             <span
                                                                                 *ngIf="viewList.rentType">/{{viewList.rentType.name}}</span>
@@ -789,7 +789,7 @@
                                                                                 class="agent-details__property-detail-list-item sqft">
                                                                                 <img src="assets/images/icons/Square Meters.svg"
                                                                                     alt="">
-                                                                                {{viewList.buildupArea | number}} Sq.Ft.
+                                                                                {{viewList.carpetArea}} Sq.Ft.
                                                                             </li>
                                                                             <li
                                                                                 class="agent-details__property-detail-list-item furnising">
@@ -934,7 +934,7 @@
                                                                     <div class="row">
                                                                         <div class="col-7">
                                                                             <a
-                                                                                class="agent-details__property-list-item-link cursor-pointer">{{wishData.price | number}}
+                                                                                class="agent-details__property-list-item-link cursor-pointer">{{wishData.price}}
                                                                                 {{wishData.currency}}
                                                                                 <span>{{wishData.rentType}}</span>
                                                                             </a>
@@ -977,7 +977,7 @@
                                                                                     class="agent-details__property-detail-list-item sqft">
                                                                                     <img src="assets/images/icons/Square Meters.svg"
                                                                                         alt="">
-                                                                                    {{wishData.buildupArea | number}} Sq.Ft.
+                                                                                    {{wishData.carpetArea}} Sq.Ft.
                                                                                 </li>
                                                                                 <li
                                                                                     class="agent-details__property-detail-list-item furnising">
@@ -1452,7 +1452,7 @@
                                                                     [queryParams]="{id: listing.id}">
                                                                     <div class="col-7">
                                                                         <a
-                                                                            class="agent-details__property-list-item-link cursor-pointer">{{listing.propertyPrice | number}}
+                                                                            class="agent-details__property-list-item-link cursor-pointer">{{listing.propertyPrice}}
                                                                             {{listing.currency}}<small
                                                                                 *ngIf="listing.rentType != ''">{{listing.rentType}}</small>
                                                                         </a>
@@ -1495,7 +1495,7 @@
                                                                                 class="agent-details__property-detail-list-item sqft">
                                                                                 <img src="assets/images/icons/Square Meters.svg"
                                                                                     alt="">
-                                                                                {{listing.buildupArea | number}} Sq.Ft.
+                                                                                {{listing.carpetArea}} Sq.Ft.
                                                                             </li>
                                                                             <li
                                                                                 class="agent-details__property-detail-list-item furnising">
@@ -2025,7 +2025,7 @@
                                                     <div ngClass="my-wallet-list-design">
                                                         <div ngClass="exisitng-amount">
                                                             <h6>Existing Points</h6>
-                                                            <p>{{myBalance | number}}</p>
+                                                            <p>{{myBalance}}</p>
                                                         </div>
                                                     </div>
                                                     <div class="recharge_row-wallet">
@@ -2052,15 +2052,15 @@
                                                 </div>
                                                 <div ngClass="my_valuation-inner-div place">
                                                     <h6>Purchased Points</h6>
-                                                    <p>{{data.totalPoints | number}}</p>
+                                                    <p>{{data.totalPoints}}</p>
                                                 </div>
                                                 <div ngClass="my_valuation-inner-div property_type">
                                                     <h6>Points Used</h6>
-                                                    <p>{{data.totalPoints-data.remainigPoints | number}}</p>
+                                                    <p>{{data.totalPoints-data.remainigPoints}}</p>
                                                 </div>
                                                 <div ngClass="my_valuation-inner-div remaning-point">
                                                     <h6>Remaining Points </h6>
-                                                    <p>{{data.remainigPoints | number}}</p>
+                                                    <p>{{data.remainigPoints}}</p>
                                                 </div>
                                                 <div ngClass="my_valuation-inner-div expired-point">
                                                     <h6>Expired Date</h6>
@@ -2672,7 +2672,8 @@
                                                                 </div>
                                                             </div>
 
-                                                            <div ngClass="other-document-upload mt-4">
+
+                                                            <div ngClass="other-document-upload mb-4">
                                                                 <h6 ngClass="h6-design mb-3">Douments Upload</h6>
                                                                 <div ngClass="row">
                                                                     <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12">
@@ -2682,22 +2683,31 @@
                                                                                     <input type="file" hidden
                                                                                         #emirateInput0
                                                                                         accept=".doc, .pdf, .jpg, .jpeg, .png"
-                                                                                        (change)='emiratesfun($any($event.target).files, 1)'>
+                                                                                        (change)='emiratesfun($any($event.target).files, 0)'>
                                                                                     <button mat-button
                                                                                         (click)="emirateInput0.click()"><span
                                                                                             ngClass="outpup-filename">{{
-                                                                                            emirate[1] }}</span> <img
+                                                                                            emirate[0] }}</span> <img
                                                                                             src="{{upload}}">
-                                                                                        <span ngClass="btn-txt">Picture: Trade License Document</span></button>
+                                                                                        <!-- <input type="file" hidden
+                                                                                        #emirateInput>
+                                                                                    <button mat-button><span
+                                                                                            ngClass="outpup-filename">
+                                                                                            Picture: Trade License
+                                                                                            Document </span>
+                                                                                        <img src="{{upload}}"> -->
+                                                                                        <span ngClass="btn-txt">Picture:
+                                                                                            Trade License
+                                                                                            Document</span>
+                                                                                    </button>
                                                                                 </div>
-
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                     <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                                                                        <span class="staus-emoji">
-                                                                            <!--                                      <img src="{{approvedEmo}}" alt="">-->
-                                                                        </span>
+                                                                        <!-- <span class="staus-emoji">
+                                                                            <img src="{{approvedEmo}}" alt="">
+                                                                        </span> -->
                                                                     </div>
                                                                     <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                                                                         <div ngClass="blue-upload-box">
@@ -2706,13 +2716,22 @@
                                                                                     <input type="file" hidden
                                                                                         #emirateInput1
                                                                                         accept=".doc, .pdf, .jpg, .jpeg, .png"
-                                                                                        (change)='emiratesfun($any($event.target).files, 2)'>
+                                                                                        (change)='emiratesfun($any($event.target).files, 1)'>
                                                                                     <button mat-button
                                                                                         (click)="emirateInput1.click()"><span
                                                                                             ngClass="outpup-filename">{{
-                                                                                            emirate[2] }}</span> <img
+                                                                                            emirate[1] }}</span> <img
                                                                                             src="{{upload}}">
-                                                                                        <span ngClass="btn-txt">Picture: Permit No Document</span></button>
+                                                                                        <!-- <input type="file" hidden
+                                                                                        #emirateInput>
+                                                                                    <button mat-button><span
+                                                                                            ngClass="outpup-filename">
+                                                                                            Picture: Permit No
+                                                                                            Document</span>
+                                                                                        <img src="{{upload}}"> <span -->
+                                                                                        <span ngClass="btn-txt">Picture:
+                                                                                            Permit No Document</span>
+                                                                                    </button>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -2726,26 +2745,63 @@
                                                                                     <input type="file" hidden
                                                                                         #emirateInput2
                                                                                         accept=".doc, .pdf, .jpg, .jpeg, .png"
-                                                                                        (change)='emiratesfun($any($event.target).files, 3)'>
+                                                                                        (change)='emiratesfun($any($event.target).files, 2)'>
                                                                                     <button mat-button
                                                                                         (click)="emirateInput2.click()"><span
                                                                                             ngClass="outpup-filename">{{
-                                                                                            emirate[3] }}</span> <img
+                                                                                            emirate[2] }}</span> <img
                                                                                             src="{{upload}}">
-                                                                                        <span ngClass="btn-txt">Picture: ORN Document</span></button>
+                                                                                        <!-- <input type="file" hidden
+                                                                                        #emirateInput>
+                                                                                    <button mat-button><span
+                                                                                            ngClass="outpup-filename">
+                                                                                            Picture: ORN Document
+                                                                                        </span> <img src="{{upload}}"> -->
+                                                                                        <span ngClass="btn-txt">Picture:
+                                                                                            ORN Document</span>
+                                                                                    </button>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                     <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                                                                        <span class="staus-emoji">
-                                                                            <!--                                      <img src="{{penfingEmo}}" alt="">-->
-                                                                        </span>
+                                                                        <!-- <span class="staus-emoji">
+                                                                            <img src="{{penfingEmo}}" alt="">
+                                                                        </span> -->
+                                                                    </div>
+                                                                    <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                                                        <div ngClass="blue-upload-box">
+                                                                            <div ngClass="upload-files-design">
+                                                                                <div ngClass="greybordered-btn">
+                                                                                    <input type="file" hidden
+                                                                                        #emirateInput3
+                                                                                        accept=".doc, .pdf, .jpg, .jpeg, .png"
+                                                                                        (change)='emiratesfun($any($event.target).files, 3)'>
+                                                                                    <button mat-button
+                                                                                        (click)="emirateInput3.click()"><span
+                                                                                            ngClass="outpup-filename">{{
+                                                                                            emirate[3] }}</span> <img
+                                                                                            src="{{upload}}">
+                                                                                        <!-- <input type="file" hidden
+                                                                                        #emirateInput>
+                                                                                    <button mat-button><span
+                                                                                            ngClass="outpup-filename">
+                                                                                            Picture: REREA Document
+                                                                                        </span> <img src="{{upload}}"> -->
+                                                                                        <span ngClass="btn-txt">Picture:
+                                                                                            RERA Document</span>
+                                                                                    </button>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                                                        <!-- <span class="staus-emoji">
+                                                                            <img src="{{penfingEmo}}" alt="">
+                                                                        </span> -->
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            
-                                                            
 
                                                             <div class="save-continue-sec">
                                                                 <mat-card-actions (click)="getCompanyData()">

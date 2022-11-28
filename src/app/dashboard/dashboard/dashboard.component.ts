@@ -900,7 +900,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       this.error = "Enter Company Address";
       this.showError = true;
       return;
-    } else if (this.otherImages.length < 3) {
+    } else if (this.otherImages.length < 4) {
       // this.notifyService.showError('Please select all images', "Error");
       this.error = "Please select all images";
       this.showError = true;
@@ -914,53 +914,34 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.companyFormData.RERANo = this.companyDetail.value.reraNo;
     this.companyFormData.CompanyAdress = this.companyDetail.value.companyAddress;
 
-    // let valuationData = new FormData();
-    // valuationData.append("CompanyRequest", JSON.stringify(this.companyFormData));
-
-    // for (let i = 0; i < 4; i++) {
-    //   valuationData.append(i + 1 + "_" + this.otherImages[i].file.name, this.otherImages[i].file);
-    // }
-    // console.log(this.companyFormData);
-
-
-    // // if ( this.data.CompanyName = this.companyDetailsFormData.value.companyName )
-    // let token: any = localStorage.getItem("token");
-    // token = JSON.parse(token);
-    // $.ajax({
-    //   url: "https://beta.ovaluate.com/api/AddUpdateCompany",
-    //   method: "post",
-    //   contentType: false,
-    //   processData: false,
-    //   data: valuationData,
-    //   headers: {
-    //     "Authorization": 'bearer ' + token
-    //   },
-    //   dataType: "json",
-
     let valuationData = new FormData();
-      valuationData.append("CompanyRequest", JSON.stringify(this.companyFormData));
+    valuationData.append("CompanyRequest", JSON.stringify(this.companyFormData));
 
-      for (let i = 0; i < 3; i++) {
-        valuationData.append(i + 1 + "_" + this.otherImages[i].file.name, this.otherImages[i].file);
-      }
-      let token: any = localStorage.getItem("token");
-      token = JSON.parse(token);
-      $.ajax({
-        url: "https://beta.ovaluate.com/api/AddUpdateCompany",
-        method: "post",
-        contentType: false,
-        processData: false,
-        data: valuationData,
-        headers: {
-          "Authorization": 'bearer ' + token
-        },
-        dataType: "json",
+    for (let i = 0; i < 4; i++) {
+      valuationData.append(i + 1 + "_" + this.otherImages[i].file.name, this.otherImages[i].file);
+    }
+    console.log(this.companyFormData);
+
+
+    // if ( this.data.CompanyName = this.companyDetailsFormData.value.companyName )
+    let token: any = localStorage.getItem("token");
+    token = JSON.parse(token);
+    $.ajax({
+      url: "https://beta.ovaluate.com/api/AddUpdateCompany",
+      method: "post",
+      contentType: false,
+      processData: false,
+      data: valuationData,
+      headers: {
+        "Authorization": 'bearer ' + token
+      },
+      dataType: "json",
       success: (res: any) => {
         console.log(res)
         this.companyDataId = res.data.id;
-        if (res.message == "company request completed successfully") {
-          this.notifyService.showSuccess(res.message, "Company details updated successfully");
-        }
+        this.notifyService.showSuccess(res.message, "Company details updated successfully");
+        // if (res.message == "company request completed successfully") {
+        // }
         // this.companyDetailsFormData = res.data.id;
         // this.notifyService.showSuccess(res.message, "Company details updated successfully");
       },
