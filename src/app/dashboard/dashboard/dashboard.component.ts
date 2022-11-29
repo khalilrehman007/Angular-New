@@ -81,14 +81,29 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   plus = '../../../../assets/images/plus.svg';
   showSuccess: boolean = false;
   success: any = "";
-  agentDetails:any = "";
-  agentLanguages:any = [];
-  agentAreas:any = [];
+  agentDetails: any = "";
+  agentLanguages: any = [];
+  agentAreas: any = [];
+  confirmMessage: any = "";
+  showConfirm: any = "";
+  deleteID: any = "";
   successResponse(data: any) {
     this.showSuccess = false;
   }
   errorResponse(data: any) {
     this.showError = false;
+  }
+  confirmResponse(data: any) {
+    this.showConfirm = false;
+    console.log(data);
+    if (data == "Yes") {
+      this.service.DeletePropertyListing(this.deleteID).subscribe((result: any) => {
+        if (result.result == 1) {
+          this.success = "Property Deleted Successfully";
+          this.showSuccess = true;
+        }
+      })
+    }
   }
   bedrooms = [
     { viewValue: '01', value: 'bedroom' },
@@ -235,7 +250,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.getCountData('');
     this.getWishlisting();
     let temp: any = localStorage.getItem("user");
-    this.service.GetAgentProfile(JSON.parse(temp).id).subscribe((result:any) => {
+    this.service.GetAgentProfile(JSON.parse(temp).id).subscribe((result: any) => {
       this.agentDetails = result.data;
       console.log(this.agentDetails);
       this.NationalityId = this.agentDetails.agentDetails.nationalityId
@@ -243,13 +258,13 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         agentAboutMe: this.agentDetails.agentDetails.aboutMe,
         BRNNo: this.agentDetails.agentDetails.brnNo
       })
-      if(this.agentDetails.agentDetails.agentLanguages.length > 0) {
-        for(let item of this.agentDetails.agentDetails.agentLanguages) {
+      if (this.agentDetails.agentDetails.agentLanguages.length > 0) {
+        for (let item of this.agentDetails.agentDetails.agentLanguages) {
           this.agentLanguages.push(item.spokenLanguageId);
         }
       }
-      if(this.agentDetails.agentDetails.agentAreas.length > 0) {
-        for(let item of this.agentDetails.agentDetails.agentAreas) {
+      if (this.agentDetails.agentDetails.agentAreas.length > 0) {
+        for (let item of this.agentDetails.agentDetails.agentAreas) {
           this.agentAreas.push(item.districtId);
         }
       }
@@ -908,7 +923,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       this.showError = true;
       return;
     }
-
     this.companyFormData.CompanyName = this.companyDetail.value.companyName;
     this.companyFormData.TradeLicenseNo = this.companyDetail.value.tradeLicenseNo;
     this.companyFormData.PremitNo = this.companyDetail.value.permitNo;
@@ -916,16 +930,24 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.companyFormData.RERANo = this.companyDetail.value.reraNo;
     this.companyFormData.CompanyAdress = this.companyDetail.value.companyAddress;
 
+    let temp: any = [];
+    this.otherImages.forEach((element: any, i: any) => {
+      console.log(element.file.name);
+      let extension: any = element.file.name.split(".");
+      temp.push({ "FileId": i, "RegistrationDocumentTypeId": i.toString(), "FileName": element.file.name, "Extension": extension[1] });
+    })
+    this.companyFormData.Documents = temp;
+    let data: any = {};
+    data.company = this.companyFormData;
     let valuationData = new FormData();
-    valuationData.append("CompanyRequest", JSON.stringify(this.companyFormData));
+    valuationData.append("CompanyRequest", JSON.stringify(data));
 
     for (let i = 0; i < 4; i++) {
       valuationData.append(i + 1 + "_" + this.otherImages[i].file.name, this.otherImages[i].file);
     }
-    console.log(this.companyFormData);
+    console.log(data);
 
 
-    // if ( this.data.CompanyName = this.companyDetailsFormData.value.companyName )
     let token: any = localStorage.getItem("token");
     token = JSON.parse(token);
     $.ajax({
@@ -1469,5 +1491,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
   openVerticallyCentered(sharecontent: any) {
     this.modalService.open(sharecontent, { centered: true });
+  }
+  deleteListing(e: any) {
+    this.deleteID = e;
+    this.confirmMessage = "Are you sure to delete this property";
+    this.showConfirm = true;
   }
 }
