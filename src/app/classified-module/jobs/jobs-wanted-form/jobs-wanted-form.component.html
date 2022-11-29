@@ -53,8 +53,8 @@
                             <div ngClass="col-xl-12 col-lg-12 col-sm-12">
                                 <div ngClass="block-wrapper mb-4 upload-file-text-btn">
                                     <input #fileInput type="file" hidden (change)="handleChange($event)">
-                                    <button mat-button (click)="fileInput.click()">Load Button</button>
-                                    Filename: {{file}}
+                                    <button mat-button (click)="fileInput.click()">Upload CV</button>
+                                    <span class="file-span-name">Filename: <span class="file-span-value">{{file}}</span></span>
                                 </div>
                             </div>
                             <div ngClass="col-xl-4 col-lg-4 col-sm-12">
