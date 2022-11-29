@@ -908,7 +908,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       this.showError = true;
       return;
     }
-
     this.companyFormData.CompanyName = this.companyDetail.value.companyName;
     this.companyFormData.TradeLicenseNo = this.companyDetail.value.tradeLicenseNo;
     this.companyFormData.PremitNo = this.companyDetail.value.permitNo;
@@ -916,16 +915,24 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.companyFormData.RERANo = this.companyDetail.value.reraNo;
     this.companyFormData.CompanyAdress = this.companyDetail.value.companyAddress;
 
+    let temp:any = [];
+    this.otherImages.forEach((element: any, i: any) => {
+      console.log(element.file.name);
+      let extension: any = element.file.name.split(".");
+      temp.push({ "FileId": i, "RegistrationDocumentTypeId": i.toString(), "FileName": element.file.name, "Extension": extension[1] });
+    })
+    this.companyFormData.Documents = temp;
+    let data:any = {};
+    data.company = this.companyFormData;
     let valuationData = new FormData();
-    valuationData.append("CompanyRequest", JSON.stringify(this.companyFormData));
+    valuationData.append("CompanyRequest", JSON.stringify(data));
 
     for (let i = 0; i < 4; i++) {
       valuationData.append(i + 1 + "_" + this.otherImages[i].file.name, this.otherImages[i].file);
     }
-    console.log(this.companyFormData);
+    console.log(data);
 
 
-    // if ( this.data.CompanyName = this.companyDetailsFormData.value.companyName )
     let token: any = localStorage.getItem("token");
     token = JSON.parse(token);
     $.ajax({
