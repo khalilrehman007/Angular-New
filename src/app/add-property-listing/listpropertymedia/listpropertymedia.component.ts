@@ -306,4 +306,8 @@ export class ListpropertymediaComponent implements OnInit {
   changeMainImg(index:any) {
     this.mainImage = index;
   }
+  upgradePackage() {
+    localStorage.setItem("listingComingFrom","media");
+    this.route.navigate(["/payment-packages"])
+  }
 }
