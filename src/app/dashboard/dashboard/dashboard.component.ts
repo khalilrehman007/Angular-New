@@ -929,7 +929,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.companyFormData.ORNNo = this.companyDetail.value.ornNo;
     this.companyFormData.RERANo = this.companyDetail.value.reraNo;
     this.companyFormData.CompanyAdress = this.companyDetail.value.companyAddress;
-
+    this.companyFormData.Id = 0;
+    // this.companyFormData.UserId = this.user.id;
+    
     let temp: any = [];
     this.otherImages.forEach((element: any, i: any) => {
       console.log(element.file.name);
@@ -939,6 +941,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.companyFormData.Documents = temp;
     let data: any = {};
     data.company = this.companyFormData;
+    data.UserId = this.user.id;
     let valuationData = new FormData();
     valuationData.append("CompanyRequest", JSON.stringify(data));
 
