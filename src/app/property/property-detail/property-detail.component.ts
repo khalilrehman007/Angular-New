@@ -259,9 +259,11 @@ export class PropertyDetailComponent implements OnInit,AfterViewInit {
   scrollfix: boolean= false;
   ngAfterViewInit(): void {
     $(window).on("scroll", () => {
-      var sc = document.getElementsByTagName("footer");
+      let a:any = $("footer").offset()?.top;
+      let windowHeight:any = $(window).outerHeight();
+      let position:any = a - windowHeight;
       let temp: any=$(window).scrollTop();
-      if(temp >= 1030 && temp < sc){
+      if(temp >= 1030 && temp < position){
         this.scrollfix= true;
       }
       else{
