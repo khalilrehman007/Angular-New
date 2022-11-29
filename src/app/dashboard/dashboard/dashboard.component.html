@@ -1523,7 +1523,7 @@
                                                                                 <button ngbDropdownItem (click)="openVerticallyCentered(sharecontent)"><img
                                                                                             src="{{shareimg}}">
                                                                                         Share</button>
-                                                                                <button ngbDropdownItem><a href=""><img
+                                                                                <button ngbDropdownItem (click)="deleteListing(listing.id)"><a><img
                                                                                             src="{{deleteimg}}">
                                                                                         Delete</a></button>
                                                                                 <button ngbDropdownItem><a
@@ -5274,3 +5274,4 @@
         </div>
     </ng-template>
 </div>
+<app-confirmationbox [message]="confirmMessage" (confirmResponse)="confirmResponse($event)" *ngIf="showConfirm">
