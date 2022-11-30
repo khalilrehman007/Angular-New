@@ -34,6 +34,10 @@ import { NumberPlatesComponent } from './motors/number-plates/number-plates.comp
 import { JobHiringComponent } from './jobs/job-hiring/job-hiring.component';
 import { JobsHiringFormComponent } from './jobs/jobs-hiring-form/jobs-hiring-form.component';
 import { JobsWantedFormComponent } from './jobs/jobs-wanted-form/jobs-wanted-form.component';
+import { AppliancesFormComponent } from './appliances/appliances-form/appliances-form.component';
+import { FurnitureFormComponent } from './furniture/furniture-form/furniture-form.component';
+import { FreelancerFormComponent } from './freelancers/freelancer-form/freelancer-form.component';
+import { PhoneFormComponent } from './phones/phone-form/phone-form.component';
 
 
 @NgModule({
@@ -52,7 +56,11 @@ import { JobsWantedFormComponent } from './jobs/jobs-wanted-form/jobs-wanted-for
     NumberPlatesComponent,
     JobHiringComponent,
     JobsHiringFormComponent,
-    JobsWantedFormComponent
+    JobsWantedFormComponent,
+    AppliancesFormComponent,
+    FurnitureFormComponent,
+    FreelancerFormComponent,
+    PhoneFormComponent
   ],
   imports: [
     CommonModule,

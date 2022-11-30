@@ -13,7 +13,7 @@
             <div class="add-compare-cstm">
                 <div class="row">
                     <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
-                        <div class="add-compare-div">
+                        <div class="add-compare-div add-compare-div-first">
                             <button class="select-compare-btn" *ngIf="viewPropertyOne == ''"><span
                                     class="plus-icn" (click)="selectProperty(1)">+</span> <span class="select-text">اختر</span></button>
                             <div ngClass="property-comparison-block position-relative" *ngIf="viewPropertyOne != ''">
@@ -39,7 +39,7 @@
                         </div>
                     </div>
                     <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
-                        <div class="add-compare-div">
+                        <div class="add-compare-div add-compare-div-second">
                             <button class="select-compare-btn" *ngIf="viewPropertyTwo == ''"><span
                                     class="plus-icn"  (click)="selectProperty(2)">+</span> <span class="select-text">حدد نفس التفاصيل عن طريق تحديد منطقة مختلفة</span> </button>
                             <div ngClass="property-comparison-block position-relative" *ngIf="viewPropertyTwo != ''">
@@ -65,7 +65,7 @@
                         </div>
                     </div>
                     <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
-                        <div class="add-compare-div">
+                        <div class="add-compare-div add-compare-div-third">
                             <button class="select-compare-btn" *ngIf="viewPropertyThree == ''"><span
                                     class="plus-icn" (click)="selectProperty(3)">+</span> <span class="select-text" >حدد نفس التفاصيل عن طريق تحديد منطقة مختلفة</span> </button>
                             <div ngClass="property-comparison-block position-relative" *ngIf="viewPropertyThree != ''">
