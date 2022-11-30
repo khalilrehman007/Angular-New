@@ -149,7 +149,7 @@
                                                 <div ngClass="property_footer-details d-flex justify-content-spacebw">
                                                     <div ngClass="property_pricing">
                                                         <span class="currency_type">{{slide.currency}}</span>
-                                                        <span class="price_value">{{ slide.price }}</span>
+                                                        <span class="price_value">{{ slide.price | number }}</span>
                                                         <span *ngIf="slide.rentType != null" class="rent_type">{{slide.rentType}}</span>
                                                     </div>
                                                     <button class="property_det-btn">Details 
@@ -249,7 +249,7 @@
                                                 <div ngClass="property_footer-details d-flex justify-content-spacebw">
                                                     <div ngClass="property_pricing">
                                                         <span class="currency_type">{{slide.currency}}</span>
-                                                        <span class="price_value">{{ slide.price }}</span>
+                                                        <span class="price_value">{{ slide.price | number}}</span>
                                                         <span *ngIf="slide.rentType != null" class="rent_type">{{slide.rentType}}</span>
                                                     </div>
                                                     <button class="property_det-btn">Details 
@@ -410,7 +410,7 @@
                                                 <div ngClass="property_footer-details d-flex justify-content-spacebw">
                                                     <div ngClass="property_pricing">
                                                         <span class="currency_type">{{slide.currency}}</span>
-                                                        <span class="price_value">{{ slide.price }}</span>
+                                                        <span class="price_value">{{ slide.price | number }}</span>
                                                         <span *ngIf="slide.rentType != null" class="rent_type">{{slide.rentType}}</span>
                                                     </div>
                                                     <button class="property_det-btn">Details 
@@ -509,7 +509,7 @@
                                                 <div ngClass="property_footer-details d-flex justify-content-spacebw">
                                                     <div ngClass="property_pricing">
                                                         <span class="currency_type">{{slide.currency}}</span>
-                                                        <span class="price_value">{{ slide.price }}</span>
+                                                        <span class="price_value">{{ slide.price | number }}</span>
                                                         <span *ngIf="slide.rentType != null" class="rent_type">{{slide.rentType}}</span>
                                                     </div>
                                                     <button class="property_det-btn">Details 
