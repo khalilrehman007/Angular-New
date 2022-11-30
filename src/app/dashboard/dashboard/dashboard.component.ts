@@ -252,8 +252,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     let temp: any = localStorage.getItem("user");
     this.service.GetAgentProfile(JSON.parse(temp).id).subscribe((result: any) => {
       this.agentDetails = result.data;
-      console.log(this.agentDetails);
-      this.NationalityId = this.agentDetails.agentDetails.nationalityId
+      console.log(result.data);
+      this.NationalityId = this.agentDetails.agentDetails.nationalityId;
       this.agentBroker.patchValue({
         agentAboutMe: this.agentDetails.agentDetails.aboutMe,
         BRNNo: this.agentDetails.agentDetails.brnNo
