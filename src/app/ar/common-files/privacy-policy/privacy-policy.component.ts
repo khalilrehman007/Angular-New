@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from 'src/app/service/app.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-privacy-policy',
@@ -7,7 +8,7 @@ import { AppService } from 'src/app/service/app.service';
   styleUrls: ['./privacy-policy.component.scss']
 })
 export class PrivacyPolicyComponent implements OnInit {
-
+  baseUrl:string=environment.apiUrl;
   image:any;
   text:any;
   title:any;
@@ -17,7 +18,7 @@ export class PrivacyPolicyComponent implements OnInit {
     this.api.PrivacyPolicy().subscribe((result:any)=> {
       this.title = result.data.pageCaptionHelightAr;
       this.subHeading = result.data.pageCaptionTextAr;
-      this.image = "https://beta.ovaluate.com/" + result.data.fileUrl;
+      this.image = this.baseUrl + result.data.fileUrl;
       this.image = this.image.replaceAll("\\", "/");
       $(".inner-page-banner-sec").css({"background-image":"url('"+this.image+"')"})
       $(".cms_content-paragraph").append(result.data.pageContentAr);

@@ -69,7 +69,7 @@
                                                 </ng-template>
                                             </ngb-carousel> -->
                                             <div>
-                                                <img *ngIf="list.documents.length > 0 && list.documents[0].fileUrl != null" src="https://beta.ovaluate.com/{{list.documents[0].fileUrl}}">
+                                                <img *ngIf="list.documents.length > 0 && list.documents[0].fileUrl != null" src="{{baseUrl}}{{list.documents[0].fileUrl}}">
                                                 <img  *ngIf="list.documents.length == 0 || list.documents[0].fileUrl == null" src="assets/images/placeholder.png">
                                             </div>
                                         </div>

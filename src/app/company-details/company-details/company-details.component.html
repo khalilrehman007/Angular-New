@@ -14,7 +14,7 @@
                     <div class="row">
                         <div class="col-sm-12 col-md-4">
                             <img *ngIf="companyDetails.company && companyDetails.company.documents.length > 0"
-                                src="https://beta.ovaluate.com/{{companyDetails.company.documents[0].fileUrl}}" alt=""
+                                src="{{baseUrl}}{{companyDetails.company.documents[0].fileUrl}}" alt=""
                                 class="img-fluid company-details__wrapper-img">
                         </div>
                         <div class="col-sm-12 col-md-8">
@@ -109,7 +109,7 @@
                                                 <div class="row">
                                                     <div class="col-xl-5 col-lg-5 col-md-5 col-sm-12 d-flex align-items-center"
                                                         *ngIf="item.agentDetails.user && item.agentDetails.user.imageUrl">
-                                                        <img src="https://beta.ovaluate.com/{{item.agentDetails.user.imageUrl}}"
+                                                        <img src="{{baseUrl}}{{item.agentDetails.user.imageUrl}}"
                                                             alt="" class="img-fluid company-details__agent-img">
                                                     </div>
                                                     <div class="col-xl-7 col-lg-7 col-md-7 col-sm-12">
@@ -256,7 +256,7 @@
                             <h6 *ngIf="companyDetails.company && companyDetails.company.companyName">Contact {{companyDetails.company.companyName}}</h6>
                         </div>
                         <div class="col-4 text-end">
-                            <img *ngIf="companyDetails.company && companyDetails.company.documents.length > 0" src="https://beta.ovaluate.com/{{companyDetails.company.documents[0].fileUrl}}" alt="" class="company-details__form-img">
+                            <img *ngIf="companyDetails.company && companyDetails.company.documents.length > 0" src="{{baseUrl}}{{companyDetails.company.documents[0].fileUrl}}" alt="" class="company-details__form-img">
                         </div>
                     </div>
                     <form class="company-details__form" [formGroup]="agentContact">

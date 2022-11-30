@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { NotificationService } from "../../../service/notification.service";
 import { AuthService } from "../../../service/auth.service";
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { environment } from 'src/environments/environment';
 declare const google: any;
 
 @Component({
@@ -26,7 +27,7 @@ export class ViewmapComponent implements OnInit {
   map: any;
   page: number = 1;
   totalRecord: any = 0;
-  baseUrl = 'https://beta.ovaluate.com/'
+  baseUrl = environment.apiUrl;
 
   @ViewChild('mapView') mapElement: any;
 

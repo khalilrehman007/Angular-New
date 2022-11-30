@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 import { AuthService } from "../../service/auth.service";
 import { CookieService } from 'ngx-cookie-service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-homepage',
@@ -33,7 +34,7 @@ export class HomepageComponent implements OnInit, AfterViewInit {
   whatsapp = '../../../assets/images/icons/whatsapp.svg'
   twitter = '../../../assets/images/icons/twiiter-share.svg'
   content: any;
-  baseUrl = 'https://beta.ovaluate.com/'
+  baseUrl = environment.apiUrl;
   blogs: any;
   submitted = false;
   responsedata: any;
@@ -119,14 +120,17 @@ export class HomepageComponent implements OnInit, AfterViewInit {
       0: {
         items: 1
       },
-      576: {
+      400: {
         items: 2
       },
-      992: {
+      740: {
+        items: 3
+      },
+      940: {
         items: 4
       },
       1200: {
-        items: 4
+        items: 5
       }
     },
     nav: true

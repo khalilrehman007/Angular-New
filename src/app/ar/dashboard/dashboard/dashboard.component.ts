@@ -9,6 +9,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AppService } from 'src/app/service/app.service';
 import { AuthService } from 'src/app/service/auth.service';
 import { CookieService } from 'ngx-cookie-service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-dashboard',
@@ -89,7 +90,7 @@ blogs: any;
     { viewValue: '02', value: 'bedroom' },
     { viewValue: '03', value: 'bedroom' },
   ];
-  baseUrl = 'https://beta.ovaluate.com/'
+  baseUrl = environment.apiUrl;
   all: any;
   rent: any;
   buy: any;
@@ -920,7 +921,7 @@ blogs: any;
       let token: any = localStorage.getItem("token");
       token = JSON.parse(token);
       $.ajax({
-        url: "https://beta.ovaluate.com/api/AddUpdateAgentDetails",
+        url: `${environment.apiUrl}api/AddUpdateAgentDetails`,
         method: "post",
         contentType: false,
         processData: false,

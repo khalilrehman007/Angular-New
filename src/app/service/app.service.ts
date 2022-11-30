@@ -1,13 +1,12 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { data } from 'jquery';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppService {
-  apiurl = 'https://beta.ovaluate.com/api/';
+  apiurl = `${environment.apiUrl}api/`;
   id = 0;
   token: any = localStorage.getItem('token');
   // bearer :any = this.token.replace(/^"(.+)"$/,'$1') ;

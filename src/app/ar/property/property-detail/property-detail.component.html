@@ -335,10 +335,10 @@
                         <ng-template carouselSlide [id]="slide.id">
                             <div ngClass="property-item position-relative cursor-pointer">
                                 <div class="property-img-wrap" [routerLink]="['/ar/property/detail']" [queryParams]="{id: slide.id}">
-                                    <img src="https://beta.ovaluate.com/{{slide.documents[0].fileUrl}}" [alt]="slide.alt" [title]="slide.title">
+                                    <img src="{{baseUrl}}{{slide.documents[0].fileUrl}}" [alt]="slide.alt" [title]="slide.title">
                                 </div>
                                 <div ngClass="brand-logo" [routerLink]="['/ar/property/detail']" [queryParams]="{id: slide.id}">
-                                    <img src="https://beta.ovaluate.com/{{slide.documents[0].fileUrl}}" alt="">
+                                    <img src="{{baseUrl}}{{slide.documents[0].fileUrl}}" alt="">
                                 </div>
                                 <div class="pro_cntnt-main-wrap">
                                 <div class="property-cntnt_wrap">

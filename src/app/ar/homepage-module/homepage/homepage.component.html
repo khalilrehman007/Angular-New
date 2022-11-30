@@ -136,7 +136,7 @@
                             <ng-template carouselSlide [id]="slide.id">
                                 <div ngClass="property-item position-relative cursor-pointer">
                                     <div class="property-img-wrap" [routerLink]="['/ar/property/detail']" [queryParams]="{id: slide.id}">
-                                        <img src="https://beta.ovaluate.com/{{slide.documents[0].fileUrl}}"
+                                        <img src="{{baseUrl}}{{slide.documents[0].fileUrl}}"
                                         [alt]="slide.propertyTitle" [title]="slide.propertyTitle" />
                                     </div>
                                     <div ngClass="brand-logo" [routerLink]="['/ar/property/detail']" [queryParams]="{id: slide.id}">
@@ -293,7 +293,7 @@
                             <ng-template carouselSlide [id]="slide.id">
                                 <div ngClass="property-item position-relative cursor-pointer">
                                     <div class="property-img-wrap" [routerLink]="['/ar/property/detail']" [queryParams]="{id: slide.id}">
-                                        <img src="https://beta.ovaluate.com/{{slide.documents[0].fileUrl}}" [alt]="slide.propertyTitle" [title]="slide.propertyTitle" />
+                                        <img src="{{baseUrl}}{{slide.documents[0].fileUrl}}" [alt]="slide.propertyTitle" [title]="slide.propertyTitle" />
                                     </div>
                                     <div ngClass="brand-logo" [routerLink]="['/ar/property/detail']" [queryParams]="{id: slide.id}">
                                         <img src="{{ brandimg }}" alt="" />
@@ -407,7 +407,7 @@
                                     </div>
                                 </div>
                                 <div ngClass="col-md-6 property-listing-slider-right">
-                                    <img src="https://beta.ovaluate.com/{{ item.ovaluateOfferingDocument.fileUrl }}"
+                                    <img src="{{baseUrl}}{{ item.ovaluateOfferingDocument.fileUrl }}"
                                         ngClass="img-fluid lisitng-right-img" alt="" />
                                 </div>
                             </div>
@@ -432,7 +432,7 @@
             <div ngClass="row">
                 <div ngClass="col-md-6 explore-places-col" *ngFor="let data of explorePlaces">
                     <a routerLink="/ar/explore/details/{{data.id}}">
-                        <img src="https://beta.ovaluate.com/{{ data.document.fileUrl}}" ngClass="img-fluid" alt="" />
+                        <img src="{{baseUrl}}{{ data.document.fileUrl}}" ngClass="img-fluid" alt="" />
                         <div ngClass="explore-place-content">
                             <h5>{{ data.nameAr }}</h5>
                             <p>{{ data.detailsAr }}</p>
@@ -459,7 +459,7 @@
                 <div ngClass="col-lg-4 col-md-6 blog-places-col" *ngFor="let blog of blogs">
                     <a routerLink="/ar/blog/details/{{blog.slugName}}" ngClass="position-relative">
                         <!-- blog.blogDocument.fileUrl -->
-                        <img [src]="'https://beta.ovaluate.com/' + blog.blogDocument.fileUrl"
+                        <img [src]="baseUrl + blog.blogDocument.fileUrl"
                             ngClass="img-fluid blog-image-homepage" alt="" />
                         <span ngClass="blog-tag">
                             <img [src]="blog.src2" ngClass="img-fluid" alt="" />

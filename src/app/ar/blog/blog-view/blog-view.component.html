@@ -47,7 +47,7 @@
                 <div ngClass="col-lg-4 col-md-6 blog-places-col" *ngFor=" let item of blog.blogCategory.blogs">
                     <a routerLink="/ar/blogs-details/{{item.id}}">
                         <img *ngIf="item.blogDocument && item.blogDocument.fileUrl"
-                            src="https://beta.ovaluate.com/{{item.blogDocument.fileUrl}}"
+                            src="{{baseUrl}}{{item.blogDocument.fileUrl}}"
                             ngClass="img-fluid blog-image-homepage" alt="">
                         <!-- <span ngClass="blog-tag">
                             <img [src]="item.src2" ngClass="img-fluid" alt="">

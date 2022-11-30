@@ -165,7 +165,7 @@
                                             *ngFor="let data of propertyDetails.propertyFeatures">
                                             <div ngClass="amenties_info-text">
                                                 <!-- <img height="40px" width="40px"
-                                                    src="https://beta.ovaluate.com/{{data.propertyFeature.document.fileUrl}}"> -->
+                                                    src="{{baseUrl}}{{data.propertyFeature.document.fileUrl}}"> -->
                                                 <p>{{data.propertyFeature.featureName}}</p>
                                                 <!-- <button ngClass="see-more-amenties">{{data.btnvalue}}</button> -->
                                             </div>

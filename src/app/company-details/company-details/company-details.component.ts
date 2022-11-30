@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms'
 import { ActivatedRoute } from '@angular/router';
 import { AppService } from 'src/app/service/app.service';
+import { environment } from 'src/environments/environment';
 import { NotificationService } from "../../service/notification.service";
 
 
@@ -32,7 +33,7 @@ export class CompanyDetailsComponent implements OnInit {
    this.DisplayCompany();
    this.LoadPropertySortBy();
   }
-  baseUrl :any='https://beta.ovaluate.com/'
+  baseUrl:string=environment.apiUrl;
 
   DisplayCompany(){
     this.service.DisplayCompany({"companyId": this.id, "SortedBy": this.sortedById}).subscribe((result: any) => {

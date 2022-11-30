@@ -277,7 +277,7 @@
                                             <div class="row">
                                                 <div class="col-5 d-flex align-items-center">
                                                     <img *ngIf="data.documents.length > 0 && data.documents[0].fileUrl"
-                                                        src="https://beta.ovaluate.com/{{data.documents[0].fileUrl}}"
+                                                        src="{{baseUrl}}{{data.documents[0].fileUrl}}"
                                                         alt="" class="img-fluid agent-landing-featured__property-img">
                                                     <img *ngIf="data.documents.length == 0"
                                                         src="assets/images/placeholder.png" alt=""

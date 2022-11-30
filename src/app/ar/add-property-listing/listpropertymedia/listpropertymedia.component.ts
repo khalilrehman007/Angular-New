@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { FileUploadService } from '../../../service/file-upload.service';
 import { Router } from "@angular/router";
 import { AppService } from 'src/app/service/app.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-listpropertymedia',
@@ -267,7 +268,7 @@ export class ListpropertymediaComponent implements OnInit {
     token = JSON.parse(token);
     console.log(this.data);
     $.ajax({
-      url: "https://beta.ovaluate.com/api/AddPropertyListing",
+      url: `${environment.apiUrl}api/AddPropertyListing`,
       method: "post",
       contentType: false,
       processData: false,

@@ -1,6 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { AppService } from 'src/app/service/app.service';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -9,6 +10,7 @@ import { AppService } from 'src/app/service/app.service';
   styleUrls: ['./market-trends.component.scss']
 })
 export class MarketTrendsComponent implements OnInit, AfterViewInit {
+  baseUrl:string=environment.apiUrl;
   exploreimg = '../../../../assets/images/Blog-Tile.png'
   Newssec = [
     {

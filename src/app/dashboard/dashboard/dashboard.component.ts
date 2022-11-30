@@ -10,6 +10,7 @@ import { DatePipe } from '@angular/common';
 import { AppService } from 'src/app/service/app.service';
 import { AuthService } from "../../service/auth.service";
 import { CookieService } from 'ngx-cookie-service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-dashboard',
@@ -100,7 +101,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     { viewValue: '02', value: 'bedroom' },
     { viewValue: '03', value: 'bedroom' },
   ];
-  baseUrl = 'https://beta.ovaluate.com/'
+  baseUrl = environment.apiUrl;
   all: any;
   rent: any;
   buy: any;
@@ -929,7 +930,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     let token: any = localStorage.getItem("token");
     token = JSON.parse(token);
     $.ajax({
-      url: "https://beta.ovaluate.com/api/AddUpdateCompany",
+      url: `${environment.apiUrl}api/AddUpdateCompany`,
       method: "post",
       contentType: false,
       processData: false,
@@ -1011,7 +1012,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       let token: any = localStorage.getItem("token");
       token = JSON.parse(token);
       $.ajax({
-        url: "https://beta.ovaluate.com/api/AddUpdateAgentDetails",
+        url: `${environment.apiUrl}api/AddUpdateAgentDetails`,
         method: "post",
         contentType: false,
         processData: false,

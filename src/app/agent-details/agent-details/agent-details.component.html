@@ -14,7 +14,7 @@
                 <div class="agent-details__wrapper">
                     <div class="row">
                         <div class="col-sm-12 col-md-4" *ngIf="newAgentDetail.image">
-                            <img src="https://beta.ovaluate.com/{{newAgentDetail.image}}" alt=""
+                            <img src="{{baseUrl}}{{newAgentDetail.image}}" alt=""
                                 class="img-fluid agent-details__wrapper-img">
                         </div>
                         <div class="col-sm-12 col-md-4" *ngIf="!newAgentDetail.image">
