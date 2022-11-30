@@ -250,25 +250,27 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.getCountData('');
     this.getWishlisting();
     let temp: any = localStorage.getItem("user");
-    this.service.GetAgentProfile(JSON.parse(temp).id).subscribe((result: any) => {
-      this.agentDetails = result.data;
-      console.log(result.data);
-      this.NationalityId = this.agentDetails.agentDetails.nationalityId;
-      this.agentBroker.patchValue({
-        agentAboutMe: this.agentDetails.agentDetails.aboutMe,
-        BRNNo: this.agentDetails.agentDetails.brnNo
+    if (this.professionalType == 1 || this.professionalType == 2 || this.professionalType == 3) {
+      this.service.GetAgentProfile(JSON.parse(temp).id).subscribe((result: any) => {
+        this.agentDetails = result.data;
+        console.log(result.data);
+        this.NationalityId = this.agentDetails.agentDetails.nationalityId;
+        this.agentBroker.patchValue({
+          agentAboutMe: this.agentDetails.agentDetails.aboutMe,
+          BRNNo: this.agentDetails.agentDetails.brnNo
+        })
+        if (this.agentDetails.agentDetails.agentLanguages.length > 0) {
+          for (let item of this.agentDetails.agentDetails.agentLanguages) {
+            this.agentLanguages.push(item.spokenLanguageId);
+          }
+        }
+        if (this.agentDetails.agentDetails.agentAreas.length > 0) {
+          for (let item of this.agentDetails.agentDetails.agentAreas) {
+            this.agentAreas.push(item.districtId);
+          }
+        }
       })
-      if (this.agentDetails.agentDetails.agentLanguages.length > 0) {
-        for (let item of this.agentDetails.agentDetails.agentLanguages) {
-          this.agentLanguages.push(item.spokenLanguageId);
-        }
-      }
-      if (this.agentDetails.agentDetails.agentAreas.length > 0) {
-        for (let item of this.agentDetails.agentDetails.agentAreas) {
-          this.agentAreas.push(item.districtId);
-        }
-      }
-    })
+    }
     this.service.UserProfile(JSON.parse(temp).id).subscribe((result: any) => {
       this.userData = result.data;
       this.professionalType = result.data.professionalTypeId;
@@ -931,7 +933,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.companyFormData.CompanyAdress = this.companyDetail.value.companyAddress;
     this.companyFormData.Id = 2;
     // this.companyFormData.UserId = this.user.id;
-    
+
     let temp: any = [];
     this.otherImages.forEach((element: any, i: any) => {
       console.log(element.file.name);
