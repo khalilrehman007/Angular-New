@@ -13,6 +13,10 @@ import { NumberPlatesComponent } from './motors/number-plates/number-plates.comp
 import { JobHiringComponent } from './jobs/job-hiring/job-hiring.component';
 import { JobsHiringFormComponent } from './jobs/jobs-hiring-form/jobs-hiring-form.component';
 import { JobsWantedFormComponent } from './jobs/jobs-wanted-form/jobs-wanted-form.component';
+import { AppliancesFormComponent } from './appliances/appliances-form/appliances-form.component';
+import { FurnitureFormComponent } from './furniture/furniture-form/furniture-form.component';
+import { FreelancerFormComponent } from './freelancers/freelancer-form/freelancer-form.component';
+import { PhoneFormComponent } from './phones/phone-form/phone-form.component';
 
 const routes: Routes = [
   { path: "", component: ClassifiedHomeComponent },
@@ -26,8 +30,12 @@ const routes: Routes = [
   { path: "boats-ad-details", component: BoatsComponent },
   { path: "number-plates-ad-details", component: NumberPlatesComponent },
   { path: "job-type-selection", component: JobHiringComponent },
-   { path: "job-hiring", component: JobsHiringFormComponent },
-  { path: "job-requirement", component: JobsWantedFormComponent }
+  { path: "job-hiring", component: JobsHiringFormComponent },
+  { path: "job-requirement", component: JobsWantedFormComponent },
+  { path: "appliances-form", component: AppliancesFormComponent },
+  { path: "furniture-form", component: FurnitureFormComponent },
+  { path: "freelancer-form", component: FreelancerFormComponent },
+  { path: "phone-form", component: PhoneFormComponent }
 ];
 
 @NgModule({

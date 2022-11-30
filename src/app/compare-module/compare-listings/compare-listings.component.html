@@ -25,7 +25,7 @@
                                 <img  *ngIf="property.documents.length == 0 || property.documents[0].fileUrl == null" src="assets/images/placeholder.png">
                             </div>
                             <div ngClass="com-cntnt">
-                                <h4> {{property.propertyPrice}} {{property.country.currency}}
+                                <h4> {{property.propertyPrice | number}} {{property.country.currency}}
                                     <small *ngIf="property.rentType != null && property.rentType != ''">/{{property.rentType.name}}</small>
                                 </h4>
                                 <h5>{{property.title}}</h5>
@@ -193,11 +193,11 @@
                 <div ngClass="compare-block-list">
                     <div class="comparen-list-item first-block">
                         <div ngClass="first-td-design">
-                            <p>Gross rental ration</p>
+                            <p>Gross rental ratio</p>
                         </div>
                     </div>
                     <div class="comparen-list-item bedrooms" *ngFor="let property of propertyDetails">
-                        <p class="title-description">{{property.unitNo != null ? property.unitNo : "0"}}</p>
+                        <p class="title-description">{{property.grossRentalRatio != null ? property.grossRentalRatio : "0"}}</p>
                     </div>
                 </div>
                 <div ngClass="compare-block-list">

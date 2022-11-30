@@ -167,7 +167,11 @@ export class PaymentPackagesComponent implements OnInit, AfterViewInit {
     } else {
       console.log(this.selectedPackageByPoints)
       localStorage.setItem("seletedPackage", JSON.stringify(this.selectedPackageByPoints));
-      this.router.navigate(["/add-property/listingproperty"]);
+      if(localStorage.getItem("listingComingFrom") == "media") {
+        this.router.navigate(["/add-property/listpropertymedia"]);
+      } else {
+        this.router.navigate(["/add-property/listingproperty"]);
+      }
 
       // this.showLoader = true;
       // let temp: any = localStorage.getItem("user");

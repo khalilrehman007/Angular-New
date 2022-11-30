@@ -21,7 +21,7 @@
                                 *ngFor=" let blog of marketTrendsBlog.blogs">
                                 <a routerLink="/blog/details/{{blog.slugName}}">
                                     <!-- blog.blogDocument.fileUrl -->
-                                    <img src="https://beta.ovaluate.com/{{blog.blogDocument.fileUrl}}"
+                                    <img src="{{baseUrl}}{{blog.blogDocument.fileUrl}}"
                                         ngClass="img-fluid blog-image-homepage" alt="">
                                     <!-- <span ngClass="blog-tag">
                             <img [src]="blog.src2" ngClass="img-fluid" alt="">

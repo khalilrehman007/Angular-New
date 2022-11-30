@@ -92,8 +92,7 @@
                     <li class="nav-item" role="presentation">
                         <button class="nav-link my-listing-btn" id="pills-listing-tab" data-bs-toggle="pill"
                             data-bs-target="#pills-listing" type="button" role="tab" aria-controls="pills-listing"
-                            aria-selected="false"
-                            *ngIf="professionalType == 1 || professionalType == 2 || professionalType == 3">My
+                            aria-selected="false">My
                             Listings</button>
                     </li>
                     <li class="nav-item" role="presentation">
@@ -148,8 +147,7 @@
                 <div class="tab-pane fade show active" id="pills-dashboard" role="tabpanel"
                     aria-labelledby="pills-dashboard-tab">
 
-                    <div class="free-proplisting"
-                        *ngIf="professionalType == 1 || professionalType == 2 || professionalType == 3">
+                    <div class="free-proplisting">
                         <div class="first-title">
                             <h3 class="title">FREE Property Listing</h3>
                             <p>Sell or Rent Your Home</p>
@@ -165,8 +163,7 @@
 
                     <div class="statictics-wrap">
                         <div class="row">
-                            <div class="col-md-6"
-                                *ngIf="professionalType == 1 || professionalType == 2 || professionalType == 3">
+                            <div class="col-md-6">
                                 <div class="card">
                                     <div class="content-area">
                                         <h4 class="title">Listings Summary</h4>
@@ -1523,7 +1520,7 @@
                                                                                 <button ngbDropdownItem (click)="openVerticallyCentered(sharecontent)"><img
                                                                                             src="{{shareimg}}">
                                                                                         Share</button>
-                                                                                <button ngbDropdownItem><a href=""><img
+                                                                                <button ngbDropdownItem (click)="deleteListing(listing.id)"><a><img
                                                                                             src="{{deleteimg}}">
                                                                                         Delete</a></button>
                                                                                 <button ngbDropdownItem><a
@@ -5274,3 +5271,4 @@
         </div>
     </ng-template>
 </div>
+<app-confirmationbox [message]="confirmMessage" (confirmResponse)="confirmResponse($event)" *ngIf="showConfirm">

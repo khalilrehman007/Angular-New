@@ -58,7 +58,7 @@
                             <img src="{{cars.src}}">
                             </div>
                             <div ngClass="property-info">
-                                <span ngClass="property-pricing"><span>{{cars.price}}</span></span>
+                                <span ngClass="property-pricing"><span>{{cars.price | number}}</span></span>
                                 <span ngClass="property-name">{{cars.PropertyName}}</span>
                                 <p ngClass="property-location">
                                     <img src="{{ homelocationsvg }}" width="14" alt="" />{{cars.address}}
@@ -86,7 +86,7 @@
                             <img src="{{furniture.src}}">
                             </div>
                             <div ngClass="property-info">
-                                <span ngClass="property-pricing"><span>{{furniture.price}}</span></span>
+                                <span ngClass="property-pricing"><span>{{furniture.price | number}}</span></span>
                                 <span ngClass="property-name">{{furniture.PropertyName}}</span>
                                 <p ngClass="property-location">
                                     <img src="{{ homelocationsvg }}" width="14" alt="" />{{furniture.address}}
@@ -114,7 +114,7 @@
                             <img src="{{sports.src}}">
                             </div>
                             <div ngClass="property-info">
-                                <span ngClass="property-pricing"><span>{{sports.price}}</span></span>
+                                <span ngClass="property-pricing"><span>{{sports.price | number}}</span></span>
                                 <span ngClass="property-name">{{sports.PropertyName}}</span>
                                 <p ngClass="property-location">
                                     <img src="{{ homelocationsvg }}" width="14" alt="" />{{sports.address}}
@@ -142,7 +142,7 @@
                             <img src="{{MobileTable.src}}">
                             </div>
                             <div ngClass="property-info">
-                                <span ngClass="property-pricing"><span>{{MobileTable.price}}</span></span>
+                                <span ngClass="property-pricing"><span>{{MobileTable.price | number}}</span></span>
                                 <span ngClass="property-name">{{MobileTable.PropertyName}}</span>
                                 <p ngClass="property-location">
                                     <img src="{{ homelocationsvg }}" width="14" alt="" />{{MobileTable.address}}

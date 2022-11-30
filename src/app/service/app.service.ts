@@ -509,4 +509,7 @@ export class AppService {
   ClassifiedCategories() {
     return this.http.get(this.apiurl + 'ClassifiedCategories');
   }
+  DeletePropertyListing(id:any) {
+    return this.http.get(this.apiurl + 'DeletePropertyListing/' + id);
+  }
 }

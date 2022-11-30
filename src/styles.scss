@@ -3774,7 +3774,6 @@ input[type=number] {
 			}
 		}
 	}
-
 	.property-whistlist.active {
 		svg {
 			fill: #e65050;
@@ -12284,44 +12283,44 @@ background: transparent !important;
     border: none !important;
 }
 .select2-design .select2 .select2-selection > .select2-selection__rendered {
-	max-width: 90%;
+	max-width: 97%;
     margin-bottom: 0px !important;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     display: inline-block;
+    padding-right: 0px;
 }
 .select2-container--default .select2-selection--multiple .select2-selection__choice {
-    font-size: 12px;
-    background: rgba(89, 90, 212, 0.2);
-    padding: 3px 7px 3px 13px;
+	font-size: 12px;
+    background: transparent !important;
+    padding: 0px !important;
     min-height: 28px;
-    margin: 1px 4px 1px 0px !important;
-    border: none !important;
-}
-.select2-container--default .select2-selection--multiple .select2-selection__choice {
-    font-size: 12px;
-    background: #4a565f !important;
-    padding: 5px 7px 3px 21px !important;
-    min-height: 28px;
-    margin: 1px 4px 1px 0px !important;
+    margin: 0px !important;
     border: none !important;
     border-radius: 50px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+}
+.select2-design .select2 .select2-selection > .select2-selection__rendered:empty {
+    display: none;
 }
 .select2-container--default .select2-selection--multiple .select2-selection__choice .select2-selection__choice__remove {
-    width: 15px;
-    height: 15px;
-    padding: 0px !important;
-    color: #fff !important;
-    border: none !important;
-    top: 4px;
-    left: 4px;
-    cursor: pointer;
-    background-color: transparent !important;
+    display: none !important;
 }
 .select2-container--default .select2-selection--multiple .select2-selection__choice__display {
-    color: #fff;
-	font-weight: 400;
+	color: #4a565f;
+    font-weight: 400;
+    padding-left: 2px !important;
+    padding-right: 2px !important;
+	font-size: 14px;
+}
+.select2-container--default .select2-selection--multiple .select2-selection__choice:last-child .select2-selection__choice__display::after{
+	display: none;
+}
+.select2-container--default .select2-selection--multiple .select2-selection__choice__display::after {
+    content: ',';
+    margin-left: 4px;
 }
 .select2-search.select2-search--inline textarea {
     font-size: 14px !important;
@@ -13184,6 +13183,7 @@ input:focus{
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
+	min-height: 20px;
 }
 .property_hdr-actions .property-whistlist {
     padding: 0px;
@@ -13200,8 +13200,12 @@ input:focus{
 	display: none;
 }
 .property_hdr-actions {
-    display: flex;
+	display: flex;
     align-items: center;
+    position: absolute;
+    bottom: 116px;
+    right: 25px;
+    z-index: 99;
 }
 .property_hdr-actions>.property-whistlist {
     margin-right: 15px;
@@ -13620,4 +13624,45 @@ input:focus{
 }
 .textarea-design.desc-input .mat-form-field-flex textarea {
     height: 120px;
+}
+
+.property_hdr-actions{
+	transition: all 0.5s ease-in-out;
+	.property-whistlist {
+		svg {
+			stroke: #0A0A0B;
+			width: auto !important;
+			height: auto !important;
+		}
+
+		&:hover {
+			svg {
+				fill: #e65050;
+				stroke: #e65050;
+			}
+		}
+	}
+}
+.map-view-listin .row>div {
+    position: relative;
+}
+.property-item:hover+.property_hdr-actions {
+    bottom: 127px;
+}
+.upload-file-text-btn button {
+    background-color: #595ad6;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+	margin-right: 10px;
+}
+.upload-file-text-btn button:hover {
+    background-color: #000;
+}
+
+@media (min-width: 1200px){
+    .popular-car-comparisons-slider .owl-item {
+        max-width: 650px;
+    }
 }
