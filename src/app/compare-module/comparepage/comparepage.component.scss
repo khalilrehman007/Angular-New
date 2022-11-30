@@ -13,15 +13,8 @@
     padding-bottom: 60px;
     background-color: whitesmoke;
 }
-.add-compare-div .select-compare-btn {
-    background: #fff;
-    border: none;
-    width: 100%;
-    height: 200px;
-    border-radius: 10px;
-}
 .add-compare-div .select-compare-btn .plus-icn {
-    border: 1px solid #b5b5b5;
+    border: 1px solid #e6e5e5;
     width: 80px;
     height: 80px;
     border-radius: 50%;
@@ -33,6 +26,7 @@
     margin-right: auto;
     font-weight: 200;
     margin-bottom: 15px;
+    color: #4a565f;
 }
 .add-compare-div .select-compare-btn {
     background: #fff;
@@ -43,10 +37,10 @@
     cursor: pointer;
     font-weight: 300;
     padding: 15px;
-}
-.add-compare-div .select-compare-btn:hover {
-    background-color: #363636 !important;
-    color: #fff;
+    border-top: 7px solid;
+    transition: all 0.5s ease-in-out;
+    position: relative;
+    bottom: 0;
 }
 .add-compare-cstm {
     width: 100%;
@@ -57,6 +51,8 @@
 .add-compare-div .select-compare-btn .select-text {
     display: block;
     min-height: 48px;
+    font-weight: 400;
+    color: #4a565f;
 }
 .pcompare-properties-flex {
     flex-wrap: nowrap;
@@ -373,3 +369,45 @@
         padding: 60px 0px !important;
     }
 }
+.add-compare-div-first .select-compare-btn {
+    border-color: #4677c9 !important;
+}
+.add-compare-div-second .select-compare-btn {
+    border-color: #2DB57D !important;
+}
+.add-compare-div-third .select-compare-btn {
+    border-color: purple !important;
+}
+.add-compare-div .select-compare-btn:hover {
+    color: #fff;
+    bottom: 5px;
+    transition: all 0.5s ease-in-out;
+    box-shadow: 0px 0 61px -36px #000929;
+}
+.add-compare-div .select-compare-btn:hover .select-text{
+    color: #fff !important;
+}
+.add-compare-div-first .select-compare-btn:hover {
+    background-color: #4677c9 !important;
+}
+.add-compare-div-second .select-compare-btn:hover {
+    background-color: #2DB57D !important;
+}
+.add-compare-div-third .select-compare-btn:hover {
+    background-color: purple !important;
+}
+.add-compare-div .select-compare-btn:hover .plus-icn {
+    background-color: #fff;
+    border-color: #fff !important;
+}
+.add-compare-div-first .select-compare-btn:hover .plus-icn{
+    color: #4677c9 !important;
+}
+.add-compare-div-second .select-compare-btn:hover .plus-icn{
+    color: #2DB57D !important;
+}
+.add-compare-div-third .select-compare-btn:hover .plus-icn{
+    color: purple !important;
+}
+
+

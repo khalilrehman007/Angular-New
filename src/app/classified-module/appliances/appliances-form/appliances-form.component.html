@@ -1,0 +1,228 @@
+<app-header></app-header>
+<section [ngClass]="'slide-left-bar ads-page-sec'">
+    <section [ngClass]="'ads-banner-wrapper'">
+        <div [ngClass]="'container_1280px'">
+            <div ngClass="heading-title-sec text-center">
+                <h2>Ovaluate Ad Classified</h2>
+                <p>Tell us about your listing?</p>
+            </div>
+        </div>
+    </section>
+    <section class="ads-form-design-section" style="background-image: url('assets/images/background/bg-1.png');">
+        <div class="container_1280px">
+            <div class="ads-form-design">
+                <form>
+                    <div class="list-property-header">
+                        <h5 class="h5-heading">Please Fill your Lisitng Details</h5>
+                    </div>
+                    <div class="class-fied-breadcrumbs">
+                        <ul class="list-unstyled d-flex">
+                            <li><a routerLink="/classified/ad-post">Ad Post</a></li>
+                            <li>Appliances <span class="divider-bread">/</span> Refrigerator</li>
+                        </ul>
+                    </div>
+                    <div ngClass="select-boxes">
+                        <div ngClass="row">
+                            <div ngClass="col-xl-4 col-lg-4 col-sm-12">
+                                <div ngClass="block-wrapper mb-4">
+                                        <label>Title <span class="required-span">*</span></label>
+                                        <mat-form-field class="full-width input-design-2" appearance="fill">
+                                            <input matInput type="text" placeholder="Enter Title"
+                                                lang="en" />
+                                        </mat-form-field>
+                                </div>
+                            </div>
+                            <div ngClass="col-xl-4 col-lg-4 col-sm-12">
+                                <div ngClass="block-wrapper mb-4 position-relative optional-text">
+                                        <label>Phone Number</label>
+                                        <mat-form-field class="full-width input-design-2" appearance="fill">
+                                            <input matInput type="number" placeholder="Enter Phone Number"
+                                                lang="en" />
+                                        </mat-form-field>
+                                        <span class="optional-span">*Optional</span>
+                                </div>
+                            </div>
+                            <div ngClass="col-xl-4 col-lg-4 col-sm-12">
+                                <div ngClass="block-wrapper mb-4 aed-text position-relative">
+                                        <label>Price <span class="required-span">*</span></label>
+                                        <mat-form-field class="full-width input-design-2" appearance="fill">
+                                            <input matInput type="number" placeholder="Enter Price"
+                                                lang="en" />
+                                        </mat-form-field>
+                                        <span class="price-tag-input">AED</span>
+                                </div>
+                            </div>
+                            <div ngClass="col-xl-12 col-lg-12 col-sm-12">
+                                <div ngClass="block-wrapper mb-4">
+                                        <div ngClass="select-design select2-design full-width-select2">
+                                            <label>Do you want to show or hide your phone number?</label>
+                                            <select class="select2 country-select">
+                                                <option value="yes"> Show Number </option>
+                                                <option value="no">Hide Number</option>
+                                            </select>
+                                        </div>
+                                </div>
+                            </div>
+                            <div ngClass="col-xl-12 col-lg-12 col-sm-12">
+                                <div ngClass="propery-pictures-sec mb-4">
+                                    <div class="inneR-border-wrap position-relative">
+                                        <div ngClass="div_thumb-wrapper img_upload">
+                                            <label class="btn btn-default p-0 upload-label">
+                                                <input type="file" accept=".jpg, .png, .jpeg," multiple
+                                                    class="input-file" />
+                                                <button ngClass="black-upload-btn"><span
+                                                        ngClass="plus_icon-div">+</span> Upload Pictures</button>
+                                            </label>
+                                            <div ngClass="upload-preview-images">
+                                                <img ngClass="img-thumb-icon"
+                                                    src="../../../../assets/images/image-gallery-thumbnail.png">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                            <div ngClass="col-xl-12 col-lg-12 col-sm-12">
+                                <div ngClass="block-wrapper mb-4">
+                                        <label>Description <span class="required-span">*</span></label>
+                                        <mat-form-field class="full-width input-design-2 textarea-design-2" appearance="fill">
+                                            <textarea matInput type="number" placeholder="Enter Description Here...."
+                                                ></textarea>
+                                        </mat-form-field>
+                                </div>
+                            </div>
+                            <div ngClass="col-xl-4 col-lg-4 col-sm-12">
+                                <div ngClass="block-wrapper mb-4">
+                                    <div ngClass="select-design select2-design">
+                                        <label>Age <span class="required-span">*</span></label>
+                                        <select class="select2 country-select">
+                                            <option value="1">Brand New</option>
+                                            <option value="2">0-1 month</option>
+                                            <option value="3">1-6 months</option>
+                                            <option value="4">6-12 months</option>
+                                            <option value="5">1-2 years</option>
+                                            <option value="6">2-5 years</option>
+                                            <option value="7">5-10 years</option>
+                                            <option value="8">10+ years</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ngClass="col-xl-4 col-lg-4 col-sm-12">
+                                <div ngClass="block-wrapper mb-4">
+                                    <div ngClass="select-design select2-design">
+                                        <label>Usage <span class="required-span">*</span></label>
+                                        <select class="select2 country-select">
+                                            <option value="1">Still in original packaging</option>
+                                            <option value="2">Out of original packaging, but only used once</option>
+                                            <option value="3">Used only a few times</option>
+                                            <option value="4">Used an average amount, as frequently as would be expected</option>
+                                            <option value="5">Used an above average amount since purchased</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ngClass="col-xl-4 col-lg-4 col-sm-12">
+                                <div ngClass="block-wrapper mb-4">
+                                    <div ngClass="select-design select2-design">
+                                        <label>Condition <span class="required-span">*</span></label>
+                                        <select class="select2 country-select">
+                                            <option value="5">Perfect inside and out</option>
+                                            <option value="4">Almost no noticeable problems or flaws</option>
+                                            <option value="3">A bit of wear and tear, but in good working condition</option>
+                                            <option value="2">Normal wear and tear for the age of the item, a few problems here and there</option>
+                                            <option value="1">Above average wear and tear.  The item may need a bit of repair to work properly</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ngClass="col-xl-4 col-lg-4 col-sm-12">
+                                <div ngClass="block-wrapper mb-4">
+                                    <div ngClass="select-design select2-design">
+                                        <label>Brand <span class="required-span">*</span></label>
+                                        <select class="select2 country-select">
+                                            <option value="197">Admiral</option>
+                                            <option value="210">Aftron</option>
+                                            <option value="212">Bompani</option>
+                                            <option value="198">Bosch</option>
+                                            <option value="215">Braun</option>
+                                            <option value="232">Char-Broil</option>
+                                            <option value="231">Coleman</option>
+                                            <option value="217">Daewoo</option>
+                                            <option value="225">Dyson</option>
+                                            <option value="202">Electrolux</option>
+                                            <option value="206">Elekta</option>
+                                            <option value="199">Fisher &amp; Paykel</option>
+                                            <option value="195">Frigidaire</option>
+                                            <option value="194">GE</option>
+                                            <option value="200">Haier</option>
+                                            <option value="219">Hitachi</option>
+                                            <option value="216">Hoover</option>
+                                            <option value="201">Hotpoint-Ariston</option>
+                                            <option value="208">Indesit</option>
+                                            <option value="203">Kenmore</option>
+                                            <option value="214">Kenwood</option>
+                                            <option value="204">Kitchen-Aid</option>
+                                            <option value="230">La Germania</option>
+                                            <option value="209">Lavazza</option>
+                                            <option value="193">LG</option>
+                                            <option value="196">Maytag</option>
+                                            <option value="211">Miele</option>
+                                            <option value="222">Moulinex</option>
+                                            <option value="224">Nespresso</option>
+                                            <option value="218">Nikai</option>
+                                            <option value="227">Optima</option>
+                                            <option value="213">Panasonic</option>
+                                            <option value="220">Philips</option>
+                                            <option value="205">Samsung</option>
+                                            <option value="223">Sanyo</option>
+                                            <option value="207">Siemens</option>
+                                            <option value="221">Toshiba</option>
+                                            <option value="229">Weber</option>
+                                            <option value="228">Westpoint</option>
+                                            <option value="192">Whirlpool</option>
+                                            <option value="226">Zanussi</option>
+                                            <option value="233">Other</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div ngClass="col-xl-12 col-lg-12 col-sm-12">
+                            <div ngClass="block-wrapper mb-3 position-relative optional-text">
+                                    <label>Locate your appliances</label>
+                                    <mat-form-field class="full-width input-design-2" appearance="fill">
+                                        <input matInput type="text" placeholder="Locate your appliances"
+                                            lang="en" />
+                                    </mat-form-field>
+                                    <span class="optional-span">*Optional</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div ngClass="address-sec">
+                        <div ngClass="block-wrapper-address">
+                            <label class="h6-design">Is the pin in the right location? </label>
+                            <p class="under-label-text">Click and drag the pin to the exact spot. Users are more likely to respond to ads that are correctly shown on the map</p>
+                            <div ngClass="position-relative">
+                                <div style="width: 100%;">
+                                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d462562.6509516108!2d54.94729613679833!3d25.07575945545691!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f43496ad9c645%3A0xbde66e5084295162!2sDubai%20-%20United%20Arab%20Emirates!5e0!3m2!1sen!2sin!4v1666784711777!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                </div>
+                            </div>
+                            <p class="under-label-text">Make sure the car information you have entered is correct. You will only be able to make select changes once the ad is live.</p>
+                        </div>
+                    </div>
+                    <div class="text-right save-continue-sec justify-content-center">
+                        <mat-card-actions>
+                            <button class="save-continue-btn cursor-pointer">Next</button>
+                        </mat-card-actions>
+                    </div>
+                    <div class="text-center question-div">
+                        <p><a href="tel:+97150 8960006">Question? Call +97150 8960006</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+<app-footer></app-footer>
+</section>
