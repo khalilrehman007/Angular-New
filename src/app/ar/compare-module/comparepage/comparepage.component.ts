@@ -106,6 +106,7 @@ export class ComparepageComponent implements OnInit {
   }
   popularComparisonOptions: OwlOptions = {
     loop: false,
+    rtl: true,
     mouseDrag: true,
     touchDrag: true,
     pullDrag: true,
@@ -132,6 +133,7 @@ export class ComparepageComponent implements OnInit {
     loop: false,
     mouseDrag: true,
     touchDrag: true,
+    rtl: true,
     pullDrag: true,
     dots: true,
     navSpeed: 700,
