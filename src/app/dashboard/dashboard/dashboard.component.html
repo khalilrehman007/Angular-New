@@ -2318,7 +2318,7 @@
                                 </mat-tab>
                                 <mat-tab label="Agent/Broker Details"
                                     *ngIf="professionalType == 1 || professionalType == 2 || professionalType == 3">
-                                    <div class="row">
+                                    <div class="row" *ngIf="agentDetails != '' && agentDetails.agentDetails != null">
                                         <div class="col-md-9">
                                             <form [formGroup]="agentBroker">
                                                 <div class="">
