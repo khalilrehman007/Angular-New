@@ -776,6 +776,7 @@ console.log(this.userData)
       })
       this.totalLength = tempData.length
       this.listingAll = tempData
+      console.log(this.listingAll)
     });
 
   }

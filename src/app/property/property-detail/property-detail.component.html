@@ -59,12 +59,12 @@
                     <div ngClass="property-addresss">
                                 <p><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M256 0c17.7 0 32 14.3 32 32V66.7C368.4 80.1 431.9 143.6 445.3 224H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H445.3C431.9 368.4 368.4 431.9 288 445.3V480c0 17.7-14.3 32-32 32s-32-14.3-32-32V445.3C143.6 431.9 80.1 368.4 66.7 288H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H66.7C80.1 143.6 143.6 80.1 224 66.7V32c0-17.7 14.3-32 32-32zM128 256c0 70.7 57.3 128 128 128s128-57.3 128-128s-57.3-128-128-128s-128 57.3-128 128zm128 80c-44.2 0-80-35.8-80-80s35.8-80 80-80s80 35.8 80 80s-35.8 80-80 80z"/></svg> {{propertyDetailData.propertyAddress}}</p>
                     </div>
-                    <div ngClass="property-tags d-flex flex-wrap">
+                    <!-- <div ngClass="property-tags d-flex flex-wrap">
                         <span ngClass="tags-bg-grey">Brokrage: {{propertyDetailData.brokerageChargePrice | number}}
                             {{propertyDetailData.currency}}</span>
                         <span ngClass="tags-bg-grey">Security deposit:
                             {{propertyDetailData.securityDepositPrice | number}} {{propertyDetailData.currency}}</span>
-                    </div>
+                    </div> -->
             </div>
             <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                 <div ngClass="property-action_detals text-right">
@@ -121,11 +121,11 @@
                                     </span>
                                 </div>
                             </div>
-                            <div ngClass="key-tags">
+                            <!-- <div ngClass="key-tags">
                                 <span *ngFor="let data of propertyDetailData.propertyFeatures">
                                     {{data.propertyFeature.featureName}}
                                 </span>
-                            </div>
+                            </div> -->
                             <div ngClass="description-block-design">
                                 <h4>Property Description</h4>
                                 <p>{{propertyDetailData.propertyDescription}}</p>
@@ -164,8 +164,8 @@
                                         <div ngClass="col-xl-3 col-lg-3 col-md-12 col-sm-12"
                                             *ngFor="let data of propertyDetails.propertyFeatures">
                                             <div ngClass="amenties_info-text">
-                                                <!-- <img height="40px" width="40px"
-                                                    src="{{baseUrl}}{{data.propertyFeature.document.fileUrl}}"> -->
+                                                <img height="20px" width="20px"
+                                                    src="{{baseUrl}}{{data.propertyFeature.document.fileUrl}}">
                                                 <p>{{data.propertyFeature.featureName}}</p>
                                                 <!-- <button ngClass="see-more-amenties">{{data.btnvalue}}</button> -->
                                             </div>
@@ -254,7 +254,7 @@
                                     </p>
                                     <p ngClass="rera"> RERA# 11899</p>
                                     <p ngClass="permit">Permit# 7187842740</p>
-                                    <a routerLink="/agent-details/{{userData.id}}" ngClass="properties-listed-no"
+                                    <a routerLink="/agent-details/{{userData?.id}}" ngClass="properties-listed-no"
                                         *ngIf="userData != ''">47 - Active Properties Listed</a>
                                 </div>
                             </div>

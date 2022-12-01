@@ -1449,7 +1449,7 @@
                                                                     [queryParams]="{id: listing.id}">
                                                                     <div class="col-7">
                                                                         <a
-                                                                            class="agent-details__property-list-item-link cursor-pointer">{{listing.propertyPrice}}
+                                                                            class="agent-details__property-list-item-link cursor-pointer">{{listing.propertyPrice |number }}
                                                                             {{listing.currency}}<small
                                                                                 *ngIf="listing.rentType != ''">{{listing.rentType}}</small>
                                                                         </a>
@@ -1465,14 +1465,12 @@
                                                                             {{listing.expiredDateFormat}}</p>
                                                                     </div>
                                                                 </div>
-                                                                <h6>{{listing.buildingName}}</h6>
+                                                                <h5>{{listing.propertyTitle}}</h5>
                                                                 <p class="agent-details__property-list-item-text">
                                                                     <img src="assets/images/home-location.svg" alt=""
                                                                         class="img-fluid agent-details__property-list-item-text-icon">
                                                                     {{listing.propertyAddress}}
                                                                 </p>
-                                                                <p class="agent-details__property-list-item-type">
-                                                                    {{listing.propertyDescription}}</p>
                                                                 <div class="row">
                                                                     <div class="col-md-10">
                                                                         <ul class="agent-details__property-detail-list">
@@ -1492,7 +1490,7 @@
                                                                                 class="agent-details__property-detail-list-item sqft">
                                                                                 <img src="assets/images/icons/Square Meters.svg"
                                                                                     alt="">
-                                                                                {{listing.carpetArea}} Sq.Ft.
+                                                                                {{listing.carpetArea == null || listing.carpetArea==0 ? listing.buildupArea ==null || listing.buildupArea==0 ?0:listing.buildupArea.toLocaleString()  :listing.carpetArea.toLocaleString() }} Sq.Ft.
                                                                             </li>
                                                                             <li
                                                                                 class="agent-details__property-detail-list-item furnising">

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Location } from '@angular/common';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
@@ -25,6 +25,7 @@ declare const google: any;
   styleUrls: ['./property-detail.component.scss']
 })
 export class PropertyDetailComponent implements OnInit {
+  @ViewChild('propertyDetails__map') mapElement: any;
   homelocationsvg = 'assets/images/home-location.svg'
   bedsvg = 'assets/images/icons/Bed.svg'
   bathsvg = 'assets/images/icons/Bath-tub.svg'
@@ -169,14 +170,14 @@ export class PropertyDetailComponent implements OnInit {
   dataLoaded: boolean = false;
   propertyId: any;
   userId: any;
-  propertyLat: number = 0;
-  propertyLng: number = 0;
+  propertyLat: any = 0;
+  propertyLng: any = 0;
   buildingName: any;
   map: any;
   bounds: any = [];
   id: number = 1;
   propertyData: any = "";
-  userData: any = "";
+  userData: any = [];
   scroll(el: HTMLElement) {
     el.scrollIntoView();
   }
@@ -345,6 +346,7 @@ export class PropertyDetailComponent implements OnInit {
   getloadDashboardData() {
     return this.service.DisplayPropertyListing({ "PropertyListingId": this.propertyId, "LoginUserId": this.userId }).subscribe((e: any) => {
       let temp: any = e;
+      console.log("temp",temp)
       this.propertyData = e.data.propertyListing;
       this.userData = temp.data.user;
       this.propertyLat = temp.data.propertyListing.propertyLat;
@@ -355,20 +357,32 @@ export class PropertyDetailComponent implements OnInit {
       this.propertyDetail = jsonParsDate
       this.isload = true
 
-      this.map = new mapboxgl.Map({
-        accessToken: environment.mapbox.accessToken,
-        container: 'property-near-map',
-        style: 'mapbox://styles/mapbox/streets-v11',
-        center: [this.propertyLng, this.propertyLat],
-        zoom: 11,
-      })
-      let marker = new mapboxgl.Marker({ color: "#FF0000", draggable: false }).setLngLat([this.propertyLng, this.propertyLat]).addTo(this.map).setPopup(
-        new mapboxgl.Popup({ offset: 25, focusAfterOpen: false }) // add popups
-          .setHTML(this.buildingName)
-      ).togglePopup();
-
+      // this.map = new mapboxgl.Map({
+      //   accessToken: environment.mapbox.accessToken,
+      //   container: 'property-near-map',
+      //   style: 'mapbox://styles/mapbox/streets-v11',
+      //   center: [this.propertyLng, this.propertyLat],
+      //   zoom: 11,
+      // })
+      // let marker = new mapboxgl.Marker({ color: "#FF0000", draggable: false }).setLngLat([this.propertyLng, this.propertyLat]).addTo(this.map).setPopup(
+      //   new mapboxgl.Popup({ offset: 25, focusAfterOpen: false }) // add popups
+      //     .setHTML(this.buildingName)
+      // ).togglePopup();
+      this.map = new google.maps.Map(this.mapElement.nativeElement, {
+        center: { "lat": parseFloat(this.propertyLat), "lng": parseFloat(this.propertyLng) },
+        zoom: 16,
+        disableDefaultUI: true,
+      });
+      let marker = new google.maps.Marker({
+        position: { "lat": parseFloat(this.propertyLat), "lng": parseFloat(this.propertyLng) },
+        map: this.map,
+        label: {
+          className: 'map-marker-label',
+          text: this.buildingName==""?"Location":this.buildingName
+        },
+      });
       let tenantType: any = '';
-      if (jsonParsDate.propertyListing.tenantType !== null && jsonParsDate.propertyListing.tenantType.name !== null && jsonParsDate.propertyListing.tenantType.name !== undefined) {
+      if (jsonParsDate.propertyListing.tenantType !== null && jsonParsDate.propertyListing.tenantType?.name !== null && jsonParsDate.propertyListing.tenantType?.name !== undefined) {
         tenantType = jsonParsDate.propertyListing.tenantType.name
       }
 
@@ -377,12 +391,12 @@ export class PropertyDetailComponent implements OnInit {
         occupancyStatus = jsonParsDate.propertyListing.occupancyStatus.name
       }
       let propertyManage: any = '';
-      if (jsonParsDate.propertyListing.propertyManage !== null && jsonParsDate.propertyListing.propertyManage.name !== null && jsonParsDate.propertyListing.propertyManage.name !== undefined) {
+      if (jsonParsDate.propertyListing.propertyManage !== null && jsonParsDate.propertyListing.propertyManage?.name !== null && jsonParsDate.propertyListing.propertyManage?.name !== undefined) {
         propertyManage = jsonParsDate.propertyListing.propertyManage.name
       }
 
       let rentType: any = '';
-      if (jsonParsDate.propertyListing.rentType !== null && jsonParsDate.propertyListing.rentType.name !== null && jsonParsDate.propertyListing.rentType.name !== undefined && jsonParsDate.propertyListing.propertyListingTypeId != 2) {
+      if (jsonParsDate.propertyListing.rentType !== null && jsonParsDate.propertyListing.rentType?.name !== null && jsonParsDate.propertyListing.rentType?.name !== undefined && jsonParsDate.propertyListing.propertyListingTypeId != 2) {
         rentType = jsonParsDate.propertyListing.rentType.name
       }
 
@@ -455,11 +469,11 @@ export class PropertyDetailComponent implements OnInit {
           this.documentCheck = false;
         }
 
-        if (this.propertyDetail.propertyListing.documents[0].fileUrl != null && this.propertyDetail.propertyListing.documents[0].fileUrl !== undefined) {
-          this.thumb1 = this.baseUrl + this.propertyDetail.propertyListing.documents[0].fileUrl;
+        if (this.propertyDetail.propertyListing.documents[0]?.fileUrl != null && this.propertyDetail.propertyListing.documents[0]?.fileUrl !== undefined) {
+          this.thumb1 = this.baseUrl + this.propertyDetail.propertyListing.documents[0]?.fileUrl;
         }
-        if (this.propertyDetail.propertyListing.documents.length > 0 && this.propertyDetail.propertyListing.documents[1].fileUrl !== undefined) {
-          this.thumb2 = this.baseUrl + this.propertyDetail.propertyListing.documents[1].fileUrl;
+        if (this.propertyDetail.propertyListing.documents.length > 0 && this.propertyDetail.propertyListing.documents[1]?.fileUrl !== undefined) {
+          this.thumb2 = this.baseUrl + this.propertyDetail.propertyListing.documents[1]?.fileUrl;
         }
 
         if (jsonParsDate.detailsChart != null) {
@@ -559,7 +573,7 @@ export class PropertyDetailComponent implements OnInit {
       },
       {
         label: 'نوع المستأجر المفضل',
-        value: this.propertyData.tenantType.nameAr,
+        value: this.propertyData.tenantType?.nameAr,
       },
       {
         label: 'نوع الجنس المفضل',
@@ -587,23 +601,23 @@ export class PropertyDetailComponent implements OnInit {
       },
       {
         label: 'الملكية تدار من قبل',
-        value: this.propertyData.propertyManage.nameAr,
+        value: this.propertyData.propertyManage?.nameAr,
       },
       {
         label: 'سعر',
-        value: this.propertyDetailData.propertyPrice + ' ' + this.propertyData.country.currencyAr,
+        value: this.propertyDetailData.propertyPrice + ' ' + this.propertyData.country?.currencyAr,
       },
       {
         label: 'نوع الإيجار',
-        value: this.propertyDetailData.propertyPrice + ' ' + this.propertyData.country.currencyAr,
+        value: this.propertyDetailData.propertyPrice + ' ' + this.propertyData.country?.currencyAr,
       },
       {
         label: 'مبلغ التأمين',
-        value: this.propertyDetailData.securityDepositPrice + ' ' + this.propertyData.country.currencyAr,
+        value: this.propertyDetailData.securityDepositPrice + ' ' + this.propertyData.country?.currencyAr,
       },
       {
         label: 'إيداع الوساطة',
-        value: this.propertyDetailData.brokerageChargePrice + ' ' + this.propertyData.country.currencyAr,
+        value: this.propertyDetailData.brokerageChargePrice + ' ' + this.propertyData.country?.currencyAr,
       },
       {
         label: 'متاح من',
