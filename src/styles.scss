@@ -4888,7 +4888,7 @@ img {
 }
 
 .btn-design-3 {
-	background-color: #4a565f;
+	background-color: #0f2ead;
 	border-radius: 8px;
 	color: $color_5;
 	width: 100%;
@@ -4900,27 +4900,28 @@ img {
 
 .contact-list-details {
 	padding-top: 20px;
+	padding-left: 10px;
+    padding-right: 10px;
 
 	button {
-		border-radius: 6px;
-		background: #fff;
-		color: #4A565F;
-		padding: 9px 10px 9px 40px;
+		border-radius: 50px;
+		color: #fff;
+		padding: 12px 10px 12px 10px;
 		font-size: 14px;
 		width: 100%;
 		position: relative;
-		text-align: left;
+		text-align: center;
 		border: none;
 
 		img {
-			position: absolute;
-			top: 12px;
-			margin-right: 3px;
-			left: 15px;
+			filter: brightness(0) invert(1);
+			position: relative;
+			margin-right: 5px;
+			bottom: 1px;
 		}
 
 		&:hover {
-			background-color: #4a565f;
+			background-color: #000;
 			color: #fff;
 			a{
 				color: #fff;
@@ -4931,15 +4932,31 @@ img {
 		}
 
 		a {
-			color: $color_7;
+			color: #fff;
 			display: block;
 		}
 	}
 
 	>.row {
+		margin-left: 0px;
+		margin-right: 0px;
 		>div {
-			margin-bottom: 15px;
+			margin-bottom: 10px;
+			padding: 0px 5px;
 		}
+	}
+	.call_btn {
+		background-color: #595ad5;
+		color: #fff;
+	}
+	.whatsapp_btn {
+		background-color: #70b662;
+	}
+	.chat_btn {
+		background-color: #0d6efd;
+	}
+	.videocall_btn {
+		background-color: #4a565f;
 	}
 }
 
