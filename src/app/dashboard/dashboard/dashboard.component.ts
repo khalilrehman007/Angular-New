@@ -81,7 +81,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   plus = '../../../../assets/images/plus.svg';
   showSuccess: boolean = false;
   success: any = "";
-  agentDetails: any = "";
+  agentDetails: any = {};
   agentLanguages: any = [];
   agentAreas: any = [];
   confirmMessage: any = "";
@@ -95,7 +95,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
   confirmResponse(data: any) {
     this.showConfirm = false;
-    console.log(data);
     if (data == "Yes") {
       this.service.DeletePropertyListing(this.deleteID).subscribe((result: any) => {
         if (result.result == 1) {
@@ -250,10 +249,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.getCountData('');
     this.getWishlisting();
     let temp: any = localStorage.getItem("user");
-    if (this.professionalType == 1 || this.professionalType == 2 || this.professionalType == 3) {
-      this.service.GetAgentProfile(JSON.parse(temp).id).subscribe((result: any) => {
-        this.agentDetails = result.data;
-        console.log(result.data);
+    this.service.GetAgentProfile(JSON.parse(temp).id).subscribe((result: any) => {
+      this.agentDetails = result.data;
+      if(this.agentDetails.agentDetails != null) {
         this.NationalityId = this.agentDetails.agentDetails.nationalityId;
         this.agentBroker.patchValue({
           agentAboutMe: this.agentDetails.agentDetails.aboutMe,
@@ -269,8 +267,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             this.agentAreas.push(item.districtId);
           }
         }
-      })
-    }
+      }
+    })
     this.service.UserProfile(JSON.parse(temp).id).subscribe((result: any) => {
       this.userData = result.data;
       this.professionalType = result.data.professionalTypeId;
@@ -283,8 +281,12 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       } else if (this.userData.gender == "Female") {
         this.getGender(2)
       }
-      this.onCountrySelect({ value: this.userData.countryId })
-      this.onCitySelect({ value: this.userData.cityId });
+      if(this.userData.countryId != null) {
+        this.onCountrySelect({ value: this.userData.countryId })
+      }
+      if(this.userData.cityId != null) {
+        this.onCitySelect({ value: this.userData.cityId });
+      }
       if (this.userData.imageUrl == null) {
         this.proAvatar = '../../assets/images/user.png';
       } else {
@@ -875,7 +877,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.districtsIds.push(e)
   }
 
-  NationalityId: any;
+  NationalityId: any = 0;
   onChangeNationality(event: any) {
     this.NationalityId = event.value;
   }
@@ -936,7 +938,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
     let temp: any = [];
     this.otherImages.forEach((element: any, i: any) => {
-      console.log(element.file.name);
       let extension: any = element.file.name.split(".");
       temp.push({ "FileId": i, "RegistrationDocumentTypeId": i.toString(), "FileName": element.file.name, "Extension": extension[1] });
     })
@@ -950,7 +951,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     for (let i = 0; i < 4; i++) {
       valuationData.append(i + 1 + "_" + this.otherImages[i].file.name, this.otherImages[i].file);
     }
-    console.log(data);
 
 
     let token: any = localStorage.getItem("token");
@@ -966,7 +966,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       },
       dataType: "json",
       success: (res: any) => {
-        console.log(res)
         this.companyDataId = res.data.id;
         this.notifyService.showSuccess(res.message, "Company details updated successfully");
         // if (res.message == "company request completed successfully") {
