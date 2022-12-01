@@ -58,6 +58,9 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="no-data-found" *ngIf="searchListing.length == 0">
+                            <img src="/assets/images/No-data.svg">
+                        </div>
                         <div ngClass="properties-list-design">
                             <div
                                 *ngFor=" let list of searchListing | paginate: { itemsPerPage: 10, currentPage: page ,totalItems:totalRecord }; let i = index">
