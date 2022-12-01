@@ -234,7 +234,7 @@ export class HomepageComponent implements OnInit, AfterViewInit {
   totalSales: any;
   totalMortgages: any;
   userId: any;
-  explorePlaces: any;
+  explorePlaces: any = [];
   trendTitle: any = [];
   constructor(private cookie: CookieService, private authService: AuthService, private service: AppService, private route: Router, private notifyService: NotificationService,private modalService: NgbModal) {
     $(window).scrollTop(0);
