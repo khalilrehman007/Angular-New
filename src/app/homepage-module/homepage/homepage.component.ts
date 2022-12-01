@@ -34,7 +34,7 @@ export class HomepageComponent implements OnInit, AfterViewInit {
   twitter = '../../../assets/images/icons/twiiter-share.svg'
   content: any;
   baseUrl = 'https://beta.ovaluate.com/'
-  blogs: any;
+  blogs: any = [];
   submitted = false;
   responsedata: any;
   dynamicSlides1: any = [];
@@ -231,7 +231,7 @@ export class HomepageComponent implements OnInit, AfterViewInit {
   totalSales: any;
   totalMortgages: any;
   userId: any;
-  explorePlaces: any;
+  explorePlaces: any = [];
   trendTitle: any = [];
   constructor(private cookie: CookieService, private authService: AuthService, private service: AppService, private route: Router, private notifyService: NotificationService,private modalService: NgbModal) {
     $(window).scrollTop(0);
