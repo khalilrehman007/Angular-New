@@ -52,24 +52,26 @@ export class HomepageComponent implements OnInit, AfterViewInit {
   oldData1() {
     this.service.LatestPropertiesListingResidential({ "CountryId": this.countryData.id, "UserId": this.userId, "propertyListingTypeId": "1" }).subscribe((response: any) => {
       this.dynamicSlides1 = response.data;
-      console.log(this.dynamicSlides1);
+      console.log("1",this.dynamicSlides1)
     });
   }
   newData1() {
     this.service.LatestPropertiesListingResidential({ "CountryId": this.countryData.id, "UserId": this.userId, "propertyListingTypeId": "2" }).subscribe((response: any) => {
       this.dynamicSlides1 = response.data;
+      console.log("1",this.dynamicSlides1)
     });
   }
 
   oldData2() {
     this.service.LatestPropertiesListingCommercial({ "CountryId": this.countryData.id, "UserId": this.userId, "propertyListingTypeId": "1" }).subscribe((response: any) => {
       this.dynamicSlides2 = response.data;
-      console.log(this.dynamicSlides2);
+      console.log("dynamic",this.dynamicSlides2);
     });
   }
   newData2() {
     this.service.LatestPropertiesListingCommercial({ "CountryId": this.countryData.id, "UserId": this.userId, "propertyListingTypeId": "2" }).subscribe((response: any) => {
       this.dynamicSlides2 = response.data;
+      console.log("dynamic",this.dynamicSlides2);
     });
   }
   tenantsslide = [
@@ -128,9 +130,6 @@ export class HomepageComponent implements OnInit, AfterViewInit {
       },
       940: {
         items: 4
-      },
-      1200: {
-        items: 5
       }
     },
     nav: true

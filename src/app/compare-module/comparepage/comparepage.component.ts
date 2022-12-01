@@ -150,9 +150,6 @@ export class ComparepageComponent implements OnInit {
       },
       940: {
         items: 4
-      },
-      1200: {
-        items: 5
       }
     },
     nav: true

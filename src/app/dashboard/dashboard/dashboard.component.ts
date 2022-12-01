@@ -164,7 +164,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   myValuation: any = [];
   myValuationResidential: any = [];
   myValuationCommercial: any = [];
-
+  expertIn:any="";
 
   lastPropertyLastingDate: any;
   totalRestentailPropertyListing: any;
@@ -251,21 +251,23 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.getCountData('');
     this.getWishlisting();
     let temp: any = localStorage.getItem("user");
+    let x=JSON.parse(temp);
+    this.professionalType=x.professionalTypeId;
     if (this.professionalType == 1 || this.professionalType == 2 || this.professionalType == 3) {
       this.service.GetAgentProfile(JSON.parse(temp).id).subscribe((result: any) => {
         this.agentDetails = result.data;
         console.log(result.data);
-        this.NationalityId = this.agentDetails.agentDetails.nationalityId;
+        this.NationalityId = this.agentDetails?.agentDetails?.nationalityId;
         this.agentBroker.patchValue({
-          agentAboutMe: this.agentDetails.agentDetails.aboutMe,
-          BRNNo: this.agentDetails.agentDetails.brnNo
+          agentAboutMe: this.agentDetails?.agentDetails?.aboutMe,
+          BRNNo: this.agentDetails?.agentDetails?.brnNo
         })
-        if (this.agentDetails.agentDetails.agentLanguages.length > 0) {
+        if (this.agentDetails?.agentDetails?.agentLanguages?.length > 0) {
           for (let item of this.agentDetails.agentDetails.agentLanguages) {
             this.agentLanguages.push(item.spokenLanguageId);
           }
         }
-        if (this.agentDetails.agentDetails.agentAreas.length > 0) {
+        if (this.agentDetails?.agentDetails?.agentAreas?.length > 0) {
           for (let item of this.agentDetails.agentDetails.agentAreas) {
             this.agentAreas.push(item.districtId);
           }
@@ -274,6 +276,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     }
     this.service.UserProfile(JSON.parse(temp).id).subscribe((result: any) => {
       this.userData = result.data;
+console.log(this.userData)
       this.professionalType = result.data.professionalTypeId;
       if (this.professionalType == null) {
         this.professionalType = 0;

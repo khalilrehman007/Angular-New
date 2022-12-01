@@ -170,7 +170,7 @@
                                                     <path d="M1.8 11.8542L5.72734 15.7816" stroke="#242A2F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                                     <path d="M12.2726 15.7816L16.1999 11.8542" stroke="#242A2F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                                 </svg>                                                                                                                                            
-                                                {{slide.plotSize != null ? slide.plotSize : 0}} Sqft
+                                                {{slide.plotSize == null || slide.plotSize==0 ? slide.buildupArea ==null || slide.buildupArea==0 ?0:slide.buildupArea:slide.plotSize }} Sqft
                                             </span>
                                         </div>
                                     </div>
@@ -326,7 +326,7 @@
                                                     <path d="M1.8 11.8542L5.72734 15.7816" stroke="#242A2F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                                     <path d="M12.2726 15.7816L16.1999 11.8542" stroke="#242A2F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                                 </svg>                                                                                                                                                                                                               
-                                                {{slide.plotSize != null ? slide.plotSize : 0}} Sqft
+                                                {{slide.plotSize == null || slide.plotSize==0 ? slide.buildupArea ==null || slide.buildupArea==0 ?0:slide.buildupArea:slide.plotSize }} Sqft
                                             </span>
                                         </div>
                                     </div>

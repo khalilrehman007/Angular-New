@@ -2358,12 +2358,12 @@
                                                                                         id="{{list.name}}"
                                                                                         name="expert-in"
                                                                                         value="{{list.id}}"
-                                                                                        *ngIf="list.name == agentDetails.agentDetails.expertIn" checked>
+                                                                                        *ngIf="list.name == expertIn" checked>
                                                                                     <input type="radio"
                                                                                         id="{{list.name}}"
                                                                                         name="expert-in"
                                                                                         value="{{list.id}}"
-                                                                                        *ngIf="list.name != agentDetails.agentDetails.expertIn">
+                                                                                        *ngIf="list.name != expertIn">
                                                                                     <button
                                                                                         class="checkbox-btn">{{list.name}}</button>
                                                                                 </div>
@@ -2379,7 +2379,7 @@
                                                                             <mat-label>Select Nationality</mat-label>
                                                                             <mat-select [disableOptionCentering]="true"
                                                                                 (selectionChange)="onChangeNationality($event)"
-                                                                                [(value)]="agentDetails.agentDetails.nationalityId">
+                                                                                [(value)]="NationalityId">
                                                                                 <mat-option [value]="list.id"
                                                                                     *ngFor="let list of Nationality">
                                                                                     {{list.name}}
