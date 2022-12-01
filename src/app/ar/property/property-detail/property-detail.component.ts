@@ -808,4 +808,20 @@ export class PropertyDetailComponent implements OnInit {
     },
     nav: true
   } 
+
+  scrollfix: boolean= false;
+  ngAfterViewInit(): void {
+    $(window).on("scroll", () => {
+      let a:any = $(".similer-properties-sec").offset()?.top;
+      let windowHeight:any = $(window).outerHeight();
+      let position:any = a - windowHeight;
+      let temp: any=$(window).scrollTop();
+      if(temp >= 1030 && temp < position){
+        this.scrollfix= true;
+      }
+      else{
+        this.scrollfix= false;
+      }
+    });
+  }
 }
