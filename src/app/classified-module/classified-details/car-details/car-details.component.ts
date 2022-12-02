@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { AppService } from "../../service/app.service";
+import { AppService } from "../../../service/app.service";
 import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
-import { NotificationService } from "../../service/notification.service";
+import { NotificationService } from "../../../service/notification.service";
 import { ChartConfiguration, ChartOptions, ChartType } from "chart.js";
 import { DomSanitizer } from "@angular/platform-browser";
-import { AuthService } from "../../service/auth.service";
+import { AuthService } from "../../../service/auth.service";
 import * as mapboxgl from 'mapbox-gl';
 import { environment } from 'src/environments/environment';
 import { NgxGalleryOptions } from '@kolkov/ngx-gallery';
@@ -58,9 +58,9 @@ export class CarDetailsComponent implements OnInit {
   homeLoc = '../../../assets/images/home-location.svg'
   user: any
   baseUrl = 'https://beta.ovaluate.com/'
-  status: boolean = true;
+  status: boolean = false;
   status1: boolean = false;
-  status2: boolean = false;
+  status2: boolean = true;
   status3: boolean = false;
   status4: boolean = false;
   shareURL: any = "";
@@ -69,18 +69,26 @@ export class CarDetailsComponent implements OnInit {
     this.status = !this.status;
     this.status1 = false;
     this.status2 = false;
+    this.status3 = false;
   }
   Location() {
     this.status = false;
     this.status1 = !this.status1;
     this.status2 = false;
+    this.status3 = false;
   }
   overview() {
     this.status = false;
     this.status2 = !this.status2;
     this.status1 = false;
+    this.status3 = false;
   }
-
+  carHistory() {
+    this.status3 = !this.status3;
+    this.status1 = false;
+    this.status2 = false;
+    this.status = false;
+  }
   eventlist = [
     {
       img: 'assets/images/slider.png',
@@ -266,6 +274,7 @@ export class CarDetailsComponent implements OnInit {
     pullDrag: true,
     dots: true,
     navSpeed: 700,
+    navText: ['<i class="fa fa-chevron-left" aria-hidden="true"></i>', '<i class="fa fa-chevron-right" aria-hidden="true"></i>'],
     responsive: {
       0: {
         items: 1
@@ -280,7 +289,7 @@ export class CarDetailsComponent implements OnInit {
         items: 4
       }
     },
-    nav: false
+    nav: true
   }
   CarsList = [
     {
