@@ -531,7 +531,7 @@ export class PropertyDetailComponent implements OnInit {
       },
       {
         show: this.propertyValidationData.hasTotalFloor,
-        label: 'مجموع عدد الطوابق في المبنى',
+        label: 'عدد الأدوار في المبنى',
         value: this.propertyDetailData.totalFloor,
       },
       {
@@ -596,7 +596,7 @@ export class PropertyDetailComponent implements OnInit {
       },
       {
         show: true,
-        label: 'حالة الإشغال الحالية',
+        label: 'حالة الإشغال حالياً',
         value: this.propertyDetailData.occupancyStatus,
       },
       {
@@ -621,7 +621,7 @@ export class PropertyDetailComponent implements OnInit {
       },
       {
         show: true,
-        label: 'إيداع الوساطة',
+        label: 'رسوم الوساطة',
         value: this.propertyDetailData.brokerageChargePrice + ' ' + this.propertyDetailData.currency,
       },
       {

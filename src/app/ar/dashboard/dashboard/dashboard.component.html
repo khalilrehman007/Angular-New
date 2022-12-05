@@ -573,7 +573,7 @@
                                                                     <div ngClass="property-range-bar d-flex">
                                                                         <div ngClass="pro-range-whie-box">
                                                                             <p>آخر معاملات الإيجار</p>
-                                                                            <h6>{{viewList.recentRentTxns}}  في العام الماضي</h6>
+                                                                            <h6>{{viewList.recentRentTxns}}  في خلال السنة الماضية</h6>
                                                                         </div>
                                                                         <div ngClass="pro-range-whie-box">
                                                                             <p>نطاق سعر الإيجار</p>
@@ -749,7 +749,7 @@
                                                                         </p>
                                                                         <p
                                                                             class="agent-details__property-list-item-date">
-                                                                            تم إدراجه على القائمة المختصرة بواسطة: <span
+                                                                            تم إدراجه على قائمة مختصرة بواسطة: <span
                                                                                 class="value_span">{{viewList.numberOfUsershortListedProperty}}
                                                                                 الأشخاص</span></p>
                                                                         <p
@@ -911,7 +911,7 @@
                                             </div>
                                             <div ngClass="compare_hdr-btn" *ngIf="wishlistingData.length > 1">
                                                 <button (click)="compareProceed('all')"
-                                                    ngClass="compare-btn btn">قارن</button>
+                                                    ngClass="compare-btn btn">مقارنة</button>
                                             </div>
                                         </div>
                                     </div>
@@ -1411,7 +1411,7 @@
                 </div>
                 <div class="tab-pane fade" id="pills-listing" role="tabpanel" aria-labelledby="pills-listing-tab">
                     <div class="recent-activity">
-                        <h4 class="sub-title">القوائم الخاصة بي</h4>
+                        <h4 class="sub-title">قوائمي الخاصة</h4>
                         <div class="sub-tab-nav">
                             <mat-tab-group (selectedTabChange)="parentTabsChange($event)">
                                 <mat-tab label="كل">
@@ -1860,7 +1860,7 @@
                                             </div>
                                             <div ngClass="my_valuation-inner-div payemnt"
                                                 *ngIf="item.valuationStatus.statusDescription == 'Payment Pending'">
-                                                <p ngClass="payment pending">انتظار الدفع</p>
+                                                <p ngClass="payment pending">بانتظار الدفع</p>
                                             </div>
                                             <div ngClass="my_valuation-inner-div payemnt"
                                                 *ngIf="item.valuationStatus.statusDescription == 'Payment Pending'">
@@ -1919,7 +1919,7 @@
                                             </div>
                                             <div ngClass="my_valuation-inner-div payemnt"
                                                 *ngIf="item.valuationStatus.statusDescription == 'Payment Pending'">
-                                                <p ngClass="payment pending">انتظار الدفع</p>
+                                                <p ngClass="payment pending">بانتظار الدفع</p>
                                             </div>
                                             <div ngClass="my_valuation-inner-div payemnt"
                                                 *ngIf="item.valuationStatus.statusDescription == 'Payment Pending'">
@@ -1977,7 +1977,7 @@
                                             </div>
                                             <div ngClass="my_valuation-inner-div payemnt"
                                                 *ngIf="item.valuationStatus.statusDescription == 'Payment Pending'">
-                                                <p ngClass="payment pending">انتظار الدفع</p>
+                                                <p ngClass="payment pending">بانتظار الدفع</p>
                                             </div>
                                             <div ngClass="my_valuation-inner-div payemnt"
                                                 *ngIf="item.valuationStatus.statusDescription == 'Payment Pending'">
@@ -2083,7 +2083,7 @@
                                                 </div>
                                             </div>
                                             <div ngClass="my_valuation-inner-div category">
-                                                <h6>رقم التحويلة</h6>
+                                                <h6>رقم المعاملة</h6>
                                                 <p>{{item.id}}</p>
                                             </div>
                                             <div ngClass="my_valuation-inner-div place">
@@ -2332,10 +2332,10 @@
                                                                 </div>
                                                                 <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                                                     <div ngClass="block-wrapper mb-4">
-                                                                        <label class="h6-design">جنسية</label>
+                                                                        <label class="h6-design">الجنسية</label>
                                                                         <mat-form-field appearance="fill"
                                                                             class="full-width select-form input-design-2">
-                                                                            <mat-label>اختر الجنسية</mat-label>
+                                                                            <mat-label>اختر الالجنسية</mat-label>
                                                                             <mat-select [disableOptionCentering]="true"
                                                                                 (selectionChange)="onChangeNationality($event)">
                                                                                 <mat-option [value]="list.id"
@@ -2849,7 +2849,7 @@
                                                                             <div>
                                                                                 <h3 class="sub-title">ضبط الإشعارات</h3>
                                                                                 <label class="h6-design">احصل على
-                                                                                    إشعارات من أوفالويت للبقاء على اطلاع
+                                                                                    الإشعارات من أوفالويت للبقاء على اطلاع
                                                                                     دائم</label>
                                                                             </div>
                                                                             <div class="form-check form-switch">
@@ -5037,7 +5037,7 @@
                     <img src="{{logoutimg}}">
                 </div>
                 <div ngClass="logout-banner-cntnt text-center">
-                    <h4>هل أنت متأكد أنك تريد تسجيل الخروج؟</h4>
+                    <h4>هل فعلا تود الخروج من المنصة</h4>
                     <p>بانتظار عودتك!</p>
                 </div>
                 <div ngClass="logout-banner-footer">

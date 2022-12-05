@@ -71,6 +71,7 @@ export class RentSearchComponent implements OnInit {
   maxLimit: any;
   options: any = {};
   propertyFeatureIds: any = [];
+  count: any = [];
   selectedTabIndex:any = 1;
   constructor(private activeRoute: ActivatedRoute, private service: AppService, private api: AppService, private route: Router, private modalService: NgbModal, public router: Router) {
     let url = this.route.url.replace("/", "");
@@ -396,7 +397,7 @@ export class RentSearchComponent implements OnInit {
       this.Keywords.push({ name: value });
     }
     event.chipInput!.clear();
-    this.proceedSearch()
+    // this.proceedSearch()
   }
   remove(fruit: KeywordString): void {
     const index = this.Keywords.indexOf(fruit);
@@ -404,12 +405,13 @@ export class RentSearchComponent implements OnInit {
     if (index >= 0) {
       this.Keywords.splice(index, 1);
     }
-    this.proceedSearch()
+    // this.proceedSearch()
   }
   furnishedType: any = '';
+  furnishingTypeStore: any ='';
   furnishedTypeChange(data: any) {
-    this.furnishedType = data
-    this.proceedSearch()
+    this.furnishedType = data;
+    // this.proceedSearch()
   }
   propertyFeatureChange(data: any) {
     let checkExists: any = true;
@@ -429,17 +431,18 @@ export class RentSearchComponent implements OnInit {
         this.propertyFeatureIds.splice(index, 1);
       }
     }
-    this.proceedSearch()
+    // this.proceedSearch()
+    this.count = this.propertyFeatureIds;
   }
   minCarpet: any = ''
   minCarpetAreaChange(searchValue: any): void {
     this.minCarpet = searchValue
-    this.proceedSearch()
+    // this.proceedSearch()
   }
   maxCarpet: any = ''
   maxCarpetAreaChange(searchValue: any): void {
     this.maxCarpet = searchValue
-    this.proceedSearch()
+    // this.proceedSearch()
   }
   status1: boolean = false;
   clickEvent1() {
