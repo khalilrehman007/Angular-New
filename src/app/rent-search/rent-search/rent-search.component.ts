@@ -322,9 +322,10 @@ export class RentSearchComponent implements OnInit {
       , PropertyFeatureIds: this.propertyFeatureIds, FurnishingTypeId: this.furnishedType,
       MinCarpetArea: this.minCarpet, MaxCarpetArea: this.maxCarpet
     }
-    this.route.navigate(['/property/search'], { queryParams: params })
-    // console.log(params);
-    this.childToParentDataLoad.emit(objects)
+    this.service.LoadSearchListing(params).subscribe((response: any) => {
+      this.totalRecord = response.data.totalRecord;
+      console.log(response.data);
+    })
   }
   clearSearch() {
     this.type = ''

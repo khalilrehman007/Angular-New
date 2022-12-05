@@ -39,6 +39,7 @@ export class PropertyDocumentsComponent implements OnInit {
   documentData: any = [];
   mapImage: any;
   termsAccepted: boolean = false;
+  reportCheck: boolean = false;
   reportPrice: any = 0;
   documentType: any = [];
   valuationResponse: any = {};
@@ -63,12 +64,14 @@ export class PropertyDocumentsComponent implements OnInit {
 
   checkPhone() {
     let temp: any = this.reportForm.value.phone;
-    if (temp.toString().length > 10) {
-      this.error = "Max length allows is 10";
-      this.showError = true;
-      this.reportForm.patchValue({
-        phone: temp.toString().slice(0, -1)
-      })
+    if(temp != null) {
+      if (temp.toString().length > 10) {
+        this.error = "Max length allows is 10";
+        this.showError = true;
+        this.reportForm.patchValue({
+          phone: temp.toString().slice(0, -1)
+        })
+      }
     }
   }
   paymentForm = new FormGroup({
@@ -286,7 +289,6 @@ export class PropertyDocumentsComponent implements OnInit {
     $("." + this.currentField).addClass("blink");
     $("." + this.currentField).on("click", () => {
       $("." + this.currentField).removeClass("blink");
-      this.currentField = "";
     })
     $(window).scrollTop(temp - 100);
   }
@@ -398,6 +400,11 @@ export class PropertyDocumentsComponent implements OnInit {
       this.error = "Please Accept Terms and Conditions";
       this.showError = true;
       return;
+    } else if (!this.reportCheck) {
+      this.currentField = "reports_checks-input";
+      this.error = "Please Accept Disclaimer";
+      this.showError = true;
+      return;
     } else if (this.formData.InspectionRequired && $("#formDate").val() == "") {
       this.error = "Please Enter Inspection Date";
       this.showError = true;
@@ -505,6 +512,9 @@ export class PropertyDocumentsComponent implements OnInit {
   }
   onInspectionSelect(e: any) {
     this.formData.InspectionRequired = e.checked;
+  }
+  onReportCheck(e:any) {
+    this.reportCheck = e.checked;
   }
   onKeypressEvent(e: any) {
     this.checkLength(3, false)

@@ -25,7 +25,7 @@ export class PropertyTypesComponent implements OnInit {
   purposeOfValuation: any = [];
   statusData: number = 0;
   featuresData: any = [];
-  propertyUnits: any;
+  propertyUnits: any = [];
   furnishingType: any;
   fittingType: any;
   featuresFormData: any = [];
