@@ -596,7 +596,7 @@ export class PropertyDetailComponent implements OnInit {
         value: this.propertyDetailData.buildupArea,
       },
       {
-        label: 'حالة الإشغال الحالية',
+        label: 'حالة الإشغال حالياً',
         value: this.propertyData.occupancyStatus.nameAr,
       },
       {
@@ -616,7 +616,7 @@ export class PropertyDetailComponent implements OnInit {
         value: this.propertyDetailData.securityDepositPrice + ' ' + this.propertyData.country?.currencyAr,
       },
       {
-        label: 'إيداع الوساطة',
+        label: 'رسوم الوساطة',
         value: this.propertyDetailData.brokerageChargePrice + ' ' + this.propertyData.country?.currencyAr,
       },
       {
