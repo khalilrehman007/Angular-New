@@ -38,7 +38,7 @@
                                         <button ngbDropdownItem><a target="_blank" href="https://facebook.com"
                                                 ngClass="facebook"><img src="{{fb}}"> Facebook</a></button>
                                         <button ngbDropdownItem><a target="_blank" href="whatsapp://send?{{shareURL}}"
-                                                ngClass="whatsapp"><img src="{{whatsapp}}"> WhatsAPP</a></button>
+                                                ngClass="whatsapp"><img src="{{whatsapp}}"> WhatsApp</a></button>
                                         <button ngbDropdownItem><a target="_blank" href="https://twitter.com/"
                                                 ngClass="twitter"><img src="{{twitter}}"> Twitter</a></button>
                                     </div>
@@ -54,7 +54,7 @@
                 </div>
             </div>
             <div ngClass="property-price-buttons-sec mt-5 mb-3">
-            <div class="row">
+            <div class="row align-items-center">
             <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                     <div ngClass="property-addresss">
                                 <p><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M256 0c17.7 0 32 14.3 32 32V66.7C368.4 80.1 431.9 143.6 445.3 224H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H445.3C431.9 368.4 368.4 431.9 288 445.3V480c0 17.7-14.3 32-32 32s-32-14.3-32-32V445.3C143.6 431.9 80.1 368.4 66.7 288H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H66.7C80.1 143.6 143.6 80.1 224 66.7V32c0-17.7 14.3-32 32-32zM128 256c0 70.7 57.3 128 128 128s128-57.3 128-128s-57.3-128-128-128s-128 57.3-128 128zm128 80c-44.2 0-80-35.8-80-80s35.8-80 80-80s80 35.8 80 80s-35.8 80-80 80z"/></svg> {{propertyDetailData.propertyAddress}}</p>
@@ -103,7 +103,7 @@
                             <div ngClass="tabs-heading-div">
                                 <h5>Key Highlights</h5>
                             </div>
-                            <div ngClass="topkey-highlights">
+                            <div ngClass="topkey-highlights mb-4">
                                 <h6>{{propertyDetailData.typeDescription}}</h6>
                                 <div ngClass="property-details-highlights">
                                     <span ngClass="bed" *ngIf="propertyDetailData.bedrooms != 0">
@@ -131,7 +131,7 @@
                                 <p>{{propertyDetailData.propertyDescription}}</p>
                             </div>
                         </div>
-                        <div class="Pro-perty_info mt-5" #propertyInfo>
+                        <div class="Pro-perty_info mt-4" #propertyInfo>
                             <div ngClass="d-flex justify-content-spacebw align-items-center mb-3">
                                 <div ngClass="tabs-heading-div">
                                     <h5>Property Info</h5>
@@ -307,24 +307,20 @@
                             <div ngClass="contact-list-details">
                                 <div ngClass="row">
                                     <div ngClass="col-xl-6 col-lg-12 col-md-12 col-sm-12">
-                                        <button ngClass="" (click)="loadChat()"><img src="{{call}}"> Call
+                                        <button ngClass="call_btn" (click)="loadChat()"><img src="{{call}}"> Call
                                             Landlord</button>
                                     </div>
                                     <div ngClass="col-xl-6 col-lg-12 col-md-12 col-sm-12">
-                                        <button ngClass=""><a href="https://web.whatsapp.com/" target="_blank"><img
+                                        <button ngClass="whatsapp_btn"><a href="https://web.whatsapp.com/" target="_blank"><img
                                                     src="{{whatsapp}}"> Whats APP </a></button>
                                     </div>
                                     <div ngClass="col-xl-6 col-lg-12 col-md-12 col-sm-12">
-                                        <button ngClass="" (click)="loadChat()"><img src="{{chat}}"> Chat with
+                                        <button ngClass="chat_btn" (click)="loadChat()"><img src="{{chat}}"> Chat with
                                             Landlord</button>
                                     </div>
                                     <div ngClass="col-xl-6 col-lg-12 col-md-12 col-sm-12">
-                                        <button ngClass="" (click)="loadChat()"><img src="{{videocall}}"> Video
+                                        <button ngClass="videocall_btn" (click)="loadChat()"><img src="{{videocall}}"> Video
                                             Call</button>
-                                    </div>
-                                    <div ngClass="col-xl-6 col-lg-12 col-md-6 col-sm-12">
-                                        <button ngClass=""><a href="https://www.youtube.com/watch?v=y9j-BL5ocW8"
-                                                target="_blank"><img src="{{virtual}}"> Virtual Tour </a></button>
                                     </div>
                                 </div>
                             </div>
@@ -458,7 +454,7 @@
                     <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M14.1419 2.32532C12.6446 0.82666 10.654 0.000666662 8.53333 0C4.16338 0 0.606752 3.55597 0.604752 7.92794C0.604085 9.32526 0.969414 10.6893 1.66341 11.8919L0.538086 15.9999L4.74071 14.8972C5.89869 15.5292 7.20268 15.8619 8.52933 15.8625H8.53266C12.9019 15.8625 16.4592 12.3059 16.4612 7.93394C16.4626 5.81596 15.6386 3.8233 14.1419 2.32532ZM8.53333 14.5232H8.53066C7.34801 14.5232 6.18869 14.2052 5.1767 13.6046L4.93604 13.4619L2.44207 14.1159L3.10806 11.6839L2.95139 11.4346C2.2914 10.3853 1.9434 9.1726 1.94407 7.92794C1.9454 4.29463 4.90204 1.33866 8.53666 1.33866C10.2966 1.33866 11.9513 2.02532 13.1953 3.27064C14.4393 4.51663 15.1239 6.17195 15.1233 7.93261C15.1213 11.5672 12.1653 14.5232 8.53333 14.5232ZM12.148 9.58793C11.95 9.48859 10.976 9.00926 10.794 8.94326C10.6126 8.87726 10.4806 8.84393 10.348 9.04193C10.2153 9.23993 9.83665 9.68659 9.72065 9.81926C9.60532 9.95126 9.48932 9.96792 9.29132 9.86859C9.09332 9.76926 8.45466 9.56059 7.69801 8.88527C7.10935 8.35994 6.71135 7.71127 6.59602 7.51261C6.48069 7.31394 6.58402 7.20728 6.68268 7.10861C6.77202 7.01995 6.88068 6.87728 6.98001 6.76128C7.08001 6.64662 7.11268 6.56395 7.17935 6.43128C7.24535 6.29929 7.21268 6.18329 7.16268 6.08395C7.11268 5.98529 6.71668 5.00996 6.55202 4.6133C6.39135 4.22663 6.22802 4.2793 6.10602 4.2733C5.99069 4.2673 5.85869 4.26663 5.72603 4.26663C5.59403 4.26663 5.37937 4.31597 5.19803 4.51463C5.0167 4.7133 4.50471 5.19263 4.50471 6.16729C4.50471 7.14261 5.2147 8.0846 5.31337 8.2166C5.41203 8.3486 6.71002 10.3499 8.69733 11.2079C9.16999 11.4119 9.53932 11.5339 9.82665 11.6252C10.3013 11.7759 10.7333 11.7546 11.0746 11.7039C11.4553 11.6472 12.2466 11.2246 12.412 10.7619C12.5773 10.2993 12.5773 9.90192 12.5273 9.81992C12.478 9.73659 12.346 9.68726 12.148 9.58793Z" fill="#70b662"/>
                     </svg>                            
-                    WhatsAPP
+                    WhatsApp
                 </a>
                 <a target="_blank" href="https://twitter.com/" ngClass="twitter">
                     <svg width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">

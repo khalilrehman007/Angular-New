@@ -23,7 +23,7 @@ import {NgChartsModule} from "ng2-charts";
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BreadcrumbsModule } from '../breadcrumbs/breadcrumbs.module';
-import { CarDetailsComponent } from './car-details/car-details.component';
+import { CarDetailsComponent } from './classified-details/car-details/car-details.component';
 import { CarAddDetailsFirstComponent } from './motors/car-add-details-first/car-add-details-first.component';
 import { CarAddDetailsSecondComponent } from './motors/car-add-details-second/car-add-details-second.component';
 import { MotorcycleDetailFormComponent } from './motors/motorcycle-detail-form/motorcycle-detail-form.component';
@@ -38,6 +38,13 @@ import { AppliancesFormComponent } from './appliances/appliances-form/appliances
 import { FurnitureFormComponent } from './furniture/furniture-form/furniture-form.component';
 import { FreelancerFormComponent } from './freelancers/freelancer-form/freelancer-form.component';
 import { PhoneFormComponent } from './phones/phone-form/phone-form.component';
+import { ServicesFormComponent } from './services/services-form/services-form.component';
+import { CommunityFormComponent } from './community/community-form/community-form.component';
+import { CommertialsFormComponent } from './commertials/commertials-form/commertials-form.component';
+import { FurnitureDetailsComponent } from './classified-details/furniture-details/furniture-details.component';
+import { SportsEquipmentDetailsComponent } from './classified-details/sports-equipment-details/sports-equipment-details.component';
+import { PhoneTabletDetailsComponent } from './classified-details/phone-tablet-details/phone-tablet-details.component';
+import { ServicesDetailsComponent } from './classified-details/services-details/services-details.component';
 
 
 @NgModule({
@@ -60,7 +67,14 @@ import { PhoneFormComponent } from './phones/phone-form/phone-form.component';
     AppliancesFormComponent,
     FurnitureFormComponent,
     FreelancerFormComponent,
-    PhoneFormComponent
+    PhoneFormComponent,
+    ServicesFormComponent,
+    CommunityFormComponent,
+    CommertialsFormComponent,
+    FurnitureDetailsComponent,
+    SportsEquipmentDetailsComponent,
+    PhoneTabletDetailsComponent,
+    ServicesDetailsComponent
   ],
   imports: [
     CommonModule,

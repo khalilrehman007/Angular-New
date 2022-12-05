@@ -5,8 +5,11 @@
             <div ngClass="citites-breadcrumb-wrapper black-text-breadcrumb">
                 <app-breadcrumbs></app-breadcrumbs>
             </div>
-            <div ngClass="hp-design mb-4">
-                <h4>{{cityData.nameAr}} دليل المنطقة</h4>
+            <div ngClass="explore-description_sec mt-4 mb-4">
+                <div ngClass="hp-design hp-explore-spacing">
+                    <h4>{{cityData.nameAr}} دليل المنطقة</h4>
+                    <p>{{cityData.descriptionAr}}</p>
+                </div>
             </div>
             <div ngClass="search_destinations-block">
                 <form>
@@ -65,12 +68,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div ngClass="explore-description_sec mt-4 mb-5">
-                <div ngClass="hp-design hp-explore-spacing">
-                    <h4>استكشف {{cityData.nameAr}}</h4>
-                    <p>{{cityData.descriptionAr}}</p>
                 </div>
             </div>
         </div>

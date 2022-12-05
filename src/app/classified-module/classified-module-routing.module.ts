@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ClassifiedHomeComponent } from './classified-home/classified-home.component';
 import { AddPostComponent } from './add-post/add-post.component';
-import { CarDetailsComponent } from './car-details/car-details.component';
+import { CarDetailsComponent } from './classified-details/car-details/car-details.component';
 import { CarAddDetailsFirstComponent } from './motors/car-add-details-first/car-add-details-first.component';
 import { CarAddDetailsSecondComponent } from './motors/car-add-details-second/car-add-details-second.component';
 import { MotorcycleDetailFormComponent } from './motors/motorcycle-detail-form/motorcycle-detail-form.component';
@@ -17,6 +17,13 @@ import { AppliancesFormComponent } from './appliances/appliances-form/appliances
 import { FurnitureFormComponent } from './furniture/furniture-form/furniture-form.component';
 import { FreelancerFormComponent } from './freelancers/freelancer-form/freelancer-form.component';
 import { PhoneFormComponent } from './phones/phone-form/phone-form.component';
+import { ServicesFormComponent } from './services/services-form/services-form.component';
+import { CommunityFormComponent } from './community/community-form/community-form.component';
+import { CommertialsFormComponent } from './commertials/commertials-form/commertials-form.component';
+import { FurnitureDetailsComponent } from './classified-details/furniture-details/furniture-details.component';
+import { SportsEquipmentDetailsComponent } from './classified-details/sports-equipment-details/sports-equipment-details.component';
+import { PhoneTabletDetailsComponent } from './classified-details/phone-tablet-details/phone-tablet-details.component';
+import { ServicesDetailsComponent } from './classified-details/services-details/services-details.component';
 
 const routes: Routes = [
   { path: "", component: ClassifiedHomeComponent },
@@ -35,7 +42,14 @@ const routes: Routes = [
   { path: "appliances-form", component: AppliancesFormComponent },
   { path: "furniture-form", component: FurnitureFormComponent },
   { path: "freelancer-form", component: FreelancerFormComponent },
-  { path: "phone-form", component: PhoneFormComponent }
+  { path: "phone-form", component: PhoneFormComponent },
+  { path: "services-form", component: ServicesFormComponent },
+  { path: "community-form", component: CommunityFormComponent },
+  { path: "commertials-form", component: CommertialsFormComponent },
+  { path: "furniture-details", component: FurnitureDetailsComponent },
+  { path: "sports-equipment-details", component: SportsEquipmentDetailsComponent },
+  { path: "phone-tablet-details", component: PhoneTabletDetailsComponent },
+  { path: "service-details", component: ServicesDetailsComponent }
 ];
 
 @NgModule({

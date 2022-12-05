@@ -248,6 +248,7 @@ export class ClassifiedHomeComponent implements OnInit {
     pullDrag: true,
     dots: true,
     navSpeed: 700,
+    navText: ['<i class="fa fa-chevron-left" aria-hidden="true"></i>', '<i class="fa fa-chevron-right" aria-hidden="true"></i>'],
     responsive: {
       0: {
         items: 1
@@ -262,7 +263,7 @@ export class ClassifiedHomeComponent implements OnInit {
         items: 4
       }
     },
-    nav: false
+    nav: true
   }
   constructor() {
     $(window).scrollTop(0);

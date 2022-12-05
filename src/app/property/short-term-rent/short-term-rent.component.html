@@ -58,6 +58,10 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="no-data-found" *ngIf="searchListing.length == 0">
+                            <img src="/assets/images/no-properties.svg">
+                            <h5>No Properties Found..!</h5>
+                        </div>
                         <div ngClass="properties-list-design">
                             <div
                                 *ngFor=" let list of searchListing | paginate: { itemsPerPage: 10, currentPage: page ,totalItems:totalRecord }; let i = index">
@@ -65,17 +69,13 @@
                                     <div ngClass="row">
                                         <div ngClass="col-xl-4 col-md-4 col-lg-4 col-sm-12">
                                             <div ngClass="properties-list_slider" *ngIf="list.documentsCheck">
-                                                <!-- <ngb-carousel>
-                                                    <ng-template ngbSlide *ngFor="let event of list.documents">
-                                                        <img [src]="baseUrl+event.fileUrl"
-                                                            [routerLink]="['/property/detail']"
-                                                            [queryParams]="{id: list.id}">
-                                                    </ng-template>
-                                                </ngb-carousel> -->
+                                                <div [routerLink]="['/property/detail']"
+                                                [queryParams]="{id: list.id}" class="cursor-pointer">
                                                 <img *ngIf="list.documents.length > 0 && list.documents[0].fileUrl != null"
                                                     src="{{baseUrl}}{{list.documents[0].fileUrl}}">
                                                 <img *ngIf="list.documents.length == 0 || list.documents[0].fileUrl == null"
                                                     src="assets/images/placeholder.png">
+                                                </div>
                                             </div>
                                         </div>
                                         <div ngClass="col-xl-8 col-md-8 col-lg-8 col-sm-12">
@@ -113,7 +113,7 @@
                                                                     <button ngbDropdownItem><a target="_blank"
                                                                             href="https://web.whatsapp.com/"
                                                                             ngClass="whatsapp"><img src="{{whatsapp}}">
-                                                                            WhatsAPP</a></button>
+                                                                            WhatsApp</a></button>
                                                                     <button ngbDropdownItem><a target="_blank"
                                                                             href="https://twitter.com/"
                                                                             ngClass="twitter"><img src="{{twitter}}">
@@ -135,14 +135,15 @@
                                                     </div>
                                                 </div>
 
-                                                <div ngClass="property-name_detals" [routerLink]="['/property/detail']"
+                                                <div ngClass="property-name_detals cursor-pointer" [routerLink]="['/property/detail']"
                                                     [queryParams]="{id: list.id}">
                                                     <h4>{{list.buildingName}}</h4>
                                                     <div ngClass="property-addresss">
                                                         <p><img src="{{homelocationsvg}}"> {{list.propertyAddress}}</p>
                                                     </div>
                                                 </div>
-                                                <div ngClass="topkey-highlights">
+                                                <div ngClass="topkey-highlights cursor-pointer" [routerLink]="['/property/detail']"
+                                                [queryParams]="{id: list.id}">
                                                     <h6>{{list.propertyType.typeDescription}},</h6>
                                                     <div ngClass="property-details-highlights">
                                                         <span *ngIf="list.bedrooms != 0" ngClass="bed">
@@ -160,12 +161,14 @@
                                                         </span>
                                                     </div>
                                                 </div>
-                                                <div ngClass="key-tags">
+                                                <div ngClass="key-tags cursor-pointer" [routerLink]="['/property/detail']"
+                                                [queryParams]="{id: list.id}">
                                                     <span *ngFor="let features of list.propertyFeatures">
                                                         {{features.propertyFeature.featureName}}
                                                     </span>
                                                 </div>
-                                                <div ngClass="data-inteligence-text">
+                                                <div ngClass="data-inteligence-text cursor-pointer" [routerLink]="['/property/detail']"
+                                                [queryParams]="{id: list.id}">
                                                     <h6>OV Data Intelligence - Corniche Road, Abu Dhabi </h6>
                                                     <div ngClass="property-range-bar d-flex">
                                                         <div ngClass="pro-range-whie-box">
@@ -229,10 +232,8 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <button _ngcontent-ekm-c201="" ngclass="tag_btn blue"
-                                                ng-reflect-ng-class="tag_btn blue" class="tag_btn blue"><img
-                                                    _ngcontent-ekm-c201=""
-                                                    src="../../../assets/images/icons/tag-icn.svg"> PREMIUM</button>
+                                            <button class="tag_btn blue cursor-pointer" [routerLink]="['/property/detail']"
+                                            [queryParams]="{id: list.id}"><img src="../../../assets/images/icons/tag-icn.svg"> PREMIUM</button>
                                         </div>
                                     </div>
                                 </div>
@@ -302,7 +303,7 @@
                     <a routerLink=""><img src="{{logo}}"></a>
                 </div>
                 <div ngClass="alert-logo-content">
-                    <h5>Sign in or register to save your favorite homes and search results</h5>
+                    <h5>Sign up to get Ovaluate's newsletter and get to know about exclusive property listings and offers!</h5>
                     <div ngClass="alert_form-box">
                         <form>
                             <div ngClass="form-group input-design-3">
