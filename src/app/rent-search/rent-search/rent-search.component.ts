@@ -71,6 +71,7 @@ export class RentSearchComponent implements OnInit {
   maxLimit: any;
   options: any = {};
   propertyFeatureIds: any = [];
+  count: any = [];
   selectedTabIndex:any = 1;
   constructor(private activeRoute: ActivatedRoute, private service: AppService, private api: AppService, private route: Router, private modalService: NgbModal, public router: Router) {
     let url = this.route.url.replace("/", "");
@@ -430,6 +431,7 @@ export class RentSearchComponent implements OnInit {
       }
     }
     // this.proceedSearch()
+    this.count = this.propertyFeatureIds;
   }
   minCarpet: any = ''
   minCarpetAreaChange(searchValue: any): void {

@@ -115,7 +115,8 @@ export class BuySearchComponent implements OnInit {
     let MinCarpetArea: any = this.activeRoute.snapshot.queryParamMap.get('MinCarpetArea');
     let MaxCarpetArea: any = this.activeRoute.snapshot.queryParamMap.get('MaxCarpetArea');
     let FurnishingTypeId: any = this.activeRoute.snapshot.queryParamMap.get('FurnishingTypeId');
-    this.KeyWords = JSON.parse(KeyWords)
+    this.KeyWords = JSON.parse(KeyWords);
+    
 
     if (PropertyFeatureIds == null) {
       PropertyFeatureIds = []
@@ -409,42 +410,46 @@ export class BuySearchComponent implements OnInit {
   }
 
 
-  proceedSearch() {
+  proceedSearch(){
 
-    let keywordsData: any = [];
+    let keywordsData :any = [];
     this.Keywords.forEach((element, i) => {
       keywordsData.push(element.name)
     })
-    let PropertyTypeIds: any = [];
-    if (this.propertyCategory == 1) {
+    let PropertyTypeIds :any = [];
+    if(this.propertyCategory == 1){
       //residential
       PropertyTypeIds = this.PropertyTypeResidentialIds
-    } else if (this.propertyCategory == 2) {
+    }else if(this.propertyCategory == 2){
       //commercial
       PropertyTypeIds = this.PropertyTypeCommercialIds
     }
 
-    let PropertyTypeIdsParams: any = JSON.stringify(PropertyTypeIds);
-
-    let params: any = {
-      type: this.type, "PropertyTypeIds": PropertyTypeIdsParams, "RentTypeId": this.RentTypeId,
-      "PropertyCategoryId": this.PropertyCategoryId, PriceStart: this.SubmitForm.value.PriceStart, PriceEnd: this.SubmitForm.value.PriceEnd,
-      Bedrooms: this.Bedrooms, Bathrooms: this.Bathrooms, PropertyAddress: this.SubmitForm.value.Name,
-      "PropertyListingTypeId": this.PropertyListingTypeId, CurrentPage: 1, DistrictIds: JSON.stringify(this.DistrictsId),
-      DistrictsValue: JSON.stringify(this.DistrictsValue), KeyWords: JSON.stringify(keywordsData), PropertyFeatureIds: JSON.stringify(this.propertyFeatureIds),
-      MinCarpetArea: this.minCarpet, MaxCarpetArea: this.maxCarpet, FurnishingTypeId: this.furnishedType
+    let PropertyTypeIdsParams :any = JSON.stringify(PropertyTypeIds);
+    
+    let params :any = {type:this.type,"PropertyTypeIds":PropertyTypeIdsParams,"RentTypeId":this.RentTypeId,
+      "PropertyCategoryId":this.PropertyCategoryId,PriceStart:this.SubmitForm.value.PriceStart,PriceEnd:this.SubmitForm.value.PriceEnd,
+      Bedrooms:this.Bedrooms,Bathrooms:this.Bathrooms,PropertyAddress:this.SubmitForm.value.Name,
+      "PropertyListingTypeId":this.PropertyListingTypeId,CurrentPage:1,DistrictIds:JSON.stringify(this.DistrictsId),
+      DistrictsValue:JSON.stringify(this.DistrictsValue),KeyWords:JSON.stringify(keywordsData),PropertyFeatureIds:JSON.stringify(this.propertyFeatureIds),
+      MinCarpetArea:this.minCarpet,MaxCarpetArea:this.maxCarpet,FurnishingTypeId:this.furnishedType
     }
-    let objects: any = {
-      type: this.type, "PropertyTypeIds": PropertyTypeIds, "RentTypeId": this.RentTypeId,
-      "PropertyCategoryId": this.PropertyCategoryId, PriceStart: this.SubmitForm.value.PriceStart, PriceEnd: this.SubmitForm.value.PriceEnd,
-      Bedrooms: this.Bedrooms, Bathrooms: this.Bathrooms, PropertyAddress: this.SubmitForm.value.Name,
-      "PropertyListingTypeId": this.PropertyListingTypeId, CurrentPage: 1, DistrictIds: this.DistrictsId, KeyWords: keywordsData
-      , PropertyFeatureIds: this.propertyFeatureIds, FurnishingTypeId: this.furnishedType,
-      MinCarpetArea: this.minCarpet, MaxCarpetArea: this.maxCarpet
+    let objects :any = {type:this.type,"PropertyTypeIds":PropertyTypeIds,"RentTypeId":this.RentTypeId,
+      "PropertyCategoryId":this.PropertyCategoryId,PriceStart:this.SubmitForm.value.PriceStart,PriceEnd:this.SubmitForm.value.PriceEnd,
+      Bedrooms:this.Bedrooms,Bathrooms:this.Bathrooms,PropertyAddress:this.SubmitForm.value.Name,
+      "PropertyListingTypeId":this.PropertyListingTypeId,CurrentPage:1,DistrictIds:this.DistrictsId,KeyWords:keywordsData
+      ,PropertyFeatureIds:this.propertyFeatureIds,FurnishingTypeId:this.furnishedType,
+      MinCarpetArea:this.minCarpet,MaxCarpetArea:this.maxCarpet
     }
-    this.route.navigate(['/property/search'], { queryParams: params })
-    this.childToParentDataLoad.emit(objects)
+    if(this.routeCheck == '/property/search'){
+      this.route.navigate(['/property/search'],{queryParams:params})
+      this.childToParentDataLoad.emit(objects)
+      // this.proceedSearch()
+    }else{
+      this.proceedSearchViewMap()
+    }
   }
+
 
   clearSearch() {
     this.type = ''
@@ -535,6 +540,8 @@ export class BuySearchComponent implements OnInit {
     // Add our fruit
     if (value) {
       this.Keywords.push({ name: value });
+      console.log(this.Keywords);
+      
     }
 
     // Clear the input value
@@ -556,24 +563,28 @@ export class BuySearchComponent implements OnInit {
 
   furnishedType: any = '';
   furnishedTypeChange(data: any) {
-    this.furnishedType = data
+    this.furnishedType = data;
+ 
+    
+   
     // this.proceedSearch()
   }
 
-  propertyFeatureChange(data: any) {
+  propertyFeatureChange(data: any) {    
     let checkExists: any = true;
     if (this.propertyFeatureIds == null) {
       this.propertyFeatureIds = []
     }
     this.propertyFeatureIds.forEach((element: any, i: any) => {
-      if (element == data) {
+      if (element == data) {        
         checkExists = false;
       }
     })
 
 
     if (checkExists) {
-      this.propertyFeatureIds.push(data)
+      this.propertyFeatureIds.push(data);
+         
     } else {
       const index = this.propertyFeatureIds.indexOf(data);
       if (index >= 0) {
