@@ -539,7 +539,7 @@ export class BuySearchComponent implements OnInit {
 
     // Clear the input value
     event.chipInput!.clear();
-    this.proceedSearch()
+    // this.proceedSearch()
 
   }
 
@@ -549,7 +549,7 @@ export class BuySearchComponent implements OnInit {
     if (index >= 0) {
       this.Keywords.splice(index, 1);
     }
-    this.proceedSearch()
+    // this.proceedSearch()
   }
 
 
@@ -557,7 +557,7 @@ export class BuySearchComponent implements OnInit {
   furnishedType: any = '';
   furnishedTypeChange(data: any) {
     this.furnishedType = data
-    this.proceedSearch()
+    // this.proceedSearch()
   }
 
   propertyFeatureChange(data: any) {
@@ -580,19 +580,19 @@ export class BuySearchComponent implements OnInit {
         this.propertyFeatureIds.splice(index, 1);
       }
     }
-    this.proceedSearch()
+    // this.proceedSearch()
   }
 
 
   minCarpet: any = ''
   minCarpetAreaChange(searchValue: any): void {
     this.minCarpet = searchValue
-    this.proceedSearch()
+    // this.proceedSearch()
   }
   maxCarpet: any = ''
   maxCarpetAreaChange(searchValue: any): void {
     this.maxCarpet = searchValue
-    this.proceedSearch()
+    // this.proceedSearch()
   }
 
   status1: boolean = false;
