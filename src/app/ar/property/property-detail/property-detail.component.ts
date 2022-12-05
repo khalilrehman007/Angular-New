@@ -544,7 +544,7 @@ export class PropertyDetailComponent implements OnInit {
         value: this.propertyDetailData.buildingName,
       },
       {
-        label: 'مجموع عدد الطوابق في المبنى',
+        label: 'مجموع الطوابق في المبنى',
         value: this.propertyDetailData.totalFloor,
       },
       {
