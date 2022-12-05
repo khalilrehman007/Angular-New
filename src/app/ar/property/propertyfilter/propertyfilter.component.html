@@ -221,7 +221,7 @@
         <div ngClass="block-item five-block">
             <div ngClass="block-wrapper mb-4">
                 <mat-form-field appearance="fill" class="select-design">
-                    <mat-label>منشور من طرف</mat-label>
+                    <mat-label>نُشر بواسطة</mat-label>
                     <mat-select [disableOptionCentering]="true"  (selectionChange)="postedBy($event)">
                         <mat-option value="Dealer" *ngFor="let data of postedByOption">{{data.nameAr}}</mat-option>
                     </mat-select>
@@ -343,7 +343,7 @@
                                 <div ngClass="block-wrapper keywords_design-input">
                                     <label class="h6-design">الكلمات المفتاحية</label>
                                     <mat-form-field class="example-chip-list" appearance="fill">
-                                        <mat-label>أضف كلمات رئيسية</mat-label>
+                                        <mat-label>أضف كلمات دلالية</mat-label>
                                         <mat-chip-list #chipList aria-label="Keyword selection">
                                             <mat-chip *ngFor="let KeywordName of Keywords"
                                                 (removed)="remove(KeywordName)">
@@ -371,7 +371,7 @@
         </div>
         <div ngClass="block-item seven-block">
             <div ngClass="block-wrapper">
-                <button ngClass="clear-btn" (click)="clearSearch()">صافي</button>
+                <button ngClass="clear-btn" (click)="clearSearch()">مسحv</button>
             </div>
         </div>
         <div ngClass="block-item eight-block">

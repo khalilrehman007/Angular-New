@@ -37,7 +37,7 @@ export class ClassifiedHomeComponent implements OnInit {
     },
     {
       src: '../../../assets/images/services/movers.jpeg',
-      title: 'خدمات النقل',
+      title: 'الالخدمات النقل',
       text: 'نطاق السعر إ.د100 - إ.د120',
       link: '',
     },
@@ -49,7 +49,7 @@ export class ClassifiedHomeComponent implements OnInit {
     },
     {
       src: '../../../assets/images/services/mobile-service.jpeg',
-      title: 'مبيعات وخدمات المحمول',
+      title: 'مبيعات والالخدمات المحمول',
       text: 'نطاق السعر إ.د100 - إ.د120',
       link: '',
     },
@@ -67,7 +67,7 @@ export class ClassifiedHomeComponent implements OnInit {
     },
     {
       src: '../../../assets/images/services/Yardwork-Services.jpeg',
-      title: 'خدمات بستنة',
+      title: 'الالخدمات بستنة',
       text: 'نطاق السعر إ.د100 - إ.د120',
       link: '',
     },
