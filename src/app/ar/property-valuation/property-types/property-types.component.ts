@@ -122,11 +122,15 @@ export class PropertyTypesComponent implements OnInit {
     }
   }
   ngOnInit(): void {
-    this.service.PropertyUnitTypes().subscribe((result: any) => {
-      this.propertyUnits = result.data;
-    })
+  
   }
   ngAfterViewInit(): void {
+  }
+  loadPropertyUnitTypes(propertyTypeId:number){
+    this.service.PropertyUnitTypes(propertyTypeId).subscribe((result: any) => {
+      console.log(result)
+      this.propertyUnits = result.data;
+    })
   }
   loadOldData() {
     if (localStorage.getItem("propertyTypeData")) {
@@ -214,9 +218,19 @@ export class PropertyTypesComponent implements OnInit {
     }
     return false;
   }
+  UnitTypeValueChange(e:any,id:number){
+    let hasBed=this.propertyUnits.find((item: any) => {return item.id == e.value}).hasBedRooms;
+    if(hasBed==false){
+      $("#bRooms-"+id).hide();
+    }
+    else{
+      $("#bRooms-"+id).show();
+    }
+  }
   valuationPurpose(e: any) {
     let temp: any = this.formData.PropertyCategoryId
     this.clearData();
+    this.loadPropertyUnitTypes(e.value)
     this.formData.PropertyCategoryId = temp;
     this.showLoader = true;
     this.formDetailData.propertyType = this.propertyType.filter((item: any) => item.id == e.value)[0].typeDescriptionAr;

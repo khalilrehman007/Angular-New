@@ -404,7 +404,7 @@
                                                             ngClass="required">*</span></label>
                                                     <mat-form-field appearance="fill">
                                                         <mat-label>Unit Type</mat-label>
-                                                        <mat-select [disableOptionCentering]="true" >
+                                                        <mat-select [disableOptionCentering]="true" (selectionChange)="UnitTypeValueChange($event,item.id)">
                                                             <mat-option *ngFor="let item of propertyUnits"
                                                                 [value]="item.id">
                                                                 {{item.name}}
@@ -443,9 +443,9 @@
                                                     </mat-form-field>
                                                 </div>
                                             </div>
-                                            <div ngClass="col-xl-3 col-lg-3 col-sm-12">
+                                            <div ngClass="col-xl-3 col-lg-3 col-sm-12" id="bRooms-{{item.id}}">
                                                 <div ngClass="block-wrapper mb-4">
-                                                    <label class="h6-design">Bedroom <span
+                                                    <label class="h6-design">Bedrooms <span
                                                             ngClass="required">*</span></label>
                                                     <mat-form-field class="full-width input-design-2" appearance="fill">
                                                         <input class="bedroom" matInput type="number"
