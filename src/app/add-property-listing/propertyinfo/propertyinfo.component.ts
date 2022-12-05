@@ -68,6 +68,92 @@ export class PropertyinfoComponent implements OnInit {
   districtName: any;
 
   constructor(private route: Router, private notifyService: NotificationService, private service: AppService, private modalService: NgbModal, config: NgbModalConfig) {
+    const selectedPackageByPoints ={
+      "id": 1,
+      "name": "Free",
+      "nameAr": "مجاني",
+      "price": 0,
+      "active": true,
+      "deleted": false,
+      "propertyListingTypeId": 1,
+      "validDays": 0,
+      "numberOfPhoto": 10,
+      "chat": true,
+      "videoInListing": true,
+      "liveVideoChat": false,
+      "priority": 0,
+      "emailProm": true,
+      "ovaluateVerified": false,
+      "videoTour360": true,
+      "floorPlans": false,
+      "agentScore": 0,
+      "customizePackage": false,
+      "propertyListingPackageFeatures": [
+          {
+              "id": 1,
+              "detail": "01 Active Property Listing",
+              "detailAr": "01 عقار فعال",
+              "active": true,
+              "deleted": false,
+              "propertyListingPackageId": 1,
+              "propertyListingPackageSubFeatures": []
+          },
+          {
+              "id": 2,
+              "detail": "Up to 30 days validity",
+              "detailAr": "30 يوم فعالية ",
+              "active": true,
+              "deleted": false,
+              "propertyListingPackageId": 1,
+              "propertyListingPackageSubFeatures": []
+          },
+          {
+              "id": 3,
+              "detail": "Unlimited Leads",
+              "detailAr": "غير محدودين",
+              "active": true,
+              "deleted": false,
+              "propertyListingPackageId": 1,
+              "propertyListingPackageSubFeatures": [
+                  {
+                      "id": 1,
+                      "detail": "Leads via Email",
+                      "detailAr": "عبر الايميل",
+                      "active": true,
+                      "deleted": false,
+                      "propertyListingPackageFeatureId": 3
+                  },
+                  {
+                      "id": 2,
+                      "detail": "Leads via Email",
+                      "detailAr": "عبر الايميل",
+                      "active": true,
+                      "deleted": false,
+                      "propertyListingPackageFeatureId": 3
+                  },
+                  {
+                      "id": 3,
+                      "detail": "Leads via Email",
+                      "detailAr": "عبر الايميل",
+                      "active": true,
+                      "deleted": false,
+                      "propertyListingPackageFeatureId": 3
+                  }
+              ]
+          },
+          {
+              "id": 4,
+              "detail": "Display 4 Photos on the Listing",
+              "detailAr": "عرض 4 صور للعقار",
+              "active": true,
+              "deleted": false,
+              "propertyListingPackageId": 1,
+              "propertyListingPackageSubFeatures": []
+          }
+      ],
+      "propertyListingType": null
+  }
+    localStorage.setItem("seletedPackage", JSON.stringify(selectedPackageByPoints));
     if (!localStorage.getItem("user")) {
       this.notifyService.showError("You need to register/login", "");
       this.route.navigate(["/login"]);

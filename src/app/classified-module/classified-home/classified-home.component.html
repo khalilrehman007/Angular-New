@@ -1,4 +1,6 @@
+
 <app-header></app-header>
+<div [ngClass]="{'disabled':isDisabled}">
 <section [ngClass]="'slide-left-bar classified-page-sec'">
 <section class="classified-search-sec">
     <div class="container_1280px">
@@ -338,3 +340,4 @@
 <div id="post-ads-btn"><a class="" routerLink="/classified/ad-post">+ Post Your Add</a></div>
 <app-footer></app-footer>
 </section>
+</div>

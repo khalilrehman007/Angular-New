@@ -1,6 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { AppService } from 'src/app/service/app.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-left-at-home',
@@ -8,6 +9,7 @@ import { AppService } from 'src/app/service/app.service';
   styleUrls: ['./left-at-home.component.scss']
 })
 export class LeftAtHomeComponent implements OnInit, AfterViewInit {
+  baseUrl:string=environment.apiUrl;
   exploreimg = '../../../assets/images/Blog-Tile.png'
   Newssec = [
     {

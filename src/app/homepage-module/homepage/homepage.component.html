@@ -138,7 +138,7 @@
                                     [routerLink]="['/property/detail']" [queryParams]="{id: slide.id}">
                                     <div class="property-img-wrap">
                                         <img *ngIf="slide.documents.length > 0"
-                                            src="https://beta.ovaluate.com/{{slide.documents[0].fileUrl}}"
+                                            src="{{baseUrl}}{{slide.documents[0].fileUrl}}"
                                             [alt]="slide.propertyTitle" [title]="slide.propertyTitle" />
                                         <img *ngIf="slide.documents.length == 0" src="assets/images/placeholder.png"
                                             [alt]="slide.propertyTitle" [title]="slide.propertyTitle" />
@@ -186,7 +186,7 @@
                                                             stroke-width="1.5" stroke-linecap="round"
                                                             stroke-linejoin="round" />
                                                     </svg>
-                                                    {{slide.plotSize != null ? slide.plotSize : 0}} Sqft
+                                                    {{slide.plotSize == null || slide.plotSize==0 ? slide.buildupArea ==null || slide.buildupArea==0 ?0:slide.buildupArea:slide.plotSize }} Sqft
                                                 </span>
                                             </div>
                                         </div>
@@ -208,7 +208,7 @@
                                                 <span *ngIf="slide.rentType != null"
                                                     class="rent_type">{{slide.rentType.name}}</span>
                                             </div>
-                                            <button class="property_det-btn">Details
+                                            <button class="property_det-btn">
                                                 <svg width="6" height="13" viewBox="0 0 6 13" fill="none"
                                                     xmlns="http://www.w3.org/2000/svg">
                                                     <mask id="path-1-inside-1_8_5" fill="white">
@@ -327,7 +327,7 @@
                                     [routerLink]="['/property/detail']" [queryParams]="{id: slide.id}">
                                     <div class="property-img-wrap">
                                         <img *ngIf="slide.documents.length > 0"
-                                            src="https://beta.ovaluate.com/{{slide.documents[0].fileUrl}}"
+                                            src="{{baseUrl}}{{slide.documents[0].fileUrl}}"
                                             [alt]="slide.propertyTitle" [title]="slide.propertyTitle" />
                                         <img *ngIf="slide.documents.length == 0" src="assets/images/placeholder.png"
                                             [alt]="slide.propertyTitle" [title]="slide.propertyTitle" />
@@ -375,7 +375,7 @@
                                                             stroke-width="1.5" stroke-linecap="round"
                                                             stroke-linejoin="round" />
                                                     </svg>
-                                                    {{slide.plotSize != null ? slide.plotSize : 0}} Sqft
+                                                    {{slide.plotSize == null || slide.plotSize==0 ? slide.buildupArea ==null || slide.buildupArea==0 ?0:slide.buildupArea:slide.plotSize }} Sqft
                                                 </span>
                                             </div>
                                         </div>
@@ -397,7 +397,7 @@
                                                 <span *ngIf="slide.rentType != null"
                                                     class="rent_type">{{slide.rentType.name}}</span>
                                             </div>
-                                            <button class="property_det-btn">Details
+                                            <button class="property_det-btn">
                                                 <svg width="6" height="13" viewBox="0 0 6 13" fill="none"
                                                     xmlns="http://www.w3.org/2000/svg">
                                                     <mask id="path-1-inside-1_8_5" fill="white">
@@ -474,7 +474,7 @@
                                     </div>
                                 </div>
                                 <div ngClass="col-md-6 property-listing-slider-right">
-                                    <img src="https://beta.ovaluate.com/{{ item.ovaluateOfferingDocument.fileUrl }}"
+                                    <img src="{{baseUrl}}{{ item.ovaluateOfferingDocument.fileUrl }}"
                                         ngClass="img-fluid lisitng-right-img" alt="" />
                                 </div>
                             </div>
@@ -500,7 +500,7 @@
             <div ngClass="row">
                 <div ngClass="col-md-6 explore-places-col" *ngFor="let data of explorePlaces">
                     <a routerLink="/explore/details/{{data.id}}">
-                        <img src="https://beta.ovaluate.com/{{ data.document.fileUrl}}" ngClass="img-fluid" alt="" />
+                        <img src="{{baseUrl}}{{ data.document.fileUrl}}" ngClass="img-fluid" alt="" />
                         <div ngClass="explore-place-content">
                             <h5>{{ data.name }}</h5>
                             <p>{{ data.details }}</p>
@@ -520,13 +520,13 @@
                     <a routerLink="/blog">Read all</a>
                 </div>
             </div>
-            <div class="no-data-found" *ngIf="blogs.length == 0">
+            <div class="no-data-found" *ngIf="blogs?.length == 0">
                 <img src="/assets/images/No-data.svg">
             </div>
             <div ngClass="row">
                 <div ngClass="col-lg-4 col-md-6 blog-places-col" *ngFor="let blog of blogs">
                     <a routerLink="/blog/details/{{blog.slugName}}" ngClass="position-relative">
-                        <img [src]="'https://beta.ovaluate.com/' + blog.blogDocument.fileUrl"
+                        <img [src]="baseUrl + blog.blogDocument.fileUrl"
                             ngClass="img-fluid blog-image-homepage" alt="" />
                         <span ngClass="blog-tag">
                             <img [src]="blog.src2" ngClass="img-fluid" alt="" />

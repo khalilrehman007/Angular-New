@@ -58,7 +58,7 @@
                         </div>
                         <!-- <div ngClass="property-tags d-flex flex-wrap">
                             <span ngClass="tags-bg-grey">الوساطة: {{propertyDetailData.brokerageChargePrice}}
-                                {{propertyData.country.currencyAr}}</span>
+                                {{propertyData?.country?.currencyAr}}</span>
                             <span ngClass="tags-bg-grey">مبلغ التأمين:
                                 {{propertyDetailData.securityDepositPrice}} {{propertyData.country.currencyAr}}</span>
                         </div> -->
@@ -223,7 +223,7 @@
                             <div ngClass="tabs-heading-div">
                                 <h5>موقع</h5>
                             </div>
-                            <div class="property-near-map" id="property-near-map" style="width: 100%; height: 400px;">
+                            <div #propertyDetails__map class="property-details__map">
                             </div>
                         </div>
                     </div>
@@ -248,7 +248,7 @@
                                     </p>
                                     <p ngClass="rera"> RERA# 11899</p>
                                     <p ngClass="permit">رقم التصريح# 7187842740</p>
-                                    <a routerLink="/agent-details/{{userData.id}}" ngClass="properties-listed-no"
+                                    <a routerLink="/agent-details/{{userData?.id}}" ngClass="properties-listed-no"
                                         *ngIf="userData != ''">47 - العقارات النشطة المدرجة</a>
                                 </div>
                             </div>
@@ -329,12 +329,12 @@
                 <owl-carousel-o [options]="SpSliderOptions" ngClass="slider-shadow">
                     <ng-container *ngFor="let slide of similarPropertyDetails">
                         <ng-template carouselSlide [id]="slide.id">
-                            <div ngClass="property-item position-relative cursor-pointer" [routerLink]="['/ar/property/detail']" [queryParams]="{id: slide.id}">
-                                <div class="property-img-wrap">
-                                    <img src="https://beta.ovaluate.com/{{slide.documents[0].fileUrl}}" [alt]="slide.alt" [title]="slide.title">
+                            <div ngClass="property-item position-relative cursor-pointer">
+                                <div class="property-img-wrap" [routerLink]="['/ar/property/detail']" [queryParams]="{id: slide.id}">
+                                    <img src="{{baseUrl}}{{slide.documents[0].fileUrl}}" [alt]="slide.alt" [title]="slide.title">
                                 </div>
-                                <div ngClass="brand-logo">
-                                    <img src="https://beta.ovaluate.com/{{slide.documents[0].fileUrl}}" alt="">
+                                <div ngClass="brand-logo" [routerLink]="['/ar/property/detail']" [queryParams]="{id: slide.id}">
+                                    <img src="{{baseUrl}}{{slide.documents[0].fileUrl}}" alt="">
                                 </div>
                                 <div class="pro_cntnt-main-wrap">
                                 <div class="property-cntnt_wrap">

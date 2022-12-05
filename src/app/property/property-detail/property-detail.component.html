@@ -164,8 +164,8 @@
                                         <div ngClass="col-xl-3 col-lg-3 col-md-12 col-sm-12"
                                             *ngFor="let data of propertyDetails.propertyFeatures">
                                             <div ngClass="amenties_info-text">
-                                                <!-- <img height="40px" width="40px"
-                                                    src="https://beta.ovaluate.com/{{data.propertyFeature.document.fileUrl}}"> -->
+                                                <img height="20px" width="20px"
+                                                    src="{{baseUrl}}{{data.propertyFeature.document.fileUrl}}">
                                                 <p>{{data.propertyFeature.featureName}}</p>
                                                 <!-- <button ngClass="see-more-amenties">{{data.btnvalue}}</button> -->
                                             </div>
@@ -254,7 +254,7 @@
                                     </p>
                                     <p ngClass="rera"> RERA# 11899</p>
                                     <p ngClass="permit">Permit# 7187842740</p>
-                                    <a routerLink="/agent-details/{{userData.id}}" ngClass="properties-listed-no"
+                                    <a routerLink="/agent-details/{{userData?.id}}" ngClass="properties-listed-no"
                                         *ngIf="userData != ''">47 - Active Properties Listed</a>
                                 </div>
                             </div>

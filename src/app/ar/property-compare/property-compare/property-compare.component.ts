@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {NotificationService} from "../../../service/notification.service";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {AppService} from "../../../service/app.service";
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-property-compare',
@@ -20,7 +21,7 @@ export class PropertyCompareComponent implements OnInit {
     {img: '../../../assets/images/pro-comparison.png',price: '350,000',title: 'Blue Wave Tower',address: 'Etihad Tower 4, Etihad Towers, Corniche Road, Abu Dhabi'},
   ];
   compareIds:any;
-  baseUrl = 'https://beta.ovaluate.com/'
+  baseUrl = environment.apiUrl;
 
   constructor(private authService:AuthService,private route:Router,private notifyService : NotificationService,private modalService: NgbModal, private service:AppService) {
     this.getCompareIds();

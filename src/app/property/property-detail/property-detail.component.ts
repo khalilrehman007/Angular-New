@@ -61,7 +61,7 @@ export class PropertyDetailComponent implements OnInit,AfterViewInit {
   tagicn = '../../../assets/images/icons/tag-icn.svg'
   homeLoc = '../../../assets/images/home-location.svg'
   user: any
-  baseUrl = 'https://beta.ovaluate.com/'
+  baseUrl = environment.apiUrl;
   status: boolean = true;
   status1: boolean = false;
   status2: boolean = false;
@@ -324,10 +324,12 @@ export class PropertyDetailComponent implements OnInit,AfterViewInit {
       this.allData = result.data;
       console.log(this.allData.detailsChart.chart.length);
       let temp: any = result;
+      console.log(temp)
       this.userData = temp.data.user;
       this.propertyLat = temp.data.propertyListing.propertyLat;
       this.propertyLng = temp.data.propertyListing.propertyLong;
       this.buildingName = temp.data.propertyListing.buildingName;
+      console.log(this.buildingName)
       let jsonData: any = JSON.stringify(temp.data)
       let jsonParsDate: any = JSON.parse(jsonData);
       this.propertyDetail = jsonParsDate
@@ -343,7 +345,7 @@ export class PropertyDetailComponent implements OnInit,AfterViewInit {
         map: this.map,
         label: {
           className: 'map-marker-label',
-          text: this.buildingName
+          text: this.buildingName==""?"Location":this.buildingName
         },
       });
       let tenantType: any = '';
@@ -395,6 +397,7 @@ export class PropertyDetailComponent implements OnInit,AfterViewInit {
         this.propertyDetailData.parkings = (jsonParsDate.propertyListing.parkings !== undefined) ? jsonParsDate.propertyListing.parkings : ''
         this.propertyDetailData.carpetArea = (jsonParsDate.propertyListing.carpetArea !== undefined) ? jsonParsDate.propertyListing.carpetArea : ''
         this.propertyDetailData.buildupArea = (jsonParsDate.propertyListing.buildupArea !== undefined) ? jsonParsDate.propertyListing.buildupArea : ''
+        this.propertyDetailData.plotSize = (jsonParsDate.propertyListing.plotSize !== undefined) ? jsonParsDate.propertyListing.plotSize : ''
         this.propertyDetailData.rentType = rentType
         this.propertyDetailData.securityDepositPrice = (jsonParsDate.propertyListing.securityDepositPrice !== undefined) ? jsonParsDate.propertyListing.securityDepositPrice : ''
         this.propertyDetailData.brokerageChargePrice = (jsonParsDate.propertyListing.brokerageChargePrice !== undefined) ? jsonParsDate.propertyListing.brokerageChargePrice : ''
@@ -405,6 +408,7 @@ export class PropertyDetailComponent implements OnInit,AfterViewInit {
         this.propertyDetailData.propertyLong = (jsonParsDate.propertyListing.propertyLong !== undefined) ? jsonParsDate.propertyListing.propertyLong : ''
         this.propertyDetailData.id = (jsonParsDate.propertyListing.id !== undefined) ? jsonParsDate.propertyListing.id : ''
         this.propertyDetailData.favorite = (jsonParsDate.propertyListing.favorite !== undefined) ? jsonParsDate.propertyListing.favorite : ''
+        this.propertyDetailData.propertyListingTypeId = (jsonParsDate.propertyListing.propertyListingTypeId !== undefined) ? jsonParsDate.propertyListing.propertyListingTypeId : 0
 
         // share url concatination
 
@@ -442,6 +446,7 @@ export class PropertyDetailComponent implements OnInit,AfterViewInit {
         }
 
         this.propertyValidationData = result.data.propertyListing.propertyType;
+        console.log(this.propertyValidationData)
         this.getPropertyInfo();
 
       } else {
@@ -561,12 +566,17 @@ export class PropertyDetailComponent implements OnInit,AfterViewInit {
         value: this.decimalPipe.transform(this.propertyDetailData.carpetArea),
       },
       {
+        show: this.propertyValidationData.hasListingPlotSize,
+        label: 'Plot Size',
+        value: this.decimalPipe.transform(this.propertyDetailData.plotSize),
+      },
+      {
         show: this.propertyValidationData.hasBuildUpArea,
         label: 'Build-up Area',
         value: this.decimalPipe.transform(this.propertyDetailData.buildupArea),
       },
       {
-        show: true,
+        show: this.propertyDetailData.propertyListingTypeId==2?true:false,
         label: 'Current Occupancy Status',
         value: this.propertyDetailData.occupancyStatus,
       },
@@ -724,7 +734,7 @@ export class PropertyDetailComponent implements OnInit,AfterViewInit {
           {
             title: element.propertyTitle,
             price: element.propertyPrice,
-            rentType: element.rentType.name,
+            rentType: element.rentType?.name,
             currency: element.country.currency,
             favorite: element.favorite,
             propertyAddress: element.propertyAddress,

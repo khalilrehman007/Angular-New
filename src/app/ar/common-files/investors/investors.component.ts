@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from 'src/app/service/app.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-investors',
@@ -7,6 +8,7 @@ import { AppService } from 'src/app/service/app.service';
   styleUrls: ['./investors.component.scss']
 })
 export class InvestorsComponent implements OnInit {
+  baseUrl:string=environment.apiUrl;
   team: any=[];
   image:any;
   title:any;
@@ -20,7 +22,7 @@ export class InvestorsComponent implements OnInit {
     this.api.TeamMemberBanner().subscribe((result:any)=> {
       this.title = result.data.pageCaptionHelightAr;
       this.subHeading = result.data.pageCaptionTextAr;
-      this.image = "https://beta.ovaluate.com/" + result.data.fileUrl;
+      this.image = this.baseUrl + result.data.fileUrl;
       this.image = this.image.replaceAll("\\", "/");
       $(".inner-page-banner-sec").css({"background-image":"url('"+this.image+"')"})
       $(".inner-banner-heading p").append(this.subHeading);

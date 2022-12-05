@@ -32,7 +32,7 @@
                   [ngClass]="checkCity(item.name) ? 'd-none' : ''">
                   <div ngClass="loc-div-block position-relative">
                     <div ngClass="loc-img-design">
-                      <img src="https://beta.ovaluate.com/{{item.cityDocument.fileUrl}}">
+                      <img src="{{baseUrl}}{{item.cityDocument.fileUrl}}">
                     </div>
                     <div ngClass="loc-img-cntnt">
                       <div ngClass="d-flex justify-content-spacebw align-items-center">

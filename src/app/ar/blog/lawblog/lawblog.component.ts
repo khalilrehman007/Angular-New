@@ -1,6 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { AppService } from 'src/app/service/app.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-lawblog',
@@ -8,6 +9,7 @@ import { AppService } from 'src/app/service/app.service';
   styleUrls: ['./lawblog.component.scss']
 })
 export class LawblogComponent implements OnInit, AfterViewInit {
+  baseUrl:string=environment.apiUrl;
   exploreimg = '../../../../assets/images/Blog-Tile.png'
   Newssec = [
     {

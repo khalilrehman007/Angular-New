@@ -55,7 +55,7 @@ export class DetailsComponent implements OnInit {
   tagicn = '../../../../assets/images/icons/tag-icn.svg'
   homeLoc = '../../../../assets/images/home-location.svg'
   user: any
-  baseUrl = 'https://beta.ovaluate.com/'
+  baseUrl = environment.apiUrl;
   status: boolean = true;
   status1: boolean = false;
   status2: boolean = false;

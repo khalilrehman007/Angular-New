@@ -7,6 +7,7 @@ import { NotificationService } from "../../service/notification.service";
 import { AuthService } from "../../service/auth.service";
 import { JsonpInterceptor } from "@angular/common/http";
 import { limitToFirst } from 'firebase/database';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-compare-listing-selection',
@@ -76,7 +77,7 @@ export class CompareListingSelectionComponent implements OnInit {
   PriceStart: any;
   PriceEnd: any;
   content: any;
-  baseUrl = 'https://beta.ovaluate.com/'
+  baseUrl = environment.apiUrl;
   sortedById: any;
   totalLength: number = 0;
   page: number = 1;

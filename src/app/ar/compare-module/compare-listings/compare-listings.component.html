@@ -21,7 +21,7 @@
                         <div ngClass="property-comparison-block position-relative cursor-pointer">
                             <div ngClass="com-img">
                                 <!-- <img src="{{property.img}}"> -->
-                                <img *ngIf="property.documents.length > 0 && property.documents[0].fileUrl != null" src="https://beta.ovaluate.com/{{property.documents[0].fileUrl}}">
+                                <img *ngIf="property.documents.length > 0 && property.documents[0].fileUrl != null" src="{{baseUrl}}{{property.documents[0].fileUrl}}">
                                 <img  *ngIf="property.documents.length == 0 || property.documents[0].fileUrl == null" src="assets/images/placeholder.png">
                             </div>
                             <div ngClass="com-cntnt">

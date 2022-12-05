@@ -4,6 +4,7 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 import { AppService } from 'src/app/service/app.service';
 import { AuthService } from 'src/app/service/auth.service';
 import { CookieService } from 'ngx-cookie-service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-comparepage',
@@ -11,6 +12,7 @@ import { CookieService } from 'ngx-cookie-service';
   styleUrls: ['./comparepage.component.scss']
 })
 export class ComparepageComponent implements OnInit {
+  baseUrl:string=environment.apiUrl;
   viewPropertyOne: any = "";
   viewPropertyTwo: any = "";
   viewPropertyThree: any = "";

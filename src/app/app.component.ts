@@ -98,7 +98,6 @@ export class AppComponent implements DoCheck, OnInit, AfterViewInit {
       let time = Date.now() + ((3600 * 1000) * 24);
       expire.setTime(time);
       delete this.countryData.city;
-      console.log(this.countryData)
       this.cookie.set("countryData", JSON.stringify(this.countryData), expire);
     })
   }

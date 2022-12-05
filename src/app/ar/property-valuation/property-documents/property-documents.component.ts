@@ -3,6 +3,7 @@ import { AppService } from 'src/app/service/app.service';
 import { DatePipe } from '@angular/common';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-property-documents',
@@ -414,7 +415,7 @@ export class PropertyDocumentsComponent implements OnInit {
     console.clear();
     console.log(this.formData);
     $.ajax({
-      url: "https://beta.ovaluate.com/api/AddValuation",
+      url: `${environment.apiUrl}api/AddValuation`,
       method: "post",
       contentType: false,
       processData: false,

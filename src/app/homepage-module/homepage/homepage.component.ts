@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 import { AuthService } from "../../service/auth.service";
 import { CookieService } from 'ngx-cookie-service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-homepage',
@@ -33,8 +34,8 @@ export class HomepageComponent implements OnInit, AfterViewInit {
   whatsapp = '../../../assets/images/icons/whatsapp.svg'
   twitter = '../../../assets/images/icons/twiiter-share.svg'
   content: any;
-  baseUrl = 'https://beta.ovaluate.com/'
-  blogs: any = [];
+  baseUrl = environment.apiUrl;
+  blogs: any;
   submitted = false;
   responsedata: any;
   dynamicSlides1: any = [];
@@ -51,24 +52,26 @@ export class HomepageComponent implements OnInit, AfterViewInit {
   oldData1() {
     this.service.LatestPropertiesListingResidential({ "CountryId": this.countryData.id, "UserId": this.userId, "propertyListingTypeId": "1" }).subscribe((response: any) => {
       this.dynamicSlides1 = response.data;
-      console.log(this.dynamicSlides1);
+      console.log("1",this.dynamicSlides1)
     });
   }
   newData1() {
     this.service.LatestPropertiesListingResidential({ "CountryId": this.countryData.id, "UserId": this.userId, "propertyListingTypeId": "2" }).subscribe((response: any) => {
       this.dynamicSlides1 = response.data;
+      console.log("1",this.dynamicSlides1)
     });
   }
 
   oldData2() {
     this.service.LatestPropertiesListingCommercial({ "CountryId": this.countryData.id, "UserId": this.userId, "propertyListingTypeId": "1" }).subscribe((response: any) => {
       this.dynamicSlides2 = response.data;
-      console.log(this.dynamicSlides2);
+      console.log("dynamic",this.dynamicSlides2);
     });
   }
   newData2() {
     this.service.LatestPropertiesListingCommercial({ "CountryId": this.countryData.id, "UserId": this.userId, "propertyListingTypeId": "2" }).subscribe((response: any) => {
       this.dynamicSlides2 = response.data;
+      console.log("dynamic",this.dynamicSlides2);
     });
   }
   tenantsslide = [
@@ -119,13 +122,13 @@ export class HomepageComponent implements OnInit, AfterViewInit {
       0: {
         items: 1
       },
-      576: {
+      400: {
         items: 2
       },
-      992: {
-        items: 4
+      740: {
+        items: 3
       },
-      1200: {
+      940: {
         items: 4
       }
     },

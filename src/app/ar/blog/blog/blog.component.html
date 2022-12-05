@@ -48,8 +48,8 @@
             <div ngClass="explore-details-banner">
                 <div routerLink="/ar/blog/details/{{mainBlog.slugName}}" ngClass="explore_details-img">
                     <img *ngIf="mainBlog.blogDocument && mainBlog.blogDocument.fileUrl"
-                        src="https://beta.ovaluate.com/{{mainBlog.blogDocument.fileUrl}}">
-                    <!-- <img *ngIf="mainBlog.blogDocument.fileUrl != null" src="https://beta.ovaluate.com/{{mainBlog.blogDocument.fileUrl}}">
+                        src="{{baseUrl}}{{mainBlog.blogDocument.fileUrl}}">
+                    <!-- <img *ngIf="mainBlog.blogDocument.fileUrl != null" src="{{baseUrl}}{{mainBlog.blogDocument.fileUrl}}">
                     <img *ngIf="mainBlog.blogDocument.fileUrl == null" src="assets/images/placeholder.png" [alt]=""> -->
                 </div>
                 <div ngClass="explore_details-cntnt">
@@ -77,7 +77,7 @@
             <div ngClass="row" *ngIf="latestNews.length > 0">
                 <div ngClass="col-lg-4 col-md-6 blog-places-col" *ngFor=" let item of latestNews;">
                     <a routerLink="/ar/blog/details/{{item.slugName}}">
-                        <img src="https://beta.ovaluate.com/{{item.blogDocument.fileUrl}}"
+                        <img src="{{baseUrl}}{{item.blogDocument.fileUrl}}"
                             ngClass="img-fluid blog-image-homepage" alt="">
                         <div ngClass="blog-title-content">
                             <h5>{{item.pageTittleAr}}</h5>
@@ -97,7 +97,7 @@
                             <div ngClass="col-xl-4 col-lg-4 col-md-12 col-sm-12">
                                 <div ngClass="blogs_cntnt-img">
                                     <a routerLink="/ar/blog/details/{{item.slugName}}">
-                                        <img src="https://beta.ovaluate.com/{{item.blogDocument.fileUrl}}"
+                                        <img src="{{baseUrl}}{{item.blogDocument.fileUrl}}"
                                             ngClass="img-fluid blog-image-homepage" alt="">
                                     </a>
                                 </div>
@@ -129,7 +129,7 @@
                                         <div ngClass="col-lg-4 col-md-6 blog-places-col"
                                             *ngFor=" let item2 of item.blogs; let i=index">
                                             <a routerLink="/ar/blog/details/{{item2.slugName}}" *ngIf="i < 3">
-                                                <img src="https://beta.ovaluate.com/{{item2.blogDocument.fileUrl}}"
+                                                <img src="{{baseUrl}}{{item2.blogDocument.fileUrl}}"
                                                     ngClass="img-fluid blog-image-homepage" alt="">
                                                 <div ngClass="blog-title-content">
                                                     <h5>{{item2.pageTittleAr}}</h5>

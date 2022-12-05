@@ -267,7 +267,7 @@
                                     <div class="lead-summ-table" *ngIf="leadsResidentialSummary.length > 0">
                                         <div class="table-row" *ngFor="let data of leadsResidentialSummary">
                                             <div class="col photo-col">
-                                                <!-- <img *ngIf="data.length > 0 && data.fileUrl" src="https://beta.ovaluate.com/{{data.fileUrl}}" alt="">
+                                                <!-- <img *ngIf="data.length > 0 && data.fileUrl" src="{{baseUrl}}{{data.fileUrl}}" alt="">
                                                 <img *ngIf="data.length == 0" src="assets/images/user.png" alt=""> -->
                                                 <img src="assets/images/user.png" alt="">
                                             </div>
@@ -326,7 +326,7 @@
                                     <div class="lead-summ-table" *ngIf="leadsCommercialSummary.length > 0">
                                         <div class="table-row" *ngFor="let data of leadsCommercialSummary">
                                             <div class="col photo-col">
-                                                <!-- <img *ngIf="data.length > 0 && data.fileUrl" src="https://beta.ovaluate.com/{{data.fileUrl}}" alt="">
+                                                <!-- <img *ngIf="data.length > 0 && data.fileUrl" src="{{baseUrl}}{{data.fileUrl}}" alt="">
                                                 <img *ngIf="data.length == 0" src="assets/images/user.png" alt=""> -->
                                                 <img src="assets/images/user.png" alt="">
                                             </div>
@@ -721,7 +721,7 @@
                                                         <div class="row">
                                                             <div class="col-lg-2">
                                                                 <img *ngIf="viewList.documents.length > 0"
-                                                                    src="https://beta.ovaluate.com/{{viewList.documents[0].fileUrl}}"
+                                                                    src="{{baseUrl}}{{viewList.documents[0].fileUrl}}"
                                                                     alt=""
                                                                     class="img-fluid agent-details__property-list-item-img">
                                                                 <img *ngIf="viewList.documents.length == 0"

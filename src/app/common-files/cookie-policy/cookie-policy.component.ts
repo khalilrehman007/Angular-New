@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from 'src/app/service/app.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-cookie-policy',
@@ -17,7 +18,7 @@ export class CookiePolicyComponent implements OnInit {
     this.api.CookiePolicy().subscribe((result:any) => {
       this.title = result.data.pageCaptionHelight;
       this.subHeading = result.data.pageCaptionText;
-      this.image = "https://beta.ovaluate.com/" + result.data.fileUrl;
+      this.image = environment.apiUrl + result.data.fileUrl;
       this.image = this.image.replaceAll("\\", "/");
       $(".inner-page-banner-sec").css({"background-image":"url('"+this.image+"')"})
       $(".cms_content-paragraph").append(result.data.pageContent);

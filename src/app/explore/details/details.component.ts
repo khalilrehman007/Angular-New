@@ -27,7 +27,7 @@ export class DetailsComponent implements OnInit {
   landdept = 'assets/images/Dubai-Land-LOGO.png'
   rera = 'assets/images/rera.png'
   tagicn= '../../../assets/images/icons/tag-icn.svg'
-  baseUrl = 'https://beta.ovaluate.com/'
+  baseUrl = environment.apiUrl;
   blogs: any;
   submitted = false;
   responsedata: any;

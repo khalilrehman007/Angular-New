@@ -273,7 +273,7 @@
                                     <div class="lead-summ-table" *ngIf="leadsResidentialSummary.length > 0">
                                         <div class="table-row" *ngFor="let data of leadsResidentialSummary">
                                             <div class="col photo-col">
-                                                <!-- <img *ngIf="data.length > 0 && data.fileUrl" src="https://beta.ovaluate.com/{{data.fileUrl}}" alt="">
+                                                <!-- <img *ngIf="data.length > 0 && data.fileUrl" src="{{baseUrl}}{{data.fileUrl}}" alt="">
                                                 <img *ngIf="data.length == 0" src="assets/images/user.png" alt=""> -->
                                                 <img src="assets/images/user.png" alt="">
                                             </div>
@@ -331,7 +331,7 @@
                                     <div class="lead-summ-table" *ngIf="leadsCommercialSummary.length > 0">
                                         <div class="table-row" *ngFor="let data of leadsCommercialSummary">
                                             <div class="col photo-col">
-                                                <!-- <img *ngIf="data.length > 0 && data.fileUrl" src="https://beta.ovaluate.com/{{data.fileUrl}}" alt="">
+                                                <!-- <img *ngIf="data.length > 0 && data.fileUrl" src="{{baseUrl}}{{data.fileUrl}}" alt="">
                                                 <img *ngIf="data.length == 0" src="assets/images/user.png" alt=""> -->
                                                 <img src="assets/images/user.png" alt="">
                                             </div>
@@ -721,7 +721,7 @@
                                                         <div class="row">
                                                             <div class="col-lg-2">
                                                                 <img *ngIf="viewList.documents.length > 0"
-                                                                    src="https://beta.ovaluate.com/{{viewList.documents[0].fileUrl}}"
+                                                                    src="{{baseUrl}}{{viewList.documents[0].fileUrl}}"
                                                                     alt=""
                                                                     class="img-fluid agent-details__property-list-item-img">
                                                                 <img *ngIf="viewList.documents.length == 0"
@@ -1449,7 +1449,7 @@
                                                                     [queryParams]="{id: listing.id}">
                                                                     <div class="col-7">
                                                                         <a
-                                                                            class="agent-details__property-list-item-link cursor-pointer">{{listing.propertyPrice}}
+                                                                            class="agent-details__property-list-item-link cursor-pointer">{{listing.propertyPrice |number }}
                                                                             {{listing.currency}}<small
                                                                                 *ngIf="listing.rentType != ''">{{listing.rentType}}</small>
                                                                         </a>
@@ -1465,14 +1465,12 @@
                                                                             {{listing.expiredDateFormat}}</p>
                                                                     </div>
                                                                 </div>
-                                                                <h6>{{listing.buildingName}}</h6>
+                                                                <h5>{{listing.propertyTitle}}</h5>
                                                                 <p class="agent-details__property-list-item-text">
                                                                     <img src="assets/images/home-location.svg" alt=""
                                                                         class="img-fluid agent-details__property-list-item-text-icon">
                                                                     {{listing.propertyAddress}}
                                                                 </p>
-                                                                <p class="agent-details__property-list-item-type">
-                                                                    {{listing.propertyDescription}}</p>
                                                                 <div class="row">
                                                                     <div class="col-md-10">
                                                                         <ul class="agent-details__property-detail-list">
@@ -1492,7 +1490,7 @@
                                                                                 class="agent-details__property-detail-list-item sqft">
                                                                                 <img src="assets/images/icons/Square Meters.svg"
                                                                                     alt="">
-                                                                                {{listing.carpetArea}} Sq.Ft.
+                                                                                {{listing.carpetArea == null || listing.carpetArea==0 ? listing.buildupArea ==null || listing.buildupArea==0 ?0:listing.buildupArea.toLocaleString()  :listing.carpetArea.toLocaleString() }} Sq.Ft.
                                                                             </li>
                                                                             <li
                                                                                 class="agent-details__property-detail-list-item furnising">
@@ -2358,12 +2356,12 @@
                                                                                         id="{{list.name}}"
                                                                                         name="expert-in"
                                                                                         value="{{list.id}}"
-                                                                                        *ngIf="list.name == agentDetails.agentDetails.expertIn" checked>
+                                                                                        *ngIf="list.name == expertIn" checked>
                                                                                     <input type="radio"
                                                                                         id="{{list.name}}"
                                                                                         name="expert-in"
                                                                                         value="{{list.id}}"
-                                                                                        *ngIf="list.name != agentDetails.agentDetails.expertIn">
+                                                                                        *ngIf="list.name != expertIn">
                                                                                     <button
                                                                                         class="checkbox-btn">{{list.name}}</button>
                                                                                 </div>
@@ -2379,7 +2377,7 @@
                                                                             <mat-label>Select Nationality</mat-label>
                                                                             <mat-select [disableOptionCentering]="true"
                                                                                 (selectionChange)="onChangeNationality($event)"
-                                                                                [(value)]="agentDetails.agentDetails.nationalityId">
+                                                                                [(value)]="NationalityId">
                                                                                 <mat-option [value]="list.id"
                                                                                     *ngFor="let list of Nationality">
                                                                                     {{list.name}}

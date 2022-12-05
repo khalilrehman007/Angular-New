@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms'
 import { ActivatedRoute } from '@angular/router';
 import { AppService } from 'src/app/service/app.service';
+import { environment } from 'src/environments/environment';
 import { NotificationService } from "../../service/notification.service";
 
 @Component({
@@ -16,7 +17,7 @@ export class AgentDetailsComponent implements OnInit {
   furnishing = 'assets/images/icons/furnishing.svg'
   agentDetail: any = {};
   newAgentDetail: any = {};
-  baseUrl = 'https://beta.ovaluate.com/'
+  baseUrl = environment.apiUrl;
   id: any;
   user: any;
   myListing: any = [];

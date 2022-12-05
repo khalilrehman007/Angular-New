@@ -10,6 +10,7 @@ import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/datab
 import { map } from 'rxjs';
 import { getDatabase, ref, child, push, update } from 'firebase/database';
 import { CookieService } from 'ngx-cookie-service';
+import { environment } from 'src/environments/environment';
 interface LanguagesList {
   value: string;
   viewValue: string;
@@ -42,7 +43,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   currentClassIdx: number = 0;
   headerCountries: any='';
   userId: any;
-  baseUrl = 'https://beta.ovaluate.com/'
+  baseUrl = environment.apiUrl;
 
   params: any = {};
   bodyClass: any;

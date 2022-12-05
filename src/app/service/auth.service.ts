@@ -1,12 +1,13 @@
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  apiurl = 'https://beta.ovaluate.com/api/';
+  apiurl = `${environment.apiUrl}api/`;
 
   constructor(private http: HttpClient) {
 

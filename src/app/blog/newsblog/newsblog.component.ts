@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from 'src/app/service/app.service';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -8,7 +9,7 @@ import { AppService } from 'src/app/service/app.service';
   styleUrls: ['./newsblog.component.scss']
 })
 export class NewsblogComponent implements OnInit {
-
+  baseUrl:string=environment.apiUrl;
   exploreimg = '../../../assets/images/Blog-Tile.png'
   blogs: any;
   newsBlog: any;

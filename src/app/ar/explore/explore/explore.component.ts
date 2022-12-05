@@ -7,6 +7,7 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { CookieService } from 'ngx-cookie-service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-explore',
@@ -14,6 +15,7 @@ import { CookieService } from 'ngx-cookie-service';
   styleUrls: ['./explore.component.scss']
 })
 export class ExploreComponent implements OnInit, AfterViewInit {
+  baseUrl:string=environment.apiUrl;
   uaeflag = '../../../../../assets/images/flags/uae.svg'
   search = '../../../../../assets/images/search.svg'
   citylocations = [

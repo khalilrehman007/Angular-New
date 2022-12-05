@@ -7,6 +7,7 @@ import { map, startWith } from 'rxjs/operators';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute } from '@angular/router';
 import { AppService } from 'src/app/service/app.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-city',
@@ -14,6 +15,7 @@ import { AppService } from 'src/app/service/app.service';
   styleUrls: ['./city.component.scss']
 })
 export class CityComponent implements OnInit {
+  baseUrl:string=environment.apiUrl;
   uaeflag = '../../../../../assets/images/flags/uae.svg'
   search = '../../../../../assets/images/search.svg'
   country = [

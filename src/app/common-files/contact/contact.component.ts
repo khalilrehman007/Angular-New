@@ -4,6 +4,7 @@ import {AuthService} from "../../service/auth.service";
 import {Router} from "@angular/router";
 import {NotificationService} from "../../service/notification.service";
 import { AppService } from 'src/app/service/app.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-contact',
@@ -36,7 +37,7 @@ export class ContactComponent implements OnInit {
     this.api.TermsCondition().subscribe((result:any)=> {
       this.title = result.data.pageCaptionHelight;
       this.subHeading = result.data.pageCaptionText;
-      this.image = "https://beta.ovaluate.com/" + result.data.fileUrl;
+      this.image = environment.apiUrl + result.data.fileUrl;
       this.image = this.image.replaceAll("\\", "/");
       $(".inner-page-banner-sec").css({"background-image":"url('"+this.image+"')"})
       $(".inner-banner-heading p").append(this.subHeading);

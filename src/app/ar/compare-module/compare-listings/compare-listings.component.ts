@@ -4,6 +4,7 @@ import { Router } from "@angular/router";
 import { NotificationService } from "../../../service/notification.service";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { AppService } from "../../../service/app.service";
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-compare-listings',
@@ -11,6 +12,7 @@ import { AppService } from "../../../service/app.service";
   styleUrls: ['./compare-listings.component.scss']
 })
 export class CompareListingsComponent implements OnInit {
+  baseUrl:string=environment.apiUrl;
   trash = '/assets/images/icons/Trash-dotted.svg'
   swimm = '/assets/images/icons/swimming.svg'
   properties = [

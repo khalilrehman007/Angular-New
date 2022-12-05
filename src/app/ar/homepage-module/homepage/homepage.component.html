@@ -134,9 +134,9 @@
                     <owl-carousel-o [options]="customOptions" ngClass="slider-shadow ">
                         <ng-container *ngFor="let slide of dynamicSlides1">
                             <ng-template carouselSlide [id]="slide.id">
-                                <div ngClass="property-item position-relative cursor-pointer" [routerLink]="['/ar/property/detail']" [queryParams]="{id: slide.id}">
-                                    <div class="property-img-wrap">
-                                        <img src="https://beta.ovaluate.com/{{slide.documents[0].fileUrl}}"
+                                <div ngClass="property-item position-relative cursor-pointer">
+                                    <div class="property-img-wrap" [routerLink]="['/ar/property/detail']" [queryParams]="{id: slide.id}">
+                                        <img src="{{baseUrl}}{{slide.documents[0].fileUrl}}"
                                         [alt]="slide.propertyTitle" [title]="slide.propertyTitle" />
                                     </div>
                                     <div ngClass="brand-logo">
@@ -185,7 +185,7 @@
                                             <span class="price_value">{{ slide.propertyPrice }}</span>
                                             <span *ngIf="slide.rentType != null" class="rent_type">{{slide.rentType.name}}</span>
                                         </div>
-                                        <button class="property_det-btn">Details 
+                                        <button class="property_det-btn" style="transform: scaleX(-1)">
                                             <svg width="6" height="13" viewBox="0 0 6 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <mask id="path-1-inside-1_8_5" fill="white">
                                                 <path d="M5.83589 6.7132C5.83243 6.38469 5.76426 6.06009 5.63527 5.75794C5.50628 5.4558 5.319 5.18204 5.08415 4.95233L0.949139 0.917959C0.853835 0.824974 0.725495 0.773657 0.592355 0.775297C0.459214 0.776938 0.332178 0.8314 0.239193 0.926705C0.146208 1.02201 0.0948915 1.15035 0.0965317 1.28349C0.0981719 1.41663 0.152635 1.54367 0.247939 1.63665L4.38295 5.67102C4.66729 5.94879 4.82975 6.32806 4.83465 6.72553C4.83955 7.123 4.68648 7.50616 4.40906 7.79085L0.374696 11.9259C0.281711 12.0212 0.230394 12.1495 0.232034 12.2826C0.233675 12.4158 0.288138 12.5428 0.383442 12.6358C0.478746 12.7288 0.607086 12.7801 0.740226 12.7785C0.873367 12.7768 1.0004 12.7224 1.09339 12.6271L5.12775 8.49205C5.35688 8.25662 5.53736 7.97833 5.65886 7.6731C5.78037 7.36787 5.84053 7.04169 5.83589 6.7132V6.7132Z"/>
@@ -198,8 +198,8 @@
                                     </div>
                                     <button ngClass="tag_btn blue">مميز\ فاخر</button>
                                 </div>                                            
-                                <div class="property_hdr-actions">
-                                    <button
+                                <div class="property_hdr-actions" >
+                                    <button style="margin-left:15px ;"
                                     [ngClass]="slide.favorite == true ? 'property-whistlist red-fill' : 'property-whistlist'"
                                     (click)="AddToFavorite(slide.id,slide.favorite,'resedential-old')">
                                     <svg width="22" height="23" viewBox="0 0 22 23" fill="none"
@@ -291,9 +291,9 @@
                     <owl-carousel-o [options]="customOptions" ngClass="slider-shadow ">
                         <ng-container *ngFor="let slide of dynamicSlides2">
                             <ng-template carouselSlide [id]="slide.id">
-                                <div ngClass="property-item position-relative cursor-pointer" [routerLink]="['/ar/property/detail']" [queryParams]="{id: slide.id}">
-                                    <div class="property-img-wrap">
-                                        <img src="https://beta.ovaluate.com/{{slide.documents[0].fileUrl}}" [alt]="slide.propertyTitle" [title]="slide.propertyTitle" />
+                                <div ngClass="property-item position-relative cursor-pointer">
+                                    <div class="property-img-wrap" [routerLink]="['/ar/property/detail']" [queryParams]="{id: slide.id}">
+                                        <img src="{{baseUrl}}{{slide.documents[0].fileUrl}}" [alt]="slide.propertyTitle" [title]="slide.propertyTitle" />
                                     </div>
                                     <div ngClass="brand-logo">
                                         <img src="{{ brandimg }}" alt="" />
@@ -341,7 +341,7 @@
                                             <span class="price_value">{{ slide.propertyPrice }}</span>
                                             <span *ngIf="slide.rentType != null" class="rent_type">{{slide.rentType.name}}</span>
                                         </div>
-                                        <button class="property_det-btn">Details 
+                                        <button class="property_det-btn" style="transform: scaleX(-1)">
                                             <svg width="6" height="13" viewBox="0 0 6 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <mask id="path-1-inside-1_8_5" fill="white">
                                                 <path d="M5.83589 6.7132C5.83243 6.38469 5.76426 6.06009 5.63527 5.75794C5.50628 5.4558 5.319 5.18204 5.08415 4.95233L0.949139 0.917959C0.853835 0.824974 0.725495 0.773657 0.592355 0.775297C0.459214 0.776938 0.332178 0.8314 0.239193 0.926705C0.146208 1.02201 0.0948915 1.15035 0.0965317 1.28349C0.0981719 1.41663 0.152635 1.54367 0.247939 1.63665L4.38295 5.67102C4.66729 5.94879 4.82975 6.32806 4.83465 6.72553C4.83955 7.123 4.68648 7.50616 4.40906 7.79085L0.374696 11.9259C0.281711 12.0212 0.230394 12.1495 0.232034 12.2826C0.233675 12.4158 0.288138 12.5428 0.383442 12.6358C0.478746 12.7288 0.607086 12.7801 0.740226 12.7785C0.873367 12.7768 1.0004 12.7224 1.09339 12.6271L5.12775 8.49205C5.35688 8.25662 5.53736 7.97833 5.65886 7.6731C5.78037 7.36787 5.84053 7.04169 5.83589 6.7132V6.7132Z"/>
@@ -407,7 +407,7 @@
                                     </div>
                                 </div>
                                 <div ngClass="col-md-6 property-listing-slider-right">
-                                    <img src="https://beta.ovaluate.com/{{ item.ovaluateOfferingDocument.fileUrl }}"
+                                    <img src="{{baseUrl}}{{ item.ovaluateOfferingDocument.fileUrl }}"
                                         ngClass="img-fluid lisitng-right-img" alt="" />
                                 </div>
                             </div>
@@ -432,7 +432,7 @@
             <div ngClass="row">
                 <div ngClass="col-md-6 explore-places-col" *ngFor="let data of explorePlaces">
                     <a routerLink="/ar/explore/details/{{data.id}}">
-                        <img src="https://beta.ovaluate.com/{{ data.document.fileUrl}}" ngClass="img-fluid" alt="" />
+                        <img src="{{baseUrl}}{{ data.document.fileUrl}}" ngClass="img-fluid" alt="" />
                         <div ngClass="explore-place-content">
                             <h5>{{ data.nameAr }}</h5>
                             <p>{{ data.detailsAr }}</p>
@@ -459,7 +459,7 @@
                 <div ngClass="col-lg-4 col-md-6 blog-places-col" *ngFor="let blog of blogs">
                     <a routerLink="/ar/blog/details/{{blog.slugName}}" ngClass="position-relative">
                         <!-- blog.blogDocument.fileUrl -->
-                        <img [src]="'https://beta.ovaluate.com/' + blog.blogDocument.fileUrl"
+                        <img [src]="baseUrl + blog.blogDocument.fileUrl"
                             ngClass="img-fluid blog-image-homepage" alt="" />
                         <span ngClass="blog-tag">
                             <img [src]="blog.src2" ngClass="img-fluid" alt="" />

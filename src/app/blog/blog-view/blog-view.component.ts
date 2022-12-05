@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { AppService } from 'src/app/service/app.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-blog-view',
@@ -8,7 +9,7 @@ import { AppService } from 'src/app/service/app.service';
   styleUrls: ['./blog-view.component.scss']
 })
 export class BlogViewComponent implements OnInit {
-
+  baseUrl:string=environment.apiUrl;
   exploreimg = '../../../assets/images/Blog-Tile.png'
   blog: any;
   id: any;

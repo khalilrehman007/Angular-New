@@ -10,6 +10,7 @@ import { DatePipe } from '@angular/common';
 import { AppService } from 'src/app/service/app.service';
 import { AuthService } from "../../service/auth.service";
 import { CookieService } from 'ngx-cookie-service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-dashboard',
@@ -114,7 +115,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     { viewValue: '02', value: 'bedroom' },
     { viewValue: '03', value: 'bedroom' },
   ];
-  baseUrl = 'https://beta.ovaluate.com/'
+  baseUrl = environment.apiUrl;
   all: any;
   rent: any;
   buy: any;
@@ -162,7 +163,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   myValuation: any = [];
   myValuationResidential: any = [];
   myValuationCommercial: any = [];
-
+  expertIn:any="";
 
   lastPropertyLastingDate: any;
   totalRestentailPropertyListing: any;
@@ -254,15 +255,15 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       if(this.agentDetails.agentDetails != null) {
         this.NationalityId = this.agentDetails.agentDetails.nationalityId;
         this.agentBroker.patchValue({
-          agentAboutMe: this.agentDetails.agentDetails.aboutMe,
-          BRNNo: this.agentDetails.agentDetails.brnNo
+          agentAboutMe: this.agentDetails?.agentDetails?.aboutMe,
+          BRNNo: this.agentDetails?.agentDetails?.brnNo
         })
-        if (this.agentDetails.agentDetails.agentLanguages.length > 0) {
+        if (this.agentDetails?.agentDetails?.agentLanguages?.length > 0) {
           for (let item of this.agentDetails.agentDetails.agentLanguages) {
             this.agentLanguages.push(item.spokenLanguageId);
           }
         }
-        if (this.agentDetails.agentDetails.agentAreas.length > 0) {
+        if (this.agentDetails?.agentDetails?.agentAreas?.length > 0) {
           for (let item of this.agentDetails.agentDetails.agentAreas) {
             this.agentAreas.push(item.districtId);
           }
@@ -271,6 +272,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     })
     this.service.UserProfile(JSON.parse(temp).id).subscribe((result: any) => {
       this.userData = result.data;
+console.log(this.userData)
       this.professionalType = result.data.professionalTypeId;
       if (this.professionalType == null) {
         this.professionalType = 0;
@@ -774,6 +776,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       })
       this.totalLength = tempData.length
       this.listingAll = tempData
+      console.log(this.listingAll)
     });
 
   }
@@ -956,7 +959,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     let token: any = localStorage.getItem("token");
     token = JSON.parse(token);
     $.ajax({
-      url: "https://beta.ovaluate.com/api/AddUpdateCompany",
+      url: `${environment.apiUrl}api/AddUpdateCompany`,
       method: "post",
       contentType: false,
       processData: false,
@@ -1037,7 +1040,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       let token: any = localStorage.getItem("token");
       token = JSON.parse(token);
       $.ajax({
-        url: "https://beta.ovaluate.com/api/AddUpdateAgentDetails",
+        url: `${environment.apiUrl}api/AddUpdateAgentDetails`,
         method: "post",
         contentType: false,
         processData: false,

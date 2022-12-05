@@ -4,6 +4,7 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 import { AppService } from 'src/app/service/app.service';
 import { AuthService } from 'src/app/service/auth.service';
 import { CookieService } from 'ngx-cookie-service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-comparepage',
@@ -11,6 +12,7 @@ import { CookieService } from 'ngx-cookie-service';
   styleUrls: ['./comparepage.component.scss']
 })
 export class ComparepageComponent implements OnInit {
+  baseUrl:string=environment.apiUrl;
   viewPropertyOne: any = "";
   viewPropertyTwo: any = "";
   viewPropertyThree: any = "";
@@ -78,7 +80,7 @@ export class ComparepageComponent implements OnInit {
 
     this.service.LatestPropertiesListingResidential({ "CountryId": this.countryData.id, "UserId": this.userData.id, "propertyListingTypeId": "1" }).subscribe((response: any) => {
       this.featurePorperty1 = response.data;
-      // console.log(this.featurePorperty1)
+       console.log("feature",this.featurePorperty1)
     });
     this.service.LatestPropertiesListingResidential({ "CountryId": this.countryData.id, "UserId": this.userData.id, "propertyListingTypeId": "2" }).subscribe((response: any) => {
       this.featurePorperty2 = response.data;
@@ -140,13 +142,13 @@ export class ComparepageComponent implements OnInit {
       0: {
         items: 1
       },
-      576: {
+      400: {
         items: 2
       },
-      992: {
+      740: {
         items: 3
       },
-      1200: {
+      940: {
         items: 4
       }
     },
