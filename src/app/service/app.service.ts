@@ -86,8 +86,8 @@ export class AppService {
   PropertyFeatures(id: any) {
     return this.http.get(this.apiurl + 'PropertyFeatures/' + id);
   }
-  PropertyUnitTypes() {
-    return this.http.get(this.apiurl + 'PropertyUnitTypes/');
+  PropertyUnitTypes(propertyTypeId:number) {
+    return this.http.get(this.apiurl + 'PropertyUnitTypes?propertyTypeId='+propertyTypeId);
   }
   StoreListingPropertyForm(data: any) {
     return this.http.post(this.apiurl + 'AddPropertyListing', data);
