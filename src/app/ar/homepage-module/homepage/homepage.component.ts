@@ -498,6 +498,7 @@ export class HomepageComponent implements OnInit, AfterViewInit {
 
     let tempData: Array<Object> = []
     this.service.LoadFeeback().subscribe(data => {
+      console.log(data)
       let response: any = data;
       response.data.forEach((element: any, i: any) => {
         let image = '../assets/images/user.png'
