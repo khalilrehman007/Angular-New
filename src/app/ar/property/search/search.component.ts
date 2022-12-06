@@ -201,12 +201,12 @@ export class SearchComponent implements OnInit {
     this.loadListingProperty(params);
     // this.route.navigate(['/search'], params)
   }
-  callNumberText = "اتصل الان"
+  callNumberText = "اتصل الآن"
   callNumber(text: any) {
-    if (text == "اتصل الان") {
+    if (text == "اتصل الآن") {
       this.callNumberText = "+9000000000"
     } else {
-      this.callNumberText = "اتصل الان"
+      this.callNumberText = "اتصل الآن"
     }
   }
 

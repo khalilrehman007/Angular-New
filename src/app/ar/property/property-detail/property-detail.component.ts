@@ -545,7 +545,7 @@ export class PropertyDetailComponent implements OnInit {
         value: this.propertyDetailData.buildingName,
       },
       {
-        label: 'مجموع عدد الطوابق في المبنى',
+        label: 'عدد الأدوار في المبنى',
         value: this.propertyDetailData.totalFloor,
       },
       {
@@ -617,7 +617,7 @@ export class PropertyDetailComponent implements OnInit {
         value: this.propertyDetailData.securityDepositPrice + ' ' + this.propertyData.country?.currencyAr,
       },
       {
-        label: 'إيداع الوساطة',
+        label: 'رسوم الوساطة',
         value: this.propertyDetailData.brokerageChargePrice + ' ' + this.propertyData.country?.currencyAr,
       },
       {

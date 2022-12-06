@@ -408,7 +408,7 @@ export class PropertyTypesComponent implements OnInit {
       return;
     } else if (this.propertyTypeForm.value.buildupArea == "" && this.propertyData.hasBuildUpArea) {
       this.currentField = "buildup-area-input";
-      this.error = "الرجاء إدخال منطقة البناء";
+      this.error = "الرجاء إدخال مساحة البناء";
       this.showError = true;
       return;
     } else if (this.bedrooms == 0 && this.propertyData.hasBed) {
