@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { Header2Module } from '../header2/header2.module';
-import { LoaderModule } from '../loader/loader.module';
+import { LoaderModule } from '../../loader/loader.module';
 import { AlertsModule } from '../alerts/alerts.module';
 
 import { PropertyValuationRoutingModule } from './property-valuation-routing.module';

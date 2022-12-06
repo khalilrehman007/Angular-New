@@ -112,7 +112,7 @@ export class PropertyTypesComponent implements OnInit {
   }
   constructor(private service: AppService, private router: Router, private maskService: MaskService) {
     if(!localStorage.getItem("valuationData")) {
-      this.router.navigate(["/"])
+      this.router.navigate(["/ar"])
     }
     this.formData = (window.localStorage.getItem('valuationData'));
     this.formData = JSON.parse(this.formData);
@@ -577,7 +577,7 @@ console.log("unit",hasBed)
     localStorage.setItem('propertyTypeData', JSON.stringify(this.formData));
     localStorage.setItem('valuationData', JSON.stringify(this.formData));
     localStorage.removeItem("valuationFromFooter");
-    this.router.navigate(['/valuation/PropertyDocument']);
+    this.router.navigate(['/ar/valuation/PropertyDocument']);
   }
   validateInput(e: any) {
     if (e.key.charCodeAt(0) >= 48 && e.key.charCodeAt(0) <= 57 || e.key.charCodeAt(0) >= 65 && e.key.charCodeAt(0) <= 90 || e.key.charCodeAt(0) >= 97 && e.key.charCodeAt(0) <= 122) {

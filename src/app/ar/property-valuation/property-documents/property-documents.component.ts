@@ -650,7 +650,7 @@ export class PropertyDocumentsComponent implements OnInit {
         localStorage.removeItem("mapImg");
         this.showLoader = false;
         localStorage.setItem("navigateTo", "valuation/PropertyDownloadReport");
-        this.router.navigate(["/thanku"]);
+        this.router.navigate(["/ar/thanku"]);
       } else {
         this.showLoader = false;
         this.error = result.error;
