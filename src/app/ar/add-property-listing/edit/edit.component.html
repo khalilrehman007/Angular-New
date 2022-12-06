@@ -2,27 +2,26 @@
 <section ngClass="list-properties-sec">
     <div ngClass="listing-container">
         <div ngClass="heading-title-sec text-center">
-            <h2>List New Property</h2>
-            <p>Make sure you filled in all the necessary fields and have uploaded all the required files.</p>
+            <h2>أعلن عن عقار جديد</h2>
+            <p>تحقق من تعبئة جميع الحقول اللازمة وتحميل جميع الملفات المطلوبة</p>
         </div>
         <div ngClass="listing-property-form-sec">
             <div ngClass="listing-property-ul">
                 <mat-list>
-                    <mat-list-item ngClass="active"> <a routerLink="/listingproperty"><span ngClass="">1</span> Property
-                            Info</a>
+                    <mat-list-item ngClass="active"> <a routerLink="/listingproperty"><span ngClass="">1</span>معلومات العقار</a>
                     </mat-list-item>
-                    <mat-list-item ngClass="disabled"><a routerLink=""><span ngClass="">2</span> Listing Info</a>
+                    <mat-list-item ngClass="disabled"><a routerLink=""><span ngClass="">2</span>معلومات القائمة</a>
                     </mat-list-item>
-                    <mat-list-item ngClass="disabled"> <a routerLink=""><span ngClass="">3</span> Media</a>
+                    <mat-list-item ngClass="disabled"> <a routerLink=""><span ngClass="">3</span>وسائل الإعلام</a>
                     </mat-list-item>
-                    <mat-list-item ngClass="disabled"> <a routerLink=""><span ngClass="">4</span> Publish</a>
+                    <mat-list-item ngClass="disabled"> <a routerLink=""><span ngClass="">4</span>نشر</a>
                     </mat-list-item>
                 </mat-list>
             </div>
             <div ngClass="list-property-content">
                 <div ngClass="list-property-header">
-                    <h5 ngClass="h5-heading">Property Address</h5>
-                    <p>Search for your location and confirm the exact location to track</p>
+                    <h5 ngClass="h5-heading">عنوان العقار</h5>
+                    <p>ابحث عن موقعك وتأكد من الموقع الدقيق المراد تتبعه</p>
                 </div>
                 <div ngClass="list-property-body">
                     <form [formGroup]="SubmitForm">
@@ -31,9 +30,9 @@
                                 <div ngClass="col-xl-4 col-lg-4 col-sm-12">
                                     <div ngClass="block-wrapper mb-4">
                                         <div ngClass="select-design select2-design">
-                                            <label>Country <span ngClass="required-span">*</span></label>
+                                            <label>الدولة<span ngClass="required-span">*</span></label>
                                             <select class="select2 country-select" *ngIf="country.length > 0">
-                                                <option value="0"> Select Country</option>
+                                                <option value="0">اختر الدولة</option>
                                                 <option class="country-item-{{list.value}}" *ngFor="let list of country" [value]="list.value"> {{ list.viewValue }}</option>
                                             </select>
                                         </div>
