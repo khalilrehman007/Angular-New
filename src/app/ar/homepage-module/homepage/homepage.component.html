@@ -3,31 +3,31 @@
     <section [ngClass]="'buy-sell-form-sec'">
         <div [ngClass]="'container_1280px'">
             <div [ngClass]="'blue-heading text-left'">
-                <h2>Explore, Discover, and <br> Make Smart Decisions</h2>
+                <h2>تصفح, اكتشف, و <br> اتخذ قرارات ذكية</h2>
             </div>
             <div ngClass="buy-sell-wrapepr-forms">
                 <div ngClass="form_tabs">
                     <ul ngClass="nav nav-tabs" role="tablist">
                         <li ngClass="nav-item">
-                            <a ngClass="nav-link active" data-bs-toggle="tab" href="#rent">Rent</a>
+                            <a ngClass="nav-link active" data-bs-toggle="tab" href="#rent">إيجار</a>
                         </li>
                         <li ngClass="nav-item">
-                            <a ngClass="nav-link" data-bs-toggle="tab" href="#buy">Buy</a>
+                            <a ngClass="nav-link" data-bs-toggle="tab" href="#buy">شراء</a>
                         </li>
                         <li ngClass="nav-item">
-                            <a ngClass="nav-link" data-bs-toggle="tab" href="#find-agents">Find Agents</a>
+                            <a ngClass="nav-link" data-bs-toggle="tab" href="#find-agents">ابحث عن وسطاء</a>
                         </li>
                         <li ngClass="nav-item">
-                            <a ngClass="nav-link" data-bs-toggle="tab" href="#find-companies">Find Companies</a>
+                            <a ngClass="nav-link" data-bs-toggle="tab" href="#find-companies">ابحث عن شركات</a>
                         </li>
                         <li ngClass="nav-item">
-                            <a ngClass="nav-link" data-bs-toggle="tab" href="#motors">Motors</a>
+                            <a ngClass="nav-link" data-bs-toggle="tab" href="#motors">المحركات</a>
                         </li>
                         <li ngClass="nav-item">
-                            <a ngClass="nav-link" data-bs-toggle="tab" href="#services">Services</a>
+                            <a ngClass="nav-link" data-bs-toggle="tab" href="#services">الخدمات</a>
                         </li>
                         <li ngClass="nav-item">
-                            <a ngClass="nav-link" data-bs-toggle="tab" href="#community">Community</a>
+                            <a ngClass="nav-link" data-bs-toggle="tab" href="#community">المجتمع</a>
                         </li>
                     </ul>
                     <!-- Tab panes -->
@@ -71,7 +71,7 @@
                             <div ngClass="home-slider_cntnt">
                                 <h2>{{event.title}}</h2>
                                 <p>{{event.desc}}</p>
-                                <a routerLink="/valuation/property-detail">Start Valuation</a>
+                                <a routerLink="/valuation/property-detail">ابدأ التقييم</a>
                             </div>
                         </ng-template>
                     </ngb-carousel>
@@ -83,8 +83,8 @@
         <div ngClass="container_1280px">
             <div ngClass="section-title">
                 <div ngClass="section-title-left">
-                    <h4>Residential Properties for Rent in {{countryData.name}}</h4>
-                    <p>Our selection of properties near you/your location</p>
+                    <h4>عقارات سكنية للإيجار في {{countryData.name}}</h4>
+                    <p>اختياراتنا المميزة لعقارات قريبة منك</p>
                 </div>
                 <div ngClass="section-title-right">
                     <ul ngClass="nav nav-tabs" role="tablist">
@@ -159,8 +159,8 @@
                                                             d="M17.1 5.36714V2.78571C17.1 1.25357 15.885 0 14.4 0H10.8C10.107 0 9.477 0.278572 9 0.724286C8.523 0.278572 7.893 0 7.2 0H3.6C2.115 0 0.9 1.25357 0.9 2.78571V5.36714C0.351 5.87786 0 6.61143 0 7.42857V13H1.8V11.1429H16.2V13H18V7.42857C18 6.61143 17.649 5.87786 17.1 5.36714ZM10.8 1.85714H14.4C14.895 1.85714 15.3 2.275 15.3 2.78571V4.64286H9.9V2.78571C9.9 2.275 10.305 1.85714 10.8 1.85714ZM2.7 2.78571C2.7 2.275 3.105 1.85714 3.6 1.85714H7.2C7.695 1.85714 8.1 2.275 8.1 2.78571V4.64286H2.7V2.78571ZM1.8 9.28571V7.42857C1.8 6.91786 2.205 6.5 2.7 6.5H15.3C15.795 6.5 16.2 6.91786 16.2 7.42857V9.28571H1.8Z"
                                                             fill="#242A2F" />
                                                     </svg>
-                                                    <span *ngIf="slide.bedrooms != 0">{{ slide.bedrooms }} Beds</span>
-                                                    <span *ngIf="slide.bedrooms == 0">Studio</span>
+                                                    <span *ngIf="slide.bedrooms != 0">{{ slide.bedrooms }} غرف نوم</span>
+                                                    <span *ngIf="slide.bedrooms == 0">استديو</span>
                                                 </span>
                                                 <span ngClass="bath" *ngIf="slide.propertyType.hasBath">
                                                     <svg width="17" height="16" viewBox="0 0 17 16" fill="none"
@@ -170,7 +170,7 @@
                                                             fill="#242A2F" />
                                                     </svg>
                                                     {{ slide.bathrooms }}
-                                                    Bath
+                                                    دورة مياه
                                                 </span>
                                                 <span ngClass="area">
                                                     <svg width="18" height="18" viewBox="0 0 18 18" fill="none"
@@ -186,7 +186,7 @@
                                                             stroke-width="1.5" stroke-linecap="round"
                                                             stroke-linejoin="round" />
                                                     </svg>
-                                                    {{slide.plotSize == null || slide.plotSize==0 ? slide.buildupArea ==null || slide.buildupArea==0 ?0:slide.buildupArea:slide.plotSize }} Sqft
+                                                    {{slide.plotSize == null || slide.plotSize==0 ? slide.buildupArea ==null || slide.buildupArea==0 ?0:slide.buildupArea:slide.plotSize }}  قدم مربع
                                                 </span>
                                             </div>
                                         </div>
@@ -271,7 +271,7 @@
             <div ngClass="section-title">
                 <div ngClass="section-title-left">
                     <h4>Commercial Properties for Rent in {{countryData.name}}</h4>
-                    <p>Our selection of properties near you/your location</p>
+                    <p>اختياراتنا المميزة لعقارات قريبة منك</p>
                 </div>
                 <div ngClass="section-title-right">
                     <ul ngClass="nav nav-tabs" role="tablist">
@@ -348,8 +348,8 @@
                                                             d="M17.1 5.36714V2.78571C17.1 1.25357 15.885 0 14.4 0H10.8C10.107 0 9.477 0.278572 9 0.724286C8.523 0.278572 7.893 0 7.2 0H3.6C2.115 0 0.9 1.25357 0.9 2.78571V5.36714C0.351 5.87786 0 6.61143 0 7.42857V13H1.8V11.1429H16.2V13H18V7.42857C18 6.61143 17.649 5.87786 17.1 5.36714ZM10.8 1.85714H14.4C14.895 1.85714 15.3 2.275 15.3 2.78571V4.64286H9.9V2.78571C9.9 2.275 10.305 1.85714 10.8 1.85714ZM2.7 2.78571C2.7 2.275 3.105 1.85714 3.6 1.85714H7.2C7.695 1.85714 8.1 2.275 8.1 2.78571V4.64286H2.7V2.78571ZM1.8 9.28571V7.42857C1.8 6.91786 2.205 6.5 2.7 6.5H15.3C15.795 6.5 16.2 6.91786 16.2 7.42857V9.28571H1.8Z"
                                                             fill="#242A2F" />
                                                     </svg>
-                                                    <span *ngIf="slide.bedrooms != 0">{{ slide.bedrooms }} Beds</span>
-                                                    <span *ngIf="slide.bedrooms == 0">Studio</span>
+                                                    <span *ngIf="slide.bedrooms != 0">{{ slide.bedrooms }} غرف نوم</span>
+                                                    <span *ngIf="slide.bedrooms == 0">استديو</span>
                                                 </span>
                                                 <span ngClass="bath" *ngIf="slide.propertyType.hasBath">
                                                     <svg width="17" height="16" viewBox="0 0 17 16" fill="none"
@@ -359,7 +359,7 @@
                                                             fill="#242A2F" />
                                                     </svg>
                                                     {{ slide.bathrooms }}
-                                                    Bath
+                                                    دورة مياه
                                                 </span>
                                                 <span ngClass="area">
                                                     <svg width="18" height="18" viewBox="0 0 18 18" fill="none"
@@ -375,7 +375,7 @@
                                                             stroke-width="1.5" stroke-linecap="round"
                                                             stroke-linejoin="round" />
                                                     </svg>
-                                                    {{slide.plotSize == null || slide.plotSize==0 ? slide.buildupArea ==null || slide.buildupArea==0 ?0:slide.buildupArea:slide.plotSize }} Sqft
+                                                    {{slide.plotSize == null || slide.plotSize==0 ? slide.buildupArea ==null || slide.buildupArea==0 ?0:slide.buildupArea:slide.plotSize }}  قدم مربع
                                                 </span>
                                             </div>
                                         </div>
@@ -469,8 +469,7 @@
                                         <li *ngFor="let list of item.ovaluateOfferingDetails">{{list.description}}</li>
                                     </ul>
                                     <div ngClass="listing-btn">
-                                        <a [routerLink]="['/payment-packages']" ngClass="custom-btn-primary">List Your
-                                            Property</a>
+                                        <a [routerLink]="['/payment-packages']" ngClass="custom-btn-primary">ادرج عقارك الآن!</a>
                                     </div>
                                 </div>
                                 <div ngClass="col-md-6 property-listing-slider-right">
@@ -488,10 +487,10 @@
         <div ngClass="container_1280px">
             <div ngClass="section-title">
                 <div ngClass="section-custom-title-left">
-                    <h4>Explore Places</h4>
+                    <h4>استكشف الأماكن</h4>
                 </div>
                 <div ngClass="section-custom-title-right">
-                    <a routerLink="/explore">Read all</a>
+                    <a routerLink="/explore">اقرأ كل شيء</a>
                 </div>
             </div>
             <div class="no-data-found" *ngIf="explorePlaces.length == 0">
@@ -514,10 +513,10 @@
         <div ngClass="container_1280px">
             <div ngClass="section-title">
                 <div ngClass="section-custom-title-left">
-                    <h4>Blogs</h4>
+                    <h4>المدونات</h4>
                 </div>
                 <div ngClass="section-custom-title-right">
-                    <a routerLink="/blog">Read all</a>
+                    <a routerLink="/blog">قراءة كامل المحتوى</a>
                 </div>
             </div>
             <div class="no-data-found" *ngIf="blogs?.length == 0">
@@ -547,13 +546,12 @@
             <div ngClass="section-title responsive-section-title tenanats-landlord_Sec">
                 <div ngClass="section-title-left">
                     <h2>
-                        We make it easy for <br />
-                        <span>tenants</span> and <span>landlords</span>.
+                        نحن نجعلها سهلة من أجلك <br />
+                        <span>المستأجرين</span> و <span>مُلاك العقارات</span>.
                     </h2>
                 </div>
                 <div ngClass="section-custom-title-right wd-30">
-                    <p>Seamless and efficient process whether selling your current home, buying a new one, or getting
-                        finance. And the best part? Save time & money with our premium services!</p>
+                    <p>استمتع بتجربة سهلة وفعالة عندما ترغب في شراء بيت جديد أو بيع بيتك القديم أو الحصول على تمويل. أفضل ما في الأمر هو أنك ستوفر الكثير من الوقت والمال بفضل خدماتنا المميزة!</p>
                 </div>
             </div>
         </div>
@@ -578,9 +576,9 @@
 
         <div ngClass="container_1280px">
             <div ngClass="recent-data-realestate text-center">
-                <h2>Recent Real Estate Transactions of the UAE</h2>
+                <h2>آخر المعاملات العقارية الحديثة لدولة الإمارات العربية المتحدة</h2>
                 <p>
-                    A snapshot of recent property transactions in Dubai, as captured by the DLD.
+                    لقطة من المبيعات العقارية الأخيرة في دبي، كما التقطتها دائرة الأراضي والأملاك في دبي
                 </p>
             </div>
         </div>
@@ -589,7 +587,7 @@
             <div ngClass="row">
                 <div ngClass="col-md-3 col-sm-12" *ngFor="let list of transaction">
                     <div ngClass="total-transaction">
-                        <p ngClass="text-center">AED</p>
+                        <p ngClass="text-center">درهم إماراتي</p>
                         <h2 ngClass="text-center">{{list.value}}</h2>
                         <p ngClass="text-center">{{list.key}}</p>
                     </div>
@@ -607,13 +605,13 @@
                 <div ngClass="row">
                     <div ngClass="col-md-6 col-sm-12">
                         <div ngClass="mockup-left">
-                            <h1>Real Hub</h1>
-                            <h4>In your hand </h4>
+                            <h1>المحور الحقيقي</h1>
+                            <h4>بين يديك </h4>
                             <ul>
-                                <li>AI-Driven Property Valuation in Few Seconds</li>
-                                <li>Buy, Sell, and Rent Residential & Commercial Properties</li>
-                                <li>Find Verified Properties Near You</li>
-                                <li>Find Verified Real Estate Agents</li>
+                                <li>تقييم العقارات بالذكاء الاصطناعي في ثوانٍ قليلة</li>
+                                <li> شراء وبيع وتأجير العقارات السكنية والتجارية</li>
+                                <li> ابحث عن العقارات التي تم التحقق منها بالقرب منك</li>
+                                <li>إبحث عن وسطاء عقارات معتمدين</li>
                             </ul>
                             <div ngClass="download-btns">
                                 <a [routerLink]="['#']">
@@ -640,11 +638,10 @@
                     <div ngClass="col-md-6 col-sm-12">
                         <div ngClass="testimonial-title">
                             <h2>
-                                What Our Customers Say<br /> about <span>Ovaluate</span>
+                                آراء العُملاء<br /> من نحن <span>أوڨالويت</span>
                             </h2>
-                            <p>Seamless and efficient process whether selling your current home, buying a new one, or
-                                getting finance</p>
-                            <p>And the best part? Save time & money with our premium services!</p>
+                            <p>استمتع بتجربة سهلة وفعالة عندما ترغب في شراء بيت جديد أو بيع بيتك القديم أو الحصول على تمويل. أفضل ما في الأمر هو أنك ستوفر الكثير من الوقت والمال بفضل خدماتنا المميزة!</p>
+                            <p>أفضل ما في الأمر هو أنك ستوفر الكثير من الوقت والمال بفضل خدماتنا المميزة!</p>
                         </div>
                     </div>
                     <div ngClass="col-md-6 col-sm-12">
@@ -695,8 +692,8 @@
     <section ngClass="position-relative wrapper-section certified_sec">
         <div ngClass="container_1280px">
             <div ngClass="heading-32px-design text-center mb-4">
-                <h2>Approved & Certified by DLD</h2>
-                <p>Property Valuation Certificates are approved & certified by Dubai Land Department</p>
+                <h2>مُعتمد وموثق من قِبل دائرة الأراضي والأملاك في دبي</h2>
+                <p>تقاريرتقييم عقارية مُعتمدة ومصدقة من دائرة الأراضي والأملاك في دبي</p>
             </div>
             <div ngClass="certified_images-sec text-center">
                 <img src="{{rera}}">
@@ -713,7 +710,7 @@
             (click)="modal.dismiss('Cross click')"></button>
         <div class="modal-body share-modal-design">
             <div class="share-inner-cntnt">
-                <h5>Share with:</h5>
+                <h5>شارك مع:</h5>
                 <div class="d-flex justify-content-spacebw">
                     <a target="_blank" href="https://facebook.com" ngClass="facebook">
                         <svg width="11" height="20" viewBox="0 0 11 20" fill="none" xmlns="http://www.w3.org/2000/svg">
