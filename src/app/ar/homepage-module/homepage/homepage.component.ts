@@ -9,7 +9,7 @@ import { AppService } from 'src/app/service/app.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NotificationService } from 'src/app/service/notification.service';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/service/auth.service';
+import { AuthService } from "../../../service/auth.service";
 import { CookieService } from 'ngx-cookie-service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { environment } from 'src/environments/environment';
@@ -29,7 +29,11 @@ export class HomepageComponent implements OnInit, AfterViewInit {
   dubaigv = 'assets/images/goverment-of-dubai.png'
   landdept = 'assets/images/Dubai-Land-LOGO.png'
   rera = 'assets/images/rera.png'
-  tagicn = '../../../assets/images/icons/tag-icn.svg'
+  tagicn = '../../../../assets/images/icons/tag-icn.svg'
+  fb = '../../../../assets/images/icons/fb-share.svg'
+  whatsapp = '../../../../assets/images/icons/whatsapp.svg'
+  twitter = '../../../../assets/images/icons/twiiter-share.svg'
+  content: any;
   baseUrl = environment.apiUrl;
   blogs: any;
   submitted = false;
@@ -41,55 +45,58 @@ export class HomepageComponent implements OnInit, AfterViewInit {
   country: any = [];
   clientFeedback: any = [];
   slider: any = [];
-  user: any;
+  user: any
   countryData: any = "";
   id: any = 1;
   propertyDetails: any;
   oldData1() {
     this.service.LatestPropertiesListingResidential({ "CountryId": this.countryData.id, "UserId": this.userId, "propertyListingTypeId": "1" }).subscribe((response: any) => {
       this.dynamicSlides1 = response.data;
+      console.log("1",this.dynamicSlides1)
     });
   }
   newData1() {
     this.service.LatestPropertiesListingResidential({ "CountryId": this.countryData.id, "UserId": this.userId, "propertyListingTypeId": "2" }).subscribe((response: any) => {
       this.dynamicSlides1 = response.data;
+      console.log("1",this.dynamicSlides1)
     });
   }
 
   oldData2() {
     this.service.LatestPropertiesListingCommercial({ "CountryId": this.countryData.id, "UserId": this.userId, "propertyListingTypeId": "1" }).subscribe((response: any) => {
       this.dynamicSlides2 = response.data;
+      console.log("dynamic",this.dynamicSlides2);
     });
   }
   newData2() {
     this.service.LatestPropertiesListingCommercial({ "CountryId": this.countryData.id, "UserId": this.userId, "propertyListingTypeId": "2" }).subscribe((response: any) => {
       this.dynamicSlides2 = response.data;
+      console.log("dynamic",this.dynamicSlides2);
     });
   }
   tenantsslide = [
     {
       id: 'slide1',
       src: 'assets/images/icons/virtul-toor.svg',
-      heading: 'جولة منزلية افتراضية',
-      desc: 'يمكنك التواصل مباشرة مع ملاك العقارات ونوفر لك جولة افتراضية قبل أن تشتري أو تستأجر العقار.',
+      heading: 'Virtual home tour',
+      desc: 'You can communicate directly with landlords and we provide you with virtual tour before you buy or rent the property.',
       class: 'virtual-tour'
     },
     {
       id: 'slide2',
       src: 'assets/images/icons/best-deal.svg',
-      heading: 'إبحث على أفضل صفقة',
-      desc: 'تصفح آلاف العقارات واحفظ رغباتك المفضلة للعقار وقم بإعداد إشعارات البحث حتى لا تفوتك الفرصة علي أفضل الصفقات',
+      heading: 'Find the best deal',
+      desc: 'Browse thousands of properties, save your favorites and set up search alerts so you don’t miss the best home deal!',
       class: 'find-best-deal'
     },
     {
       id: 'slide3',
       src: 'assets/images/icons/ready-apply.svg',
-      heading: 'كن مستعداً للتقديم',
-      desc: 'البحث عن منزل أحلامك؟ ما عليك سوى بذل القليل من الجهد ويمكنك البدء في النقل إلى منزل أحلامك الجديد!',
+      heading: 'Get ready to apply',
+      desc: 'Find your dream house? You just need to do a little to no effort and you can start move in to your new dream home!',
       class: 'get-ready-apply'
     }
   ]
-
   Exploreplaces = [
     {
       src: 'assets/images/explore-places/1.jpg',
@@ -102,28 +109,27 @@ export class HomepageComponent implements OnInit, AfterViewInit {
       paragraph: 'Al Barsha is a safe and quiet area that offers something for everyone: be it singles looking for wallet-friendly apartments with Metro...'
     }
   ]
-
   customOptions: OwlOptions = {
     loop: false,
-    rtl: true,
     mouseDrag: true,
     touchDrag: true,
+    autoWidth: false,
     pullDrag: true,
     dots: true,
-    navSpeed: 700,
     navText: ['<i class="fa fa-chevron-left" aria-hidden="true"></i>', '<i class="fa fa-chevron-right" aria-hidden="true"></i>'],
+    navSpeed: 700,
     responsive: {
       0: {
         items: 1
       },
-      576: {
+      400: {
         items: 2
       },
-      992: {
+      740: {
         items: 3
       },
-      1200: {
-        items: 3
+      940: {
+        items: 4
       }
     },
     nav: true
@@ -131,13 +137,12 @@ export class HomepageComponent implements OnInit, AfterViewInit {
   easyslider: OwlOptions = {
     loop: true,
     mouseDrag: true,
-    rtl: true,
     center: true,
     touchDrag: true,
     pullDrag: true,
     dots: false,
-    autoplay: true,
     navSpeed: 700,
+    autoplay: true,
     autoWidth: true,
     responsive: {
       0: {
@@ -158,7 +163,6 @@ export class HomepageComponent implements OnInit, AfterViewInit {
   sellrentproperty: OwlOptions = {
     loop: true,
     mouseDrag: true,
-    rtl: true,
     touchDrag: true,
     pullDrag: true,
     dots: true,
@@ -184,11 +188,10 @@ export class HomepageComponent implements OnInit, AfterViewInit {
     loop: true,
     mouseDrag: true,
     touchDrag: true,
-    rtl: true,
     pullDrag: true,
-    autoplay: true,
     dots: true,
     navSpeed: 700,
+    autoplay: true,
     responsive: {
       0: {
         items: 1
@@ -231,7 +234,7 @@ export class HomepageComponent implements OnInit, AfterViewInit {
   totalSales: any;
   totalMortgages: any;
   userId: any;
-  explorePlaces: any;
+  explorePlaces: any = [];
   trendTitle: any = [];
   constructor(private cookie: CookieService, private authService: AuthService, private service: AppService, private route: Router, private notifyService: NotificationService,private modalService: NgbModal) {
     $(window).scrollTop(0);
@@ -267,15 +270,6 @@ export class HomepageComponent implements OnInit, AfterViewInit {
       this.categoryDetailComAr = this.propertyCategory[1].detailsAr;
     });
 
-    // this.service.ValuationTransactions().subscribe(data=>{
-    //   this.valuationTransactions = data;
-    //   this.valuationTransactions = this.valuationTransactions.data;
-    //   this.totalTransactions = this.valuationTransactions[0].value;
-    //   this.totalSales = this.valuationTransactions[1].value;
-    //   this.totalMortgages = this.valuationTransactions[2].value;
-    //
-    // });
-
     this.service.OvaluateOfferings().subscribe((result: any = []) => {
       this.slider = result.data;
     })
@@ -284,17 +278,17 @@ export class HomepageComponent implements OnInit, AfterViewInit {
     let a = setInterval(() => {
       if (this.cookie.get("countryData")) {
         this.countryData = JSON.parse(this.cookie.get("countryData"));
+        this.oldData2();
+        this.oldData1();
         this.service.NearPlaces(this.countryData.id).subscribe((result: any) => {
           this.explorePlaces = result.data;
         });
         this.service.TrendTitle(this.countryData.id).subscribe((result: any) => {
           this.trendTitle = result.data
         });
-        this.oldData2();
-        this.oldData1();
         this.LoadBanners();
-        this.LoadBlogs();
         this.ValuationTransactions();
+        this.LoadBlogs();
         clearInterval(a);
       }
     })
@@ -332,7 +326,7 @@ export class HomepageComponent implements OnInit, AfterViewInit {
         PropertyTypeIds: JSON.stringify(propertyTypeId)
       }
     };
-    this.route.navigate(['/ar/property/search'], params)
+    this.route.navigate(['/property/search'], params)
   }
   getUser() {
     this.user = localStorage.getItem('user');
@@ -348,7 +342,7 @@ export class HomepageComponent implements OnInit, AfterViewInit {
       let response: any = data;
       response.data.forEach((element: any, i: any) => {
         tempData.push(
-          { keyAr: element.keyAr, valueAr: element.valueAr });
+          { key: element.key, value: element.value });
       })
     });
     this.transaction = tempData
@@ -425,7 +419,7 @@ export class HomepageComponent implements OnInit, AfterViewInit {
       response.data.forEach((element: any, i: any) => {
         let image = element.bannerDocument.fileUrl
         tempData.push(
-          { title: element.bannerHeaderAr, desc: element.bannerTitleAr, img: this.baseUrl + image });
+          { title: element.bannerHeader, desc: element.bannerTitle, img: this.baseUrl + image });
       })
     });
     this.homebanners = tempData
@@ -541,7 +535,7 @@ export class HomepageComponent implements OnInit, AfterViewInit {
   AddToFavorite(id: any, status: any, part: any) {
     if (this.userId == '') {
       this.notifyService.showSuccess('First you need to login', "");
-      this.route.navigate(['/ar/login'])
+      this.route.navigate(['/login'])
     }
 
     if (!this.authService.isAuthenticated()) {
