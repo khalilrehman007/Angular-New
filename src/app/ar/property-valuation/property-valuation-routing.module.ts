@@ -4,10 +4,10 @@ import { PropertyDetailsComponent } from './property-details/property-details.co
 import { PropertyDocumentsComponent } from './property-documents/property-documents.component';
 import { PropertyDownloadReportComponent } from './property-download-report/property-download-report.component';
 import { PropertyTypesComponent } from './property-types/property-types.component';
-import { AuthGuard } from '../../shared/auth.guard';
+import { AuthGuard } from '../shared/auth.guard';
 
 const routes: Routes = [
-  {path: "", redirectTo:"/ar/valuation/property-detail", pathMatch: 'full' },
+  {path: "", redirectTo:"/valuation/property-detail", pathMatch: 'full' },
   {path: "property-detail", component: PropertyDetailsComponent},
   {path: "PropertyType", component: PropertyTypesComponent ,canActivate: [AuthGuard]},
   {path: "PropertyDocument", component: PropertyDocumentsComponent ,canActivate: [AuthGuard]},

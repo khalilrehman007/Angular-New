@@ -2,24 +2,24 @@
 <section ngClass="property-valuation-sec">
     <div ngClass="listing-container full-width">
         <div ngClass="heading-title-sec text-center">
-            <h2>تقييم العقارات</h2>
-            <p>تأكد من ملء جميع الحقول اللازمة وتحميل جميع الملفات المطلوبة</p>
+            <h2>Property Valuation</h2>
+            <p>Make sure you filled in all the necessary fields and have uploaded all the required files.</p>
         </div>
         <div ngClass="listing-property-form-sec">
             <div ngClass="listing-property-ul">
                 <mat-list>
-                    <mat-list-item ngClass="active"> <a routerLink=""><span ngClass="">1</span>تفاصيل</a>
+                    <mat-list-item ngClass="active"> <a routerLink=""><span ngClass="">1</span> Details</a>
                     </mat-list-item>
-                    <mat-list-item ngClass="active"><a routerLink=""><span ngClass="">2</span>نوع</a></mat-list-item>
-                    <mat-list-item ngClass="active"> <a routerLink=""><span ngClass="">3</span>وثائق</a>
+                    <mat-list-item ngClass="active"><a routerLink=""><span ngClass="">2</span> Type</a></mat-list-item>
+                    <mat-list-item ngClass="active"> <a routerLink=""><span ngClass="">3</span> Documents</a>
                     </mat-list-item>
-                    <mat-list-item ngClass="active"> <a routerLink=""><span ngClass="">4</span>إعادة النظر</a>
+                    <mat-list-item ngClass="active"> <a routerLink=""><span ngClass="">4</span> Review</a>
                     </mat-list-item>
-                    <mat-list-item ngClass="active"> <a routerLink=""><span ngClass="">5</span>نوع الشهادة</a>
+                    <mat-list-item ngClass="active"> <a routerLink=""><span ngClass="">5</span> Certificate Type</a>
                     </mat-list-item>
-                    <mat-list-item ngClass="active"> <a routerLink=""><span ngClass="">6</span>دفع</a>
+                    <mat-list-item ngClass="active"> <a routerLink=""><span ngClass="">6</span> Payment</a>
                     </mat-list-item>
-                    <mat-list-item ngClass="active"> <a routerLink=""><span ngClass="">7</span>تنزيل التقرير</a>
+                    <mat-list-item ngClass="active"> <a routerLink=""><span ngClass="">7</span> Download Report</a>
                     </mat-list-item>
                 </mat-list>
             </div>
@@ -27,7 +27,8 @@
                 <div ngClass="list-property-body mb-5">
                     <div ngClass="form-border-wrapper">
                         <div ngClass="list-property-header mb-4">
-                            <h5 ngClass="h5-heading">قم بتنزيل تقريرك</h5>
+                            <h5 ngClass="h5-heading">Download Your Report</h5>
+                            <p>Please provide your propety type for the valuation</p>
                         </div>
                         <div ngClass="download-report-sec">
                             <div ngClass="row align-items-center">
@@ -38,21 +39,22 @@
                                 </div>
                                 <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                                     <div ngClass="reports-download-thanku text-center">
-                                        <h5>شكراً!</h5>
-                                        <p>تمت معاملتك بنجاح.</p>
-                                        <p>الرجاء النقر فوق زر التنزيل أدناه لتنزيل التقرير</p>
+                                        <h5>Thank You!</h5>
+                                        <p>Your transaction has been completed successfully.</p>
+                                        <p>Please click the dowload button below for the property ID</p>
                                         <h4 ngClass="report-id">{{this.valuationResponse.reportNumberCode}}</h4>
-                                        <button ngClass="download-report-btn" (click)="downloadReport()">تنزيل التقرير</button>
+                                        <button ngClass="download-report-btn" (click)="downloadReport()">Download
+                                            Report</button>
                                         <div ngClass="download_animation">
                                             <img src="{{download}}">
                                         </div>
                                         <div ngClass="report-print-icon">
                                             <button ngClass="print-report-btn"><img src="{{report}}"></button>
                                         </div>
-                                        <p>تم إرسال التقرير بالبريد إلى <a
+                                        <p>The report has been mail to <a
                                                 href="mailto:myname@email.com">{{this.valuationResponse.emailAddress}}</a>
                                         </p>
-                                        <a routerLink="/ar/profile" ngClass="go-to-dahboard">الذهاب إلى لوحة القيادة</a>
+                                        <a routerLink="/profile/my-valuation" ngClass="go-to-dahboard">Go to Dashboard</a>
                                     </div>
                                 </div>
                             </div>

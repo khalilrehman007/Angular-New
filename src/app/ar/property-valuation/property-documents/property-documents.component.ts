@@ -3,6 +3,7 @@ import { AppService } from 'src/app/service/app.service';
 import { DatePipe } from '@angular/common';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { E } from '@angular/cdk/keycodes';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -12,12 +13,12 @@ import { environment } from 'src/environments/environment';
   providers: [DatePipe]
 })
 export class PropertyDocumentsComponent implements OnInit {
-  upload = '../../../../assets/images/icons/upload-1.svg'
-  trash = '../../../../assets/images/icons/Trash.svg'
-  edit = '../../../../assets/images/icons/edit.svg'
-  checkmark = '../../../../assets/images/icons/checkmark-circle.svg'
-  stripe = '../../../../assets/images/stripe.svg'
-  reportimg = '../../../../assets/images/report-icon.png'
+  upload = '../../../../../assets/images/icons/upload-1.svg'
+  trash = '../../../../../assets/images/icons/Trash.svg'
+  edit = '../../../../../assets/images/icons/edit.svg'
+  checkmark = '../../../../../assets/images/icons/checkmark-circle.svg'
+  stripe = '../../../../../assets/images/stripe.svg'
+  reportimg = '../../../../../assets/images/report-icon.png'
   countriesList = new FormControl('+971');
   file: string = "";
   affecton: any;
@@ -38,18 +39,18 @@ export class PropertyDocumentsComponent implements OnInit {
   documentData: any = [];
   mapImage: any;
   termsAccepted: boolean = false;
+  reportCheck: boolean = false;
   reportPrice: any = 0;
   documentType: any = [];
   valuationResponse: any = {};
   showPayment: boolean = false;
-  publishText: any = "تقديم";
+  publishText: any = "Submit";
   showLoader: boolean = false;
   error: any = ""
   showError: boolean = false;
   requiredDocs: number = 3;
   currentField: any;
-  currency: any = localStorage.getItem("currencyAr");
-  currencyStripe: any = localStorage.getItem("currency");
+  currency: any = localStorage.getItem("currency");
   errorResponse(data: any) {
     this.showError = false;
     this.animate();
@@ -63,12 +64,14 @@ export class PropertyDocumentsComponent implements OnInit {
 
   checkPhone() {
     let temp: any = this.reportForm.value.phone;
-    if (temp.toString().length > 10) {
-      this.error = "Max length allows is 10";
-      this.showError = true;
-      this.reportForm.patchValue({
-        phone: temp.toString().slice(0, -1)
-      })
+    if(temp != null) {
+      if (temp.toString().length > 10) {
+        this.error = "Max length allows is 10";
+        this.showError = true;
+        this.reportForm.patchValue({
+          phone: temp.toString().slice(0, -1)
+        })
+      }
     }
   }
   paymentForm = new FormGroup({
@@ -123,104 +126,128 @@ export class PropertyDocumentsComponent implements OnInit {
     }
   }
   handleChange(files: FileList, index: number) {
-    if (files && files.length) {
-      this.titleDeedImage = files[0];
-      this.file = files[0].name;
-    }
-    const reader = new FileReader();
-    reader.readAsDataURL(files[0]);
-    reader.onload = () => {
-      let found = -1;
-      for (let i = 0; i < this.uploadedDocuments.length; i++) {
-        if (this.uploadedDocuments[i].index == index) {
-          found = i;
-        }
+    if(files[0].size / 1048576 > 2) {
+      this.error = "Maximum upload size is 2MB";
+      this.showError = true;
+
+    } else {
+      if (files && files.length) {
+        this.titleDeedImage = files[0];
+        this.file = files[0].name;
       }
-      if (found == -1) {
-        this.uploadedDocuments.push({ index: index, documentName: this.documentType[0].documentNameAr, fileName: files[0].name, imgsrc: reader.result });
-      } else {
-        this.uploadedDocuments[found].fileName = files[0].name;
-        this.uploadedDocuments[found].imgsrc = reader.result;
-      }
-    };
-    this.documentcount++;
-  }
-  affection(files: FileList, index: number) {
-    if (files && files.length) {
-      this.affectionImage = files[0];
-      this.affecton = files[0].name;
-    }
-    const reader = new FileReader();
-    reader.readAsDataURL(files[0]);
-    reader.onload = () => {
-      let found = -1;
-      for (let i = 0; i < this.uploadedDocuments.length; i++) {
-        if (this.uploadedDocuments[i].index == index) {
-          found = i;
-        }
-      }
-      if (found == -1) {
-        this.uploadedDocuments.push({ index: index, documentName: this.documentType[1].documentNameAr, fileName: files[0].name, imgsrc: reader.result });
-      } else {
-        this.uploadedDocuments[found].fileName = files[0].name;
-        this.uploadedDocuments[found].imgsrc = reader.result;
-      }
-    };
-    this.documentcount++;
-  }
-  property(files: FileList, index: number) {
-    if (files && files.length) {
-      this.propertyImage = files[0];
-      this.propertys = files[0].name;
-    }
-    const reader = new FileReader();
-    reader.readAsDataURL(files[0]);
-    reader.onload = () => {
-      let found = -1;
-      for (let i = 0; i < this.uploadedDocuments.length; i++) {
-        if (this.uploadedDocuments[i].index == index) {
-          found = i;
-        }
-      }
-      if (found == -1) {
-        this.uploadedDocuments.push({ index: index, documentName: this.documentType[2].documentNameAr, fileName: files[0].name, imgsrc: reader.result });
-      } else {
-        this.uploadedDocuments[found].fileName = files[0].name;
-        this.uploadedDocuments[found].imgsrc = reader.result;
-      }
-    };
-    this.documentcount++;
-  }
-  emiratesfun(files: FileList, index: number, id: any) {
-    if (files && files.length) {
-      let found: number = -1;
-      for (let i = 0; i < this.otherImages.length; i++) {
-        if (this.otherImages[i].index == index) {
-          found = i;
-        }
-      }
-      if (found == -1) {
-        this.otherImages.push({ index: index, file: files[0], id: id });
-      } else {
-        this.otherImages[found].file = files[0];
-      }
-      this.emirate[index] = files[0].name;
       const reader = new FileReader();
       reader.readAsDataURL(files[0]);
       reader.onload = () => {
-        found = -1;
+        let found = -1;
         for (let i = 0; i < this.uploadedDocuments.length; i++) {
           if (this.uploadedDocuments[i].index == index) {
             found = i;
           }
         }
         if (found == -1) {
-          this.uploadedDocuments.push({ index: index, documentName: this.documentType[index+3].documentNameAr, fileName: files[0].name, imgsrc: reader.result });
+          this.uploadedDocuments.push({ index: index, documentName: "Title Deed", fileName: files[0].name, imgsrc: reader.result });
         } else {
           this.uploadedDocuments[found].fileName = files[0].name;
           this.uploadedDocuments[found].imgsrc = reader.result;
         }
       };
+      this.documentcount++;
+    }
+  }
+  affection(files: FileList, index: number) {
+    if(files[0].size / 1048576 > 2) {
+      this.error = "Maximum upload size is 2MB";
+      this.showError = true;
+
+    } else {
+      if (files && files.length) {
+        this.affectionImage = files[0];
+        this.affecton = files[0].name;
+      }
+      const reader = new FileReader();
+      reader.readAsDataURL(files[0]);
+      reader.onload = () => {
+        let found = -1;
+        for (let i = 0; i < this.uploadedDocuments.length; i++) {
+          if (this.uploadedDocuments[i].index == index) {
+            found = i;
+          }
+        }
+        if (found == -1) {
+          this.uploadedDocuments.push({ index: index, documentName: "Affection Plan", fileName: files[0].name, imgsrc: reader.result });
+        } else {
+          this.uploadedDocuments[found].fileName = files[0].name;
+          this.uploadedDocuments[found].imgsrc = reader.result;
+        }
+      };
+      this.documentcount++;
+    }
+  }
+  property(files: FileList, index: number) {
+    if(files[0].size / 1048576 > 2) {
+      this.error = "Maximum upload size is 2MB";
+      this.showError = true;
+
+    } else {
+      if (files && files.length) {
+        this.propertyImage = files[0];
+        this.propertys = files[0].name;
+      }
+      const reader = new FileReader();
+      reader.readAsDataURL(files[0]);
+      reader.onload = () => {
+        let found = -1;
+        for (let i = 0; i < this.uploadedDocuments.length; i++) {
+          if (this.uploadedDocuments[i].index == index) {
+            found = i;
+          }
+        }
+        if (found == -1) {
+          this.uploadedDocuments.push({ index: index, documentName: "Picture: Front View", fileName: files[0].name, imgsrc: reader.result });
+        } else {
+          this.uploadedDocuments[found].fileName = files[0].name;
+          this.uploadedDocuments[found].imgsrc = reader.result;
+        }
+      };
+      this.documentcount++;
+    }
+  }
+  emiratesfun(files: FileList, index: number, id: any) {
+    if(files[0].size / 1048576 > 2) {
+      this.error = "Maximum upload size is 2MB";
+      this.showError = true;
+
+    } else {
+      if (files && files.length) {
+        let found: number = -1;
+        for (let i = 0; i < this.otherImages.length; i++) {
+          if (this.otherImages[i].index == index) {
+            found = i;
+          }
+        }
+        if (found == -1) {
+          this.otherImages.push({ index: index, file: files[0], id: id });
+        } else {
+          this.otherImages[found].file = files[0];
+        }
+        this.emirate[index] = files[0].name;
+        const reader = new FileReader();
+        reader.readAsDataURL(files[0]);
+        reader.onload = () => {
+          found = -1;
+          for (let i = 0; i < this.uploadedDocuments.length; i++) {
+            if (this.uploadedDocuments[i].index == index) {
+              found = i;
+            }
+          }
+          if (found == -1) {
+            this.uploadedDocuments.push({ index: index, documentName: "Other Documents", fileName: files[0].name, imgsrc: reader.result });
+          } else {
+            this.uploadedDocuments[found].fileName = files[0].name;
+            this.uploadedDocuments[found].imgsrc = reader.result;
+          }
+        };
+      }
     }
   }
 
@@ -262,7 +289,6 @@ export class PropertyDocumentsComponent implements OnInit {
     $("." + this.currentField).addClass("blink");
     $("." + this.currentField).on("click", () => {
       $("." + this.currentField).removeClass("blink");
-      this.currentField = "";
     })
     $(window).scrollTop(temp - 100);
   }
@@ -286,8 +312,6 @@ export class PropertyDocumentsComponent implements OnInit {
         a.push(temp);
       }
       this.data.push(a);
-      console.log(result.data)
-      console.log(a)
     });
   }
   Nextshow() {
@@ -323,7 +347,7 @@ export class PropertyDocumentsComponent implements OnInit {
       this.status1 = !this.status1;
     } else {
       this.currentField = "required-docs";
-      this.error = "يرجى تحميل المستندات المطلوبة";
+      this.error = "Please Upload the required Documents.";
       this.showError = true;
     }
   }
@@ -353,36 +377,41 @@ export class PropertyDocumentsComponent implements OnInit {
   Nextshow2() {
     if (!this.formData.ReportPackageId) {
       this.currentField = "package-type-input";
-      this.error = "حدد نوع الحزمة";
+      this.error = "Select Package Type";
       this.showError = true;
       return;
     } else if (!this.formData.ReportLanguage) {
       this.currentField = "language-input";
-      this.error = "حدد لغة التقرير";
+      this.error = "Select Report Language";
       this.showError = true;
       return;
     } else if (this.reportForm.value.name == "") {
       this.currentField = "name-input";
-      this.error = "الرجاء إدخال اسم المالك";
+      this.error = "Please Enter Owner Name";
       this.showError = true;
       return;
     } else if (this.reportForm.value.phone == "") {
       this.currentField = "phone-input";
-      this.error = "الرجاء إدخال رقم هاتف المالك";
+      this.error = "Please Enter Owner Phone Number";
       this.showError = true;
       return;
     } else if (!this.termsAccepted) {
       this.currentField = "accept-terms-input";
-      this.error = "الرجاء قبول الشروط والأحكام";
+      this.error = "Please Accept Terms and Conditions";
+      this.showError = true;
+      return;
+    } else if (!this.reportCheck) {
+      this.currentField = "reports_checks-input";
+      this.error = "Please Accept Disclaimer";
       this.showError = true;
       return;
     } else if (this.formData.InspectionRequired && $("#formDate").val() == "") {
-      this.error = "الرجاء إدخال تاريخ الفحص";
+      this.error = "Please Enter Inspection Date";
       this.showError = true;
       return;
     }
     this.showLoader = true;
-    this.publishText = "أرجو الإنتظار...";
+    this.publishText = "Please Wait...";
     this.formData.CustomerName = this.reportForm.value.name;
     let temp: any = this.countriesList.value
     this.formData.PhoneNumber = temp + this.reportForm.value.phone;
@@ -425,7 +454,7 @@ export class PropertyDocumentsComponent implements OnInit {
       },
       dataType: "json",
       success: (res) => {
-        if (res.message == "valuation request completed successfully") {
+        if (res.message == "Valuation Request Submitted Successfully.Data Found For Valuation") {
           this.valuationResponse = res.data;
           let tempUser:any = localStorage.getItem("user");
           let tempToken:any = localStorage.getItem("token");
@@ -435,6 +464,7 @@ export class PropertyDocumentsComponent implements OnInit {
           let temp:any = {};
           temp.reportNumberCode = this.valuationResponse.reportNumberCode;
           temp.emailAddress = this.valuationResponse.emailAddress;
+          console.log(this.valuationResponse);
           localStorage.setItem("valuationResponse", JSON.stringify(temp));
           this.showPayment = true;
           this.status3 = !this.status3;
@@ -444,6 +474,9 @@ export class PropertyDocumentsComponent implements OnInit {
           $(window).scrollTop(0);
         } else {
           console.log(res);
+          this.showLoader = false;
+          this.error = "Valuation Request not Submitted. Please Try Again";
+          this.showError = true;
         }
       },
       error: (err) => {
@@ -479,6 +512,9 @@ export class PropertyDocumentsComponent implements OnInit {
   }
   onInspectionSelect(e: any) {
     this.formData.InspectionRequired = e.checked;
+  }
+  onReportCheck(e:any) {
+    this.reportCheck = e.checked;
   }
   onKeypressEvent(e: any) {
     this.checkLength(3, false)
@@ -541,7 +577,7 @@ export class PropertyDocumentsComponent implements OnInit {
         })
       }
     } else {
-      this.error = "حدد لغة التقرير";
+      this.error = "Select Report Language";
       this.showError = true;
       return;
     }
@@ -559,52 +595,52 @@ export class PropertyDocumentsComponent implements OnInit {
     let currentDate: any = this.datePipe.transform(this.minDate, 'yyyy-MM-dd')?.split("-");
     if (this.paymentForm.value.cardNumber == "") {
       this.currentField = "card-number-input";
-      this.error = "الرجاء إدخال رقم البطاقة";
+      this.error = "Please Enter Card Number";
       this.showError = true;
       return;
     } else if (number.toString().length < 16) {
       this.currentField = "card-number-input";
-      this.error = "الرجاء إدخال رقم بطاقة سارية المفعول";
+      this.error = "Please Enter a Valid Card Number";
       this.showError = true;
       return;
     } else if (this.paymentForm.value.expiryDate == "") {
       this.currentField = "expiry-input";
-      this.error = "الرجاء إدخال انتهاء صلاحية البطاقة";
+      this.error = "Please Enter Card Expiry";
       this.showError = true;
       return;
     } else if (date.toString().length < 5) {
       this.currentField = "expiry-input";
-      this.error = "الرجاء إدخال بطاقة صالحة منتهية الصلاحية";
+      this.error = "Please Enter a Valid Card Expiry";
       this.showError = true;
       return;
     } else if (this.paymentForm.value.cvv == "") {
       this.currentField = "cvv-input";
-      this.error = "الرجاء إدخال CVV";
+      this.error = "Please Enter CVV";
       this.showError = true;
       return;
     } else if (cvv.toString().length < 3) {
       this.currentField = "cvv-input";
-      this.error = "الرجاء إدخال رمز CVV صالح";
+      this.error = "Please Enter a valid CVV";
       this.showError = true;
       return;
     } else if ("20" + date.toString().split("/")[1] < currentDate[0]) {
       this.currentField = "expiry-input";
-      this.error = "الرجاء إدخال بطاقة صالحة منتهية الصلاحية";
+      this.error = "Please Enter a Valid Card Expiry";
       this.showError = true;
       return;
     } else if ("20" + date.toString().split("/")[1] == currentDate[0] && date.toString().split("/")[0] < currentDate[1] || date.toString().split("/")[0] > 12) {
       this.currentField = "expiry-input";
-      this.error = "الرجاء إدخال بطاقة صالحة منتهية الصلاحية";
+      this.error = "Please Enter a Valid Card Expiry";
       this.showError = true;
       return;
     } else if (this.paymentForm.value.cardName = "") {
       this.currentField = "card-name-input";
-      this.error = "الرجاء إدخال اسم حامل البطاقة";
+      this.error = "Please Enter a Card Holder Name";
       this.showError = true;
       return;
     }
     this.showLoader = true;
-    let data: any = { "CardNumder": number, "Currency": this.currencyStripe, "reportNumberCode": this.valuationResponse.reportNumberCode, "Month": date.toString().split("/")[0], "Year": "20" + date.toString().split("/")[1], "CVC": cvv, "Amount": this.valuationResponse.valuationPayment.totalAmount, "Email": this.valuationResponse.emailAddress, "CustomerName": this.paymentForm.value.cardName, "DescriptionPayment": this.userData.propertyCategory + " " + this.userData.propertyType + " " + this.valuationResponse.reportPackage.name };
+    let data: any = { "CardNumder": number, "Currency": this.currency, "reportNumberCode": this.valuationResponse.reportNumberCode, "Month": date.toString().split("/")[0], "Year": "20" + date.toString().split("/")[1], "CVC": cvv, "Amount": this.valuationResponse.valuationPayment.totalAmount, "Email": this.valuationResponse.emailAddress, "CustomerName": this.paymentForm.value.cardName, "DescriptionPayment": this.userData.propertyCategory + " " + this.userData.propertyType + " " + this.valuationResponse.reportPackage.name };
     this.service.ValuationPayment(data).subscribe((result: any) => {
       if (result.message == "Valuation transaction completed successfully") {
         localStorage.removeItem("bounds");
@@ -613,7 +649,8 @@ export class PropertyDocumentsComponent implements OnInit {
         localStorage.removeItem("valuationData");
         localStorage.removeItem("mapImg");
         this.showLoader = false;
-        this.router.navigate(['/ar/valuation/PropertyDownloadReport']);
+        localStorage.setItem("navigateTo", "valuation/PropertyDownloadReport");
+        this.router.navigate(["/thanku"]);
       } else {
         this.showLoader = false;
         this.error = result.error;
@@ -634,7 +671,6 @@ export class PropertyDocumentsComponent implements OnInit {
   constructor(private service: AppService, private datePipe: DatePipe, private router: Router) {
     this.userData = localStorage.getItem("valuationDetailData");
     this.userData = JSON.parse(this.userData);
-    console.log(this.userData);
     this.formData = localStorage.getItem("valuationData");
     this.formData = JSON.parse(this.formData);
     this.formData.InspectionRequired = false;
