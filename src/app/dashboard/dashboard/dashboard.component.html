@@ -1413,17 +1413,11 @@
                                         <div ngClass="block-wrapper mb-4">
                                             <div class="checkbox-flex-box-auto button-same-select"
                                                 (selectedTabChange)="childTabsChange($event)">
-                                                <div class="checkbox-design position-relative">
-                                                    <input type="radio" id="Furnished" (click)="childTabsChange('')"
-                                                        name="property-types" value="All" checked>
-                                                    <button class="checkbox-btn">All
-                                                        ({{this.tabCounts.totalPropertyListing}})</button>
-                                                </div>
                                                 <div class="checkbox-design position-relative"
                                                     *ngFor="let list of propertyListingStatus">
                                                     <input type="radio" id="Semi-Furnished"
                                                         (click)="childTabsChange(list.id)" name="property-types"
-                                                        value="{{list.statusDescription}}">
+                                                        value="{{list.statusDescription}}" [checked]="list.checked">
                                                     <button class="checkbox-btn">{{list.statusDescription}}
                                                         ({{list.count}})</button>
                                                 </div>
@@ -1518,7 +1512,7 @@
                                                                                 <button ngbDropdownItem (click)="openVerticallyCentered(sharecontent)"><img
                                                                                             src="{{shareimg}}">
                                                                                         Share</button>
-                                                                                <button ngbDropdownItem (click)="deleteListing(listing.id)"><a><img
+                                                                                <button *ngIf="childTabId!=5" ngbDropdownItem (click)="deleteListing(listing.id)"><a><img
                                                                                             src="{{deleteimg}}">
                                                                                         Delete</a></button>
                                                                                 <button ngbDropdownItem><a
@@ -1549,17 +1543,11 @@
                                         <div ngClass="block-wrapper mb-4">
                                             <div class="checkbox-flex-box-auto button-same-select"
                                                 (selectedTabChange)="childTabsChange($event)">
-                                                <div class="checkbox-design position-relative">
-                                                    <input type="radio" id="Furnished" (click)="childTabsChange('')"
-                                                        name="property-types" value="All" checked>
-                                                    <button class="checkbox-btn">All
-                                                        ({{this.tabCounts.totalPropertyListing}})</button>
-                                                </div>
                                                 <div class="checkbox-design position-relative"
                                                     *ngFor="let list of propertyListingStatus">
                                                     <input type="radio" id="Semi-Furnished"
                                                         (click)="childTabsChange(list.id)" name="property-types"
-                                                        value="{{list.statusDescription}}">
+                                                        value="{{list.statusDescription}}" [checked]="list.checked">
                                                     <button class="checkbox-btn">{{list.statusDescription}}
                                                         ({{list.count}})</button>
                                                 </div>
@@ -1655,7 +1643,7 @@
                                                                                 <button ngbDropdownItem><a href=""><img
                                                                                             src="{{shareimg}}">
                                                                                         Share</a></button>
-                                                                                <button ngbDropdownItem><a href=""><img
+                                                                                <button *ngIf="childTabId!=5" ngbDropdownItem (click)="deleteListing(listing.id)"><a><img
                                                                                             src="{{deleteimg}}">
                                                                                         Delete</a></button>
                                                                                 <button ngbDropdownItem><a href=""><img
@@ -1684,17 +1672,11 @@
                                         <div ngClass="block-wrapper mb-4">
                                             <div class="checkbox-flex-box-auto button-same-select"
                                                 (selectedTabChange)="childTabsChange($event)">
-                                                <div class="checkbox-design position-relative">
-                                                    <input type="radio" id="Furnished" (click)="childTabsChange('')"
-                                                        name="property-types" value="All" checked>
-                                                    <button class="checkbox-btn">All
-                                                        ({{this.tabCounts.totalPropertyListing}})</button>
-                                                </div>
                                                 <div class="checkbox-design position-relative"
                                                     *ngFor="let list of propertyListingStatus">
                                                     <input type="radio" id="Semi-Furnished"
                                                         (click)="childTabsChange(list.id)" name="property-types"
-                                                        value="{{list.statusDescription}}">
+                                                        value="{{list.statusDescription}}" [checked]="list.checked">
                                                     <button class="checkbox-btn">{{list.statusDescription}}
                                                         ({{list.count}})</button>
                                                 </div>
@@ -1790,7 +1772,7 @@
                                                                                 <button ngbDropdownItem><a href=""><img
                                                                                             src="{{shareimg}}">
                                                                                         Share</a></button>
-                                                                                <button ngbDropdownItem><a href=""><img
+                                                                                <button *ngIf="childTabId!=5" ngbDropdownItem (click)="deleteListing(listing.id)"><a><img
                                                                                             src="{{deleteimg}}">
                                                                                         Delete</a></button>
                                                                                 <button ngbDropdownItem><a href=""><img

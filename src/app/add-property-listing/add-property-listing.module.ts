@@ -29,7 +29,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     ListpropertymediaComponent,
     ListpropertypublishComponent,
     EditComponent,
-    EditListInfoComponent
+    EditListInfoComponent,
   ],
   imports: [
     CommonModule,

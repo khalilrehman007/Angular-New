@@ -191,6 +191,7 @@ export class AppService {
     return this.http.post(this.apiurl + 'AddPropertyListing', data, httpOptions);
   }
   PropertyListingRentBuy(data: any) {
+    console.log(data)
     return this.http.post(this.apiurl + 'PropertyListingRentBuy', data);
   }
   TermsCondition() {

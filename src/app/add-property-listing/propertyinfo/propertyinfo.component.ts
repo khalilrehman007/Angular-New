@@ -1,12 +1,9 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from "../../service/auth.service";
 import { Router } from "@angular/router";
 import { NotificationService } from "../../service/notification.service";
 import { AppService } from 'src/app/service/app.service';
-import { Select2 } from 'select2';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { OwlOptions } from 'ngx-owl-carousel-o';
 
 declare const google: any;
 
@@ -158,33 +155,35 @@ export class PropertyinfoComponent implements OnInit {
       this.notifyService.showError("You need to register/login", "");
       this.route.navigate(["/login"]);
     }
-    this.service.PropertyListingPackages(1).subscribe((result: any) => {
-      this.packagesType = result.data;
-    })
-    this.service.PointTransaction(335).subscribe((result: any) => {
-      if (result.message == "Points Transaction has been fetched successfully") {
-        for (let i = 0; i < result.data.length; i++) {
-          this.selectedPackageName.push(result.data[i].point.id);
-        }
-      }
-    })
+    // this.service.PropertyListingPackages(1).subscribe((result: any) => {
+    //   this.packagesType = result.data;
+    // })
+
+    // this.service.PointTransaction(335).subscribe((result: any) => {
+    //   if (result.message == "Points Transaction has been fetched successfully") {
+    //     for (let i = 0; i < result.data.length; i++) {
+    //       this.selectedPackageName.push(result.data[i].point.id);
+    //     }
+    //   }
+    // })
     this.loadCountriesData();
     this.options = {
       bounds: [],
       strictBounds: true,
     };
-    this.loadOldData();
+    this.loadSavedData();
     config.backdrop = 'static';
     config.keyboard = false;
   }
-  checkPackage(e:any) {
-    if(this.selectedPackageName.indexOf(e) != -1) {
-      return true;
-    } else {
-      return false
-    }
-  }
-  loadOldData() {
+  // checkPackage(e:any) {
+  //   if(this.selectedPackageName.indexOf(e) != -1) {
+  //     return true;
+  //   } else {
+  //     return false
+  //   }
+  // }
+  loadSavedData() {
+    debugger;
     if (localStorage.getItem("propertyData")) {
       this.showMap = true;
       this.oldData = localStorage.getItem("propertyData");
@@ -200,8 +199,6 @@ export class PropertyinfoComponent implements OnInit {
         }
       }, 100)
       this.countryId = this.oldData.CountryId;
-      this.cityId = this.oldData.CityId;
-      this.districtId = this.oldData.DistrictId
       this.service.LoadCities(this.countryId).subscribe(e => {
         let temp: any = e;
         if (temp.message == "City list fetched successfully") {
@@ -209,26 +206,27 @@ export class PropertyinfoComponent implements OnInit {
             this.city.push({ viewValue: city.name, value: city.id });
           }
           let interval: any = setInterval(() => {
-            if (this.country.length > 0) {
+            if (this.city.length > 0) {
               $(".city-item-" + this.oldData.CityId).attr("selected", "selected");
               $(".city-select").select2();
               clearInterval(interval);
             }
           }, 100)
-          let id = this.cityId;
-          let a = this.city.filter(function (c: any) {
-            return c.value == id;
-          });
+          this.cityId = this.oldData.CityId;
+          // let id = this.cityId;
+          // let a = this.city.filter(function (c: any) {
+          //   return c.value == id;
+          // });
           this.service.LoadDistrict(this.cityId).subscribe(e => {
             let temp: any = e;
-            if (temp.message == "District list fetched successfully") {
+            if (temp.result == 1) {
               for (let district of temp.data) {
                 this.district.push({ viewValue: district.name, value: district.id });
               }
               this.showLoader = false;
               let interval: any = setInterval(() => {
-                if (this.country.length > 0) {
-                  $(".district-item-" + this.oldData.CityId).attr("selected", "selected");
+                if (this.district.length > 0) {
+                  $(".district-item-" + this.oldData.DistrictId).attr("selected", "selected");
                   $(".district-select").select2();
                   $(".country-select").on("change", () => {
                     this.onCountrySelect($(".country-select").val());
@@ -244,23 +242,24 @@ export class PropertyinfoComponent implements OnInit {
               }, 100);
             }
           });
+          this.districtId = this.oldData.DistrictId;
         }
       });
     }
   }
-  changeInfo() {
-    $("#searchLocation").focus();
-    let temp: any = $("#searchLocation").offset();
-    temp = temp.top;
-    $(window).scrollTop(temp - 200);
-  }
+  // changeInfo() {
+  //   $("#searchLocation").focus();
+  //   let temp: any = $("#searchLocation").offset();
+  //   temp = temp.top;
+  //   $(window).scrollTop(temp - 200);
+  // }
   loadCountriesData() {
     this.showLoader = true;
     this.service.LoadCountries().subscribe(e => {
       let temp: any = e;
       if (temp.message == "Country list fetched successfully") {
         for (let country of temp.data) {
-          this.country.push({ viewValue: country.name, value: country.id });
+          this.country.push({ viewValue: country.name, value: country.id ,currency:country.currency});
         }
         this.showLoader = false;
       }
@@ -282,6 +281,7 @@ export class PropertyinfoComponent implements OnInit {
         return c.value == e
       });
       this.countryName = temp[0].viewValue;
+      console.log(temp);
       localStorage.setItem("currency", temp[0].currency)
       // this.getLocationDetails(temp[0].viewValue, false);
       this.countryId = e;
@@ -330,6 +330,7 @@ export class PropertyinfoComponent implements OnInit {
     this.showMap = false;
   }
   onDistrictSelect(e: any) {
+    debugger;
     if (e != 0) {
       this.locationSelected = false;
       $("#searchLocation").val("");
@@ -368,7 +369,7 @@ export class PropertyinfoComponent implements OnInit {
       this.error = "Select District";
       this.showError = true;
       return;
-    } else if (this.SubmitForm.value.address == "") {
+    } else if (this.SubmitForm.value.address?.trim() == "") {
       this.currentField = "add-adrees-sec";
       this.error = "Select Address";
       this.showError = true;
@@ -399,6 +400,7 @@ export class PropertyinfoComponent implements OnInit {
     $(window).scrollTop(temp - 100);
   }
   ngOnInit(): void {
+    
   }
   ngAfterViewInit(): void {
     this.getLocation();
@@ -463,6 +465,7 @@ export class PropertyinfoComponent implements OnInit {
   }
   getLocationDetails(e: any, status: boolean) {
     $(".pac-container.pac-logo").remove();
+    e= this.ReplaceAlphabets(e);
     $.ajax({
       url: "https://maps.googleapis.com/maps/api/geocode/json?address=" + e + "&key=AIzaSyBPSEz52-AfPEVbmV_3yuGUGol_KiLb3GU",
       method: "get",
@@ -482,7 +485,7 @@ export class PropertyinfoComponent implements OnInit {
         let area = res.results[0].geometry.location;
         this.map = new google.maps.Map($(".property-details__map")[0], {
           center: area,
-          zoom: 6,
+          zoom: 10,
           disableDefaultUI: true,
           restriction: {
             latLngBounds: this.bounds,
@@ -492,10 +495,28 @@ export class PropertyinfoComponent implements OnInit {
         this.marker = new google.maps.Marker({
           position: area,
           map: this.map,
-          // draggable: true,
+        // draggable: true,
         });
         // google.maps.event.addListener(this.marker, 'dragend', (e:any) => {
-        //   this.geocodePosition(this.marker.getPosition());
+        //   let pos: any = this.marker.getPosition();
+        //   let geocoder = new google.maps.Geocoder();
+        //   geocoder.geocode
+        //     ({
+        //       latLng: pos
+        //     },
+        //       (results: any, status: any) => {
+        //         if (status == google.maps.GeocoderStatus.OK) {
+        //           localStorage.setItem("lat", e.latLng.lat());
+        //           localStorage.setItem("lng", e.latLng.lng());
+        //           $(".searchLocation").val(results[0].formatted_address);
+        //           localStorage.setItem("address", results[0].formatted_address);
+        //         }
+        //         else {
+        //           this.error = "Cannot determine address at this location.";
+        //           this.showError = true;
+        //         }
+        //       }
+        //     );
         // });
         this.autocomplete = new google.maps.places.Autocomplete(this.searchElement.nativeElement, this.options);
         this.autocomplete.addListener('place_changed', this.onPlaceChanged);
@@ -560,7 +581,7 @@ export class PropertyinfoComponent implements OnInit {
       let lng: any = localStorage.getItem("lng");
       this.map = new google.maps.Map($(".property-details__map")[0], {
         center: { "lat": parseFloat(lat), "lng": parseFloat(lng) },
-        zoom: 6,
+        zoom: 8,
         disableDefaultUI: true,
         restriction: {
           latLngBounds: bounds,
@@ -572,5 +593,47 @@ export class PropertyinfoComponent implements OnInit {
       this.autocomplete.addListener('place_changed', this.onPlaceChanged);
       this.autocomplete.setBounds(this.bounds);
     }
+  }
+
+  ReplaceAlphabets(name: string): string {
+    let newName="";
+    if (name.toLowerCase().includes('first')) {
+      newName=name.toLowerCase().replace('first', '1');
+    }
+    else if (name.toLowerCase().includes('second')) {
+      newName=name.toLowerCase().replace('second', '2');
+    }
+    else if (name.toLowerCase().includes('third')) {
+      newName=name.toLowerCase().replace('third', '3');
+    }
+    else if (name.toLowerCase().includes('fourth') || name.toLowerCase().includes('forth')) {
+      if(name.toLowerCase().includes('fourth')){
+        newName=name.toLowerCase().replace('fourth', '4');
+      }else{
+        newName=name.toLowerCase().replace('forth', '4');
+      }
+    }
+    else if (name.toLowerCase().includes('fifth')) {
+      newName=name.toLowerCase().replace('fifth', '5');
+    }
+    else if (name.toLowerCase().includes('sixth')) {
+      newName=name.toLowerCase().replace('sixth', '6');
+    }
+    else if (name.toLowerCase().includes('seventh')) {
+      newName=name.toLowerCase().replace('seventh', '7');
+    }
+    else if (name.toLowerCase().includes('eighth')) {
+      newName=name.toLowerCase().replace('eighth', '8');
+    }
+    else if (name.toLowerCase().includes('ninth')) {
+      newName=name.toLowerCase().replace('ninth', '9');
+    }
+    else if (name.toLowerCase().includes('tenth')) {
+      newName=name.toLowerCase().replace('tenth', '10');
+    }
+    else{
+      newName=name;
+    }
+    return newName;
   }
 }
