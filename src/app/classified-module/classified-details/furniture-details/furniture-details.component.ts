@@ -83,12 +83,6 @@ export class FurnitureDetailsComponent implements OnInit {
     this.status1 = false;
     this.status3 = false;
   }
-  carHistory() {
-    this.status3 = !this.status3;
-    this.status1 = false;
-    this.status2 = false;
-    this.status = false;
-  }
   eventlist = [
     {
       img: 'assets/images/slider.png',
@@ -187,19 +181,19 @@ export class FurnitureDetailsComponent implements OnInit {
 
     this.galleryImages = [
       {
-        small: 'assets/images/car-demo.jpg',
-        medium: 'assets/images/car-demo.jpg',
-        big: 'assets/images/car-demo.jpg'
+        small: 'assets/images/furniture/furniture.jpg',
+        medium: 'assets/images/furniture/furniture.jpg',
+        big: 'assets/images/furniture/furniture.jpg'
       },
       {
-        small: 'assets/images/car-demo.jpg',
-        medium: 'assets/images/car-demo.jpg',
-        big: 'assets/images/car-demo.jpg'
+        small: 'assets/images/furniture/furniture.jpg',
+        medium: 'assets/images/furniture/furniture.jpg',
+        big: 'assets/images/furniture/furniture.jpg'
       },
       {
-        small: 'assets/images/car-demo.jpg',
-        medium: 'assets/images/car-demo.jpg',
-        big: 'assets/images/car-demo.jpg'
+        small: 'assets/images/furniture/furniture.jpg',
+        medium: 'assets/images/furniture/furniture.jpg',
+        big: 'assets/images/furniture/furniture.jpg'
       }
     ];
   }
@@ -293,46 +287,46 @@ export class FurnitureDetailsComponent implements OnInit {
   }
   CarsList = [
     {
-      src: '../../../assets/images/cars/car1.jpeg',
-      price: '58,657 AED',
-      PropertyName: 'Bentley Flying Spur',
+      src: '/assets/images/furniture/furniture1.jpeg',
+      price: '5,657',
+      PropertyName: 'Table Furniture',
       link: '',
-      address: 'Etihad Tower 4, Etihad Towers,  ',
+      address: 'Etihad Tower 4, Etihad Towers',
     },
     {
-      src: '../../../assets/images/cars/car2.jpeg',
-      price: '69,098 AED',
-      PropertyName: 'Mercedes-Benz AMG G 63',
+      src: '/assets/images/furniture/furniture2.jpeg',
+      price: '6,098',
+      PropertyName: 'Garden Furniture',
+      link: '',
+      address: 'Etihad Tower 4, Etihad Towers',
+    },
+    {
+      src: '/assets/images/furniture/furniture3.jpeg',
+      price: '2,000',
+      PropertyName: 'Furniture',
       link: '',
       address: 'Etihad Tower 4, Etihad Towers,',
     },
     {
-      src: '../../../assets/images/cars/car3.jpeg',
-      price: '42,000 AED',
+      src: '/assets/images/furniture/furniture4.jpeg',
+      price: '8,657',
+      PropertyName: 'Furniture',
+      link: '',
+      address: 'Etihad Tower 4, Etihad Towers',
+    },
+    {
+      src: '/assets/images/furniture/furniture3.jpeg',
+      price: '69,098',
+      PropertyName: 'Furniture',
+      link: '',
+      address: 'Etihad Tower 4, Etihad Towers',
+    },
+    {
+      src: '/assets/images/furniture/furniture2.jpeg',
+      price: '42,000',
       PropertyName: 'Ferrari SF90',
       link: '',
-      address: 'Etihad Tower 4, Etihad Towers,',
-    },
-    {
-      src: '../../../assets/images/cars/car1.jpeg',
-      price: '58,657 AED',
-      PropertyName: 'Bentley Flying Spur',
-      link: '',
-      address: 'Etihad Tower 4, Etihad Towers,  ',
-    },
-    {
-      src: '../../../assets/images/cars/car2.jpeg',
-      price: '69,098 AED',
-      PropertyName: 'Mercedes-Benz AMG G 63',
-      link: '',
-      address: 'Etihad Tower 4, Etihad Towers,',
-    },
-    {
-      src: '../../../assets/images/cars/car3.jpeg',
-      price: '42,000 AED',
-      PropertyName: 'Ferrari SF90',
-      link: '',
-      address: 'Etihad Tower 4, Etihad Towers,',
+      address: 'Furniture',
     },
   ]
 }
