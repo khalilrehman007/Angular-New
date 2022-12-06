@@ -30,7 +30,7 @@ export class PropertyDetailsComponent implements OnInit {
   searchLocaation: any;
   @ViewChild('searchLocation') searchElement: any;
 
-  Locate = '../../../../assets/images/icons/locate.svg';
+  Locate = '../../../../../assets/images/icons/locate.svg';
   oldData: any = "";
   country: any = [];
   city: any = [];
@@ -43,10 +43,10 @@ export class PropertyDetailsComponent implements OnInit {
   propertyInsured: number = -1;
   autocomplete: any;
   marker: any;
-  countryName: any;
+  countryName: any = "";
   cityName: any;
   tempAddress: any;
-  locationInformation: any = {};
+  // locationInformation: any = {};
   formDetailData: any = {};
   showLoader: boolean = false;
   bounds: any;
@@ -74,8 +74,8 @@ export class PropertyDetailsComponent implements OnInit {
   }
 
   constructor(private http: HttpClient, private notifyService: NotificationService, private service: AppService, private router: Router) {
-    if(!localStorage.getItem("user")) {
-      this.notifyService.showError("تحتاج إلى التسجيل / تسجيل الدخول", "");
+    if (!localStorage.getItem("user")) {
+      this.notifyService.showError("You need to register/login", "");
       this.router.navigate(["/ar/login"]);
     }
     this.loadCountriesData();
@@ -90,7 +90,6 @@ export class PropertyDetailsComponent implements OnInit {
       this.showMap = true;
       this.oldData = localStorage.getItem("valuationData");
       this.oldData = JSON.parse(this.oldData);
-      console.log(this.oldData);
       this.propertyDetails.patchValue({
         titleDeed: this.oldData.TitleDeedNo,
         muncipality: this.oldData.MunicipalityNo,
@@ -108,7 +107,7 @@ export class PropertyDetailsComponent implements OnInit {
         let temp: any = e;
         if (temp.message == "City list fetched successfully") {
           for (let city of temp.data) {
-            this.city.push({ viewValue: city.nameAr, value: city.id });
+            this.city.push({ viewValue: city.name, value: city.id });
           }
           this.showLoader = false;
           let interval: any = setInterval(() => {
@@ -123,18 +122,27 @@ export class PropertyDetailsComponent implements OnInit {
           let a = this.city.filter(function (c: any) {
             return c.value == id;
           });
-          this.locationInformation.city = a[0].viewValue;
+          // this.locationInformation.city = a[0].viewValue;
           this.service.LoadDistrict(this.cityId).subscribe(e => {
             let temp: any = e;
             if (temp.message == "District list fetched successfully") {
               for (let district of temp.data) {
-                this.district.push({ viewValue: district.nameAr, value: district.id });
+                this.district.push({ viewValue: district.name, value: district.id });
               }
               this.showLoader = false;
               let interval: any = setInterval(() => {
                 if (this.country.length > 0) {
-                  $(".district-item-" + this.oldData.CityId).attr("selected", "selected");
+                  $(".district-item-" + this.oldData.DistrictId).attr("selected", "selected");
                   $(".district-select").select2();
+                  $(".country-select").on("change", () => {
+                    this.onCountrySelect($(".country-select").val());
+                  });
+                  $(".city-select").on("change", () => {
+                    this.onCitySelect($(".city-select").val());
+                  });
+                  $(".district-select").on("change", () => {
+                    this.onDistrictSelect($(".district-select").val());
+                  });
                   clearInterval(interval);
                 }
               }, 100);
@@ -143,7 +151,7 @@ export class PropertyDetailsComponent implements OnInit {
           this.districtId = this.oldData.DistrictId;
         }
       });
-      this.locationInformation.address = this.oldData.PropertyAddressArabic;
+      // this.locationInformation.address = this.oldData.PropertyAddress;
       this.titleDeedType = this.oldData.TitleDeedType;
       this.propertyInsured = this.oldData.PropertyInsured;
       this.locationSelected = true;
@@ -157,18 +165,18 @@ export class PropertyDetailsComponent implements OnInit {
     temp = temp.top;
     $(window).scrollTop(temp - 200);
   }
-  confirmLocation() {
-    this.locationInformation.country = this.countryName;
-    this.locationInformation.city = this.cityName;
-    this.locationInformation.address = localStorage.getItem("arabicAddress");
-  }
+  // confirmLocation() {
+  //   this.locationInformation.country = this.countryName;
+  //   this.locationInformation.city = this.cityName;
+  //   this.locationInformation.address = localStorage.getItem("address");
+  // }
   loadCountriesData() {
     this.showLoader = true;
     this.service.LoadCountries().subscribe(e => {
       let temp: any = e;
       if (temp.message == "Country list fetched successfully") {
         for (let country of temp.data) {
-          this.country.push({ viewValue: country.nameAr, value: country.id, currency: country.currency, currencyAr: country.currencyAr });
+          this.country.push({ viewValue: country.name, value: country.id, currency: country.currency });
         }
         this.showLoader = false;
       }
@@ -177,7 +185,7 @@ export class PropertyDetailsComponent implements OnInit {
         let a = this.country.filter(function (c: any) {
           return c.value == id;
         });
-        this.locationInformation.country = a[0].viewValue;
+        // this.locationInformation.country = a[0].viewValue;
       }
     });
   }
@@ -198,60 +206,76 @@ export class PropertyDetailsComponent implements OnInit {
     this.propertyInsured = e;
   }
   onCountrySelect(e: any) {
-    this.showMap = false;
-    this.city = this.district = [];
-    this.cityId = this.districtId = -1;
-    this.showLoader = true;
-    let temp = this.country.filter(function (c: any) {
-      return c.value == e
-    });
-    console.log(temp);
-    this.countryName = temp[0].viewValue;
-    localStorage.setItem("currency", temp[0].currency)
-    localStorage.setItem("currencyAr", temp[0].currencyAr)
-    this.getLocationDetails(temp[0].viewValue, false);
-    this.countryId = e;
-    this.city = [];
-    this.service.LoadCities(e).subscribe(e => {
-      let temp: any = e;
-      if (temp.message == "City list fetched successfully") {
-        for (let city of temp.data) {
-          this.city.push({ viewValue: city.nameAr, value: city.id });
+    if (e != 0) {
+      this.city = [];
+      this.district = [];
+      this.cityId = this.districtId = -1;
+      this.showLoader = true;
+      let temp = this.country.filter(function (c: any) {
+        return c.value == e
+      });
+      // this.countryName = temp[0].viewValue;
+      localStorage.setItem("currency", temp[0].currency)
+      // this.getLocationDetails(temp[0].viewValue, false);
+      this.countryId = e;
+      this.city = [];
+      this.service.LoadCities(e).subscribe(e => {
+        let temp: any = e;
+        if (temp.message == "City list fetched successfully") {
+          for (let city of temp.data) {
+            this.city.push({ viewValue: city.name, value: city.id });
+          }
+          this.showLoader = false;
         }
-        this.showLoader = false;
-      }
-    });
+      });
+    } else {
+      this.city = [];
+      this.district = [];
+      this.countryId = -1;
+      // this.countryName = "";
+    }
+    this.showMap = false;
   }
   onCitySelect(e: any) {
-    this.showMap = false;
-    this.district = [];
-    this.districtId = -1;
-    let temp = this.city.filter(function (c: any) {
-      return c.value == e
-    })
-    this.cityName = temp[0].viewValue;
-    this.getLocationDetails(temp[0].viewValue, false);
-    this.cityId = e;
-    this.service.LoadDistrict(e).subscribe(e => {
-      let temp: any = e;
-      if (temp.message == "District list fetched successfully") {
-        for (let district of temp.data) {
-          this.district.push({ viewValue: district.nameAr, value: district.id });
+    if (e != 0) {
+      this.district = [];
+      this.districtId = -1;
+      let temp = this.city.filter(function (c: any) {
+        return c.value == e
+      })
+      this.getLocationDetails(temp[0].viewValue, false);
+      this.cityId = e;
+      this.service.LoadDistrict(e).subscribe(e => {
+        let temp: any = e;
+        if (temp.message == "District list fetched successfully") {
+          for (let district of temp.data) {
+            this.district.push({ viewValue: district.name, value: district.id });
+          }
+          this.showLoader = false;
         }
-        this.showLoader = false;
-      }
-    });
+      });
+    } else {
+      this.district = [];
+      this.cityId = -1;
+    }
+    this.showMap = false;
   }
   onDistrictSelect(e: any) {
-    this.showMap = true;
-    this.locationSelected = false;
-    $("#searchLocation").val("");
-    let temp = this.district.filter(function (c: any) {
-      return c.value == e
-    })
-    this.getLocationDetails(temp[0].viewValue, true);
-    this.districtName = temp[0].viewValue;
-    this.districtId = e;
+    if (e != 0) {
+      this.locationSelected = false;
+      $("#searchLocation").val("");
+      let temp = this.district.filter(function (c: any) {
+        return c.value == e
+      })
+      this.getLocationDetails(temp[0].viewValue, true);
+      this.districtName = temp[0].viewValue;
+      this.districtId = e;
+      this.showMap = true;
+    } else {
+      this.showMap = false;
+      this.districtId = -1;
+      this.districtName = "";
+    }
   }
   getMapImage() {
     let staticMapUrl: any = "https://maps.googleapis.com/maps/api/staticmap";
@@ -280,50 +304,50 @@ export class PropertyDetailsComponent implements OnInit {
     $("." + this.currentField).addClass("blink");
     $("." + this.currentField).on("click", () => {
       $("." + this.currentField).removeClass("blink");
-      this.currentField = "";
+      this.currentField = "temp";
     })
     $(window).scrollTop(temp - 100);
   }
   getData() {
     if ($(".country-select").val() == 0) {
       this.currentField = "country-select + .select2";
-      this.error = "حدد الدولة";
+      this.error = "Select Country";
       this.showError = true;
       return;
     } else if ($(".city-select").val() == 0) {
       this.currentField = "city-select + .select2";
-      this.error = "اختر مدينة";
+      this.error = "Select City";
       this.showError = true;
       return;
     } else if ($(".district-select").val() == 0) {
       this.currentField = "district-select + .select2";
-      this.error = "حدد المنطقة";
+      this.error = "Select District";
       this.showError = true;
       return;
     } else if ($("#searchLocation").val() == "" || !this.locationSelected) {
       this.currentField = "input-wrapper";
       this.changeInfo();
-      this.error = "أدخل العنوان";
+      this.error = "Enter Address";
       this.showError = true;
       return;
     } else if (this.propertyDetails.value.titleDeed == "") {
       this.currentField = "title-deed-input";
-      this.error = "أدخل رقم سند الملكية";
+      this.error = "Enter Title Deed No";
       this.showError = true;
       return;
     } else if (this.titleDeedType == -1) {
       this.currentField = "title-deed-type-input";
-      this.error = "حدد نوع سند الملكية";
+      this.error = "Select Title Deed Type";
       this.showError = true;
       return;
     } else if (this.propertyDetails.value.muncipality == "") {
       this.currentField = "municipality-input";
-      this.error = "أدخل البلدية / رقم العاطفة";
+      this.error = "Enter Muncipality/Affection No";
       this.showError = true;
       return;
     } else if (this.propertyInsured == -1) {
       this.currentField = "property-insured-input";
-      this.error = "حدد نوع التأمين على الممتلكات";
+      this.error = "Select Property Insurance Type";
       this.showError = true;
       return;
     } else {
@@ -343,7 +367,6 @@ export class PropertyDetailsComponent implements OnInit {
       this.data.PropertyLat = localStorage.getItem("lat");
       this.data.PropertyLong = localStorage.getItem("lng");
       this.data.PropertyAddress = $("#searchLocation").val();
-      this.data.PropertyAddressArabic = localStorage.getItem("arabicAddress");
 
       if (!localStorage.getItem("valuationDetailData")) {
         this.valuationDetailData.country = this.countryName;
@@ -359,7 +382,6 @@ export class PropertyDetailsComponent implements OnInit {
   ngOnInit(): void {
   }
   ngAfterViewInit(): void {
-    this.getLocation();
     if (this.oldData == "") {
       $('.select2').select2();
     }
@@ -372,19 +394,22 @@ export class PropertyDetailsComponent implements OnInit {
     $(".district-select").on("change", () => {
       this.onDistrictSelect($(".district-select").val());
     });
+    if(this.oldData != "") {
+      this.getLocation();
+    }
   }
   onPlaceChanged() {
     let temp: any = document.getElementById("searchLocation");
     let address: any = temp.value;
     localStorage.setItem("address", address);
+    console.log(address);
     $.ajax({
-      url: "https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyBPSEz52-AfPEVbmV_3yuGUGol_KiLb3GU&language=ar",
+      url: "https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyBPSEz52-AfPEVbmV_3yuGUGol_KiLb3GU",
       method: "get",
       success: (res) => {
         let area = res.results[0].geometry.location;
         localStorage.setItem("lat", area.lat);
         localStorage.setItem("lng", area.lng);
-        localStorage.setItem("arabicAddress", res.results[0].formatted_address);
         this.locationSelected = true;
         this.map = new google.maps.Map($(".property-details__map")[0], {
           center: area,
@@ -392,8 +417,30 @@ export class PropertyDetailsComponent implements OnInit {
         })
         this.marker = new google.maps.Marker({
           position: area,
-          map: this.map
-        })
+          map: this.map,
+          draggable: true,
+        });
+        google.maps.event.addListener(this.marker, 'dragend', (e:any) => {
+          let pos: any = this.marker.getPosition();
+          let geocoder = new google.maps.Geocoder();
+          geocoder.geocode
+            ({
+              latLng: pos
+            },
+              (results: any, status: any) => {
+                if (status == google.maps.GeocoderStatus.OK) {
+                  localStorage.setItem("lat", e.latLng.lat());
+                  localStorage.setItem("lng", e.latLng.lng());
+                  $(".searchLocation").val(results[0].formatted_address);
+                  localStorage.setItem("address", results[0].formatted_address);
+                }
+                else {
+                  this.error = "Cannot determine address at this location.";
+                  this.showError = true;
+                }
+              }
+            );
+        });
       }
     });
   }
@@ -403,7 +450,12 @@ export class PropertyDetailsComponent implements OnInit {
       url: "https://maps.googleapis.com/maps/api/geocode/json?address=" + e + "&key=AIzaSyBPSEz52-AfPEVbmV_3yuGUGol_KiLb3GU",
       method: "get",
       success: (res) => {
-        let temp = res.results[0].geometry.bounds;
+        let temp:any = "";
+        if(res.results[0].geometry.bounds) {
+          temp = res.results[0].geometry.bounds;
+        } else {
+          temp = res.results[0].geometry.viewport;
+        }
         this.bounds = { east: temp.northeast.lng, west: temp.southwest.lng, north: temp.northeast.lat, south: temp.southwest.lat };
         localStorage.setItem("bounds", JSON.stringify(this.bounds));
         let northEast = new google.maps.LatLng(temp.northeast.lat, temp.northeast.lng);
@@ -422,14 +474,35 @@ export class PropertyDetailsComponent implements OnInit {
         })
         this.marker = new google.maps.Marker({
           position: area,
-          map: this.map
+          map: this.map,
+          // draggable: true,
         });
+        // google.maps.event.addListener(this.marker, 'dragend', (e:any) => {
+        //   this.geocodePosition(this.marker.getPosition());
+        // });
         this.autocomplete = new google.maps.places.Autocomplete(this.searchElement.nativeElement, this.options);
         this.autocomplete.addListener('place_changed', this.onPlaceChanged);
         this.autocomplete.setBounds(this.bounds);
         this.locationSelected = status;
       }
     });
+  }
+  geocodePosition(pos: any) {
+    let geocoder = new google.maps.Geocoder();
+    geocoder.geocode
+      ({
+        latLng: pos
+      },
+        (results: any, status: any) => {
+          if (status == google.maps.GeocoderStatus.OK) {
+            $(".searchLocation").val(results[0].formatted_address);
+          }
+          else {
+            this.error = "Cannot determine address at this location.";
+            this.showError = true;
+          }
+        }
+      );
   }
   getLocation() {
     if (this.oldData == "") {
@@ -467,7 +540,7 @@ export class PropertyDetailsComponent implements OnInit {
       let areabounds = new google.maps.LatLngBounds(southWest, northEast);
       this.options.bounds = areabounds;
       let lat: any = localStorage.getItem("lat");
-      let lng: any = localStorage.getItem("lng")
+      let lng: any = localStorage.getItem("lng");
       this.map = new google.maps.Map($(".property-details__map")[0], {
         center: { "lat": parseFloat(lat), "lng": parseFloat(lng) },
         zoom: 6,

@@ -4,28 +4,28 @@
         <div ngClass="heading-title-sec text-center">
             <h2>تقييم العقارات</h2>
             <p>
-                تأكد من ملء جميع الحقول اللازمة وتحميل جميع الملفات المطلوبة.
+                تحقق من تعبئة جميع الحقول اللازمة وتحميل جميع الملفات المطلوبة
             </p>
         </div>
         <div ngClass="listing-property-form-sec">
             <div ngClass="listing-property-ul">
                 <mat-list>
                     <mat-list-item ngClass="active">
-                        <a routerLink=""><span ngClass="">1</span>التفاصيل</a>
+                        <a routerLink=""><span ngClass="">1</span> التفاصيل</a>
                     </mat-list-item>
-                    <mat-list-item ngClass="disabled"><a routerLink=""><span ngClass="">2</span>النوع</a>
-                    </mat-list-item>
-                    <mat-list-item ngClass="disabled">
-                        <a routerLink=""><span ngClass="">3</span>المستندات</a>
+                    <mat-list-item ngClass="disabled"><a routerLink=""><span ngClass="">2</span> النوع</a>
                     </mat-list-item>
                     <mat-list-item ngClass="disabled">
-                        <a routerLink=""><span ngClass="">4</span>مراجعة البياتات</a>
+                        <a routerLink=""><span ngClass="">3</span> وثائق</a>
+                    </mat-list-item>
+                    <mat-list-item ngClass="disabled">
+                        <a routerLink=""><span ngClass="">4</span> إعادة نظر</a>
                     </mat-list-item>
                     <mat-list-item ngClass="disabled">
                         <a routerLink=""><span ngClass="">5</span>نوع الشهادة</a>
                     </mat-list-item>
                     <mat-list-item ngClass="disabled">
-                        <a routerLink=""><span ngClass="">6</span>الدفع</a>
+                        <a routerLink=""><span ngClass="">6</span> الدفع</a>
                     </mat-list-item>
                     <mat-list-item ngClass="disabled">
                         <a routerLink=""><span ngClass="">7</span> تنزيل التقرير</a>
@@ -37,17 +37,17 @@
                     <form [formGroup]="propertyDetails">
                         <div ngClass="form-border-wrapper">
                             <div ngClass="list-property-header">
-                                <h5 ngClass="h5-heading">معلومات العقار</h5>
-                                <p>يرجى تقديم نوع الملاءمة الخاص بك للتقييم</p>
+                                <h5 ngClass="h5-heading">تفاصيل العقار</h5>
+                                <p>يرجى تقديم نوع العقار الخاص بك للتقييم</p>
                             </div>
                             <div ngClass="select-boxes">
                                 <div ngClass="row">
                                     <div ngClass="col-xl-4 col-lg-4 col-sm-12">
                                         <div ngClass="block-wrapper mb-4">
                                             <div ngClass="select-design select2-design">
-                                                <label>دولة<span ngClass="required-span">*</span></label>
-                                                <select class="select2 country-select" *ngIf="oldData == '' || country.length > 0">
-                                                    <option value="0">اختر الدولة</option>
+                                                <label>الدولة * <span ngClass="required-span">*</span></label>
+                                                <select class="select2 country-select" [ngClass]="oldData == '' || country.length > 0 ? '' : 'd-none'">
+                                                    <option value="0"> اختر الدولة</option>
                                                     <option class="country-item-{{list.value}}" *ngFor="let list of country" [value]="list.value"> {{ list.viewValue }}</option>
                                                 </select>
                                             </div>
@@ -55,10 +55,10 @@
                                     </div>
                                     <div ngClass="col-xl-4 col-lg-4 col-sm-12">
                                         <div ngClass="select-design mb-4 select2-design">
-                                            <label ngClass="h6-design">مدينة<span
+                                            <label>المدينة <span
                                                     ngClass="required-span">*</span></label>
-                                            <select class="select2 city-select" *ngIf="oldData == '' || city.length > 0">
-                                                    <option value="0">اختر مدينة</option>
+                                            <select class="select2 city-select" [ngClass]="oldData == '' || city.length > 0 ? '' : 'd-none'">
+                                                    <option value="0"> اختر المدينة</option>
                                                     <option class="city-item-{{listcity.value}}" *ngFor="let listcity of city" [value]="listcity.value"> {{ listcity.viewValue }}</option>
                                             </select>
                                         </div>
@@ -66,9 +66,9 @@
                                     <div ngClass="col-xl-4 col-lg-4 col-sm-12">
                                         <div ngClass="block-wrapper mb-4">
                                             <div ngClass="select-design select2-design">
-                                                <label>المنطقة<span ngClass="required-span">*</span></label>
-                                                <select class="select2 district-select" *ngIf="oldData == '' || district.length > 0">
-                                                    <option value="0">حدد المنطقة</option>
+                                                <label>المنطقة <span ngClass="required-span">*</span></label>
+                                                <select class="select2 district-select" [ngClass]="oldData == '' || district.length > 0 ? '' : 'd-none'">
+                                                    <option value="0"> حدد المنطقة</option>
                                                     <option class="district-item-{{listdistrict.value}}" *ngFor="let listdistrict of district" [value]="listdistrict.value">{{ listdistrict.viewValue }}</option>
                                                 </select>
                                             </div>
@@ -78,11 +78,11 @@
                             </div>
                             <div ngClass="address-sec" [ngClass]="showMap ? '' : 'd-none'">
                                 <div ngClass="block-wrapper-address">
-                                    <label class="h6-design">حدد موقع الممتلكات الخاصة بك<span
+                                    <label class="h6-design">حدد موقع الممتلكات الخاصة بك <span
                                             ngClass="required-span">*</span></label>
                                     <div ngClass="position-relative">
                                         <div style="width: 100%">
-                                            <div #propertyDetails__map class="property-details__map"></div>
+                                            <div #propertyDetails__map class="property-details__map "></div>
                                         </div>
                                         <div ngClass="locate-me-sec">
                                             <div ngClass="add-adrees-sec">
@@ -94,16 +94,16 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div ngClass="confirm-location-sec text-right" (click)="confirmLocation()">
+                                    <!-- <div ngClass="confirm-location-sec text-right" (click)="confirmLocation()">
                                         <button ngClass="confirm-location-btn">
-                                            قم بتأكيد الموقع
+                                            Confirm Location
                                         </button>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                             <div ngClass="location-information" [ngClass]="showMap ? '' : 'd-none'">
-                                <div ngClass="block-wrapper mb-4">
-                                    <h6 ngClass="h6-design">معلومات الموقع<span ngClass="required-span">*</span>
+                                <!-- <div ngClass="block-wrapper mb-4">
+                                    <h6 ngClass="h6-design">Location Information <span ngClass="required-span">*</span>
                                     </h6>
                                     <div ngClass="location-info-lists" *ngIf="locationInformation.city">
                                         <mat-list>
@@ -115,45 +115,48 @@
                                                     <img src="../../../../assets/images/MapPin.svg" />
                                                 </div>
                                                 <div ngClass="change-btn-block" (click)="changeInfo()">
-                                                    <button ngClass="change-btn">تغيير</button>
+                                                    <button ngClass="change-btn">Change</button>
                                                 </div>
                                             </mat-list-item>
                                         </mat-list>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
-                            <div ngClass="deed-numbers">
+                            <div ngClass="deed-numbers mt-4">
                                 <div ngClass="row">
                                     <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                         <div ngClass="block-wrapper mb-4">
-                                            <label class="h6-design">رقم سند الملكية<span ngClass="required-span">*</span> <span ngClass="small-label">(أدخل "0" إذا لم يكن لديك No)</span></label>
+                                            <label class="h6-design">رقم سند الملكية <span
+                                                    ngClass="required-span">*</span> <span ngClass="small-label">(أدخل "0" إذا لم يكن لديك NO)</span></label>
                                             <div class="title-deed-input">
                                                 <mat-form-field class="full-width input-design-2" appearance="fill">
-                                                    <input matInput type="text" placeholder="رقم سند الملكية"
+                                                    <input matInput type="text" placeholder="نوع سند الملكية"
                                                         formControlName="titleDeed" lang="en" />
                                                 </mat-form-field>
                                             </div>
                                             <span style="color: #FF0000"
-                                                *ngIf="titleDeed && titleDeed.invalid && titleDeed.touched">*هذه الخانة مطلوبه</span>
+                                                *ngIf="titleDeed && titleDeed.invalid && titleDeed.touched">*This field
+                                                is required</span>
                                         </div>
                                     </div>
                                     <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                         <div ngClass="block-wrapper mb-4">
-                                            <label class="h6-design">نوع سند الملكية<span ngClass="required-span">*</span></label>
-                                            <div class="checkbox-flex-box max-240 title-deed-type-input">
+                                            <label class="h6-design">نوع سند الملكية  <span
+                                                    ngClass="required-span">*</span></label>
+                                            <div class="checkbox-flex-box two-column max-240 title-deed-type-input">
                                                 <div class="checkbox-design position-relative" (click)="toggleType(1)">
                                                     <input type="radio" id="Monthly" name="titleDeed-type"
                                                         value="Monthly" *ngIf="oldData.TitleDeedType == 1" checked />
                                                     <input type="radio" id="Monthly" name="titleDeed-type"
                                                         value="Monthly" *ngIf="oldData.TitleDeedType != 1" />
-                                                    <button class="checkbox-btn">تملك حر</button>
+                                                    <button class="checkbox-btn">مستأجر</button>
                                                 </div>
                                                 <div class="checkbox-design position-relative" (click)="toggleType(2)">
                                                     <input type="radio" id="Quaterly" name="titleDeed-type"
                                                         value="Quaterly" *ngIf="oldData.TitleDeedType == 2" checked />
                                                     <input type="radio" id="Quaterly" name="titleDeed-type"
                                                         value="Quaterly" *ngIf="oldData.TitleDeedType != 2" />
-                                                    <button class="checkbox-btn">التملك بموجب مدة معينة</button>
+                                                    <button class="checkbox-btn">تملك حر</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -164,22 +167,22 @@
                                 <div ngClass="row">
                                     <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                         <div ngClass="block-wrapper mb-4">
-                                            <label class="h6-design">البلدية / رقم المخطط<span
-                                                    ngClass="required-span">*</span> <span ngClass="small-label">(أدخل "0" إذا لم يكن لديك No)</span></label>
+                                            <label class="h6-design">رقم البلدية / المنطقة <span
+                                                    ngClass="required-span">*</span> <span ngClass="small-label"> (أدخل "0" إذا لم يكن لديك الرقم)</span></label>
                                             <div class="municipality-input">
                                                 <mat-form-field class="full-width input-design-2" appearance="fill">
                                                     <input matInput type="text"
-                                                        placeholder="البلدية / رقم المخطط"
+                                                        placeholder="Enter the Municipality No/Affection No."
                                                         formControlName="muncipality" />
                                                 </mat-form-field>
                                             </div>
                                             <span style="color: #FF0000;"
-                                                *ngIf="muncipality && muncipality.invalid && muncipality.touched">*هذه الخانة مطلوبه</span>
+                                                *ngIf="muncipality && muncipality.invalid && muncipality.touched">*هذا الحقل مطلوب</span>
                                         </div>
                                     </div>
                                     <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                         <div ngClass="block-wrapper mb-4">
-                                            <label class="h6-design">عقار مؤمن عليه <span
+                                            <label class="h6-design">عقار مؤمن عليه<span
                                                     ngClass="required-span">*</span></label>
                                             <div class="checkbox-flex-box two-column max-240 property-insured-input">
                                                 <div class="checkbox-design position-relative"

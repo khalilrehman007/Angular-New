@@ -15,8 +15,8 @@ export class PropertyTypesComponent implements OnInit {
   selected = 'option1';
   @ViewChild('unitWrapper') unitWrapper: any;
 
-  plus = '../../../../assets/images/plus.svg';
-  minus = '../../../../assets/images/minus.svg';
+  plus = '../../../../../assets/images/plus.svg';
+  minus = '../../../../../assets/images/minus.svg';
 
   formData: any = {};
   propertyData: any;
@@ -25,7 +25,7 @@ export class PropertyTypesComponent implements OnInit {
   purposeOfValuation: any = [];
   statusData: number = 0;
   featuresData: any = [];
-  propertyUnits: any;
+  propertyUnits: any = [];
   furnishingType: any;
   fittingType: any;
   featuresFormData: any = [];
@@ -40,6 +40,7 @@ export class PropertyTypesComponent implements OnInit {
   showLoader: boolean = false;
   mask = ["A", "A+9", "A+99", "A+A+9", "A+A+99"];
   unitHMTL: any = [];
+  maxDate = new Date();
   error: any = "";
   confirmMessage: any = "";
   showError: boolean = false;
@@ -49,6 +50,10 @@ export class PropertyTypesComponent implements OnInit {
   proceed: boolean = false;
   elevationValue: any;
   currentField: any;
+  locatedNearData: any = [];
+  locatedNear: any = [];
+  permitData: any = "";
+  permitLsit: any = [];
   propertyStatusData: any = [];
   errorResponse(data: any) {
     this.showError = false;
@@ -76,6 +81,7 @@ export class PropertyTypesComponent implements OnInit {
   ];
   propertyTypeForm = new FormGroup({
     apartmentNo: new FormControl("", Validators.required),
+    renovatedDate: new FormControl("", Validators.required),
     constructionAge: new FormControl("", Validators.required),
     elevation: new FormControl("", Validators.required),
     apartmentSize: new FormControl("", Validators.required),
@@ -105,6 +111,9 @@ export class PropertyTypesComponent implements OnInit {
     return this.propertyTypeForm.get("expense");
   }
   constructor(private service: AppService, private router: Router, private maskService: MaskService) {
+    if(!localStorage.getItem("valuationData")) {
+      this.router.navigate(["/ar"])
+    }
     this.formData = (window.localStorage.getItem('valuationData'));
     this.formData = JSON.parse(this.formData);
     this.loadFittingType();
@@ -128,13 +137,11 @@ export class PropertyTypesComponent implements OnInit {
   }
   loadPropertyUnitTypes(propertyTypeId:number){
     this.service.PropertyUnitTypes(propertyTypeId).subscribe((result: any) => {
-      console.log(result)
       this.propertyUnits = result.data;
     })
   }
   loadOldData() {
     if (localStorage.getItem("propertyTypeData")) {
-      this.loadFurnishingType();
       this.oldData = localStorage.getItem("propertyTypeData");
       this.formData = JSON.parse(this.oldData);
       if (this.formData.PropertyStatusId == 2) {
@@ -147,7 +154,6 @@ export class PropertyTypesComponent implements OnInit {
       this.service.PropertyStatuses().subscribe((result: any) => {
         this.propertyStatusData = result.data
       })
-      console.log(this.formData);
       this.roadCount = this.formData.NoOfRoads;
       this.bedrooms = this.formData.Bedrooms;
       this.bathrooms = this.formData.Bathrooms;
@@ -161,8 +167,14 @@ export class PropertyTypesComponent implements OnInit {
         constructionAge: this.formData.ConstructionAge,
         elevation: this.formData.Elevation,
         apartmentSize: this.formData.PlotSize,
-        buildupArea: this.formData.BuildupArea
+        buildupArea: this.formData.BuildupArea,
       })
+      this.service.LocatedNear().subscribe((result: any) => {
+        this.locatedNear = result.data;
+      })
+      for (let i = 0; i < this.formData.ValuationLocatedNears.length; i++) {
+        this.locatedNearData.push(this.formData.ValuationLocatedNears[i].LocatedNearId)
+      }
       this.service.LoadTypebyLatLng({ id: this.formData.PropertyCategoryId, lat: parseFloat(this.formData.PropertyLat), lng: parseFloat(this.formData.PropertyLong) }).subscribe((result: any) => {
         this.propertyType = result.data;
         this.showLoader = false;
@@ -171,7 +183,9 @@ export class PropertyTypesComponent implements OnInit {
           this.purposeOfValuation = result;
           this.purposeOfValuation = this.purposeOfValuation.data;
         });
+        this.loadFurnishingType();
         this.service.PropertyFeatures(this.propertyData.id).subscribe((result: any) => {
+          $("#formDate").val(this.formData.LastRenovatedDate);
           this.featuresData = result.data;
           this.showLoader = false;
           let interval: any = setInterval(() => {
@@ -179,7 +193,7 @@ export class PropertyTypesComponent implements OnInit {
               for (let i = 0; i < this.formData.PropertyFeatures.length; i++) {
                 $(".features-item-" + this.formData.PropertyFeatures[i].PropertyFeatureId).attr("selected", "selected");
               }
-              $('.select2').select2({ placeholder: "انقر هنا لإضافة المزيد" });
+              $('.select2').select2({ placeholder: "Click here to add more" });
               clearInterval(interval);
             }
           }, 100);
@@ -193,18 +207,18 @@ export class PropertyTypesComponent implements OnInit {
     this.clearData();
     this.showLoader = true;
     if (e == 1) {
-      this.formDetailData.propertyCategory = "سكني";
+      this.formDetailData.propertyCategory = "Residential";
     } else {
-      this.formDetailData.propertyCategory = "تجاري";
+      this.formDetailData.propertyCategory = "Commercial";
     }
     this.formData.PropertyCategoryId = e;
     this.typeSelected = false;
     this.propertyType = [];
-    this.service.LoadTypebyLatLng({ id: e, lat: this.formData.PropertyLat, lng: this.formData.PropertyLong }).subscribe((result:any) => {
-      this.propertyType = result.data;
-      console.log(this.propertyType);
+    this.service.LoadType(e).subscribe((result) => {
+      this.propertyType = result;
+      this.propertyType = this.propertyType.data;
       if (this.propertyType.length == 0) {
-        this.error = "ليس لدينا بيانات في الموقع المحدد";
+        this.error = "We don't have data in the selected location";
         this.showError = true;
       }
       this.showLoader = false;
@@ -226,6 +240,8 @@ export class PropertyTypesComponent implements OnInit {
     else{
       $("#bRooms-"+id).show();
     }
+console.log("unit",e,id)
+console.log("unit",hasBed)
   }
   valuationPurpose(e: any) {
     let temp: any = this.formData.PropertyCategoryId
@@ -233,12 +249,12 @@ export class PropertyTypesComponent implements OnInit {
     this.loadPropertyUnitTypes(e.value)
     this.formData.PropertyCategoryId = temp;
     this.showLoader = true;
-    this.formDetailData.propertyType = this.propertyType.filter((item: any) => item.id == e.value)[0].typeDescriptionAr;
-    console.log(this.formDetailData);
+    this.formDetailData.propertyType = this.propertyType.filter((item: any) => item.id == e.value)[0].typeDescription;
     this.formData.PropertyTypeId = e.value;
     this.purposeOfValuation = [];
     this.featuresData = [];
     this.propertyData = this.propertyType.filter((item: any) => item.id == e.value)[0];
+    console.log(this.propertyData);
     if (this.propertyData.hasUnits) {
       this.unitHMTL = [{ show: true, id: 1 }];
     }
@@ -249,13 +265,19 @@ export class PropertyTypesComponent implements OnInit {
     this.service.PropertyStatuses().subscribe((result: any) => {
       this.propertyStatusData = result.data
     })
+    this.service.LocatedNear().subscribe((result: any) => {
+      this.locatedNear = result.data;
+    })
+    this.service.Permit().subscribe((result: any) => {
+      this.permitLsit = result.data;
+    })
     this.loadFurnishingType();
     this.service.PropertyFeatures(this.propertyData.id).subscribe((result: any) => {
       this.featuresData = result.data;
       this.showLoader = false;
       let interval: any = setInterval(() => {
         if (this.featuresData.length > 0) {
-          $('.select2').select2({ placeholder: "انقر هنا لإضافة المزيد" });
+          $('.select2').select2({ placeholder: "Click here to add more" });
           clearInterval(interval);
         }
       }, 100);
@@ -316,6 +338,14 @@ export class PropertyTypesComponent implements OnInit {
   }
   addUnits() {
     this.unitHMTL.push({ show: true, id: this.unitHMTL[this.unitHMTL.length - 1].id + 1 });
+    $(".btn-add-unit").parent().parent().addClass("d-none");
+  }
+  getLocatedNear(e: any) {
+    this.locatedNearData = e.value;
+  }
+  getPermit(e: any) {
+    this.permitData = e.value;
+    console.log(this.permitData)
   }
   removeUnits(e: any) {
     for (let i = 0; i < this.unitHMTL.length; i++) {
@@ -323,30 +353,33 @@ export class PropertyTypesComponent implements OnInit {
         this.unitHMTL[i].show = false;
       }
     }
-  }
-  getValue() {
-    let age: any = this.propertyTypeForm.value.constructionAge;
-    if (age > 40) {
-      this.error = "لا يمكن أن يكون عمر البناء أكبر من 40 عاما.";
-      this.propertyTypeForm.patchValue({
-        constructionAge: "40"
-      })
-      this.showError = true;
-    }
+    let temp: any = $(".btn-add-unit").length - 2;
+    $($(".btn-add-unit")[temp]).parent().parent().removeClass("d-none");
   }
   animate() {
-    let temp: any = $("." + this.currentField).offset()?.top;
-    $("." + this.currentField).addClass("blink");
-    $("." + this.currentField).on("click", () => {
-      $("." + this.currentField).removeClass("blink");
-      this.currentField = "";
-    })
-    $(window).scrollTop(temp - 100);
+      let temp: any = $("." + this.currentField).offset()?.top;
+      $("." + this.currentField).addClass("blink");
+      $("." + this.currentField).on("click", () => {
+        $("." + this.currentField).removeClass("blink");
+      })
+      $(window).scrollTop(temp - 100);
   }
   clearData() {
     this.formData = {};
-    this.formData = (window.localStorage.getItem('valuationData'));
-    this.formData = JSON.parse(this.formData);
+    let temp: any = (window.localStorage.getItem('valuationData'));
+    temp = JSON.parse(temp);
+    this.formData.CityId = temp.CityId;
+    this.formData.CountryId = temp.CountryId;
+    this.formData.DistrictId = temp.DistrictId;
+    this.formData.MunicipalityNo = temp.MunicipalityNo;
+    this.formData.PropertyAddress = temp.PropertyAddress;
+    this.formData.PropertyCategoryId = temp.PropertyCategoryId;
+    this.formData.PropertyInsured = temp.PropertyInsured;
+    this.formData.PropertyLat = temp.PropertyLat;
+    this.formData.PropertyLong = temp.PropertyLong;
+    this.formData.PropertyTypeId = temp.PropertyTypeId;
+    this.formData.TitleDeedNo = temp.TitleDeedNo;
+    this.formData.TitleDeedType = temp.TitleDeedType;
     this.propertyTypeForm.patchValue({
       apartmentNo: "",
       constructionAge: "",
@@ -358,96 +391,126 @@ export class PropertyTypesComponent implements OnInit {
     })
   }
   getData() {
-    if (this.propertyData.hasPropertyFeature && this.featuresData.length > 0) {
+    if ($(".features-select").length > 0 && this.propertyData.hasPropertyFeature && this.featuresData.length > 0) {
       this.featuresFormData = $(".features-select").val();
     }
     if (!this.formData.PropertyCategoryId) {
       this.currentField = "property-cateogary-input";
-      this.error = "الرجاء تحديد فئة العقار";
+      this.error = "Please Select Property Category";
       this.showError = true;
       return;
     } else if (!this.formData.PropertyTypeId) {
       this.currentField = "property-type-input";
-      this.error = "الرجاء تحديد نوع العقار";
+      this.error = "Please Select Property Type";
       this.showError = true;
       return;
     } else if (!this.formData.ValuationPurposeId) {
       this.currentField = "valuation-purpose-input";
-      this.error = "يرجى تحديد الغرض من التقييم";
+      this.error = "Please Select Valuation Purpose";
       this.showError = true;
       return;
     } else if (!this.formData.PropertyStatusId && !this.propertyData.hasUnits) {
       this.currentField = "property-status-input";
-      this.error = "الرجاء تحديد حالة الملكية";
+      this.error = "Please Select Property Status";
       this.showError = true;
       return;
     } else if (this.propertyTypeForm.value.apartmentNo == "") {
       this.currentField = "apartment-no-input";
-      this.error = "الرجاء إدخال رقم الشقة";
+      this.error = "Please Enter Apartment No";
       this.showError = true;
       return;
     } else if (this.roadCount == 0) {
       this.currentField = "roads-input";
-      this.error = "الرجاء تحديد رقم الطريق";
+      this.error = "Please Select Number of Road";
       this.showError = true;
       return;
     } else if (this.propertyTypeForm.value.constructionAge == "") {
       this.currentField = "constructionAge-input";
-      this.error = "الرجاء إدخال عمر العقار";
+      this.error = "Please Enter Property Age";
       this.showError = true;
       return;
     } else if (this.propertyData.hasElevation && this.propertyTypeForm.value.elevation == "") {
       this.currentField = "elevation-input";
-      this.error = "الرجاء إدخال الارتفاع";
+      this.error = "Please Enter Elevation";
       this.showError = true;
       return;
     } else if (this.propertyTypeForm.value.apartmentSize == "") {
       this.currentField = "apartment-size-input";
-      this.error = "الرجاء إدخال حجم قطعة الأرض";
+      this.error = "Please Enter Plot Size";
       this.showError = true;
       return;
     } else if (this.propertyTypeForm.value.buildupArea == "" && this.propertyData.hasBuildUpArea) {
       this.currentField = "buildup-area-input";
-      this.error = "الرجاء إدخال مساحة البناء";
+      this.error = "Please Enter Buildup Area";
+      this.showError = true;
+      return;
+    } else if (this.propertyData.hasLastRenovatedDate && $("#formDate").val() == "") {
+      this.currentField = "renovated-input";
+      this.error = "Please Enter Last Renovated Date";
       this.showError = true;
       return;
     } else if (this.bedrooms == 0 && this.propertyData.hasBed) {
       this.currentField = "bedrooms-input";
-      this.error = "يرجى تحديد غرف النوم";
+      this.error = "Please Select Bedrooms";
       this.showError = true;
       return;
     } else if (this.bathrooms == 0 && this.propertyData.hasBath) {
       this.currentField = "bathroom-input";
-      this.error = "الرجاء اختيار الحمامات";
+      this.error = "Please Select Bathrooms";
       this.showError = true;
       return;
     } else if (this.propertyData.hasFurnishing && this.furnishing == 0) {
       this.currentField = "furnishing-input";
-      this.error = "يرجى تحديد نوع الأثاث";
+      this.error = "Please Select Furnishing Type";
+      this.showError = true;
+      return;
+    } else if (this.propertyData.hasLandPermit && this.permitData == "") {
+      this.currentField = "permit-inputfurnishing-input";
+      this.error = "Please Select Permit Type";
       this.showError = true;
       return;
     } else if (this.propertyData.hasFitting && this.fitting == 0) {
       this.currentField = "fitting-input";
-      this.error = "يرجى تحديد نوع المناسب";
+      this.error = "Please Select Fitting Type";
       this.showError = true;
       return;
-    } else if (this.formData.PropertyStatusId == 2 && this.propertyTypeForm.value.income == "") {
+    } else if (this.formData.PropertyStatusId == 2 && this.propertyTypeForm.value.income?.toString.length == 0 || this.formData.PropertyStatusId == 2 && this.propertyTypeForm.value.income == null) {
       this.currentField = "income-input";
-      this.error = "الرجاء إدخال إجمالي الدخل";
+      this.error = "Please Enter Total Income";
       this.showError = true;
       return;
-    } else if (this.formData.PropertyStatusId == 2 && this.propertyTypeForm.value.expense == "" || this.propertyData.hasUnits && this.propertyTypeForm.value.expense == "") {
+    } else if (this.formData.PropertyStatusId == 2 && this.propertyTypeForm.value.expense?.toString.length == 0  || this.propertyData.hasUnits && this.propertyTypeForm.value.expense?.toString.length == 0 || this.formData.PropertyStatusId == 2 && this.propertyTypeForm.value.expense == null  || this.propertyData.hasUnits && this.propertyTypeForm.value.expense == null) {
       this.currentField = "expense-input";
-      this.error = "الرجاء إدخال إجمالي المصروفات";
+      this.error = "Please Enter Total Expense";
       this.showError = true;
       return;
     } else if (this.propertyData.hasPropertyFeature && this.featuresFormData.length == 0) {
       if (!this.proceed) {
-        this.confirmMessage = "من خلال عدم تحديد أي من الميزات ، قد ينتج عن قيمة الممتلكات الخاصة بك إلى أقل من القيمة السوقية";
+        this.confirmMessage = "By not selecting any of the features, your property value may result to lower than market value";
         this.showConfirm = true;
         return;
       }
     }
+    // let checkData: any = {};
+    // checkData.CityId = this.formData.CityId;
+    // checkData.DistrictId = this.formData.DistrictId;
+    // checkData.PropertyTypeId = this.formData.PropertyTypeId;
+    // checkData.PropertyLat = this.formData.PropertyLat;
+    // checkData.PropertyLong = this.formData.PropertyLong;
+    // checkData.Bedrooms = this.formData.Bedrooms;
+    // checkData.Bathrooms = this.formData.Bathrooms;
+    // checkData.PlotSize = this.propertyTypeForm.value.apartmentSize;
+    // checkData.BuildupArea = this.propertyTypeForm.value.buildupArea;
+    // this.showLoader = true;
+    // this.service.ValuationDataIsExists(checkData).subscribe((result: any) => {
+    //   if (result.message == "Valauation data is not Exists") {
+    //     this.error = "Valauation data does not Exists";
+    //     this.showError = true;
+    //     this.showLoader = false;
+    //   } else {
+    //   }
+    // })
+    this.showLoader = false;
     this.formData.Bedrooms = this.bedrooms;
     this.formData.Bathrooms = this.bathrooms;
     this.formData.FurnishingType = this.furnishing;
@@ -458,6 +521,11 @@ export class PropertyTypesComponent implements OnInit {
     } else {
       this.formDetailData.elevation = 0;
     }
+    let tempData: any = [];
+    for (let i = 0; i < this.locatedNearData.length; i++) {
+      tempData.push({ "LocatedNearId": this.locatedNearData[i] });
+    }
+    this.formData.ValuationLocatedNears = tempData;
     this.formData.ConstructionAge = this.propertyTypeForm.value.constructionAge;
     this.formDetailData.PlotSize = this.propertyTypeForm.value.apartmentSize;
     this.formDetailData.BuildupArea = 0;
@@ -474,6 +542,9 @@ export class PropertyTypesComponent implements OnInit {
     } else {
       this.formData.Income = 0;
       this.formData.Expense = 0;
+    }
+    if (this.propertyData.hasLastRenovatedDate) {
+      this.formData.LastRenovatedDate = $("#formDate").val();
     }
     if (this.propertyData.hasUnits) {
       this.formData.Expense = this.propertyTypeForm.value.expense;
@@ -507,5 +578,85 @@ export class PropertyTypesComponent implements OnInit {
     localStorage.setItem('valuationData', JSON.stringify(this.formData));
     localStorage.removeItem("valuationFromFooter");
     this.router.navigate(['/ar/valuation/PropertyDocument']);
+  }
+  validateInput(e: any) {
+    if (e.key.charCodeAt(0) >= 48 && e.key.charCodeAt(0) <= 57 || e.key.charCodeAt(0) >= 65 && e.key.charCodeAt(0) <= 90 || e.key.charCodeAt(0) >= 97 && e.key.charCodeAt(0) <= 122) {
+      setTimeout(() => {
+        this.getInput(e.key, true);
+      }, 100);
+    }
+  }
+  getInput(e: any, type: boolean) {
+    if (!type) {
+      let temp: any = this.propertyTypeForm.value.apartmentNo
+      this.propertyTypeForm.patchValue({
+        apartmentNo: temp.toString().slice(0, -1)
+      })
+    } else {
+      let temp: any = this.propertyTypeForm.value.apartmentNo
+      this.propertyTypeForm.patchValue({
+        apartmentNo: temp.toString() + e
+      })
+    }
+  }
+  validateSizeInput(e: any) {
+    if (e.key.charCodeAt(0) >= 48 && e.key.charCodeAt(0) <= 57) {
+      setTimeout(() => {
+        this.getSizeInput(e.key, true);
+      }, 100);
+    }
+  }
+  getSizeInput(e: any, type: boolean) {
+    if (!type) {
+      let temp: any = this.propertyTypeForm.value.apartmentSize
+      this.propertyTypeForm.patchValue({
+        apartmentSize: temp.toString().slice(0, -1)
+      })
+    } else {
+      let temp: any = this.propertyTypeForm.value.apartmentSize
+      this.propertyTypeForm.patchValue({
+        apartmentSize: temp.toString() + e
+      })
+    }
+  }
+  validateAgeInput(e: any) {
+    let age: any = this.propertyTypeForm.value.constructionAge;
+    if (age <= 40) {
+      if (e.key.charCodeAt(0) >= 48 && e.key.charCodeAt(0) <= 57) {
+        setTimeout(() => {
+          this.getValue(e.key, true);
+        }, 100);
+      }
+    }
+  }
+  getValue(e: any, type: boolean) {
+    let age: any = this.propertyTypeForm.value.constructionAge;
+    if (!type) {
+      let temp: any = this.propertyTypeForm.value.constructionAge
+      this.propertyTypeForm.patchValue({
+        constructionAge: temp.toString().slice(0, -1)
+      })
+      if (age > 40) {
+        this.error = "The construction age can't be greater than 40 years.";
+        this.propertyTypeForm.patchValue({
+          constructionAge: "40"
+        })
+        this.showError = true;
+      }
+    } else {
+      if (age > 40) {
+        this.error = "The construction age can't be greater than 40 years.";
+        this.propertyTypeForm.patchValue({
+          constructionAge: "40"
+        })
+        this.showError = true;
+      } else if (age < 40) {
+        let temp: any = this.propertyTypeForm.value.constructionAge
+        this.propertyTypeForm.patchValue({
+          constructionAge: temp.toString() + e
+        })
+      }
+    }
+
   }
 }

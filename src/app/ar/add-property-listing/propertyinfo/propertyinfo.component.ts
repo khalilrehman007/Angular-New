@@ -70,7 +70,7 @@ export class PropertyinfoComponent implements OnInit {
   constructor(private route: Router, private notifyService: NotificationService, private service: AppService, private modalService: NgbModal, config: NgbModalConfig) {
     if (!localStorage.getItem("user")) {
       this.notifyService.showError("You need to register/login", "");
-      this.route.navigate(["/login"]);
+      this.route.navigate(["/ar/login"]);
     }
     this.service.PropertyListingPackages(1).subscribe((result: any) => {
       this.packagesType = result.data;
@@ -120,7 +120,7 @@ export class PropertyinfoComponent implements OnInit {
         let temp: any = e;
         if (temp.message == "City list fetched successfully") {
           for (let city of temp.data) {
-            this.city.push({ viewValue: city.name, value: city.id });
+            this.city.push({ viewValue: city.nameAr, value: city.id });
           }
           let interval: any = setInterval(() => {
             if (this.country.length > 0) {
@@ -137,7 +137,7 @@ export class PropertyinfoComponent implements OnInit {
             let temp: any = e;
             if (temp.message == "District list fetched successfully") {
               for (let district of temp.data) {
-                this.district.push({ viewValue: district.name, value: district.id });
+                this.district.push({ viewValue: district.nameAr, value: district.id });
               }
               this.showLoader = false;
               let interval: any = setInterval(() => {
@@ -174,7 +174,7 @@ export class PropertyinfoComponent implements OnInit {
       let temp: any = e;
       if (temp.message == "Country list fetched successfully") {
         for (let country of temp.data) {
-          this.country.push({ viewValue: country.name, value: country.id });
+          this.country.push({ viewValue: country.nameAr, value: country.id });
         }
         this.showLoader = false;
       }
@@ -204,7 +204,7 @@ export class PropertyinfoComponent implements OnInit {
         let temp: any = e;
         if (temp.message == "City list fetched successfully") {
           for (let city of temp.data) {
-            this.city.push({ viewValue: city.name, value: city.id });
+            this.city.push({ viewValue: city.nameAr, value: city.id });
           }
           this.showLoader = false;
         }
@@ -231,7 +231,7 @@ export class PropertyinfoComponent implements OnInit {
         let temp: any = e;
         if (temp.message == "District list fetched successfully") {
           for (let district of temp.data) {
-            this.district.push({ viewValue: district.name, value: district.id });
+            this.district.push({ viewValue: district.nameAr, value: district.id });
           }
           this.showLoader = false;
         }
@@ -301,7 +301,7 @@ export class PropertyinfoComponent implements OnInit {
     this.data.PropertyLat = localStorage.getItem("lat");
     this.data.PropertyLong = localStorage.getItem("lng");
     localStorage.setItem('propertyData', JSON.stringify(this.data))
-    this.route.navigate(['/add-property/listpropertyinfo'])
+    this.route.navigate(['/ar/add-property/listpropertyinfo'])
   }
   animate() {
     let temp: any = $("." + this.currentField).offset()?.top;

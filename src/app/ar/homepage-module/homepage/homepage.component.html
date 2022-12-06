@@ -584,7 +584,7 @@
                                 <ng-container *ngFor="let slide of clientFeedback">
                                     <ng-template carouselSlide [id]="slide.id">
                                         <div ngClass="testimonial-content">
-                                            <p> no arabic data in api {{ slide.desc }} </p>
+                                            <p>{{ slide.desc }} </p>
                                             <div ngClass="testimonial-info d-flex align-items-center">
                                                 <div ngClass="client_img">
                                                     <img [src]="slide.src!= null ? slide.src : 'assets/images/testimonial/user.png'"

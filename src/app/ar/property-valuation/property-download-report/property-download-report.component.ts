@@ -8,9 +8,9 @@ import { AppService } from 'src/app/service/app.service';
   styleUrls: ['./property-download-report.component.scss']
 })
 export class PropertyDownloadReportComponent implements OnInit {
-  stripe = '../../../../assets/images/report.png'
-  report = '../../../../assets/images/icons/print.svg'
-  download = '../../../../assets/images/download.gif'
+  stripe = '../../../../../assets/images/report.png'
+  report = '../../../../../assets/images/icons/print.svg'
+  download = '../../../../../assets/images/download.gif'
   valuationResponse: any = {};
   showLoader: boolean = false;
   constructor(private service: AppService, private router: Router) {
