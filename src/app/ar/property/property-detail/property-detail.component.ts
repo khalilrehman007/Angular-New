@@ -446,7 +446,8 @@ export class PropertyDetailComponent implements OnInit {
         this.propertyDetailData.propertyLong = (jsonParsDate.propertyListing.propertyLong !== undefined) ? jsonParsDate.propertyListing.propertyLong : ''
         this.propertyDetailData.id = (jsonParsDate.propertyListing.id !== undefined) ? jsonParsDate.propertyListing.id : ''
         this.propertyDetailData.favorite = (jsonParsDate.propertyListing.favorite !== undefined) ? jsonParsDate.propertyListing.favorite : ''
-
+        this.propertyDetailData.propertyListingTypeId = (jsonParsDate.propertyListing.propertyListingTypeId !== undefined) ? jsonParsDate.propertyListing.propertyListingTypeId : 0
+        this.propertyDetailData.propertyCode = (jsonParsDate.propertyListing.propertyCode !== undefined) ? jsonParsDate.propertyListing.propertyCode : 0
         // share url concatination
 
         this.shareURL += this.propertyDetailData.id;
@@ -595,8 +596,8 @@ export class PropertyDetailComponent implements OnInit {
         label: 'المساحة الإجمالية للبناء',
         value: this.propertyDetailData.buildupArea,
       },
-      {
-        label: 'حالة الإشغال حالياً',
+      { show: this.propertyDetailData.propertyListingTypeId==2?true:false,
+        label: 'حالة الإشغال الحالية',
         value: this.propertyData.occupancyStatus.nameAr,
       },
       {
