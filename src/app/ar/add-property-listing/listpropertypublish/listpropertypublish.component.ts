@@ -13,8 +13,8 @@ export class ListpropertypublishComponent implements OnInit {
   imageInfos: any;
   priviousFormCheck: any;
 
-  gallerythumb = '../../../../../assets/images/image-gallery-thumbnail.png'
-  checkmark = '../../../../../assets/images/icons/checkmark-green.svg'
+  gallerythumb = '../../../../assets/images/image-gallery-thumbnail.png'
+  checkmark = '../../../../assets/images/icons/checkmark-green.svg'
   constructor() {
     localStorage.removeItem("bounds");
     localStorage.removeItem("propertyData");
