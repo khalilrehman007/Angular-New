@@ -255,7 +255,7 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
         });
       }
     } else {
-      this.route.navigate(['/add-property/listingproperty'])
+      this.route.navigate(['/ar/add-property/listingproperty'])
     }
   }
   validateInput(e: any) {
@@ -708,6 +708,6 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
     this.data.PropertyFeatures = temp;
     localStorage.setItem('propertyData', JSON.stringify(this.data));
     localStorage.setItem('listingData', JSON.stringify(this.data));
-    this.route.navigate(['/add-property/listpropertymedia'])
+    this.route.navigate(['/ar/add-property/listpropertymedia'])
   }
 }

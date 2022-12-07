@@ -68,7 +68,7 @@ export class ListpropertymediaComponent implements OnInit {
     this.priviousFormCheck = localStorage.getItem('propertyData');
     if (this.priviousFormCheck == '' || this.priviousFormCheck == null) {
       this.priviousFormCheck = JSON.parse(this.priviousFormCheck);
-      this.route.navigate(['listingproperty'])
+      this.route.navigate(['/ar/listingproperty'])
     } else {
       this.priviousFormCheck = JSON.parse(this.priviousFormCheck);
       this.data = this.priviousFormCheck;
@@ -293,7 +293,7 @@ export class ListpropertymediaComponent implements OnInit {
               this.showError = true;
             }
           })
-          this.route.navigate(['/add-property/listpropertypublish'])
+          this.route.navigate(['/ar/add-property/listpropertypublish'])
         }
       },
       error: (err) => {
