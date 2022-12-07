@@ -2,19 +2,18 @@
 <section ngClass="list-properties-sec">
     <div ngClass="listing-container">
         <div ngClass="heading-title-sec text-center">
-            <h2>List New Property</h2>
-            <p>Make sure you filled in all the necessary fields and have uploaded all the required files.</p>
+            <h2>أعلن عن عقار جديد</h2>
+            <p>تحقق من تعبئة جميع الحقول اللازمة وتحميل جميع الملفات المطلوبة.</p>
         </div>
         <div ngClass="listing-property-form-sec">
             <div ngClass="listing-property-ul">
                 <mat-list>
-                    <mat-list-item ngClass="active"> <a routerLink="/listingproperty"><span ngClass="">1</span> Property
-                            Info</a> </mat-list-item>
-                    <mat-list-item ngClass="active"><a routerLink=""><span ngClass="">2</span> Listing Info</a>
+                    <mat-list-item ngClass="active"> <a routerLink="/ar/listingproperty"><span ngClass="">1</span>معلومات العقار</a> </mat-list-item>
+                    <mat-list-item ngClass="active"><a routerLink=""><span ngClass="">2</span> معلومات الإعلان</a>
                     </mat-list-item>
-                    <mat-list-item ngClass="active"> <a routerLink=""><span ngClass="">3</span> Media</a>
+                    <mat-list-item ngClass="active"> <a routerLink=""><span ngClass="">3</span> وسائل الإعلام</a>
                     </mat-list-item>
-                    <mat-list-item ngClass="disabled"> <a routerLink=""><span ngClass="">4</span> Publish</a>
+                    <mat-list-item ngClass="disabled"> <a routerLink=""><span ngClass="">4</span> نشر</a>
                     </mat-list-item>
                 </mat-list>
             </div>
@@ -30,15 +29,15 @@
                             </div>
                             <div ngClass="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                                 <div ngClass="proprty-units">
-                                    <p>This building also listing in ovaluate</p>
+                                    <p>هذا المبنى مدرج أيضًا في اوفاليوت </p>
                                     <div ngClass="row">
                                         <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                                             <p ngClass="no-units-p"><span
-                                                    ngClass="unit-no">{{propertyListingBuy}}</span> Units on sale</p>
+                                                    ngClass="unit-no">{{propertyListingBuy}}</span>وحدات للبيع</p>
                                         </div>
                                         <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                                             <p ngClass="no-units-p"><span
-                                                    ngClass="unit-no">{{propertyListingRent}}</span> Units on rent</p>
+                                                    ngClass="unit-no">{{propertyListingRent}}</span> وحدات للإيجار</p>
                                         </div>
                                     </div>
                                 </div>
@@ -47,7 +46,7 @@
                                 <div class="package-detiails-div d-flex justify-content-spacebw">
                                     <div class="packaged-details-left">
                                         <p>Current Package Name</p>
-                                        <h6>Standard</h6>
+                                        <h6>المعايير</h6>
                                     </div>
                                     <div class="packaged-details-right">
                                         <button class="upgrade-btn">Upgrade Now</button>
@@ -59,23 +58,23 @@
                     <form [formGroup]="SubmitForm">
                         <div ngClass="form-border-wrapper">
                             <div ngClass="list-property-header">
-                                <h5 ngClass="h5-heading">Verify Property</h5>
-                                <p>Kindly confirm some facts about the property</p>
+                                <h5 ngClass="h5-heading">تحقق من العقار</h5>
+                                <p>يرجى تأكيد بعض الحقائق عن العقار</p>
                             </div>
                             <div ngClass="list-property-header">
-                                <h5 ngClass="h5-heading">Property Pictures & Videos</h5>
-                                <p>Kindly confirm some facts about the property</p>
+                                <h5 ngClass="h5-heading">صور وفيديوهات العقار</h5>
+                                <p>يرجى تأكيد بعض الحقائق عن العقار</p>
                             </div>
                             <div ngClass="list-new-proerty-cntnt">
                                 <div ngClass="propery-pictures-sec">
-                                    <h5 ngClass="h5-heading">Property Pictures</h5>
+                                    <h5 ngClass="h5-heading">صور العقار</h5>
                                     <div class="inneR-border-wrap position-relative">
                                         <div ngClass="div_thumb-wrapper img_upload">
                                             <label class="btn btn-default p-0 upload-label">
                                                 <input type="file" accept=".jpg, .png, .jpeg, .mp4" multiple
                                                     class="input-file image-input" (change)="selectFiles($event);imgCheck=true" />
                                                 <button ngClass="black-upload-btn"><span
-                                                        ngClass="plus_icon-div">+</span> Upload Pictures</button>
+                                                        ngClass="plus_icon-div">+</span>رفع الصور</button>
                                             </label>
                                             <div class="thumbnail_img">
                                             <img *ngIf="previews.length == 0" ngClass="img-thumb-icon"
@@ -93,27 +92,27 @@
                                                             </svg>                                                        
                                                     </button>
                                                     <img [src]="preview" class="preview" (click)="changeMainImg(i)">
-                                                    <p class="main_pic-tag" [ngClass]="i == mainImage ? '' : 'hide' ">Main Picture</p>
+                                                    <p class="main_pic-tag" [ngClass]="i == mainImage ? '' : 'hide' ">الصورة الرئيسية</p>
                                                 </span>
                                             </div>
                                             <div ngClass="image-thumb-cntnt">
-                                                <p>Property Listings with more than 5 images get 3x more views. <br />
-                                                    More Images = Higher chances of Leads.</p>
-                                                <p>Accepted formats are .jpg, .gif, .bmp & .png and Maximum size allowed
-                                                    2 MB per image</p>
+                                                <p>العقارات التي تحتوي أكثر من 5 صور تحصل على عدد مشاهدات أكبر بمقدار 3 أضعاف. 
+                                                    <br />
+                                                    المزيد من الصور = فرص أكبر للعملاء المتوقعين.</p>
+                                                <p>التنسيقات المقبولة هي .jpg و .gif و .bmp و .png والحد الأقصى للحجم المسموح به هو 2 ميغابايت لكل صورة</p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div ngClass="propery-videos-sec" *ngIf="packageData.videoInListing">
-                                    <h5 ngClass="h5-heading">Property Videos</h5>
+                                    <h5 ngClass="h5-heading">فيديو للعقار</h5>
                                     <div class="inneR-border-wrap position-relative">
                                         <div ngClass="div_thumb-wrapper img_upload">
                                             <label class="btn btn-default p-0 upload-label">
                                                 <input type='file' accept=".mp4, .mpeg, .flv, mov, swf" multiple
                                                     (change)="onSelectFile($event);videoCheck=true" />
                                                 <button ngClass="black-upload-btn"><span
-                                                        ngClass="plus_icon-div">+</span> Upload Videos</button>
+                                                        ngClass="plus_icon-div">+</span>رفع الفيديو</button>
                                             </label>
                                             <div ngClass="upload-preview-images">
                                                 <video [src]="url" *ngIf="format==='video' && url"></video>
@@ -121,24 +120,25 @@
                                                     src="../../../../assets/images/image-gallery-thumbnail.png">
                                             </div>
                                             <div ngClass="image-thumb-cntnt">
-                                                <p>Property Listings with Video get 3x more views. <br /> Video = Higher
+                                                <p>تحصل قوائم العقارات مع الفيديو على عدد مشاهدات أكثر بثلاث مرات.<br /> Video = Higher
                                                     chances of Leads.</p>
-                                                <p>Accepted formats are .MPEG, FLV, MOV & SWF and Maximum size allowed
-                                                    30 MB</p>
+                                                <p>التنسيقات المقبولة هي MPEG و FLV و MOV و SWF والحد الأقصى للحجم المسموح به هو 30 ميغابايت
+
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div ngClass="or-divider-div text-center" *ngIf="packageData.videoInListing">
-                                    <p>Or</p>
+                                    <p>أو</p>
                                 </div>
                                 <div ngClass="property-offers mb-4" *ngIf="packageData.videoInListing">
                                     <div ngClass="row">
                                         <div ngClass="col-sm-12">
-                                            <h6 ngClass="h6-design">Video Link</h6>
+                                            <h6 ngClass="h6-design">رابط الفيديو</h6>
                                             <div ngClass="textarea-design">
                                                 <mat-form-field class="full-width input-design" appearance="fill">
-                                                    <mat-label>Paste Youtube/Vemio or any video link here</mat-label>
+                                                    <mat-label>الصق رابط Youtube / Vemio أو أي رابط فيديو هنا</mat-label>
                                                     <input matInput formControlName="videoLink" type="text"
                                                         (change)="videoCheck=true" placeholder="Eg. https://www.example.com">
                                                 </mat-form-field>
@@ -149,10 +149,10 @@
                                 <div ngClass="property-offers" *ngIf="packageData.videoTour360">
                                     <div ngClass="row">
                                         <div ngClass="col-sm-12">
-                                            <h6 ngClass="h6-design">360 Video Link</h6>
+                                            <h6 ngClass="h6-design">360 رابط فيديو</h6>
                                             <div ngClass="textarea-design">
                                                 <mat-form-field class="full-width input-design" appearance="fill">
-                                                    <mat-label>Paste video link here</mat-label>
+                                                    <mat-label>الصق رابط الفيديو هنا</mat-label>
                                                     <input matInput formControlName="videoLink" type="text"
                                                         (change)="videoCheck=true" placeholder="Eg. https://www.example.com">
                                                 </mat-form-field>
@@ -164,7 +164,7 @@
                         </div>
                         <div ngClass="text-right save-continue-sec">
                             <mat-card-actions>
-                                <a routerLink="/add-property/listpropertyinfo" ngClass="back-btn">Back</a>
+                                <a routerLink="/ar/add-property/listpropertyinfo" ngClass="back-btn">للخلف</a>
                             </mat-card-actions>
                             <mat-card-actions>
                                 <button mat-raised-button type="submit" ngClass="submit-btn"

@@ -85,17 +85,17 @@
                                             <div class="checkbox-design w-100 position-relative me-1"
                                                 (click)="getCategory(1)">
                                                 <input type="radio" value="1" name="property-category"
-                                                    *ngIf="data.PropertyCategoryId == 1" checked>
+                                                    *ngIf="categoryID == 1" checked>
                                                 <input type="radio" value="1" name="property-category"
-                                                    *ngIf="data.PropertyCategoryId != 1">
+                                                    *ngIf="categoryID != 1">
                                                 <button class="checkbox-btn">Residential</button>
                                             </div>
                                             <div class="checkbox-design w-100 position-relative me-1"
                                                 (click)="getCategory(2)">
                                                 <input type="radio" value="2" name="property-category"
-                                                    *ngIf="data.PropertyCategoryId == 2" checked>
+                                                    *ngIf="categoryID == 2" checked>
                                                 <input type="radio" value="2" name="property-category"
-                                                    *ngIf="data.PropertyCategoryId != 2">
+                                                    *ngIf="categoryID != 2">
                                                 <button class="checkbox-btn">Commercial</button>
                                             </div>
                                         </div>
@@ -131,10 +131,9 @@
                                                     <div class="position-relative property-age-input">
                                                         <mat-form-field class="full-width input-design"
                                                             appearance="fill">
-                                                            <input matInput type="text" formControlName="PropertyAge"
+                                                            <input matInput type="text" formControlName="PropertyAge" maxlength="2"
                                                                 placeholder="Please mention the Yrs."
-                                                                (keypress)="validateAgeInput($event)"
-                                                                (input)="getValue($event, false)">
+                                                                >
                                                         </mat-form-field>
                                                     </div>
                                                 </div>
@@ -246,7 +245,7 @@
                                                     <div class="position-relative carpet-input">
                                                         <mat-form-field class="full-width input-design"
                                                             appearance="fill">
-                                                            <input matInput type="number" formControlName="carpetArea">
+                                                            <input matInput type="text" formControlName="carpetArea">
                                                         </mat-form-field>
                                                         <span class="area-sq">{{data.CountryId==2?"Sq. M.":"Sq. Ft."}}</span>
                                                     </div>
@@ -260,7 +259,7 @@
                                                     <div class="position-relative buildup-input">
                                                         <mat-form-field class="full-width input-design"
                                                             appearance="fill">
-                                                            <input matInput type="number" formControlName="buildupArea">
+                                                            <input matInput type="text" formControlName="buildupArea">
                                                         </mat-form-field>
                                                         <span class="area-sq">{{data.CountryId==2?"Sq. M.":"Sq. Ft."}}</span>
                                                         <!-- <div ngClass="input-overlay-layer select-design">
@@ -282,7 +281,7 @@
                                                     <div class="position-relative size-input">
                                                         <mat-form-field class="full-width input-design"
                                                             appearance="fill">
-                                                            <input matInput type="number" formControlName="size">
+                                                            <input matInput type="text" formControlName="size">
                                                         </mat-form-field>
                                                         <span class="area-sq">{{data.CountryId==2?"Sq. M.":"Sq. Ft."}}</span>
                                                         <!-- <div ngClass="input-overlay-layer select-design">
@@ -467,8 +466,7 @@
                                                         <mat-form-field class="full-width input-design"
                                                             appearance="fill">
                                                             <input matInput type="text" formControlName="price"
-                                                                (keypress)="validatePriceInput($event)"
-                                                                (input)="getPriceValue($event, false)">
+                                                              >
                                                         </mat-form-field>
                                                         <span class="area-sq">{{currency}}</span>
                                                     </div>
@@ -481,8 +479,7 @@
                                                         <mat-form-field class="full-width input-design"
                                                             appearance="fill">
                                                             <input matInput type="text" formControlName="maintenance"
-                                                                (keypress)="validateMaintenanceInput($event)"
-                                                                (input)="getMaintenanceValue($event, false)">
+                                                              >
                                                         </mat-form-field>
                                                         <span class="area-sq">{{currency}}</span>
                                                     </div>

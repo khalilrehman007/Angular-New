@@ -762,7 +762,7 @@ console.log(this.userData)
     if(this.childTabId=="" || this.childTabId==null || this.childTabId==undefined){
       this.childTabId=1
     }
-    this.service.LoadListing({ "UserId": this.user.id, "PropertyListingTypeId": this.parentTabId, "PropertyListingStatusId": this.childTabId }).subscribe(data => {
+    this.service.LoadListing({ "UserId": this.user.id, "PropertyListingTypeId": this.parentTabId, "PropertyListingStatusId": this.childTabId }).subscribe(data => {  
       let response: any = data;
       response.data.forEach((element: any, i: any) => {
         let image: any;
@@ -770,7 +770,7 @@ console.log(this.userData)
         if (element.rentType != null && element.rentType != undefined && element.rentType.name != undefined && element.rentType.name != null && element.propertyListingTypeId != 2) {
           rentTypeName = '/' + element.rentType.name
         }
-        if (element.documents.length > 1) {
+        if (element.documents.length > 0) {
           image = this.baseUrl + element.documents[0].fileUrl
         } else {
           image = 'assets/images/placeholder.png'
