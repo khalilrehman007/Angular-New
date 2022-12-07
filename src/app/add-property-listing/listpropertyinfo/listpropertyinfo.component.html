@@ -241,15 +241,16 @@
                                             </div>
                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4"
                                                 *ngIf="selectedPropertyType.hasListingCarpetArea">
-                                                <h6 class="h6-design">Carpet Area</h6>
+                                                <h6 class="h6-design">Carpet Area </h6>
                                                 <div class="input-flaoted-right-text">
                                                     <div class="position-relative carpet-input">
                                                         <mat-form-field class="full-width input-design"
                                                             appearance="fill">
                                                             <input matInput type="number" formControlName="carpetArea">
                                                         </mat-form-field>
-                                                        <span class="area-sq">Sq. Ft.</span>
+                                                        <span class="area-sq">{{data.CountryId==2?"Sq. M.":"Sq. Ft."}}</span>
                                                     </div>
+                                                  
                                                 </div>
                                             </div>
                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4"
@@ -261,15 +262,17 @@
                                                             appearance="fill">
                                                             <input matInput type="number" formControlName="buildupArea">
                                                         </mat-form-field>
-                                                        <div ngClass="input-overlay-layer select-design">
+                                                        <span class="area-sq">{{data.CountryId==2?"Sq. M.":"Sq. Ft."}}</span>
+                                                        <!-- <div ngClass="input-overlay-layer select-design">
                                                             <mat-form-field appearance="fill">
                                                                 <mat-select [(value)]="selected">
                                                                     <mat-option value="option1">Sq. Ft.</mat-option>
                                                                     <mat-option value="option2">Sq. M.</mat-option>
                                                                 </mat-select>
                                                             </mat-form-field>
-                                                        </div>
+                                                        </div> -->
                                                     </div>
+                                                    
                                                 </div>
                                             </div>
                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4"
@@ -281,14 +284,15 @@
                                                             appearance="fill">
                                                             <input matInput type="number" formControlName="size">
                                                         </mat-form-field>
-                                                        <div ngClass="input-overlay-layer select-design">
+                                                        <span class="area-sq">{{data.CountryId==2?"Sq. M.":"Sq. Ft."}}</span>
+                                                        <!-- <div ngClass="input-overlay-layer select-design">
                                                             <mat-form-field appearance="fill">
                                                                 <mat-select [(value)]="selected">
                                                                     <mat-option value="option1">Sq. Ft.</mat-option>
                                                                     <mat-option value="option2">Sq. M.</mat-option>
                                                                 </mat-select>
                                                             </mat-form-field>
-                                                        </div>
+                                                        </div> -->
                                                     </div>
                                                 </div>
                                             </div>
@@ -466,7 +470,7 @@
                                                                 (keypress)="validatePriceInput($event)"
                                                                 (input)="getPriceValue($event, false)">
                                                         </mat-form-field>
-                                                        <span class="area-sq">AED</span>
+                                                        <span class="area-sq">{{currency}}</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -480,7 +484,7 @@
                                                                 (keypress)="validateMaintenanceInput($event)"
                                                                 (input)="getMaintenanceValue($event, false)">
                                                         </mat-form-field>
-                                                        <span class="area-sq">AED</span>
+                                                        <span class="area-sq">{{currency}}</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -501,10 +505,10 @@
                                             </div>
                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4"
                                                 *ngIf="data.RentTypeId == 1">
-                                                <h6 class="h6-design">Start Date</h6>
+                                                <h6 class="h6-design">Start Date </h6>
                                                 <div class="input-date-picker input-design start-date-input">
                                                     <mat-form-field appearance="fill">
-                                                        <input matInput [matDatepicker]="picker" [min]="minDate"
+                                                        <input matInput  [matDatepicker]="picker" [min]="minDate" formControlName="startDate"
                                                             id="startDate">
                                                         <mat-datepicker-toggle matSuffix [for]="picker">
                                                         </mat-datepicker-toggle>
@@ -517,7 +521,7 @@
                                                 <h6 class="h6-design">End Date</h6>
                                                 <div class="input-date-picker input-design available-input">
                                                     <mat-form-field appearance="fill">
-                                                        <input matInput [matDatepicker]="picker" [min]="minDate"
+                                                        <input matInput [matDatepicker]="picker" [min]="minDate" formControlName="endDate"
                                                             id="endDate">
                                                         <mat-datepicker-toggle matSuffix [for]="picker">
                                                         </mat-datepicker-toggle>
@@ -545,7 +549,7 @@
                                                                         <input matInput type="number"
                                                                             formControlName="AED">
                                                                     </mat-form-field>
-                                                                    <span class="area-sq">AED</span>
+                                                                    <span class="area-sq">{{currency}}</span>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -580,7 +584,7 @@
                                                                         <input matInput type="number"
                                                                             formControlName="brokerageAed">
                                                                     </mat-form-field>
-                                                                    <span class="area-sq">AED</span>
+                                                                    <span class="area-sq">{{currency}}</span>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -646,7 +650,7 @@
                                                 <div class="textarea-design desc-input">
                                                     <mat-form-field class="example-full-width" appearance="fill">
                                                         <mat-label>Property Description</mat-label>
-                                                        <textarea formControlName="propertyDescription" matInput (paste)="disablePaste($event)"
+                                                        <textarea formControlName="propertyDescription" matInput 
                                                             placeholder="Eg. 30" (input)="validateDescLength($event)"></textarea>
                                                     </mat-form-field>
                                                     <p class="textraea-hint text-right">{{descLength}} words left</p>
@@ -668,12 +672,21 @@
                                                 <div ngClass="select-design select2-design select2-design-full">
                                                     <h6 class="h6-design">Select Features</h6>
                                                     <div class="features-select-wrapper">
-                                                        <select class="select2 features-select" multiple="multiple">
+                                                        <!-- <select class="select2 features-select" multiple="multiple">
                                                             <option *ngFor="let item of featuresData"
                                                                 [value]="item.propertyFeature.id"
                                                                 class="features-item-{{item.propertyFeatureId}}">
                                                                 {{item.propertyFeature.featureName}}</option>
-                                                        </select>
+                                                        </select> -->
+                                                        <mat-form-field appearance="fill">
+                                                            <mat-label> Select Features</mat-label>
+                                                            <mat-select [disableOptionCentering]="true" multiple
+                                                                [(value)]="featuresFormData"
+                                                                (selectionChange)="getFeaturesData($event)">
+                                                                <mat-option *ngFor="let item of featuresData"
+                                                                    value="{{item.propertyFeatureId}}">{{item.propertyFeature.featureName}}</mat-option>
+                                                            </mat-select>
+                                                        </mat-form-field>
                                                     </div>
                                                 </div>
                                             </div>

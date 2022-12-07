@@ -67,10 +67,12 @@ export class EditComponent implements OnInit {
 
   constructor(private router: ActivatedRoute, private route: Router, private notifyService: NotificationService, private service: AppService) {
     this.userData = JSON.parse(this.userData);
+    console.log(this.userData);
     this.router.params.subscribe((params:any) => {
       this.id = params.id;
       this.service.id = params.id;
       this.service.DisplayPropertyListing({ "PropertyListingId": this.id, "LoginUserId": this.userData.id }).subscribe((result: any) => {
+        console.log("DisplayPropertyListing",result);
         if (result.data.user.id != this.userData.id) {
           this.route.navigate(["/"]);
         } else {
@@ -101,7 +103,7 @@ export class EditComponent implements OnInit {
     this.propertyData.FurnishingType = this.listingData.furnishingType;
     this.propertyData.TenantTypeId = this.listingData.tenantTypeId;
     this.propertyData.PropertyManageId = this.listingData.propertyManageId;
-    this.propertyData.OccupancyStatusId = this.listingData.occupancyStatus.id;
+    this.propertyData.OccupancyStatusId = this.listingData.occupancyStatus?.id;
     this.propertyData.Parkings = this.listingData.parkings;
     this.propertyData.RentTypeId = this.listingData.rentTypeId;
     this.propertyData.SecurityDeposit = this.listingData.securityDeposit;
@@ -117,9 +119,11 @@ export class EditComponent implements OnInit {
     this.propertyData.CarpetArea = this.listingData.carpetArea;
     this.propertyData.BuildupArea = this.listingData.buildupArea;
     this.propertyData.PetPolicies = [];
+    if(this.listingData.petPolicies !=null && this.listingData.petPolicies !=undefined){
     for(let i = 0; i < this.listingData.petPolicies.length; i++) {
       this.propertyData.PetPolicies.push({"PetPolicyId": this.listingData.petPolicies[i].petPolicyId});
     }
+  }
     this.propertyData.AvailableDate = this.listingData.availableDate;
     this.propertyData.NoticePeriod = this.listingData.noticePeriod;
     this.propertyData.LockingPeriod = this.listingData.lockingPeriod;

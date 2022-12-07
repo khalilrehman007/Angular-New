@@ -101,6 +101,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         if (result.result == 1) {
           this.success = "Property Deleted Successfully";
           this.showSuccess = true;
+          this.getTabCount();
+          this.listingStatus();
+          this.getLoadListing();
         }
       })
     }
@@ -550,6 +553,7 @@ console.log(this.userData)
 
 
   public parentTabsChange(e: any) {
+    console.log("ParentTab",e)
     //allId nuLL
     let parentTabId: any = '';
     if (e.index == 1) {
@@ -577,6 +581,7 @@ console.log(this.userData)
   tabCounts: any = {}
   getTabCount() {
     this.service.LoadListingDashboard({ "UserId": this.user.id, "PropertyListingTypeId": this.parentTabId }).subscribe(data => {
+      console.log("LoadListingDashboard",data)
       let temp: any = data;
       let jsonData: any = JSON.stringify(temp.data)
       let jsonParsDate: any = JSON.parse(jsonData);
@@ -590,9 +595,12 @@ console.log(this.userData)
     let tempData: Array<Object> = []
     this.service.LoadPropertyListingStatus().subscribe(data => {
       let response: any = data;
+      console.log("propertylistingStatus",response)
+      console.log("tabCounts",this.tabCounts)
       response.data.forEach((element: any, i: any) => {
         let name = element.statusDescription
         let count: number = 0;
+        let checked: boolean = false;
         if (name == "all") {
           count = this.tabCounts.totalPropertyListing
         } else if (name == "rent") {
@@ -601,6 +609,7 @@ console.log(this.userData)
           count = this.tabCounts.propertyListingBuy
         } else if (name == "Active") {
           count = this.tabCounts.propertyListingActive
+          checked=true;
         } else if (name == "Expired") {
           count = this.tabCounts.propertyListingExpired
         } else if (name == "Under Review") {
@@ -613,7 +622,7 @@ console.log(this.userData)
           count = this.tabCounts.propertyListingExpireSoon
         }
         tempData.push(
-          { id: element.id, statusDescription: element.statusDescription, count: count });
+          { id: element.id, statusDescription: element.statusDescription, count: count,checked:checked });
       })
     });
     this.propertyListingStatus = tempData
@@ -750,6 +759,9 @@ console.log(this.userData)
   listingAll: any = [];
   getLoadListing() {
     let tempData: Array<Object> = []
+    if(this.childTabId=="" || this.childTabId==null || this.childTabId==undefined){
+      this.childTabId=1
+    }
     this.service.LoadListing({ "UserId": this.user.id, "PropertyListingTypeId": this.parentTabId, "PropertyListingStatusId": this.childTabId }).subscribe(data => {
       let response: any = data;
       response.data.forEach((element: any, i: any) => {
@@ -1501,7 +1513,7 @@ console.log(this.userData)
   }
   deleteListing(e: any) {
     this.deleteID = e;
-    this.confirmMessage = "Are you sure to delete this property";
+    this.confirmMessage = "Are you sure you want to delete this property? This action cannot be undone.";
     this.showConfirm = true;
   }
 }
