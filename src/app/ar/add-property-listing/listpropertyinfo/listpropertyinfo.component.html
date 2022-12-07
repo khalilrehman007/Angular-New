@@ -2,20 +2,19 @@
 <section class="list-properties-sec">
     <div class="listing-container">
         <div class="heading-title-sec text-center">
-            <h2>List New Property</h2>
-            <p>Make sure you filled in all the necessary fields and have uploaded all the required files.</p>
+            <h2>أعلن عن عقار جديد</h2>
+            <p>تحقق من تعبئة جميع الحقول اللازمة وتحميل جميع الملفات المطلوبة.</p>
         </div>
         <div ngClass="listing-property-form-sec">
             <div ngClass="listing-property-ul">
                 <mat-list>
-                    <mat-list-item ngClass="active"><a routerLink="/listingproperty"><span ngClass="">1</span> Property
-                            Info</a>
+                    <mat-list-item ngClass="active"><a routerLink="/listingproperty"><span ngClass="">1</span> معلومات العقار</a>
                     </mat-list-item>
-                    <mat-list-item ngClass="active"><a routerLink=""><span ngClass="">2</span> Listing Info</a>
+                    <mat-list-item ngClass="active"><a routerLink=""><span ngClass="">2</span> معلومات الإعلان</a>
                     </mat-list-item>
-                    <mat-list-item ngClass="disabled"><a routerLink=""><span ngClass="">3</span> Media</a>
+                    <mat-list-item ngClass="disabled"><a routerLink=""><span ngClass="">3</span> وسائل الإعلام</a>
                     </mat-list-item>
-                    <mat-list-item ngClass="disabled"><a routerLink=""><span ngClass="">4</span> Publish</a>
+                    <mat-list-item ngClass="disabled"><a routerLink=""><span ngClass="">4</span> نشر</a>
                     </mat-list-item>
                 </mat-list>
             </div>
@@ -31,15 +30,15 @@
                             </div>
                             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                                 <div class="proprty-units">
-                                    <p>This building also listing in ovaluate</p>
+                                    <p>هذا المبنى مدرج أيضًا في اوفاليوت </p>
                                     <div class="row">
                                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                                             <p class="no-units-p"><span class="unit-no">{{propertyListingBuy}}</span>
-                                                Units on sale</p>
+                                                وحدات للبيع</p>
                                         </div>
                                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                                             <p class="no-units-p"><span class="unit-no">{{propertyListingRent}}</span>
-                                                Units on rent</p>
+                                                وحدات للإيجار</p>
                                         </div>
                                     </div>
                                 </div>
@@ -49,13 +48,13 @@
                     <form [formGroup]="SubmitForm">
                         <div class="form-border-wrapper">
                             <div class="list-property-header">
-                                <h5 class="h5-heading">Property Listing Information</h5>
-                                <p>Kindly confirm some facts about the property</p>
+                                <h5 class="h5-heading">معلومات قائمة العقارات</h5>
+                                <p>يرجى تأكيد بعض الحقائق عن العقار</p>
                             </div>
                             <div class="list-new-proerty-cntnt">
                                 <div class="row pb-4">
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                                        <h6 class="h6-design">Want to List for</h6>
+                                        <h6 class="h6-design">ترغب بإدراجه لـ</h6>
                                         <div
                                             class="listing-links d-flex justify-content-between listing-type-input max-240">
                                             <div class="checkbox-design w-100 position-relative me-1"
@@ -64,7 +63,7 @@
                                                     *ngIf="data.PropertyListingTypeId == 1" checked>
                                                 <input type="radio" value="1" name="list-type"
                                                     *ngIf="data.PropertyListingTypeId != 1">
-                                                <button class="checkbox-btn">Rent</button>
+                                                <button class="checkbox-btn">إيجار</button>
                                             </div>
                                             <div class="checkbox-design w-100 position-relative me-1"
                                                 (click)="onListTypeSelect(2)">
@@ -72,14 +71,14 @@
                                                     *ngIf="data.PropertyListingTypeId == 2" checked>
                                                 <input type="radio" value="2" name="list-type"
                                                     *ngIf="data.PropertyListingTypeId != 2">
-                                                <button class="checkbox-btn">Sell</button>
+                                                <button class="checkbox-btn">بيع</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row pb-4" *ngIf="listingTypeId != 0">
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                                        <h6 class="h6-design">Building Type</h6>
+                                        <h6 class="h6-design">نوع البناية</h6>
                                         <div
                                             class="listing-links d-flex justify-content-between category-input max-240">
                                             <div class="checkbox-design w-100 position-relative me-1"
@@ -88,7 +87,7 @@
                                                     *ngIf="data.PropertyCategoryId == 1" checked>
                                                 <input type="radio" value="1" name="property-category"
                                                     *ngIf="data.PropertyCategoryId != 1">
-                                                <button class="checkbox-btn">Residential</button>
+                                                <button class="checkbox-btn">سكني</button>
                                             </div>
                                             <div class="checkbox-design w-100 position-relative me-1"
                                                 (click)="getCategory(2)">
@@ -96,17 +95,17 @@
                                                     *ngIf="data.PropertyCategoryId == 2" checked>
                                                 <input type="radio" value="2" name="property-category"
                                                     *ngIf="data.PropertyCategoryId != 2">
-                                                <button class="checkbox-btn">Commercial</button>
+                                                <button class="checkbox-btn">تجاري</button>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                                         <div ngClass="block-wrapper">
                                             <div ngClass="select-design">
-                                                <label>Type of Property</label>
+                                                <label>نوع العقار</label>
                                                 <div class="type-input">
                                                     <mat-form-field appearance="fill">
-                                                        <mat-label>Select type of property</mat-label>
+                                                        <mat-label>حدد نوع العقار</mat-label>
                                                         <mat-select [disableOptionCentering]="true"
                                                             [(value)]="data.PropertyTypeId"
                                                             (selectionChange)="getPropertyType($event)">
@@ -126,13 +125,13 @@
                                         <div class="row">
                                             <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4"
                                                 *ngIf="listingConditions.hasPropertyAge">
-                                                <h6 class="h6-design">Property Age</h6>
+                                                <h6 class="h6-design">عمر العقار </h6>
                                                 <div class="input-flaoted-right-text">
                                                     <div class="position-relative property-age-input">
                                                         <mat-form-field class="full-width input-design"
                                                             appearance="fill">
                                                             <input matInput type="text" formControlName="PropertyAge"
-                                                                placeholder="Please mention the Yrs."
+                                                                placeholder="يرجى ذكر السنوات."
                                                                 (keypress)="validateAgeInput($event)"
                                                                 (input)="getValue($event, false)">
                                                         </mat-form-field>
@@ -140,26 +139,26 @@
                                                 </div>
                                             </div>
                                             <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4" *ngIf="selectedPropertyType.hasListingBuilding">
-                                                <h6 class="h6-design">Building Name / Project Name</h6>
+                                                <h6 class="h6-design">اسم المبنى / اسم المشروع</h6>
                                                 <div class="input-flaoted-right-text">
                                                     <div class="position-relative building-name-input">
                                                         <mat-form-field class="full-width input-design"
                                                             appearance="fill">
                                                             <input matInput type="text" formControlName="BuildingName"
-                                                                placeholder="Enter Building Name">
+                                                                placeholder="أدخل اسم المبنى">
                                                         </mat-form-field>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4"
                                             *ngIf="selectedPropertyType.hasListingUnitNumber">
-                                                <h6 class="h6-design">No. of Units</h6>
+                                                <h6 class="h6-design">إجمالي عدد الوحدات</h6>
                                                 <div class="input-flaoted-right-text">
                                                     <div class="position-relative unit-no-input">
                                                         <mat-form-field class="full-width input-design"
                                                             appearance="fill">
                                                             <input matInput type="text" formControlName="UnitNo"
-                                                                placeholder="Enter Unit No."
+                                                                placeholder="إجمالي عدد الوحدات"
                                                                 (keypress)="validateInput($event)" (input)="getInput($event, false)">
                                                         </mat-form-field>
                                                     </div>
@@ -169,10 +168,10 @@
                                                 *ngIf="selectedPropertyType.hasListingBed">
                                                 <div ngClass="block-wrapper">
                                                     <div ngClass="select-design">
-                                                        <label>Bedroom</label>
+                                                        <label>غرف نوم</label>
                                                         <div class="bedroom-input">
                                                             <mat-form-field appearance="fill">
-                                                                <mat-label>Select Number Of Bedrooms</mat-label>
+                                                                <mat-label>اختر عدد غرف النوم</mat-label>
                                                                 <mat-select [disableOptionCentering]="true"
                                                                     [(value)]="data.BedRooms"
                                                                     (selectionChange)="getBedroom($event)">
@@ -190,10 +189,10 @@
                                                 *ngIf="selectedPropertyType.hasListingBath">
                                                 <div ngClass="block-wrapper">
                                                     <div ngClass="select-design">
-                                                        <label>Bathroom</label>
+                                                        <label>دورة مياه</label>
                                                         <div class="bathroom-input">
                                                             <mat-form-field appearance="fill">
-                                                                <mat-label>Select Number Of Bathrooms</mat-label>
+                                                                <mat-label>اختر عدد الحمامات</mat-label>
                                                                 <mat-select [disableOptionCentering]="true"
                                                                     [(value)]="data.BathRooms"
                                                                     (selectionChange)="getBathroom($event)">
@@ -209,7 +208,7 @@
                                             </div>
                                             <div class="col-xl-12 col-lg-12 col-md-6 col-sm-12 pb-4"
                                                 *ngIf="selectedPropertyType.hasListingFurnishing">
-                                                <h6 class="h6-design">Furnishing Type</h6>
+                                                <h6 class="h6-design">نوع التأثيث</h6>
                                                 <div
                                                     class="checkbox-flex-box four-column button-same-select furnishing-input">
                                                     <div class="checkbox-design position-relative"
@@ -225,7 +224,7 @@
                                             </div>
                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4"
                                                 *ngIf="selectedPropertyType.hasListingFitting">
-                                                <h6 class="h6-design">Fitting Type</h6>
+                                                <h6 class="h6-design">الحجم المناسب</h6>
                                                 <div
                                                     class="checkbox-flex-box four-column button-same-select fitting-input">
                                                     <div class="checkbox-design position-relative"
@@ -241,20 +240,20 @@
                                             </div>
                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4"
                                                 *ngIf="selectedPropertyType.hasListingCarpetArea">
-                                                <h6 class="h6-design">Carpet Area</h6>
+                                                <h6 class="h6-design">منطقة التأجير</h6>
                                                 <div class="input-flaoted-right-text">
                                                     <div class="position-relative carpet-input">
                                                         <mat-form-field class="full-width input-design"
                                                             appearance="fill">
                                                             <input matInput type="number" formControlName="carpetArea">
                                                         </mat-form-field>
-                                                        <span class="area-sq">Sq. Ft.</span>
+                                                        <span class="area-sq">للقدم المربع.</span>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4"
                                                 *ngIf="selectedPropertyType.hasListingBuildUpArea">
-                                                <h6 class="h6-design">Buildup Area</h6>
+                                                <h6 class="h6-design">منطقة البناء</h6>
                                                 <div class="input-flaoted-right-text">
                                                     <div class="position-relative buildup-input">
                                                         <mat-form-field class="full-width input-design"
@@ -264,7 +263,7 @@
                                                         <div ngClass="input-overlay-layer select-design">
                                                             <mat-form-field appearance="fill">
                                                                 <mat-select [(value)]="selected">
-                                                                    <mat-option value="option1">Sq. Ft.</mat-option>
+                                                                    <mat-option value="option1">للقدم المربع.</mat-option>
                                                                     <mat-option value="option2">Sq. M.</mat-option>
                                                                 </mat-select>
                                                             </mat-form-field>
@@ -284,7 +283,7 @@
                                                         <div ngClass="input-overlay-layer select-design">
                                                             <mat-form-field appearance="fill">
                                                                 <mat-select [(value)]="selected">
-                                                                    <mat-option value="option1">Sq. Ft.</mat-option>
+                                                                    <mat-option value="option1">للقدم المربع.</mat-option>
                                                                     <mat-option value="option2">Sq. M.</mat-option>
                                                                 </mat-select>
                                                             </mat-form-field>
@@ -294,7 +293,7 @@
                                             </div>
                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4"
                                                 *ngIf="listingConditions.hasOccupancyStatus">
-                                                <h6 class="h6-design">Occupancy Status</h6>
+                                                <h6 class="h6-design">حالة الإشغال</h6>
                                                 <div
                                                     class="checkbox-flex-box two-column button-same-select max-240 occupanycy-input">
                                                     <div class="checkbox-design position-relative"
@@ -312,7 +311,7 @@
                                             </div>
                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4"
                                                 *ngIf="selectedPropertyType.hasListingBalocny">
-                                                <h6 class="h6-design">Balcony</h6>
+                                                <h6 class="h6-design">شرفة</h6>
                                                 <div
                                                     class="checkbox-flex-box six-column button-same-select balcony-input">
                                                     <div class="checkbox-design position-relative"
@@ -367,7 +366,7 @@
                                             </div>
                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4"
                                                 *ngIf="selectedPropertyType.hasListingParking">
-                                                <h6 class="h6-design">Available Parking </h6>
+                                                <h6 class="h6-design">المواقف المتاحة </h6>
                                                 <div
                                                     class="checkbox-flex-box six-column button-same-select parking-input">
                                                     <div class="checkbox-design position-relative"
@@ -422,7 +421,7 @@
                                             </div>
                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4"
                                                 *ngIf="listingConditions.hasTransactionType">
-                                                <h6 class="h6-design">Transaction Type</h6>
+                                                <h6 class="h6-design">نوع المعاملة</h6>
                                                 <div
                                                     class="checkbox-flex-box two-column button-same-select max-240 transaction-type-input">
                                                     <div class="checkbox-design position-relative"
@@ -440,7 +439,7 @@
                                             </div>
                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4"
                                                 *ngIf="listingConditions.hasCompletionStatus">
-                                                <h6 class="h6-design">Completion Status</h6>
+                                                <h6 class="h6-design">حالة إكمال</h6>
                                                 <div
                                                     class="checkbox-flex-box two-column button-same-select max-240 completion-status-input">
                                                     <div class="checkbox-design position-relative"
@@ -457,7 +456,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4">
-                                                <h6 class="h6-design">Price </h6>
+                                                <h6 class="h6-design">السعر </h6>
                                                 <div class="input-flaoted-left-text">
                                                     <div class="position-relative price-input">
                                                         <mat-form-field class="full-width input-design"
@@ -466,12 +465,12 @@
                                                                 (keypress)="validatePriceInput($event)"
                                                                 (input)="getPriceValue($event, false)">
                                                         </mat-form-field>
-                                                        <span class="area-sq">AED</span>
+                                                        <span class="area-sq">درهم إماراتي</span>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4" *ngIf="selectedPropertyType.hasListingMaintenanceCharges">
-                                                <h6 class="h6-design">Maintenance Fee</h6>
+                                                <h6 class="h6-design">رسوم الصيانة</h6>
                                                 <div class="input-flaoted-left-text">
                                                     <div class="position-relative maintenance-input">
                                                         <mat-form-field class="full-width input-design"
@@ -480,13 +479,13 @@
                                                                 (keypress)="validatePriceInput($event)"
                                                                 (input)="getPriceValue($event, false)">
                                                         </mat-form-field>
-                                                        <span class="area-sq">AED</span>
+                                                        <span class="area-sq">درهم إماراتي</span>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4"
                                                 *ngIf="listingConditions.hasRentType">
-                                                <h6 class="h6-design">Rent Type</h6>
+                                                <h6 class="h6-design">نوع الإيجار</h6>
                                                 <div
                                                     class="checkbox-flex-box four-column button-same-select rent-type-input">
                                                     <div class="checkbox-design position-relative"
@@ -501,7 +500,7 @@
                                             </div>
                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4"
                                                 *ngIf="data.RentTypeId == 1">
-                                                <h6 class="h6-design">Start Date</h6>
+                                                <h6 class="h6-design">تاريخ البدء</h6>
                                                 <div class="input-date-picker input-design start-date-input">
                                                     <mat-form-field appearance="fill">
                                                         <input matInput [matDatepicker]="picker" [min]="minDate"
@@ -514,7 +513,7 @@
                                             </div>
                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4"
                                                 *ngIf="data.RentTypeId == 1">
-                                                <h6 class="h6-design">End Date</h6>
+                                                <h6 class="h6-design">تاريخ الانتهاء</h6>
                                                 <div class="input-date-picker input-design available-input">
                                                     <mat-form-field appearance="fill">
                                                         <input matInput [matDatepicker]="picker" [min]="minDate"
@@ -527,7 +526,7 @@
                                             </div>
                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4"
                                                 *ngIf="listingConditions.hasSecurityDeposit">
-                                                <h6 class="h6-design">Do you take Security deposit?</h6>
+                                                <h6 class="h6-design">هل تأخذ مبلغ تأمين؟</h6>
                                                 <div
                                                     class="checkbox-flex-box two-column button-same-select security-deposit-input">
                                                     <div class="checkbox-design position-relative"
@@ -536,7 +535,7 @@
                                                             *ngIf="data.SecurityDeposit == 'true'" checked>
                                                         <input type="radio" id="Yes" value="Yes" name="Security-deposit"
                                                             *ngIf="data.SecurityDeposit != 'true'">
-                                                        <button class="checkbox-btn">Yes</button>
+                                                        <button class="checkbox-btn">نعم</button>
                                                         <div class="deposit-yes hide">
                                                             <div class="input-flaoted-left-text">
                                                                 <div class="position-relative security-price-input">
@@ -545,7 +544,7 @@
                                                                         <input matInput type="number"
                                                                             formControlName="AED">
                                                                     </mat-form-field>
-                                                                    <span class="area-sq">AED</span>
+                                                                    <span class="area-sq">درهم إماراتي</span>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -556,13 +555,13 @@
                                                             *ngIf="data.SecurityDeposit == 'false'" checked>
                                                         <input type="radio" id="No" value="No" name="Security-deposit"
                                                             *ngIf="data.SecurityDeposit != 'false'">
-                                                        <button class="checkbox-btn">No</button>
+                                                        <button class="checkbox-btn">لا</button>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4"
                                                 *ngIf="listingConditions.hasBrokerageCharge">
-                                                <h6 class="h6-design">Do you charge brokerage?</h6>
+                                                <h6 class="h6-design">هل تأخذ مبلغ سمسرة؟</h6>
                                                 <div
                                                     class="checkbox-flex-box two-column button-same-select brokage-type-input">
                                                     <div class="checkbox-design position-relative"
@@ -571,7 +570,7 @@
                                                             *ngIf="data.BrokerageCharge == 'true'" checked>
                                                         <input type="radio" id="Yes" value="Yes" name="charge-brokerage"
                                                             *ngIf="data.BrokerageCharge != 'true'">
-                                                        <button class="checkbox-btn">Yes</button>
+                                                        <button class="checkbox-btn">نعم</button>
                                                         <div class="deposit-yes hide">
                                                             <div class="input-flaoted-left-text">
                                                                 <div class="position-relative brokage-price-input">
@@ -580,7 +579,7 @@
                                                                         <input matInput type="number"
                                                                             formControlName="brokerageAed">
                                                                     </mat-form-field>
-                                                                    <span class="area-sq">AED</span>
+                                                                    <span class="area-sq">درهم إماراتي</span>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -591,17 +590,17 @@
                                                             *ngIf="data.BrokerageCharge == 'false'" checked>
                                                         <input type="radio" id="No" value="No" name="charge-brokerage"
                                                             *ngIf="data.BrokerageCharge != 'false'">
-                                                        <button class="checkbox-btn">No</button>
+                                                        <button class="checkbox-btn">لا</button>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4" *ngIf="selectedPropertyType.hasListingDeveloper">
                                                 <div ngClass="block-wrapper">
                                                     <div ngClass="select-design">
-                                                        <label>Developer</label>
+                                                        <label>مطور</label>
                                                         <div class="located-near-input">
                                                             <mat-form-field appearance="fill">
-                                                                <mat-label>Select Developer</mat-label>
+                                                                <mat-label>اختر مطور</mat-label>
                                                                 <mat-select [disableOptionCentering]="true"
                                                                     [(value)]="developerData"
                                                                     (selectionChange)="getDeveloper($event)">
@@ -616,10 +615,10 @@
                                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4">
                                                 <div ngClass="block-wrapper">
                                                     <div ngClass="select-design">
-                                                        <label>Located Near</label>
+                                                        <label>تقع قرب</label>
                                                         <div class="located-near-input">
                                                             <mat-form-field appearance="fill">
-                                                                <mat-label> Select Near Locations</mat-label>
+                                                                <mat-label> اختر تقع قرب</mat-label>
                                                                 <mat-select [disableOptionCentering]="true" multiple
                                                                     [(value)]="locatedNearData"
                                                                     (selectionChange)="getLocatedNear($event)">
@@ -632,41 +631,41 @@
                                                 </div>
                                             </div>
                                             <div class="col-sm-12 pb-4">
-                                                <h6 class="h6-design">Property Title</h6>
+                                                <h6 class="h6-design">عنوان العقار</h6>
                                                 <div class="textarea-design title-input">
                                                     <mat-form-field class="full-width input-design" appearance="fill">
-                                                        <mat-label>Name Of the Property</mat-label>
+                                                        <mat-label>اسم مالك العقار.</mat-label>
                                                         <input matInput formControlName="propertyTitle" type="text"
-                                                            placeholder="Residential Property">
+                                                            placeholder="ملكية السكنية ">
                                                     </mat-form-field>
                                                 </div>
                                             </div>
                                             <div class="col-sm-12 pb-4">
-                                                <h6 class="h6-design">Property Description</h6>
+                                                <h6 class="h6-design">وصف العقار</h6>
                                                 <div class="textarea-design desc-input">
                                                     <mat-form-field class="example-full-width" appearance="fill">
-                                                        <mat-label>Property Description</mat-label>
+                                                        <mat-label>وصف العقار</mat-label>
                                                         <textarea formControlName="propertyDescription" matInput
-                                                            placeholder="Eg. 30" (input)="validateDescLength($event)"></textarea>
+                                                            placeholder="على سبيل المثال.30 " (input)="validateDescLength($event)"></textarea>
                                                     </mat-form-field>
-                                                    <p class="textraea-hint text-right">{{descLength}} words left</p>
+                                                    <p class="textraea-hint text-right">{{descLength}} كلمة متبقية</p>
                                                 </div>
                                             </div>
                                             <div class="col-sm-12 pb-4">
-                                                <h6 class="h6-design">Property Offers (if any)</h6>
+                                                <h6 class="h6-design">عروض العقارات (إن وجدت)</h6>
                                                 <div class="textarea-design">
                                                     <mat-form-field class="full-width input-design" appearance="fill">
-                                                        <mat-label>Offers - Increase leads on your property upto 50%!
+                                                        <mat-label>العروض - زيادة العملاء المتوقعين على الممتلكات الخاصة بك حتى 50٪
                                                         </mat-label>
                                                         <input matInput formControlName="propertyOffers" type="text"
-                                                            placeholder="Example - 15 days of rent off. Only Pay 15 days of brokerage now! Free rental agreement.">
+                                                            placeholder="مثال: خصم 15 يوم من الإيجار. ادفع فقط 15 يومًا من الوساطة الآن! عقد إيجار مجاني">
                                                     </mat-form-field>
                                                 </div>
                                             </div>
                                             <div class="col-sm-12 pb-4"
                                                 *ngIf="selectedPropertyType.hasPropertyFeature && featuresData.length > 0">
                                                 <div ngClass="select-design select2-design select2-design-full">
-                                                    <h6 class="h6-design">Select Features</h6>
+                                                    <h6 class="h6-design">حدد الميزات</h6>
                                                     <div class="features-select-wrapper">
                                                         <select class="select2 features-select" multiple="multiple">
                                                             <option *ngFor="let item of featuresData"
@@ -684,11 +683,10 @@
                         </div>
                         <div class="text-right save-continue-sec">
                             <mat-card-actions>
-                                <a routerLink="/add-property/listingproperty" class="back-btn">Back</a>
+                                <a routerLink="/add-property/listingproperty" class="back-btn">للخلف</a>
                             </mat-card-actions>
                             <mat-card-actions>
-                                <button mat-raised-button type="submit" ngClass="submit-btn" (click)="onSubmit()">Save &
-                                    Continue</button>
+                                <button mat-raised-button type="submit" ngClass="submit-btn" (click)="onSubmit()">حفظ ومتابعة</button>
                             </mat-card-actions>
                         </div>
                     </form>
