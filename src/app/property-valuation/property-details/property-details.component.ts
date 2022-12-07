@@ -376,6 +376,13 @@ export class PropertyDetailsComponent implements OnInit {
         localStorage.setItem('valuationDetailData', JSON.stringify(this.valuationDetailData));
       }
       localStorage.setItem('valuationData', JSON.stringify(this.data));
+      if(localStorage.getItem("propertyTypeData")) {
+        let temp:any = localStorage.getItem("propertyTypeData");
+        temp = JSON.parse(temp);
+        temp.MunicipalityNo = this.propertyDetails.value.muncipality;
+        temp.TitleDeedNo = this.propertyDetails.value.titleDeed;
+        localStorage.setItem("propertyTypeData", JSON.stringify(temp));
+      }
       this.router.navigate(['/valuation/PropertyType']);
     }
   }

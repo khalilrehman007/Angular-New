@@ -289,6 +289,13 @@ export class PropertyinfoComponent implements OnInit {
   }
   onCountrySelect(e: any) {
     if (e != 0) {
+      localStorage.removeItem("bounds");
+      localStorage.removeItem("currency");
+      localStorage.removeItem("arabicAddress");
+      localStorage.removeItem("propertyData");
+      localStorage.removeItem("lng");
+      localStorage.removeItem("address");
+      localStorage.removeItem("lat");
       this.city = [];
       this.district = [];
       this.cityId = this.districtId = -1;
