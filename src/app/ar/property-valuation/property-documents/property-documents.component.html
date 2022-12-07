@@ -4,24 +4,24 @@
 <section ngClass="property-valuation-sec">
     <div ngClass="listing-container full-width">
         <div ngClass="heading-title-sec text-center">
-            <h2>Property Valuation</h2>
-            <p>Make sure you filled in all the necessary fields and have uploaded all the required files.</p>
+            <h2>تقييم العقارات</h2>
+            <p>تحقق من تعبئة جميع الحقول اللازمة وتحميل جميع الملفات المطلوبة.</p>
         </div>
         <div ngClass="listing-property-form-sec">
             <div ngClass="listing-property-ul">
                 <mat-list>
-                    <mat-list-item ngClass="active"> <a routerLink=""><span ngClass="">1</span> Details</a>
+                    <mat-list-item ngClass="active"> <a routerLink=""><span ngClass="">1</span> التفاصيل</a>
                     </mat-list-item>
-                    <mat-list-item ngClass="active"><a routerLink=""><span ngClass="">2</span> Type</a></mat-list-item>
-                    <mat-list-item [ngClass]="'active'"> <a routerLink=""><span ngClass="">3</span> Documents</a>
+                    <mat-list-item ngClass="active"><a routerLink=""><span ngClass="">2</span> النوع</a></mat-list-item>
+                    <mat-list-item [ngClass]="'active'"> <a routerLink=""><span ngClass="">3</span> وثائق</a>
                     </mat-list-item>
                     <mat-list-item [ngClass]="status5 ? 'active' : 'disabled'"> <a routerLink=""><span
-                                ngClass="">4</span> Review</a> </mat-list-item>
+                                ngClass="">4</span> مراجعة</a> </mat-list-item>
                     <mat-list-item [ngClass]="status6 ? 'active' : 'disabled'"> <a routerLink=""><span
-                                ngClass="">5</span> Certificate Type</a> </mat-list-item>
+                                ngClass="">5</span> نوع الشهادة</a> </mat-list-item>
                     <mat-list-item [ngClass]="status7 ? 'active' : 'disabled'"> <a routerLink=""><span
-                                ngClass="">6</span> Payment</a> </mat-list-item>
-                    <mat-list-item> <a ngClass="disabled" routerLink=""><span ngClass="">7</span> Download Report</a>
+                                ngClass="">6</span> الدفع</a> </mat-list-item>
+                    <mat-list-item> <a ngClass="disabled" routerLink=""><span ngClass="">7</span>تنزيل التقرير</a>
                     </mat-list-item>
                 </mat-list>
             </div>
@@ -31,11 +31,11 @@
                         <div class="valuation-cstm_tabs property_documents" [ngClass]="status ? 'hide' : 'active'">
                             <div ngClass="form-border-wrapper">
                                 <div ngClass="list-property-header">
-                                    <h5 ngClass="h5-heading">Documents</h5>
-                                    <p>Please provide your propety type for the valuation</p>
+                                    <h5 ngClass="h5-heading">الملفات</h5>
+                                    <p>يرجى تقديم نوع العقار الخاص بك للتقييم</p>
                                 </div>
                                 <div ngClass="madatory-document-upload mb-4" *ngIf="documentType.length > 0">
-                                    <h6 ngClass="h6-design mb-3">Mandatory Documents to upload*</h6>
+                                    <h6 ngClass="h6-design mb-3">المستندات المطلوبة للتحميل *</h6>
                                     <div ngClass="row required-docs">
                                         <div ngClass="col-xl-4 col-lg-4 col-md-4 col-sm-12"
                                             *ngIf="formData.TitleDeedNo != 0">
@@ -49,7 +49,7 @@
                                                                 accept=".doc, .pdf, .jpg, .jpeg, .png"
                                                                 (change)='handleChange($any($event.target).files, 10)'>
                                                             <button mat-button (click)="fileInput.click()"><img
-                                                                    src="{{upload}}"> Upload Files</button>
+                                                                    src="{{upload}}"> رفع الملفات</button>
                                                         </div>
                                                         <div ngClass="uploded-output">
                                                             <span ngClass="outpup-filename">{{ file }}</span>
@@ -57,15 +57,14 @@
                                                                 <button ngClass="trash" (click)="deleteImage(10)"><img
                                                                         src="{{trash}}"></button>
                                                             </div>
-                                                            <p ngClass="drag-drop-text">Drag & drop file here or Browse
+                                                            <p ngClass="drag-drop-text">اسحب الملف وأفلته هنا أو تصفح
                                                             </p>
                                                             <button ngClass="succesfull-uploaded"><img
-                                                                    src="{{checkmark}}"> Uploaded</button>
+                                                                    src="{{checkmark}}"> تم الرفع</button>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <p ngClass="accepted-file-text">Accepted File Type: .doc, .pdf, .jpg,
-                                                    .jpeg, .png</p>
+                                                <p ngClass="accepted-file-text">نوع الملف المقبول: .doc ، .pdf ، .jpg ، .jpeg ، .png</p>
                                             </div>
                                         </div>
                                         <div ngClass="col-xl-4 col-lg-4 col-md-4 col-sm-12"
@@ -80,7 +79,7 @@
                                                                 accept=".doc, .pdf, .jpg, .jpeg, .png"
                                                                 (change)='affection($any($event.target).files, 11)'>
                                                             <button mat-button (click)="affectioninput.click()"><img
-                                                                    src="{{upload}}"> Upload Files</button>
+                                                                    src="{{upload}}"> رفع الملفات</button>
                                                         </div>
                                                         <div ngClass="uploded-output">
                                                             <span ngClass="outpup-filename">{{ affecton }}</span>
@@ -88,15 +87,14 @@
                                                                 <button ngClass="trash" (click)="deleteImage(11)"><img
                                                                         src="{{trash}}"></button>
                                                             </div>
-                                                            <p ngClass="drag-drop-text">Drag & drop file here or Browse
+                                                            <p ngClass="drag-drop-text">اسحب الملف وأفلته هنا أو تصفح
                                                             </p>
                                                             <button ngClass="succesfull-uploaded"><img
-                                                                    src="{{checkmark}}"> Uploaded</button>
+                                                                    src="{{checkmark}}"> تم الرفع</button>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <p ngClass="accepted-file-text">Accepted File Type: .doc, .pdf, .jpg,
-                                                    .jpeg, .png</p>
+                                                <p ngClass="accepted-file-text">نوع الملف المقبول: .doc ، .pdf ، .jpg ، .jpeg ، .png</p>
                                             </div>
                                         </div>
                                         <div ngClass="col-xl-4 col-lg-4 col-md-4 col-sm-12">
@@ -118,7 +116,7 @@
                                                                 accept=".doc, .pdf, .jpg, .jpeg, .png"
                                                                 (change)='property($any($event.target).files, 12)'>
                                                             <button mat-button (click)="propertyInput.click()"><img
-                                                                    src="{{upload}}"> Upload Files</button>
+                                                                    src="{{upload}}">رفع الملفات</button>
                                                         </div>
                                                         <div ngClass="uploded-output">
                                                             <span ngClass="outpup-filename">{{ propertys }}</span>
@@ -126,21 +124,20 @@
                                                                 <button ngClass="trash" (click)="deleteImage(12)"><img
                                                                         src="{{trash}}"></button>
                                                             </div>
-                                                            <p ngClass="drag-drop-text">Drag & drop file here or Browse
+                                                            <p ngClass="drag-drop-text">اسحب الملف وأفلته هنا أو تصفح
                                                             </p>
                                                             <button ngClass="succesfull-uploaded"><img
-                                                                    src="{{checkmark}}"> Uploaded</button>
+                                                                    src="{{checkmark}}"> تم الرفع</button>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <p ngClass="accepted-file-text">Accepted File Type: .doc, .pdf, .jpg,
-                                                    .jpeg, .png</p>
+                                                <p ngClass="accepted-file-text">نوع الملف المقبول: .doc ، .pdf ، .jpg ، .jpeg ، .png</p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div ngClass="other-document-upload mb-4" *ngIf="documentType.length > 0">
-                                    <h6 ngClass="h6-design mb-3">Other Documents Upload (optional)</h6>
+                                    <h6 ngClass="h6-design mb-3">تحميل مستندات أخرى (اختياري)</h6>
                                     <div ngClass="row">
                                         <div ngClass="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                                             <div ngClass="blue-upload-box">
@@ -258,8 +255,8 @@
                                 </div>
                                 <div ngClass="upload_documents-div frame-border-inner">
                                     <div ngClass="small-blue-black-heading">
-                                        <h6>Uploaded Documents</h6>
-                                        <p>List of the documents uploaded</p>
+                                        <h6>المستندات التي تم تحميلها</h6>
+                                        <p>قائمة الوثائق التي تم تحميلها</p>
                                     </div>
                                     <div ngClass="upload-documents-list">
                                         <div ngClass="doc-list-div d-flex justify-content-spacebq align-items-center"
@@ -269,24 +266,24 @@
                                                     <img src="{{item.imgsrc}}">
                                                 </div>
                                                 <div ngClass="doc-text-details">
-                                                    <h6>Document Name</h6>
+                                                    <h6>اسم الملف</h6>
                                                     <p>{{item.documentName}}</p>
                                                 </div>
                                             </div>
                                             <div ngClass="doc-list-file">
                                                 <div ngClass="doc-text-details">
-                                                    <h6>File Name</h6>
+                                                    <h6>اسم الملف</h6>
                                                     <p>{{item.fileName}}</p>
                                                 </div>
                                             </div>
                                             <div ngClass="doc-list-action">
                                                 <div ngClass="doc-text-actions">
-                                                    <h6>Action</h6>
+                                                    <h6>تنفيذ</h6>
                                                     <div ngClass="action-text-btns">
                                                         <a (click)="viewImage(item.imgsrc)"
-                                                            class="view-image-btn">View</a>
+                                                            class="view-image-btn">عرض</a>
                                                         <a (click)="deleteImage(item.index)"
-                                                            class="view-image-btn">Delete</a>
+                                                            class="view-image-btn">حذف</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -296,144 +293,144 @@
                             </div>
                             <div class="text-right save-continue-sec">
                                 <mat-card-actions>
-                                    <a routerLink="/ar/valuation/PropertyType" class="back-btn">Back</a>
+                                    <a routerLink="/ar/valuation/PropertyType" class="back-btn">للخلف</a>
                                 </mat-card-actions>
                                 <mat-card-actions>
-                                    <button (click)="Nextshow()" class="save-continue-btn">Save & Continue</button>
+                                    <button (click)="Nextshow()" class="save-continue-btn">حفظ ومتابعة</button>
                                 </mat-card-actions>
                             </div>
                         </div>
                         <div class="valuation-cstm_tabs property_review" [ngClass]="status1 ? 'active' : 'hide'">
                             <div ngClass="form-border-wrapper">
                                 <div ngClass="list-property-header">
-                                    <h5 ngClass="h5-heading">Review</h5>
+                                    <h5 ngClass="h5-heading">مراجعة البياتات</h5>
                                 </div>
                                 <div ngClass="pro-details-sec mb-4">
                                     <div ngClass="row">
                                         <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                                             <div ngClass="pro-details-left-column">
-                                                <h5 ngClass="h5-borderd-heading">Property Details</h5>
+                                                <h5 ngClass="h5-borderd-heading">تفاصيل العقار</h5>
                                                 <div ngClass="row">
                                                     <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                                                         <div ngClass="pro-details-info-blocks">
-                                                            <h6>Title Deed No.</h6>
+                                                            <h6>نوع سند الملكية</h6>
                                                             <p>{{formData.TitleDeedNo}}</p>
                                                         </div>
                                                     </div>
                                                     <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                                                         <div ngClass="pro-details-info-blocks">
-                                                            <h6>Title Dead Type.</h6>
+                                                            <h6>رقم سند الملكية</h6>
                                                             <p>{{formData.TitleDeedType == 1 ? "Leasehold" :
                                                                 "Freehold"}}</p>
                                                         </div>
                                                     </div>
                                                     <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                                                         <div ngClass="pro-details-info-blocks">
-                                                            <h6>Municipality No.</h6>
+                                                            <h6>رقم البلدية</h6>
                                                             <p>{{formData.MunicipalityNo}}</p>
                                                         </div>
                                                     </div>
                                                     <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                                                         <div ngClass="pro-details-info-blocks">
-                                                            <h6>Property Insured</h6>
+                                                            <h6>العقارات المؤمن عليها</h6>
                                                             <p>{{formData.PropertyInsured == 1 ? "Yes" : "No"}}</p>
                                                         </div>
                                                     </div>
                                                     <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12"
                                                         *ngIf="userData.ownerName">
                                                         <div ngClass="pro-details-info-blocks">
-                                                            <h6>Name of the Owner</h6>
+                                                            <h6>اسم المالك</h6>
                                                             <p>{{userData.ownerName}}</p>
                                                         </div>
                                                     </div>
                                                     <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12"
                                                         *ngIf="userData.PhoneNumber">
                                                         <div ngClass="pro-details-info-blocks">
-                                                            <h6>Phone No. of the Owner</h6>
+                                                            <h6>رقم هاتف المالك</h6>
                                                             <p>{{userData.PhoneNumber}}</p>
                                                         </div>
                                                     </div>
                                                     <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12"
                                                         *ngIf="userData.propertyCategory">
                                                         <div ngClass="pro-details-info-blocks">
-                                                            <h6>Property Category</h6>
+                                                            <h6>فئة العقار</h6>
                                                             <p>{{userData.propertyCategory}}</p>
                                                         </div>
                                                     </div>
                                                     <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12"
                                                         *ngIf="userData.propertyType">
                                                         <div ngClass="pro-details-info-blocks">
-                                                            <h6>Property Type</h6>
+                                                            <h6>نوع الملكية</h6>
                                                             <p>{{userData.propertyType}}</p>
                                                         </div>
                                                     </div>
                                                     <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12"
                                                         *ngIf="userData.ValuationPurpose">
                                                         <div ngClass="pro-details-info-blocks">
-                                                            <h6>Purpose of valuation</h6>
+                                                            <h6>الغرض من التقييم</h6>
                                                             <p>{{userData.ValuationPurpose}}</p>
                                                         </div>
                                                     </div>
                                                     <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12"
                                                         *ngIf="userData.PropertyStatus">
                                                         <div ngClass="pro-details-info-blocks">
-                                                            <h6>Property Current Status</h6>
+                                                            <h6>حالة العقار الحالية</h6>
                                                             <p>{{userData.PropertyStatus}}</p>
                                                         </div>
                                                     </div>
                                                     <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12"
                                                         *ngIf="formData.ConstructionAge">
                                                         <div ngClass="pro-details-info-blocks">
-                                                            <h6>Construction Age</h6>
+                                                            <h6>عمر البناء</h6>
                                                             <p>{{formData.ConstructionAge}}</p>
                                                         </div>
                                                     </div>
                                                     <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12"
                                                         *ngIf="userData.elevation">
                                                         <div ngClass="pro-details-info-blocks">
-                                                            <h6>Elevation</h6>
+                                                            <h6>الارتفاع</h6>
                                                             <p>{{userData.elevation}}</p>
                                                         </div>
                                                     </div>
                                                     <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12"
                                                         *ngIf="userData.PlotSize">
                                                         <div ngClass="pro-details-info-blocks">
-                                                            <h6>Plot Size</h6>
-                                                            <p>{{userData.PlotSize}} Sq.Ft</p>
+                                                            <h6>مساحة الارض</h6>
+                                                            <p>{{userData.PlotSize}}  بالقدم المربع</p>
                                                         </div>
                                                     </div>
                                                     <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12"
                                                         *ngIf="userData.BuildupArea">
                                                         <div ngClass="pro-details-info-blocks">
-                                                            <h6>Buildup Area</h6>
-                                                            <p>{{userData.BuildupArea}} Sq.Ft</p>
+                                                            <h6>منطقة البناء</h6>
+                                                            <p>{{userData.BuildupArea}} بالقدم المربع</p>
                                                         </div>
                                                     </div>
                                                     <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12"
                                                         *ngIf="userData.Bedrooms">
                                                         <div ngClass="pro-details-info-blocks">
-                                                            <h6>Bedrooms</h6>
+                                                            <h6>غرف النوم</h6>
                                                             <p>{{userData.Bedrooms}}</p>
                                                         </div>
                                                     </div>
                                                     <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12"
                                                         *ngIf="userData.Bathrooms">
                                                         <div ngClass="pro-details-info-blocks">
-                                                            <h6>Bathrooms</h6>
+                                                            <h6>الحمامات</h6>
                                                             <p>{{userData.Bathrooms}}</p>
                                                         </div>
                                                     </div>
                                                     <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12"
                                                         *ngIf="userData.Furnishing">
                                                         <div ngClass="pro-details-info-blocks">
-                                                            <h6>Furnishing Type</h6>
+                                                            <h6>نوع التأثيث</h6>
                                                             <p>{{userData.Furnishing}}</p>
                                                         </div>
                                                     </div>
                                                     <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12"
                                                         *ngIf="userData.Fitting">
                                                         <div ngClass="pro-details-info-blocks">
-                                                            <h6>Fitting Type</h6>
+                                                            <h6>الحجم المناسب</h6>
                                                             <p>{{userData.Fitting}}</p>
                                                         </div>
                                                     </div>
@@ -442,54 +439,54 @@
                                         </div>
                                         <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                                             <div ngClass="pro-details-right-column">
-                                                <h5 ngClass="h5-borderd-heading">Property Locations</h5>
+                                                <h5 ngClass="h5-borderd-heading">موقع العقار</h5>
                                                 <div ngClass="row">
                                                     <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12"
                                                         *ngIf="userData.country">
                                                         <div ngClass="pro-details-info-blocks">
-                                                            <h6>Country</h6>
+                                                            <h6>بلد</h6>
                                                             <p>{{userData.country}}</p>
                                                         </div>
                                                     </div>
                                                     <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12"
                                                         *ngIf="userData.city">
                                                         <div ngClass="pro-details-info-blocks">
-                                                            <h6>City</h6>
+                                                            <h6>مدينة</h6>
                                                             <p>{{userData.city}}</p>
                                                         </div>
                                                     </div>
                                                     <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12"
                                                         *ngIf="userData.district">
                                                         <div ngClass="pro-details-info-blocks">
-                                                            <h6>Area</h6>
+                                                            <h6> منطقة
+                                                            </h6>
                                                             <p>{{userData.district}}</p>
                                                         </div>
                                                     </div>
                                                     <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12"
                                                         *ngIf="userData.address">
                                                         <div ngClass="pro-details-info-blocks">
-                                                            <h6>Property Address</h6>
+                                                            <h6>عنوان العقار</h6>
                                                             <p>{{userData.address}}</p>
                                                         </div>
                                                     </div>
                                                     <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12"
                                                         *ngIf="userData.PlotNo">
                                                         <div ngClass="pro-details-info-blocks">
-                                                            <h6>Plot No.</h6>
+                                                            <h6>رقم الملكية</h6>
                                                             <p>{{userData.PlotNo}}</p>
                                                         </div>
                                                     </div>
                                                     <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12"
                                                         *ngIf="userData.roads">
                                                         <div ngClass="pro-details-info-blocks">
-                                                            <h6>No. of Road</h6>
+                                                            <h6>عدد الطرق </h6>
                                                             <p>{{userData.roads}}</p>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div ngClass="building-unit-details-div">
-                                                    <h6 *ngIf="userData.ValuationPropertyUnits.length > 0">Building Unit
-                                                        Details</h6>
+                                                    <h6 *ngIf="userData.ValuationPropertyUnits.length > 0">تفاصيل الوحدة للبناية</h6>
                                                     <div ngClass="building-unit_div"
                                                         *ngFor="let item of userData.ValuationPropertyUnits; let i = index">
                                                         <p ngClass="building-unit-no">{{i+1}}</p>
@@ -497,35 +494,35 @@
                                                             <div ngClass="col-xl-3 col-lg-3 col-md-6 col-sm-12"
                                                                 *ngIf="item.NumberOfBeds != ''">
                                                                 <div ngClass="pro-details-info-blocks">
-                                                                    <h6>Number Of Beds</h6>
+                                                                    <h6>عدد غرف النوم</h6>
                                                                     <p>{{item.NumberOfBeds}}</p>
                                                                 </div>
                                                             </div>
                                                             <div ngClass="col-xl-3 col-lg-3 col-md-6 col-sm-12"
                                                                 *ngIf="item.NumberOfUnit != ''">
                                                                 <div ngClass="pro-details-info-blocks">
-                                                                    <h6>Number Of Unit</h6>
+                                                                    <h6>عدد الوحدات</h6>
                                                                     <p>{{item.NumberOfUnit}}</p>
                                                                 </div>
                                                             </div>
                                                             <div ngClass="col-xl-3 col-lg-3 col-md-6 col-sm-12"
                                                                 *ngIf="item.RentValue != ''">
                                                                 <div ngClass="pro-details-info-blocks">
-                                                                    <h6>Rent Value</h6>
+                                                                    <h6>قيمة الإيجار</h6>
                                                                     <p>{{item.RentValue}}</p>
                                                                 </div>
                                                             </div>
                                                             <div ngClass="col-xl-3 col-lg-3 col-md-6 col-sm-12"
                                                                 *ngIf="item.UnitSize != ''">
                                                                 <div ngClass="pro-details-info-blocks">
-                                                                    <h6>Unit Size</h6>
+                                                                    <h6>حجم الوحدة</h6>
                                                                     <p>{{item.UnitSize}}</p>
                                                                 </div>
                                                             </div>
                                                             <div ngClass="col-xl-3 col-lg-3 col-md-6 col-sm-12"
                                                                 *ngIf="item.Vacant != ''">
                                                                 <div ngClass="pro-details-info-blocks">
-                                                                    <h6>Vacant</h6>
+                                                                    <h6>شاغر</h6>
                                                                     <p>{{item.Vacant}}</p>
                                                                 </div>
                                                             </div>
@@ -533,7 +530,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="row" *ngIf="userData.PropertyFeatures.length > 0">
-                                                    <h6>Property Feature</h6>
+                                                    <h6>خصائص العقار</h6>
                                                     <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12"
                                                         *ngFor="let item of userData.PropertyFeatures">
                                                         <div ngClass="pro-details-info-blocks">
@@ -548,8 +545,8 @@
                                 <div ngClass="upload_documents-div frame-border-inner">
                                     <div ngClass="upload-documents-list">
                                         <div ngClass="small-blue-black-heading">
-                                            <h6>Uploaded Documents</h6>
-                                            <p>List of the documents uploaded</p>
+                                            <h6>المستندات التي تم تحميلها</h6>
+                                            <p>قائمة الوثائق التي تم تحميلها</p>
                                         </div>
                                         <div ngClass="doc-list-div d-flex justify-content-spacebq align-items-center"
                                             *ngFor="let item of uploadedDocuments">
@@ -558,22 +555,22 @@
                                                     <img src="{{item.imgsrc}}">
                                                 </div>
                                                 <div ngClass="doc-text-details">
-                                                    <h6>Document Name</h6>
+                                                    <h6>اسم الملف</h6>
                                                     <p>{{item.documentName}}</p>
                                                 </div>
                                             </div>
                                             <div ngClass="doc-list-file">
                                                 <div ngClass="doc-text-details">
-                                                    <h6>File Name</h6>
+                                                    <h6>اسم الملف</h6>
                                                     <p>{{item.fileName}}</p>
                                                 </div>
                                             </div>
                                             <div ngClass="doc-list-action">
                                                 <div ngClass="doc-text-actions">
-                                                    <h6>Action</h6>
+                                                    <h6>تنفيذ</h6>
                                                     <div ngClass="action-text-btns no-sperator">
                                                         <a (click)="viewImage(item.imgsrc)"
-                                                            class="view-image-btn">View</a>
+                                                            class="view-image-btn">عرض</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -583,10 +580,10 @@
                             </div>
                             <div class="text-right save-continue-sec">
                                 <mat-card-actions>
-                                    <button (click)="Prevshow()" class="back-btn">Back</button>
+                                    <button (click)="Prevshow()" class="back-btn">للخلف</button>
                                 </mat-card-actions>
                                 <mat-card-actions>
-                                    <button (click)="Nextshow1()" class="save-continue-btn">Save & Continue</button>
+                                    <button (click)="Nextshow1()" class="save-continue-btn">حفظ ومتابعة</button>
                                 </mat-card-actions>
                             </div>
                         </div>
@@ -594,8 +591,8 @@
                             [ngClass]="status2 ? 'active' : 'hide'">
                             <div ngClass="form-border-wrapper" *ngIf="certificateData.packageTypes">
                                 <div ngClass="list-property-header">
-                                    <h5 ngClass="h5-heading">Certificate Type</h5>
-                                    <p>Select the type of certification you are looking for?</p>
+                                    <h5 ngClass="h5-heading">نوع الشهادة</h5>
+                                    <p>حدد نوع الشهادة التي تبحث عنها؟</p>
                                 </div>
                                 <div ngClass="pro-details-sec mb-4 package-type-input">
                                     <div ngClass="row">
@@ -616,7 +613,7 @@
                                                                     ngClass="regular-price"><del>{{valuationPrices.summeryCertificatePrice}}{{currency}}</del></span>
                                                                 <span
                                                                     ngClass="discount_offer">{{valuationPrices.summeryCertificateDiscount}}
-                                                                    % OFF</span>
+                                                                    ٪ خصم</span>
                                                             </p>
                                                             <p *ngIf="i == 1">
                                                                 <span
@@ -625,7 +622,7 @@
                                                                     ngClass="regular-price"><del>{{valuationPrices.detailedCertificatePrice}}{{currency}}</del></span>
                                                                 <span
                                                                     ngClass="discount_offer">{{valuationPrices.detailCertificateDiscount}}
-                                                                    % OFF</span>
+                                                                    ٪ خصم</span>
                                                             </p>
                                                         </div>
                                                     </div>
@@ -645,12 +642,12 @@
                                                     (click)="SummaryReport(i, certificateData.packageTypes[i].id, valuationPrices.summeryCertificateSellingPrice)"
                                                     *ngIf="i == 0"
                                                     [ngClass]="status8 ? 'report-btn-active' : ''">{{valuationPrices.summeryCertificateSellingPrice}}
-                                                    {{currency}} Summary Certificate</button>
+                                                    {{currency}}شهادة مُلخصة </button>
                                                 <button class="summary_certificate-btn"
                                                     (click)="SummaryReport(i, certificateData.packageTypes[i].id, valuationPrices.detailCertificateSellingPrice)"
                                                     *ngIf="i == 1"
                                                     [ngClass]="status9 ? 'report-btn-active' : ''">{{valuationPrices.detailCertificateSellingPrice}}
-                                                    {{currency}} Detail Certificate</button>
+                                                    {{currency}} شهادة تفصيلية</button>
                                             </div>
                                         </div>
                                     </div>
@@ -660,7 +657,7 @@
                                         <div ngClass="row">
                                             <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                                 <div ngClass="block-wrapper mb-4">
-                                                    <label class="h6-design">Report Language <span
+                                                    <label class="h6-design">لغة التقرير <span
                                                             ngClass="required-span">*</span></label>
                                                     <div class="checkbox-flex-box two-column language-input">
                                                         <div class="checkbox-design position-relative"
@@ -682,13 +679,13 @@
                                         <div ngClass="row">
                                             <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                                 <div ngClass="block-wrapper mb-4">
-                                                    <label class="h6-design">Name of the Property Owner.<span
+                                                    <label class="h6-design">اسم مالك العقار. *.<span
                                                             ngClass="required-span">*</span></label>
                                                     <div class="name-input">
                                                         <mat-form-field class="full-width input-design-2"
                                                             appearance="fill">
                                                             <input matInput type="text"
-                                                                placeholder="Enter the full name in the language of report"
+                                                                placeholder="يرجى ذكر سند الملكية."
                                                                 formControlName="name" (keypress)="validateName($event)"
                                                                 (input)="removeChar()" />
                                                         </mat-form-field>
@@ -697,13 +694,13 @@
                                             </div>
                                             <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                                 <div ngClass="block-wrapper mb-4">
-                                                    <label class="h6-design">Enter Phone Number of Property Owner<span
+                                                    <label class="h6-design">أدخل رقم هاتف مالك العقار<span
                                                             ngClass="required-span">*</span></label>
                                                     <div class="phone-input">
                                                         <div ngClass="position-relative country-code-select-design">
                                                             <mat-form-field class="full-width input-design-2"
                                                                 appearance="fill">
-                                                                <input matInput type="number" placeholder="Enter Phone"
+                                                                <input matInput type="number" placeholder="أدخل رقم الهاتف"
                                                                     formControlName="phone" (input)="checkPhone()" />
                                                             </mat-form-field>
                                                             <mat-form-field appearance="fill" class="countries-select">
@@ -723,10 +720,10 @@
                                             <div ngClass="col-sm-12">
                                                 <div
                                                     ngClass="block-wrapper mb-4 inspection-required-block input-date-picker input-design-2">
-                                                    <mat-checkbox class="example-margin">Do you have Referral Code
+                                                    <mat-checkbox class="example-margin">هل لديك رمز إحالة
                                                     </mat-checkbox>
                                                     <mat-form-field class="full-width hide refrell-overlay-block" appearance="fill">
-                                                        <input matInput type="text" placeholder="Enter Referral Code" maxlength="8" formControlName="referralCode" (input)="validateCode()"/>
+                                                        <input matInput type="text" placeholder="أدخل رمز الإحالة" maxlength="8" formControlName="referralCode" (input)="validateCode()"/>
                                                         <span class="ovrc">OVRC-</span>
                                                     </mat-form-field>
                                                 </div>
@@ -735,9 +732,8 @@
                                                     <div class="d-inline-block accept-terms-input">
                                                         <mat-checkbox class="example-margin"
                                                             (change)="acceptTerms($event)">
-                                                            Accept <a routerLink="/ar/term-condition"
-                                                                target="_blank">Term &
-                                                                Conditions.</a>
+                                                            قبول <a routerLink="/ar/term-condition"
+                                                                target="_blank"> الشروط والأحكام.</a>
                                                         </mat-checkbox>
                                                     </div>
                                                 </div>
@@ -745,8 +741,7 @@
                                                     <div
                                                         ngClass="block-wrapper mb-4 inspection-required-block input-date-picker input-design">
                                                         <mat-checkbox class="example-margin"
-                                                            (change)="onInspectionSelect($event)">Inspection
-                                                            Required
+                                                            (change)="onInspectionSelect($event)">الفحص مطلوب
                                                         </mat-checkbox>
                                                         <mat-form-field class="full-width hide" appearance="fill">
                                                             <input matInput type="datetime-local" id="formDate" />
@@ -767,7 +762,7 @@
                             </div>
                             <div class="text-right save-continue-sec">
                                 <mat-card-actions>
-                                    <button (click)="Prevshow1()" class="back-btn">Back</button>
+                                    <button (click)="Prevshow1()" class="back-btn">للخلف</button>
                                 </mat-card-actions>
                                 <mat-card-actions>
                                     <button (click)="Nextshow2()" class="save-continue-btn">{{publishText}}</button>
@@ -779,15 +774,15 @@
                             [ngClass]="status3 ? 'active' : 'hide'">
                             <div ngClass="form-border-wrapper">
                                 <div ngClass="list-property-header mb-4">
-                                    <h5 ngClass="h5-heading">Payment</h5>
-                                    <p>Please provide your propety type for the valuation</p>
+                                    <h5 ngClass="h5-heading">الدفع</h5>
+                                    <p>يرجى تقديم نوع العقار الخاص بك للتقييم</p>
                                 </div>
                                 <div ngClass="payment-main-sec">
                                     <div ngClass="row">
                                         <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                             <div ngClass="payment-left-form-sec position-relative">
                                                 <div ngClass="payment-price-box">
-                                                    <p>Pay Ovaluate Real Estate Valuation Services LLC</p>
+                                                    <p>إدفع لشركة اوفاليوت للتثمين العقاري</p>
                                                     <h3 ngClass="price">{{currency}}
                                                         {{valuationResponse.valuationPayment.totalAmount}}</h3>
                                                 </div>
@@ -796,27 +791,27 @@
                                                         <div ngClass="pay-heading-block">
                                                             <h6>{{valuationResponse.reportPackage.name}}</h6>
                                                             <p>{{userData.propertyCategory}} - {{userData.propertyType}}
-                                                                Valuation Report</p>
+                                                                تقرير تقييم</p>
                                                         </div>
                                                         <p ngClass="price">{{currency}}
                                                             {{valuationResponse.valuationPayment.reportAmount}}</p>
                                                     </div>
                                                     <div ngClass="Inspection-box d-flex justify-content-spacebw">
                                                         <div ngClass="pay-heading-block">
-                                                            <h6>Inspection</h6>
+                                                            <h6>معاينة</h6>
                                                         </div>
                                                         <p ngClass="price">{{currency}}
                                                             {{valuationResponse.valuationPayment.inspectionAmount}}</p>
                                                     </div>
                                                     <div ngClass="tax-box d-flex justify-content-spacebw">
                                                         <div ngClass="pay-heading-block">
-                                                            <h6>Tax</h6>
+                                                            <h6>الضريبة</h6>
                                                         </div>
-                                                        <p ngClass="tax-cost">Included</p>
+                                                        <p ngClass="tax-cost">شامل</p>
                                                     </div>
                                                     <div ngClass="totel-due-box d-flex justify-content-spacebw">
                                                         <div ngClass="pay-heading-block">
-                                                            <h6>Total Due</h6>
+                                                            <h6>المبلغ الإجمالي</h6>
                                                         </div>
                                                         <p ngClass="price">{{currency}}
                                                             {{valuationResponse.valuationPayment.totalAmount}}</p>
@@ -831,7 +826,7 @@
                                             <div ngClass="payment-right-form-sec">
                                                 <form [formGroup]="paymentForm">
                                                     <div ngClass="block-wrapper mb-3">
-                                                        <label class="h6-design">Email</label>
+                                                        <label class="h6-design">البريد الألكتروني</label>
                                                         <mat-form-field class="full-width input-design-2 grey-input-bg"
                                                             appearance="fill">
                                                             <input matInput type="email"
@@ -840,7 +835,7 @@
                                                         </mat-form-field>
                                                     </div>
                                                     <div ngClass="block-wrapper mb-3">
-                                                        <label class="h6-design">Card Number</label>
+                                                        <label class="h6-design">رقم البطاقة</label>
                                                         <div class="card-number-input">
                                                             <mat-form-field class="full-width input-design-2"
                                                                 appearance="fill">
@@ -852,7 +847,7 @@
                                                         </div>
                                                     </div>
                                                     <div ngClass="block-wrapper mb-3">
-                                                        <label class="h6-design">Expiry</label>
+                                                        <label class="h6-design">انتهاء الصلاحية</label>
                                                         <div class="expiry-input">
                                                             <mat-form-field class="full-width input-design-2"
                                                                 appearance="fill">
@@ -875,11 +870,11 @@
                                                         </div>
                                                     </div>
                                                     <div ngClass="block-wrapper mb-3">
-                                                        <label class="h6-design">Name on Card</label>
+                                                        <label class="h6-design">الاسم على البطاقة</label>
                                                         <div class="card-name-input">
                                                             <mat-form-field class="full-width input-design-2"
                                                                 appearance="fill">
-                                                                <input matInput type="text" placeholder="Name"
+                                                                <input matInput type="text" placeholder="الاسم"
                                                                     formControlName="cardName">
                                                             </mat-form-field>
                                                         </div>
@@ -892,7 +887,7 @@
                             </div>
                             <div class="text-right save-continue-sec justify-content-end">
                                 <mat-card-actions (click)="getPaymentData()">
-                                    <a class="save-continue-btn">Proceed to Pay</a>
+                                    <a class="save-continue-btn">مواصلة الدفع</a>
                                 </mat-card-actions>
                             </div>
                         </div>
