@@ -74,17 +74,17 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
   listingConditions: any = "";
   showLoader: boolean = false;
   SubmitForm = new FormGroup({
-    PropertyAge: new FormControl("", [Validators.required]),
+    PropertyAge: new FormControl("", [Validators.required,Validators.pattern("^[0-9]*$"),Validators.maxLength(2)]),
     BuildingName: new FormControl("", [Validators.required]),
     propertyTitle: new FormControl("", [Validators.required]),
-    carpetArea: new FormControl("", [Validators.required]),
-    buildupArea: new FormControl("", [Validators.required]),
-    size: new FormControl("", [Validators.required]),
+    carpetArea: new FormControl("", [Validators.required,Validators.pattern("^[0-9]*$")]),
+    buildupArea: new FormControl("", [Validators.required,Validators.pattern("^[0-9]*$")]),
+    size: new FormControl("", [Validators.required,Validators.pattern("^[0-9]*$")]),
     UnitNo: new FormControl("", [Validators.required]),
-    price: new FormControl("", [Validators.required]),
-    maintenance: new FormControl("", [Validators.required]),
-    AED: new FormControl(""),
-    brokerageAed: new FormControl("",),
+    price: new FormControl("", [Validators.required,Validators.pattern("^[0-9]*$")]),
+    maintenance: new FormControl("", [Validators.required,Validators.pattern("^[0-9]*$")]),
+    AED: new FormControl("",Validators.pattern("^[0-9]*$")),
+    brokerageAed: new FormControl("",Validators.pattern("^[0-9]*$")),
     propertyDescription: new FormControl("", [Validators.required]),
     propertyOffers: new FormControl(""),
     startDate: new FormControl(),
@@ -394,7 +394,6 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
     });
   }
   getCategory(id: any) {
-    debugger;
     this.showLoader = true;
     this.categoryID = id;
     this.api.LoadType(id).subscribe((result: any) => {
@@ -402,7 +401,7 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
       console.log(this.propertyType)
       this.showLoader = false;
     });
-   // this.clearData();
+   this.clearForm();
   }
   getBedroom(e: any) {
     this.bedroomCheck = true;
@@ -642,7 +641,19 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
       this.error = "Enter Property Age";
       this.showError = true;
       return;
-    } else if (this.selectedPropertyType.hasListingBuilding && this.SubmitForm.value.BuildingName == "") {
+    }else if (this.SubmitForm.get('PropertyAge')?.hasError('pattern')) {
+      this.currentField =  "property-age-input";
+      this.error = "Property Age accepts numbers only";
+      this.showError = true;
+      return;
+    } 
+    else if (this.SubmitForm.get('PropertyAge')?.hasError('maxLength')) {
+      this.currentField =  "property-age-input";
+      this.error = "Maximum 2 digits are allowed";
+      this.showError = true;
+      return;
+    }  
+    else if (this.selectedPropertyType.hasListingBuilding && this.SubmitForm.value.BuildingName == "") {
       this.currentField = "building-name-input";
       this.error = "Enter Building Name";
       this.showError = true;
@@ -677,17 +688,35 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
       this.error = "Enter Carpet Area";
       this.showError = true;
       return;
-    } else if (this.selectedPropertyType.hasListingBuildUpArea && this.SubmitForm.value.buildupArea == "") {
+    }else if (this.SubmitForm.get('carpetArea')?.hasError('pattern')) {
+      this.currentField = "carpet-input";
+      this.error = "Carpet area accepts numbers only";
+      this.showError = true;
+      return;
+    } 
+     else if (this.selectedPropertyType.hasListingBuildUpArea && this.SubmitForm.value.buildupArea == "") {
       this.currentField = "buildup-input";
       this.error = "Enter BuildUp Area";
       this.showError = true;
       return;
-    } else if (this.selectedPropertyType.hasListingPlotSize && this.SubmitForm.value.size == "") {
+    }else if (this.SubmitForm.get('buildupArea')?.hasError('pattern')) {
+      this.currentField = "buildup-input";
+      this.error = "BuildUp area accepts numbers only";
+      this.showError = true;
+      return;
+    } 
+    else if (this.selectedPropertyType.hasListingPlotSize && this.SubmitForm.value.size == "") {
       this.currentField = "size-input";
       this.error = "Enter Size";
       this.showError = true;
       return;
-    } else if (this.listingConditions.hasOccupancyStatus && !this.data.OccupancyStatusId) {
+    }else if (this.SubmitForm.get('size')?.hasError('pattern')) {
+      this.currentField = "size-input";
+      this.error = "Size accepts numbers only";
+      this.showError = true;
+      return;
+    }
+     else if (this.listingConditions.hasOccupancyStatus && !this.data.OccupancyStatusId) {
       this.currentField = "occupanycy-input";
       this.error = "Select Occupancy Status";
       this.showError = true;
@@ -712,17 +741,30 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
       this.error = "Select Completetion Status";
       this.showError = true;
       return;
-    } else if (this.SubmitForm.value.price == "") {
+    } else if (this.SubmitForm.get('price')?.hasError('pattern')) {
+      this.currentField = "price-input";
+      this.error = "Price accepts numbers only";
+      this.showError = true;
+      return;
+    } 
+    else if (this.SubmitForm.value.price == "") {
       this.currentField = "price-input";
       this.error = "Enter Price";
       this.showError = true;
       return;
-    } else if (this.selectedPropertyType.hasListingMaintenanceCharges && this.SubmitForm.value.maintenance == "") {
+    }
+    else if (this.selectedPropertyType.hasListingMaintenanceCharges && this.SubmitForm.value.maintenance == "") {
       this.currentField = "maintenance-input";
       this.error = "Enter Maintenance Price";
       this.showError = true;
       return;
-    } else if (this.listingConditions.hasRentType && !this.data.RentTypeId) {
+    }else if (this.SubmitForm.get('maintenance')?.hasError('pattern')) {
+      this.currentField = "maintenance-input";
+      this.error = "Maintenance Fee accepts numbers only";
+      this.showError = true;
+      return;
+    }  
+    else if (this.listingConditions.hasRentType && !this.data.RentTypeId) {
       this.currentField = "rent-type-input";
       this.error = "Select Rent Type";
       this.showError = true;
@@ -737,7 +779,13 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
       this.error = "Enter Security Deposit Price";
       this.showError = true;
       return;
-    } else if (this.listingConditions.hasBrokerageCharge && !this.data.BrokerageCharge) {
+    }else if (this.SubmitForm.get('AED')?.hasError('pattern')) {
+      this.currentField = "security-price-input";
+      this.error = "Security deposit accepts numbers only";
+      this.showError = true;
+      return;
+    }   
+    else if (this.listingConditions.hasBrokerageCharge && !this.data.BrokerageCharge) {
       this.currentField = "brokage-type-input";
       this.error = "Select Brokerage Type";
       this.showError = true;
@@ -747,7 +795,14 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
       this.error = "Enter Brokerage Price";
       this.showError = true;
       return;
-    } else if (this.locatedNearData.length == 0) {
+    }
+    else if (this.SubmitForm.get('brokerageAed')?.hasError('pattern')) {
+      this.currentField = "brokage-price-input";
+      this.error = "Brokerage Charge accepts numbers only";
+      this.showError = true;
+      return;
+    }  
+    else if (this.locatedNearData.length == 0) {
       this.currentField = "located-near-input";
       this.error = "Select Near Location";
       this.showError = true;
