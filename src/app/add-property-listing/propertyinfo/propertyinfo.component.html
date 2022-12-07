@@ -30,38 +30,74 @@
                             <div ngClass="row">
                                 <div ngClass="col-xl-4 col-lg-4 col-sm-12">
                                     <div ngClass="block-wrapper mb-4">
-                                        <div ngClass="select-design select2-design">
+                                        <div ngClass="select-design select2-design ">
                                             <label>Country <span ngClass="required-span">*</span></label>
-                                            <select class="select2 country-select"
-                                            [ngClass]="oldData == '' || country.length > 0 ? '' : 'd-none'">
-                                                <option value="0"> Select Country</option>
-                                                <option class="country-item-{{list.value}}" *ngFor="let list of country"
-                                                    [value]="list.value"> {{ list.viewValue }}</option>
-                                            </select>
+                                            <div class="country-select">
+                                            <mat-form-field appearance="fill">
+                                                <mat-label> Select Country</mat-label>
+                                                <mat-select [disableOptionCentering]="true" formControlName="countryId" required>
+                                                    <mat-option>
+                                                        <ngx-mat-select-search [formControl]="countryFilterCtrl"
+                                                          placeholderLabel="Search...">
+                                                        </ngx-mat-select-search>
+                                                      </mat-option>
+                                                  <mat-option *ngFor="let item of filteredCountries | async" [value]="item.value">{{ item.viewValue }}
+                                                  </mat-option>
+                                                </mat-select>
+                                              </mat-form-field>
+                                            </div>
+                                          
+                                           
                                         </div>
                                     </div>
                                 </div>
                                 <div ngClass="col-xl-4 col-lg-4 col-sm-12">
                                     <div ngClass="select-design mb-4 select2-design">
                                         <label>City <span ngClass="required-span">*</span></label>
-                                        <select class="select2 city-select" [ngClass]="oldData == '' || city.length > 0 ? '' : 'd-none'">
-                                            <option value="0"> Select City</option>
-                                            <option class="city-item-{{listcity.value}}" *ngFor="let listcity of city"
-                                                [value]="listcity.value"> {{ listcity.viewValue }}</option>
-                                        </select>
+
+                                        <div class="city-select">
+                                            <mat-form-field appearance="fill">
+                                                <mat-label> Select City</mat-label>
+                                                <mat-select [disableOptionCentering]="true" formControlName="cityId" required>
+                                                    <mat-option>
+                                                        <ngx-mat-select-search [formControl]="cityFilterCtrl"
+                                                          placeholderLabel="Search...">
+                                                        </ngx-mat-select-search>
+                                                      </mat-option>
+                                                  <mat-option *ngFor="let item of filteredCities | async" [value]="item.value">{{ item.viewValue }}
+                                                  </mat-option>
+                                                </mat-select>
+                                              </mat-form-field>
+                                            </div>
+                                       
                                     </div>
                                 </div>
                                 <div ngClass="col-xl-4 col-lg-4 col-sm-12">
                                     <div ngClass="block-wrapper mb-4">
                                         <div ngClass="select-design select2-design">
                                             <label>District <span ngClass="required-span">*</span></label>
-                                            <select class="select2 district-select"
+
+                                            <div class="district-select">
+                                                <mat-form-field appearance="fill">
+                                                    <mat-label> Select District</mat-label>
+                                                    <mat-select [disableOptionCentering]="true" formControlName="districtId" required>
+                                                        <mat-option>
+                                                            <ngx-mat-select-search [formControl]="districtFilterCtrl"
+                                                              placeholderLabel="Search...">
+                                                            </ngx-mat-select-search>
+                                                          </mat-option>
+                                                      <mat-option *ngFor="let item of filteredDistricts | async" [value]="item.value">{{ item.viewValue }}
+                                                      </mat-option>
+                                                    </mat-select>
+                                                  </mat-form-field>
+                                                </div>
+                                            <!-- <select class="select2 district-select"
                                             [ngClass]="oldData == '' || district.length > 0 ? '' : 'd-none'">
                                                 <option value="0"> Select District</option>
                                                 <option class="district-item-{{listdistrict.value}}"
                                                     *ngFor="let listdistrict of district" [value]="listdistrict.value">
                                                     {{ listdistrict.viewValue }}</option>
-                                            </select>
+                                            </select> -->
                                         </div>
                                     </div>
                                 </div>

@@ -4,7 +4,7 @@ import {  Router, RoutesRecognized } from "@angular/router";
 import { NotificationService } from "../../service/notification.service";
 import { AppService } from 'src/app/service/app.service';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { filter, pairwise } from 'rxjs';
+import { filter, pairwise, ReplaySubject, Subject, takeUntil } from 'rxjs';
 
 declare const google: any;
 
@@ -64,7 +64,23 @@ export class PropertyinfoComponent implements OnInit {
   selectedPackage: any = [];
   selectedPackageName: any = [];
   districtName: any;
+  SubmitForm = new FormGroup({
+    address: new FormControl("", Validators.required),
+    countryId: new FormControl(null, Validators.required),
+    cityId: new FormControl(null, Validators.required),
+    districtId: new FormControl(null, Validators.required),
+  });
+  get validate() {
+    return this.SubmitForm.controls;
+  }
 
+  public countryFilterCtrl: FormControl = new FormControl();
+  public filteredCountries: any = new ReplaySubject(1);
+  public cityFilterCtrl: FormControl = new FormControl();
+  public filteredCities: any = new ReplaySubject(1);
+  public districtFilterCtrl: FormControl = new FormControl();
+  public filteredDistricts: any = new ReplaySubject(1);
+  protected _onDestroy = new Subject();
   constructor(private route: Router, private notifyService: NotificationService, private service: AppService, private modalService: NgbModal, config: NgbModalConfig) {
     this.route.events
     .pipe(filter((evt: any) => evt instanceof RoutesRecognized), pairwise())
@@ -192,6 +208,107 @@ export class PropertyinfoComponent implements OnInit {
     config.backdrop = 'static';
     config.keyboard = false;
   }
+ 
+  ngOnDestroy() {
+    this._onDestroy.next("");
+    this._onDestroy.complete();
+  }
+  ngOnInit(): void {
+    this.SubmitForm.controls['countryId'].valueChanges.subscribe(x=>{
+      this.onCountrySelect(x);
+    })
+    this.SubmitForm.controls['cityId'].valueChanges.subscribe(x=>{
+      this.onCitySelect(x);
+    })
+    this.SubmitForm.controls['districtId'].valueChanges.subscribe(x=>{
+      this.onDistrictSelect(x);
+    })
+
+    this.filteredCountries.next(this.country.slice());
+    this.countryFilterCtrl.valueChanges
+      .pipe(takeUntil(this._onDestroy))
+      .subscribe(() => {
+        this.filterCountries();
+      });
+    this.filteredCities.next(this.city.slice());
+    this.cityFilterCtrl.valueChanges
+      .pipe(takeUntil(this._onDestroy))
+      .subscribe(() => {
+        this.filterCities();
+      });
+    this.filteredDistricts.next(this.district.slice());
+    this.districtFilterCtrl.valueChanges
+      .pipe(takeUntil(this._onDestroy))
+      .subscribe(() => {
+        this.filterDistricts();
+      });
+  }
+  ngAfterViewInit(): void {
+    this.getLocation();
+    // if (this.oldData == "") {
+    //   $('.select2').select2();
+    // }
+    // $(".country-select").on("change", () => {
+    //   this.onCountrySelect($(".country-select").val());
+    // });
+    // $(".city-select").on("change", () => {
+    //   this.onCitySelect($(".city-select").val());
+    // });
+    // $(".district-select").on("change", () => {
+    //   this.onDistrictSelect($(".district-select").val());
+    // });
+  }
+  filterCountries(){
+    if (!this.country) {
+      return;
+    }
+  
+    let search = this.countryFilterCtrl.value;
+    if (!search) {
+      this.filteredCountries.next(this.country.slice());
+      return;
+    } else {
+      search = search.toLowerCase();
+    }
+  
+    this.filteredCountries.next(
+      this.country.filter((x:any) => x.viewValue.toLowerCase().indexOf(search) > -1)
+    );
+  }
+  filterCities(){
+    if (!this.city) {
+      return;
+    }
+  
+    let search = this.cityFilterCtrl.value;
+    if (!search) {
+      this.filteredCities.next(this.city.slice());
+      return;
+    } else {
+      search = search.toLowerCase();
+    }
+  
+    this.filteredCities.next(
+      this.city.filter((x:any) => x.viewValue.toLowerCase().indexOf(search) > -1)
+    );
+  }
+  filterDistricts(){
+    if (!this.district) {
+      return;
+    }
+  
+    let search = this.districtFilterCtrl.value;
+    if (!search) {
+      this.filteredDistricts.next(this.district.slice());
+      return;
+    } else {
+      search = search.toLowerCase();
+    }
+  
+    this.filteredDistricts.next(
+      this.district.filter((x:any) => x.viewValue.toLowerCase().indexOf(search) > -1)
+    );
+  }
   // checkPackage(e:any) {
   //   if(this.selectedPackageName.indexOf(e) != -1) {
   //     return true;
@@ -205,34 +322,19 @@ export class PropertyinfoComponent implements OnInit {
       this.oldData = localStorage.getItem("propertyData");
       this.oldData = JSON.parse(this.oldData);
       this.SubmitForm.patchValue({
-        address: this.oldData.PropertyAddress
+        address: this.oldData.PropertyAddress,
       })
-      let a: any = setInterval(() => {
-        if (this.country.length > 0) {
-          $(".country-item-" + this.oldData.CountryId).attr("selected", "selected");
-          $(".country-select").select2();
-          clearInterval(a);
-        }
-      }, 100)
       this.countryId = this.oldData.CountryId;
+      this.SubmitForm.controls['countryId'].patchValue(this.oldData.CountryId ,{emitEvent: false, onlySelf: true});
       this.service.LoadCities(this.countryId).subscribe(e => {
         let temp: any = e;
         if (temp.message == "City list fetched successfully") {
           for (let city of temp.data) {
             this.city.push({ viewValue: city.name, value: city.id });
           }
-          let interval: any = setInterval(() => {
-            if (this.city.length > 0) {
-              $(".city-item-" + this.oldData.CityId).attr("selected", "selected");
-              $(".city-select").select2();
-              clearInterval(interval);
-            }
-          }, 100)
+          this.filteredCities.next(this.city)
           this.cityId = this.oldData.CityId;
-          // let id = this.cityId;
-          // let a = this.city.filter(function (c: any) {
-          //   return c.value == id;
-          // });
+          this.SubmitForm.controls['cityId'].patchValue(this.oldData.CityId ,{emitEvent: false, onlySelf: true});
           this.service.LoadDistrict(this.cityId).subscribe(e => {
             let temp: any = e;
             if (temp.result == 1) {
@@ -240,25 +342,11 @@ export class PropertyinfoComponent implements OnInit {
                 this.district.push({ viewValue: district.name, value: district.id });
               }
               this.showLoader = false;
-              let interval: any = setInterval(() => {
-                if (this.district.length > 0) {
-                  $(".district-item-" + this.oldData.DistrictId).attr("selected", "selected");
-                  $(".district-select").select2();
-                  $(".country-select").on("change", () => {
-                    this.onCountrySelect($(".country-select").val());
-                  });
-                  $(".city-select").on("change", () => {
-                    this.onCitySelect($(".city-select").val());
-                  });
-                  $(".district-select").on("change", () => {
-                    this.onDistrictSelect($(".district-select").val());
-                  });
-                  clearInterval(interval);
-                }
-              }, 100);
+              this.filteredDistricts.next(this.district)
             }
           });
           this.districtId = this.oldData.DistrictId;
+          this.SubmitForm.controls['districtId'].patchValue(this.oldData.DistrictId ,{emitEvent: false, onlySelf: true});
         }
       });
     }
@@ -278,12 +366,7 @@ export class PropertyinfoComponent implements OnInit {
           this.country.push({ viewValue: country.name, value: country.id ,currency:country.currency});
         }
         this.showLoader = false;
-      }
-      if (this.oldData != "") {
-        let id = this.countryId;
-        let a = this.country.filter(function (c: any) {
-          return c.value == id;
-        });
+        this.filteredCountries.next(this.country);
       }
     });
   }
@@ -304,7 +387,6 @@ export class PropertyinfoComponent implements OnInit {
         return c.value == e
       });
       this.countryName = temp[0].viewValue;
-      console.log(temp);
       localStorage.setItem("currency", temp[0].currency)
       // this.getLocationDetails(temp[0].viewValue, false);
       this.countryId = e;
@@ -316,6 +398,9 @@ export class PropertyinfoComponent implements OnInit {
             this.city.push({ viewValue: city.name, value: city.id });
           }
           this.showLoader = false;
+          this.filteredCities.next(this.city);
+          this.SubmitForm.controls['cityId'].patchValue(null,{emitEvent:false,onlySelf:true});
+          this.SubmitForm.controls['districtId'].patchValue(null,{emitEvent:false,onlySelf:true});
         }
       });
     } else {
@@ -334,7 +419,6 @@ export class PropertyinfoComponent implements OnInit {
         return c.value == e
       })
       this.cityName = temp[0].viewValue;
-      // this.getLocationDetails(temp[0].viewValue, false);
       this.cityId = e;
       this.service.LoadDistrict(e).subscribe(e => {
         let temp: any = e;
@@ -342,6 +426,8 @@ export class PropertyinfoComponent implements OnInit {
           for (let district of temp.data) {
             this.district.push({ viewValue: district.name, value: district.id });
           }
+          this.filteredDistricts.next(this.district);
+          this.SubmitForm.controls['districtId'].patchValue(null,{emitEvent:false,onlySelf:true});
           this.showLoader = false;
         }
       });
@@ -369,25 +455,21 @@ export class PropertyinfoComponent implements OnInit {
       this.districtName = "";
     }
   }
-  SubmitForm = new FormGroup({
-    address: new FormControl("", Validators.required),
-  });
-  get validate() {
-    return this.SubmitForm.controls;
-  }
+ 
   onSubmit() {
-    if ($(".country-select").val() == 0) {
-      this.currentField = "country-select + .select2";
+    console.log(this.SubmitForm.value.countryId)
+    if (this.SubmitForm.get('countryId')?.hasError('required') ) {
+      this.currentField = "country-select";
       this.error = "Select Country";
       this.showError = true;
       return;
-    } else if ($(".city-select").val() == 0) {
-      this.currentField = "city-select + .select2";
+    } else if (this.SubmitForm.get('cityId')?.hasError('required')) {
+      this.currentField = "city-select";
       this.error = "Select City";
       this.showError = true;
       return;
-    } else if ($(".district-select").val() == 0) {
-      this.currentField = "district-select + .select2";
+    } else if (this.SubmitForm.get('districtId')?.hasError('required')) {
+      this.currentField = "district-select";
       this.error = "Select District";
       this.showError = true;
       return;
@@ -440,24 +522,7 @@ export class PropertyinfoComponent implements OnInit {
     })
     $(window).scrollTop(temp - 100);
   }
-  ngOnInit(): void {
-    
-  }
-  ngAfterViewInit(): void {
-    this.getLocation();
-    if (this.oldData == "") {
-      $('.select2').select2();
-    }
-    $(".country-select").on("change", () => {
-      this.onCountrySelect($(".country-select").val());
-    });
-    $(".city-select").on("change", () => {
-      this.onCitySelect($(".city-select").val());
-    });
-    $(".district-select").on("change", () => {
-      this.onDistrictSelect($(".district-select").val());
-    });
-  }
+ 
   onPlaceChanged() {
     let temp: any = document.getElementById("searchLocation");
     let address: any = temp.value;

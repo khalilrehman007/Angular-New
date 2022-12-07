@@ -1499,7 +1499,7 @@
                                                                             </li>
                                                                         </ul>
                                                                     </div>
-                                                                    <div class="col-md-2 text-right">
+                                                                    <div class="col-md-2 text-right" *ngIf="childTabId!=5">
                                                                         <!-- <img src="assets/images/better-home.svg" alt=""> -->
                                                                         <!-- <button class="action-btn"><img src="assets/images/profile/menu-dots.png" alt=""></button> -->
 
@@ -1517,7 +1517,7 @@
                                                                                 <button ngbDropdownItem (click)="openVerticallyCentered(sharecontent)"><img
                                                                                             src="{{shareimg}}">
                                                                                         Share</button>
-                                                                                <button *ngIf="childTabId!=5" ngbDropdownItem (click)="deleteListing(listing.id)"><a><img
+                                                                                <button ngbDropdownItem (click)="deleteListing(listing.id)"><a><img
                                                                                             src="{{deleteimg}}">
                                                                                         Delete</a></button>
                                                                                 <button ngbDropdownItem><a
@@ -1635,7 +1635,7 @@
                                                                             </li>
                                                                         </ul>
                                                                     </div>
-                                                                    <div class="col-md-2 text-right">
+                                                                    <div class="col-md-2 text-right" *ngIf="childTabId!=5">
                                                                         <!-- <img src="assets/images/better-home.svg" alt=""> -->
                                                                         <!-- <button class="action-btn"><img src="assets/images/profile/menu-dots.png" alt=""></button> -->
 
@@ -1653,7 +1653,7 @@
                                                                                 <button ngbDropdownItem><a href=""><img
                                                                                             src="{{shareimg}}">
                                                                                         Share</a></button>
-                                                                                <button *ngIf="childTabId!=5" ngbDropdownItem (click)="deleteListing(listing.id)"><a><img
+                                                                                <button ngbDropdownItem (click)="deleteListing(listing.id)"><a><img
                                                                                             src="{{deleteimg}}">
                                                                                         Delete</a></button>
                                                                                 <button ngbDropdownItem><a href=""><img
@@ -1769,7 +1769,7 @@
                                                                             </li>
                                                                         </ul>
                                                                     </div>
-                                                                    <div class="col-md-2 text-right">
+                                                                    <div class="col-md-2 text-right" *ngIf="childTabId!=5">
                                                                         <!-- <img src="assets/images/better-home.svg" alt=""> -->
                                                                         <!-- <button class="action-btn"><img src="assets/images/profile/menu-dots.png" alt=""></button> -->
 
@@ -1787,7 +1787,7 @@
                                                                                 <button ngbDropdownItem><a href=""><img
                                                                                             src="{{shareimg}}">
                                                                                         Share</a></button>
-                                                                                <button *ngIf="childTabId!=5" ngbDropdownItem (click)="deleteListing(listing.id)"><a><img
+                                                                                <button  ngbDropdownItem (click)="deleteListing(listing.id)"><a><img
                                                                                             src="{{deleteimg}}">
                                                                                         Delete</a></button>
                                                                                 <button ngbDropdownItem><a href=""><img
