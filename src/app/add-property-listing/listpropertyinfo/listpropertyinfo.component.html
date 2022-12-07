@@ -609,6 +609,8 @@
                                                                 <mat-select [disableOptionCentering]="true"
                                                                     [(value)]="developerData"
                                                                     (selectionChange)="getDeveloper($event)">
+                                                                    <mat-option
+                                                                    value="">Select</mat-option>
                                                                     <mat-option *ngFor="let item of developer"
                                                                         value="{{item.id}}">{{item.name}}</mat-option>
                                                                 </mat-select>
@@ -640,9 +642,10 @@
                                                 <div class="textarea-design title-input">
                                                     <mat-form-field class="full-width input-design" appearance="fill">
                                                         <mat-label>Name Of the Property</mat-label>
-                                                        <input matInput formControlName="propertyTitle" type="text"
+                                                        <input matInput formControlName="propertyTitle" type="text" (input)="validateTitleLength($event)" (onpaste)="validateTitleLength($event)"
                                                             placeholder="Residential Property">
                                                     </mat-form-field>
+                                                    <p class="textraea-hint text-right">{{titleLength}} words left</p>
                                                 </div>
                                             </div>
                                             <div class="col-sm-12 pb-4">
@@ -650,7 +653,7 @@
                                                 <div class="textarea-design desc-input">
                                                     <mat-form-field class="example-full-width" appearance="fill">
                                                         <mat-label>Property Description</mat-label>
-                                                        <textarea formControlName="propertyDescription" matInput 
+                                                        <textarea formControlName="propertyDescription" matInput (onpaste)="validateDescLength($event)"
                                                             placeholder="Eg. 30" (input)="validateDescLength($event)"></textarea>
                                                     </mat-form-field>
                                                     <p class="textraea-hint text-right">{{descLength}} words left</p>
@@ -662,7 +665,7 @@
                                                     <mat-form-field class="full-width input-design" appearance="fill">
                                                         <mat-label>Offers - Increase leads on your property upto 50%!
                                                         </mat-label>
-                                                        <input matInput formControlName="propertyOffers" type="text"
+                                                        <input matInput formControlName="propertyOffers" type="text" 
                                                             placeholder="Example - 15 days of rent off. Only Pay 15 days of brokerage now! Free rental agreement.">
                                                     </mat-form-field>
                                                 </div>

@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from "@angular/router";
+import {  Router, RoutesRecognized } from "@angular/router";
 import { NotificationService } from "../../service/notification.service";
 import { AppService } from 'src/app/service/app.service';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { filter, pairwise } from 'rxjs';
 
 declare const google: any;
 
@@ -65,6 +66,22 @@ export class PropertyinfoComponent implements OnInit {
   districtName: any;
 
   constructor(private route: Router, private notifyService: NotificationService, private service: AppService, private modalService: NgbModal, config: NgbModalConfig) {
+    this.route.events
+    .pipe(filter((evt: any) => evt instanceof RoutesRecognized), pairwise())
+    .subscribe((events: RoutesRecognized[]) => {
+      console.log('previous url', events[0].urlAfterRedirects);
+      if(events[0].urlAfterRedirects.includes('listpropertyinfo') || events[0].urlAfterRedirects.includes('listingproperty') 
+      || events[0].urlAfterRedirects.includes('listpropertymedia')){}
+      else{
+        localStorage.removeItem("bounds");
+        localStorage.removeItem("currency");
+        localStorage.removeItem("arabicAddress");
+        localStorage.removeItem("propertyData");
+        localStorage.removeItem("lng");
+        localStorage.removeItem("address");
+        localStorage.removeItem("lat");
+      }
+    });
     const selectedPackageByPoints ={
       "id": 1,
       "name": "Free",
@@ -183,7 +200,6 @@ export class PropertyinfoComponent implements OnInit {
   //   }
   // }
   loadSavedData() {
-    debugger;
     if (localStorage.getItem("propertyData")) {
       this.showMap = true;
       this.oldData = localStorage.getItem("propertyData");
@@ -330,7 +346,6 @@ export class PropertyinfoComponent implements OnInit {
     this.showMap = false;
   }
   onDistrictSelect(e: any) {
-    debugger;
     if (e != 0) {
       this.locationSelected = false;
       $("#searchLocation").val("");
@@ -375,7 +390,24 @@ export class PropertyinfoComponent implements OnInit {
       this.showError = true;
       return;
     }
-
+   let existingData:any = localStorage.getItem('propertyData');
+   existingData=JSON.parse(existingData);
+   if(existingData!=null && existingData!=undefined){
+    let tempPackage:any = localStorage.getItem("seletedPackage");
+    tempPackage = JSON.parse(tempPackage);
+    existingData.PackageId = tempPackage.id;
+    existingData.CountryId = this.countryId;
+    existingData.CityId = this.cityId;
+    existingData.DistrictId = this.districtId;
+    let temp: any = document.getElementById("searchLocation");
+    existingData.PropertyAddress = temp.value;
+    existingData.PropertyAddressArabic = localStorage.getItem("arabicAddress");
+    existingData.PropertyLat = localStorage.getItem("lat");
+    existingData.PropertyLong = localStorage.getItem("lng");
+    console.log(existingData);
+    localStorage.setItem('propertyData', JSON.stringify(existingData))
+   }
+   else{
     let tempPackage:any = localStorage.getItem("seletedPackage");
     tempPackage = JSON.parse(tempPackage);
     this.data.PackageId = tempPackage.id;
@@ -387,7 +419,9 @@ export class PropertyinfoComponent implements OnInit {
     this.data.PropertyAddressArabic = localStorage.getItem("arabicAddress");
     this.data.PropertyLat = localStorage.getItem("lat");
     this.data.PropertyLong = localStorage.getItem("lng");
+    console.log(this.data);
     localStorage.setItem('propertyData', JSON.stringify(this.data))
+   }
     this.route.navigate(['/add-property/listpropertyinfo'])
   }
   animate() {

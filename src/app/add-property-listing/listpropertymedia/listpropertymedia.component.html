@@ -24,8 +24,8 @@
                         <div ngClass="row">
                             <div ngClass="col-xl-8 col-lg-8 col-md-8 col-sm-12">
                                 <div class="new-proprty-details">
-                                    <h5 class="proname">{{priviousFormCheck.BuildingName}}</h5>
-                                    <address>{{priviousFormCheck.PropertyAddress}}</address>
+                                    <h5 class="proname">{{priviousFormCheck?.BuildingName}}</h5>
+                                    <address>{{priviousFormCheck?.PropertyAddress}}</address>
                                 </div>
                             </div>
                             <div ngClass="col-xl-4 col-lg-4 col-md-4 col-sm-12">
@@ -49,9 +49,9 @@
                                         <p>Current Package Name</p>
                                         <h6>{{packageData.name}}</h6>
                                     </div>
-                                    <div class="packaged-details-right">
+                                    <!-- <div class="packaged-details-right">
                                         <button class="upgrade-btn" (click)="upgradePackage()">Upgrade Now</button>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>

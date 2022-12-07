@@ -114,7 +114,7 @@
                                     </span>
                                     <span ngClass="area">
                                         <img src="{{squaremetersvg}}"
-                                            alt="">{{propertyDetailData.buildupArea | number}} {{propertyDetailData.unitType}}
+                                            alt="">{{propertyDetailData.plotSize == null || propertyDetailData.plotSize==0 ? propertyDetailData.buildupArea ==null || propertyDetailData.buildupArea==0 ?0:propertyDetailData.buildupArea.toLocaleString():propertyDetailData.plotSize.toLocaleString() }} {{propertyDetailData.unitType}}
                                     </span>
                                     <span ngClass="furnishing">
                                         <img src="{{furnishing}}" alt="">{{propertyDetailData.furnishingType}}
@@ -318,10 +318,10 @@
                                         <a ngClass="chat_btn" (click)="loadChat()"><img src="{{chat}}"> Chat with
                                             Landlord</a>
                                     </div>
-                                    <div ngClass="col-xl-6 col-lg-12 col-md-12 col-sm-12">
+                                    <!-- <div ngClass="col-xl-6 col-lg-12 col-md-12 col-sm-12">
                                         <a ngClass="videocall_btn" (click)="loadChat()"><img src="{{videocall}}"> Video
                                             Call</a>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>

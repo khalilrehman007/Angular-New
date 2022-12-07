@@ -367,6 +367,7 @@ export class SearchComponent implements OnInit {
         tempData.push(
           {
             buildupArea: element.buildupArea,
+            plotSize:element.plotSize,
             id: element.id, favorite: element.favorite, userImage: userImage, fullName: fullName, userId: userId,
             StartRentPrice: element.startRentPrice, EndRentPrice: element.endRentPrice, AvgRentPrice: element.avgRentPrice, RecentRentTxns: element.recentRentTxns,
             documents: documents, propertyFeatures: element.propertyFeatures, propertyType: element.propertyType,

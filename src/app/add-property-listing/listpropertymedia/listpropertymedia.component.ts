@@ -58,25 +58,27 @@ export class ListpropertymediaComponent implements OnInit {
   currentField: any;
   packageData: any;
   success: any = "";
-  mainImage:any = 0;
+  mainImage: any = 0;
   showSuccess: boolean = false;
 
   constructor(private api: AppService, private uploadService: FileUploadService, private route: Router) {
+    this.priviousFormCheck = localStorage.getItem('propertyData');
+    this.priviousFormCheck = JSON.parse(this.priviousFormCheck);
+    console.log("previous",this.priviousFormCheck)
+    if (this.priviousFormCheck == null || this.priviousFormCheck == undefined) {
+      console.log("previous",this.priviousFormCheck)
+      this.route.navigate(['/add-property/listingproperty'])
+    } else {
+      this.data = this.priviousFormCheck;
+      this.api.PropertyListingRentBuy({ "Lat": this.data.PropertyLat, "Long": this.data.PropertyLong }).subscribe((result: any) => {
+        this.propertyListingBuy = result.data.propertyListingBuy;
+        this.propertyListingRent = result.data.propertyListingRent;
+      })
+    }
     this.packageData = localStorage.getItem('seletedPackage');
     this.packageData = JSON.parse(this.packageData);
     console.log(this.packageData)
-    this.priviousFormCheck = localStorage.getItem('propertyData');
-    if (this.priviousFormCheck == '' || this.priviousFormCheck == null) {
-      this.priviousFormCheck = JSON.parse(this.priviousFormCheck);
-      this.route.navigate(['listingproperty'])
-    } else {
-      this.priviousFormCheck = JSON.parse(this.priviousFormCheck);
-      this.data = this.priviousFormCheck;
-    }
-    this.api.PropertyListingRentBuy({ "Lat": this.data.PropertyLat, "Long": this.data.PropertyLong }).subscribe((result: any) => {
-      this.propertyListingBuy = result.data.propertyListingBuy;
-      this.propertyListingRent = result.data.propertyListingRent;
-    })
+    
   }
   ngOnInit() {
     $(document).ready(function () {
@@ -244,10 +246,10 @@ export class ListpropertymediaComponent implements OnInit {
     let temp: any = [];
     let tempDoc: any = [];
     for (let i = 0; i < this.imageData.length; i++) {
-      if(this.mainImage == i) {
-        temp.push({ "FileId": i + 1, "ListingDocumentTypeId": "2", "FileName": this.imageData[i].FileName, "Extension": this.imageData[i].Extension, "isscreenshot":"true" });
+      if (this.mainImage == i) {
+        temp.push({ "FileId": i + 1, "ListingDocumentTypeId": "2", "FileName": this.imageData[i].FileName, "Extension": this.imageData[i].Extension, "isscreenshot": "true" });
       } else {
-        temp.push({ "FileId": i + 1, "ListingDocumentTypeId": "2", "FileName": this.imageData[i].FileName, "Extension": this.imageData[i].Extension, "isscreenshot":"false" });
+        temp.push({ "FileId": i + 1, "ListingDocumentTypeId": "2", "FileName": this.imageData[i].FileName, "Extension": this.imageData[i].Extension, "isscreenshot": "false" });
       }
       tempDoc.push(this.imageData[i].file);
     }
@@ -260,6 +262,18 @@ export class ListpropertymediaComponent implements OnInit {
     let userData: any = localStorage.getItem("user");
     this.data.ProfessionalTypeId = JSON.parse(userData).professionalTypeId;
     this.data.Documents = temp;
+    if (this.data.FittingType == "" || this.data.FittingType == undefined) {
+      this.data.FittingType = 0;
+    }
+    if (this.data.FurnishingType == "" || this.data.FurnishingType == undefined) {
+      this.data.FurnishingType = 0;
+    }
+    if (this.data.SecurityDeposit == "" || this.data.SecurityDeposit == undefined) {
+      this.data.SecurityDeposit = false;
+    }
+    if (this.data.BrokerageCharge == "" || this.data.BrokerageCharge == undefined) {
+      this.data.BrokerageCharge = false;
+    }
     this.documentData.append("PropertyListingRequest", JSON.stringify(this.data));
     for (let i = 0; i < temp.length; i++) {
       this.documentData.append(i + 1 + "_" + temp[i].FileName, tempDoc[i]);
@@ -278,6 +292,7 @@ export class ListpropertymediaComponent implements OnInit {
       },
       dataType: "json",
       success: (res) => {
+        console.log(res);
         if (res.message == "Property Listing request completed successfully") {
           localStorage.removeItem("propertyData");
           this.showLoader = true;
@@ -289,11 +304,17 @@ export class ListpropertymediaComponent implements OnInit {
               this.success = "Your package has been purchsed successfully";
               this.showSuccess = true;
             } else {
+              this.showLoader = false;
               this.error = "Something went wrong please try again";
               this.showError = true;
             }
           })
           this.route.navigate(['/add-property/listpropertypublish'])
+        }
+        else {
+          this.showLoader = false;
+          this.error = res.error;
+          this.showError = true;
         }
       },
       error: (err) => {
@@ -304,11 +325,11 @@ export class ListpropertymediaComponent implements OnInit {
     this.mainImage = 0;
     this.previews.splice(index, 1);
   }
-  changeMainImg(index:any) {
+  changeMainImg(index: any) {
     this.mainImage = index;
   }
   upgradePackage() {
-    localStorage.setItem("listingComingFrom","media");
+    localStorage.setItem("listingComingFrom", "media");
     this.route.navigate(["/payment-packages"])
   }
 }

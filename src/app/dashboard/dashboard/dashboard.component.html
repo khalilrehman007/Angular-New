@@ -1433,14 +1433,14 @@
                                                 <ul class="agent-details__property-list">
                                                     <li class="agent-details__property-list-item"
                                                         *ngFor="let listing of listingAll | paginate: { itemsPerPage: 10, currentPage: page, totalItems:totalLength }">
-                                                        <div class="row">
+                                                        <div class="row"  [routerLink]="['/property/detail']"
+                                                        [queryParams]="{id: listing.id}">
                                                             <div class="col-lg-2">
                                                                 <img src="{{listing.img}}" alt=""
                                                                     class="img-fluid agent-details__property-list-item-img">
                                                             </div>
                                                             <div class="col-lg-10">
-                                                                <div class="row" [routerLink]="['/property/detail']"
-                                                                    [queryParams]="{id: listing.id}">
+                                                                <div class="row">
                                                                     <div class="col-7">
                                                                         <a
                                                                             class="agent-details__property-list-item-link cursor-pointer">{{listing.propertyPrice |number }}
@@ -1563,7 +1563,8 @@
                                                 <ul class="agent-details__property-list">
                                                     <li class="agent-details__property-list-item"
                                                         *ngFor="let listing of listingAll | paginate: { itemsPerPage: 10, currentPage: page, totalItems:totalLength }">
-                                                        <div class="row">
+                                                        <div class="row"  [routerLink]="['/property/detail']"
+                                                        [queryParams]="{id: listing.id}">
                                                             <div class="col-lg-2">
                                                                 <img src="{{listing.img}}" alt=""
                                                                     class="img-fluid agent-details__property-list-item-img">
@@ -1692,7 +1693,8 @@
                                                 <ul class="agent-details__property-list">
                                                     <li class="agent-details__property-list-item"
                                                         *ngFor="let listing of listingAll | paginate: { itemsPerPage: 10, currentPage: page, totalItems:totalLength }">
-                                                        <div class="row">
+                                                        <div class="row"  [routerLink]="['/property/detail']"
+                                                        [queryParams]="{id: listing.id}">
                                                             <div class="col-lg-2">
                                                                 <img src="{{listing.img}}" alt=""
                                                                     class="img-fluid agent-details__property-list-item-img">

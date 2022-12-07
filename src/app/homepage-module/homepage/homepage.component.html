@@ -186,7 +186,7 @@
                                                             stroke-width="1.5" stroke-linecap="round"
                                                             stroke-linejoin="round" />
                                                     </svg>
-                                                    {{slide.plotSize == null || slide.plotSize==0 ? slide.buildupArea ==null || slide.buildupArea==0 ?0:slide.buildupArea:slide.plotSize }} Sqft
+                                                    {{slide.plotSize == null || slide.plotSize==0 ? slide.buildupArea ==null || slide.buildupArea==0 ?0:slide.buildupArea.toLocaleString():slide.plotSize.toLocaleString() }} Sqft
                                                 </span>
                                             </div>
                                         </div>

@@ -41,7 +41,8 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
   developerData: any = [];
   locatedNearData: any = [];
   rentTypes: any;
-  descLength: number = 320;
+  descLength: number = 1000;
+  titleLength: number = 150;
   room: any = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   featuresData: any = [];
   featuresFormData: any = [];
@@ -94,13 +95,14 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
   }
   disabled: any = [];
   constructor(private api: AppService, private service: AuthService, private route: Router, private notifyService: NotificationService) {
-    console.clear();
     let propertyData: any = localStorage.getItem("propertyData");
     this.propertyData = JSON.parse(propertyData);
+    if(this.propertyData!=null && this.propertyData!=undefined){
     this.api.PropertyListingRentBuy({ "Lat": this.propertyData.PropertyLat, "Long": this.propertyData.PropertyLong }).subscribe((result: any) => {
       this.propertyListingBuy = result.data.propertyListingBuy;
       this.propertyListingRent = result.data.propertyListingRent;
     });
+  }
     this.api.FittingTypes().subscribe((result: any) => {
       this.fittingType = result.data;
     });
@@ -154,12 +156,13 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
     })
   }
   loadOldData() {
+    console.log(localStorage.getItem("propertyData"));
     if (localStorage.getItem("propertyData")) {
       let temp: any = localStorage.getItem("propertyData");
       this.data = JSON.parse(temp);
 
-        this.developerData = this.data.PropertyDeveloperId;
-        this.listingTypeId = this.data.PropertyListingTypeId;
+        this.developerData = this.data.PropertyDeveloperId==undefined?0:this.data.PropertyDeveloperId;
+        this.listingTypeId = this.data.PropertyListingTypeId==undefined?0:this.data.PropertyListingTypeId;
         if (this.listingTypeId == 2) {
           this.api.PropertyTransactionTypes().subscribe((result: any) => {
             this.transactionType = result.data;
@@ -168,27 +171,31 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
             this.completionStatus = result.data;
           })
         }
+        if (this.listingTypeId!=undefined && this.listingTypeId!=null) {
         this.api.PropertyListingType(this.listingTypeId).subscribe((result: any) => {
           this.listingConditions = result.data;
           console.log(this.listingConditions)
         })
+      }
         // this.clearData();
 
-        if (this.data.PropertyListingLocatedNears.length>0) {
+        if (this.data?.PropertyListingLocatedNears?.length>0) {
           for (let i = 0; i < this.data.PropertyListingLocatedNears.length; i++) {
             this.locatedNearData.push(this.data.PropertyListingLocatedNears[i].LocatedNearId)
           }
           console.log(this.locatedNearData)
         }
-        if (this.data.PropertyFeatures.length>0) {
+        if (this.data?.PropertyFeatures?.length>0) {
           for (let i = 0; i < this.data.PropertyFeatures.length; i++) {
             this.featuresFormData.push(this.data.PropertyFeatures[i].PropertyFeatureId)
           }
           console.log(this.featuresFormData)
         }
 
-        this.showLoader = true;
+       
         this.categoryID = this.data.PropertyCategoryId;
+        if(this.data?.PropertyCategoryId!=undefined && this.data?.PropertyCategoryId!=null){
+          this.showLoader = true;
         this.api.LoadType(this.data.PropertyCategoryId).subscribe((result:any) => {
           this.propertyType = result.data;
           this.showLoader = false;
@@ -273,9 +280,9 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
             price: this.data.PropertyPrice
           })
         });
-      
+        }
     } else {
-      this.route.navigate(['/add-property/listingproperty'])
+      //this.route.navigate(['/add-property/listingproperty'])
     }
   }
   validateInput(e: any) {
@@ -571,13 +578,39 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
     }
   }
   validateDescLength(e: any) {
+    console.log("ee",e)
     let temp: any = this.SubmitForm.value.propertyDescription?.length;
-    if (temp <= 320) {
-      this.descLength = 320 - temp;
+    console.log("ee",temp)
+    if (temp <= 1000) {
+      this.descLength = 1000 - temp;
     } else {
       this.SubmitForm.patchValue({
-        propertyDescription: this.SubmitForm.value.propertyDescription?.toString().slice(0, 320)
+        propertyDescription: this.SubmitForm.value.propertyDescription?.toString().slice(0, 1000)
+        
       })
+      let temp: any = this.SubmitForm.value.propertyDescription?.length;
+      this.descLength = 1000 - temp;
+      if(this.descLength<0){
+        this.descLength=0;
+      }
+    }
+  }
+  validateTitleLength(e: any) {
+    console.log("ee",e)
+    let temp: any = this.SubmitForm.value.propertyTitle?.length;
+    console.log("ee",temp)
+    if (temp <= 150) {
+      this.titleLength = 150 - temp;
+    } else {
+      this.SubmitForm.patchValue({
+        propertyTitle: this.SubmitForm.value.propertyTitle?.toString().slice(0, 150)
+        
+      })
+      let temp: any = this.SubmitForm.value.propertyTitle?.length;
+      this.titleLength = 150 - temp;
+      if(this.titleLength<0){
+        this.titleLength=0;
+      }
     }
   }
   disablePaste(e: any) {
