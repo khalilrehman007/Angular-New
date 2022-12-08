@@ -353,6 +353,7 @@ export class PropertyDetailComponent implements OnInit,AfterViewInit {
       let occupancyStatus: any = '';
       if (jsonParsDate.propertyListing.occupancyStatus !== null && jsonParsDate.propertyListing.occupancyStatus.name !== null && jsonParsDate.propertyListing.occupancyStatus.name !== undefined) {
         occupancyStatus = jsonParsDate.propertyListing.occupancyStatus.name
+        
       }
       let propertyManage: any = '';
 
@@ -410,7 +411,7 @@ export class PropertyDetailComponent implements OnInit,AfterViewInit {
         this.propertyDetailData.favorite = (jsonParsDate.propertyListing.favorite !== undefined) ? jsonParsDate.propertyListing.favorite : ''
         this.propertyDetailData.propertyListingTypeId = (jsonParsDate.propertyListing.propertyListingTypeId !== undefined) ? jsonParsDate.propertyListing.propertyListingTypeId : 0
         this.propertyDetailData.propertyCode = (jsonParsDate.propertyListing.propertyCode !== undefined) ? jsonParsDate.propertyListing.propertyCode : 0
-
+        this.propertyDetailData.occupancyStatus =occupancyStatus;
         // share url concatination
 
         this.shareURL += this.propertyDetailData.id;

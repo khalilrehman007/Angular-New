@@ -80,7 +80,7 @@
                 </div>
                 <div class="row pb-4" *ngIf="listingTypeId != 0">
                   <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                    <h6 class="h6-design">Building Type</h6>
+                    <h6 class="h6-design">Property Category</h6>
                     <div class="listing-links d-flex justify-content-between category-input max-240">
                       <div class="checkbox-design w-100 position-relative me-1" (click)="getCategory(1)">
                         <input type="radio" value="1" name="property-category" *ngIf="categoryID == 1" checked />
@@ -226,7 +226,7 @@
                                 <mat-label>Select Number Of Bedrooms</mat-label>
                                 <mat-select [disableOptionCentering]="true" [(value)]="data.BedRooms"
                                   (selectionChange)="getBedroom($event)">
-                                  <mat-option *ngFor="let item of room" value="{{ item }}">
+                                  <mat-option *ngFor="let item of room" [value]="item">
                                     {{ item }}
                                     <span *ngIf="item == 0">(Studio)</span>
                                   </mat-option>
@@ -246,7 +246,7 @@
                                 <mat-label>Select Number Of Bathrooms</mat-label>
                                 <mat-select [disableOptionCentering]="true" [(value)]="data.BathRooms"
                                   (selectionChange)="getBathroom($event)">
-                                  <mat-option *ngFor="let item of room" value="{{ item }}">
+                                  <mat-option *ngFor="let item of room" [value]="item">
                                     {{ item }}
                                   </mat-option>
                                 </mat-select>
@@ -435,7 +435,7 @@
                             <mat-label>Property Description</mat-label>
                             <textarea formControlName="propertyDescription" matInput
                               (onpaste)="validateDescLength($event)" placeholder="Eg. 30"
-                              (input)="validateDescLength($event)"></textarea>
+                              (input)="validateDescLength($event)" style="white-space: pre-line;white-space: pre-wrap;"></textarea>
                           </mat-form-field>
                           <p class="textraea-hint text-right">
                             {{ descLength }} words left
@@ -444,7 +444,7 @@
                       </div>
 
                       <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4"
-                        *ngIf="listingConditions.hasOccupancyStatus">
+                        *ngIf="listingConditions.hasOccupancyStatus && selectedPropertyType.hasListingOccupancyStatus">
                         <h6 class="h6-design">Occupancy Status</h6>
                         <div class="checkbox-flex-box two-column button-same-select max-240 occupanycy-input">
                           <div class="checkbox-design position-relative" *ngFor="let item of occupancy" (click)="
@@ -461,7 +461,7 @@
                         </div>
                       </div>
                       <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4"
-                        *ngIf="listingConditions.hasTransactionType">
+                        *ngIf="listingConditions.hasTransactionType && selectedPropertyType.hasListingTransactionType">
                         <h6 class="h6-design">Transaction Type</h6>
                         <div class="checkbox-flex-box two-column button-same-select max-240 transaction-type-input">
                           <div class="checkbox-design position-relative" *ngFor="let item of transactionType"
@@ -477,7 +477,7 @@
                         </div>
                       </div>
                       <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pb-4"
-                        *ngIf="listingConditions.hasCompletionStatus">
+                        *ngIf="listingConditions.hasCompletionStatus && selectedPropertyType.hasListingCompletionStatus">
                         <h6 class="h6-design">Completion Status</h6>
                         <div class="checkbox-flex-box two-column button-same-select max-240 completion-status-input">
                           <div class="checkbox-design position-relative" *ngFor="let item of completionStatus"
@@ -564,7 +564,7 @@
                                 <mat-label> Select Near Locations</mat-label>
                                 <mat-select [disableOptionCentering]="true" multiple [(value)]="locatedNearData"
                                   (selectionChange)="getLocatedNear($event)">
-                                  <mat-option *ngFor="let item of locatedNear" value="{{ item.id }}">{{ item.name }}
+                                  <mat-option *ngFor="let item of locatedNear" [value]="item.id">{{ item.name }}
                                   </mat-option>
                                 </mat-select>
                               </mat-form-field>
@@ -653,17 +653,11 @@
                         <div ngClass="select-design select2-design select2-design-full">
                           <h6 class="h6-design">Select Features</h6>
                           <div class="features-select-wrapper">
-                            <!-- <select class="select2 features-select" multiple="multiple">
-                                                            <option *ngFor="let item of featuresData"
-                                                                [value]="item.propertyFeature.id"
-                                                                class="features-item-{{item.propertyFeatureId}}">
-                                                                {{item.propertyFeature.featureName}}</option>
-                                                        </select> -->
                             <mat-form-field appearance="fill">
                               <mat-label> Select Features</mat-label>
                               <mat-select [disableOptionCentering]="true" multiple [(value)]="featuresFormData"
                                 (selectionChange)="getFeaturesData($event)">
-                                <mat-option *ngFor="let item of featuresData" value="{{ item.propertyFeatureId }}">
+                                <mat-option *ngFor="let item of featuresData" [value]="item.propertyFeatureId">
                                   {{
                                   item.propertyFeature.featureName
                                   }}</mat-option>

@@ -233,6 +233,7 @@ export class AppService {
   }
 
   DisplayPropertyListing(data: any) {
+    console.log(data);
     return this.http.post(this.apiurl + 'DisplayPropertyListing', data);
   }
   LoadSearchListing(data: any) {
