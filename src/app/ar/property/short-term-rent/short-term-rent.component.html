@@ -84,14 +84,14 @@
                                                 <div ngClass="property-price_detals cursor-pointer"
                                                     [routerLink]="['/ar/property/detail']"
                                                     [queryParams]="{id: list.id}">
-                                                    <h4>{{list.propertyPrice}} {{list.currencyAr}} <small
+                                                    <h4>{{list.propertyPrice | number}} {{list.currencyAr}} <small
                                                             *ngIf="list.rentType != ''">/{{list.rentType}}</small></h4>
                                                     <div ngClass="property-tags d-flex flex-wrap">
                                                         <span ngClass="tags-bg-grey">الوساطة:
-                                                            {{list.brokerageChargePrice}}
+                                                            {{list.brokerageChargePrice | number}}
                                                             {{list.currencyAr}}</span>
                                                         <span ngClass="tags-bg-grey">مبلغ التأمين:
-                                                            {{list.securityDepositPrice}}
+                                                            {{list.securityDepositPrice | number}}
                                                             {{list.currencyAr}}</span>
                                                     </div>
                                                 </div>
@@ -175,12 +175,12 @@
                                                     </div>
                                                     <div ngClass="pro-range-whie-box">
                                                         <p>نطاق سعر الإيجار</p>
-                                                        <h6>{{list.StartRentPrice}} {{list.currency}} -
-                                                            {{list.EndRentPrice}} {{list.currency}}</h6>
+                                                        <h6>{{list.StartRentPrice | number}} {{list.currency}} -
+                                                            {{list.EndRentPrice | number}} {{list.currency}}</h6>
                                                     </div>
                                                     <div ngClass="pro-range-whie-box">
                                                         <p>متوسط تأجير/ قدم مربع</p>
-                                                        <h6>{{list.AvgRentPrice}} {{list.currency}}</h6>
+                                                        <h6>{{list.AvgRentPrice | number}} {{list.currency}}</h6>
                                                     </div>
                                                 </div>
                                             </div>
