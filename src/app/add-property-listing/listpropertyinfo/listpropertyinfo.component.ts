@@ -747,7 +747,7 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
       this.error = "Enter Property Age";
       this.showError = true;
       return;
-    }else if (this.SubmitForm.get('PropertyAge')?.hasError('pattern')) {
+    }else if (this.SubmitForm.get('PropertyAge')?.hasError('pattern') && this.listingConditions.hasPropertyAge) {
       this.currentField =  "property-age-input";
       this.error = "Property Age accepts numbers only";
       this.showError = true;
@@ -759,7 +759,7 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
       this.showError = true;
       return;
     }  
-    else if (this.selectedPropertyType.hasListingBuilding && this.SubmitForm.value.BuildingName == "") {
+    else if (this.selectedPropertyType.hasListingBuilding && this.SubmitForm.value.BuildingName == "" && this.selectedPropertyType.hasListingBuilding) {
       this.currentField = "building-name-input";
       this.error = "Enter Building Name";
       this.showError = true;
@@ -794,7 +794,7 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
       this.error = "Enter Carpet Area";
       this.showError = true;
       return;
-    }else if (this.SubmitForm.get('carpetArea')?.hasError('pattern')) {
+    }else if (this.SubmitForm.get('carpetArea')?.hasError('pattern') && this.selectedPropertyType.hasListingCarpetArea) {
       this.currentField = "carpet-input";
       this.error = "Carpet area accepts numbers only";
       this.showError = true;
@@ -805,7 +805,7 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
       this.error = "Enter BuildUp Area";
       this.showError = true;
       return;
-    }else if (this.SubmitForm.get('buildupArea')?.hasError('pattern')) {
+    }else if (this.SubmitForm.get('buildupArea')?.hasError('pattern') && this.selectedPropertyType.hasListingBuildUpArea) {
       this.currentField = "buildup-input";
       this.error = "BuildUp area accepts numbers only";
       this.showError = true;
@@ -816,13 +816,13 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
       this.error = "Enter Size";
       this.showError = true;
       return;
-    }else if (this.SubmitForm.get('size')?.hasError('pattern')) {
+    }else if (this.SubmitForm.get('size')?.hasError('pattern') && this.selectedPropertyType.hasListingPlotSize) {
       this.currentField = "size-input";
       this.error = "Size accepts numbers only";
       this.showError = true;
       return;
     }
-     else if (this.listingConditions.hasOccupancyStatus && !this.data.OccupancyStatusId) {
+     else if (this.listingConditions.hasOccupancyStatus && this.selectedPropertyType.hasListingOccupancyStatus && !this.data.OccupancyStatusId) {
       this.currentField = "occupanycy-input";
       this.error = "Select Occupancy Status";
       this.showError = true;
@@ -963,6 +963,11 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
       this.data.BuildupArea = this.SubmitForm.value.buildupArea;
     } else {
       this.data.BuildupArea = 0;
+    }
+    if (this.selectedPropertyType.hasListingUnitNumber) {
+      this.data.UnitNumber = this.SubmitForm.value.UnitNo;
+    } else {
+      this.data.UnitNumber = "";
     }
      let temp: any = [];
     // if (this.listingTypeId == 1) {

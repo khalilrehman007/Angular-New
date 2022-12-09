@@ -105,6 +105,7 @@ export class PropertyinfoComponent implements OnInit {
     this.router.params.subscribe((params: any) => {
       const isEmpty = Object.keys(params).length === 0
       if (isEmpty == false) {
+        this.showLoader=true;
         this.routeId = params.id;
         this.service.DisplayPropertyListing({ "PropertyListingId": this.routeId, "LoginUserId": this.userData.id }).subscribe((result: any) => {
           if (result.data.user.id != this.userData.id) {
@@ -113,7 +114,9 @@ export class PropertyinfoComponent implements OnInit {
             this.editListingData = result.data.propertyListing;
             this.loadDataForEdit(this.editListingData);
           }
+          this.showLoader=false;
         })
+        this.showLoader=false;
       }
     }
     );
