@@ -24,7 +24,7 @@
                                     <img  *ngIf="viewPropertyOne.documents.length == 0 || viewPropertyOne.documents[0].fileUrl == null" src="assets/images/placeholder.png">
                                 </div>
                                 <div ngClass="com-cntnt cursor-pointer" >
-                                    <h4> {{viewPropertyOne.propertyPrice}} {{viewPropertyOne.currency}}  
+                                    <h4> {{viewPropertyOne.propertyPrice | number}} {{viewPropertyOne.currency}}  
                                         <small *ngIf="viewPropertyOne.rentType != ''">/{{viewPropertyOne.rentType?.name?viewPropertyOne.rentType?.name:viewPropertyOne.rentType}}</small>
                                     </h4>
                                     <h5 >{{viewPropertyOne.propertyTitle}}</h5>
@@ -50,7 +50,7 @@
                                     <img  *ngIf="viewPropertyTwo.documents.length == 0 || viewPropertyTwo.documents[0].fileUrl == null" src="assets/images/placeholder.png">
                                 </div>
                                 <div ngClass="com-cntnt cursor-pointer" >
-                                    <h4> {{viewPropertyTwo.propertyPrice}} {{viewPropertyTwo.currency}}  
+                                    <h4> {{viewPropertyTwo.propertyPrice | number}} {{viewPropertyTwo.currency}}  
                                         <small *ngIf="viewPropertyTwo.rentType != ''">/{{viewPropertyTwo.rentType?.name?viewPropertyTwo.rentType?.name:viewPropertyTwo.rentType}}</small>
                                     </h4>
                                     <h5>{{viewPropertyTwo.propertyTitle}}</h5>   
@@ -77,7 +77,7 @@
                                 </div>
                                 <div ngClass="com-cntnt cursor-pointer" >
                                     <!-- viewPropertyThree.currency?.name?viewPropertyThree.currency?.name:viewPropertyThree.currency -->
-                                    <h4> {{viewPropertyThree.propertyPrice}} {{viewPropertyThree.currency}}
+                                    <h4> {{viewPropertyThree.propertyPrice | number}} {{viewPropertyThree.currency}}
                                         <small *ngIf="viewPropertyThree.rentType != ''">/{{viewPropertyThree.rentType?.name?viewPropertyThree.rentType?.name:viewPropertyThree.rentType}}</small>
                                     </h4>
                                     <h5>{{viewPropertyThree.propertyTitle}}</h5>   
@@ -117,7 +117,7 @@
                                             </div>
                                             <div class="property-pcompare-cntnt">
                                                 <h4>
-                                                    <span class="property_name_span">{{pc[0].propertyPrice}}</span>
+                                                    <span class="property_name_span">{{pc[0].propertyPrice | number}}</span>
                                                     <span class="property_currency_span" *ngIf="pc[0].country && pc[0].country.currency">{{pc[0].country.currency}}</span>
                                                     <span class="term_badge" *ngIf="pc[0].rentType && pc[0].rentType.name">/ {{pc[0].rentType.name}}</span>
                                                 </h4>
@@ -138,7 +138,7 @@
                                             </div>
                                             <div class="property-pcompare-cntnt">
                                                 <h4>
-                                                    <span class="property_name_span">{{pc[1].propertyPrice}}</span>
+                                                    <span class="property_name_span">{{pc[1].propertyPrice | number}}</span>
                                                     <span class="property_currency_span" *ngIf="pc[1].country && pc[1].country.currency">{{pc[1].country.currency}}</span>
                                                     <span class="term_badge" *ngIf="pc[1].rentType && pc[1].rentType.name">/ {{pc[1].rentType.name}}</span>
                                                 </h4>
@@ -159,7 +159,7 @@
                                             </div>
                                             <div class="property-pcompare-cntnt">
                                                 <h4>
-                                                    <span class="property_name_span">{{pc[2].propertyPrice}}</span>
+                                                    <span class="property_name_span">{{pc[2].propertyPrice | number}}</span>
                                                     <span class="property_currency_span" *ngIf="pc[2].country && pc[2].country.currency">{{pc[2].country.currency}}</span>
                                                     <span class="term_badge" *ngIf="pc[2].rentType && pc[2].rentType.name">/ {{pc[2].rentType.name}}</span>
                                                 </h4>
@@ -217,7 +217,7 @@
                                         <img  *ngIf="property.documents.length == 0 || property.documents[0].fileUrl == null" src="assets/images/placeholder.png">
                                     </div>
                                     <div ngClass="com-cntnt cursor-pointer" [routerLink]="['/ar/property/detail']" [queryParams]="{id: property.id}">
-                                        <h4> {{property.propertyPrice}} {{property.country.currencyAr}}
+                                        <h4> {{property.propertyPrice | number}} {{property.country.currencyAr}}
                                             <small>/{{property.rentType.nameAr}}</small>
                                         </h4>
                                         <h5>{{property.propertyTitle}}</h5>
