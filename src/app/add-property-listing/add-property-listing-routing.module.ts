@@ -14,7 +14,7 @@ const routes: Routes = [
   {path: "listpropertyinfo", component: ListpropertyinfoComponent,canActivate: [AuthGuard]},
   {path: "listpropertymedia", component: ListpropertymediaComponent,canActivate: [AuthGuard]},
   {path: "listpropertypublish", component: ListpropertypublishComponent,canActivate: [AuthGuard]},
-  {path: "edit/:id/listingproperty", component: EditComponent,canActivate: [AuthGuard]},
+  {path: "edit/:id/listingproperty", component: PropertyinfoComponent,canActivate: [AuthGuard]},
   {path: "edit/:id/listpropertyinfo", component: EditListInfoComponent,canActivate: [AuthGuard]},
 ];
 

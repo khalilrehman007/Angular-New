@@ -74,11 +74,26 @@ export class ListpropertymediaComponent implements OnInit {
         this.propertyListingBuy = result.data.propertyListingBuy;
         this.propertyListingRent = result.data.propertyListingRent;
       })
+      this.loadPreviousData();
     }
     this.packageData = localStorage.getItem('seletedPackage');
     this.packageData = JSON.parse(this.packageData);
     console.log(this.packageData)
     
+  }
+  loadPreviousData(){
+    console.log("media old data",this.data);
+    if(this.data?.Documents?.length>0){
+      this.data?.Documents.forEach((x:any)=>{
+        this.previews.push(environment.apiUrl+x.FileUrl)
+      })
+    }
+    if(this.data?.TourUrl!=null || this.data?.TourUrl!=undefined){
+    this.SubmitForm.controls['videoLink'].patchValue(this.data.TourUrl)
+    }
+    if(this.data?.YoutubeUrl!=null || this.data?.YoutubeUrl!=undefined){
+      this.SubmitForm.controls['youtubeUrl'].patchValue(this.data.YoutubeUrl)
+      }
   }
   ngOnInit() {
     $(document).ready(function () {
@@ -165,7 +180,7 @@ export class ListpropertymediaComponent implements OnInit {
           reader.onload = (e: any) => {
             this.previews.push(e.target.result);
           };
-
+          console.log(this.previews);
           reader.readAsDataURL(this.selectedFiles[i]);
         }
       }
@@ -224,6 +239,7 @@ export class ListpropertymediaComponent implements OnInit {
   }
   SubmitForm = new FormGroup({
     videoLink: new FormControl(""),
+    youtubeUrl: new FormControl(""),
   });
   get validate() {
     return this.SubmitForm.controls;
@@ -234,7 +250,7 @@ export class ListpropertymediaComponent implements OnInit {
   videoCheck: boolean = false;
   onSubmit() {
     // if (this.imageData.length < this.packageData.numberOfPhoto) {
-    if (this.imageData.length < 1) {
+    if (this.imageData.length < 1 && this.previews.length<1) {
       this.currentField = "title-deed-image-input";
       this.error = "Plese Upload " + this.packageData.numberOfPhoto + " Photos";
       this.showError = true;
@@ -242,7 +258,8 @@ export class ListpropertymediaComponent implements OnInit {
     }
     this.showLoader = true;
     this.btnText = "Please Wait...";
-    this.data.VideoLink = this.SubmitForm.value.videoLink;
+    this.data.TourUrl = this.SubmitForm.value.videoLink;
+    this.data.YoutubeUrl = this.SubmitForm.value.youtubeUrl;
     let temp: any = [];
     let tempDoc: any = [];
     for (let i = 0; i < this.imageData.length; i++) {
@@ -261,7 +278,13 @@ export class ListpropertymediaComponent implements OnInit {
     start = temp.length;
     let userData: any = localStorage.getItem("user");
     this.data.ProfessionalTypeId = JSON.parse(userData).professionalTypeId;
-    this.data.Documents = temp;
+   if(this.data?.Documents?.length>0){
+    this.data.Documents = this.data.Documents.concat(temp);
+   }
+   else{
+    this.data.Documents=temp;
+   }
+ 
     if (this.data.FittingType == "" || this.data.FittingType == undefined) {
       this.data.FittingType = 0;
     }
@@ -274,6 +297,7 @@ export class ListpropertymediaComponent implements OnInit {
     if (this.data.BrokerageCharge == "" || this.data.BrokerageCharge == undefined) {
       this.data.BrokerageCharge = false;
     }
+    console.log("Final Object",this.data);
     this.documentData.append("PropertyListingRequest", JSON.stringify(this.data));
     for (let i = 0; i < temp.length; i++) {
       this.documentData.append(i + 1 + "_" + temp[i].FileName, tempDoc[i]);
@@ -281,6 +305,7 @@ export class ListpropertymediaComponent implements OnInit {
     let token: any = localStorage.getItem("token");
     token = JSON.parse(token);
     console.log(this.data);
+    if(this.data?.id==null || this.data?.id==undefined){
     $.ajax({
       url: `${environment.apiUrl}api/AddPropertyListing`,
       method: "post",
@@ -293,7 +318,7 @@ export class ListpropertymediaComponent implements OnInit {
       dataType: "json",
       success: (res) => {
         console.log(res);
-        if (res.message == "Property Listing request completed successfully") {
+        if (res.result == 1) {
           localStorage.removeItem("propertyData");
           this.showLoader = true;
           let temp: any = localStorage.getItem("user");
@@ -321,9 +346,53 @@ export class ListpropertymediaComponent implements OnInit {
       }
     });
   }
+  else{
+    $.ajax({
+      url: `${environment.apiUrl}api/UpdatePropertyListing`,
+      method: "post",
+      contentType: false,
+      processData: false,
+      data: this.documentData,
+      headers: {
+        "Authorization": 'bearer ' + token
+      },
+      dataType: "json",
+      success: (res) => {
+        console.log(res);
+        if (res.result==1) {
+          localStorage.removeItem("propertyData");
+          this.showLoader = true;
+          let temp: any = localStorage.getItem("user");
+          temp = JSON.parse(temp);
+          this.api.PurchasePackage({ "UserId": temp.id, "PackageId": this.packageData.id }).subscribe((result: any) => {
+            if (result.message == "Package has been purchased") {
+              this.showLoader = false;
+              this.success = "Your package has been purchsed successfully";
+              this.showSuccess = true;
+            } else {
+              this.showLoader = false;
+              this.error = "Something went wrong please try again";
+              this.showError = true;
+            }
+          })
+          this.route.navigate(['/add-property/listpropertypublish'])
+        }
+        else {
+          this.showLoader = false;
+          this.error = res.error;
+          this.showError = true;
+        }
+      },
+      error: (err) => {
+      }
+    });
+  }
+  }
+
   removeImage(index: any) {
     this.mainImage = 0;
     this.previews.splice(index, 1);
+    this.data?.Documents.splice(index, 1);
   }
   changeMainImg(index: any) {
     this.mainImage = index;

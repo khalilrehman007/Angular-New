@@ -228,12 +228,13 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
     })
   }
   loadOldData() {
-    console.log(localStorage.getItem("propertyData"));
+  
     if (localStorage.getItem("propertyData")) {
       let temp: any = localStorage.getItem("propertyData");
       this.data = JSON.parse(temp);
 
-        this.developerData = this.data.PropertyDeveloperId==undefined?0:this.data.PropertyDeveloperId;
+        this.developerData = this.data?.PropertyDeveloperId==undefined || this.data?.PropertyDeveloperId==null || this.data?.PropertyDeveloperId==""?0:this.data.PropertyDeveloperId;
+       console.log("developer Id",this.developerData);
         this.SubmitForm.patchValue({
           PropertyDeveloperId:this.developerData
         })
@@ -929,7 +930,6 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
       return;
     }
     this.data.PropertyAge = this.SubmitForm.value.PropertyAge;
-    this.data.BuildingName = this.SubmitForm.value.BuildingName;
     let userData: any = localStorage.getItem("user");
     userData = JSON.parse(userData);
     if (this.data.RentTypeId == 1) {
@@ -947,10 +947,10 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
       this.data.PlotSize = this.SubmitForm.value.size;
     }
     if (this.selectedPropertyType.hasListingDeveloper) {
-      this.data.PlotSize = this.SubmitForm.value.size;
+      this.data.PropertyDeveloperId = this.SubmitForm.value.PropertyDeveloperId;
     }
     if (this.selectedPropertyType.hasListingBuilding) {
-      this.data.PropertyDeveloperId = this.SubmitForm.value.PropertyDeveloperId;
+      this.data.BuildingName = this.SubmitForm.value.BuildingName;
     }
     this.data.PropertyListingTypeId = this.listingTypeId;
     this.data.PropertyCategoryId = this.categoryID;
@@ -998,8 +998,9 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
       temp.push({ PropertyFeatureId: this.featuresFormData[i] });
     }
     this.data.PropertyFeatures = temp;
+    console.log("Info Data", this.data);
     localStorage.setItem('propertyData', JSON.stringify(this.data));
-    localStorage.setItem('listingData', JSON.stringify(this.data));
+    //localStorage.setItem('listingData', JSON.stringify(this.data));
     this.route.navigate(['/add-property/listpropertymedia'])
   }
 }
