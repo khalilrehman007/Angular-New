@@ -52,26 +52,26 @@ export class HomepageComponent implements OnInit, AfterViewInit {
   oldData1() {
     this.service.LatestPropertiesListingResidential({ "CountryId": this.countryData.id, "UserId": this.userId, "propertyListingTypeId": "1" }).subscribe((response: any) => {
       this.dynamicSlides1 = response.data;
-      console.log("1",this.dynamicSlides1)
+      console.log("1", this.dynamicSlides1)
     });
   }
   newData1() {
     this.service.LatestPropertiesListingResidential({ "CountryId": this.countryData.id, "UserId": this.userId, "propertyListingTypeId": "2" }).subscribe((response: any) => {
       this.dynamicSlides1 = response.data;
-      console.log("1",this.dynamicSlides1)
+      console.log("1", this.dynamicSlides1)
     });
   }
 
   oldData2() {
     this.service.LatestPropertiesListingCommercial({ "CountryId": this.countryData.id, "UserId": this.userId, "propertyListingTypeId": "1" }).subscribe((response: any) => {
       this.dynamicSlides2 = response.data;
-      console.log("dynamic",this.dynamicSlides2);
+      console.log("dynamic", this.dynamicSlides2);
     });
   }
   newData2() {
     this.service.LatestPropertiesListingCommercial({ "CountryId": this.countryData.id, "UserId": this.userId, "propertyListingTypeId": "2" }).subscribe((response: any) => {
       this.dynamicSlides2 = response.data;
-      console.log("dynamic",this.dynamicSlides2);
+      console.log("dynamic", this.dynamicSlides2);
     });
   }
   tenantsslide = [
@@ -236,7 +236,14 @@ export class HomepageComponent implements OnInit, AfterViewInit {
   userId: any;
   explorePlaces: any = [];
   trendTitle: any = [];
-  constructor(private cookie: CookieService, private authService: AuthService, private service: AppService, private route: Router, private notifyService: NotificationService,private modalService: NgbModal) {
+  constructor(private cookie: CookieService, private authService: AuthService, private service: AppService, private route: Router, private notifyService: NotificationService, private modalService: NgbModal) {
+    localStorage.removeItem("bounds");
+    localStorage.removeItem("currency");
+    localStorage.removeItem("arabicAddress");
+    localStorage.removeItem("propertyData");
+    localStorage.removeItem("lng");
+    localStorage.removeItem("address");
+    localStorage.removeItem("lat");
     $(window).scrollTop(0);
     this.LoadPropertyCategories()
     this.getLoadFeedback();
