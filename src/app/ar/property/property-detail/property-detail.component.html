@@ -16,7 +16,7 @@
                             <h4>{{propertyDetailData.buildingName}}</h4>
                             <div class="d-flex align-items-center property_details-new-header">
                             <div ngClass="property-price_detals">
-                            <h4>{{propertyDetailData.propertyPrice}}
+                            <h4>{{propertyDetailData.propertyPrice | number}}
                                 {{propertyDetailData.currency}}<small *ngIf="propertyDetailData.rentType != ''">/ {{propertyDetailData.rentType}}</small></h4>
                             </div>
                             <div ngClass="last-updated-details">
@@ -376,7 +376,7 @@
                                 <div ngClass="property_footer-details d-flex justify-content-spacebw">
                                     <div ngClass="property_pricing">
                                         <span class="currency_type">{{slide.currency}}</span>
-                                        <span class="price_value">{{ slide.price }}</span>
+                                        <span class="price_value">{{ slide.price | number}}</span>
                                         <span *ngIf="slide.rentType != null" class="rent_type">{{slide.rentType}}</span>
                                     </div>
                                     <button class="property_det-btn">Details 
