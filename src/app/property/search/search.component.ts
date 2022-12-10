@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 // import { PropertyfilterComponent } from '../../propertyfilter/propertyfilter.component';
 import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
 import { AppService } from "../../service/app.service";
@@ -7,13 +7,14 @@ import { NotificationService } from "../../service/notification.service";
 import { AuthService } from "../../service/auth.service";
 import { JsonpInterceptor } from "@angular/common/http";
 import { environment } from 'src/environments/environment';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss']
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent implements OnInit,AfterViewInit {
   videotiour = '../../../assets/images/icons/video-tour.svg'
   lsitedby = '../../../assets/images/icons/listed-by.svg'
   ovverified = '../../../assets/images/icons/ov-verified.svg'
@@ -61,6 +62,7 @@ export class SearchComponent implements OnInit {
   showAvgSqft: boolean = false;
   showDIDiv: boolean = true;
   type: any;
+  countryData:any={};
   PropertyCategoryId: any;
   RentTypeId: any;
   PropertyListingTypeId: any;
@@ -93,7 +95,7 @@ export class SearchComponent implements OnInit {
   halfList: any = 0;
   currency: any = "";
   listingImage: any;
-  constructor(private authService: AuthService, private notifyService: NotificationService, private activeRoute: ActivatedRoute, private service: AppService, private api: AppService, private route: Router, private modalService: NgbModal) {
+  constructor(private cookie: CookieService,private authService: AuthService, private notifyService: NotificationService, private activeRoute: ActivatedRoute, private service: AppService, private api: AppService, private route: Router, private modalService: NgbModal) {
     $(window).scrollTop(0);
     this.route.events.subscribe((e: any) => {
       if (e instanceof NavigationEnd) {
@@ -165,6 +167,16 @@ export class SearchComponent implements OnInit {
         })
       }
     });
+  }
+
+  ngAfterViewInit(): void {
+    let a = setInterval(() => {
+      if (this.cookie.get("countryData")) {
+        this.countryData = JSON.parse(this.cookie.get("countryData"));
+        console.log("xx",this.countryData)
+        clearInterval(a);
+      }
+    })
   }
 
   onTrendClick(typeID: any, titleID: any) {

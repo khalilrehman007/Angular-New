@@ -18,10 +18,9 @@
                             </div>
                         </div>
                         <div ngClass="heading-apragraph-design mt-4">
-                            <h2>{{selectedPropertyTypeName}} {{headingPropertyType}} for {{type}} in UAE</h2>
-                            <p>Showing {{totalRecord}} {{headingPropertyType}} for {{type}} in UAE</p>
-                            <p>Properties For {{type}} in UAE. Verified Listings.
-                            </p>
+                            <h2>{{selectedPropertyTypeName}} {{headingPropertyType}} for {{type}} in {{countryData.acronym}}</h2>
+                            <p>Showing {{totalRecord}} {{headingPropertyType}} for {{type}} in {{countryData.acronym}}</p>
+                            <!-- <p>Properties For {{type}} in {{countryData.acronym}}. Verified Listings.</p> -->
                         </div>
                         <div ngClass="properties-filtr-values d-flex justify-content-spacebw">
                             <div ngClass="properties-filtr-values-left d-flex justify-content-spacebw">
@@ -161,8 +160,11 @@
                                                             <img src="{{bathsvg}}" alt="">{{list.bathrooms}} Bath
                                                         </span>
                                                         <span ngClass="area">
-                                                            <img src="{{squaremetersvg}}" alt="">{{list.plotSize == null || list.plotSize==0 ? list.buildupArea ==null || list.buildupArea==0 ?0:list.buildupArea.toLocaleString():list.plotSize.toLocaleString() }}
-                                                            sqft
+                                                            <img src="{{squaremetersvg}}" alt="">  {{list.plotSize == null ||
+                                                                list.plotSize==0 ? list.buildupArea ==null ||
+                                                                list.buildupArea==0
+                                                                ?0:list.buildupArea.toLocaleString():list.plotSize.toLocaleString()
+                                                                }} {{countryData.unitType}}
                                                         </span>
                                                         <span ngClass="furnishing" *ngIf="list.propertyType?.hasFurnishing">
                                                             <img src="{{furnishing}}" alt="">{{list.furnishingType}}

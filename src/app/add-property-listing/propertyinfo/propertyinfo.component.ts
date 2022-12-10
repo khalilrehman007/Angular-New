@@ -115,8 +115,9 @@ export class PropertyinfoComponent implements OnInit {
             this.loadDataForEdit(this.editListingData);
           }
           this.showLoader=false;
+        },(error:any)=>{
+          this.showLoader=false;
         })
-        this.showLoader=false;
       }
     }
     );
@@ -228,7 +229,6 @@ export class PropertyinfoComponent implements OnInit {
       strictBounds: true,
     };
     if (this.routeId == 0) {
-      console.log("Oldsdata");
       this.loadSavedData();
     }
     
@@ -493,7 +493,6 @@ export class PropertyinfoComponent implements OnInit {
             for (let district of temp.data) {
               this.district.push({ viewValue: district.name, value: district.id });
             }
-            this.showLoader = false;
             this.filteredDistricts.next(this.district)
           }
         });

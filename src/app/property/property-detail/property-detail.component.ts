@@ -60,6 +60,9 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
   tagicn = '../../../assets/images/icons/tag-icn.svg'
   homeLoc = '../../../assets/images/home-location.svg'
   user: any
+  userPhoneNumber:string="";
+  userWhatsAppNumber:string="";
+  whatsAppShareUrl:any="";
   baseUrl = environment.apiUrl;
   status: boolean = true;
   status1: boolean = false;
@@ -316,17 +319,23 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
   getloadDashboardData() {
     this.showLoader = true;
     this.service.DisplayPropertyListing({ "PropertyListingId": this.propertyId, "LoginUserId": this.userId }).subscribe((result: any) => {
+      console.log(result)
+      if(result.result==1)
+      {
       this.propertyDetails = result.data.propertyListing;
       this.allData = result.data;
       let temp: any = result;
+      this.shareURL += this.propertyDetails.id;
       this.userData = temp.data.user;
+      this.userPhoneNumber="tel:"+this.userData.phoneNumber;
+      this.userWhatsAppNumber="https://wa.me/"+this.userData.phoneNumber?.replace("+","");
+      this.whatsAppShareUrl=this.domSanitizer.bypassSecurityTrustUrl("whatsapp://send?text="+this.shareURL);
       this.propertyLat = temp.data.propertyListing.propertyLat;
       this.propertyLng = temp.data.propertyListing.propertyLong;
       this.buildingName = temp.data.propertyListing.buildingName;
       let jsonData: any = JSON.stringify(temp.data)
       let jsonParsDate: any = JSON.parse(jsonData);
       this.propertyDetail = jsonParsDate
-      console.log("Property Detail", this.propertyDetail);
 
       //gallery images
       for (let i = 0; i < this.propertyDetails.documents.length; i++) {
@@ -349,7 +358,24 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
           text: this.buildingName == "" ? "Location" : this.buildingName
         },
       });
-      let tenantType: any = '';
+     
+      let professionType: any = '';
+      if (jsonParsDate.propertyListing.professionalType !== null && jsonParsDate.propertyListing.professionalType?.name !== null && jsonParsDate.propertyListing.professionalType?.name !== undefined) {
+        professionType = jsonParsDate.propertyListing.professionalType.name
+      }
+      let companyName: any = '';
+      if (jsonParsDate.propertyListing.company !== null && jsonParsDate.propertyListing.company !== undefined) {
+        companyName = jsonParsDate.propertyListing.company.companyName
+      }
+      let reraNo: any = '';
+      if (jsonParsDate.propertyListing.company !== null && jsonParsDate.propertyListing.company !== undefined) {
+        reraNo = jsonParsDate.propertyListing.company.rERANo
+      }
+      let permitNo: any = '';
+      if (jsonParsDate.propertyListing.company !== null && jsonParsDate.propertyListing.company !== undefined) {
+        permitNo = jsonParsDate.propertyListing.company.PremitNo
+      }
+
       let occupancyStatus: any = '';
       if (jsonParsDate.propertyListing.occupancyStatus !== null && jsonParsDate.propertyListing.occupancyStatus?.name !== null && jsonParsDate.propertyListing.occupancyStatus?.name !== undefined) {
         occupancyStatus = jsonParsDate.propertyListing.occupancyStatus.name
@@ -412,12 +438,21 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
         this.propertyDetailData.completionStatus = completionStatus;
         this.propertyDetailData.propertyDeveloper = propertyDeveloper;
         this.propertyDetailData.transactionType = transactionType;
+        this.propertyDetailData.angentId = (jsonParsDate.propertyListing.userId == undefined || jsonParsDate.propertyListing.userId==null) ? 0 : Math.abs(jsonParsDate.propertyListing.userId);
+        this.propertyDetailData.priceChangePercentage = (jsonParsDate.propertyListing.priceChangePercentage == undefined || jsonParsDate.propertyListing.priceChangePercentage==null) ? 0 : Math.abs(jsonParsDate.propertyListing.priceChangePercentage);
+        this.propertyDetailData.sizeChangePercentage = (jsonParsDate.propertyListing.sizeChangePercentage == undefined || jsonParsDate.propertyListing.sizeChangePercentage==null) ? 0 : Math.abs(jsonParsDate.propertyListing.sizeChangePercentage);
+        this.propertyDetailData.rentAvgPriceSqft = (jsonParsDate.propertyListing.rentAvgPriceSqft == undefined || jsonParsDate.propertyListing.rentAvgPriceSqft==null) ? 0 : jsonParsDate.propertyListing.rentAvgPriceSqft;
+        this.propertyDetailData.saleAvgPriceSqft = (jsonParsDate.propertyListing.saleAvgPriceSqft == undefined || jsonParsDate.propertyListing.saleAvgPriceSqft==null) ? 0 : jsonParsDate.propertyListing.saleAvgPriceSqft;
+        this.propertyDetailData.averageSize = (jsonParsDate.propertyListing.averageSize == undefined || jsonParsDate.propertyListing.averageSize==null) ? 0 : jsonParsDate.propertyListing.averageSize;
+        this.propertyDetailData.location = jsonParsDate.propertyListing.district.name+", "+jsonParsDate.propertyListing.city.name ;
+        this.propertyDetailData.city = jsonParsDate.propertyListing.city.name;
+        this.propertyDetailData.activeListingCount = jsonParsDate.activeListingCount;
+        this.propertyDetailData.professionType = professionType;
+        this.propertyDetailData.companyName = companyName;
+        this.propertyDetailData.reraNo = reraNo;
+        this.propertyDetailData.permitNo = permitNo;
+      
         // share url concatination
-
-        this.shareURL += this.propertyDetailData.id;
-
-
-
         // let ree = "https://maps.google.com/maps?q=" + this.propertyDetailData.propertyLat + "," + this.propertyDetailData.propertyLong + "&hl=es&z=14&amp;output=embed"
         // let resp: any = this.domSanitizer.bypassSecurityTrustUrl(ree);
         // this.locationAddress1 = resp
@@ -441,7 +476,6 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
         }
 
         this.propertyValidationData = result.data.propertyListing?.propertyType;
-        console.log(this.propertyValidationData)
         this.getPropertyInfo();
 
       } else {
@@ -450,7 +484,7 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
         this.route.navigate(['/'])
         ///end
       }
-      if (jsonParsDate.user != null && jsonParsDate.user != undefined && jsonParsDate.user.imageUrl != null) {
+      if (jsonParsDate.user != null && jsonParsDate.user != undefined && jsonParsDate.user?.imageUrl != null) {
         this.propertyDetailData.userImageUrl = (jsonParsDate.user.imageUrl !== undefined) ? this.baseUrl + jsonParsDate.user.imageUrl : '../assets/images/user.png'
         this.propertyDetailData.userfullName = (jsonParsDate.user.fullName !== undefined) ? jsonParsDate.user.fullName : ''
       } else {
@@ -476,6 +510,12 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
         ]
       }
       this.showLoader = false;
+    }
+    else{
+      this.notifyService.showInfo(result.message, "");
+      this.showLoader = false;
+      this.route.navigate(['/'])
+    }
     });
 
   }
@@ -540,6 +580,11 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
         show: this.propertyValidationData.hasListingParking,
         label: 'Available Parking',
         value: this.propertyDetailData.parkings,
+      },
+      {
+        show: this.propertyValidationData.hasListingUnitNumber,
+        label: 'No Of Units',
+        value:  this.propertyDetailData.unitNo,
       },
       // {
       //   show: this.propertyValidationData.hasPetPolicy,

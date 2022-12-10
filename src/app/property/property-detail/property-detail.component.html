@@ -68,7 +68,7 @@
                                         <h5>Share with:</h5>
                                         <button ngbDropdownItem><a target="_blank" href="https://facebook.com"
                                                 ngClass="facebook"><img src="{{fb}}"> Facebook</a></button>
-                                        <button ngbDropdownItem><a target="_blank" href="whatsapp://send?{{shareURL}}"
+                                        <button ngbDropdownItem><a  [href]="whatsAppShareUrl" target="_blank"
                                                 ngClass="whatsapp"><img src="{{whatsapp}}"> WhatsApp</a></button>
                                         <button ngbDropdownItem><a target="_blank" href="https://twitter.com/"
                                                 ngClass="twitter"><img src="{{twitter}}"> Twitter</a></button>
@@ -90,7 +90,7 @@
                                         (click)="scroll(propertyInfo)">Property Info</a></li>
                                 <li [ngClass]="status2 ? 'tactive' : 'thide'" (click)="Amenities()"><a
                                         (click)="scroll(amentieScroll)">Amenities</a></li>
-                                <li [ngClass]="status3 ? 'tactive' : 'thide'" (click)="PriceTrends()"><a
+                                <li *ngIf="allData != '' && allData.detailsChart.chart.length > 0" [ngClass]="status3 ? 'tactive' : 'thide'" (click)="PriceTrends()"><a
                                         (click)="scroll(priceScroll)">Price Trends</a></li>
                                 <li [ngClass]="status4 ? 'tactive' : 'thide'" (click)="Location()"><a
                                         (click)="scroll(locationScroll)">Location</a></li>
@@ -183,9 +183,11 @@
                                     <h5>Rental Price Trends</h5>
                                 </div>
                                 <div ngClass="price_trend-texts">
-                                    <p>3 beds in Downtown Dubai - Rent Evolutions <span ngClass="">
+                                    <p>The Recent Rent Price Trends for {{propertyDetailData.propertyType}} in {{propertyDetailData.location}}.
+                                        <!-- <span ngClass="">
                                             <mat-icon>trending_up</mat-icon>
-                                        </span> 40%</p>
+                                        </span> 40% -->
+                                    </p>
                                 </div>
                                 <div ngClass="price-chart-trends">
                                     <canvas baseChart width="400" height="400" [type]="'line'" [data]="lineChartData"
@@ -196,11 +198,18 @@
                                     <div ngClass="row">
                                         <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                                             <div ngClass="like-dislike-box-wrap position-relative">
-                                                <h4><strong>This Property cost 186% more</strong> then the average
+                                                <h4>This Property costs <strong *ngIf="propertyDetailData.priceChangePercentage>0">{{propertyDetailData.priceChangePercentage}}% more</strong>
+                                                    <strong *ngIf="propertyDetailData.priceChangePercentage<0">{{propertyDetailData.priceChangePercentage}}% less</strong>
+                                                    than the average
                                                 </h4>
-                                                <p>Average Rent is <strong>280, 00 AED/year</strong></p>
-                                                <span ngClass="dislike-icon">
+                                                <p *ngIf="propertyDetailData.propertyListingTypeId==2">Average sq.ft rent for {{propertyDetailData.propertyType}} in {{propertyDetailData.location}} is {{propertyDetailData.rentAvgPriceSqft | number}}  {{propertyDetailData.currency}}/{{propertyDetailData.rentType}}</p>
+                                                <p *ngIf="propertyDetailData.propertyListingTypeId==1">Average sq.ft sale for {{propertyDetailData.propertyType}} in {{propertyDetailData.location}} is {{propertyDetailData.rentAvgPriceSqft | number}}  {{propertyDetailData.currency}}</p>
+                                               
+                                                <span *ngIf="propertyDetailData.priceChangePercentage>0" ngClass="dislike-icon">
                                                     <mat-icon>thumb_down</mat-icon>
+                                                </span>
+                                                <span *ngIf="propertyDetailData.priceChangePercentage<0" ngClass="like-icon">
+                                                    <mat-icon>thumb_up</mat-icon>
                                                 </span>
                                                 <span ngClass="home_icon">
                                                     <mat-icon>home</mat-icon>
@@ -209,10 +218,14 @@
                                         </div>
                                         <div ngClass="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                                             <div ngClass="like-dislike-box-wrap position-relative">
-                                                <h4><strong>This Property is 24% bigger</strong> then the average
+                                                <h4>This Property is <strong *ngIf="propertyDetailData.sizeChangePercentage>0">{{propertyDetailData.sizeChangePercentage}}% bigger</strong>
+                                                    <strong *ngIf="propertyDetailData.sizeChangePercentage<0">{{propertyDetailData.sizeChangePercentage}}% smaller</strong> than the average
                                                 </h4>
-                                                <p>Average Size is <strong>2,047 sqft</strong></p>
-                                                <span ngClass="like-icon">
+                                                <p>Average Size for {{propertyDetailData.propertyType}} in {{propertyDetailData.location}} is {{propertyDetailData.averageSize | number}}  sqft.</p>
+                                                <span *ngIf="propertyDetailData.sizeChangePercentage<0" ngClass="dislike-icon">
+                                                    <mat-icon>thumb_down</mat-icon>
+                                                </span>
+                                                <span *ngIf="propertyDetailData.sizeChangePercentage>0" ngClass="like-icon">
                                                     <mat-icon>thumb_up</mat-icon>
                                                 </span>
                                                 <span ngClass="home_icon">
@@ -223,7 +236,7 @@
                                         <div ngClass="col-sm-12">
                                             <p ngClass="price-trent_desc-info">The data displayed is based on the
                                                 average price and size of all listing that were live in the Ovaluate
-                                                in Dubai</p>
+                                                in {{propertyDetailData.city}}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -247,18 +260,18 @@
                                     <div ngClass="white-circle-outline">
                                         <img src="{{propertyDetailData.userImageUrl}}">
                                     </div>
-                                    <button ngClass="agent-or-owner-btn">Agent</button>
+                                    <button ngClass="agent-or-owner-btn">{{propertyDetailData.professionType}}</button>
                                 </div>
                                 <div ngClass="property-listedby-cntnt">
                                     <h5 ngClass="propertier-name">{{propertyDetailData.userfullName}}</h5>
-                                    <p ngClass="propertier-type">Sales Director</p>
+                                    <!-- <p ngClass="propertier-type">Sales Director</p> -->
                                     <p ngClass="properties-name">
-                                        Better Homes Properties
+                                        {{ this.propertyDetailData.companyName}}
                                     </p>
-                                    <p ngClass="rera"> RERA# 11899</p>
-                                    <p ngClass="permit">Permit# 7187842740</p>
-                                    <a routerLink="/agent-details/{{userData?.id}}" ngClass="properties-listed-no"
-                                        *ngIf="userData != ''">47 - Active Properties Listed</a>
+                                    <p ngClass="rera"> RERA# {{this.propertyDetailData.reraNo}}</p>
+                                    <p ngClass="permit">Permit# {{this.propertyDetailData.permitNo}}</p>
+                                    <a routerLink="/agent-details/{{propertyDetailData.angentId}}" ngClass="properties-listed-no"
+                                        *ngIf="propertyDetailData.angentId!=0">{{propertyDetailData.activeListingCount | number}} - Active Properties Listed</a>
                                 </div>
                             </div>
                             <div ngClass="contact-propertier-form">
@@ -308,17 +321,17 @@
                             <div ngClass="contact-list-details">
                                 <div ngClass="row">
                                     <div ngClass="col-xl-6 col-lg-12 col-md-12 col-sm-12">
-                                        <a ngClass="call_btn" (click)="loadChat()"><img src="{{call}}"> Call
-                                            Landlord</a>
+                                        <a ngClass="call_btn" [href]="userPhoneNumber"><img src="{{call}}"> Call
+                                            {{propertyDetailData.professionType}}</a>
                                     </div>
                                     <div ngClass="col-xl-6 col-lg-12 col-md-12 col-sm-12">
-                                        <a href="https://web.whatsapp.com/" target="_blank" ngClass="whatsapp_btn"><img
-                                                src="{{whatsapp}}"> Whats APP </a>
+                                        <a [href]="userWhatsAppNumber" target="_blank" ngClass="whatsapp_btn"><img
+                                                src="{{whatsapp}}"> WhatsApp </a>
                                     </div>
-                                    <div ngClass="col-xl-6 col-lg-12 col-md-12 col-sm-12">
+                                    <!-- <div ngClass="col-xl-6 col-lg-12 col-md-12 col-sm-12">
                                         <a ngClass="chat_btn" (click)="loadChat()"><img src="{{chat}}"> Chat with
                                             Landlord</a>
-                                    </div>
+                                    </div> -->
                                     <!-- <div ngClass="col-xl-6 col-lg-12 col-md-12 col-sm-12">
                                         <a ngClass="videocall_btn" (click)="loadChat()"><img src="{{videocall}}"> Video
                                             Call</a>

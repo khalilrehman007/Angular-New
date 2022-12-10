@@ -763,6 +763,7 @@ console.log(this.userData)
       this.childTabId=1
     }
     this.service.LoadListing({ "UserId": this.user.id, "PropertyListingTypeId": this.parentTabId, "PropertyListingStatusId": this.childTabId }).subscribe(data => {  
+      console.log("zz",data);
       let response: any = data;
       response.data.forEach((element: any, i: any) => {
         let image: any;
@@ -779,10 +780,10 @@ console.log(this.userData)
           {
             id: element.id, propertyTitle: element.propertyTitle, propertyAddress: element.propertyAddress, img: image,
             buildingName: element.buildingName, bedrooms: element.bedrooms, bathrooms: element.bathrooms, carpetArea: element.carpetArea, buildupArea: element.buildupArea,
-            unitNo: element.unitNo, totalFloor: element.totalFloor, floorNo: element.floorNo, propertyDescription: element.propertyDescription,
+            unitNo: element.unitNo, totalFloor: element.totalFloor, floorNo: element.floorNo, propertyDescription: element.propertyDescription,plotSize:element.plotSize,
             requestedDate: element.requestedDate, furnishingType: element.furnishingType, propertyPrice: element.propertyPrice,
             requestedDateFormat: element.requestedDateFormat,
-            expiredDateFormat: element.expiredDateFormat, rentType: rentTypeName, currency: element.country.currency
+            expiredDateFormat: element.expiredDateFormat, rentType: rentTypeName, currency: element.country.currency,unitType:element.country.unitType
           }
         );
       })

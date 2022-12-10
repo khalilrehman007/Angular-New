@@ -64,9 +64,7 @@ export class ListpropertymediaComponent implements OnInit {
   constructor(private api: AppService, private uploadService: FileUploadService, private route: Router) {
     this.priviousFormCheck = localStorage.getItem('propertyData');
     this.priviousFormCheck = JSON.parse(this.priviousFormCheck);
-    console.log("previous",this.priviousFormCheck)
     if (this.priviousFormCheck == null || this.priviousFormCheck == undefined) {
-      console.log("previous",this.priviousFormCheck)
       this.route.navigate(['/add-property/listingproperty'])
     } else {
       this.data = this.priviousFormCheck;
@@ -78,22 +76,19 @@ export class ListpropertymediaComponent implements OnInit {
     }
     this.packageData = localStorage.getItem('seletedPackage');
     this.packageData = JSON.parse(this.packageData);
-    console.log(this.packageData)
-    
   }
-  loadPreviousData(){
-    console.log("media old data",this.data);
-    if(this.data?.Documents?.length>0){
-      this.data?.Documents.forEach((x:any)=>{
-        this.previews.push(environment.apiUrl+x.FileUrl)
+  loadPreviousData() {
+    if (this.data?.Documents?.length > 0) {
+      this.data?.Documents.forEach((x: any) => {
+        this.previews.push(environment.apiUrl + x.FileUrl)
       })
     }
-    if(this.data?.TourUrl!=null || this.data?.TourUrl!=undefined){
-    this.SubmitForm.controls['videoLink'].patchValue(this.data.TourUrl)
+    if (this.data?.TourUrl != null || this.data?.TourUrl != undefined) {
+      this.SubmitForm.controls['videoLink'].patchValue(this.data.TourUrl)
     }
-    if(this.data?.YoutubeUrl!=null || this.data?.YoutubeUrl!=undefined){
+    if (this.data?.YoutubeUrl != null || this.data?.YoutubeUrl != undefined) {
       this.SubmitForm.controls['youtubeUrl'].patchValue(this.data.YoutubeUrl)
-      }
+    }
   }
   ngOnInit() {
     $(document).ready(function () {
@@ -172,7 +167,6 @@ export class ListpropertymediaComponent implements OnInit {
         extension = extension[extension.length - 1];
         this.imageData.push({ "FileName": this.selectedFiles[i].name, "Extension": extension, file: this.selectedFiles[i] });
       }
-      console.log(this.imageData);
       if (this.selectedFiles && this.selectedFiles[0]) {
         const numberOfFiles = this.selectedFiles.length;
         for (let i = 0; i < numberOfFiles; i++) {
@@ -180,7 +174,6 @@ export class ListpropertymediaComponent implements OnInit {
           reader.onload = (e: any) => {
             this.previews.push(e.target.result);
           };
-          console.log(this.previews);
           reader.readAsDataURL(this.selectedFiles[i]);
         }
       }
@@ -249,8 +242,7 @@ export class ListpropertymediaComponent implements OnInit {
   imgCheck: boolean = false;
   videoCheck: boolean = false;
   onSubmit() {
-    // if (this.imageData.length < this.packageData.numberOfPhoto) {
-    if (this.imageData.length < 1 && this.previews.length<1) {
+    if (this.imageData.length < 1 && this.previews.length < 1) {
       this.currentField = "title-deed-image-input";
       this.error = "Plese Upload " + this.packageData.numberOfPhoto + " Photos";
       this.showError = true;
@@ -278,13 +270,12 @@ export class ListpropertymediaComponent implements OnInit {
     start = temp.length;
     let userData: any = localStorage.getItem("user");
     this.data.ProfessionalTypeId = JSON.parse(userData).professionalTypeId;
-   if(this.data?.Documents?.length>0){
-    this.data.Documents = this.data.Documents.concat(temp);
-   }
-   else{
-    this.data.Documents=temp;
-   }
- 
+    if (this.data?.Documents?.length > 0) {
+      this.data.Documents = this.data.Documents.concat(temp);
+    }
+    else {
+      this.data.Documents = temp;
+    }
     if (this.data.FittingType == "" || this.data.FittingType == undefined) {
       this.data.FittingType = 0;
     }
@@ -297,96 +288,92 @@ export class ListpropertymediaComponent implements OnInit {
     if (this.data.BrokerageCharge == "" || this.data.BrokerageCharge == undefined) {
       this.data.BrokerageCharge = false;
     }
-    console.log("Final Object",this.data);
     this.documentData.append("PropertyListingRequest", JSON.stringify(this.data));
     for (let i = 0; i < temp.length; i++) {
       this.documentData.append(i + 1 + "_" + temp[i].FileName, tempDoc[i]);
     }
     let token: any = localStorage.getItem("token");
     token = JSON.parse(token);
-    console.log(this.data);
-    if(this.data?.id==null || this.data?.id==undefined){
-    $.ajax({
-      url: `${environment.apiUrl}api/AddPropertyListing`,
-      method: "post",
-      contentType: false,
-      processData: false,
-      data: this.documentData,
-      headers: {
-        "Authorization": 'bearer ' + token
-      },
-      dataType: "json",
-      success: (res) => {
-        console.log(res);
-        if (res.result == 1) {
-          localStorage.removeItem("propertyData");
-          this.showLoader = true;
-          let temp: any = localStorage.getItem("user");
-          temp = JSON.parse(temp);
-          this.api.PurchasePackage({ "UserId": temp.id, "PackageId": this.packageData.id }).subscribe((result: any) => {
-            if (result.message == "Package has been purchased") {
-              this.showLoader = false;
-              this.success = "Your package has been purchsed successfully";
-              this.showSuccess = true;
-            } else {
-              this.showLoader = false;
-              this.error = "Something went wrong please try again";
-              this.showError = true;
-            }
-          })
-          this.route.navigate(['/add-property/listpropertypublish'])
+    if (this.data?.id == null || this.data?.id == undefined) {
+      $.ajax({
+        url: `${environment.apiUrl}api/AddPropertyListing`,
+        method: "post",
+        contentType: false,
+        processData: false,
+        data: this.documentData,
+        headers: {
+          "Authorization": 'bearer ' + token
+        },
+        dataType: "json",
+        success: (res) => {
+          if (res.result == 1) {
+            localStorage.removeItem("propertyData");
+            this.showLoader = true;
+            // let temp: any = localStorage.getItem("user");
+            // temp = JSON.parse(temp);
+            // this.api.PurchasePackage({ "UserId": temp.id, "PackageId": this.packageData.id }).subscribe((result: any) => {
+            //   if (result.message == "Package has been purchased") {
+            //     this.showLoader = false;
+            //     this.success = "Your package has been purchsed successfully";
+            //     this.showSuccess = true;
+            //   } else {
+            //     this.showLoader = false;
+            //     this.error = "Something went wrong please try again";
+            //     this.showError = true;
+            //   }
+            // })
+            this.route.navigate(['/add-property/listpropertypublish'])
+          }
+          else {
+            this.showLoader = false;
+            this.error = res.error;
+            this.showError = true;
+          }
+        },
+        error: (err) => {
         }
-        else {
-          this.showLoader = false;
-          this.error = res.error;
-          this.showError = true;
+      });
+    }
+    else {
+      $.ajax({
+        url: `${environment.apiUrl}api/UpdatePropertyListing`,
+        method: "post",
+        contentType: false,
+        processData: false,
+        data: this.documentData,
+        headers: {
+          "Authorization": 'bearer ' + token
+        },
+        dataType: "json",
+        success: (res) => {
+          if (res.result == 1) {
+            localStorage.removeItem("propertyData");
+            this.showLoader = true;
+            // let temp: any = localStorage.getItem("user");
+            // temp = JSON.parse(temp);
+            // this.api.PurchasePackage({ "UserId": temp.id, "PackageId": this.packageData.id }).subscribe((result: any) => {
+            //   if (result.message == "Package has been purchased") {
+            //     this.showLoader = false;
+            //     this.success = "Your package has been purchsed successfully";
+            //     this.showSuccess = true;
+            //   } else {
+            //     this.showLoader = false;
+            //     this.error = "Something went wrong please try again";
+            //     this.showError = true;
+            //   }
+            // })
+            this.route.navigate(['/add-property/listpropertypublish'])
+          }
+          else {
+            this.showLoader = false;
+            this.error = res.error;
+            this.showError = true;
+          }
+        },
+        error: (err) => {
         }
-      },
-      error: (err) => {
-      }
-    });
-  }
-  else{
-    $.ajax({
-      url: `${environment.apiUrl}api/UpdatePropertyListing`,
-      method: "post",
-      contentType: false,
-      processData: false,
-      data: this.documentData,
-      headers: {
-        "Authorization": 'bearer ' + token
-      },
-      dataType: "json",
-      success: (res) => {
-        console.log(res);
-        if (res.result==1) {
-          localStorage.removeItem("propertyData");
-          this.showLoader = true;
-          let temp: any = localStorage.getItem("user");
-          temp = JSON.parse(temp);
-          this.api.PurchasePackage({ "UserId": temp.id, "PackageId": this.packageData.id }).subscribe((result: any) => {
-            if (result.message == "Package has been purchased") {
-              this.showLoader = false;
-              this.success = "Your package has been purchsed successfully";
-              this.showSuccess = true;
-            } else {
-              this.showLoader = false;
-              this.error = "Something went wrong please try again";
-              this.showError = true;
-            }
-          })
-          this.route.navigate(['/add-property/listpropertypublish'])
-        }
-        else {
-          this.showLoader = false;
-          this.error = res.error;
-          this.showError = true;
-        }
-      },
-      error: (err) => {
-      }
-    });
-  }
+      });
+    }
   }
 
   removeImage(index: any) {
