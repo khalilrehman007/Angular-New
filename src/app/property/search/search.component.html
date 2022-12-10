@@ -18,8 +18,8 @@
                             </div>
                         </div>
                         <div ngClass="heading-apragraph-design mt-4">
-                            <h2>{{selectedPropertyTypeName}} {{headingPropertyType}} for {{type}} in {{countryData.acronym}}</h2>
-                            <p>Showing {{totalRecord}} {{headingPropertyType}} for {{type}} in {{countryData.acronym}}</p>
+                            <h2>{{selectedPropertyTypeName}} {{headingPropertyType}} for {{type=="Buy"?"Sale":type}} in {{countryData.acronym}}</h2>
+                            <p>Showing {{totalRecord}} {{headingPropertyType}} for {{type=="Buy"?"Sale":type}} in {{countryData.acronym}}</p>
                             <!-- <p>Properties For {{type}} in {{countryData.acronym}}. Verified Listings.</p> -->
                         </div>
                         <div ngClass="properties-filtr-values d-flex justify-content-spacebw">

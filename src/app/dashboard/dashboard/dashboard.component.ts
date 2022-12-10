@@ -1,10 +1,9 @@
-import { Component, ViewEncapsulation, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import * as $ from 'jquery';
-import { NgbNav } from '@ng-bootstrap/ng-bootstrap';
 import { NotificationService } from "../../service/notification.service";
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 
 import { AppService } from 'src/app/service/app.service';
@@ -19,6 +18,7 @@ import { environment } from 'src/environments/environment';
   providers: [DatePipe]
 })
 export class DashboardComponent implements OnInit, AfterViewInit {
+// _key = CryptoJS.enc.Utf8.parse(this.tokenFromUI);
   blogs: any;
   proFrame = '../../assets/images/profile/pro-img-frame.png'
   pdf = 'assets/images/icons/pdf.png'

@@ -329,7 +329,7 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
       this.userData = temp.data.user;
       this.userPhoneNumber="tel:"+this.userData.phoneNumber;
       this.userWhatsAppNumber="https://wa.me/"+this.userData.phoneNumber?.replace("+","");
-      this.whatsAppShareUrl=this.domSanitizer.bypassSecurityTrustUrl("whatsapp://send?text="+this.shareURL);
+      this.whatsAppShareUrl=this.domSanitizer.bypassSecurityTrustUrl("https://wa.me/?text="+this.shareURL);
       this.propertyLat = temp.data.propertyListing.propertyLat;
       this.propertyLng = temp.data.propertyListing.propertyLong;
       this.buildingName = temp.data.propertyListing.buildingName;
@@ -514,7 +514,7 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
     else{
       this.notifyService.showInfo(result.message, "");
       this.showLoader = false;
-      this.route.navigate(['/'])
+      //this.route.navigate([''])
     }
     });
 

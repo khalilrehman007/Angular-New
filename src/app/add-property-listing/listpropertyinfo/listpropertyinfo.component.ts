@@ -1,10 +1,7 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from "../../service/auth.service";
 import { Router } from "@angular/router";
-import { NotificationService } from "../../service/notification.service";
 import { AppService } from 'src/app/service/app.service';
-import { MatSelect } from '@angular/material/select';
 import { ReplaySubject, Subject, take, takeUntil } from 'rxjs';
 @Component({
   selector: 'app-listpropertyinfo',
@@ -290,17 +287,12 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
             BuildingName: this.data.BuildingName,
           })
           if (this.selectedPropertyType.hasListingCarpetArea) {
-            if (this.data.CarpetArea != 0 && this.data.CarpetArea != null && this.data.CarpetArea != undefined && this.data.CountryId == 2) {
-              this.data.CarpetArea = Math.round(parseFloat(this.data.CarpetArea) / 10.764);
-            }
             this.SubmitForm.patchValue({
               carpetArea: this.data.CarpetArea
             })
           }
           if (this.selectedPropertyType.hasListingBuildUpArea) {
-             if (this.data.BuildupArea != 0 && this.data.BuildupArea != null && this.data.BuildupArea != undefined && this.data.CountryId == 2) {
-              this.data.BuildupArea = Math.round(parseFloat(this.data.BuildupArea) / 10.764);
-            }
+             
             this.SubmitForm.patchValue({
               buildupArea: this.data.BuildupArea
             })
@@ -311,9 +303,6 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
             })
           }
           if (this.selectedPropertyType.hasListingPlotSize) {
-            if (this.data.PlotSize != 0 && this.data.PlotSize != null && this.data.PlotSize != undefined && this.data.CountryId == 2) {
-              this.data.PlotSize =Math.round(parseFloat(this.data.PlotSize) / 10.764);
-            }
             this.SubmitForm.patchValue({
               size: this.data.PlotSize
             })

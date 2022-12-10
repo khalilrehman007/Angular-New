@@ -28,7 +28,6 @@ import { AlertsModule } from '../alerts/alerts.module';
     DashboardRoutingModule,
     CommonFilesModule,
     LoaderModule,
-    
     MatTabsModule,
     MatFormFieldModule,
     MatInputModule,
