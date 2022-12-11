@@ -1,7 +1,10 @@
 <app-header></app-header>
 <section [ngClass]="'inner-cntnt-wrapper slide-left-bar'">
     <section [ngClass]="'property-listing-inner-wrapper'">
-        <div [ngClass]="'container_1280px'">
+        <div class="no-data-found" *ngIf="!detailSuccess">
+            <img src="/assets/images/No-data.svg">
+        </div>
+        <div [ngClass]="'container_1280px'" *ngIf="detailSuccess">
             <!-- <div ngClass="property-details-header">
                 <div ngClass="d-flex justify-content-end">
                     <div ngClass="black-text-breadcrumb">
@@ -98,7 +101,7 @@
                         </div>
                         <div class="key_highlight mt-5" #keyHighligh>
                             <div ngClass="tabs-heading-div">
-                                <h5>Key Highlights</h5>
+                                <h6>Key Highlights</h6>
                             </div>
                             <div ngClass="topkey-highlights mb-4">
                                 <h6>{{propertyDetailData.typeDescription}}</h6>
@@ -128,14 +131,15 @@
                             </div> -->
                             <div ngClass="description-block-design">
                                 <h4>Property Description</h4>
-                                <p style="white-space: pre-line;white-space: pre-wrap;">
-                                    {{propertyDetailData.propertyDescription}}</p>
+                                <p>{{showMore==false ? propertyDetailData.propertyDescription : propertyDetailData.propertyDescription | slice:0:300}}<span *ngIf="showMore">...</span>
+                                </p>
+                                <a (click)="showMore = !showMore">{{ showMore ? 'Show more': 'Show less' }}</a>
                             </div>
                         </div>
                         <div class="Pro-perty_info mt-4" #propertyInfo>
                             <div ngClass="d-flex justify-content-spacebw align-items-center mb-3">
                                 <div ngClass="tabs-heading-div">
-                                    <h5>Property Info</h5>
+                                    <h6>Property Info</h6>
                                 </div>
                                 <div ngClass="ov-verified">
                                     <p><img src="{{ovverified}}"> OV-Verified</p>
@@ -159,7 +163,7 @@
                         </div>
                         <div class="amenties_properties-wrapper mt-5" #amentieScroll>
                             <div ngClass="tabs-heading-div">
-                                <h5>Amenities</h5>
+                                <h6>Amenities</h6>
                             </div>
                             <div ngClass="amenties_infor-div-sec">
                                 <div ngClass="amenties_info-row">
@@ -180,7 +184,7 @@
                         <div class="price-trens_wrapper-wrapper mt-5" #priceScroll>
                             <div *ngIf="allData != '' && allData.detailsChart.chart.length > 0">
                                 <div ngClass="tabs-heading-div">
-                                    <h5>Rental Price Trends</h5>
+                                    <h6>Rental Price Trends</h6>
                                 </div>
                                 <div ngClass="price_trend-texts">
                                     <p>The Recent Rent Price Trends for {{propertyDetailData.propertyType}} in {{propertyDetailData.location}}.
@@ -244,13 +248,14 @@
                         </div>
                         <div class="locarions_wrapper mt-5" #locationScroll>
                             <div ngClass="tabs-heading-div">
-                                <h5>Location</h5>
+                                <h6>Location</h6>
                             </div>
                             <div #propertyDetails__map class="property-details__map"></div>
                         </div>
                     </div>
                     <div ngClass="col-xl-4 col-lg-4 col-md-12 col-sm-12">
-                        <div class="property-owner-details" [ngClass]="scrollfix?'scrollsticky':'noscroll'">
+                        <!-- [ngClass]="scrollfix?'scrollsticky':'noscroll'" -->
+                        <div class="property-owner-details" >
                             <div ngClass="property-listed-by">
                                 <h4>Property Listed by</h4>
                                 <img src="{{propertylistedbrand}}">

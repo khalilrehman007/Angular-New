@@ -27,8 +27,9 @@ declare const google: any;
 })
 export class PropertyDetailComponent implements OnInit, AfterViewInit {
   showLoader: boolean = false;
+  showMore:boolean=true;
   @ViewChild('propertyDetails__map') mapElement: any;
-
+detailSuccess=false;
   homelocationsvg = 'assets/images/home-location.svg'
   bedsvg = 'assets/images/icons/Bed.svg'
   bathsvg = 'assets/images/icons/Bath-tub.svg'
@@ -318,14 +319,16 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
   allData: any = "";
   getloadDashboardData() {
     this.showLoader = true;
+    this.detailSuccess = true;
     this.service.DisplayPropertyListing({ "PropertyListingId": this.propertyId, "LoginUserId": this.userId }).subscribe((result: any) => {
       console.log(result)
       if(result.result==1)
       {
+
       this.propertyDetails = result.data.propertyListing;
       this.allData = result.data;
       let temp: any = result;
-      this.shareURL += this.propertyDetails.id;
+      this.shareURL += "detail?id="+this.propertyDetails.id;
       this.userData = temp.data.user;
       this.userPhoneNumber="tel:"+this.userData.phoneNumber;
       this.userWhatsAppNumber="https://wa.me/"+this.userData.phoneNumber?.replace("+","");
@@ -512,9 +515,8 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
       this.showLoader = false;
     }
     else{
-      this.notifyService.showInfo(result.message, "");
       this.showLoader = false;
-      //this.route.navigate([''])
+      this.detailSuccess=false;
     }
     });
 
