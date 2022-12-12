@@ -20,13 +20,13 @@
                 <div ngClass="row">
                     <div ngClass="col-xl-4 col-lg-4 col-md-12 col-sm-12">
                         <div ngClass="property-price_detals">
-                            <h4>{{propertyDetailData.propertyPrice}}
+                            <h4>{{propertyDetailData.propertyPrice | number}}
                                 {{propertyDetailData.currency}}<small *ngIf="propertyDetailData.rentType != ''">/{{propertyDetailData.rentType}}</small></h4>
                             <div ngClass="property-tags d-flex flex-wrap">
-                                <span ngClass="tags-bg-grey">Brokrage: {{propertyDetailData.brokerageChargePrice}}
+                                <span ngClass="tags-bg-grey">Brokrage: {{propertyDetailData.brokerageChargePrice | number}}
                                     {{propertyDetailData.currency}}</span>
                                 <span ngClass="tags-bg-grey">Security deposit:
-                                    {{propertyDetailData.securityDepositPrice}} {{propertyDetailData.currency}}</span>
+                                    {{propertyDetailData.securityDepositPrice | number}} {{propertyDetailData.currency}}</span>
                             </div>
                         </div>
                     </div>
@@ -347,7 +347,7 @@
                             </svg>
                         </button>
                         <div ngClass="property-info">
-                            <span ngClass="property-pricing"><span>{{ slide.price }} {{ slide.currency }}</span> /
+                            <span ngClass="property-pricing"><span>{{ slide.price | number}} {{ slide.currency }}</span> /
                                 <span>{{slide.rentType}}</span></span>
                             <span ngClass="property-name">{{slide.buildingName}}</span>
                             <p ngClass="property-location">
@@ -388,14 +388,14 @@
                 <div ngClass="row">
                     <div ngClass="col-xl-4 col-lg-4 col-md-12 col-sm-12">
                         <div ngClass="property-price_detals">
-                            <h4>{{propertyDetailData.propertyPrice}} {{propertyDetailData.currency}}
+                            <h4>{{propertyDetailData.propertyPrice | number}} {{propertyDetailData.currency}}
                                 <small>/{{propertyDetailData.rentType}}</small>
                             </h4>
                             <div ngClass="property-tags d-flex flex-wrap">
-                                <span ngClass="tags-bg-grey">Brokrage: {{propertyDetailData.brokerageChargePrice}}
+                                <span ngClass="tags-bg-grey">Brokrage: {{propertyDetailData.brokerageChargePrice| number}}
                                     {{propertyDetailData.currency}}</span>
                                 <span ngClass="tags-bg-grey">Security deposit:
-                                    {{propertyDetailData.securityDepositPrice}} {{propertyDetailData.currency}}</span>
+                                    {{propertyDetailData.securityDepositPrice | number}} {{propertyDetailData.currency}}</span>
                             </div>
                         </div>
                     </div>

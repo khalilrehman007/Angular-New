@@ -347,11 +347,11 @@
                         *ngIf="selectedPropertyType.hasListingBalocny">
                         <h6 class="h6-design">Balcony</h6>
                         <div class="checkbox-flex-box six-column button-same-select balcony-input">
-                          <div class="checkbox-design position-relative" (click)="getBalcony('0')">
+                          <!-- <div class="checkbox-design position-relative" (click)="getBalcony('0')">
                             <input type="radio" value="0" name="balcony" *ngIf="data.Balcony == 0" checked />
                             <input type="radio" value="0" name="balcony" *ngIf="data.Balcony != 0" />
                             <button class="checkbox-btn">0</button>
-                          </div>
+                          </div> -->
                           <div class="checkbox-design position-relative" (click)="getBalcony('1')">
                             <input type="radio" value="1" name="balcony" *ngIf="data.Balcony == 1" checked />
                             <input type="radio" value="1" name="balcony" *ngIf="data.Balcony != 1" />
@@ -383,13 +383,13 @@
                         *ngIf="selectedPropertyType.hasListingParking">
                         <h6 class="h6-design">Available Parking</h6>
                         <div class="checkbox-flex-box six-column button-same-select parking-input">
-                          <div class="checkbox-design position-relative" (click)="getParking('0')">
+                          <!-- <div class="checkbox-design position-relative" (click)="getParking('0')">
                             <input type="radio" id="parking" value="0" name="available_parking"
                               *ngIf="data.Parkings == 0" checked />
                             <input type="radio" id="parking" value="0" name="available_parking"
                               *ngIf="data.Parkings != 0" />
                             <button class="checkbox-btn">0</button>
-                          </div>
+                          </div> -->
                           <div class="checkbox-design position-relative" (click)="getParking('1')">
                             <input type="radio" id="parking" value="1" name="available_parking"
                               *ngIf="data.Parkings == 1" checked />
@@ -545,7 +545,7 @@
                                       placeholderLabel="Search...">
                                     </ngx-mat-select-search>
                                   </mat-option>
-                                  <mat-option value="">Select Developer</mat-option>
+                                  <mat-option [value]="null">Select Developer</mat-option>
                                   <mat-option *ngFor="let item of filteredPropertyDeveloper | async" [value]="item.id">{{ item.name }}
                                   </mat-option>
                                 </mat-select>

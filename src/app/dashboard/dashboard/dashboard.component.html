@@ -1489,7 +1489,11 @@
                                                                                 class="agent-details__property-detail-list-item sqft">
                                                                                 <img src="assets/images/icons/Square Meters.svg"
                                                                                     alt="">
-                                                                                {{listing.carpetArea == null || listing.carpetArea==0 ? listing.buildupArea ==null || listing.buildupArea==0 ?0:listing.buildupArea.toLocaleString()  :listing.carpetArea.toLocaleString() }} Sq.Ft.
+                                                                                    {{listing.plotSize == null ||
+                                                                                        listing.plotSize==0 ? listing.buildupArea ==null ||
+                                                                                        listing.buildupArea==0
+                                                                                        ?0:listing.buildupArea.toLocaleString():listing.plotSize.toLocaleString()
+                                                                                        }} {{listing.unitType}}
                                                                             </li>
                                                                             <li
                                                                                 class="agent-details__property-detail-list-item furnising">
@@ -1625,7 +1629,11 @@
                                                                                 class="agent-details__property-detail-list-item sqft">
                                                                                 <img src="assets/images/icons/Square Meters.svg"
                                                                                     alt="">
-                                                                                {{listing.carpetArea}} Sq.Ft.
+                                                                                    {{listing.plotSize == null ||
+                                                                                        listing.plotSize==0 ? listing.buildupArea ==null ||
+                                                                                        listing.buildupArea==0
+                                                                                        ?0:listing.buildupArea.toLocaleString():listing.plotSize.toLocaleString()
+                                                                                        }} {{listing.unitType}}
                                                                             </li>
                                                                             <li
                                                                                 class="agent-details__property-detail-list-item furnising">
@@ -1759,7 +1767,11 @@
                                                                                 class="agent-details__property-detail-list-item sqft">
                                                                                 <img src="assets/images/icons/Square Meters.svg"
                                                                                     alt="">
-                                                                                {{listing.carpetArea}} Sq.Ft.
+                                                                                    {{listing.plotSize == null ||
+                                                                                        listing.plotSize==0 ? listing.buildupArea ==null ||
+                                                                                        listing.buildupArea==0
+                                                                                        ?0:listing.buildupArea.toLocaleString():listing.plotSize.toLocaleString()
+                                                                                        }} {{listing.unitType}}
                                                                             </li>
                                                                             <li
                                                                                 class="agent-details__property-detail-list-item furnising">

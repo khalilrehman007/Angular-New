@@ -26,6 +26,7 @@ import { HttpClientModule} from '@angular/common/http';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { LoaderModule } from '../loader/loader.module';
 
 
 
@@ -60,7 +61,8 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     HttpClientModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    CarouselModule
+    CarouselModule,
+    LoaderModule
   ]
 })
 export class PropertyModule { }

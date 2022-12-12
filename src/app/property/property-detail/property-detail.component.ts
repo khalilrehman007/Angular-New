@@ -5,10 +5,9 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { AppService } from "../../service/app.service";
 import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
 import { NotificationService } from "../../service/notification.service";
-import { ChartConfiguration, ChartOptions, ChartType } from "chart.js";
+import { ChartOptions } from "chart.js";
 import { DomSanitizer } from "@angular/platform-browser";
 import { AuthService } from "../../service/auth.service";
-import * as mapboxgl from 'mapbox-gl';
 import { environment } from 'src/environments/environment';
 import { NgxGalleryOptions } from '@kolkov/ngx-gallery';
 import { NgxGalleryImage } from '@kolkov/ngx-gallery';
@@ -26,10 +25,11 @@ declare const google: any;
   styleUrls: ['./property-detail.component.scss'],
   providers: [DecimalPipe]
 })
-export class PropertyDetailComponent implements OnInit,AfterViewInit {
-
+export class PropertyDetailComponent implements OnInit, AfterViewInit {
+  showLoader: boolean = false;
+  showMore:boolean=true;
   @ViewChild('propertyDetails__map') mapElement: any;
-
+detailSuccess=false;
   homelocationsvg = 'assets/images/home-location.svg'
   bedsvg = 'assets/images/icons/Bed.svg'
   bathsvg = 'assets/images/icons/Bath-tub.svg'
@@ -61,6 +61,9 @@ export class PropertyDetailComponent implements OnInit,AfterViewInit {
   tagicn = '../../../assets/images/icons/tag-icn.svg'
   homeLoc = '../../../assets/images/home-location.svg'
   user: any
+  userPhoneNumber:string="";
+  userWhatsAppNumber:string="";
+  whatsAppShareUrl:any="";
   baseUrl = environment.apiUrl;
   status: boolean = true;
   status1: boolean = false;
@@ -256,18 +259,18 @@ export class PropertyDetailComponent implements OnInit,AfterViewInit {
     this.galleryOptions = [];
     this.galleryImages = [];
   }
-  scrollfix: boolean= false;
+  scrollfix: boolean = false;
   ngAfterViewInit(): void {
     $(window).on("scroll", () => {
-      let a:any = $(".similer-properties-sec").offset()?.top;
-      let windowHeight:any = $(window).outerHeight();
-      let position:any = a - windowHeight;
-      let temp: any=$(window).scrollTop();
-      if(temp >= 1030 && temp < position){
-        this.scrollfix= true;
+      let a: any = $(".similer-properties-sec").offset()?.top;
+      let windowHeight: any = $(window).outerHeight();
+      let position: any = a - windowHeight;
+      let temp: any = $(window).scrollTop();
+      if (temp >= 1030 && temp < position) {
+        this.scrollfix = true;
       }
-      else{
-        this.scrollfix= false;
+      else {
+        this.scrollfix = false;
       }
     });
   }
@@ -309,32 +312,42 @@ export class PropertyDetailComponent implements OnInit,AfterViewInit {
       }
     ];
 
-  
+
   }
-
-
-  isload: any = false
   propertyDetailData: any = {}
-
   documentCheck: any = true;
-  allData:any = "";
+  allData: any = "";
   getloadDashboardData() {
-    return this.service.DisplayPropertyListing({ "PropertyListingId": this.propertyId, "LoginUserId": this.userId }).subscribe((result: any) => {
+    this.showLoader = true;
+    this.detailSuccess = true;
+    this.service.DisplayPropertyListing({ "PropertyListingId": this.propertyId, "LoginUserId": this.userId }).subscribe((result: any) => {
+      console.log(result)
+      if(result.result==1)
+      {
+
       this.propertyDetails = result.data.propertyListing;
       this.allData = result.data;
-      console.log(this.allData.detailsChart.chart.length);
       let temp: any = result;
-      console.log(temp)
+      this.shareURL += "detail?id="+this.propertyDetails.id;
       this.userData = temp.data.user;
+      this.userPhoneNumber="tel:"+this.userData.phoneNumber;
+      this.userWhatsAppNumber="https://wa.me/"+this.userData.phoneNumber?.replace("+","");
+      this.whatsAppShareUrl=this.domSanitizer.bypassSecurityTrustUrl("https://wa.me/?text="+this.shareURL);
       this.propertyLat = temp.data.propertyListing.propertyLat;
       this.propertyLng = temp.data.propertyListing.propertyLong;
       this.buildingName = temp.data.propertyListing.buildingName;
-      console.log(this.buildingName)
       let jsonData: any = JSON.stringify(temp.data)
       let jsonParsDate: any = JSON.parse(jsonData);
       this.propertyDetail = jsonParsDate
-      this.isload = true
 
+      //gallery images
+      for (let i = 0; i < this.propertyDetails.documents.length; i++) {
+        this.galleryImages.push({
+          small: this.baseUrl + this.propertyDetails.documents[i].fileUrl.replaceAll("\\", "/"),
+          medium: this.baseUrl + this.propertyDetails.documents[i].fileUrl.replaceAll("\\", "/"),
+          big: this.baseUrl + this.propertyDetails.documents[i].fileUrl.replaceAll("\\", "/")
+        });
+      }
       this.map = new google.maps.Map(this.mapElement.nativeElement, {
         center: { "lat": parseFloat(this.propertyLat), "lng": parseFloat(this.propertyLng) },
         zoom: 16,
@@ -345,28 +358,54 @@ export class PropertyDetailComponent implements OnInit,AfterViewInit {
         map: this.map,
         label: {
           className: 'map-marker-label',
-          text: this.buildingName==""?"Location":this.buildingName
+          text: this.buildingName == "" ? "Location" : this.buildingName
         },
       });
-      let tenantType: any = '';
+     
+      let professionType: any = '';
+      if (jsonParsDate.propertyListing.professionalType !== null && jsonParsDate.propertyListing.professionalType?.name !== null && jsonParsDate.propertyListing.professionalType?.name !== undefined) {
+        professionType = jsonParsDate.propertyListing.professionalType.name
+      }
+      let companyName: any = '';
+      if (jsonParsDate.propertyListing.company !== null && jsonParsDate.propertyListing.company !== undefined) {
+        companyName = jsonParsDate.propertyListing.company.companyName
+      }
+      let reraNo: any = '';
+      if (jsonParsDate.propertyListing.company !== null && jsonParsDate.propertyListing.company !== undefined) {
+        reraNo = jsonParsDate.propertyListing.company.rERANo
+      }
+      let permitNo: any = '';
+      if (jsonParsDate.propertyListing.company !== null && jsonParsDate.propertyListing.company !== undefined) {
+        permitNo = jsonParsDate.propertyListing.company.PremitNo
+      }
 
       let occupancyStatus: any = '';
-      if (jsonParsDate.propertyListing.occupancyStatus !== null && jsonParsDate.propertyListing.occupancyStatus.name !== null && jsonParsDate.propertyListing.occupancyStatus.name !== undefined) {
+      if (jsonParsDate.propertyListing.occupancyStatus !== null && jsonParsDate.propertyListing.occupancyStatus?.name !== null && jsonParsDate.propertyListing.occupancyStatus?.name !== undefined) {
         occupancyStatus = jsonParsDate.propertyListing.occupancyStatus.name
-        
       }
-      let propertyManage: any = '';
-
+      let completionStatus: any = '';
+      if (jsonParsDate.propertyListing.propertyCompletionStatus !== null && jsonParsDate.propertyListing.propertyCompletionStatus?.statusDescription !== null && jsonParsDate.propertyListing.propertyCompletionStatus?.statusDescription !== undefined) {
+        completionStatus = jsonParsDate.propertyListing.propertyCompletionStatus.statusDescription
+      }
+      let propertyDeveloper: any = '';
+      if (jsonParsDate.propertyListing.propertyDeveloper !== null && jsonParsDate.propertyListing.propertyDeveloper?.name !== null && jsonParsDate.propertyListing.propertyDeveloper?.name !== undefined) {
+        propertyDeveloper = jsonParsDate.propertyListing.propertyDeveloper.name
+      }
+      let transactionType: any = '';
+      if (jsonParsDate.propertyListing.propertyTransactionType !== null && jsonParsDate.propertyListing.propertyTransactionType?.name !== null && jsonParsDate.propertyListing.propertyTransactionType?.name !== undefined) {
+        transactionType = jsonParsDate.propertyListing.propertyTransactionType.name
+      }
       let rentType: any = '';
-      if (jsonParsDate.propertyListing.rentType !== null && jsonParsDate.propertyListing.rentType.name !== null && jsonParsDate.propertyListing.rentType.name !== undefined && jsonParsDate.propertyListing.propertyListingTypeId != 2) {
+      if (jsonParsDate.propertyListing.rentType !== null && jsonParsDate.propertyListing.rentType?.name !== null && jsonParsDate.propertyListing.rentType?.name !== undefined && jsonParsDate.propertyListing.propertyListingTypeId != 2) {
         rentType = jsonParsDate.propertyListing.rentType.name
       }
-
       if (jsonParsDate.propertyListing != null) {
         this.propertyDetailData.propertyPrice = (jsonParsDate.propertyListing.propertyPrice !== undefined) ? jsonParsDate.propertyListing.propertyPrice : ''
         this.propertyDetailData.currency = (jsonParsDate.propertyListing.country.currency !== undefined) ? jsonParsDate.propertyListing.country.currency : ''
-        this.propertyDetailData.rentType = (jsonParsDate.propertyListing.rentType !== null) ? jsonParsDate.propertyListing.rentType.name : ''
+        this.propertyDetailData.rentType = rentType
+        this.propertyDetailData.securityDeposit = (jsonParsDate.propertyListing.securityDeposit !== undefined) ? jsonParsDate.propertyListing.securityDeposit : false
         this.propertyDetailData.securityDepositPrice = (jsonParsDate.propertyListing.securityDepositPrice !== undefined) ? jsonParsDate.propertyListing.securityDepositPrice : ''
+        this.propertyDetailData.brokerageCharge = (jsonParsDate.propertyListing.brokerageCharge !== undefined) ? jsonParsDate.propertyListing.brokerageCharge : false
         this.propertyDetailData.brokerageChargePrice = (jsonParsDate.propertyListing.brokerageChargePrice !== undefined) ? jsonParsDate.propertyListing.brokerageChargePrice : ''
         this.propertyDetailData.buildingName = (jsonParsDate.propertyListing.buildingName !== undefined) ? jsonParsDate.propertyListing.buildingName : ''
         this.propertyDetailData.documents = (jsonParsDate.propertyListing.documents !== undefined) ? jsonParsDate.propertyListing.documents : []
@@ -375,68 +414,60 @@ export class PropertyDetailComponent implements OnInit,AfterViewInit {
         this.propertyDetailData.bathrooms = (jsonParsDate.propertyListing.bathrooms !== undefined) ? jsonParsDate.propertyListing.bathrooms : ''
         this.propertyDetailData.carpetArea = (jsonParsDate.propertyListing.carpetArea !== undefined) ? jsonParsDate.propertyListing.carpetArea : ''
         this.propertyDetailData.unitType = (jsonParsDate.propertyListing.country.unitType !== undefined) ? jsonParsDate.propertyListing.country.unitType : ''
-        this.propertyDetailData.furnishingType = (jsonParsDate.propertyListing.propertyAddress !== undefined) ? jsonParsDate.propertyListing.propertyAddress : ''
+        this.propertyDetailData.furnishingType = (jsonParsDate.propertyListing.furnishingType !== undefined) ? jsonParsDate.propertyListing.furnishingType : ''
         this.propertyDetailData.propertyDescription = (jsonParsDate.propertyListing.propertyDescription !== undefined) ? jsonParsDate.propertyListing.propertyDescription : ''
-        // this.propertyDetailData.propertyDescription = (jsonParsDate.propertyListing.propertyDescription !== undefined) ? jsonParsDate.propertyListing.propertyDescription : ''
         this.propertyDetailData.propertyFeatures = (jsonParsDate.propertyListing.propertyFeatures !== undefined) ? jsonParsDate.propertyListing.propertyFeatures : ''
-        // this.propertyDetailData.propertyType = (jsonParsDate.propertyListing.propertyType !== undefined) ? jsonParsDate.propertyListing.propertyType : ''
         this.propertyDetailData.requestedDateFormat = (jsonParsDate.propertyListing.requestedDateFormat !== undefined) ? jsonParsDate.propertyListing.requestedDateFormat : ''
         this.propertyDetailData.buildingType = (jsonParsDate.propertyListing.propertyCategory.categoryName !== undefined) ? jsonParsDate.propertyListing.propertyCategory.categoryName : ''
         this.propertyDetailData.propertyType = (jsonParsDate.propertyListing.propertyType.typeDescription !== undefined) ? jsonParsDate.propertyListing.propertyType.typeDescription : ''
         this.propertyDetailData.buildingName = (jsonParsDate.propertyListing.buildingName !== undefined) ? jsonParsDate.propertyListing.buildingName : ''
-        this.propertyDetailData.totalFloor = (jsonParsDate.propertyListing.totalFloor !== undefined) ? jsonParsDate.propertyListing.totalFloor : ''
-        this.propertyDetailData.petPolicies = (jsonParsDate.propertyListing.petPolicies !== undefined) ? jsonParsDate.propertyListing.petPolicies : ''
-        this.propertyDetailData.requestedDate = (jsonParsDate.propertyListing.requestedDate !== undefined) ? jsonParsDate.propertyListing.requestedDate : ''
-        this.propertyDetailData.floorNo = (jsonParsDate.propertyListing.floorNo !== undefined) ? jsonParsDate.propertyListing.floorNo : ''
-        this.propertyDetailData.unitNo = (jsonParsDate.propertyListing.unitNo !== undefined) ? jsonParsDate.propertyListing.unitNo : ''
-        this.propertyDetailData.bedrooms = (jsonParsDate.propertyListing.bedrooms !== undefined) ? jsonParsDate.propertyListing.bedrooms : ''
-        this.propertyDetailData.bathrooms = (jsonParsDate.propertyListing.bathrooms !== undefined) ? jsonParsDate.propertyListing.bathrooms : ''
-        this.propertyDetailData.furnishingType = (jsonParsDate.propertyListing.furnishingType !== undefined) ? jsonParsDate.propertyListing.furnishingType : ''
+        this.propertyDetailData.unitNo = jsonParsDate.propertyListing.unitNumber ? jsonParsDate.propertyListing.unitNumber : ''
         this.propertyDetailData.fittingType = (jsonParsDate.propertyListing.fittingType !== undefined) ? jsonParsDate.propertyListing.fittingType : ''
-        this.propertyDetailData.tenantType = tenantType
-        this.propertyDetailData.gender = (jsonParsDate.propertyListing.gender !== undefined) ? jsonParsDate.propertyListing.gender : ''
+        //this.propertyDetailData.tenantType = tenantType
+       // this.propertyDetailData.gender = (jsonParsDate.propertyListing.gender !== undefined) ? jsonParsDate.propertyListing.gender : ''
         this.propertyDetailData.parkings = (jsonParsDate.propertyListing.parkings !== undefined) ? jsonParsDate.propertyListing.parkings : ''
-        this.propertyDetailData.carpetArea = (jsonParsDate.propertyListing.carpetArea !== undefined) ? jsonParsDate.propertyListing.carpetArea : ''
         this.propertyDetailData.buildupArea = (jsonParsDate.propertyListing.buildupArea !== undefined) ? jsonParsDate.propertyListing.buildupArea : ''
         this.propertyDetailData.plotSize = (jsonParsDate.propertyListing.plotSize !== undefined) ? jsonParsDate.propertyListing.plotSize : ''
-        this.propertyDetailData.rentType = rentType
-        this.propertyDetailData.securityDepositPrice = (jsonParsDate.propertyListing.securityDepositPrice !== undefined) ? jsonParsDate.propertyListing.securityDepositPrice : ''
-        this.propertyDetailData.brokerageChargePrice = (jsonParsDate.propertyListing.brokerageChargePrice !== undefined) ? jsonParsDate.propertyListing.brokerageChargePrice : ''
-        this.propertyDetailData.availableDate = (jsonParsDate.propertyListing.availableDate !== undefined) ? jsonParsDate.propertyListing.availableDate : ''
-        this.propertyDetailData.noticePeriod = (jsonParsDate.propertyListing.noticePeriod !== undefined) ? jsonParsDate.propertyListing.noticePeriod : ''
-        this.propertyDetailData.lockingPeriod = (jsonParsDate.propertyListing.lockingPeriod !== undefined) ? jsonParsDate.propertyListing.lockingPeriod : ''
+       // this.propertyDetailData.availableDate = (jsonParsDate.propertyListing.availableDate !== undefined) ? jsonParsDate.propertyListing.availableDate : ''
+       // this.propertyDetailData.noticePeriod = (jsonParsDate.propertyListing.noticePeriod !== undefined) ? jsonParsDate.propertyListing.noticePeriod : ''
+       // this.propertyDetailData.lockingPeriod = (jsonParsDate.propertyListing.lockingPeriod !== undefined) ? jsonParsDate.propertyListing.lockingPeriod : ''
         this.propertyDetailData.propertyLat = (jsonParsDate.propertyListing.propertyLat !== undefined) ? jsonParsDate.propertyListing.propertyLat : ''
         this.propertyDetailData.propertyLong = (jsonParsDate.propertyListing.propertyLong !== undefined) ? jsonParsDate.propertyListing.propertyLong : ''
         this.propertyDetailData.id = (jsonParsDate.propertyListing.id !== undefined) ? jsonParsDate.propertyListing.id : ''
         this.propertyDetailData.favorite = (jsonParsDate.propertyListing.favorite !== undefined) ? jsonParsDate.propertyListing.favorite : ''
         this.propertyDetailData.propertyListingTypeId = (jsonParsDate.propertyListing.propertyListingTypeId !== undefined) ? jsonParsDate.propertyListing.propertyListingTypeId : 0
         this.propertyDetailData.propertyCode = (jsonParsDate.propertyListing.propertyCode !== undefined) ? jsonParsDate.propertyListing.propertyCode : 0
-        this.propertyDetailData.occupancyStatus =occupancyStatus;
+        this.propertyDetailData.occupancyStatus = occupancyStatus;
+        this.propertyDetailData.completionStatus = completionStatus;
+        this.propertyDetailData.propertyDeveloper = propertyDeveloper;
+        this.propertyDetailData.transactionType = transactionType;
+        this.propertyDetailData.angentId = (jsonParsDate.propertyListing.userId == undefined || jsonParsDate.propertyListing.userId==null) ? 0 : Math.abs(jsonParsDate.propertyListing.userId);
+        this.propertyDetailData.priceChangePercentage = (jsonParsDate.propertyListing.priceChangePercentage == undefined || jsonParsDate.propertyListing.priceChangePercentage==null) ? 0 : Math.abs(jsonParsDate.propertyListing.priceChangePercentage);
+        this.propertyDetailData.sizeChangePercentage = (jsonParsDate.propertyListing.sizeChangePercentage == undefined || jsonParsDate.propertyListing.sizeChangePercentage==null) ? 0 : Math.abs(jsonParsDate.propertyListing.sizeChangePercentage);
+        this.propertyDetailData.rentAvgPriceSqft = (jsonParsDate.propertyListing.rentAvgPriceSqft == undefined || jsonParsDate.propertyListing.rentAvgPriceSqft==null) ? 0 : jsonParsDate.propertyListing.rentAvgPriceSqft;
+        this.propertyDetailData.saleAvgPriceSqft = (jsonParsDate.propertyListing.saleAvgPriceSqft == undefined || jsonParsDate.propertyListing.saleAvgPriceSqft==null) ? 0 : jsonParsDate.propertyListing.saleAvgPriceSqft;
+        this.propertyDetailData.averageSize = (jsonParsDate.propertyListing.averageSize == undefined || jsonParsDate.propertyListing.averageSize==null) ? 0 : jsonParsDate.propertyListing.averageSize;
+        this.propertyDetailData.location = jsonParsDate.propertyListing.district.name+", "+jsonParsDate.propertyListing.city.name ;
+        this.propertyDetailData.city = jsonParsDate.propertyListing.city.name;
+        this.propertyDetailData.activeListingCount = jsonParsDate.activeListingCount;
+        this.propertyDetailData.professionType = professionType;
+        this.propertyDetailData.companyName = companyName;
+        this.propertyDetailData.reraNo = reraNo;
+        this.propertyDetailData.permitNo = permitNo;
+      
         // share url concatination
-
-        this.shareURL += this.propertyDetailData.id;
-
-        //gallery images
-        for (let i = 0; i < this.propertyDetails.documents.length; i++) {
-          this.galleryImages.push({
-            small: this.baseUrl + this.propertyDetails.documents[i].fileUrl.replaceAll("\\", "/"),
-            medium: this.baseUrl + this.propertyDetails.documents[i].fileUrl.replaceAll("\\", "/"),
-            big: this.baseUrl + this.propertyDetails.documents[i].fileUrl.replaceAll("\\", "/")
-          });
-        }
-
-        let ree = "https://maps.google.com/maps?q=" + this.propertyDetailData.propertyLat + "," + this.propertyDetailData.propertyLong + "&hl=es&z=14&amp;output=embed"
-        let resp: any = this.domSanitizer.bypassSecurityTrustUrl(ree);
-        this.locationAddress1 = resp
+        // let ree = "https://maps.google.com/maps?q=" + this.propertyDetailData.propertyLat + "," + this.propertyDetailData.propertyLong + "&hl=es&z=14&amp;output=embed"
+        // let resp: any = this.domSanitizer.bypassSecurityTrustUrl(ree);
+        // this.locationAddress1 = resp
 
 
-        if (this.propertyDetail.propertyListing.documents.length == 0) {
-          this.documentCheck = false;
-        }
+        // if (this.propertyDetail.propertyListing.documents.length == 0) {
+        //   this.documentCheck = false;
+        // }
 
-        if (this.propertyDetail.propertyListing.documents[0].fileUrl != null && this.propertyDetail.propertyListing.documents[0].fileUrl !== undefined) {
-          this.thumb1 = this.baseUrl + this.propertyDetail.propertyListing.documents[0].fileUrl;
-        }
+        // if (this.propertyDetail.propertyListing.documents[0].fileUrl != null && this.propertyDetail.propertyListing.documents[0].fileUrl !== undefined) {
+        //   this.thumb1 = this.baseUrl + this.propertyDetail.propertyListing.documents[0].fileUrl;
+        // }
 
         if (jsonParsDate.detailsChart != null) {
           jsonParsDate.detailsChart.chart.forEach((element: any, i: any) => {
@@ -447,8 +478,7 @@ export class PropertyDetailComponent implements OnInit,AfterViewInit {
           })
         }
 
-        this.propertyValidationData = result.data.propertyListing.propertyType;
-        console.log(this.propertyValidationData)
+        this.propertyValidationData = result.data.propertyListing?.propertyType;
         this.getPropertyInfo();
 
       } else {
@@ -457,7 +487,7 @@ export class PropertyDetailComponent implements OnInit,AfterViewInit {
         this.route.navigate(['/'])
         ///end
       }
-      if (jsonParsDate.user != null && jsonParsDate.user != undefined && jsonParsDate.user.imageUrl != null) {
+      if (jsonParsDate.user != null && jsonParsDate.user != undefined && jsonParsDate.user?.imageUrl != null) {
         this.propertyDetailData.userImageUrl = (jsonParsDate.user.imageUrl !== undefined) ? this.baseUrl + jsonParsDate.user.imageUrl : '../assets/images/user.png'
         this.propertyDetailData.userfullName = (jsonParsDate.user.fullName !== undefined) ? jsonParsDate.user.fullName : ''
       } else {
@@ -482,15 +512,21 @@ export class PropertyDetailComponent implements OnInit,AfterViewInit {
           }
         ]
       }
-
+      this.showLoader = false;
+    }
+    else{
+      this.showLoader = false;
+      this.detailSuccess=false;
+    }
     });
+
   }
   getPropertyInfo() {
     this.propertyinfo = [
       {
         show: true,
         label: 'Listed on',
-        value: this.propertyDetailData.requestedDate.split("T")[0],
+        value: this.propertyDetailData.requestedDateFormat,
       },
       {
         show: true,
@@ -499,7 +535,7 @@ export class PropertyDetailComponent implements OnInit,AfterViewInit {
       },
       {
         show: true,
-        label: 'Building Type',
+        label: 'Property Category',
         value: this.propertyDetailData.buildingType,
       },
       {
@@ -507,121 +543,131 @@ export class PropertyDetailComponent implements OnInit,AfterViewInit {
         label: 'Property Type',
         value: this.propertyDetailData.propertyType,
       },
+      // {
+      //   show: true,
+      //   label: 'Unit No.',
+      //   value: this.propertyDetailData.unitNo,
+      // },
       {
-        show: this.propertyValidationData.hasTotalFloor,
-        label: 'Total Floors in Building',
-        value: this.propertyDetailData.totalFloor,
-      },
-      {
-        show: this.propertyValidationData.hasFloorNo,
-        label: 'Floor No.',
-        value: this.propertyDetailData.floorNo,
-      },
-      {
-        show: true,
-        label: 'Unit No.',
-        value: this.propertyDetailData.unitNo,
-      },
-      {
-        show: this.propertyValidationData.hasBed,
+        show: this.propertyValidationData.hasListingBed,
         label: 'Bedroom',
         value: this.propertyDetailData.bedrooms,
       },
       {
-        show: this.propertyValidationData.hasBath,
+        show: this.propertyValidationData.hasListingBath,
         label: 'Bathroom',
         value: this.propertyDetailData.bathrooms,
       },
       {
-        show: this.propertyValidationData.hasFurnishing,
+        show: this.propertyValidationData.hasListingFurnishing,
         label: 'Furnishing Type',
         value: this.propertyDetailData.furnishingType,
       },
       {
-        show: this.propertyValidationData.hasFitting,
+        show: this.propertyValidationData.hasListingFitting,
         label: 'Fitting Type',
         value: this.propertyDetailData.fittingType,
       },
+      // {
+      //   show: this.propertyValidationData.hasTenantType,
+      //   label: 'Preferred Tenant Type',
+      //   value: this.propertyDetailData.tenantType,
+      // },
+      // {
+      //   show: this.propertyValidationData.hasGenderType,
+      //   label: 'Preferred Gender Type',
+      //   value: this.propertyDetailData.gender,
+      // },
       {
-        show: this.propertyValidationData.hasTenantType,
-        label: 'Preferred Tenant Type',
-        value: this.propertyDetailData.tenantType,
-      },
-      {
-        show: this.propertyValidationData.hasGenderType,
-        label: 'Preferred Gender Type',
-        value: this.propertyDetailData.gender,
-      },
-      {
-        show: this.propertyValidationData.hasParking,
+        show: this.propertyValidationData.hasListingParking,
         label: 'Available Parking',
         value: this.propertyDetailData.parkings,
       },
       {
-        show: this.propertyValidationData.hasPetPolicy,
-        label: 'Pet Policy',
-        value: this.propertyDetailData.petPolicies,
+        show: this.propertyValidationData.hasListingUnitNumber,
+        label: 'No Of Units',
+        value:  this.propertyDetailData.unitNo,
       },
+      // {
+      //   show: this.propertyValidationData.hasPetPolicy,
+      //   label: 'Pet Policy',
+      //   value: this.propertyDetailData.petPolicies,
+      // },
       {
         label: 'Carpet Area',
-        show: this.propertyValidationData.hasCarpetArea,
+        show: this.propertyValidationData.hasListingCarpetArea,
         value: this.decimalPipe.transform(this.propertyDetailData.carpetArea),
       },
       {
         show: this.propertyValidationData.hasListingPlotSize,
-        label: 'Plot Size',
+        label:  this.propertyValidationData.sizeLabel,
         value: this.decimalPipe.transform(this.propertyDetailData.plotSize),
       },
       {
-        show: this.propertyValidationData.hasBuildUpArea,
+        show: this.propertyValidationData.hasListingBuildUpArea,
         label: 'Build-up Area',
         value: this.decimalPipe.transform(this.propertyDetailData.buildupArea),
       },
       {
-        show: this.propertyDetailData.propertyListingTypeId==2?true:false,
+        show: this.propertyDetailData.propertyListingTypeId == 2 && this.propertyValidationData.hasListingOccupancyStatus ? true : false,
         label: 'Current Occupancy Status',
         value: this.propertyDetailData.occupancyStatus,
       },
       {
-        show: this.propertyValidationData.hasPropertyManaged,
-        label: 'Property Managed by',
-        value: this.propertyDetailData.propertyManage,
+        show: this.propertyValidationData.hasListingCompletionStatus ? true : false,
+        label: 'Completion Status',
+        value: this.propertyDetailData.completionStatus,
       },
+      {
+        show: this.propertyValidationData.hasListingTransactionType ? true : false,
+        label: 'Transaction Type',
+        value: this.propertyDetailData.transactionType,
+      },
+      {
+        show: this.propertyValidationData.hasListingDeveloper ? true : false,
+        label: 'Developer',
+        value: this.propertyDetailData.propertyDeveloper,
+      },
+      // {
+      //   show: this.propertyValidationData.hasPropertyManaged,
+      //   label: 'Property Managed by',
+      //   value: this.propertyDetailData.propertyManage,
+      // },
       {
         show: true,
         label: 'Price',
         value: this.decimalPipe.transform(this.propertyDetailData.propertyPrice) + ' ' + this.propertyDetailData.currency,
       },
       {
-        show: true,
+        show: this.propertyDetailData.propertyListingTypeId == 2? true : false,
         label: 'Rent Type',
         value: this.propertyDetailData.rentType,
       },
       {
-        show: true,
+        show: this.propertyDetailData.securityDeposit,
         label: 'Security Deposit',
         value: this.decimalPipe.transform(this.propertyDetailData.securityDepositPrice) + ' ' + this.propertyDetailData.currency,
       },
       {
-        show: true,
+        show: this.propertyDetailData.brokerageCharge,
         label: 'Brokerage Deposit',
         value: this.decimalPipe.transform(this.propertyDetailData.brokerageChargePrice) + ' ' + this.propertyDetailData.currency,
       },
-      {
-        show: true,
-        label: 'Available From',
-        value: this.propertyDetailData.availableDate.split("T")[0],
-      },
-      {
-        show: true,
-        label: 'Notice Period',
-        value: this.propertyDetailData.noticePeriod,
-      },
-      {
-        show: true,
-        label: 'Locking Period',
-        value: this.propertyDetailData.lockingPeriod,
-      },
+      // {
+      //   show: true,
+      //   label: 'Available From',
+      //   value: this.propertyDetailData.availableDate.split("T")[0],
+      // },
+      // {
+      //   show: true,
+      //   label: 'Notice Period',
+      //   value: this.propertyDetailData.noticePeriod,
+      // },
+      // {
+      //   show: true,
+      //   label: 'Locking Period',
+      //   value: this.propertyDetailData.lockingPeriod,
+      // },
     ]
 
   }
@@ -820,5 +866,5 @@ export class PropertyDetailComponent implements OnInit,AfterViewInit {
       }
     },
     nav: true
-  }  
+  }
 }

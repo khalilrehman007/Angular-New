@@ -23,6 +23,7 @@ export class AppComponent implements DoCheck, OnInit, AfterViewInit {
   countryData: any = "";
   showLoader:boolean = false;
   constructor(private cookie: CookieService, private service: AppService, private route: Router, private notifyService: NotificationService) {
+    this.cookie.deleteAll();
     this.route.events.subscribe((val: any) => {
       if (val instanceof RouteConfigLoadStart) {
         this.showLoader = true

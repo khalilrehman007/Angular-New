@@ -18,10 +18,9 @@
                             </div>
                         </div>
                         <div ngClass="heading-apragraph-design mt-4">
-                            <h2>{{selectedPropertyTypeName}} {{headingPropertyType}} for {{type}} in UAE</h2>
-                            <p>Showing {{totalRecord}} {{headingPropertyType}} for {{type}} in UAE</p>
-                            <p>Properties For {{type}} in UAE. Verified Listings.
-                            </p>
+                            <h2>{{selectedPropertyTypeName}} {{headingPropertyType}} for {{type=="Buy"?"Sale":type}} in {{countryData.acronym}}</h2>
+                            <p>Showing {{totalRecord}} {{headingPropertyType}} for {{type=="Buy"?"Sale":type}} in {{countryData.acronym}}</p>
+                            <!-- <p>Properties For {{type}} in {{countryData.acronym}}. Verified Listings.</p> -->
                         </div>
                         <div ngClass="properties-filtr-values d-flex justify-content-spacebw">
                             <div ngClass="properties-filtr-values-left d-flex justify-content-spacebw">
@@ -152,48 +151,47 @@
                                                 <div ngClass="topkey-highlights cursor-pointer" [routerLink]="['/property/detail']"
                                                 [queryParams]="{id: list.id}">
                                                     <h5>{{list.propertyTitle}}</h5>
+                                                    <p style="margin-bottom: 0px !important;margin-top: 6px !important;">{{list.propertyType?.typeDescription}}</p>
                                                     <div style="margin-top: 10px !important;" ngClass="property-details-highlights">
-                                                        <span *ngIf="list.bedrooms != 0" ngClass="bed">
+                                                        <span *ngIf="list.propertyType?.hasListingBed" ngClass="bed">
                                                             <img src="{{bedsvg}}" alt="">{{list.bedrooms}} Beds
                                                         </span>
-                                                        <span *ngIf="list.bathrooms != 0" ngClass="bath">
+                                                        <span *ngIf="list.propertyType?.hasListingBath" ngClass="bath">
                                                             <img src="{{bathsvg}}" alt="">{{list.bathrooms}} Bath
                                                         </span>
                                                         <span ngClass="area">
-                                                            <img src="{{squaremetersvg}}" alt="">{{list.plotSize == null || list.plotSize==0 ? list.buildupArea ==null || list.buildupArea==0 ?0:list.buildupArea.toLocaleString():list.plotSize.toLocaleString() }}
-                                                            sqft
+                                                            <img src="{{squaremetersvg}}" alt="">  {{list.plotSize == null ||
+                                                                list.plotSize==0 ? list.buildupArea ==null ||
+                                                                list.buildupArea==0
+                                                                ?0:list.buildupArea.toLocaleString():list.plotSize.toLocaleString()
+                                                                }} {{countryData.unitType}}
                                                         </span>
-                                                        <span ngClass="furnishing">
+                                                        <span ngClass="furnishing" *ngIf="list.propertyType?.hasFurnishing">
                                                             <img src="{{furnishing}}" alt="">{{list.furnishingType}}
                                                         </span>
                                                     </div>
                                                 </div>
-                                                <!-- <div ngClass="key-tags cursor-pointer" [routerLink]="['/property/detail']"
+                                        
+                                                <div *ngIf="list.showDIDiv" style="margin-top: 10px !important;" ngClass="data-inteligence-text cursor-pointer" [routerLink]="['/property/detail']"
                                                 [queryParams]="{id: list.id}">
-                                                    <span *ngFor="let features of list.propertyFeatures">
-                                                        {{features.propertyFeature.featureName}}
-                                                    </span>
-                                                </div> -->
-                                                <div style="margin-top: 10px !important;" ngClass="data-inteligence-text cursor-pointer" [routerLink]="['/property/detail']"
-                                                [queryParams]="{id: list.id}">
-                                                    <h6>OV Data Intelligence - Corniche Road, Abu Dhabi </h6>
+                                                    <h6>OV Data Intelligence - {{list.propertyAddress}} </h6>
                                                     <div ngClass="property-range-bar d-flex">
-                                                        <div ngClass="pro-range-whie-box">
-                                                            <p>Recent Rent Transactions</p>
+                                                        <div *ngIf="list.showRecentTransactions" ngClass="pro-range-whie-box">
+                                                            <p>Recent {{list.listingType}} Transactions</p>
                                                             <h6>{{list.RecentRentTxns | number}} in last 1 year</h6>
                                                         </div>
-                                                        <div ngClass="pro-range-whie-box">
-                                                            <p>Rent Price Range</p>
+                                                        <div *ngIf="list.showPriceRange" ngClass="pro-range-whie-box">
+                                                            <p>{{list.listingType}} Price Range</p>
                                                             <h6>{{list.StartRentPrice | number}} {{list.currency}} -
                                                                 {{list.EndRentPrice | number}} {{list.currency}}</h6>
                                                         </div>
-                                                        <div ngClass="pro-range-whie-box">
-                                                            <p>Avg. Rent/ Sq. Ft.</p>
+                                                        <div *ngIf="list.showAvgSqft" ngClass="pro-range-whie-box">
+                                                            <p>Avg. {{list.listingType}}/Sq.Ft.</p>
                                                             <h6>{{list.AvgRentPrice | number}} {{list.currency}}</h6>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div ngClass="property-footer-block">
+                                                <div ngClass="property-footer-block" style="margin-top: 10px !important;">
                                                     <div ngClass="row align-items-center">
                                                         <div ngClass="col-xl-4 col-lg-12 col-md-12 col-sm-12">
                                                             <div ngClass="lsited-by-details d-flex">
@@ -202,7 +200,7 @@
                                                                 </div>
                                                                 <div ngClass="list_cntnt-blcok">
                                                                     <h5>{{list.fullName}}</h5>
-                                                                    <p>Listed on: {{list.requestedDateFormat}}</p>
+                                                                    <p [title]="list.requestedDateFormat">Listed on: {{list.requestedDateFormat}}</p>
                                                                 </div>
                                                             </div>
                                                         </div>

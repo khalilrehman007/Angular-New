@@ -54,6 +54,7 @@ export class SignupComponent implements OnInit, AfterViewInit {
     let a = setInterval(() => {
       if (this.cookie.get("countryData")) {
         this.countryData = JSON.parse(this.cookie.get("countryData"));
+        console.log(this.countryData)
         this.seletedCountry = this.countryData.code;
         clearInterval(a);
       }

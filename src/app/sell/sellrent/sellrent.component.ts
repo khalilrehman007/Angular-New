@@ -52,6 +52,13 @@ export class SellrentComponent implements OnInit {
   howitworks: any = [];
   faqsec: any = [];
   constructor(private api: AppService) {
+    localStorage.removeItem("bounds");
+    localStorage.removeItem("currency");
+    localStorage.removeItem("arabicAddress");
+    localStorage.removeItem("propertyData");
+    localStorage.removeItem("lng");
+    localStorage.removeItem("address");
+    localStorage.removeItem("lat");
     $(window).scrollTop(0);
     this.api.HowWorkOvaluate().subscribe((result: any) => {
       this.heading = result.data.pageCaptionHelight;
