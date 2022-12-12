@@ -8,6 +8,7 @@ import { AuthService } from "../../service/auth.service";
 import { JsonpInterceptor } from "@angular/common/http";
 import { environment } from 'src/environments/environment';
 import { CookieService } from 'ngx-cookie-service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-search',
@@ -95,7 +96,19 @@ export class SearchComponent implements OnInit,AfterViewInit {
   halfList: any = 0;
   currency: any = "";
   listingImage: any;
-  constructor(private cookie: CookieService,private authService: AuthService, private notifyService: NotificationService, private activeRoute: ActivatedRoute, private service: AppService, private api: AppService, private route: Router, private modalService: NgbModal) {
+  whatsAppShareUrl:any="";
+  facebookShareUrl:any="";
+  twitterShareUrl:any="";
+  shareURL: any = "";
+  constructor(private domSanitizer: DomSanitizer,private cookie: CookieService,private authService: AuthService, private notifyService: NotificationService, private activeRoute: ActivatedRoute, private service: AppService, private api: AppService, private route: Router, private modalService: NgbModal) {
+    let temp: any = window.location.href;
+    temp = temp.split("/");
+    temp[1] = "//";
+    temp[2] = temp[2] + "/";
+    temp[3] = temp[3] + "/";
+    temp.pop().toString().replaceAll(",", "");
+    this.shareURL = temp.toString().replaceAll(",", "");
+    console.log("shareurl",this.shareURL)
     $(window).scrollTop(0);
     this.route.events.subscribe((e: any) => {
       if (e instanceof NavigationEnd) {
@@ -173,7 +186,6 @@ export class SearchComponent implements OnInit,AfterViewInit {
     let a = setInterval(() => {
       if (this.cookie.get("countryData")) {
         this.countryData = JSON.parse(this.cookie.get("countryData"));
-        console.log("xx",this.countryData)
         clearInterval(a);
       }
     })
@@ -404,7 +416,11 @@ export class SearchComponent implements OnInit,AfterViewInit {
         else{
           this.showDIDiv=true;
         }
-
+        this.shareURL += "detail?id="+element.id;
+        this.whatsAppShareUrl=this.domSanitizer.bypassSecurityTrustUrl("https://wa.me/?text="+encodeURI(this.shareURL));
+      this.facebookShareUrl=this.domSanitizer.bypassSecurityTrustUrl("https://www.facebook.com/sharer/sharer.php?u="+encodeURI(this.shareURL)+"%3Futm_source%3Dfacebook%26utm_medium%3Dsocial%26utm_campaign%3Dshare_property");
+      this.twitterShareUrl=this.domSanitizer.bypassSecurityTrustUrl("https://twitter.com/intent/tweet?url="+encodeURI(this.shareURL)+"%3Futm_source%3Dtwitter%26utm_medium%3Dsocial%26utm_campaign%3Dshare_property");
+      
         tempData.push(
           {
             buildupArea: element.buildupArea,
@@ -418,7 +434,8 @@ export class SearchComponent implements OnInit,AfterViewInit {
             requestedDateFormat: element.requestedDateFormat,
             rentType: rentTypeName, listingTypeId: element.propertyListingTypeId, currency: element.country.currency, propertyCode: element.propertyCode,
             listingType: element.propertyListingTypeId == 1 ? "Rent" : "Sale",showRecentTransactions:this.showRecentTransactions,
-            showAvgSqft:this.showAvgSqft,showPriceRange:this.showPriceRange,showDIDiv:this.showDIDiv
+            showAvgSqft:this.showAvgSqft,showPriceRange:this.showPriceRange,showDIDiv:this.showDIDiv,
+            whatsAppShareUrl:this.whatsAppShareUrl,facebookShareUrl:this.facebookShareUrl,twitterShareUrl:this.twitterShareUrl
 
           }
         );

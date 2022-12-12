@@ -76,7 +76,6 @@ export class AppComponent implements DoCheck, OnInit, AfterViewInit {
       url: "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + this.latitude + "," + this.longitude + "&key=AIzaSyBPSEz52-AfPEVbmV_3yuGUGol_KiLb3GU",
       method: "get",
       success: (res: any) => {
-        console.clear();
         let length: any = res.results.length - 1;
         this.currentCountry = res.results[length].address_components[0].short_name;
         this.loadCountryData();

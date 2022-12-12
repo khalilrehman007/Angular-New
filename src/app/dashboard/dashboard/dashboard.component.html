@@ -45,19 +45,24 @@
                         <img src="{{proAvatar}}" *ngIf="proAvatar != ''" alt="" class="user-img">
                         <div ngClass="pro-contact-details">
                             <div ngbDropdown class="d-inline-block">
-                                <button ngClass="circle-btn" id="dropdownBasic21"
-                                    ngbDropdownToggle><img src="{{proImgEdit}}" alt=""></button>
+                                <button ngClass="circle-btn" id="dropdownBasic21" ngbDropdownToggle><img
+                                        src="{{proImgEdit}}" alt=""></button>
                                 <div ngbDropdownMenu aria-labelledby="dropdownBasic21">
-                                    <input type="file" accept="image/*" ngClass="camera-image d-none" capture="camera" (change)="getImage($event)" >
-                                  <button ngbDropdownItem class="postiion-relative take-photo" type="file" accept="image/*" (click)= "openCamera()" >
-                                    Take a Photo</button>
+                                    <input type="file" accept="image/*" ngClass="camera-image d-none" capture="camera"
+                                        (change)="getImage($event)">
+                                    <button ngbDropdownItem class="postiion-relative take-photo" type="file"
+                                        accept="image/*" (click)="openCamera()">
+                                        Take a Photo</button>
                                     <button ngbDropdownItem class="postiion-relative choose-photo">
-                                    <label for="proImg" class="edit-pro-img">
-                                        <input type="file" id="proImg"   accept="image/png, image/jpeg, image/jpg" (change)="getImage($event)" >
-                                        Choose Photo        
-                                    </label>
+                                        <label for="proImg" class="edit-pro-img">
+                                            <input type="file" id="proImg" accept="image/png, image/jpeg, image/jpg"
+                                                (change)="getImage($event)">
+                                            Choose Photo
+                                        </label>
                                     </button>
-                                   <button ngbDropdownItem class="postiion-relative delete-photo" *ngIf="proAvatar != '../../assets/images/user.png'" (click)="deletePhoto()">Delete Photo</button>
+                                    <button ngbDropdownItem class="postiion-relative delete-photo"
+                                        *ngIf="proAvatar != '../../assets/images/user.png'"
+                                        (click)="deletePhoto()">Delete Photo</button>
                                 </div>
                             </div>
                         </div>
@@ -116,6 +121,11 @@
                             aria-selected="false">My Packages</button>
                     </li>
                     <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
+                            data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile"
+                            aria-selected="false">My Profile</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
                         <!-- <button class="nav-link" id="">More</button> -->
                         <div ngbDropdown class="d-inline-block">
                             <button mat-icon-button ngClass="action-btn" id="dropdownBasic1" ngbDropdownToggle>
@@ -123,10 +133,9 @@
                             <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
                                 <!-- <h5>Share with:</h5> -->
                                 <button ngbDropdownItem><a href=""><img src="{{web}}"> Go to Ovaluate</a></button>
-                                <button ngbDropdownItem><a href="" data-bs-toggle="pill" data-bs-target="#pills-profile"
-                                        type="button" role="tab" aria-controls="pills-profile"
-                                        aria-selected="false"><img src="{{profile}}"> My
-                                        Profile</a></button>
+                                <!-- <button ngbDropdownItem id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" role="tab" aria-controls="pills-profile"
+                                aria-selected="false" type="button"><img src="{{profile}}"> My
+                                        Profile</button> -->
                                 <button ngbDropdownItem><a target="_blank" routerLink="/chat"><img src="{{shareicon}}">
                                         My Messages</a></button>
                                 <!-- <button ngbDropdownItem><a href=""><img src="{{acsetting}}"> Account
@@ -268,7 +277,7 @@
                             <div ngClass="tab-content">
                                 <div id="resedential-rent" class="tab-pane active">
                                     <div class="no-data-found" *ngIf="leadsResidentialSummary.length == 0">
-                                         <img src="/assets/images/No-data.svg">
+                                        <img src="/assets/images/No-data.svg">
                                     </div>
                                     <div class="lead-summ-table" *ngIf="leadsResidentialSummary.length > 0">
                                         <div class="table-row" *ngFor="let data of leadsResidentialSummary">
@@ -326,7 +335,7 @@
                                 </div>
                                 <div id="resedential-buy" class="tab-pane">
                                     <div class="no-data-found" *ngIf="leadsCommercialSummary.length == 0">
-                                         <img src="/assets/images/No-data.svg">
+                                        <img src="/assets/images/No-data.svg">
                                     </div>
                                     <div class="lead-summ-table" *ngIf="leadsCommercialSummary.length > 0">
                                         <div class="table-row" *ngFor="let data of leadsCommercialSummary">
@@ -398,7 +407,7 @@
 
                             <div ngClass="row">
                                 <div ngClass="col-lg-4 col-md-6 blog-places-col" *ngFor=" let blog of blogs">
-                                    
+
                                     <a routerLink="/blog/details/{{blog.slugName}}" ngClass="position-relative">
                                         <img [src]="'https://www.ovaluate.com/'+blog.blogDocument.fileUrl"
                                             ngClass="img-fluid blog-image-homepage" alt="">
@@ -572,7 +581,8 @@
                                                                     <span> 24 Hours Concierge </span>
                                                                 </div>
                                                                 <div ngClass="data-inteligence-text">
-                                                                    <h6>OV Data Intelligence - {{viewList.city.name}}, {{viewList.country.name}}
+                                                                    <h6>OV Data Intelligence - {{viewList.city.name}},
+                                                                        {{viewList.country.name}}
                                                                     </h6>
                                                                     <div ngClass="property-range-bar d-flex">
                                                                         <div ngClass="pro-range-whie-box">
@@ -582,11 +592,15 @@
                                                                         </div>
                                                                         <div ngClass="pro-range-whie-box">
                                                                             <p>Rent Price Range</p>
-                                                                            <h6>{{viewList.startRentPrice}} {{viewList.currency}} - {{viewList.endRentPrice}} {{viewList.currency}}</h6>
+                                                                            <h6>{{viewList.startRentPrice}}
+                                                                                {{viewList.currency}} -
+                                                                                {{viewList.endRentPrice}}
+                                                                                {{viewList.currency}}</h6>
                                                                         </div>
                                                                         <div ngClass="pro-range-whie-box">
                                                                             <p>Avg. Rent/ Sq. Ft.</p>
-                                                                            <h6>{{viewList.avgRentPrice}} {{viewList.currency}}</h6>
+                                                                            <h6>{{viewList.avgRentPrice}}
+                                                                                {{viewList.currency}}</h6>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -608,7 +622,8 @@
                                             <div class="row">
                                                 <div class="col-lg-9 col-md-10">
                                                     <div class="row">
-                                                        <div class="col-lg-6" *ngFor="let agentView of myActivityAgentView">
+                                                        <div class="col-lg-6"
+                                                            *ngFor="let agentView of myActivityAgentView">
                                                             <div class="agent-landing-featured__agent">
                                                                 <div class="agent-landing-featured__property-wrapper">
                                                                     <img src="assets/images/tag/featured.png" alt=""
@@ -710,7 +725,7 @@
                                         </div>
                                     </div>
                                     <div class="no-data-found" *ngIf="activityViewData.length == 0">
-                                         <img src="/assets/images/No-data.svg">
+                                        <img src="/assets/images/No-data.svg">
                                     </div>
                                     <div class="agent-details__tabs">
                                         <div class="row">
@@ -912,7 +927,7 @@
                                     </div>
 
                                     <div class="no-data-found" *ngIf="wishlistingData.length == 0">
-                                         <img src="/assets/images/No-data.svg">
+                                        <img src="/assets/images/No-data.svg">
                                     </div>
                                     <div class="agent-details__tabs shortlisted-tabs_list">
                                         <div class="row">
@@ -1037,7 +1052,7 @@
                                         </div>
                                     </div>
                                     <div class="no-data-found" *ngIf="enquiredlistingData.length == 0">
-                                         <img src="/assets/images/No-data.svg">
+                                        <img src="/assets/images/No-data.svg">
                                     </div>
 
                                     <div class="agent-details__tabs">
@@ -1158,7 +1173,7 @@
                                         </div>
                                     </div>
                                     <div class="no-data-found" *ngIf="leadsData.length == 0">
-                                         <img src="/assets/images/No-data.svg">
+                                        <img src="/assets/images/No-data.svg">
                                     </div>
                                     <section *ngIf="leadsData.length >= 0"
                                         ngClass="my-lead-listing-wrap position-relative wrapper-section properties-slider residentials-property-rent-1">
@@ -1249,7 +1264,7 @@
                                         </div>
                                     </div>
                                     <div class="no-data-found" *ngIf="leadsData.length == 0">
-                                         <img src="/assets/images/No-data.svg">
+                                        <img src="/assets/images/No-data.svg">
                                     </div>
                                     <section *ngIf="leadsData.length >= 0"
                                         ngClass="my-lead-listing-wrap position-relative wrapper-section properties-slider residentials-property-rent-1">
@@ -1337,7 +1352,7 @@
                                         </div>
                                     </div>
                                     <div class="no-data-found" *ngIf="leadsData.length == 0">
-                                         <img src="/assets/images/No-data.svg">
+                                        <img src="/assets/images/No-data.svg">
                                     </div>
                                     <section *ngIf="leadsData.length >= 0"
                                         ngClass="my-lead-listing-wrap position-relative wrapper-section properties-slider residentials-property-rent-1">
@@ -1425,7 +1440,7 @@
                                         </div>
                                     </div>
                                     <div class="no-data-found" *ngIf="listingAll.length < 1">
-                                         <img src="/assets/images/No-data.svg">
+                                        <img src="/assets/images/No-data.svg">
                                     </div>
                                     <div class="agent-details__tabs">
                                         <div class="row">
@@ -1435,22 +1450,25 @@
                                                         *ngFor="let listing of listingAll | paginate: { itemsPerPage: 10, currentPage: page, totalItems:totalLength }">
                                                         <div class="row">
                                                             <div class="col-lg-2" [routerLink]="['/property/detail']"
-                                                            [queryParams]="{id: listing.id}">
+                                                                [queryParams]="{id: listing.id}">
                                                                 <img src="{{listing.img}}" alt=""
                                                                     class="img-fluid agent-details__property-list-item-img">
                                                             </div>
                                                             <div class="col-lg-10">
                                                                 <div class="row">
-                                                                    <div class="col-7" [routerLink]="['/property/detail']"
-                                                                    [queryParams]="{id: listing.id}">
+                                                                    <div class="col-7"
+                                                                        [routerLink]="['/property/detail']"
+                                                                        [queryParams]="{id: listing.id}">
                                                                         <a
-                                                                            class="agent-details__property-list-item-link cursor-pointer">{{listing.propertyPrice |number }}
+                                                                            class="agent-details__property-list-item-link cursor-pointer">{{listing.propertyPrice
+                                                                            |number }}
                                                                             {{listing.currency}}<small
                                                                                 *ngIf="listing.rentType != ''">{{listing.rentType}}</small>
                                                                         </a>
                                                                     </div>
-                                                                    <div class="col-5 text-end" [routerLink]="['/property/detail']"
-                                                                    [queryParams]="{id: listing.id}">
+                                                                    <div class="col-5 text-end"
+                                                                        [routerLink]="['/property/detail']"
+                                                                        [queryParams]="{id: listing.id}">
                                                                         <p
                                                                             class="agent-details__property-list-item-date mb-0">
                                                                             Posted on:
@@ -1462,16 +1480,19 @@
                                                                     </div>
                                                                 </div>
                                                                 <h5 [routerLink]="['/property/detail']"
-                                                                [queryParams]="{id: listing.id}">{{listing.propertyTitle}}</h5>
-                                                                <p class="agent-details__property-list-item-text" [routerLink]="['/property/detail']"
-                                                                [queryParams]="{id: listing.id}">
+                                                                    [queryParams]="{id: listing.id}">
+                                                                    {{listing.propertyTitle}}</h5>
+                                                                <p class="agent-details__property-list-item-text"
+                                                                    [routerLink]="['/property/detail']"
+                                                                    [queryParams]="{id: listing.id}">
                                                                     <img src="assets/images/home-location.svg" alt=""
                                                                         class="img-fluid agent-details__property-list-item-text-icon">
                                                                     {{listing.propertyAddress}}
                                                                 </p>
                                                                 <div class="row">
-                                                                    <div class="col-md-10" [routerLink]="['/property/detail']"
-                                                                    [queryParams]="{id: listing.id}">
+                                                                    <div class="col-md-10"
+                                                                        [routerLink]="['/property/detail']"
+                                                                        [queryParams]="{id: listing.id}">
                                                                         <ul class="agent-details__property-detail-list">
                                                                             <li
                                                                                 class="agent-details__property-detail-list-item beds">
@@ -1489,11 +1510,12 @@
                                                                                 class="agent-details__property-detail-list-item sqft">
                                                                                 <img src="assets/images/icons/Square Meters.svg"
                                                                                     alt="">
-                                                                                    {{listing.plotSize == null ||
-                                                                                        listing.plotSize==0 ? listing.buildupArea ==null ||
-                                                                                        listing.buildupArea==0
-                                                                                        ?0:listing.buildupArea.toLocaleString():listing.plotSize.toLocaleString()
-                                                                                        }} {{listing.unitType}}
+                                                                                {{listing.plotSize == null ||
+                                                                                listing.plotSize==0 ?
+                                                                                listing.buildupArea ==null ||
+                                                                                listing.buildupArea==0
+                                                                                ?0:listing.buildupArea.toLocaleString():listing.plotSize.toLocaleString()
+                                                                                }} {{listing.unitType}}
                                                                             </li>
                                                                             <li
                                                                                 class="agent-details__property-detail-list-item furnising">
@@ -1503,7 +1525,8 @@
                                                                             </li>
                                                                         </ul>
                                                                     </div>
-                                                                    <div class="col-md-2 text-right" *ngIf="childTabId!=5">
+                                                                    <div class="col-md-2 text-right"
+                                                                        *ngIf="childTabId!=5">
                                                                         <!-- <img src="assets/images/better-home.svg" alt=""> -->
                                                                         <!-- <button class="action-btn"><img src="assets/images/profile/menu-dots.png" alt=""></button> -->
 
@@ -1518,15 +1541,16 @@
                                                                                 <button ngbDropdownItem><a href=""><img
                                                                                             src="{{profile}}"> View
                                                                                         Leads</a></button>
-                                                                                <button ngbDropdownItem (click)="openVerticallyCentered(sharecontent)"><img
-                                                                                            src="{{shareimg}}">
-                                                                                        Share</button>
-                                                                                <button ngbDropdownItem (click)="deleteListing(listing.id)"><a><img
+                                                                                <button ngbDropdownItem
+                                                                                    (click)="openVerticallyCentered(sharecontent)"><img
+                                                                                        src="{{shareimg}}">
+                                                                                    Share</button>
+                                                                                <button ngbDropdownItem
+                                                                                    (click)="deleteListing(listing.id)"><a><img
                                                                                             src="{{deleteimg}}">
                                                                                         Delete</a></button>
                                                                                 <button ngbDropdownItem><a
-                                                                                        routerLink="/add-property/edit/{{listing.id}}/listingproperty"
-                                                                                       ><img
+                                                                                        routerLink="/add-property/edit/{{listing.id}}/listingproperty"><img
                                                                                             src="{{editimg}}">
                                                                                         Edit</a></button>
                                                                             </div>
@@ -1564,7 +1588,7 @@
                                         </div>
                                     </div>
                                     <div class="no-data-found" *ngIf="listingAll.length < 1">
-                                         <img src="/assets/images/No-data.svg">
+                                        <img src="/assets/images/No-data.svg">
                                     </div>
                                     <div class="agent-details__tabs">
                                         <div class="row">
@@ -1579,16 +1603,18 @@
                                                             </div>
                                                             <div class="col-lg-10">
                                                                 <div class="row">
-                                                                    <div class="col-7" [routerLink]="['/property/detail']"
-                                                                    [queryParams]="{id: listing.id}">
+                                                                    <div class="col-7"
+                                                                        [routerLink]="['/property/detail']"
+                                                                        [queryParams]="{id: listing.id}">
                                                                         <a
                                                                             class="agent-details__property-list-item-link cursor-pointer">{{listing.propertyPrice}}
                                                                             {{listing.currency}}
                                                                             <small>{{listing.rentType}}</small>
                                                                         </a>
                                                                     </div>
-                                                                    <div class="col-5 text-end" [routerLink]="['/property/detail']"
-                                                                    [queryParams]="{id: listing.id}">
+                                                                    <div class="col-5 text-end"
+                                                                        [routerLink]="['/property/detail']"
+                                                                        [queryParams]="{id: listing.id}">
                                                                         <p
                                                                             class="agent-details__property-list-item-date mb-0">
                                                                             Posted on:
@@ -1600,9 +1626,11 @@
                                                                     </div>
                                                                 </div>
                                                                 <h5 [routerLink]="['/property/detail']"
-                                                                [queryParams]="{id: listing.id}">{{listing.propertyTitle}}</h5>
-                                                                <p class="agent-details__property-list-item-text" [routerLink]="['/property/detail']"
-                                                                [queryParams]="{id: listing.id}">
+                                                                    [queryParams]="{id: listing.id}">
+                                                                    {{listing.propertyTitle}}</h5>
+                                                                <p class="agent-details__property-list-item-text"
+                                                                    [routerLink]="['/property/detail']"
+                                                                    [queryParams]="{id: listing.id}">
                                                                     <img src="assets/images/home-location.svg" alt=""
                                                                         class="img-fluid agent-details__property-list-item-text-icon">
                                                                     {{listing.propertyAddress}}
@@ -1610,8 +1638,9 @@
                                                                 <!-- <p class="agent-details__property-list-item-type">
                                                                     {{listing.propertyDescription}}</p> -->
                                                                 <div class="row">
-                                                                    <div class="col-md-10" [routerLink]="['/property/detail']"
-                                                                    [queryParams]="{id: listing.id}">
+                                                                    <div class="col-md-10"
+                                                                        [routerLink]="['/property/detail']"
+                                                                        [queryParams]="{id: listing.id}">
                                                                         <ul class="agent-details__property-detail-list">
                                                                             <li
                                                                                 class="agent-details__property-detail-list-item beds">
@@ -1629,11 +1658,12 @@
                                                                                 class="agent-details__property-detail-list-item sqft">
                                                                                 <img src="assets/images/icons/Square Meters.svg"
                                                                                     alt="">
-                                                                                    {{listing.plotSize == null ||
-                                                                                        listing.plotSize==0 ? listing.buildupArea ==null ||
-                                                                                        listing.buildupArea==0
-                                                                                        ?0:listing.buildupArea.toLocaleString():listing.plotSize.toLocaleString()
-                                                                                        }} {{listing.unitType}}
+                                                                                {{listing.plotSize == null ||
+                                                                                listing.plotSize==0 ?
+                                                                                listing.buildupArea ==null ||
+                                                                                listing.buildupArea==0
+                                                                                ?0:listing.buildupArea.toLocaleString():listing.plotSize.toLocaleString()
+                                                                                }} {{listing.unitType}}
                                                                             </li>
                                                                             <li
                                                                                 class="agent-details__property-detail-list-item furnising">
@@ -1643,7 +1673,8 @@
                                                                             </li>
                                                                         </ul>
                                                                     </div>
-                                                                    <div class="col-md-2 text-right" *ngIf="childTabId!=5">
+                                                                    <div class="col-md-2 text-right"
+                                                                        *ngIf="childTabId!=5">
                                                                         <!-- <img src="assets/images/better-home.svg" alt=""> -->
                                                                         <!-- <button class="action-btn"><img src="assets/images/profile/menu-dots.png" alt=""></button> -->
 
@@ -1661,7 +1692,8 @@
                                                                                 <button ngbDropdownItem><a href=""><img
                                                                                             src="{{shareimg}}">
                                                                                         Share</a></button>
-                                                                                <button ngbDropdownItem (click)="deleteListing(listing.id)"><a><img
+                                                                                <button ngbDropdownItem
+                                                                                    (click)="deleteListing(listing.id)"><a><img
                                                                                             src="{{deleteimg}}">
                                                                                         Delete</a></button>
                                                                                 <button ngbDropdownItem><a href=""><img
@@ -1702,7 +1734,7 @@
                                         </div>
                                     </div>
                                     <div class="no-data-found" *ngIf="listingAll.length < 1">
-                                         <img src="/assets/images/No-data.svg">
+                                        <img src="/assets/images/No-data.svg">
                                     </div>
                                     <div class="agent-details__tabs">
                                         <div class="row">
@@ -1717,16 +1749,18 @@
                                                             </div>
                                                             <div class="col-lg-10">
                                                                 <div class="row">
-                                                                    <div class="col-7" [routerLink]="['/property/detail']"
-                                                                    [queryParams]="{id: listing.id}">
+                                                                    <div class="col-7"
+                                                                        [routerLink]="['/property/detail']"
+                                                                        [queryParams]="{id: listing.id}">
                                                                         <a
                                                                             class="agent-details__property-list-item-link cursor-pointer">{{listing.propertyPrice}}
                                                                             {{listing.currency}}
                                                                             <span>{{listing.rentType}}</span>
                                                                         </a>
                                                                     </div>
-                                                                    <div class="col-5 text-end" [routerLink]="['/property/detail']"
-                                                                    [queryParams]="{id: listing.id}">
+                                                                    <div class="col-5 text-end"
+                                                                        [routerLink]="['/property/detail']"
+                                                                        [queryParams]="{id: listing.id}">
                                                                         <p
                                                                             class="agent-details__property-list-item-date mb-0">
                                                                             Posted on:
@@ -1738,9 +1772,11 @@
                                                                     </div>
                                                                 </div>
                                                                 <h5 [routerLink]="['/property/detail']"
-                                                                [queryParams]="{id: listing.id}">{{listing.propertyTitle}}</h5>
-                                                                <p class="agent-details__property-list-item-text" [routerLink]="['/property/detail']"
-                                                                [queryParams]="{id: listing.id}">
+                                                                    [queryParams]="{id: listing.id}">
+                                                                    {{listing.propertyTitle}}</h5>
+                                                                <p class="agent-details__property-list-item-text"
+                                                                    [routerLink]="['/property/detail']"
+                                                                    [queryParams]="{id: listing.id}">
                                                                     <img src="assets/images/home-location.svg" alt=""
                                                                         class="img-fluid agent-details__property-list-item-text-icon">
                                                                     {{listing.propertyAddress}}
@@ -1748,8 +1784,9 @@
                                                                 <!-- <p class="agent-details__property-list-item-type">
                                                                     {{listing.propertyDescription}}</p> -->
                                                                 <div class="row">
-                                                                    <div class="col-md-10" [routerLink]="['/property/detail']"
-                                                                    [queryParams]="{id: listing.id}">
+                                                                    <div class="col-md-10"
+                                                                        [routerLink]="['/property/detail']"
+                                                                        [queryParams]="{id: listing.id}">
                                                                         <ul class="agent-details__property-detail-list">
                                                                             <li
                                                                                 class="agent-details__property-detail-list-item beds">
@@ -1767,11 +1804,12 @@
                                                                                 class="agent-details__property-detail-list-item sqft">
                                                                                 <img src="assets/images/icons/Square Meters.svg"
                                                                                     alt="">
-                                                                                    {{listing.plotSize == null ||
-                                                                                        listing.plotSize==0 ? listing.buildupArea ==null ||
-                                                                                        listing.buildupArea==0
-                                                                                        ?0:listing.buildupArea.toLocaleString():listing.plotSize.toLocaleString()
-                                                                                        }} {{listing.unitType}}
+                                                                                {{listing.plotSize == null ||
+                                                                                listing.plotSize==0 ?
+                                                                                listing.buildupArea ==null ||
+                                                                                listing.buildupArea==0
+                                                                                ?0:listing.buildupArea.toLocaleString():listing.plotSize.toLocaleString()
+                                                                                }} {{listing.unitType}}
                                                                             </li>
                                                                             <li
                                                                                 class="agent-details__property-detail-list-item furnising">
@@ -1781,7 +1819,8 @@
                                                                             </li>
                                                                         </ul>
                                                                     </div>
-                                                                    <div class="col-md-2 text-right" *ngIf="childTabId!=5">
+                                                                    <div class="col-md-2 text-right"
+                                                                        *ngIf="childTabId!=5">
                                                                         <!-- <img src="assets/images/better-home.svg" alt=""> -->
                                                                         <!-- <button class="action-btn"><img src="assets/images/profile/menu-dots.png" alt=""></button> -->
 
@@ -1799,7 +1838,8 @@
                                                                                 <button ngbDropdownItem><a href=""><img
                                                                                             src="{{shareimg}}">
                                                                                         Share</a></button>
-                                                                                <button  ngbDropdownItem (click)="deleteListing(listing.id)"><a><img
+                                                                                <button ngbDropdownItem
+                                                                                    (click)="deleteListing(listing.id)"><a><img
                                                                                             src="{{deleteimg}}">
                                                                                         Delete</a></button>
                                                                                 <button ngbDropdownItem><a href=""><img
@@ -1833,7 +1873,7 @@
                             <mat-tab-group>
                                 <mat-tab label="All ({{myValuation.length}})">
                                     <div class="no-data-found" *ngIf="myValuation.length == 0">
-                                         <img src="/assets/images/No-data.svg">
+                                        <img src="/assets/images/No-data.svg">
                                     </div>
                                     <div ngClass="my-valuation-list-wrapper" *ngIf="myValuation.length > 0">
                                         <div ngClass="my-valuation-list-design d-flex"
@@ -1892,7 +1932,7 @@
 
                                 <mat-tab label="{{residential}} ({{myValuationResidential.length}})">
                                     <div class="no-data-found" *ngIf="myValuationResidential.length == 0">
-                                         <img src="/assets/images/No-data.svg">
+                                        <img src="/assets/images/No-data.svg">
                                     </div>
                                     <div ngClass="my-valuation-list-wrapper" *ngIf="myValuationResidential.length > 0">
                                         <div ngClass="my-valuation-list-design d-flex"
@@ -1950,7 +1990,7 @@
 
                                 <mat-tab label="{{commercial}} ({{myValuationCommercial.length}})">
                                     <div class="no-data-found" *ngIf="myValuationCommercial.length == 0">
-                                         <img src="/assets/images/No-data.svg">
+                                        <img src="/assets/images/No-data.svg">
                                     </div>
                                     <div ngClass="my-valuation-list-wrapper" *ngIf="myValuationCommercial.length > 0">
                                         <div ngClass="my-valuation-list-design d-flex"
@@ -2035,7 +2075,8 @@
                                                     <div class="recharge_row-wallet">
                                                         <div class="recharge_row-wallet-flex">
                                                             <div ngClass="recharge-now-btn">
-                                                                <a class="cursor-pointer" (click)="goToPayment()">Recharge
+                                                                <a class="cursor-pointer"
+                                                                    (click)="goToPayment()">Recharge
                                                                     Now</a>
                                                             </div>
                                                             <div ngClass="transfer-now-btn">
@@ -2144,7 +2185,7 @@
                                                     <button ngbDropdownItem><a target="_blank"
                                                             href="https://web.whatsapp.com/" ngClass="whatsapp"><img
                                                                 src="{{whatsapp}}">
-                                                                WhatsApp</a></button>
+                                                            WhatsApp</a></button>
                                                     <button ngbDropdownItem><a target="_blank"
                                                             href="https://twitter.com/" ngClass="twitter"><img
                                                                 src="{{twitter}}">
@@ -2205,109 +2246,149 @@
                                                                 <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                                                     <div ngClass="block-wrapper mb-4">
                                                                         <label class="h6-design">First Name</label>
-                                                                        <mat-form-field appearance="fill"
-                                                                            class="full-width input-design-2">
-                                                                            <input matInput formControlName="firstName">
-                                                                        </mat-form-field>
-                                                                    </div>
-                                                                </div>
-                                                                <div ngClass="col-xl-6 col-lg-6 col-sm-12">
-                                                                    <div ngClass="block-wrapper mb-4">
-                                                                        <label class="h6-design">Last Name</label>
-                                                                        <mat-form-field appearance="fill"
-                                                                            class="full-width input-design-2">
-                                                                            <input matInput formControlName="lastName">
-                                                                        </mat-form-field>
-                                                                    </div>
-                                                                </div>
-                                                                <div ngClass="col-xl-6 col-lg-6 col-sm-12">
-                                                                    <div ngClass="block-wrapper mb-4">
-                                                                        <label class="h6-design">Gender</label>
-                                                                        <div
-                                                                            class="checkbox-flex-box two-column max-240">
-                                                                            <div class="checkbox-design position-relative"
-                                                                                (click)="getGender(1)">
-                                                                                <input type="radio" name="gender"
-                                                                                    *ngIf="userData.gender == 'Male'"
-                                                                                    checked />
-                                                                                <input type="radio" name="gender"
-                                                                                    *ngIf="userData.gender != 'Male'" />
-                                                                                <button
-                                                                                    class="checkbox-btn">Male</button>
-                                                                            </div>
-                                                                            <div class="checkbox-design position-relative"
-                                                                                (click)="getGender(2)">
-                                                                                <input type="radio" name="gender"
-                                                                                    *ngIf="userData.gender == 'Female'"
-                                                                                    checked />
-                                                                                <input type="radio" name="gender"
-                                                                                    *ngIf="userData.gender != 'Female'" />
-                                                                                <button
-                                                                                    class="checkbox-btn">Female</button>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div ngClass="col-xl-6 col-lg-6 col-sm-12">
-                                                                    <div ngClass="block-wrapper mb-4">
-                                                                        <label class="h6-design">Date of Birth</label>
-                                                                        <div class="input-date-picker input-design">
-                                                                            <mat-form-field appearance="fill">
-                                                                                <input matInput [matDatepicker]="picker"
-                                                                                    id="formDate" formControlName="dob">
-                                                                                <mat-datepicker-toggle matSuffix
-                                                                                    [for]="picker">
-                                                                                </mat-datepicker-toggle>
-                                                                                <mat-datepicker #picker>
-                                                                                </mat-datepicker>
+                                                                        <div class="firstName-input">
+                                                                            <mat-form-field appearance="fill"
+                                                                                class="full-width select-form input-design-2">
+                                                                                <mat-label>Enter First Name</mat-label>
+                                                                                <input matInput
+                                                                                    formControlName="firstName"
+                                                                                    required>
                                                                             </mat-form-field>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                                 <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                                                     <div ngClass="block-wrapper mb-4">
+                                                                        <label class="h6-design">Last Name</label>
+                                                                        <div class="lastName-input">
+                                                                            <mat-form-field appearance="fill"
+                                                                                class="full-width select-form input-design-2">
+                                                                                <mat-label>Enter Last Name</mat-label>
+                                                                                <input matInput
+                                                                                    formControlName="lastName" required>
+                                                                            </mat-form-field>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+                                                                    <div ngClass="block-wrapper mb-4">
+                                                                        <label class="h6-design">Gender <span
+                                                                                class="required-input-span">*</span></label>
+                                                                        <div class="gender-input">
+                                                                            <div
+                                                                                class="checkbox-flex-box two-column max-240">
+                                                                                <div class="checkbox-design position-relative"
+                                                                                    (click)="getGender(1)">
+                                                                                    <input type="radio" name="gender"
+                                                                                        *ngIf="userData.gender == 'Male'"
+                                                                                        checked />
+                                                                                    <input type="radio" name="gender"
+                                                                                        *ngIf="userData.gender != 'Male'" />
+                                                                                    <button
+                                                                                        class="checkbox-btn">Male</button>
+                                                                                </div>
+                                                                                <div class="checkbox-design position-relative"
+                                                                                    (click)="getGender(2)">
+                                                                                    <input type="radio" name="gender"
+                                                                                        *ngIf="userData.gender == 'Female'"
+                                                                                        checked />
+                                                                                    <input type="radio" name="gender"
+                                                                                        *ngIf="userData.gender != 'Female'" />
+                                                                                    <button
+                                                                                        class="checkbox-btn">Female</button>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+                                                                    <div ngClass="block-wrapper mb-4">
+                                                                        <label class="h6-design">Date of Birth </label>
+                                                                        <div class="input-date-picker input-design">
+                                                                            <div class="dob-input">
+                                                                                <mat-form-field appearance="fill">
+                                                                                    <mat-label>Select Date of
+                                                                                        Birth</mat-label>
+                                                                                    <input matInput
+                                                                                        [matDatepicker]="picker"
+                                                                                        id="formDate"
+                                                                                        formControlName="dateOfBirth"
+                                                                                        required>
+                                                                                    <mat-datepicker-toggle matSuffix
+                                                                                        [for]="picker">
+                                                                                    </mat-datepicker-toggle>
+                                                                                    <mat-datepicker #picker>
+                                                                                    </mat-datepicker>
+                                                                                </mat-form-field>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+                                                                    <div ngClass="block-wrapper mb-4">
                                                                         <label class="h6-design">Country</label>
-                                                                        <mat-form-field appearance="fill"
-                                                                            class="full-width select-form input-design-2">
-                                                                            <mat-label>Select the Country</mat-label>
-                                                                            <mat-select [disableOptionCentering]="true"
-                                                                                [(value)]="countryId"
-                                                                                (selectionChange)="onCountrySelect($event);">
-                                                                                <mat-option *ngFor="let list of country"
-                                                                                    [value]="list.value">
-                                                                                    {{ list.viewValue }}
-                                                                                </mat-option>
-                                                                            </mat-select>
-                                                                        </mat-form-field>
+                                                                        <div class="country-input">
+                                                                            <mat-form-field appearance="fill"
+                                                                                class="full-width select-form input-design-2">
+                                                                                <mat-label>Select Country</mat-label>
+                                                                                <mat-select
+                                                                                    [disableOptionCentering]="true"
+                                                                                    formControlName="countryId"
+                                                                                    required>
+                                                                                    <mat-option>
+                                                                                        <ngx-mat-select-search
+                                                                                            [formControl]="countryFilterCtrl"
+                                                                                            placeholderLabel="Search...">
+                                                                                        </ngx-mat-select-search>
+                                                                                    </mat-option>
+                                                                                    <mat-option
+                                                                                        *ngFor="let item of filteredCountries | async"
+                                                                                        [value]="item.value">{{
+                                                                                        item.viewValue }}
+                                                                                    </mat-option>
+                                                                                </mat-select>
+                                                                            </mat-form-field>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                                 <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                                                     <div ngClass="block-wrapper mb-4">
                                                                         <label class="h6-design">City</label>
-                                                                        <mat-form-field appearance="fill"
-                                                                            class="full-width select-form input-design-2">
-                                                                            <mat-label>Select City</mat-label>
-                                                                            <mat-select [disableOptionCentering]="true"
-                                                                                [(value)]="cityId"
-                                                                                (selectionChange)="onCitySelect($event);">
-                                                                                <mat-option
-                                                                                    *ngFor="let listcity of city"
-                                                                                    [value]="listcity.value">
-                                                                                    {{ listcity.viewValue }}
-                                                                                </mat-option>
-                                                                            </mat-select>
-                                                                        </mat-form-field>
+                                                                        <div class="city-input">
+                                                                            <mat-form-field appearance="fill"
+                                                                                class="full-width select-form input-design-2">
+                                                                                <mat-label>Select City</mat-label>
+                                                                                <mat-select
+                                                                                    [disableOptionCentering]="true"
+                                                                                    formControlName="cityId" required>
+                                                                                    <mat-option>
+                                                                                        <ngx-mat-select-search
+                                                                                            [formControl]="cityFilterCtrl"
+                                                                                            placeholderLabel="Search...">
+                                                                                        </ngx-mat-select-search>
+                                                                                    </mat-option>
+                                                                                    <mat-option
+                                                                                        *ngFor="let item of filteredCities | async"
+                                                                                        [value]="item.value">{{
+                                                                                        item.viewValue }}
+                                                                                    </mat-option>
+                                                                                </mat-select>
+                                                                            </mat-form-field>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                                 <div ngClass="col-xl-12 col-lg-12 col-sm-12">
                                                                     <div ngClass="block-wrapper mb-4">
                                                                         <label class="h6-design">Address</label>
-                                                                        <mat-form-field
-                                                                            class="example-full-width textarea-design"
-                                                                            appearance="fill">
-                                                                            <textarea matInput
-                                                                                formControlName="address"></textarea>
-                                                                        </mat-form-field>
+                                                                        <div class="address-input">
+                                                                            <mat-form-field
+                                                                                class="example-full-width select-form textarea-design"
+                                                                                appearance="fill">
+                                                                                <mat-label>Enter Address</mat-label>
+                                                                                <textarea matInput
+                                                                                    formControlName="address"></textarea>
+                                                                            </mat-form-field>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -2324,38 +2405,51 @@
                                     </div>
                                 </mat-tab>
                                 <mat-tab label="Agent/Broker Details"
-                                    *ngIf="professionalType == 1 || professionalType == 2 || professionalType == 3">
-                                    <div class="row" *ngIf="agentDetails != '' && agentDetails.agentDetails != null">
+                                    *ngIf="professionalType == 1 || professionalType == 2">
+                                    <div class="row">
                                         <div class="col-md-9">
-                                            <form [formGroup]="agentBroker">
-                                                <div class="">
+                                            <form [formGroup]="agentDetailForm">
+                                                <div>
                                                     <div class="list-new-proerty-cntnt">
                                                         <div ngClass="deed-numbers">
                                                             <div ngClass="row">
                                                                 <div ngClass="col-xl-12 col-lg-12 col-sm-12">
                                                                     <div ngClass="block-wrapper mb-4">
                                                                         <label class="h6-design">About Me</label>
-                                                                        <mat-form-field
-                                                                            class="example-full-width textarea-design"
-                                                                            appearance="fill">
-                                                                            <textarea matInput
-                                                                                formControlName="agentAboutMe"></textarea>
-                                                                        </mat-form-field>
+                                                                        <div class="aboutme-input">
+                                                                            <mat-form-field
+                                                                                class="example-full-width textarea-design"
+                                                                                appearance="fill">
+                                                                                <mat-label>Enter About Me</mat-label>
+                                                                                <textarea matInput
+                                                                                    formControlName="agentAboutMe"
+                                                                                    [required]="agentFormRequired"></textarea>
+                                                                            </mat-form-field>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                                 <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                                                     <div ngClass="block-wrapper mb-4">
                                                                         <label class="h6-design">BRN No.#</label>
-                                                                        <mat-form-field appearance="fill"
-                                                                            class="full-width input-design-2">
-                                                                            <input matInput formControlName="BRNNo">
-                                                                        </mat-form-field>
+                                                                        <div class="brn-input">
+                                                                            <mat-form-field appearance="fill"
+                                                                                class="full-width select-form input-design-2">
+                                                                                <mat-label>Enter BRN No.#</mat-label>
+                                                                                <input matInput
+                                                                                    formControlName="agentBrnNo"
+                                                                                    [required]="agentFormRequired">
+                                                                            </mat-form-field>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                                 <div ngClass="col-xl-6 col-lg-6 col-sm-12">
 
                                                                     <div class="col-sm-12">
-                                                                        <h6 class="h6-design">Experts in</h6>
+                                                                        <h6 class="h6-design">Experts in <span
+                                                                                *ngIf="agentFormRequired"
+                                                                                class="required-input-span">*</span>
+                                                                        </h6>
+                                                                        <div class="expertIn-input">
                                                                             <div
                                                                                 class="checkbox-flex-box autoflex-layout">
                                                                                 <div class="checkbox-design position-relative"
@@ -2365,87 +2459,78 @@
                                                                                         id="{{list.name}}"
                                                                                         name="expert-in"
                                                                                         value="{{list.id}}"
-                                                                                        *ngIf="list.name == expertIn" checked>
+                                                                                        *ngIf="list.name == ExpertInName"
+                                                                                        checked>
                                                                                     <input type="radio"
                                                                                         id="{{list.name}}"
                                                                                         name="expert-in"
                                                                                         value="{{list.id}}"
-                                                                                        *ngIf="list.name != expertIn">
-                                                                                    <button
-                                                                                        class="checkbox-btn">{{list.name}}</button>
-                                                                                </div>
-                                                                            </div>
-                                                                    </div>
-
-                                                                </div>
-                                                                <div ngClass="col-xl-6 col-lg-6 col-sm-12">
-                                                                    <div ngClass="block-wrapper mb-4">
-                                                                        <label class="h6-design">Nationality</label>
-                                                                        <mat-form-field appearance="fill"
-                                                                            class="full-width select-form input-design-2">
-                                                                            <mat-label>Select Nationality</mat-label>
-                                                                            <mat-select [disableOptionCentering]="true"
-                                                                                (selectionChange)="onChangeNationality($event)"
-                                                                                [(value)]="NationalityId">
-                                                                                <mat-option [value]="list.id"
-                                                                                    *ngFor="let list of Nationality">
-                                                                                    {{list.name}}
-                                                                                </mat-option>
-                                                                            </mat-select>
-                                                                        </mat-form-field>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="highlight-sec mt-3">
-                                                                <div class="row">
-                                                                    <div class="col-sm-12">
-                                                                        <h6 class="h6-design">Languages</h6>
-                                                                        <div class="inneR-border-wrap">
-                                                                            <div
-                                                                                class="checkbox-flex-box autoflex-layout">
-                                                                                <div class="checkbox-design position-relative"
-                                                                                    (change)="languagesArrayChange($event,list.id)"
-                                                                                    *ngFor="let list of SpokenLanguages">
-                                                                                    <input type="checkbox"
-                                                                                        id="{{list.name}}"
-                                                                                        name="{{list.name}}"
-                                                                                        value="{{list.id}}"
-                                                                                        *ngIf="agentLanguages.indexOf(list.id) != -1" checked>
-                                                                                    <input type="checkbox"
-                                                                                        id="{{list.name}}"
-                                                                                        name="{{list.name}}"
-                                                                                        value="{{list.id}}"
-                                                                                        *ngIf="agentLanguages.indexOf(list.id) == -1">
+                                                                                        *ngIf="list.name != ExpertInName">
                                                                                     <button
                                                                                         class="checkbox-btn">{{list.name}}</button>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
+
+                                                                </div>
+                                                                <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+                                                                    <div ngClass="block-wrapper mb-4">
+                                                                        <label class="h6-design">Nationality</label>
+                                                                        <div class="nationality-input">
+                                                                            <mat-form-field appearance="fill"
+                                                                                class="full-width select-form input-design-2">
+                                                                                <mat-label>Select
+                                                                                    Nationality</mat-label>
+                                                                                <mat-select
+                                                                                    [disableOptionCentering]="true"
+                                                                                    formControlName="nationalityId"
+                                                                                    required>
+                                                                                    <mat-option>
+                                                                                        <ngx-mat-select-search
+                                                                                            [formControl]="nationalityFilterCtrl"
+                                                                                            placeholderLabel="Search...">
+                                                                                        </ngx-mat-select-search>
+                                                                                    </mat-option>
+                                                                                    <mat-option
+                                                                                        *ngFor="let item of filteredNationality | async"
+                                                                                        [value]="item.id">{{
+                                                                                        item.name }}
+                                                                                    </mat-option>
+                                                                                </mat-select>
+                                                                            </mat-form-field>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="highlight-sec mt-4">
+                                                            <div class="highlight-sec mt-3">
                                                                 <div class="row">
                                                                     <div class="col-sm-12">
-                                                                        <div ngClass="block-wrapper">
-                                                                            <div ngClass="select-design">
-                                                                                <label>Area</label>
-                                                                                <div class="pet-policy-input">
-                                                                                    <mat-form-field appearance="fill">
-                                                                                        <mat-label> Select the Areas
-                                                                                        </mat-label>
-                                                                                        <mat-select
-                                                                                            [disableOptionCentering]="true"
-                                                                                            multiple
-                                                                                            [(value)]="agentAreas"
-                                                                                            (selectionChange)="getAreaData($event)">
-                                                                                            <mat-option
-                                                                                                *ngFor="let item of districts"
-                                                                                                value="{{item.id}}">
-                                                                                                {{item.name}}
-                                                                                            </mat-option>
-                                                                                        </mat-select>
-                                                                                    </mat-form-field>
+                                                                        <h6 class="h6-design">Languages <span
+                                                                                *ngIf="agentFormRequired"
+                                                                                class="required-input-span">*</span>
+                                                                        </h6>
+                                                                        <div class="language-input">
+                                                                            <div class="inneR-border-wrap">
+                                                                                <div
+                                                                                    class="checkbox-flex-box autoflex-layout">
+                                                                                    <div class="checkbox-design position-relative"
+                                                                                        (change)="languagesArrayChange($event,list.id)"
+                                                                                        *ngFor="let list of SpokenLanguages">
+                                                                                        <input type="checkbox"
+                                                                                            id="{{list.name}}"
+                                                                                            name="{{list.name}}"
+                                                                                            value="{{list.id}}"
+                                                                                            *ngIf="agentLanguages.indexOf(list.id) != -1"
+                                                                                            checked>
+                                                                                        <input type="checkbox"
+                                                                                            id="{{list.name}}"
+                                                                                            name="{{list.name}}"
+                                                                                            value="{{list.id}}"
+                                                                                            *ngIf="agentLanguages.indexOf(list.id) == -1">
+                                                                                        <button
+                                                                                            class="checkbox-btn">{{list.name}}</button>
+                                                                                    </div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -2453,80 +2538,81 @@
                                                                 </div>
                                                             </div>
                                                             <div ngClass="other-document-upload mt-4">
-                                                                <h6 ngClass="h6-design mb-3">Douments Upload</h6>
+                                                                <h6 ngClass="h6-design mb-3">Douments Upload <span
+                                                                        *ngIf="agentFormRequired"
+                                                                        class="required-input-span">*</span></h6>
                                                                 <div ngClass="row">
                                                                     <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                                                                         <div ngClass="blue-upload-box">
-                                                                            <div ngClass="upload-files-design">
-                                                                                <div ngClass="greybordered-btn">
-                                                                                    <input type="file" hidden
-                                                                                        #emirateInput0
-                                                                                        accept=".doc, .pdf, .jpg, .jpeg, .png"
-                                                                                        (change)='emiratesfun($any($event.target).files, 1)'>
-                                                                                    <button mat-button
-                                                                                        (click)="emirateInput0.click()"><span
-                                                                                            ngClass="outpup-filename">{{
-                                                                                            emirate[1] }}</span> <img
-                                                                                            src="{{upload}}">
-                                                                                        <span ngClass="btn-txt">Picture:
-                                                                                            Emirates ID (Fornt
-                                                                                            View)</span></button>
+                                                                            <div class="firstImage-input">
+                                                                                <div ngClass="upload-files-design">
+                                                                                    <div ngClass="greybordered-btn">
+                                                                                        <input type="file" hidden
+                                                                                            #emirateInput0
+                                                                                            accept=".doc, .pdf, .jpg, .jpeg, .png"
+                                                                                            (change)='uploadAgentImages($any($event.target).files, 0)'>
+                                                                                        <button mat-button
+                                                                                            (click)="emirateInput0.click()"><span
+                                                                                                ngClass="outpup-filename">{{
+                                                                                                agentFileNames[0]
+                                                                                                }}</span> <img
+                                                                                                src="{{upload}}">
+                                                                                            <span
+                                                                                                ngClass="btn-txt">Picture:
+                                                                                                Emirates ID (Fornt
+                                                                                                View)</span></button>
+                                                                                    </div>
                                                                                 </div>
-
                                                                             </div>
                                                                         </div>
-                                                                    </div>
-                                                                    <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                                                                        <span class="staus-emoji">
-                                                                            <!--                                      <img src="{{approvedEmo}}" alt="">-->
-                                                                        </span>
                                                                     </div>
                                                                     <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                                                                         <div ngClass="blue-upload-box">
-                                                                            <div ngClass="upload-files-design">
-                                                                                <div ngClass="greybordered-btn">
-                                                                                    <input type="file" hidden
-                                                                                        #emirateInput1
-                                                                                        accept=".doc, .pdf, .jpg, .jpeg, .png"
-                                                                                        (change)='emiratesfun($any($event.target).files, 2)'>
-                                                                                    <button mat-button
-                                                                                        (click)="emirateInput1.click()"><span
-                                                                                            ngClass="outpup-filename">{{
-                                                                                            emirate[2] }}</span> <img
-                                                                                            src="{{upload}}">
-                                                                                        <span ngClass="btn-txt">Picture:
-                                                                                            Emirates ID (Fornt
-                                                                                            View)</span></button>
+                                                                            <div class="secondImage-input">
+                                                                                <div ngClass="upload-files-design">
+                                                                                    <div ngClass="greybordered-btn">
+                                                                                        <input type="file" hidden
+                                                                                            #emirateInput1
+                                                                                            accept=".doc, .pdf, .jpg, .jpeg, .png"
+                                                                                            (change)='uploadAgentImages($any($event.target).files, 1)'>
+                                                                                        <button mat-button
+                                                                                            (click)="emirateInput1.click()"><span
+                                                                                                ngClass="outpup-filename">{{
+                                                                                                agentFileNames[1]
+                                                                                                }}</span> <img
+                                                                                                src="{{upload}}">
+                                                                                            <span
+                                                                                                ngClass="btn-txt">Picture:
+                                                                                                Emirates ID (Back
+                                                                                                View)</span></button>
+                                                                                    </div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
-                                                                    </div>
-                                                                    <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                                                                     </div>
                                                                     <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                                                                         <div ngClass="blue-upload-box">
-                                                                            <div ngClass="upload-files-design">
-                                                                                <div ngClass="greybordered-btn">
-                                                                                    <input type="file" hidden
-                                                                                        #emirateInput2
-                                                                                        accept=".doc, .pdf, .jpg, .jpeg, .png"
-                                                                                        (change)='emiratesfun($any($event.target).files, 3)'>
-                                                                                    <button mat-button
-                                                                                        (click)="emirateInput2.click()"><span
-                                                                                            ngClass="outpup-filename">{{
-                                                                                            emirate[3] }}</span> <img
-                                                                                            src="{{upload}}">
-                                                                                        <span ngClass="btn-txt">Picture:
-                                                                                            Emirates ID (Fornt
-                                                                                            View)</span></button>
+                                                                            <div class="thirdImage-input">
+                                                                                <div ngClass="upload-files-design">
+                                                                                    <div ngClass="greybordered-btn">
+                                                                                        <input type="file" hidden
+                                                                                            #emirateInput2
+                                                                                            accept=".doc, .pdf, .jpg, .jpeg, .png"
+                                                                                            (change)='uploadAgentImages($any($event.target).files, 2)'>
+                                                                                        <button mat-button
+                                                                                            (click)="emirateInput2.click()"><span
+                                                                                                ngClass="outpup-filename">{{
+                                                                                                agentFileNames[2]
+                                                                                                }}</span> <img
+                                                                                                src="{{upload}}">
+                                                                                            <span
+                                                                                                ngClass="btn-txt">Picture:
+                                                                                                Official Rera
+                                                                                                ID</span></button>
+                                                                                    </div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
-                                                                    </div>
-                                                                    <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                                                                        <span class="staus-emoji">
-                                                                            <!--                                      <img src="{{penfingEmo}}" alt="">-->
-                                                                        </span>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -5074,7 +5160,7 @@
                 </mat-tab>
                 <mat-tab class="tab-item" label="My Valuations">
                     <div class="recent-activity">
-                        <h4 class="sub-title">My Valuatedcfvgbhions</h4>
+                        <h4 class="sub-title">My Valuations</h4>
                     </div>
                 </mat-tab>
                 <mat-tab ngClass="grey-bordered-btn more-drop-btn tab-item" label="More >" disabled>
@@ -5086,7 +5172,7 @@
                             <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
                                 <!-- <h5>Share with:</h5> -->
                                 <button ngbDropdownItem><a href=""><img src="{{web}}"> Go to Ovaluate</a></button>
-                                <button ngbDropdownItem><a href=""><img src="{{profile}}"> My Profile</a></button>
+                                <button ngbDropdownItem><a><img src="{{profile}}"> My Profile</a></button>
                                 <button ngbDropdownItem><a target="_blank" routerLink="/chat"><img src="{{shareicon}}">
                                         My Messages</a></button>
                                 <button ngbDropdownItem><a href=""><img src="{{acsetting}}"> Account
@@ -5255,24 +5341,30 @@
             <div class="share-inner-cntnt">
                 <h5>Share with:</h5>
                 <div class="d-flex justify-content-spacebw">
-                <a target="_blank" href="https://facebook.com" ngClass="facebook">
-                    <svg width="11" height="20" viewBox="0 0 11 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M9.11938 3.32003H10.9994V0.14003C10.0891 0.045377 9.17453 -0.00135428 8.25938 2.98641e-05C5.53938 2.98641e-05 3.67938 1.66003 3.67938 4.70003V7.32003H0.609375V10.88H3.67938V20H7.35937V10.88H10.4194L10.8794 7.32003H7.35937V5.05003C7.35937 4.00003 7.63938 3.32003 9.11938 3.32003Z" fill="#0d6efd"/>
-                    </svg>                            
-                    Facebook
-                </a>
-                <a target="_blank" href="https://web.whatsapp.com/" ngClass="whatsapp">
-                    <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M14.1419 2.32532C12.6446 0.82666 10.654 0.000666662 8.53333 0C4.16338 0 0.606752 3.55597 0.604752 7.92794C0.604085 9.32526 0.969414 10.6893 1.66341 11.8919L0.538086 15.9999L4.74071 14.8972C5.89869 15.5292 7.20268 15.8619 8.52933 15.8625H8.53266C12.9019 15.8625 16.4592 12.3059 16.4612 7.93394C16.4626 5.81596 15.6386 3.8233 14.1419 2.32532ZM8.53333 14.5232H8.53066C7.34801 14.5232 6.18869 14.2052 5.1767 13.6046L4.93604 13.4619L2.44207 14.1159L3.10806 11.6839L2.95139 11.4346C2.2914 10.3853 1.9434 9.1726 1.94407 7.92794C1.9454 4.29463 4.90204 1.33866 8.53666 1.33866C10.2966 1.33866 11.9513 2.02532 13.1953 3.27064C14.4393 4.51663 15.1239 6.17195 15.1233 7.93261C15.1213 11.5672 12.1653 14.5232 8.53333 14.5232ZM12.148 9.58793C11.95 9.48859 10.976 9.00926 10.794 8.94326C10.6126 8.87726 10.4806 8.84393 10.348 9.04193C10.2153 9.23993 9.83665 9.68659 9.72065 9.81926C9.60532 9.95126 9.48932 9.96792 9.29132 9.86859C9.09332 9.76926 8.45466 9.56059 7.69801 8.88527C7.10935 8.35994 6.71135 7.71127 6.59602 7.51261C6.48069 7.31394 6.58402 7.20728 6.68268 7.10861C6.77202 7.01995 6.88068 6.87728 6.98001 6.76128C7.08001 6.64662 7.11268 6.56395 7.17935 6.43128C7.24535 6.29929 7.21268 6.18329 7.16268 6.08395C7.11268 5.98529 6.71668 5.00996 6.55202 4.6133C6.39135 4.22663 6.22802 4.2793 6.10602 4.2733C5.99069 4.2673 5.85869 4.26663 5.72603 4.26663C5.59403 4.26663 5.37937 4.31597 5.19803 4.51463C5.0167 4.7133 4.50471 5.19263 4.50471 6.16729C4.50471 7.14261 5.2147 8.0846 5.31337 8.2166C5.41203 8.3486 6.71002 10.3499 8.69733 11.2079C9.16999 11.4119 9.53932 11.5339 9.82665 11.6252C10.3013 11.7759 10.7333 11.7546 11.0746 11.7039C11.4553 11.6472 12.2466 11.2246 12.412 10.7619C12.5773 10.2993 12.5773 9.90192 12.5273 9.81992C12.478 9.73659 12.346 9.68726 12.148 9.58793Z" fill="#70b662"/>
-                    </svg>                            
-                    WhatsApp
-                </a>
-                <a target="_blank" href="https://twitter.com/" ngClass="twitter">
-                    <svg width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12.5667 3.1442C12.5749 3.26728 12.5749 3.39095 12.5749 3.5152C12.5749 7.31094 9.68508 11.6877 4.40241 11.6877V11.6854C2.842 11.6877 1.31367 11.2409 0 10.3979C0.226917 10.4254 0.455 10.4388 0.683666 10.4394C1.9775 10.4405 3.234 10.0065 4.25075 9.20736C3.02167 9.18402 1.94367 8.38252 1.56742 7.21236C1.99792 7.29519 2.44125 7.27828 2.86417 7.16336C1.52367 6.89269 0.56 5.71494 0.56 4.34761C0.56 4.33536 0.56 4.32311 0.56 4.31144C0.959583 4.53428 1.40642 4.65736 1.86375 4.67078C0.601416 3.82786 0.21175 2.14903 0.974166 0.836532C2.4325 2.63086 4.58441 3.7217 6.89383 3.83778C6.66225 2.84028 6.979 1.79495 7.7245 1.0932C8.88124 0.0052824 10.7007 0.0612823 11.7886 1.21803C12.432 1.09145 13.0486 0.855198 13.6127 0.520949C13.398 1.18595 12.9494 1.75061 12.3497 2.10995C12.9197 2.0417 13.4756 1.88945 14 1.65728C13.6144 2.2342 13.1291 2.73761 12.5667 3.1442Z" fill="#595ad5"/>
-                    </svg>                        
-                    Twitter
-                </a>
+                    <a target="_blank" href="https://facebook.com" ngClass="facebook">
+                        <svg width="11" height="20" viewBox="0 0 11 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M9.11938 3.32003H10.9994V0.14003C10.0891 0.045377 9.17453 -0.00135428 8.25938 2.98641e-05C5.53938 2.98641e-05 3.67938 1.66003 3.67938 4.70003V7.32003H0.609375V10.88H3.67938V20H7.35937V10.88H10.4194L10.8794 7.32003H7.35937V5.05003C7.35937 4.00003 7.63938 3.32003 9.11938 3.32003Z"
+                                fill="#0d6efd" />
+                        </svg>
+                        Facebook
+                    </a>
+                    <a target="_blank" href="https://web.whatsapp.com/" ngClass="whatsapp">
+                        <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M14.1419 2.32532C12.6446 0.82666 10.654 0.000666662 8.53333 0C4.16338 0 0.606752 3.55597 0.604752 7.92794C0.604085 9.32526 0.969414 10.6893 1.66341 11.8919L0.538086 15.9999L4.74071 14.8972C5.89869 15.5292 7.20268 15.8619 8.52933 15.8625H8.53266C12.9019 15.8625 16.4592 12.3059 16.4612 7.93394C16.4626 5.81596 15.6386 3.8233 14.1419 2.32532ZM8.53333 14.5232H8.53066C7.34801 14.5232 6.18869 14.2052 5.1767 13.6046L4.93604 13.4619L2.44207 14.1159L3.10806 11.6839L2.95139 11.4346C2.2914 10.3853 1.9434 9.1726 1.94407 7.92794C1.9454 4.29463 4.90204 1.33866 8.53666 1.33866C10.2966 1.33866 11.9513 2.02532 13.1953 3.27064C14.4393 4.51663 15.1239 6.17195 15.1233 7.93261C15.1213 11.5672 12.1653 14.5232 8.53333 14.5232ZM12.148 9.58793C11.95 9.48859 10.976 9.00926 10.794 8.94326C10.6126 8.87726 10.4806 8.84393 10.348 9.04193C10.2153 9.23993 9.83665 9.68659 9.72065 9.81926C9.60532 9.95126 9.48932 9.96792 9.29132 9.86859C9.09332 9.76926 8.45466 9.56059 7.69801 8.88527C7.10935 8.35994 6.71135 7.71127 6.59602 7.51261C6.48069 7.31394 6.58402 7.20728 6.68268 7.10861C6.77202 7.01995 6.88068 6.87728 6.98001 6.76128C7.08001 6.64662 7.11268 6.56395 7.17935 6.43128C7.24535 6.29929 7.21268 6.18329 7.16268 6.08395C7.11268 5.98529 6.71668 5.00996 6.55202 4.6133C6.39135 4.22663 6.22802 4.2793 6.10602 4.2733C5.99069 4.2673 5.85869 4.26663 5.72603 4.26663C5.59403 4.26663 5.37937 4.31597 5.19803 4.51463C5.0167 4.7133 4.50471 5.19263 4.50471 6.16729C4.50471 7.14261 5.2147 8.0846 5.31337 8.2166C5.41203 8.3486 6.71002 10.3499 8.69733 11.2079C9.16999 11.4119 9.53932 11.5339 9.82665 11.6252C10.3013 11.7759 10.7333 11.7546 11.0746 11.7039C11.4553 11.6472 12.2466 11.2246 12.412 10.7619C12.5773 10.2993 12.5773 9.90192 12.5273 9.81992C12.478 9.73659 12.346 9.68726 12.148 9.58793Z"
+                                fill="#70b662" />
+                        </svg>
+                        WhatsApp
+                    </a>
+                    <a target="_blank" href="https://twitter.com/" ngClass="twitter">
+                        <svg width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M12.5667 3.1442C12.5749 3.26728 12.5749 3.39095 12.5749 3.5152C12.5749 7.31094 9.68508 11.6877 4.40241 11.6877V11.6854C2.842 11.6877 1.31367 11.2409 0 10.3979C0.226917 10.4254 0.455 10.4388 0.683666 10.4394C1.9775 10.4405 3.234 10.0065 4.25075 9.20736C3.02167 9.18402 1.94367 8.38252 1.56742 7.21236C1.99792 7.29519 2.44125 7.27828 2.86417 7.16336C1.52367 6.89269 0.56 5.71494 0.56 4.34761C0.56 4.33536 0.56 4.32311 0.56 4.31144C0.959583 4.53428 1.40642 4.65736 1.86375 4.67078C0.601416 3.82786 0.21175 2.14903 0.974166 0.836532C2.4325 2.63086 4.58441 3.7217 6.89383 3.83778C6.66225 2.84028 6.979 1.79495 7.7245 1.0932C8.88124 0.0052824 10.7007 0.0612823 11.7886 1.21803C12.432 1.09145 13.0486 0.855198 13.6127 0.520949C13.398 1.18595 12.9494 1.75061 12.3497 2.10995C12.9197 2.0417 13.4756 1.88945 14 1.65728C13.6144 2.2342 13.1291 2.73761 12.5667 3.1442Z"
+                                fill="#595ad5" />
+                        </svg>
+                        Twitter
+                    </a>
                 </div>
             </div>
         </div>

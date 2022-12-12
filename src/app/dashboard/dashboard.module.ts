@@ -18,6 +18,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { MatIconModule } from '@angular/material/icon';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AlertsModule } from '../alerts/alerts.module';
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { AlertsModule } from '../alerts/alerts.module';
     MatIconModule,
     NgbModule,
     AlertsModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    NgxMatSelectSearchModule
   ]
 })
 export class DashboardModule { }

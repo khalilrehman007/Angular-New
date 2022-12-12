@@ -331,6 +331,7 @@ export class ListpropertymediaComponent implements OnInit {
           }
         },
         error: (err) => {
+          this.showLoader = false;
         }
       });
     }

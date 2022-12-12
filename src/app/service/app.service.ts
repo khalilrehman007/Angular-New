@@ -17,6 +17,9 @@ export class AppService {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer ' + JSON.parse(this.token)
   });
+  headersFormData: HttpHeaders = new HttpHeaders({
+    'Authorization': 'Bearer ' + JSON.parse(this.token)
+  });
 
   LoadPropertyCategories() {
     return this.http.get(this.apiurl + 'PropertyCategories', { headers: this.headers });
@@ -247,13 +250,6 @@ export class AppService {
     return this.http.get(this.apiurl + 'UserProfile/' + id);
   }
   MyLeads(data: any) {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'false',
-        "processData": "false",
-        "dataType": "json",
-      })
-    }
     return this.http.post(this.apiurl + 'MyLeads', data);
   }
   MyValuations(id: any) {
@@ -414,7 +410,7 @@ export class AppService {
     return this.http.get(this.apiurl + 'PermitFor');
   }
   AddUpdateAgentDetails(data: any) {
-    return this.http.post(this.apiurl + 'AddUpdateAgentDetails', data);
+    return this.http.post(this.apiurl + 'AddUpdateAgentDetails', data ,{ headers: this.headersFormData });
   }
   AddUpdateCompany(data: any) {
     return this.http.post(this.apiurl + 'AddUpdateCompany', data);

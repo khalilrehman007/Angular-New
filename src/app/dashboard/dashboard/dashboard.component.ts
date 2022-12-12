@@ -3,13 +3,14 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import * as $ from 'jquery';
 import { NotificationService } from "../../service/notification.service";
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 
 import { AppService } from 'src/app/service/app.service';
 import { AuthService } from "../../service/auth.service";
 import { CookieService } from 'ngx-cookie-service';
 import { environment } from 'src/environments/environment';
+import { ReplaySubject, Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,7 +19,7 @@ import { environment } from 'src/environments/environment';
   providers: [DatePipe]
 })
 export class DashboardComponent implements OnInit, AfterViewInit {
-// _key = CryptoJS.enc.Utf8.parse(this.tokenFromUI);
+  // _key = CryptoJS.enc.Utf8.parse(this.tokenFromUI);
   blogs: any;
   proFrame = '../../assets/images/profile/pro-img-frame.png'
   pdf = 'assets/images/icons/pdf.png'
@@ -60,8 +61,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   loggedInUser: any = localStorage.getItem('user')
   user: any;
   greet: any;
+  currentField: any;
   country: any = [];
   city: any = [];
+  Nationality: any = [];
   countryId: number = -1;
   cityId: number = -1;
   dashboard: any;
@@ -81,9 +84,12 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   minDate = new Date();
   plus = '../../../../assets/images/plus.svg';
   showSuccess: boolean = false;
+  agentFormRequired: boolean = false;
   success: any = "";
   agentDetails: any = {};
   agentLanguages: any = [];
+  finalAgentDocments: any = [];
+  ExpertInName!: string;
   agentAreas: any = [];
   confirmMessage: any = "";
   showConfirm: any = "";
@@ -92,7 +98,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.showSuccess = false;
   }
   errorResponse(data: any) {
+    console.log("animate", data)
     this.showError = false;
+    this.animate();
   }
   confirmResponse(data: any) {
     this.showConfirm = false;
@@ -129,16 +137,31 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   totalValuation: any;
   totalRestentailValuation: any;
   totalCommercialValuation: any;
+  public countryFilterCtrl: FormControl = new FormControl();
+  public filteredCountries: any = new ReplaySubject(1);
+  public cityFilterCtrl: FormControl = new FormControl();
+  public filteredCities: any = new ReplaySubject(1);
+  public nationalityFilterCtrl: FormControl = new FormControl();
+  public filteredNationality: any = new ReplaySubject(1);
+  protected _onDestroy = new Subject();
   detailForm = new FormGroup({
-    firstName: new FormControl(""),
-    lastName: new FormControl(""),
-    address: new FormControl(""),
-    location: new FormControl(""),
-    dob: new FormControl("")
+    id: new FormControl(null, Validators.required),
+    firstName: new FormControl(null, Validators.required),
+    lastName: new FormControl(null, Validators.required),
+    gender: new FormControl(null, Validators.required),
+    address: new FormControl(null, Validators.required),
+    dateOfBirth: new FormControl(null, Validators.required),
+    countryId: new FormControl(null, Validators.required),
+    cityId: new FormControl(null, Validators.required),
+    location: new FormControl(null, Validators.required),
   });
   agentDetailForm = new FormGroup({
-    agentBrnNo: new FormGroup(""),
-    agentAboutMe: new FormGroup("")
+    agentBrnNo: new FormControl(null),
+    agentAboutMe: new FormControl(null),
+    expertIn: new FormControl(null),
+    nationalityId: new FormControl(null),
+    id:new FormControl(0),
+    userId:new FormControl(null),
   })
   companyDetailsForm = new FormGroup({
     companyName: new FormGroup(""),
@@ -166,7 +189,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   myValuation: any = [];
   myValuationResidential: any = [];
   myValuationCommercial: any = [];
-  expertIn:any="";
 
   lastPropertyLastingDate: any;
   totalRestentailPropertyListing: any;
@@ -178,48 +200,48 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   seletedPackage: any = "";
   pointsData: any = "";
   pointsHistory: any = "";
-  get firstName() {
-    return this.detailForm.get("firstName");
-  }
-  get lastName() {
-    return this.detailForm.get("lastName");
-  }
-  get phone() {
-    return this.detailForm.get("phone");
-  }
-  get location() {
-    return this.detailForm.get("location");
-  }
-  get currentPassword() {
-    return this.changePasswordForm.get("currentPassword");
-  }
-  get newPassword() {
-    return this.changePasswordForm.get("newPassword");
-  }
-  get agentBrnNo() {
-    return this.agentDetailForm.get("agentbrnNo");
-  }
-  get agentAboutMe() {
-    return this.agentDetailForm.get("agentAboutMe");
-  }
-  get companyName() {
-    return this.companyDetailsForm.get("companyName");
-  }
-  get tradeLicenseNo() {
-    return this.companyDetailsForm.get("tradeLicenseNo");
-  }
-  get permitNo() {
-    return this.companyDetailsForm.get("permitNo");
-  }
-  get ornNo() {
-    return this.companyDetailsForm.get("ornNo");
-  }
-  get reraNo() {
-    return this.companyDetailsForm.get("reraNo");
-  }
-  get companyAddress() {
-    return this.companyDetailsForm.get("companyAddress");
-  }
+  // get firstName() {
+  //   return this.detailForm.get("firstName");
+  // }
+  // get lastName() {
+  //   return this.detailForm.get("lastName");
+  // }
+  // get phone() {
+  //   return this.detailForm.get("phone");
+  // }
+  // get location() {
+  //   return this.detailForm.get("location");
+  // }
+  // get currentPassword() {
+  //   return this.changePasswordForm.get("currentPassword");
+  // }
+  // get newPassword() {
+  //   return this.changePasswordForm.get("newPassword");
+  // }
+  // get agentBrnNo() {
+  //   return this.agentDetailForm.get("agentbrnNo");
+  // }
+  // get agentAboutMe() {
+  //   return this.agentDetailForm.get("agentAboutMe");
+  // }
+  // get companyName() {
+  //   return this.companyDetailsForm.get("companyName");
+  // }
+  // get tradeLicenseNo() {
+  //   return this.companyDetailsForm.get("tradeLicenseNo");
+  // }
+  // get permitNo() {
+  //   return this.companyDetailsForm.get("permitNo");
+  // }
+  // get ornNo() {
+  //   return this.companyDetailsForm.get("ornNo");
+  // }
+  // get reraNo() {
+  //   return this.companyDetailsForm.get("reraNo");
+  // }
+  // get companyAddress() {
+  //   return this.companyDetailsForm.get("companyAddress");
+  // }
   userId: number;
   parentTabId: any = "";
   childTabId: any = "";
@@ -238,6 +260,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.loggedInUser = JSON.parse(this.loggedInUser);
     this.getUser();
     this.userId = this.user.id;
+    console.log("constr", this.userId)
     this.getloadDashboardData();
     this.getLoadListing()
     this.getTabCount();
@@ -245,7 +268,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.getLoadMyValuaionListing();
     this.getSpokenLanguages();
     this.getExpertIn();
-    this.getNationality();
     this.lordMyActivityListingView();
     this.lordMyActivityAgentView();
     this.getViewCount();
@@ -253,30 +275,65 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.getCountData('');
     this.getWishlisting();
     let temp: any = localStorage.getItem("user");
-    this.service.GetAgentProfile(JSON.parse(temp).id).subscribe((result: any) => {
-      this.agentDetails = result.data;
-      if(this.agentDetails.agentDetails != null) {
-        this.NationalityId = this.agentDetails.agentDetails.nationalityId;
-        this.agentBroker.patchValue({
-          agentAboutMe: this.agentDetails?.agentDetails?.aboutMe,
-          BRNNo: this.agentDetails?.agentDetails?.brnNo
+    this.service.GetAgentProfile(JSON.parse(temp).id).subscribe((resp: any) => {
+      console.log("agent detail data", resp)
+
+      if (resp.result == 1 && resp.data?.agentDetails != null) {
+        this.agentDetails = resp.data.agentDetails;
+        let ExpertInId: any = null;
+        if (this.agentDetails.expertIn == "Residential") {
+          ExpertInId = 1;
+        }
+        if (this.agentDetails.expertIn == "Commercial") {
+          ExpertInId = 2;
+        }
+        if (this.agentDetails.expertIn == "Both") {
+          ExpertInId = 3;
+        }
+        this.ExpertInName=this.agentDetails.expertIn;
+        this.agentDetailForm.patchValue({
+          agentAboutMe: this.agentDetails.aboutMe,
+          agentBrnNo: this.agentDetails.brnNo,
+          expertIn: ExpertInId,
+          nationalityId:this.agentDetails.nationalityId,
+          id:this.agentDetails.id,
+          userId:this.agentDetails.userId
         })
-        if (this.agentDetails?.agentDetails?.agentLanguages?.length > 0) {
-          for (let item of this.agentDetails.agentDetails.agentLanguages) {
+        if (this.agentDetails.agentLanguages?.length > 0) {
+          for (let item of this.agentDetails.agentLanguages) {
             this.agentLanguages.push(item.spokenLanguageId);
           }
         }
-        if (this.agentDetails?.agentDetails?.agentAreas?.length > 0) {
-          for (let item of this.agentDetails.agentDetails.agentAreas) {
-            this.agentAreas.push(item.districtId);
+        if(this.agentDetails.documents?.length>0){
+          for (let item of this.agentDetails.documents) {
+            this.agentFileNames.push(item.fileName);
+            this.finalAgentDocments.push({ "FileId": item.fileId, 
+            "RegistrationDocumentTypeId": item.registrationDocumentTypeId,
+             "FileName": item.fileName , "Extension": item.extension,"FileUrl":item.fileUrl,
+            "Id":item.id});
           }
+          console.log(this.agentFileNames)
         }
       }
     })
     this.service.UserProfile(JSON.parse(temp).id).subscribe((result: any) => {
       this.userData = result.data;
-console.log(this.userData)
-      this.professionalType = result.data.professionalTypeId;
+      console.log("userdetail", result)
+      if (result.result == 1) {
+        let genderId: any = this.userData.gender == "Male" ? 1 : 2;
+        this.detailForm.patchValue({
+          id: this.userData.id,
+          address: this.userData.address,
+          countryId: this.userData.countryId,
+          firstName: this.userData.firstName,
+          lastName: this.userData.lastName,
+          gender: genderId,
+          dateOfBirth: this.userData.dateOfBirth,
+          cityId: this.userData.cityId,
+          location: this.userData.location
+        })
+      }
+      this.professionalType = this.userData.professionalTypeId;
       if (this.professionalType == null) {
         this.professionalType = 0;
       }
@@ -286,12 +343,12 @@ console.log(this.userData)
       } else if (this.userData.gender == "Female") {
         this.getGender(2)
       }
-      if(this.userData.countryId != null) {
-        this.onCountrySelect({ value: this.userData.countryId })
-      }
-      if(this.userData.cityId != null) {
-        this.onCitySelect({ value: this.userData.cityId });
-      }
+      // if (this.userData.countryId != null) {
+      //   this.onCountrySelect({ value: this.userData.countryId })
+      // }
+      // if (this.userData.cityId != null) {
+      //   this.onCitySelect({ value: this.userData.cityId });
+      // }
       if (this.userData.imageUrl == null) {
         this.proAvatar = '../../assets/images/user.png';
       } else {
@@ -344,6 +401,7 @@ console.log(this.userData)
         for (let country of temp.data) {
           this.country.push({ viewValue: country.name, value: country.id });
         }
+        this.filteredCountries.next(this.country)
       }
     });
     this.service.LoadDashboardData(this.user.id).subscribe(e => {
@@ -361,12 +419,12 @@ console.log(this.userData)
     this.LoadLeads("", "");
     this.userFormData = localStorage.getItem("user");
     this.userFormData = JSON.parse(this.userFormData);
-    this.detailForm.patchValue({
-      firstName: this.userFormData.firstName,
-      lastName: this.userFormData.lastName,
-      address: this.userFormData.address,
-      dob: this.userFormData.dateOfBirth
-    })
+    // this.detailForm.patchValue({
+    //   firstName: this.userFormData.firstName,
+    //   lastName: this.userFormData.lastName,
+    //   address: this.userFormData.address,
+    //   dob: this.userFormData.dateOfBirth
+    // })
     this.service.MyValuations(JSON.parse(temp).id).subscribe((result: any) => {
       this.myValuation = result.data;
       for (let i = 0; i < this.myValuation.length; i++) {
@@ -450,51 +508,100 @@ console.log(this.userData)
       alert("Password does not match");
     }
   }
+  animate() {
+    let temp: any = $("." + this.currentField).offset()?.top;
+    $("." + this.currentField).addClass("blink");
+    $("." + this.currentField).on("click", () => {
+      $("." + this.currentField).removeClass("blink");
+      this.currentField = "";
+    })
+    $(window).scrollTop(temp - 200);
+  }
   getData() {
-    if (this.detailForm.value.firstName == ""
-      || this.detailForm.value.lastName == ""
-      || this.detailForm.value.address == ""
-      || this.countryId == -1
-      || this.cityId == -1
-      || $("#formDate").val() == "") {
-      alert("Enter all the fields");
+    if (this.detailForm.get('firstName')?.hasError('required')) {
+      this.currentField = "firstName-input";
+      this.error = "Enter First Name";
+      this.showError = true;
       return;
     }
-
-    if (this.agentDetailForm.value.agentBrnNo == "") {
-      alert("Enter BRN No");
+    else if (this.detailForm.get('lastName')?.hasError('required')) {
+      this.currentField = "lastName-input";
+      this.error = "Enter Last Name";
+      this.showError = true;
       return;
     }
-    if (this.agentDetailForm.value.agentAboutMe == "") {
-      alert("Enter About Me");
+    else if (this.detailForm.get('gender')?.hasError('required')) {
+      this.currentField = "gender-input";
+      this.error = "Select Gender";
+      this.showError = true;
       return;
     }
-    let temp: any = localStorage.getItem("user");
-    temp = JSON.parse(temp);
-    this.data.Id = temp.id;
-    this.data.FirstName = this.detailForm.value.firstName;
-    this.data.LastName = this.detailForm.value.lastName;
-    this.data.Email = temp.email;
-    this.data.Address = this.detailForm.value.address;
-    this.data.CountryId = this.countryId;
-    this.data.CityId = this.cityId;
-    this.data.DateOfBirth = $("#formDate").val();
-    this.service.UpdatePersonalDetails(this.data).subscribe((result: any) => {
-      if (result.message == "User  fetched successfully") {
-        alert("Profile Update Successfully");
-        localStorage.setItem("user", JSON.stringify(result.data))
-      } else {
-        alert("Something went wrong");
+    else if (this.detailForm.get('dateOfBirth')?.hasError('required')) {
+      this.currentField = "dob-input";
+      this.error = "Select Date of Birth";
+      this.showError = true;
+      return;
+    }
+    else if (this.detailForm.get('countryId')?.hasError('required')) {
+      this.currentField = "country-input";
+      this.error = "Select Country";
+      this.showError = true;
+      return;
+    }
+    else if (this.detailForm.get('cityId')?.hasError('required')) {
+      this.currentField = "city-input";
+      this.error = "Select City";
+      this.showError = true;
+      return;
+    }
+    else if (this.detailForm.get('address')?.hasError('required')) {
+      this.currentField = "address-input";
+      this.error = "Enter Address";
+      this.showError = true;
+      return;
+    }
+    this.showLoader = true;
+    console.log(this.detailForm.value);
+    this.service.UpdatePersonalDetails(this.detailForm.value).subscribe((resp: any) => {
+      console.log("save", resp)
+      if (resp.result == 1) {
+        this.showLoader = false;
+        this.success = "Profile Updated Successfully!"
+        this.showSuccess = true;
+        localStorage.setItem("user", JSON.stringify(resp.data))
       }
-    });
-    this.data.BRNNo = this.agentDetailsFormData.value.agentBrnNo;
-    this.data.agentAboutMe = this.agentDetailsFormData.value.agentAboutMe;
-    this.data.CompanyName = this.companyDetailsFormData.value.companyName;
-    this.data.TradeLicenseNo = this.companyDetailsFormData.value.tradeLicenseNo;
-    this.data.PermitNo = this.companyDetailsFormData.value.permitNo;
-    this.data.ORNNo = this.companyDetailsFormData.value.ornNo;
-    this.data.RERANo = this.companyDetailsFormData.value.reraNo;
-    this.data.CompanyAddress = this.companyDetailsFormData.value.companyAddress;
+      else{
+        this.showLoader = false;
+        this.error = "Failed to update user profile";
+        this.showError = true;
+      }
+    },
+      (error: any) => {
+        this.showLoader = false;
+        this.showError = true;
+        this.error = error;
+      }
+    );
+
+    // let temp: any = localStorage.getItem("user");
+    // temp = JSON.parse(temp);
+    // this.data.Id = temp.id;
+    // this.data.FirstName = this.detailForm.value.firstName;
+    // this.data.LastName = this.detailForm.value.lastName;
+    // this.data.Email = temp.email;
+    // this.data.Address = this.detailForm.value.address;
+    // this.data.CountryId = this.countryId;
+    // this.data.CityId = this.cityId;
+    // this.data.DateOfBirth = $("#formDate").val();
+
+    // this.data.BRNNo = this.agentDetailsFormData.value.agentBrnNo;
+    // this.data.agentAboutMe = this.agentDetailsFormData.value.agentAboutMe;
+    // this.data.CompanyName = this.companyDetailsFormData.value.companyName;
+    // this.data.TradeLicenseNo = this.companyDetailsFormData.value.tradeLicenseNo;
+    // this.data.PermitNo = this.companyDetailsFormData.value.permitNo;
+    // this.data.ORNNo = this.companyDetailsFormData.value.ornNo;
+    // this.data.RERANo = this.companyDetailsFormData.value.reraNo;
+    // this.data.CompanyAddress = this.companyDetailsFormData.value.companyAddress;
   }
 
   LoadvaluationDashboard() {
@@ -553,7 +660,7 @@ console.log(this.userData)
 
 
   public parentTabsChange(e: any) {
-    console.log("ParentTab",e)
+    console.log("ParentTab", e)
     //allId nuLL
     let parentTabId: any = '';
     if (e.index == 1) {
@@ -581,7 +688,7 @@ console.log(this.userData)
   tabCounts: any = {}
   getTabCount() {
     this.service.LoadListingDashboard({ "UserId": this.user.id, "PropertyListingTypeId": this.parentTabId }).subscribe(data => {
-      console.log("LoadListingDashboard",data)
+      console.log("LoadListingDashboard", data)
       let temp: any = data;
       let jsonData: any = JSON.stringify(temp.data)
       let jsonParsDate: any = JSON.parse(jsonData);
@@ -595,8 +702,8 @@ console.log(this.userData)
     let tempData: Array<Object> = []
     this.service.LoadPropertyListingStatus().subscribe(data => {
       let response: any = data;
-      console.log("propertylistingStatus",response)
-      console.log("tabCounts",this.tabCounts)
+      console.log("propertylistingStatus", response)
+      console.log("tabCounts", this.tabCounts)
       response.data.forEach((element: any, i: any) => {
         let name = element.statusDescription
         let count: number = 0;
@@ -609,7 +716,7 @@ console.log(this.userData)
           count = this.tabCounts.propertyListingBuy
         } else if (name == "Active") {
           count = this.tabCounts.propertyListingActive
-          checked=true;
+          checked = true;
         } else if (name == "Expired") {
           count = this.tabCounts.propertyListingExpired
         } else if (name == "Under Review") {
@@ -622,7 +729,7 @@ console.log(this.userData)
           count = this.tabCounts.propertyListingExpireSoon
         }
         tempData.push(
-          { id: element.id, statusDescription: element.statusDescription, count: count,checked:checked });
+          { id: element.id, statusDescription: element.statusDescription, count: count, checked: checked });
       })
     });
     this.propertyListingStatus = tempData
@@ -659,6 +766,29 @@ console.log(this.userData)
     })
   }
   ngOnInit() {
+    this.getNationality();
+    this.detailForm.controls['countryId'].valueChanges.subscribe(x => {
+      this.onCountrySelect(x);
+    })
+    this.filteredCountries.next(this.country.slice());
+    this.countryFilterCtrl.valueChanges
+      .pipe(takeUntil(this._onDestroy))
+      .subscribe(() => {
+        this.filterCountries();
+      });
+    this.filteredCities.next(this.city.slice());
+    this.cityFilterCtrl.valueChanges
+      .pipe(takeUntil(this._onDestroy))
+      .subscribe(() => {
+        this.filterCities();
+      });
+
+    this.filteredNationality.next(this.Nationality.slice());
+    this.nationalityFilterCtrl.valueChanges
+      .pipe(takeUntil(this._onDestroy))
+      .subscribe(() => {
+        this.filterNationality();
+      });
     var myDate = new Date();
     var hrs = myDate.getHours();
     var greet;
@@ -671,7 +801,57 @@ console.log(this.userData)
 
     this.greet = greet
   }
+  filterCountries() {
+    if (!this.country) {
+      return;
+    }
 
+    let search = this.countryFilterCtrl.value;
+    if (!search) {
+      this.filteredCountries.next(this.country.slice());
+      return;
+    } else {
+      search = search.toLowerCase();
+    }
+
+    this.filteredCountries.next(
+      this.country.filter((x: any) => x.viewValue.toLowerCase().indexOf(search) > -1)
+    );
+  }
+  filterCities() {
+    if (!this.city) {
+      return;
+    }
+
+    let search = this.cityFilterCtrl.value;
+    if (!search) {
+      this.filteredCities.next(this.city.slice());
+      return;
+    } else {
+      search = search.toLowerCase();
+    }
+
+    this.filteredCities.next(
+      this.city.filter((x: any) => x.viewValue.toLowerCase().indexOf(search) > -1)
+    );
+  }
+  filterNationality() {
+    if (!this.Nationality) {
+      return;
+    }
+
+    let search = this.nationalityFilterCtrl.value;
+    if (!search) {
+      this.filteredNationality.next(this.Nationality.slice());
+      return;
+    } else {
+      search = search.toLowerCase();
+    }
+
+    this.filteredNationality.next(
+      this.Nationality.filter((x: any) => x.name.toLowerCase().indexOf(search) > -1)
+    );
+  }
   getUser() {
     this.user = localStorage.getItem('user');
     if (this.user != '') {
@@ -709,23 +889,42 @@ console.log(this.userData)
   }
 
   onCountrySelect(e: any) {
-    this.countryId = e.value;
+    this.countryId = e;
     this.city = [];
-    this.service.LoadCities(e.value).subscribe(e => {
+    this.service.LoadCities(e).subscribe(e => {
       let temp: any = e;
       if (temp.message == "City list fetched successfully") {
         for (let city of temp.data) {
           this.city.push({ viewValue: city.name, value: city.id });
         }
+        this.filteredCities.next(this.city);
       }
     });
+    this.detailForm.get('cityId')?.patchValue(null);
+    if (e == 1) {
+      this.agentFormRequired = true;
+      this.agentDetailForm.controls['agentBrnNo']?.setValidators(Validators.required);
+      this.agentDetailForm.controls['agentBrnNo']?.updateValueAndValidity();
+      this.agentDetailForm.controls['agentAboutMe']?.setValidators(Validators.required);
+      this.agentDetailForm.controls['agentAboutMe']?.updateValueAndValidity();
+      this.agentDetailForm.controls['expertIn']?.setValidators(Validators.required);
+      this.agentDetailForm.controls['expertIn']?.updateValueAndValidity();
+    }
+    else {
+      this.agentFormRequired = false;
+      this.agentDetailForm.controls['agentBrnNo']?.clearValidators();
+      this.agentDetailForm.controls['agentBrnNo']?.updateValueAndValidity();
+      this.agentDetailForm.controls['agentAboutMe']?.clearValidators();
+      this.agentDetailForm.controls['agentAboutMe']?.updateValueAndValidity();
+      this.agentDetailForm.controls['expertIn']?.clearValidators();
+      this.agentDetailForm.controls['expertIn']?.updateValueAndValidity();
+    }
   }
   onCitySelect(e: any) {
     this.cityId = e.value;
   }
-  getGender(id: number) {
-    this.data.Gender = id;
-
+  getGender(id: any) {
+    this.detailForm.get('gender')?.patchValue(id);
   }
   getloadDashboardData() {
     this.service.LoadDashboardData(this.user.id).subscribe(e => {
@@ -736,21 +935,41 @@ console.log(this.userData)
     });
   }
 
-  otherImages: any = [];
-  uploadedDocuments: any = [];
-  emirate: any = [];
-  emiratesfun(files: FileList, index: number) {
+  otherAgentImages: any = [];
+  agentFileNames: any = [];
+  uploadAgentImages(files: FileList, index: number) {
+    if(this.finalAgentDocments.length>0){
+      this.finalAgentDocments.splice(index,1);
+    }
     if (files && files.length) {
       let found: number = -1;
-      for (let i = 0; i < this.otherImages.length; i++) {
-        if (this.otherImages[i].index == index) {
+      for (let i = 0; i < this.otherAgentImages.length; i++) {
+        if (this.otherAgentImages[i].index == index) {
           found = i;
         }
       }
       if (found == -1) {
-        this.otherImages.push({ index: index, file: files[0] });
+        this.otherAgentImages.push({ index: index, file: files[0] });
       } else {
-        this.otherImages[found].file = files[0];
+        this.otherAgentImages[found].file = files[0];
+      }
+      this.agentFileNames[index] = files[0].name;
+    }
+  }
+  otherImages: any = [];
+  emirate: any = [];
+  emiratesfun(files: FileList, index: number) {
+    if (files && files.length) {
+      let found: number = -1;
+      for (let i = 0; i < this.otherAgentImages.length; i++) {
+        if (this.otherAgentImages[i].index == index) {
+          found = i;
+        }
+      }
+      if (found == -1) {
+        this.otherAgentImages.push({ index: index, file: files[0] });
+      } else {
+        this.otherAgentImages[found].file = files[0];
       }
       this.emirate[index] = files[0].name;
     }
@@ -759,11 +978,11 @@ console.log(this.userData)
   listingAll: any = [];
   getLoadListing() {
     let tempData: Array<Object> = []
-    if(this.childTabId=="" || this.childTabId==null || this.childTabId==undefined){
-      this.childTabId=1
+    if (this.childTabId == "" || this.childTabId == null || this.childTabId == undefined) {
+      this.childTabId = 1
     }
-    this.service.LoadListing({ "UserId": this.user.id, "PropertyListingTypeId": this.parentTabId, "PropertyListingStatusId": this.childTabId }).subscribe(data => {  
-      console.log("zz",data);
+    this.service.LoadListing({ "UserId": this.user.id, "PropertyListingTypeId": this.parentTabId, "PropertyListingStatusId": this.childTabId }).subscribe(data => {
+      console.log("zz", data);
       let response: any = data;
       response.data.forEach((element: any, i: any) => {
         let image: any;
@@ -780,10 +999,10 @@ console.log(this.userData)
           {
             id: element.id, propertyTitle: element.propertyTitle, propertyAddress: element.propertyAddress, img: image,
             buildingName: element.buildingName, bedrooms: element.bedrooms, bathrooms: element.bathrooms, carpetArea: element.carpetArea, buildupArea: element.buildupArea,
-            unitNo: element.unitNo, totalFloor: element.totalFloor, floorNo: element.floorNo, propertyDescription: element.propertyDescription,plotSize:element.plotSize,
+            unitNo: element.unitNo, totalFloor: element.totalFloor, floorNo: element.floorNo, propertyDescription: element.propertyDescription, plotSize: element.plotSize,
             requestedDate: element.requestedDate, furnishingType: element.furnishingType, propertyPrice: element.propertyPrice,
             requestedDateFormat: element.requestedDateFormat,
-            expiredDateFormat: element.expiredDateFormat, rentType: rentTypeName, currency: element.country.currency,unitType:element.country.unitType
+            expiredDateFormat: element.expiredDateFormat, rentType: rentTypeName, currency: element.country.currency, unitType: element.country.unitType
           }
         );
       })
@@ -797,11 +1016,6 @@ console.log(this.userData)
     this.page = value;
   }
 
-
-  agentBroker = new FormGroup({
-    BRNNo: new FormControl(""),
-    agentAboutMe: new FormControl("")
-  });
 
   companyDetail = new FormGroup({
     companyName: new FormControl(""),
@@ -840,37 +1054,38 @@ console.log(this.userData)
   }
 
 
-  Nationality: any = [];
+
   getNationality() {
-    let tempData: Array<Object> = []
-    this.service.LoadNationality().subscribe(data => {
-      let response: any = data;
-      response.data.forEach((element: any, i: any) => {
-        tempData.push(
-          { id: element.id, name: element.name });
-      })
+    this.showLoader = true;
+    this.service.LoadNationality().subscribe((resp: any) => {
+      this.Nationality = resp.data;
+      this.filteredNationality.next(resp.data);
+      this.showLoader = false;
+    }, (error) => {
+      this.showLoader = false;
     });
-    this.Nationality = tempData
   }
 
   expertArray: any = [];
   expertsChange(e: any): void {
-    this.agentFormData.ExpertIn = e;
+    this.agentDetailForm.get("expertIn")?.patchValue(e);
   }
 
-  languagesArray: any = [];
+
   languagesArrayChange(e: any, value: any): void {
     let exists = true;
-    this.languagesArray.forEach((element: any, i: any) => {
+    this.agentLanguages.forEach((element: any, i: any) => {
       if (element == value) {
         exists = false
       }
     })
     if (exists) {
-      this.languagesArray.push(value)
+      this.agentLanguages.push(value)
     } else {
-      this.languagesArray.forEach((element: any, index: any) => {
-        if (element == value) delete this.languagesArray[index];
+      this.agentLanguages.forEach((element: any, index: any) => {
+        if (element == value) {
+          this.agentLanguages.splice(index, 1)
+        }
       });
     }
   }
@@ -898,15 +1113,14 @@ console.log(this.userData)
     this.NationalityId = event.value;
   }
 
-  agentFormData: any = {};
   companyFormData: any = {};
 
 
-  finalBrokerDocments: any = []
+
   documentsObject() {
-    this.uploadedDocuments.forEach((element: any, i: any) => {
-      let extension: any = element.fileName.split(".");
-      this.finalBrokerDocments.push({ "FileId": i, "RegistrationDocumentTypeId": i.toString(), "FileName": element.fileName, "Extension": extension[1] });
+    this.otherAgentImages.forEach((element: any, i: any) => {
+      let extension: any = element.file.name.split(".");
+      this.finalAgentDocments.push({ "FileId": i+1, "RegistrationDocumentTypeId": i.toString(), "FileName": element.file.name , "Extension": extension[1] });
     })
   }
 
@@ -1000,84 +1214,106 @@ console.log(this.userData)
   agentBrokerId: any;
   imageObject: any = [];
   getAgentData() {
-    if (this.otherImages.length < 3) {
-      this.notifyService.showError('Please enter all data', "Error");
-    } else {
-
-      if (this.NationalityId == null || this.NationalityId == undefined) {
-        this.notifyService.showError('Please select Nationality', "Error");
-        return;
-      }
-      let langObject: any = []
-      this.languagesArray.forEach((element: any, i: any) => {
-        langObject.push({ SpokenLanguageId: element })
-      })
-
-      let temp: any = [];
-      for (let i = 0; i < this.areaData.length; i++) {
-        temp.push({ "DistrictId": this.areaData[i] });
-      }
-
-
-      let districtsIdsObject: any = []
-      this.districtsIds.forEach((element: any, i: any) => {
-        districtsIdsObject.push({ DistrictId: element })
-      })
-
-      let userData: any = localStorage.getItem("user");
-      userData = JSON.parse(userData);
-      this.agentFormData.UserId = userData.id.toString();
-      if (this.agentBrokerId == null) {
-        this.agentFormData.Id = "0";
-      } else {
-        this.agentFormData.Id = this.agentBrokerId.toString();
-      }
-
-      this.agentFormData.AboutMe = this.agentBroker.value.agentAboutMe;
-      this.agentFormData.BRNNo = this.agentBroker.value.BRNNo;
-      this.agentFormData.NationalityId = this.NationalityId.toString();
-      this.agentFormData.AgentLanguages = langObject;
-      // this.agentFormData.AgentAreas = temp;
-      this.agentFormData.AgentAreas = temp;
-      this.documentsObject();
-      this.agentFormData.Documents = this.finalBrokerDocments
-      this.uploadedDocuments = [];
-      this.finalBrokerDocments = [];
-
-      let valuationData = new FormData();
-      valuationData.append("AgentRequest", JSON.stringify(this.agentFormData));
-
-      for (let i = 0; i < 3; i++) {
-        valuationData.append(i + 1 + "_" + this.otherImages[i].file.name, this.otherImages[i].file);
-      }
-      let token: any = localStorage.getItem("token");
-      token = JSON.parse(token);
-      $.ajax({
-        url: `${environment.apiUrl}api/AddUpdateAgentDetails`,
-        method: "post",
-        contentType: false,
-        processData: false,
-        data: valuationData,
-        headers: {
-          "Authorization": 'bearer ' + token
-        },
-        dataType: "json",
-        success: (res: any) => {
-          this.agentBrokerId = res.data.id;
-          if (res.message == "agent request completed successfully") {
-            this.notifyService.showSuccess(res.message, "Agent details updated successfully");
-          }
-          // if(res.message == "Property Listing request completed successfully") {
-          //   localStorage.removeItem("propertyData");
-          //   this.route.navigate(['listpropertypublish'])
-          // }
-        },
-        error: (err) => {
-          this.notifyService.showError(err, "");
-
-        }
-      });
+    let firstImage = this.otherAgentImages.some((x: any) => x.index === 0);
+    let secondImage = this.otherAgentImages.some((x: any) => x.index === 1);
+    let thirdImage = this.otherAgentImages.some((x: any) => x.index === 2);
+    if(this.finalAgentDocments.length>=1){
+      firstImage=true;
     }
+    if(this.finalAgentDocments.length>=2){
+      secondImage=true;
+    }
+    if(this.finalAgentDocments.length>=3){
+      thirdImage=true;
+    }
+
+    if (this.agentDetailForm.get('agentAboutMe')?.hasError('required')) {
+      this.currentField = "aboutme-input";
+      this.error = "Enter About Me";
+      this.showError = true;
+      return;
+    }
+    else if (this.agentDetailForm.get('agentBrnNo')?.hasError('required')) {
+      this.currentField = "brn-input";
+      this.error = "Enter BRN No.#";
+      this.showError = true;
+      return;
+    }
+    else if (this.agentDetailForm.get('expertIn')?.hasError('required') && this.agentFormRequired) {
+      this.currentField = "expertIn-input";
+      this.error = "Select Expert In";
+      this.showError = true;
+      return;
+    }
+    else if (this.agentDetailForm.get('nationalityId')?.hasError('required')) {
+      this.currentField = "nationality-input";
+      this.error = "Select Nationality";
+      this.showError = true;
+      return;
+    }
+    else if (this.agentFormRequired && (this.agentLanguages.length == 0)) {
+      this.currentField = "language-input";
+      this.error = "Select Languages";
+      this.showError = true;
+      return;
+    }
+    else if (!firstImage && this.agentFormRequired ) {
+      this.currentField = "firstImage-input";
+      this.error = "Upload  Emirates ID (Fornt View)";
+      this.showError = true;
+      return;
+    }
+    else if (!secondImage && this.agentFormRequired) {
+      this.currentField = "secondImage-input";
+      this.error = "Upload  Emirates ID (Back View)";
+      this.showError = true;
+      return;
+    }
+    else if (!thirdImage && this.agentFormRequired) {
+      this.currentField = "thirdImage-input";
+      this.error = "Upload Official Rera ID";
+      this.showError = true;
+      return;
+    }
+this.showLoader=true;
+    let agentSelectedLanguages: any = []
+    this.agentLanguages.forEach((element: any, i: any) => {
+      agentSelectedLanguages.push({ SpokenLanguageId: element })
+    })
+    let agentFormData:any={};
+    agentFormData.Id = this.agentDetailForm.value.id;
+    agentFormData.UserId = this.agentDetailForm.value.userId;
+    agentFormData.AboutMe =  this.agentDetailForm.value.agentAboutMe;
+    agentFormData.BRNNo = this.agentDetailForm.value.agentBrnNo;
+    agentFormData.NationalityId = this.agentDetailForm.value.nationalityId;
+    agentFormData.ExpertIn = this.agentDetailForm.value.expertIn;
+    agentFormData.AgentLanguages = agentSelectedLanguages;
+    this.documentsObject();
+    agentFormData.Documents = this.finalAgentDocments
+    let AgentRequestData = new FormData();
+    AgentRequestData.append("AgentRequest", JSON.stringify(agentFormData));
+    for (let i = 0; i < this.otherAgentImages.length; i++) {
+      AgentRequestData.append(i + 1 + "_" + this.otherAgentImages[i].file.name, this.otherAgentImages[i].file);
+    }
+
+    this.service.AddUpdateAgentDetails(AgentRequestData).subscribe((resp:any)=>{
+      if (resp.result == 1) {
+        this.showLoader = false;
+        this.success = "Agent Detail Updated Successfully!"
+        this.showSuccess = true;
+      }
+      else{
+        this.showLoader = false;
+        this.error = "Failed to update agent detail";
+        this.showError = true;
+      }
+    },
+      (error: any) => {
+        this.showLoader = false;
+        this.showError = true;
+        this.error = error;
+      }
+    )
   }
 
   viewBuyCount: any;
@@ -1145,7 +1381,7 @@ console.log(this.userData)
       let response: any = data;
       response.data.forEach((element: any, i: any) => {
         let image: any;
-        if (element.agentDetails.company.documents.length > 1 && element.agentDetails.company.documents !== undefined && element.agentDetails.company.documents !== null) {
+        if (element.agentDetails.company?.documents.length > 1 && element.agentDetails.company?.documents !== undefined && element.agentDetails.company?.documents !== null) {
           image = element.agentDetails.company.documents[0].fileUrl
         } else {
           image = 'assets/images/placeholder.png'
