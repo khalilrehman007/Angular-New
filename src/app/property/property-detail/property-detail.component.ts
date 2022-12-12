@@ -26,10 +26,11 @@ declare const google: any;
   providers: [DecimalPipe]
 })
 export class PropertyDetailComponent implements OnInit, AfterViewInit {
-  showLoader: boolean = false;
-  showMore:boolean=true;
+
   @ViewChild('propertyDetails__map') mapElement: any;
-detailSuccess=false;
+  detailSuccess = false;
+  showLoader:boolean = false;
+  showMore:boolean=true;
   homelocationsvg = 'assets/images/home-location.svg'
   bedsvg = 'assets/images/icons/Bed.svg'
   bathsvg = 'assets/images/icons/Bath-tub.svg'
@@ -324,8 +325,7 @@ detailSuccess=false;
     this.detailSuccess = true;
     this.service.DisplayPropertyListing({ "PropertyListingId": this.propertyId, "LoginUserId": this.userId }).subscribe((result: any) => {
       console.log(result)
-      if(result.result==1)
-      {
+      if (result.result == 1) {
 
       this.propertyDetails = result.data.propertyListing;
       this.allData = result.data;
@@ -344,184 +344,184 @@ detailSuccess=false;
       let jsonParsDate: any = JSON.parse(jsonData);
       this.propertyDetail = jsonParsDate
 
-      //gallery images
-      for (let i = 0; i < this.propertyDetails.documents.length; i++) {
-        this.galleryImages.push({
-          small: this.baseUrl + this.propertyDetails.documents[i].fileUrl.replaceAll("\\", "/"),
-          medium: this.baseUrl + this.propertyDetails.documents[i].fileUrl.replaceAll("\\", "/"),
-          big: this.baseUrl + this.propertyDetails.documents[i].fileUrl.replaceAll("\\", "/")
+        //gallery images
+        for (let i = 0; i < this.propertyDetails.documents.length; i++) {
+          this.galleryImages.push({
+            small: this.baseUrl + this.propertyDetails.documents[i].fileUrl.replaceAll("\\", "/"),
+            medium: this.baseUrl + this.propertyDetails.documents[i].fileUrl.replaceAll("\\", "/"),
+            big: this.baseUrl + this.propertyDetails.documents[i].fileUrl.replaceAll("\\", "/")
+          });
+        }
+        this.map = new google.maps.Map(this.mapElement.nativeElement, {
+          center: { "lat": parseFloat(this.propertyLat), "lng": parseFloat(this.propertyLng) },
+          zoom: 16,
+          disableDefaultUI: true,
         });
-      }
-      this.map = new google.maps.Map(this.mapElement.nativeElement, {
-        center: { "lat": parseFloat(this.propertyLat), "lng": parseFloat(this.propertyLng) },
-        zoom: 16,
-        disableDefaultUI: true,
-      });
-      let marker = new google.maps.Marker({
-        position: { "lat": parseFloat(this.propertyLat), "lng": parseFloat(this.propertyLng) },
-        map: this.map,
-        label: {
-          className: 'map-marker-label',
-          text: this.buildingName == "" ? "Location" : this.buildingName
-        },
-      });
-     
-      let professionType: any = '';
-      if (jsonParsDate.propertyListing.professionalType !== null && jsonParsDate.propertyListing.professionalType?.name !== null && jsonParsDate.propertyListing.professionalType?.name !== undefined) {
-        professionType = jsonParsDate.propertyListing.professionalType.name
-      }
-      let companyName: any = '';
-      if (jsonParsDate.propertyListing.company !== null && jsonParsDate.propertyListing.company !== undefined) {
-        companyName = jsonParsDate.propertyListing.company.companyName
-      }
-      let reraNo: any = '';
-      if (jsonParsDate.propertyListing.company !== null && jsonParsDate.propertyListing.company !== undefined) {
-        reraNo = jsonParsDate.propertyListing.company.rERANo
-      }
-      let permitNo: any = '';
-      if (jsonParsDate.propertyListing.company !== null && jsonParsDate.propertyListing.company !== undefined) {
-        permitNo = jsonParsDate.propertyListing.company.PremitNo
-      }
+        let marker = new google.maps.Marker({
+          position: { "lat": parseFloat(this.propertyLat), "lng": parseFloat(this.propertyLng) },
+          map: this.map,
+          label: {
+            className: 'map-marker-label',
+            text: this.buildingName == "" ? "Location" : this.buildingName
+          },
+        });
 
-      let occupancyStatus: any = '';
-      if (jsonParsDate.propertyListing.occupancyStatus !== null && jsonParsDate.propertyListing.occupancyStatus?.name !== null && jsonParsDate.propertyListing.occupancyStatus?.name !== undefined) {
-        occupancyStatus = jsonParsDate.propertyListing.occupancyStatus.name
-      }
-      let completionStatus: any = '';
-      if (jsonParsDate.propertyListing.propertyCompletionStatus !== null && jsonParsDate.propertyListing.propertyCompletionStatus?.statusDescription !== null && jsonParsDate.propertyListing.propertyCompletionStatus?.statusDescription !== undefined) {
-        completionStatus = jsonParsDate.propertyListing.propertyCompletionStatus.statusDescription
-      }
-      let propertyDeveloper: any = '';
-      if (jsonParsDate.propertyListing.propertyDeveloper !== null && jsonParsDate.propertyListing.propertyDeveloper?.name !== null && jsonParsDate.propertyListing.propertyDeveloper?.name !== undefined) {
-        propertyDeveloper = jsonParsDate.propertyListing.propertyDeveloper.name
-      }
-      let transactionType: any = '';
-      if (jsonParsDate.propertyListing.propertyTransactionType !== null && jsonParsDate.propertyListing.propertyTransactionType?.name !== null && jsonParsDate.propertyListing.propertyTransactionType?.name !== undefined) {
-        transactionType = jsonParsDate.propertyListing.propertyTransactionType.name
-      }
-      let rentType: any = '';
-      if (jsonParsDate.propertyListing.rentType !== null && jsonParsDate.propertyListing.rentType?.name !== null && jsonParsDate.propertyListing.rentType?.name !== undefined && jsonParsDate.propertyListing.propertyListingTypeId != 2) {
-        rentType = jsonParsDate.propertyListing.rentType.name
-      }
-      if (jsonParsDate.propertyListing != null) {
-        this.propertyDetailData.propertyPrice = (jsonParsDate.propertyListing.propertyPrice !== undefined) ? jsonParsDate.propertyListing.propertyPrice : ''
-        this.propertyDetailData.currency = (jsonParsDate.propertyListing.country.currency !== undefined) ? jsonParsDate.propertyListing.country.currency : ''
-        this.propertyDetailData.rentType = rentType
-        this.propertyDetailData.securityDeposit = (jsonParsDate.propertyListing.securityDeposit !== undefined) ? jsonParsDate.propertyListing.securityDeposit : false
-        this.propertyDetailData.securityDepositPrice = (jsonParsDate.propertyListing.securityDepositPrice !== undefined) ? jsonParsDate.propertyListing.securityDepositPrice : ''
-        this.propertyDetailData.brokerageCharge = (jsonParsDate.propertyListing.brokerageCharge !== undefined) ? jsonParsDate.propertyListing.brokerageCharge : false
-        this.propertyDetailData.brokerageChargePrice = (jsonParsDate.propertyListing.brokerageChargePrice !== undefined) ? jsonParsDate.propertyListing.brokerageChargePrice : ''
-        this.propertyDetailData.buildingName = (jsonParsDate.propertyListing.buildingName !== undefined) ? jsonParsDate.propertyListing.buildingName : ''
-        this.propertyDetailData.documents = (jsonParsDate.propertyListing.documents !== undefined) ? jsonParsDate.propertyListing.documents : []
-        this.propertyDetailData.propertyAddress = (jsonParsDate.propertyListing.propertyAddress !== undefined) ? jsonParsDate.propertyListing.propertyAddress : ''
-        this.propertyDetailData.bedrooms = (jsonParsDate.propertyListing.bedrooms !== undefined) ? jsonParsDate.propertyListing.bedrooms : ''
-        this.propertyDetailData.bathrooms = (jsonParsDate.propertyListing.bathrooms !== undefined) ? jsonParsDate.propertyListing.bathrooms : ''
-        this.propertyDetailData.carpetArea = (jsonParsDate.propertyListing.carpetArea !== undefined) ? jsonParsDate.propertyListing.carpetArea : ''
-        this.propertyDetailData.unitType = (jsonParsDate.propertyListing.country.unitType !== undefined) ? jsonParsDate.propertyListing.country.unitType : ''
-        this.propertyDetailData.furnishingType = (jsonParsDate.propertyListing.furnishingType !== undefined) ? jsonParsDate.propertyListing.furnishingType : ''
-        this.propertyDetailData.propertyDescription = (jsonParsDate.propertyListing.propertyDescription !== undefined) ? jsonParsDate.propertyListing.propertyDescription : ''
-        this.propertyDetailData.propertyFeatures = (jsonParsDate.propertyListing.propertyFeatures !== undefined) ? jsonParsDate.propertyListing.propertyFeatures : ''
-        this.propertyDetailData.requestedDateFormat = (jsonParsDate.propertyListing.requestedDateFormat !== undefined) ? jsonParsDate.propertyListing.requestedDateFormat : ''
-        this.propertyDetailData.buildingType = (jsonParsDate.propertyListing.propertyCategory.categoryName !== undefined) ? jsonParsDate.propertyListing.propertyCategory.categoryName : ''
-        this.propertyDetailData.propertyType = (jsonParsDate.propertyListing.propertyType.typeDescription !== undefined) ? jsonParsDate.propertyListing.propertyType.typeDescription : ''
-        this.propertyDetailData.buildingName = (jsonParsDate.propertyListing.buildingName !== undefined) ? jsonParsDate.propertyListing.buildingName : ''
-        this.propertyDetailData.unitNo = jsonParsDate.propertyListing.unitNumber ? jsonParsDate.propertyListing.unitNumber : ''
-        this.propertyDetailData.fittingType = (jsonParsDate.propertyListing.fittingType !== undefined) ? jsonParsDate.propertyListing.fittingType : ''
-        //this.propertyDetailData.tenantType = tenantType
-       // this.propertyDetailData.gender = (jsonParsDate.propertyListing.gender !== undefined) ? jsonParsDate.propertyListing.gender : ''
-        this.propertyDetailData.parkings = (jsonParsDate.propertyListing.parkings !== undefined) ? jsonParsDate.propertyListing.parkings : ''
-        this.propertyDetailData.buildupArea = (jsonParsDate.propertyListing.buildupArea !== undefined) ? jsonParsDate.propertyListing.buildupArea : ''
-        this.propertyDetailData.plotSize = (jsonParsDate.propertyListing.plotSize !== undefined) ? jsonParsDate.propertyListing.plotSize : ''
-       // this.propertyDetailData.availableDate = (jsonParsDate.propertyListing.availableDate !== undefined) ? jsonParsDate.propertyListing.availableDate : ''
-       // this.propertyDetailData.noticePeriod = (jsonParsDate.propertyListing.noticePeriod !== undefined) ? jsonParsDate.propertyListing.noticePeriod : ''
-       // this.propertyDetailData.lockingPeriod = (jsonParsDate.propertyListing.lockingPeriod !== undefined) ? jsonParsDate.propertyListing.lockingPeriod : ''
-        this.propertyDetailData.propertyLat = (jsonParsDate.propertyListing.propertyLat !== undefined) ? jsonParsDate.propertyListing.propertyLat : ''
-        this.propertyDetailData.propertyLong = (jsonParsDate.propertyListing.propertyLong !== undefined) ? jsonParsDate.propertyListing.propertyLong : ''
-        this.propertyDetailData.id = (jsonParsDate.propertyListing.id !== undefined) ? jsonParsDate.propertyListing.id : ''
-        this.propertyDetailData.favorite = (jsonParsDate.propertyListing.favorite !== undefined) ? jsonParsDate.propertyListing.favorite : ''
-        this.propertyDetailData.propertyListingTypeId = (jsonParsDate.propertyListing.propertyListingTypeId !== undefined) ? jsonParsDate.propertyListing.propertyListingTypeId : 0
-        this.propertyDetailData.propertyCode = (jsonParsDate.propertyListing.propertyCode !== undefined) ? jsonParsDate.propertyListing.propertyCode : 0
-        this.propertyDetailData.occupancyStatus = occupancyStatus;
-        this.propertyDetailData.completionStatus = completionStatus;
-        this.propertyDetailData.propertyDeveloper = propertyDeveloper;
-        this.propertyDetailData.transactionType = transactionType;
-        this.propertyDetailData.angentId = (jsonParsDate.propertyListing.userId == undefined || jsonParsDate.propertyListing.userId==null) ? 0 : Math.abs(jsonParsDate.propertyListing.userId);
-        this.propertyDetailData.priceChangePercentage = (jsonParsDate.propertyListing.priceChangePercentage == undefined || jsonParsDate.propertyListing.priceChangePercentage==null) ? 0 : Math.abs(jsonParsDate.propertyListing.priceChangePercentage);
-        this.propertyDetailData.sizeChangePercentage = (jsonParsDate.propertyListing.sizeChangePercentage == undefined || jsonParsDate.propertyListing.sizeChangePercentage==null) ? 0 : Math.abs(jsonParsDate.propertyListing.sizeChangePercentage);
-        this.propertyDetailData.rentAvgPriceSqft = (jsonParsDate.propertyListing.rentAvgPriceSqft == undefined || jsonParsDate.propertyListing.rentAvgPriceSqft==null) ? 0 : jsonParsDate.propertyListing.rentAvgPriceSqft;
-        this.propertyDetailData.saleAvgPriceSqft = (jsonParsDate.propertyListing.saleAvgPriceSqft == undefined || jsonParsDate.propertyListing.saleAvgPriceSqft==null) ? 0 : jsonParsDate.propertyListing.saleAvgPriceSqft;
-        this.propertyDetailData.averageSize = (jsonParsDate.propertyListing.averageSize == undefined || jsonParsDate.propertyListing.averageSize==null) ? 0 : jsonParsDate.propertyListing.averageSize;
-        this.propertyDetailData.location = jsonParsDate.propertyListing.district.name+", "+jsonParsDate.propertyListing.city.name ;
-        this.propertyDetailData.city = jsonParsDate.propertyListing.city.name;
-        this.propertyDetailData.activeListingCount = jsonParsDate.activeListingCount;
-        this.propertyDetailData.professionType = professionType;
-        this.propertyDetailData.companyName = companyName;
-        this.propertyDetailData.reraNo = reraNo;
-        this.propertyDetailData.permitNo = permitNo;
-      
-        // share url concatination
-        // let ree = "https://maps.google.com/maps?q=" + this.propertyDetailData.propertyLat + "," + this.propertyDetailData.propertyLong + "&hl=es&z=14&amp;output=embed"
-        // let resp: any = this.domSanitizer.bypassSecurityTrustUrl(ree);
-        // this.locationAddress1 = resp
-
-
-        // if (this.propertyDetail.propertyListing.documents.length == 0) {
-        //   this.documentCheck = false;
-        // }
-
-        // if (this.propertyDetail.propertyListing.documents[0].fileUrl != null && this.propertyDetail.propertyListing.documents[0].fileUrl !== undefined) {
-        //   this.thumb1 = this.baseUrl + this.propertyDetail.propertyListing.documents[0].fileUrl;
-        // }
-
-        if (jsonParsDate.detailsChart != null) {
-          jsonParsDate.detailsChart.chart.forEach((element: any, i: any) => {
-            let date: any = element.date
-            let price: any = element.price
-            this.chartLabel.push(date);
-            this.chartData.push(price);
-          })
+        let professionType: any = '';
+        if (jsonParsDate.propertyListing.professionalType !== null && jsonParsDate.propertyListing.professionalType?.name !== null && jsonParsDate.propertyListing.professionalType?.name !== undefined) {
+          professionType = jsonParsDate.propertyListing.professionalType.name
+        }
+        let companyName: any = '';
+        if (jsonParsDate.propertyListing.company !== null && jsonParsDate.propertyListing.company !== undefined) {
+          companyName = jsonParsDate.propertyListing.company.companyName
+        }
+        let reraNo: any = '';
+        if (jsonParsDate.propertyListing.company !== null && jsonParsDate.propertyListing.company !== undefined) {
+          reraNo = jsonParsDate.propertyListing.company.rERANo
+        }
+        let permitNo: any = '';
+        if (jsonParsDate.propertyListing.company !== null && jsonParsDate.propertyListing.company !== undefined) {
+          permitNo = jsonParsDate.propertyListing.company.PremitNo
         }
 
-        this.propertyValidationData = result.data.propertyListing?.propertyType;
-        this.getPropertyInfo();
+        let occupancyStatus: any = '';
+        if (jsonParsDate.propertyListing.occupancyStatus !== null && jsonParsDate.propertyListing.occupancyStatus?.name !== null && jsonParsDate.propertyListing.occupancyStatus?.name !== undefined) {
+          occupancyStatus = jsonParsDate.propertyListing.occupancyStatus.name
+        }
+        let completionStatus: any = '';
+        if (jsonParsDate.propertyListing.propertyCompletionStatus !== null && jsonParsDate.propertyListing.propertyCompletionStatus?.statusDescription !== null && jsonParsDate.propertyListing.propertyCompletionStatus?.statusDescription !== undefined) {
+          completionStatus = jsonParsDate.propertyListing.propertyCompletionStatus.statusDescription
+        }
+        let propertyDeveloper: any = '';
+        if (jsonParsDate.propertyListing.propertyDeveloper !== null && jsonParsDate.propertyListing.propertyDeveloper?.name !== null && jsonParsDate.propertyListing.propertyDeveloper?.name !== undefined) {
+          propertyDeveloper = jsonParsDate.propertyListing.propertyDeveloper.name
+        }
+        let transactionType: any = '';
+        if (jsonParsDate.propertyListing.propertyTransactionType !== null && jsonParsDate.propertyListing.propertyTransactionType?.name !== null && jsonParsDate.propertyListing.propertyTransactionType?.name !== undefined) {
+          transactionType = jsonParsDate.propertyListing.propertyTransactionType.name
+        }
+        let rentType: any = '';
+        if (jsonParsDate.propertyListing.rentType !== null && jsonParsDate.propertyListing.rentType?.name !== null && jsonParsDate.propertyListing.rentType?.name !== undefined && jsonParsDate.propertyListing.propertyListingTypeId != 2) {
+          rentType = jsonParsDate.propertyListing.rentType.name
+        }
+        if (jsonParsDate.propertyListing != null) {
+          this.propertyDetailData.propertyPrice = (jsonParsDate.propertyListing.propertyPrice !== undefined) ? jsonParsDate.propertyListing.propertyPrice : ''
+          this.propertyDetailData.currency = (jsonParsDate.propertyListing.country.currency !== undefined) ? jsonParsDate.propertyListing.country.currency : ''
+          this.propertyDetailData.rentType = rentType
+          this.propertyDetailData.securityDeposit = (jsonParsDate.propertyListing.securityDeposit !== undefined) ? jsonParsDate.propertyListing.securityDeposit : false
+          this.propertyDetailData.securityDepositPrice = (jsonParsDate.propertyListing.securityDepositPrice !== undefined) ? jsonParsDate.propertyListing.securityDepositPrice : ''
+          this.propertyDetailData.brokerageCharge = (jsonParsDate.propertyListing.brokerageCharge !== undefined) ? jsonParsDate.propertyListing.brokerageCharge : false
+          this.propertyDetailData.brokerageChargePrice = (jsonParsDate.propertyListing.brokerageChargePrice !== undefined) ? jsonParsDate.propertyListing.brokerageChargePrice : ''
+          this.propertyDetailData.buildingName = (jsonParsDate.propertyListing.buildingName !== undefined) ? jsonParsDate.propertyListing.buildingName : ''
+          this.propertyDetailData.documents = (jsonParsDate.propertyListing.documents !== undefined) ? jsonParsDate.propertyListing.documents : []
+          this.propertyDetailData.propertyAddress = (jsonParsDate.propertyListing.propertyAddress !== undefined) ? jsonParsDate.propertyListing.propertyAddress : ''
+          this.propertyDetailData.bedrooms = (jsonParsDate.propertyListing.bedrooms !== undefined) ? jsonParsDate.propertyListing.bedrooms : ''
+          this.propertyDetailData.bathrooms = (jsonParsDate.propertyListing.bathrooms !== undefined) ? jsonParsDate.propertyListing.bathrooms : ''
+          this.propertyDetailData.carpetArea = (jsonParsDate.propertyListing.carpetArea !== undefined) ? jsonParsDate.propertyListing.carpetArea : ''
+          this.propertyDetailData.unitType = (jsonParsDate.propertyListing.country.unitType !== undefined) ? jsonParsDate.propertyListing.country.unitType : ''
+          this.propertyDetailData.furnishingType = (jsonParsDate.propertyListing.furnishingType !== undefined) ? jsonParsDate.propertyListing.furnishingType : ''
+          this.propertyDetailData.propertyDescription = (jsonParsDate.propertyListing.propertyDescription !== undefined) ? jsonParsDate.propertyListing.propertyDescription : ''
+          this.propertyDetailData.propertyFeatures = (jsonParsDate.propertyListing.propertyFeatures !== undefined) ? jsonParsDate.propertyListing.propertyFeatures : ''
+          this.propertyDetailData.requestedDateFormat = (jsonParsDate.propertyListing.requestedDateFormat !== undefined) ? jsonParsDate.propertyListing.requestedDateFormat : ''
+          this.propertyDetailData.buildingType = (jsonParsDate.propertyListing.propertyCategory.categoryName !== undefined) ? jsonParsDate.propertyListing.propertyCategory.categoryName : ''
+          this.propertyDetailData.propertyType = (jsonParsDate.propertyListing.propertyType.typeDescription !== undefined) ? jsonParsDate.propertyListing.propertyType.typeDescription : ''
+          this.propertyDetailData.buildingName = (jsonParsDate.propertyListing.buildingName !== undefined) ? jsonParsDate.propertyListing.buildingName : ''
+          this.propertyDetailData.unitNo = jsonParsDate.propertyListing.unitNumber ? jsonParsDate.propertyListing.unitNumber : ''
+          this.propertyDetailData.fittingType = (jsonParsDate.propertyListing.fittingType !== undefined) ? jsonParsDate.propertyListing.fittingType : ''
+          //this.propertyDetailData.tenantType = tenantType
+          // this.propertyDetailData.gender = (jsonParsDate.propertyListing.gender !== undefined) ? jsonParsDate.propertyListing.gender : ''
+          this.propertyDetailData.parkings = (jsonParsDate.propertyListing.parkings !== undefined) ? jsonParsDate.propertyListing.parkings : ''
+          this.propertyDetailData.buildupArea = (jsonParsDate.propertyListing.buildupArea !== undefined) ? jsonParsDate.propertyListing.buildupArea : ''
+          this.propertyDetailData.plotSize = (jsonParsDate.propertyListing.plotSize !== undefined) ? jsonParsDate.propertyListing.plotSize : ''
+          // this.propertyDetailData.availableDate = (jsonParsDate.propertyListing.availableDate !== undefined) ? jsonParsDate.propertyListing.availableDate : ''
+          // this.propertyDetailData.noticePeriod = (jsonParsDate.propertyListing.noticePeriod !== undefined) ? jsonParsDate.propertyListing.noticePeriod : ''
+          // this.propertyDetailData.lockingPeriod = (jsonParsDate.propertyListing.lockingPeriod !== undefined) ? jsonParsDate.propertyListing.lockingPeriod : ''
+          this.propertyDetailData.propertyLat = (jsonParsDate.propertyListing.propertyLat !== undefined) ? jsonParsDate.propertyListing.propertyLat : ''
+          this.propertyDetailData.propertyLong = (jsonParsDate.propertyListing.propertyLong !== undefined) ? jsonParsDate.propertyListing.propertyLong : ''
+          this.propertyDetailData.id = (jsonParsDate.propertyListing.id !== undefined) ? jsonParsDate.propertyListing.id : ''
+          this.propertyDetailData.favorite = (jsonParsDate.propertyListing.favorite !== undefined) ? jsonParsDate.propertyListing.favorite : ''
+          this.propertyDetailData.propertyListingTypeId = (jsonParsDate.propertyListing.propertyListingTypeId !== undefined) ? jsonParsDate.propertyListing.propertyListingTypeId : 0
+          this.propertyDetailData.propertyCode = (jsonParsDate.propertyListing.propertyCode !== undefined) ? jsonParsDate.propertyListing.propertyCode : 0
+          this.propertyDetailData.occupancyStatus = occupancyStatus;
+          this.propertyDetailData.completionStatus = completionStatus;
+          this.propertyDetailData.propertyDeveloper = propertyDeveloper;
+          this.propertyDetailData.transactionType = transactionType;
+          this.propertyDetailData.angentId = (jsonParsDate.propertyListing.userId == undefined || jsonParsDate.propertyListing.userId == null) ? 0 : Math.abs(jsonParsDate.propertyListing.userId);
+          this.propertyDetailData.priceChangePercentage = (jsonParsDate.propertyListing.priceChangePercentage == undefined || jsonParsDate.propertyListing.priceChangePercentage == null) ? 0 : Math.abs(jsonParsDate.propertyListing.priceChangePercentage);
+          this.propertyDetailData.sizeChangePercentage = (jsonParsDate.propertyListing.sizeChangePercentage == undefined || jsonParsDate.propertyListing.sizeChangePercentage == null) ? 0 : Math.abs(jsonParsDate.propertyListing.sizeChangePercentage);
+          this.propertyDetailData.rentAvgPriceSqft = (jsonParsDate.propertyListing.rentAvgPriceSqft == undefined || jsonParsDate.propertyListing.rentAvgPriceSqft == null) ? 0 : jsonParsDate.propertyListing.rentAvgPriceSqft;
+          this.propertyDetailData.saleAvgPriceSqft = (jsonParsDate.propertyListing.saleAvgPriceSqft == undefined || jsonParsDate.propertyListing.saleAvgPriceSqft == null) ? 0 : jsonParsDate.propertyListing.saleAvgPriceSqft;
+          this.propertyDetailData.averageSize = (jsonParsDate.propertyListing.averageSize == undefined || jsonParsDate.propertyListing.averageSize == null) ? 0 : jsonParsDate.propertyListing.averageSize;
+          this.propertyDetailData.location = jsonParsDate.propertyListing.district.name + ", " + jsonParsDate.propertyListing.city.name;
+          this.propertyDetailData.city = jsonParsDate.propertyListing.city.name;
+          this.propertyDetailData.activeListingCount = jsonParsDate.activeListingCount;
+          this.propertyDetailData.professionType = professionType;
+          this.propertyDetailData.companyName = companyName;
+          this.propertyDetailData.reraNo = reraNo;
+          this.propertyDetailData.permitNo = permitNo;
 
-      } else {
-        //if property not found redirect home page
-        this.notifyService.showError('Property No found!', "");
-        this.route.navigate(['/'])
-        ///end
-      }
-      if (jsonParsDate.user != null && jsonParsDate.user != undefined && jsonParsDate.user?.imageUrl != null) {
-        this.propertyDetailData.userImageUrl = (jsonParsDate.user.imageUrl !== undefined) ? this.baseUrl + jsonParsDate.user.imageUrl : '../assets/images/user.png'
-        this.propertyDetailData.userfullName = (jsonParsDate.user.fullName !== undefined) ? jsonParsDate.user.fullName : ''
-      } else {
-        this.propertyDetailData.userImageUrl = '../assets/images/user.png'
-        this.propertyDetailData.userfullName = ''
-      }
+          // share url concatination
+          // let ree = "https://maps.google.com/maps?q=" + this.propertyDetailData.propertyLat + "," + this.propertyDetailData.propertyLong + "&hl=es&z=14&amp;output=embed"
+          // let resp: any = this.domSanitizer.bypassSecurityTrustUrl(ree);
+          // this.locationAddress1 = resp
 
-      this.lineChartData = {
-        labels: this.chartLabel,
-        datasets: [
-          {
-            data: this.chartData,
-            label: 'Series A',
-            fill: false,
-            tension: 0.5,
-            borderColor: '#8dbfde',
-            pointBackgroundColor: '#fff',
-            pointBorderColor: '#8dbfde',
-            pointHoverBackgroundColor: '#fff',
-            pointHoverBorderColor: '#1B1571',
-            backgroundColor: 'rgba(255,0,0,0.3)'
+
+          // if (this.propertyDetail.propertyListing.documents.length == 0) {
+          //   this.documentCheck = false;
+          // }
+
+          // if (this.propertyDetail.propertyListing.documents[0].fileUrl != null && this.propertyDetail.propertyListing.documents[0].fileUrl !== undefined) {
+          //   this.thumb1 = this.baseUrl + this.propertyDetail.propertyListing.documents[0].fileUrl;
+          // }
+
+          if (jsonParsDate.detailsChart != null) {
+            jsonParsDate.detailsChart.chart.forEach((element: any, i: any) => {
+              let date: any = element.date
+              let price: any = element.price
+              this.chartLabel.push(date);
+              this.chartData.push(price);
+            })
           }
-        ]
+
+          this.propertyValidationData = result.data.propertyListing?.propertyType;
+          this.getPropertyInfo();
+
+        } else {
+          //if property not found redirect home page
+          this.notifyService.showError('Property No found!', "");
+          this.route.navigate(['/'])
+          ///end
+        }
+        if (jsonParsDate.user != null && jsonParsDate.user != undefined && jsonParsDate.user?.imageUrl != null) {
+          this.propertyDetailData.userImageUrl = (jsonParsDate.user.imageUrl !== undefined) ? this.baseUrl + jsonParsDate.user.imageUrl : '../assets/images/user.png'
+          this.propertyDetailData.userfullName = (jsonParsDate.user.fullName !== undefined) ? jsonParsDate.user.fullName : ''
+        } else {
+          this.propertyDetailData.userImageUrl = '../assets/images/user.png'
+          this.propertyDetailData.userfullName = ''
+        }
+
+        this.lineChartData = {
+          labels: this.chartLabel,
+          datasets: [
+            {
+              data: this.chartData,
+              label: 'Series A',
+              fill: false,
+              tension: 0.5,
+              borderColor: '#8dbfde',
+              pointBackgroundColor: '#fff',
+              pointBorderColor: '#8dbfde',
+              pointHoverBackgroundColor: '#fff',
+              pointHoverBorderColor: '#1B1571',
+              backgroundColor: 'rgba(255,0,0,0.3)'
+            }
+          ]
+        }
+        this.showLoader = false;
       }
-      this.showLoader = false;
-    }
-    else{
-      this.showLoader = false;
-      this.detailSuccess=false;
-    }
+      else {
+        this.showLoader = false;
+        this.detailSuccess = false;
+      }
     });
 
   }
@@ -590,7 +590,7 @@ detailSuccess=false;
       {
         show: this.propertyValidationData.hasListingUnitNumber,
         label: 'No Of Units',
-        value:  this.propertyDetailData.unitNo,
+        value: this.propertyDetailData.unitNo,
       },
       // {
       //   show: this.propertyValidationData.hasPetPolicy,
@@ -604,7 +604,7 @@ detailSuccess=false;
       },
       {
         show: this.propertyValidationData.hasListingPlotSize,
-        label:  this.propertyValidationData.sizeLabel,
+        label: this.propertyValidationData.sizeLabel,
         value: this.decimalPipe.transform(this.propertyDetailData.plotSize),
       },
       {
@@ -643,7 +643,7 @@ detailSuccess=false;
         value: this.decimalPipe.transform(this.propertyDetailData.propertyPrice) + ' ' + this.propertyDetailData.currency,
       },
       {
-        show: this.propertyDetailData.propertyListingTypeId == 2? true : false,
+        show: this.propertyDetailData.propertyListingTypeId == 2 ? true : false,
         label: 'Rent Type',
         value: this.propertyDetailData.rentType,
       },
@@ -871,4 +871,8 @@ detailSuccess=false;
     },
     nav: true
   }
+  sanitize(url: string) {
+    return this.domSanitizer.bypassSecurityTrustUrl(url);
+  }
+
 }

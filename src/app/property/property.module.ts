@@ -27,6 +27,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { LoaderModule } from '../loader/loader.module';
+import { AlertsModule } from '../alerts/alerts.module';
 
 
 
@@ -62,7 +63,8 @@ import { LoaderModule } from '../loader/loader.module';
     MatDatepickerModule,
     MatNativeDateModule,
     CarouselModule,
-    LoaderModule
+    LoaderModule,
+    AlertsModule
   ]
 })
 export class PropertyModule { }

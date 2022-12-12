@@ -127,7 +127,8 @@
                 </div>
             </div>
             <div class="no-data-found" *ngIf="dynamicSlides1.length == 0">
-                <img src="/assets/images/no-data-ar.svg">
+                <img src="/assets/images/no-properties.svg">
+                <h5>لم يتم العثور على خصائص ..!</h5>
             </div>
             <div ngClass="tab-content" *ngIf="dynamicSlides1.length > 0">
                 <div id="resedential-rent" class="tab-pane active">
@@ -284,7 +285,8 @@
                 </div>
             </div>
             <div class="no-data-found" *ngIf="dynamicSlides2.length == 0">
-                <img src="/assets/images/no-data-ar.svg">
+                <img src="/assets/images/no-properties.svg">
+                <h5>لم يتم العثور على خصائص ..!</h5>
             </div>
             <div ngClass="tab-content" *ngIf="dynamicSlides2.length > 0">
                 <div id="resedential-rent" class="tab-pane active">
@@ -428,7 +430,10 @@
                     <a routerLink="/ar/explore">قراءة كامل المحتوى</a>
                 </div>
             </div>
-
+            <div class="no-data-found" *ngIf="explorePlaces.length == 0">
+                <img src="/assets/images/no-properties.svg">
+                <h5>لم يتم العثور على أماكن ..!</h5>
+            </div>
             <div ngClass="row">
                 <div ngClass="col-md-6 explore-places-col" *ngFor="let data of explorePlaces">
                     <a routerLink="/ar/explore/details/{{data.id}}">
@@ -453,7 +458,10 @@
                     <a routerLink="/ar/blog">قراءة كامل المحتوى</a>
                 </div>
             </div>
-
+            <div class="no-data-found" *ngIf="blogs?.length == 0">
+                <img src="/assets/images/no-properties.svg">
+                <h5>لم يتم العثور على مدونات ..!</h5>
+            </div>
             <div ngClass="row">
                 <!-- let blogs of Blogsec -->
                 <div ngClass="col-lg-4 col-md-6 blog-places-col" *ngFor="let blog of blogs">

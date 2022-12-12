@@ -444,11 +444,6 @@ console.log("unit",hasBed)
       this.error = "Please Enter Buildup Area";
       this.showError = true;
       return;
-    } else if (this.propertyData.hasLastRenovatedDate && $("#formDate").val() == "") {
-      this.currentField = "renovated-input";
-      this.error = "Please Enter Last Renovated Date";
-      this.showError = true;
-      return;
     } else if (this.bedrooms == 0 && this.propertyData.hasBed) {
       this.currentField = "bedrooms-input";
       this.error = "Please Select Bedrooms";
