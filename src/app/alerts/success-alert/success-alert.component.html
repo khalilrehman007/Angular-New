@@ -2,7 +2,7 @@
   <div ngClass="alert-message-wrap position-relative" style="background-image: url('assets/images/icons/Animal.png')">
       <div class="message-block-design">
       <h2>Success!</h2>
-      <p>Your message has been sent. Our agent will get back to you soon.</p>
+      <p>{{success}}</p>
       <button ngClass="ok-btn" (click)="sendData()">Ok</button>
       </div>
       <div class="close-icon">
