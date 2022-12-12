@@ -23,16 +23,16 @@
                             <div class="category-selection-flex">
                                 <div class="category-selection-box motors">
                                     <input type="radio" name="category-sel" click>
-                                    <button class="" *ngIf="classifiedCategories[1] && classifiedCategories[1].name" >
+                                    <button class="" *ngIf="classifiedCategories[0] && classifiedCategories[0].name" >
                                         <span class="svg-wrap-span">
                                             <svg width="30" height="20" viewBox="0 0 30 20" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path
                                                     d="M29.7919 5.3518C29.7205 5.13395 29.4677 4.96446 29.2568 4.96446C28.343 4.96446 27.4293 4.96446 26.5156 4.96446C26.3396 4.96446 26.1351 5.08243 26.0304 5.24785C25.4539 3.81014 24.7907 2.33026 24.1534 1.30422C24.0388 1.11959 23.866 0.982949 23.6652 0.918167C23.5492 0.88073 20.7553 0 14.9999 0C9.24465 0 6.45087 0.88073 6.33479 0.918167C6.13407 0.982949 5.96127 1.11959 5.84662 1.3043C5.20934 2.33048 4.54614 3.81037 3.9696 5.24792C3.865 5.0825 3.6604 4.96446 3.48444 4.96446C2.5707 4.96446 1.65703 4.96446 0.743286 4.96446C0.532296 4.96446 0.279523 5.13395 0.208092 5.3518C-0.0694478 6.19984 -0.0693042 6.6854 0.208164 7.53351C0.279523 7.75136 0.532296 7.92085 0.743286 7.92085C1.2237 7.92085 1.70405 7.92085 2.18447 7.92085C1.51359 8.62516 1.09743 9.59658 1.09743 10.6686C1.09743 10.7187 1.10066 10.7688 1.10705 10.8185L1.19377 11.4872C1.22263 11.71 1.31394 11.9092 1.44661 12.0682V13.5889H1.36291C1.16469 13.5889 1.00396 13.7575 1.00396 13.9655V18.4715C1.00396 19.3144 1.65746 20 2.46065 20H5.37338C6.17657 20 6.83007 19.3143 6.83007 18.4715V16.5349H23.3194V18.4715C23.3194 19.3144 23.9729 20 24.7761 20H27.6889C28.4921 20 29.1455 19.3143 29.1455 18.4715V13.9655C29.1455 13.7575 28.9848 13.5889 28.7866 13.5889H28.7028V12.2161C28.9163 12.0429 29.0665 11.7861 29.1053 11.4872L29.1919 10.8184C29.1984 10.7688 29.2015 10.7187 29.2015 10.6686C29.2015 9.59651 28.7854 8.62508 28.1145 7.92077C28.4952 7.92077 28.8758 7.92077 29.2565 7.92077C29.4675 7.92077 29.7203 7.75128 29.7917 7.53343C30.0695 6.6854 30.0693 6.19984 29.7919 5.3518ZM7.17086 2.63556C8.01719 2.42351 10.6026 1.88417 15 1.88417C19.3991 1.88417 21.9849 2.42389 22.8293 2.63549C23.4287 3.68066 24.0587 5.15617 24.5956 6.53979C23.1857 6.29949 20.4086 6.02538 15.0749 6.02538C9.40632 6.02538 6.66969 6.33957 5.3835 6.59365C5.92473 5.19497 6.5633 3.69489 7.17086 2.63556ZM2.20105 15.6937V14.7145H4.7496L5.01874 15.6937H2.20105ZM2.16458 13.5889V11.7376L7.11744 12.0722L7.60073 13.5889H2.16458ZM21.1628 15.5422H8.98686L8.61376 14.2698H21.536L21.1628 15.5422ZM21.792 13.5889H8.35769L7.99436 12.4488H22.1552L21.792 13.5889ZM7.77325 11.7344L7.40231 10.4694H22.7474L22.3765 11.7344H7.77325ZM27.9485 15.6937H25.1308L25.4 14.7145H27.9485V15.6937H27.9485ZM27.9851 13.5889H22.5489L23.0322 12.0722L27.9851 11.7376V13.5889Z"
-                                                    fill="#505876" />
+                                                    fill="#505876" />   
                                             </svg>
                                         </span>
-                                        {{classifiedCategories[1].name}}
+                                        {{classifiedCategories[0].name}}
                                     </button>
                                 </div>
                                 <div class="category-selection-box appliances">
@@ -196,6 +196,194 @@
                                     <option value="Motorcycles">Heavy Vehicles</option>
                                     <option value="Cars">Boats</option>
                                     <option value="Motorcycles">Number Plates</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div ngClass="select-boxes">
+                        <div ngClass="block-wrapper mb-4">
+                            <div ngClass="select-design select2-design full-width-select2">
+                                <label>Choose Motorcycles Sub Category <span ngClass="required-span">*</span></label>
+                                <select class="select2 category-select">
+                                    <option value="Sport Bike">Sport Bike</option>
+                                    <option value="Adventure / Touring">Adventure / Touring</option>
+                                    <option value="Cruiser / Chopper">Cruiser / Chopper</option>
+                                    <option value="Off-Road">Off-Road</option>
+                                    <option value="Scooter">Scooter</option>
+                                    <option value="Standard / Commuter">Standard / Commuter</option>
+                                    <option value="Cafe racer">Cafe racer</option>
+                                    <option value="Trike">Trike</option>
+                                    <option value="Trailer">Trailer</option>
+                                    <option value="Karting">Karting</option>
+                                    <option value="Mo-Ped">Mo-Ped</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div ngClass="select-boxes">
+                        <div ngClass="block-wrapper mb-4">
+                            <div ngClass="select-design select2-design full-width-select2">
+                                <label>Choose Motorcycles - Sports Bike Sub Category <span ngClass="required-span">*</span></label>
+                                <select class="select2 category-select">
+                                    <option value="Hyper sports">Hyper sports</option>
+                                    <option value="Super bike">Super bike</option>
+                                    <option value="Super sports">Super sports</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div ngClass="select-boxes">
+                        <div ngClass="block-wrapper mb-4">
+                            <div ngClass="select-design select2-design full-width-select2">
+                                <label>Choose Auto Accessories & Parts Sub Category <span ngClass="required-span">*</span></label>
+                                <select class="select2 category-select">
+                                    <option value="Car/4x4 Parts">Car/4x4 Parts</option>
+                                    <option value="Apparel, Merchandise & Accesories">Apparel, Merchandise & Accesories</option>
+                                    <option value="Motorcycle Parts">Motorcycle Parts</option>
+                                    <option value="Automotive Tools">Automotive Tools</option>
+                                    <option value="Boat Parts">Boat Parts</option>
+                                    <option value="Other Vehicle Parts">Other Vehicle Parts</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div ngClass="select-boxes">
+                        <div ngClass="block-wrapper mb-4">
+                            <div ngClass="select-design select2-design full-width-select2">
+                                <label>Choose Auto Accesories & Parts - Car/4x4 Parts Sub Category <span ngClass="required-span">*</span></label>
+                                <select class="select2 category-select">
+                                    <option value="A/C & Heating Parts">A/C & Heating Parts</option>
+                                    <option value="Batteries">Batteries</option>
+                                    <option value="Brakes">Brakes</option>
+                                    <option value="Engine & Computer Parts">Engine & Computer Parts</option>
+                                    <option value="Exhaust/Air Intake">Exhaust/Air Intake</option>
+                                    <option value="Exterior Parts">Exterior Parts</option>
+                                    <option value="Interior Parts">Interior Parts</option>
+                                    <option value="Lighting">Lighting</option>
+                                    <option value="Suspension">Suspension</option>
+                                    <option value="Wheels/Tires">Wheels/Tires</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div ngClass="select-boxes">
+                        <div ngClass="block-wrapper mb-4">
+                            <div ngClass="select-design select2-design full-width-select2">
+                                <label>Choose Auto Accessories & Parts - Apparel, Merchandise & Accessories Sub Category <span ngClass="required-span">*</span></label>
+                                <select class="select2 category-select">
+                                    <option value="Apparel">Apparel</option>
+                                    <option value="Boat Accessories">Boat Accessories</option>
+                                    <option value="Car/4x4 Accessories">Car/4x4 Accessories</option>
+                                    <option value="Merchandise">Merchandise</option>
+                                    <option value="Motorcycle Accessories">Motorcycle Accessories</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div ngClass="select-boxes">
+                        <div ngClass="block-wrapper mb-4">
+                            <div ngClass="select-design select2-design full-width-select2">
+                                <label>Choose Auto Accessories & Parts - Motorcycle Parts Sub Category <span ngClass="required-span">*</span></label>
+                                <select class="select2 category-select">
+                                    <option value="Accessories">Accessories</option>
+                                    <option value="Body & Frame">Body & Frame</option>
+                                    <option value="Brakes & Suspensions">Brakes & Suspensions</option>
+                                    <option value="Engines & Components">Engines & Components</option>
+                                    <option value="Lighting">Lighting</option>
+                                    <option value="Wheels Tires">Wheels Tires</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div ngClass="select-boxes">
+                        <div ngClass="block-wrapper mb-4">
+                            <div ngClass="select-design select2-design full-width-select2">
+                                <label>Choose Auto Accessories & Parts - Automotive Tools Sub Category <span ngClass="required-span">*</span></label>
+                                <select class="select2 category-select">
+                                    <option value="Tool Accessories">Tool Accessories</option>
+                                    <option value="Tool Sets">Tool Sets</option>
+                                    <option value="Tools">Tools</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div ngClass="select-boxes">
+                        <div ngClass="block-wrapper mb-4">
+                            <div ngClass="select-design select2-design full-width-select2">
+                                <label>Choose Auto Accessories & Parts - Boat Parts Sub Category <span ngClass="required-span">*</span></label>
+                                <select class="select2 category-select">
+                                    <option value="Body Parts & Accessories">Body Parts & Accessories</option>
+                                    <option value="Electronic Parts">Electronic Parts</option>
+                                    <option value="Engine Parts">Engine Parts</option>
+                                    <option value="Plumbing & Ventilation">Plumbing & Ventilation</option>
+                                    <option value="Sailing Gear">Sailing Gear</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div ngClass="select-boxes">
+                        <div ngClass="block-wrapper mb-4">
+                            <div ngClass="select-design select2-design full-width-select2">
+                                <label>Choose Heavy Vehicles Sub Category <span ngClass="required-span">*</span></label>
+                                <select class="select2 category-select">
+                                    <option value="Trucks">Trucks</option>
+                                    <option value="Buses">Buses</option>
+                                    <option value="Forklifts">Forklifts</option>
+                                    <option value="Trailers">Trailers</option>
+                                    <option value="Cranes">Cranes</option>
+                                    <option value="Tankers">Tankers</option>
+                                    <option value="Parts & Engines">Parts & Engines</option>
+                                    <option value="Other Heavy Vehiclesb">Other Heavy Vehicles</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div ngClass="select-boxes">
+                        <div ngClass="block-wrapper mb-4">
+                            <div ngClass="select-design select2-design full-width-select2">
+                                <label>Choose Heavy Vehicles - Trucks -  Sub Category <span ngClass="required-span">*</span></label>
+                                <select class="select2 category-select">
+                                    <option value="Trucks">Trucks</option>
+                                    <option value="Buses">Buses</option>
+                                    <option value="Forklifts">Forklifts</option>
+                                    <option value="Trailers">Trailers</option>
+                                    <option value="Cranes">Cranes</option>
+                                    <option value="Tankers">Tankers</option>
+                                    <option value="Parts & Engines">Parts & Engines</option>
+                                    <option value="Other Heavy Vehiclesb">Other Heavy Vehicles</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div ngClass="select-boxes">
+                        <div ngClass="block-wrapper mb-4">
+                            <div ngClass="select-design select2-design full-width-select2">
+                                <label>Choose Boats Sub Category <span ngClass="required-span">*</span></label>
+                                <select class="select2 category-select">
+                                    <option value="Motorboats">Motorboats</option>
+                                    <option value="Sailboats">Sailboats</option>
+                                    <option value="Row/Paddle Boats">Row/Paddle Boats</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div ngClass="select-boxes">
+                        <div ngClass="block-wrapper mb-4">
+                            <div ngClass="select-design select2-design full-width-select2">
+                                <label>Choose Number Plates Sub Category <span ngClass="required-span">*</span></label>
+                                <select class="select2 category-select">
+                                    <option value="Dubai plate">Dubai plate</option>
+                                    <option value="Abu Dhabi plate">Abu Dhabi plate</option>
+                                    <option value="Sharjah plate">Sharjah plate</option>
+                                    <option value="Ajman plate">Ajman plate</option>
+                                    <option value="Fujairah plate">Fujairah plate</option>
+                                    <option value="Umm al Quwain plate">Umm al Quwain plate</option>
+                                    <option value="Ras al Khaimah">Parts & Ras al Khaimah</option>
                                 </select>
                             </div>
                         </div>
