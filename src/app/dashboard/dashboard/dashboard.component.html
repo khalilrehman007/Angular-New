@@ -470,7 +470,7 @@
                                                                     <div class="col-7">
                                                                         <a routerLink="/property/detail"
                                                                             [queryParams]="{id: viewList.id}"
-                                                                            class="agent-details__property-list-item-link cursor-pointer">{{viewList.propertyPrice}}
+                                                                            class="agent-details__property-list-item-link cursor-pointer">{{viewList.propertyPrice | number}}
                                                                             {{viewList.currency}}
                                                                             <span>{{viewList.rentType}}</span>
                                                                         </a>
@@ -577,16 +577,16 @@
                                                                     <div ngClass="property-range-bar d-flex">
                                                                         <div ngClass="pro-range-whie-box">
                                                                             <p>Recent Rent Transactions</p>
-                                                                            <h6>{{viewList.recentRentTxns}} in last 1
+                                                                            <h6>{{viewList.recentRentTxns | number}} in last 1
                                                                                 year</h6>
                                                                         </div>
                                                                         <div ngClass="pro-range-whie-box">
                                                                             <p>Rent Price Range</p>
-                                                                            <h6>{{viewList.startRentPrice}} {{viewList.currency}} - {{viewList.endRentPrice}} {{viewList.currency}}</h6>
+                                                                            <h6>{{viewList.startRentPrice | number}} {{viewList.currency}} - {{viewList.endRentPrice | number}} {{viewList.currency}}</h6>
                                                                         </div>
                                                                         <div ngClass="pro-range-whie-box">
                                                                             <p>Avg. Rent/ Sq. Ft.</p>
-                                                                            <h6>{{viewList.avgRentPrice}} {{viewList.currency}}</h6>
+                                                                            <h6>{{viewList.avgRentPrice | number}} {{viewList.currency}}</h6>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -733,7 +733,7 @@
                                                                     <div class="col-7">
                                                                         <a routerLink="/property/detail"
                                                                             [queryParams]="{id: viewList.id}"
-                                                                            class="agent-details__property-list-item-link cursor-pointer">{{viewList.propertyPrice}}
+                                                                            class="agent-details__property-list-item-link cursor-pointer">{{viewList.propertyPrice | number}}
                                                                             {{viewList.country.currency}}
                                                                             <span
                                                                                 *ngIf="viewList.rentType">/{{viewList.rentType.name}}</span>
@@ -931,7 +931,7 @@
                                                                     <div class="row">
                                                                         <div class="col-7">
                                                                             <a
-                                                                                class="agent-details__property-list-item-link cursor-pointer">{{wishData.price}}
+                                                                                class="agent-details__property-list-item-link cursor-pointer">{{wishData.price | number}}
                                                                                 {{wishData.currency}}
                                                                                 <span>{{wishData.rentType}}</span>
                                                                             </a>
@@ -1055,7 +1055,7 @@
                                                                 <div class="row">
                                                                     <div class="col-7">
                                                                         <a
-                                                                            class="agent-details__property-list-item-link cursor-pointer">{{enquiredData.propertyPrice}}
+                                                                            class="agent-details__property-list-item-link cursor-pointer">{{enquiredData.propertyPrice | number}}
                                                                             {{enquiredData.currency}}
                                                                             <span>{{enquiredData.rentType}}</span>
                                                                         </a>

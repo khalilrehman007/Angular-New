@@ -26,7 +26,7 @@ declare const google: any;
   styleUrls: ['./property-detail.component.scss'],
   providers: [DecimalPipe]
 })
-export class PropertyDetailComponent implements OnInit,AfterViewInit {
+export class PropertyDetailComponent implements OnInit, AfterViewInit {
 
   @ViewChild('propertyDetails__map') mapElement: any;
 
@@ -256,18 +256,18 @@ export class PropertyDetailComponent implements OnInit,AfterViewInit {
     this.galleryOptions = [];
     this.galleryImages = [];
   }
-  scrollfix: boolean= false;
+  scrollfix: boolean = false;
   ngAfterViewInit(): void {
     $(window).on("scroll", () => {
-      let a:any = $(".similer-properties-sec").offset()?.top;
-      let windowHeight:any = $(window).outerHeight();
-      let position:any = a - windowHeight;
-      let temp: any=$(window).scrollTop();
-      if(temp >= 1030 && temp < position){
-        this.scrollfix= true;
+      let a: any = $(".similer-properties-sec").offset()?.top;
+      let windowHeight: any = $(window).outerHeight();
+      let position: any = a - windowHeight;
+      let temp: any = $(window).scrollTop();
+      if (temp >= 1030 && temp < position) {
+        this.scrollfix = true;
       }
-      else{
-        this.scrollfix= false;
+      else {
+        this.scrollfix = false;
       }
     });
   }
@@ -309,7 +309,7 @@ export class PropertyDetailComponent implements OnInit,AfterViewInit {
       }
     ];
 
-  
+
   }
 
 
@@ -317,7 +317,7 @@ export class PropertyDetailComponent implements OnInit,AfterViewInit {
   propertyDetailData: any = {}
 
   documentCheck: any = true;
-  allData:any = "";
+  allData: any = "";
   getloadDashboardData() {
     return this.service.DisplayPropertyListing({ "PropertyListingId": this.propertyId, "LoginUserId": this.userId }).subscribe((result: any) => {
       this.propertyDetails = result.data.propertyListing;
@@ -345,7 +345,7 @@ export class PropertyDetailComponent implements OnInit,AfterViewInit {
         map: this.map,
         label: {
           className: 'map-marker-label',
-          text: this.buildingName==""?"Location":this.buildingName
+          text: this.buildingName == "" ? "Location" : this.buildingName
         },
       });
       let tenantType: any = '';
@@ -413,8 +413,7 @@ export class PropertyDetailComponent implements OnInit,AfterViewInit {
 
         // share url concatination
 
-        this.shareURL += this.propertyDetailData.id;
-
+        this.shareURL = "whatsapp://send?text=" + this.shareURL + this.propertyDetailData.id;
         //gallery images
         for (let i = 0; i < this.propertyDetails.documents.length; i++) {
           this.galleryImages.push({
@@ -577,7 +576,7 @@ export class PropertyDetailComponent implements OnInit,AfterViewInit {
         value: this.decimalPipe.transform(this.propertyDetailData.buildupArea),
       },
       {
-        show: this.propertyDetailData.propertyListingTypeId==2?true:false,
+        show: this.propertyDetailData.propertyListingTypeId == 2 ? true : false,
         label: 'Current Occupancy Status',
         value: this.propertyDetailData.occupancyStatus,
       },
@@ -819,5 +818,9 @@ export class PropertyDetailComponent implements OnInit,AfterViewInit {
       }
     },
     nav: true
+  }
+  sanitize(url: string) {
+    return this.domSanitizer.bypassSecurityTrustUrl(url);
   }  
+
 }

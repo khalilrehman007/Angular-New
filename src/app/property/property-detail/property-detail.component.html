@@ -37,7 +37,7 @@
                                         <h5>Share with:</h5>
                                         <button ngbDropdownItem><a target="_blank" href="https://facebook.com"
                                                 ngClass="facebook"><img src="{{fb}}"> Facebook</a></button>
-                                        <button ngbDropdownItem><a target="_blank" href="whatsapp://send?{{shareURL}}"
+                                        <button ngbDropdownItem><a target="_blank" [href]="sanitize(shareURL)"
                                                 ngClass="whatsapp"><img src="{{whatsapp}}"> WhatsApp</a></button>
                                         <button ngbDropdownItem><a target="_blank" href="https://twitter.com/"
                                                 ngClass="twitter"><img src="{{twitter}}"> Twitter</a></button>

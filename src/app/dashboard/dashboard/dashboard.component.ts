@@ -481,7 +481,8 @@ console.log(this.userData)
     this.data.DateOfBirth = $("#formDate").val();
     this.service.UpdatePersonalDetails(this.data).subscribe((result: any) => {
       if (result.message == "User  fetched successfully") {
-        alert("Profile Update Successfully");
+        this.success = "Profile Update Successfully";
+        this.showSuccess = true;
         localStorage.setItem("user", JSON.stringify(result.data))
       } else {
         alert("Something went wrong");
