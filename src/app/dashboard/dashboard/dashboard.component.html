@@ -268,7 +268,8 @@
                             <div ngClass="tab-content">
                                 <div id="resedential-rent" class="tab-pane active">
                                     <div class="no-data-found" *ngIf="leadsResidentialSummary.length == 0">
-                                         <img src="/assets/images/No-data.svg">
+                                        <img src="/assets/images/no-properties.svg">
+                                        <h5>No Properties Found..!</h5>
                                     </div>
                                     <div class="lead-summ-table" *ngIf="leadsResidentialSummary.length > 0">
                                         <div class="table-row" *ngFor="let data of leadsResidentialSummary">
@@ -326,7 +327,8 @@
                                 </div>
                                 <div id="resedential-buy" class="tab-pane">
                                     <div class="no-data-found" *ngIf="leadsCommercialSummary.length == 0">
-                                         <img src="/assets/images/No-data.svg">
+                                        <img src="/assets/images/no-properties.svg">
+                                        <h5>No Properties Found..!</h5>
                                     </div>
                                     <div class="lead-summ-table" *ngIf="leadsCommercialSummary.length > 0">
                                         <div class="table-row" *ngFor="let data of leadsCommercialSummary">
@@ -710,7 +712,8 @@
                                         </div>
                                     </div>
                                     <div class="no-data-found" *ngIf="activityViewData.length == 0">
-                                         <img src="/assets/images/No-data.svg">
+                                        <img src="/assets/images/no-properties.svg">
+                                        <h5>No Properties Found..!</h5>
                                     </div>
                                     <div class="agent-details__tabs">
                                         <div class="row">
@@ -912,7 +915,8 @@
                                     </div>
 
                                     <div class="no-data-found" *ngIf="wishlistingData.length == 0">
-                                         <img src="/assets/images/No-data.svg">
+                                        <img src="/assets/images/no-properties.svg">
+                                        <h5>No Properties Found..!</h5>
                                     </div>
                                     <div class="agent-details__tabs shortlisted-tabs_list">
                                         <div class="row">
@@ -1037,7 +1041,8 @@
                                         </div>
                                     </div>
                                     <div class="no-data-found" *ngIf="enquiredlistingData.length == 0">
-                                         <img src="/assets/images/No-data.svg">
+                                        <img src="/assets/images/no-properties.svg">
+                                        <h5>No Properties Found..!</h5>
                                     </div>
 
                                     <div class="agent-details__tabs">
@@ -1158,7 +1163,8 @@
                                         </div>
                                     </div>
                                     <div class="no-data-found" *ngIf="leadsData.length == 0">
-                                         <img src="/assets/images/No-data.svg">
+                                        <img src="/assets/images/no-properties.svg">
+                                        <h5>No Properties Found..!</h5>
                                     </div>
                                     <section *ngIf="leadsData.length >= 0"
                                         ngClass="my-lead-listing-wrap position-relative wrapper-section properties-slider residentials-property-rent-1">
@@ -1249,7 +1255,8 @@
                                         </div>
                                     </div>
                                     <div class="no-data-found" *ngIf="leadsData.length == 0">
-                                         <img src="/assets/images/No-data.svg">
+                                        <img src="/assets/images/no-properties.svg">
+                                        <h5>No Properties Found..!</h5>
                                     </div>
                                     <section *ngIf="leadsData.length >= 0"
                                         ngClass="my-lead-listing-wrap position-relative wrapper-section properties-slider residentials-property-rent-1">
@@ -1337,7 +1344,8 @@
                                         </div>
                                     </div>
                                     <div class="no-data-found" *ngIf="leadsData.length == 0">
-                                         <img src="/assets/images/No-data.svg">
+                                        <img src="/assets/images/no-properties.svg">
+                                        <h5>No Properties Found..!</h5>
                                     </div>
                                     <section *ngIf="leadsData.length >= 0"
                                         ngClass="my-lead-listing-wrap position-relative wrapper-section properties-slider residentials-property-rent-1">
@@ -1425,7 +1433,8 @@
                                         </div>
                                     </div>
                                     <div class="no-data-found" *ngIf="listingAll.length < 1">
-                                         <img src="/assets/images/No-data.svg">
+                                        <img src="/assets/images/no-properties.svg">
+                                        <h5>No Properties Found..!</h5>
                                     </div>
                                     <div class="agent-details__tabs">
                                         <div class="row">
@@ -1564,7 +1573,8 @@
                                         </div>
                                     </div>
                                     <div class="no-data-found" *ngIf="listingAll.length < 1">
-                                         <img src="/assets/images/No-data.svg">
+                                        <img src="/assets/images/no-properties.svg">
+                                        <h5>No Properties Found..!</h5>
                                     </div>
                                     <div class="agent-details__tabs">
                                         <div class="row">
@@ -1702,7 +1712,8 @@
                                         </div>
                                     </div>
                                     <div class="no-data-found" *ngIf="listingAll.length < 1">
-                                         <img src="/assets/images/No-data.svg">
+                                        <img src="/assets/images/no-properties.svg">
+                                        <h5>No Properties Found..!</h5>
                                     </div>
                                     <div class="agent-details__tabs">
                                         <div class="row">
@@ -1833,7 +1844,8 @@
                             <mat-tab-group>
                                 <mat-tab label="All ({{myValuation.length}})">
                                     <div class="no-data-found" *ngIf="myValuation.length == 0">
-                                         <img src="/assets/images/No-data.svg">
+                                        <img src="/assets/images/no-properties.svg">
+                                        <h5>No Properties Found..!</h5>
                                     </div>
                                     <div ngClass="my-valuation-list-wrapper" *ngIf="myValuation.length > 0">
                                         <div ngClass="my-valuation-list-design d-flex"
@@ -1892,7 +1904,8 @@
 
                                 <mat-tab label="{{residential}} ({{myValuationResidential.length}})">
                                     <div class="no-data-found" *ngIf="myValuationResidential.length == 0">
-                                         <img src="/assets/images/No-data.svg">
+                                        <img src="/assets/images/no-properties.svg">
+                                        <h5>No Properties Found..!</h5>
                                     </div>
                                     <div ngClass="my-valuation-list-wrapper" *ngIf="myValuationResidential.length > 0">
                                         <div ngClass="my-valuation-list-design d-flex"
@@ -1950,7 +1963,8 @@
 
                                 <mat-tab label="{{commercial}} ({{myValuationCommercial.length}})">
                                     <div class="no-data-found" *ngIf="myValuationCommercial.length == 0">
-                                         <img src="/assets/images/No-data.svg">
+                                        <img src="/assets/images/no-properties.svg">
+                                        <h5>No Properties Found..!</h5>
                                     </div>
                                     <div ngClass="my-valuation-list-wrapper" *ngIf="myValuationCommercial.length > 0">
                                         <div ngClass="my-valuation-list-design d-flex"

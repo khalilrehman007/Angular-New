@@ -24,6 +24,11 @@ import { FurnitureDetailsComponent } from './classified-details/furniture-detail
 import { SportsEquipmentDetailsComponent } from './classified-details/sports-equipment-details/sports-equipment-details.component';
 import { PhoneTabletDetailsComponent } from './classified-details/phone-tablet-details/phone-tablet-details.component';
 import { ServicesDetailsComponent } from './classified-details/services-details/services-details.component';
+import { FurnitureListingComponent } from './classified-listings/furniture-listing/furniture-listing.component';
+import { SportsListingComponent } from './classified-listings/sports-listing/sports-listing.component';
+import { MobileTabletListingComponent } from './classified-listings/mobile-tablet-listing/mobile-tablet-listing.component';
+import { ServicesListingComponent } from './classified-listings/services-listing/services-listing.component';
+import { MotorsListingComponent } from './classified-listings/motors-listing/motors-listing.component';
 
 const routes: Routes = [
   { path: "", component: ClassifiedHomeComponent },
@@ -49,7 +54,12 @@ const routes: Routes = [
   { path: "furniture-details", component: FurnitureDetailsComponent },
   { path: "sports-equipment-details", component: SportsEquipmentDetailsComponent },
   { path: "phone-tablet-details", component: PhoneTabletDetailsComponent },
-  { path: "service-details", component: ServicesDetailsComponent }
+  { path: "service-details", component: ServicesDetailsComponent },
+  { path: "furniture-listing", component: FurnitureListingComponent },
+  { path: "sports-equipment-listings", component: SportsListingComponent },
+  { path: "phone-tablet-listings", component: MobileTabletListingComponent },
+  { path: "service-listing", component: ServicesListingComponent },
+  { path: "motor-listings", component: MotorsListingComponent }
 ];
 
 @NgModule({
