@@ -1,9 +1,8 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from "../../service/auth.service";
 import { Router } from "@angular/router";
-import { NotificationService } from "../../service/notification.service";
 import { AppService } from 'src/app/service/app.service';
+import { ReplaySubject, Subject, take, takeUntil } from 'rxjs';
 @Component({
   selector: 'app-listpropertyinfo',
   templateUrl: './listpropertyinfo.component.html',
@@ -82,19 +81,29 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
     size: new FormControl("", [Validators.required,Validators.pattern("^[0-9]*$")]),
     UnitNo: new FormControl("", [Validators.required]),
     price: new FormControl("", [Validators.required,Validators.pattern("^[0-9]*$")]),
-    maintenance: new FormControl("", [Validators.required,Validators.pattern("^[0-9]*$")]),
+    maintenance: new FormControl("", [Validators.pattern("^[0-9]*$")]),
     AED: new FormControl("",Validators.pattern("^[0-9]*$")),
     brokerageAed: new FormControl("",Validators.pattern("^[0-9]*$")),
     propertyDescription: new FormControl("", [Validators.required]),
     propertyOffers: new FormControl(""),
     startDate: new FormControl(),
     endDate: new FormControl(),
+    PropertyTypeId:new FormControl(),
+    PropertyDeveloperId:new FormControl(null)
   });
   get validate() {
     return this.SubmitForm.controls;
   }
   disabled: any = [];
-  constructor(private api: AppService, private service: AuthService, private route: Router, private notifyService: NotificationService) {
+  
+  //Search Options Mat Select
+  public PropertyTypeFilterCtrl: FormControl = new FormControl();
+  public filteredPropertyTypes: any = new ReplaySubject(1);
+  public PropertyDeveloperFilterCtrl: FormControl = new FormControl();
+  public filteredPropertyDeveloper: any = new ReplaySubject(1);
+  protected _onDestroy = new Subject();
+
+  constructor(private api: AppService, private route: Router) {
     let propertyData: any = localStorage.getItem("propertyData");
     this.propertyData = JSON.parse(propertyData);
     if(this.propertyData!=null && this.propertyData!=undefined){
@@ -142,26 +151,89 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
   }
   ngAfterViewInit(): void {
   }
+  ngOnDestroy() {
+    this._onDestroy.next("");
+    this._onDestroy.complete();
+  }
   ngOnInit() {
+    this.getPropertyDevelopers();
+    this.filteredPropertyTypes.next(this.propertyType.slice());
+    this.PropertyTypeFilterCtrl.valueChanges
+      .pipe(takeUntil(this._onDestroy))
+      .subscribe(() => {
+        this.filterPropertyTypes();
+      });
+
+    this.filteredPropertyDeveloper.next(this.developer.slice());
+    this.PropertyDeveloperFilterCtrl.valueChanges
+      .pipe(takeUntil(this._onDestroy))
+      .subscribe(() => {
+        this.filterPropertyDevelopers();
+      });
+
     this.currency = localStorage.getItem("currency") || "";
     $(".start-date-input").on("click", function () {
       $(this).find(".mat-datepicker-toggle").click();
     })
-    //this.clearData();
-    this.getPropertyDevelopers();
+   this.SubmitForm.get('PropertyTypeId')?.valueChanges.subscribe(x=>{
+    if(x!=null && x!=undefined){
+      this.getPropertyType(x);
+    }
+   })
+    
   }
+  //////
+  protected filterPropertyTypes() {
+    if (!this.propertyType) {
+      return;
+    }
+  
+    let search = this.PropertyTypeFilterCtrl.value;
+    if (!search) {
+      this.filteredPropertyTypes.next(this.propertyType.slice());
+      return;
+    } else {
+      search = search.toLowerCase();
+    }
+  
+    this.filteredPropertyTypes.next(
+      this.propertyType.filter((x:any) => x.typeDescription.toLowerCase().indexOf(search) > -1)
+    );
+  }
+  protected filterPropertyDevelopers() {
+    if (!this.developer) {
+      return;
+    }
+  
+    let search = this.PropertyDeveloperFilterCtrl.value;
+    if (!search) {
+      this.filteredPropertyDeveloper.next(this.developer.slice());
+      return;
+    } else {
+      search = search.toLowerCase();
+    }
+  
+    this.filteredPropertyDeveloper.next(
+      this.developer.filter((x:any) => x.name.toLowerCase().indexOf(search) > -1)
+    );
+  }
+///////
   getPropertyDevelopers() {
     this.api.DeveloperbyCountry(this.data.CountryId).subscribe((result: any) => {
       this.developer = result.data;
+      this.filteredPropertyDeveloper.next(this.developer);
     })
   }
   loadOldData() {
-    console.log(localStorage.getItem("propertyData"));
+  
     if (localStorage.getItem("propertyData")) {
       let temp: any = localStorage.getItem("propertyData");
       this.data = JSON.parse(temp);
 
-        this.developerData = this.data.PropertyDeveloperId==undefined?0:this.data.PropertyDeveloperId;
+        this.developerData = this.data?.PropertyDeveloperId==undefined || this.data?.PropertyDeveloperId==null?null:this.data.PropertyDeveloperId;
+        this.SubmitForm.patchValue({
+          PropertyDeveloperId:this.developerData
+        })
         this.listingTypeId = this.data.PropertyListingTypeId==undefined?0:this.data.PropertyListingTypeId;
         if (this.listingTypeId == 2) {
           this.api.PropertyTransactionTypes().subscribe((result: any) => {
@@ -174,22 +246,18 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
         if (this.listingTypeId!=undefined && this.listingTypeId!=null) {
         this.api.PropertyListingType(this.listingTypeId).subscribe((result: any) => {
           this.listingConditions = result.data;
-          console.log(this.listingConditions)
         })
       }
-        // this.clearData();
 
         if (this.data?.PropertyListingLocatedNears?.length>0) {
           for (let i = 0; i < this.data.PropertyListingLocatedNears.length; i++) {
             this.locatedNearData.push(this.data.PropertyListingLocatedNears[i].LocatedNearId)
           }
-          console.log(this.locatedNearData)
         }
         if (this.data?.PropertyFeatures?.length>0) {
           for (let i = 0; i < this.data.PropertyFeatures.length; i++) {
             this.featuresFormData.push(this.data.PropertyFeatures[i].PropertyFeatureId)
           }
-          console.log(this.featuresFormData)
         }
 
        
@@ -198,6 +266,8 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
           this.showLoader = true;
         this.api.LoadType(this.data.PropertyCategoryId).subscribe((result:any) => {
           this.propertyType = result.data;
+          this.filteredPropertyTypes.next(this.propertyType);
+          this.SubmitForm.controls['PropertyTypeId'].patchValue(this.data.PropertyTypeId ,{emitEvent: false, onlySelf: true});
           this.showLoader = false;
           this.selectedPropertyType = this.propertyType.filter((item: any) => item.id == this.data.PropertyTypeId)[0];
           this.propertyTypeCheck = true;
@@ -205,17 +275,7 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
           this.api.PropertyFeatures(this.selectedPropertyType.id).subscribe((result: any) => {
             this.featuresData = result.data;
             this.showLoader = false;
-            // let interval: any = setInterval(() => {
-            //   if (this.featuresData.length > 0) {
-            //     for (let i = 0; i < this.data.PropertyFeatures.length; i++) {
-            //       $(".features-item-" + this.data.PropertyFeatures[i].PropertyFeatureId).attr("selected", "selected");
-            //     }
-            //     $('.select2').select2({ placeholder: "Click here to add more" });
-            //     clearInterval(interval);
-            //   }
-            // }, 100);
           });
-         // this.startDate=this.data.StartDate
          if (this.data?.RentTypeId == 1) {
           this.SubmitForm.patchValue({
             startDate: new Date (this.data.StartDate),
@@ -232,6 +292,7 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
             })
           }
           if (this.selectedPropertyType.hasListingBuildUpArea) {
+             
             this.SubmitForm.patchValue({
               buildupArea: this.data.BuildupArea
             })
@@ -243,7 +304,7 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
           }
           if (this.selectedPropertyType.hasListingPlotSize) {
             this.SubmitForm.patchValue({
-              size: this.data.BuildupArea
+              size: this.data.PlotSize
             })
           }
           if (this.selectedPropertyType.hasListingMaintenanceCharges) {
@@ -337,7 +398,6 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
     this.clearForm();
   }
   clearForm(){
-    console.log("Clear Form");
     let temp: any = localStorage.getItem('propertyData');
     this.data = JSON.parse(temp);
     this.data.PropertyCategoryId="";
@@ -372,7 +432,48 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
       PropertyAge: "",
       maintenance:"",
       startDate:new FormControl(),
-      endDate:new FormControl()
+      endDate:new FormControl(),
+      PropertyDeveloperId:null,
+    });
+    this.SubmitForm.controls['PropertyTypeId'].patchValue(new FormControl() ,{emitEvent: false, onlySelf: true});
+  }
+  clearForm1(){
+    let temp: any = localStorage.getItem('propertyData');
+    this.data = JSON.parse(temp);
+    this.data.PropertyCategoryId="";
+    this.data.PropertyTypeId="";
+    this.data.BedRooms="";
+    this.data.BathRooms="";
+    this.data.FurnishingType="";
+    this.data.FittingType="";
+    this.data.OccupancyStatusId="";
+    this.data.Balcony=null;
+    this.data.Parkings=null;
+    this.data.PropertyTransactionTypeId="";
+    this.data.PropertyCompletionStatusId="";
+    this.data.RentTypeId="";
+    this.data.SecurityDeposit="";
+    this.data.BrokerageCharge="";
+    this.developerData="";
+    this.locatedNearData=[];
+    this.propertyTypeCheck = false;
+    this.featuresFormData = [];
+    this.SubmitForm.patchValue({
+      propertyTitle: "",
+      carpetArea: "",
+      buildupArea: "",
+      price: "",
+      AED: "",
+      brokerageAed: "",
+      propertyDescription: "",
+      propertyOffers: "",
+      size: "",
+      BuildingName: "",
+      PropertyAge: "",
+      maintenance:"",
+      startDate:new FormControl(),
+      endDate:new FormControl(),
+      PropertyDeveloperId:null
     });
   }
   clearData() {
@@ -390,7 +491,8 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
       propertyOffers: "",
       size: "",
       BuildingName: "",
-      PropertyAge: ""
+      PropertyAge: "",
+      PropertyDeveloperId:null
     });
   }
   getCategory(id: any) {
@@ -398,7 +500,7 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
     this.categoryID = id;
     this.api.LoadType(id).subscribe((result: any) => {
       this.propertyType = result.data;
-      console.log(this.propertyType)
+      this.filteredPropertyTypes.next(this.propertyType);
       this.showLoader = false;
     });
    this.clearForm();
@@ -406,7 +508,6 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
   getBedroom(e: any) {
     this.bedroomCheck = true;
     this.data.BedRooms = e.value;
-    console.log(this.data)
   }
   animate() {
     let temp: any = $("." + this.currentField).offset()?.top;
@@ -420,36 +521,22 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
   getBathroom(e: any) {
     this.bathroomCheck = true;
     this.data.BathRooms = e.value;
-    console.log(this.data)
   }
   getPropertyType(e: any) {
-    this.selectedPropertyType = this.propertyType.filter((item: any) => item.id == e.value)[0];
-    console.log(this.selectedPropertyType);
+    this.clearForm1();
+    this.selectedPropertyType = this.propertyType.filter((item: any) => item.id == e)[0];
     this.propertyTypeCheck = true;
-    this.data.PropertyTypeId = e.value;
+    this.data.PropertyTypeId = e;
     this.loadFurnishingType();
     this.api.PropertyFeatures(this.selectedPropertyType.id).subscribe((result: any) => {
       this.featuresData = result.data;
-      console.log("features",this.featuresData)
-      // let a = setInterval(() => {
-      //   if (this.featuresData.length > 0) {
-      //     $('.select2').select2();
-      //     $('.features-select').select2({
-      //       placeholder: "Select Features"
-      //     });
-      //     clearInterval(a);
-      //   }
-      // }, 50);
     });
-    console.log(this.data);
   }
   getFurnishingType(e: number) {
     this.data.FurnishingType = e;
-    console.log(this.data)
   }
   getFittingType(e: number) {
     this.data.FittingType = e;
-    console.log(this.data)
   }
   getTenantType(e: number) {
     this.data.TenantTypeId = e;
@@ -462,15 +549,22 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
   }
   getOccupancy(e: number) {
     this.data.OccupancyStatusId = e;
-    console.log(this.data)
   }
   getBalcony(id: any) {
-    this.data.Balcony = id;
-    console.log(this.data)
+    if(this.data.Balcony==id){
+      this.data.Balcony=null;
+    }
+    else{
+      this.data.Balcony = id;
+    }
   }
   getParking(e: string) {
-    this.data.Parkings = e;
-    console.log(this.data)
+    if(this.data.Parkings==e){
+      this.data.Parkings = null;
+    }
+    else{
+      this.data.Parkings = e;
+    }
   }
   // getPolicyOption(e: any) {
   //   if (e == 0 && this.disabled.length == 0) {
@@ -488,18 +582,11 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
   }
   getTransactionType(e: number) {
     this.data.PropertyTransactionTypeId = e;
-    console.log(this.data)
   }
   getCompletionStatus(e: number) {
     this.data.PropertyCompletionStatusId = e;
-    console.log(this.data)
-  }
-  getDeveloper(e: any) {
-    this.data.PropertyDeveloperId = e.value;
-    console.log(this.data)
   }
   getLocatedNear(e: any) {
-    console.log(e)
     this.locatedNearData = e.value;
   }
   getOwnershipType(e: number) {
@@ -512,7 +599,6 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
     this.data.BrokerageCharge = e;
   }
   getFeaturesData(e:any) {
-    console.log(e)
     this.featuresFormData = e.value;
   }
   validateAgeInput(e: any) {
@@ -523,7 +609,6 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
     }
   }
   getValue(e: any, type: boolean) {
-    console.log(e)
     if (!type && e.inputType != "deleteContentBackward" && e.inputType != "deleteContentForward") {
       let temp: any = this.SubmitForm.value.PropertyAge
       this.SubmitForm.patchValue({
@@ -577,9 +662,7 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
     }
   }
   validateDescLength(e: any) {
-    console.log("ee",e)
     let temp: any = this.SubmitForm.value.propertyDescription?.length;
-    console.log("ee",temp)
     if (temp <= 1000) {
       this.descLength = 1000 - temp;
     } else {
@@ -595,9 +678,7 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
     }
   }
   validateTitleLength(e: any) {
-    console.log("ee",e)
     let temp: any = this.SubmitForm.value.propertyTitle?.length;
-    console.log("ee",temp)
     if (temp <= 150) {
       this.titleLength = 150 - temp;
     } else {
@@ -616,11 +697,7 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
     e.preventDefault();
   }
   onSubmit() {
-    console.log(this.selectedPropertyType);
-    // if ($(".features-select").length > 0 && this.selectedPropertyType.hasPropertyFeature && this.featuresData.length > 0) {
-    //   this.featuresFormData = $(".features-select").val();
-    // }
-    console.log(this.featuresFormData)
+
     if (this.listingTypeId == 0) {
       this.currentField = "listing-type-input";
       this.error = "Select Listing Type";
@@ -641,7 +718,7 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
       this.error = "Enter Property Age";
       this.showError = true;
       return;
-    }else if (this.SubmitForm.get('PropertyAge')?.hasError('pattern')) {
+    }else if (this.SubmitForm.get('PropertyAge')?.hasError('pattern') && this.listingConditions.hasPropertyAge) {
       this.currentField =  "property-age-input";
       this.error = "Property Age accepts numbers only";
       this.showError = true;
@@ -653,7 +730,7 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
       this.showError = true;
       return;
     }  
-    else if (this.selectedPropertyType.hasListingBuilding && this.SubmitForm.value.BuildingName == "") {
+    else if (this.selectedPropertyType.hasListingBuilding && this.SubmitForm.value.BuildingName == "" && this.selectedPropertyType.hasListingBuilding) {
       this.currentField = "building-name-input";
       this.error = "Enter Building Name";
       this.showError = true;
@@ -688,7 +765,7 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
       this.error = "Enter Carpet Area";
       this.showError = true;
       return;
-    }else if (this.SubmitForm.get('carpetArea')?.hasError('pattern')) {
+    }else if (this.SubmitForm.get('carpetArea')?.hasError('pattern') && this.selectedPropertyType.hasListingCarpetArea) {
       this.currentField = "carpet-input";
       this.error = "Carpet area accepts numbers only";
       this.showError = true;
@@ -699,7 +776,7 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
       this.error = "Enter BuildUp Area";
       this.showError = true;
       return;
-    }else if (this.SubmitForm.get('buildupArea')?.hasError('pattern')) {
+    }else if (this.SubmitForm.get('buildupArea')?.hasError('pattern') && this.selectedPropertyType.hasListingBuildUpArea) {
       this.currentField = "buildup-input";
       this.error = "BuildUp area accepts numbers only";
       this.showError = true;
@@ -710,33 +787,36 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
       this.error = "Enter Size";
       this.showError = true;
       return;
-    }else if (this.SubmitForm.get('size')?.hasError('pattern')) {
+    }else if (this.SubmitForm.get('size')?.hasError('pattern') && this.selectedPropertyType.hasListingPlotSize) {
       this.currentField = "size-input";
       this.error = "Size accepts numbers only";
       this.showError = true;
       return;
     }
-     else if (this.listingConditions.hasOccupancyStatus && !this.data.OccupancyStatusId) {
+     else if (this.listingConditions.hasOccupancyStatus && this.selectedPropertyType.hasListingOccupancyStatus && !this.data.OccupancyStatusId) {
       this.currentField = "occupanycy-input";
       this.error = "Select Occupancy Status";
       this.showError = true;
       return;
-    } else if (this.selectedPropertyType.hasListingBalocny && !this.data.Balcony) {
-      this.currentField = "balcony-input";
-      this.error = "Select Balcony";
-      this.showError = true;
-      return;
-    } else if (this.selectedPropertyType.hasListingParking && !this.data.Parkings) {
-      this.currentField = "parking-input";
-      this.error = "Select Parking";
-      this.showError = true;
-      return;
-    } else if (this.listingConditions.hasTransactionType && !this.data.PropertyTransactionTypeId) {
+    }
+    //  else if (this.selectedPropertyType.hasListingBalocny && !this.data.Balcony) {
+    //   this.currentField = "balcony-input";
+    //   this.error = "Select Balcony";
+    //   this.showError = true;
+    //   return;
+    // } 
+    // else if (this.selectedPropertyType.hasListingParking && !this.data.Parkings) {
+    //   this.currentField = "parking-input";
+    //   this.error = "Select Parking";
+    //   this.showError = true;
+    //   return;
+    // }
+     else if (this.listingConditions.hasTransactionType && this.selectedPropertyType.hasListingTransactionType && !this.data.PropertyTransactionTypeId) {
       this.currentField = "transaction-type-input";
       this.error = "Select Transaction Type";
       this.showError = true;
       return;
-    } else if (this.listingConditions.hasCompletionStatus && !this.data.PropertyCompletionStatusId) {
+    } else if (this.listingConditions.hasCompletionStatus && this.selectedPropertyType.hasListingCompletionStatus && !this.data.PropertyCompletionStatusId) {
       this.currentField = "completion-status-input";
       this.error = "Select Completetion Status";
       this.showError = true;
@@ -753,12 +833,13 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
       this.showError = true;
       return;
     }
-    else if (this.selectedPropertyType.hasListingMaintenanceCharges && this.SubmitForm.value.maintenance == "") {
-      this.currentField = "maintenance-input";
-      this.error = "Enter Maintenance Price";
-      this.showError = true;
-      return;
-    }else if (this.SubmitForm.get('maintenance')?.hasError('pattern')) {
+    // else if (this.selectedPropertyType.hasListingMaintenanceCharges && this.SubmitForm.value.maintenance == "") {
+    //   this.currentField = "maintenance-input";
+    //   this.error = "Enter Maintenance Price";
+    //   this.showError = true;
+    //   return;
+    // }
+    else if (this.SubmitForm.get('maintenance')?.hasError('pattern')) {
       this.currentField = "maintenance-input";
       this.error = "Maintenance Fee accepts numbers only";
       this.showError = true;
@@ -802,12 +883,13 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
       this.showError = true;
       return;
     }  
-    else if (this.locatedNearData.length == 0) {
-      this.currentField = "located-near-input";
-      this.error = "Select Near Location";
-      this.showError = true;
-      return;
-    } else if (this.SubmitForm.value.propertyTitle == "") {
+    // else if (this.locatedNearData.length == 0) {
+    //   this.currentField = "located-near-input";
+    //   this.error = "Select Near Location";
+    //   this.showError = true;
+    //   return;
+    // }
+     else if (this.SubmitForm.value.propertyTitle == "") {
       this.currentField = "title-input";
       this.error = "Enter Property Title";
       this.showError = true;
@@ -824,7 +906,6 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
       return;
     }
     this.data.PropertyAge = this.SubmitForm.value.PropertyAge;
-    this.data.BuildingName = this.SubmitForm.value.BuildingName;
     let userData: any = localStorage.getItem("user");
     userData = JSON.parse(userData);
     if (this.data.RentTypeId == 1) {
@@ -841,8 +922,11 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
     if (this.selectedPropertyType.hasListingPlotSize) {
       this.data.PlotSize = this.SubmitForm.value.size;
     }
+    if (this.selectedPropertyType.hasListingDeveloper) {
+      this.data.PropertyDeveloperId = this.SubmitForm.value.PropertyDeveloperId;
+    }
     if (this.selectedPropertyType.hasListingBuilding) {
-      this.data.UnitNumber = this.SubmitForm.value.UnitNo;
+      this.data.BuildingName = this.SubmitForm.value.BuildingName;
     }
     this.data.PropertyListingTypeId = this.listingTypeId;
     this.data.PropertyCategoryId = this.categoryID;
@@ -855,6 +939,11 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
       this.data.BuildupArea = this.SubmitForm.value.buildupArea;
     } else {
       this.data.BuildupArea = 0;
+    }
+    if (this.selectedPropertyType.hasListingUnitNumber) {
+      this.data.UnitNumber = this.SubmitForm.value.UnitNo;
+    } else {
+      this.data.UnitNumber = "";
     }
      let temp: any = [];
     // if (this.listingTypeId == 1) {
@@ -890,8 +979,8 @@ export class ListpropertyinfoComponent implements OnInit, AfterViewInit {
       temp.push({ PropertyFeatureId: this.featuresFormData[i] });
     }
     this.data.PropertyFeatures = temp;
+    console.log(this.data);
     localStorage.setItem('propertyData', JSON.stringify(this.data));
-    localStorage.setItem('listingData', JSON.stringify(this.data));
     this.route.navigate(['/add-property/listpropertymedia'])
   }
 }

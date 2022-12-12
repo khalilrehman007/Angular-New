@@ -21,6 +21,7 @@ import { ListpropertypublishComponent } from './listpropertypublish/listproperty
 import { EditComponent } from './edit/edit.component';
 import { EditListInfoComponent } from './edit-list-info/edit-list-info.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     MatDatepickerModule,
     MatNativeDateModule,
     MatAutocompleteModule,
-    CarouselModule
+    CarouselModule,
+    NgxMatSelectSearchModule
   ]
 })
 export class AddPropertyListingModule { }

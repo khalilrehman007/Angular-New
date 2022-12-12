@@ -83,7 +83,7 @@
         <div ngClass="container_1280px">
             <div ngClass="section-title">
                 <div ngClass="section-title-left">
-                    <h4>Residential Properties for Rent in {{countryData.name}}</h4>
+                    <h4>Residential Properties for Rent in {{countryData.acronym}}</h4>
                     <p>Our selection of properties near you/your location</p>
                 </div>
                 <div ngClass="section-title-right">
@@ -127,7 +127,8 @@
                 </div>
             </div>
             <div class="no-data-found" *ngIf="dynamicSlides1.length == 0">
-                <img src="/assets/images/No-data.svg">
+                <img src="/assets/images/no-properties.svg">
+                <h5>No Properties Found..!</h5>
             </div>
             <div ngClass="tab-content" *ngIf="dynamicSlides1.length > 0">
                 <div id="resedential-rent" class="tab-pane active">
@@ -186,7 +187,11 @@
                                                             stroke-width="1.5" stroke-linecap="round"
                                                             stroke-linejoin="round" />
                                                     </svg>
-                                                    {{slide.plotSize == null || slide.plotSize==0 ? slide.buildupArea ==null || slide.buildupArea==0 ?0:slide.buildupArea.toLocaleString():slide.plotSize.toLocaleString() }} Sqft
+                                                    {{slide.plotSize == null ||
+                                                        slide.plotSize==0 ? slide.buildupArea ==null ||
+                                                        slide.buildupArea==0
+                                                        ?0:slide.buildupArea.toLocaleString():slide.plotSize.toLocaleString()
+                                                        }} {{countryData.unitType}}
                                                 </span>
                                             </div>
                                         </div>
@@ -225,7 +230,7 @@
                                             </button>
                                         </div>
                                     </div>
-                                    <button ngClass="tag_btn blue">{{slide.package.name}}</button>
+                                    <button ngClass="tag_btn blue" *ngIf="slide.package.name=='Featured'">{{slide.package.name}}</button>
                                 </div>
                                 <div class="property_hdr-actions">
                                     <button
@@ -270,7 +275,7 @@
         <div ngClass="container_1280px">
             <div ngClass="section-title">
                 <div ngClass="section-title-left">
-                    <h4>Commercial Properties for Rent in {{countryData.name}}</h4>
+                    <h4>Commercial Properties for Rent in {{countryData.acronym}}</h4>
                     <p>Our selection of properties near you/your location</p>
                 </div>
                 <div ngClass="section-title-right">
@@ -316,7 +321,8 @@
                 </div>
             </div>
             <div class="no-data-found" *ngIf="dynamicSlides2.length == 0">
-                <img src="/assets/images/No-data.svg">
+                <img src="/assets/images/no-properties.svg">
+                <h5>No Properties Found..!</h5>
             </div>
             <div ngClass="tab-content" *ngIf="dynamicSlides2.length > 0">
                 <div id="resedential-rent" class="tab-pane active">
@@ -375,7 +381,11 @@
                                                             stroke-width="1.5" stroke-linecap="round"
                                                             stroke-linejoin="round" />
                                                     </svg>
-                                                    {{slide.plotSize == null || slide.plotSize==0 ? slide.buildupArea ==null || slide.buildupArea==0 ?0:slide.buildupArea:slide.plotSize }} Sqft
+                                                    {{slide.plotSize == null ||
+                                                        slide.plotSize==0 ? slide.buildupArea ==null ||
+                                                        slide.buildupArea==0
+                                                        ?0:slide.buildupArea.toLocaleString():slide.plotSize.toLocaleString()
+                                                        }} {{countryData.unitType}}
                                                 </span>
                                             </div>
                                         </div>
@@ -495,7 +505,8 @@
                 </div>
             </div>
             <div class="no-data-found" *ngIf="explorePlaces.length == 0">
-                <img src="/assets/images/No-data.svg">
+                <img src="/assets/images/no-properties.svg">
+                <h5>No Places Found..!</h5>
             </div>
             <div ngClass="row">
                 <div ngClass="col-md-6 explore-places-col" *ngFor="let data of explorePlaces">
@@ -521,7 +532,8 @@
                 </div>
             </div>
             <div class="no-data-found" *ngIf="blogs?.length == 0">
-                <img src="/assets/images/No-data.svg">
+                <img src="/assets/images/no-properties.svg">
+                <h5>No Blogs Found..!</h5>
             </div>
             <div ngClass="row">
                 <div ngClass="col-lg-4 col-md-6 blog-places-col" *ngFor="let blog of blogs">

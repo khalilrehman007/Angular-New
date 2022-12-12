@@ -1,10 +1,8 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from "../../service/auth.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { NotificationService } from "../../service/notification.service";
 import { AppService } from 'src/app/service/app.service';
-import { Select2 } from 'select2';
 
 declare const google: any;
 
@@ -67,7 +65,6 @@ export class EditComponent implements OnInit {
 
   constructor(private router: ActivatedRoute, private route: Router, private notifyService: NotificationService, private service: AppService) {
     this.userData = JSON.parse(this.userData);
-    console.log(this.userData);
     this.router.params.subscribe((params:any) => {
       this.id = params.id;
       this.service.id = params.id;
@@ -77,7 +74,6 @@ export class EditComponent implements OnInit {
           this.route.navigate(["/"]);
         } else {
           this.listingData = result.data.propertyListing;
-          // console.log(this.listingData);
           this.setData();
           this.createFormData();
         }

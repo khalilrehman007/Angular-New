@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-classified-home',
@@ -265,7 +266,7 @@ export class ClassifiedHomeComponent implements OnInit {
     },
     nav: true
   }
-  constructor() {
+  constructor(private modalService: NgbModal) {
     $(window).scrollTop(0);
   }
 
@@ -280,5 +281,7 @@ export class ClassifiedHomeComponent implements OnInit {
       this.isDisabled = user?.ProfessionalTypeId == 2 ? true : false;
     }
   }
-
+  openVerticallyCentered(content: any) {
+    this.modalService.open(content, { centered: true });
+  }
 }

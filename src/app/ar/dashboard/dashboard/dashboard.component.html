@@ -12,7 +12,7 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="txtname">حساب البريد الإلكتروني</label>
+                                    <label for="txtname">البريد الإلكتروني للحساب</label>
                                     <h4 class="base-info-text">{{this.user.email}}</h4>
                                     <!-- <input type="text" id="txtname" class="form-control" value="omranabc@gmail.com" placeholder="Enter the User Name"   autocomplete="off"  /> -->
                                 </div>
@@ -30,7 +30,7 @@
                             <div class="col-md-4">
                                 <div class="d-flex align-item-center">
                                     <div class="form-group">
-                                        <label for="txtname">تبوك</label>
+                                        <label for="txtname">العنوان</label>
                                         <h4 class="base-info-text">{{this.userFormData.address ?
                                             this.userFormData.address : '-'}}
                                         </h4>
@@ -74,7 +74,7 @@
                     <li class="nav-item" role="presentation">
                         <button class="nav-link active" id="pills-dashboard-tab" data-bs-toggle="pill"
                             data-bs-target="#pills-dashboard" type="button" role="tab" aria-controls="pills-dashboard"
-                            aria-selected="true">لوحة القيادة</button>
+                            aria-selected="true">لوحة التحكم</button>
                     </li>
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="pills-activities-tab" data-bs-toggle="pill"
@@ -85,15 +85,13 @@
                         <button class="nav-link" id="pills-leads-tab" data-bs-toggle="pill"
                             data-bs-target="#pills-leads" type="button" role="tab" aria-controls="pills-leads"
                             aria-selected="false"
-                            *ngIf="professionalType == 1 || professionalType == 2 || professionalType == 3">عملائي
-                            المحتملين</button>
+                            *ngIf="professionalType == 1 || professionalType == 2 || professionalType == 3">عملائي المتوقعين</button>
                     </li>
                     <li class="nav-item" role="presentation">
                         <button class="nav-link my-listing-btn" id="pills-listing-tab" data-bs-toggle="pill"
                             data-bs-target="#pills-listing" type="button" role="tab" aria-controls="pills-listing"
                             aria-selected="false"
-                            *ngIf="professionalType == 1 || professionalType == 2 || professionalType == 3">القوائم
-                            الخاصة بي</button>
+                            *ngIf="professionalType == 1 || professionalType == 2 || professionalType == 3">قوائمي الخاصة</button>
                     </li>
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="pills-valuation-tab" data-bs-toggle="pill"
@@ -113,12 +111,12 @@
                     <li class="nav-item" role="presentation">
                         <div ngbDropdown class="d-inline-block">
                             <button mat-icon-button ngClass="action-btn" id="dropdownBasic1"
-                                ngbDropdownToggle>أكثر</button>
+                                ngbDropdownToggle>المزيد</button>
                             <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
                                 <button ngbDropdownItem><a href="/ar"><img src="{{web}}"> اذهب إلى Ovaluate</a></button>
                                 <button ngbDropdownItem><a href="" data-bs-toggle="pill" data-bs-target="#pills-profile"
                                         type="button" role="tab" aria-controls="pills-profile"
-                                        aria-selected="false"><img src="{{profile}}"> ملفي</a></button>
+                                        aria-selected="false"><img src="{{profile}}"> ملفي الشخصي</a></button>
                                 <button ngbDropdownItem><a target="_blank" routerLink="/chat"><img src="{{shareicon}}">
                                         رسائلي</a></button>
                                 <!-- <button ngbDropdownItem><a href=""><img src="{{acsetting}}"> Account
@@ -142,16 +140,16 @@
                     <div class="free-proplisting"
                         *ngIf="professionalType == 1 || professionalType == 2 || professionalType == 3">
                         <div class="first-title">
-                            <h3 class="title">إدراج مجاني للعقارات</h3>
+                            <h3 class="title">إعلان مجاني للعقارات</h3>
                             <p>بيع أو تأجير منزلك</p>
                         </div>
                         <ul>
-                            <li>قائمة العقارات الخاصة بك مباشرة على أوفالويت</li>
-                            <li>قائمة العقارات الخاصة بك مباشرة على أوفالويت</li>
-                            <li>قائمة العقارات الخاصة بك مباشرة على أوفالويت</li>
-                            <li>قائمة العقارات الخاصة بك مباشرة على أوفالويت</li>
+                            <li>أعلن عن عقارك مباشرةً على أوفالويت</li>
+                            <li>أعلن عن عقارك مباشرةً على أوفالويت</li>
+                            <li>أعلن عن عقارك مباشرةً على أوفالويت</li>
+                            <li>أعلن عن عقارك مباشرةً على أوفالويت</li>
                         </ul>
-                        <a routerLink="/ar/add-property/listingproperty" class="btn btn-primary"> إدراج العقارات</a>
+                        <a routerLink="/ar/add-property/listingproperty" class="btn btn-primary"> إعلانات العقارات</a>
                     </div>
 
                     <div class="statictics-wrap">
@@ -160,7 +158,7 @@
                                 *ngIf="professionalType == 1 || professionalType == 2 || professionalType == 3">
                                 <div class="card">
                                     <div class="content-area">
-                                        <h4 class="title">ملخص الإدراجات</h4>
+                                        <h4 class="title">ملخص الإعلانات</h4>
                                         <p>{{lastPropertyLastingDate}}</p>
                                         <ul class="counts-wrap">
                                             <li>
@@ -181,7 +179,7 @@
                             <div class="col-md-6">
                                 <div class="card">
                                     <div class="content-area">
-                                        <h4 class="title">مراجعة التفاصيل</h4>
+                                        <h4 class="title">ملخص التقييم</h4>
                                         <p>{{ lastValuationDate }}</p>
                                         <ul class="counts-wrap">
                                             <li>
@@ -210,8 +208,8 @@
                             ngClass="position-relative wrapper-section properties-slider residentials-property-rent-1">
                             <div ngClass="section-title">
                                 <div ngClass="section-title-left">
-                                    <h4>ملخص العملاء المحتملين</h4>
-                                    <p>مهتمًا بالرغبة الخاص بك وحاول الاتصال بك</p>
+                                    <h4>ملخص العروض</h4>
+                                    <p>مهتماً بما لديك وحاول الاتصال بك</p>
                                 </div>
                                 <div ngClass="section-title-right">
                                     <ul ngClass="nav nav-tabs" role="tablist">
@@ -262,7 +260,8 @@
                             <div ngClass="tab-content">
                                 <div id="resedential-rent" class="tab-pane active">
                                     <div class="no-data-found" *ngIf="leadsResidentialSummary.length == 0">
-                                        <img src="/assets/images/no-data-ar.svg">
+                                        <img src="/assets/images/no-properties.svg">
+                                        <h5>لم يتم العثور على خصائص ..!</h5>
                                     </div>
                                     <div class="lead-summ-table" *ngIf="leadsResidentialSummary.length > 0">
                                         <div class="table-row" *ngFor="let data of leadsResidentialSummary">
@@ -279,7 +278,7 @@
                                                     {{data.propertyListing.city.nameAr}}, الامارات</p>
                                             </div>
                                             <div class="col ">
-                                                <span>الرمز المعرف للعقار</span>
+                                                <span>مُعرّف العقار</span>
                                                 <p *ngIf="data.propertyListing && data.propertyListing.propertyId">
                                                     {{data.propertyListing.propertyId}}</p>
                                             </div>
@@ -321,7 +320,8 @@
                                 </div>
                                 <div id="resedential-buy" class="tab-pane">
                                     <div class="no-data-found" *ngIf="leadsCommercialSummary.length == 0">
-                                        <img src="/assets/images/no-data-ar.svg">
+                                        <img src="/assets/images/no-properties.svg">
+                                        <h5>لم يتم العثور على خصائص ..!</h5>
                                     </div>
                                     <div class="lead-summ-table" *ngIf="leadsCommercialSummary.length > 0">
                                         <div class="table-row" *ngFor="let data of leadsCommercialSummary">
@@ -338,7 +338,7 @@
                                                     {{data.propertyListing.city.nameAr}}, الامارات</p>
                                             </div>
                                             <div class="col ">
-                                                <span>الرمز المعرف للعقار</span>
+                                                <span>مُعرّف العقار</span>
                                                 <p *ngIf="data.propertyListing && data.propertyListing.propertyId">
                                                     {{data.propertyListing.propertyId}}</p>
                                             </div>
@@ -385,8 +385,8 @@
                         <div ngClass="container_1220px">
                             <div ngClass="section-title">
                                 <div ngClass="section-custom-title-left">
-                                    <h4>مقالات</h4>
-                                    <p>عقارات مميزة قريبة منك</p>
+                                    <h4>المدونة</h4>
+                                    <p>اختياراتنا المميزة لعقارات قريبة منك</p>
                                 </div>
                                 <div ngClass="section-custom-title-right">
                                     <a routerLink="/ar/blog">قراءة كامل المحتوى</a>
@@ -425,13 +425,14 @@
                                                     class="checkbox-design position-relative">
                                                     <input type="radio" id="Furnished" name="property-types" value="All"
                                                         checked>
-                                                    <button class="checkbox-btn">الجميع ({{viewAllCount}})</button>
+                                                    <button class="checkbox-btn">الكل ({{viewAllCount}})</button>
                                                 </div>
                                                 <div (click)="myActivityViewChange('1')"
                                                     class="checkbox-design position-relative">
                                                     <input type="radio" id="Unfurnished" name="property-types"
                                                         value="Rent">
-                                                    <button class="checkbox-btn">استئجار({{viewRentCount}})</button>
+                                                    <button class="checkbox-btn">إيجار
+                                                        ({{viewRentCount}})</button>
                                                 </div>
                                                 <div (click)="myActivityViewChange('2')"
                                                     class="checkbox-design position-relative">
@@ -566,10 +567,10 @@
                                                                     </div>
                                                                 </div>
                                                                 <div ngClass="key-tags">
-                                                                    <span>خدمة كونسيرج على مدار 24 ساعة</span>
+                                                                    <span>استقبال على مدار 24 ساعة</span>
                                                                 </div>
                                                                 <div ngClass="data-inteligence-text">
-                                                                    <h6>OV Data Intelligence - شارع الكورنيش ، أبو ظبي</h6>
+                                                                    <h6>منصة أوفالويت للذكاء الاصطناعي - {{viewList.city.name}}, {{viewList.country.name}}</h6>
                                                                     <div ngClass="property-range-bar d-flex">
                                                                         <div ngClass="pro-range-whie-box">
                                                                             <p>آخر معاملات الإيجار</p>
@@ -583,7 +584,7 @@
                                                                                 {{viewList.currency}}</h6>
                                                                         </div>
                                                                         <div ngClass="pro-range-whie-box">
-                                                                            <p>متوسط تأجير/ قدم مربع</p>
+                                                                            <p>متوسط الإيجار للقدم المربع</p>
                                                                             <h6>{{viewList.avgRentPrice}}
                                                                                 {{viewList.currency}}</h6>
                                                                         </div>
@@ -591,7 +592,7 @@
                                                                 </div>
                                                                 <div class="lisiting-status-reports">
                                                                     <p class="agent-details__property-list-item-date">
-                                                                        مدرج على
+                                                                        مُُدرج في
                                                                         {{viewList.requestedDateFormat}}</p>
                                                                     <div class="property-uploader-img">
                                                                         <img src="assets/images/better-home.svg" alt="">
@@ -630,15 +631,14 @@
                                                                                     {{agentView.aboutCompany}}
                                                                                 </p>
                                                                                 <a
-                                                                                    class="agent-landing-featured__property-link">إعرض
-                                                                                    الخريطة</a>
+                                                                                    class="agent-landing-featured__property-link">عرض الخريطة</a>
                                                                                 <p
                                                                                     class="agent-landing-featured__property-text">
-                                                                                    مؤسسة التنظيم العقاري#
+                                                                                    مؤسسة التنظيم العقاري# {{agentView.reraNo}}
                                                                                     {{agentView.reraNo}}</p>
                                                                                 <p
                                                                                     class="agent-landing-featured__property-text">
-                                                                                    شهادة# {{agentView.premitNo}}
+                                                                                    التصريح# {{agentView.premitNo}}
                                                                                 </p>
                                                                                 <ul
                                                                                     class="agent-landing-featured__property-details-list">
@@ -689,13 +689,14 @@
                                                     class="checkbox-design position-relative">
                                                     <input type="radio" id="Furnished" name="property-types" value="All"
                                                         checked>
-                                                    <button class="checkbox-btn">الجميع ({{viewAllCount}})</button>
+                                                    <button class="checkbox-btn">الكل ({{viewAllCount}})</button>
                                                 </div>
                                                 <div (click)="myActivityViewChange('1')"
                                                     class="checkbox-design position-relative">
                                                     <input type="radio" id="Unfurnished" name="property-types"
                                                         value="Rent">
-                                                    <button class="checkbox-btn">استئجار ({{viewRentCount}})</button>
+                                                    <button class="checkbox-btn">إيجار
+                                                        ({{viewRentCount}})</button>
                                                 </div>
                                                 <div (click)="myActivityViewChange('2')"
                                                     class="checkbox-design position-relative">
@@ -744,12 +745,12 @@
                                                                             {{viewList.propertyTitle}}</h4>
                                                                         <p
                                                                             class="agent-details__property-list-item-date">
-                                                                            مدرج في: <span
+                                                                            مُُدرج في <span
                                                                                 class="value_span">{{viewList.requestedDateFormat}}</span>
                                                                         </p>
                                                                         <p
                                                                             class="agent-details__property-list-item-date">
-                                                                            تم إدراجه على قائمة مختصرة بواسطة: <span
+                                                                            مُدرج على القائمة المختصرة بواسطة: <span
                                                                                 class="value_span">{{viewList.numberOfUsershortListedProperty}}
                                                                                 الأشخاص</span></p>
                                                                         <p
@@ -836,15 +837,14 @@
                                                                                         {{agentView.aboutCompany}}
                                                                                     </p>
                                                                                     <a
-                                                                                        class="agent-landing-featured__property-link">إعرض
-                                                                                        الخريطة</a>
+                                                                                        class="agent-landing-featured__property-link">عرض الخريطة</a>
                                                                                     <p
                                                                                         class="agent-landing-featured__property-text">
                                                                                         مؤسسة التنظيم العقاري#
                                                                                         {{agentView.reraNo}}</p>
                                                                                     <p
                                                                                         class="agent-landing-featured__property-text">
-                                                                                        شهادة# {{agentView.premitNo}}
+                                                                                        التصريح# {{agentView.premitNo}}
                                                                                     </p>
                                                                                     <ul
                                                                                         class="agent-landing-featured__property-details-list">
@@ -886,7 +886,7 @@
                                         </section>
                                     </div>
                                 </mat-tab>
-                                <mat-tab label="القائمة المختصرة">
+                                <mat-tab label="مُدرج على القائمة المختصرة بواسطة">
                                     <div class="type-activity-status">
                                         <div ngClass="block-wrapper mb-4 d-flex justify-content-spacebw">
                                             <div class="checkbox-flex-box-auto button-same-select">
@@ -894,13 +894,14 @@
                                                     class="checkbox-design position-relative">
                                                     <input type="radio" id="Furnished" name="property-types" value="All"
                                                         checked>
-                                                    <button class="checkbox-btn">الجميع ({{allCount}})</button>
+                                                    <button class="checkbox-btn">الكل ({{allCount}})</button>
                                                 </div>
                                                 <div (click)="getCountChange(1)"
                                                     class="checkbox-design position-relative">
                                                     <input type="radio" id="Unfurnished" name="property-types"
                                                         value="Rent">
-                                                    <button class="checkbox-btn">استئجار ({{rentCount}})</button>
+                                                    <button class="checkbox-btn">إيجار
+                                                        ({{rentCount}})</button>
                                                 </div>
                                                 <div (click)="getCountChange(2)"
                                                     class="checkbox-design position-relative">
@@ -944,7 +945,7 @@
                                                                             </h4>
                                                                             <p
                                                                                 class="agent-details__property-list-item-date">
-                                                                                مدرج في
+                                                                                مُُدرج في
                                                                                 {{wishData.requestedDateFormat}}</p>
                                                                         </div>
                                                                     </div>
@@ -1010,12 +1011,13 @@
                                             </section> -->
                                         </div>
                                         <div class="no-data-found" *ngIf="wishlistingData.length == 0">
-                                            <img src="/assets/images/no-data-ar.svg">
+                                            <img src="/assets/images/no-properties.svg">
+                                            <h5>لم يتم العثور على خصائص ..!</h5>
                                         </div>
                                     </div>
 
                                 </mat-tab>
-                                <mat-tab label="تم الاستفسار">
+                                <mat-tab label="تم الاستعلام">
 
                                     <div class="type-activity-status">
                                         <div ngClass="block-wrapper mb-4">
@@ -1024,13 +1026,14 @@
                                                     class="checkbox-design position-relative">
                                                     <input type="radio" id="Furnished" name="property-types" value="All"
                                                         checked>
-                                                    <button class="checkbox-btn">الجميع ({{enquiredAllCount}})</button>
+                                                    <button class="checkbox-btn">الكل ({{enquiredAllCount}})</button>
                                                 </div>
                                                 <div (click)="getEnquiredCountChange(1)"
                                                     class="checkbox-design position-relative">
                                                     <input type="radio" id="Unfurnished" name="property-types"
                                                         value="Rent">
-                                                    <button class="checkbox-btn">استئجار
+                                                    <button class="checkbox-btn">إيجار
+
                                                         ({{enquiredRentCount}})</button>
                                                 </div>
                                                 <div (click)="getEnquiredCountChange(2)"
@@ -1068,7 +1071,7 @@
                                                                             {{enquiredData.propertyTitle}}</h4>
                                                                         <p
                                                                             class="agent-details__property-list-item-date">
-                                                                            مدرج في
+                                                                            مُُدرج في
                                                                             {{enquiredData.requestedDateFormat}}</p>
                                                                     </div>
                                                                 </div>
@@ -1125,7 +1128,8 @@
                                             </section> -->
                                         </div>
                                         <div class="no-data-found" *ngIf="enquiredlistingData.length == 0">
-                                            <img src="/assets/images/no-data-ar.svg">
+                                            <img src="/assets/images/no-properties.svg">
+                                            <h5>لم يتم العثور على خصائص ..!</h5>
                                         </div>
                                     </div>
                                 </mat-tab>
@@ -1135,7 +1139,7 @@
                 </div>
                 <div class="tab-pane fade" id="pills-leads" role="tabpanel" aria-labelledby="pills-leads-tab">
                     <div class="recent-activity">
-                        <h4 class="sub-title">عملائي المحتملين</h4>
+                        <h4 class="sub-title">عملائي المتوقعين</h4>
                         <div class="sub-tab-nav">
                             <mat-tab-group (selectedTabChange)="getTab($event)">
                                 <mat-tab label="كل">
@@ -1146,7 +1150,7 @@
                                                     (click)="LoadLeads('','')">
                                                     <input type="radio" id="Furnished" name="property-types" value="All"
                                                         checked>
-                                                    <button class="checkbox-btn">الجميع</button>
+                                                    <button class="checkbox-btn">الكل</button>
                                                 </div>
                                                 <div class="checkbox-design position-relative"
                                                     (click)="LoadLeads('','2')">
@@ -1158,13 +1162,15 @@
                                                     (click)="LoadLeads('','1')">
                                                     <input type="radio" id="Unfurnished" name="property-types"
                                                         value="Rent">
-                                                    <button class="checkbox-btn">استئجار</button>
+                                                    <button class="checkbox-btn">إيجار
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="no-data-found" *ngIf="leadsData.length == 0">
-                                        <img src="/assets/images/no-data-ar.svg">
+                                        <img src="/assets/images/no-properties.svg">
+                <h5>لم يتم العثور على خصائص ..!</h5>
                                     </div>
                                     <section *ngIf="leadsData.length >= 0"
                                         ngClass="my-lead-listing-wrap position-relative wrapper-section properties-slider residentials-property-rent-1">
@@ -1183,7 +1189,7 @@
                                                                 {{item.propertyListing.country.nameAr}}</p>
                                                         </div>
                                                         <div class="col ">
-                                                            <span>الرمز المعرف للعقار</span>
+                                                            <span>مُعرّف العقار</span>
                                                             <p>{{item.propertyListing.propertyCode}}</p>
                                                         </div>
                                                         <div class="col ">
@@ -1237,7 +1243,7 @@
                                                     (click)="LoadLeads('1','')">
                                                     <input type="radio" id="Furnished" name="property-types" value="All"
                                                         checked>
-                                                    <button class="checkbox-btn">الجميع</button>
+                                                    <button class="checkbox-btn">الكل</button>
                                                 </div>
                                                 <div class="checkbox-design position-relative"
                                                     (click)="LoadLeads('1','2')">
@@ -1249,13 +1255,15 @@
                                                     (click)="LoadLeads('1','1')">
                                                     <input type="radio" id="Unfurnished" name="property-types"
                                                         value="Rent">
-                                                    <button class="checkbox-btn">استئجار</button>
+                                                    <button class="checkbox-btn">إيجار
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="no-data-found" *ngIf="leadsData.length == 0">
-                                        <img src="/assets/images/no-data-ar.svg">
+                                        <img src="/assets/images/no-properties.svg">
+                <h5>لم يتم العثور على خصائص ..!</h5>
                                     </div>
                                     <section *ngIf="leadsData.length >= 0"
                                         ngClass="my-lead-listing-wrap position-relative wrapper-section properties-slider residentials-property-rent-1">
@@ -1274,7 +1282,7 @@
                                                                 {{item.propertyListing.country.nameAr}}</p>
                                                         </div>
                                                         <div class="col ">
-                                                            <span>الرمز المعرف للعقار</span>
+                                                            <span>مُعرّف العقار</span>
                                                             <p>{{item.propertyListing.propertyCode}}</p>
                                                         </div>
                                                         <div class="col ">
@@ -1325,7 +1333,7 @@
                                                     (click)="LoadLeads('2','')">
                                                     <input type="radio" id="Furnished" name="property-types" value="All"
                                                         checked>
-                                                    <button class="checkbox-btn">الجميع</button>
+                                                    <button class="checkbox-btn">الكل</button>
                                                 </div>
                                                 <div class="checkbox-design position-relative"
                                                     (click)="LoadLeads('2','2')">
@@ -1337,13 +1345,15 @@
                                                     (click)="LoadLeads('2','1')">
                                                     <input type="radio" id="Unfurnished" name="property-types"
                                                         value="Rent">
-                                                    <button class="checkbox-btn">استئجار</button>
+                                                    <button class="checkbox-btn">إيجار
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="no-data-found" *ngIf="leadsData.length == 0">
-                                        <img src="/assets/images/no-data-ar.svg">
+                                        <img src="/assets/images/no-properties.svg">
+                <h5>لم يتم العثور على خصائص ..!</h5>
                                     </div>
                                     <section *ngIf="leadsData.length >= 0"
                                         ngClass="my-lead-listing-wrap position-relative wrapper-section properties-slider residentials-property-rent-1">
@@ -1362,7 +1372,7 @@
                                                                 {{item.propertyListing.country.nameAr}}</p>
                                                         </div>
                                                         <div class="col ">
-                                                            <span>الرمز المعرف للعقار</span>
+                                                            <span>مُعرّف العقار</span>
                                                             <p>{{item.propertyListing.propertyCode}}</p>
                                                         </div>
                                                         <div class="col ">
@@ -1414,7 +1424,7 @@
                         <h4 class="sub-title">قوائمي الخاصة</h4>
                         <div class="sub-tab-nav">
                             <mat-tab-group (selectedTabChange)="parentTabsChange($event)">
-                                <mat-tab label="كل">
+                                <mat-tab label="الكل">
                                     <div class="type-activity-status">
                                         <div ngClass="block-wrapper mb-4">
                                             <div class="checkbox-flex-box-auto button-same-select"
@@ -1422,7 +1432,7 @@
                                                 <div class="checkbox-design position-relative">
                                                     <input type="radio" id="Furnished" (click)="childTabsChange('')"
                                                         name="property-types" value="All" checked>
-                                                    <button class="checkbox-btn">الجميع
+                                                    <button class="checkbox-btn">الكل
                                                         ({{this.tabCounts.totalPropertyListing}})</button>
                                                 </div>
                                                 <div class="checkbox-design position-relative"
@@ -1437,7 +1447,8 @@
                                         </div>
                                     </div>
                                     <div class="no-data-found" *ngIf="listingAll.length < 1">
-                                        <img src="/assets/images/no-data-ar.svg">
+                                        <img src="/assets/images/no-properties.svg">
+                                        <h5>لم يتم العثور على خصائص ..!</h5>
                                     </div>
                                     <div class="agent-details__tabs">
                                         <div class="row">
@@ -1467,7 +1478,7 @@
                                                                             {{listing.requestedDateFormat}}</p>
                                                                         <p
                                                                             class="agent-details__property-list-item-date">
-                                                                            انتهت صلاحية:
+                                                                               انتهت صلاحية:
                                                                             {{listing.expiredDateFormat}}</p>
                                                                     </div>
                                                                 </div>
@@ -1560,7 +1571,7 @@
                                                 <div class="checkbox-design position-relative">
                                                     <input type="radio" id="Furnished" (click)="childTabsChange('')"
                                                         name="property-types" value="All" checked>
-                                                    <button class="checkbox-btn">الجميع
+                                                    <button class="checkbox-btn">الكل
                                                         ({{this.tabCounts.totalPropertyListing}})</button>
                                                 </div>
                                                 <div class="checkbox-design position-relative"
@@ -1575,7 +1586,8 @@
                                         </div>
                                     </div>
                                     <div class="no-data-found" *ngIf="listingAll.length < 1">
-                                        <img src="/assets/images/no-data-ar.svg">
+                                        <img src="/assets/images/no-properties.svg">
+                                        <h5>لم يتم العثور على خصائص ..!</h5>
                                     </div>
                                     <div class="agent-details__tabs">
                                         <div class="row">
@@ -1695,7 +1707,7 @@
                                                 <div class="checkbox-design position-relative">
                                                     <input type="radio" id="Furnished" (click)="childTabsChange('')"
                                                         name="property-types" value="All" checked>
-                                                    <button class="checkbox-btn">الجميع
+                                                    <button class="checkbox-btn">الكل
                                                         ({{this.tabCounts.totalPropertyListing}})</button>
                                                 </div>
                                                 <div class="checkbox-design position-relative"
@@ -1710,7 +1722,8 @@
                                         </div>
                                     </div>
                                     <div class="no-data-found" *ngIf="listingAll.length < 1">
-                                        <img src="/assets/images/no-data-ar.svg">
+                                        <img src="/assets/images/no-properties.svg">
+                <h5>لم يتم العثور على خصائص ..!</h5>
                                     </div>
                                     <div class="agent-details__tabs">
                                         <div class="row">
@@ -1809,7 +1822,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
+                                                        </div> 
                                                     </li>
                                                     <section class="agent-pagination-wrapper">
                                                         <pagination-controls (pageChange)="page = $event"
@@ -1827,12 +1840,13 @@
                 </div>
                 <div class="tab-pane fade" id="pills-valuation" role="tabpanel" aria-labelledby="pills-valuation-tab">
                     <div class="recent-activity">
-                        <h4 class="sub-title mb-4">تقييماتي</h4>
+                        <h4 class="sub-title mb-4">تقييمي</h4>
                         <div class="sub-tab-nav">
                             <mat-tab-group>
-                                <mat-tab label="كل ({{myValuation.length}})">
+                                <mat-tab label="الكل ({{myValuation.length}})">
                                     <div class="no-data-found" *ngIf="myValuation.length == 0">
-                                        <img src="/assets/images/no-data-ar.svg">
+                                        <img src="/assets/images/no-properties.svg">
+                                        <h5>لم يتم العثور على خصائص ..!</h5>
                                     </div>
                                     <div ngClass="my-valuation-list-wrapper" *ngIf="myValuation.length > 0">
                                         <div ngClass="my-valuation-list-design d-flex"
@@ -1847,7 +1861,7 @@
                                                 </div>
                                             </div>
                                             <div ngClass="my_valuation-inner-div category">
-                                                <h6>فئة</h6>
+                                                <h6>الفئة</h6>
                                                 <p>{{item.propertyCategory.categoryNameAr}}</p>
                                             </div>
                                             <div ngClass="my_valuation-inner-div place">
@@ -1855,7 +1869,7 @@
                                                 <p>{{item.city.nameAr}}</p>
                                             </div>
                                             <div ngClass="my_valuation-inner-div property_type">
-                                                <h6>نوع العقار</h6>
+                                                <h6> نوع العقار</h6>
                                                 <p>{{item.propertyType.typeDescriptionAr}}</p>
                                             </div>
                                             <div ngClass="my_valuation-inner-div payemnt"
@@ -1871,7 +1885,7 @@
                                             <div ngClass="my_valuation-inner-div payemnt"
                                                 *ngIf="item.valuationStatus.statusDescription != 'Payment Pending'">
                                                 <p ngClass="payment success">
-                                                    <mat-icon>check_circle</mat-icon> مُقَدَّم\ تم تقديمه
+                                                    <mat-icon>check_circle</mat-icon>مُقدَم
                                                 </p>
                                             </div>
                                             <div ngClass="my_valuation-inner-div payemnt"
@@ -1891,7 +1905,8 @@
 
                                 <mat-tab label="{{residential}} ({{myValuationResidential.length}})">
                                     <div class="no-data-found" *ngIf="myValuationResidential.length == 0">
-                                        <img src="/assets/images/no-data-ar.svg">
+                                        <img src="/assets/images/no-properties.svg">
+                                        <h5>لم يتم العثور على خصائص ..!</h5>
                                     </div>
                                     <div ngClass="my-valuation-list-wrapper" *ngIf="myValuationResidential.length > 0">
                                         <div ngClass="my-valuation-list-design d-flex"
@@ -1949,7 +1964,8 @@
 
                                 <mat-tab label="{{commercial}} ({{myValuationCommercial.length}})">
                                     <div class="no-data-found" *ngIf="myValuationCommercial.length == 0">
-                                        <img src="/assets/images/no-data-ar.svg">
+                                        <img src="/assets/images/no-properties.svg">
+                <h5>لم يتم العثور على خصائص ..!</h5>
                                     </div>
                                     <div ngClass="my-valuation-list-wrapper" *ngIf="myValuationCommercial.length > 0">
                                         <div ngClass="my-valuation-list-design d-flex"
@@ -2050,11 +2066,11 @@
                                             <div ngClass="my-valuation-list-design d-flex"
                                                 *ngFor="let data of pointsHistory">
                                                 <div ngClass="my_valuation-inner-div category">
-                                                    <h6>رقم عملية البيع</h6>
+                                                    <h6>رقم المعاملة</h6>
                                                     <p>{{data.point.nameAr}}</p>
                                                 </div>
                                                 <div ngClass="my_valuation-inner-div place">
-                                                    <h6>تاريخ عملية البيع</h6>
+                                                    <h6>تاريخ المعاملة</h6>
                                                     <p>{{data.totalPoints}}</p>
                                                 </div>
                                                 <div ngClass="my_valuation-inner-div property_type">
@@ -2073,7 +2089,7 @@
                                         </div>
                                     </div>
                                 </mat-tab>
-                                <mat-tab label="مبيعاتي">
+                                <mat-tab label="معاملاتي">
                                     <div ngClass="my-valuation-list-wrapper">
                                         <div ngClass="my-valuation-list-design d-flex"
                                             *ngFor="let item of pointsHistory; let i = index">
@@ -2087,7 +2103,7 @@
                                                 <p>{{item.id}}</p>
                                             </div>
                                             <div ngClass="my_valuation-inner-div place">
-                                                <h6>تاريخ الصفقة</h6>
+                                                <h6>تاريخ المعاملة</h6>
                                                 <p>{{item.purchaseDate.split("T")[0]}}</p>
                                             </div>
                                             <!-- <div ngClass="my_valuation-inner-div place">
@@ -2159,10 +2175,10 @@
                 </div>
                 <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
                     <div class="recent-activity profile-tab-wrap">
-                        <h4 class="sub-title">ملفي</h4>
+                        <h4 class="sub-title">ملفي الشخصي</h4>
                         <div class="sub-tab-nav">
                             <mat-tab-group>
-                                <mat-tab label="تفاصيل شخصية">
+                                <mat-tab label="البيانات الشخصية">
                                     <div class="row">
                                         <div class="col-md-9">
                                             <form [formGroup]="detailForm">
@@ -2181,7 +2197,7 @@
                                                                 </div>
                                                                 <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                                                     <div ngClass="block-wrapper mb-4">
-                                                                        <label class="h6-design">الكنية</label>
+                                                                        <label class="h6-design">الاسم الأخير*</label>
                                                                         <mat-form-field appearance="fill"
                                                                             class="full-width input-design-2">
                                                                             <input matInput formControlName="lastName">
@@ -2203,14 +2219,14 @@
                                                                                 (click)="getGender(2)">
                                                                                 <input type="radio" name="gender" />
                                                                                 <button
-                                                                                    class="checkbox-btn">انثي</button>
+                                                                                    class="checkbox-btn">أنثى</button>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                                 <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                                                     <div ngClass="block-wrapper mb-4">
-                                                                        <label class="h6-design">تاريخ الولادة</label>
+                                                                        <label class="h6-design">تاريخ الميلاد</label>
                                                                         <div class="input-date-picker input-design">
                                                                             <mat-form-field appearance="fill">
                                                                                 <input matInput [matDatepicker]="picker"
@@ -2259,7 +2275,7 @@
                                                                 </div>
                                                                 <div ngClass="col-xl-12 col-lg-12 col-sm-12">
                                                                     <div ngClass="block-wrapper mb-4">
-                                                                        <label class="h6-design">ابحث عن عنوانك</label>
+                                                                        <label class="h6-design">العنوان</label>
                                                                         <mat-form-field
                                                                             class="example-full-width textarea-design"
                                                                             appearance="fill">
@@ -2374,10 +2390,10 @@
                                                                     <div class="col-sm-12">
                                                                         <div ngClass="block-wrapper">
                                                                             <div ngClass="select-design">
-                                                                                <label>مجالات</label>
+                                                                                <label>المنطقة</label>
                                                                                 <div class="pet-policy-input">
                                                                                     <mat-form-field appearance="fill">
-                                                                                        <mat-label> حدد المناطق
+                                                                                        <mat-label> اختر المناطق
                                                                                         </mat-label>
                                                                                         <mat-select
                                                                                             [disableOptionCentering]="true"
@@ -2398,7 +2414,7 @@
                                                                 </div>
                                                             </div>
                                                             <div ngClass="other-document-upload mt-4">
-                                                                <h6 ngClass="h6-design mb-3">تحميل المستندات</h6>
+                                                                <h6 ngClass="h6-design mb-3">رفع المستندات</h6>
                                                                 <div ngClass="row">
                                                                     <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                                                                         <div ngClass="blue-upload-box">
@@ -2413,10 +2429,7 @@
                                                                                             ngClass="outpup-filename">{{
                                                                                             emirate[1] }}</span> <img
                                                                                             src="{{upload}}">
-                                                                                        <span ngClass="btn-txt">هوية
-                                                                                            الإمارات العربية المتحدة
-                                                                                            (الواجهة
-                                                                                            الامامية)</span></button>
+                                                                                        <span ngClass="btn-txt">صورة: هوية الإمارات (الواجهة الإمامية)</span></button>
                                                                                 </div>
 
                                                                             </div>
@@ -2440,10 +2453,7 @@
                                                                                             ngClass="outpup-filename">{{
                                                                                             emirate[2] }}</span> <img
                                                                                             src="{{upload}}">
-                                                                                        <span ngClass="btn-txt">هوية
-                                                                                            الإمارات العربية المتحدة
-                                                                                            (الواجهة
-                                                                                            الامامية)</span></button>
+                                                                                        <span ngClass="btn-txt">صورة: هوية الإمارات (الواجهة الإمامية)</span></button>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -2463,10 +2473,7 @@
                                                                                             ngClass="outpup-filename">{{
                                                                                             emirate[3] }}</span> <img
                                                                                             src="{{upload}}">
-                                                                                        <span ngClass="btn-txt">هوية
-                                                                                            الإمارات العربية المتحدة
-                                                                                            (الواجهة
-                                                                                            الامامية)</span></button>
+                                                                                        <span ngClass="btn-txt">صورة: هوية الإمارات (الواجهة الإمامية)</span></button>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -2564,7 +2571,7 @@
 
                                                                 <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                                                     <div ngClass="block-wrapper mb-4">
-                                                                        <label class="h6-design">الدولة</label>
+                                                                        <label class="h6-design">الدولة </label>
 
                                                                         <mat-form-field appearance="fill"
                                                                             class="full-width select-form input-design-2">
@@ -2615,7 +2622,7 @@
 
 
                                                             <div ngClass="other-document-upload mb-4">
-                                                                <h6 ngClass="h6-design mb-3">تحميل المستندات</h6>
+                                                                <h6 ngClass="h6-design mb-3">رفع المستندات</h6>
                                                                 <div ngClass="row">
                                                                     <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                                                                         <div ngClass="blue-upload-box">
@@ -2630,8 +2637,7 @@
                                                                                             ngClass="outpup-filename">{{
                                                                                             emirate[0] }}</span> <img
                                                                                             src="{{upload}}">
-                                                                                        <span ngClass="btn-txt">وثيقة
-                                                                                            الرخصة التجارية</span>
+                                                                                        <span ngClass="btn-txt">صورة: رقم وثيقة التصريح</span>
                                                                                     </button>
                                                                                 </div>
                                                                             </div>
@@ -2662,8 +2668,7 @@
                                                                                             Picture: Permit No
                                                                                             Document</span>
                                                                                         <img src="{{upload}}"> <span -->
-                                                                                        <span ngClass="btn-txt">رقم
-                                                                                            تصريح الملف</span>
+                                                                                        <span ngClass="btn-txt">صورة: رقم تصريح الملف</span>
                                                                                     </button>
                                                                                 </div>
                                                                             </div>
@@ -2751,7 +2756,7 @@
                                         </div>
                                     </div>
                                 </mat-tab>
-                                <mat-tab label="غير كلمة السر">
+                                <mat-tab label="تغيير كلمة المرور">
                                     <div class="row">
                                         <div class="col-md-9">
                                             <form [formGroup]="changePasswordForm">
@@ -2761,7 +2766,7 @@
                                                             <div ngClass="row">
                                                                 <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                                                     <div ngClass="block-wrapper mb-4">
-                                                                        <label class="h6-design">غير كلمة السر</label>
+                                                                        <label class="h6-design">تغيير كلمة المرور</label>
                                                                         <mat-form-field appearance="fill"
                                                                             class="full-width input-design-2">
                                                                             <input matInput
@@ -2783,7 +2788,7 @@
                                                                     <div ngClass="hint-text">
                                                                         <p>أحرف على الأقل</p>
                                                                         <p>مزيج من الحروف والأرقام</p>
-                                                                        <p>شخصية خاصة واحدة على الأقل</p>
+                                                                        <p>رمز خاص واحد على الأقل</p>
                                                                         <p>ما لا يقل عن حرف واحد صغير وحرف واحد كبير</p>
                                                                     </div>
                                                                 </div>
@@ -2822,7 +2827,7 @@
                                                                     <div ngClass="block-wrapper mb-4">
                                                                         <div class="d-flex justify-content-between">
                                                                             <div>
-                                                                                <h3 class="sub-title">اعدادات اللغة</h3>
+                                                                                <h3 class="sub-title">إعدادات اللغة</h3>
                                                                                 <label class="h6-design">حدد لغتك
                                                                                     المفضلة</label>
                                                                             </div>
@@ -2902,16 +2907,16 @@
 
                     <div class="free-proplisting" *ngIf="professionalType == 2 || professionalType == 3">
                         <div class="first-title">
-                            <h3 class="title">FREE Property Listing</h3>
+                            <h3 class="title">إعلان مجاني للعقارات</h3>
                             <p>Sell or Rent Your Home</p>
                         </div>
                         <ul>
                             <li>قائمة العقارات الخاصة بك على أوفاليويت مباشرة.</li>
-                            <li>قائمة مختصرة للعملاء من الردود المحدودة.</li>
+                            <li> قائمة ردود مختصرة محدودة للعملاء.</li>
                             <li>ربط وإدارة وعرض العقارات الخاصة بك.</li>
-                            <li>تفاوض مباشرة دون أي وسيط.</li>
+                            <li>  التفاوض مباشرة بدون وسيط</li>
                         </ul>
-                        <a routerLink="/ar/listingproperty" class="btn btn-primary">List Property</a>
+                        <a routerLink="/ar/listingproperty" class="btn btn-primary">قائمة الممتلكات</a>
                     </div>
 
                     <div class="statictics-wrap mt-5">
@@ -2919,7 +2924,7 @@
                             <div class="col-md-6">
                                 <div class="card">
                                     <div class="content-area">
-                                        <h4 class="title">Listings Summary</h4>
+                                        <h4 class="title">ملخص الإعلانات</h4>
                                         <p>Last Listed 05th May 2022</p>
                                         <ul class="counts-wrap">
                                             <li>

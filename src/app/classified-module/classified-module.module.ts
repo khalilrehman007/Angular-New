@@ -45,6 +45,19 @@ import { FurnitureDetailsComponent } from './classified-details/furniture-detail
 import { SportsEquipmentDetailsComponent } from './classified-details/sports-equipment-details/sports-equipment-details.component';
 import { PhoneTabletDetailsComponent } from './classified-details/phone-tablet-details/phone-tablet-details.component';
 import { ServicesDetailsComponent } from './classified-details/services-details/services-details.component';
+import { FurnitureListingComponent } from './classified-listings/furniture-listing/furniture-listing.component';
+import { SportsListingComponent } from './classified-listings/sports-listing/sports-listing.component';
+import { MobileTabletListingComponent } from './classified-listings/mobile-tablet-listing/mobile-tablet-listing.component';
+import { ServicesListingComponent } from './classified-listings/services-listing/services-listing.component';
+import { MotorsListingComponent } from './classified-listings/motors-listing/motors-listing.component';
+import { FurnitureFilterComponent } from './classified-listings/furniture-filter/furniture-filter.component';
+import { MobileTabletFilterComponent } from './classified-listings/mobile-tablet-filter/mobile-tablet-filter.component';
+import { MotorsFiltersComponent } from './classified-listings/motors-filters/motors-filters.component';
+import { ServiceFiltersComponent } from './classified-listings/service-filters/service-filters.component';
+import { SportsFiltersComponent } from './classified-listings/sports-filters/sports-filters.component';
+import { MatSelectModule } from '@angular/material/select';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+
 
 
 @NgModule({
@@ -74,7 +87,17 @@ import { ServicesDetailsComponent } from './classified-details/services-details/
     FurnitureDetailsComponent,
     SportsEquipmentDetailsComponent,
     PhoneTabletDetailsComponent,
-    ServicesDetailsComponent
+    ServicesDetailsComponent,
+    FurnitureListingComponent,
+    SportsListingComponent,
+    MobileTabletListingComponent,
+    ServicesListingComponent,
+    MotorsListingComponent,
+    FurnitureFilterComponent,
+    MobileTabletFilterComponent,
+    MotorsFiltersComponent,
+    ServiceFiltersComponent,
+    SportsFiltersComponent
   ],
   imports: [
     CommonModule,
@@ -97,7 +120,9 @@ import { ServicesDetailsComponent } from './classified-details/services-details/
     NgChartsModule,
     NgxGalleryModule,
     NgbModule,
-    BreadcrumbsModule
+    BreadcrumbsModule,
+    MatSelectModule,
+    MatCheckboxModule
   ],
   exports: [
     ClassifiedHomeComponent,

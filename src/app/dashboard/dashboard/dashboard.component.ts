@@ -1,10 +1,9 @@
-import { Component, ViewEncapsulation, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import * as $ from 'jquery';
-import { NgbNav } from '@ng-bootstrap/ng-bootstrap';
 import { NotificationService } from "../../service/notification.service";
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 
 import { AppService } from 'src/app/service/app.service';
@@ -19,6 +18,7 @@ import { environment } from 'src/environments/environment';
   providers: [DatePipe]
 })
 export class DashboardComponent implements OnInit, AfterViewInit {
+// _key = CryptoJS.enc.Utf8.parse(this.tokenFromUI);
   blogs: any;
   proFrame = '../../assets/images/profile/pro-img-frame.png'
   pdf = 'assets/images/icons/pdf.png'
@@ -764,6 +764,7 @@ console.log(this.userData)
       this.childTabId=1
     }
     this.service.LoadListing({ "UserId": this.user.id, "PropertyListingTypeId": this.parentTabId, "PropertyListingStatusId": this.childTabId }).subscribe(data => {  
+      console.log("zz",data);
       let response: any = data;
       response.data.forEach((element: any, i: any) => {
         let image: any;
@@ -780,10 +781,10 @@ console.log(this.userData)
           {
             id: element.id, propertyTitle: element.propertyTitle, propertyAddress: element.propertyAddress, img: image,
             buildingName: element.buildingName, bedrooms: element.bedrooms, bathrooms: element.bathrooms, carpetArea: element.carpetArea, buildupArea: element.buildupArea,
-            unitNo: element.unitNo, totalFloor: element.totalFloor, floorNo: element.floorNo, propertyDescription: element.propertyDescription,
+            unitNo: element.unitNo, totalFloor: element.totalFloor, floorNo: element.floorNo, propertyDescription: element.propertyDescription,plotSize:element.plotSize,
             requestedDate: element.requestedDate, furnishingType: element.furnishingType, propertyPrice: element.propertyPrice,
             requestedDateFormat: element.requestedDateFormat,
-            expiredDateFormat: element.expiredDateFormat, rentType: rentTypeName, currency: element.country.currency
+            expiredDateFormat: element.expiredDateFormat, rentType: rentTypeName, currency: element.country.currency,unitType:element.country.unitType
           }
         );
       })

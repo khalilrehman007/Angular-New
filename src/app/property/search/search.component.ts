@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 // import { PropertyfilterComponent } from '../../propertyfilter/propertyfilter.component';
 import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
 import { AppService } from "../../service/app.service";
@@ -7,13 +7,14 @@ import { NotificationService } from "../../service/notification.service";
 import { AuthService } from "../../service/auth.service";
 import { JsonpInterceptor } from "@angular/common/http";
 import { environment } from 'src/environments/environment';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss']
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent implements OnInit,AfterViewInit {
   videotiour = '../../../assets/images/icons/video-tour.svg'
   lsitedby = '../../../assets/images/icons/listed-by.svg'
   ovverified = '../../../assets/images/icons/ov-verified.svg'
@@ -56,7 +57,12 @@ export class SearchComponent implements OnInit {
       img: '../../../assets/images/slider.png',
     },
   ]
+  showRecentTransactions: boolean = false;
+  showPriceRange: boolean = false;
+  showAvgSqft: boolean = false;
+  showDIDiv: boolean = true;
   type: any;
+  countryData:any={};
   PropertyCategoryId: any;
   RentTypeId: any;
   PropertyListingTypeId: any;
@@ -89,7 +95,7 @@ export class SearchComponent implements OnInit {
   halfList: any = 0;
   currency: any = "";
   listingImage: any;
-  constructor(private authService: AuthService, private notifyService: NotificationService, private activeRoute: ActivatedRoute, private service: AppService, private api: AppService, private route: Router, private modalService: NgbModal) {
+  constructor(private cookie: CookieService,private authService: AuthService, private notifyService: NotificationService, private activeRoute: ActivatedRoute, private service: AppService, private api: AppService, private route: Router, private modalService: NgbModal) {
     $(window).scrollTop(0);
     this.route.events.subscribe((e: any) => {
       if (e instanceof NavigationEnd) {
@@ -161,6 +167,16 @@ export class SearchComponent implements OnInit {
         })
       }
     });
+  }
+
+  ngAfterViewInit(): void {
+    let a = setInterval(() => {
+      if (this.cookie.get("countryData")) {
+        this.countryData = JSON.parse(this.cookie.get("countryData"));
+        console.log("xx",this.countryData)
+        clearInterval(a);
+      }
+    })
   }
 
   onTrendClick(typeID: any, titleID: any) {
@@ -341,7 +357,6 @@ export class SearchComponent implements OnInit {
         // localStorage.setItem('propertyListingTotalRecord', this.totalRecord);
         localStorage.setItem('listingForMap', JSON.stringify(data))
       }, 1000);
-
       response.data.propertyListings.forEach((element: any, i: any) => {
         let documentsCheck: any = true;
         let rentTypeName = ''
@@ -349,7 +364,7 @@ export class SearchComponent implements OnInit {
           rentTypeName = element.rentType.name
         }
         let documents: any = []
-        if (element.documents.length >= 1) {
+        if (element.documents?.length >= 1) {
           documents = element.documents
         } else {
           documentsCheck = false
@@ -358,30 +373,57 @@ export class SearchComponent implements OnInit {
         let userImage = '../assets/images/user.png'
         let fullName = ''
         let userId = ''
-        if (element.user != null && element.user !== undefined && element.user.imageUrl != null) {
+        if (element.user != null && element.user !== undefined && element.user?.imageUrl != null) {
           userImage = this.baseUrl + element.user.imageUrl
           fullName = element.user.fullName
           userId = element.user.id
+        }
+        if (element.recentRentTxns != 0 && element.recentRentTxns != null && element.recentRentTxns != undefined) {
+          this.showRecentTransactions = true;
+        }
+        else{
+          this.showRecentTransactions = false;
+        }
+        if (element.rentAvgPriceSqft != 0 && element.rentAvgPriceSqft != null && element.rentAvgPriceSqft != undefined) {
+          this.showAvgSqft = true;
+        }
+        else{
+          this.showAvgSqft = false;
+        }
+        if ((element.startRentPrice != 0 && element.startRentPrice != null && element.startRentPrice != undefined)
+          || (element.endRentPrice != 0 && element.endRentPrice != null && element.endRentPrice != undefined)
+        ) {
+          this.showPriceRange = true;
+        }
+        else{
+          this.showPriceRange = false;
+        }
+        if (this.showRecentTransactions == false && this.showPriceRange == false && this.showAvgSqft == false) {
+          this.showDIDiv = false;
+        }
+        else{
+          this.showDIDiv=true;
         }
 
         tempData.push(
           {
             buildupArea: element.buildupArea,
-            plotSize:element.plotSize,
+            plotSize: element.plotSize,
             id: element.id, favorite: element.favorite, userImage: userImage, fullName: fullName, userId: userId,
-            StartRentPrice: element.startRentPrice, EndRentPrice: element.endRentPrice, AvgRentPrice: element.avgRentPrice, RecentRentTxns: element.recentRentTxns,
+            StartRentPrice: element.startRentPrice, EndRentPrice: element.endRentPrice, AvgRentPrice: element.rentAvgPriceSqft, RecentRentTxns: element.recentRentTxns,
             documents: documents, propertyFeatures: element.propertyFeatures, propertyType: element.propertyType,
             propertyTitle: element.propertyTitle, propertyAddress: element.propertyAddress, documentsCheck: documentsCheck,
             buildingName: element.buildingName, bedrooms: element.bedrooms, bathrooms: element.bathrooms, carpetArea: element.carpetArea,
-            unitNo: element.unitNo, totalFloorgit: element.totalFloor, floorNo: element.floorNo, propertyDescription: element.propertyDescription,
-            requestedDate: element.requestedDate, furnishingType: element.furnishingType, propertyPrice: element.propertyPrice,
-            requestedDateFormat: element.requestedDateFormat, brokerageChargePrice: element.brokerageChargePrice, securityDepositPrice: element.securityDepositPrice,
-            expiredDateFormat: element.expiredDateFormat, rentType: rentTypeName, currency: element.country.currency, propertyCode: element.propertyCode
+            furnishingType: element.furnishingType, propertyPrice: element.propertyPrice,
+            requestedDateFormat: element.requestedDateFormat,
+            rentType: rentTypeName, listingTypeId: element.propertyListingTypeId, currency: element.country.currency, propertyCode: element.propertyCode,
+            listingType: element.propertyListingTypeId == 1 ? "Rent" : "Sale",showRecentTransactions:this.showRecentTransactions,
+            showAvgSqft:this.showAvgSqft,showPriceRange:this.showPriceRange,showDIDiv:this.showDIDiv
+
           }
         );
       })
       this.searchListing = tempData;
-      console.log(tempData)
       this.currency = response.data.propertyListings[0].country.currency;
       this.halfList = Math.floor(this.searchListing.length / 2);
     });

@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import {  Router, RoutesRecognized } from "@angular/router";
+import { ActivatedRoute, Router, RoutesRecognized } from "@angular/router";
 import { NotificationService } from "../../service/notification.service";
 import { AppService } from 'src/app/service/app.service';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { filter, pairwise } from 'rxjs';
+import { filter, pairwise, ReplaySubject, Subject, takeUntil } from 'rxjs';
 
 declare const google: any;
 
@@ -29,7 +29,8 @@ export class PropertyinfoComponent implements OnInit {
   @ViewChild('searchLocation') searchElement: any;
 
   Locate = '../../../../assets/images/icons/locate.svg'
-
+  editListingData: any = {};
+  routeId: any = 0;
   country: any = [];
   city: any = [];
   messageclass = ''
@@ -64,25 +65,64 @@ export class PropertyinfoComponent implements OnInit {
   selectedPackage: any = [];
   selectedPackageName: any = [];
   districtName: any;
+  userData: any = localStorage.getItem("user");
+  SubmitForm = new FormGroup({
+    address: new FormControl("", Validators.required),
+    countryId: new FormControl(null, Validators.required),
+    cityId: new FormControl(null, Validators.required),
+    districtId: new FormControl(null, Validators.required),
+  });
+  get validate() {
+    return this.SubmitForm.controls;
+  }
 
-  constructor(private route: Router, private notifyService: NotificationService, private service: AppService, private modalService: NgbModal, config: NgbModalConfig) {
+  public countryFilterCtrl: FormControl = new FormControl();
+  public filteredCountries: any = new ReplaySubject(1);
+  public cityFilterCtrl: FormControl = new FormControl();
+  public filteredCities: any = new ReplaySubject(1);
+  public districtFilterCtrl: FormControl = new FormControl();
+  public filteredDistricts: any = new ReplaySubject(1);
+  protected _onDestroy = new Subject();
+  constructor(private router: ActivatedRoute, private route: Router, private notifyService: NotificationService, private service: AppService, private modalService: NgbModal, config: NgbModalConfig) {
+    this.userData = JSON.parse(this.userData);
     this.route.events
-    .pipe(filter((evt: any) => evt instanceof RoutesRecognized), pairwise())
-    .subscribe((events: RoutesRecognized[]) => {
-      console.log('previous url', events[0].urlAfterRedirects);
-      if(events[0].urlAfterRedirects.includes('listpropertyinfo') || events[0].urlAfterRedirects.includes('listingproperty') 
-      || events[0].urlAfterRedirects.includes('listpropertymedia')){}
-      else{
-        localStorage.removeItem("bounds");
-        localStorage.removeItem("currency");
-        localStorage.removeItem("arabicAddress");
-        localStorage.removeItem("propertyData");
-        localStorage.removeItem("lng");
-        localStorage.removeItem("address");
-        localStorage.removeItem("lat");
+      .pipe(filter((evt: any) => evt instanceof RoutesRecognized), pairwise())
+      .subscribe((events: RoutesRecognized[]) => {
+
+        if (events[0].urlAfterRedirects.includes('listpropertyinfo') || events[0].urlAfterRedirects.includes('listingproperty')
+          || events[0].urlAfterRedirects.includes('listpropertymedia')) { }
+        else {
+          localStorage.removeItem("bounds");
+          localStorage.removeItem("currency");
+          localStorage.removeItem("arabicAddress");
+          localStorage.removeItem("propertyData");
+          localStorage.removeItem("lng");
+          localStorage.removeItem("address");
+          localStorage.removeItem("lat");
+        }
+      });
+
+    this.router.params.subscribe((params: any) => {
+      const isEmpty = Object.keys(params).length === 0
+      if (isEmpty == false) {
+        this.showLoader=true;
+        this.routeId = params.id;
+        this.service.DisplayPropertyListing({ "PropertyListingId": this.routeId, "LoginUserId": this.userData.id }).subscribe((result: any) => {
+          if (result.data.user.id != this.userData.id) {
+            this.route.navigate(["/"]);
+          } else {
+            this.editListingData = result.data.propertyListing;
+            this.loadDataForEdit(this.editListingData);
+          }
+          this.showLoader=false;
+        },(error:any)=>{
+          this.showLoader=false;
+        })
       }
-    });
-    const selectedPackageByPoints ={
+    }
+    );
+
+    const selectedPackageByPoints = {
       "id": 1,
       "name": "Free",
       "nameAr": "مجاني",
@@ -103,70 +143,70 @@ export class PropertyinfoComponent implements OnInit {
       "agentScore": 0,
       "customizePackage": false,
       "propertyListingPackageFeatures": [
-          {
+        {
+          "id": 1,
+          "detail": "01 Active Property Listing",
+          "detailAr": "01 عقار فعال",
+          "active": true,
+          "deleted": false,
+          "propertyListingPackageId": 1,
+          "propertyListingPackageSubFeatures": []
+        },
+        {
+          "id": 2,
+          "detail": "Up to 30 days validity",
+          "detailAr": "30 يوم فعالية ",
+          "active": true,
+          "deleted": false,
+          "propertyListingPackageId": 1,
+          "propertyListingPackageSubFeatures": []
+        },
+        {
+          "id": 3,
+          "detail": "Unlimited Leads",
+          "detailAr": "غير محدودين",
+          "active": true,
+          "deleted": false,
+          "propertyListingPackageId": 1,
+          "propertyListingPackageSubFeatures": [
+            {
               "id": 1,
-              "detail": "01 Active Property Listing",
-              "detailAr": "01 عقار فعال",
+              "detail": "Leads via Email",
+              "detailAr": "عبر الايميل",
               "active": true,
               "deleted": false,
-              "propertyListingPackageId": 1,
-              "propertyListingPackageSubFeatures": []
-          },
-          {
+              "propertyListingPackageFeatureId": 3
+            },
+            {
               "id": 2,
-              "detail": "Up to 30 days validity",
-              "detailAr": "30 يوم فعالية ",
+              "detail": "Leads via Email",
+              "detailAr": "عبر الايميل",
               "active": true,
               "deleted": false,
-              "propertyListingPackageId": 1,
-              "propertyListingPackageSubFeatures": []
-          },
-          {
+              "propertyListingPackageFeatureId": 3
+            },
+            {
               "id": 3,
-              "detail": "Unlimited Leads",
-              "detailAr": "غير محدودين",
+              "detail": "Leads via Email",
+              "detailAr": "عبر الايميل",
               "active": true,
               "deleted": false,
-              "propertyListingPackageId": 1,
-              "propertyListingPackageSubFeatures": [
-                  {
-                      "id": 1,
-                      "detail": "Leads via Email",
-                      "detailAr": "عبر الايميل",
-                      "active": true,
-                      "deleted": false,
-                      "propertyListingPackageFeatureId": 3
-                  },
-                  {
-                      "id": 2,
-                      "detail": "Leads via Email",
-                      "detailAr": "عبر الايميل",
-                      "active": true,
-                      "deleted": false,
-                      "propertyListingPackageFeatureId": 3
-                  },
-                  {
-                      "id": 3,
-                      "detail": "Leads via Email",
-                      "detailAr": "عبر الايميل",
-                      "active": true,
-                      "deleted": false,
-                      "propertyListingPackageFeatureId": 3
-                  }
-              ]
-          },
-          {
-              "id": 4,
-              "detail": "Display 4 Photos on the Listing",
-              "detailAr": "عرض 4 صور للعقار",
-              "active": true,
-              "deleted": false,
-              "propertyListingPackageId": 1,
-              "propertyListingPackageSubFeatures": []
-          }
+              "propertyListingPackageFeatureId": 3
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "detail": "Display 4 Photos on the Listing",
+          "detailAr": "عرض 4 صور للعقار",
+          "active": true,
+          "deleted": false,
+          "propertyListingPackageId": 1,
+          "propertyListingPackageSubFeatures": []
+        }
       ],
       "propertyListingType": null
-  }
+    }
     localStorage.setItem("seletedPackage", JSON.stringify(selectedPackageByPoints));
     if (!localStorage.getItem("user")) {
       this.notifyService.showError("You need to register/login", "");
@@ -188,9 +228,103 @@ export class PropertyinfoComponent implements OnInit {
       bounds: [],
       strictBounds: true,
     };
-    this.loadSavedData();
+    if (this.routeId == 0) {
+      this.loadSavedData();
+    }
+    
     config.backdrop = 'static';
     config.keyboard = false;
+  }
+
+  ngOnDestroy() {
+    this._onDestroy.next("");
+    this._onDestroy.complete();
+  }
+  ngOnInit(): void {
+    this.SubmitForm.controls['countryId'].valueChanges.subscribe(x => {
+      this.onCountrySelect(x);
+    })
+    this.SubmitForm.controls['cityId'].valueChanges.subscribe(x => {
+      this.onCitySelect(x);
+    })
+    this.SubmitForm.controls['districtId'].valueChanges.subscribe(x => {
+      this.onDistrictSelect(x);
+    })
+
+    this.filteredCountries.next(this.country.slice());
+    this.countryFilterCtrl.valueChanges
+      .pipe(takeUntil(this._onDestroy))
+      .subscribe(() => {
+        this.filterCountries();
+      });
+    this.filteredCities.next(this.city.slice());
+    this.cityFilterCtrl.valueChanges
+      .pipe(takeUntil(this._onDestroy))
+      .subscribe(() => {
+        this.filterCities();
+      });
+    this.filteredDistricts.next(this.district.slice());
+    this.districtFilterCtrl.valueChanges
+      .pipe(takeUntil(this._onDestroy))
+      .subscribe(() => {
+        this.filterDistricts();
+      });
+  }
+  ngAfterViewInit(): void {
+   
+      this.getLocation();
+    
+  }
+  filterCountries() {
+    if (!this.country) {
+      return;
+    }
+
+    let search = this.countryFilterCtrl.value;
+    if (!search) {
+      this.filteredCountries.next(this.country.slice());
+      return;
+    } else {
+      search = search.toLowerCase();
+    }
+
+    this.filteredCountries.next(
+      this.country.filter((x: any) => x.viewValue.toLowerCase().indexOf(search) > -1)
+    );
+  }
+  filterCities() {
+    if (!this.city) {
+      return;
+    }
+
+    let search = this.cityFilterCtrl.value;
+    if (!search) {
+      this.filteredCities.next(this.city.slice());
+      return;
+    } else {
+      search = search.toLowerCase();
+    }
+
+    this.filteredCities.next(
+      this.city.filter((x: any) => x.viewValue.toLowerCase().indexOf(search) > -1)
+    );
+  }
+  filterDistricts() {
+    if (!this.district) {
+      return;
+    }
+
+    let search = this.districtFilterCtrl.value;
+    if (!search) {
+      this.filteredDistricts.next(this.district.slice());
+      return;
+    } else {
+      search = search.toLowerCase();
+    }
+
+    this.filteredDistricts.next(
+      this.district.filter((x: any) => x.viewValue.toLowerCase().indexOf(search) > -1)
+    );
   }
   // checkPackage(e:any) {
   //   if(this.selectedPackageName.indexOf(e) != -1) {
@@ -204,35 +338,22 @@ export class PropertyinfoComponent implements OnInit {
       this.showMap = true;
       this.oldData = localStorage.getItem("propertyData");
       this.oldData = JSON.parse(this.oldData);
+      this.routeId = this.oldData.id != null || this.oldData.id != undefined ? this.oldData.id : 0;
+      console.log(this.oldData,this.routeId)
       this.SubmitForm.patchValue({
-        address: this.oldData.PropertyAddress
+        address: this.oldData.PropertyAddress,
       })
-      let a: any = setInterval(() => {
-        if (this.country.length > 0) {
-          $(".country-item-" + this.oldData.CountryId).attr("selected", "selected");
-          $(".country-select").select2();
-          clearInterval(a);
-        }
-      }, 100)
       this.countryId = this.oldData.CountryId;
+      this.SubmitForm.controls['countryId'].patchValue(this.oldData.CountryId, { emitEvent: false, onlySelf: true });
       this.service.LoadCities(this.countryId).subscribe(e => {
         let temp: any = e;
         if (temp.message == "City list fetched successfully") {
           for (let city of temp.data) {
             this.city.push({ viewValue: city.name, value: city.id });
           }
-          let interval: any = setInterval(() => {
-            if (this.city.length > 0) {
-              $(".city-item-" + this.oldData.CityId).attr("selected", "selected");
-              $(".city-select").select2();
-              clearInterval(interval);
-            }
-          }, 100)
+          this.filteredCities.next(this.city)
           this.cityId = this.oldData.CityId;
-          // let id = this.cityId;
-          // let a = this.city.filter(function (c: any) {
-          //   return c.value == id;
-          // });
+          this.SubmitForm.controls['cityId'].patchValue(this.oldData.CityId, { emitEvent: false, onlySelf: true });
           this.service.LoadDistrict(this.cityId).subscribe(e => {
             let temp: any = e;
             if (temp.result == 1) {
@@ -240,28 +361,158 @@ export class PropertyinfoComponent implements OnInit {
                 this.district.push({ viewValue: district.name, value: district.id });
               }
               this.showLoader = false;
-              let interval: any = setInterval(() => {
-                if (this.district.length > 0) {
-                  $(".district-item-" + this.oldData.DistrictId).attr("selected", "selected");
-                  $(".district-select").select2();
-                  $(".country-select").on("change", () => {
-                    this.onCountrySelect($(".country-select").val());
-                  });
-                  $(".city-select").on("change", () => {
-                    this.onCitySelect($(".city-select").val());
-                  });
-                  $(".district-select").on("change", () => {
-                    this.onDistrictSelect($(".district-select").val());
-                  });
-                  clearInterval(interval);
-                }
-              }, 100);
+              this.filteredDistricts.next(this.district)
             }
           });
           this.districtId = this.oldData.DistrictId;
+          this.SubmitForm.controls['districtId'].patchValue(this.oldData.DistrictId, { emitEvent: false, onlySelf: true });
+        }
+        if(this.routeId!=0){
+          this.SubmitForm.get('countryId')?.disable({emitEvent:false,onlySelf:true});
+          this.SubmitForm.get('cityId')?.disable({emitEvent:false,onlySelf:true});
+          this.SubmitForm.get('districtId')?.disable({emitEvent:false,onlySelf:true});
+          this.SubmitForm.get('address')?.disable({emitEvent:false,onlySelf:true});
         }
       });
     }
+  }
+  loadDataForEdit(object: any) {
+    let districtName = object.district?.name;
+    let currencyType=object.country?.currency;
+    let oldData: any = {}
+    oldData.id = object.id;
+    oldData.PackageId = object.packageId;
+    oldData.CountryId = object.countryId;
+    oldData.CityId = object.cityId;
+    oldData.DistrictId = object.districtId;
+    oldData.PropertyAddress = object.propertyAddress;
+    oldData.PropertyAddressArabic = object.propertyAddressArabic;
+    oldData.PropertyLat = object.propertyLat;
+    oldData.PropertyLong = object.propertyLong;
+    oldData.PropertyListingTypeId = object.propertyListingTypeId;
+    oldData.PropertyTitle = object.propertyTitle;
+    oldData.PropertyAge = object.propertyAge;
+    oldData.BedRooms = object.bedrooms;
+    oldData.BathRooms = object.bathrooms;
+    oldData.BuildingName = object.buildingName;
+    oldData.PropertyTransactionTypeId = object.propertyTransactionTypeId;
+    oldData.PropertyCategoryId = object.propertyCategoryId;
+    oldData.PropertyTypeId = object.propertyTypeId;
+    let FurnishingTypeId = 0;
+    if (object.furnishingType == "Furnished") {
+      FurnishingTypeId = 1;
+    }
+    else if (object.furnishingType == "Unfurnished") {
+      FurnishingTypeId = 2;
+    }
+    else if (object.furnishingType == "SemiFurnished") {
+      FurnishingTypeId = 3;
+    }
+    else if (object.furnishingType == "ShellAndCore") {
+      FurnishingTypeId = 4;
+    }
+    oldData.FurnishingType = FurnishingTypeId;
+    let FittingTypeId = 0;
+    if (object.fittingType == "None") {
+      FittingTypeId = 1;
+    }
+    else if (object.fittingType == "Fitted") {
+      FittingTypeId = 2;
+    }
+    oldData.FittingType = FittingTypeId;
+    oldData.OccupancyStatusId = object.occupancyStatusId;
+    oldData.Parkings = object.parkings;
+    oldData.Balcony = object.balcony;
+    oldData.CarpetArea = object.carpetArea;
+    oldData.BuildupArea = object.buildupArea;
+    oldData.PlotSize = object.plotSize;
+    oldData.PropertyPrice = object.propertyPrice;
+    oldData.RentTypeId = object.rentTypeId;
+    oldData.SecurityDeposit = object.securityDeposit.toString();
+    oldData.SecurityDepositPrice = object.securityDepositPrice;
+    oldData.BrokerageCharge = object.brokerageCharge.toString();
+    oldData.BrokerageChargePrice = object.brokerageChargePrice;
+    oldData.PropertyOffer = object.propertyOffer;
+    oldData.PropertyDescription = object.propertyDescription;
+    oldData.MaintenanceCharges = object.maintenanceCharges;
+    oldData.PropertyCompletionStatusId = object.propertyCompletionStatusId;
+    oldData.UserId = object.userId;
+    oldData.YoutubeUrl = object.youtubeUrl;
+    oldData.TourUrl = object.tourUrl;
+    oldData.ProfessionalTypeId = object.professionalTypeId;
+    oldData.CompanyId = object.companyId;
+    oldData.StartDate = object.startDate;
+    oldData.EndDate = object.endDate;
+    oldData.PropertyDeveloperId = object.propertyDeveloperId;
+    oldData.PropertyListingStatusId = object.propertyListingStatusId;
+    oldData.UnitNumber = object.unitNumber;
+    let temp:any = [];
+    object.propertyFeatures?.forEach((x: any) => {
+      temp.push({
+        PropertyFeatureId: x.propertyFeatureId
+      })
+    })
+    oldData.PropertyFeatures=temp;
+    temp=[];
+    object.propertyListingLocatedNears?.forEach((x:any)=>{
+      temp.push({
+        LocatedNearId:x.locatedNearId
+      })
+    })
+    oldData.PropertyListingLocatedNears=temp;
+    temp=[];
+    object.documents?.forEach((x:any)=>{
+      temp.push({
+        Id:x.id,
+        ListingDocumentTypeId:x.listingDocumentTypeId,
+        FileName:x.fileName,
+        Extension:x.extension,
+        FileUrl:x.fileUrl
+      })
+    })
+    oldData.Documents=temp;
+
+    this.SubmitForm.patchValue({
+      address: oldData.PropertyAddress,
+    })
+    this.countryId = oldData.CountryId;
+    console.log(this.countryId)
+    this.SubmitForm.controls['countryId'].patchValue(oldData.CountryId, { emitEvent: false, onlySelf: true });
+    this.service.LoadCities(this.countryId).subscribe(e => {
+      let temp: any = e;
+      if (temp.message == "City list fetched successfully") {
+        for (let city of temp.data) {
+          this.city.push({ viewValue: city.name, value: city.id });
+        }
+        this.filteredCities.next(this.city)
+        this.cityId = oldData.CityId;
+        this.SubmitForm.controls['cityId'].patchValue(oldData.CityId, { emitEvent: false, onlySelf: true });
+        this.service.LoadDistrict(this.cityId).subscribe(e => {
+          let temp: any = e;
+          if (temp.result == 1) {
+            for (let district of temp.data) {
+              this.district.push({ viewValue: district.name, value: district.id });
+            }
+            this.filteredDistricts.next(this.district)
+          }
+        });
+        this.districtId = oldData.DistrictId;
+        this.SubmitForm.controls['districtId'].patchValue(oldData.DistrictId, { emitEvent: false, onlySelf: true });
+        this.getLocationDetails(districtName, true);
+        this.showMap = true;
+        localStorage.setItem("address", oldData.PropertyAddress);
+        localStorage.setItem("lat", oldData.PropertyLat);
+        localStorage.setItem("lng", oldData.PropertyLong);
+        localStorage.setItem("arabicAddress", oldData.PropertyAddressArabic);
+        localStorage.setItem("currency", currencyType);
+      }
+    
+        this.SubmitForm.get('countryId')?.disable({emitEvent:false,onlySelf:true});
+        this.SubmitForm.get('cityId')?.disable({emitEvent:false,onlySelf:true});
+        this.SubmitForm.get('districtId')?.disable({emitEvent:false,onlySelf:true});
+        this.SubmitForm.get('address')?.disable({emitEvent:false,onlySelf:true});
+        localStorage.setItem('propertyData', JSON.stringify(oldData))
+    });
   }
   // changeInfo() {
   //   $("#searchLocation").focus();
@@ -275,15 +526,10 @@ export class PropertyinfoComponent implements OnInit {
       let temp: any = e;
       if (temp.message == "Country list fetched successfully") {
         for (let country of temp.data) {
-          this.country.push({ viewValue: country.name, value: country.id ,currency:country.currency});
+          this.country.push({ viewValue: country.name, value: country.id, currency: country.currency });
         }
         this.showLoader = false;
-      }
-      if (this.oldData != "") {
-        let id = this.countryId;
-        let a = this.country.filter(function (c: any) {
-          return c.value == id;
-        });
+        this.filteredCountries.next(this.country);
       }
     });
   }
@@ -304,9 +550,7 @@ export class PropertyinfoComponent implements OnInit {
         return c.value == e
       });
       this.countryName = temp[0].viewValue;
-      console.log(temp);
       localStorage.setItem("currency", temp[0].currency)
-      // this.getLocationDetails(temp[0].viewValue, false);
       this.countryId = e;
       this.city = [];
       this.service.LoadCities(e).subscribe(e => {
@@ -316,6 +560,9 @@ export class PropertyinfoComponent implements OnInit {
             this.city.push({ viewValue: city.name, value: city.id });
           }
           this.showLoader = false;
+          this.filteredCities.next(this.city);
+          this.SubmitForm.controls['cityId'].patchValue(null, { emitEvent: false, onlySelf: true });
+          this.SubmitForm.controls['districtId'].patchValue(null, { emitEvent: false, onlySelf: true });
         }
       });
     } else {
@@ -334,7 +581,6 @@ export class PropertyinfoComponent implements OnInit {
         return c.value == e
       })
       this.cityName = temp[0].viewValue;
-      // this.getLocationDetails(temp[0].viewValue, false);
       this.cityId = e;
       this.service.LoadDistrict(e).subscribe(e => {
         let temp: any = e;
@@ -342,6 +588,8 @@ export class PropertyinfoComponent implements OnInit {
           for (let district of temp.data) {
             this.district.push({ viewValue: district.name, value: district.id });
           }
+          this.filteredDistricts.next(this.district);
+          this.SubmitForm.controls['districtId'].patchValue(null, { emitEvent: false, onlySelf: true });
           this.showLoader = false;
         }
       });
@@ -369,25 +617,21 @@ export class PropertyinfoComponent implements OnInit {
       this.districtName = "";
     }
   }
-  SubmitForm = new FormGroup({
-    address: new FormControl("", Validators.required),
-  });
-  get validate() {
-    return this.SubmitForm.controls;
-  }
+
   onSubmit() {
-    if ($(".country-select").val() == 0) {
-      this.currentField = "country-select + .select2";
+
+    if (this.SubmitForm.get('countryId')?.hasError('required')) {
+      this.currentField = "country-select";
       this.error = "Select Country";
       this.showError = true;
       return;
-    } else if ($(".city-select").val() == 0) {
-      this.currentField = "city-select + .select2";
+    } else if (this.SubmitForm.get('cityId')?.hasError('required')) {
+      this.currentField = "city-select";
       this.error = "Select City";
       this.showError = true;
       return;
-    } else if ($(".district-select").val() == 0) {
-      this.currentField = "district-select + .select2";
+    } else if (this.SubmitForm.get('districtId')?.hasError('required')) {
+      this.currentField = "district-select";
       this.error = "Select District";
       this.showError = true;
       return;
@@ -397,38 +641,37 @@ export class PropertyinfoComponent implements OnInit {
       this.showError = true;
       return;
     }
-   let existingData:any = localStorage.getItem('propertyData');
-   existingData=JSON.parse(existingData);
-   if(existingData!=null && existingData!=undefined){
-    let tempPackage:any = localStorage.getItem("seletedPackage");
-    tempPackage = JSON.parse(tempPackage);
-    existingData.PackageId = tempPackage.id;
-    existingData.CountryId = this.countryId;
-    existingData.CityId = this.cityId;
-    existingData.DistrictId = this.districtId;
-    let temp: any = document.getElementById("searchLocation");
-    existingData.PropertyAddress = temp.value;
-    existingData.PropertyAddressArabic = localStorage.getItem("arabicAddress");
-    existingData.PropertyLat = localStorage.getItem("lat");
-    existingData.PropertyLong = localStorage.getItem("lng");
-    console.log(existingData);
-    localStorage.setItem('propertyData', JSON.stringify(existingData))
-   }
-   else{
-    let tempPackage:any = localStorage.getItem("seletedPackage");
-    tempPackage = JSON.parse(tempPackage);
-    this.data.PackageId = tempPackage.id;
-    this.data.CountryId = this.countryId;
-    this.data.CityId = this.cityId;
-    this.data.DistrictId = this.districtId;
-    let temp: any = document.getElementById("searchLocation");
-    this.data.PropertyAddress = temp.value;
-    this.data.PropertyAddressArabic = localStorage.getItem("arabicAddress");
-    this.data.PropertyLat = localStorage.getItem("lat");
-    this.data.PropertyLong = localStorage.getItem("lng");
-    console.log(this.data);
-    localStorage.setItem('propertyData', JSON.stringify(this.data))
-   }
+    let existingData: any = localStorage.getItem('propertyData');
+    existingData = JSON.parse(existingData);
+    if (existingData != null && existingData != undefined) {
+      let tempPackage: any = localStorage.getItem("seletedPackage");
+      tempPackage = JSON.parse(tempPackage);
+      existingData.PackageId = tempPackage.id;
+      existingData.CountryId = this.countryId;
+      existingData.CityId = this.cityId;
+      existingData.DistrictId = this.districtId;
+      let temp: any = document.getElementById("searchLocation");
+      existingData.PropertyAddress = temp.value;
+      existingData.PropertyAddressArabic = localStorage.getItem("arabicAddress");
+      existingData.PropertyLat = localStorage.getItem("lat");
+      existingData.PropertyLong = localStorage.getItem("lng");
+
+      localStorage.setItem('propertyData', JSON.stringify(existingData))
+    }
+    else {
+      let tempPackage: any = localStorage.getItem("seletedPackage");
+      tempPackage = JSON.parse(tempPackage);
+      this.data.PackageId = tempPackage.id;
+      this.data.CountryId = this.countryId;
+      this.data.CityId = this.cityId;
+      this.data.DistrictId = this.districtId;
+      let temp: any = document.getElementById("searchLocation");
+      this.data.PropertyAddress = temp.value;
+      this.data.PropertyAddressArabic = localStorage.getItem("arabicAddress");
+      this.data.PropertyLat = localStorage.getItem("lat");
+      this.data.PropertyLong = localStorage.getItem("lng");
+      localStorage.setItem('propertyData', JSON.stringify(this.data))
+    }
     this.route.navigate(['/add-property/listpropertyinfo'])
   }
   animate() {
@@ -440,24 +683,7 @@ export class PropertyinfoComponent implements OnInit {
     })
     $(window).scrollTop(temp - 100);
   }
-  ngOnInit(): void {
-    
-  }
-  ngAfterViewInit(): void {
-    this.getLocation();
-    if (this.oldData == "") {
-      $('.select2').select2();
-    }
-    $(".country-select").on("change", () => {
-      this.onCountrySelect($(".country-select").val());
-    });
-    $(".city-select").on("change", () => {
-      this.onCitySelect($(".city-select").val());
-    });
-    $(".district-select").on("change", () => {
-      this.onDistrictSelect($(".district-select").val());
-    });
-  }
+
   onPlaceChanged() {
     let temp: any = document.getElementById("searchLocation");
     let address: any = temp.value;
@@ -480,7 +706,7 @@ export class PropertyinfoComponent implements OnInit {
           map: this.map,
           draggable: true,
         });
-        google.maps.event.addListener(this.marker, 'dragend', (e:any) => {
+        google.maps.event.addListener(this.marker, 'dragend', (e: any) => {
           let pos: any = this.marker.getPosition();
           let geocoder = new google.maps.Geocoder();
           geocoder.geocode
@@ -506,62 +732,63 @@ export class PropertyinfoComponent implements OnInit {
   }
   getLocationDetails(e: any, status: boolean) {
     $(".pac-container.pac-logo").remove();
-    e= this.ReplaceAlphabets(e);
+    e = this.ReplaceAlphabets(e);
     $.ajax({
       url: "https://maps.googleapis.com/maps/api/geocode/json?address=" + e + "&key=AIzaSyBPSEz52-AfPEVbmV_3yuGUGol_KiLb3GU",
       method: "get",
       success: (res) => {
-        let temp:any = "";
-        if(res.results[0].geometry.bounds) {
+        let temp: any = "";
+        if (res.results[0]?.geometry.bounds) {
           temp = res.results[0].geometry.bounds;
-        } else {
-          temp = res.results[0].geometry.viewport;
         }
-        this.bounds = { east: temp.northeast.lng, west: temp.southwest.lng, north: temp.northeast.lat, south: temp.southwest.lat };
-        localStorage.setItem("bounds", JSON.stringify(this.bounds));
-        let northEast = new google.maps.LatLng(temp.northeast.lat, temp.northeast.lng);
-        let southWest = new google.maps.LatLng(temp.southwest.lat, temp.southwest.lng);
-        let areabounds = new google.maps.LatLngBounds(southWest, northEast);
-        this.options.bounds = areabounds;
-        let area = res.results[0].geometry.location;
-        this.map = new google.maps.Map($(".property-details__map")[0], {
-          center: area,
-          zoom: 10,
-          disableDefaultUI: true,
-          restriction: {
-            latLngBounds: this.bounds,
-            strictBounds: true,
-          },
-        })
+        if (temp != "" && temp != undefined && temp != null) {
+          this.bounds = { east: temp.northeast.lng, west: temp.southwest.lng, north: temp.northeast.lat, south: temp.southwest.lat };
+          localStorage.setItem("bounds", JSON.stringify(this.bounds));
+          let northEast = new google.maps.LatLng(temp.northeast.lat, temp.northeast.lng);
+          let southWest = new google.maps.LatLng(temp.southwest.lat, temp.southwest.lng);
+          let areabounds = new google.maps.LatLngBounds(southWest, northEast);
+          this.options.bounds = areabounds;
+        }
+        else {
+          this.options.bounds = null
+        }
+
+        let area = res.results[0]?.geometry.location;
+        if (area != null && area != undefined && area != "") {
+          this.map = new google.maps.Map($(".property-details__map")[0], {
+            center: area,
+            zoom: 10,
+            disableDefaultUI: true,
+            restriction: {
+              latLngBounds: this.bounds,
+              strictBounds: true,
+            },
+          })
+        }
+        else {
+          if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+              (position: GeolocationPosition) => {
+                const pos = {
+                  lat: position.coords.latitude,
+                  lng: position.coords.longitude,
+                };
+                area = pos;
+              },
+            );
+          }
+        }
+
         this.marker = new google.maps.Marker({
           position: area,
           map: this.map,
-        // draggable: true,
+
         });
-        // google.maps.event.addListener(this.marker, 'dragend', (e:any) => {
-        //   let pos: any = this.marker.getPosition();
-        //   let geocoder = new google.maps.Geocoder();
-        //   geocoder.geocode
-        //     ({
-        //       latLng: pos
-        //     },
-        //       (results: any, status: any) => {
-        //         if (status == google.maps.GeocoderStatus.OK) {
-        //           localStorage.setItem("lat", e.latLng.lat());
-        //           localStorage.setItem("lng", e.latLng.lng());
-        //           $(".searchLocation").val(results[0].formatted_address);
-        //           localStorage.setItem("address", results[0].formatted_address);
-        //         }
-        //         else {
-        //           this.error = "Cannot determine address at this location.";
-        //           this.showError = true;
-        //         }
-        //       }
-        //     );
-        // });
         this.autocomplete = new google.maps.places.Autocomplete(this.searchElement.nativeElement, this.options);
         this.autocomplete.addListener('place_changed', this.onPlaceChanged);
-        this.autocomplete.setBounds(this.bounds);
+        if (temp != "" && temp != undefined && temp != null) {
+          this.autocomplete.setBounds(this.bounds);
+        }
         this.locationSelected = status;
       }
     });
@@ -637,43 +864,43 @@ export class PropertyinfoComponent implements OnInit {
   }
 
   ReplaceAlphabets(name: string): string {
-    let newName="";
+    let newName = "";
     if (name.toLowerCase().includes('first')) {
-      newName=name.toLowerCase().replace('first', '1');
+      newName = name.toLowerCase().replace('first', '1');
     }
     else if (name.toLowerCase().includes('second')) {
-      newName=name.toLowerCase().replace('second', '2');
+      newName = name.toLowerCase().replace('second', '2');
     }
     else if (name.toLowerCase().includes('third')) {
-      newName=name.toLowerCase().replace('third', '3');
+      newName = name.toLowerCase().replace('third', '3');
     }
     else if (name.toLowerCase().includes('fourth') || name.toLowerCase().includes('forth')) {
-      if(name.toLowerCase().includes('fourth')){
-        newName=name.toLowerCase().replace('fourth', '4');
-      }else{
-        newName=name.toLowerCase().replace('forth', '4');
+      if (name.toLowerCase().includes('fourth')) {
+        newName = name.toLowerCase().replace('fourth', '4');
+      } else {
+        newName = name.toLowerCase().replace('forth', '4');
       }
     }
     else if (name.toLowerCase().includes('fifth')) {
-      newName=name.toLowerCase().replace('fifth', '5');
+      newName = name.toLowerCase().replace('fifth', '5');
     }
     else if (name.toLowerCase().includes('sixth')) {
-      newName=name.toLowerCase().replace('sixth', '6');
+      newName = name.toLowerCase().replace('sixth', '6');
     }
     else if (name.toLowerCase().includes('seventh')) {
-      newName=name.toLowerCase().replace('seventh', '7');
+      newName = name.toLowerCase().replace('seventh', '7');
     }
     else if (name.toLowerCase().includes('eighth')) {
-      newName=name.toLowerCase().replace('eighth', '8');
+      newName = name.toLowerCase().replace('eighth', '8');
     }
     else if (name.toLowerCase().includes('ninth')) {
-      newName=name.toLowerCase().replace('ninth', '9');
+      newName = name.toLowerCase().replace('ninth', '9');
     }
     else if (name.toLowerCase().includes('tenth')) {
-      newName=name.toLowerCase().replace('tenth', '10');
+      newName = name.toLowerCase().replace('tenth', '10');
     }
-    else{
-      newName=name;
+    else {
+      newName = name;
     }
     return newName;
   }

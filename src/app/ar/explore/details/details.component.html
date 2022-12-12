@@ -23,7 +23,7 @@
                             <div ngClass="blogs-link-list">
                                 <ul ngClass="list-unstyled d-flex justify-content-start">
                                     <li [ngClass]="status ? 'tactive' : 'thide'"><a (click)="Overview()">نظرة عامة</a></li>
-                                    <li [ngClass]="status1 ? 'tactive' : 'thide'"><a (click)="NearBy()">موقع</a></li>
+                                    <li [ngClass]="status1 ? 'tactive' : 'thide'"><a (click)="NearBy()">الموقع</a></li>
                                     <li [ngClass]="status2 ? 'tactive' : 'thide'"><a (click)="ResPro()">العقارات السكنية</a></li>
                                     <li [ngClass]="status3 ? 'tactive' : 'thide'"><a (click)="ComPro()">العقارات التجارية</a></li>
                                 </ul>
@@ -58,7 +58,7 @@
                         <div ngClass="section-title">
                             <div ngClass="section-title-left">
                                 <h4>عقارات سكنية للإيجار</h4>
-                                <p>عقارات مميزة قريبة منك</p>
+                                <p>اختياراتنا المميزة لعقارات قريبة منك</p>
                             </div>
                             <div ngClass="section-title-right">
                                 <ul ngClass="nav nav-tabs" role="tablist">
@@ -104,7 +104,8 @@
                             </div>
                         </div>
                         <div class="no-data-found" *ngIf="dynamicSlides1.length == 0">
-                            <img src="/assets/images/no-data-ar.svg">
+                            <img src="/assets/images/no-properties.svg">
+                            <h5>لم يتم العثور على خصائص ..!</h5>
                         </div>
                         <div ngClass="tab-content">
                             <div id="resedential-rent" class="tab-pane active">
@@ -172,7 +173,7 @@
                                                     </button>
                                                 </div>
                                                 </div>
-                                                <button ngClass="tag_btn blue">مميز\ فاخر</button>
+                                                <button ngClass="tag_btn blue">الممتازة</button>
                                             </div>
                                             <div class="property_hdr-actions">
                                                 <button [ngClass]="slide.favorite == true ? 'property-whistlist red-fill' : 'property-whistlist'" (click)="AddToFavorite(slide.id,slide.favorite,'resedential-old')">
@@ -271,7 +272,7 @@
                                                     </button>
                                                 </div>
                                                 </div>
-                                                <button ngClass="tag_btn blue">مميز\ فاخر</button>
+                                                <button ngClass="tag_btn blue">الممتازة</button>
                                             </div>
                                             <div class="property_hdr-actions">
                                                 <button [ngClass]="slide.favorite == true ? 'property-whistlist red-fill' : 'property-whistlist'" (click)="AddToFavorite(slide.id,slide.favorite,'resedential-old')">
@@ -314,7 +315,7 @@
                         <div ngClass="section-title">
                             <div ngClass="section-title-left">
                                 <h4>عقارات تجارية للايجار</h4>
-                                <p>عقارات مميزة قريبة منك</p>
+                                <p>اختياراتنا المميزة لعقارات قريبة منك</p>
                             </div>
                             <div ngClass="section-title-right">
                                 <ul ngClass="nav nav-tabs" role="tablist">
@@ -362,7 +363,8 @@
                             </div>
                         </div>
                         <div class="no-data-found" *ngIf="commercialdynamicSlides.length == 0">
-                            <img src="/assets/images/no-data-ar.svg">
+                            <img src="/assets/images/no-properties.svg">
+                            <h5>لم يتم العثور على خصائص ..!</h5>
                         </div>
                         <div ngClass="tab-content">
                             <div id="resedential-rent" class="tab-pane active">
@@ -430,7 +432,7 @@
                                                     </button>
                                                 </div>
                                                 </div>
-                                                <button ngClass="tag_btn blue">مميز\ فاخر</button>
+                                                <button ngClass="tag_btn blue">الممتازة</button>
                                             </div>
                                             <div class="property_hdr-actions">
                                                 <button [ngClass]="slide.favorite == true ? 'property-whistlist red-fill' : 'property-whistlist'" (click)="AddToFavorite(slide.id,slide.favorite,'resedential-old')">
@@ -527,7 +529,7 @@
                                                     </button>
                                                 </div>
                                                 </div>
-                                                <button ngClass="tag_btn blue">مميز\ فاخر</button>
+                                                <button ngClass="tag_btn blue">الممتازة</button>
                                             </div>
                                             <div class="property_hdr-actions">
                                                 <button [ngClass]="slide.favorite == true ? 'property-whistlist red-fill' : 'property-whistlist'" (click)="AddToFavorite(slide.id,slide.favorite,'resedential-old')">

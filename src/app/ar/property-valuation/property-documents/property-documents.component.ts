@@ -64,7 +64,7 @@ export class PropertyDocumentsComponent implements OnInit {
   checkPhone() {
     let temp: any = this.reportForm.value.phone;
     if (temp.toString().length > 10) {
-      this.error = "Max length allows is 10";
+      this.error = "أقصى طول يسمح هو 10";
       this.showError = true;
       this.reportForm.patchValue({
         phone: temp.toString().slice(0, -1)
