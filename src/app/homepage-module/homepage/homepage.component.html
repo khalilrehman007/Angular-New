@@ -426,7 +426,7 @@
                                             </button>
                                         </div>
                                     </div>
-                                    <button ngClass="tag_btn blue">{{slide.package.name}}</button>
+                                    <button ngClass="tag_btn blue" *ngIf="slide.package.name=='Featured'">{{slide.package.name}}</button>
                                 </div>
                                 <div class="property_hdr-actions">
                                     <button
