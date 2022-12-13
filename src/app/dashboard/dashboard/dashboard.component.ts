@@ -95,6 +95,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   confirmMessage: any = "";
   showConfirm: any = "";
   deleteID: any = "";
+  showOldPassword:boolean=false;
+  showNewPassword:boolean=false;
+  showConfirmPassword:boolean=false;
   successResponse(data: any) {
     this.showSuccess = false;
   }
@@ -181,8 +184,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   companyDetailsFormData: any;
   userImage: any;
   changePasswordForm = new FormGroup({
-    currentPassword: new FormControl(""),
-    newPassword: new FormControl("")
+    id:new FormControl(0),
+    oldPassword: new FormControl(null,Validators.required),
+    password: new FormControl(null,[Validators.required,Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&]).{8,}')]),
+    confirmPassword: new FormControl(null,[Validators.required,Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&]).{8,}')])
   });
   cardForm = new FormGroup({
     cardNumber: new FormControl(""),
@@ -443,20 +448,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       }
     })
   }
-  changePassword() {
-    if (this.changePasswordForm.value.currentPassword == "") {
-      alert("Enter Password");
-    } else if (this.changePasswordForm.value.currentPassword == this.changePasswordForm.value.newPassword) {
-      let temp: any = localStorage.getItem("user");
-      temp = JSON.parse(temp);
-      this.service.ChangePassword({ "Id": temp.id, "Password": this.changePasswordForm.value.currentPassword, "ConfirmPassword": this.changePasswordForm.value.newPassword }).subscribe((result: any) => {
-        alert("Password Changed Successfully");
-        this.changePasswordForm.reset();
-      })
-    } else {
-      alert("Password does not match");
-    }
-  }
+  
   animate() {
     let temp: any = $("." + this.currentField).offset()?.top;
     $("." + this.currentField).addClass("blink");
@@ -1286,6 +1278,55 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         this.error = error;
       }
     )
+  }
+
+  changePassword() {
+    if (this.changePasswordForm.get('oldPassword')?.hasError('required')) {
+      this.currentField = "currentPass-Input";
+      this.error = "Enter Current Password";
+      this.showError = true;
+      return;
+    }
+    else if (this.changePasswordForm.get('password')?.hasError('required')) {
+      this.currentField = "Pass-Input";
+      this.error = "Enter New Password";
+      this.showError = true;
+      return;
+    }
+    else if (this.changePasswordForm.get('password')?.hasError('pattern')) {
+      this.currentField = "Pass-Input";
+      this.error = "New password doesn't meet the required pattern";
+      this.showError = true;
+      return;
+    }
+    else if (this.changePasswordForm.value.password != this.changePasswordForm.value.confirmPassword) {
+      this.currentField = "confirmPass-Input";
+      this.error = "Confirm password doesn't match the new password";
+      this.showError = true;
+      return;
+    }
+    this.showLoader = true;
+     this.changePasswordForm.get('id')?.patchValue(this.userId);
+     this.service.ChangePassword(this.changePasswordForm.value).subscribe((resp: any) => {
+      if (resp.result == 1) {
+        this.showLoader = false;
+        this.success = "Password Updated Successfully!"
+        this.showSuccess = true;
+        this.changePasswordForm.reset();
+      }
+      else {
+        this.showLoader = false;
+        this.error = "Failed to change password";
+        this.showError = true;
+      }
+    },
+      (error: any) => {
+        this.showLoader = false;
+        this.showError = true;
+        this.error = error;
+      }
+    )
+    
   }
 
   viewBuyCount: any;
