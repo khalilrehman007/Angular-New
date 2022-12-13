@@ -4,7 +4,7 @@ import { AppService } from 'src/app/service/app.service';
 import { Router } from '@angular/router';
 import { MaskService, NgxMaskModule } from 'ngx-mask';
 import { Select2 } from 'select2';
-
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-property-types',
   templateUrl: './property-types.component.html',
@@ -55,9 +55,14 @@ export class PropertyTypesComponent implements OnInit {
   permitData: any = "";
   permitLsit: any = [];
   propertyStatusData: any = [];
+  canPerformValuation:boolean = true;
   errorResponse(data: any) {
-    this.showError = false;
-    this.animate();
+    if(!this.canPerformValuation) {
+      this.router.navigate(["/"])
+    } else {
+      this.showError = false;
+      this.animate();
+    }
   }
   confirmResponse(data: any) {
     this.showConfirm = false;
@@ -424,7 +429,7 @@ console.log("unit",hasBed)
       this.error = "Please Select Number of Road";
       this.showError = true;
       return;
-    } else if (this.propertyTypeForm.value.constructionAge == "") {
+    } else if (this.propertyData.hasPropertyAge && this.propertyTypeForm.value.constructionAge == "") {
       this.currentField = "constructionAge-input";
       this.error = "Please Enter Property Age";
       this.showError = true;
@@ -521,7 +526,11 @@ console.log("unit",hasBed)
       tempData.push({ "LocatedNearId": this.locatedNearData[i] });
     }
     this.formData.ValuationLocatedNears = tempData;
-    this.formData.ConstructionAge = this.propertyTypeForm.value.constructionAge;
+    if(this.propertyData.hasPropertyAge) {
+      this.formData.ConstructionAge = this.propertyTypeForm.value.constructionAge;
+    } else {
+      this.formData.ConstructionAge = 0;
+    }
     this.formDetailData.PlotSize = this.propertyTypeForm.value.apartmentSize;
     this.formDetailData.BuildupArea = 0;
 
@@ -568,11 +577,47 @@ console.log("unit",hasBed)
     }
     this.formDetailData.PropertyFeatures = this.featuresFormName;
     this.formData.PropertyFeatures = temp;
-    localStorage.setItem('valuationDetailData', JSON.stringify(this.formDetailData));
-    localStorage.setItem('propertyTypeData', JSON.stringify(this.formData));
-    localStorage.setItem('valuationData', JSON.stringify(this.formData));
-    localStorage.removeItem("valuationFromFooter");
-    this.router.navigate(['/valuation/PropertyDocument']);
+    let valuationData = new FormData();
+    valuationData.append("ValuationRequest", JSON.stringify(this.formData));
+    let token: any = localStorage.getItem("token");
+    token = JSON.parse(token);
+    this.showLoader = true;
+    $.ajax({
+      url: `${environment.apiUrl}api/AddValuation`,
+      method: "post",
+      contentType: false,
+      processData: false,
+      data: valuationData,
+      headers: {
+        "Authorization": 'bearer ' + token
+      },
+      dataType: "json",
+      success: (res) => {
+        console.log(res);
+        if(res.canPerformValuation) {
+          this.formData.id = res.data.id;
+          localStorage.setItem('valuationDetailData', JSON.stringify(this.formDetailData));
+          localStorage.setItem('propertyTypeData', JSON.stringify(this.formData));
+          localStorage.setItem('valuationData', JSON.stringify(this.formData));
+          localStorage.removeItem("valuationFromFooter");
+          this.router.navigate(['/valuation/PropertyDocument']);
+        } else {
+          this.canPerformValuation = false;
+          this.error = "We don't have data in this area to perform valuation";
+          this.showError = true;
+          localStorage.removeItem("bounds");
+          localStorage.removeItem("valuationDetailData");
+          localStorage.removeItem("lat");
+          localStorage.removeItem("lng");
+          localStorage.removeItem("address");
+          localStorage.removeItem("valuationData");
+          localStorage.removeItem("mapImg");
+        }
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
   }
   validateInput(e: any) {
     if (e.key.charCodeAt(0) >= 48 && e.key.charCodeAt(0) <= 57 || e.key.charCodeAt(0) >= 65 && e.key.charCodeAt(0) <= 90 || e.key.charCodeAt(0) >= 97 && e.key.charCodeAt(0) <= 122) {

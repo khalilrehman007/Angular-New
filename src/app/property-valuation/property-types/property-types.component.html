@@ -197,7 +197,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+                                    <div ngClass="col-xl-6 col-lg-6 col-sm-12" *ngIf="propertyData.hasPropertyAge">
                                         <div ngClass="block-wrapper mb-4">
                                             <label class="h6-design">Property Age <span
                                                     ngClass="required-span">*</span></label>
@@ -227,7 +227,7 @@
                                     </div>
                                     <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                         <div ngClass="block-wrapper mb-4">
-                                            <label class="h6-design">{{propertyData.typeDescription}} Size in Sq.Ft.
+                                            <label class="h6-design">{{propertyData.sizeLabel}} in Sq.Ft.
                                                 <span ngClass="required-span">*</span></label>
                                             <div ngClass="position-relative apartment-size-input">
                                                 <mat-form-field class="full-width input-design-2" appearance="fill">
