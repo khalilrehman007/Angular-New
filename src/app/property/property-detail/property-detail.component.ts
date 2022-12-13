@@ -371,16 +371,16 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
           professionType = jsonParsDate.propertyListing.professionalType.name
         }
         let companyName: any = '';
-        if (jsonParsDate.propertyListing.company !== null && jsonParsDate.propertyListing.company !== undefined) {
-          companyName = jsonParsDate.propertyListing.company.companyName
+        if (this.allData?.agentDetails?.company !== null && this.allData?.agentDetails?.company !== undefined) {
+          companyName = this.allData?.agentDetails?.company.companyName
         }
         let reraNo: any = '';
-        if (jsonParsDate.propertyListing.company !== null && jsonParsDate.propertyListing.company !== undefined) {
-          reraNo = jsonParsDate.propertyListing.company.rERANo
+        if (this.allData?.agentDetails?.company !== null && this.allData?.agentDetails?.company !== undefined) {
+          reraNo = this.allData?.agentDetails?.company.reraNo
         }
         let permitNo: any = '';
-        if (jsonParsDate.propertyListing.company !== null && jsonParsDate.propertyListing.company !== undefined) {
-          permitNo = jsonParsDate.propertyListing.company.PremitNo
+        if (this.allData?.agentDetails?.company !== null && this.allData?.agentDetails?.company !== undefined) {
+          permitNo = this.allData?.agentDetails?.company.premitNo
         }
 
         let occupancyStatus: any = '';
