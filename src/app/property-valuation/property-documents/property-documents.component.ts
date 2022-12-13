@@ -454,6 +454,7 @@ export class PropertyDocumentsComponent implements OnInit {
       },
       dataType: "json",
       success: (res) => {
+        console.log(res);
         if (res.message == "Valuation Request Submitted Successfully.Data Found For Valuation") {
           this.valuationResponse = res.data;
           let tempUser:any = localStorage.getItem("user");
