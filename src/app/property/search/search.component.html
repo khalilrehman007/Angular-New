@@ -163,7 +163,8 @@
                                                             <img src="{{squaremetersvg}}" alt="">  {{list.plotSize == null ||
                                                                 list.plotSize==0 ? list.buildupArea ==null ||
                                                                 list.buildupArea==0
-                                                                ?0:list.buildupArea.toLocaleString():list.plotSize.toLocaleString()
+                                                                ?list.carpetArea ==null ||
+                                                                list.carpetArea==0?0:list.carpetArea.toLocaleString():list.buildupArea.toLocaleString():list.plotSize.toLocaleString()
                                                                 }} {{countryData.unitType}}
                                                         </span>
                                                         <span ngClass="furnishing" *ngIf="list.propertyType?.hasFurnishing">

@@ -117,7 +117,8 @@
                                         <img src="{{squaremetersvg}}" alt="">{{propertyDetailData.plotSize == null ||
                                         propertyDetailData.plotSize==0 ? propertyDetailData.buildupArea ==null ||
                                         propertyDetailData.buildupArea==0
-                                        ?0:propertyDetailData.buildupArea.toLocaleString():propertyDetailData.plotSize.toLocaleString()
+                                        ?propertyDetailData.carpetArea ==null ||
+                                        propertyDetailData.carpetArea==0?0:propertyDetailData.carpetArea.toLocaleString():propertyDetailData.buildupArea.toLocaleString():propertyDetailData.plotSize.toLocaleString()
                                         }} {{propertyDetailData.unitType}}
                                     </span>
                                     <span ngClass="furnishing">

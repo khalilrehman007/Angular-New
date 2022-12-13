@@ -481,7 +481,8 @@
                                                                     <div class="col-7">
                                                                         <a routerLink="/property/detail"
                                                                             [queryParams]="{id: viewList.id}"
-                                                                            class="agent-details__property-list-item-link cursor-pointer">{{viewList.propertyPrice | number}}
+                                                                            class="agent-details__property-list-item-link cursor-pointer">{{viewList.propertyPrice
+                                                                            | number}}
                                                                             {{viewList.currency}}
                                                                             <span>{{viewList.rentType}}</span>
                                                                         </a>
@@ -589,16 +590,21 @@
                                                                     <div ngClass="property-range-bar d-flex">
                                                                         <div ngClass="pro-range-whie-box">
                                                                             <p>Recent Rent Transactions</p>
-                                                                            <h6>{{viewList.recentRentTxns | number}} in last 1
+                                                                            <h6>{{viewList.recentRentTxns | number}} in
+                                                                                last 1
                                                                                 year</h6>
                                                                         </div>
                                                                         <div ngClass="pro-range-whie-box">
                                                                             <p>Rent Price Range</p>
-                                                                            <h6>{{viewList.startRentPrice | number}} {{viewList.currency}} - {{viewList.endRentPrice | number}} {{viewList.currency}}</h6>
+                                                                            <h6>{{viewList.startRentPrice | number}}
+                                                                                {{viewList.currency}} -
+                                                                                {{viewList.endRentPrice | number}}
+                                                                                {{viewList.currency}}</h6>
                                                                         </div>
                                                                         <div ngClass="pro-range-whie-box">
                                                                             <p>Avg. Rent/ Sq. Ft.</p>
-                                                                            <h6>{{viewList.avgRentPrice | number}} {{viewList.currency}}</h6>
+                                                                            <h6>{{viewList.avgRentPrice | number}}
+                                                                                {{viewList.currency}}</h6>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -747,7 +753,8 @@
                                                                     <div class="col-7">
                                                                         <a routerLink="/property/detail"
                                                                             [queryParams]="{id: viewList.id}"
-                                                                            class="agent-details__property-list-item-link cursor-pointer">{{viewList.propertyPrice | number}}
+                                                                            class="agent-details__property-list-item-link cursor-pointer">{{viewList.propertyPrice
+                                                                            | number}}
                                                                             {{viewList.country.currency}}
                                                                             <span
                                                                                 *ngIf="viewList.rentType">/{{viewList.rentType.name}}</span>
@@ -946,7 +953,8 @@
                                                                     <div class="row">
                                                                         <div class="col-7">
                                                                             <a
-                                                                                class="agent-details__property-list-item-link cursor-pointer">{{wishData.price | number}}
+                                                                                class="agent-details__property-list-item-link cursor-pointer">{{wishData.price
+                                                                                | number}}
                                                                                 {{wishData.currency}}
                                                                                 <span>{{wishData.rentType}}</span>
                                                                             </a>
@@ -1071,7 +1079,8 @@
                                                                 <div class="row">
                                                                     <div class="col-7">
                                                                         <a
-                                                                            class="agent-details__property-list-item-link cursor-pointer">{{enquiredData.propertyPrice | number}}
+                                                                            class="agent-details__property-list-item-link cursor-pointer">{{enquiredData.propertyPrice
+                                                                            | number}}
                                                                             {{enquiredData.currency}}
                                                                             <span>{{enquiredData.rentType}}</span>
                                                                         </a>
@@ -1519,7 +1528,8 @@
                                                                                 listing.plotSize==0 ?
                                                                                 listing.buildupArea ==null ||
                                                                                 listing.buildupArea==0
-                                                                                ?0:listing.buildupArea.toLocaleString():listing.plotSize.toLocaleString()
+                                                                                ?listing.carpetArea ==null ||
+                                                                                listing.carpetArea==0?0:listing.carpetArea.toLocaleString():listing.buildupArea.toLocaleString():listing.plotSize.toLocaleString()
                                                                                 }} {{listing.unitType}}
                                                                             </li>
                                                                             <li
@@ -2641,11 +2651,10 @@
 
                                 <!-- Profile Dashboard/Company Details -->
 
-                                <mat-tab label="Company Details"
-                                    *ngIf="professionalType == 1 || professionalType == 2 || professionalType == 3">
+                                <mat-tab label="Company Details" *ngIf="professionalType == 1 || professionalType == 2">
                                     <div class="row">
                                         <div class="col-md-9">
-                                            <form [formGroup]="companyDetail">
+                                            <form [formGroup]="companyDetailForm">
                                                 <div class="">
                                                     <div class="list-new-proerty-cntnt">
                                                         <div ngClass="deed-numbers">
@@ -2653,252 +2662,205 @@
                                                                 <div ngClass="col-sm-12">
                                                                     <div ngClass="block-wrapper mb-4">
                                                                         <label class="h6-design">Company Name</label>
-                                                                        <mat-form-field appearance="fill"
-                                                                            class="full-width input-design-2">
-                                                                            <input matInput
-                                                                                formControlName="companyName">
-                                                                        </mat-form-field>
+                                                                        <div class="companyName-input">
+                                                                            <mat-form-field appearance="fill"
+                                                                                class="full-width select-form input-design-2">
+                                                                                <mat-label>Enter Company
+                                                                                    Name</mat-label>
+                                                                                <input matInput
+                                                                                    formControlName="companyName"
+                                                                                    required>
+                                                                            </mat-form-field>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div ngClass="col-sm-12">
+                                                                    <div ngClass="block-wrapper mb-4">
+                                                                        <label class="h6-design">About Company</label>
+                                                                        <div class="aboutCompany-input">
+                                                                            <mat-form-field appearance="fill"
+                                                                                class="full-width select-form input-design-2">
+                                                                                <mat-label>Write About Your
+                                                                                    Company</mat-label>
+                                                                                <input matInput
+                                                                                    formControlName="aboutCompany"
+                                                                                    required>
+                                                                            </mat-form-field>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                                 <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                                                     <div ngClass="block-wrapper mb-4">
                                                                         <label class="h6-design">Trade License
                                                                             No.#</label>
-                                                                        <mat-form-field appearance="fill"
-                                                                            class="full-width input-design-2">
-                                                                            <input matInput
-                                                                                formControlName="tradeLicenseNo">
-                                                                        </mat-form-field>
+                                                                        <div class="tradeLicense-input">
+                                                                            <mat-form-field appearance="fill"
+                                                                                class="full-width select-form input-design-2">
+                                                                                <mat-label>Enter Trade License
+                                                                                    No.#</mat-label>
+                                                                                <input matInput
+                                                                                    formControlName="tradeLicenseNo"
+                                                                                    required>
+                                                                            </mat-form-field>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                                 <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                                                     <div ngClass="block-wrapper mb-4">
                                                                         <label class="h6-design">Permit No.#</label>
-                                                                        <mat-form-field appearance="fill"
-                                                                            class="full-width input-design-2">
-                                                                            <input matInput formControlName="permitNo">
-                                                                        </mat-form-field>
+                                                                        <div class="permitNo-input">
+                                                                            <mat-form-field appearance="fill"
+                                                                                class="full-width select-form input-design-2">
+                                                                                <mat-label>Enter Permit No.#</mat-label>
+                                                                                <input matInput
+                                                                                    formControlName="premitNo" required>
+                                                                            </mat-form-field>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                                 <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                                                     <div ngClass="block-wrapper mb-4">
                                                                         <label class="h6-design">ORN No.#</label>
-                                                                        <mat-form-field appearance="fill"
-                                                                            class="full-width input-design-2">
-                                                                            <input matInput formControlName="ornNo">
-                                                                        </mat-form-field>
+                                                                        <div class="ornNo-input">
+                                                                            <mat-form-field appearance="fill"
+                                                                                class="full-width select-form input-design-2">
+                                                                                <mat-label>Enter ORN No.#</mat-label>
+                                                                                <input matInput formControlName="ornNo"
+                                                                                    required>
+                                                                            </mat-form-field>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                                 <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                                                     <div ngClass="block-wrapper mb-4">
                                                                         <label class="h6-design">RERA No.#</label>
-                                                                        <mat-form-field appearance="fill"
-                                                                            class="full-width input-design-2">
-                                                                            <input matInput formControlName="reraNo">
-                                                                        </mat-form-field>
+                                                                        <div class="reraNo-input">
+                                                                            <mat-form-field appearance="fill"
+                                                                                class="full-width select-form input-design-2">
+                                                                                <mat-label>Enter RERA No.#</mat-label>
+                                                                                <input matInput formControlName="reraNo"
+                                                                                    required>
+                                                                            </mat-form-field>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
 
                                                                 <div ngClass="col-sm-12">
                                                                     <div ngClass="block-wrapper mb-4">
                                                                         <label class="h6-design">Company Address</label>
-                                                                        <mat-form-field appearance="fill"
-                                                                            class="full-width input-design-2">
-                                                                            <input matInput
-                                                                                formControlName="companyAddress">
-                                                                        </mat-form-field>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div ngClass="col-xl-6 col-lg-6 col-sm-12">
-                                                                    <div ngClass="block-wrapper mb-4">
-                                                                        <label class="h6-design">Country</label>
-
-                                                                        <mat-form-field appearance="fill"
-                                                                            class="full-width select-form input-design-2">
-                                                                            <mat-label>Select Country</mat-label>
-                                                                            <mat-select [disableOptionCentering]="true"
-                                                                                (selectionChange)="onCountrySelect($event);">
-                                                                                <mat-option *ngFor="let list of country"
-                                                                                    [value]="list.value">
-                                                                                    {{ list.viewValue }}
-                                                                                </mat-option>
-                                                                            </mat-select>
-                                                                            <!-- <mat-select [disableOptionCentering]="true" >
-                                                                                <mat-option>
-                                                                                    Country 1
-                                                                                </mat-option>
-                                                                                <mat-option>
-                                                                                    Country 1
-                                                                                </mat-option>
-                                                                                <mat-option>
-                                                                                    Country 1
-                                                                                </mat-option>
-                                                                            </mat-select> -->
-                                                                        </mat-form-field>
-
-                                                                    </div>
-                                                                </div>
-
-                                                                <div ngClass="col-xl-6 col-lg-6 col-sm-12">
-                                                                    <div ngClass="block-wrapper mb-4">
-                                                                        <label class="h6-design">City</label>
-
-                                                                        <mat-form-field appearance="fill"
-                                                                            class="full-width select-form input-design-2">
-                                                                            <mat-label>Select City</mat-label>
-                                                                            <mat-select [disableOptionCentering]="true"
-                                                                                (selectionChange)="onCitySelect($event);">
-                                                                                <mat-option
-                                                                                    *ngFor="let listcity of city"
-                                                                                    [value]="listcity.value">
-                                                                                    {{ listcity.viewValue }}
-                                                                                </mat-option>
-                                                                            </mat-select>
-                                                                            <!-- <mat-select [disableOptionCentering]="true" >
-                                                                                <mat-option [value]="city">
-                                                                                    City 1
-                                                                                </mat-option>
-                                                                                <mat-option [value]="city">
-                                                                                    City 1
-                                                                                </mat-option>
-                                                                                <mat-option [value]="city">
-                                                                                    City 1
-                                                                                </mat-option>
-                                                                            </mat-select> -->
-                                                                        </mat-form-field>
-
+                                                                        <div class="companyAdress-input">
+                                                                            <mat-form-field appearance="fill"
+                                                                                class="full-width select-form input-design-2">
+                                                                                <mat-label>Enter Company
+                                                                                    Address</mat-label>
+                                                                                <input matInput
+                                                                                    formControlName="companyAdress"
+                                                                                    required>
+                                                                            </mat-form-field>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-
-
                                                             <div ngClass="other-document-upload mb-4">
-                                                                <h6 ngClass="h6-design mb-3">Douments Upload</h6>
+                                                                <h6 ngClass="h6-design mb-3">Douments Upload <span
+                                                                        class="required-input-span">*</span></h6>
                                                                 <div ngClass="row">
                                                                     <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                                                                        <div ngClass="blue-upload-box">
-                                                                            <div ngClass="upload-files-design">
-                                                                                <div ngClass="greybordered-btn">
-                                                                                    <input type="file" hidden
-                                                                                        #emirateInput0
-                                                                                        accept=".doc, .pdf, .jpg, .jpeg, .png"
-                                                                                        (change)='emiratesfun($any($event.target).files, 0)'>
-                                                                                    <button mat-button
-                                                                                        (click)="emirateInput0.click()"><span
-                                                                                            ngClass="outpup-filename">{{
-                                                                                            emirate[0] }}</span> <img
-                                                                                            src="{{upload}}">
-                                                                                        <!-- <input type="file" hidden
-                                                                                        #emirateInput>
-                                                                                    <button mat-button><span
-                                                                                            ngClass="outpup-filename">
-                                                                                            Picture: Trade License
-                                                                                            Document </span>
-                                                                                        <img src="{{upload}}"> -->
-                                                                                        <span ngClass="btn-txt">Picture:
-                                                                                            Trade License
-                                                                                            Document</span>
-                                                                                    </button>
+                                                                        <div class="tradeLicenseImage-input">
+                                                                            <div ngClass="blue-upload-box">
+                                                                                <div ngClass="upload-files-design">
+                                                                                    <div ngClass="greybordered-btn">
+                                                                                        <input type="file" hidden
+                                                                                            #emirateInput0
+                                                                                            accept=".doc, .pdf, .jpg, .jpeg, .png"
+                                                                                            (change)='uploadCompanyImages($any($event.target).files, 0)'>
+                                                                                        <button mat-button
+                                                                                            (click)="emirateInput0.click()"><span
+                                                                                                ngClass="outpup-filename">{{
+                                                                                                companyFileNames[0]
+                                                                                                }}</span> <img
+                                                                                                src="{{upload}}">
+                                                                                            <span
+                                                                                                ngClass="btn-txt">Picture:
+                                                                                                Trade License
+                                                                                                Document</span>
+                                                                                        </button>
+                                                                                    </div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                     <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                                                                        <!-- <span class="staus-emoji">
-                                                                            <img src="{{approvedEmo}}" alt="">
-                                                                        </span> -->
-                                                                    </div>
-                                                                    <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                                                                         <div ngClass="blue-upload-box">
-                                                                            <div ngClass="upload-files-design">
-                                                                                <div ngClass="greybordered-btn">
-                                                                                    <input type="file" hidden
-                                                                                        #emirateInput1
-                                                                                        accept=".doc, .pdf, .jpg, .jpeg, .png"
-                                                                                        (change)='emiratesfun($any($event.target).files, 1)'>
-                                                                                    <button mat-button
-                                                                                        (click)="emirateInput1.click()"><span
-                                                                                            ngClass="outpup-filename">{{
-                                                                                            emirate[1] }}</span> <img
-                                                                                            src="{{upload}}">
-                                                                                        <!-- <input type="file" hidden
-                                                                                        #emirateInput>
-                                                                                    <button mat-button><span
-                                                                                            ngClass="outpup-filename">
-                                                                                            Picture: Permit No
-                                                                                            Document</span>
-                                                                                        <img src="{{upload}}"> <span -->
-                                                                                        <span ngClass="btn-txt">Picture:
-                                                                                            Permit No Document</span>
-                                                                                    </button>
+                                                                            <div class="permitNoImage-input">
+                                                                                <div ngClass="upload-files-design">
+                                                                                    <div ngClass="greybordered-btn">
+                                                                                        <input type="file" hidden
+                                                                                            #emirateInput1
+                                                                                            accept=".doc, .pdf, .jpg, .jpeg, .png"
+                                                                                            (change)='uploadCompanyImages($any($event.target).files, 1)'>
+                                                                                        <button mat-button
+                                                                                            (click)="emirateInput1.click()"><span
+                                                                                                ngClass="outpup-filename">{{
+                                                                                                companyFileNames[1]
+                                                                                                }}</span> <img
+                                                                                                src="{{upload}}">
+                                                                                            <span
+                                                                                                ngClass="btn-txt">Picture:
+                                                                                                Permit No
+                                                                                                Document</span>
+                                                                                        </button>
+                                                                                    </div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                     <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                                                                    </div>
-                                                                    <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                                                                         <div ngClass="blue-upload-box">
-                                                                            <div ngClass="upload-files-design">
-                                                                                <div ngClass="greybordered-btn">
-                                                                                    <input type="file" hidden
-                                                                                        #emirateInput2
-                                                                                        accept=".doc, .pdf, .jpg, .jpeg, .png"
-                                                                                        (change)='emiratesfun($any($event.target).files, 2)'>
-                                                                                    <button mat-button
-                                                                                        (click)="emirateInput2.click()"><span
-                                                                                            ngClass="outpup-filename">{{
-                                                                                            emirate[2] }}</span> <img
-                                                                                            src="{{upload}}">
-                                                                                        <!-- <input type="file" hidden
-                                                                                        #emirateInput>
-                                                                                    <button mat-button><span
-                                                                                            ngClass="outpup-filename">
-                                                                                            Picture: ORN Document
-                                                                                        </span> <img src="{{upload}}"> -->
-                                                                                        <span ngClass="btn-txt">Picture:
-                                                                                            ORN Document</span>
-                                                                                    </button>
+                                                                            <div class="ornImage-input">
+                                                                                <div ngClass="upload-files-design">
+                                                                                    <div ngClass="greybordered-btn">
+                                                                                        <input type="file" hidden
+                                                                                            #emirateInput2
+                                                                                            accept=".doc, .pdf, .jpg, .jpeg, .png"
+                                                                                            (change)='uploadCompanyImages($any($event.target).files, 2)'>
+                                                                                        <button mat-button
+                                                                                            (click)="emirateInput2.click()"><span
+                                                                                                ngClass="outpup-filename">{{
+                                                                                                companyFileNames[2]
+                                                                                                }}</span> <img
+                                                                                                src="{{upload}}">
+                                                                                            <span
+                                                                                                ngClass="btn-txt">Picture:
+                                                                                                ORN Document</span>
+                                                                                        </button>
+                                                                                    </div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                     <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                                                                        <!-- <span class="staus-emoji">
-                                                                            <img src="{{penfingEmo}}" alt="">
-                                                                        </span> -->
-                                                                    </div>
-                                                                    <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                                                                         <div ngClass="blue-upload-box">
+                                                                            <div class="reraImage-input">
                                                                             <div ngClass="upload-files-design">
                                                                                 <div ngClass="greybordered-btn">
                                                                                     <input type="file" hidden
                                                                                         #emirateInput3
                                                                                         accept=".doc, .pdf, .jpg, .jpeg, .png"
-                                                                                        (change)='emiratesfun($any($event.target).files, 3)'>
+                                                                                        (change)='uploadCompanyImages($any($event.target).files, 3)'>
                                                                                     <button mat-button
                                                                                         (click)="emirateInput3.click()"><span
                                                                                             ngClass="outpup-filename">{{
-                                                                                            emirate[3] }}</span> <img
+                                                                                            companyFileNames[3]
+                                                                                            }}</span> <img
                                                                                             src="{{upload}}">
-                                                                                        <!-- <input type="file" hidden
-                                                                                        #emirateInput>
-                                                                                    <button mat-button><span
-                                                                                            ngClass="outpup-filename">
-                                                                                            Picture: REREA Document
-                                                                                        </span> <img src="{{upload}}"> -->
                                                                                         <span ngClass="btn-txt">Picture:
                                                                                             RERA Document</span>
                                                                                     </button>
                                                                                 </div>
                                                                             </div>
+</div>
                                                                         </div>
-                                                                    </div>
-                                                                    <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                                                                        <!-- <span class="staus-emoji">
-                                                                            <img src="{{penfingEmo}}" alt="">
-                                                                        </span> -->
                                                                     </div>
                                                                 </div>
                                                             </div>

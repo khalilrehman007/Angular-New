@@ -190,7 +190,8 @@
                                                     {{slide.plotSize == null ||
                                                         slide.plotSize==0 ? slide.buildupArea ==null ||
                                                         slide.buildupArea==0
-                                                        ?0:slide.buildupArea.toLocaleString():slide.plotSize.toLocaleString()
+                                                        ?slide.carpetArea ==null ||
+                                                        slide.carpetArea==0?0:slide.carpetArea.toLocaleString():slide.buildupArea.toLocaleString():slide.plotSize.toLocaleString()
                                                         }} {{countryData.unitType}}
                                                 </span>
                                             </div>
@@ -384,7 +385,8 @@
                                                     {{slide.plotSize == null ||
                                                         slide.plotSize==0 ? slide.buildupArea ==null ||
                                                         slide.buildupArea==0
-                                                        ?0:slide.buildupArea.toLocaleString():slide.plotSize.toLocaleString()
+                                                        ?slide.carpetArea ==null ||
+                                                        slide.carpetArea==0?0:slide.carpetArea.toLocaleString():slide.buildupArea.toLocaleString():slide.plotSize.toLocaleString()
                                                         }} {{countryData.unitType}}
                                                 </span>
                                             </div>
