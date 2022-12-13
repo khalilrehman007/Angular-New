@@ -95,6 +95,7 @@ export class SearchComponent implements OnInit,AfterViewInit {
   headingPropertyType: any = "Properties";
   halfList: any = 0;
   currency: any = "";
+  showLoader:boolean=false;
   listingImage: any;
   whatsAppShareUrl:any="";
   facebookShareUrl:any="";
@@ -362,11 +363,11 @@ export class SearchComponent implements OnInit,AfterViewInit {
   searchListing: any = [];
   totalRecord: any;
   loadListingProperty(data: any) {
+    this.showLoader=true;
     let tempData: Array<Object> = []
     this.service.LoadSearchListing(data).subscribe((response: any) => {
       this.totalRecord = response.data.totalRecord;
       setTimeout(() => {
-        // localStorage.setItem('propertyListingTotalRecord', this.totalRecord);
         localStorage.setItem('listingForMap', JSON.stringify(data))
       }, 1000);
       response.data.propertyListings.forEach((element: any, i: any) => {
@@ -385,10 +386,16 @@ export class SearchComponent implements OnInit,AfterViewInit {
         let userImage = '../assets/images/user.png'
         let fullName = ''
         let userId = ''
+        let userEmail = ''
+        let userPhoneNumber = ''
+        let userWhatsAppNumber = ''
         if (element.user != null && element.user !== undefined && element.user?.imageUrl != null) {
           userImage = this.baseUrl + element.user.imageUrl
           fullName = element.user.fullName
           userId = element.user.id
+          userEmail="mailto:"+element.user.email
+          userPhoneNumber="tel:"+element.user.phoneNumber
+          userWhatsAppNumber="https://wa.me/"+element.user.phoneNumber?.replace("+","");
         }
         if (element.recentRentTxns != 0 && element.recentRentTxns != null && element.recentRentTxns != undefined) {
           this.showRecentTransactions = true;
@@ -435,7 +442,9 @@ export class SearchComponent implements OnInit,AfterViewInit {
             rentType: rentTypeName, listingTypeId: element.propertyListingTypeId, currency: element.country.currency, propertyCode: element.propertyCode,
             listingType: element.propertyListingTypeId == 1 ? "Rent" : "Sale",showRecentTransactions:this.showRecentTransactions,
             showAvgSqft:this.showAvgSqft,showPriceRange:this.showPriceRange,showDIDiv:this.showDIDiv,
-            whatsAppShareUrl:this.whatsAppShareUrl,facebookShareUrl:this.facebookShareUrl,twitterShareUrl:this.twitterShareUrl
+            whatsAppShareUrl:this.whatsAppShareUrl,facebookShareUrl:this.facebookShareUrl,twitterShareUrl:this.twitterShareUrl,
+            userEmail:userEmail,userWhatsAppNumber:userWhatsAppNumber,
+            userPhoneNumber:userPhoneNumber
 
           }
         );
@@ -443,7 +452,12 @@ export class SearchComponent implements OnInit,AfterViewInit {
       this.searchListing = tempData;
       this.currency = response.data.propertyListings[0].country.currency;
       this.halfList = Math.floor(this.searchListing.length / 2);
-    });
+      this.showLoader=false;
+    },
+    (error)=>{
+      this.showLoader=false;
+    }
+    );
 
   }
 
@@ -495,6 +509,7 @@ export class SearchComponent implements OnInit,AfterViewInit {
     this.user = localStorage.getItem('user');
     if (this.user != '') {
       this.user = JSON.parse(this.user);
+      console.log(this.user);
     }
     return this.user;
   }

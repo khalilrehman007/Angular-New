@@ -547,11 +547,6 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
         label: 'Property Type',
         value: this.propertyDetailData.propertyType,
       },
-      // {
-      //   show: true,
-      //   label: 'Unit No.',
-      //   value: this.propertyDetailData.unitNo,
-      // },
       {
         show: this.propertyValidationData.hasListingBed,
         label: 'Bedroom',
@@ -572,31 +567,16 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
         label: 'Fitting Type',
         value: this.propertyDetailData.fittingType,
       },
-      // {
-      //   show: this.propertyValidationData.hasTenantType,
-      //   label: 'Preferred Tenant Type',
-      //   value: this.propertyDetailData.tenantType,
-      // },
-      // {
-      //   show: this.propertyValidationData.hasGenderType,
-      //   label: 'Preferred Gender Type',
-      //   value: this.propertyDetailData.gender,
-      // },
       {
         show: this.propertyValidationData.hasListingParking,
         label: 'Available Parking',
-        value: this.propertyDetailData.parkings,
+        value: this.propertyDetailData.parkings==null || this.propertyDetailData.parkings==undefined || this.propertyDetailData.parkings==0?"N/A":this.propertyDetailData.parkings,
       },
       {
         show: this.propertyValidationData.hasListingUnitNumber,
         label: 'No Of Units',
         value: this.propertyDetailData.unitNo,
       },
-      // {
-      //   show: this.propertyValidationData.hasPetPolicy,
-      //   label: 'Pet Policy',
-      //   value: this.propertyDetailData.petPolicies,
-      // },
       {
         label: 'Carpet Area',
         show: this.propertyValidationData.hasListingCarpetArea,
@@ -632,11 +612,6 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
         label: 'Developer',
         value: this.propertyDetailData.propertyDeveloper,
       },
-      // {
-      //   show: this.propertyValidationData.hasPropertyManaged,
-      //   label: 'Property Managed by',
-      //   value: this.propertyDetailData.propertyManage,
-      // },
       {
         show: true,
         label: 'Price',
@@ -656,22 +631,7 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
         show: this.propertyDetailData.brokerageCharge,
         label: 'Brokerage Deposit',
         value: this.decimalPipe.transform(this.propertyDetailData.brokerageChargePrice) + ' ' + this.propertyDetailData.currency,
-      },
-      // {
-      //   show: true,
-      //   label: 'Available From',
-      //   value: this.propertyDetailData.availableDate.split("T")[0],
-      // },
-      // {
-      //   show: true,
-      //   label: 'Notice Period',
-      //   value: this.propertyDetailData.noticePeriod,
-      // },
-      // {
-      //   show: true,
-      //   label: 'Locking Period',
-      //   value: this.propertyDetailData.lockingPeriod,
-      // },
+      }
     ]
 
   }
