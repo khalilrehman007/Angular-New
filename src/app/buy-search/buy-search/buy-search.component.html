@@ -103,7 +103,7 @@
             <div ngClass="block-wrapper mb-4">
                 <mat-form-field appearance="fill" class="select-design">
                     <mat-label>Beds</mat-label>
-                    <mat-select [disableOptionCentering]="true"  [(value)]="selectedBeds" (selectionChange)="beds($event)">
+                    <mat-select [disableOptionCentering]="true"  [(value)]="selectedBeds" (selectionChange)="beds($event)" multiple>
                         <mat-option value="">
                             0 (Studio)
                         </mat-option>
@@ -135,7 +135,7 @@
                             9
                         </mat-option>
                         <mat-option value="10">
-                            10
+                            10 +
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
@@ -145,7 +145,7 @@
             <div ngClass="block-wrapper mb-4">
                 <mat-form-field appearance="fill" class="select-design">
                     <mat-label>Baths</mat-label>
-                    <mat-select [disableOptionCentering]="true"  [(value)]="selectedBaths" (selectionChange)="baths($event)">
+                    <mat-select [disableOptionCentering]="true"  [(value)]="selectedBaths" (selectionChange)="baths($event)" multiple>
                         <mat-option value="">
                             0
                         </mat-option>
@@ -177,7 +177,7 @@
                             9
                         </mat-option>
                         <mat-option value="10">
-                            10
+                            10 +
                         </mat-option>
                     </mat-select>
                 </mat-form-field>

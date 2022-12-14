@@ -53,7 +53,7 @@
             <owl-carousel-o [options]="customOptions">
                 <ng-container *ngFor="let cars of CarsList">
                     <ng-template carouselSlide>
-                        <div ngClass="property-item position-relative cursor-pointer">
+                        <div ngClass="property-item position-relative cursor-pointer" routerLink="/{{cars.link}}">
                             <div class="property-img-wrap">
                                 <img src="{{cars.src}}"/>
                             </div>
@@ -142,7 +142,7 @@
             <owl-carousel-o [options]="customOptions">
                 <ng-container *ngFor="let furniture of FurnitureList">
                     <ng-template carouselSlide>
-                        <div ngClass="property-item position-relative cursor-pointer">
+                        <div ngClass="property-item position-relative cursor-pointer" routerLink="/{{furniture.link}}">
                             <div class="property-img-wrap">
                                 <img src="{{furniture.src}}"/>
                             </div>
@@ -231,7 +231,7 @@
             <owl-carousel-o [options]="customOptions">
                 <ng-container *ngFor="let sports of sportsList">
                     <ng-template carouselSlide>
-                        <div ngClass="property-item position-relative cursor-pointer">
+                        <div ngClass="property-item position-relative cursor-pointer" routerLink="/{{sports.link}}">
                             <div class="property-img-wrap">
                                 <img src="{{sports.src}}"/>
                             </div>
@@ -320,7 +320,7 @@
             <owl-carousel-o [options]="customOptions">
                 <ng-container *ngFor="let MobileTable of MobileTabletList">
                     <ng-template carouselSlide>
-                        <div ngClass="property-item position-relative cursor-pointer">
+                        <div ngClass="property-item position-relative cursor-pointer" routerLink="/{{MobileTable.link}}">
                             <div class="property-img-wrap">
                                 <img src="{{MobileTable.src}}"/>
                             </div>
