@@ -11,6 +11,7 @@ import { AuthService } from "../../service/auth.service";
 import { CookieService } from 'ngx-cookie-service';
 import { environment } from 'src/environments/environment';
 import { ReplaySubject, Subject, takeUntil } from 'rxjs';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-dashboard',
@@ -19,7 +20,6 @@ import { ReplaySubject, Subject, takeUntil } from 'rxjs';
   providers: [DatePipe]
 })
 export class DashboardComponent implements OnInit, AfterViewInit {
-  // _key = CryptoJS.enc.Utf8.parse(this.tokenFromUI);
   blogs: any;
   proFrame = '../../assets/images/profile/pro-img-frame.png'
   pdf = 'assets/images/icons/pdf.png'
@@ -98,6 +98,11 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   showOldPassword:boolean=false;
   showNewPassword:boolean=false;
   showConfirmPassword:boolean=false;
+  showRecentTransactions: boolean = false;
+  showPriceRange: boolean = false;
+  showAvgSqft: boolean = false;
+  showDIDiv: boolean = true;
+  viewChangeId: any='';
   successResponse(data: any) {
     this.showSuccess = false;
   }
@@ -146,6 +151,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   public filteredCities: any = new ReplaySubject(1);
   public nationalityFilterCtrl: FormControl = new FormControl();
   public filteredNationality: any = new ReplaySubject(1);
+  public areaFilterCtrl: FormControl = new FormControl();
+  public filteredAreas: any = new ReplaySubject(1);
   protected _onDestroy = new Subject();
   //Form Groups Start
   detailForm = new FormGroup({
@@ -163,7 +170,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     agentBrnNo: new FormControl(null),
     agentAboutMe: new FormControl(null),
     expertIn: new FormControl(null),
-    nationalityId: new FormControl(null),
+    linkedIn: new FormControl(null),
+    experience: new FormControl(null,Validators.maxLength(2)),
+    nationalityId: new FormControl(null,Validators.required),
+    areas: new FormControl([],Validators.required),
     id: new FormControl(0),
     userId: new FormControl(null),
   })
@@ -209,61 +219,31 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   seletedPackage: any = "";
   pointsData: any = "";
   pointsHistory: any = "";
-  // get firstName() {
-  //   return this.detailForm.get("firstName");
-  // }
-  // get lastName() {
-  //   return this.detailForm.get("lastName");
-  // }
-  // get phone() {
-  //   return this.detailForm.get("phone");
-  // }
-  // get location() {
-  //   return this.detailForm.get("location");
-  // }
-  // get currentPassword() {
-  //   return this.changePasswordForm.get("currentPassword");
-  // }
-  // get newPassword() {
-  //   return this.changePasswordForm.get("newPassword");
-  // }
-  // get agentBrnNo() {
-  //   return this.agentDetailForm.get("agentbrnNo");
-  // }
-  // get agentAboutMe() {
-  //   return this.agentDetailForm.get("agentAboutMe");
-  // }
-  // get companyName() {
-  //   return this.companyDetailsForm.get("companyName");
-  // }
-  // get tradeLicenseNo() {
-  //   return this.companyDetailsForm.get("tradeLicenseNo");
-  // }
-  // get permitNo() {
-  //   return this.companyDetailsForm.get("permitNo");
-  // }
-  // get ornNo() {
-  //   return this.companyDetailsForm.get("ornNo");
-  // }
-  // get reraNo() {
-  //   return this.companyDetailsForm.get("reraNo");
-  // }
-  // get companyAddress() {
-  //   return this.companyDetailsForm.get("companyAddress");
-  // }
   userId: any;
   parentTabId: any = "";
   childTabId: any = "";
   url: any = "";
   countryData: any = "";
-
-  constructor(private authService: AuthService,
+  shareURL: any = "";
+  shareURLTemp: any = "";
+  whatsAppShareUrl: any = "";
+  facebookShareUrl: any = "";
+  twitterShareUrl: any = "";
+  constructor(private domSanitizer: DomSanitizer,private authService: AuthService,
     private datePipe: DatePipe,
     private service: AppService,
     private route: Router,
     private notifyService: NotificationService,
     private modalService: NgbModal,
     private cookie: CookieService) {
+      let temp: any = window.location.href;
+    temp = temp.split("/");
+    temp[1] = "//";
+    temp[2] = temp[2] + "/";
+    temp[3] = temp[3] + "/";
+    temp.pop().toString().replaceAll(",", "");
+    this.shareURL = temp.toString().replaceAll(",", "");
+    this.shareURLTemp=this.shareURL;
     this.url = this.route.url.split("/");
     $(window).scrollTop(0);
     this.loggedInUser = JSON.parse(this.loggedInUser);
@@ -277,8 +257,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.getSpokenLanguages();
     this.getExpertIn();
     this.lordMyActivityListingView();
+    this.loadViewActivityData();
     this.lordMyActivityAgentView();
     this.getViewCount();
+    this.getActiveViewCount();
     this.getEnquiredCount();
     this.getCountData('');
     this.getWishlisting();
@@ -314,9 +296,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       } else {
         this.proAvatar = this.baseUrl + this.userData.imageUrl;
       }
-      this.service.MyActivityPropertyListingViewForAgent({ "UserId": this.userData.id, "PropertyCategoryId": "" }).subscribe((result: any) => {
-        this.activityViewData = result.data;
-      })
       this.service.SummaryLeads({ "UserId": this.userData.id, "PropertyCategoryId": "1" }).subscribe((result: any) => {
         if (result.data.length > 0) {
           this.leadSummary = result.data;
@@ -685,6 +664,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.detailForm.controls['countryId'].valueChanges.subscribe(x => {
       this.onCountrySelect(x);
     })
+    this.agentDetailForm.controls['areas'].valueChanges.subscribe(x => {
+    console.log("Selected Area",x)
+    })
     this.filteredCountries.next(this.country.slice());
     this.countryFilterCtrl.valueChanges
       .pipe(takeUntil(this._onDestroy))
@@ -703,6 +685,12 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       .pipe(takeUntil(this._onDestroy))
       .subscribe(() => {
         this.filterNationality();
+      });
+    this.filteredAreas.next(this.districts.slice());
+    this.areaFilterCtrl.valueChanges
+      .pipe(takeUntil(this._onDestroy))
+      .subscribe(() => {
+        this.filterArea();
       });
     var myDate = new Date();
     var hrs = myDate.getHours();
@@ -765,6 +753,23 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
     this.filteredNationality.next(
       this.Nationality.filter((x: any) => x.name.toLowerCase().indexOf(search) > -1)
+    );
+  }
+  filterArea() {
+    if (!this.districts) {
+      return;
+    }
+
+    let search = this.areaFilterCtrl.value;
+    if (!search) {
+      this.filteredAreas.next(this.districts.slice());
+      return;
+    } else {
+      search = search.toLowerCase();
+    }
+
+    this.filteredAreas.next(
+      this.districts.filter((x: any) => x.name.toLowerCase().indexOf(search) > -1)
     );
   }
   getUser() {
@@ -1008,6 +1013,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       })
     });
     this.districts = tempData
+    this.filteredAreas.next(this.districts);
   }
 
   districtsIds: any = []
@@ -1209,6 +1215,12 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       this.showError = true;
       return;
     }
+    else if (this.agentDetailForm.get('areas')?.hasError('required') && this.agentDetailForm.value.areas?.length==0) {
+      this.currentField = "areas-input";
+      this.error = "Select at least one area.";
+      this.showError = true;
+      return;
+    }
     else if (this.agentFormRequired && (this.agentLanguages.length == 0)) {
       this.currentField = "language-input";
       this.error = "Select Languages";
@@ -1241,6 +1253,12 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     if (this.agentDetailForm.value.userId == null || this.agentDetailForm.value.userId == undefined || this.agentDetailForm.value.userId == 0) {
       this.agentDetailForm.get('userId')?.patchValue(this.userId);
     }
+    let agentFormAreas: any = this.agentDetailForm.value.areas;
+    let agentAreas: any = [];
+    for (let i = 0; i < agentFormAreas.length; i++) {
+      agentAreas.push({ "DistrictId": agentFormAreas[i] });
+    }
+
     let agentFormData: any = {};
     agentFormData.Id = this.agentDetailForm.value.id;
     agentFormData.UserId = this.agentDetailForm.value.userId;
@@ -1248,7 +1266,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     agentFormData.BRNNo = this.agentDetailForm.value.agentBrnNo;
     agentFormData.NationalityId = this.agentDetailForm.value.nationalityId;
     agentFormData.ExpertIn = this.agentDetailForm.value.expertIn;
+    agentFormData.LinkedIn = this.agentDetailForm.value.linkedIn;
+    agentFormData.Experience = this.agentDetailForm.value.experience;
     agentFormData.AgentLanguages = agentSelectedLanguages;
+    agentFormData.AgentAreas = agentAreas;
     agentFormData.Documents = this.finalAgentDocments
     let AgentRequestData = new FormData();
     AgentRequestData.append("AgentRequest", JSON.stringify(agentFormData));
@@ -1336,6 +1357,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   getViewCount() {
     let tempData: Array<Object> = []
     this.service.MyActivityViewCount(this.user.id).subscribe(data => {
+      console.log("viewcount",data)
       let response: any = data;
       this.viewAllCount = response.data.all
       this.viewRentCount = response.data.rent
@@ -1343,50 +1365,121 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       this.viewAgentCount = response.data.agents
     });
   }
+  activeBuyCount: any;
+  activeRentCount: any;
+  activeAllCount: any;
+getActiveViewCount(){
+  this.showLoader=true;
+  this.service.MyActivityPropertyListingViewForAgentCount(this.userId).subscribe((resp:any)=>{
+    this.activeBuyCount=resp.data.buy
+    this.activeRentCount=resp.data.rent
+    this.activeAllCount=resp.data.all
+    this.showLoader=false;
+  },err=>{
+    this.showLoader=false;
+  })
+}
 
-
-  viewChangeId: any;
+ 
   myActivityViewChange(e: any) {
     this.page = 1;
     this.viewChangeId = e;
+    console.log(this.viewChangeId)
     this.lordMyActivityListingView();
   }
 
   myActivityListingView: any = []
   lordMyActivityListingView() {
+    console.log(this.viewChangeId)
+    this.showLoader=true;
     this.totalLength = 0
     let tempData: Array<Object> = []
     this.service.MyActivityPropertyListingView({ "UserId": this.user.id, "PropertyListingTypeId": this.viewChangeId }).subscribe(data => {
+      console.log("Active Listing View ",data)
       let response: any = data;
       response.data.forEach((element: any, i: any) => {
         let image: any;
         let rentTypeName = ''
-        if (element.rentType != null && element.rentType != undefined && element.rentType.name != undefined && element.rentType.name != null && element.propertyListingTypeId != 2) {
-          rentTypeName = '/' + element.rentType.name
+       if (element.rentType != null && element.propertyListingTypeId != 2) {
+          rentTypeName = element.rentType.name
         }
-        if (element.documents.length > 1) {
+        if (element.documents.length > 0) {
           image = this.baseUrl + element.documents[0].fileUrl
         } else {
           image = 'assets/images/placeholder.png'
         }
+        if (element.recentRentTxns != 0 && element.recentRentTxns != null && element.recentRentTxns != undefined) {
+          this.showRecentTransactions = true;
+        }
+        else{
+          this.showRecentTransactions = false;
+        }
+        if (element.rentAvgPriceSqft != 0 && element.rentAvgPriceSqft != null && element.rentAvgPriceSqft != undefined) {
+          this.showAvgSqft = true;
+        }
+        else{
+          this.showAvgSqft = false;
+        }
+        if ((element.startRentPrice != 0 && element.startRentPrice != null && element.startRentPrice != undefined)
+          || (element.endRentPrice != 0 && element.endRentPrice != null && element.endRentPrice != undefined)
+        ) {
+          this.showPriceRange = true;
+        }
+        else{
+          this.showPriceRange = false;
+        }
+        if (this.showRecentTransactions == false && this.showPriceRange == false && this.showAvgSqft == false) {
+          this.showDIDiv = false;
+        }
+        else{
+          this.showDIDiv=true;
+        }
+        this.shareURL += "property/detail?id="+element.id;
+        this.whatsAppShareUrl=this.domSanitizer.bypassSecurityTrustUrl("https://wa.me/?text="+encodeURI(this.shareURL));
+      this.facebookShareUrl=this.domSanitizer.bypassSecurityTrustUrl("https://www.facebook.com/sharer/sharer.php?u="+encodeURI(this.shareURL)+"%3Futm_source%3Dfacebook%26utm_medium%3Dsocial%26utm_campaign%3Dshare_property");
+      this.twitterShareUrl=this.domSanitizer.bypassSecurityTrustUrl("https://twitter.com/intent/tweet?url="+encodeURI(this.shareURL)+"%3Futm_source%3Dtwitter%26utm_medium%3Dsocial%26utm_campaign%3Dshare_property");
+      
         tempData.push(
           {
-            id: element.id, propertyTitle: element.propertyTitle, propertyAddress: element.propertyAddress, img: image,
-            buildingName: element.buildingName, bedrooms: element.bedrooms, bathrooms: element.bathrooms, carpetArea: element.carpetArea, buildupArea: element.buildupArea,
-            unitNo: element.unitNo, totalFloor: element.totalFloor, floorNo: element.floorNo, propertyDescription: element.propertyDescription,
-            requestedDate: element.requestedDate, furnishingType: element.furnishingType, propertyPrice: element.propertyPrice,
-            requestedDateFormat: element.requestedDateFormat, propertyType: element.propertyType.typeDescription,
-            expiredDateFormat: element.expiredDateFormat, rentType: rentTypeName, currency: element.country.currency, recentRentTxns: element.recentRentTxns,
-            startRentPrice: element.startRentPrice, endRentPrice: element.endRentPrice, avgRentPrice: element.avgRentPrice, country: element.country, city: element.city,
+            buildupArea: element.buildupArea,
+            plotSize: element.plotSize,
+            id: element.id, favorite: element.favorite,
+            StartRentPrice: element.startRentPrice, EndRentPrice: element.endRentPrice, AvgRentPrice: element.rentAvgPriceSqft, RecentRentTxns: element.recentRentTxns,
+            img: image, propertyFeatures: element.propertyFeatures, propertyType: element.propertyType,
+            propertyTitle: element.propertyTitle, propertyAddress: element.propertyAddress,
+            buildingName: element.buildingName, bedrooms: element.bedrooms, bathrooms: element.bathrooms, carpetArea: element.carpetArea,
+            furnishingType: element.furnishingType, propertyPrice: element.propertyPrice,
+            requestedDateFormat: element.requestedDateFormat,
+            rentType: rentTypeName, listingTypeId: element.propertyListingTypeId, currency: element.country.currency, propertyCode: element.propertyCode,
+            listingType: element.propertyListingTypeId == 1 ? "Rent" : "Sale",showRecentTransactions:this.showRecentTransactions,
+            showAvgSqft:this.showAvgSqft,showPriceRange:this.showPriceRange,showDIDiv:this.showDIDiv,
+            whatsAppShareUrl:this.whatsAppShareUrl,facebookShareUrl:this.facebookShareUrl,twitterShareUrl:this.twitterShareUrl,
           }
         );
+        this.shareURL=this.shareURLTemp;
       })
       this.totalLength = tempData.length
       this.myActivityListingView = tempData;
+      this.showLoader=false;
+    },err=>{
+      this.showLoader=false;
     });
   }
-
-
+activityViewType:any='';
+myActivityViewTypeChange(e: any) {
+  this.page = 1;
+  this.activityViewType = e;
+  this.loadViewActivityData();
+}
+loadViewActivityData(){
+  this.showLoader=true;
+  this.service.MyActivityPropertyListingViewForAgent({ "UserId": this.userId, "PropertyListingTypeId": this.activityViewType }).subscribe((result: any) => {
+    this.activityViewData = result.data;
+    this.showLoader=false;
+  },err=>{
+    this.showLoader=false;
+  })
+}
   myActivityAgentView: any = []
   lordMyActivityAgentView() {
     let tempData: Array<Object> = []
@@ -1394,17 +1487,17 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       let response: any = data;
       response.data.forEach((element: any, i: any) => {
         let image: any;
-        if (element.agentDetails.company?.documents.length > 1 && element.agentDetails.company?.documents !== undefined && element.agentDetails.company?.documents !== null) {
-          image = element.agentDetails.company.documents[0].fileUrl
+        if (element.agentDetails?.company?.documents.length > 1 && element.agentDetails?.company?.documents !== undefined && element.agentDetails.company?.documents !== null) {
+          image = element.agentDetails?.company.documents[0].fileUrl
         } else {
           image = 'assets/images/placeholder.png'
         }
         tempData.push(
           {
             img: this.baseUrl + image, rentPropertyListingCount: element.rentPropertyListingCount, salePropertyListingCount: element.salePropertyListingCount,
-            commercialPropertyListingCount: element.commercialPropertyListingCount, company: element.agentDetails.company.companyName,
-            aboutCompany: element.agentDetails.company.aboutCompany, premitNo: element.agentDetails.company.premitNo,
-            reraNo: element.agentDetails.company.reraNo, id: element.agentDetails.user.id
+            commercialPropertyListingCount: element.commercialPropertyListingCount, company: element.agentDetails?.company?.companyName,
+            aboutCompany: element.agentDetails?.company?.aboutCompany, premitNo: element.agentDetails?.company?.premitNo,
+            reraNo: element.agentDetails?.company?.reraNo, id: element.agentDetails.user.id
           }
         );
       });
@@ -1438,6 +1531,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.service.GetAgentProfile(this.userId).subscribe((resp: any) => {
       if (resp.result == 1 && resp.data?.agentDetails != null) {
         this.agentDetails = resp.data.agentDetails;
+        console.log(this.agentDetails)
         let ExpertInId: any = null;
         if (this.agentDetails.expertIn == "Residential") {
           ExpertInId = 1;
@@ -1451,6 +1545,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         if (this.agentDetails.userId == null || this.agentDetails.userId == undefined) {
           this.agentDetails.userId = this.userId
         }
+        let tempAreas:any=[]
+        this.agentDetails.agentAreas.forEach((x:any)=>{
+          tempAreas.push(x.districtId)
+        })
         this.ExpertInName = this.agentDetails.expertIn;
         this.agentDetailForm.patchValue({
           agentAboutMe: this.agentDetails.aboutMe,
@@ -1458,7 +1556,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
           expertIn: ExpertInId,
           nationalityId: this.agentDetails.nationalityId,
           id: this.agentDetails.id,
-          userId: this.agentDetails.userId
+          userId: this.agentDetails.userId,
+          areas:tempAreas,
+          linkedIn:this.agentDetails.linkedIn,
+          experience:this.agentDetails.experience,
         })
         if (this.agentDetails.agentLanguages?.length > 0) {
           for (let item of this.agentDetails.agentLanguages) {
@@ -1565,6 +1666,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             buildingName: element.buildingName,
             carpetArea: element.carpetArea,
             buildupArea: element.buildupArea,
+            plotSize: element.plotSize,
             requestedDateFormat: element.requestedDateFormat,
             furnishingType: element.furnishingType
           });

@@ -369,6 +369,9 @@ export class AppService {
   MyActivityViewCount(id: any) {
     return this.http.get(this.apiurl + 'MyActivityPropertyListingViewCount?UserId=' + id, { headers: this.headers });
   }
+  MyActivityPropertyListingViewForAgentCount(id: any) {
+    return this.http.get(this.apiurl + 'MyActivityPropertyListingViewForAgentCount?UserId=' + id, { headers: this.headers });
+  }
 
   MyActivityPropertyListingView(data: any) {
     return this.http.post(this.apiurl + 'MyActivityPropertyListingView', data, { headers: this.headers });
@@ -413,13 +416,10 @@ export class AppService {
     return this.http.post(this.apiurl + 'AddUpdateAgentDetails', data ,{ headers: this.headersFormData });
   }
   AddUpdateCompany(data: any) {
-    return this.http.post(this.apiurl + 'AddUpdateCompany', data);
+    return this.http.post(this.apiurl + 'AddUpdateCompany', data,{ headers: this.headersFormData });
   }
   GetAgentProfile(id: any) {
     return this.http.get(this.apiurl + 'UserAgentProfile/' + id);
-  }
-  UserAgentProfile(id: any) {
-    return this.http.get(this.apiurl + 'AddUpdateCompany/' + id);
   }
   BlogBySlug(id: any) {
     return this.http.get(this.apiurl + 'BlogBySlug/' + id);
