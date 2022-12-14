@@ -52,6 +52,7 @@ export class HomepageComponent implements OnInit, AfterViewInit {
   propertyDetails: any;
   showLoader:boolean=false;
   oldData1() {
+    this.residentialLabel=this.Rent;
     this.showLoader=true;
     this.service.LatestPropertiesListingResidential({ "CountryId": this.countryData.id, "UserId": this.userId, "propertyListingTypeId": "1" }).subscribe((response: any) => {
       this.dynamicSlides1 = response.data;
@@ -61,6 +62,7 @@ export class HomepageComponent implements OnInit, AfterViewInit {
     });
   }
   newData1() {
+    this.residentialLabel="Sale";
     this.showLoader=true;
     this.service.LatestPropertiesListingResidential({ "CountryId": this.countryData.id, "UserId": this.userId, "propertyListingTypeId": "2" }).subscribe((response: any) => {
       this.dynamicSlides1 = response.data;
@@ -71,6 +73,7 @@ export class HomepageComponent implements OnInit, AfterViewInit {
   }
 
   oldData2() {
+    this.commercialLabel=this.Rent;
     this.showLoader=true;
     this.service.LatestPropertiesListingCommercial({ "CountryId": this.countryData.id, "UserId": this.userId, "propertyListingTypeId": "1" }).subscribe((response: any) => {
       this.dynamicSlides2 = response.data;
@@ -80,6 +83,7 @@ export class HomepageComponent implements OnInit, AfterViewInit {
     });
   }
   newData2() {
+    this.commercialLabel="Sale";
     this.showLoader=true;
     this.service.LatestPropertiesListingCommercial({ "CountryId": this.countryData.id, "UserId": this.userId, "propertyListingTypeId": "2" }).subscribe((response: any) => {
       this.dynamicSlides2 = response.data;
@@ -255,6 +259,8 @@ export class HomepageComponent implements OnInit, AfterViewInit {
   whatsAppShareUrl: any ="";
   facebookShareUrl: any ="";
   twitterShareUrl: any ="";
+  residentialLabel:any=""
+  commercialLabel:any=""
   constructor(private domSanitizer:DomSanitizer,private cookie: CookieService, private authService: AuthService, private service: AppService, private route: Router, private notifyService: NotificationService, private modalService: NgbModal) {
     let temp: any = window.location.href;
     temp = temp.split("/");
