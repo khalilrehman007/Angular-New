@@ -13,6 +13,7 @@ import { AuthService } from "../../service/auth.service";
 import { CookieService } from 'ngx-cookie-service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { environment } from 'src/environments/environment';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-homepage',
@@ -49,29 +50,42 @@ export class HomepageComponent implements OnInit, AfterViewInit {
   countryData: any = "";
   id: any = 1;
   propertyDetails: any;
+  showLoader:boolean=false;
   oldData1() {
+    this.showLoader=true;
     this.service.LatestPropertiesListingResidential({ "CountryId": this.countryData.id, "UserId": this.userId, "propertyListingTypeId": "1" }).subscribe((response: any) => {
       this.dynamicSlides1 = response.data;
-      console.log("1", this.dynamicSlides1)
+      this.showLoader=false;
+    },err=>{
+      this.showLoader=false;
     });
   }
   newData1() {
+    this.showLoader=true;
     this.service.LatestPropertiesListingResidential({ "CountryId": this.countryData.id, "UserId": this.userId, "propertyListingTypeId": "2" }).subscribe((response: any) => {
       this.dynamicSlides1 = response.data;
-      console.log("1", this.dynamicSlides1)
+      this.showLoader=false;
+    },err=>{
+      this.showLoader=false;
     });
   }
 
   oldData2() {
+    this.showLoader=true;
     this.service.LatestPropertiesListingCommercial({ "CountryId": this.countryData.id, "UserId": this.userId, "propertyListingTypeId": "1" }).subscribe((response: any) => {
       this.dynamicSlides2 = response.data;
-      console.log("dynamic", this.dynamicSlides2);
+      this.showLoader=false;
+    },err=>{
+      this.showLoader=false;
     });
   }
   newData2() {
+    this.showLoader=true;
     this.service.LatestPropertiesListingCommercial({ "CountryId": this.countryData.id, "UserId": this.userId, "propertyListingTypeId": "2" }).subscribe((response: any) => {
       this.dynamicSlides2 = response.data;
-      console.log("dynamic", this.dynamicSlides2);
+      this.showLoader=false;
+    },err=>{
+      this.showLoader=false;
     });
   }
   tenantsslide = [
@@ -236,7 +250,20 @@ export class HomepageComponent implements OnInit, AfterViewInit {
   userId: any;
   explorePlaces: any = [];
   trendTitle: any = [];
-  constructor(private cookie: CookieService, private authService: AuthService, private service: AppService, private route: Router, private notifyService: NotificationService, private modalService: NgbModal) {
+  shareURL: any ="";
+  shareURLTemp: any ="";
+  whatsAppShareUrl: any ="";
+  facebookShareUrl: any ="";
+  twitterShareUrl: any ="";
+  constructor(private domSanitizer:DomSanitizer,private cookie: CookieService, private authService: AuthService, private service: AppService, private route: Router, private notifyService: NotificationService, private modalService: NgbModal) {
+    let temp: any = window.location.href;
+    temp = temp.split("/");
+    temp[1] = "//";
+    temp[2] = temp[2] + "/";
+    temp[3] = temp[3] + "/";
+    temp.pop().toString().replaceAll(",", "");
+    this.shareURL = temp.toString().replaceAll(",", "");
+    this.shareURLTemp=this.shareURL;
     localStorage.removeItem("bounds");
     localStorage.removeItem("currency");
     localStorage.removeItem("arabicAddress");
@@ -578,7 +605,12 @@ export class HomepageComponent implements OnInit, AfterViewInit {
       }, 1000);
     }
   }
-  openVerticallyCentered(content: any) {
+  openVerticallyCentered(content: any,id:any) {
+    this.shareURL += "property/detail?id="+id;
+    this.whatsAppShareUrl=this.domSanitizer.bypassSecurityTrustUrl("https://wa.me/?text="+encodeURI(this.shareURL));
+  this.facebookShareUrl=this.domSanitizer.bypassSecurityTrustUrl("https://www.facebook.com/sharer/sharer.php?u="+encodeURI(this.shareURL)+"%3Futm_source%3Dfacebook%26utm_medium%3Dsocial%26utm_campaign%3Dshare_property");
+  this.twitterShareUrl=this.domSanitizer.bypassSecurityTrustUrl("https://twitter.com/intent/tweet?url="+encodeURI(this.shareURL)+"%3Futm_source%3Dtwitter%26utm_medium%3Dsocial%26utm_campaign%3Dshare_property");
+this.shareURL=this.shareURLTemp;
     this.modalService.open(content, { centered: true });
   }
 }

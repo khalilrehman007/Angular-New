@@ -11,6 +11,7 @@ import { AuthService } from "../../service/auth.service";
 import { CookieService } from 'ngx-cookie-service';
 import { environment } from 'src/environments/environment';
 import { ReplaySubject, Subject, takeUntil } from 'rxjs';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-dashboard',
@@ -19,7 +20,6 @@ import { ReplaySubject, Subject, takeUntil } from 'rxjs';
   providers: [DatePipe]
 })
 export class DashboardComponent implements OnInit, AfterViewInit {
-  // _key = CryptoJS.enc.Utf8.parse(this.tokenFromUI);
   blogs: any;
   proFrame = '../../assets/images/profile/pro-img-frame.png'
   pdf = 'assets/images/icons/pdf.png'
@@ -98,6 +98,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   showOldPassword:boolean=false;
   showNewPassword:boolean=false;
   showConfirmPassword:boolean=false;
+  showRecentTransactions: boolean = false;
+  showPriceRange: boolean = false;
+  showAvgSqft: boolean = false;
+  showDIDiv: boolean = true;
   successResponse(data: any) {
     this.showSuccess = false;
   }
@@ -209,61 +213,31 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   seletedPackage: any = "";
   pointsData: any = "";
   pointsHistory: any = "";
-  // get firstName() {
-  //   return this.detailForm.get("firstName");
-  // }
-  // get lastName() {
-  //   return this.detailForm.get("lastName");
-  // }
-  // get phone() {
-  //   return this.detailForm.get("phone");
-  // }
-  // get location() {
-  //   return this.detailForm.get("location");
-  // }
-  // get currentPassword() {
-  //   return this.changePasswordForm.get("currentPassword");
-  // }
-  // get newPassword() {
-  //   return this.changePasswordForm.get("newPassword");
-  // }
-  // get agentBrnNo() {
-  //   return this.agentDetailForm.get("agentbrnNo");
-  // }
-  // get agentAboutMe() {
-  //   return this.agentDetailForm.get("agentAboutMe");
-  // }
-  // get companyName() {
-  //   return this.companyDetailsForm.get("companyName");
-  // }
-  // get tradeLicenseNo() {
-  //   return this.companyDetailsForm.get("tradeLicenseNo");
-  // }
-  // get permitNo() {
-  //   return this.companyDetailsForm.get("permitNo");
-  // }
-  // get ornNo() {
-  //   return this.companyDetailsForm.get("ornNo");
-  // }
-  // get reraNo() {
-  //   return this.companyDetailsForm.get("reraNo");
-  // }
-  // get companyAddress() {
-  //   return this.companyDetailsForm.get("companyAddress");
-  // }
   userId: any;
   parentTabId: any = "";
   childTabId: any = "";
   url: any = "";
   countryData: any = "";
-
-  constructor(private authService: AuthService,
+  shareURL: any = "";
+  shareURLTemp: any = "";
+  whatsAppShareUrl: any = "";
+  facebookShareUrl: any = "";
+  twitterShareUrl: any = "";
+  constructor(private domSanitizer: DomSanitizer,private authService: AuthService,
     private datePipe: DatePipe,
     private service: AppService,
     private route: Router,
     private notifyService: NotificationService,
     private modalService: NgbModal,
     private cookie: CookieService) {
+      let temp: any = window.location.href;
+    temp = temp.split("/");
+    temp[1] = "//";
+    temp[2] = temp[2] + "/";
+    temp[3] = temp[3] + "/";
+    temp.pop().toString().replaceAll(",", "");
+    this.shareURL = temp.toString().replaceAll(",", "");
+    this.shareURLTemp=this.shareURL;
     this.url = this.route.url.split("/");
     $(window).scrollTop(0);
     this.loggedInUser = JSON.parse(this.loggedInUser);
@@ -1357,29 +1331,68 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.totalLength = 0
     let tempData: Array<Object> = []
     this.service.MyActivityPropertyListingView({ "UserId": this.user.id, "PropertyListingTypeId": this.viewChangeId }).subscribe(data => {
+      console.log("Active Listing View ",data)
       let response: any = data;
       response.data.forEach((element: any, i: any) => {
         let image: any;
         let rentTypeName = ''
-        if (element.rentType != null && element.rentType != undefined && element.rentType.name != undefined && element.rentType.name != null && element.propertyListingTypeId != 2) {
-          rentTypeName = '/' + element.rentType.name
+       if (element.rentType != null && element.propertyListingTypeId != 2) {
+          rentTypeName = element.rentType.name
         }
-        if (element.documents.length > 1) {
+        if (element.documents.length > 0) {
           image = this.baseUrl + element.documents[0].fileUrl
         } else {
           image = 'assets/images/placeholder.png'
         }
+        if (element.recentRentTxns != 0 && element.recentRentTxns != null && element.recentRentTxns != undefined) {
+          this.showRecentTransactions = true;
+        }
+        else{
+          this.showRecentTransactions = false;
+        }
+        if (element.rentAvgPriceSqft != 0 && element.rentAvgPriceSqft != null && element.rentAvgPriceSqft != undefined) {
+          this.showAvgSqft = true;
+        }
+        else{
+          this.showAvgSqft = false;
+        }
+        if ((element.startRentPrice != 0 && element.startRentPrice != null && element.startRentPrice != undefined)
+          || (element.endRentPrice != 0 && element.endRentPrice != null && element.endRentPrice != undefined)
+        ) {
+          this.showPriceRange = true;
+        }
+        else{
+          this.showPriceRange = false;
+        }
+        if (this.showRecentTransactions == false && this.showPriceRange == false && this.showAvgSqft == false) {
+          this.showDIDiv = false;
+        }
+        else{
+          this.showDIDiv=true;
+        }
+        this.shareURL += "property/detail?id="+element.id;
+        this.whatsAppShareUrl=this.domSanitizer.bypassSecurityTrustUrl("https://wa.me/?text="+encodeURI(this.shareURL));
+      this.facebookShareUrl=this.domSanitizer.bypassSecurityTrustUrl("https://www.facebook.com/sharer/sharer.php?u="+encodeURI(this.shareURL)+"%3Futm_source%3Dfacebook%26utm_medium%3Dsocial%26utm_campaign%3Dshare_property");
+      this.twitterShareUrl=this.domSanitizer.bypassSecurityTrustUrl("https://twitter.com/intent/tweet?url="+encodeURI(this.shareURL)+"%3Futm_source%3Dtwitter%26utm_medium%3Dsocial%26utm_campaign%3Dshare_property");
+      
         tempData.push(
           {
-            id: element.id, propertyTitle: element.propertyTitle, propertyAddress: element.propertyAddress, img: image,
-            buildingName: element.buildingName, bedrooms: element.bedrooms, bathrooms: element.bathrooms, carpetArea: element.carpetArea, buildupArea: element.buildupArea,
-            unitNo: element.unitNo, totalFloor: element.totalFloor, floorNo: element.floorNo, propertyDescription: element.propertyDescription,
-            requestedDate: element.requestedDate, furnishingType: element.furnishingType, propertyPrice: element.propertyPrice,
-            requestedDateFormat: element.requestedDateFormat, propertyType: element.propertyType.typeDescription,
-            expiredDateFormat: element.expiredDateFormat, rentType: rentTypeName, currency: element.country.currency, recentRentTxns: element.recentRentTxns,
-            startRentPrice: element.startRentPrice, endRentPrice: element.endRentPrice, avgRentPrice: element.avgRentPrice, country: element.country, city: element.city,
+            buildupArea: element.buildupArea,
+            plotSize: element.plotSize,
+            id: element.id, favorite: element.favorite,
+            StartRentPrice: element.startRentPrice, EndRentPrice: element.endRentPrice, AvgRentPrice: element.rentAvgPriceSqft, RecentRentTxns: element.recentRentTxns,
+            img: image, propertyFeatures: element.propertyFeatures, propertyType: element.propertyType,
+            propertyTitle: element.propertyTitle, propertyAddress: element.propertyAddress,
+            buildingName: element.buildingName, bedrooms: element.bedrooms, bathrooms: element.bathrooms, carpetArea: element.carpetArea,
+            furnishingType: element.furnishingType, propertyPrice: element.propertyPrice,
+            requestedDateFormat: element.requestedDateFormat,
+            rentType: rentTypeName, listingTypeId: element.propertyListingTypeId, currency: element.country.currency, propertyCode: element.propertyCode,
+            listingType: element.propertyListingTypeId == 1 ? "Rent" : "Sale",showRecentTransactions:this.showRecentTransactions,
+            showAvgSqft:this.showAvgSqft,showPriceRange:this.showPriceRange,showDIDiv:this.showDIDiv,
+            whatsAppShareUrl:this.whatsAppShareUrl,facebookShareUrl:this.facebookShareUrl,twitterShareUrl:this.twitterShareUrl,
           }
         );
+        this.shareURL=this.shareURLTemp;
       })
       this.totalLength = tempData.length
       this.myActivityListingView = tempData;
@@ -1394,17 +1407,17 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       let response: any = data;
       response.data.forEach((element: any, i: any) => {
         let image: any;
-        if (element.agentDetails.company?.documents.length > 1 && element.agentDetails.company?.documents !== undefined && element.agentDetails.company?.documents !== null) {
-          image = element.agentDetails.company.documents[0].fileUrl
+        if (element.agentDetails?.company?.documents.length > 1 && element.agentDetails?.company?.documents !== undefined && element.agentDetails.company?.documents !== null) {
+          image = element.agentDetails?.company.documents[0].fileUrl
         } else {
           image = 'assets/images/placeholder.png'
         }
         tempData.push(
           {
             img: this.baseUrl + image, rentPropertyListingCount: element.rentPropertyListingCount, salePropertyListingCount: element.salePropertyListingCount,
-            commercialPropertyListingCount: element.commercialPropertyListingCount, company: element.agentDetails.company.companyName,
-            aboutCompany: element.agentDetails.company.aboutCompany, premitNo: element.agentDetails.company.premitNo,
-            reraNo: element.agentDetails.company.reraNo, id: element.agentDetails.user.id
+            commercialPropertyListingCount: element.commercialPropertyListingCount, company: element.agentDetails?.company?.companyName,
+            aboutCompany: element.agentDetails?.company?.aboutCompany, premitNo: element.agentDetails?.company?.premitNo,
+            reraNo: element.agentDetails?.company?.reraNo, id: element.agentDetails.user.id
           }
         );
       });

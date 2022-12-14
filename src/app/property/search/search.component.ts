@@ -101,6 +101,7 @@ export class SearchComponent implements OnInit,AfterViewInit {
   facebookShareUrl:any="";
   twitterShareUrl:any="";
   shareURL: any = "";
+  shareURLTemp: any = "";
   constructor(private domSanitizer: DomSanitizer,private cookie: CookieService,private authService: AuthService, private notifyService: NotificationService, private activeRoute: ActivatedRoute, private service: AppService, private api: AppService, private route: Router, private modalService: NgbModal) {
     let temp: any = window.location.href;
     temp = temp.split("/");
@@ -109,7 +110,7 @@ export class SearchComponent implements OnInit,AfterViewInit {
     temp[3] = temp[3] + "/";
     temp.pop().toString().replaceAll(",", "");
     this.shareURL = temp.toString().replaceAll(",", "");
-    console.log("shareurl",this.shareURL)
+    this.shareURLTemp=this.shareURL
     $(window).scrollTop(0);
     this.route.events.subscribe((e: any) => {
       if (e instanceof NavigationEnd) {
@@ -377,7 +378,7 @@ export class SearchComponent implements OnInit,AfterViewInit {
           rentTypeName = element.rentType.name
         }
         let documents: any = []
-        if (element.documents?.length >= 1) {
+        if (element.documents?.length >= 0) {
           documents = element.documents
         } else {
           documentsCheck = false
@@ -448,6 +449,7 @@ export class SearchComponent implements OnInit,AfterViewInit {
 
           }
         );
+        this.shareURL=this.shareURLTemp
       })
       this.searchListing = tempData;
       this.currency = response.data.propertyListings[0].country.currency;
