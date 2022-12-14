@@ -454,21 +454,15 @@
                                                         value="Buy">
                                                     <button class="checkbox-btn">Buy ({{viewBuyCount}})</button>
                                                 </div>
-                                                <div (click)="myActivityViewChange(userId)"
-                                                    class="checkbox-design position-relative">
-                                                    <input type="radio" id="Unfurnished" name="property-types"
-                                                        value="Agents">
-                                                    <button class="checkbox-btn">Agents ({{viewAgentCount}})</button>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="no-data-found" *ngIf="myActivityListingView.length == 0">
+                                        <img src="/assets/images/no-properties.svg">
+                                        <h5>No Properties Found..!</h5>
+                                    </div>
                                     <div class="agent-details__tabs">
                                         <div class="row">
-                                            <div class="no-data-found" *ngIf="myActivityListingView.length == 0">
-                                                <img src="/assets/images/no-properties.svg">
-                                                <h5>No Properties Found..!</h5>
-                                            </div>
                                             <div class="col-lg-9 col-md-10">
                                                 <ul class="agent-details__property-list">
                                                     <li class="agent-details__property-list-item"
@@ -488,7 +482,8 @@
                                                                             class="agent-details__property-list-item-link cursor-pointer">{{viewList.propertyPrice
                                                                             | number}}
                                                                             {{viewList.currency}}
-                                                                            <small  *ngIf="viewList.rentType != ''">/ {{viewList.rentType}}</small>
+                                                                            <small *ngIf="viewList.rentType != ''">/
+                                                                                {{viewList.rentType}}</small>
                                                                         </a>
                                                                         <h4 class="sub-bold-text property-title">
                                                                             <a routerLink="/property/detail"
@@ -500,7 +495,7 @@
                                                                         <div ngClass="property-action-hdr">
                                                                             <button ngClass="ov-verified-btn"><img
                                                                                     src="{{ovverified}}">
-                                                                                    {{viewList.propertyCode}}</button>
+                                                                                {{viewList.propertyCode}}</button>
                                                                             <div ngClass="pro-contact-details">
                                                                                 <div ngbDropdown class="d-inline-block">
                                                                                     <button ngClass="circle-btn"
@@ -531,7 +526,8 @@
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
-                                                                            <button  [ngClass]="viewList.favorite == true ? 'favourite-btn red-fill' : 'favourite-btn'">
+                                                                            <button
+                                                                                [ngClass]="viewList.favorite == true ? 'favourite-btn red-fill' : 'favourite-btn'">
                                                                                 <svg width="22" height="23"
                                                                                     viewBox="0 0 22 23" fill="#595ad4"
                                                                                     xmlns="http://www.w3.org/2000/svg">
@@ -573,12 +569,13 @@
                                                                                 class="agent-details__property-detail-list-item sqft">
                                                                                 <img src="assets/images/icons/Square Meters.svg"
                                                                                     alt="">
-                                                                                    {{viewList.plotSize == null ||
-                                                                                        viewList.plotSize==0 ? viewList.buildupArea ==null ||
-                                                                                        viewList.buildupArea==0
-                                                                                        ?viewList.carpetArea ==null ||
-                                                                                        viewList.carpetArea==0?0:viewList.carpetArea.toLocaleString():viewList.buildupArea.toLocaleString():viewList.plotSize.toLocaleString()
-                                                                                        }} {{countryData.unitType}}
+                                                                                {{viewList.plotSize == null ||
+                                                                                viewList.plotSize==0 ?
+                                                                                viewList.buildupArea ==null ||
+                                                                                viewList.buildupArea==0
+                                                                                ?viewList.carpetArea ==null ||
+                                                                                viewList.carpetArea==0?0:viewList.carpetArea.toLocaleString():viewList.buildupArea.toLocaleString():viewList.plotSize.toLocaleString()
+                                                                                }} {{countryData.unitType}}
                                                                             </li>
                                                                             <li *ngIf="viewList.propertyType?.hasFurnishing"
                                                                                 class="agent-details__property-detail-list-item furnising">
@@ -592,25 +589,33 @@
                                                                 <!-- <div ngClass="key-tags">
                                                                     <span> 24 Hours Concierge </span>
                                                                 </div> -->
-                                                                <div *ngIf="viewList.showDIDiv" ngClass="data-inteligence-text">
-                                                                    <h6>OV Data Intelligence - {{viewList.propertyAddress}}
+                                                                <div *ngIf="viewList.showDIDiv"
+                                                                    ngClass="data-inteligence-text">
+                                                                    <h6>OV Data Intelligence -
+                                                                        {{viewList.propertyAddress}}
                                                                     </h6>
                                                                     <div ngClass="property-range-bar d-flex">
-                                                                        <div *ngIf="viewList.showRecentTransactions" ngClass="pro-range-whie-box">
-                                                                            <p>Recent {{viewList.listingType}} Transactions</p>
+                                                                        <div *ngIf="viewList.showRecentTransactions"
+                                                                            ngClass="pro-range-whie-box">
+                                                                            <p>Recent {{viewList.listingType}}
+                                                                                Transactions</p>
                                                                             <h6>{{viewList.RecentRentTxns | number}} in
                                                                                 last 1
                                                                                 year</h6>
                                                                         </div>
-                                                                        <div *ngIf="viewList.showPriceRange" ngClass="pro-range-whie-box">
+                                                                        <div *ngIf="viewList.showPriceRange"
+                                                                            ngClass="pro-range-whie-box">
                                                                             <p>{{viewList.listingType}} Price Range</p>
                                                                             <h6>{{viewList.StartRentPrice | number}}
                                                                                 {{viewList.currency}} -
                                                                                 {{viewList.EndRentPrice | number}}
                                                                                 {{viewList.currency}}</h6>
                                                                         </div>
-                                                                        <div *ngIf="viewList.showAvgSqft" ngClass="pro-range-whie-box">
-                                                                            <p>Avg. {{viewList.listingType}}/{{countryData.unitType}}</p>
+                                                                        <div *ngIf="viewList.showAvgSqft"
+                                                                            ngClass="pro-range-whie-box">
+                                                                            <p>Avg.
+                                                                                {{viewList.listingType}}/{{countryData.unitType}}
+                                                                            </p>
                                                                             <h6>{{viewList.AvgRentPrice | number}}
                                                                                 {{viewList.currency}}</h6>
                                                                         </div>
@@ -713,25 +718,19 @@
                                                     class="checkbox-design position-relative">
                                                     <input type="radio" id="Furnished" name="property-types" value="All"
                                                         checked>
-                                                    <button class="checkbox-btn">All ({{viewAllCount}})</button>
+                                                    <button class="checkbox-btn">All ({{activeAllCount}})</button>
                                                 </div>
                                                 <div (click)="myActivityViewTypeChange('1')"
                                                     class="checkbox-design position-relative">
                                                     <input type="radio" id="Unfurnished" name="property-types"
                                                         value="Rent">
-                                                    <button class="checkbox-btn">Rent ({{viewRentCount}})</button>
+                                                    <button class="checkbox-btn">Rent ({{activeRentCount}})</button>
                                                 </div>
                                                 <div (click)="myActivityViewTypeChange('2')"
                                                     class="checkbox-design position-relative">
                                                     <input type="radio" id="Semi-Furnished" name="property-types"
                                                         value="Buy">
-                                                    <button class="checkbox-btn">Buy ({{viewBuyCount}})</button>
-                                                </div>
-                                                <div (click)="myActivityViewTypeChange(userId)"
-                                                    class="checkbox-design position-relative">
-                                                    <input type="radio" id="Unfurnished" name="property-types"
-                                                        value="Agents">
-                                                    <button class="checkbox-btn">Agents ({{viewAgentCount}})</button>
+                                                    <button class="checkbox-btn">Buy ({{activeBuyCount}})</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -764,8 +763,8 @@
                                                                             class="agent-details__property-list-item-link cursor-pointer">{{viewList.propertyPrice
                                                                             | number}}
                                                                             {{viewList.country.currency}}
-                                                                            <small
-                                                                                *ngIf="viewList.rentType">/ {{viewList.rentType.name}}</small>
+                                                                            <small *ngIf="viewList.rentType">/
+                                                                                {{viewList.rentType.name}}</small>
                                                                         </a>
                                                                         <h4 class="sub-bold-text property-title">
                                                                             <a routerLink="/property/detail"
@@ -797,12 +796,13 @@
                                                                         class="img-fluid agent-details__property-list-item-text-icon">
                                                                     {{viewList.propertyAddress}}
                                                                 </p>
-                                                                <p class="agent-details__property-list-item-type" style="margin-bottom:0px !important">
+                                                                <p class="agent-details__property-list-item-type"
+                                                                    style="margin-bottom:0px !important">
                                                                     {{viewList.propertyType.typeDescription}}</p>
                                                                 <div class="row">
                                                                     <div class="col-md-10">
                                                                         <ul class="agent-details__property-detail-list">
-                                                                            <li  *ngIf="viewList.propertyType?.hasListingBed"
+                                                                            <li *ngIf="viewList.propertyType?.hasListingBed"
                                                                                 class="agent-details__property-detail-list-item beds">
                                                                                 <img src="assets/images/icons/Bed.svg"
                                                                                     alt="">
@@ -818,12 +818,13 @@
                                                                                 class="agent-details__property-detail-list-item sqft">
                                                                                 <img src="assets/images/icons/Square Meters.svg"
                                                                                     alt="">
-                                                                                    {{viewList.plotSize == null ||
-                                                                                        viewList.plotSize==0 ? viewList.buildupArea ==null ||
-                                                                                        viewList.buildupArea==0
-                                                                                        ?viewList.carpetArea ==null ||
-                                                                                        viewList.carpetArea==0?0:viewList.carpetArea.toLocaleString():viewList.buildupArea.toLocaleString():viewList.plotSize.toLocaleString()
-                                                                                        }} {{countryData.unitType}}
+                                                                                {{viewList.plotSize == null ||
+                                                                                viewList.plotSize==0 ?
+                                                                                viewList.buildupArea ==null ||
+                                                                                viewList.buildupArea==0
+                                                                                ?viewList.carpetArea ==null ||
+                                                                                viewList.carpetArea==0?0:viewList.carpetArea.toLocaleString():viewList.buildupArea.toLocaleString():viewList.plotSize.toLocaleString()
+                                                                                }} {{countryData.unitType}}
                                                                             </li>
                                                                             <li *ngIf="viewList.propertyType?.hasFurnishing"
                                                                                 class="agent-details__property-detail-list-item furnising">
@@ -997,7 +998,7 @@
                                                                         <div class="col-md-10">
                                                                             <ul
                                                                                 class="agent-details__property-detail-list">
-                                                                                <li  *ngIf="wishData.propertyType?.hasListingBed"
+                                                                                <li *ngIf="wishData.propertyType?.hasListingBed"
                                                                                     class="agent-details__property-detail-list-item beds">
                                                                                     <img src="assets/images/icons/Bed.svg"
                                                                                         alt="">
@@ -1013,12 +1014,13 @@
                                                                                     class="agent-details__property-detail-list-item sqft">
                                                                                     <img src="assets/images/icons/Square Meters.svg"
                                                                                         alt="">
-                                                                                        {{wishData.plotSize == null ||
-                                                                                            wishData.plotSize==0 ? wishData.buildupArea ==null ||
-                                                                                            wishData.buildupArea==0
-                                                                                            ?wishData.carpetArea ==null ||
-                                                                                            wishData.carpetArea==0?0:wishData.carpetArea.toLocaleString():wishData.buildupArea.toLocaleString():wishData.plotSize.toLocaleString()
-                                                                                            }} {{countryData.unitType}}
+                                                                                    {{wishData.plotSize == null ||
+                                                                                    wishData.plotSize==0 ?
+                                                                                    wishData.buildupArea ==null ||
+                                                                                    wishData.buildupArea==0
+                                                                                    ?wishData.carpetArea ==null ||
+                                                                                    wishData.carpetArea==0?0:wishData.carpetArea.toLocaleString():wishData.buildupArea.toLocaleString():wishData.plotSize.toLocaleString()
+                                                                                    }} {{countryData.unitType}}
                                                                                 </li>
                                                                                 <li *ngIf="wishData.propertyType?.hasFurnishing"
                                                                                     class="agent-details__property-detail-list-item furnising">
@@ -2469,6 +2471,33 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
+                                                              
+                                                                <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+                                                                    <div ngClass="block-wrapper mb-4">
+                                                                        <label class="h6-design">LinkedIn Profile</label>
+                                                                        <div class="brn-input">
+                                                                            <mat-form-field appearance="fill"
+                                                                                class="full-width select-form input-design-2">
+                                                                                <mat-label>Enter LinkedIn Profile Link</mat-label>
+                                                                                <input matInput
+                                                                                    formControlName="linkedIn">
+                                                                            </mat-form-field>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+                                                                    <div ngClass="block-wrapper mb-4">
+                                                                        <label class="h6-design">Experience</label>
+                                                                        <div class="brn-input">
+                                                                            <mat-form-field appearance="fill"
+                                                                                class="full-width select-form input-design-2">
+                                                                                <mat-label>Enter Experience In Years</mat-label>
+                                                                                <input matInput type="text" maxlength="2"
+                                                                                    formControlName="experience">
+                                                                            </mat-form-field>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
                                                                 <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                                                     <div ngClass="block-wrapper mb-4">
                                                                         <label class="h6-design">BRN No.#</label>
@@ -2538,6 +2567,35 @@
                                                                                         [value]="item.id">{{
                                                                                         item.name }}
                                                                                     </mat-option>
+                                                                                </mat-select>
+                                                                            </mat-form-field>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+                                                                    <div ngClass="block-wrapper mb-4">
+                                                                        <label class="h6-design">Areas</label>
+                                                                        <div class="areas-input">
+                                                                            <mat-form-field appearance="fill"
+                                                                                class="full-width select-form input-design-2">
+                                                                                <mat-label>Select
+                                                                                    Areas</mat-label>
+                                                                                <mat-select
+                                                                                    [disableOptionCentering]="true"
+                                                                                    multiple
+                                                                                    formControlName="areas"
+                                                                                    required>
+                                                                                    <mat-option>
+                                                                                        <ngx-mat-select-search
+                                                                                            [formControl]="areaFilterCtrl"
+                                                                                            placeholderLabel="Search...">
+                                                                                        </ngx-mat-select-search>
+                                                                                    </mat-option>
+                                                                                    <mat-option
+                                                                                    *ngFor="let item of filteredAreas | async"
+                                                                                    [value]="item.id">{{
+                                                                                    item.name }}
+                                                                                </mat-option>
                                                                                 </mat-select>
                                                                             </mat-form-field>
                                                                         </div>

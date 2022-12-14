@@ -102,6 +102,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   showPriceRange: boolean = false;
   showAvgSqft: boolean = false;
   showDIDiv: boolean = true;
+  viewChangeId: any='';
   successResponse(data: any) {
     this.showSuccess = false;
   }
@@ -150,6 +151,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   public filteredCities: any = new ReplaySubject(1);
   public nationalityFilterCtrl: FormControl = new FormControl();
   public filteredNationality: any = new ReplaySubject(1);
+  public areaFilterCtrl: FormControl = new FormControl();
+  public filteredAreas: any = new ReplaySubject(1);
   protected _onDestroy = new Subject();
   //Form Groups Start
   detailForm = new FormGroup({
@@ -167,7 +170,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     agentBrnNo: new FormControl(null),
     agentAboutMe: new FormControl(null),
     expertIn: new FormControl(null),
-    nationalityId: new FormControl(null),
+    linkedIn: new FormControl(null),
+    experience: new FormControl(null,Validators.maxLength(2)),
+    nationalityId: new FormControl(null,Validators.required),
+    areas: new FormControl([],Validators.required),
     id: new FormControl(0),
     userId: new FormControl(null),
   })
@@ -254,6 +260,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.loadViewActivityData();
     this.lordMyActivityAgentView();
     this.getViewCount();
+    this.getActiveViewCount();
     this.getEnquiredCount();
     this.getCountData('');
     this.getWishlisting();
@@ -657,6 +664,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.detailForm.controls['countryId'].valueChanges.subscribe(x => {
       this.onCountrySelect(x);
     })
+    this.agentDetailForm.controls['areas'].valueChanges.subscribe(x => {
+    console.log("Selected Area",x)
+    })
     this.filteredCountries.next(this.country.slice());
     this.countryFilterCtrl.valueChanges
       .pipe(takeUntil(this._onDestroy))
@@ -675,6 +685,12 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       .pipe(takeUntil(this._onDestroy))
       .subscribe(() => {
         this.filterNationality();
+      });
+    this.filteredAreas.next(this.districts.slice());
+    this.areaFilterCtrl.valueChanges
+      .pipe(takeUntil(this._onDestroy))
+      .subscribe(() => {
+        this.filterArea();
       });
     var myDate = new Date();
     var hrs = myDate.getHours();
@@ -737,6 +753,23 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
     this.filteredNationality.next(
       this.Nationality.filter((x: any) => x.name.toLowerCase().indexOf(search) > -1)
+    );
+  }
+  filterArea() {
+    if (!this.districts) {
+      return;
+    }
+
+    let search = this.areaFilterCtrl.value;
+    if (!search) {
+      this.filteredAreas.next(this.districts.slice());
+      return;
+    } else {
+      search = search.toLowerCase();
+    }
+
+    this.filteredAreas.next(
+      this.districts.filter((x: any) => x.name.toLowerCase().indexOf(search) > -1)
     );
   }
   getUser() {
@@ -980,6 +1013,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       })
     });
     this.districts = tempData
+    this.filteredAreas.next(this.districts);
   }
 
   districtsIds: any = []
@@ -1181,6 +1215,12 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       this.showError = true;
       return;
     }
+    else if (this.agentDetailForm.get('areas')?.hasError('required') && this.agentDetailForm.value.areas?.length==0) {
+      this.currentField = "areas-input";
+      this.error = "Select at least one area.";
+      this.showError = true;
+      return;
+    }
     else if (this.agentFormRequired && (this.agentLanguages.length == 0)) {
       this.currentField = "language-input";
       this.error = "Select Languages";
@@ -1213,6 +1253,12 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     if (this.agentDetailForm.value.userId == null || this.agentDetailForm.value.userId == undefined || this.agentDetailForm.value.userId == 0) {
       this.agentDetailForm.get('userId')?.patchValue(this.userId);
     }
+    let agentFormAreas: any = this.agentDetailForm.value.areas;
+    let agentAreas: any = [];
+    for (let i = 0; i < agentFormAreas.length; i++) {
+      agentAreas.push({ "DistrictId": agentFormAreas[i] });
+    }
+
     let agentFormData: any = {};
     agentFormData.Id = this.agentDetailForm.value.id;
     agentFormData.UserId = this.agentDetailForm.value.userId;
@@ -1220,7 +1266,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     agentFormData.BRNNo = this.agentDetailForm.value.agentBrnNo;
     agentFormData.NationalityId = this.agentDetailForm.value.nationalityId;
     agentFormData.ExpertIn = this.agentDetailForm.value.expertIn;
+    agentFormData.LinkedIn = this.agentDetailForm.value.linkedIn;
+    agentFormData.Experience = this.agentDetailForm.value.experience;
     agentFormData.AgentLanguages = agentSelectedLanguages;
+    agentFormData.AgentAreas = agentAreas;
     agentFormData.Documents = this.finalAgentDocments
     let AgentRequestData = new FormData();
     AgentRequestData.append("AgentRequest", JSON.stringify(agentFormData));
@@ -1316,17 +1365,32 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       this.viewAgentCount = response.data.agents
     });
   }
+  activeBuyCount: any;
+  activeRentCount: any;
+  activeAllCount: any;
+getActiveViewCount(){
+  this.showLoader=true;
+  this.service.MyActivityPropertyListingViewForAgentCount(this.userId).subscribe((resp:any)=>{
+    this.activeBuyCount=resp.data.buy
+    this.activeRentCount=resp.data.rent
+    this.activeAllCount=resp.data.all
+    this.showLoader=false;
+  },err=>{
+    this.showLoader=false;
+  })
+}
 
-
-  viewChangeId: any;
+ 
   myActivityViewChange(e: any) {
     this.page = 1;
     this.viewChangeId = e;
+    console.log(this.viewChangeId)
     this.lordMyActivityListingView();
   }
 
   myActivityListingView: any = []
   lordMyActivityListingView() {
+    console.log(this.viewChangeId)
     this.showLoader=true;
     this.totalLength = 0
     let tempData: Array<Object> = []
@@ -1401,7 +1465,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       this.showLoader=false;
     });
   }
-activityViewType:any;
+activityViewType:any='';
 myActivityViewTypeChange(e: any) {
   this.page = 1;
   this.activityViewType = e;
@@ -1409,7 +1473,7 @@ myActivityViewTypeChange(e: any) {
 }
 loadViewActivityData(){
   this.showLoader=true;
-  this.service.MyActivityPropertyListingViewForAgent({ "UserId": this.userData.id, "PropertyListingTypeId": this.activityViewType }).subscribe((result: any) => {
+  this.service.MyActivityPropertyListingViewForAgent({ "UserId": this.userId, "PropertyListingTypeId": this.activityViewType }).subscribe((result: any) => {
     this.activityViewData = result.data;
     this.showLoader=false;
   },err=>{
@@ -1467,6 +1531,7 @@ loadViewActivityData(){
     this.service.GetAgentProfile(this.userId).subscribe((resp: any) => {
       if (resp.result == 1 && resp.data?.agentDetails != null) {
         this.agentDetails = resp.data.agentDetails;
+        console.log(this.agentDetails)
         let ExpertInId: any = null;
         if (this.agentDetails.expertIn == "Residential") {
           ExpertInId = 1;
@@ -1480,6 +1545,10 @@ loadViewActivityData(){
         if (this.agentDetails.userId == null || this.agentDetails.userId == undefined) {
           this.agentDetails.userId = this.userId
         }
+        let tempAreas:any=[]
+        this.agentDetails.agentAreas.forEach((x:any)=>{
+          tempAreas.push(x.districtId)
+        })
         this.ExpertInName = this.agentDetails.expertIn;
         this.agentDetailForm.patchValue({
           agentAboutMe: this.agentDetails.aboutMe,
@@ -1487,7 +1556,10 @@ loadViewActivityData(){
           expertIn: ExpertInId,
           nationalityId: this.agentDetails.nationalityId,
           id: this.agentDetails.id,
-          userId: this.agentDetails.userId
+          userId: this.agentDetails.userId,
+          areas:tempAreas,
+          linkedIn:this.agentDetails.linkedIn,
+          experience:this.agentDetails.experience,
         })
         if (this.agentDetails.agentLanguages?.length > 0) {
           for (let item of this.agentDetails.agentLanguages) {
