@@ -465,6 +465,10 @@
                                     </div>
                                     <div class="agent-details__tabs">
                                         <div class="row">
+                                            <div class="no-data-found" *ngIf="myActivityListingView.length == 0">
+                                                <img src="/assets/images/no-properties.svg">
+                                                <h5>No Properties Found..!</h5>
+                                            </div>
                                             <div class="col-lg-9 col-md-10">
                                                 <ul class="agent-details__property-list">
                                                     <li class="agent-details__property-list-item"
@@ -705,25 +709,25 @@
                                     <div class="type-activity-status">
                                         <div ngClass="block-wrapper mb-4">
                                             <div class="checkbox-flex-box-auto button-same-select">
-                                                <div (click)="myActivityViewChange('')"
+                                                <div (click)="myActivityViewTypeChange('')"
                                                     class="checkbox-design position-relative">
                                                     <input type="radio" id="Furnished" name="property-types" value="All"
                                                         checked>
                                                     <button class="checkbox-btn">All ({{viewAllCount}})</button>
                                                 </div>
-                                                <div (click)="myActivityViewChange('1')"
+                                                <div (click)="myActivityViewTypeChange('1')"
                                                     class="checkbox-design position-relative">
                                                     <input type="radio" id="Unfurnished" name="property-types"
                                                         value="Rent">
                                                     <button class="checkbox-btn">Rent ({{viewRentCount}})</button>
                                                 </div>
-                                                <div (click)="myActivityViewChange('2')"
+                                                <div (click)="myActivityViewTypeChange('2')"
                                                     class="checkbox-design position-relative">
                                                     <input type="radio" id="Semi-Furnished" name="property-types"
                                                         value="Buy">
                                                     <button class="checkbox-btn">Buy ({{viewBuyCount}})</button>
                                                 </div>
-                                                <div (click)="myActivityViewChange(userId)"
+                                                <div (click)="myActivityViewTypeChange(userId)"
                                                     class="checkbox-design position-relative">
                                                     <input type="radio" id="Unfurnished" name="property-types"
                                                         value="Agents">
@@ -845,7 +849,7 @@
                                             </pagination-controls>
                                         </section>
                                     </div>
-                                    <section class="agent-landing-featured">
+                                    <!-- <section class="agent-landing-featured">
 
                                         <div class="row">
                                             <div class="col-lg-9 col-md-10">
@@ -912,7 +916,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </section>
+                                    </section> -->
                                 </mat-tab>
                                 <mat-tab label="Shortlisted">
                                     <div class="type-activity-status">
@@ -968,7 +972,7 @@
                                                                                 class="agent-details__property-list-item-link cursor-pointer">{{wishData.price
                                                                                 | number}}
                                                                                 {{wishData.currency}}
-                                                                                <span>{{wishData.rentType}}</span>
+                                                                                <small>{{wishData.rentType}}</small>
                                                                             </a>
                                                                         </div>
                                                                         <div class="col-5 text-end">
@@ -993,13 +997,13 @@
                                                                         <div class="col-md-10">
                                                                             <ul
                                                                                 class="agent-details__property-detail-list">
-                                                                                <li
+                                                                                <li  *ngIf="wishData.propertyType?.hasListingBed"
                                                                                     class="agent-details__property-detail-list-item beds">
                                                                                     <img src="assets/images/icons/Bed.svg"
                                                                                         alt="">
                                                                                     {{wishData.bedrooms}} Beds
                                                                                 </li>
-                                                                                <li
+                                                                                <li *ngIf="wishData.propertyType?.hasListingBath"
                                                                                     class="agent-details__property-detail-list-item bath">
                                                                                     <img src="assets/images/icons/Bath-tub.svg"
                                                                                         alt="">
@@ -1009,9 +1013,14 @@
                                                                                     class="agent-details__property-detail-list-item sqft">
                                                                                     <img src="assets/images/icons/Square Meters.svg"
                                                                                         alt="">
-                                                                                    {{wishData.carpetArea}} Sq.Ft.
+                                                                                        {{wishData.plotSize == null ||
+                                                                                            wishData.plotSize==0 ? wishData.buildupArea ==null ||
+                                                                                            wishData.buildupArea==0
+                                                                                            ?wishData.carpetArea ==null ||
+                                                                                            wishData.carpetArea==0?0:wishData.carpetArea.toLocaleString():wishData.buildupArea.toLocaleString():wishData.plotSize.toLocaleString()
+                                                                                            }} {{countryData.unitType}}
                                                                                 </li>
-                                                                                <li
+                                                                                <li *ngIf="wishData.propertyType?.hasFurnishing"
                                                                                     class="agent-details__property-detail-list-item furnising">
                                                                                     <img src="assets/images/icons/furnishing.svg"
                                                                                         alt="">

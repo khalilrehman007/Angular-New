@@ -251,6 +251,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.getSpokenLanguages();
     this.getExpertIn();
     this.lordMyActivityListingView();
+    this.loadViewActivityData();
     this.lordMyActivityAgentView();
     this.getViewCount();
     this.getEnquiredCount();
@@ -288,9 +289,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       } else {
         this.proAvatar = this.baseUrl + this.userData.imageUrl;
       }
-      this.service.MyActivityPropertyListingViewForAgent({ "UserId": this.userData.id, "PropertyCategoryId": "" }).subscribe((result: any) => {
-        this.activityViewData = result.data;
-      })
       this.service.SummaryLeads({ "UserId": this.userData.id, "PropertyCategoryId": "1" }).subscribe((result: any) => {
         if (result.data.length > 0) {
           this.leadSummary = result.data;
@@ -1310,6 +1308,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   getViewCount() {
     let tempData: Array<Object> = []
     this.service.MyActivityViewCount(this.user.id).subscribe(data => {
+      console.log("viewcount",data)
       let response: any = data;
       this.viewAllCount = response.data.all
       this.viewRentCount = response.data.rent
@@ -1328,6 +1327,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
   myActivityListingView: any = []
   lordMyActivityListingView() {
+    this.showLoader=true;
     this.totalLength = 0
     let tempData: Array<Object> = []
     this.service.MyActivityPropertyListingView({ "UserId": this.user.id, "PropertyListingTypeId": this.viewChangeId }).subscribe(data => {
@@ -1396,10 +1396,26 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       })
       this.totalLength = tempData.length
       this.myActivityListingView = tempData;
+      this.showLoader=false;
+    },err=>{
+      this.showLoader=false;
     });
   }
-
-
+activityViewType:any;
+myActivityViewTypeChange(e: any) {
+  this.page = 1;
+  this.activityViewType = e;
+  this.loadViewActivityData();
+}
+loadViewActivityData(){
+  this.showLoader=true;
+  this.service.MyActivityPropertyListingViewForAgent({ "UserId": this.userData.id, "PropertyListingTypeId": this.activityViewType }).subscribe((result: any) => {
+    this.activityViewData = result.data;
+    this.showLoader=false;
+  },err=>{
+    this.showLoader=false;
+  })
+}
   myActivityAgentView: any = []
   lordMyActivityAgentView() {
     let tempData: Array<Object> = []
@@ -1578,6 +1594,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             buildingName: element.buildingName,
             carpetArea: element.carpetArea,
             buildupArea: element.buildupArea,
+            plotSize: element.plotSize,
             requestedDateFormat: element.requestedDateFormat,
             furnishingType: element.furnishingType
           });
