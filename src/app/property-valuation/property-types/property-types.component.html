@@ -115,7 +115,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div ngClass="col-xl-6 col-lg-6 col-sm-12">
+                                    <div ngClass="col-xl-6 col-lg-6 col-sm-12" *ngIf="propertyData.hasPlotNo">
                                         <div ngClass="block-wrapper mb-4">
                                             <label class="h6-design">{{propertyData.numberLabel}} <span
                                                     ngClass="required-span">*</span></label>

@@ -419,7 +419,7 @@ console.log("unit",hasBed)
       this.error = "Please Select Property Status";
       this.showError = true;
       return;
-    } else if (this.propertyTypeForm.value.apartmentNo == "") {
+    } else if (this.propertyData.hasPlotNo && this.propertyTypeForm.value.apartmentNo == "") {
       this.currentField = "apartment-no-input";
       this.error = "Please Enter Apartment No";
       this.showError = true;
@@ -515,7 +515,11 @@ console.log("unit",hasBed)
     this.formData.Bathrooms = this.bathrooms;
     this.formData.FurnishingType = this.furnishing;
     this.formData.FittingType = this.fitting;
-    this.formDetailData.PlotNo = this.propertyTypeForm.value.apartmentNo;
+    if(this.propertyData.hasPlotNo) {
+      this.formDetailData.PlotNo = this.propertyTypeForm.value.apartmentNo;
+    } else {
+      this.formDetailData.PlotNo = 0;
+    }
     if (this.propertyData.hasElevation) {
       this.formDetailData.elevation = $(".elevation-input").val();
     } else {
