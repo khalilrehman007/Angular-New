@@ -12,8 +12,6 @@ import { CookieService } from 'ngx-cookie-service';
 import { environment } from 'src/environments/environment';
 import { ReplaySubject, Subject, takeUntil } from 'rxjs';
 import { DomSanitizer } from '@angular/platform-browser';
-import { UnitTransactionHistoryResidentialComponent } from 'src/app/data-intelligence/data/unit-transaction-history-residential/unit-transaction-history-residential.component';
-
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -62,6 +60,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   loggedInUser: any = localStorage.getItem('user')
   agentDocumentTypes: any = [];
   companyDocumentTypes: any = [];
+  companiesList: any = [];
   user: any;
   greet: any;
   currentField: any;
@@ -156,6 +155,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   public filteredNationality: any = new ReplaySubject(1);
   public areaFilterCtrl: FormControl = new FormControl();
   public filteredAreas: any = new ReplaySubject(1);
+  public companyFilterCtrl: FormControl = new FormControl();
+  public filteredCompanies: any = new ReplaySubject(1);
   protected _onDestroy = new Subject();
   //Form Groups Start
   detailForm = new FormGroup({
@@ -182,6 +183,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   })
   companyDetailForm = new FormGroup({
     id: new FormControl(0),
+    companyId: new FormControl(''),
     companyName: new FormControl(null, Validators.required),
     aboutCompany: new FormControl(null, Validators.required),
     tradeLicenseNo: new FormControl(null, Validators.required),
@@ -255,6 +257,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.getloadDashboardData();
     this.getLoadListing()
     this.getTabCount();
+    this.GetCompaniesList();
     this.GetAgentDocumentTypes();
     this.GetCompanyDocumentTypes();
     this.LoadvaluationDashboard();
@@ -398,8 +401,20 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.showLoader = true;
     this.service.GetCompanyDocumentTypes().subscribe({
       next: (resp: any) => {
-        console.log("resp", resp);
         this.companyDocumentTypes = resp.data;
+        this.showLoader = false;
+      },
+      error: (err: any) => {
+        this.showLoader = false;
+      }
+    })
+  }
+  GetCompaniesList() {
+    this.showLoader = true;
+    this.service.GetAllCompanies().subscribe({
+      next: (resp: any) => {
+        this.companiesList = resp.data;
+        this.filteredCompanies.next(this.companiesList);
         this.showLoader = false;
       },
       error: (err: any) => {
@@ -461,53 +476,53 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
 
   animate() {
-    let temp: any = $("." + this.currentField).offset()?.top;
-    $("." + this.currentField).addClass("blink");
-    $("." + this.currentField).on("click", () => {
-      $("." + this.currentField).removeClass("blink");
+    let temp: any = $(this.currentField).offset()?.top;
+    $(this.currentField).addClass("blink");
+    $(this.currentField).on("click", () => {
+      $(this.currentField).removeClass("blink");
       this.currentField = "";
     })
     $(window).scrollTop(temp - 200);
   }
   getData() {
     if (this.detailForm.get('firstName')?.hasError('required')) {
-      this.currentField = "firstName-input";
+      this.currentField = ".firstName-input";
       this.error = "Enter First Name";
       this.showError = true;
       return;
     }
     else if (this.detailForm.get('lastName')?.hasError('required')) {
-      this.currentField = "lastName-input";
+      this.currentField = ".lastName-input";
       this.error = "Enter Last Name";
       this.showError = true;
       return;
     }
     else if (this.detailForm.get('gender')?.hasError('required')) {
-      this.currentField = "gender-input";
+      this.currentField = ".gender-input";
       this.error = "Select Gender";
       this.showError = true;
       return;
     }
     else if (this.detailForm.get('dateOfBirth')?.hasError('required')) {
-      this.currentField = "dob-input";
+      this.currentField = ".dob-input";
       this.error = "Select Date of Birth";
       this.showError = true;
       return;
     }
     else if (this.detailForm.get('countryId')?.hasError('required')) {
-      this.currentField = "country-input";
+      this.currentField = ".country-input";
       this.error = "Select Country";
       this.showError = true;
       return;
     }
     else if (this.detailForm.get('cityId')?.hasError('required')) {
-      this.currentField = "city-input";
+      this.currentField = ".city-input";
       this.error = "Select City";
       this.showError = true;
       return;
     }
     else if (this.detailForm.get('address')?.hasError('required')) {
-      this.currentField = "address-input";
+      this.currentField = ".address-input";
       this.error = "Enter Address";
       this.showError = true;
       return;
@@ -552,10 +567,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       this.commercial = response.data[1].categoryName;
     });
   }
-  getAreaData(e: any) {
-    this.areaData = e.value;
-  }
-
   myValuationlistingAll: any = [];
   getLoadMyValuaionListing() {
     let tempData: Array<Object> = []
@@ -693,11 +704,13 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
   ngOnInit() {
     this.getNationality();
+    this.companyDetailForm.controls['companyId'].valueChanges.subscribe(x => {
+      if (x != "other") {
+        this.PatchCompanyForm(x)
+      }
+    })
     this.detailForm.controls['countryId'].valueChanges.subscribe(x => {
       this.onCountrySelect(x);
-    })
-    this.agentDetailForm.controls['areas'].valueChanges.subscribe(x => {
-      console.log("Selected Area", x)
     })
     this.filteredCountries.next(this.country.slice());
     this.countryFilterCtrl.valueChanges
@@ -723,6 +736,12 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       .pipe(takeUntil(this._onDestroy))
       .subscribe(() => {
         this.filterArea();
+      });
+    this.filteredCompanies.next(this.companiesList.slice());
+    this.companyFilterCtrl.valueChanges
+      .pipe(takeUntil(this._onDestroy))
+      .subscribe(() => {
+        this.filterComapny();
       });
     var myDate = new Date();
     var hrs = myDate.getHours();
@@ -803,6 +822,55 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.filteredAreas.next(
       this.districts.filter((x: any) => x.name.toLowerCase().indexOf(search) > -1)
     );
+  }
+  filterComapny() {
+    if (!this.companiesList) {
+      return;
+    }
+
+    let search = this.companyFilterCtrl.value;
+    if (!search) {
+      this.filteredCompanies.next(this.companiesList.slice());
+      return;
+    } else {
+      search = search.toLowerCase();
+    }
+
+    this.filteredCompanies.next(
+      this.companiesList.filter((x: any) => x.companyName.toLowerCase().indexOf(search) > -1)
+    );
+  }
+  PatchCompanyForm(id: any) {
+    this.otherCompanyImages = [];
+    this.finalCompanyDocments = [];
+    this.companyFileNames = [];
+    let company = this.companiesList.find((y: any) => {
+      return y.id === id
+    })
+    if (company != null && company != undefined) {
+      this.companyDetailForm.patchValue({
+        id: company?.id,
+        companyName: company?.companyName,
+        aboutCompany: company?.aboutCompany,
+        tradeLicenseNo: company?.tradeLicenseNo,
+        premitNo: company?.premitNo,
+        ornNo: company?.ornNo,
+        reraNo: company?.reraNo,
+        companyAdress: company?.companyAdress,
+      })
+      if (company?.documents?.length > 0) {
+        company?.documents.sort((a: any, b: any) => (a.registrationDocumentTypeId > b.registrationDocumentTypeId) ? 1 : -1)
+        for (let item of company?.documents) {
+          this.companyFileNames.push(item.fileName);
+          this.finalCompanyDocments.push({
+            "FileId": item.fileId,
+            "RegistrationDocumentTypeId": item.registrationDocumentTypeId,
+            "FileName": item.fileName, "Extension": item.extension, "FileUrl": item.fileUrl,
+            "Id": item.id
+          });
+        }
+      }
+    }
   }
   getUser() {
     this.user = localStorage.getItem('user');
@@ -895,7 +963,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     }
     if (files && files.length) {
       let found: boolean = this.otherAgentImages.some((x: any) => x.index === index);
-      console.log(found);
       if (found) {
         this.otherAgentImages[index].file = files[0];
       } else {
@@ -1095,73 +1162,73 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       fifthImage = true;
     }
     if (this.companyDetailForm.get('companyName')?.hasError('required')) {
-      this.currentField = "companyName-input";
+      this.currentField = ".companyName-input";
       this.error = "Enter Company Name";
       this.showError = true;
       return;
     }
     else if (this.companyDetailForm.get('aboutCompany')?.hasError('required')) {
-      this.currentField = "aboutCompany-input";
+      this.currentField = ".aboutCompany-input";
       this.error = "Write About Your Company";
       this.showError = true;
       return;
     }
     else if (this.companyDetailForm.get('tradeLicenseNo')?.hasError('required')) {
-      this.currentField = "tradeLicense-input";
+      this.currentField = ".tradeLicense-input";
       this.error = "Enter Trade License No.#";
       this.showError = true;
       return;
     }
     else if (this.companyDetailForm.get('premitNo')?.hasError('required')) {
-      this.currentField = "permitNo-input";
+      this.currentField = ".permitNo-input";
       this.error = "Enter Permit No.#";
       this.showError = true;
       return;
     }
     else if (this.companyDetailForm.get('ornNo')?.hasError('required')) {
-      this.currentField = "ornNo-input";
+      this.currentField = ".ornNo-input";
       this.error = "Enter ORN No.#";
       this.showError = true;
       return;
     }
     else if (this.companyDetailForm.get('reraNo')?.hasError('required')) {
-      this.currentField = "reraNo-input";
+      this.currentField = ".reraNo-input";
       this.error = "Enter RERA No.#";
       this.showError = true;
       return;
     }
     else if (this.companyDetailForm.get('companyAdress')?.hasError('required')) {
-      this.currentField = "companyAdress-input";
+      this.currentField = ".companyAdress-input";
       this.error = "Enter Company Address";
       this.showError = true;
       return;
     }
     else if (!firstImage) {
-      this.currentField = "c-4-input";
+      this.currentField = ".c-4-input";
       this.error = "Upload Trade License Document";
       this.showError = true;
       return;
     }
     else if (!secondImage) {
-      this.currentField = "c-5-input";
+      this.currentField = ".c-5-input";
       this.error = "Upload Permit No Document";
       this.showError = true;
       return;
     }
     else if (!thirdImage) {
-      this.currentField = "c-6-input";
+      this.currentField = ".c-6-input";
       this.error = "Upload ORN Document";
       this.showError = true;
       return;
     }
     else if (!fourthImage) {
-      this.currentField = "c-7-input";
+      this.currentField = ".c-7-input";
       this.error = "Upload Rera Document";
       this.showError = true;
       return;
     }
     else if (!fifthImage) {
-      this.currentField = "c-8-input";
+      this.currentField = ".c-8-input";
       this.error = "Upload Company Logo";
       this.showError = true;
       return;
@@ -1195,6 +1262,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         this.otherCompanyImages = [];
         this.finalCompanyDocments = [];
         this.companyFileNames = [];
+        this.GetCompaniesList();
         this.getAgentAndCompanyProfile();
         this.showLoader = false;
         this.success = "Company Detail Updated Successfully!"
@@ -1230,61 +1298,61 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     }
 
     if (this.agentDetailForm.get('agentAboutMe')?.hasError('required')) {
-      this.currentField = "aboutme-input";
+      this.currentField = ".aboutme-input";
       this.error = "Enter About Me";
       this.showError = true;
       return;
     }
     else if (this.agentDetailForm.get('agentBrnNo')?.hasError('required')) {
-      this.currentField = "brn-input";
+      this.currentField = ".brn-input";
       this.error = "Enter BRN No.#";
       this.showError = true;
       return;
     }
     else if (this.agentDetailForm.get('experience')?.hasError('pattern')) {
-      this.currentField = "experience-input";
+      this.currentField = ".experience-input";
       this.error = "Experience accepts only numbers";
       this.showError = true;
       return;
     }
     else if (this.agentDetailForm.get('expertIn')?.hasError('required') && this.agentFormRequired) {
-      this.currentField = "expertIn-input";
+      this.currentField = ".expertIn-input";
       this.error = "Select Expert In";
       this.showError = true;
       return;
     }
     else if (this.agentDetailForm.get('nationalityId')?.hasError('required')) {
-      this.currentField = "nationality-input";
+      this.currentField = ".nationality-input";
       this.error = "Select Nationality";
       this.showError = true;
       return;
     }
     else if (this.agentDetailForm.get('areas')?.hasError('required') && this.agentDetailForm.value.areas?.length == 0) {
-      this.currentField = "areas-input";
+      this.currentField = ".areas-input";
       this.error = "Select at least one area.";
       this.showError = true;
       return;
     }
     else if (this.agentFormRequired && (this.agentLanguages.length == 0)) {
-      this.currentField = "language-input";
+      this.currentField = ".language-input";
       this.error = "Select Languages";
       this.showError = true;
       return;
     }
     else if (!firstImage && this.agentFormRequired) {
-      this.currentField = "a-1-input";
+      this.currentField = ".a-1-input";
       this.error = "Upload  Emirates ID (Fornt View)";
       this.showError = true;
       return;
     }
     else if (!secondImage && this.agentFormRequired) {
-      this.currentField = "a-2-input";
+      this.currentField = ".a-2-input";
       this.error = "Upload  Emirates ID (Back View)";
       this.showError = true;
       return;
     }
     else if (!thirdImage && this.agentFormRequired) {
-      this.currentField = "a-3-input";
+      this.currentField = ".a-3-input";
       this.error = "Upload BRN Document";
       this.showError = true;
       return;
@@ -1302,8 +1370,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     for (let i = 0; i < agentFormAreas.length; i++) {
       agentAreas.push({ "DistrictId": agentFormAreas[i] });
     }
-    console.log("docs", this.finalAgentDocments);
-    console.log("docsww", this.otherAgentImages);
     let agentFormData: any = {};
     agentFormData.Id = this.agentDetailForm.value.id;
     agentFormData.UserId = this.agentDetailForm.value.userId;
@@ -1327,6 +1393,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         this.otherAgentImages = [];
         this.finalAgentDocments = [];
         this.agentFileNames = [];
+        this.agentLanguages = [];
         this.getAgentAndCompanyProfile();
         this.showLoader = false;
         this.success = "Agent Detail Updated Successfully!"
@@ -1349,25 +1416,25 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
   changePassword() {
     if (this.changePasswordForm.get('oldPassword')?.hasError('required')) {
-      this.currentField = "currentPass-Input";
+      this.currentField = ".currentPass-Input";
       this.error = "Enter Current Password";
       this.showError = true;
       return;
     }
     else if (this.changePasswordForm.get('password')?.hasError('required')) {
-      this.currentField = "Pass-Input";
+      this.currentField = ".Pass-Input";
       this.error = "Enter New Password";
       this.showError = true;
       return;
     }
     else if (this.changePasswordForm.get('password')?.hasError('pattern')) {
-      this.currentField = "Pass-Input";
+      this.currentField = ".Pass-Input";
       this.error = "New password doesn't meet the required pattern";
       this.showError = true;
       return;
     }
     else if (this.changePasswordForm.value.password != this.changePasswordForm.value.confirmPassword) {
-      this.currentField = "confirmPass-Input";
+      this.currentField = ".confirmPass-Input";
       this.error = "Confirm password doesn't match the new password";
       this.showError = true;
       return;
@@ -1403,7 +1470,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   getViewCount() {
     let tempData: Array<Object> = []
     this.service.MyActivityViewCount(this.user.id).subscribe(data => {
-      console.log("viewcount", data)
       let response: any = data;
       this.viewAllCount = response.data.all
       this.viewRentCount = response.data.rent
@@ -1430,18 +1496,15 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   myActivityViewChange(e: any) {
     this.page = 1;
     this.viewChangeId = e;
-    console.log(this.viewChangeId)
     this.lordMyActivityListingView();
   }
 
   myActivityListingView: any = []
   lordMyActivityListingView() {
-    console.log(this.viewChangeId)
     this.showLoader = true;
     this.totalLength = 0
     let tempData: Array<Object> = []
     this.service.MyActivityPropertyListingView({ "UserId": this.user.id, "PropertyListingTypeId": this.viewChangeId }).subscribe(data => {
-      console.log("Active Listing View ", data)
       let response: any = data;
       response.data.forEach((element: any, i: any) => {
         let image: any;
@@ -1480,6 +1543,15 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         else {
           this.showDIDiv = true;
         }
+        let companyLogoImage = '';
+        if (element.company != null && element.company?.documents.length > 0) {
+          let companyLogo = element.company?.documents.find((y: any) => {
+            return y.registrationDocumentTypeId === 8
+          })
+          if (companyLogo != null && companyLogo != undefined) {
+            companyLogoImage = this.baseUrl + companyLogo.fileUrl;
+          }
+        }
         this.shareURL += "property/detail?id=" + element.id;
         this.whatsAppShareUrl = this.domSanitizer.bypassSecurityTrustUrl("https://wa.me/?text=" + encodeURI(this.shareURL));
         this.facebookShareUrl = this.domSanitizer.bypassSecurityTrustUrl("https://www.facebook.com/sharer/sharer.php?u=" + encodeURI(this.shareURL) + "%3Futm_source%3Dfacebook%26utm_medium%3Dsocial%26utm_campaign%3Dshare_property");
@@ -1499,7 +1571,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             rentType: rentTypeName, listingTypeId: element.propertyListingTypeId, currency: element.country.currency, propertyCode: element.propertyCode,
             listingType: element.propertyListingTypeId == 1 ? "Rent" : "Sale", showRecentTransactions: this.showRecentTransactions,
             showAvgSqft: this.showAvgSqft, showPriceRange: this.showPriceRange, showDIDiv: this.showDIDiv,
-            whatsAppShareUrl: this.whatsAppShareUrl, facebookShareUrl: this.facebookShareUrl, twitterShareUrl: this.twitterShareUrl,
+            whatsAppShareUrl: this.whatsAppShareUrl, facebookShareUrl: this.facebookShareUrl, twitterShareUrl: this.twitterShareUrl,companyLogoImage:companyLogoImage
           }
         );
         this.shareURL = this.shareURLTemp;
@@ -1519,11 +1591,36 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
   loadViewActivityData() {
     this.showLoader = true;
-    this.service.MyActivityPropertyListingViewForAgent({ "UserId": this.userId, "PropertyListingTypeId": this.activityViewType }).subscribe((result: any) => {
-      this.activityViewData = result.data;
-      this.showLoader = false;
-    }, err => {
-      this.showLoader = false;
+    this.service.MyActivityPropertyListingViewForAgent({ "UserId": this.userId, "PropertyListingTypeId": this.activityViewType }).subscribe({
+      next:(result: any) => {
+        let data = result.data;
+        data.forEach((element:any)=>{
+        let mainImage:any='assets/images/placeholder.png';
+        if(element.documents!=null && element.documents.length>0){
+          mainImage=this.baseUrl+element.documents[0].fileUrl;
+        }
+        let companyLogoImage = '';
+        if (element.company != null && element.company?.documents.length > 0) {
+          let companyLogo = element.company?.documents.find((y: any) => {
+            return y.registrationDocumentTypeId === 8
+          })
+          if (companyLogo != null && companyLogo != undefined) {
+            companyLogoImage = this.baseUrl + companyLogo.fileUrl;
+          }
+        }
+        this.activityViewData.push({
+          mainImage:mainImage,id:element.id,propertyPrice:element.propertyPrice,country:element.country,rentType:element.rentType,
+          propertyTitle:element.propertyTitle,requestedDateFormat:element.requestedDateFormat,numberOfUsershortListedProperty:element.numberOfUsershortListedProperty,
+          numberOfUserSeeingProperty:element.numberOfUserSeeingProperty,propertyAddress:element.propertyAddress,propertyType:element.propertyType,
+          bedrooms:element.bedrooms,bathrooms:element.bathrooms,plotSize:element.plotSize,buildupArea:element.buildupArea,carpetArea:element.carpetArea,
+          furnishingType:element.furnishingType,companyLogoImage:companyLogoImage
+        })
+        })
+        this.showLoader = false;
+      },
+      error:(err:any)=>{
+        this.showLoader=false;
+      }
     })
   }
   myActivityAgentView: any = []
@@ -1577,10 +1674,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.showLoader = true;
     this.service.GetAgentProfile(this.userId).subscribe({
       next: (resp: any) => {
-        console.log("agent", resp)
         if (resp.result == 1 && resp.data?.agentDetails != null) {
           this.agentDetails = resp.data.agentDetails;
-          console.log(this.agentDetails)
           let ExpertInId: any = null;
           if (this.agentDetails.expertIn == "Residential") {
             ExpertInId = 1;
@@ -1640,6 +1735,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
               reraNo: this.agentDetails?.company?.reraNo,
               companyAdress: this.agentDetails?.company?.companyAdress,
             })
+            // this.companyDetailForm.controls['companyId']?.patchValue(this.agentDetails?.company?.id,{ emitEvent: false, onlySelf: true })
             if (this.agentDetails?.company?.documents?.length > 0) {
               this.agentDetails?.company?.documents.sort((a: any, b: any) => (a.registrationDocumentTypeId > b.registrationDocumentTypeId) ? 1 : -1)
               for (let item of this.agentDetails.company?.documents) {
@@ -1705,7 +1801,15 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         if (element.propertyType !== null && element.propertyType !== undefined) {
           propertyType = element.propertyType.typeDescription
         }
-
+        let companyLogoImage = '';
+        if (element.company != null && element.company?.documents.length > 0) {
+          let companyLogo = element.company?.documents.find((y: any) => {
+            return y.registrationDocumentTypeId === 8
+          })
+          if (companyLogo != null && companyLogo != undefined) {
+            companyLogoImage = this.baseUrl + companyLogo.fileUrl;
+          }
+        }
         tempData.push(
           {
             title: element.propertyTitle,
@@ -1725,7 +1829,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             buildupArea: element.buildupArea,
             plotSize: element.plotSize,
             requestedDateFormat: element.requestedDateFormat,
-            furnishingType: element.furnishingType
+            furnishingType: element.furnishingType,
+            companyLogoImage:companyLogoImage
           });
       })
     });
@@ -1829,6 +1934,15 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         if (element.propertyType !== null && element.propertyType !== undefined) {
           propertyType = element.propertyType.typeDescription
         }
+        let companyLogoImage = '';
+        if (element.company != null && element.company?.documents.length > 0) {
+          let companyLogo = element.company?.documents.find((y: any) => {
+            return y.registrationDocumentTypeId === 8
+          })
+          if (companyLogo != null && companyLogo != undefined) {
+            companyLogoImage = this.baseUrl + companyLogo.fileUrl;
+          }
+        }
         tempData.push(
           {
             title: element.propertyTitle,
@@ -1846,7 +1960,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             buildingName: element.buildingName,
             carpetArea: element.carpetArea,
             requestedDateFormat: element.requestedDateFormat,
-            furnishingType: element.furnishingType
+            furnishingType: element.furnishingType,
+            companyLogoImage:companyLogoImage
           });
       })
     });
