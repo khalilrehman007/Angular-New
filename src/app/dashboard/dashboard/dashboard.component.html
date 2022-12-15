@@ -2475,7 +2475,7 @@
                                                                 <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                                                     <div ngClass="block-wrapper mb-4">
                                                                         <label class="h6-design">LinkedIn Profile</label>
-                                                                        <div class="brn-input">
+                                                                        <div class="linkedin-input">
                                                                             <mat-form-field appearance="fill"
                                                                                 class="full-width select-form input-design-2">
                                                                                 <mat-label>Enter LinkedIn Profile Link</mat-label>
@@ -2488,7 +2488,7 @@
                                                                 <div ngClass="col-xl-6 col-lg-6 col-sm-12">
                                                                     <div ngClass="block-wrapper mb-4">
                                                                         <label class="h6-design">Experience</label>
-                                                                        <div class="brn-input">
+                                                                        <div class="experience-input">
                                                                             <mat-form-field appearance="fill"
                                                                                 class="full-width select-form input-design-2">
                                                                                 <mat-label>Enter Experience In Years</mat-label>
@@ -2641,73 +2641,23 @@
                                                                         *ngIf="agentFormRequired"
                                                                         class="required-input-span">*</span></h6>
                                                                 <div ngClass="row">
-                                                                    <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                                                    <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12" *ngFor="let type of agentDocumentTypes;let i=index">
                                                                         <div ngClass="blue-upload-box">
-                                                                            <div class="firstImage-input">
+                                                                            <div [className]="'a-'+type.id+'-input'">
                                                                                 <div ngClass="upload-files-design">
+                                                                                    <small>{{type.documentName}}</small>
                                                                                     <div ngClass="greybordered-btn">
                                                                                         <input type="file" hidden
                                                                                             #emirateInput0
                                                                                             accept=".doc, .pdf, .jpg, .jpeg, .png"
-                                                                                            (change)='uploadAgentImages($any($event.target).files, 0)'>
+                                                                                            (change)='uploadAgentImages($any($event.target).files,type.id ,i)'>
                                                                                         <button mat-button
                                                                                             (click)="emirateInput0.click()"><span
                                                                                                 ngClass="outpup-filename">{{
-                                                                                                agentFileNames[0]
+                                                                                                agentFileNames[i]
                                                                                                 }}</span> <img
                                                                                                 src="{{upload}}">
-                                                                                            <span
-                                                                                                ngClass="btn-txt">Picture:
-                                                                                                Emirates ID (Fornt
-                                                                                                View)</span></button>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                                                                        <div ngClass="blue-upload-box">
-                                                                            <div class="secondImage-input">
-                                                                                <div ngClass="upload-files-design">
-                                                                                    <div ngClass="greybordered-btn">
-                                                                                        <input type="file" hidden
-                                                                                            #emirateInput1
-                                                                                            accept=".doc, .pdf, .jpg, .jpeg, .png"
-                                                                                            (change)='uploadAgentImages($any($event.target).files, 1)'>
-                                                                                        <button mat-button
-                                                                                            (click)="emirateInput1.click()"><span
-                                                                                                ngClass="outpup-filename">{{
-                                                                                                agentFileNames[1]
-                                                                                                }}</span> <img
-                                                                                                src="{{upload}}">
-                                                                                            <span
-                                                                                                ngClass="btn-txt">Picture:
-                                                                                                Emirates ID (Back
-                                                                                                View)</span></button>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                                                                        <div ngClass="blue-upload-box">
-                                                                            <div class="thirdImage-input">
-                                                                                <div ngClass="upload-files-design">
-                                                                                    <div ngClass="greybordered-btn">
-                                                                                        <input type="file" hidden
-                                                                                            #emirateInput2
-                                                                                            accept=".doc, .pdf, .jpg, .jpeg, .png"
-                                                                                            (change)='uploadAgentImages($any($event.target).files, 2)'>
-                                                                                        <button mat-button
-                                                                                            (click)="emirateInput2.click()"><span
-                                                                                                ngClass="outpup-filename">{{
-                                                                                                agentFileNames[2]
-                                                                                                }}</span> <img
-                                                                                                src="{{upload}}">
-                                                                                            <span
-                                                                                                ngClass="btn-txt">Picture:
-                                                                                                Official Rera
-                                                                                                ID</span></button>
+                                                                                            <span ngClass="btn-txt">{{type.documentName}}</span></button>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -2844,32 +2794,30 @@
                                                                 <h6 ngClass="h6-design mb-3">Douments Upload <span
                                                                         class="required-input-span">*</span></h6>
                                                                 <div ngClass="row">
-                                                                    <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                                                                        <div class="tradeLicenseImage-input">
+                                                                    <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12" *ngFor="let type of companyDocumentTypes;let i=index">
+                                                                        <div [className]="'c-'+type.id+'-input'">
                                                                             <div ngClass="blue-upload-box">
                                                                                 <div ngClass="upload-files-design">
+                                                                                    <small>{{type.documentName}}</small>
                                                                                     <div ngClass="greybordered-btn">
                                                                                         <input type="file" hidden
                                                                                             #emirateInput0
                                                                                             accept=".doc, .pdf, .jpg, .jpeg, .png"
-                                                                                            (change)='uploadCompanyImages($any($event.target).files, 0)'>
+                                                                                            (change)='uploadCompanyImages($any($event.target).files, type.id ,i)'>
                                                                                         <button mat-button
                                                                                             (click)="emirateInput0.click()"><span
                                                                                                 ngClass="outpup-filename">{{
-                                                                                                companyFileNames[0]
+                                                                                                companyFileNames[i]
                                                                                                 }}</span> <img
                                                                                                 src="{{upload}}">
-                                                                                            <span
-                                                                                                ngClass="btn-txt">Picture:
-                                                                                                Trade License
-                                                                                                Document</span>
+                                                                                            <span ngClass="btn-txt">{{type.documentName}}</span>
                                                                                         </button>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                    <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                                                    <!-- <div ngClass="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                                                                         <div ngClass="blue-upload-box">
                                                                             <div class="permitNoImage-input">
                                                                                 <div ngClass="upload-files-design">
@@ -2941,7 +2889,7 @@
                                                                                 </div>
                                                                             </div>
                                                                         </div>
-                                                                    </div>
+                                                                    </div> -->
                                                                 </div>
                                                             </div>
 
