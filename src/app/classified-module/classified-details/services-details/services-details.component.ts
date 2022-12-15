@@ -58,7 +58,7 @@ export class ServicesDetailsComponent implements OnInit {
   homeLoc = '../../../assets/images/home-location.svg'
   user: any
   baseUrl = 'https://beta.ovaluate.com/'
-  status: boolean = false;
+  status: boolean = true;
   status1: boolean = false;
   status2: boolean = true;
   status3: boolean = false;
@@ -77,26 +77,7 @@ export class ServicesDetailsComponent implements OnInit {
     this.status2 = false;
     this.status3 = false;
   }
-  overview() {
-    this.status = false;
-    this.status2 = !this.status2;
-    this.status1 = false;
-    this.status3 = false;
-  }
-  eventlist = [
-    {
-      img: 'assets/images/slider.png',
-    },
-    {
-      img: 'assets/images/slider.png',
-    },
-    {
-      img: 'assets/images/slider.png',
-    },
-    {
-      img: 'assets/images/slider.png',
-    },
-  ]
+
   propertyinfo: any = [];
   closeResult: string = "";
   propertyDetail: any;
@@ -181,19 +162,9 @@ export class ServicesDetailsComponent implements OnInit {
 
     this.galleryImages = [
       {
-        small: '/assets/images/mobile-tablet/mt2.jpeg',
-        medium: '/assets/images/mobile-tablet/mt2.jpeg',
-        big: '/assets/images/mobile-tablet/mt2.jpeg'
-      },
-      {
-        small: '/assets/images/mobile-tablet/mt2.jpeg',
-        medium: '/assets/images/mobile-tablet/mt2.jpeg',
-        big: '/assets/images/mobile-tablet/mt2.jpeg'
-      },
-      {
-        small: '/assets/images/mobile-tablet/mt2.jpeg',
-        medium: '/assets/images/mobile-tablet/mt2.jpeg',
-        big: '/assets/images/mobile-tablet/mt2.jpeg'
+        small: '/assets/images/placeholder-big.png',
+        medium: '/assets/images/placeholder-big.png',
+        big: '/assets/images/placeholder-big.png'
       }
     ];
   }
@@ -285,48 +256,4 @@ export class ServicesDetailsComponent implements OnInit {
     },
     nav: true
   }
-  CarsList = [
-    {
-      src: '/assets/images/mobile-tablet/mt1.jpeg',
-      price: '5,657',
-      PropertyName: 'Tablet',
-      link: '',
-      address: 'Etihad Tower 4, Etihad Towers',
-    },
-    {
-      src: '/assets/images/mobile-tablet/mt2.jpeg',
-      price: '6,098',
-      PropertyName: 'Samsung S20 FE',
-      link: '',
-      address: 'Etihad Tower 4, Etihad Towers',
-    },
-    {
-      src: '/assets/images/mobile-tablet/mt3.jpeg',
-      price: '2,000',
-      PropertyName: 'Iphone',
-      link: '',
-      address: 'Etihad Tower 4, Etihad Towers,',
-    },
-    {
-      src: '/assets/images/mobile-tablet/mt4.jpeg',
-      price: '8,657',
-      PropertyName: 'Samsung S20 FE',
-      link: '',
-      address: 'Etihad Tower 4, Etihad Towers',
-    },
-    {
-      src: '/assets/images/mobile-tablet/mt3.jpeg',
-      price: '2,000',
-      PropertyName: 'Samsung S20 FE',
-      link: '',
-      address: 'Etihad Tower 4, Etihad Towers,',
-    },
-    {
-      src: '/assets/images/mobile-tablet/mt2.jpeg',
-      price: '42,000',
-      PropertyName: 'Samsung S20 FE',
-      link: '',
-      address: 'Furniture',
-    },
-  ]
 }

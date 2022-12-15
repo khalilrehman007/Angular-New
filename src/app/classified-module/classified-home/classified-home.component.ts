@@ -35,49 +35,49 @@ export class ClassifiedHomeComponent implements OnInit {
       src: '../../../assets/images/services/handyman.jpg',
       title: 'Handyman',
       text: 'Avg Price AED100 - AED120',
-      link: '',
+      link: 'classified/service-details',
     },
     {
       src: '../../../assets/images/services/movers.jpeg',
       title: 'Moving Services',
       text: 'Avg Price AED100 - AED120',
-      link: '',
+      link: 'classified/service-details',
     },
     {
       src: '../../../assets/images/services/furniture-assembly.jpeg',
       title: 'Furniture Assembly',
       text: 'Avg Price AED100 - AED120',
-      link: '',
+      link: 'classified/service-details',
     },
     {
       src: '../../../assets/images/services/mobile-service.jpeg',
       title: 'Mobile Sales & Service',
       text: 'Avg Price AED100 - AED120',
-      link: '',
+      link: 'classified/service-details',
     },
     {
       src: '../../../assets/images/services/cleaning.jpeg',
       title: 'Cleaning',
       text: 'Avg Price AED100 - AED120',
-      link: '',
+      link: 'classified/service-details',
     },
     {
       src: '../../../assets/images/services/auto-service-parts.jpeg',
       title: 'Auto Accessories & Parts',
       text: 'Avg Price AED100 - AED120',
-      link: '',
+      link: 'classified/service-details',
     },
     {
       src: '../../../assets/images/services/Yardwork-Services.jpeg',
       title: 'Yardwork Services',
       text: 'Avg Price AED100 - AED120',
-      link: '',
+      link: 'classified/service-details',
     },
     {
       src: '../../../assets/images/services/freelancers.jpeg',
       title: 'Freelancers',
       text: 'Avg Price AED100 - AED120',
-      link: '',
+      link: 'classified/service-details',
     }
   ]
   CarsList = [
