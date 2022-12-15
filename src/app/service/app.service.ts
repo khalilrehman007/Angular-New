@@ -419,6 +419,9 @@ export class AppService {
   GetCompanyDocumentTypes(): Observable<any> {
     return this.http.get(this.apiurl + "CompanyDocumentTypes");
   }
+  GetAllCompanies(): Observable<any> {
+    return this.http.get(this.apiurl + "GetAllCompanies");
+  }
   AddUpdateAgentDetails(data: any) {
     return this.http.post(this.apiurl + 'AddUpdateAgentDetails', data, { headers: this.headersFormData });
   }

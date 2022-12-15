@@ -403,6 +403,15 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
         if (jsonParsDate.propertyListing.rentType !== null && jsonParsDate.propertyListing.rentType?.name !== null && jsonParsDate.propertyListing.rentType?.name !== undefined && jsonParsDate.propertyListing.propertyListingTypeId != 2) {
           rentType = jsonParsDate.propertyListing.rentType.name
         }
+       let companyLogoImage:any='';
+       if(this.allData?.agentDetails?.company!=null && this.allData?.agentDetails?.company?.documents.length>0){
+        let companyLogo =this.allData?.agentDetails?.company?.documents.find((y: any) => {
+          return y.registrationDocumentTypeId === 8
+        })
+        if (companyLogo != null && companyLogo != undefined) {
+          companyLogoImage = this.baseUrl + companyLogo.fileUrl;
+        }
+       }
         if (jsonParsDate.propertyListing != null) {
           this.propertyDetailData.propertyPrice = (jsonParsDate.propertyListing.propertyPrice !== undefined) ? jsonParsDate.propertyListing.propertyPrice : ''
           this.propertyDetailData.currency = (jsonParsDate.propertyListing.country.currency !== undefined) ? jsonParsDate.propertyListing.country.currency : ''
@@ -458,6 +467,7 @@ export class PropertyDetailComponent implements OnInit, AfterViewInit {
           this.propertyDetailData.companyName = companyName;
           this.propertyDetailData.reraNo = reraNo;
           this.propertyDetailData.permitNo = permitNo;
+          this.propertyDetailData.companyLogoImage = companyLogoImage;
 
           // share url concatination
           // let ree = "https://maps.google.com/maps?q=" + this.propertyDetailData.propertyLat + "," + this.propertyDetailData.propertyLong + "&hl=es&z=14&amp;output=embed"
