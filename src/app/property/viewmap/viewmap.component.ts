@@ -179,6 +179,7 @@ export class ViewmapComponent implements OnInit {
   loadListingProperty(data: any) {
     let tempData: Array<Object> = []
     this.service.LoadSearchListing(data).subscribe((response: any) => {
+      console.log("resss",response);
       this.totalRecord = response.data.totalRecord;
       response.data.propertyListings.forEach((element:any, i:any) => {
         let rentTypeName = ''
@@ -186,7 +187,7 @@ export class ViewmapComponent implements OnInit {
           rentTypeName = element.rentType.name
         }
         let documents: any = 'assets/images/placeholder.png'
-        if (element.documents != undefined && element.documents.length > 1) {
+        if (element.documents != undefined && element.documents.length > 0) {
           documents = this.baseUrl + element.documents[0].fileUrl
         }
         let userImage = '../assets/images/user.png'
@@ -199,7 +200,7 @@ export class ViewmapComponent implements OnInit {
         }
         tempData.push(
           {
-            buildupArea: element.buildupArea, companyName: element.companyName, propertyLat: element.propertyLat, propertyLong: element.propertyLong,
+            buildupArea: element.buildupArea, plotSize:element.plotSize, companyName: element.companyName, propertyLat: element.propertyLat, propertyLong: element.propertyLong,
             id: element.id, favorite: element.favorite, userImage: userImage, fullName: fullName, userId: userId,
             StartRentPrice: element.startRentPrice, EndRentPrice: element.endRentPrice, AvgRentPrice: element.avgRentPrice, RecentRentTxns: element.recentRentTxns,
             documents: documents, propertyFeatures: element.propertyFeatures, propertyType: element.propertyType,
@@ -208,7 +209,8 @@ export class ViewmapComponent implements OnInit {
             unitNo: element.unitNo, totalFloorgit: element.totalFloor, floorNo: element.floorNo, propertyDescription: element.propertyDescription,
             requestedDate: element.requestedDate, furnishingType: element.furnishingType, propertyPrice: element.propertyPrice,
             requestedDateFormat: element.requestedDateFormat, brokerageChargePrice: element.brokerageChargePrice, securityDepositPrice: element.securityDepositPrice,
-            expiredDateFormat: element.expiredDateFormat, rentType: rentTypeName, currency: element.country.currency, propertyCode: element.propertyCode
+            expiredDateFormat: element.expiredDateFormat, rentType: rentTypeName, currency: element.country.currency, 
+            propertyCode: element.propertyCode,unitType:element.country.unitType,package:element.package
           }
         );
       })

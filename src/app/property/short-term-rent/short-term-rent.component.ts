@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 // import { PropertyfilterComponent } from '../../propertyfilter/propertyfilter.component';
 import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
 import { AppService } from "../../service/app.service";
@@ -7,13 +7,15 @@ import { NotificationService } from "../../service/notification.service";
 import { AuthService } from "../../service/auth.service";
 import { JsonpInterceptor } from "@angular/common/http";
 import { environment } from 'src/environments/environment';
+import { CookieService } from 'ngx-cookie-service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-short-term-rent',
   templateUrl: './short-term-rent.component.html',
   styleUrls: ['./short-term-rent.component.scss']
 })
-export class ShortTermRentComponent implements OnInit {
+export class ShortTermRentComponent implements OnInit,AfterViewInit {
   videotiour = '../../../assets/images/icons/video-tour.svg'
   lsitedby = '../../../assets/images/icons/listed-by.svg'
   ovverified = '../../../assets/images/icons/ov-verified.svg'
@@ -56,6 +58,11 @@ export class ShortTermRentComponent implements OnInit {
       img: '../../../assets/images/slider.png',
     },
   ]
+  countryData:any={};
+  showRecentTransactions: boolean = false;
+  showPriceRange: boolean = false;
+  showAvgSqft: boolean = false;
+  showDIDiv: boolean = true;
   type: any;
   PropertyCategoryId: any;
   RentTypeId: any;
@@ -88,7 +95,21 @@ export class ShortTermRentComponent implements OnInit {
   headingPropertyType: any = "Properties";
   halfList:any = 0;
   currency:any = "";
-  constructor(private authService: AuthService, private notifyService: NotificationService, private activeRoute: ActivatedRoute, private service: AppService, private api: AppService, private route: Router, private modalService: NgbModal) {
+  whatsAppShareUrl:any="";
+  facebookShareUrl:any="";
+  twitterShareUrl:any="";
+  shareURL: any = "";
+  shareURLTemp: any = "";
+  constructor(private domSanitizer: DomSanitizer,private authService: AuthService,private cookie: CookieService, private notifyService: NotificationService, private activeRoute: ActivatedRoute, private service: AppService, private api: AppService, private route: Router, private modalService: NgbModal) {
+    let temp: any = window.location.href;
+    temp = temp.split("/");
+    temp[1] = "//";
+    temp[2] = temp[2] + "/";
+    temp[3] = temp[3] + "/";
+    temp.pop().toString().replaceAll(",", "");
+    this.shareURL = temp.toString().replaceAll(",", "");
+    this.shareURLTemp=this.shareURL
+    console.log(this.shareURL);
     $(window).scrollTop(0);
     this.route.events.subscribe((e: any) => {
       if (e instanceof NavigationEnd) {
@@ -161,7 +182,14 @@ export class ShortTermRentComponent implements OnInit {
       }
     });
   }
-
+  ngAfterViewInit(): void {
+    let a = setInterval(() => {
+      if (this.cookie.get("countryData")) {
+        this.countryData = JSON.parse(this.cookie.get("countryData"));
+        clearInterval(a);
+      }
+    })
+  }
   onTrendClick(typeID: any, titleID: any) {
 
     let temp: any = this.trendTitle[typeID].trendTitleDetail[titleID];
@@ -357,15 +385,51 @@ export class ShortTermRentComponent implements OnInit {
         let userImage = '../assets/images/user.png'
         let fullName = ''
         let userId = ''
+        let userEmail = ''
+        let userPhoneNumber = ''
+        let userWhatsAppNumber = ''
         if (element.user != null && element.user !== undefined && element.user.imageUrl != null) {
           userImage = this.baseUrl + element.user.imageUrl
           fullName = element.user.fullName
-          userId = element.user.id
+          userId = element.user.id,
+          userEmail="mailto:"+element.user.email
+          userPhoneNumber="tel:"+element.user.phoneNumber
+          userWhatsAppNumber="https://wa.me/"+element.user.phoneNumber?.replace("+","");
         }
-
+        if (element.recentRentTxns != 0 && element.recentRentTxns != null && element.recentRentTxns != undefined) {
+          this.showRecentTransactions = true;
+        }
+        else{
+          this.showRecentTransactions = false;
+        }
+        if (element.rentAvgPriceSqft != 0 && element.rentAvgPriceSqft != null && element.rentAvgPriceSqft != undefined) {
+          this.showAvgSqft = true;
+        }
+        else{
+          this.showAvgSqft = false;
+        }
+        if ((element.startRentPrice != 0 && element.startRentPrice != null && element.startRentPrice != undefined)
+          || (element.endRentPrice != 0 && element.endRentPrice != null && element.endRentPrice != undefined)
+        ) {
+          this.showPriceRange = true;
+        }
+        else{
+          this.showPriceRange = false;
+        }
+        if (this.showRecentTransactions == false && this.showPriceRange == false && this.showAvgSqft == false) {
+          this.showDIDiv = false;
+        }
+        else{
+          this.showDIDiv=true;
+        }
+        this.shareURL += "detail?id="+element.id;
+        this.whatsAppShareUrl=this.domSanitizer.bypassSecurityTrustUrl("https://wa.me/?text="+encodeURI(this.shareURL));
+      this.facebookShareUrl=this.domSanitizer.bypassSecurityTrustUrl("https://www.facebook.com/sharer/sharer.php?u="+encodeURI(this.shareURL)+"%3Futm_source%3Dfacebook%26utm_medium%3Dsocial%26utm_campaign%3Dshare_property");
+      this.twitterShareUrl=this.domSanitizer.bypassSecurityTrustUrl("https://twitter.com/intent/tweet?url="+encodeURI(this.shareURL)+"%3Futm_source%3Dtwitter%26utm_medium%3Dsocial%26utm_campaign%3Dshare_property");
+      
         tempData.push(
           {
-            buildupArea: element.buildupArea,
+            buildupArea: element.buildupArea,plotSize:element.plotSize,
             id: element.id, favorite: element.favorite, userImage: userImage, fullName: fullName, userId: userId,
             StartRentPrice: element.startRentPrice, EndRentPrice: element.endRentPrice, AvgRentPrice: element.avgRentPrice, RecentRentTxns: element.recentRentTxns,
             documents: documents, propertyFeatures: element.propertyFeatures, propertyType: element.propertyType,
@@ -374,13 +438,17 @@ export class ShortTermRentComponent implements OnInit {
             unitNo: element.unitNo, totalFloorgit: element.totalFloor, floorNo: element.floorNo, propertyDescription: element.propertyDescription,
             requestedDate: element.requestedDate, furnishingType: element.furnishingType, propertyPrice: element.propertyPrice,
             requestedDateFormat: element.requestedDateFormat, brokerageChargePrice: element.brokerageChargePrice, securityDepositPrice: element.securityDepositPrice,
-            expiredDateFormat: element.expiredDateFormat, rentType: rentTypeName, currency: element.country.currency, propertyCode: element.propertyCode
+            expiredDateFormat: element.expiredDateFormat, rentType: rentTypeName, currency: element.country.currency, propertyCode: element.propertyCode,
+            whatsAppShareUrl:this.whatsAppShareUrl,facebookShareUrl:this.facebookShareUrl,twitterShareUrl:this.twitterShareUrl,
+            showRecentTransactions:this.showRecentTransactions,listingType: element.propertyListingTypeId == 1 ? "Rent" : "Sale",
+            showAvgSqft:this.showAvgSqft,showPriceRange:this.showPriceRange,showDIDiv:this.showDIDiv,userEmail:userEmail,userWhatsAppNumber:userWhatsAppNumber,
+            userPhoneNumber:userPhoneNumber,startDate:element.startDate,endDate:element.endDate
           }
         );
+        this.shareURL=this.shareURLTemp
       })
       this.searchListing = tempData;
-      console.log(this.searchListing);
-      this.currency = response.data.propertyListings[0].country.currency;
+      this.currency = response.data.propertyListings[0]?.country.currency;
       this.halfList = Math.floor(this.searchListing.length / 2);
     });
 
