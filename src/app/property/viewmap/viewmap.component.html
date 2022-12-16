@@ -18,7 +18,7 @@
 
                             </div>
                             <div ngClass="back-to-search">
-                                <a [routerLink]="['/property/search']" [queryParams]="{type: 'Rent',PropertyListingTypeId:1}"
+                                <a (click)="LocationBack()"
                                     ngClass="back-to-text">
                                     <mat-icon>keyboard_arrow_left</mat-icon> Back to List View
                                 </a>
