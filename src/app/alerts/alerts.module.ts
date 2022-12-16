@@ -6,13 +6,15 @@ import { ConfirmationboxComponent } from './confirmationbox/confirmationbox.comp
 import { SuccessAlertComponent } from './success-alert/success-alert.component';
 
 import { MatIconModule } from '@angular/material/icon';
+import { EmailSubmissionComponent } from './email-submission/email-submission.component';
 
 
 @NgModule({
   declarations: [
     ErroralertComponent,
     ConfirmationboxComponent,
-    SuccessAlertComponent
+    SuccessAlertComponent,
+    EmailSubmissionComponent
   ],
   imports: [
     CommonModule,

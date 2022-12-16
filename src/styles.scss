@@ -14350,6 +14350,40 @@ input:focus {
     min-width: auto;
     width: auto;
 }
+
+// Email submission Alert Design
+.alert_box-design.email-submission-alert .alert-message-wrap {
+    max-width: 500px;
+}
+.alert_box-design.email-submission-alert .alert-message-wrap .msg-img {
+    width: 45%;
+}
+.alert_box-design.email-submission-alert .alert-message-wrap .message-block-design {
+    width: 50%;
+    max-width: initial;
+    padding-top: 35px;
+}
+.logo-top-left img {
+    width: 35px;
+}
+.logo-top-left {
+    position: absolute;
+    top: 15px;
+    width: 50px;
+    left: 15px;
+}
+
+@media (max-width: 767px){
+	.alert_box-design.email-submission-alert .alert-message-wrap .d-flex {
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+	.alert_box-design.email-submission-alert .alert-message-wrap .message-block-design {
+		width: 100%;
+		max-width: 100%;
+		text-align: center;
+	}
 .compare-page-span{
 		color: #4A565F;
 		font-size: 10px;
