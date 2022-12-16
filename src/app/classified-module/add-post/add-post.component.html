@@ -18,7 +18,8 @@
                     </div>
                     <div class="category-selecton-box">
                         <div ngClass="block-wrapper mb-4">
-                            <label>Select the area that best suits your ad <span ngClass="required-span">*</span></label>
+                            <label>Select the area that best suits your ad <span
+                                    ngClass="required-span">*</span></label>
                             <div class="category-selection-flex">
                                 <div class="category-selection-box motors">
                                     <input type="radio" name="category-sel" click>
@@ -91,10 +92,10 @@
                                     <input type="radio" name="category-sel">
                                     <button class="" *ngIf="classifiedCategories[4] && classifiedCategories[4].name">
                                         <span class="svg-wrap-span">
-                                            <svg width="26" height="20" viewBox="0 0 26 20" fill="none"
+                                            <svg width="14" height="22" viewBox="0 0 14 22" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path
-                                                    d="M15.2707 0.332031L17.0408 2.81503L26 0.332031M5.96158 19.6674L10.8084 14.9289L7.89208 11.798M14.5362 0.332031L11.9459 2.66553L16.3031 2.82803M4.46767 0.333115L5.39608 2.23978L10.5246 2.55828M7.21175 10.2196L11.0002 3.15411L0 2.5572M7.65267 10.6659L11.2309 14.5096L15.1775 10.6421L16.4017 3.43578L11.5928 3.18878L7.65267 10.6659Z"
+                                                    d="M11.8125 0H2.1875C1.04883 0 0.125 0.923828 0.125 2.0625V19.9375C0.125 21.0762 1.04883 22 2.1875 22H11.8125C12.9512 22 13.875 21.0762 13.875 19.9375V2.0625C13.875 0.923828 12.9512 0 11.8125 0ZM7 20.625C6.23945 20.625 5.625 20.0105 5.625 19.25C5.625 18.4895 6.23945 17.875 7 17.875C7.76055 17.875 8.375 18.4895 8.375 19.25C8.375 20.0105 7.76055 20.625 7 20.625Z"
                                                     fill="#242F54" fill-opacity="0.8" />
                                             </svg>
                                         </span>
@@ -105,10 +106,10 @@
                                     <input type="radio" name="category-sel">
                                     <button class="" *ngIf="classifiedCategories[5] && classifiedCategories[5].name">
                                         <span class="svg-wrap-span">
-                                            <svg width="14" height="22" viewBox="0 0 14 22" fill="none"
+                                            <svg width="26" height="20" viewBox="0 0 26 20" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path
-                                                    d="M11.8125 0H2.1875C1.04883 0 0.125 0.923828 0.125 2.0625V19.9375C0.125 21.0762 1.04883 22 2.1875 22H11.8125C12.9512 22 13.875 21.0762 13.875 19.9375V2.0625C13.875 0.923828 12.9512 0 11.8125 0ZM7 20.625C6.23945 20.625 5.625 20.0105 5.625 19.25C5.625 18.4895 6.23945 17.875 7 17.875C7.76055 17.875 8.375 18.4895 8.375 19.25C8.375 20.0105 7.76055 20.625 7 20.625Z"
+                                                    d="M15.2707 0.332031L17.0408 2.81503L26 0.332031M5.96158 19.6674L10.8084 14.9289L7.89208 11.798M14.5362 0.332031L11.9459 2.66553L16.3031 2.82803M4.46767 0.333115L5.39608 2.23978L10.5246 2.55828M7.21175 10.2196L11.0002 3.15411L0 2.5572M7.65267 10.6659L11.2309 14.5096L15.1775 10.6421L16.4017 3.43578L11.5928 3.18878L7.65267 10.6659Z"
                                                     fill="#242F54" fill-opacity="0.8" />
                                             </svg>
                                         </span>
@@ -118,7 +119,6 @@
                             </div>
                         </div>
                     </div>
-
 
                     <!-- Motors section -->
                     <div ngClass="select-boxes">
@@ -3057,7 +3057,91 @@
                             </div>
                         </div>
                     </div>
-
+                    <div ngClass="select-boxes">
+                        <div ngClass="block-wrapper mb-4">
+                            <div ngClass="select-design select2-design full-width-select2">
+                                <label>Choose Community -Home Maintenance Sub Category <span
+                                        ngClass="required-span">*</span></label>
+                                <select class="select2 category-select">
+                                    <option value="AC Maintenance & Repair">AC Maintenance & Repair</option>
+                                    <option value="Alarm & Security">Alarm & Security</option>
+                                    <option value="Carpenters">Carpenters</option>
+                                    <option value="Electricians">Electricians</option>
+                                    <option value="Genetal Maintenance">Genetal Maintenance</option>
+                                    <option value="Handyman">Handyman</option>
+                                    <option value="Interior Design & Architects">Interior Design & Architects</option>
+                                    <option value="Painters">Painters</option>
+                                    <option value="Pest Control">Pest Control</option>
+                                    <option value="Plumbers">Plumbers</option>
+                                    <option value="Renovations & General Contracting ">Renovations & General Contracting
+                                    </option>
+                                    <option value="Smart Home Services">Smart Home Services </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div ngClass="select-boxes">
+                        <div ngClass="block-wrapper mb-4">
+                            <div ngClass="select-design select2-design full-width-select2">
+                                <label>Choose Community - Movers & Removals Sub Category <span
+                                        ngClass="required-span">*</span></label>
+                                <select class="select2 category-select">
+                                    <option value="Deep Cleaning & Disinfection Services">Deep Cleaning & Disinfection
+                                        Services</option>
+                                    <option value="Movers & Packers">Movers & Packers</option>
+                                    <option value="Storage Services">Storage Services</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div ngClass="select-boxes">
+                        <div ngClass="block-wrapper mb-4">
+                            <div ngClass="select-design select2-design full-width-select2">
+                                <label>Choose Community - Restoration & Repairs Sub Category <span
+                                        ngClass="required-span">*</span></label>
+                                <select class="select2 category-select">
+                                    <option value="Electronic Appliances Repair">Electronic Appliances Repair</option>
+                                    <option value="Fridge Repair">Fridge Repair</option>
+                                    <option value="Furniture & Sofa Repair">Furniture & Sofa Repair</option>
+                                    <option value="IT Repair">IT Repair</option>
+                                    <option value="Jewelry & Watches Repairs">Jewelry & Watches Repairs</option>
+                                    <option value="Washing Machine Repair ">Washing Machine Repair </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div ngClass="select-boxes">
+                        <div ngClass="block-wrapper mb-4">
+                            <div ngClass="select-design select2-design full-width-select2">
+                                <label>Choose Community - Tutors & Classes Sub Category <span
+                                        ngClass="required-span">*</span></label>
+                                <select class="select2 category-select">
+                                    <option value="Arts & Crafts">Arts & Crafts</option>
+                                    <option value="Dance">Dance</option>
+                                    <option value="Fitness & Sport">Fitness & Sport</option>
+                                    <option value="Languages">Languages</option>
+                                    <option value="Music">Music</option>
+                                    <option value="Professional Training Courses">Professional Training Courses</option>
+                                    <option value="Subject Tutors">Subject Tutors</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div ngClass="select-boxes">
+                        <div ngClass="block-wrapper mb-4">
+                            <div ngClass="select-design select2-design full-width-select2">
+                                <label>Choose Community - Web & Computer Services Sub Category <span
+                                        ngClass="required-span">*</span></label>
+                                <select class="select2 category-select">
+                                    <option value="Graphic & Web Designer">Graphic & Web Designers</option>
+                                    <option value="IT Services">IT Services</option>
+                                    <option value="Media & Video Editing">Media & Video Editing</option>
+                                    <option value="Website & App Development ">Website & App Development Services
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
 
 
                     <div ngClass="select-boxes">
