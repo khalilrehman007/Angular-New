@@ -23,13 +23,13 @@
                             <div class="category-selection-flex">
                                 <div class="category-selection-box motors">
                                     <input type="radio" name="category-sel" click>
-                                    <button class="" *ngIf="classifiedCategories[0] && classifiedCategories[0].name" >
+                                    <button class="" *ngIf="classifiedCategories[0] && classifiedCategories[0].name">
                                         <span class="svg-wrap-span">
                                             <svg width="30" height="20" viewBox="0 0 30 20" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path
                                                     d="M29.7919 5.3518C29.7205 5.13395 29.4677 4.96446 29.2568 4.96446C28.343 4.96446 27.4293 4.96446 26.5156 4.96446C26.3396 4.96446 26.1351 5.08243 26.0304 5.24785C25.4539 3.81014 24.7907 2.33026 24.1534 1.30422C24.0388 1.11959 23.866 0.982949 23.6652 0.918167C23.5492 0.88073 20.7553 0 14.9999 0C9.24465 0 6.45087 0.88073 6.33479 0.918167C6.13407 0.982949 5.96127 1.11959 5.84662 1.3043C5.20934 2.33048 4.54614 3.81037 3.9696 5.24792C3.865 5.0825 3.6604 4.96446 3.48444 4.96446C2.5707 4.96446 1.65703 4.96446 0.743286 4.96446C0.532296 4.96446 0.279523 5.13395 0.208092 5.3518C-0.0694478 6.19984 -0.0693042 6.6854 0.208164 7.53351C0.279523 7.75136 0.532296 7.92085 0.743286 7.92085C1.2237 7.92085 1.70405 7.92085 2.18447 7.92085C1.51359 8.62516 1.09743 9.59658 1.09743 10.6686C1.09743 10.7187 1.10066 10.7688 1.10705 10.8185L1.19377 11.4872C1.22263 11.71 1.31394 11.9092 1.44661 12.0682V13.5889H1.36291C1.16469 13.5889 1.00396 13.7575 1.00396 13.9655V18.4715C1.00396 19.3144 1.65746 20 2.46065 20H5.37338C6.17657 20 6.83007 19.3143 6.83007 18.4715V16.5349H23.3194V18.4715C23.3194 19.3144 23.9729 20 24.7761 20H27.6889C28.4921 20 29.1455 19.3143 29.1455 18.4715V13.9655C29.1455 13.7575 28.9848 13.5889 28.7866 13.5889H28.7028V12.2161C28.9163 12.0429 29.0665 11.7861 29.1053 11.4872L29.1919 10.8184C29.1984 10.7688 29.2015 10.7187 29.2015 10.6686C29.2015 9.59651 28.7854 8.62508 28.1145 7.92077C28.4952 7.92077 28.8758 7.92077 29.2565 7.92077C29.4675 7.92077 29.7203 7.75128 29.7917 7.53343C30.0695 6.6854 30.0693 6.19984 29.7919 5.3518ZM7.17086 2.63556C8.01719 2.42351 10.6026 1.88417 15 1.88417C19.3991 1.88417 21.9849 2.42389 22.8293 2.63549C23.4287 3.68066 24.0587 5.15617 24.5956 6.53979C23.1857 6.29949 20.4086 6.02538 15.0749 6.02538C9.40632 6.02538 6.66969 6.33957 5.3835 6.59365C5.92473 5.19497 6.5633 3.69489 7.17086 2.63556ZM2.20105 15.6937V14.7145H4.7496L5.01874 15.6937H2.20105ZM2.16458 13.5889V11.7376L7.11744 12.0722L7.60073 13.5889H2.16458ZM21.1628 15.5422H8.98686L8.61376 14.2698H21.536L21.1628 15.5422ZM21.792 13.5889H8.35769L7.99436 12.4488H22.1552L21.792 13.5889ZM7.77325 11.7344L7.40231 10.4694H22.7474L22.3765 11.7344H7.77325ZM27.9485 15.6937H25.1308L25.4 14.7145H27.9485V15.6937H27.9485ZM27.9851 13.5889H22.5489L23.0322 12.0722L27.9851 11.7376V13.5889Z"
-                                                    fill="#505876" />   
+                                                    fill="#505876" />
                                             </svg>
                                         </span>
                                         {{classifiedCategories[0].name}}
@@ -226,7 +226,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Motorcycles - Sports Bike Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Motorcycles - Sports Bike Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Hyper sports">Hyper sports</option>
                                     <option value="Super bike">Super bike</option>
@@ -238,10 +239,12 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Auto Accessories & Parts Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Auto Accessories & Parts Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Car/4x4 Parts">Car/4x4 Parts</option>
-                                    <option value="Apparel, Merchandise & Accesories">Apparel, Merchandise & Accesories</option>
+                                    <option value="Apparel, Merchandise & Accesories">Apparel, Merchandise & Accesories
+                                    </option>
                                     <option value="Motorcycle Parts">Motorcycle Parts</option>
                                     <option value="Automotive Tools">Automotive Tools</option>
                                     <option value="Boat Parts">Boat Parts</option>
@@ -253,7 +256,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Auto Accesories & Parts - Car/4x4 Parts Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Auto Accesories & Parts - Car/4x4 Parts Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="A/C & Heating Parts">A/C & Heating Parts</option>
                                     <option value="Batteries">Batteries</option>
@@ -273,7 +277,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Auto Accessories & Parts - Apparel, Merchandise & Accessories Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Auto Accessories & Parts - Apparel, Merchandise & Accessories Sub Category
+                                    <span ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Apparel">Apparel</option>
                                     <option value="Boat Accessories">Boat Accessories</option>
@@ -288,7 +293,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Auto Accessories & Parts - Motorcycle Parts Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Auto Accessories & Parts - Motorcycle Parts Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Accessories">Accessories</option>
                                     <option value="Body & Frame">Body & Frame</option>
@@ -304,7 +310,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Auto Accessories & Parts - Automotive Tools Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Auto Accessories & Parts - Automotive Tools Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Tool Accessories">Tool Accessories</option>
                                     <option value="Tool Sets">Tool Sets</option>
@@ -316,7 +323,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Auto Accessories & Parts - Boat Parts Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Auto Accessories & Parts - Boat Parts Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Body Parts & Accessories">Body Parts & Accessories</option>
                                     <option value="Electronic Parts">Electronic Parts</option>
@@ -348,7 +356,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Heavy Vehicles - Trucks  Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Heavy Vehicles - Trucks Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Cab-Chassis">Cab-Chassis</option>
                                     <option value="Cherry">Cherry</option>
@@ -370,7 +379,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Heavy Vehicles - Buses  Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Heavy Vehicles - Buses Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="City Bus">City Bus</option>
                                     <option value="Coach">Coach</option>
@@ -384,7 +394,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Heavy Vehicles - Forklifts  Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Heavy Vehicles - Forklifts Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="All Terrain">All Terrain</option>
                                     <option value="Diesel">Diesel</option>
@@ -398,7 +409,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Heavy Vehicles - Trailers  Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Heavy Vehicles - Trailers Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="B Double">B Double</option>
                                     <option value="Curtain Sider">Curtain Sider</option>
@@ -418,7 +430,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Heavy Vehicles - Cranes  Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Heavy Vehicles - Cranes Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="All Terrain Cranes">All Terrain Cranes</option>
                                     <option value="Other">Other</option>
@@ -432,7 +445,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Heavy Vehicles - Tankers  Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Heavy Vehicles - Tankers Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Fiberglass Tank">Fiberglass Tank</option>
                                     <option value="Fuel Tank">Fuel Tank</option>
@@ -446,7 +460,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Heavy Vehicles - Parts & Engines  Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Heavy Vehicles - Parts & Engines Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Bus Parts">Bus Parts</option>
                                     <option value="Crane Parts">Crane Parts</option>
@@ -462,7 +477,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Heavy Vehicles - Other Heavy Vehicle  Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Heavy Vehicles - Other Heavy Vehicle Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Agriculture Vehicle">Agriculture Vehicle</option>
                                     <option value="RVs & Motorhomes">RVs & Motorhomes</option>
@@ -489,7 +505,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Boats - Motorboats Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Boats - Motorboats Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Fishing Boat">Fishing Boat</option>
                                     <option value="Outboard Dayboat">Outboard Dayboat</option>
@@ -506,7 +523,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Boats - Sailboats Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Boats - Sailboats Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Catamaran">Catamaran</option>
                                     <option value="Cruiser/Day Sailor">Cruiser/Day Sailor</option>
@@ -522,7 +540,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Boats - Row/Paddle Boat Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Boats - Row/Paddle Boat Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Canao/Row Boat">Canao/Row Boat</option>
                                     <option value="Paddle Boat">Paddle Boat</option>
@@ -550,7 +569,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Number Plates - Dubai Plate Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Number Plates - Dubai Plate Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Private Car">Private Car</option>
                                     <option value="Classic">Classic</option>
@@ -562,7 +582,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Number Plates - Abu Dhabi Plate Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Number Plates - Abu Dhabi Plate Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Private Car">Private Car</option>
                                     <option value="Motorcycle">Motorcycle</option>
@@ -573,7 +594,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Number Plates - Sharjah Plate Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Number Plates - Sharjah Plate Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Private Car">Private Car</option>
                                     <option value="Classic">Classic Car</option>
@@ -585,7 +607,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Number Plates - Ajman Plate Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Number Plates - Ajman Plate Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Private Car">Private Car</option>
                                     <option value="Motorcycle">Motorcycle</option>
@@ -596,7 +619,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Number Plates - Fujairah Plate Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Number Plates - Fujairah Plate Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Private Car">Private Car</option>
                                     <option value="Motorcycle">Motorcycle</option>
@@ -607,7 +631,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Number Plates - Umm al Quwaln Plate Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Number Plates - Umm al Quwaln Plate Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Private Car">Private Car</option>
                                     <option value="Motorcycle">Motorcycle</option>
@@ -618,7 +643,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Number Plates - Ras al Khalmah Plate Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Number Plates - Ras al Khalmah Plate Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Private Car">Private Car</option>
                                     <option value="Motorcycle">Motorcycle</option>
@@ -662,7 +688,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Electronics Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Electronics Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Home Audio & Turntables">Home Audio & Turntables</option>
                                     <option value="Television">Television</option>
@@ -670,7 +697,8 @@
                                     <option value="Electronic Accessories">Electronic Accessories</option>
                                     <option value="Gadgets">Gadgets</option>
                                     <option value="Car Electronics">Car Electronics</option>
-                                    <option value="Mp3 Players and Portable Audio">Mp3 Players and Portable Audio</option>
+                                    <option value="Mp3 Players and Portable Audio">Mp3 Players and Portable Audio
+                                    </option>
                                     <option value="Satellite & Cable TV">Satellite & Cable TV</option>
                                     <option value="Health Electronics">Health Electronics</option>
                                     <option value="Smart Home">Smart Home</option>
@@ -683,7 +711,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Electronics - Home Audio & Turntables Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Electronics - Home Audio & Turntables Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Amplifiers">Amplifiers</option>
                                     <option value="CD PLayers/Recorders">CD PLayers/Recorders</option>
@@ -703,7 +732,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Electronics - Televisions Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Electronics - Televisions Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Flat Panel">Flat Panel</option>
                                     <option value="LCD">LCD</option>
@@ -720,7 +750,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Electronics - DVD & Home Theater Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Electronics - DVD & Home Theater Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="DVD Players">DVD Players</option>
                                     <option value="Home Theater System">Home Theater System</option>
@@ -734,7 +765,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Electronics - Electronic Accessories Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Electronics - Electronic Accessories Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Antennas">Antennas</option>
                                     <option value="Cables and Chords">Cables and Chords</option>
@@ -748,7 +780,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Electronics - Gadgets Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Electronics - Gadgets Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Calculators">Calculators</option>
                                     <option value="Dictaphones">Dictaphones</option>
@@ -766,7 +799,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Electronics - Car Electronics Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Electronics - Car Electronics Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Car alarms">Car alarms</option>
                                     <option value="Car Audio Systems">Car Audio Systems</option>
@@ -780,7 +814,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Electronics - Mp3 Players and Portable Audio Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Electronics - Mp3 Players and Portable Audio Sub Category
+                                    <span ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Apple iPod">Apple iPod</option>
                                     <option value="CD Player">CD Player</option>
@@ -793,7 +828,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Electronics - Satellite & Cable TV Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Electronics - Satellite & Cable TV Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Cable TV Boxes">Cable TV Boxes</option>
                                     <option value="Satellite TV Equipment">Satellite TV Equipment</option>
@@ -804,7 +840,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Electronics - Wearable Technology Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Electronics - Wearable Technology Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Fitness Tracker">Fitness Tracker</option>
                                     <option value="Smart Watches">Smart Watches</option>
@@ -816,16 +853,19 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Computer & Netwroking Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Computer & Netwroking Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Computers">Computers</option>
                                     <option value="Computer Components">Computer Components</option>
                                     <option value="Accessories">Accessories</option>
                                     <option value="Netwroking & Communication">Netwroking & Communication</option>
                                     <option value="Software">Software</option>
-                                    <option value="Mining Rigs & Components (CryptoCurrency">Mining Rigs & Components (CryptoCurrency</option>
+                                    <option value="Mining Rigs & Components (CryptoCurrency">Mining Rigs & Components
+                                        (CryptoCurrency</option>
                                     <option value="POS machine & parts">POS machine & parts</option>
-                                    <option value="Monitors, Printers & Other Peripherals">Monitors, Printers & Other Peripherals</option>
+                                    <option value="Monitors, Printers & Other Peripherals">Monitors, Printers & Other
+                                        Peripherals</option>
                                 </select>
                             </div>
                         </div>
@@ -833,7 +873,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Computer & Netwroking - Computers Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Computer & Netwroking - Computers Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Desktop Computers">Desktop Computers</option>
                                     <option value="Laptop Computer">Laptop Computer</option>
@@ -847,7 +888,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Computer & Netwroking - Computer Components Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Computer & Netwroking - Computer Components Sub Category
+                                    <span ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="CPUs">CPUs</option>
                                     <option value="Cases & Towers">Cases & Towers</option>
@@ -868,7 +910,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Computer & Netwroking - Accessories Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Computer & Netwroking - Accessories Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Bags & Cases">Bags & Cases</option>
                                     <option value="Charges & Cables">Charges & Cables</option>
@@ -885,7 +928,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Computer & Netwroking - Networking & Communication Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Computer & Netwroking - Networking & Communication Sub
+                                    Category <span ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Modems">Modems</option>
                                     <option value="Networking Cables">Networking Cables</option>
@@ -902,7 +946,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Computer & Netwroking - Software Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Computer & Netwroking - Software Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Business">Business</option>
                                     <option value="Design">Design</option>
@@ -919,7 +964,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Computer & Netwroking - Monitors, Printers & Other Peripherals Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Computer & Netwroking - Monitors, Printers & Other
+                                    Peripherals Sub Category <span ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Keyboards">Keyboards</option>
                                     <option value="Mice">Mice</option>
@@ -935,7 +981,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Business & Industrial Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Business & Industrial Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Business for Sale">Business for Sale</option>
                                     <option value="Construction">Construction</option>
@@ -946,7 +993,8 @@
                                     <option value="Electrical Equipment">Electrical Equipment</option>
                                     <option value="Retail & Services">Retail & Services</option>
                                     <option value="Healthcare & Lab">Healthcare & Lab</option>
-                                    <option value="Commericial Printing & Copy Machines">Commericial Printing & Copy Machines</option>
+                                    <option value="Commericial Printing & Copy Machines">Commericial Printing & Copy
+                                        Machines</option>
                                     <option value="Packing & Shipping">Packing & Shipping</option>
                                     <option value="Agriculture & Forest">Agriculture & Forest</option>
                                     <option value="Other">Other</option>
@@ -957,7 +1005,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Business & Industrial - Businesses for Sale Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Business & Industrial - Businesses for Sale Sub Category
+                                    <span ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Manufacturing">Manufacturing</option>
                                     <option value="Marketing">Marketing</option>
@@ -972,7 +1021,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Business & Industrial - Construction Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Business & Industrial - Construction Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Building Materials & Supplies">Building Materials & Supplies</option>
                                     <option value="Heavy Equipment & Parts">Heavy Equipment & Parts</option>
@@ -985,7 +1035,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Business & Industrial - Food & Beverage Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Business & Industrial - Food & Beverage Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Bar Equipment">Bar Equipment</option>
                                     <option value="Commercial Kitchen & Supplies">Commercial Kitchen & Supplies</option>
@@ -1000,7 +1051,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Business & Industrial - Industrial Supplies Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Business & Industrial - Industrial Supplies Sub Category
+                                    <span ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Adhensives & Sealant">Adhensives & Sealant</option>
                                     <option value="Cleaning Equip. & Slice">Cleaning Equip. & Slice</option>
@@ -1020,7 +1072,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Business & Industrial - Office Furniture & Equipment Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Business & Industrial - Office Furniture & Equipment Sub
+                                    Category <span ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Office Equipment">Office Equipment</option>
                                     <option value="Office Fit Outs">Office Fit Outs</option>
@@ -1033,7 +1086,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Business & Industrial - Manufacturing Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Business & Industrial - Manufacturing Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Manufactucing Equip. & Tools">Manufactucing Equip. & Tools</option>
                                     <option value="Manufacturing Machines">Manufacturing Machines</option>
@@ -1047,10 +1101,12 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Business & Industrial - Electrical Equipment Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Business & Industrial - Electrical Equipment Sub Category
+                                    <span ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Electrical Equip. Tools">Electrical Equip. Tools</option>
-                                    <option value="Wire, Trasnsformers, Breakers, etc">Wire, Trasnsformers, Breakers, etc</option>
+                                    <option value="Wire, Trasnsformers, Breakers, etc">Wire, Trasnsformers, Breakers,
+                                        etc</option>
                                     <option value="Other">Other</option>
                                 </select>
                             </div>
@@ -1059,7 +1115,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Business & Industrial - Retail & Services Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Business & Industrial - Retail & Services Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="In Store Display Equipment">In Store Display Equipment</option>
                                     <option value="Laundering Equip. & Supplies">Laundering Equip. & Supplies</option>
@@ -1073,7 +1130,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Business & Industrial - Healthcare & Lab Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Business & Industrial - Healthcare & Lab Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Dental Equipment">Dental Equipment</option>
                                     <option value="Imaging Equip. & Supplies">Imaging Equip. & Supplies</option>
@@ -1087,7 +1145,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Business & Industrial - Commercial Printing & Copy Machines Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Business & Industrial - Commercial Printing & Copy Machines
+                                    Sub Category <span ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Copy Machine">Copy Machine</option>
                                     <option value="Ink & Print Cartridges">Ink & Print Cartridges</option>
@@ -1100,7 +1159,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Business & Industrial - Packing & Shipping Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Business & Industrial - Packing & Shipping Sub Category
+                                    <span ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="bags">bags</option>
                                     <option value="Boxes">Boxes</option>
@@ -1113,7 +1173,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Business & Industrial - Agriculture & Forestry Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Business & Industrial - Agriculture & Forestry Sub Category
+                                    <span ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Farm Equipment Parts">Farm Equipment Parts</option>
                                     <option value="Livestock & Supplies">Livestock & Supplies</option>
@@ -1126,13 +1187,16 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Home Appliances Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Home Appliances Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
-                                    <option value="Large Appliances / White goods">Large Appliances / White goods</option>
+                                    <option value="Large Appliances / White goods">Large Appliances / White goods
+                                    </option>
                                     <option value="Small Kitchen Appliances">Small Kitchen Appliances</option>
                                     <option value="Outdoor Appliances">Outdoor Appliances</option>
                                     <option value="Small Bathroom Appliances">Small Bathroom Appliances</option>
-                                    <option value="Beauty, Spa & Sauna Appliances">Beauty, Spa & Sauna Appliances</option>
+                                    <option value="Beauty, Spa & Sauna Appliances">Beauty, Spa & Sauna Appliances
+                                    </option>
                                     <option value="Irons & Sewing Machines">Irons & Sewing Machines</option>
                                     <option value="Vacuums & Floor Care">Vacuums & Floor Care</option>
                                     <option value="Other">Other</option>
@@ -1143,7 +1207,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Home Appliances - Large Appliances / White Goods Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Home Appliances - Large Appliances / White Goods Sub
+                                    Category <span ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Air Conditioners">Air Conditioners</option>
                                     <option value="Dishwashers">Dishwashers</option>
@@ -1162,7 +1227,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Home Appliances - Small Kitchen Appliances Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Home Appliances - Small Kitchen Appliances Sub Category
+                                    <span ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Air Conditioners">Air Conditioners</option>
                                     <option value="Dishwashers">Dishwashers</option>
@@ -1181,7 +1247,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Home Appliances - Outdoor Appliances Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Home Appliances - Outdoor Appliances Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Blowers">Blowers</option>
                                     <option value="Charcoal Grills">Charcoal Grills</option>
@@ -1198,9 +1265,11 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Home Appliances - Small Bathroom Appliances Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Home Appliances - Small Bathroom Appliances Sub Category
+                                    <span ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
-                                    <option value="Hair Dryers, Curlers & Straightenrs">Hair Dryers, Curlers & Straightenrs</option>
+                                    <option value="Hair Dryers, Curlers & Straightenrs">Hair Dryers, Curlers &
+                                        Straightenrs</option>
                                     <option value="Massages & Foot Spa">Massages & Foot Spa</option>
                                     <option value="Scales">Scales</option>
                                     <option value="Shaves & Trimmers">Shaves & Trimmers</option>
@@ -1212,7 +1281,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Sports Equipment Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Sports Equipment Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Cycling">Cycling</option>
                                     <option value="Exercise Equipment">Exercise Equipment</option>
@@ -1231,12 +1301,15 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Sports Equipment - Cycling Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Sports Equipment - Cycling Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Children's Bikes">Children's Bikes</option>
                                     <option value="Cruiser Bikes">Cruiser Bikes</option>
-                                    <option value="Cycling Equipment & Accessories">Cycling Equipment & Accessories</option>
-                                    <option value="Electric Scooters & Hoverboards">Electric Scooters & Hoverboards</option>
+                                    <option value="Cycling Equipment & Accessories">Cycling Equipment & Accessories
+                                    </option>
+                                    <option value="Electric Scooters & Hoverboards">Electric Scooters & Hoverboards
+                                    </option>
                                     <option value="Inline & Rolls Skating">Inline & Rolls Skating</option>
                                     <option value="Mountain Bikes">Mountain Bikes</option>
                                     <option value="Racing Bikes">Racing Bikes</option>
@@ -1250,10 +1323,13 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Sports Equipment - Exercise Equipment Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Sports Equipment - Exercise Equipment Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
-                                    <option value="Boxing & Martial Arts Equipment">Boxing & Martial Arts Equipment</option>
-                                    <option value="Running & Cardiovascular Machines">Running & Cardiovascular Machines</option>
+                                    <option value="Boxing & Martial Arts Equipment">Boxing & Martial Arts Equipment
+                                    </option>
+                                    <option value="Running & Cardiovascular Machines">Running & Cardiovascular Machines
+                                    </option>
                                     <option value="Weights and Exercise Machines">Weights and Exercise Machines</option>
                                     <option value="Yoga & Pilates">Yoga & Pilates</option>
                                     <option value="Other Exercise Equipment">Other Exercise Equipment</option>
@@ -1264,7 +1340,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Sports Equipment - Water Sports Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Sports Equipment - Water Sports Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Diving & Snorkeling">Diving & Snorkeling</option>
                                     <option value="Fishing">Fishing</option>
@@ -1283,7 +1360,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Sports Equipment - Camping & Hiking Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Sports Equipment - Camping & Hiking Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Camping Equipment">Camping Equipment</option>
                                     <option value="Hiking Equipment">Hiking Equipment</option>
@@ -1295,7 +1373,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Sports Equipment - Golf Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Sports Equipment - Golf Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Accessories">Accessories</option>
                                     <option value="Bags">Bags</option>
@@ -1308,7 +1387,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Sports Equipment - Indoor Sports Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Sports Equipment - Indoor Sports Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Billiards">Billiards</option>
                                     <option value="Foosball">Foosball</option>
@@ -1321,7 +1401,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Sports Equipment - Team Sports Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Sports Equipment - Team Sports Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Basketball">Basketball</option>
                                     <option value="Bowling">Bowling</option>
@@ -1335,7 +1416,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Sports Equipment - Tennis & Racquet Sports Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Sports Equipment - Tennis & Racquet Sports Sub Category
+                                    <span ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Badminton">Badminton</option>
                                     <option value="Squash">Squash</option>
@@ -1348,7 +1430,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Sports Equipment - Winter Sports Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Sports Equipment - Winter Sports Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Ice Skating">Ice Skating</option>
                                     <option value="Skiing">Skiing</option>
@@ -1360,7 +1443,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Clothing & Accessories Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Clothing & Accessories Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Shoes/Footwear">Shoes/Footwear</option>
                                     <option value="Clothing">Clothing</option>
@@ -1380,7 +1464,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Clothing & Accessories - Shoes/Footwear Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Clothing & Accessories - Shoes/Footwear Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Children's Shoes and Footwear">Children's Shoes and Footwear</option>
                                     <option value="Men's Shoes and Footwear">Men's Shoes and Footwear</option>
@@ -1393,7 +1478,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Clothing & Accessories - Clothing Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Clothing & Accessories - Clothing Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Children's Clothing">Children's Clothing</option>
                                     <option value="Men's Clothing">Men's Clothing</option>
@@ -1406,7 +1492,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Clothing & Accessories - Handbags, Bags & Wallets Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Clothing & Accessories - Handbags, Bags & Wallets Sub
+                                    Category <span ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Athelic Bags">Athelic Bags</option>
                                     <option value="Bags">Bags</option>
@@ -1421,7 +1508,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Clothing & Accessories - Men's Accessories Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Clothing & Accessories - Men's Accessories Sub Category
+                                    <span ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Belts">Belts</option>
                                     <option value="Gloves">Gloves</option>
@@ -1436,7 +1524,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Clothing & Accessories - Women's Accessories Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Clothing & Accessories - Women's Accessories Sub Category
+                                    <span ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Belts">Belts</option>
                                     <option value="Gloves">Gloves</option>
@@ -1451,7 +1540,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Clothing & Accessories - Luggage Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Clothing & Accessories - Luggage Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Backpacks">Backpacks</option>
                                     <option value="Cases">Cases</option>
@@ -1464,7 +1554,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Clothing & Accessories - Fragrances Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Clothing & Accessories - Fragrances Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Men's Fragrances">Men's Fragrances</option>
                                     <option value="Unisex Fragrances">Unisex Fragrances</option>
@@ -1476,7 +1567,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Clothing & Accessories - Wedding Apparel Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Clothing & Accessories - Wedding Apparel Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Children's Wedding Apparel">Children's Wedding Apparel</option>
                                     <option value="Men's Wedding Apparel">Men's Wedding Apparel</option>
@@ -1488,7 +1580,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Clothing & Accessories - Costumes & Uniforms Apparel Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Clothing & Accessories - Costumes & Uniforms Apparel Sub
+                                    Category <span ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Children's Costumes & Uniform">Children's Costumes & Uniform</option>
                                     <option value="Men's Costumes & Uniform">Men's Costumes & Uniform</option>
@@ -1501,12 +1594,17 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Clothing & Accessories - Vintage & Highend Clothing Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Clothing & Accessories - Vintage & Highend Clothing Sub
+                                    Category <span ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
-                                    <option value="Children's Vintage & Highend Clothing">Children's Vintage & Highend Clothing</option>
-                                    <option value="Men's Vintage & Highend Clothing">Men's Vintage & Highend Clothing</option>
-                                    <option value="Unisex Vintage & Highend Clothing">Unisex Vintage & Highend Clothing</option>
-                                    <option value="Women's Vintage & Highend Clothing">Women's Vintage & Highend Clothing</option>
+                                    <option value="Children's Vintage & Highend Clothing">Children's Vintage & Highend
+                                        Clothing</option>
+                                    <option value="Men's Vintage & Highend Clothing">Men's Vintage & Highend Clothing
+                                    </option>
+                                    <option value="Unisex Vintage & Highend Clothing">Unisex Vintage & Highend Clothing
+                                    </option>
+                                    <option value="Women's Vintage & Highend Clothing">Women's Vintage & Highend
+                                        Clothing</option>
                                 </select>
                             </div>
                         </div>
@@ -1514,7 +1612,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Cameras & Imaging Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Cameras & Imaging Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Digital Cameras">Digital Cameras</option>
                                     <option value="Lenses, Filters & Lighting">Lenses, Filters & Lighting</option>
@@ -1533,7 +1632,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Cameras & Imaging - Digital Cameras Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Cameras & Imaging - Digital Cameras Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Mirrorless Digital Cameras">Mirrorless Digital Cameras</option>
                                     <option value="Point & Shoot">Point & Shoot</option>
@@ -1547,7 +1647,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Cameras & Imaging - Lenses, Filters & Lighting Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Cameras & Imaging - Lenses, Filters & Lighting Sub Category
+                                    <span ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Filter Accessories">Filter Accessories</option>
                                     <option value="Filters">Filters</option>
@@ -1562,7 +1663,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Cameras & Imaging - Professional Equipment Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Cameras & Imaging - Professional Equipment Sub Category
+                                    <span ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Audio">Audio</option>
                                     <option value="Cables">Cables</option>
@@ -1580,7 +1682,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Cameras & Imaging - Camera Accessories Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Cameras & Imaging - Camera Accessories Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Bags & Straps">Bags & Straps</option>
                                     <option value="Digital Cameras Accessories">Digital Cameras Accessories</option>
@@ -1593,7 +1696,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Cameras & Imaging - Tripods & Stands Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Cameras & Imaging - Tripods & Stands Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Monopods">Monopods</option>
                                     <option value="Stand Accessories">Stand Accessories</option>
@@ -1606,7 +1710,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Cameras & Imaging - Camcorders Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Cameras & Imaging - Camcorders Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Analog">Analog</option>
                                     <option value="Digital">Digital</option>
@@ -1618,7 +1723,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Cameras & Imaging - Film Cameras Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Cameras & Imaging - Film Cameras Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="35mm Point & Shoot">35mm Point & Shoot</option>
                                     <option value="35mm SLR">35mm SLR</option>
@@ -1632,7 +1738,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Cameras & Imaging - Binoculars/Telescopes Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Cameras & Imaging - Binoculars/Telescopes Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Accessories">Accessories</option>
                                     <option value="Binoculars/Minoculars">Binoculars/Minoculars</option>
@@ -1645,7 +1752,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Cameras & Imaging - Binoculars/Telescopes Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Cameras & Imaging - Binoculars/Telescopes Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Accessories">Accessories</option>
                                     <option value="Binoculars/Minoculars">Binoculars/Minoculars</option>
@@ -1658,7 +1766,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Jewelry & Watches Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Jewelry & Watches Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Watches">Watches</option>
                                     <option value="Women's Jewelry">Women's Jewelry</option>
@@ -1672,7 +1781,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Jewelry & Watches - Watches Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Jewelry & Watches - Watches Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Children's Watches">Children's Watches</option>
                                     <option value="Men's Sport Watches">Men's Sport Watches</option>
@@ -1687,7 +1797,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Jewelry & Watches - Women's Jewelry Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Jewelry & Watches - Women's Jewelry Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Body Jewelry">Body Jewelry</option>
                                     <option value="Bracelets">Bracelets</option>
@@ -1704,7 +1815,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Jewelry & Watches - Men's Jewelry Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Jewelry & Watches - Men's Jewelry Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Belt Buckles">Belt Buckles</option>
                                     <option value="Bracelets">Bracelets</option>
@@ -1721,7 +1833,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Pets Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Pets Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Pets for Free Adoption">Pets for Free Adoption</option>
                                     <option value="Pet Accessories">Pet Accessories</option>
@@ -1733,7 +1846,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Pets - Pets for Free Adoption Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Pets - Pets for Free Adoption Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Birds">Birds</option>
                                     <option value="Cats">Cats</option>
@@ -1749,9 +1863,11 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Pets - Pet Accessories Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Pets - Pet Accessories Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
-                                    <option value="Aquariums & Fish/Reptiles Supplies">Aquariums & Fish/Reptiles Supplies</option>
+                                    <option value="Aquariums & Fish/Reptiles Supplies">Aquariums & Fish/Reptiles
+                                        Supplies</option>
                                     <option value="Bird Supplies">Bird Supplies</option>
                                     <option value="Cat Supplies">Cat Supplies</option>
                                     <option value="Dog Supplies">Dog Supplies</option>
@@ -1761,15 +1877,375 @@
                             </div>
                         </div>
                     </div>
-
-
-
-
-                    <!-- Other Fields -->
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Collectibles  Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds -Musical Instruments Sub Category <span
+                                        ngClass="required-span">*</span></label>
+                                <select class="select2 category-select">
+                                    <option value="Guitars">Guitars</option>
+                                    <option value="Pianos, Keyword & Organs">Pianos, Keyword & Organs</option>
+                                    <option value="Percussion">Percussion</option>
+                                    <option value="String Instruments">String Instruments</option>
+                                    <option value="Wind Instruments">Wind Instruments</option>
+                                    <option value="DJ & Recording Equipment">DJ & Recording Equipment</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div ngClass="select-boxes">
+                        <div ngClass="block-wrapper mb-4">
+                            <div ngClass="select-design select2-design full-width-select2">
+                                <label>Choose Classifieds -Musical - Guitars Instruments Sub Category <span
+                                        ngClass="required-span">*</span></label>
+                                <select class="select2 category-select">
+                                    <option value="Acoustic">Acoustic</option>
+                                    <option value="Acoustic Electric">Acoustic Electric</option>
+                                    <option value="Amps & Chords">Amps & Chords</option>
+                                    <option value="Bass">Bass</option>
+                                    <option value="Cases & Accessories">Cases & Accessories</option>
+                                    <option value="Electric">Electric</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div ngClass="select-boxes">
+                        <div ngClass="block-wrapper mb-4">
+                            <div ngClass="select-design select2-design full-width-select2">
+                                <label>Choose Classifieds -Musical - Pianos, Keyboards & Organs Sub Category <span
+                                        ngClass="required-span">*</span></label>
+                                <select class="select2 category-select">
+                                    <option value="Equipment & Accessories">Equipment & Accessories</option>
+                                    <option value="Grand Pianos">Grand Pianos</option>
+                                    <option value="Keyboard & Synthesizers">Keyboard & Synthesizers</option>
+                                    <option value="Organs">Organs</option>
+                                    <option value="Upright Pianos">Upright Pianos</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div ngClass="select-boxes">
+                        <div ngClass="block-wrapper mb-4">
+                            <div ngClass="select-design select2-design full-width-select2">
+                                <label>Choose Classifieds -Musical - Percussion Sub Category <span
+                                        ngClass="required-span">*</span></label>
+                                <select class="select2 category-select">
+                                    <option value="Bells & Cymbals">Bells & Cymbals</option>
+                                    <option value="Drums">Drums</option>
+                                    <option value="Equipment & Accessories">Equipment & Accessories</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div ngClass="select-boxes">
+                        <div ngClass="block-wrapper mb-4">
+                            <div ngClass="select-design select2-design full-width-select2">
+                                <label>Choose Classifieds -Musical - String Instruments Sub Category <span
+                                        ngClass="required-span">*</span></label>
+                                <select class="select2 category-select">
+                                    <option value="Equipment & Accessories">Equipment & Accessories</option>
+                                    <option value="Viola & Violin">Viola & Violin</option>
+                                    <option value="Other String Instruments">Other String Instruments</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div ngClass="select-boxes">
+                        <div ngClass="block-wrapper mb-4">
+                            <div ngClass="select-design select2-design full-width-select2">
+                                <label>Choose Classifieds -Musical - Wind Instruments Sub Category <span
+                                        ngClass="required-span">*</span></label>
+                                <select class="select2 category-select">
+                                    <option value="Baritone & Tuba">Baritone & Tuba</option>
+                                    <option value="Flute">Flute</option>
+                                    <option value="Sexophone">Sexophone</option>
+                                    <option value="Other Brass">Other Brass</option>
+                                    <option value="Other Woodwind">Other Woodwind</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div ngClass="select-boxes">
+                        <div ngClass="block-wrapper mb-4">
+                            <div ngClass="select-design select2-design full-width-select2">
+                                <label>Choose Classifieds - Gaming Sub Category <span
+                                        ngClass="required-span">*</span></label>
+                                <select class="select2 category-select">
+                                    <option value="Gaming Systems">Gaming Systems</option>
+                                    <option value="Video Games">Video Games</option>
+                                    <option value="Gaming Accessories">Gaming Accessories</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div ngClass="select-boxes">
+                        <div ngClass="block-wrapper mb-4">
+                            <div ngClass="select-design select2-design full-width-select2">
+                                <label>Choose Classifieds - Gaming - Gaming Systems Sub Category <span
+                                        ngClass="required-span">*</span></label>
+                                <select class="select2 category-select">
+                                    <option value="Microsoft Xbox 360">Microsoft Xbox 360</option>
+                                    <option value="Microsoft Xbox One">Microsoft Xbox One</option>
+                                    <option value="Microsoft Xbox XIS Series">Microsoft Xbox XIS Series</option>
+                                    <option value="Nintendo 64">Nintendo 64</option>
+                                    <option value="Nintendo DS">Nintendo DS</option>
+                                    <option value="Nintendo GameCube">Nintendo GameCube</option>
+                                    <option value="Nintendo NES">Nintendo NES</option>
+                                    <option value="Nintendo Switch">Nintendo Switch</option>
+                                    <option value="Nintendo Wii">Nintendo Wii</option>
+                                    <option value="PS Vita">PS Vita</option>
+                                    <option value="Sony PSP">Sony PSP</option>
+                                    <option value="Sony PlayStation">Sony PlayStation</option>
+                                    <option value="Sony PlayStation 2">Sony PlayStation 2</option>
+                                    <option value="Sony PlayStation 3">Sony PlayStation 3</option>
+                                    <option value="Sony PlayStation 4">Sony PlayStation 4</option>
+                                    <option value="Sony PlayStation 5">Sony PlayStation 5</option>
+                                    <option value="Super Nintendo">Super Nintendo</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div ngClass="select-boxes">
+                        <div ngClass="block-wrapper mb-4">
+                            <div ngClass="select-design select2-design full-width-select2">
+                                <label>Choose Classifieds - Gaming - Vidoe Games Sub Category <span
+                                        ngClass="required-span">*</span></label>
+                                <select class="select2 category-select">
+                                    <option value="Microsoft Xbox 360">Microsoft Xbox 360</option>
+                                    <option value="Microsoft Xbox One">Microsoft Xbox One</option>
+                                    <option value="Nintendo 64">Nintendo 64</option>
+                                    <option value="Nintendo DS">Nintendo DS</option>
+                                    <option value="Nintendo GameCube">Nintendo GameCube</option>
+                                    <option value="Nintendo NES">Nintendo NES</option>
+                                    <option value="Nintendo Switch">Nintendo Switch</option>
+                                    <option value="Nintendo Wii">Nintendo Wii</option>
+                                    <option value="PC">PC</option>
+                                    <option value="PS Vita">PS Vita</option>
+                                    <option value="Sony PSP">Sony PSP</option>
+                                    <option value="Sony PlayStation">Sony PlayStation</option>
+                                    <option value="Sony PlayStation 2">Sony PlayStation 2</option>
+                                    <option value="Sony PlayStation 3">Sony PlayStation 3</option>
+                                    <option value="Sony PlayStation 4">Sony PlayStation 4</option>
+                                    <option value="Sony PlayStation 5">Sony PlayStation 5</option>
+                                    <option value="Super Nintendo">Super Nintendo</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div ngClass="select-boxes">
+                        <div ngClass="block-wrapper mb-4">
+                            <div ngClass="select-design select2-design full-width-select2">
+                                <label>Choose Classifieds - Gaming - Gaming Accessories Sub Category <span
+                                        ngClass="required-span">*</span></label>
+                                <select class="select2 category-select">
+                                    <option value="Microsoft Xbox 360">Microsoft Xbox 360</option>
+                                    <option value="Microsoft Xbox One">Microsoft Xbox One</option>
+                                    <option value="Nintendo 64">Nintendo 64</option>
+                                    <option value="Nintendo DS">Nintendo DS</option>
+                                    <option value="Nintendo GameCube">Nintendo GameCube</option>
+                                    <option value="Nintendo NES">Nintendo NES</option>
+                                    <option value="Nintendo Switch">Nintendo Switch</option>
+                                    <option value="Nintendo Wii">Nintendo Wii</option>
+                                    <option value="PC">PC</option>
+                                    <option value="PS Vita">PS Vita</option>
+                                    <option value="Sony PSP">Sony PSP</option>
+                                    <option value="Sony PlayStation">Sony PlayStation</option>
+                                    <option value="Sony PlayStation 2">Sony PlayStation 2</option>
+                                    <option value="Sony PlayStation 3">Sony PlayStation 3</option>
+                                    <option value="Sony PlayStation 4">Sony PlayStation 4</option>
+                                    <option value="Sony PlayStation 5">Sony PlayStation 5</option>
+                                    <option value="Super Nintendo">Super Nintendo</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div ngClass="select-boxes">
+                        <div ngClass="block-wrapper mb-4">
+                            <div ngClass="select-design select2-design full-width-select2">
+                                <label>Choose Classifieds - Baby Items Sub Category <span
+                                        ngClass="required-span">*</span></label>
+                                <select class="select2 category-select">
+                                    <option value="Strollers & Car Seats">Strollers & Car Seats</option>
+                                    <option value="Nursery Furniture & Accessories">Nursery Furniture & Accessories
+                                    </option>
+                                    <option value="Baby Gear">Baby Gear</option>
+                                    <option value="Baby Toys">Baby Toys</option>
+                                    <option value="Feeding">Feeding</option>
+                                    <option value="Safety & Health">Safety & Health</option>
+                                    <option value="Bath & Diapers">Bath & Diapers</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div ngClass="select-boxes">
+                        <div ngClass="block-wrapper mb-4">
+                            <div ngClass="select-design select2-design full-width-select2">
+                                <label>Choose Classifieds - Baby Items - Strollers & Car Seats Sub Category <span
+                                        ngClass="required-span">*</span></label>
+                                <select class="select2 category-select">
+                                    <option value="Car Seats Accessories">Car Seats Accessories</option>
+                                    <option value="Infant Car Seats">Infant Car Seats</option>
+                                    <option value="Jogging Strollers">Jogging Strollers</option>
+                                    <option value="Pram Strollera">Pram Strollers</option>
+                                    <option value="Strandard Strollers">Strandard Strollers</option>
+                                    <option value="Strollers Accessories">Strollers Accessories</option>
+                                    <option value="Toddler Car Seats">Toddler Car Seats</option>
+                                    <option value="Travel System Strollers">Travel System Strollers</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div ngClass="select-boxes">
+                        <div ngClass="block-wrapper mb-4">
+                            <div ngClass="select-design select2-design full-width-select2">
+                                <label>Choose Classifieds - Baby Items - Nursery Furniture & Accessories Sub Category
+                                    <span ngClass="required-span">*</span></label>
+                                <select class="select2 category-select">
+                                    <option value="Baby Dressers ">Baby Dressers </option>
+                                    <option value="Bassinets, Cradles & Rockers">Bassinets, Cradles & Rockers</option>
+                                    <option value="Changing Tables">Changing Tables</option>
+                                    <option value="Cribs">Cribs</option>
+                                    <option value="Nursery Bedding ">Nursery Bedding </option>
+                                    <option value="Nursery Decor & Accessories">Nursery Decor & Accessories</option>
+                                    <option value="Nursery Furniture Sets">Nursery Furniture Sets</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div ngClass="select-boxes">
+                        <div ngClass="block-wrapper mb-4">
+                            <div ngClass="select-design select2-design full-width-select2">
+                                <label>Choose Classifieds - Baby Items - Baby Gear Sub Category <span
+                                        ngClass="required-span">*</span></label>
+                                <select class="select2 category-select">
+                                    <option value="Backpacks & Carriers ">Backpacks & Carriers</option>
+                                    <option value="Chairs">Chairs</option>
+                                    <option value="Jumping Exercisers">Jumping Exercisers</option>
+                                    <option value="Swings">Swings</option>
+                                    <option value="Walkers ">Walkers</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div ngClass="select-boxes">
+                        <div ngClass="block-wrapper mb-4">
+                            <div ngClass="select-design select2-design full-width-select2">
+                                <label>Choose Classifieds - Baby Items - Baby Toys Sub Category <span
+                                        ngClass="required-span">*</span></label>
+                                <select class="select2 category-select">
+                                    <option value="Activity Toys ">Activity Toys</option>
+                                    <option value="Crib Toys">Crib Toys</option>
+                                    <option value="Development/Learning Toys">Development/Learning Toys</option>
+                                    <option value="Plush/Soft Toys">Plush/Soft Toys </option>
+                                    <option value="Rattles & Teethers">Rattles & Teethers</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div ngClass="select-boxes">
+                        <div ngClass="block-wrapper mb-4">
+                            <div ngClass="select-design select2-design full-width-select2">
+                                <label>Choose Classifieds - Baby Items - Feeding Sub Category <span
+                                        ngClass="required-span">*</span></label>
+                                <select class="select2 category-select">
+                                    <option value="Baby Food & Formula ">Baby Food & Formula</option>
+                                    <option value="Bibs">Bibs</option>
+                                    <option value="Booster/High Chairs">Booster/High Chairs</option>
+                                    <option value="Bottles">Bottles</option>
+                                    <option value="Dishes & Utensils">Dishes & Utensils</option>
+                                    <option value="Nursing Pillows">Nursing Pillows</option>
+                                    <option value="Pacifiers">Pacifiers</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div ngClass="select-boxes">
+                        <div ngClass="block-wrapper mb-4">
+                            <div ngClass="select-design select2-design full-width-select2">
+                                <label>Choose Classifieds - Baby Items - Safety & Health Sub Category <span
+                                        ngClass="required-span">*</span></label>
+                                <select class="select2 category-select">
+                                    <option value="Baby House & Car Proofing">Baby House & Car Proofing</option>
+                                    <option value="Baby Monitors">Baby Monitors </option>
+                                    <option value="Baby Thermometers">Baby Thermometers</option>
+                                    <option value="Lock & Latches">Lock & Latches</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div ngClass="select-boxes">
+                        <div ngClass="block-wrapper mb-4">
+                            <div ngClass="select-design select2-design full-width-select2">
+                                <label>Choose Classifieds - Baby Items - Bath & Diapers Sub Category <span
+                                        ngClass="required-span">*</span></label>
+                                <select class="select2 category-select">
+                                    <option value="Bath Tubs">Bath Tubs</option>
+                                    <option value="Diaper  Bins">Diaper Bins </option>
+                                    <option value="Diaper & Wipes">Diaper & Wipes</option>
+                                    <option value="Lotions, Powders & Shampoos">Lotions, Powders & Shampoos</option>
+                                    <option value="Potties ">Potties </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div ngClass="select-boxes">
+                        <div ngClass="block-wrapper mb-4">
+                            <div ngClass="select-design select2-design full-width-select2">
+                                <label>Choose Classifieds - Toys Sub Category <span
+                                        ngClass="required-span">*</span></label>
+                                <select class="select2 category-select">
+                                    <option value="Electronic & Remote Control Toys">Electronic & Remote Control Toys
+                                    </option>
+                                    <option value="Action Figures & Toy Vehicles">Action Figures & Toy Vehicles</option>
+                                    <option value="Outdoor Toys & Structures ">Outdoor Toys & Structures </option>
+                                    <option value="Hobbies">Hobbies</option>
+                                    <option value="Pretend Play &Preschool Toys">Pretend Play &Preschool Toys</option>
+                                    <option value="Educational Toys">Educational Toys</option>
+                                    <option value="Dolls & Stuffed Animals ">Dolls & Stuffed Animals </option>
+                                    <option value="Games & Puzzles">Games & Puzzles</option>
+                                    <option value="Classic & Vintage Toys">Classic & Vintage Toys </option>
+                                    <option value="Building Toys">Building Toys </option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div ngClass="select-boxes">
+                        <div ngClass="block-wrapper mb-4">
+                            <div ngClass="select-design select2-design full-width-select2">
+                                <label>Choose Classifieds - Tickets & Vouchers Sub Category <span
+                                        ngClass="required-span">*</span></label>
+                                <select class="select2 category-select">
+                                    <option value="Concerts">Concerts</option>
+                                    <option value="Sporting Events">Sporting Events</option>
+                                    <option value="Travel">Travel</option>
+                                    <option value="Events">Events</option>
+                                    <option value="Movies">Movies</option>
+                                    <option value="Theater">Theater</option>
+                                    <option value="Activities & Attractions">Activities & Attractions</option>
+                                    <option value="Voucher & Gift Cards">Voucher & Gift Cards</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div ngClass="select-boxes">
+                        <div ngClass="block-wrapper mb-4">
+                            <div ngClass="select-design select2-design full-width-select2">
+                                <label>Choose Classifieds - Collectibles Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Antiques">Antiques</option>
                                     <option value="Art">Art</option>
@@ -1785,7 +2261,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Collectibles - Antiques Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Collectibles - Antiques Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Antiquities">Antiquities</option>
                                     <option value="Books & Maps">Books & Maps</option>
@@ -1797,15 +2274,88 @@
                             </div>
                         </div>
                     </div>
-
-
-
-
-                            <!-- books -->
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Books Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Collectibles - Art Sub Category <span
+                                        ngClass="required-span">*</span></label>
+                                <select class="select2 category-select">
+                                    <option value="Drawings">Drawings</option>
+                                    <option value="Paintings">Paintings</option>
+                                    <option value="Photography">Photography</option>
+                                    <option value="Statues">Statues </option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div ngClass="select-boxes">
+                        <div ngClass="block-wrapper mb-4">
+                            <div ngClass="select-design select2-design full-width-select2">
+                                <label>Choose Classifieds - Collectibles - Decorations Sub Category <span
+                                        ngClass="required-span">*</span></label>
+                                <select class="select2 category-select">
+                                    <option value="Domestic Decorations">Domestic Decorations</option>
+                                    <option value="Linens/Textiles">Linens/Textiles</option>
+                                    <option value="Outdoor Decoration">Outdoor Decoration</option>
+                                    <option value="Wall Hangings">Wall Hangings</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div ngClass="select-boxes">
+                        <div ngClass="block-wrapper mb-4">
+                            <div ngClass="select-design select2-design full-width-select2">
+                                <label>Choose Classifieds - Collectibles - Pens & Writing Instruments Sub Category <span
+                                        ngClass="required-span">*</span></label>
+                                <select class="select2 category-select">
+                                    <option value="Calligraphy">Calligraphy</option>
+                                    <option value="Pens">Pens</option>
+                                    <option value="Sets">Sets</option>
+                                    <option value="Typewriters">Typewriters</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div ngClass="select-boxes">
+                        <div ngClass="block-wrapper mb-4">
+                            <div ngClass="select-design select2-design full-width-select2">
+                                <label>Choose Classifieds - Collectibles - Memorabilia Sub Category <span
+                                        ngClass="required-span">*</span></label>
+                                <select class="select2 category-select">
+                                    <option value="Cultural Memorabilia">Cultural Memorabilia</option>
+                                    <option value="Historical Memorabilia">Historical Memorabilia</option>
+                                    <option value="Limited Edition Memorabilia">Limited Edition Memorabilia</option>
+                                    <option value="Military Memorabilia">Military Memorabilia</option>
+                                    <option value="Religious Memorabilia">Religious Memorabilia</option>
+                                    <option value="Sports Memorabilia">Sports Memorabilia</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div ngClass="select-boxes">
+                        <div ngClass="block-wrapper mb-4">
+                            <div ngClass="select-design select2-design full-width-select2">
+                                <label>Choose Classifieds - Collectibles - Rocks/Fossils/Artifacts Sub Category <span
+                                        ngClass="required-span">*</span></label>
+                                <select class="select2 category-select">
+                                    <option value="Artifacts">Artifacts</option>
+                                    <option value="Fossils">Fossils</option>
+                                    <option value="Petrified Wood">Petrified Wood</option>
+                                    <option value="Rocks, Crystals & Minerals">Rocks, Crystals & Minerals</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div ngClass="select-boxes">
+                        <div ngClass="block-wrapper mb-4">
+                            <div ngClass="select-design select2-design full-width-select2">
+                                <label>Choose Classifieds - Books Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Textbooks">Textbooks</option>
                                     <option value="Nonfiction">Nonfiction</option>
@@ -1821,7 +2371,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Books - Textbooks Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Books - Textbooks Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="A Levels/High School">A Levels/High School</option>
                                     <option value="Primary School">Primary School</option>
@@ -1834,7 +2385,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Books - Nonfiction Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Books - Nonfiction Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Business/Science/Technology">Business/Science/Technology</option>
                                     <option value="Cook Books">Cook Books</option>
@@ -1842,7 +2394,8 @@
                                     <option value="How-To Books">How-To Books</option>
                                     <option value="Picture Books">Picture Books</option>
                                     <option value="Religious Books">Religious Books</option>
-                                    <option value="Self Help / Motivational Books">Self Help / Motivational Books</option>
+                                    <option value="Self Help / Motivational Books">Self Help / Motivational Books
+                                    </option>
                                     <option value="Sports/Health Books">Sports/Health Books</option>
                                     <option value="Travel Books">Travel Books</option>
                                     <option value="Other">Other</option>
@@ -1853,7 +2406,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Books - Fiction Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Books - Fiction Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Action/Adventure">Action/Adventure</option>
                                     <option value="Classics">Classics</option>
@@ -1869,7 +2423,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Books - Children's Books Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Books - Children's Books Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Coloring/Activity Books">Coloring/Activity Books</option>
                                     <option value="Educational Books">Educational Books</option>
@@ -1884,7 +2439,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Books - Book Accessories Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Books - Book Accessories Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Book Lights">Book Lights</option>
                                     <option value="Daily Planners">Daily Planners </option>
@@ -1894,12 +2450,11 @@
                             </div>
                         </div>
                     </div>
-                    
-                        <!-- music -->
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Music Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Music Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Vinyl">Vinyl</option>
                                     <option value="CDs">CDs</option>
@@ -1912,7 +2467,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Music - CDs Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Music - CDs Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Latin">Latin</option>
                                 </select>
@@ -1922,7 +2478,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Music - Casettes Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Music - Casettes Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Classical">Classical</option>
                                     <option value="Country">Country</option>
@@ -1937,7 +2494,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Music - Digital Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Music - Digital Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Arabic">Arabic</option>
                                     <option value="Country">Country</option>
@@ -1949,12 +2507,11 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- free stuff -->
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Free Stuff Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Free Stuff Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Furniture, Home & Garden">Furniture, Home & Garden</option>
                                     <option value="Home Appliances">Home Appliances</option>
@@ -1968,12 +2525,11 @@
                             </div>
                         </div>
                     </div>
-
-                        <!-- lost/found                     -->
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Lost/Found Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Lost/Found Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Lost">Lost</option>
                                     <option value="Found">Found</option>
@@ -1984,7 +2540,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Lost/Found - Lost Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Lost/Found - Lost Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Jewelry, Watches & Sunglasses">Jewelry, Watches & Sunglasses</option>
                                     <option value="Keys">Keys</option>
@@ -2000,27 +2557,25 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Lost/Found - Found Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Lost/Found - Found Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Jewelry, Watches & Sunglasses">Jewelry, Watches & Sunglasses</option>
                                     <option value="Keys">Keys</option>
                                     <option value="Mobile Phone">Mobile Phone</option>
                                     <option value="Passport & Documents">Passport & Documents</option>
-                                    <option value="Pets">Pets</option>  
+                                    <option value="Pets">Pets</option>
                                     <option value="Wallet">Wallet</option>
                                     <option value="Other">Other</option>
                                 </select>
                             </div>
                         </div>
                     </div>
-
-
-
-                    <!-- DVD & Movies -->
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - DVDs & Movies Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - DVDs & Movies Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="DVD">DVD</option>
                                     <option value="Digital">Digital</option>
@@ -2033,7 +2588,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - DVDs & Movies - DVD Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - DVDs & Movies - DVD Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Action, Adventure">Action, Adventure</option>
                                     <option value="Animation">Animation</option>
@@ -2054,7 +2610,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - DVDs & Movies - Digital Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - DVDs & Movies - Digital Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Action, Adventure">Action, Adventure</option>
                                     <option value="Animation">Animation</option>
@@ -2074,7 +2631,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - DVDs & Movies - VHS Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - DVDs & Movies - VHS Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Action, Adventure">Action, Adventure</option>
                                     <option value="Animation">Animation</option>
@@ -2091,12 +2649,11 @@
                             </div>
                         </div>
                     </div>
-
-                            <!-- furniture, home & Garden -->
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Furniture, Home & Garden Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Furniture, Home & Garden Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Furniture">Furniture</option>
                                     <option value="Home Accesories">Home Accesories</option>
@@ -2112,7 +2669,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Furniture, Home & Garden - Furniture Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Furniture, Home & Garden - Furniture Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Armoires & Wardrobes">Armoires & Wardrobes</option>
                                     <option value=" Bar Tables">Bar Tables</option>
@@ -2128,7 +2686,8 @@
                                     <option value="Nightstands">Nightstands</option>
                                     <option value="Office Furniture">Office Furniture</option>
                                     <option value="Sofas, Futons, & Lounges">Sofas, Futons, & Lounges</option>
-                                    <option value="Study Tables & Computer Tables">Study Tables & Computer Tables</option>
+                                    <option value="Study Tables & Computer Tables">Study Tables & Computer Tables
+                                    </option>
                                     <option value="Tables">Tables</option>
                                     <option value="Other">Other</option>
                                 </select>
@@ -2138,7 +2697,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Furniture, Home & Garden - Home Accessories Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Furniture, Home & Garden - Home Accessories Sub Category
+                                    <span ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Bath & Accessories">Bath & Accessories</option>
                                     <option value=" Bedding & Bed Accessories">Bedding & Bed Accessories</option>
@@ -2154,7 +2714,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Furniture, Home & Garden - Garden & Outdoor Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Furniture, Home & Garden - Garden & Outdoor Sub Category
+                                    <span ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Garden Accessories">Garden Accessories</option>
                                     <option value="Garden Decor">Garden Decor</option>
@@ -2170,7 +2731,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Furniture, Home & Garden - Lighting & Fans - Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Furniture, Home & Garden - Lighting & Fans - Sub Category
+                                    <span ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Ceiling Fans">Ceiling Fans</option>
                                     <option value="Lamps">Lamps</option>
@@ -2183,7 +2745,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Furniture, Home & Garden - Rugs & Carpets - Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Furniture, Home & Garden - Rugs & Carpets - Sub Category
+                                    <span ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Abstract/Modren">Abstract/Modren</option>
                                     <option value="Animal Skin">Animal Skin</option>
@@ -2200,7 +2763,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Furniture, Home & Garden - Curtains & Blinds - Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Furniture, Home & Garden - Curtains & Blinds - Sub Category
+                                    <span ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Curtains & Drapes">Curtains & Drapes </option>
                                     <option value="Fabric Blinds">Fabric Blinds</option>
@@ -2213,7 +2777,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Furniture, Home & Garden - Tools & Home Improvement -  Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Furniture, Home & Garden - Tools & Home Improvement - Sub
+                                    Category <span ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Hand Tools">Hand Tools</option>
                                     <option value="Hardware">Hardware</option>
@@ -2223,12 +2788,11 @@
                             </div>
                         </div>
                     </div>
-
-                        <!-- mobile phones & tablets -->
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Mobile Phones & Tablets Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Mobile Phones & Tablets Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Mobile Phones">Mobile Phones</option>
                                     <option value="Dishwashers">Mobile Phones & Tablet Accessories</option>
@@ -2241,7 +2805,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Mobile Phones & Tablets - Mobile Phones Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Mobile Phones & Tablets - Mobile Phones Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Acer">Acer</option>
                                     <option value="Alcatel">Alcatel</option>
@@ -2284,7 +2849,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Mobile Phones & Tablets - Mobile Phone & Tablet Accessories Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Mobile Phones & Tablets - Mobile Phone & Tablet Accessories
+                                    Sub Category <span ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Batterries">Batterries</option>
                                     <option value="Cables & Adapters">Cables & Adapters</option>
@@ -2301,7 +2867,8 @@
                     <div ngClass="select-boxes">
                         <div ngClass="block-wrapper mb-4">
                             <div ngClass="select-design select2-design full-width-select2">
-                                <label>Choose Classifieds - Mobile Phones & Tablets - Tablets Sub Category <span ngClass="required-span">*</span></label>
+                                <label>Choose Classifieds - Mobile Phones & Tablets - Tablets Sub Category <span
+                                        ngClass="required-span">*</span></label>
                                 <select class="select2 category-select">
                                     <option value="Apple">Apple</option>
                                     <option value="Dell">Dell</option>
@@ -2323,9 +2890,6 @@
                             </div>
                         </div>
                     </div>
-    
-
-
                     <div ngClass="select-boxes">
                         <div ngClass="row">
                             <div ngClass="col-xl-4 col-lg-4 col-sm-12">
