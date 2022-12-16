@@ -5,6 +5,7 @@ import { NotificationService } from "../../service/notification.service";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { AppService } from "../../service/app.service";
 import { environment } from 'src/environments/environment';
+import { data } from 'jquery';
 
 @Component({
   selector: 'app-compare-listings',
@@ -33,6 +34,7 @@ export class CompareListingsComponent implements OnInit {
       this.viewPropertyOne = localStorage.getItem("clickProprtyOne");
       this.viewPropertyOne = JSON.parse(this.viewPropertyOne);
       this.service.PropertyListingDetailComparison(this.viewPropertyOne.id).subscribe((response: any) => {
+        console.log(response);
         this.propertyDetails.push(response.data);
       });
     }
