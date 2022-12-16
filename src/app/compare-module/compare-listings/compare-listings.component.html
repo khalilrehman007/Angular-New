@@ -271,8 +271,9 @@
                             <p>Features</p>
                         </div>
                     </div>
+                    
                     <div class="comparen-list-item bedrooms" *ngFor="let property of propertyDetails">
-                        <p class="title-description" *ngFor="let features of property.propertyFeatures">{{features.propertyFeature.featureName}}</p>
+                        <span class="compare-page-span" *ngFor="let features of property.propertyFeatures">{{features.propertyFeature.featureName}}</span>
                     </div>
                 </div>
             </div>
